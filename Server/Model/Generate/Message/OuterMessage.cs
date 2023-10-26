@@ -8033,6 +8033,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int UnionLevel { get; set; }
 
+		[ProtoMember(6)]
+		public string UnionLeader { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_ReddotReadResponse))]

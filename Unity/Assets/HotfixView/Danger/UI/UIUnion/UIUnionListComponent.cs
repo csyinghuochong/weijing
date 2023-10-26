@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject GameObject;
         public GameObject UnionListNode;
+        public GameObject UIUnionListItem;
         public List<UnionListItem> UnionList = null;
     }
 
@@ -20,6 +21,8 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.UnionListNode = rc.Get<GameObject>("UnionListNode");
+            self.UIUnionListItem = rc.Get<GameObject>("UIUnionListItem");
+            self.UIUnionListItem.SetActive(false);
         }
     }
 
@@ -30,23 +33,19 @@ namespace ET
         {
             if (self.UnionList == null)
             {
+                long instanceid = self.InstanceId;
                 C2U_UnionListRequest c2M_ItemHuiShouRequest = new C2U_UnionListRequest() { };
                 U2C_UnionListResponse r2c_roleEquip = (U2C_UnionListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
                 if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
                 {
                     return;
                 }
                 self.UnionList = r2c_roleEquip.UnionList;
             }
-
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionListItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
-
             self.UnionList.Sort(delegate( UnionListItem a, UnionListItem b )
             {
                 int unionlevela = a.UnionLevel;
@@ -73,7 +72,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIUnionListItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.UnionListNode);
                     self.AddChild<UIUnionListItemComponent, GameObject>(go).OnUpdateUI(self.UnionList[i]);
                 }

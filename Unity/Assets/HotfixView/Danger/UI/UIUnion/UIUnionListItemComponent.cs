@@ -11,6 +11,7 @@ namespace ET
         public GameObject Text_Number;
         public GameObject Text_Name;
         public GameObject GameObject;
+        public GameObject Text_Leader;
 
         public UnionListItem UnionListItem;
     }
@@ -29,6 +30,7 @@ namespace ET
             self.Text_Request = rc.Get<GameObject>("Text_Request");
             self.Text_Number = rc.Get<GameObject>("Text_Number");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
+            self.Text_Leader = rc.Get<GameObject>("Text_Leader");
         }
     }
 
@@ -73,6 +75,7 @@ namespace ET
             self.Text_Request.GetComponent<Text>().text = $"等级达到1级";
             self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/{peopleMax}";
             self.Text_Name.GetComponent<Text>().text = unionListItem.UnionName;
+            self.Text_Leader.GetComponent<Text>().text = unionListItem.UnionLeader;
         }
     }
 }

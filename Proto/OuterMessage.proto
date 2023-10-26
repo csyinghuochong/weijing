@@ -3817,6 +3817,7 @@ message UnionListItem
 	int32 PlayerNumber = 3;
 	int32 LevelLimit = 4;
 	int32 UnionLevel = 5;
+	string UnionLeader = 6;
 }
 
 //ResponseType M2C_ReddotReadResponse
