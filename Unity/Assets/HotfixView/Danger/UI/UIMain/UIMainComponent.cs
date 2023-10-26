@@ -1664,11 +1664,10 @@ namespace ET
             //C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
             //M2C_WelfareDrawRewardResponse response13 = (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
 
-
             //投资。可以投资6天 
             //  ConfigHelper.WelfareInvestList
             //self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList .UserInfo.WelfareInvestList 投资的天数
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {
                 C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = i };
                 M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
