@@ -1677,6 +1677,7 @@ namespace ET
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 
         {
+            UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
             //赛季数据
             long openTime =  SeasonHelper.SeasonOpenTime; //赛季开始时间
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
