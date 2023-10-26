@@ -7,7 +7,6 @@ namespace ET
 
         public static async ETTask OnGameOver(this PetMingDungeonComponent self, int result)
         {
-            Log.Console($"OnGameOver:  {result}");
             if (result == CombatResultEnum.Win && self.MainUnit != null)
             {
                 long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());
@@ -85,7 +84,6 @@ namespace ET
                     Postion = self.Position,
                 });
 
-            Log.Console($"r_GameStatusResponse:  {r_GameStatusResponse.PetMingPlayerInfo}");
             if (r_GameStatusResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
