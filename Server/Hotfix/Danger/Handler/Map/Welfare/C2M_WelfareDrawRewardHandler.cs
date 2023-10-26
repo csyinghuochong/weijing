@@ -15,8 +15,8 @@ namespace ET
                 return;
             }
 
-            string reward = ConfigHelper.WelfareDrawList[index].Value;
-            unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+            string reward = ConfigHelper.WelfareDrawList[index - 1].Value;
+            unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;
