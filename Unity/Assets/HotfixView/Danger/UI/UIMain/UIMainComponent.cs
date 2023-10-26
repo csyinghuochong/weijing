@@ -1648,7 +1648,7 @@ namespace ET
                 }
             }
 
-            await  taskComponent.SendCommitTask(90000001, 0);
+            //await  taskComponent.SendCommitTask(90000001, 0);
 
             //已完成的任务，包含福利任务 taskComponent.RoleComoleteTaskList;
 

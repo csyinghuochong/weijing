@@ -1013,6 +1013,8 @@ namespace ET
                 return;
             }
 
+            Log.Console($"创角天数:{openDay} ");
+
             List<int> taskids = ConfigHelper.WelfareTaskList[openDay - 1];
             for (int i = 0; i < taskids.Count; i++)
             {
@@ -1025,7 +1027,7 @@ namespace ET
                     continue;
                 }
 
-                Log.Console($"开服天数:{openDay}   福利任务：{taskids[i]}");
+                Log.Console($" 福利任务：{taskids[i]}");
 
                 self.RoleTaskList.Add( self.CreateTask(taskids[i]));
             }

@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-            if (!unit.GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(request.day))
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(request.day))
             {
                 response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
