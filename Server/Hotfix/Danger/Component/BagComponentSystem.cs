@@ -756,6 +756,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 int ItemPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;
                 if (UseLocType >= ItemLocType.ItemWareHouse1)
                 {
@@ -820,6 +821,10 @@ namespace ET
                 if (userDataType == UserDataType.Diamond)
                 {
                     LogHelper.LogWarning($"[获取钻石]UserDataType.Diamond  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
+                }
+                if (userDataType == UserDataType.PiLao)
+                {
+                    Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {getType}  {rewardItems[i].ItemNum}");
                 }
                 if (userDataType != UserDataType.None)
                 {

@@ -227,9 +227,10 @@ namespace ET
         public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            Log.Debug($"RecoverPiLao [恢复体力] {unit.Id} {addValue}");
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
+
+            Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {0}  {recoverPiLao}");
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);
             self.LastLoginTime = TimeHelper.ServerNow();
         }

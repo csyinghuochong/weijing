@@ -31,7 +31,7 @@ namespace ET
 
             long addPilao = int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) - int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, addPilao.ToString());
-
+            Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {0}  {addPilao}");
             reply();
             await ETTask.CompletedTask;
         }
