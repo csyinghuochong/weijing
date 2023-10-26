@@ -48,10 +48,9 @@
 			{
 				Unit player = null;
                
-                if (attack.Type == UnitType.Pet || attack.Type == UnitType.Monster)
+                if (attack.MasterId > 0 &&( attack.Type == UnitType.Pet || attack.Type == UnitType.Monster))
 				{
-					long master = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-                    attack = attack.GetParent<UnitComponent>().Get(master);
+                    attack = attack.GetParent<UnitComponent>().Get(attack.MasterId);
 				}
                 if (attack!= null &&  attack.Type == UnitType.Player)
                 {
