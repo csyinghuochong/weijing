@@ -250,6 +250,8 @@ namespace ET
                                         break;
                                     }
                                 }
+
+                                //69000013;69000017
                                 unit.GetComponent<SkillSetComponent>().OnAddSkillBook(SkillSourceEnum.Book, int.Parse(itemConfig.SkillID));
                                 break;
                             case 108:   //宠物经验骨头

@@ -610,7 +610,7 @@ namespace ET
             string skillIDStr = itemconf.SkillID;
             if (skillIDStr != "" && skillIDStr != "0" && itemconf.SkillIDIfShow == 0)
             {
-                string[] skillID = skillIDStr.Split(',');
+                string[] skillID = skillIDStr.Split(';');
 
                 Vector2 hint_vec2 = new Vector2(0f, startPostionY);
                 self.Obj_EquipHintSkill.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
@@ -876,7 +876,7 @@ namespace ET
             {
                 self.Obj_EquipBottom.SetActive(false);
             }
-            if (ItemBlackDes.Length > 32)
+            if (ItemBlackDes.Length > 32 && self.Obj_EquipDes!=null)
             {
                 ItemBlackNum = (int)((ItemBlackDes.Length - 32) / 16) + 1;
                 self.Obj_EquipDes.GetComponent<RectTransform>().sizeDelta = new Vector2(240.0f, 40.0f + 16.0f * ItemBlackNum);
