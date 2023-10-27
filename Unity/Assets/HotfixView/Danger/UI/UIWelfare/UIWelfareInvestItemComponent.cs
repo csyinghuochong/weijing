@@ -1,0 +1,78 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UIWelfareInvestItemComponent: Entity, IAwake<GameObject>
+    {
+        public GameObject GameObject;
+        public GameObject DayText;
+        public GameObject InvestText;
+        public GameObject InvestBtn;
+        public GameObject InvestedImg;
+
+        public int day;
+    }
+
+    public class UIWelfareInvestItemComponentAwakeSystem: AwakeSystem<UIWelfareInvestItemComponent, GameObject>
+    {
+        public override void Awake(UIWelfareInvestItemComponent self, GameObject gameObject)
+        {
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+
+            self.DayText = rc.Get<GameObject>("DayText");
+            self.InvestText = rc.Get<GameObject>("InvestText");
+            self.InvestBtn = rc.Get<GameObject>("InvestBtn");
+            self.InvestedImg = rc.Get<GameObject>("InvestedImg");
+
+            self.InvestBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnInvestBtn().Coroutine(); });
+        }
+    }
+
+    public static class UIWelfareInvestItemComponentSystem
+    {
+        public static void OnUpdateData(this UIWelfareInvestItemComponent self, int day)
+        {
+            self.day = day;
+
+            self.DayText.GetComponent<Text>().text = $"第{day + 1}天";
+
+            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币";
+
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(day))
+            {
+                self.InvestBtn.SetActive(false);
+                self.InvestedImg.SetActive(true);
+            }
+            else
+            {
+                self.InvestBtn.SetActive(true);
+                self.InvestedImg.SetActive(false);
+            }
+        }
+
+        public static async ETTask OnInvestBtn(this UIWelfareInvestItemComponent self)
+        {
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(self.day))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经进行了投资!");
+                return;
+            }
+
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1 < self.day)
+            {
+                FloatTipManager.Instance.ShowFloatTip("今天还不能进行该项投资!");
+                return;
+            }
+
+            C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = self.day };
+            M2C_WelfareInvestResponse response4 =
+                    (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
+
+            // 刷新
+            self.GetParent<UIWelfareInvestComponent>().UpdateInfo();
+        }
+    }
+}
