@@ -514,7 +514,6 @@ namespace ET
             return bagInfos;
         }
 
-
         //获取某个装备位置的道具数据
         public static BagInfo GetEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType)
         {

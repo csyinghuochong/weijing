@@ -852,8 +852,8 @@ namespace ET
 
         public static int GetEquipType(this BagComponent self)
         {
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            return ItemHelper.GetEquipType(occ, self.GetWuqiItemID());
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            return ItemHelper.GetEquipType(unit.ConfigId, self.GetWuqiItemID());
         }
 
         public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, int position)

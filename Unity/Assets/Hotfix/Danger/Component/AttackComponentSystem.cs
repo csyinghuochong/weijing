@@ -87,7 +87,7 @@ namespace ET
             }
         }
 
-        public static void OnTransformId(this AttackComponent self,int occ, int runraceMonster)
+        public static void OnTransformId(this AttackComponent self,int occ,  int runraceMonster)
         {
             if (runraceMonster == 0)
             {
@@ -226,6 +226,12 @@ namespace ET
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId,0,targetAngle, taretUnit != null ? taretUnit.Id : 0, 0,false ).Coroutine();
             self.LastSkillTime = TimeHelper.ServerNow();
             self.CDEndTime = self.LastSkillTime + self.CDTime;
+        }
+
+        public static int GetEquipType(this AttackComponent self, int occ, int now_Weapon)
+        {
+
+            return ItemHelper.GetEquipType(occ, now_Weapon);
         }
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
