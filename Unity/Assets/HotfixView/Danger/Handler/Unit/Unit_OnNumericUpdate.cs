@@ -36,6 +36,10 @@
                 case NumericType.TransformId:
                     int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(args.Unit.ConfigId, runraceMonster);    
+                    }
                     break;
                 case NumericType.HappyCellIndex:
                     if (args.Unit.MainHero)
@@ -104,14 +108,14 @@
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeWeapon(weaponId);
                     if (args.Unit.MainHero)
                     {
-                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInit();
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInitOcc(args.Unit.ConfigId);
                     }
                     break;
                 case NumericType.EquipIndex:
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeEquipIndex();
                     if (args.Unit.MainHero)
                     {
-                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInit();
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInitOcc(args.Unit.ConfigId);
                         args.Unit.GetComponent<AnimatorComponent>().UpdateController();
                     }
                     break;

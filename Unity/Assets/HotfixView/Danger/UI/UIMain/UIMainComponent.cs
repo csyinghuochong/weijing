@@ -725,6 +725,10 @@ namespace ET
 
             oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther);
             SettingHelper.OnShowOther(oldValue);
+
+            string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack);
+            AttackComponent attackComponent = self.ZoneScene().GetComponent<AttackComponent>();
+            attackComponent.AutoAttack = value == "0";
         }
 
         public static void OnBagItemUpdate(this UIMainComponent self)

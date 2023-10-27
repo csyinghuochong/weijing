@@ -83,8 +83,13 @@ namespace ET
                 unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
                 unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
             }
-           
-			OnAfterCreateUnit(unit);
+            if (mainHero)
+            {
+                int runraceMonster = numericComponent.GetAsInt(NumericType.TransformId);
+                unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(unit.ConfigId, runraceMonster);
+            }
+
+            OnAfterCreateUnit(unit);
             return unit;
         }
        
@@ -204,6 +209,7 @@ namespace ET
 				return;
 			}
 			unit.WaitLoad = false;
+
             EventType.AfterUnitCreate.Instance.Unit = unit;
 			Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
 		}

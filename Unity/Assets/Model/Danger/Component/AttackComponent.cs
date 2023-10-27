@@ -11,7 +11,7 @@ namespace ET
         public long ComboStartTime;
         public long CombatEndTime;
 
-        public bool AutoAttack;
+        public bool AutoAttack  = true;
         public float AttackDistance;
         public List<int> Weights = new List<int>();
         public List<int> SkillList = new List<int> { };

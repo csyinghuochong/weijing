@@ -87,13 +87,22 @@ namespace ET
             }
         }
 
-        public static void OnInit(this AttackComponent self)
+        public static void OnTransformId(this AttackComponent self,int occ, int runraceMonster)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.AutoAttack = userInfoComponent.GetGameSettingValue(  GameSettingEnum.AutoAttack) == "1";
+            if (runraceMonster == 0)
+            {
+                self.OnInitOcc(occ);
+            }
+            else
+            {
+                self.InitMonster(runraceMonster);
+            }
+        }
 
+        public static void OnInitOcc(this AttackComponent self, int occ)
+        {
             //普通攻击
-            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ);
+            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(occ);
             self.UpdateSkillInfo(occConfig.InitActSkillID);
 
             self.UpdateComboTime();
@@ -101,9 +110,6 @@ namespace ET
 
         public static void InitMonster(this AttackComponent self, int monsterId)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.AutoAttack = userInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1";
-
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
             self.UpdateSkillInfo(monsterConfig.ActSkillID);
         }
