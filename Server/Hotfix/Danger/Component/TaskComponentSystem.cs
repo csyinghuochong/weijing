@@ -356,23 +356,24 @@ namespace ET
             return taskPros;
         }
 
-        public static bool GetTaskById(this TaskComponent self, int taskid)
+        public static TaskPro GetTaskById(this TaskComponent self, int taskid)
         {
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 if (self.RoleTaskList[i].taskID == taskid)
                 {
-                    return true;
+                    return self.RoleTaskList[i];
                 }
             }
-            return false;
+            return null;
         }
         
         //领取奖励
         public static int OnCommitTask(this TaskComponent self, C2M_TaskCommitRequest request)
         {
             int taskid = request.TaskId;
-            if (!self.GetTaskById(taskid))
+            TaskPro taskPro = self.GetTaskById(taskid);
+            if (taskPro == null)
             {
                 return ErrorCode.ERR_TaskCommited;
             }
@@ -469,7 +470,7 @@ namespace ET
                 int nextTask = taskid + 1;
                 if (TaskConfigCategory.Instance.Contain(nextTask) && TaskConfigCategory.Instance.Get(nextTask).TaskType == TaskTypeEnum.Season)
                 {
-                    self.GetTaskById(nextTask);
+                    self.OnGetTask(nextTask);
 
                     M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
                     m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
