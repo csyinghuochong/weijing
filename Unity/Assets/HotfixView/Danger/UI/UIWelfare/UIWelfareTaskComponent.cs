@@ -34,30 +34,37 @@ namespace ET
             self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
 
             self.UIWelfareTaskItem.SetActive(false);
+            self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
             Button[] buttons = self.DayListNode.GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)
             {
                 int i1 = i;
-                buttons[i].onClick.AddListener(() => { self.UpdateInfo(i1).Coroutine(); });
+                buttons[i].onClick.AddListener(() => { self.UpdateInfo(i1); });
             }
 
-            self.UpdateInfo(self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1).Coroutine();
+            self.UpdateInfo(self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1);
         }
     }
 
     public static class UIWelfareTaskComponentSystem
     {
-        public static async ETTask UpdateInfo(this UIWelfareTaskComponent self, int day)
+        public static void UpdateInfo(this UIWelfareTaskComponent self, int day)
         {
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+
             int currentDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1;
 
             self.DayProgressImg.GetComponent<Image>().fillAmount = currentDay / 6f;
 
-            bool canSee;
-            canSee = day == currentDay;
+            if (day > currentDay || currentDay > 6)
+            {
+                self.ReceiveBtn.SetActive(false);
+                self.ReceivedImg.SetActive(false);
+                return;
+            }
 
             int number = 0;
-            int finish = 0;
+            int commited = 0; // 完成并领取
             List<int> tasks = ConfigHelper.WelfareTaskList[day];
             List<int> roleComoleteTaskList = self.ZoneScene().GetComponent<TaskComponent>().RoleComoleteTaskList;
             for (int i = 0; i < tasks.Count; i++)
@@ -77,12 +84,12 @@ namespace ET
                     self.UIWelfareTaskItemComponents.Add(uiWelfareTaskItemComponent);
                 }
 
-                uiWelfareTaskItemComponent.OnUpdateData(tasks[i], canSee);
+                uiWelfareTaskItemComponent.OnUpdateData(taskComponent.GetTaskById(tasks[i]), day);
                 number++;
 
                 if (roleComoleteTaskList.Contains(tasks[i]))
                 {
-                    finish++;
+                    commited++;
                 }
             }
 
@@ -91,31 +98,45 @@ namespace ET
                 self.UIWelfareTaskItemComponents[k].GameObject.SetActive(false);
             }
 
-            self.CompletenessText.GetComponent<Text>().text = $"完成度:{finish}/{tasks.Count}";
+            self.CompletenessText.GetComponent<Text>().text = $"完成度:{commited}/{tasks.Count}";
 
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ConfigHelper.WelfareTaskReward[day], self.RewardListNode, self, 0.8f);
 
-            if (canSee)
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(day))
             {
-                if (finish >= tasks.Count)
-                {
-                    self.ReceiveBtn.SetActive(false);
-                    self.ReceivedImg.SetActive(true);
-                }
-                else
-                {
-                    self.ReceiveBtn.SetActive(true);
-                    self.ReceivedImg.SetActive(false);
-                }
+                self.ReceiveBtn.SetActive(false);
+                self.ReceivedImg.SetActive(true);
             }
             else
             {
-                self.ReceiveBtn.SetActive(false);
+                self.ReceiveBtn.SetActive(true);
                 self.ReceivedImg.SetActive(false);
             }
+        }
 
-            await ETTask.CompletedTask;
+        public static async ETTask OnReceiveBtn(this UIWelfareTaskComponent self)
+        {
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            int currentDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1;
+            bool canget = TaskHelper.IsDayTaskComplete(taskComponent.RoleComoleteTaskList, currentDay);
+            if (!canget)
+            {
+                FloatTipManager.Instance.ShowFloatTip("所有任务还没有完成！");
+                return;
+            }
+
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(currentDay))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                return;
+            }
+
+            C2M_WelfareTaskRewardRequest request = new C2M_WelfareTaskRewardRequest() { day = currentDay };
+            M2C_WelfareTaskRewardResponse response =
+                    (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.UpdateInfo(currentDay);
         }
     }
 }
