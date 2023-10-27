@@ -56,7 +56,12 @@ namespace ET
 
             self.DayProgressImg.GetComponent<Image>().fillAmount = currentDay / 6f;
 
-            if (day > currentDay || currentDay > 6)
+            if (day > currentDay)
+            {
+                return;
+            }
+
+            if (currentDay > 6)
             {
                 self.ReceiveBtn.SetActive(false);
                 self.ReceivedImg.SetActive(false);
