@@ -15,6 +15,8 @@ namespace ET
         public GameObject RewardListNode;
         public GameObject ReceivedImg;
         public GameObject ReceiveBtn;
+
+        public int Day;
         public List<UIWelfareTaskItemComponent> UIWelfareTaskItemComponents = new List<UIWelfareTaskItemComponent>();
     }
 
@@ -68,6 +70,8 @@ namespace ET
                 return;
             }
 
+            self.Day = day;
+
             int number = 0;
             int commited = 0; // 完成并领取
             List<int> tasks = ConfigHelper.WelfareTaskList[day];
@@ -92,6 +96,7 @@ namespace ET
                 TaskPro taskPro = taskComponent.GetTaskById(tasks[i]);
                 if (taskPro == null)
                 {
+                    Log.Debug($"未领取任务 {tasks[i]}");
                     return;
                 }
 
@@ -129,25 +134,25 @@ namespace ET
         public static async ETTask OnReceiveBtn(this UIWelfareTaskComponent self)
         {
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            int currentDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1;
-            bool canget = TaskHelper.IsDayTaskComplete(taskComponent.RoleComoleteTaskList, currentDay);
+
+            bool canget = TaskHelper.IsDayTaskComplete(taskComponent.RoleComoleteTaskList, self.Day);
             if (!canget)
             {
                 FloatTipManager.Instance.ShowFloatTip("所有任务还没有完成！");
                 return;
             }
 
-            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(currentDay))
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(self.Day))
             {
                 FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
                 return;
             }
 
-            C2M_WelfareTaskRewardRequest request = new C2M_WelfareTaskRewardRequest() { day = currentDay };
+            C2M_WelfareTaskRewardRequest request = new C2M_WelfareTaskRewardRequest() { day = self.Day };
             M2C_WelfareTaskRewardResponse response =
                     (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.UpdateInfo(currentDay);
+            self.UpdateInfo(self.Day);
         }
     }
 }
