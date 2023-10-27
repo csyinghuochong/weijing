@@ -53,10 +53,11 @@ namespace ET
 
             self.UIPageView = pageViewComponent;
 
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
-            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             UIPageButtonComponent uIPageButtonComponent = uiPageButton.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) =>
