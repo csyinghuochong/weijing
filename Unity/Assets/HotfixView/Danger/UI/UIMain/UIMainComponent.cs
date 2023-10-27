@@ -1140,9 +1140,11 @@ namespace ET
                 }
             }
 
-            //赛季按钮特殊处理
-            self.Button_Season.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
-            self.Button_Welfare.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+
+            bool gm = GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account);
+            int openday = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
+            self.Button_Season.SetActive(gm);
+            self.Button_Welfare.SetActive(gm && openday <= 8);
 
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
