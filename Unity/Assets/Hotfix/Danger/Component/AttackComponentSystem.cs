@@ -116,7 +116,7 @@ namespace ET
 
         public static void SetAttackSpeed(this AttackComponent self)
         {
-            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
+            int EquipType = UnitHelper.GetEquipType(self.ZoneScene());
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
@@ -139,7 +139,7 @@ namespace ET
                 self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
             }
 
-            int EquipType = (int)self.BagComponent.GetEquipType();
+            int EquipType = UnitHelper.GetEquipType(self.ZoneScene());
             if ((EquipType == (int)ItemEquipType.Sword
                 || EquipType == (int)ItemEquipType.Common))
             {
@@ -163,13 +163,14 @@ namespace ET
         //连击
         public static void UpdateComboTime(this AttackComponent self)
         {
-            if (self.BagComponent.GetEquipType() == ItemEquipType.Sword)
+            int equipType = UnitHelper.GetEquipType(self.ZoneScene());
+            if (equipType == ItemEquipType.Sword)
             {
                 //剑
                 self.ComboStartTime = 500;
                 self.CombatEndTime = 500;
             }
-            else if (self.BagComponent.GetEquipType() == ItemEquipType.Knife)
+            else if (equipType == ItemEquipType.Knife)
             {
                 //刀
                 self.ComboStartTime = 1000;
@@ -228,16 +229,10 @@ namespace ET
             self.CDEndTime = self.LastSkillTime + self.CDTime;
         }
 
-        public static int GetEquipType(this AttackComponent self, int occ, int now_Weapon)
-        {
-
-            return ItemHelper.GetEquipType(occ, now_Weapon);
-        }
-
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(
-                SkillHelp.GetWeaponSkill(skillid, self.BagComponent.GetEquipType(), null)
+                SkillHelp.GetWeaponSkill(skillid, UnitHelper.GetEquipType( self.ZoneScene() ), null)
              );
             self.AttackDistance = (float)skillConfig.SkillRangeSize;
         }

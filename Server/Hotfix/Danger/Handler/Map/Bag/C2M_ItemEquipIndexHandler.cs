@@ -41,7 +41,7 @@ namespace ET
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.EquipIndex, request.EquipIndex);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId());
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, bagComponent.GetWuqiItemId());
 
             unit.GetComponent<SkillSetComponent>().OnChangeEquipIndex(request.EquipIndex);
             unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.EquipIndex_15);

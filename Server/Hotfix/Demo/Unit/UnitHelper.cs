@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 namespace ET
 {
@@ -313,19 +312,25 @@ namespace ET
             return self.Type == UnitType.Player && self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
         }
 
-        public static int GetWeaponType(this Unit self)
-        {
-            BagComponent bagComponent = self.GetComponent<BagComponent>();
-            int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
-            return EquipType;
-        }
-
         public static int GetWeaponSkill(this Unit self, int skillId, List<SkillPro> skillPros)
         {
             BagComponent bagComponent = self.GetComponent<BagComponent>();
-            int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
+            int EquipType = bagComponent != null ? self.GetEquipType() : ItemEquipType.Common;
             return SkillHelp.GetWeaponSkill(skillId, EquipType, skillPros);
         }
+
+        public static int GetEquipType(this Unit self)
+        {
+            int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            return ItemHelper.GetEquipType(self.ConfigId, itemId);
+        }
+
+        public static int GetWuqiItemID(this Unit self)
+        {
+            int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            return itemId;
+        }
+
 
         public static void SetBornPosition(this Unit self, Vector3 vector3, bool notice)
         {
@@ -370,7 +375,6 @@ namespace ET
             }
             return units;
         }
-
 
         public static void RecordPostion(this Unit self, int sceneType, int sceneId)
         {

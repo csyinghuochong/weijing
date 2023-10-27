@@ -204,7 +204,7 @@ namespace ET
                 {
                     BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                     SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();   
-                    int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList);
+                    int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList);
                     SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
                     long addTime = (long)(skillWeaponConfig.SkillRigidity * 1000);

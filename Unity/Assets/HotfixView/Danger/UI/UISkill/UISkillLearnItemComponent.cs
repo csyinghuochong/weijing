@@ -116,8 +116,7 @@ namespace ET
         public static void OnUpdateSkillInfo(this UISkillLearnItemComponent self, int baseskill)
         {
             //表现
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int itemEquipType = bagComponent.GetEquipType();
+            int itemEquipType = UnitHelper.GetEquipType(self.ZoneScene());
            
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(baseskill);
@@ -187,7 +186,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
 
-            int weaponskill = SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList);
+            int weaponskill = SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList);
             SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get( weaponskill);
 
             int baseskill = SkillHelp.GetBaseSkill(weaponskill);

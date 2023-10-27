@@ -93,7 +93,7 @@ namespace ET
                     return;
                 }
 
-                int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();
+                int equipId = unit.GetWuqiItemID();
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.EquipIndex_15 );
             }

@@ -843,19 +843,6 @@ namespace ET
             return ComHelp.PetHeXinMax - self.GetItemsByLoc(ItemLocType.ItemPetHeXinBag).Count;
         }
 
-        public static int GetWuqiItemID(this BagComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int itemId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
-            return itemId;
-        }
-
-        public static int GetEquipType(this BagComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            return ItemHelper.GetEquipType(unit.ConfigId, self.GetWuqiItemID());
-        }
-
         public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, int position)
         {
             List<BagInfo> bagInfos = new List<BagInfo>();

@@ -174,7 +174,7 @@ namespace ET
             ////////把拼装后的模型显示在RawImages
             BagInfo bagInfo = new BagInfo()
             {
-                ItemID = self.ZoneScene().GetComponent<BagComponent>().GetWuqiItemID()
+                ItemID = UnitHelper.GetWuqiItemID(self.ZoneScene())
             };
             self.UIModelShowComponent.ShowPlayerPreviewModel(bagInfo, fashionids, occ);
         }

@@ -438,7 +438,7 @@ namespace ET
 
                 //查看对应武器
                 float weaponAddAct = 0;
-                switch (UnitHelper.GetWeaponType(attackUnit))
+                switch (UnitHelper.GetEquipType(attackUnit))
                 {
                     //刀
                     case 1:

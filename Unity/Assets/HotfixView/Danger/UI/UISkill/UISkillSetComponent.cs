@@ -86,7 +86,7 @@ namespace ET
                 {
                     BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(
-                        SkillHelp.GetWeaponSkill(skillPro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList)
+                        SkillHelp.GetWeaponSkill(skillPro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList)
                        );
                     Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
                     itemgo.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;

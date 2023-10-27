@@ -93,6 +93,26 @@ namespace ET
             return false;
         }
 
+        public static int GetWuqiItemID(Scene zoneScene)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            int itemId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            return itemId;
+        }
+
+        public static int GetEquipType(Scene zoneScene)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            int itemId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            return ItemHelper.GetEquipType(unit.ConfigId, itemId);
+        }
+
+        public static int GetEquipType(this Unit self)
+        {
+            int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            return ItemHelper.GetEquipType(self.ConfigId, itemId);
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             //using var list = ListComponent<Unit>.Create();

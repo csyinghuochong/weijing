@@ -633,14 +633,6 @@ namespace ET
             return bagInfo != null ? bagInfo.ItemID : 0;
         }
 
-        public static int GetEquipType(this BagComponent self)
-        {
-            Unit unit = self.GetParent<Unit>();
-            BagInfo bagInfo = self.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
-            int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-            return ItemHelper.GetEquipType(occ, bagInfo != null ? bagInfo.ItemID:0);
-        }
-
         //字符串添加道具 
         public static bool OnAddItemData(this BagComponent self, string rewardItems, string getType, bool  notice = true)
         {
