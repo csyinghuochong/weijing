@@ -74,7 +74,7 @@ namespace ET
             }
             else
             {
-                TaskPro taskPro = unit.GetComponent<TaskComponent>().OnGetTask(request.TaskId);
+                TaskPro taskPro = unit.GetComponent<TaskComponent>().OnAcceptedTask(request.TaskId);
                 response.Error = taskPro != null ? ErrorCode.ERR_Success : ErrorCode.ERR_TaskCanNotGet;
                 response.TaskPro = taskPro;
             }

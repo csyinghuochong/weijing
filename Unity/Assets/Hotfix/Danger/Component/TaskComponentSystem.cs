@@ -384,6 +384,12 @@ namespace ET
         {
             try
             {
+                TaskPro taskPro = self.GetTaskById(taskid);
+                if (taskPro.taskStatus != (int)TaskStatuEnum.Completed)
+                {
+                    return ErrorCode.Pre_Condition_Error;
+                }
+
                 C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid, BagInfoID = banginfoId };
                 M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
                 if (self.IsDisposed || m2C_CommitTaskResponse.Error != ErrorCode.ERR_Success)

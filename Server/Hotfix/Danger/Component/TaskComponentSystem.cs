@@ -112,7 +112,7 @@ namespace ET
         /// <param name="request"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static TaskPro OnGetTask(this TaskComponent self, int taskId)
+        public static TaskPro OnAcceptedTask(this TaskComponent self, int taskId)
         {
             if (taskId == 0)
             {
@@ -470,7 +470,7 @@ namespace ET
                 int nextTask = taskid + 1;
                 if (TaskConfigCategory.Instance.Contain(nextTask) && TaskConfigCategory.Instance.Get(nextTask).TaskType == TaskTypeEnum.Season)
                 {
-                    self.OnGetTask(nextTask);
+                    self.OnAcceptedTask(nextTask);
 
                     M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
                     m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
@@ -1003,7 +1003,7 @@ namespace ET
                 }
             }
 
-            self.OnGetTask(seasonTaskid);
+            self.OnAcceptedTask(seasonTaskid);
         }
 
         public static void UpdateTargetTask(this TaskComponent self, bool notice)
@@ -1019,7 +1019,7 @@ namespace ET
             List<int> taskids = ConfigHelper.WelfareTaskList[openDay - 1];
             for (int i = 0; i < taskids.Count; i++)
             {
-                if (self.GetTaskById(taskids[i]))
+                if (self.GetTaskById(taskids[i]) != null)
                 {
                     continue;
                 }
