@@ -15,7 +15,7 @@ namespace ET
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UI ui = uiComponent.AddChild<UI, string, GameObject>(UIType.UIWelfare, gameObject);
 
-            //ui.AddComponent<UIWelfareComponent>();
+            ui.AddComponent<UIWelfareComponent>();
             return ui;
         }
 
