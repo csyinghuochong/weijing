@@ -126,8 +126,8 @@ namespace ET
                     }
                     if (request.FunctionId == 1044 && request.FunctionType == 2)
                     {
-                        Log.Console("UnionSceneComponent.OnUnionRaceOver");
-                        scene.GetComponent<UnionSceneComponent>().OnUnionRaceOver().Coroutine();
+                        //Log.Console("UnionSceneComponent.OnUnionRaceOver");
+                        //scene.GetComponent<UnionSceneComponent>().OnUnionRaceOver().Coroutine();
                     }
                     break;
                 case SceneType.Battle:

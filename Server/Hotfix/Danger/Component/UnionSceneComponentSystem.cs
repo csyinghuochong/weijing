@@ -191,7 +191,7 @@ namespace ET
             }
         }
 
-        public static async ETTask CheckWinUnion(this UnionSceneComponent self, Scene fubnescene)
+        public static async ETTask CheckWinUnion(this UnionSceneComponent self, Scene fubnescene, int minite)
         {
             Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
             Dictionary<long, int> map = new Dictionary<long, int>();
@@ -204,15 +204,18 @@ namespace ET
                 {
                     continue;
                 }
-                if (!map.ContainsKey(units[i].GetUnionId()))
+                long unionId = units[i].GetUnionId();
+
+                if (!map.ContainsKey(unionId))
                 {
-                    map.Add(units[i].GetUnionId(), 0);
+                    map.Add(unionId, 0);
                 }
-                map[units[i].GetUnionId()] += 1;
+                map[unionId] += 1;
             }
 
             long winunionid = 0;
             int playernumber = 0;
+            string unionplayerNumber = $"{self.DomainZone()} 占领区人数: ";
             foreach ((long unioid, int number) in map)
             {
                 if (number > playernumber)
@@ -220,6 +223,8 @@ namespace ET
                     winunionid = unioid;
                     playernumber = number;
                 }
+
+                unionplayerNumber = unionplayerNumber +  $"{unioid}:{playernumber}  ";
             }
 
             for (int i = 0; i < units.Count; i++)
@@ -234,6 +239,12 @@ namespace ET
                 }
             }
             self.WinUnionId = winunionid;
+
+            if (minite == 0)
+            {
+                Log.Warning(unionplayerNumber);
+                Log.Warning($"胜利家族:  {self.DomainZone()} {winunionid}");
+            }
 
             DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(winunionid);
             if (dBUnionInfo != null)
@@ -257,20 +268,22 @@ namespace ET
         {
             int minite = (int)((FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044)) / 60);
             /////进程9
-            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}");
-            Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}");
-            for (int i = 0; i < minite; i++)
+            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
+            Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
+            for (int i = minite - 1; i >= 0; i--)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
-                Log.Console($"家族争霸赛检测！！: {self.DomainZone()}");
+                Log.Console($"家族争霸赛检测！！: {self.DomainZone()}  {i}");
 
                 Scene fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
                 if (fubnescene == null)
                 {
                     break;
                 }
-                self.CheckWinUnion(fubnescene).Coroutine();
+                self.CheckWinUnion(fubnescene, i).Coroutine();
             }
+
+            self.OnUnionRaceOver().Coroutine();
         }
 
         public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
