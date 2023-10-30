@@ -404,92 +404,6 @@ namespace ET
             return textShow;
         }
 
-        //显示宝石
-        public static void TipsShowEquipGem(this UIEquipTipsComponent self, GameObject gemIconObj, GameObject gemTextObj, int gemItemID, int gemHoleID)
-        {
-
-            //Debug.Log("gemItemID = " + gemItemID + "gemHoleID = " + gemHoleID);
-
-            //获取道具图标和名称
-            if (gemItemID != 0)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemItemID);
-                //显示宝石
-                string gemItemIcon = itemConfig.Icon;
-                string gemItemName = itemConfig.ItemName;
-                int gemItemQuality = itemConfig.ItemQuality;
-
-                object obj = Resources.Load("ItemIcon/" + gemItemIcon, typeof(Sprite));
-                Sprite itemIcon = obj as Sprite;
-                gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                gemTextObj.GetComponent<Text>().text = gemItemName;
-                gemTextObj.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(gemItemQuality);
-
-            }
-            else
-            {
-                //表示空的宝石槽位
-                switch (gemHoleID)
-                {
-                    //紫色宝石
-                    case 101:
-                        //显示名称
-                        string langStr = GameSettingLanguge.LoadLocalization("红色插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        object obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        Sprite itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                    //红色宝石
-                    case 102:
-                        langStr = GameSettingLanguge.LoadLocalization("紫色插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                    //蓝色宝石
-                    case 103:
-                        langStr = GameSettingLanguge.LoadLocalization("蓝色插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                    //绿色孔位
-                    case 104:
-                        langStr = GameSettingLanguge.LoadLocalization("绿色插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                    //白色孔位
-                    case 105:
-                        langStr = GameSettingLanguge.LoadLocalization("白色插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                    //多彩插槽
-                    case 110:
-                        langStr = GameSettingLanguge.LoadLocalization("多彩插槽");
-                        gemTextObj.GetComponent<Text>().text = langStr;
-                        //显示空图标
-                        obj = Resources.Load("GemHoleDi/" + gemHoleID, typeof(Sprite));
-                        itemIcon = obj as Sprite;
-                        gemIconObj.GetComponent<Image>().sprite = itemIcon;
-                        break;
-                }
-            }
-        }
-
 
         //专精状态
         public static void ZhuanJingStatus(this UIEquipTipsComponent self, int occTwoValue, ItemConfig itemconf, BagInfo baginfo)
@@ -525,6 +439,53 @@ namespace ET
             }
         }
 
+        //装备镶嵌宝石
+        public static void TipsShowEquipGem(this UIEquipTipsComponent self, GameObject icon, GameObject text, int gemHole, int gemId)
+        {
+            if (gemHole == 0)
+            {
+                return;
+            }
+            if (gemId != 0)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemId);
+                text.GetComponent<Text>().text = itemConfig.ItemName;
+                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                icon.GetComponent<Image>().sprite = sp;
+
+                int equipShiShiGemNum = 0;
+                List<BagInfo> equipList = self.ZoneScene().GetComponent<BagComponent>().GetEquipList();
+                for (int i = 0; i < equipList.Count; i++)
+                {
+                    string[] gemList = equipList[i].GemIDNew.Split('_');
+                    for (int y = 0; y < gemList.Length; y++)
+                    {
+                        if (ComHelp.IfNull(gemList[y]) == false)
+                        {
+                            ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
+                            if (gemItemCof.ItemSubType == 110)
+                            {
+                                equipShiShiGemNum += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (itemConfig.ItemSubType == 110 && equipShiShiGemNum > 4)
+                {
+                    text.GetComponent<Text>().text += "(超过4个,属性无效)";
+                }
+
+            }
+            else
+            {
+                text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
+                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
+                icon.GetComponent<Image>().sprite = sp;
+            }
+        }
+
+
         //宝石
         public static int ShowGemList(this UIEquipTipsComponent self)
         {
@@ -544,7 +505,7 @@ namespace ET
                         continue;
                     }
                     self.Obj_UIEquipGemHoleList[gemNumber].SetActive(gemHoles[i] != "0");
-                    ItemViewHelp.TipsShowEquipGem(self.ZoneScene(), self.Obj_UIEquipGemHoleIconList[gemNumber], self.Obj_UIEquipGemHoleTextList[gemNumber],
+                    self.TipsShowEquipGem( self.Obj_UIEquipGemHoleIconList[gemNumber], self.Obj_UIEquipGemHoleTextList[gemNumber],
                         int.Parse(gemHoles[gemNumber]), int.Parse(gemIds[gemNumber]));
                     gemNumber += (gemHoles[i] != "0" ? 1 : 0);
                 }

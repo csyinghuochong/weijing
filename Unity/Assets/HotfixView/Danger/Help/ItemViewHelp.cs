@@ -777,52 +777,6 @@ namespace ET
             return info;
         }
 
-        //装备镶嵌宝石
-        public static void TipsShowEquipGem(Scene zoneScene, GameObject icon, GameObject text, int gemHole, int gemId)
-        {
-            if (gemHole == 0)
-            {
-                return;
-            }
-            if (gemId != 0)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemId);
-                text.GetComponent<Text>().text = itemConfig.ItemName;
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
-                icon.GetComponent<Image>().sprite = sp;
-
-                int equipShiShiGemNum = 0;
-                List<BagInfo> equipList = zoneScene.GetComponent<BagComponent>().GetEquipList();
-                for (int i = 0; i < equipList.Count; i++)
-                {
-                    string[] gemList = equipList[i].GemIDNew.Split('_');
-                    for (int y = 0; y < gemList.Length; y++)
-                    {
-                        if (ComHelp.IfNull(gemList[y]) == false)
-                        {
-                            ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
-                            if (gemItemCof.ItemSubType == 110)
-                            {
-                                equipShiShiGemNum += 1;
-                            }
-                        }
-                    }
-                }
-
-                if (itemConfig.ItemSubType == 110 && equipShiShiGemNum > 4)
-                {
-                    text.GetComponent<Text>().text += "(超过4个,属性无效)";
-                }
-
-            }
-            else
-            {
-                text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
-                icon.GetComponent<Image>().sprite = sp;
-            }
-        }
-
         //装备基础属性
         public static int ShowBaseAttribute(List<BagInfo> equipItemList, BagInfo baginfo, GameObject Obj_EquipPropertyText, GameObject Obj_EquipBaseSetList)
         {
