@@ -21,6 +21,8 @@ namespace ET
         public GameObject RewardsListNode;
         public GameObject GetBtn;
         public GameObject AcvityedImg;
+
+        public DateTime EndTime;
     }
 
     public class UISeasonHomeComponentAwakeSystem: AwakeSystem<UISeasonHomeComponent>
@@ -51,6 +53,7 @@ namespace ET
             });
 
             self.UpdateInfo();
+            self.UpdateTime().Coroutine();
         }
     }
 
@@ -102,9 +105,6 @@ namespace ET
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
             self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
 
-            DateTime bossTime = TimeInfo.Instance.ToDateTime(numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime) - TimeHelper.ServerNow());
-            self.MonsterRefreshTimeText.GetComponent<Text>().text = $"刷新时间:{bossTime.Day}天{bossTime.Hour}小时{bossTime.Minute}分";
-
             UICommonHelper.ShowItemList(SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel).Reward, self.RewardsListNode, self, 0.9f);
             if (numericComponent.GetAsInt(NumericType.SeasonReward) >= userInfo.SeasonLevel)
             {
@@ -116,6 +116,33 @@ namespace ET
             {
                 self.AcvityedImg.SetActive(false);
                 self.GetBtn.SetActive(true);
+            }
+        }
+
+        public static async ETTask UpdateTime(this UISeasonHomeComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            while (!self.IsDisposed)
+            {
+                self.EndTime = TimeInfo.Instance.ToDateTime(numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime));
+                DateTime nowTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                TimeSpan ts = self.EndTime - nowTime;
+                if (ts.TotalMinutes > 0)
+                {
+                    self.MonsterRefreshTimeText.GetComponent<Text>().text = $"刷新时间:{ts.Days}天{ts.Hours}小时{ts.Minutes}分";
+                }
+                else
+                {
+                    self.MonsterRefreshTimeText.GetComponent<Text>().text = "出现!!";
+                }
+
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
             }
         }
 

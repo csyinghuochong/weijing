@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject PositionText;
         public GameObject RefreshTimeText;
+        public GameObject UICommonItemBack;
         public GameObject UICommonItem;
         public GameObject ItemNameText;
         public GameObject ItemDesText;
@@ -19,7 +20,7 @@ namespace ET
         public BagInfo BagInfo;
         public UIItemComponent CheckedItem;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
-        public long EndTime;
+        public DateTime EndTime;
     }
 
     public class UISeasonLordDetailComponentAwakeSystem: AwakeSystem<UISeasonLordDetailComponent>
@@ -30,6 +31,7 @@ namespace ET
 
             self.PositionText = rc.Get<GameObject>("PositionText");
             self.RefreshTimeText = rc.Get<GameObject>("RefreshTimeText");
+            self.UICommonItemBack = rc.Get<GameObject>("UICommonItemBack");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.ItemNameText = rc.Get<GameObject>("ItemNameText");
             self.ItemDesText = rc.Get<GameObject>("ItemDesText");
@@ -37,9 +39,6 @@ namespace ET
             self.UseItemBtn = rc.Get<GameObject>("UseItemBtn");
             self.CloseBtn = rc.Get<GameObject>("CloseBtn");
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            self.EndTime = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
             self.ItemNameText.GetComponent<Text>().text = string.Empty;
             self.ItemDesText.GetComponent<Text>().text = string.Empty;
             self.CheckedItem = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
@@ -67,8 +66,14 @@ namespace ET
             M2C_SeasonUseFruitResponse response =
                     (M2C_SeasonUseFruitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
 
-            self.CheckedItem.UpdateItem(new BagInfo(), ItemOperateEnum.None);
-            self.UpdateItemList().Coroutine();
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                self.BagInfo = null;
+                self.UICommonItem.SetActive(false);
+                self.ItemNameText.GetComponent<Text>().text = string.Empty;
+                self.ItemDesText.GetComponent<Text>().text = string.Empty;
+                self.UpdateItemList().Coroutine();
+            }
         }
 
         public static void UpdateInfo(this UISeasonLordDetailComponent self)
@@ -125,9 +130,11 @@ namespace ET
         {
             self.BagInfo = bagInfo;
             self.CheckedItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.UICommonItem.SetActive(true);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             self.ItemNameText.GetComponent<Text>().text = itemConfig.ItemName;
             self.ItemDesText.GetComponent<Text>().text = itemConfig.ItemDes;
+
             for (int i = 0; i < self.ItemList.Count; i++)
             {
                 self.ItemList[i].SetSelected(bagInfo);
@@ -136,17 +143,20 @@ namespace ET
 
         public static async ETTask UpdateTime(this UISeasonLordDetailComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             while (!self.IsDisposed)
             {
-                long endTime = self.EndTime - TimeHelper.ServerNow();
-                DateTime bossTime = TimeInfo.Instance.ToDateTime(endTime);
-                if (endTime > 0)
+                self.EndTime = TimeInfo.Instance.ToDateTime(numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime));
+                DateTime nowTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                TimeSpan ts = self.EndTime - nowTime;
+                if (ts.TotalMinutes > 0)
                 {
-                    self.RefreshTimeText.GetComponent<Text>().text = $"{bossTime.Day}天{bossTime.Hour}小时{bossTime.Minute}分{bossTime.Second}秒";
+                    self.RefreshTimeText.GetComponent<Text>().text = $"剩余时间:{ts.Days}:{ts.Hours}:{ts.Minutes}:{ts.Seconds}";
                 }
                 else
                 {
-                    self.RefreshTimeText.GetComponent<Text>().text = "出现了";
+                    self.RefreshTimeText.GetComponent<Text>().text = "出现!!";
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);
