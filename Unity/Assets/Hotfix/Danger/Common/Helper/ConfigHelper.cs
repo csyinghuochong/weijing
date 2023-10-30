@@ -705,7 +705,7 @@ namespace ET
         /// <summary>
         /// 完成每天目标任务的奖励
         /// </summary>
-        public static List<string> WelfareTaskReward = new List<string>() { "1;3", "1;3", "1;3", "1;3", "1;3", "1;3","1;3" };
+        public static List<string> WelfareTaskReward = new List<string>() { "1;1", "1;2", "1;3", "1;4", "1;5", "1;6","1;7" };
 
         /// <summary>
         /// 目标任务 TaskConfig
