@@ -99,8 +99,45 @@ namespace ET
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
-            UICommonHelper.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
+            self.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
         }
+
+        public static void ShowAttributeItemList(this UIPetHeXinSetComponent self, string itemList, GameObject itemNodeList, GameObject attributeItem)
+        {
+            string[] attributeinfos = itemList.Split('@');
+            for (int i = 0; i < attributeinfos.Length; i++)
+            {
+                if (string.IsNullOrEmpty(attributeinfos[i]))
+                {
+                    continue;
+                }
+                string[] attributeInfo = attributeinfos[i].Split(';');
+                int numberType = int.Parse(attributeInfo[0]);
+                float numberValue = float.Parse(attributeInfo[1]);
+                GameObject gameObject = GameObject.Instantiate(attributeItem);
+                gameObject.SetActive(true);
+                UICommonHelper.SetParent(gameObject, itemNodeList);
+                string icon = ItemViewHelp.GetAttributeIcon(numberType);
+                if (!string.IsNullOrEmpty(icon))
+                {
+                    Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, icon);
+                    gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
+                }
+                int showType = NumericHelp.GetNumericValueType(numberType);
+                string attribute;
+                if (showType == 2)
+                {
+                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue * 100}%";
+                }
+                else
+                {
+                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue}";
+                }
+
+                gameObject.transform.Find("Lab_ProTypeValue").GetComponent<Text>().text = attribute;
+            }
+        }
+
 
         public static void  OnUpdateItemList(this UIPetHeXinSetComponent self, List<BagInfo> bagInfos)
         {

@@ -45,6 +45,11 @@ namespace ET
             return itemDesc;
         }
 
+        /// <summary>
+        /// PlayerIcon 可以不用释放
+        /// </summary>
+        /// <param name="go"></param>
+        /// <param name="occ"></param>
         public static void ShowOccIcon(GameObject go, int occ)
         {
             occ = occ == 0 ? 1 : occ;
@@ -193,41 +198,6 @@ namespace ET
                 UICommonHelper.SetParent(skillItem, itemParent);
                 UICommonSkillItemComponent ui_item = entity.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
                 ui_item.OnUpdateUI(skills[i], aBAtlas);
-            }
-        }
-
-        public static void ShowAttributeItemList(string itemList, GameObject itemNodeList, GameObject attributeItem )
-        {
-            string[] attributeinfos = itemList.Split('@');
-            for (int i = 0; i < attributeinfos.Length; i++)
-            {
-                if (string.IsNullOrEmpty(attributeinfos[i]))
-                {
-                    continue;
-                }
-                string[] attributeInfo = attributeinfos[i].Split(';');
-                int numberType = int.Parse(attributeInfo[0]);
-                float numberValue = float.Parse(attributeInfo[1]);
-                GameObject gameObject = GameObject.Instantiate(attributeItem);
-                gameObject.SetActive(true);
-                SetParent(gameObject, itemNodeList);
-                string icon = ItemViewHelp.GetAttributeIcon(numberType);
-                if (!string.IsNullOrEmpty(icon))
-                {
-                    Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, icon);
-                    gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
-                }
-                int showType = NumericHelp.GetNumericValueType(numberType);
-                string attribute;
-                if (showType == 2)
-                {
-                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue*100}%";
-                }
-                else {
-                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue}";
-                }
-
-                gameObject.transform.Find("Lab_ProTypeValue").GetComponent<Text>().text = attribute;
             }
         }
 
