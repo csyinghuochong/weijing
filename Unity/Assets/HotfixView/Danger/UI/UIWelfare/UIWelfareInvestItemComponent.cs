@@ -71,11 +71,13 @@ namespace ET
             M2C_WelfareInvestResponse response4 =
                     (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
             // 没有更新UserInfo.WelfareInvestList，所以要手动变化一下
-            self.InvestBtn.SetActive(false);
-            self.InvestedImg.SetActive(true);
-            
-            // 刷新
-            self.GetParent<UIWelfareInvestComponent>().UpdateInfo();
+            if (response4.Error == ErrorCode.ERR_Success)
+            {
+                self.InvestBtn.SetActive(false);
+                self.InvestedImg.SetActive(true);
+                // 刷新
+                self.GetParent<UIWelfareInvestComponent>().UpdateInfo();
+            }
         }
     }
 }

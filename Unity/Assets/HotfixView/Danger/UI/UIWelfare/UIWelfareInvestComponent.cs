@@ -40,6 +40,7 @@ namespace ET
             self.EndTime = TimeInfo.Instance.ToDateTime(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.CreateTime).AddDays(6);
 
             self.InitTask();
+            self.UpdateInfo();
             self.UpdateTime().Coroutine();
         }
     }
