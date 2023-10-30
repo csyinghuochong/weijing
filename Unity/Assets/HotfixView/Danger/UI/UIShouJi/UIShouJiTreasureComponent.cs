@@ -109,5 +109,12 @@ namespace ET
             }
         }
 
+        public static void UpdateRedDot(this UIShouJiTreasureComponent self)
+        {
+            foreach (UIShouJiTreasureTypeComponent uiShouJiTreasureTypeComponent in self.TreasureTypeList)
+            {
+                uiShouJiTreasureTypeComponent.UpdateRedDot();
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIShouJiTreasureItemComponent:Entity, IAwake<GameObject>
+    public class UIShouJiTreasureItemComponent: Entity, IAwake<GameObject>
     {
         public GameObject RedDot;
         public GameObject TextNumber;
@@ -19,10 +19,9 @@ namespace ET
         public ShoujiComponent ShoujiComponent;
     }
 
-
-    public class UIShouJiTreasureItemComponentAwake : AwakeSystem<UIShouJiTreasureItemComponent, GameObject>
+    public class UIShouJiTreasureItemComponentAwake: AwakeSystem<UIShouJiTreasureItemComponent, GameObject>
     {
-        public override  void Awake(UIShouJiTreasureItemComponent self, GameObject gameObject)
+        public override void Awake(UIShouJiTreasureItemComponent self, GameObject gameObject)
         {
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -38,14 +37,13 @@ namespace ET
             self.ButtonActive.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonActive().Coroutine(); });
 
             self.ShoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
-            
+
             self.RedDot.SetActive(false);
         }
     }
 
     public static class UIShouJiTreasureItemComponentSystem
     {
-
         public static async ETTask OnButtonActive(this UIShouJiTreasureItemComponent self)
         {
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIShouJiSelect);
@@ -60,15 +58,17 @@ namespace ET
         {
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(self.ShoujiId);
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(self.ShoujiId);
-            int haveNumber = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;
+            int haveNumber = keyValuePairInt != null? (int)keyValuePairInt.Value : 0;
             self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
             bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
 
             // 显示红点
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0 && !actived);
+            
+            self.GetParent<UIShouJiTreasureComponent>().UpdateRedDot();
         }
-        
+
         public static void OnInitUI(this UIShouJiTreasureItemComponent self, int shouijId)
         {
             self.ShoujiId = shouijId;
@@ -81,7 +81,7 @@ namespace ET
 
             string[] attributeInfoList = shouJiItemConfig.AddPropreListStr.Split('@');
             for (int i = 0; i < attributeInfoList.Length; i++)
-            { 
+            {
                 string[] attributeInfo = attributeInfoList[i].Split(',');
                 int numericType = int.Parse(attributeInfo[0]);
 
@@ -93,28 +93,32 @@ namespace ET
                 }
                 else
                 {
-                    attributeStr = attributeStr +  $"提升{ItemViewHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
+                    attributeStr = attributeStr + $"提升{ItemViewHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
                 }
+
                 if (i < attributeInfoList.Length - 1)
                 {
                     attributeStr += "\n";
                 }
             }
+
             self.TextAttribute.GetComponent<Text>().text = attributeStr;
 
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(shouijId);
-            int haveNumber = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;
+            int haveNumber = keyValuePairInt != null? (int)keyValuePairInt.Value : 0;
             self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
+
+            UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, haveNumber == 0);
+            UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, haveNumber == 0);
 
             bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
 
             // 显示红点
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0 && !actived);
-            
-            self.ButtonActive.SetActive(!actived);
-            self.ImageActived.SetActive(actived);  
-        }
 
+            self.ButtonActive.SetActive(!actived);
+            self.ImageActived.SetActive(actived);
+        }
     }
 }
