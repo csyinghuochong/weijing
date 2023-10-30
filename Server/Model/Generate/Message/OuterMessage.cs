@@ -1935,9 +1935,6 @@ namespace ET
 		[ProtoMember(10)]
 		public int SkillId { get; set; }
 
-		[ProtoMember(11)]
-		public long ReviveTime { get; set; }
-
 		[ProtoMember(12)]
 		public float ForwardX { get; set; }
 

@@ -95,7 +95,7 @@ namespace ET
        
         public static Unit CreateSpiling(Entity currentScene, SpilingInfo unitInfo)
 		{
-			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+            UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, 1);
 			unitComponent.Add(unit);
 			unit.Type = UnitType.Monster;

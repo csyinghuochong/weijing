@@ -215,8 +215,6 @@ namespace ET
                 spilingInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
                 spilingInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
             }
-
-            spilingInfo.ReviveTime = reviveTime;
             //广播创建的是那个怪物ID
             spilingInfo.SkillId = unit.GetComponent<UnitInfoComponent>().EnergySkillId;
             spilingInfo.MonsterID = unit.ConfigId;
