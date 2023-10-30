@@ -769,6 +769,8 @@ namespace ET
             if (ComHelp.IsInnerNet())
             {
                 self.CheckSeasonMainTask();
+
+                self.UpdateTargetTask(false);
             }
 
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
@@ -1013,8 +1015,6 @@ namespace ET
             {
                 return;
             }
-
-            Log.Console($"创角天数:{openDay} ");
 
             //所有任务
             List<int> taskids = new List<int>();
