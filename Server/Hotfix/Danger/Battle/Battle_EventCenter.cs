@@ -191,7 +191,7 @@ namespace ET
                 }
             }
 
-            long waittime = defendUnit.IsChest() ? 1000 : 200;
+            long waittime = defendUnit.IsChest() ? 1000 : 100;
             if (defendUnit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);

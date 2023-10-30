@@ -101,13 +101,11 @@
 			if (args.NewValue == 0)//复活
 			{
 				EventType.UnitRevive.Instance.Unit = unit;
-				unit.Position = unit.GetBornPostion();
-				unit.GetComponent<StateComponent>().Reset();
 				Game.EventSystem.PublishClass(EventType.UnitRevive.Instance);
 			}
 			if (args.NewValue == 1)//死亡
 			{
-				unit.GetComponent<HeroDataComponent>().OnDead();
+                unit.GetComponent<HeroDataComponent>().OnDead();
 				EventType.UnitDead.Instance.Unit = unit;
 				Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
 			}

@@ -47,7 +47,7 @@ namespace ET
             self.AcvityedImg = rc.Get<GameObject>("AcvityedImg");
 
             self.UISeasonDayTaskItem.SetActive(false);
-            self.GetBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnGetBtn().Coroutine(); });
+            self.GetBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnGetBtn(); });
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -240,7 +240,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnGetBtn(this UISeasonTaskComponent self)
+        public static  void OnGetBtn(this UISeasonTaskComponent self)
         {
             if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
             {

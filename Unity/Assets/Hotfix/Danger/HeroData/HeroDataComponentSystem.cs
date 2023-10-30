@@ -411,17 +411,18 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent  = unit.GetComponent<NumericComponent>();
             long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+
             numericComponent.ApplyValue(NumericType.Now_Dead, 0);
             numericComponent.NumericDic[NumericType.Now_Hp] = 0;
             numericComponent.ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
-
+            numericComponent.ApplyValue(NumericType.ReviveTime, 0);
+            unit.GetComponent<SkillPassiveComponent>()?.Activeted();
+            unit.GetComponent<BuffManagerComponent>()?.OnRevive();
+            unit.Position = unit.GetBornPostion();
             if (unit.Type == UnitType.Monster)
             {
                 unit.GetComponent<AIComponent>().Begin();
             }
-            unit.GetComponent<SkillPassiveComponent>()?.Activeted();
-            unit.GetComponent<BuffManagerComponent>()?.OnRevive();
-            unit.Position = unit.GetBornPostion();
         }
 
         public static void InitTempFollower(this HeroDataComponent self, Unit matster, int monster)
@@ -734,6 +735,7 @@ namespace ET
         public static void OnDead(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<StateComponent>().Reset();
             unit.GetComponent<MoveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish();
             unit.GetComponent<BuffManagerComponent>()?.OnFinish();

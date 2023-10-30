@@ -12,11 +12,7 @@ namespace ET
             Unit unit = args.Unit;
             unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
             unit.GetComponent<UIUnitHpComponent>()?.OnRevive();
-
-            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
-            {
-                unit.GetComponent<GameObjectComponent>()?.OnRevive();
-            }
+            unit.GetComponent<GameObjectComponent>()?.OnRevive();
         }
     }
 }

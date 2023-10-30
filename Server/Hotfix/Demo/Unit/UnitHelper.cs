@@ -147,18 +147,19 @@ namespace ET
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:
-                    NumericComponent numericComponent = sendUnit.GetComponent<NumericComponent>();
-                    int now_dead = numericComponent != null ? numericComponent.GetAsInt(NumericType.Now_Dead) : 0;
-                    if (now_dead == 0)
-                    {
-                        createUnits.Spilings.Add(CreateSpilingInfo(sendUnit, 0));
-                        break;
-                    }
-                    long reviveTime = numericComponent.GetAsLong(NumericType.ReviveTime);
-                    if (now_dead == 1 && reviveTime > 0)
-                    {
-                        createUnits.Spilings.Add(CreateSpilingInfo(sendUnit, reviveTime));
-                    }
+                    //NumericComponent numericComponent = sendUnit.GetComponent<NumericComponent>();
+                    //int now_dead = numericComponent != null ? numericComponent.GetAsInt(NumericType.Now_Dead) : 0;
+                    //if (now_dead == 0)
+                    //{
+                    //    createUnits.Spilings.Add(CreateSpilingInfo(sendUnit));
+                    //    break;
+                    //}
+                    //long reviveTime = numericComponent != null ? numericComponent.GetAsLong(NumericType.ReviveTime) : 0;
+                    //if (reviveTime > 0)
+                    //{
+                    //    createUnits.Spilings.Add(CreateSpilingInfo(sendUnit));
+                    //}
+                    createUnits.Spilings.Add(CreateSpilingInfo(sendUnit));
                     break;
                 case UnitType.DropItem:
                     createUnits.Drops.Add(CreateDropInfo(sendUnit));
@@ -183,7 +184,7 @@ namespace ET
             MessageHelper.SendToClient(unit, removeUnits);
         }
 
-        public static SpilingInfo CreateSpilingInfo(Unit unit, long reviveTime)
+        public static SpilingInfo CreateSpilingInfo(Unit unit)
         {
             SpilingInfo spilingInfo = new SpilingInfo();
             unit.GetComponent<UnitInfoComponent>();
