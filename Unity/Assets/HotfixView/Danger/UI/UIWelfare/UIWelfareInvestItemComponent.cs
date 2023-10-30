@@ -39,7 +39,9 @@ namespace ET
 
             self.DayText.GetComponent<Text>().text = $"第{day + 1}天";
 
-            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币";
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.WelfareInvestLiBao);
+
+            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币  回馈：{itemConfig.ItemName}";
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(day))
             {

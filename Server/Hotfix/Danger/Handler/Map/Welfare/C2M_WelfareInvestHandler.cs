@@ -8,6 +8,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_WelfareInvestRequest request, M2C_WelfareInvestResponse response, Action reply)
         {
+
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
+                return;
+            }
             if (request.Index < 0 || request.Index >= ConfigHelper.WelfareInvestList.Count)
             {
                 response.Error = ErrorCode.ERR_ModifyData;
@@ -29,6 +35,7 @@ namespace ET
                 return;
             }
 
+            unit.GetComponent<BagComponent>().OnAddItemData($"{ConfigHelper.WelfareInvestLiBao};1", $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.Gold,(ment * -1).ToString(), true, ItemGetWay.Welfare );
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, ment, 0);
             unit.GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Add(request.Index);
