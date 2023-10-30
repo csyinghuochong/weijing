@@ -29,8 +29,8 @@ namespace ET
             self.InvestBtn = rc.Get<GameObject>("InvestBtn");
             self.InvestedImg = rc.Get<GameObject>("InvestedImg");
             
-            UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem", self.UIItem);
-            self.UIItemComponent = ui_2.AddComponent<UIItemComponent>();
+            //UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem", self.UIItem);
+            self.UIItemComponent = self.AddComponent<UIItemComponent, GameObject>(self.UIItem);
 
             self.InvestBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnInvestBtn().Coroutine(); });
         }
