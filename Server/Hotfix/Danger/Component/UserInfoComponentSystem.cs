@@ -304,7 +304,7 @@ namespace ET
 
             bool showlieopen = ActivityHelper.IsShowLieOpen();
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
-            if (showlieopen && (Mathf.Abs( self.UserInfo.Lv - monsterConfig.Lv ) <= 9) || monsterConfig.Lv >= 50)
+            if (showlieopen && ( monsterConfig.Lv >= 50 || Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 9) )
             {
                 self.OnShowLieKill();
             }

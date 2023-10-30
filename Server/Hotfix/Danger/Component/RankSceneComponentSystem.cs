@@ -572,9 +572,9 @@ namespace ET
 
         public static  void OnShowLieBegin(this RankSceneComponent self)
         {
+            self.DBRankInfo.rankShowLie.Clear();
             self.BroadcastShowLie("1").Coroutine();
         }
-
 
         public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
         {
