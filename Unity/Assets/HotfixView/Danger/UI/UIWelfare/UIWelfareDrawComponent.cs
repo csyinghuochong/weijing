@@ -8,23 +8,9 @@ namespace ET
     public class UIWelfareDrawComponent: Entity, IAwake
     {
         public GameObject DrawList;
-        public GameObject DrawItem;
         public GameObject DrawBtn;
 
         public List<GameObject> Draws = new List<GameObject>();
-
-        // 从左上角开始顺时针
-        public List<Vector3> Positions = new List<Vector3>()
-        {
-            new Vector3(-360, 220, 0),
-            new Vector3(0, 220, 0),
-            new Vector3(360, 220, 0),
-            new Vector3(360, 0, 0),
-            new Vector3(360, -220, 0),
-            new Vector3(0, -220, 0),
-            new Vector3(-360, -220, 0),
-            new Vector3(-360, 0, 0)
-        };
     }
 
     public class UIWelfareDrawComponentAwakeSystem: AwakeSystem<UIWelfareDrawComponent>
@@ -34,17 +20,27 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.DrawList = rc.Get<GameObject>("DrawList");
-            self.DrawItem = rc.Get<GameObject>("DrawItem");
             self.DrawBtn = rc.Get<GameObject>("DrawBtn");
 
-            self.DrawItem.SetActive(false);
-
             self.DrawBtn.GetComponent<Button>().onClick.AddListener(() => { self.StartDraw().Coroutine(); });
+
+            self.Init();
         }
     }
 
     public static class UIWelfareDrawComponentSystem
     {
+        public static void Init(this UIWelfareDrawComponent self)
+        {
+            for (int i = 0; i < self.DrawList.transform.childCount; i++)
+            {
+                GameObject go = self.DrawList.transform.GetChild(i).gameObject;
+                self.Draws.Add(go);
+                UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
+                    go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+            }
+        }
+
         public static async ETTask StartDraw(this UIWelfareDrawComponent self)
         {
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
@@ -55,22 +51,7 @@ namespace ET
                 return;
             }
 
-            UICommonHelper.DestoryChild(self.DrawList);
-            self.Draws.Clear();
             self.DrawBtn.GetComponent<Button>().interactable = true;
-
-           
-            // 开始抽奖，生成奖励格子。如果 NumericType.WelfareDraw > 0则不需要发送此协议，客户端直接做展示即可。将格子转到NumericType.WelfareDraw - 1即可
-            for (int i = 0; i < self.Positions.Count; i++)
-            {
-                GameObject go = GameObject.Instantiate(self.DrawItem);
-                go.SetActive(true);
-                UICommonHelper.SetParent(go, self.DrawList);
-                go.GetComponent<RectTransform>().localPosition = self.Positions[i];
-                self.Draws.Add(go);
-                UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
-                    go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
-            }
 
             int drawIndex = numericComponent.GetAsInt(NumericType.DrawIndex);
             if (drawIndex > 0)

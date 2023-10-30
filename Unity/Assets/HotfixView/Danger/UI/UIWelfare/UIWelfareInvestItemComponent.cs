@@ -9,9 +9,10 @@ namespace ET
         public GameObject GameObject;
         public GameObject DayText;
         public GameObject InvestText;
+        public GameObject UIItem;
         public GameObject InvestBtn;
         public GameObject InvestedImg;
-
+        public UIItemComponent UIItemComponent;
         public int day;
     }
 
@@ -24,8 +25,12 @@ namespace ET
 
             self.DayText = rc.Get<GameObject>("DayText");
             self.InvestText = rc.Get<GameObject>("InvestText");
+            self.UIItem = rc.Get<GameObject>("UIItem");
             self.InvestBtn = rc.Get<GameObject>("InvestBtn");
             self.InvestedImg = rc.Get<GameObject>("InvestedImg");
+            
+            UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem", self.UIItem);
+            self.UIItemComponent = ui_2.AddComponent<UIItemComponent>();
 
             self.InvestBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnInvestBtn().Coroutine(); });
         }
@@ -40,8 +45,10 @@ namespace ET
             self.DayText.GetComponent<Text>().text = $"第{day + 1}天";
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.WelfareInvestLiBao);
+            
+            self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = itemConfig.Id, ItemNum = 1 }, ItemOperateEnum.None);
 
-            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币  回馈：{itemConfig.ItemName}";
+            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币  回馈:";
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(day))
             {
