@@ -88,9 +88,27 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("当天奖励已领取！");
                 return;
             }
-            C2M_YueKaRewardRequest c2M_RoleYueKaRequest = new C2M_YueKaRewardRequest() { };
-            M2C_YueKaRewardResponse m2C_RoleYueKaResponse = (M2C_YueKaRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RoleYueKaRequest);
-            self.OnUpdateUI();
+            
+            int maxPiLao = unit.GetMaxPiLao();
+            long nowPiLao = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao;
+
+            if (maxPiLao < nowPiLao + 20)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "领取", "是否领取?\n领取后会有体力溢出!", async () =>
+                {
+                    C2M_YueKaRewardRequest c2M_RoleYueKaRequest = new C2M_YueKaRewardRequest() { };
+                    M2C_YueKaRewardResponse m2C_RoleYueKaResponse =
+                            (M2C_YueKaRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RoleYueKaRequest);
+                    self.OnUpdateUI();
+                }).Coroutine();
+            }
+            else
+            {
+                C2M_YueKaRewardRequest c2M_RoleYueKaRequest = new C2M_YueKaRewardRequest() { };
+                M2C_YueKaRewardResponse m2C_RoleYueKaResponse =
+                        (M2C_YueKaRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RoleYueKaRequest);
+                self.OnUpdateUI();
+            }
         }
 
         public static async ETTask ReqestOpenYueKa(this UIActivityYueKaComponent self)

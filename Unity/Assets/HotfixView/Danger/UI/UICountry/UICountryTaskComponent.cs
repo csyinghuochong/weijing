@@ -129,12 +129,33 @@ namespace ET
                 return;
             }
 
-            int errorcode = await  taskComponent.RuqestHuoYueReward(index);
-            if (errorcode != ErrorCode.ERR_Success)
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int maxPiLao = unit.GetMaxPiLao();
+            long nowPiLao = self.UserInfoComponent.UserInfo.PiLao;
+
+            if (maxPiLao < nowPiLao + 10)
             {
-                await NetHelper.RequestIniTask(self.ZoneScene());
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "领取", "是否领取?\n领取后会有体力溢出!", async () =>
+                {
+                    int errorcode = await taskComponent.RuqestHuoYueReward(index);
+                    if (errorcode != ErrorCode.ERR_Success)
+                    {
+                        await NetHelper.RequestIniTask(self.ZoneScene());
+                    }
+
+                    self.UpdateHuoYueReward();
+                }).Coroutine();
             }
-            self.UpdateHuoYueReward();
+            else
+            {
+                int errorcode = await taskComponent.RuqestHuoYueReward(index);
+                if (errorcode != ErrorCode.ERR_Success)
+                {
+                    await NetHelper.RequestIniTask(self.ZoneScene());
+                }
+
+                self.UpdateHuoYueReward();
+            }
         }
 
         public static void OnTaskCountryUpdate(this UICountryTaskComponent self)
