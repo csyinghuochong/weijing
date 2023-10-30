@@ -314,8 +314,7 @@ namespace ET
 
         public static int GetWeaponSkill(this Unit self, int skillId, List<SkillPro> skillPros)
         {
-            BagComponent bagComponent = self.GetComponent<BagComponent>();
-            int EquipType = bagComponent != null ? self.GetEquipType() : ItemEquipType.Common;
+            int EquipType = self.GetEquipType();
             return SkillHelp.GetWeaponSkill(skillId, EquipType, skillPros);
         }
 
