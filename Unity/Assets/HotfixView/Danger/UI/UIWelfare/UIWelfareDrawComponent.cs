@@ -48,8 +48,8 @@ namespace ET
         public static async ETTask StartDraw(this UIWelfareDrawComponent self)
         {
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
-            if (drawReward > 0)
+            int drawReward = numericComponent.GetAsInt(NumericType.DrawIndex);
+            if (drawReward == -1)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经参与过抽奖！");
                 return;

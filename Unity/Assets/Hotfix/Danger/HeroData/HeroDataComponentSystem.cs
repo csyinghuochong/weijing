@@ -199,7 +199,6 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.CostTiLi, 0, notice);
             numericComponent.ApplyValue(NumericType.DrawIndex, 0, notice);
-            numericComponent.ApplyValue(NumericType.DrawReward, 0, notice);
         }
 
         /// <summary>

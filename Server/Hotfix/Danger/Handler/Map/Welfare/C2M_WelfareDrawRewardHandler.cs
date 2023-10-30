@@ -17,7 +17,7 @@ namespace ET
 
             string reward = ConfigHelper.WelfareDrawList[index - 1].Value;
             unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.DrawReward, 1);
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.DrawIndex, -1);
 
             reply();
             await ETTask.CompletedTask;

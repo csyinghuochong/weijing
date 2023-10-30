@@ -15,21 +15,20 @@ namespace ET
                 reply();
                 return;
             }
-            
+
+            //已经领取过抽奖奖励
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) == -1)
+            {
+                reply();
+                return;
+            }
+
             //已经生成了奖励格子
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) > 0)
             {
                 reply();
                 return;
-            }
-
-            //已经领取过抽奖奖励
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawReward) > 0)
-            {
-                reply();
-                return;
-            }
-
+            }          
             List<int> weights = new List<int>();
 
             List<KeyValuePair> drawlist = ConfigHelper.WelfareDrawList;
