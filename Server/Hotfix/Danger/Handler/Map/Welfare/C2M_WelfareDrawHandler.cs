@@ -17,14 +17,15 @@ namespace ET
             }
 
             //已经领取过抽奖奖励
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) == -1)
+            int drawIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex);
+            if (drawIndex == -1)
             {
                 reply();
                 return;
             }
 
             //已经生成了奖励格子
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) > 0)
+            if (drawIndex > 0)
             {
                 reply();
                 return;
