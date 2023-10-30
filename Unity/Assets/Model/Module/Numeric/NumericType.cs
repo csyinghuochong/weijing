@@ -142,6 +142,7 @@
         public const int InvestMent = 3142;                                         //投资金额
         public const int DrawIndex = 3143;                                    //实际要减去1
         public const int InvestReward = 3144;                            //投资奖励是否领取
+        public const int DrawReward = 3145;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
