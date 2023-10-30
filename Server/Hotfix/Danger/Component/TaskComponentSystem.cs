@@ -1018,7 +1018,7 @@ namespace ET
 
             //所有任务
             List<int> taskids = new List<int>();
-            for (int i = 0; i < openDay - 1; i++)
+            for (int i = 0; i < openDay; i++)
             {
                 taskids.AddRange(ConfigHelper.WelfareTaskList[i]);
             }
