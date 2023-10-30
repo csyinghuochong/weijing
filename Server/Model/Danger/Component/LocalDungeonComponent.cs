@@ -13,6 +13,5 @@ namespace ET
         public int RandomJingLing;
 
         public Unit MainUnit;
-        public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
     }
 }

@@ -4,28 +4,12 @@ using UnityEngine;
 
 namespace ET
 {
-    [Timer(TimerType.LocalDungeonTimer)]
-    public class LocalDungeonTimer : ATimer<LocalDungeonComponent>
-    {
-        public override void Run(LocalDungeonComponent self)
-        {
-            try
-            {
-                self.OnTimer();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
+  
     [ObjectSystem]
     public class LocalDungeonComponentAwakeSystem : AwakeSystem<LocalDungeonComponent>
     {
         public override void Awake(LocalDungeonComponent self)
         {
-            self.RefreshMonsters.Clear();
             self.RandomJingLing = 0;
             self.RandomMonster = 0;
         }
@@ -36,8 +20,7 @@ namespace ET
     {
         public override void Destroy(LocalDungeonComponent self)
         {
-            self.RefreshMonsters.Clear();
-            TimerComponent.Instance?.Remove(ref self.Timer);
+
         }
     }
 
@@ -116,48 +99,6 @@ namespace ET
             //}
         }
 
-        public static void OnTimer(this LocalDungeonComponent self)
-        {
-            if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
-            {
-                Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
-                TimerComponent.Instance?.Remove(ref self.Timer);
-                return;
-            }
-
-            try
-            {
-                long time = TimeHelper.ServerNow();
-                for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
-                {
-                    RefreshMonster refreshMonster = self.RefreshMonsters[i];
-                    if (time < refreshMonster.NextTime)
-                    {
-                        continue;
-                    }
-                    self.CreateMonsters(refreshMonster);
-                    self.RefreshMonsters.RemoveAt(i);
-                }
-
-                if (self.RefreshMonsters.Count == 0)
-                {
-                    TimerComponent.Instance?.Remove(ref self.Timer);
-                }
-            }
-            catch (Exception ex)
-            {
-                TimerComponent.Instance?.Remove(ref self.Timer);
-                Log.Debug($"LocalDungeonComponent == null  {ex.ToString()}");
-            }
-        }
-
-        public static void  CreateMonsters(this LocalDungeonComponent self, RefreshMonster refreshMonster)
-        {
-            UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId,
-                new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ),
-                new CreateMonsterInfo() { Camp = CampEnum.CampMonster1 });
-        }
-
         public static void OnCleanBossCD(this LocalDungeonComponent self)
         {
             List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
@@ -172,26 +113,6 @@ namespace ET
                 {
                     entity.GetComponent<HeroDataComponent>().OnRevive();
                 }
-            }
-        }
-
-        public static void OnAddRefreshList(this LocalDungeonComponent self, Unit unit, long aliveTime)
-        {
-            Vector3 bornpos = unit.GetBornPostion();
-
-            self.RefreshMonsters.Add(new RefreshMonster()
-            {
-                MonsterId = unit.ConfigId,
-                NextTime = TimeHelper.ServerNow() + aliveTime,
-                PositionX = bornpos.x,
-                PositionY = bornpos.y,
-                PositionZ = bornpos.z,
-                Range = 0,
-                Number = 1,
-            });
-            if (self.Timer == 0)
-            {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.LocalDungeonTimer, self);
             }
         }
 

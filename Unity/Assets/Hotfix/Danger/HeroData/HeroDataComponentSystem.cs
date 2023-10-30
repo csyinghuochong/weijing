@@ -269,14 +269,15 @@ namespace ET
             }
             else
             {
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, TimeHelper.ServerNow() + resurrection * 1000);
+                long resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                 {
                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                     UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
-                    userInfoComponent.OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
+                    userInfoComponent.OnAddRevive(unit.ConfigId, resurrectionTime);
                     unit.RemoveComponent<ReviveTimeComponent>();
-                    unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
+                    unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
              
                     userInfoComponent.OnAddFirstWinSelf(unit, localDungeon.FubenDifficulty);
                     FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
@@ -285,7 +286,7 @@ namespace ET
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
                 {
                     unit.RemoveComponent<ReviveTimeComponent>();
-                    unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
+                    unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
                     return 1;
                 }
                 return 0;
