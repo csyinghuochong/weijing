@@ -728,7 +728,7 @@ namespace ET
 
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack);
             AttackComponent attackComponent = self.ZoneScene().GetComponent<AttackComponent>();
-            attackComponent.AutoAttack = value == "0";
+            attackComponent.AutoAttack = value == "1";
         }
 
         public static void OnBagItemUpdate(this UIMainComponent self)
