@@ -1324,6 +1324,7 @@ namespace ET
         public static void Reddot_Team(this UIMainComponent self, int num)
         {
             self.UIPageButtonComponent.SetButtonReddot(1, num > 0);
+            self.TeamDungeonBtn.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_RolePoint(this UIMainComponent self, int num)

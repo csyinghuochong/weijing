@@ -89,11 +89,11 @@ namespace ET
         /// <param name="teamId"></param>
         /// <param name="fubenId"></param>
         /// <returns></returns>
-        public static async ETTask<int> SendTeamApply(this TeamComponent self, long teamId, int fubenId, int fubenType, int leaderLv)
+        public static async ETTask<int> SendTeamApply(this TeamComponent self, long teamId, int fubenId, int fubenType, int leaderLv, bool checkfuben)
         {
             try
             {
-                if (fubenId == 0)
+                if (checkfuben && fubenId == 0)
                 {
                     return ErrorCode.ERR_TeamIsFull;
                 }
