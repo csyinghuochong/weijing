@@ -66,8 +66,6 @@ namespace ET
             if (subType < 100)
             {
                 string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
-                ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
-
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
                 self.Img_EquipBack.GetComponent<Image>().sprite = sp;
             }
