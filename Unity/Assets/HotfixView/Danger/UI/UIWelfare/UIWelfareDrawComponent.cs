@@ -47,11 +47,19 @@ namespace ET
     {
         public static async ETTask StartDraw(this UIWelfareDrawComponent self)
         {
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+            int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
+            if (drawReward > 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经参与过抽奖！");
+                return;
+            }
+
             UICommonHelper.DestoryChild(self.DrawList);
             self.Draws.Clear();
             self.DrawBtn.GetComponent<Button>().interactable = true;
 
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+           
             // 开始抽奖，生成奖励格子。如果 NumericType.WelfareDraw > 0则不需要发送此协议，客户端直接做展示即可。将格子转到NumericType.WelfareDraw - 1即可
             for (int i = 0; i < self.Positions.Count; i++)
             {

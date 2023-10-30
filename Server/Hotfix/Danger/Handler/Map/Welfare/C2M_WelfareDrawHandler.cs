@@ -15,8 +15,13 @@ namespace ET
                 reply();
                 return;
             }
-
+            
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) > 0)
+            {
+                reply();
+                return;
+            }
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawReward) > 0)
             {
                 reply();
                 return;
