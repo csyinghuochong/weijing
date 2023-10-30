@@ -1016,9 +1016,16 @@ namespace ET
 
             Log.Console($"创角天数:{openDay} ");
 
-            List<int> taskids = ConfigHelper.WelfareTaskList[openDay - 1];
+            //所有任务
+            List<int> taskids = new List<int>();
+            for (int i = 0; i < openDay - 1; i++)
+            {
+                taskids.AddRange(ConfigHelper.WelfareTaskList[i]);
+            }
             for (int i = 0; i < taskids.Count; i++)
             {
+                Log.Console($"新手任务: {taskids[i]}");
+
                 if (self.GetTaskById(taskids[i]) != null)
                 {
                     continue;
