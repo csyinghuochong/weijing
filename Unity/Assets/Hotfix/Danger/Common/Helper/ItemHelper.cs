@@ -255,7 +255,7 @@ namespace ET
                     return ItemEquipType.Bow;
                 }
                
-                Log.Error($"{occ} 没有配置次职业的默认武器！");
+                Log.Error($"{occ} 没有配置此职业的默认武器！");
                 return ItemEquipType.Sword;
             }
             else

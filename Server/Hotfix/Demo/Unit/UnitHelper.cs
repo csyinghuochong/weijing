@@ -321,6 +321,10 @@ namespace ET
 
         public static int GetEquipType(this Unit self)
         {
+            if (self.Type != UnitType.Player)
+            { 
+                return ItemEquipType.Common;    
+            }
             int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
             return ItemHelper.GetEquipType(self.ConfigId, itemId);
         }
