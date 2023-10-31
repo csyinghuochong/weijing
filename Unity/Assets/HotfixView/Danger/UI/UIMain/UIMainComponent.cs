@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_ZhanKai;
         public GameObject Button_Welfare;
         public GameObject Button_Season;
         public GameObject Btn_RerurnDungeon;
@@ -229,11 +230,12 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_CityHorse, () => { self.OnButton_Horse(true); });
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
-            ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
+            ButtonHelp.AddListenerEx(self.Button_FenXiang, self.OnButton_FenXiang);
 
             self.Button_NewYear = rc.Get<GameObject>("Button_NewYear");
-            ButtonHelp.AddListenerEx(self.Button_NewYear, () => { self.OnButton_NewYear(); });
+            ButtonHelp.AddListenerEx(self.Button_NewYear, self.OnButton_NewYear);
 
+          
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
@@ -329,6 +331,9 @@ namespace ET
             self.UGuaJiSet = rc.Get<GameObject>("UGuaJiSet");
             self.Btn_StopGuaJi = rc.Get<GameObject>("Btn_StopGuaJi");
             ButtonHelp.AddListenerEx(self.Btn_StopGuaJi, () => { self.OnStopGuaJi(); });
+
+            self.Button_ZhanKai = rc.Get<GameObject>("Button_ZhanKai");
+            self.Button_ZhanKai.GetComponent<Button>().onClick.AddListener(self.OnButton_ZhanKai);
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
@@ -1622,6 +1627,16 @@ namespace ET
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
+        }
+
+
+        public static void OnButton_ZhanKai(this UIMainComponent self)
+        {
+            bool active = self.Btn_TopRight_1.activeSelf;
+            self.Btn_TopRight_1.SetActive(!active);
+            self.Btn_TopRight_2.SetActive(!active);
+
+            self.Button_ZhanKai.transform.localScale = active ? new Vector3(1f, 1f, 1f) :  new Vector3(-1f, 1f, 1f);
         }
 
         public static void OnButton_NewYear(this UIMainComponent self)
