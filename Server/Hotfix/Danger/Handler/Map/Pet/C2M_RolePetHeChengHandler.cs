@@ -290,7 +290,7 @@ namespace ET
 			petComponent.OnResetPoint(petinfo_update);
 			petComponent.RemovePet(petinfo_delete.Id);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
-			unit.GetComponent<TaskComponent>().OnGetPet(  );
+			unit.GetComponent<TaskComponent>().OnPetHeCheng(petinfo_update);
 			petComponent.CheckPetPingFen();
 			petComponent.CheckPetZiZhi();
 			response.DeletePetInfoId = petinfo_delete.Id;

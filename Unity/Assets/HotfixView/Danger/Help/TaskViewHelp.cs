@@ -33,6 +33,22 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
             TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetJoinUnion });
             TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = this.ExcuteMoveTo, taskProgess = GetGiveItem });
+
+            TaskTypeLogic.Add(TaskTargetType.PetNumber1_11, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber1_11 });
+            TaskTypeLogic.Add(TaskTargetType.MakeNumber_12, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = MakeNumber_12 });
+            TaskTypeLogic.Add(TaskTargetType.EquipXiLian_13, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = EquipXiLian_13 });
+            TaskTypeLogic.Add(TaskTargetType.PetTianTiNumber_14, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetTianTiNumber_14 });
+            TaskTypeLogic.Add(TaskTargetType.DuiHuanGold_15, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = DuiHuanGold_15 });
+            TaskTypeLogic.Add(TaskTargetType.EquipHuiShou_16, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = EquipHuiShou_16 });
+            TaskTypeLogic.Add(TaskTargetType.QiangHuaLevel_17, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = QiangHuaLevel_17 });
+            TaskTypeLogic.Add(TaskTargetType.PetNSkill_18, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNSkill_18 });
+            TaskTypeLogic.Add(TaskTargetType.PetFubenId_19, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetFubenId_19 });
+            TaskTypeLogic.Add(TaskTargetType.TotalCostGold_20, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TotalCostGold_20 });
+            TaskTypeLogic.Add(TaskTargetType.KillPlayer_21, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = KillPlayer_21 });
+            TaskTypeLogic.Add(TaskTargetType.JiaYuanLevel_22, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = JiaYuanLevel_22 });
+            TaskTypeLogic.Add(TaskTargetType.PetHeCheng_23, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetHeCheng_23 });
+            TaskTypeLogic.Add(TaskTargetType.PetNumber2_24, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber2_24 });
+
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -441,6 +457,105 @@ namespace ET
         public string GetGiveItem(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("给予一件道具 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetNumber1_11(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("获得宠物数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string MakeNumber_12(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string EquipXiLian_13(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("装备洗练次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetTianTiNumber_14(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("宠物天梯次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string DuiHuanGold_15(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("兑换金币次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string EquipHuiShou_16(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("装备回收次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string QiangHuaLevel_17(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("最大强化等级 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetNSkill_18(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization(taskConfig.TargetValue[0] + "技能宠物 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetFubenId_19(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("宠物探险通关{0} {1}/{2}");
+
+            string text1 = string.Format(progress, taskConfig.TargetValue[0], taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string TotalCostGold_20(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("消耗金币 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string KillPlayer_21(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("击杀玩家数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string JiaYuanLevel_22(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("家园等级 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetHeCheng_23(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("宠物合成次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetNumber2_24(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("拥有宠物数量 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }

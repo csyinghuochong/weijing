@@ -257,6 +257,21 @@ namespace ET
                 case (int)TaskTargetType.JoinUnion_9:
                     taskPro.taskTargetNum_1 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0? 1 : 0;
                     break;
+                case (int)TaskTargetType.PetNumber1_11:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<PetComponent>().GetAllPets().Count;
+                    break;
+                case (int)TaskTargetType.QiangHuaLevel_17:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<BagComponent>().GetMaxQiangHuaLevel();
+                    break;
+                case (int)TaskTargetType.PetNSkill_18:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<PetComponent>().GetMaxSkillNumber();
+                    break;
+                case (int)TaskTargetType.PetFubenId_19:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<PetComponent>().GetPassMaxFubenId();
+                    break;
+                case (int)TaskTargetType.JiaYuanLevel_22:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv - 10000;
+                    break;
                 case (int)TaskTargetType.TrialTowerCeng_134:
                     int curtrialid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
                     if (curtrialid > taskConfig.Target[0])
@@ -505,17 +520,29 @@ namespace ET
         /// 宠物洗练
         /// </summary>
         /// <param name="self"></param>
-        public static void OnPetXiLian(this TaskComponent self)
+        public static void OnPetXiLian(this TaskComponent self, RolePetInfo rolePetInfo)
         {
+            self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PetXiLian_7, 0, 1);
+        }
+
+        public static void OnPetHeCheng(this TaskComponent self, RolePetInfo rolePetInfo)
+        {
+            self.TriggerTaskEvent(TaskTargetType.PetNumber1_11, 0, 1);
+            self.TriggerTaskEvent(TaskTargetType.PetNumber2_24, 0, 1);
+            self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_8, 0, 1);
         }
 
         /// <summary>
         /// 获得宠物
         /// </summary>
         /// <param name="self"></param>
-        public static void OnGetPet(this TaskComponent self)
+        public static void OnGetPet(this TaskComponent self, RolePetInfo rolePetInfo)
         {
+            self.TriggerTaskEvent( TaskTargetType.PetNumber1_11, 0, 1 );
+            self.TriggerTaskEvent(TaskTargetType.PetNumber2_24, 0, 1);
+            self.TriggerTaskEvent( TaskTargetType.PetNSkill_18,  0, rolePetInfo.PetSkill.Count);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_8, 0, 1);
         }
 
@@ -525,6 +552,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnEquipXiLian(this TaskComponent self, int times)
         {
+            self.TriggerTaskEvent( TaskTargetType.EquipXiLian_13, 0, times);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.EquipXiLian_9, 0, times);
         }
 
@@ -548,6 +576,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnItemHuiShow(this TaskComponent self)
         {
+            self.TriggerTaskEvent(TaskTargetType.EquipHuiShou_16, 0, 1);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.ItemHuiShou_11, 0, 1);
         }
 
@@ -559,6 +588,7 @@ namespace ET
         {
             if (costCoin >= 0)
                 return;
+            self.TriggerTaskEvent(TaskTargetType.TotalCostGold_20, 0, costCoin * -1);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.CostCoin_5, 0, costCoin * -1);
         }
 
@@ -626,6 +656,10 @@ namespace ET
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.UnionRaceKill_301, 0, 1);
                 self.UpdateUnionRaceRank().Coroutine();
+            }
+            if (bekill.Type == UnitType.Player)
+            {
+                self.TriggerTaskEvent( TaskTargetType.KillPlayer_21,0, 1 );
             }
             if (bekill.Type == UnitType.Monster)
             {
@@ -814,6 +848,8 @@ namespace ET
 
                     if (targetType == TaskTargetType.PlayerLv_4
                         || targetType == TaskTargetType.ItemID_Number_2
+                        || targetType == TaskTargetType.QiangHuaLevel_17
+                        || targetType == TaskTargetType.JiaYuanLevel_22
                         || targetType == TaskTargetType.CombatToValue_133)
                     {
                         if (t == 0)
@@ -821,6 +857,18 @@ namespace ET
                             taskPro.taskTargetNum_1 = targetValue;
                         }
                         if (t == 1)
+                        {
+                            taskPro.taskTargetNum_2 = targetValue;
+                        }
+                    }
+                    else if (targetType == TaskTargetType.PetNSkill_18
+                        || targetType == TaskTargetType.PetFubenId_19)
+                    {
+                        if (t == 0 && targetValue > taskPro.taskTargetNum_1)
+                        {
+                            taskPro.taskTargetNum_1 = targetValue;
+                        }
+                        if (t == 1 && targetValue > taskPro.taskTargetNum_2)
                         {
                             taskPro.taskTargetNum_2 = targetValue;
                         }

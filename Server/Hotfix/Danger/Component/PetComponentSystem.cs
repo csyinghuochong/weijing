@@ -402,7 +402,7 @@ namespace ET
             m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
 
             self.GetParent<Unit>().GetComponent<ChengJiuComponent>().OnGetPet(newpet);
-            self.GetParent<Unit>().GetComponent<TaskComponent>().OnGetPet();
+            self.GetParent<Unit>().GetComponent<TaskComponent>().OnGetPet(newpet);
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
 
             //如果有皮肤的话更新一次角色属性
@@ -1003,6 +1003,19 @@ namespace ET
             }
         }
 
+        public static int GetMaxSkillNumber(this PetComponent self)
+        {
+            int skillNumber = 0;
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (self.RolePetInfos[i].PetSkill.Count > skillNumber)
+                {
+                    skillNumber = self.RolePetInfos[i].PetSkill.Count;
+                }
+            }
+            return skillNumber;
+        }
+
         public static List<RolePetInfo> GetAllPets(this PetComponent self)
         {
             for (int i = 0; i < self.RolePetInfos.Count; i++)
@@ -1082,7 +1095,12 @@ namespace ET
             }
         }
 
-        public static int GetPetFubenMax(this PetComponent self)
+        /// <summary>
+        /// 通关副本ID
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static int GetPassMaxFubenId(this PetComponent self)
         {
             int maxid = 0;
             for (int i = 0; i < self.PetFubenInfos.Count; i++)

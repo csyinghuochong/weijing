@@ -118,6 +118,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.MakeShuLianDu, curShuLian);
                 unit.GetComponent<ChengJiuComponent>().OnSkillShuLianDu(curShuLian);
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.MakeNumber_216, 0, 1);
+                unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.MakeNumber_12, 0 , 1);
             }
 
             reply();

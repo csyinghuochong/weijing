@@ -97,7 +97,7 @@ namespace ET
 				rewardItems.Add(new RewardItem() { ItemID = bagInfo.ItemID, ItemNum = 1 });
 				unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);		
 				unit.GetComponent<ChengJiuComponent>().OnPetXiLian(petInfo);		//激活成就
-				unit.GetComponent<TaskComponent>().OnPetXiLian();					//激活任务
+				unit.GetComponent<TaskComponent>().OnPetXiLian(petInfo);					//激活任务
 			}
 
 			reply();

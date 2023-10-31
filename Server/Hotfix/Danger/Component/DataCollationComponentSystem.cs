@@ -165,7 +165,7 @@ namespace ET
 
             self.MakeShuLiandu = numericComponent.GetAsInt( NumericType.MakeShuLianDu );
 
-            self.PetFubenId = petComponent.GetPetFubenMax();
+            self.PetFubenId = petComponent.GetPassMaxFubenId();
 
             self.TrialFubenId = numericComponent.GetAsInt( NumericType.TrialDungeonId );
 

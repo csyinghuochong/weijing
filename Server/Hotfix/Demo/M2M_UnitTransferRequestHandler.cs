@@ -113,6 +113,7 @@ namespace ET
 						{
 							scene.GetComponent<PetTianTiComponent>().MainUnit = unit;
 							scene.GetComponent<PetTianTiComponent>().GeneratePetFuben().Coroutine();
+							unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetTianTiNumber_14,0, 1 );
 							unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiNumber_310, 0, 1);
 						}
 						if (request.SceneType == (int)SceneTypeEnum.PetMing)

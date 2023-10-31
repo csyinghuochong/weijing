@@ -31,6 +31,7 @@ namespace ET
                 bagComponent.QiangHuaFails[request.WeiZhi]++;
             }
             response.QiangHuaLevel = bagComponent.QiangHuaLevel[request.WeiZhi];
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.QiangHuaLevel_17, 0, response.QiangHuaLevel);
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
             reply();
             await ETTask.CompletedTask;

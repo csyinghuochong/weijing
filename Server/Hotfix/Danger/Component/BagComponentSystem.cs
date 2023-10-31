@@ -514,6 +514,19 @@ namespace ET
             return bagInfos;
         }
 
+        public static int GetMaxQiangHuaLevel(this BagComponent self)
+        {
+            int maxLevel = 0;
+            for (int i = 0; i < self.QiangHuaLevel.Count; i++)
+            {
+                if (self.QiangHuaLevel[i] > maxLevel)
+                {
+                    maxLevel = self.QiangHuaLevel[i];
+                }
+            }
+            return maxLevel;
+        }
+
         //获取某个装备位置的道具数据
         public static BagInfo GetEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType)
         {

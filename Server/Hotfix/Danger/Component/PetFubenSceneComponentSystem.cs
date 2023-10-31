@@ -62,6 +62,7 @@ namespace ET
                     star += m2C_FubenSettlement.StarInfos[i];
                 }
                 self.MainUnit.GetComponent<PetComponent>().OnPassPetFuben(petfubeId, star);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetFubenId_19, 0, petfubeId);
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
