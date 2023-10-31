@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace ET
@@ -12,7 +11,6 @@ namespace ET
             self.Awake();
         }
     }
-
 
     public class SoundComponentDestroySystem : DestroySystem<SoundComponent>
     {
@@ -141,7 +139,6 @@ namespace ET
                 }
                 audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(assetpath);
                 m_assetlist.Add(assetpath);
-
                 m_loadinglist.Remove(clipName);
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 gameObject.transform.SetParent(root);
@@ -187,6 +184,8 @@ namespace ET
         /// <param name="sceneTypeEnum"></param>
         public void PlayBgmSound(Scene scene, int sceneTypeEnum)
         {
+            DisposeAll();
+
             string music = "";
             switch (sceneTypeEnum)
             {
@@ -242,11 +241,6 @@ namespace ET
                 return;
             }
 
-            for (int i = 0; i < m_musciclips.Count; i++)
-            {
-                m_musciclips[i].Dispose();
-            }
-            m_musciclips.Clear();
 
             string assetpath = ABPathHelper.GetSoundPath(clipName);
             m_assetlist.Add(assetpath);
@@ -275,11 +269,25 @@ namespace ET
         /// </summary>
         public void DisposeAll()
         {
-
-
-            m_soundclips.Clear();
-            m_musciclips.Clear();
             m_loadinglist.Clear();
+
+            for (int i = 0; i < m_soundclips.Count; i++)
+            {
+                GameObject.Destroy(m_soundclips[i]);    
+            }
+            m_soundclips.Clear();
+
+            for (int i = 0; i < m_musciclips.Count; i++)
+            {
+                m_musciclips[i].Dispose();
+            }
+            m_musciclips.Clear();
+
+            for (int i = 0; i < m_assetlist.Count; i++)
+            {
+                ResourcesComponent.Instance.UnLoadAsset(m_assetlist[i] );
+            }
+            m_assetlist.Clear();
         }
     }
 }

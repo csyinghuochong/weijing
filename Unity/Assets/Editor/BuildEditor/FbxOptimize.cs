@@ -1,84 +1,63 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Profiling;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
-public class FbxOptimize
+public class ModifyMoidel : Editor
 {
-
-    //DefaultMaterial :指定Material
-    private static Material defaultMaterial;
-
-    private static Material DefaultMaterial
+    [MenuItem("Tools/FBX_修改模型")]
+    public static void ModifyMoidelScale()
     {
-        get
-        {
-            if (defaultMaterial == null)
-            {
-                var path = string.Format("Assets/{0}.mat", "DefaultMaterial");
-                Material load = AssetDatabase.LoadAssetAtPath<Material>(path);
-                if (load == null)
-                {
-                    return null;
-                }
-                defaultMaterial = load;
-                Resources.UnloadAsset(load);
-            }
+        //List<string> paths = new List<string>();
+        //foreach (Object o in Selection.GetFiltered(typeof(Object), SelectionMode.Assets))
+        //{
+        //    Debug.Log(o.name);
 
-            return defaultMaterial;
-        }
+        //    if (!(o is GameObject))
+        //        continue; GameObject mod = o as GameObject;
+        //    string path = AssetDatabase.GetAssetPath(mod);
+        //    ModelImporter modelimporter = ModelImporter.GetAtPath(path) as ModelImporter;
+        //    if (!modelimporter)
+        //    {
+        //        UnityEngine.Debug.LogError(string.Format("path-->{0}<---不是ModelImporter", path)); continue;
+        //    }
+
+        //    //修改Model 下的Scale Factor
+        //    //modelimporter.globalScale = 10;
+        //    modelimporter.materialImportMode = ModelImporterMaterialImportMode.None;
+
+        //    paths.Add(path);
+        //    AssetDatabase.ImportAsset(path);
+        //}
+        //AssetDatabase.Refresh();
+
+        ;
+        CreatNewAnimations(Selection.activeGameObject);
     }
 
-    //指令：可在fbx文件右齿轮操作
-    [MenuItem("Tools/ModelImporter/SetDefaultMaterial(LYM)")]
-    private static void SetDefaultMaterial(MenuCommand menuCommand)
+    private static void CreatNewAnimations(GameObject gameObject)
     {
-        var importer = menuCommand.context as ModelImporter;
-        if (importer == null)
+        if (gameObject == null)
         {
             return;
         }
-        //所有renderer
-        var sources = new List<Renderer>();
-        var assets = AssetDatabase.LoadAllAssetsAtPath(importer.assetPath);
-        for (var i = 0; i < assets.Length; i++)
-        {
-            var source = assets[i] as Renderer;
-            if (source != null)
-            {
-                sources.Add(source);
-            }
-        }
 
-        //所有material
-        var keys = new Dictionary<string, bool>();
-        foreach (var render in sources)
-        {
-            foreach (var mat in render.sharedMaterials)
-            {
-                if (mat != null && !keys.ContainsKey(mat.name) && mat.shader.name.Contains("Standard"))
-                    keys.Add(mat.name, true);
-            }
-        }
+        AssetDatabase.Refresh();
+    }
 
-        //替换为默认material
-        importer.materialImportMode = ModelImporterMaterialImportMode.ImportStandard;
-        if (keys.Count > 0 || importer.materialLocation != ModelImporterMaterialLocation.InPrefab)
+
+    private static string GetAniName(int count)
+    {
+        switch (count)
         {
-            var newMaterial = DefaultMaterial;
-            var kind = typeof(UnityEngine.Material);
-            foreach (var it in keys)
-            {
-                var id = new AssetImporter.SourceAssetIdentifier();
-                id.name = it.Key;
-                id.type = kind;
-                importer.RemoveRemap(id);
-                importer.AddRemap(id, newMaterial);
-            }
-            importer.materialLocation = ModelImporterMaterialLocation.InPrefab;
-            importer.SaveAndReimport();
+            case 1:
+                return "Idle";
+            case 2: return "2-1";
+            case 3: return "2-2";
+            case 4: return "2-3";
+            case 5: return "2-4";
+            default: return "";
         }
     }
 }
