@@ -63,7 +63,7 @@ namespace ET
             int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
             if (drawReward == 1)
             {
-                int index = numericComponent.GetAsInt(NumericType.DrawIndex);
+                int index = numericComponent.GetAsInt(NumericType.DrawIndex) - 1;
                 self.DrawBtn.GetComponent<Button>().interactable = true;
                 self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("ReceivedImg").SetActive(true);
                 GameObject rewardList = self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode");
@@ -87,12 +87,12 @@ namespace ET
                 return;
             }
 
-            long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
-            if (haveHuoyue < 60)
-            {
-                FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
-                return;
-            }
+            //long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
+            //if (haveHuoyue < 60)
+            //{
+            //    FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
+            //    return;
+            //}
 
             self.DrawBtn.GetComponent<Button>().interactable = true;
 
