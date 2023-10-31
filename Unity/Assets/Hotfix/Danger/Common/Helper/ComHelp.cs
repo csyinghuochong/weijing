@@ -512,6 +512,11 @@ namespace ET
         /// <returns></returns>
         public static int GetWelfareDrawIndex(int openDay)
         {
+            if (openDay == 3) //开服第1天
+            {
+                return 1;
+            }
+
             if (openDay == 3) //开服第3天
             {
                 return 3;
@@ -535,7 +540,55 @@ namespace ET
         /// <returns></returns>
         public static int GetWelfareWeapon(int occ, int occTwo)
         {
-            return 14100005;
+            int itemID = 0;
+            switch (occTwo) {
+                case 101:
+                    itemID = 14000001;
+                    break;
+                case 102:
+                    itemID = 14000001;
+                    break;
+                case 103:
+                    itemID = 14000002;
+                    break;
+                case 201:
+                    itemID = 14000003;
+                    break;
+                case 202:
+                    itemID = 14000004;
+                    break;
+                case 203:
+                    itemID = 14000003;
+                    break;
+                case 301:
+                    itemID = 14000005;
+                    break;
+                case 302:
+                    itemID = 14000005;
+                    break;
+                case 303:
+                    itemID = 14000005;
+                    break;
+            }
+
+            if (itemID == 0) {
+                switch (occ) {
+
+                    case 1:
+                        itemID = 14000001;
+                        break;
+
+                    case 2:
+                        itemID = 14000003;
+                        break;
+
+                    case 3:
+                        itemID = 14000005;
+                        break;
+                }
+            }
+
+            return itemID;
         }
 
         //宠物守护

@@ -683,19 +683,19 @@ namespace ET
         public static List<KeyValuePair> WelfareDrawList = new List<KeyValuePair>
         {
             //第一天
-            new KeyValuePair(){ KeyId = 10, Value = "1;3" },  
+            new KeyValuePair(){ KeyId = 10, Value = "10000161;2" },  
             //第二天
-            new KeyValuePair(){ KeyId = 9,  Value = "1;4" },
+            new KeyValuePair(){ KeyId = 10,  Value = "11200000;1" },
             //第三天
-            new KeyValuePair(){ KeyId = 8,  Value = "1;5" },
+            new KeyValuePair(){ KeyId = 0,  Value = "10010072;1" },
             //第四天
-            new KeyValuePair(){ KeyId = 7,  Value = "1;6" },
+            new KeyValuePair(){ KeyId = 10,  Value = "10010033;1" },
             //第五天
-            new KeyValuePair(){ KeyId = 6,  Value = "1;7" },
+            new KeyValuePair(){ KeyId = 0,  Value = "10010093;1" },
             //第六天
-            new KeyValuePair(){ KeyId = 5,  Value = "1;8" },
+            new KeyValuePair(){ KeyId = 10,  Value = "10010073;1" },
             //第七天
-            new KeyValuePair(){ KeyId = 4,  Value = "1;9" },
+            new KeyValuePair(){ KeyId = 0,  Value = "1;9" },
         };
 
         /// <summary>
@@ -706,7 +706,7 @@ namespace ET
         /// <summary>
         /// 投资金额, 只可以投六天，第七天领取奖励。
         /// </summary>
-        public static List<int> WelfareInvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000 };
+        public static List<int> WelfareInvestList = new List<int>() { 50000, 100000, 150000, 200000, 250000, 300000 };
 
         /// <summary>
         /// 完成每天目标任务的奖励
