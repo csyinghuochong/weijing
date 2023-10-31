@@ -512,7 +512,7 @@ namespace ET
         /// <returns></returns>
         public static int GetWelfareDrawIndex(int openDay)
         {
-            if (openDay == 3) //开服第1天
+            if (openDay == 1) //开服第1天
             {
                 return 1;
             }
