@@ -47,6 +47,23 @@ namespace ET
                 self.OutLines.Add(outline);
                 outline.SetActive(false);
             }
+
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+            int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
+            if (drawReward == 1)
+            {
+                int index = numericComponent.GetAsInt(NumericType.DrawIndex);
+                self.DrawBtn.GetComponent<Button>().interactable = true;
+                self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("ReceivedImg").SetActive(true);
+                GameObject rewardList = self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode");
+                for (int j = 0; j < rewardList.transform.childCount; j++)
+                {
+                    GameObject uiItem = rewardList.transform.GetChild(j).gameObject;
+
+                    UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemIcon"), true);
+                    UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemQuality"), true);
+                }
+            }
         }
 
         public static async ETTask StartDraw(this UIWelfareDrawComponent self)
