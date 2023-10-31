@@ -15,7 +15,13 @@ namespace ET
                 return;
             }
 
+
             string reward = ConfigHelper.WelfareDrawList[index - 1].Value;
+            if (index == 7)
+            { 
+                
+            }
+
             unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawReward, 1);
 

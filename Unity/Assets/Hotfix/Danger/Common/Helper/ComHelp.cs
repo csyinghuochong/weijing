@@ -505,6 +505,33 @@ namespace ET
             return (int)(touzi * (1f + openDay * 0.25f));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="openDay"></param>
+        /// <returns></returns>
+        public static int GetWelfareDrawIndex(int openDay)
+        {
+            if (openDay == 3) //开服第3天
+            {
+                return 3;
+            }
+            if (openDay == 5) //开服第5天
+            {
+                return 5;
+            }
+            if (openDay == 7) //开服第7天
+            {
+                return 7;
+            }
+            return -1;         //权重随机
+        }
+
+        public static int GetWelfareWeapon(int occ, int occTwo)
+        {
+            return 14100005;
+        }
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

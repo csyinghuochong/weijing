@@ -37,8 +37,14 @@ namespace ET
                 weights.Add(drawlist[i].KeyId );
             }
 
-            int index = RandomHelper.RandomByWeight( weights );
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.DrawIndex, index + 1 );
+            int openDay = ServerHelper.GetOpenServerDay(false, unit.DomainZone());
+            int index = ComHelp.GetWelfareDrawIndex( openDay );
+
+            if (index == -1)
+            {
+                index = RandomHelper.RandomByWeight(weights) + 1;
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawIndex, index + 1);
+            }
 
             reply();
             await ETTask.CompletedTask;

@@ -678,7 +678,7 @@ namespace ET
 
 
         /// <summary>
-        /// 新人抽奖 //KeyId权重 value道具
+        /// 新人抽奖 //KeyId权重 value道具..     第七天是武器ConfigHelper.GetWelfareWeapon
         /// </summary>
         public static List<KeyValuePair> WelfareDrawList = new List<KeyValuePair>
         {
@@ -696,8 +696,6 @@ namespace ET
             new KeyValuePair(){ KeyId = 5,  Value = "1;8" },
             //第七天
             new KeyValuePair(){ KeyId = 4,  Value = "1;9" },
-            //第八天
-            new KeyValuePair(){ KeyId = 3,  Value = "1;10" },
         };
 
         /// <summary>
