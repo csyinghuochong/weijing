@@ -49,6 +49,7 @@ namespace ET
                 self.FallingFontShows.RemoveAt(i);
                 fallingFontShowComponent.Dispose();
             }
+            self.FallingFontShows = null;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -57,7 +58,7 @@ namespace ET
     {
         public static void OnAwake(this FallingFontComponent self)
         {
-            self.FallingFontShows.Clear();
+            self.FallingFontShows = new List<FallingFontShowComponent>();
         }
 
         /// <summary>

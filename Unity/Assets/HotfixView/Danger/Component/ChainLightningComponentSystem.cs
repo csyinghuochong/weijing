@@ -41,7 +41,8 @@ namespace ET
         {
             self.Start = null;
             self.End = null;
-            self.UsePosition = false;   
+            self.UsePosition = false;
+            self._linePosList = null;
             TimerComponent.Instance?.Remove( ref self.Timer );
         }
     }

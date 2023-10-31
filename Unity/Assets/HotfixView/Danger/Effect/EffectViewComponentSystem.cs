@@ -24,7 +24,7 @@ namespace ET
     {
         public override void Awake(EffectViewComponent self)
         {
-            self.Effects.Clear();
+            self.Effects = new List<AEffectHandler>();
             self.InitEffect();
         }
     }
@@ -49,6 +49,7 @@ namespace ET
                 aEffectHandler.Dispose();
                 self.Effects.RemoveAt(i);
             }
+            self.Effects.Clear();
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 

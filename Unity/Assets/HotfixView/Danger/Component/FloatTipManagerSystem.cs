@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -33,7 +34,9 @@ namespace ET
 	{
 		public override void Destroy(FloatTipManager self)
 		{
-			FloatTipManager.Instance = null;
+			self.FloatTipList = null;
+			self.WaitFloatTip = null;
+            FloatTipManager.Instance = null;
 			TimerComponent.Instance?.Remove(ref self.Timer);
 		}
 	}
@@ -42,8 +45,8 @@ namespace ET
 	{
 		public static void Awake(this FloatTipManager self)
 		{
-			self.FloatTipList.Clear();
-			self.WaitFloatTip.Clear();
+			self.FloatTipList = new List<FloatTipComponent>();
+			self.WaitFloatTip = new List<FloatTipType>();
 		}
 
 		public static void OnUpdate(this FloatTipManager self)

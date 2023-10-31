@@ -36,6 +36,7 @@ namespace ET
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.RecoverGameObject(self.GameObject);
+            self.UIXuLieZhenComponent = null;
         }
     }
 

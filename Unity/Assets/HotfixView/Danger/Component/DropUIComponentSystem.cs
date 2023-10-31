@@ -297,6 +297,8 @@ namespace ET
 
         public static void Destroy(this DropUIComponent self)
         {
+            self.LinepointList = null;
+
             if (self.HeadBar != null)
             {
                 self.HeadBar.SetActive(false);

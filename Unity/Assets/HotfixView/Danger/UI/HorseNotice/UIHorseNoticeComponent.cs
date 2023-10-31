@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIHorseNoticeComponent : Entity, IAwake, IUpdate
+    public class UIHorseNoticeComponent : Entity, IAwake, IUpdate, IDestroy
     {
         public GameObject NoticePosition;
         public GameObject Text_TMP;
@@ -18,12 +18,19 @@ namespace ET
         public Vector3 CurPosition;
     }
 
+    public class UIHorseNoticeComponentDestroy : DestroySystem<UIHorseNoticeComponent>
+    {
+        public override void Destroy(UIHorseNoticeComponent self)
+        {
+            self.HorseNoticeInfoList.Clear();
+            self.HorseNoticeInfoList = null;
+        }
+    }
 
-    public class UIHorseNoticeComponentAwakeSystem : AwakeSystem<UIHorseNoticeComponent>
+    public class UIHorseNoticeComponentAwake : AwakeSystem<UIHorseNoticeComponent>
     {
         public override void Awake(UIHorseNoticeComponent self)
         {
-
             self.HorseNoticeInfoList = new List<M2C_HorseNoticeInfo>();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();

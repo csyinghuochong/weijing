@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public class ActivityComponent : Entity , IAwake, ITransfer, IUnitCache
+    public class ActivityComponent : Entity , IAwake, ITransfer, IUnitCache, IDestroy
     {
         /// <summary>
         /// 上次签到时间

@@ -25,7 +25,7 @@ namespace ET
     {
         public SkillConfig mSkillConfig;
         public float SkillRangeSize;
-        public List<SkillIndicatorItem> SkillIndicatorList = new List<SkillIndicatorItem>();
+        public List<SkillIndicatorItem> SkillIndicatorList = null;
         public long Timer;
     }
 
@@ -36,7 +36,7 @@ namespace ET
         {
             self.Timer = 0;
             self.mSkillConfig = null;
-            self.SkillIndicatorList.Clear();
+            self.SkillIndicatorList = new List<SkillIndicatorItem>();
         }
     }
 
@@ -51,7 +51,7 @@ namespace ET
                 self.RecoveryEffect(skillIndicatorItem);
                 self.SkillIndicatorList.RemoveAt(i);
             }
-
+            self.SkillIndicatorList = null;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
