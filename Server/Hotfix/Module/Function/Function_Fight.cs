@@ -901,8 +901,6 @@ namespace ET
                     defendUnit.GetComponent<AttackRecordComponent>().BeAttacking(attackUnit, damge);
                 }
 
-                Log.Console("damge : " + damge);
-
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {
