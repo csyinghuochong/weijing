@@ -28,6 +28,9 @@ namespace ET
     public class SoundComponent : Entity, IAwake, IDestroy
     {
 
+        //根物体
+        public Transform root;
+
         //所有音效
         public List<GameObject> m_soundclips = new List<GameObject>();
 
@@ -36,8 +39,7 @@ namespace ET
 
         public List<string> m_loadinglist = new List<string>();
 
-        //根物体
-        public Transform root;
+        public List<string> m_assetlist = new List<string>();   
 
         public float MusicVolume = 1f;
         public float SoundVolume = 1f;
@@ -48,6 +50,8 @@ namespace ET
             this.m_soundclips.Clear();
             this.m_musciclips.Clear();
             this.m_loadinglist.Clear();
+
+            this.InitMusicVolume();
         }
 
         public void InitMusicVolume()
@@ -76,6 +80,11 @@ namespace ET
         public string GetAudioOggPath(string fileName)
         {
             return $"Assets/Bundles/Audio/{fileName}.ogg";
+        }
+
+        public string GetAudioPath(string fileName)
+        {
+            return $"Assets/Bundles/Audio/{fileName}.mp3";
         }
 
         /// <summary>
@@ -121,16 +130,18 @@ namespace ET
                 m_loadinglist.Add(clipName);
                 gameObject = new GameObject(clipName);
                 AudioClip audioClip;
-
+                string assetpath = string.Empty;
                 if (musicType == "ogg")
                 {
-                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(GetAudioOggPath(clipName));
+                    assetpath = GetAudioOggPath(clipName);  //ogg
                 }
                 else 
                 {
-                    //mp3
-                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
+                    assetpath = GetAudioPath(clipName);     //mp3
                 }
+                audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(assetpath);
+                m_assetlist.Add(assetpath);
+
                 m_loadinglist.Remove(clipName);
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 gameObject.transform.SetParent(root);
@@ -169,6 +180,59 @@ namespace ET
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.MusicVolume, volume.ToString());
         }
 
+        /// <summary>
+        /// 先释放所有的音效
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="sceneTypeEnum"></param>
+        public void PlayBgmSound(Scene scene, int sceneTypeEnum)
+        {
+            string music = "";
+            switch (sceneTypeEnum)
+            {
+                case (int)SceneTypeEnum.LoginScene:
+                    music = "Login";
+                    break;
+                case (int)SceneTypeEnum.MainCityScene:
+                    music = "MainCity";
+                    break;
+                case (int)SceneTypeEnum.TeamDungeon:
+                case (int)SceneTypeEnum.JiaYuan:
+                    int mapid = scene.GetComponent<MapComponent>().SceneId;
+                    music = SceneConfigCategory.Instance.Get(mapid).Music;
+                    break;
+                case (int)SceneTypeEnum.CellDungeon:
+                    music = ChapterConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SceneId).Music;
+                    ChapterSonConfig chapterSonConfig = ChapterSonConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SonSceneId);
+                    string[] monsters = chapterSonConfig.CreateMonster.Split('@');
+
+                    for (int i = 0; i < monsters.Length; i++)
+                    {
+                        if (monsters[i] == "0")
+                        {
+                            continue;
+                        }
+                        string[] mondels = monsters[i].Split(';');
+                        string[] monsterid = mondels[2].Split(',');
+                        MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+                        if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
+                        {
+                            music = "Boss";
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    music = "Fight_1";
+                    break;
+            }
+
+            if (music != "")
+            {
+                PlayMusic(music).Coroutine();
+            }
+        }
+
         //播放SoundData
         public async ETTask PlayMusic(string clipName, float volume = 0.5f)
         {
@@ -183,7 +247,10 @@ namespace ET
                 m_musciclips[i].Dispose();
             }
             m_musciclips.Clear();
-            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetSoundPath(clipName));
+
+            string assetpath = ABPathHelper.GetSoundPath(clipName);
+            m_assetlist.Add(assetpath);
+            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(assetpath);
             GameObject prefab = UnityEngine.Object.Instantiate(bundleGameObject);
             SoundData soundData = prefab.GetComponent<SoundData>();
             prefab.transform.SetParent(root);
@@ -202,11 +269,14 @@ namespace ET
         {
 
         }
+
         /// <summary>
         /// 销毁所有声音
         /// </summary>
         public void DisposeAll()
         {
+
+
             m_soundclips.Clear();
             m_musciclips.Clear();
             m_loadinglist.Clear();

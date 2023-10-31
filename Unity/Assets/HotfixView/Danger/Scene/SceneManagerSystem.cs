@@ -6,54 +6,6 @@ namespace ET
     public static class SceneManagerSystem
     {
 
-        public static void PlayBgmSound(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)
-        {
-            string music = "";
-            switch (sceneTypeEnum)
-            {
-                case (int)SceneTypeEnum.LoginScene:
-                    music = "Login";
-                    break;
-                case (int)SceneTypeEnum.MainCityScene:
-                    music = "MainCity";
-                    break;
-               case (int)SceneTypeEnum.TeamDungeon:
-               case (int)SceneTypeEnum.JiaYuan:
-                    int mapid = scene.GetComponent<MapComponent>().SceneId;
-                    music = SceneConfigCategory.Instance.Get(mapid).Music;
-                    break;
-                case (int)SceneTypeEnum.CellDungeon:
-                    music = ChapterConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SceneId).Music;
-                    ChapterSonConfig chapterSonConfig = ChapterSonConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SonSceneId);
-                    string[] monsters = chapterSonConfig.CreateMonster.Split('@');
-
-                    for (int i = 0; i < monsters.Length; i++)
-                    {
-                        if (monsters[i] == "0")
-                        {
-                            continue;
-                        }
-                        string[] mondels = monsters[i].Split(';');
-                        string[] monsterid = mondels[2].Split(',');
-                        MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
-                        if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
-                        {
-                            music = "Boss";
-                            break;
-                        }
-                    }
-                    break;
-                default:
-                    music = "Fight_1";
-                    break;
-            }
-
-            if (music != "")
-            {
-                Game.Scene.GetComponent<SoundComponent>().PlayMusic(music).Coroutine();
-            }
-        }
-
         public static void  UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)
         {
             AdditiveHide[] additiveHides = (AdditiveHide[])GameObject.FindObjectsOfType(typeof(AdditiveHide));
@@ -130,11 +82,14 @@ namespace ET
             }
 
             GameObjectPoolComponent.Instance.DisposeAll();
+
             await ResourcesComponent.Instance.LoadEmptyScene(ABPathHelper.GetScenePath("Empty"));
             await TimerComponent.Instance.WaitFrameAsync(); 
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAsync(path);
             self.UpdateChuanSong(scene, sceneTypeEnum);
+
+            Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
         }
 
     }

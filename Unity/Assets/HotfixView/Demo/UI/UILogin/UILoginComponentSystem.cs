@@ -154,8 +154,9 @@ namespace ET
 				self.RequestAllServer().Coroutine();
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
 				self.PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
-				Game.Scene.GetComponent<SoundComponent>().InitMusicVolume();
-                Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
+
+                //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
+
 				self.InitLoginType();
 				self.UpdateLoginType();
 
