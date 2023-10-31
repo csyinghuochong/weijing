@@ -19,7 +19,9 @@ namespace ET
             string reward = ConfigHelper.WelfareDrawList[index - 1].Value;
             if (index == 7)
             { 
-                
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                int weaponId = ComHelp.GetWelfareWeapon( userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.OccTwo );
+                reward = $"1;{weaponId}";
             }
 
             unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
