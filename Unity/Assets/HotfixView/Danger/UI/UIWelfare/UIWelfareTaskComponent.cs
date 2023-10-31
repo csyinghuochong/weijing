@@ -94,6 +94,7 @@ namespace ET
                 if (taskPro == null && roleComoleteTaskList.Contains(tasks[i]))
                 {
                     taskPro = new TaskPro();
+                    taskPro.taskID = tasks[i];  
                     taskPro.taskTargetNum_1 = taskConfig.TargetValue[0];
                     taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                     Log.Debug($"已完成的任务 {tasks[i]}");
