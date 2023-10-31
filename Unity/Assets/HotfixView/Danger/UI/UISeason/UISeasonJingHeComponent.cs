@@ -38,7 +38,7 @@ namespace ET
 
             self.UISeasonJingHeItem.SetActive(false);
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
-            self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn().Coroutine(); });
+            self.EquipBtn.GetComponent<Button>().onClick.AddListener(self.OnEquipBtn);
 
             self.Init();
         }
@@ -196,7 +196,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnEquipBtn(this UISeasonJingHeComponent self)
+        public static  void OnEquipBtn(this UISeasonJingHeComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> equiplist = bagComponent.GetEquipList();
