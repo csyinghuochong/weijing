@@ -695,7 +695,7 @@ namespace ET
             //第六天
             new KeyValuePair(){ KeyId = 10,  Value = "10010073;1" },
             //第七天
-            new KeyValuePair(){ KeyId = 0,  Value = "1;9" },
+            new KeyValuePair(){ KeyId = 0,  Value = "1;1" },
         };
 
 
@@ -704,18 +704,18 @@ namespace ET
         /// </summary>
         public static List<KeyValuePair> WelfareInvestList = new List<KeyValuePair>()
         { 
-            new KeyValuePair(){ KeyId = 50000, Value = "10010072;1" },
-            new KeyValuePair(){ KeyId = 100000, Value = "10010072;1" },
-            new KeyValuePair(){ KeyId = 150000, Value = "10010072;1" },
-            new KeyValuePair(){ KeyId = 200000, Value = "10010072;1" },
-            new KeyValuePair(){ KeyId = 250000, Value = "10010072;1" },
-            new KeyValuePair(){ KeyId = 300000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 50000, Value = "10000122;1" },
+            new KeyValuePair(){ KeyId = 100000, Value = "10010088;1" },
+            new KeyValuePair(){ KeyId = 150000, Value = "10010083;5" },
+            new KeyValuePair(){ KeyId = 200000, Value = "10010033;1" },
+            new KeyValuePair(){ KeyId = 250000, Value = "10000158;1" },
+            new KeyValuePair(){ KeyId = 300000, Value = "10010046;1" },
         };
 
         /// <summary>
         /// 完成每天目标任务的奖励
         /// </summary>
-        public static List<string> WelfareTaskReward = new List<string>() { "1;1", "1;2", "1;3", "1;4", "1;5", "1;6","1;7" };
+        public static List<string> WelfareTaskReward = new List<string>() { "10000161;1@10010033;1@10010092;1", "10000161;1@10010051;1@10010093;1", "10000161;1@10000158;1@10010046;1", "10000161;1@10010033;1@10010086;1", "10000161;1@10010040;1@10000158;1", "10000161;1@10000143;3@10010086;1", "10000161;1@10049003;1@10010052;1" };
 
         /// <summary>
         /// 目标任务 TaskConfig
@@ -723,14 +723,19 @@ namespace ET
         public static List<List<int>> WelfareTaskList = new List<List<int>>()
         {
             //第一天
-            new List<int>{ 90000001 },          
+            new List<int>{ 71001001,71001002,71001003,71001004,71001005,71001006 },          
             //第二天
-            new List<int>{ 90000002 },
-            new List<int>{ 90000003 },
-            new List<int>{ 90000004 },
-            new List<int>{ 90000005 },
-            new List<int>{ 90000006 },
-            new List<int>{ 90000007 },
+            new List<int>{ 71002001,71002002,71002003,71002004,71002005,71002006 },
+            //第三天
+            new List<int>{ 71003001,71003002,71003003,71003004,71003005 },
+            //第四天
+            new List<int>{ 71004001,71004002,71004003,71004004,71004005 },
+            //第五天
+            new List<int>{ 71005001,71005002,71005003,71005004,71005005 },
+            //第六天
+            new List<int>{ 71006001,71006002,71006003,71006004,71006005 },
+            //第七天
+            new List<int>{ 71007001,71007002,71007003,71007004,71007005 },
         };
     }
 }
