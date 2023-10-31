@@ -101,8 +101,11 @@ namespace ET
                 }
                 if (taskPro == null)
                 {
-                    Log.Error($"为领取的任务 {tasks[i]}");
-                    continue;
+                    Log.Error($"未领取的任务 {tasks[i]}");
+                    taskPro = new TaskPro();
+                    taskPro.taskID = tasks[i];
+                    taskPro.taskTargetNum_1 = 0;
+                    taskPro.taskStatus = (int)TaskStatuEnum.Accepted;
                 }
 
                 UIWelfareTaskItemComponent uiWelfareTaskItemComponent = null;
