@@ -39,20 +39,22 @@ namespace ET
             for (int i = 0; i < self.DrawList.transform.childCount; i++)
             {
                 GameObject go = self.DrawList.transform.GetChild(i).gameObject;
+                GameObject RewardListNode = go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode");
                 self.Draws.Add(go);
+                List<RewardItem> rewardItems = null;
                 if (i == 6)
                 {
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                     int weaponId = ComHelp.GetWelfareWeapon(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.OccTwo);
                     string reward = $"{weaponId};1";
-                    UICommonHelper.ShowItemList(reward,
-                        go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+                    rewardItems = ItemHelper.GetRewardItems(reward);
+ 
                 }
                 else
                 {
-                    UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
-                        go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+                     rewardItems = ItemHelper.GetRewardItems(ConfigHelper.WelfareDrawList[i].Value);
                 }
+                UICommonHelper.ShowItemList(rewardItems, RewardListNode, self, 0.8f, true, true);
 
                 GameObject outline = go.GetComponent<ReferenceCollector>().Get<GameObject>("SelectImg");
                 self.OutLines.Add(outline);

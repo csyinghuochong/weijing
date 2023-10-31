@@ -12,6 +12,7 @@ namespace ET
         public GameObject RewardListNode;
         public GameObject ReceiveBtn;
         public GameObject ReceivedImg;
+        public GameObject TaskProgress;
 
         public GameObject GameObject;
         public TaskPro TaskPro;
@@ -31,6 +32,7 @@ namespace ET
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
             self.ReceivedImg = rc.Get<GameObject>("ReceivedImg");
+            self.TaskProgress = rc.Get<GameObject>("TaskProgress");
 
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
         }
@@ -51,12 +53,21 @@ namespace ET
             {
                 UICommonHelper.DestoryChild(self.RewardListNode);
                 List<RewardItem> rewardItems = new List<RewardItem>();
-                rewardItems.Add(new RewardItem() { ItemID = 1, ItemNum = taskConfig.TaskCoin });
-                rewardItems.Add(new RewardItem() { ItemID = 2, ItemNum = taskConfig.TaskExp });
+
+                if (taskConfig.TaskCoin > 0)
+                {
+                    rewardItems.Add(new RewardItem() { ItemID = 1, ItemNum = taskConfig.TaskCoin });
+                }
+                if (taskConfig.TaskExp > 0)
+                {
+                    rewardItems.Add(new RewardItem() { ItemID = 2, ItemNum = taskConfig.TaskExp });
+                }
+
                 rewardItems.AddRange(TaskHelper.GetTaskRewards(taskPro.taskID));
                 UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             }
 
+            self.TaskProgress.GetComponent<Text>().text = $"{taskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
             self.ReceiveBtn.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
             self.ReceivedImg.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
         }
