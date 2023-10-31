@@ -678,7 +678,7 @@ namespace ET
 
 
         /// <summary>
-        /// 新人抽奖 //KeyId权重 value道具..     第七天是武器ConfigHelper.GetWelfareWeapon
+        /// 新人抽奖 //KeyId权重 value道具..     第七天是武器ComHelp.GetWelfareWeapon
         /// </summary>
         public static List<KeyValuePair> WelfareDrawList = new List<KeyValuePair>
         {
