@@ -527,6 +527,12 @@ namespace ET
             return -1;         //权重随机
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="occ">第一职业</param>
+        /// <param name="occTwo">第二职业</param>
+        /// <returns></returns>
         public static int GetWelfareWeapon(int occ, int occTwo)
         {
             return 14100005;
