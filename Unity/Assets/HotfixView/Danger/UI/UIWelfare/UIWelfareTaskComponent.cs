@@ -36,6 +36,8 @@ namespace ET
             self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
 
             self.UIWelfareTaskItem.SetActive(false);
+            self.ReceiveBtn.SetActive(false);
+            self.ReceivedImg.SetActive(false);
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
             Button[] buttons = self.DayListNode.GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)
@@ -63,11 +65,9 @@ namespace ET
                 return;
             }
 
-            if (currentDay > 6)
+            if (day > 6)
             {
-                self.ReceiveBtn.SetActive(false);
-                self.ReceivedImg.SetActive(false);
-                return;
+                day = 6;
             }
 
             self.Day = day;
@@ -78,6 +78,13 @@ namespace ET
             List<int> roleComoleteTaskList = self.ZoneScene().GetComponent<TaskComponent>().RoleComoleteTaskList;
             for (int i = 0; i < tasks.Count; i++)
             {
+                TaskPro taskPro = taskComponent.GetTaskById(tasks[i]);
+                if (taskPro == null)
+                {
+                    Log.Debug($"未领取任务 {tasks[i]}");
+                    return;
+                }
+
                 UIWelfareTaskItemComponent uiWelfareTaskItemComponent = null;
                 if (number < self.UIWelfareTaskItemComponents.Count)
                 {
@@ -91,13 +98,6 @@ namespace ET
                     UICommonHelper.SetParent(taskItem, self.TaskListNode);
                     uiWelfareTaskItemComponent = self.AddChild<UIWelfareTaskItemComponent, GameObject>(taskItem);
                     self.UIWelfareTaskItemComponents.Add(uiWelfareTaskItemComponent);
-                }
-
-                TaskPro taskPro = taskComponent.GetTaskById(tasks[i]);
-                if (taskPro == null)
-                {
-                    Log.Debug($"未领取任务 {tasks[i]}");
-                    return;
                 }
 
                 uiWelfareTaskItemComponent.OnUpdateData(taskPro, day);
@@ -118,7 +118,6 @@ namespace ET
 
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ConfigHelper.WelfareTaskReward[day], self.RewardListNode, self, 0.8f);
-
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(day))
             {
                 self.ReceiveBtn.SetActive(false);
