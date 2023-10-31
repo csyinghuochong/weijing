@@ -36,12 +36,15 @@ namespace ET
         public List<Text> TeamTipList = new List<Text>();
 
         public List<GameObject> PetOccupyItemList = new List<GameObject>();
+
+        public List<string> AssetList = new List<string>();
     }
 
     public class UIPetMiningComponentAwake : AwakeSystem<UIPetMiningComponent>
     {
         public override void Awake(UIPetMiningComponent self)
         {
+            self.AssetList.Clear();
             self.PetMiningItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -121,6 +124,12 @@ namespace ET
     {
         public override void Destroy(UIPetMiningComponent self)
         {
+            for (int i = 0; i < self.AssetList.Count; i++)
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetList[i]);
+            }
+            self.AssetList.Clear();
+
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
         }
@@ -342,9 +351,10 @@ namespace ET
             var path = ABPathHelper.GetJpgPath(baginfs[page]);
             Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             self.ImageMineDi.GetComponent<Image>().sprite = atlas;
-
             self.Text_OccNumber.GetComponent<Text>().text = $"当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}";
-             //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
+
+            self.AssetList.Add(path);
+            //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-	public class UILoadingComponent : Entity, IAwake, IUpdate
+	public class UILoadingComponent : Entity, IAwake, IUpdate, IDestroy
 	{
 		public Text text;
 		public GameObject Back_1;
@@ -18,5 +18,7 @@ namespace ET
 		public bool StartLoadAssets = false;
 		public List<string> PreLoadAssets = new List<string>();
 		public List<string> ReleaseAssets = new List<string>();
+
+		public string AssetPath = string.Empty;
 	}
 }

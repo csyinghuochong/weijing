@@ -7,7 +7,19 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UILoadingComponentAwakeSystem : AwakeSystem<UILoadingComponent>
+    public class UILoadingComponentAwakeDestroy : DestroySystem<UILoadingComponent>
+    {
+        public override void Destroy(UILoadingComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            { 
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);    
+            }
+            self.AssetPath = null;
+        }
+    }
+
+    public class UILoadingComponentAwake : AwakeSystem<UILoadingComponent>
     {
         public override void Awake(UILoadingComponent self)
         {
@@ -84,6 +96,7 @@ namespace ET
                 Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 self.Back_1.GetComponent<Image>().sprite = atlas;
                 self.Back_1.SetActive(true);
+                self.AssetPath = path;  
             }
 
             self.PassTime = 0f;
