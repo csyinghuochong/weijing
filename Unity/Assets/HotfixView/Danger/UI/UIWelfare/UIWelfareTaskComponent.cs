@@ -90,10 +90,18 @@ namespace ET
             for (int i = 0; i < tasks.Count; i++)
             {
                 TaskPro taskPro = taskComponent.GetTaskById(tasks[i]);
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(tasks[i]);
+                if (taskPro == null && roleComoleteTaskList.Contains(tasks[i]))
+                {
+                    taskPro = new TaskPro();
+                    taskPro.taskTargetNum_1 = taskConfig.TargetValue[0];
+                    taskPro.taskStatus = (int)TaskStatuEnum.Commited;
+                    Log.Debug($"已完成的任务 {tasks[i]}");
+                }
                 if (taskPro == null)
                 {
-                    Log.Debug($"未领取任务 {tasks[i]}");
-                    return;
+                    Log.Error($"为领取的任务 {tasks[i]}");
+                    continue;
                 }
 
                 UIWelfareTaskItemComponent uiWelfareTaskItemComponent = null;

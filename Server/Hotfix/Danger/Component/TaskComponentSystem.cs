@@ -290,7 +290,9 @@ namespace ET
             {
                 self.GetRandomFubenId(taskPro);
             }
-            if (self.GetTrackTaskList().Count < 3)
+            if (taskConfig.TaskType != TaskTypeEnum.Season
+                && taskConfig.TaskType != TaskTypeEnum.Welfare
+                && self.GetTrackTaskList().Count < 3)
             {
                 taskPro.TrackStatus = 1;
             }
