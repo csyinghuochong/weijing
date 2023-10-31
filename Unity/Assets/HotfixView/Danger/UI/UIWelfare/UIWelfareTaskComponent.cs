@@ -58,6 +58,8 @@ namespace ET
 
             if (day > currentDay || currentDay > 6)
             {
+                self.ReceiveBtn.SetActive(false);
+                self.ReceivedImg.SetActive(false);
                 return;
             }
 
