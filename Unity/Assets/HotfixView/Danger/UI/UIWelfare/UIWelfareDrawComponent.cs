@@ -11,6 +11,7 @@ namespace ET
         public GameObject DrawBtn;
 
         public List<GameObject> Draws = new List<GameObject>();
+        public List<GameObject> OutLines = new List<GameObject>();
     }
 
     public class UIWelfareDrawComponentAwakeSystem: AwakeSystem<UIWelfareDrawComponent>
@@ -32,12 +33,19 @@ namespace ET
     {
         public static void Init(this UIWelfareDrawComponent self)
         {
+            self.Draws.Clear();
+            self.OutLines.Clear();
+
             for (int i = 0; i < self.DrawList.transform.childCount; i++)
             {
                 GameObject go = self.DrawList.transform.GetChild(i).gameObject;
                 self.Draws.Add(go);
                 UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
                     go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+
+                GameObject outline = go.GetComponent<ReferenceCollector>().Get<GameObject>("SelectImg");
+                self.OutLines.Add(outline);
+                outline.SetActive(false);
             }
         }
 
@@ -48,6 +56,13 @@ namespace ET
             if (drawReward == 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经参与过抽奖！");
+                return;
+            }
+
+            long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
+            if (haveHuoyue < 60)
+            {
+                FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
                 return;
             }
 
@@ -77,14 +92,14 @@ namespace ET
             {
                 if (i % 8 == 0)
                 {
-                    self.Draws[7].GetComponent<Image>().color = Color.white;
+                    self.OutLines[7].SetActive(false);
                 }
                 else
                 {
-                    self.Draws[i % 8 - 1].GetComponent<Image>().color = Color.white;
+                    self.OutLines[i % 8 - 1].SetActive(false);
                 }
 
-                self.Draws[i % 8].GetComponent<Image>().color = Color.red;
+                self.OutLines[i % 8].SetActive(true);
 
                 if (i > ran && i % 8 == index)
                 {
@@ -104,6 +119,15 @@ namespace ET
             }
 
             self.DrawBtn.GetComponent<Button>().interactable = true;
+            self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("ReceivedImg").SetActive(true);
+            GameObject rewardList = self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode");
+            for (int j = 0; j < rewardList.transform.childCount; j++)
+            {
+                GameObject uiItem = rewardList.transform.GetChild(j).gameObject;
+
+                UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemIcon"), true);
+                UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemQuality"), true);
+            }
         }
     }
 }
