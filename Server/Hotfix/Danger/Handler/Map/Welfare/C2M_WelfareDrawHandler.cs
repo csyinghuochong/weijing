@@ -43,9 +43,8 @@ namespace ET
             if (index == -1)
             {
                 index = RandomHelper.RandomByWeight(weights) + 1;
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawIndex, index + 1);
             }
-
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawIndex, index + 1);
             reply();
             await ETTask.CompletedTask;
         }
