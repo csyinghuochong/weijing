@@ -45,6 +45,22 @@ namespace ET
     //8: 转职
     //9: 加入家族
     //10：给与任务
+
+    //11:获得任意宠物N个(算上之前)
+    //12:制造N个道具
+    //13:洗炼装备次数N次
+    //14:宠物在天梯战斗N次
+    //15:钻石兑换金币次数
+    //16:装备重铸次数达到N次 （就是装备分解）
+    //17:强化装备最高一级达到N级
+    //18:拥有一个N技能宠物
+    //19:宠物探险通关第N关卡
+    //20:消耗X金币
+    //21:在野外击败敌人X次
+    //22:家园等级达到X级
+    //23:进行一次宠物合成
+    //24:获得任意宠物N个(不算之前)
+
     //101：击杀挑战难度的指定ID怪物(击杀地狱也算)
     //102：击杀地狱难度指定ID怪物
     //111：通关挑战难度的副本(通关地狱也算)
@@ -55,28 +71,43 @@ namespace ET
     //132：击败地狱难度任意boss怪物
     public enum TaskTargetType
     { 
-        KillMonsterID_1 = 1,     //击杀指定ID野怪
-        ItemID_Number_2 = 2,                 //收集
+        KillMonsterID_1 = 1,                    //击杀指定ID野怪
+        ItemID_Number_2 = 2,                    //收集
         LookingFor_3 = 3,
         PlayerLv_4 = 4,
-        KillMonster_5 = 5,           //击杀任意野怪
+        KillMonster_5 = 5,                      //击杀任意野怪
         KillBOSS_6 = 6,
         PassFubenID_7 = 7,
         ChangeOcc_8 = 8,
         JoinUnion_9 = 9,
         GiveItem_10 = 10,
 
-        KillTiaoZhanMonsterID_101 = 101, //击杀挑战难度以及以上怪物ID
-        KillDiYuMonsterID_102 = 102,  //击杀地狱难度怪物
-        PassTianZhanFubenID_111 = 111,   //通关挑战难度的副本
-        PassDiYuFubenID_112 = 112,    //通关地狱难度的副本
-        KillTianZhanMonsterNumber_121 = 121, //击杀挑战难度以及以上怪物数量
-        KillDiYuMonsterNumber_122 = 122,  //击杀地狱难度怪物数量
-        KillTianZhanBossNumber_131 = 131,     //击杀挑战难度以及以上Boss数量
-        KillDiYuBossNumber_132 = 132,     //击杀地狱难度以及以上Boss数量
+        PetNumber1_11,                      //11:获得任意宠物N个(算上之前)
+        MakeNumber_12,                      //12:制造N个道具
+        EquipXiLian_13,                     //13:洗炼装备次数N次
+        PetTianTiNumber_14,                 //14:宠物在天梯战斗N次
+        DuiHuanGold_15,                     //15:钻石兑换金币次数
+        EquipHuiShou_16,                    //16:装备重铸次数达到N次 （就是装备分解）
+        QiangHuaLevel_17,                   //17:强化装备最高一级达到N级
+        PetNSkill_18,                       //18:拥有一个N技能宠物
+        PetFubenId_19,                      //19:宠物探险通关第N关卡
+        TotalCostGold_20,                   //20:消耗X金币
+        KillPlayer_21,                      //21:在野外击败敌人X次
+        JiaYuanLevel_22,                    //22:家园等级达到X级
+        PetHeCheng_23,                      //23:进行一次宠物合成
+        PetNumber2_24,                      //24:获得任意宠物N个(不算之前)
 
-        CombatToValue_133 = 133,             //战力评分达到指定值
-        TrialTowerCeng_134 = 134,             //试炼之塔达到多少层
+        KillTiaoZhanMonsterID_101 = 101,        //击杀挑战难度以及以上怪物ID
+        KillDiYuMonsterID_102 = 102,            //击杀地狱难度怪物
+        PassTianZhanFubenID_111 = 111,          //通关挑战难度的副本
+        PassDiYuFubenID_112 = 112,              //通关地狱难度的副本
+        KillTianZhanMonsterNumber_121 = 121,    //击杀挑战难度以及以上怪物数量
+        KillDiYuMonsterNumber_122 = 122,        //击杀地狱难度怪物数量
+        KillTianZhanBossNumber_131 = 131,       //击杀挑战难度以及以上Boss数量
+        KillDiYuBossNumber_132 = 132,           //击杀地狱难度以及以上Boss数量
+
+        CombatToValue_133 = 133,                //战力评分达到指定值
+        TrialTowerCeng_134 = 134,               //试炼之塔达到多少层
     }
 
     //1：登陆

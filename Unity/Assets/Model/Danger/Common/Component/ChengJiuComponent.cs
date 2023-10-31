@@ -143,7 +143,7 @@ namespace ET
         PegScoreToValue_307 = 307,
         PetArrayScoreToValue_308 = 308,
         PetTianTiRank_309 = 309,
-        PetTianTiChallenge_310 = 310,
+        PetTianTiNumber_310 = 310,
         ZiZhiToValue_311 = 311,
         ZiZhiUpValue_312 = 312,
 
