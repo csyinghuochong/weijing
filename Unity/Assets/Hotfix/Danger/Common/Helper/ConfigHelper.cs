@@ -700,7 +700,7 @@ namespace ET
 
 
         /// <summary>
-        /// 投资金额, 只可以投六天，第七天领取奖励。
+        /// 投资金额, 只可以投六天，第七天领取奖励。  投资金额-》礼包
         /// </summary>
         public static List<KeyValuePair> WelfareInvestList = new List<KeyValuePair>()
         { 
