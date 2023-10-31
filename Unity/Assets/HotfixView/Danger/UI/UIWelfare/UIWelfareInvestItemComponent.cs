@@ -48,7 +48,7 @@ namespace ET
             
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = itemConfig.Id, ItemNum = 1 }, ItemOperateEnum.None);
 
-            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day]}金币  回馈:";
+            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day].KeyId}金币  回馈:";
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(day))
             {
