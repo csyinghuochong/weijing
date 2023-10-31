@@ -44,7 +44,7 @@ namespace ET
 
             self.DayText.GetComponent<Text>().text = $"第{day + 1}天";
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.WelfareInvestLiBao);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(ConfigHelper.WelfareInvestList[day].Value.Split(';')[0]));
             
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = itemConfig.Id, ItemNum = 1 }, ItemOperateEnum.None);
 

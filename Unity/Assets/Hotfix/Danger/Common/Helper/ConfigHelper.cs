@@ -698,15 +698,19 @@ namespace ET
             new KeyValuePair(){ KeyId = 0,  Value = "1;9" },
         };
 
-        /// <summary>
-        /// 投资礼包。每次投资给玩家一个该道具
-        /// </summary>
-        public static int WelfareInvestLiBao = 10010083;
 
         /// <summary>
         /// 投资金额, 只可以投六天，第七天领取奖励。
         /// </summary>
-        public static List<int> WelfareInvestList = new List<int>() { 50000, 100000, 150000, 200000, 250000, 300000 };
+        public static List<KeyValuePair> WelfareInvestList = new List<KeyValuePair>()
+        { 
+            new KeyValuePair(){ KeyId = 50000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 100000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 150000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 200000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 250000, Value = "10010072;1" },
+            new KeyValuePair(){ KeyId = 300000, Value = "10010072;1" },
+        };
 
         /// <summary>
         /// 完成每天目标任务的奖励

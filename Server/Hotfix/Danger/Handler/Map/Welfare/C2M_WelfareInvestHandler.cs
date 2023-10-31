@@ -27,15 +27,15 @@ namespace ET
                 return;
             }
 
-            int ment = ConfigHelper.WelfareInvestList[request.Index];
+            int ment = ConfigHelper.WelfareInvestList[request.Index].KeyId;
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold <= ment)
             {
                 response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
-
-            unit.GetComponent<BagComponent>().OnAddItemData($"{ConfigHelper.WelfareInvestLiBao};1", $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
+            string reward = ConfigHelper.WelfareInvestList[request.Index].Value;
+            unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.Gold,(ment * -1).ToString(), true, ItemGetWay.Welfare );
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, ment, 0);
             unit.GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Add(request.Index);
