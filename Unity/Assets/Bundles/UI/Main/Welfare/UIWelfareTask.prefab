@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 6460506351754078099}
   - component: {fileID: 4739310397458060343}
   m_Layer: 5
-  m_Name: ReceiveImg
+  m_Name: ReceivedImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,10 +888,10 @@ RectTransform:
   m_Father: {fileID: 2663200533866095733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 735, y: -105}
+  m_SizeDelta: {x: 1460, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8421530213920697460
 MonoBehaviour:
@@ -906,8 +906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: ReceiveImg
-    gameObject: {fileID: 597455922242812849}
   - key: ReceiveBtn
     gameObject: {fileID: 8386554167908901262}
   - key: RewardListNode
@@ -918,6 +916,8 @@ MonoBehaviour:
     gameObject: {fileID: 3682965788289134947}
   - key: IconImg
     gameObject: {fileID: 8907835762992566934}
+  - key: ReceivedImg
+    gameObject: {fileID: 597455922242812849}
 --- !u!1 &2180248040896895362
 GameObject:
   m_ObjectHideFlags: 0
