@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIDungeonComponent : Entity, IAwake, IDestroy
+    public class UIDungeonComponent: Entity, IAwake, IDestroy
     {
         public Dictionary<long, Text> BossRefreshObjs = new Dictionary<long, Text>();
         public long Timer;
@@ -21,9 +21,8 @@ namespace ET
         public GameObject ScrollView;
         public GameObject ChapterList;
         public GameObject ButtonClose;
-        public string AssetPath = string.Empty; 
+        public string AssetPath = string.Empty;
     }
-
 
     [Timer(TimerType.UIDungenBossRefreshTimer)]
     public class UIDungenBossRefreshTimer: ATimer<UIDungeonComponent>
@@ -33,8 +32,8 @@ namespace ET
             self.UpdateBossRefreshTimer();
         }
     }
-    
-    public class UIDungeonComponentAwakeSystem : AwakeSystem<UIDungeonComponent>
+
+    public class UIDungeonComponentAwakeSystem: AwakeSystem<UIDungeonComponent>
     {
         public override void Awake(UIDungeonComponent self)
         {
@@ -50,11 +49,11 @@ namespace ET
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterList = rc.Get<GameObject>("ChapterList");
             self.ScrollView = rc.Get<GameObject>("ScrollView");
-            
+
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
             self.BossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnBossRefreshSetting);
             self.CloseBossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnCloseBossRefreshSetting);
-            
+
             self.UIBossRefreshTimeItem.SetActive(false);
             self.UIBossRefreshSettingItem.SetActive(false);
             self.BossRefreshSettingPanel.SetActive(false);
@@ -66,21 +65,21 @@ namespace ET
         public override void Destroy(UIDungeonComponent self)
         {
             if (!string.IsNullOrEmpty(self.AssetPath))
-            { 
-                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);    
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
             }
+
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
     public static class UIDungeonComponentSystem
     {
-
-        public static  async ETTask UpdateChapterList(this UIDungeonComponent self)
+        public static async ETTask UpdateChapterList(this UIDungeonComponent self)
         {
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
-            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.AssetPath = path;
             if (instanceid != self.InstanceId)
             {
@@ -88,11 +87,11 @@ namespace ET
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList(); 
+            List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < dungeonConfigs.Count; i++)
             {
                 int chapterid = dungeonConfigs[i].Id;
-                GameObject go =  GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(bundleGameObject);
 
                 UICommonHelper.SetParent(go, self.ChapterList);
                 UIDungeonItemComponent uIChapterItemComponent = self.AddChild<UIDungeonItemComponent, GameObject>(go);
@@ -105,7 +104,7 @@ namespace ET
                 self.ScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
             }
 
-            await TimerComponent.Instance.WaitAsync(10);    
+            await TimerComponent.Instance.WaitAsync(10);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeon);
         }
 
@@ -126,7 +125,7 @@ namespace ET
             // 获取所有Boss的刷新数据
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             var bossRevivesTime = myUnit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MonsterRevives;
-            
+
             // 根据时间排序,从小到大
             bossRevivesTime.Sort((s1, s2) => long.Parse(s1.Value).CompareTo(long.Parse(s2.Value)));
 
@@ -135,7 +134,7 @@ namespace ET
             for (int i = 0; i < bossRevivesTime.Count; i++)
             {
                 var bossConfId = bossRevivesTime[i].KeyId;
-                
+
                 // 判断该boss是否需要显示,暂时从本地获取设置
                 if (PlayerPrefs.HasKey(bossConfId.ToString()))
                 {
@@ -146,40 +145,44 @@ namespace ET
                 }
                 else
                 {
-                    PlayerPrefs.SetString(bossConfId.ToString(),"1");
+                    PlayerPrefs.SetString(bossConfId.ToString(), "1");
                 }
-
 
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfId);
 
-                GameObject go =  GameObject.Instantiate(self.UIBossRefreshTimeItem);
+                GameObject go = GameObject.Instantiate(self.UIBossRefreshTimeItem);
                 go.SetActive(true);
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
 
                 // Boss头像
                 Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
                 boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sprite;
-                
+
                 // Boss名字
                 boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.MonsterName;
-                
+
+                // Boss出生地
+                boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
+                        $"({DungeonConfigCategory.Instance.Get(SceneConfigHelper.GetFubenByMonster(monsterConfig.Id)).ChapterName})";
+
                 // Boss刷新时间
                 long time = long.Parse(bossRevivesTime[i].Value);
-                self.BossRefreshObjs.Add(time,go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
+                self.BossRefreshObjs.Add(time, go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
                 // 先提前刷新一下
                 self.UpdateBossRefreshTimer();
-                
+
                 UICommonHelper.SetParent(go, self.BossRefreshTimeList);
-                
             }
+
             // 开启定时器
             if (self.Timer != 0)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
             }
+
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.UIDungenBossRefreshTimer, self);
         }
-        
+
         /// <summary>
         /// UI刷新Bosss复活时间
         /// </summary>
@@ -205,7 +208,7 @@ namespace ET
                 }
             }
         }
-       
+
         public static void OnCloseChapter(this UIDungeonComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);
@@ -232,8 +235,9 @@ namespace ET
                 // 按钮
                 if (!PlayerPrefs.HasKey(bossConfigId.ToString()))
                 {
-                    PlayerPrefs.SetString(bossConfigId.ToString(),"1");
+                    PlayerPrefs.SetString(bossConfigId.ToString(), "1");
                 }
+
                 go.Get<GameObject>("ShowText").SetActive(PlayerPrefs.GetString(bossConfigId.ToString()) == "1");
 
                 go.Get<GameObject>("ToggleBtn").GetComponent<Button>().onClick.AddListener(() =>
@@ -251,16 +255,16 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public static void OnSettingChanged(this UIDungeonComponent self , string key , GameObject obj)
+        public static void OnSettingChanged(this UIDungeonComponent self, string key, GameObject obj)
         {
             if (PlayerPrefs.GetString(key) == "0")
             {
-                PlayerPrefs.SetString(key,"1");
+                PlayerPrefs.SetString(key, "1");
                 obj.SetActive(true);
             }
             else
             {
-                PlayerPrefs.SetString(key,"0");
+                PlayerPrefs.SetString(key, "0");
                 obj.SetActive(false);
             }
         }
