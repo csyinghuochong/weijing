@@ -682,13 +682,21 @@ namespace ET
         /// </summary>
         public static List<KeyValuePair> WelfareDrawList = new List<KeyValuePair>
         {
+            //第一天
             new KeyValuePair(){ KeyId = 10, Value = "1;3" },  
+            //第二天
             new KeyValuePair(){ KeyId = 9,  Value = "1;4" },
+            //第三天
             new KeyValuePair(){ KeyId = 8,  Value = "1;5" },
+            //第四天
             new KeyValuePair(){ KeyId = 7,  Value = "1;6" },
+            //第五天
             new KeyValuePair(){ KeyId = 6,  Value = "1;7" },
+            //第六天
             new KeyValuePair(){ KeyId = 5,  Value = "1;8" },
+            //第七天
             new KeyValuePair(){ KeyId = 4,  Value = "1;9" },
+            //第八天
             new KeyValuePair(){ KeyId = 3,  Value = "1;10" },
         };
 
