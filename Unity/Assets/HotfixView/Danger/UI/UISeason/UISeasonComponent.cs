@@ -8,7 +8,8 @@ namespace ET
     {
         Home = 0,
         Task = 1,
-
+        JingHe = 2,
+        Store = 3,
         Number,
     }
 
@@ -35,9 +36,13 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)ChengJiuPageEnum.Number];
             pageViewComponent.UISubViewPath[(int)SeasonPageEnum.Home] = ABPathHelper.GetUGUIPath("Main/Season/UISeasonHome");
             pageViewComponent.UISubViewPath[(int)SeasonPageEnum.Task] = ABPathHelper.GetUGUIPath("Main/Season/UISeasonTask");
+            pageViewComponent.UISubViewPath[(int)SeasonPageEnum.JingHe] = ABPathHelper.GetUGUIPath("Main/Season/UISeasonStore");
+            pageViewComponent.UISubViewPath[(int)SeasonPageEnum.Store] = ABPathHelper.GetUGUIPath("Main/Season/UISeasonStore");
 
             pageViewComponent.UISubViewType[(int)SeasonPageEnum.Home] = typeof (UISeasonHomeComponent);
             pageViewComponent.UISubViewType[(int)SeasonPageEnum.Task] = typeof (UISeasonTaskComponent);
+            pageViewComponent.UISubViewType[(int)SeasonPageEnum.JingHe] = typeof (UISeasonStoreComponent);
+            pageViewComponent.UISubViewType[(int)SeasonPageEnum.Store] = typeof (UISeasonStoreComponent);
             self.UIPageView = pageViewComponent;
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");

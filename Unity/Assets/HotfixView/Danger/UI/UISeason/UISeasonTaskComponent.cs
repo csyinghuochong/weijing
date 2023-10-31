@@ -78,7 +78,6 @@ namespace ET
                     TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID);
                     if (taskConfig.TaskType == TaskTypeEnum.Season)
                     {
-                        Log.Debug($"赛季任务： {taskConfig.Id}");
                         self.TaskPro = taskPros[i];
                     }
                 }
@@ -92,12 +91,17 @@ namespace ET
                         {
                             self.UpdateInfo(taskConfig.Id);
                         });
-                        self.SeasonTaskList.transform.GetChild(index).GetComponentInChildren<Text>().text = taskConfig.Id.ToString();
+                        // self.SeasonTaskList.transform.GetChild(index).GetComponentInChildren<Text>().text = taskConfig.Id.ToString();
                         if (taskConfig.Id < self.TaskPro.taskID)
                         {
                             self.SeasonTaskList.transform.GetChild(index).GetComponent<Text>().text = "已完成";
                             self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(true);
                         }
+                        else
+                        {
+                            self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(false);
+                        }
+                        
 
                         index++;
                     }
