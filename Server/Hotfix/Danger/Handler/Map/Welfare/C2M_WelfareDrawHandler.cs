@@ -37,7 +37,7 @@ namespace ET
                 weights.Add(drawlist[i].KeyId );
             }
 
-            int openDay = ServerHelper.GetOpenServerDay(false, unit.DomainZone());
+            int openDay = unit.GetComponent<UserInfoComponent>().GetCrateDay();
             int index = ComHelp.GetWelfareDrawIndex( openDay );
 
             if (index == -1)
