@@ -321,8 +321,8 @@ namespace ET
             {
                 self.GameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
             }
-            unit.GetComponent<FsmComponent>().SetHorseState();
-            unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
+            unit.GetComponent<FsmComponent>()?.SetHorseState();
+            unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(go);
             self.ShowRoleDi(false);
         }
 
@@ -342,6 +342,11 @@ namespace ET
 
         public static void OnUpdateHorse(this GameObjectComponent self)
         {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.TransformId) > 0)
