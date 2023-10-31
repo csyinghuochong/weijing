@@ -29,22 +29,22 @@ namespace ET
                 reply();
                 return;
             }          
-            List<int> weights = new List<int>();
-
-            List<KeyValuePair> drawlist = ConfigHelper.WelfareDrawList;
-            for (int i = 0; i < drawlist.Count; i++)
-            {
-                weights.Add(drawlist[i].KeyId );
-            }
-
+           
             int openDay = unit.GetComponent<UserInfoComponent>().GetCrateDay();
             int index = ComHelp.GetWelfareDrawIndex( openDay );
 
             if (index == -1)
             {
+                List<int> weights = new List<int>();
+
+                List<KeyValuePair> drawlist = ConfigHelper.WelfareDrawList;
+                for (int i = 0; i < drawlist.Count; i++)
+                {
+                    weights.Add(drawlist[i].KeyId);
+                }
                 index = RandomHelper.RandomByWeight(weights) + 1;
             }
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawIndex, index + 1);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DrawIndex, index);
             reply();
             await ETTask.CompletedTask;
         }
