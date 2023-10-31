@@ -40,8 +40,19 @@ namespace ET
             {
                 GameObject go = self.DrawList.transform.GetChild(i).gameObject;
                 self.Draws.Add(go);
-                UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
-                    go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+                if (i == 6)
+                {
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    int weaponId = ComHelp.GetWelfareWeapon(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.OccTwo);
+                    string reward = $"{weaponId};1";
+                    UICommonHelper.ShowItemList(reward,
+                        go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+                }
+                else
+                {
+                    UICommonHelper.ShowItemList(ConfigHelper.WelfareDrawList[i].Value,
+                        go.GetComponent<ReferenceCollector>().Get<GameObject>("RewardListNode"), self, 0.8f);
+                }
 
                 GameObject outline = go.GetComponent<ReferenceCollector>().Get<GameObject>("SelectImg");
                 self.OutLines.Add(outline);
@@ -107,18 +118,18 @@ namespace ET
             int i = 0;
             while (!self.IsDisposed)
             {
-                if (i % 8 == 0)
+                if (i % 7 == 0)
                 {
-                    self.OutLines[7].SetActive(false);
+                    self.OutLines[6].SetActive(false);
                 }
                 else
                 {
-                    self.OutLines[i % 8 - 1].SetActive(false);
+                    self.OutLines[i % 7 - 1].SetActive(false);
                 }
 
-                self.OutLines[i % 8].SetActive(true);
+                self.OutLines[i % 7].SetActive(true);
 
-                if (i > ran && i % 8 == index)
+                if (i > ran && i % 7 == index)
                 {
                     // 抽奖有一个转圈的效果，转圈结束后获取道具
                     C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
