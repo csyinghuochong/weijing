@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIRoleAddPointComponent : Entity, IAwake<GameObject>
     {
+        public GameObject RecommendAddPointBtn;
         public GameObject Lab_ShengYuNum;
         public GameObject Btn_Confirm;
 
@@ -33,9 +34,11 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.RecommendAddPointBtn = rc.Get<GameObject>("RecommendAddPointBtn");
             self.Lab_ShengYuNum = rc.Get<GameObject>("Lab_ShengYuNum");
 
             self.Btn_Confirm = rc.Get<GameObject>("Btn_Confirm");
+            self.RecommendAddPointBtn.GetComponent<Button>().onClick.AddListener(()=>{self.OnRecommendAddPointBtn();});
             self.Btn_Confirm.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Confirm().Coroutine(); });
 
             self.AddProperty_LiLiang = rc.Get<GameObject>("AddProperty_LiLiang");
@@ -183,6 +186,83 @@ namespace ET
                 return;
             }
             self.OnInitUI();
+        }
+
+        public static void OnRecommendAddPointBtn(this UIRoleAddPointComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            int occ = userInfoComponent.UserInfo.Occ;
+            int occTwo = userInfoComponent.UserInfo.OccTwo;
+
+            // 按比例推荐加点 可以在OccupationConfig和OccupationTwoConfig加个这样的字段
+            string recommendAddPoint = string.Empty;
+            switch (occTwo)
+            {
+                case 101:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 102:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 103:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 201:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 202:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 203:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 301:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 302:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+                case 303:
+                    recommendAddPoint = "1@1@1@1@1";
+                    break;
+            }
+
+            if (recommendAddPoint == string.Empty)
+            {
+                switch (occ)
+                {
+
+                    case 1:
+                        recommendAddPoint = "1@1@1@1@1";
+                        break;
+                    case 2:
+                        recommendAddPoint = "0@1@2@3@4";
+                        break;
+                    case 3:
+                        recommendAddPoint = "1@1@1@1@1";
+                        break;
+                }
+            }
+
+            string[] str = recommendAddPoint.Split('@');
+            int all = 0;
+            List<int> points = new List<int>();
+            foreach (string s in str)
+            {
+                all += int.Parse(s);
+                points.Add(int.Parse(s));
+            }
+
+            int red = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                int add =  self.PointRemain / all * points[i];
+                red += add;
+                self.PointList[i] += add;
+            }
+
+            self.PointRemain -= red;
+            self.OnUpdateUI();
         }
 
         public static void OnUpdateUI(this UIRoleAddPointComponent self)

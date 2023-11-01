@@ -195,6 +195,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
+                userInfoComponent.UserInfo.OpenJingHeIds.Add(self.JingHeId);
                 self.UpdateInfo(self.JingHeId).Coroutine();
             }
         }
