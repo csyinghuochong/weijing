@@ -174,6 +174,10 @@ namespace ET
                 float rate = passTime * 1f / ConfigHelper.HunterSwichCD;
                 self.Button_Switch_CD.fillAmount = rate;
                 await TimerComponent.Instance.WaitFrameAsync();
+                if (self.IsDisposed)
+                {
+                    break;
+                }
             }
         }
 

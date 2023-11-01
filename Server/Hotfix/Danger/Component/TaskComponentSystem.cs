@@ -806,10 +806,9 @@ namespace ET
             if (ComHelp.IsInnerNet())
             {
                 self.CheckSeasonMainTask();
-
-                self.UpdateTargetTask(false);
             }
 
+            self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }
 
