@@ -531,6 +531,7 @@ namespace ET
         public static void OnPetHeCheng(this TaskComponent self, RolePetInfo rolePetInfo)
         {
             self.TriggerTaskEvent(TaskTargetType.PetNumber1_11, 0, 1);
+            self.TriggerTaskEvent(TaskTargetType.PetHeCheng_23, 0, 1);
             self.TriggerTaskEvent(TaskTargetType.PetNumber2_24, 0, 1);
             self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_8, 0, 1);
@@ -576,10 +577,10 @@ namespace ET
         /// 道具回收
         /// </summary>
         /// <param name="self"></param>
-        public static void OnItemHuiShow(this TaskComponent self)
+        public static void OnItemHuiShow(this TaskComponent self, int itemNumber)
         {
-            self.TriggerTaskEvent(TaskTargetType.EquipHuiShou_16, 0, 1);
-            self.TriggerTaskCountryEvent(TaskCountryTargetType.ItemHuiShou_11, 0, 1);
+            self.TriggerTaskEvent(TaskTargetType.EquipHuiShou_16, 0, itemNumber);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.ItemHuiShou_11, 0, itemNumber);
         }
 
         /// <summary>

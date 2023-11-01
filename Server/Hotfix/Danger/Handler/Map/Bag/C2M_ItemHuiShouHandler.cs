@@ -68,7 +68,7 @@ namespace ET
                 bagComponent.OnCostItemData(petHexin, ItemLocType.ItemPetHeXinBag);
                 bagComponent.OnCostItemData(bagsList, ItemLocType.ItemLocBag);
                 bagComponent.OnAddItemData(huishouGet.Values.ToList(), string.Empty, $"{ItemGetWay.HuiShou}_{TimeHelper.ServerNow()}");
-                unit.GetComponent<TaskComponent>().OnItemHuiShow();
+                unit.GetComponent<TaskComponent>().OnItemHuiShow(bagsList.Count);
                 unit.GetComponent<ChengJiuComponent>().OnItemHuiShow(bagsList.Count);
 
                 reply();

@@ -112,8 +112,8 @@ namespace ET
 					unit.GetComponent<TaskComponent>().CompletCurrentTask();
 					return;
 				}
-				if (message.GMMsg.Contains("#addack"))  //#addack#10000
-				{
+				if (message.GMMsg.Contains("#addack"))  //#addack#71003002
+                {
 					int addAck = int.Parse(commands[2]);
 					unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_MaxAct_Add, addAck);
 					return;
