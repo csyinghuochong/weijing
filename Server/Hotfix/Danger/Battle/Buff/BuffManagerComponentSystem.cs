@@ -120,8 +120,8 @@ namespace ET
         public static void OnRevive(this BuffManagerComponent self)
         {
             self.InitBaoShiBuff();
-
             self.InitDonationBuff();
+            self.InitMaoXianJiaBuff();
 
             //99002003
             BuffData buffData_2 = new BuffData();
@@ -422,6 +422,40 @@ namespace ET
             }
         }
 
+        public static void OnMaoXianJiaUpdate(this BuffManagerComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            int jifen = unit.GetMaoXianExp();
+            int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
+
+            //移除之前的
+            List<int> buffidsold = ActivityConfigCategory.Instance.GetBuffIds(activityid - 1);
+            self.BuffRemoveList(buffidsold);
+
+            self.InitMaoXianJiaBuff();
+        }
+
+        public static void InitMaoXianJiaBuff(this BuffManagerComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
+
+            int jifen = unit.GetMaoXianExp();   
+            int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
+            List<int> buffids = ActivityConfigCategory.Instance.GetBuffIds(activityid);
+            for (int i = 0; i < buffids.Count; i++)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = buffids[i];
+                self.BuffFactory(buffData_2, unit, null);
+            }
+        }
+
         public static void InitBaoShiBuff(this BuffManagerComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -497,6 +531,7 @@ namespace ET
             self.InitBaoShiBuff();
             self.InitDonationBuff();
             self.InitSoloBuff(sceneType);
+            self.InitMaoXianJiaBuff();
         }
 
         public static void InitSoloBuff(this BuffManagerComponent self, int sceneType)

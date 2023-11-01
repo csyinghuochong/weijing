@@ -152,7 +152,27 @@
 		}
 	}
 
-	[NumericWatcher((int)NumericType.Now_AI)]
+
+    [NumericWatcher((int)NumericType.RechargeNumber)]
+	[NumericWatcher((int)NumericType.MaoXianExp)]
+    public class NumericWatcher_RechargeNumber : INumericWatcher
+    {
+        public void Run(EventType.NumericChangeEvent args)
+        {
+
+#if SERVER
+            Unit unit = args.Defend;
+            unit.GetComponent<BuffManagerComponent>().OnMaoXianJiaUpdate();
+#else
+			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
+			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+        }
+    }
+
+    [NumericWatcher((int)NumericType.Now_AI)]
     [NumericWatcher((int)NumericType.Now_TurtleAI)]
     [NumericWatcher((int)NumericType.PetSkin)]
 	[NumericWatcher((int)NumericType.TowerId)]
@@ -174,7 +194,6 @@
 	[NumericWatcher((int)NumericType.BossInCombat)]
 	[NumericWatcher((int)NumericType.BossBelongID)]
 	[NumericWatcher((int)NumericType.UnionRaceWin)]
-	[NumericWatcher((int)NumericType.RechargeNumber)]
 	[NumericWatcher((int)NumericType.TrialDungeonId)]
 	[NumericWatcher((int)NumericType.BattleTodayKill)]
 	[NumericWatcher((int)NumericType.PetExtendNumber)]
