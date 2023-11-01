@@ -500,9 +500,9 @@ namespace ET
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public static int GetWelfareTotalLiRun(int touzi, int openDay)
+        public static int GetWelfareTotalLiRun(int total, int touzi)
         {
-            return (int)(touzi * (1f + openDay * 0.25f));
+            return total - touzi;
         }
 
         /// <summary>

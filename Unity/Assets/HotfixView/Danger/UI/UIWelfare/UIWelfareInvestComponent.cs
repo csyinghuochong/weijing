@@ -83,11 +83,11 @@ namespace ET
             int touzi = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestMent);
             self.InvestNumText.GetComponent<Text>().text = touzi.ToString();
 
-            int createDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
-            int lirun = ComHelp.GetWelfareTotalLiRun(touzi, createDay);
-            self.ProfitNumText.GetComponent<Text>().text = (touzi * createDay * 0.25f).ToString();
+            int total = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestTotal);
+            int lirun = ComHelp.GetWelfareTotalLiRun(total, touzi);
+            self.ProfitNumText.GetComponent<Text>().text = lirun.ToString();
 
-            self.TotalReturnNumText.GetComponent<Text>().text = lirun.ToString();
+            self.TotalReturnNumText.GetComponent<Text>().text = total.ToString();
 
             // 是否领过
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1)

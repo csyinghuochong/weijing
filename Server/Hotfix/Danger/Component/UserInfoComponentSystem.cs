@@ -535,6 +535,7 @@ namespace ET
                     break;
                 case UserDataType.InvestMent:
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, long.Parse(value), 0);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestTotal, long.Parse(value), 0);
                     break;
                 case UserDataType.JueXingExp:
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JueXingExp, long.Parse(value), 0);
