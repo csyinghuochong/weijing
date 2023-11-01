@@ -8,6 +8,7 @@ namespace ET
 
     public class UIRechargeRewardComponent : Entity, IAwake
     {
+        public GameObject TextTip;
         public GameObject ButtonClose;
         public GameObject ImageReceived;
         public GameObject ButtonReward;
@@ -28,6 +29,7 @@ namespace ET
             self.UIItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.TextTip = rc.Get<GameObject>("TextTip");
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(self.OnButtonClose);
@@ -99,6 +101,8 @@ namespace ET
 
             self.ButtonReward.SetActive(!userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
             self.ImageReceived.SetActive(userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
+
+            self.TextTip.GetComponent<Text>().text = $"累冲{rechargeNumber}元， 获得以下奖励";
 
             string reward = ConfigHelper.RechargeReward[rechargeNumber];
             List<RewardItem> rewardItems = ItemHelper.GetRewardItems(reward);
