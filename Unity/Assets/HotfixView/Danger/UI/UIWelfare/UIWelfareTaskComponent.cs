@@ -45,8 +45,9 @@ namespace ET
             {
                 if (i <= currentDay)
                 {
-                    self.DayListNode.transform.GetChild(i).GetComponent<Image>().sprite =
-                            ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Img_82");
+                    Image image = self.DayListNode.transform.GetChild(i).GetComponent<Image>();
+                    image.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Img_82");
+                    image.rectTransform.localScale = new Vector3(1.1f, 1.1f, 1f);
                 }
             }
 
@@ -94,11 +95,12 @@ namespace ET
                 if (taskPro == null && roleComoleteTaskList.Contains(tasks[i]))
                 {
                     taskPro = new TaskPro();
-                    taskPro.taskID = tasks[i];  
+                    taskPro.taskID = tasks[i];
                     taskPro.taskTargetNum_1 = taskConfig.TargetValue[0];
                     taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                     Log.Debug($"已完成的任务 {tasks[i]}");
                 }
+
                 if (taskPro == null)
                 {
                     Log.Error($"未领取的任务 {tasks[i]}");
