@@ -103,12 +103,12 @@ namespace ET
                 return;
             }
 
-            //long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
-            //if (haveHuoyue < 60)
-            //{
-            //    FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
-            //    return;
-            //}
+            long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
+            if (haveHuoyue < 60)
+            {
+                FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
+                return;
+            }
 
             self.DrawBtn.GetComponent<Button>().interactable = true;
 
@@ -122,6 +122,11 @@ namespace ET
                 C2M_WelfareDrawRequest request2 = new C2M_WelfareDrawRequest();
                 M2C_WelfareDrawResponse response2 =
                         (M2C_WelfareDrawResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request2);
+
+                if (response2.Error != ErrorCode.ERR_Success)
+                {
+                    return;
+                }
                 drawIndex = numericComponent.GetAsInt(NumericType.DrawIndex);
                 self.StartRotation(drawIndex - 1).Coroutine();
             }
