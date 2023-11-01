@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 836213095198150941}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -394,9 +394,9 @@ RectTransform:
   - {fileID: 8507442964726552036}
   - {fileID: 1779314280226397335}
   - {fileID: 3519218415008760824}
+  - {fileID: 4454327239109935538}
   - {fileID: 5097026085691994974}
   - {fileID: 2346059964323461513}
-  - {fileID: 4454327239109935538}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -448,6 +448,8 @@ MonoBehaviour:
     gameObject: {fileID: 769438904183697196}
   - key: TextTip
     gameObject: {fileID: 866432073313367758}
+  - key: ButtonGoToPay
+    gameObject: {fileID: 4071833664630097439}
 --- !u!1 &768720859843723140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1081,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 836213095198150941}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1850,7 +1852,7 @@ RectTransform:
   m_Children:
   - {fileID: 3344880404315414421}
   m_Father: {fileID: 836213095198150941}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

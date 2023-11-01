@@ -13,6 +13,7 @@ namespace ET
         public GameObject ImageReceived;
         public GameObject ButtonReward;
         public GameObject BuildingList;
+        public GameObject ButtonGoToPay;
 
         public GameObject UICommonItem;
         public List<UIItemComponent> UIItemList = new List<UIItemComponent>();  
@@ -35,6 +36,9 @@ namespace ET
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(self.OnButtonClose);
 
             self.ImageReceived = rc.Get<GameObject>("ImageReceived");
+
+            self.ButtonGoToPay = rc.Get<GameObject>("ButtonGoToPay");
+            ButtonHelp.AddListenerEx(self.ButtonGoToPay, self.OnButtonGoToPay);
 
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
             ButtonHelp.AddListenerEx(self.ButtonReward, () => { self.OnButtonReward().Coroutine();  });
@@ -95,14 +99,32 @@ namespace ET
             UIHelper.GetUI( self.ZoneScene(), UIType.UIMain ).GetComponent<UIMainComponent>().CheckRechargeRewardButton();
         }
 
+        public static void OnButtonGoToPay(this UIRechargeRewardComponent self)
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIRecharge).Coroutine();
+        }
+
         public static void UpdateUI(this UIRechargeRewardComponent self, int page)
         {
             int rechargeNumber = page == 0 ? 50 : 98;
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
-            self.ButtonReward.SetActive(!userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
-            self.ImageReceived.SetActive(userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int rechargeToal = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RechargeNumber );
 
+            if (rechargeToal < rechargeNumber)
+            {
+                self.ButtonGoToPay.SetActive(true);
+                self.ButtonReward.SetActive(false);
+                self.ImageReceived.SetActive(false);
+            }
+            else
+            {
+                self.ButtonGoToPay.SetActive(false);
+                self.ButtonReward.SetActive(!userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
+                self.ImageReceived.SetActive(userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
+            }
+            
             self.TextTip.GetComponent<Text>().text = $"累冲{rechargeNumber}元， 获得以下奖励";
 
             string reward = ConfigHelper.RechargeReward[rechargeNumber];
