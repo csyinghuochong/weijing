@@ -91,7 +91,7 @@ namespace ET
             }
             if (self.UserInfo.CreateTime == 0)
             {
-                self.UserInfo.CreateTime = ComHelp.IsInnerNet() ? TimeHelper.ServerNow() : 0;
+                self.UserInfo.CreateTime = TimeHelper.ServerNow();
             }
 
             int maxTowerId = 0;

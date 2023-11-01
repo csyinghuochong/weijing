@@ -1169,21 +1169,27 @@ namespace ET
                     continue;
                 }
 
-                if (curTime < startTime)
-                {
-                    long sTime = serverTime + (startTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });  //FunctionType1 并且大于beingTime 开启
+                long sTime = serverTime + (startTime - curTime) * 1000;
+                self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });  //FunctionType1 并且大于beingTime 开启
 
-                    long eTime = serverTime + (endTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
-                }
-                else
-                {
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });//FunctionType1 并且大于beingTime 开启 会直接开启
+                long eTime = serverTime + (endTime - curTime) * 1000;
+                self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
 
-                    long eTime = serverTime + (endTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
-                }
+                //if (curTime < startTime)
+                //{
+                //    long sTime = serverTime + (startTime - curTime) * 1000;
+                //    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });  //FunctionType1 并且大于beingTime 开启
+
+                //    long eTime = serverTime + (endTime - curTime) * 1000;
+                //    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
+                //}
+                //else
+                //{
+                //    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });//FunctionType1 并且大于beingTime 开启 会直接开启
+
+                //    long eTime = serverTime + (endTime - curTime) * 1000;
+                //    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
+                //}
             }
 
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);

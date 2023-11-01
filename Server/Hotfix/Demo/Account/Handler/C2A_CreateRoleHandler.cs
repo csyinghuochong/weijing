@@ -69,7 +69,7 @@ namespace ET
 						userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 						userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 						userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));
-						userInfo.CreateTime =  ComHelp.IsInnerNet() ? TimeHelper.ServerNow() : 0;
+						userInfo.CreateTime = TimeHelper.ServerNow();
 
                         if (newAccount.Password == ComHelp.RobotPassWord)
 						{
