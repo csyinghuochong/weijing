@@ -35,6 +35,7 @@ namespace ET
             self.ImageReceived = rc.Get<GameObject>("ImageReceived");
 
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
+            ButtonHelp.AddListenerEx(self.ButtonReward, () => { self.OnButtonReward().Coroutine();  });
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
