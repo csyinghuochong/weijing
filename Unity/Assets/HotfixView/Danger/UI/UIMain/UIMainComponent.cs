@@ -459,6 +459,23 @@ namespace ET
 
     public static class UIMainComponentSystem
     {
+
+        public static void CheckRechargeRewardButton(this UIMainComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+
+            bool showButton = false;
+            foreach (var item in ConfigHelper.RechargeReward)
+            {
+                if (!userInfoComponent.UserInfo.RechargeReward.Contains(item.Key))
+                {
+                    showButton = true;
+                    break; 
+                }
+            }
+            self.Button_RechargeReward.SetActive(showButton);
+        }
+
         public static void OnBtn_Union(this UIMainComponent self)
         {
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
@@ -1106,6 +1123,8 @@ namespace ET
 
             string attackmode = userInfoComponent.GetGameSettingValue(GameSettingEnum.AttackTarget);
             self.ZoneScene().GetComponent<LockTargetComponent>().AttackTarget = int.Parse(attackmode);
+
+            self.CheckRechargeRewardButton();
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)

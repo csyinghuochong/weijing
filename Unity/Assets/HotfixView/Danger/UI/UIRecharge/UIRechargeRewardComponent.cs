@@ -92,6 +92,7 @@ namespace ET
             }
 
             self.UpdateUI(page);
+            UIHelper.GetUI( self.ZoneScene(), UIType.UIMain ).GetComponent<UIMainComponent>().CheckRechargeRewardButton();
         }
 
         public static void UpdateUI(this UIRechargeRewardComponent self, int page)
