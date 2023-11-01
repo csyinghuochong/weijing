@@ -123,6 +123,7 @@ namespace ET
             numericComponent.Set((int)NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId(), false);
             numericComponent.Set(NumericType.JueXingAnger, 0, false);
             numericComponent.Set(NumericType.RunRaceRankId, 0, false);
+            numericComponent.Set(NumericType.ZeroClock, 0, false);
 
             if (robotId != 0)
             {

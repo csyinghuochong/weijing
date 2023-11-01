@@ -25,8 +25,9 @@ namespace ET
             }
 
             //客户端的NumericComponent.Set不会抛出事件。需要自己手动抛出
-            nowNunt.GetComponent<NumericComponent>().ApplyValue(currentScene.GetComponent<UnitComponent>().Get(message.AttackId), 
-                message.NumericType, message.NewValue, message.SkillId, true, message.DamgeType);
+            Unit attack = currentScene.GetComponent<UnitComponent>().Get(message.AttackId);
+            NumericComponent numericComponent = nowNunt.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(attack, message.NumericType, message.NewValue, message.SkillId, true, message.DamgeType);
             //EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
             //args.Defend = nowNunt;
             //args.Attack = currentScene.GetComponent<UnitComponent>().Get(message.AttackId);

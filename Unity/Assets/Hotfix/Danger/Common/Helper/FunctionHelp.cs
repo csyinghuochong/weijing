@@ -124,7 +124,7 @@ namespace ET
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
             if (ComHelp.IfNull(funtionConfig.OpenTime))
             {
-                return (23 * 60 + 60) * 60;
+                return (24 * 60 + 60) * 60;
             }
 
             string[] openTimes = funtionConfig.OpenTime.Split('@');
