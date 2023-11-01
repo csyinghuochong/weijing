@@ -429,6 +429,8 @@ MonoBehaviour:
     gameObject: {fileID: 6562705992943957207}
   - key: UICommonItem
     gameObject: {fileID: 769438904183697196}
+  - key: TextTip
+    gameObject: {fileID: 866432073313367758}
 --- !u!1 &768720859843723140
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,10 +743,10 @@ RectTransform:
   m_Father: {fileID: 3475552985802286700}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 500, y: -68}
-  m_SizeDelta: {x: 130, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &769438904203731764
 CanvasRenderer:
