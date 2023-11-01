@@ -1193,7 +1193,7 @@ namespace ET
                             && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
                             break;
                         case 1025:
-                            self.Btn_Battle.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            self.Btn_Battle.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1031:
                             if (functionopne && self.FunctionButtons[i].FunctionType == 1)
@@ -1205,7 +1205,7 @@ namespace ET
                             self.Btn_Auction.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1045:
-                            self.Button_Solo.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Solo.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1052:
                             self.Button_Hunt.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
