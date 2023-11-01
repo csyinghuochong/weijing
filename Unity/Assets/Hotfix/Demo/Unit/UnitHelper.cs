@@ -113,6 +113,14 @@ namespace ET
             return ItemHelper.GetEquipType(self.ConfigId, itemId);
         }
 
+        public static int GetMaoXianExp(this Unit self)
+        {
+            int rechargeNum = self.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            rechargeNum *= 10;
+            rechargeNum += self.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
+            return rechargeNum;
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             //using var list = ListComponent<Unit>.Create();

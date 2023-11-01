@@ -59,9 +59,11 @@ namespace ET
 
         public static async ETTask OnBtn_GetReward(this UIActivityMaoXianComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.CurActivityId);
-            int rechargeNum = self.GetMaoXianExp();
+            int rechargeNum = unit.GetMaoXianExp();
             int needNumber = int.Parse(activityConfig.Par_2);
             if (rechargeNum < needNumber)
             {
@@ -80,48 +82,27 @@ namespace ET
             }
             self.Btn_GetReward.SetActive(!activityComponent.ActivityReceiveIds.Contains(self.CurActivityId));
             self.ImageReceived.SetActive(activityComponent.ActivityReceiveIds.Contains(self.CurActivityId));
-            self.OnUpdateUI(self.GetCurActivityId());
+
+            self.OnUpdateUI(activityComponent.GetCurActivityId(rechargeNum));
         }
 
-        /// <summary>
-        /// 取到当前可以领取的最小等级
-        /// </summary>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static int GetCurActivityId(this UIActivityMaoXianComponent self)
-        {
-            int activityId = 0;
-            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-            int rechargeNumb = self.GetMaoXianExp();
-            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < activityConfigs.Count; i++)
-            {
-                if (activityConfigs[i].ActivityType != 101)
-                {
-                    continue;
-                }
-                activityId = activityConfigs[i].Id;
-                int needNumber = int.Parse(activityConfigs[i].Par_2);
-                if (rechargeNumb < needNumber)
-                {
-                    break;
-                }
-                if (rechargeNumb >= needNumber && !activityComponent.ActivityReceiveIds.Contains(activityId))
-                {
-                    break;
-                }
-            }
-            return activityId;
-        }
+      
 
         public static void OnInitUI(this UIActivityMaoXianComponent self)
         {
-            self.OnUpdateUI(self.GetCurActivityId());
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int rechargeNum = unit.GetMaoXianExp();
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+
+            self.OnUpdateUI(activityComponent.GetCurActivityId(rechargeNum));
         }
 
         public static void OnButtonActivty(this UIActivityMaoXianComponent self, int index)
         {
-            int selId = self.GetCurActivityId();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int rechargeNum = unit.GetMaoXianExp();
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            int selId = activityComponent.GetCurActivityId(rechargeNum);
 
             int maxId = ActivityHelper.GetMaxActivityId(101);
             int minId = ActivityHelper.GetMinActivityId(101);
@@ -140,16 +121,7 @@ namespace ET
             //}
             self.OnUpdateUI(curId);
         }
-
-        public static int GetMaoXianExp(this UIActivityMaoXianComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            rechargeNum *= 10;
-            rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
-            return rechargeNum;
-        }
-
+      
         public static void OnUpdateUI(this UIActivityMaoXianComponent self, int maoxianId)
         {
             if (maoxianId == 0)
@@ -163,7 +135,9 @@ namespace ET
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(maoxianId);
             self.Text_Title.GetComponent<Text>().text = activityConfig.Par_4;
 
-            int rechargeNum = self.GetMaoXianExp();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+
+            int rechargeNum = unit.GetMaoXianExp();
             int needNumber = int.Parse( activityConfig.Par_2);
             float value = rechargeNum * 1f / needNumber;
             value = Mathf.Clamp01(value);
@@ -175,7 +149,7 @@ namespace ET
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f);
 
-            int selId = self.GetCurActivityId();
+            int selId = activityComponent.GetCurActivityId(rechargeNum);
             int maxId = ActivityHelper.GetMaxActivityId(101);
             int minId = ActivityHelper.GetMinActivityId(101);
             self.ButtonLeft.SetActive(self.CurActivityId > minId);

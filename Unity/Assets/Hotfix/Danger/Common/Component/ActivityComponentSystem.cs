@@ -1,9 +1,60 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ET
 {
     public static class ActivityComponentSystem
     {
+
+        public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)
+        {
+            int activityId = 0;
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 101)
+                {
+                    continue;
+                }
+                activityId = activityConfigs[i].Id;
+                int needNumber = int.Parse(activityConfigs[i].Par_2);
+                if (rechargeNumb < needNumber)
+                {
+                    break;
+                }
+            }
+            return activityId;
+        }
+
+        /// <summary>
+        /// 取到当前可以领取的最小等级
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static int GetCurActivityId(this ActivityComponent self, int rechargeNumb)
+        {
+            int activityId = 0;
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 101)
+                {
+                    continue;
+                }
+                activityId = activityConfigs[i].Id;
+                int needNumber = int.Parse(activityConfigs[i].Par_2);
+                if (rechargeNumb < needNumber)
+                {
+                    break;
+                }
+                if (rechargeNumb >= needNumber && !self.ActivityReceiveIds.Contains(activityId))
+                {
+                    break;
+                }
+            }
+            return activityId;
+        }
 
 #if SERVER
         public static void OnLogin(this ActivityComponent self, int level)
