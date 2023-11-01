@@ -744,8 +744,8 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> RechargeReward = new Dictionary<int, string>()
         {
-            { 50, "1;1"  },
-            { 98, "1;2@1;2" }
+            { 50, "10031014;1@10010045;1@10010086;1@10000141;1"  },
+            { 98, "10000201;1@10010045;1@10010086;3@10000150;1" }
         };
 
     }
