@@ -1074,8 +1074,7 @@ namespace ET
             }
             for (int i = 0; i < taskids.Count; i++)
             {
-                Log.Console($"新手任务: {taskids[i]}");
-
+                
                 if (self.GetTaskById(taskids[i]) != null)
                 {
                     continue;
@@ -1084,8 +1083,6 @@ namespace ET
                 {
                     continue;
                 }
-
-                Log.Console($" 福利任务：{taskids[i]}");
 
                 self.RoleTaskList.Add( self.CreateTask(taskids[i]));
             }
