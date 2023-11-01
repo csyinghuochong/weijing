@@ -338,7 +338,7 @@ message UserInfo
 
 	repeated int32  WelfareInvestList = 51; //投资
 
-	repeated int32 
+	repeated int32 RechargeReward = 52;
 }
 
 message KeyValuePair

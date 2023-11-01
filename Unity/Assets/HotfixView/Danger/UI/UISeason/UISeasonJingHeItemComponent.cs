@@ -47,8 +47,6 @@ namespace ET
                 return;
             }
 
-            self.JingHeId = self.JingHeId;
-
             List<BagInfo> equiplist = self.ZoneScene().GetComponent<BagComponent>().GetEquipList();
 
             self.IconImg.SetActive(false);

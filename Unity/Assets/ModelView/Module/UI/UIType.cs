@@ -67,7 +67,8 @@ namespace ET
 		public const string UIQueue = "Login/UIQueue";
 		public const string UIRealName = "Main/RealName/UIRealName";
 		public const string UIRecharge = "Main/Recharge/UIRecharge";
-		public const string UIChengJiu = "Main/ChengJiu/UIChengJiu";
+		public const string UIRechargeReward = "Main/Recharge/UIRechargeReward";
+        public const string UIChengJiu = "Main/ChengJiu/UIChengJiu";
 		public const string UISeason = "Main/Season/UISeason";
 		public const string UISeasonLordDetail = "Main/Season/UISeasonLordDetail";
 		public const string UIJingLingGet = "Main/ChengJiu/UIJingLingGet";

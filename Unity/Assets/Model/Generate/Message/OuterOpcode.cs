@@ -778,5 +778,7 @@ namespace ET
 		 public const ushort M2C_WelfareInvestResponse = 10775;
 		 public const ushort C2M_WelfareInvestRewardRequest = 10776;
 		 public const ushort M2C_WelfareInvestRewardResponse = 10777;
+		 public const ushort C2M_RechargeRewardRequest = 10778;
+		 public const ushort M2C_RechargeRewardResponse = 10779;
 	}
 }

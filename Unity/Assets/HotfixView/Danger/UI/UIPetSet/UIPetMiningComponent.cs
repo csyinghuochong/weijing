@@ -104,7 +104,7 @@ namespace ET
             }
 
            //单选组件
-           GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
             uIPageViewComponent.SetClickHandler((int page) => {

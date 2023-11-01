@@ -1,5 +1,4 @@
-﻿using NLog.Fluent;
-using System;
+﻿using System;
 
 namespace ET
 {
