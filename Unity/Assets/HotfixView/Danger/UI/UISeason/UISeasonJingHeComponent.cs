@@ -38,15 +38,14 @@ namespace ET
 
             self.UISeasonJingHeItem.SetActive(false);
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
-            self.EquipBtn.GetComponent<Button>().onClick.AddListener(self.OnEquipBtn);
-
-            self.Init();
+            self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn().Coroutine(); });
+            self.InitCell();
         }
     }
 
     public static class UISeasonJingHeComponentSystem
     {
-        public static void Init(this UISeasonJingHeComponent self)
+        public static void InitCell(this UISeasonJingHeComponent self)
         {
             foreach (SeasonJingHeConfig seasonJingHeConfig in SeasonJingHeConfigCategory.Instance.GetAll().Values)
             {
@@ -66,10 +65,12 @@ namespace ET
 
         public static async ETTask UpdateInfo(this UISeasonJingHeComponent self, int jingHeId)
         {
+            // 更新孔位信息
             self.JingHeId = jingHeId;
             foreach (UISeasonJingHeItemComponent uiSeasonJingHeItemComponent in self.UISeasonJingHeItemComponentList)
             {
                 uiSeasonJingHeItemComponent.OnUpdateData();
+                // 高亮
                 uiSeasonJingHeItemComponent.OutLineImg.SetActive(false);
                 if (uiSeasonJingHeItemComponent.JingHeId == jingHeId)
                 {
@@ -80,7 +81,8 @@ namespace ET
             SeasonJingHeConfig seasonJingHeConfig = SeasonJingHeConfigCategory.Instance.Get(jingHeId);
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
-            if (!userInfoComponent.UserInfo.OpenJingHeIds.Contains(seasonJingHeConfig.Id))
+            // 更新右侧面板信息
+            if (!userInfoComponent.UserInfo.OpenJingHeIds.Contains(seasonJingHeConfig.Id)) // 未解锁的孔位
             {
                 self.NameText.GetComponent<Text>().text = "赛季晶核孔位";
                 self.DesText.GetComponent<Text>().text = "可以让玩家在本赛季拥有额外的赛季能力";
@@ -101,7 +103,7 @@ namespace ET
                 self.OpenBtn.SetActive(true);
                 self.EquipBtn.SetActive(false);
             }
-            else
+            else // 解锁的孔位
             {
                 self.NameText.GetComponent<Text>().text = "赏金能力";
                 self.DesText.GetComponent<Text>().text = "拾取金币额外提升5%";
@@ -115,7 +117,8 @@ namespace ET
                 for (int i = 0; i < bagInfos.Count; i++)
                 {
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                    if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201)
+                    if (bagInfos[i].IfJianDing == false && itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 &&
+                        itemConfig.ItemSubType == 2000 + self.JingHeId)
                     {
                         UIItemComponent uI = null;
                         if (number < self.ItemList.Count)
@@ -196,25 +199,18 @@ namespace ET
             }
         }
 
-        public static  void OnEquipBtn(this UISeasonJingHeComponent self)
+        public static async ETTask OnEquipBtn(this UISeasonJingHeComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            List<BagInfo> equiplist = bagComponent.GetEquipList();
-            for (int i = 0; i < equiplist.Count; i++)
+
+            if (self.BagInfo == null)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
-                if (itemConfig.EquipType == 201)
-                {
-                    FloatTipManager.Instance.ShowFloatTip($"已装备的晶核: {itemConfig.Id}  {itemConfig.ItemSubType}");
-                    return;
-                }
+                FloatTipManager.Instance.ShowFloatTip("未选择道具！");
+                return;
             }
 
-            if (self.BagInfo != null)
-            {
-                //装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType = 201  ItemSubType2001 +
-                bagComponent.SendWearEquip(self.BagInfo).Coroutine();
-            }
+            //装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType = 201  ItemSubType2001 +
+            await bagComponent.SendWearEquip(self.BagInfo);
 
             self.UpdateInfo(self.JingHeId).Coroutine();
         }

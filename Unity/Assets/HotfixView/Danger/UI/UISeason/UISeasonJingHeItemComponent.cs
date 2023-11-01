@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -46,13 +47,25 @@ namespace ET
                 return;
             }
 
-            SeasonJingHeConfig seasonJingHeConfig = SeasonJingHeConfigCategory.Instance.Get(self.JingHeId);
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.JingHeId = self.JingHeId;
 
-            self.JingHeId = seasonJingHeConfig.Id;
+            List<BagInfo> equiplist = self.ZoneScene().GetComponent<BagComponent>().GetEquipList();
+
+            self.IconImg.SetActive(false);
+            for (int i = 0; i < equiplist.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && itemConfig.ItemSubType == 2000 + self.JingHeId)
+                {
+                    self.IconImg.SetActive(true);
+                    self.IconImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                    break;
+                }
+            }
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             
-            // 点击后需手动更新一下
-            if (userInfoComponent.UserInfo.OpenJingHeIds.Contains(seasonJingHeConfig.Id))
+            if (userInfoComponent.UserInfo.OpenJingHeIds.Contains(self.JingHeId))
             {
                 self.LockImg.SetActive(false);
             }
