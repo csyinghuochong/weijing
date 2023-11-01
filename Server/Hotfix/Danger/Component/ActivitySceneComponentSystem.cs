@@ -206,7 +206,7 @@ namespace ET
             if (self.ActivityTimerList.Count > 0)
             {
                 int functionId = self.ActivityTimerList[0].FunctionId;
-                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
+                bool todayopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
                 Log.Console($"OnCheckFuntionButton: {functionId} {self.ActivityTimerList[0].FunctionType}");
 
                 long sceneserverid = 0;
@@ -243,12 +243,12 @@ namespace ET
                         break;
                 }
 
-                if (functionopne)
+                if (todayopen)
                 {
                     A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                     (sceneserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
                 }
-                if (functionopne && functionId == 1044 && self.ActivityTimerList[0].FunctionType == 2)
+                if (todayopen && functionId == 1044 && self.ActivityTimerList[0].FunctionType == 2)
                 {
                     //1044
                     long rankserverid = DBHelper.GetRankServerId(self.DomainZone());

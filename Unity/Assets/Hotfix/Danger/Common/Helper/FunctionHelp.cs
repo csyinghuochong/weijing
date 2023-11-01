@@ -102,6 +102,11 @@ namespace ET
         public static long GetOpenTime(int function)
         {
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+            if (ComHelp.IfNull(funtionConfig.OpenTime))
+            {
+                return 0;
+            }
+
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
             int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
@@ -117,6 +122,11 @@ namespace ET
         public static long GetCloseTime(int function)
         {
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+            if (ComHelp.IfNull(funtionConfig.OpenTime))
+            {
+                return (23 * 60 + 59) * 60;
+            }
+
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);

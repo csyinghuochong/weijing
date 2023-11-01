@@ -1123,7 +1123,6 @@ namespace ET
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]) - 10;
-
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
                 bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
 
@@ -1183,36 +1182,40 @@ namespace ET
             {
                 int functionId = self.FunctionButtons[i].FunctionId;
                 long sTime = self.FunctionButtons[i].BeginTime;
-                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
+                bool todayopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
+
+                FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
+                bool functionOn = FunctionHelp.CheckFuncitonOn(self.ZoneScene(), funtionConfig);
+
                 if (serverTime >= sTime)
                 {
                     switch (functionId)
                     {
                         case 1023:
-                            self.Button_HongBao.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1
+                            self.Button_HongBao.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1
                             && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
                             break;
                         case 1025:
-                            self.Btn_Battle.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Btn_Battle.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1031:
-                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
                             break;
                         case 1040:
-                            self.Btn_Auction.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Btn_Auction.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1045:
-                            self.Button_Solo.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Solo.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1052:
-                            self.Button_Hunt.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Hunt.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1055:
-                            self.Button_Happy.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
-                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            self.Button_Happy.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
+                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), self.FunctionButtons[i].FunctionId);
                             }
@@ -1225,18 +1228,18 @@ namespace ET
                             }
                             break;
                         case 1058:
-                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
-                            self.Button_RunRace.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_RunRace.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1059:
-                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
-                            self.Button_Demon.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Demon.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
