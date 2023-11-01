@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_RechargeRewardRequest request, M2C_RechargeRewardResponse response, Action reply)
         {
-            if (ConfigHelper.RechargeReward.ContainsKey(request.RechargeNumber))
+            if (!ConfigHelper.RechargeReward.ContainsKey(request.RechargeNumber))
             {
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
