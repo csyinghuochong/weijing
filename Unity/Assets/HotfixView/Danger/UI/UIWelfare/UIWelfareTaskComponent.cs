@@ -139,10 +139,10 @@ namespace ET
                 self.UIWelfareTaskItemComponents[k].GameObject.SetActive(false);
             }
 
-            self.CompletenessText.GetComponent<Text>().text = $"完成度:{commited}/{tasks.Count}";
+            self.CompletenessText.GetComponent<Text>().text = $"当天完成度:{commited}/{tasks.Count}";
 
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ConfigHelper.WelfareTaskReward[day], self.RewardListNode, self, 0.8f);
+            UICommonHelper.ShowItemList(ConfigHelper.WelfareTaskReward[day], self.RewardListNode, self, 1f);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Contains(day))
             {
                 self.ReceiveBtn.SetActive(false);
