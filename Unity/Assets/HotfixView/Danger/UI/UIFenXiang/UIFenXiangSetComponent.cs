@@ -45,7 +45,7 @@ namespace ET
 
         public static void  OpenAddQQ(this UIFenXiangSetComponent self) 
         {
-            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=UZgs61u2uXu5TRE1tbhd_jOb-aDGqTIS&authKey=xlB8sICK4wNrhaBXRsM6Mz0aqksXdHhpL3iqcDsWVNZLcMlgdTehrPZKYmiBnziK&noverify=0&group_code=91958754");
+            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=5lq179DysaxPcxQ898ISlgVYjy7Gx_TR&authKey=XLHEWk5LeImSyPHRg2AE2ssqTXT8K12waFmloVsyVByK37h80mLs7aDq0h%2FZC7G8&noverify=0&group_code=690868439");
         }
 
         public static async ETTask RequestPopularizeCode(this UIFenXiangSetComponent self)
