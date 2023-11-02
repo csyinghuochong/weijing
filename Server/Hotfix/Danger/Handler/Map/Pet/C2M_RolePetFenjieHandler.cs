@@ -44,7 +44,13 @@ namespace ET
 
 			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0, -1);
 
-			reply();
+			if (unit.GetParent<UnitComponent>().Get(rolePetInfo.Id) != null)
+			{
+				Log.Warning($"宠物还在出战中！！");
+				unit.GetParent<UnitComponent>().Remove(rolePetInfo.Id);
+			}
+
+            reply();
 			await ETTask.CompletedTask;
 		}
 	}
