@@ -8,7 +8,7 @@ namespace ET
     {
         public GameObject Btn_OneSell;
         public GameObject OneSellSet;
-        public GameObject ImageButton;
+        public GameObject Btn_Close;
 
         public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
     }
@@ -21,10 +21,10 @@ namespace ET
 
             self.Btn_OneSell = rc.Get<GameObject>("Btn_OneSell");
             self.OneSellSet = rc.Get<GameObject>("OneSellSet");
-            self.ImageButton = rc.Get<GameObject>("ImageButton");
+            self.Btn_Close = rc.Get<GameObject>("Btn_Close");
 
             self.Btn_OneSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSell(); });
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClose().Coroutine(); });
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnClose().Coroutine(); });
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2);
