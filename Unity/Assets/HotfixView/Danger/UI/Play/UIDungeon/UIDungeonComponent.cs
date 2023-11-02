@@ -161,9 +161,15 @@ namespace ET
                 // Boss名字
                 boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.MonsterName;
 
-                // Boss出生地
-                boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
-                        $"({DungeonConfigCategory.Instance.Get(SceneConfigHelper.GetFubenByMonster(monsterConfig.Id)).ChapterName})";
+
+                int dungeonid = SceneConfigHelper.GetFubenByMonster(monsterConfig.Id);
+                if (dungeonid > 0)
+                {
+                    // Boss出生地
+                    boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
+                            $"({DungeonConfigCategory.Instance.Get(dungeonid).ChapterName})";
+
+                }
 
                 // Boss刷新时间
                 long time = long.Parse(bossRevivesTime[i].Value);
