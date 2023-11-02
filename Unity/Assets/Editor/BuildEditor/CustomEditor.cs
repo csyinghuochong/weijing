@@ -25,7 +25,6 @@ public class ClipBoard
 
 public class CustomEditorScript
 {
-
     [MenuItem("Custom/生成坐标点")]
     static void ExportPositions()
     {
@@ -56,13 +55,12 @@ public class CustomEditorScript
 
         FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
         StreamWriter sw = new StreamWriter(fs);
-        fs.SetLength(0);//首先把文件清空了。
-        sw.Write(postionList);//写你的字符串。
+        fs.SetLength(0); //首先把文件清空了。
+        sw.Write(postionList); //写你的字符串。
         sw.Close();
 
         UnityEngine.Debug.Log("生成坐标点成功！生成:" + gameObject.transform.childCount + "个");
     }
-
 
     [MenuItem("Custom/生成怪物ID和坐标")]
     static void ExportMonsterIdAndPositions()
@@ -83,10 +81,12 @@ public class CustomEditorScript
             {
                 index = gamename.IndexOf("(");
             }
+
             if (index != -1)
             {
                 gamename = gamename.Substring(0, index);
             }
+
             int monsterId = int.Parse(gamename);
 
             Vector3 vector3 = gameObject.transform.GetChild(i).position;
@@ -115,9 +115,8 @@ public class CustomEditorScript
         //sw.Write(postionList);//写你的字符串。
         //sw.Close();
 
-        UnityEngine.Debug.Log("导出坐标点成功！生成:" + gameObject.transform.childCount+"个");
+        UnityEngine.Debug.Log("导出坐标点成功！生成:" + gameObject.transform.childCount + "个");
     }
-
 
     [MenuItem("Custom/获取坐标点")]
     static void GetPositions()
@@ -144,8 +143,9 @@ public class CustomEditorScript
             Debug.LogError("You must select Obj first!");
             return;
         }
+
         string result = AssetDatabase.GetAssetPath(obj);
-        if (string.IsNullOrEmpty(result))//如果不是资源则在场景中查找
+        if (string.IsNullOrEmpty(result)) //如果不是资源则在场景中查找
         {
             Transform selectChild = Selection.activeTransform;
             if (selectChild != null)
@@ -158,6 +158,7 @@ public class CustomEditorScript
                 }
             }
         }
+
         ClipBoard.Copy(result);
         Debug.Log(string.Format("The gameobject:{0}'s path has been copied to the clipboard!", obj.name));
     }
@@ -176,7 +177,8 @@ public class CustomEditorScript
             GameObject go = Selection.gameObjects[i];
             AI_1 ai_1 = go.GetComponent<AI_1>();
 
-            FieldInfo[] allFieldInfo = (ai_1.GetType()).GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
+            FieldInfo[] allFieldInfo = (ai_1.GetType()).GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance |
+                BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
 
             int monsterId = -1;
             for (int f = 0; f < allFieldInfo.Length; f++)
@@ -186,6 +188,7 @@ public class CustomEditorScript
                     monsterId = Convert.ToInt32(allFieldInfo[f].GetValue(ai_1));
                 }
             }
+
             if (monsterId == -1)
             {
                 continue;
@@ -195,6 +198,7 @@ public class CustomEditorScript
             postionList += $"1;{vector3.x.ToString("F2")},{vector3.y.ToString("F2")},{vector3.z.ToString("F2")};{monsterId};1";
             postionList += "@";
         }
+
         postionList = postionList.TrimEnd('@');
         ClipBoard.Copy(postionList);
         UnityEngine.Debug.Log("导出坐标点成功！");
@@ -210,7 +214,8 @@ public class CustomEditorScript
             if (obj.name.StartsWith("Box"))
             {
                 Vector3 vector3 = obj.transform.position;
-                postionList += "new Vector3(" + vector3.x.ToString("F2") + "f," + vector3.y.ToString("F2") + "f," + vector3.z.ToString("F2") + "f),\n";
+                postionList += "new Vector3(" + vector3.x.ToString("F2") + "f," + vector3.y.ToString("F2") + "f," + vector3.z.ToString("F2") +
+                        "f),\n";
             }
         }
 
@@ -222,9 +227,9 @@ public class CustomEditorScript
     static void FindAllShaders()
     {
         string shaderPaths = "";
-        
+
         string projectPath = Application.dataPath.Replace("/Assets", "");
-        
+
         string[] allFiles = Directory.GetFiles(projectPath, "*.*", SearchOption.AllDirectories);
 
         foreach (string file in allFiles)
@@ -236,5 +241,102 @@ public class CustomEditorScript
         }
 
         ClipBoard.Copy(shaderPaths);
+    }
+
+    // 修改选择的文件夹中Prefab引用的模型的fbx设置
+    [MenuItem("Custom/Modify Prefab FBX Settings")]
+    public static void ModifyPrefabFBXSettings()
+    {
+        string folderPath = EditorUtility.OpenFolderPanel("选中文件夹", "", "");
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            Debug.Log("选择文件夹操作无效");
+            return;
+        }
+
+        string[] prefabPaths = Directory.GetFiles(folderPath, "*.prefab", SearchOption.AllDirectories);
+
+        foreach (string prefabPath in prefabPaths)
+        {
+            string fullString = prefabPath;
+            string prefix = "Assets";
+            string subString = string.Empty;
+            int startIndex = fullString.IndexOf(prefix);
+            if (startIndex != -1)
+            {
+                subString = fullString.Substring(startIndex);
+            }
+            else
+            {
+                continue;
+            }
+
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(subString);
+
+            if (prefab != null)
+            {
+                GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+
+                if (instance != null)
+                {
+                    Renderer[] renderers = instance.GetComponentsInChildren<Renderer>();
+                    MeshFilter[] meshFilters = instance.GetComponentsInChildren<MeshFilter>();
+
+                    foreach (Renderer renderer in renderers)
+                    {
+                        if (renderer is SkinnedMeshRenderer)
+                        {
+                            SkinnedMeshRenderer skinnedMeshRenderer = (SkinnedMeshRenderer)renderer;
+                            ModelImporter modelImporter =
+                                    AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(skinnedMeshRenderer.sharedMesh)) as ModelImporter;
+
+                            if (modelImporter != null)
+                            {
+                                // 修改设置
+                                modelImporter.bakeAxisConversion = true;
+                                modelImporter.importBlendShapes = true;
+                                modelImporter.importVisibility = true;
+                                modelImporter.importCameras = true;
+                                modelImporter.importLights = true;
+                                modelImporter.preserveHierarchy = true;
+                                // .....
+
+                                EditorUtility.SetDirty(modelImporter);
+                            }
+                        }
+                        else if (renderer is MeshRenderer)
+                        {
+                            MeshRenderer meshRenderer = (MeshRenderer)renderer;
+                        }
+                    }
+
+                    foreach (MeshFilter meshFilter in meshFilters)
+                    {
+                        ModelImporter modelImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(meshFilter.sharedMesh)) as ModelImporter;
+
+                        if (modelImporter != null)
+                        {
+                            // 修改设置
+                            modelImporter.bakeAxisConversion = true;
+                            modelImporter.importBlendShapes = true;
+                            modelImporter.importVisibility = true;
+                            modelImporter.importCameras = true;
+                            modelImporter.importLights = true;
+                            modelImporter.preserveHierarchy = true;
+                            // .....
+
+                            EditorUtility.SetDirty(modelImporter);
+                        }
+                    }
+
+                    // 保存设置
+                    PrefabUtility.ApplyPrefabInstance(instance, InteractionMode.AutomatedAction);
+                    GameObject.DestroyImmediate(instance);
+                }
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 }
