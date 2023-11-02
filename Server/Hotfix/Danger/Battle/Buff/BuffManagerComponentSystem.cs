@@ -430,9 +430,9 @@ namespace ET
             int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
 
             //移除之前的
-            if (activityid > 30001)
+            for (int i = 30001; i < activityid; i++)
             {
-                List<int> buffidsold = ActivityConfigCategory.Instance.GetBuffIds(activityid - 1);
+                List<int> buffidsold = ActivityConfigCategory.Instance.GetBuffIds(i);
                 self.BuffRemoveList(buffidsold);
             }
 
