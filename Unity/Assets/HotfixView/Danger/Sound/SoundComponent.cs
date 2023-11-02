@@ -137,7 +137,12 @@ namespace ET
                 {
                     assetpath = GetAudioPath(clipName);     //mp3
                 }
+               
                 audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(assetpath);
+                if (this.IsDisposed)
+                {
+                    return;
+                }
                 m_assetlist.Add(assetpath);
                 m_loadinglist.Remove(clipName);
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
