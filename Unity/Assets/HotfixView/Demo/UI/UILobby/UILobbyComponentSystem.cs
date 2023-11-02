@@ -202,10 +202,14 @@ namespace ET
                 }
                 ui_1.ShowRoleList(CreateRoleList);
             }
-            for (int i = num; i < self.CreateRoleListUI.Count; i++)
+            if (num >= 0)
             {
-                self.CreateRoleListUI[i].ShowRoleList(null);
+                for (int i = num; i < self.CreateRoleListUI.Count; i++)
+                {
+                    self.CreateRoleListUI[i].ShowRoleList(null);
+                }
             }
+           
 
             self.UpdateSelectShow().Coroutine();
             self.Update_Page();
