@@ -39,6 +39,17 @@ namespace ET
             self.ReceiveBtn.SetActive(false);
             self.ReceivedImg.SetActive(false);
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
+
+            int currentDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1;
+            for (int i = 0; i < self.DayListNode.transform.childCount; i++)
+            {
+                if (i <= currentDay)
+                {
+                    self.DayListNode.transform.GetChild(i).GetComponent<Image>().sprite =
+                            ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Img_82");
+                }
+            }
+
             Button[] buttons = self.DayListNode.GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)
             {
@@ -46,7 +57,7 @@ namespace ET
                 buttons[i].onClick.AddListener(() => { self.UpdateInfo(i1); });
             }
 
-            self.UpdateInfo(self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1);
+            self.UpdateInfo(currentDay);
         }
     }
 
