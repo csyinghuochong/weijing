@@ -101,6 +101,11 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
+
+            int bossId =  SeasonHelper.SeasonBossId;
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
+            self.MonsterHeadImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
             self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
