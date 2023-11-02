@@ -15,7 +15,6 @@ namespace ET
         public GameObject TextNumber;
         public GameObject FormationNode;
         public GameObject ButtonConfirm;
-        public GameObject PetListNode;
 
         public GameObject IconItemDrag;
         public UIPetFormationSetComponent UIPetFormationSet;
@@ -37,7 +36,6 @@ namespace ET
             self.TextNumber = rc.Get<GameObject>("TextNumber");
             self.FormationNode = rc.Get<GameObject>("FormationNode");
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
-            self.PetListNode = rc.Get<GameObject>("PetListNode");
             self.IconItemDrag = rc.Get<GameObject>("IconItemDrag");
             self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.IconItemDrag.SetActive(false);
