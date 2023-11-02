@@ -3,6 +3,9 @@
 namespace ET
 {
 
+    /// <summary>
+    /// 竞技场只记录第一名
+    /// </summary>
     [ActorMessageHandler]
     public class S2R_SoloResultHandler : AMActorRpcHandler<Scene, S2R_SoloResultRequest, R2S_SoloResultResponse>
     {

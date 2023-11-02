@@ -53,7 +53,7 @@ namespace ET
             */
             Log.Console($"OnSoloBegin: {self.DomainZone()}");
 
-            //清除之前的拍卖坐骑
+            //清除之前的排名坐骑
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBRankInfo });
             DBRankInfo dBRankInfo = d2GGetUnit.Component as DBRankInfo;

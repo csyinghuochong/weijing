@@ -25,12 +25,12 @@
             Unit unit = args.Defend;
             int no1_horse = 10009;
 #if SERVER
-            //if (args.NewValue == 1) //排行第一
-            //{
-            //    unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
-            //}
-            //else
-            {
+			if (args.NewValue == 1) //排行第一
+			{
+				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+			}
+			else
+			{
                 unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse)
