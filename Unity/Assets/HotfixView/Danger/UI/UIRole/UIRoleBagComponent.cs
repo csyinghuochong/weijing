@@ -84,7 +84,6 @@ namespace ET
             }
 
             self.OneSellSet.SetActive(!active);
-            self.Button_OpenOneSellSet.transform.localScale = active? new Vector3(1.5f, 1.5f, 1f) : new Vector3(-1.5f, 1.5f, 1f);
         }
 
         public static void OnBtn_OneSellSet(this UIRoleBagComponent self, int index)
