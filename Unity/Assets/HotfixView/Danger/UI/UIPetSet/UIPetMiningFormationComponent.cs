@@ -77,12 +77,12 @@ namespace ET
             self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true);
             self.UIPetFormationSet.DragEndHandler = self.RequestFormationSet;
             UICommonHelper.SetParent(go, self.FormationNode);
-
         }
 
         public static void RequestFormationSet(this UIPetMiningFormationComponent self, long rolePetInfoId, int index, int operateType)
         {
             Log.Debug($"RequestFormationSet: {rolePetInfoId} {index} {operateType}");
+
         }
     }
 
