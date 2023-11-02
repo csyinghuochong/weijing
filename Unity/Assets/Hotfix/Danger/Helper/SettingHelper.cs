@@ -65,5 +65,7 @@ namespace ET
 
         public static bool UsePool = true;
 
+
+        public static bool ShowNoMoving = false; 
     }
 }

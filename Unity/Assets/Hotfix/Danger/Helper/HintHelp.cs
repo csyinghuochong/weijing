@@ -23,13 +23,15 @@
 
         public void ShowHintError(int error)
         {
-            //if (error == ErrorCode.ERR_CanNotMove_NetWait
-            // || error == ErrorCode.ERR_CanNotUseSkill_NetWait
-            // || error == ErrorCode.ERR_CanNotMove_Rigidity
-            // || error == ErrorCode.ERR_CanNotUseSkill_Rigidity)
-            //{
-            //    return;
-            //}
+            if (!SettingHelper.ShowNoMoving &&
+                (error == ErrorCode.ERR_CanNotMove_NetWait
+             || error == ErrorCode.ERR_CanNotUseSkill_NetWait
+             || error == ErrorCode.ERR_CanNotMove_Rigidity
+             || error == ErrorCode.ERR_CanNotUseSkill_Rigidity))
+            {
+                return;
+            }
+
             EventType.CommonHintError.Instance.errorValue = error;
             EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
         }

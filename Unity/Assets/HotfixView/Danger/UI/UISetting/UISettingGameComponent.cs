@@ -10,6 +10,7 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake
     {
 
+        public GameObject NoMoving;
         public GameObject AutoAttack;
         public GameObject GameMemory;
         public GameObject ActTargetSelect;
@@ -80,6 +81,10 @@ namespace ET
 
             self.AutoAttack = rc.Get<GameObject>("AutoAttack");
             self.AutoAttack.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AutoAttack(); });
+
+            self.NoMoving = rc.Get<GameObject>("NoMoving");
+            self.NoMoving.GetComponent<Button>().onClick.AddListener(self.OnBtn_NoMoving);
+
 
             self.OneSellSet = rc.Get<GameObject>("OneSellSet");
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
@@ -258,6 +263,11 @@ namespace ET
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese);
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(value == "0");
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
+        }
+
+        public static void OnBtn_NoMoving(this UISettingGameComponent self)
+        {
+            SettingHelper.ShowNoMoving = !SettingHelper.ShowNoMoving;
         }
 
         public static void OnBtn_AutoAttack(this UISettingGameComponent self)
