@@ -96,6 +96,11 @@ namespace ET
 
         public static async ETTask OnFubenResult(this UITowerOpenComponent self, M2C_FubenSettlement message)
         {
+            if (self.M2C_FubenSettlement != null)
+            {
+                return;
+            }
+
             try
             {
                 long instanceId = self.InstanceId;
