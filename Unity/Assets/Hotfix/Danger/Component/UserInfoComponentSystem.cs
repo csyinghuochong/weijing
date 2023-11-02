@@ -171,6 +171,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.OneSellSet:
                     return "1@0@0";
+                case GameSettingEnum.OneSellSet2:
+                    return "0@0@0@0@0";
                 case GameSettingEnum.HighFps:
                     return "1";
                 case GameSettingEnum.AutoAttack:

@@ -165,6 +165,7 @@ namespace ET
         Smooth = 14,         //流畅模式
         NoShowOther = 15,          //显示其他玩家
         AutoAttack = 16,         //自动攻击
+        OneSellSet2 = 17,    // 一键出售 低级、中级、。。。
       
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  

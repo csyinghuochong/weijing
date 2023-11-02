@@ -903,7 +903,8 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');  //绿色 蓝色 宝石
-
+            string[] set2Values = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2).Split('@'); // 低级、中级、高级
+            
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 //锁定装备不能一键出售
@@ -943,6 +944,19 @@ namespace ET
                         }
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;
+                    }
+                }
+                
+                // 一键出售 低级、中级、高级、超级、神级
+                for (int j = 0; j < 5; j++)
+                {
+                    if (set2Values[j] == "1")
+                    {
+                        if (ConfigHelper.OneSellList[j].Contains(bagInfos[i].ItemID))
+                        {
+                            baginfoids.Add(bagInfos[i].BagInfoID);
+                            break;
+                        }
                     }
                 }
             }

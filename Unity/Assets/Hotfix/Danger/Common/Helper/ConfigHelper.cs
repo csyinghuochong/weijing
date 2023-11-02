@@ -767,5 +767,22 @@ namespace ET
             { 302, "1@1@1@1@1" },
             { 303, "1@1@1@1@1" }
         };
+
+        /// <summary>
+        /// 背包一键出售
+        /// </summary>
+        public static List<List<int>> OneSellList = new List<List<int>>()
+        {
+            // 低级
+            new List<int> { 15403001 },
+            // 中级
+            new List<int> { 15403002 },
+            // 高级
+            new List<int> { 15403003 },
+            // 超级
+            new List<int> { 15403004 },
+            // 神级 
+            new List<int> { 15403005 }
+        };
     }
 }

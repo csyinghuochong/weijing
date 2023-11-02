@@ -6,12 +6,15 @@ namespace ET
 {
     public class UIRoleBagComponent : Entity, IAwake
     {
+        public GameObject OneSellSet;
+        public GameObject Button_OpenOneSellSet;
         public GameObject Btn_OneGem;
         public Transform BuildingList;
         public GameObject Btn_ZhengLi;
         public GameObject Btn_OneSell;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
+        public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
     }
 
 
@@ -23,6 +26,11 @@ namespace ET
             self.BuildingList = rc.Get<GameObject>("BuildingList").transform;
             self.ItemUIlist.Clear();
 
+            self.OneSellSet = rc.Get<GameObject>("OneSellSet");
+            self.OneSellSet.SetActive(false);
+            self.Button_OpenOneSellSet = rc.Get<GameObject>("Button_OpenOneSellSet");
+            self.Button_OpenOneSellSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_OpenOneSellSet(); });
+            
             self.Btn_ZhengLi = rc.Get<GameObject>("Btn_ZhengLi");
             self.Btn_ZhengLi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi(); });
 
@@ -51,6 +59,82 @@ namespace ET
         public static void OnUpdateUI(this UIRoleBagComponent self)
         {
             self.UIPageComponent.OnSelectIndex(0);
+        }
+
+        public static void OnButton_OpenOneSellSet(this UIRoleBagComponent self)
+        {
+            bool active = self.OneSellSet.activeSelf;
+
+            if (!active)
+            {
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2);
+                string[] setvalues = value.Split('@');
+                self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
+                self.OneSellSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues[1] == "1");
+                self.OneSellSet.transform.Find("Image_Click_2").gameObject.SetActive(setvalues[2] == "1");
+                self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
+                self.OneSellSet.transform.Find("Image_Click_4").gameObject.SetActive(setvalues[4] == "1");
+
+                self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
+                self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
+                self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
+                self.OneSellSet.transform.Find("Btn_Click_3").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(3); });
+                self.OneSellSet.transform.Find("Btn_Click_4").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(4); });
+            }
+
+            self.OneSellSet.SetActive(!active);
+            self.Button_OpenOneSellSet.transform.localScale = active? new Vector3(1.5f, 1.5f, 1f) : new Vector3(-1.5f, 1.5f, 1f);
+        }
+
+        public static void OnBtn_OneSellSet(this UIRoleBagComponent self, int index)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2);
+            string[] setvalues = value.Split('@');
+            setvalues[index] = setvalues[index] == "1"? "0" : "1";
+            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}@{setvalues[3]}@{setvalues[4]}";
+
+            self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
+            self.SaveSettings(GameSettingEnum.OneSellSet2, value);
+        }
+
+        public static void SaveSettings(this UIRoleBagComponent self, GameSettingEnum gameSettingEnum, string value)
+        {
+            bool exit = false;
+            for (int i = 0; i < self.GameSettingInfos.Count; i++)
+            {
+                if (self.GameSettingInfos[i].KeyId == (int)gameSettingEnum)
+                {
+                    self.GameSettingInfos[i].Value = value;
+                    exit = true;
+                    break;
+                }
+            }
+
+            if (!exit)
+            {
+                self.GameSettingInfos.Add(new KeyValuePair() { KeyId = (int)gameSettingEnum, Value = value });
+            }
+
+            self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.GameSettingInfos);
+        }
+
+        public static void OnBeforeClose(this UIRoleBagComponent self)
+        {
+            self.SendGameSetting().Coroutine();
+        }
+
+        public static async ETTask SendGameSetting(this UIRoleBagComponent self)
+        {
+            if (self.GameSettingInfos.Count > 0)
+            {
+                self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.GameSettingInfos);
+                HintHelp.GetInstance().DataUpdate(DataType.SettingUpdate);
+                C2M_GameSettingRequest c2M_GameSettingRequest = new C2M_GameSettingRequest() { GameSettingInfos = self.GameSettingInfos };
+                M2C_GameSettingResponse r2c_roleEquip =
+                        (M2C_GameSettingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_GameSettingRequest);
+            }
         }
 
         public static void OnBtn_ZhengLi(this UIRoleBagComponent self)
