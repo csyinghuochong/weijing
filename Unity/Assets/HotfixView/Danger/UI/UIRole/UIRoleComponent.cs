@@ -125,15 +125,6 @@ namespace ET
 
 	public static class UIRoleComponentSystem
 	{
-		public static void OnBeforeClose(this UIRoleComponent self)
-		{
-			UI uI = self.UIPageView.UISubViewList[(int)RolePageEnum.RoleBag];
-			if (uI != null)
-			{ 
-				uI.GetComponent<UIRoleBagComponent>().OnBeforeClose();  
-			}
-		}
-
 		public static async ETTask OnButtonZodiac(this UIRoleComponent self)
 		{
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
