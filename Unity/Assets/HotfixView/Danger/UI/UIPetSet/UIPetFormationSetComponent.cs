@@ -89,8 +89,6 @@ namespace ET
             self.IconItemDrag.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
         }
 
-       
-
         public static void EndDrag(this UIPetFormationSetComponent self, RolePetInfo binfo, PointerEventData pdata)
         {
             RectTransform canvas = self.IconItemDrag.transform.parent.GetComponent<RectTransform>();
