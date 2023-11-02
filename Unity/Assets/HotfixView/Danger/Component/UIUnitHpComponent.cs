@@ -144,7 +144,7 @@ namespace ET
                     this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
-                    this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = unit.ConfigId == 3 ? new Vector2(160f, 14f) : new Vector2(160f, 148f);
+                    this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = unit.ConfigId == 3 ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
                     this.Img_HpValue.transform.localPosition = unit.ConfigId == 3 ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
                     break;
                 case UnitType.Pet:
@@ -165,7 +165,7 @@ namespace ET
                     this.Img_MpValueDi.SetActive(false);
                     this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);
-                    this.Img_HpValue.GetComponent<RectTransform>().sizeDelta =new Vector2(160f, 148f);
+                    this.Img_HpValue.GetComponent<RectTransform>().sizeDelta =new Vector2(160f, 18f);
                     this.Img_HpValue.transform.localPosition =  new Vector3(-82.5f, 0.1f, 0f);
                     break;
                 default:
