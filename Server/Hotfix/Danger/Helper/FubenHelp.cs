@@ -203,13 +203,21 @@ namespace ET
                 randomMonsterList.Add( keyValuePairInt );
 			}
 
-			if (ComHelp.IsInnerNet())
+            string[] monsters = createMonster.Split('@');
+            if (ComHelp.IsOpenSeason())
 			{
-                //赛季boss
-                //numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+				//赛季boss
+				long serverNow = TimeHelper.ServerNow();
+				long seasonBossTime = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+				if (seasonBossTime > 0 && serverNow > seasonBossTime)
+				{
+                    KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+					keyValuePairInt.KeyId = RandomHelper.RandomNumber(0, monsters.Length);
+                    keyValuePairInt.Value = SeasonHelper.SeasonBossId;
+                    randomMonsterList.Add(keyValuePairInt);
+                }
             }
 			
-			string[] monsters = createMonster.Split('@');
 			for (int i = 0; i < monsters.Length; i++)
 			{
 				if (ComHelp.IfNull(monsters[i]))

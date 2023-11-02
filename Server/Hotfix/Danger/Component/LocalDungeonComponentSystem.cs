@@ -37,6 +37,12 @@ namespace ET
             {
                 return;
             }
+
+            if (unit.ConfigId == SeasonHelper.SeasonBossId)
+            {
+                self.MainUnit.GetComponent<NumericComponent>().ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Hour );
+            }
+
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             if (userInfoComponent == null || userInfoComponent.IsDisposed)

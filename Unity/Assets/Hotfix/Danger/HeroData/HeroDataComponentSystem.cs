@@ -143,8 +143,11 @@ namespace ET
             }
 
             ///赛季临时数据
-            numericComponent.ApplyValue( NumericType.SeasonBossFuben, 10001);
-            numericComponent.ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + 10 * TimeHelper.Minute );
+            if (ComHelp.IsOpenSeason() && numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime) == 0)
+            {
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, 10001);
+                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() +  TimeHelper.Minute);
+            }
         }
 
         /// <summary>

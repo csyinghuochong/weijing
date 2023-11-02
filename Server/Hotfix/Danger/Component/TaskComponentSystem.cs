@@ -803,11 +803,10 @@ namespace ET
                 self.UpdateDayTask(false);
             }
 
-            if (ComHelp.IsInnerNet())
+            if (ComHelp.IsOpenSeason())
             {
                 self.CheckSeasonMainTask();
             }
-
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }

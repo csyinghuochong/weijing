@@ -131,6 +131,16 @@ namespace ET
         }
 
 #if NOT_UNITY
+        public static bool IsOpenSeason()
+        {
+            if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
+               || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static bool IsInnerNet()
         {
             if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
