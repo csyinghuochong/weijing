@@ -30,6 +30,10 @@ namespace ET
 
         public static void OnUpdateUI(this UITowerFightRewardComponent self, M2C_FubenSettlement message)
         {
+            if (self.Text_Ceng == null)
+            {
+                return;
+            }
             if (self.ZoneScene() == null || self.ZoneScene().CurrentScene() == null)
             {
                 return;
@@ -44,7 +48,7 @@ namespace ET
             {
                 return;
             }
-
+         
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             if (message.BattleResult == CombatResultEnum.Fail)
             {
