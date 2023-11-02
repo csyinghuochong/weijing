@@ -43,7 +43,7 @@ namespace ET
             self.PetTeamList.Clear();
 
             ButtonHelp.AddListenerEx( self.ButtonConfirm, () => { self.OnButtonConfirm().Coroutine(); } );
-            ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge(); });
+            ButtonHelp.AddListenerEx(self.ButtonChallenge, self.OnButtonChallenge);
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => 
             {
                 self.SetHandler?.Invoke();

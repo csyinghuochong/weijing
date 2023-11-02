@@ -144,7 +144,8 @@ namespace ET
 		public const string UIShenQiMake = "Main/Make/UIShenQiMake";
         public const string UIPetSet = "Main/PetSet/UIPetSet";
 		public const string UIPetFormation = "Main/PetSet/UIPetFormation";
-		public const string UIBattle = "BattleDungeon/UIBattle";
+		public const string UIPetMiningFormation = "Main/PetSet/UIPetMiningFormation";
+        public const string UIBattle = "BattleDungeon/UIBattle";
 		public const string UIBattleMain = "BattleDungeon/UIBattleMain";
 		public const string UIBattleRecruit = "BattleDungeon/UIBattleRecruit";
 		public const string UITrial = "TrialDungeon/UITrial";

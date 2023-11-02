@@ -21,6 +21,8 @@ namespace ET
         public UIPetFormationItemComponent[] FormationItemComponents = new UIPetFormationItemComponent[5];
 
         public GameObject IconItemDrag;
+
+        public GameObject ButtonSet;
     }
 
     public class UIPetMiningTeamItemComponentAwake : AwakeSystem<UIPetMiningTeamItemComponent, GameObject>
@@ -39,11 +41,21 @@ namespace ET
             }
 
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
+
+            self.ButtonSet = gameObject.transform.Find("ButtonSet").gameObject;
+            self.ButtonSet.gameObject.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonSet().Coroutine();  } );
         }
     }
 
     public static class UIPetMiningTeamItemComponentSystem
     {
+
+        public static async ETTask OnButtonSet(this UIPetMiningTeamItemComponent self)
+        {
+            await UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningFormation );
+        }
+
         public static void OnInitUI(this UIPetMiningTeamItemComponent self,  int position)
         { 
             self.TeamId = position;
