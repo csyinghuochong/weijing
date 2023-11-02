@@ -28,9 +28,8 @@ namespace ET
                     }
                 }
 
-                //int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
 
                 if (m2C_SkillCmd.Error == ErrorCode.ERR_Success)
