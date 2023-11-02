@@ -39,7 +39,6 @@ namespace ET
             }
         }
 
-
         /// <summary>
         /// 寻找一个可通行的随机位置
         /// </summary>
@@ -176,29 +175,39 @@ namespace ET
 			return monsterPosition.NextID;
 		}
 
-		public static KeyValuePairInt GetRandomMonster(Scene scene, string createMonster)
+		public static List<KeyValuePairInt> GetRandomMonster(Scene scene, string createMonster)
 		{
-			MapComponent mapComponent = scene.GetComponent<MapComponent>();
+            List<KeyValuePairInt> keyValuePairInts = new List<KeyValuePairInt>();	
+
+            MapComponent mapComponent = scene.GetComponent<MapComponent>();
 			int sceneType = mapComponent.SceneTypeEnum;
 			if (sceneType != SceneTypeEnum.LocalDungeon)
 			{ 
-				return null;
+				return keyValuePairInts;
 			}
 
 			LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
-			UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
-			NumericComponent numericComponent = localDungeonComponent.MainUnit.GetComponent<NumericComponent>();
+			Unit mainUnit = localDungeonComponent.MainUnit;
+
+            UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
+			NumericComponent numericComponent = mainUnit.GetComponent<NumericComponent>();
 			KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
 			
-			TaskPro taskPro = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster(mapComponent.SceneId);
+			TaskPro taskPro = mainUnit.GetComponent<TaskComponent>().GetTreasureMonster(mapComponent.SceneId);
 			if (taskPro!=null)
 			{
 				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
 				keyValuePairInt.KeyId = taskPro.WaveId;
 				keyValuePairInt.Value = taskConfig.Target[0];
-				return keyValuePairInt;
+                keyValuePairInts.Add( keyValuePairInt );
 			}
 
+			if (ComHelp.IsInnerNet())
+			{
+                //赛季boss
+                //numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+            }
+			
 			string[] monsters = createMonster.Split('@');
 			for (int i = 0; i < monsters.Length; i++)
 			{
@@ -225,7 +234,9 @@ namespace ET
 					localDungeonComponent.RandomMonster = randomid;
 					keyValuePairInt.KeyId = i;
 					keyValuePairInt.Value = randomid;
-					break;
+
+                    keyValuePairInts.Add( keyValuePairInt );	
+                    break;
 				}
 
 				randomid = userInfoComponent.GetRandomJingLingId();
@@ -234,10 +245,13 @@ namespace ET
 					localDungeonComponent.RandomJingLing = randomid;
 					keyValuePairInt.KeyId = i;
 					keyValuePairInt.Value = randomid;
-					break;
+
+                    keyValuePairInts.Add(keyValuePairInt);
+                    break;
 				}
 			}
-			return keyValuePairInt;
+
+			return keyValuePairInts;
 		}
 
 		public static  void CreateMonsterList(Scene scene, string createMonster)
@@ -252,7 +266,7 @@ namespace ET
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
 
-			KeyValuePairInt keyValuePairInt = GetRandomMonster(scene, createMonster);
+			List<KeyValuePairInt> keyValuePairInt = GetRandomMonster(scene, createMonster);
 
 			for (int i = 0; i < monsters.Length; i++)
 			{
@@ -272,15 +286,24 @@ namespace ET
 					continue;
 				}
 
+				bool haveotherMonster = false;
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				if (keyValuePairInt != null && keyValuePairInt.Value!=0
-					&& keyValuePairInt.KeyId == i && position.Length >= 3)
+				for (int kk = 0; kk < keyValuePairInt.Count; kk++)
 				{
-					Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-					UnitFactory.CreateMonster(scene, (int)keyValuePairInt.Value, vector3, new CreateMonsterInfo()
+					monsterid = (int)keyValuePairInt[kk].Value;
+                    if (keyValuePairInt[kk].KeyId == i && monsterid > 0 && position.Length >= 3)
 					{
-						Camp = monsterConfig.MonsterCamp
-					});
+                        Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+                        UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
+                        {
+                            Camp = monsterConfig.MonsterCamp
+                        });
+
+						haveotherMonster = true;
+                    }
+				}
+				if (haveotherMonster)
+				{
 					continue;
 				}
 				

@@ -144,6 +144,7 @@
         public const int InvestReward = 3144;                            //投资奖励是否领取
         public const int DrawReward = 3145;
         public const int InvestTotal = 3146;                                 //投足总额
+        public const int SeasonOpenTime = 3147;                             //赛季时间
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
