@@ -196,52 +196,16 @@ namespace ET
 
             // 按比例推荐加点 可以在OccupationConfig和OccupationTwoConfig加个这样的字段
             string recommendAddPoint = string.Empty;
-            switch (occTwo)
+            if (ConfigHelper.RecommendAddPoint.ContainsKey(occTwo))
             {
-                case 101:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 102:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 103:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 201:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 202:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 203:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 301:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 302:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
-                case 303:
-                    recommendAddPoint = "1@1@1@1@1";
-                    break;
+                recommendAddPoint = ConfigHelper.RecommendAddPoint[occTwo];
+            }else if (ConfigHelper.RecommendAddPoint.ContainsKey(occ))
+            {
+                recommendAddPoint = ConfigHelper.RecommendAddPoint[occ];
             }
-
-            if (recommendAddPoint == string.Empty)
+            else
             {
-                switch (occ)
-                {
-
-                    case 1:
-                        recommendAddPoint = "1@1@1@1@1";
-                        break;
-                    case 2:
-                        recommendAddPoint = "0@1@2@3@4";
-                        break;
-                    case 3:
-                        recommendAddPoint = "1@1@1@1@1";
-                        break;
-                }
+                return;
             }
 
             string[] str = recommendAddPoint.Split('@');
