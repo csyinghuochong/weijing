@@ -112,6 +112,12 @@ namespace ET
             ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetDungeon, self.UpdateFormationSet);
         }
 
+        public static void RequestFormationSet(this UIPetChallengeComponent self, long rolePetInfoId, int index, int operateType)
+        {
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetFormation);
+            ui.GetComponent<UIPetFormationComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
+        }
+
         public static void UpdateFormationSet(this UIPetChallengeComponent self)
         {
             self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
@@ -125,6 +131,7 @@ namespace ET
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.FormationNode);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
+            self.UIPetFormationSet.DragEndHandler = self.RequestFormationSet;
             self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
                 self.ZoneScene().GetComponent<PetComponent>().PetFormations, false);
 

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 namespace ET
 {
@@ -9,6 +10,9 @@ namespace ET
     {
         public GameObject GameObject;
         public GameObject IconItemDrag;
+
+        public Action<long, int, int> DragEndHandler = null;
+
         public UIPetFormationItemComponent[] FormationItemComponents = new UIPetFormationItemComponent[9];
     }
 
@@ -85,11 +89,7 @@ namespace ET
             self.IconItemDrag.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
         }
 
-        public static void RequestFormationSet(this UIPetFormationSetComponent self, long rolePetInfoId, int index, int operateType)
-        {
-            UI ui = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetFormation);
-            ui.GetComponent<UIPetFormationComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
-        }
+       
 
         public static void EndDrag(this UIPetFormationSetComponent self, RolePetInfo binfo, PointerEventData pdata)
         {
@@ -103,13 +103,13 @@ namespace ET
                 string name = results[i].gameObject.name;
                 if (name.Contains("UIPetFormationAA"))
                 {
-                    self.RequestFormationSet(binfo.Id, -1, 3);
+                    self.DragEndHandler(binfo.Id, -1, 3);
                     break;
                 }
                 if (name.Contains("FormationSet"))
                 {
                     int index = int.Parse(name.Substring(name.Length - 1, 1));
-                    self.RequestFormationSet(binfo.Id, index, 2);
+                    self.DragEndHandler(binfo.Id, index, 2);
                     break;
                 }
             }

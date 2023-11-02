@@ -53,7 +53,13 @@ namespace ET
 
         public static async ETTask OnButtonSet(this UIPetMiningTeamItemComponent self)
         {
-            await UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningFormation );
+            long intanceid = self.InstanceId;
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningFormation );
+            if (intanceid != self.InstanceId)
+            {
+                return;
+            }
+            uI.GetComponent<UIPetMiningFormationComponent>().OnInitUI(SceneTypeEnum.PetMing, self.TeamId, null);
         }
 
         public static void OnInitUI(this UIPetMiningTeamItemComponent self,  int position)

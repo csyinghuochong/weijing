@@ -63,6 +63,27 @@ namespace ET
             
         }
 
+        public static void OnInitUI(this UIPetMiningFormationComponent self, int sceneType, int teamid, Action action)
+        {
+            self.SetHandler = action;
+            self.SceneTypeEnum = sceneType;
+
+            List<long> petids = self.ZoneScene().GetComponent<PetComponent>().GetPetFormatList(sceneType);
+            self.PetTeamList.AddRange( petids.GetRange(teamid * 5, 5) );
+            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationSet");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = GameObject.Instantiate(bundleGameObject);
+            self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
+            self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true);
+            self.UIPetFormationSet.DragEndHandler = self.RequestFormationSet;
+            UICommonHelper.SetParent(go, self.FormationNode);
+
+        }
+
+        public static void RequestFormationSet(this UIPetMiningFormationComponent self, long rolePetInfoId, int index, int operateType)
+        {
+            Log.Debug($"RequestFormationSet: {rolePetInfoId} {index} {operateType}");
+        }
     }
 
 }

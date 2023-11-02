@@ -104,6 +104,12 @@ namespace ET
             }
         }
 
+        public static void RequestFormationSet(this UIPetFormationComponent self, long rolePetInfoId, int index, int operateType)
+        {
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetFormation);
+            ui.GetComponent<UIPetFormationComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
+        }
+
         public static  void OnInitUI(this UIPetFormationComponent self, int sceneType, Action action)
         {
             self.SetHandler = action;
@@ -113,6 +119,7 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = GameObject.Instantiate(bundleGameObject);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
+            self.UIPetFormationSet.DragEndHandler = self.RequestFormationSet;
             self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true);
             UICommonHelper.SetParent(go, self.FormationNode);
 
