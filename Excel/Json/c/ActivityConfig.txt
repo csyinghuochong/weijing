@@ -90,7 +90,7 @@
 {"_t":"ActivityConfig","_id":24008,"ActivityType":24,"Icon":"","Par_1":"19","Par_2":"10010088;2","Par_3":"10010041;5","Par_4":"10000132;20"},
 {"_t":"ActivityConfig","_id":24009,"ActivityType":24,"Icon":"","Par_1":"21","Par_2":"10010083;5","Par_3":"10000132;20","Par_4":"10000122;1"},
 {"_t":"ActivityConfig","_id":24010,"ActivityType":24,"Icon":"","Par_1":"23","Par_2":"10000131;10","Par_3":"10010033;1","Par_4":"10010083;10"},
-{"_t":"ActivityConfig","_id":24011,"ActivityType":24,"Icon":"","Par_1":"25","Par_2":"10022008;1","Par_3":"10000122;1","Par_4":"10000202;1"},
+{"_t":"ActivityConfig","_id":24011,"ActivityType":24,"Icon":"","Par_1":"25","Par_2":"10022008;1","Par_3":"10000122;1","Par_4":"10000207;1"},
 {"_t":"ActivityConfig","_id":24012,"ActivityType":24,"Icon":"","Par_1":"27","Par_2":"10010046;1","Par_3":"10010087;1","Par_4":"10010085;50"},
 {"_t":"ActivityConfig","_id":24013,"ActivityType":24,"Icon":"","Par_1":"29","Par_2":"10010033;1","Par_3":"10010046;1","Par_4":"10010026;1"},
 {"_t":"ActivityConfig","_id":24014,"ActivityType":24,"Icon":"","Par_1":"31","Par_2":"10023001;20","Par_3":"10023008;1","Par_4":"10000123;1"},
