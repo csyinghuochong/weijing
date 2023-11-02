@@ -177,13 +177,13 @@ namespace ET
 
 		public static List<KeyValuePairInt> GetRandomMonster(Scene scene, string createMonster)
 		{
-            List<KeyValuePairInt> keyValuePairInts = new List<KeyValuePairInt>();	
+            List<KeyValuePairInt> randomMonsterList = new List<KeyValuePairInt>();	
 
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
 			int sceneType = mapComponent.SceneTypeEnum;
 			if (sceneType != SceneTypeEnum.LocalDungeon)
 			{ 
-				return keyValuePairInts;
+				return randomMonsterList;
 			}
 
 			LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
@@ -191,15 +191,16 @@ namespace ET
 
             UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
 			NumericComponent numericComponent = mainUnit.GetComponent<NumericComponent>();
-			KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+			
 			
 			TaskPro taskPro = mainUnit.GetComponent<TaskComponent>().GetTreasureMonster(mapComponent.SceneId);
 			if (taskPro!=null)
 			{
 				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
-				keyValuePairInt.KeyId = taskPro.WaveId;
+                KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+                keyValuePairInt.KeyId = taskPro.WaveId;
 				keyValuePairInt.Value = taskConfig.Target[0];
-                keyValuePairInts.Add( keyValuePairInt );
+                randomMonsterList.Add( keyValuePairInt );
 			}
 
 			if (ComHelp.IsInnerNet())
@@ -232,10 +233,11 @@ namespace ET
 				if (randomid > 0)
 				{
 					localDungeonComponent.RandomMonster = randomid;
-					keyValuePairInt.KeyId = i;
+                    KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+                    keyValuePairInt.KeyId = i;
 					keyValuePairInt.Value = randomid;
 
-                    keyValuePairInts.Add( keyValuePairInt );	
+                    randomMonsterList.Add( keyValuePairInt );	
                     break;
 				}
 
@@ -243,15 +245,16 @@ namespace ET
 				if (randomid > 0)
 				{
 					localDungeonComponent.RandomJingLing = randomid;
-					keyValuePairInt.KeyId = i;
+                    KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+                    keyValuePairInt.KeyId = i;
 					keyValuePairInt.Value = randomid;
 
-                    keyValuePairInts.Add(keyValuePairInt);
+                    randomMonsterList.Add(keyValuePairInt);
                     break;
 				}
 			}
 
-			return keyValuePairInts;
+			return randomMonsterList;
 		}
 
 		public static  void CreateMonsterList(Scene scene, string createMonster)
@@ -266,7 +269,7 @@ namespace ET
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
 
-			List<KeyValuePairInt> keyValuePairInt = GetRandomMonster(scene, createMonster);
+			List<KeyValuePairInt> randomMonsterList = GetRandomMonster(scene, createMonster);
 
 			for (int i = 0; i < monsters.Length; i++)
 			{
@@ -288,13 +291,12 @@ namespace ET
 
 				bool haveotherMonster = false;
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				for (int kk = 0; kk < keyValuePairInt.Count; kk++)
+				for (int kk = 0; kk < randomMonsterList.Count; kk++)
 				{
-					monsterid = (int)keyValuePairInt[kk].Value;
-                    if (keyValuePairInt[kk].KeyId == i && monsterid > 0 && position.Length >= 3)
+                    if (randomMonsterList[kk].KeyId == i && (int)randomMonsterList[kk].Value > 0 && position.Length >= 3)
 					{
                         Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-                        UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
+                        UnitFactory.CreateMonster(scene, (int)randomMonsterList[kk].Value, vector3, new CreateMonsterInfo()
                         {
                             Camp = monsterConfig.MonsterCamp
                         });
