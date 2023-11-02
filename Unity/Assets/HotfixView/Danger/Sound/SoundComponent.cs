@@ -139,7 +139,7 @@ namespace ET
                 }
                
                 audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(assetpath);
-                if (this.IsDisposed)
+                if (gameObject == null)
                 {
                     return;
                 }
