@@ -270,68 +270,29 @@ public class CustomEditorScript
             {
                 continue;
             }
-
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(subString);
-
-            if (prefab != null)
+            
+            string[] dependencies = AssetDatabase.GetDependencies(new string[] { subString });
+            foreach (string dependency in dependencies)
             {
-                GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-
-                if (instance != null)
+                if (dependency.EndsWith(".fbx", System.StringComparison.OrdinalIgnoreCase))
                 {
-                    Renderer[] renderers = instance.GetComponentsInChildren<Renderer>();
-                    MeshFilter[] meshFilters = instance.GetComponentsInChildren<MeshFilter>();
+                    ModelImporter modelImporter = AssetImporter.GetAtPath(dependency) as ModelImporter;
 
-                    foreach (Renderer renderer in renderers)
+                    if (modelImporter != null)
                     {
-                        if (renderer is SkinnedMeshRenderer)
-                        {
-                            SkinnedMeshRenderer skinnedMeshRenderer = (SkinnedMeshRenderer)renderer;
-                            ModelImporter modelImporter =
-                                    AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(skinnedMeshRenderer.sharedMesh)) as ModelImporter;
+                        // 修改设置
+                        modelImporter.bakeAxisConversion = true;
+                        modelImporter.importBlendShapes = true;
+                        modelImporter.importVisibility = true;
+                        modelImporter.importCameras = true;
+                        modelImporter.importLights = true;
+                        modelImporter.preserveHierarchy = true;
+                        // .....
 
-                            if (modelImporter != null)
-                            {
-                                // 修改设置
-                                modelImporter.bakeAxisConversion = true;
-                                modelImporter.importBlendShapes = true;
-                                modelImporter.importVisibility = true;
-                                modelImporter.importCameras = true;
-                                modelImporter.importLights = true;
-                                modelImporter.preserveHierarchy = true;
-                                // .....
-
-                                EditorUtility.SetDirty(modelImporter);
-                            }
-                        }
-                        else if (renderer is MeshRenderer)
-                        {
-                            MeshRenderer meshRenderer = (MeshRenderer)renderer;
-                        }
+                        
+                        EditorUtility.SetDirty(modelImporter);
+                        AssetDatabase.ImportAsset(dependency); // 保存设置
                     }
-
-                    foreach (MeshFilter meshFilter in meshFilters)
-                    {
-                        ModelImporter modelImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(meshFilter.sharedMesh)) as ModelImporter;
-
-                        if (modelImporter != null)
-                        {
-                            // 修改设置
-                            modelImporter.bakeAxisConversion = true;
-                            modelImporter.importBlendShapes = true;
-                            modelImporter.importVisibility = true;
-                            modelImporter.importCameras = true;
-                            modelImporter.importLights = true;
-                            modelImporter.preserveHierarchy = true;
-                            // .....
-
-                            EditorUtility.SetDirty(modelImporter);
-                        }
-                    }
-
-                    // 保存设置
-                    PrefabUtility.ApplyPrefabInstance(instance, InteractionMode.AutomatedAction);
-                    GameObject.DestroyImmediate(instance);
                 }
             }
         }
