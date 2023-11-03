@@ -43,7 +43,7 @@ namespace ET
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
 
             self.ButtonSet = gameObject.transform.Find("ButtonSet").gameObject;
-            self.ButtonSet.gameObject.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            self.ButtonSet.gameObject.SetActive( true );
             self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonSet().Coroutine();  } );
         }
     }
