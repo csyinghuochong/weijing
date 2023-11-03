@@ -172,7 +172,6 @@ namespace ET
             self.ResetFormation(self.PetFormations, petId);
             self.ResetFormation(self.TeamPetList, petId);
             self.ResetFormation(self.PetMingList, petId);
-            self.CheckPetMingPosition();
         }
 
         public static void ResetFormation(this PetComponent self, List<long> formation, long petId)
