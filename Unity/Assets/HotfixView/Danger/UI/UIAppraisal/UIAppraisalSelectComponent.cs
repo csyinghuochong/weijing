@@ -131,8 +131,7 @@ namespace ET
             self.UIItemComponent_2.GameObject.SetActive(true);
             self.Label_JianDingQuality.GetComponent<Text>().text = "品质:" + bagInfo.ItemPar;
             string jianDingStr = "大海捞针";
-            int chaValue = -1;
-
+            int chaValue = 0;
             if (!string.IsNullOrEmpty(bagInfo.ItemPar))
             {
                 chaValue = int.Parse(bagInfo.ItemPar) - itemCof.UseLv;
@@ -175,7 +174,13 @@ namespace ET
 
             //显示鉴定属性范围
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
-            JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, int.Parse(bagInfo.ItemPar), true);
+
+            int zizhi = 0;
+            if (!string.IsNullOrEmpty(bagInfo.ItemPar))
+            {
+                zizhi = int.Parse(bagInfo.ItemPar);
+            }
+            JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, zizhi, true);
             self.Label_JianDingShowPro.GetComponent<Text>().text = "范围:" + jiandingDate.MinNum + "-" + jiandingDate.MaxNum;
         }
 
