@@ -16,7 +16,7 @@ namespace ET
                 return;
             }
 
-            if (userInfo.Lv < 25)
+            if (request.HorseId == 10001 && userInfo.Lv < 25)
             {
                 response.Error = ErrorCode.ERR_EquipLvLimit;
                 reply();
