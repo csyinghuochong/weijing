@@ -71,7 +71,6 @@ namespace ET
                 self.DayTaskScrollView.SetActive(false);
                 //赛季任务。  主任务面板要屏蔽赛季任务
                 //服务器只记录当前的赛季任务。 小于此任务id的为已完成任务, 客户端需要显示所有的赛季任务
-                //C2M_TaskCommitRequest         提交任务
                 List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().RoleTaskList;
                 for (int i = 0; i < taskPros.Count; i++)
                 {

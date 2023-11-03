@@ -158,6 +158,8 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.SeasonReward) >= userInfo.SeasonLevel)
             {
+                FloatTipManager.Instance.ShowFloatTip("已经领取！");
+
                 return;
             }
 
