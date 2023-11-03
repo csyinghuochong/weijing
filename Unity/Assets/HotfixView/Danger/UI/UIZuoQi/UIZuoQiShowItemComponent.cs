@@ -103,7 +103,14 @@ namespace ET
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
             self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-            self.UIModelShowComponent.ShowModel("ZuoQi/" + zuoQiConfig.ModelID).Coroutine();
+            
+            // 虚空龙的在UI上无法显示，这里暂时替换
+            string modelID = zuoQiConfig.ModelID;
+            if (zuoQiConfig.ModelID == "10010")
+            {
+                modelID = "10010Show";
+            }
+            self.UIModelShowComponent.ShowModel("ZuoQi/" + modelID).Coroutine();
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
             gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 20 * 1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
