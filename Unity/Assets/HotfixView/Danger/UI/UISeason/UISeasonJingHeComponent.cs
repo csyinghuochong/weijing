@@ -106,13 +106,29 @@ namespace ET
             else // 解锁的孔位
             {
                 self.NameText.GetComponent<Text>().text = "赏金能力";
-                self.DesText.GetComponent<Text>().text = "拾取金币额外提升5%";
+                self.DesText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(seasonJingHeConfig.AddProperty);
 
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 int number = 0;
-                var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+                var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
                 var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
+                if (self.ItemList.Count < 12)
+                {
+                    // 先生成12个格子
+                    for (int i = 0; i < 12; i++)
+                    {
+                        UIItemComponent uI = null;
+                        GameObject go = GameObject.Instantiate(bundleGameObject);
+                        UICommonHelper.SetParent(go, self.ItemListNode);
+                        go.SetActive(true);
+                        uI = self.AddChild<UIItemComponent, GameObject>(go);
+                        uI.SetClickHandler((bagInfo) => { self.OnSelect(bagInfo); });
+                        self.ItemList.Add(uI);
+                        uI.UpdateItem(null, ItemOperateEnum.None);
+                    }
+                }
+                
                 List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
                 for (int i = 0; i < bagInfos.Count; i++)
                 {
@@ -142,7 +158,8 @@ namespace ET
 
                 for (int i = number; i < self.ItemList.Count; i++)
                 {
-                    self.ItemList[i].GameObject.SetActive(false);
+                    self.ItemList[i].UpdateItem(null, ItemOperateEnum.None);
+                    // self.ItemList[i].GameObject.SetActive(false);
                 }
 
                 self.ItemListNode.SetActive(true);

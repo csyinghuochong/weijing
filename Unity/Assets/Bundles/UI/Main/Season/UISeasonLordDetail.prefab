@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 289991469608863923}
   - component: {fileID: 3091684401497427925}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MonsterHeadImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,8 +925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 725, y: -685}
-  m_SizeDelta: {x: 180, y: 170}
+  m_AnchoredPosition: {x: 725, y: -712}
+  m_SizeDelta: {x: 360, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &289991469608863923
 CanvasRenderer:
@@ -1023,8 +1023,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 180}
-  m_Spacing: {x: -10, y: 10}
+  m_CellSize: {x: 120, y: 120}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!114 &4128598521944964735
@@ -2149,6 +2149,8 @@ MonoBehaviour:
     gameObject: {fileID: 2884524751065252299}
   - key: UICommonItemBack
     gameObject: {fileID: 6305909763324951780}
+  - key: MonsterHeadImg
+    gameObject: {fileID: 2432764678190667943}
 --- !u!114 &2222361220936387322
 MonoBehaviour:
   m_ObjectHideFlags: 0

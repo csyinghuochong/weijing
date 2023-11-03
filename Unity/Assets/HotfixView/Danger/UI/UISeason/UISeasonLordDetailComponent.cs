@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject PositionText;
         public GameObject RefreshTimeText;
+        public GameObject MonsterHeadImg;
         public GameObject UICommonItemBack;
         public GameObject UICommonItem;
         public GameObject ItemNameText;
@@ -31,6 +32,7 @@ namespace ET
 
             self.PositionText = rc.Get<GameObject>("PositionText");
             self.RefreshTimeText = rc.Get<GameObject>("RefreshTimeText");
+            self.MonsterHeadImg = rc.Get<GameObject>("MonsterHeadImg");
             self.UICommonItemBack = rc.Get<GameObject>("UICommonItemBack");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.ItemNameText = rc.Get<GameObject>("ItemNameText");
@@ -84,6 +86,10 @@ namespace ET
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
             self.PositionText.GetComponent<Text>().text = $"即将出现在{dungeonConfig.ChapterName}中...";
+
+            int bossId = SeasonHelper.SeasonBossId;
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
+            self.MonsterHeadImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
         }
 
         public static async ETTask UpdateItemList(this UISeasonLordDetailComponent self)
@@ -91,8 +97,25 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             int number = 0;
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+
+            if (self.ItemList.Count < 10)
+            {
+                // 先生成10个格子
+                for (int i = 0; i < 10; i++)
+                {
+                    UIItemComponent uI = null;
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.ItemListNode);
+                    go.SetActive(true);
+                    uI = self.AddChild<UIItemComponent, GameObject>(go);
+                    uI.SetClickHandler((bagInfo) => { self.OnSelect(bagInfo); });
+                    self.ItemList.Add(uI);
+                    uI.UpdateItem(null, ItemOperateEnum.None);
+                }
+            }
+
 
             List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = 0; i < bagInfos.Count; i++)
@@ -110,6 +133,7 @@ namespace ET
                     {
                         GameObject go = GameObject.Instantiate(bundleGameObject);
                         UICommonHelper.SetParent(go, self.ItemListNode);
+                        go.SetActive(true);
                         uI = self.AddChild<UIItemComponent, GameObject>(go);
                         uI.SetClickHandler((bagInfo) => { self.OnSelect(bagInfo); });
                         self.ItemList.Add(uI);
@@ -122,7 +146,8 @@ namespace ET
 
             for (int i = number; i < self.ItemList.Count; i++)
             {
-                self.ItemList[i].GameObject.SetActive(false);
+                self.ItemList[i].UpdateItem(null, ItemOperateEnum.None);
+                // self.ItemList[i].GameObject.SetActive(false);
             }
         }
 
