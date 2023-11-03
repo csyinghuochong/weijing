@@ -121,7 +121,7 @@ namespace ET
                 List<long> petsenemy = petComponent_enemy.PetMingList;
                 for (int i = 0; i < 5; i++)
                 {
-                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petComponent_enemy.PetMingList[i + teamid * 5]);
+                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petsenemy[i + teamid * 5]);
                     if (rolePetInfo == null)
                     {
                         continue;

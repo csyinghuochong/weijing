@@ -347,11 +347,12 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
                                 break;
                             case 125://坐骑获取
-                                unit.GetComponent<UserInfoComponent>().OnHorseActive(int.Parse(itemConfig.ItemUsePar), true);
-
-                                if (unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Count == 1)
+                                userInfoComponent.OnHorseActive(int.Parse(itemConfig.ItemUsePar), true);
+                                int hourseId = int.Parse(itemConfig.ItemUsePar);
+                                bool canhorse = hourseId == 10001 ? userInfoComponent.UserInfo.Lv >= 25 : true;
+                                if (canhorse && userInfoComponent.UserInfo.HorseIds.Count == 1)
                                 {
-                                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, int.Parse(itemConfig.ItemUsePar));
+                                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, hourseId);
                                 }
                                 break;
                             case 126: //集字

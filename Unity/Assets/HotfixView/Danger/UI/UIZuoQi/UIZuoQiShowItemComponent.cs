@@ -67,7 +67,8 @@ namespace ET
             }
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.Lv < 25) {
+            if (self.ZuoQiConfig.Id == 10001 && userInfo.Lv < 25) 
+            {
                 FloatTipManager.Instance.ShowFloatTip("等级达到25级才可以骑乘坐骑喔！");
                 return;
             }

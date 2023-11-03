@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 
 namespace ET
-
 {
     [UIEvent(UIType.UIPetMiningFormation)]
     internal class UIPetMiningFormationEvent : AUIEvent

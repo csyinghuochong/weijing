@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -19,6 +18,7 @@ namespace ET
         public GameObject IconItemDrag;
         public UIPetFormationSetComponent UIPetFormationSet;
         public List<UIPetFormationItemComponent> uIPetFormations = new List<UIPetFormationItemComponent>();
+
         public List<long> PetTeamList = new List<long>() { };
 
         public Action SetHandler = null;
