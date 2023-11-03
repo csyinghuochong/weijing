@@ -54,16 +54,30 @@ namespace ET
 
         public static void BeginDrag(this UIPetFormationItemComponent self, PointerEventData pdata)
         {
+            if (self.ImageFight.activeSelf)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先下阵！");
+                return;
+            }    
+
             self.BeginDragHandler?.Invoke(self.RolePetInfo, pdata);
         }
 
         public static void Draging(this UIPetFormationItemComponent self, PointerEventData pdata)
         {
+            if (self.ImageFight.activeSelf)
+            {
+                return;
+            }
             self.DragingHandler?.Invoke(self.RolePetInfo, pdata);
         }
 
         public static void EndDrag(this UIPetFormationItemComponent self, PointerEventData pdata)
         {
+            if (self.ImageFight.activeSelf)
+            {
+                return;
+            }
             self.EndDragHandler?.Invoke(self.RolePetInfo, pdata);
         }
 

@@ -18,6 +18,7 @@ namespace ET
         public List<UIPetMiningTeamItemComponent> MiningTeamList = new List<UIPetMiningTeamItemComponent>();
 
         public List<long> PetTeamList = new List<long>();
+        public List<long> PetMingPosition = new List<long>();
 
         public Action UpdateTeam;
     }
@@ -52,6 +53,9 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.PetTeamList.Clear();
             self.PetTeamList.AddRange( petComponent.PetMingList );
+
+            self.PetMingPosition.Clear();
+            self.PetMingPosition.AddRange(petComponent.PetMingPosition);
 
             self.OnUpdatePetList();
             self.UpdateTeamList();
@@ -150,6 +154,8 @@ namespace ET
 
             self.OnUpdatePetList();
             self.UpdateTeamList();
+
+            PetHelper.CheckPetPosition( self.PetTeamList, self.PetMingPosition );
         }
 
         public static async ETTask OnButtonClose(this UIPetMiningTeamComponent self)
@@ -157,7 +163,7 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             long instanceid = self.InstanceId;
-            int errorCode = await petComponent.RequestPetFormationSet(SceneTypeEnum.PetMing, self.PetTeamList);
+            int errorCode = await petComponent.RequestPetFormationSet(SceneTypeEnum.PetMing, self.PetTeamList, self.PetMingPosition) ;
             if (errorCode != ErrorCode.ERR_Success || instanceid != self.InstanceId)
             {
                 return;

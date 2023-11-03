@@ -80,7 +80,7 @@ namespace ET
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             long instanceid = self.InstanceId;
-            int errorCode = await petComponent.RequestPetFormationSet(self.SceneTypeEnum, self.PetTeamList);
+            int errorCode = await petComponent.RequestPetFormationSet(self.SceneTypeEnum, self.PetTeamList, null);
             if (errorCode!= ErrorCode.ERR_Success || instanceid != self.InstanceId)
             {
                 return;

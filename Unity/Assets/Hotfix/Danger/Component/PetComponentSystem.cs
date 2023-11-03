@@ -23,6 +23,7 @@ namespace ET
             self.PetShouHuActive = m2C_RolePetList.PetShouHuActive;
             self.PetCangKuOpen = m2C_RolePetList.PetCangKuOpen;
             self.PetMingList = m2C_RolePetList.PetMingList;
+            self.PetMingPosition = m2C_RolePetList.PetMingPosition;
         }
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)
@@ -66,12 +67,14 @@ namespace ET
             return null;
         }
 
-        public static async ETTask<int> RequestPetFormationSet(this PetComponent self, int sceneType, List<long> petList)
+
+        public static async ETTask<int> RequestPetFormationSet(this PetComponent self, int sceneType, List<long> petList, List<long> positionList)
         {
             C2M_RolePetFormationSet c2M_RolePetFormationSet = new C2M_RolePetFormationSet()
             {
                 SceneType = sceneType,
-                PetFormat = petList
+                PetFormat = petList,
+                PetPosition = positionList  
             };
             M2C_RolePetFormationSet m2C_RolePetFormationSet = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFormationSet) as M2C_RolePetFormationSet;
             if (m2C_RolePetFormationSet.Error != ErrorCode.ERR_Success)
@@ -87,9 +90,11 @@ namespace ET
                     self.TeamPetList = petList;
                     break;
                 case SceneTypeEnum.PetMing:
-                    self.PetMingList = petList; 
+                    self.PetMingList = petList;
+                    self.PetMingPosition = positionList;    
                     break;
             }
+
             return ErrorCode.ERR_Success;
         }
 
@@ -167,6 +172,7 @@ namespace ET
             self.ResetFormation(self.PetFormations, petId);
             self.ResetFormation(self.TeamPetList, petId);
             self.ResetFormation(self.PetMingList, petId);
+            self.CheckPetMingPosition();
         }
 
         public static void ResetFormation(this PetComponent self, List<long> formation, long petId)

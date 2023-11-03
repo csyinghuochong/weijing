@@ -152,5 +152,76 @@ namespace ET
         {
             return PetConfigCategory.Instance.Get(configid).PetType == 2;
         }
+
+        public static void CheckPetPosition(List<long> petTeamList, List<long> petMingPosition)
+        {
+            ///移除
+            for (int i = 0; i < petMingPosition.Count; i++)
+            {
+                long petid = petMingPosition[i];
+                if (petid == 0)
+                {
+                    continue;
+                }
+
+                bool have = false;
+                for (int pp = 0; pp < petTeamList.Count; pp++)
+                {
+                    if (petid == petTeamList[pp])
+                    {
+                        have = true;
+                        break;
+                    }
+                }
+
+                if (!have)
+                {
+                    petMingPosition[i] = 0;
+                }
+            }
+
+            //新增
+            for (int i = 0; i < petTeamList.Count; i++)
+            {
+                int teamid = i / 5;
+                long petid = petTeamList[i];
+                if (petid == 0)
+                {
+                    continue;
+                }
+
+                bool have = false;
+                for (int pp = 0; pp < petMingPosition.Count; pp++)
+                {
+                    if (petMingPosition[pp] != petid)
+                    {
+                        continue;
+                    }
+
+                    if ( (pp / 9) != teamid)
+                    {
+                        petMingPosition[pp] = 0;
+                    }
+                    else
+                    {
+                        have = true;
+                        break;
+                    }
+                }
+
+                if (have)
+                {
+                    continue;
+                }
+                for (int pp = teamid * 9; pp < teamid * 9 + 9; pp++)
+                {
+                    if (petMingPosition[pp] == 0)
+                    {
+                        petMingPosition[pp] = petid;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

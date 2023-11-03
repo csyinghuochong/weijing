@@ -19,9 +19,10 @@ namespace ET
                     break;
                 case SceneTypeEnum.PetMing:
                     petComponent.PetMingList = request.PetFormat;
+                    petComponent.PetMingPosition = request.PetPosition;   
                     break;
             }
-
+            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, petComponent).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

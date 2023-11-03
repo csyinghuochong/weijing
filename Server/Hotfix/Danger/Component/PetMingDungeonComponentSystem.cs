@@ -96,13 +96,18 @@ namespace ET
             List<long> pets = petComponent.PetMingList;
             for (int i = 0; i <  5; i++)
             {
-                RolePetInfo rolePetInfo = petComponent.GetPetInfo(pets[i +  self.TeamId * 5]);
+                long petinfoid = pets[i + self.TeamId * 5];
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(petinfoid);
                 if (rolePetInfo == null)
                 {
                     continue;
                 }
+
+                int position = petComponent.PetMingPosition.IndexOf(petinfoid);
+                position = position != -1 ? position %= 9 : i;   
+
                 Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), unit.Id,
-                    CampEnum.CampPlayer_1, rolePetInfo, AIHelp.Formation_1[i], 0f);
+                    CampEnum.CampPlayer_1, rolePetInfo, AIHelp.Formation_1[ position ], 0f);
                 petunit.GetComponent<AIComponent>().Stop();
             }
 
@@ -121,7 +126,8 @@ namespace ET
                 List<long> petsenemy = petComponent_enemy.PetMingList;
                 for (int i = 0; i < 5; i++)
                 {
-                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petsenemy[i + teamid * 5]);
+                    long petinfoid = petsenemy[i + teamid * 5];
+                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petinfoid);
                     if (rolePetInfo == null)
                     {
                         continue;
@@ -131,8 +137,12 @@ namespace ET
                         Log.Debug($"宠物ID重复：{unit.Id}");
                         continue;
                     }
+
+                    int position = petComponent_enemy.PetMingPosition.IndexOf(petinfoid);
+                    position = position != -1 ? position %= 9 : i;
+
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
-                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f);
+                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[position], 180f);
                 }
             }
         }

@@ -50,7 +50,6 @@ namespace ET
 
     public static class UIPetMiningTeamItemComponentSystem
     {
-
         public static async ETTask OnButtonSet(this UIPetMiningTeamItemComponent self)
         {
             long intanceid = self.InstanceId;

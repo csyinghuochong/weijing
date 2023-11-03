@@ -107,10 +107,30 @@ namespace ET
                     self.PetMingList.Add(0);
                 }
             }
+            if (self.PetMingPosition.Count != 27)
+            {
+                self.PetMingPosition.Clear();
+
+                for (int i = 0; i < 27; i++)
+                {
+                    int index = i % 9;
+                    int teamid = i / 9;
+                    if (index < 5)
+                    {
+                        long petId = self.PetMingList[teamid * 5 + index];
+                        self.PetMingPosition.Add(petId);
+                    }
+                    else
+                    {
+                        self.PetMingPosition.Add(0);
+                    }
+                }
+            }
             self.CheckPetList(self.PetFormations);
             self.CheckPetList(self.TeamPetList);
             self.CheckPetList(self.PetShouHuList);
             self.CheckPetList(self.PetMingList);
+            self.CheckPetList(self.PetMingPosition);
 
             if (self.PetShouHuActive == 0)
             {

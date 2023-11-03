@@ -1736,6 +1736,7 @@ message M2C_RolePetList // IActorLocationResponse
 	int32 PetShouHuActive = 9;
 	repeated int32 PetCangKuOpen = 10;
 	repeated int64 PetMingList = 11;
+	repeated int64 PetMingPosition = 12;
 }
 
 message PetFubenInfo
@@ -1761,8 +1762,10 @@ message C2M_RolePetFormationSet // IActorLocationRequest
 	int32 Index = 1;
 	int64 PetId = 2;
 	int32 OperateType = 3;// 1上阵  2替换  3下阵 
-	repeated int64 PetFormat = 4;
-	int32 SceneType = 5;
+
+	int32 SceneType = 4;
+	repeated int64 PetFormat = 5;
+	repeated int64 PetPosition = 6;
 }
 
 message M2C_RolePetFormationSet // IActorLocationResponse

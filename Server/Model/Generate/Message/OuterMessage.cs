@@ -3659,6 +3659,9 @@ namespace ET
 		[ProtoMember(11)]
 		public List<long> PetMingList = new List<long>();
 
+		[ProtoMember(12)]
+		public List<long> PetMingPosition = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]
@@ -3711,10 +3714,13 @@ namespace ET
 		public int OperateType { get; set; }
 
 		[ProtoMember(4)]
-		public List<long> PetFormat = new List<long>();
+		public int SceneType { get; set; }
 
 		[ProtoMember(5)]
-		public int SceneType { get; set; }
+		public List<long> PetFormat = new List<long>();
+
+		[ProtoMember(6)]
+		public List<long> PetPosition = new List<long>();
 
 	}
 
