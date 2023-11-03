@@ -131,7 +131,12 @@ namespace ET
             self.UIItemComponent_2.GameObject.SetActive(true);
             self.Label_JianDingQuality.GetComponent<Text>().text = "品质:" + bagInfo.ItemPar;
             string jianDingStr = "大海捞针";
-            int chaValue = int.Parse(bagInfo.ItemPar) - itemCof.UseLv;
+            int chaValue = -1;
+
+            if (!string.IsNullOrEmpty(bagInfo.ItemPar))
+            {
+                chaValue = int.Parse(bagInfo.ItemPar) - itemCof.UseLv;
+            }
             if (chaValue < 0) {
                 jianDingStr = "大海捞针";
                 self.Label_JianDingShow.GetComponent<Text>().color = new Color(130f / 255f, 130f / 255f, 130f / 255f);
