@@ -42,6 +42,7 @@ namespace ET
 
         public GameObject SelectEffect;
 
+        public GameObject ButtonOneKeyPlant;
         public GameObject ButtonGather;
         public GameObject ButtonTalk;
         public GameObject ButtonTarget;
@@ -75,6 +76,7 @@ namespace ET
             self.JiaYuanPlanLocks.Clear();
 
             ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
+            self.ButtonOneKeyPlant = rc.Get<GameObject>("ButtonOneKeyPlant");
             self.ButtonGather = rc.Get<GameObject>("ButtonGather");
             self.ButtonTalk = rc.Get<GameObject>("ButtonTalk");
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
@@ -107,6 +109,7 @@ namespace ET
             self.Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
             self.Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(self.OnBtn_ShouSuo);
 
+            ButtonHelp.AddListenerEx(self.ButtonOneKeyPlant, () => { UIHelper.Create(self.DomainScene(),UIType.UIJiaYuanOneKeyPlant).Coroutine(); });
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather(); });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () => { self.OnButtonTalk(); });
             ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget(); });
