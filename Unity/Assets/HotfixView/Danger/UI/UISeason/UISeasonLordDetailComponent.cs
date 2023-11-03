@@ -59,6 +59,7 @@ namespace ET
         {
             if (self.BagInfo == null)
             {
+                FloatTipManager.Instance.ShowFloatTip("未选择道具！");
                 return;
             }
 

@@ -91,10 +91,9 @@ namespace ET
                         {
                             self.UpdateInfo(taskConfig.Id);
                         });
-                        // self.SeasonTaskList.transform.GetChild(index).GetComponentInChildren<Text>().text = taskConfig.Id.ToString();
                         if (taskConfig.Id < self.TaskPro.taskID)
                         {
-                            self.SeasonTaskList.transform.GetChild(index).GetComponent<Text>().text = "已完成";
+                            self.SeasonTaskList.transform.GetChild(index).GetComponentInChildren<Text>().text = "已完成";
                             self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(true);
                         }
                         else
@@ -117,11 +116,13 @@ namespace ET
                     self.SeasonTaskList.transform.GetChild(i).gameObject.SetActive(false);
                 }
 
+                self.LinkShowSet.transform.GetChild(index - 1).gameObject.SetActive(false); // 尾巴隐藏
                 for (int i = index; i < self.LinkShowSet.transform.childCount; i++)
                 {
                     self.LinkShowSet.transform.GetChild(i).gameObject.SetActive(false);
                 }
 
+                self.LinkDi.transform.GetChild(index - 1).gameObject.SetActive(false); // 尾巴隐藏
                 for (int i = index; i < self.LinkDi.transform.childCount; i++)
                 {
                     self.LinkDi.transform.GetChild(i).gameObject.SetActive(false);
