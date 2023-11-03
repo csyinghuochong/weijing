@@ -7,26 +7,6 @@ namespace ET
     public static class ActivityComponentSystem
     {
 
-        public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)
-        {
-            int activityId = 0;
-            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < activityConfigs.Count; i++)
-            {
-                if (activityConfigs[i].ActivityType != 101)
-                {
-                    continue;
-                }
-                activityId = activityConfigs[i].Id;
-                int needNumber = int.Parse(activityConfigs[i].Par_2);
-                if (rechargeNumb < needNumber)
-                {
-                    break;
-                }
-            }
-            return activityId;
-        }
-
         /// <summary>
         /// 取到当前可以领取的最小等级
         /// </summary>
@@ -57,6 +37,26 @@ namespace ET
         }
 
 #if SERVER
+        public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)
+        {
+            int activityId = 0;
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 101)
+                {
+                    continue;
+                }
+                int needNumber = int.Parse(activityConfigs[i].Par_2);
+                if (rechargeNumb < needNumber)
+                {
+                    break;
+                }
+                activityId = activityConfigs[i].Id;
+            }
+            return activityId;
+        }
+
         public static void OnLogin(this ActivityComponent self, int level)
         {
             if (self.DayTeHui.Count == 0)
