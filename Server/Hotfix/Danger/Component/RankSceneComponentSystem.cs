@@ -586,6 +586,7 @@ namespace ET
                 if (ServerHelper.ServerItems[i].Show == 1)
                 {
                     firstserver = ServerHelper.ServerItems[i].ServerId;
+                    break;
                 }
             }
 
