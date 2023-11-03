@@ -78,9 +78,14 @@ namespace ET
             int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
             fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
 
+            
             MapComponent mapComponent = domainscene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon )
             {
+                if (fubenId == 0)
+                {
+                    return false;
+                }
                 FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
                 return false;
             }

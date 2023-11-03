@@ -111,13 +111,13 @@ namespace ET
 
         public static void LockTargetUnitId(this LockTargetComponent self, long unitId)
         {
-            self.LastLockId = unitId;
-            if (self.LastLockId == 0)
+            Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(unitId);
+            if (unitTarget == null)
             {
                 return;
             }
+            self.LastLockId = unitId;
             self.CheckLockEffect();
-            Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
             UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
             self.LockUnitEffect.SetActive(true);
             
