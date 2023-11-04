@@ -49,6 +49,10 @@ namespace ET
                     image.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Img_82");
                     image.rectTransform.localScale = new Vector3(1.1f, 1.1f, 1f);
                 }
+                else
+                {
+                    UICommonHelper.SetImageGray(self.DayListNode.transform.GetChild(i).gameObject, true);
+                }
             }
 
             Button[] buttons = self.DayListNode.GetComponentsInChildren<Button>();

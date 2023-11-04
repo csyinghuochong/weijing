@@ -8,9 +8,8 @@ namespace ET
 	{
 		YueKa = 0,
 		MaoXian = 1,
-		Login = 2,
-		Token = 3,
-		TeHui = 4,
+		Token = 2,
+		TeHui = 3,
 
 		Number,
 	}
@@ -43,13 +42,11 @@ namespace ET
 
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.YueKa] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityYueKa");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.MaoXian] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityMaoXian");
-			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.Login] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityLogin");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.Token] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityToken");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.TeHui] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityTeHui");
 
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.YueKa] = typeof(UIActivityYueKaComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.MaoXian] = typeof(UIActivityMaoXianComponent);
-			pageViewComponent.UISubViewType[(int)ActivityPageEnum.Login] = typeof(UIActivityLoginComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.Token] = typeof(UIActivityTokenComponent );
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.TeHui] = typeof(UIActivityTeHuiComponent);
 			self.UIPageView = pageViewComponent;

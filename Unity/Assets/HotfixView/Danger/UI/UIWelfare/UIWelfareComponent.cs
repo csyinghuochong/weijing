@@ -7,8 +7,8 @@ namespace ET
 {
     public enum WelfarePageEnum
     {
-        Task,
         Login,
+        Task,
         Draw,
         Invest,
 
@@ -34,13 +34,13 @@ namespace ET
             pageViewComponent.UISubViewPath = new string[(int)WelfarePageEnum.Number];
             pageViewComponent.UISubViewType = new Type[(int)WelfarePageEnum.Number];
 
+            pageViewComponent.UISubViewPath[(int)WelfarePageEnum.Login] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityLogin");
             pageViewComponent.UISubViewPath[(int)WelfarePageEnum.Task] = ABPathHelper.GetUGUIPath("Main/Welfare/UIWelfareTask");
-            pageViewComponent.UISubViewPath[(int)WelfarePageEnum.Login] = ABPathHelper.GetUGUIPath("Main/Welfare/UIWelfareLogin");
             pageViewComponent.UISubViewPath[(int)WelfarePageEnum.Draw] = ABPathHelper.GetUGUIPath("Main/Welfare/UIWelfareDraw");
             pageViewComponent.UISubViewPath[(int)WelfarePageEnum.Invest] = ABPathHelper.GetUGUIPath("Main/Welfare/UIWelfareInvest");
 
+            pageViewComponent.UISubViewType[(int)WelfarePageEnum.Login] = typeof(UIActivityLoginComponent);
             pageViewComponent.UISubViewType[(int)WelfarePageEnum.Task] = typeof (UIWelfareTaskComponent);
-            pageViewComponent.UISubViewType[(int)WelfarePageEnum.Login] = typeof (UIWelfareLoginComponent);
             pageViewComponent.UISubViewType[(int)WelfarePageEnum.Draw] = typeof (UIWelfareDrawComponent);
             pageViewComponent.UISubViewType[(int)WelfarePageEnum.Invest] = typeof (UIWelfareInvestComponent);
 

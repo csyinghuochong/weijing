@@ -36,6 +36,7 @@ namespace ET
             self.Draws.Clear();
             self.OutLines.Clear();
 
+            GameObject outLine6 = null;
             for (int i = 0; i < self.DrawList.transform.childCount; i++)
             {
                 GameObject go = self.DrawList.transform.GetChild(i).gameObject;
@@ -48,18 +49,29 @@ namespace ET
                     int weaponId = ComHelp.GetWelfareWeapon(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.OccTwo);
                     string reward = $"{weaponId};1";
                     rewardItems = ItemHelper.GetRewardItems(reward);
- 
                 }
                 else
                 {
-                     rewardItems = ItemHelper.GetRewardItems(ConfigHelper.WelfareDrawList[i].Value);
+                    rewardItems = ItemHelper.GetRewardItems(ConfigHelper.WelfareDrawList[i].Value);
                 }
+
                 UICommonHelper.ShowItemList(rewardItems, RewardListNode, self, 0.8f, true, true);
 
                 GameObject outline = go.GetComponent<ReferenceCollector>().Get<GameObject>("SelectImg");
-                self.OutLines.Add(outline);
+                // 第6和7互换一下位置
+                if (i == 5)
+                {
+                    outLine6 = outline;
+                }
+                else
+                {
+                    self.OutLines.Add(outline);
+                }
+
                 outline.SetActive(false);
             }
+
+            self.OutLines.Add(outLine6);
 
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
             int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
@@ -75,7 +87,9 @@ namespace ET
 
                     UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemIcon"), true);
                     UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemQuality"), true);
+                    uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Label_ItemName").SetActive(false);
                 }
+                self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("Text")?.SetActive(false);
             }
         }
 
@@ -131,13 +145,34 @@ namespace ET
 
                 self.OutLines[i % 7].SetActive(true);
 
-                if (i > ran && i % 7 == index)
+                if (i > ran)
                 {
-                    // 抽奖有一个转圈的效果，转圈结束后获取道具
-                    C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
-                    M2C_WelfareDrawRewardResponse response13 =
-                            (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
-                    break;
+                    if (index < 5 && i % 7 == index)
+                    {
+                        // 抽奖有一个转圈的效果，转圈结束后获取道具
+                        C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
+                        M2C_WelfareDrawRewardResponse response13 =
+                                (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
+                        break;
+                    }
+
+                    if (index == 5 && i % 7 == 6)
+                    {
+                        // 抽奖有一个转圈的效果，转圈结束后获取道具
+                        C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
+                        M2C_WelfareDrawRewardResponse response13 =
+                                (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
+                        break;
+                    }
+
+                    if (index == 6 && i % 7 == 5)
+                    {
+                        // 抽奖有一个转圈的效果，转圈结束后获取道具
+                        C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
+                        M2C_WelfareDrawRewardResponse response13 =
+                                (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
+                        break;
+                    }
                 }
 
                 i++;
@@ -157,7 +192,9 @@ namespace ET
 
                 UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemIcon"), true);
                 UICommonHelper.SetImageGray(uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemQuality"), true);
+                uiItem.GetComponent<ReferenceCollector>().Get<GameObject>("Label_ItemName").SetActive(false);
             }
+            self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("Text")?.SetActive(false);
         }
     }
 }

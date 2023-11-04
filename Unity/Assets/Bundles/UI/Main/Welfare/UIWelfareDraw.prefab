@@ -582,6 +582,8 @@ MonoBehaviour:
     gameObject: {fileID: 5291721502125104780}
   - key: ReceivedImg
     gameObject: {fileID: 3678405269074869930}
+  - key: Text
+    gameObject: {fileID: 6162472457192180376}
 --- !u!1 &1635891781028156171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1240,7 @@ GameObject:
   - component: {fileID: 1457115467853191951}
   - component: {fileID: 4628942379094095269}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1648,6 +1650,8 @@ MonoBehaviour:
     gameObject: {fileID: 7338077317158036941}
   - key: ReceivedImg
     gameObject: {fileID: 4190769159596579331}
+  - key: Text
+    gameObject: {fileID: 6347707089012472850}
 --- !u!1 &3415983959288061388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,6 +2532,8 @@ MonoBehaviour:
     gameObject: {fileID: 195237834344968136}
   - key: ReceivedImg
     gameObject: {fileID: 3971997147397129053}
+  - key: Text
+    gameObject: {fileID: 2630928739171985492}
 --- !u!1 &5404843245897280411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,7 +3069,7 @@ GameObject:
   - component: {fileID: 4889717587323232198}
   - component: {fileID: 6456683091184038480}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
