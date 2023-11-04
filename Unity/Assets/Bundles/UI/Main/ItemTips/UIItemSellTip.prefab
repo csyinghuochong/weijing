@@ -847,6 +847,8 @@ MonoBehaviour:
     gameObject: {fileID: 8711427753333951346}
   - key: Btn_Cancel
     gameObject: {fileID: 244310149149834202}
+  - key: SellMoneyTypeImg
+    gameObject: {fileID: 5248465697211210328}
 --- !u!1 &3225945612115166836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1567,7 @@ GameObject:
   - component: {fileID: 1692146946318099459}
   - component: {fileID: 7323744373173661633}
   m_Layer: 5
-  m_Name: Image_5
+  m_Name: SellMoneyTypeImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

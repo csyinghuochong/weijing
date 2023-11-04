@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIItemSellTipComponent : Entity, IAwake
     {
-
+        public GameObject SellMoneyTypeImg;
         public GameObject Btn_Cancel;
         public GameObject Lab_SellSumPro;
         public InputField PriceInputField;
@@ -24,7 +24,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-
+            self.SellMoneyTypeImg = rc.Get<GameObject>("SellMoneyTypeImg");
             self.Btn_Cancel = rc.Get<GameObject>("Btn_Cancel");
             self.Btn_Cancel.GetComponent<Button>().onClick.AddListener( self.OnBtn_Cancel);
 
@@ -110,7 +110,11 @@ namespace ET
             }
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             long price = sellNum * itemConfig.SellMoneyValue;
-            self.Lab_SellSumPro.GetComponent<Text>().text = price.ToString();   
+            self.Lab_SellSumPro.GetComponent<Text>().text = price.ToString();
+            
+            ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(itemConfig.SellMoneyType);
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            self.SellMoneyTypeImg.GetComponent<Image>().sprite = sp;
         }
 
         public static void OnBtn_ChuShou(this UIItemSellTipComponent self)
