@@ -71,9 +71,11 @@ namespace ET
                 for (int j = 0; j < bagInfos[i].ItemNum; j++)
                 {
                     GameObject go = GameObject.Instantiate(self.SeedToggle);
-
-                    go.GetComponent<ReferenceCollector>().Get<GameObject>("Text").GetComponent<Text>().text = itemConfig.ItemName;
+                    
                     int index = num;
+                    UIItemComponent uI = null;
+                    uI = self.AddChild<UIItemComponent, GameObject>(go.GetComponent<ReferenceCollector>().Get<GameObject>("UICommonItem"));
+                    uI.UpdateItem(new BagInfo(){ItemID = bagInfos[i].ItemID,ItemNum = 1}, ItemOperateEnum.None);
                     go.GetComponent<ReferenceCollector>().Get<GameObject>("Btn_Click").GetComponent<Button>().onClick
                             .AddListener(() => { self.OnSeedToggle(index); });
 
