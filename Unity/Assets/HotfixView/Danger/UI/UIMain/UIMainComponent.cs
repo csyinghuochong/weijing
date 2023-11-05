@@ -1329,10 +1329,9 @@ namespace ET
 
                 bool showButton = functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1;
 
-                self.ShowFunctionButton(functionId, showButton);
-
                 if (serverTime >= sTime)
                 {
+                    self.ShowFunctionButton(functionId, showButton);
                     removeNumber++;
                 }
             }
