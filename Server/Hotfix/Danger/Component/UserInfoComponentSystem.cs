@@ -89,6 +89,10 @@ namespace ET
             {
                 self.UserInfo.SeasonLevel = 1;
             }
+            if (self.UserInfo.CreateTime == 0)
+            {
+                self.UserInfo.CreateTime = ComHelp.IsInnerNet() ? TimeHelper.ServerNow() : 0;
+            }
 
             int maxTowerId = 0;
             if (self.UserInfo.TowerRewardIds.Count > 0)
