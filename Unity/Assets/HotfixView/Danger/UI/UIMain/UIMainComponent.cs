@@ -220,6 +220,7 @@ namespace ET
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
+            self.Button_ZhenYing.SetActive(false);
 
             self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
             ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
@@ -301,6 +302,7 @@ namespace ET
             self.Button_Energy = rc.Get<GameObject>("Button_Energy");
             //self.Button_Energy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Energy(); });
             ButtonHelp.AddListenerEx(self.Button_Energy, () => { self.OnButton_Energy(); });
+            self.Button_Energy.SetActive(false);
 
             self.TeamDungeonBtn = rc.Get<GameObject>("TeamDungeonBtn");
             ButtonHelp.AddListenerEx(self.TeamDungeonBtn, () => { self.OnTeamDungeonBtn(); });
