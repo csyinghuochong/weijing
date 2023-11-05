@@ -81,6 +81,7 @@ namespace ET
                     break;
             }
 
+            int sousceneid = scene.GetComponent<MapComponent>().SonSceneId;
             GameObjectPoolComponent.Instance.DisposeAll();
 
             await ResourcesComponent.Instance.LoadEmptyScene(ABPathHelper.GetScenePath("Empty"));
@@ -89,7 +90,7 @@ namespace ET
             await ResourcesComponent.Instance.LoadSceneAsync(path);
             self.UpdateChuanSong(scene, sceneTypeEnum);
 
-            Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
+            Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(sceneTypeEnum, chapterId, sousceneid);
         }
 
     }

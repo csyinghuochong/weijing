@@ -182,7 +182,7 @@ namespace ET
         /// </summary>
         /// <param name="scene"></param>
         /// <param name="sceneTypeEnum"></param>
-        public void PlayBgmSound(Scene scene, int sceneTypeEnum)
+        public void PlayBgmSound(int sceneTypeEnum, int sceneId, int sonsceneid)
         {
             DisposeAll();
 
@@ -197,12 +197,11 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
                 case (int)SceneTypeEnum.JiaYuan:
-                    int mapid = scene.GetComponent<MapComponent>().SceneId;
-                    music = SceneConfigCategory.Instance.Get(mapid).Music;
+                    music = SceneConfigCategory.Instance.Get(sceneId).Music;
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
-                    music = ChapterConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SceneId).Music;
-                    ChapterSonConfig chapterSonConfig = ChapterSonConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SonSceneId);
+                    music = ChapterConfigCategory.Instance.Get(sceneId).Music;
+                    ChapterSonConfig chapterSonConfig = ChapterSonConfigCategory.Instance.Get(sonsceneid);
                     string[] monsters = chapterSonConfig.CreateMonster.Split('@');
 
                     for (int i = 0; i < monsters.Length; i++)
