@@ -74,6 +74,8 @@ namespace ET
         public GameObject UIStall;
         public GameObject Btn_Friend;
         public GameObject TeamDungeonBtn;
+        public GameObject Btn_HuoDong;
+        public GameObject Button_ZhanQu;
         public GameObject Fps;
         public GameObject Button_Energy;
         public GameObject LeftBottomBtns;
@@ -161,26 +163,26 @@ namespace ET
             self.Button_Solo.SetActive(false);
 
             self.Btn_Union = rc.Get<GameObject>("Btn_Union");
-            self.Btn_Union.GetComponent<Button>().onClick.AddListener(() => {  self.OnBtn_Union(); });
+            self.Btn_Union.GetComponent<Button>().onClick.AddListener(self.OnBtn_Union);
 
             self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
-            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion(); });
+            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(self.OnButton_Fashion);
             self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.Button_Happy = rc.Get<GameObject>("Button_Happy");
-            self.Button_Happy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Happy(); });
+            self.Button_Happy.GetComponent<Button>().onClick.AddListener(self.OnButton_Happy);
             self.Button_Happy.SetActive(false);
 
             self.Button_RunRace = rc.Get<GameObject>("Button_RunRace");
-            self.Button_RunRace.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RunRace(); });
+            self.Button_RunRace.GetComponent<Button>().onClick.AddListener(self.OnButton_RunRace);
             self.Button_RunRace.SetActive(false);
 
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
-            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
+            self.Button_Demon.GetComponent<Button>().onClick.AddListener(self.OnButton_Demon);
             self.Button_Demon.SetActive(false);
 
             self.Btn_RerurnDungeon = rc.Get<GameObject>("Btn_RerurnDungeon");
-            self.Btn_RerurnDungeon.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RerurnDungeon(); });
+            self.Btn_RerurnDungeon.GetComponent<Button>().onClick.AddListener(self.OnBtn_RerurnDungeon);
             self.Btn_RerurnDungeon.SetActive(false);
 
             self.Button_Season = rc.Get<GameObject>("Button_Season");
@@ -188,7 +190,7 @@ namespace ET
             self.Button_Season.SetActive(false);
 
             self.Button_Welfare = rc.Get<GameObject>("Button_Welfare");
-            self.Button_Welfare.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Welfare().Coroutine(); });
+            self.Button_Welfare.GetComponent<Button>().onClick.AddListener(self.OnButton_Welfare);
             self.Button_Welfare.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
@@ -199,31 +201,31 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UIGM).Coroutine(); });
 
             self.Btn_Task = rc.Get<GameObject>("Btn_Task");
-            ButtonHelp.AddListenerEx(self.Btn_Task, () => { self.OnOpenTask(); });
+            ButtonHelp.AddListenerEx(self.Btn_Task, self.OnOpenTask);
 
             self.UIStall = rc.Get<GameObject>("UIStall");
             GameObject buttonStallOpen = rc.Get<GameObject>("ButtonStallOpen");
             ButtonHelp.AddListenerEx(buttonStallOpen, () => { self.OnButtonStallOpen().Coroutine(); });
 
             GameObject buttonStallCancel = rc.Get<GameObject>("ButtonStallCancel");
-            ButtonHelp.AddListenerEx(buttonStallCancel, () => { self.OnButtonStallCancel(); });
+            ButtonHelp.AddListenerEx(buttonStallCancel, self.OnButtonStallCancel);
 
             self.Btn_Friend = rc.Get<GameObject>("Btn_Friend");
-            ButtonHelp.AddListenerEx(self.Btn_Friend, () => { self.OnBtn_Friend(); });
+            ButtonHelp.AddListenerEx(self.Btn_Friend, self.OnBtn_Friend);
 
             self.Button_HongBao = rc.Get<GameObject>("Button_HongBao");
-            ButtonHelp.AddListenerEx(self.Button_HongBao, () => { self.OnButton_HongBao(); });
+            ButtonHelp.AddListenerEx(self.Button_HongBao, self.OnButton_HongBao);
             self.Button_HongBao.SetActive(false);
 
             self.Button_JiaYuan = rc.Get<GameObject>("Btn_JiaYuan");
-            ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
+            ButtonHelp.AddListenerEx(self.Button_JiaYuan, self.OnButton_JiaYuan);
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
-            ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
+            ButtonHelp.AddListenerEx(self.Button_ZhenYing, self.OnButton_ZhenYing);
             self.Button_ZhenYing.SetActive(false);
 
             self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
-            ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
+            ButtonHelp.AddListenerEx(self.Button_WorldLv, self.OnButton_WorldLv);
 
             self.Button_Horse = rc.Get<GameObject>("Button_Horse");
             self.Button_CityHorse = rc.Get<GameObject>("Button_CityHorse");
@@ -292,8 +294,7 @@ namespace ET
             //ButtonHelp.AddListenerEx(self.Obj_Btn_ShouSuo, () => { self.OnOpenShouSuo(); });
 
             self.Btn_EveryTask = rc.Get<GameObject>("Btn_EveryTask");
-            //self.Btn_EveryTask.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EveryTask(); });
-            ButtonHelp.AddListenerEx(self.Btn_EveryTask, () => { self.OnBtn_EveryTask(); });
+            ButtonHelp.AddListenerEx(self.Btn_EveryTask, self.OnBtn_EveryTask);
 
             self.Btn_PaiMaiHang = rc.Get<GameObject>("Btn_PaiMaiHang");
             //self.Btn_PaiMaiHang.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PaiMaiHang(); });
@@ -301,22 +302,22 @@ namespace ET
 
             self.Button_Energy = rc.Get<GameObject>("Button_Energy");
             //self.Button_Energy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Energy(); });
-            ButtonHelp.AddListenerEx(self.Button_Energy, () => { self.OnButton_Energy(); });
+            ButtonHelp.AddListenerEx(self.Button_Energy, self.OnButton_Energy);
             self.Button_Energy.SetActive(false);
 
             self.TeamDungeonBtn = rc.Get<GameObject>("TeamDungeonBtn");
-            ButtonHelp.AddListenerEx(self.TeamDungeonBtn, () => { self.OnTeamDungeonBtn(); });
+            ButtonHelp.AddListenerEx(self.TeamDungeonBtn, self.OnTeamDungeonBtn);
 
-            GameObject Btn_HuoDong = rc.Get<GameObject>("Btn_HuoDong");
-            ButtonHelp.AddListenerEx(Btn_HuoDong, () => { self.OnBtn_HuoDong(); });
+            self.Btn_HuoDong = rc.Get<GameObject>("Btn_HuoDong");
+            ButtonHelp.AddListenerEx(self.Btn_HuoDong, self.OnBtn_HuoDong);
 
-            GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
-            ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
+            self.Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
+            ButtonHelp.AddListenerEx(self.Button_ZhanQu, self.OnButton_ZhanQu);
             //int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             //Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
 
             self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
-            ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
+            ButtonHelp.AddListenerEx(self.Button_Recharge, self.OnButton_Recharge);
 
             self.Btn_Rank = rc.Get<GameObject>("Btn_Rank");
             ButtonHelp.AddListenerEx(self.Btn_Rank, () => { self.OnBtn_Rank(); });
@@ -1659,59 +1660,9 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
         }
 
-        public static async ETTask OnButton_Welfare(this UIMainComponent self)
+        public static void  OnButton_Welfare(this UIMainComponent self)
         {
-            await ETTask.CompletedTask;
-            //新角色七天内显示按钮。
-            //角色创建天数  self.GetComponent<UserInfoComponent>().GetCrateDay() <= 7;
-            UIHelper.Create(self.ZoneScene(), UIType.UIWelfare).Coroutine(); //待完善
-            //所有福利任务 ConfigHelper.WelfareTaskList
-            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
-            {
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskComponent.RoleTaskList[i].taskID);
-                if (taskConfig.TaskType == TaskTypeEnum.Welfare)
-                {
-                    Log.Debug($"福利任务[进行]:  {taskConfig.Id}");
-                }
-            }
-
-            //await  taskComponent.SendCommitTask(90000001, 0);
-
-            //已完成的任务，包含福利任务 taskComponent.RoleComoleteTaskList;
-
-            //领取每天福利任务全部完成对应的奖励 ConfigHelper.WelfareTaskReward
-            //C2M_WelfareTaskRewardRequest   request = new C2M_WelfareTaskRewardRequest() { day = 0 };
-            //M2C_WelfareTaskRewardResponse response  = (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            ////开始抽奖，生成奖励格子。如果 NumericType.WelfareDraw > 0则不需要发送此协议，客户端直接做展示即可。将格子转到NumericType.WelfareDraw - 1即可
-            //C2M_WelfareDrawRequest request2     = new C2M_WelfareDrawRequest();
-            //M2C_WelfareDrawResponse response2 = (M2C_WelfareDrawResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request2);
-
-            //////抽奖有一个转圈的效果，转圈结束后获取道具
-            // C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
-            //M2C_WelfareDrawRewardResponse response13 = (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
-
-            //投资。可以投资6天 
-            //  ConfigHelper.WelfareInvestList
-            //self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList .UserInfo.WelfareInvestList 投资的天数
-            for (int i = 0; i < 6; i++)
-            {
-                //C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = i };
-                //M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
-            }
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            int touzi = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.InvestMent );
-            int createDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
-            int lirun =  ComHelp.GetWelfareTotalLiRun(touzi, createDay);
-            Log.Debug($"总利润: {lirun}");
-
-            //是否领过unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1
-
-            //投资奖励. 第七天领取奖励
-            //C2M_WelfareInvestRewardRequest request5 = new C2M_WelfareInvestRewardRequest();
-            //M2C_WelfareInvestRewardResponse response5 = (M2C_WelfareInvestRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request5);
+            UIHelper.Create(self.ZoneScene(), UIType.UIWelfare).Coroutine(); 
         }
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 
