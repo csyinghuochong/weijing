@@ -189,6 +189,9 @@ namespace ET
             self.Button_Season.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Season().Coroutine(); });
             self.Button_Season.SetActive(false);
 
+            bool gm = GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account);
+            self.Button_Season.SetActive(gm);
+
             self.Button_Welfare = rc.Get<GameObject>("Button_Welfare");
             self.Button_Welfare.GetComponent<Button>().onClick.AddListener(self.OnButton_Welfare);
             self.Button_Welfare.SetActive(false);
@@ -457,24 +460,24 @@ namespace ET
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
         }
 
-        public static void  OnButton_Happy(this UIMainComponent self)
+        public static void OnButton_Happy(this UIMainComponent self)
         {
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
         }
 
         public static void OnButton_RunRace(this UIMainComponent self)
         {
-            UIHelper.Create(self.ZoneScene(),UIType.UIRunRace).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIRunRace).Coroutine();
         }
 
-        public static  void OnButton_Demon(this UIMainComponent self)
+        public static void OnButton_Demon(this UIMainComponent self)
         {
-            UIHelper.Create(self.ZoneScene(),UIType.UIDemon).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIDemon).Coroutine();
         }
 
-        public static  void OnButton_Fashion(this UIMainComponent self)
+        public static void OnButton_Fashion(this UIMainComponent self)
         {
-            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIFashion).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
@@ -532,7 +535,7 @@ namespace ET
                 return;
             }
             long ping = sessionComponent.Session.GetComponent<PingComponent>().Ping;
-            self.TextPing.text= $"延迟: {ping}";
+            self.TextPing.text = $"延迟: {ping}";
             if (ping <= 200)
             {
                 self.TextPing.color = Color.green;
@@ -546,7 +549,7 @@ namespace ET
             self.TextPing.color = Color.red;
         }
 
-        public static void  ShowPing(this UIMainComponent self)
+        public static void ShowPing(this UIMainComponent self)
         {
             if (self.Fps.activeSelf)
             {
@@ -621,8 +624,9 @@ namespace ET
                 case UserDataType.Lv:
                     self.UpdateShowRoleExp();
                     self.UIRoleHead.UpdateShowRoleExp();
+                    self.CheckFuntionButtonByLv(int.Parse(updateValue));
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
-                    self.ZoneScene().GetComponent<GuideComponent>().OnTrigger( GuideTriggerType.LevelUp, userInfo.Lv.ToString());
+                    self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
                     break;
                 case UserDataType.Name:
@@ -639,11 +643,11 @@ namespace ET
                     }
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 家族捐献");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 家族捐献");
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 家族捐献");
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 家族捐献");
                     }
                     break;
 
@@ -654,34 +658,34 @@ namespace ET
                     }
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 金币");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 金币");
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 金币");
                     }
                     break;
 
                 case UserDataType.RongYu:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 荣誉");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 荣誉");
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 荣誉");
                     }
                     break;
                 case UserDataType.JiaYuanFund:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 家园资金");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 家园资金");
                     }
                     break;
                 case UserDataType.BaoShiDu:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 饱食度");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 饱食度");
                     }
                     break;
 
@@ -727,7 +731,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             int operatMode = int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan));
             self.UIJoystickMoveComponent.UpdateOperateMode(operatMode);
-        
+
             string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             SettingHelper.OnSmooth(oldValue);
 
@@ -842,7 +846,7 @@ namespace ET
                 GameObject gameObject = UnityEngine.Object.Instantiate(prefab);
                 gameObject.name = "XiaoGuiZhongDian";
 
-                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(ConfigHelper.TurtleList[1] );
+                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(ConfigHelper.TurtleList[1]);
                 string[] potioninfo = npcConfig.MovePosition.Split(';');
                 float x = float.Parse(potioninfo[0]);
                 float y = float.Parse(potioninfo[1]);
@@ -859,9 +863,9 @@ namespace ET
             }
         }
 
-        public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
+        public static void OnTianQiChange(this UIMainComponent self, string tianqivalue)
         {
-            if (tianqivalue == "0" && self.TianQiEffectObj!=null)
+            if (tianqivalue == "0" && self.TianQiEffectObj != null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
                 self.TianQiEffectObj = null;
@@ -885,12 +889,12 @@ namespace ET
         {
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家族争霸赛", "是否参与家族争霸赛?", () =>
            {
-               UIHelper.Remove( self.ZoneScene(), UIType.UIDonation );
+               UIHelper.Remove(self.ZoneScene(), UIType.UIDonation);
                EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
            }, null).Coroutine();
         }
 
-        public static  void OnHorseNotice(this UIMainComponent self)
+        public static void OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             switch (m2C_HorseNoticeInfo.NoticeType)
@@ -1025,7 +1029,7 @@ namespace ET
 
             //组队
             GameObject mainTeamSet = rc.Get<GameObject>("UIMainTeam");
-            self.UIMainTeam = self.AddChild<UIMainTeamComponent, GameObject>( mainTeamSet);
+            self.UIMainTeam = self.AddChild<UIMainTeamComponent, GameObject>(mainTeamSet);
 
             //关卡小地图
             self.LevelGuideMini = rc.Get<GameObject>("LevelGuideMini");
@@ -1045,7 +1049,7 @@ namespace ET
 
             GameObject MainActivityTip = rc.Get<GameObject>("UIMainActivityTip");
             self.UIMainActivityTipComponent = self.AddChild<UIMainActivityTipComponent, GameObject>(MainActivityTip);
-         
+
             //左上角头像
             GameObject RoleHead = rc.Get<GameObject>("UIRoleHead");
             self.UIRoleHead = self.AddChild<UIRoleHeadComponent, GameObject>(RoleHead);
@@ -1065,7 +1069,7 @@ namespace ET
 
             GameObject ButtonPositionSet = rc.Get<GameObject>("ButtonPositionSet");
             self.UIMainButtonPositionComponent = self.AddChild<UIMainButtonPositionComponent, GameObject>(ButtonPositionSet);
-            self.UIMainButtonPositionComponent.InitButtons( self.GetParent<UI>().GameObject );
+            self.UIMainButtonPositionComponent.InitButtons(self.GetParent<UI>().GameObject);
             self.UIMainButtonPositionComponent.GameObject.SetActive(false);
 
             //IOS适配
@@ -1088,12 +1092,12 @@ namespace ET
 
             if (PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastFrame) == 0)
             {
-                UIHelper.Create( self.ZoneScene(), UIType.UISettingFrame ).Coroutine();
+                UIHelper.Create(self.ZoneScene(), UIType.UISettingFrame).Coroutine();
             }
             else
             {
                 string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.HighFps);
-                UICommonHelper.TargetFrameRate ( oldValue == "1" ? 60 : 30 );
+                UICommonHelper.TargetFrameRate(oldValue == "1" ? 60 : 30);
             }
 
             string attackmode = userInfoComponent.GetGameSettingValue(GameSettingEnum.AttackTarget);
@@ -1115,49 +1119,51 @@ namespace ET
 
         public static void InitFunctionButton(this UIMainComponent self)
         {
-            long serverTime = TimeHelper.ServerNow();
+            self.FunctionButtons.Clear();
 
+            long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             //1058变身大赛 1055喜从天降 1052狩猎活动 1045竞技场    1062争霸捐献 1063开区奖励 1064活跃     1065商城 1066活动      
             //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045,  1052, 1055, 1057, 1058, 1059 };
-            for (int i= 0; i < functonIds.Count; i++)
+            //List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052, 1055, 1057, 1058, 1059,
+            //                                         1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014 };
+
+            List<int> functonIds = new List<int>() {
+                                                     1062 };
+            for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]) - 10;
-                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
-                bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
 
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {
                     endTime += (30 * 60);
                 }
- 
-                if (  curTime < startTime)
+                if (curTime >= endTime)
+                {
+                    continue;
+                }
+
+                if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });  //FunctionType1 并且大于beingTime 开启
+
+                    long eTime = serverTime + (endTime - curTime) * 1000;
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
                 }
-                if (  curTime < endTime)
+                else
                 {
-                    long sTime = serverTime + (endTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
-                }
-                if (inTime)
-                {
-                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });//FunctionType1 并且大于beingTime 开启 会直接开启
+
+                    long eTime = serverTime + (endTime - curTime) * 1000;
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = eTime });  //FunctionType0 并且大于beingTime 关闭时间点
                 }
             }
-
-
-            bool gm = GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account);
-            int openday = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
-            self.Button_Season.SetActive(gm);
-            self.Button_Welfare.SetActive(gm && openday <= 8);
 
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
@@ -1166,11 +1172,139 @@ namespace ET
                 {
                     long endTime_1 = a.BeginTime;
                     long endTime_2 = b.BeginTime;
-                    return (int)(endTime_1 - endTime_2);     
+                    return (int)(endTime_1 - endTime_2);
                 });
 
                 self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(self.FunctionButtons[0].BeginTime, TimerType.UIMainTimer, self);
             }
+        }
+
+        public static void CheckFuntionButtonByLv(this UIMainComponent self, int lv)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+
+            for (int i = 0; i < self.FunctionButtons.Count; i++)
+            {
+                if (self.FunctionButtons[i].FunctionType != 0)
+                {
+                    continue;
+                }
+
+                int functionId = self.FunctionButtons[i].FunctionId;
+
+                long startTime = FunctionHelp.GetOpenTime(functionId);
+
+                bool todayopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
+
+                FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
+                bool functionOn = FunctionHelp.CheckFuncitonOn(self.ZoneScene(), funtionConfig);
+
+                //只做开启
+                if (todayopen && functionOn && curTime >= startTime)
+                {
+                    self.ShowFunctionButton(functionId, true);
+                } 
+            }
+        }
+
+        public static void ShowFunctionButton(this UIMainComponent self, int functionId,  bool showButton)
+        {
+            switch (functionId)
+            {
+                case 1014:
+                    self.Btn_PaiMaiHang.SetActive(showButton);
+                    break;
+                case 1070:
+                    int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+                    int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
+                    int lastDay = WorldLvHelper.GetWorldLvLastDay();
+                    self.Button_WorldLv.SetActive(showButton && openDay <= lastDay + 1);
+                    break;
+                case 1016:
+                    self.Btn_Rank.SetActive(showButton);
+                    break;
+                case 1069:
+                    self.Button_FenXiang.SetActive(showButton);
+                    break;
+                case 1067:
+                    self.Button_NewYear.SetActive(showButton);
+                    break;
+                case 1066:
+                    self.Btn_HuoDong.SetActive(showButton);
+                    break;
+                case 1065:
+                    self.Button_Recharge.SetActive(showButton);
+                    break;
+                case 1064:
+                    self.Btn_EveryTask.SetActive(showButton);
+                    break;
+                case 1063:
+                    self.Button_ZhanQu.SetActive(showButton);
+                    break;
+                case 1062:
+                    self.Button_Donation.SetActive(showButton);
+                    break;
+                case 1068:
+                    int openday = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
+                    self.Button_Welfare.SetActive(showButton && openday <= 8);
+                    break;
+                case 1023:
+                    int honbao = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao);
+                    self.Button_HongBao.SetActive(showButton && honbao == 0);
+                    break;
+                case 1025:
+                    self.Btn_Battle.SetActive(showButton);
+                    break;
+                case 1031:
+                    if (showButton)
+                    {
+                        ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                    }
+                    break;
+                case 1040:
+                    self.Btn_Auction.SetActive(showButton);
+                    break;
+                case 1045:
+                    self.Button_Solo.SetActive(showButton);
+                    break;
+                case 1052:
+                    self.Button_Hunt.SetActive(showButton);
+                    break;
+                case 1055:
+                    self.Button_Happy.SetActive(showButton);
+                    if (showButton)
+                    {
+                        ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                    }
+                    break;
+                case 1057:
+                    if (showButton)
+                    {
+                        //出现终点位置
+                        self.OnTurtleEnd(true).Coroutine();
+                    }
+                    break;
+                case 1058:
+                    if (showButton)
+                    {
+                        ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                    }
+                    self.Button_RunRace.SetActive(showButton);
+                    break;
+                case 1059:
+                    if (showButton)
+                    {
+                        ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                    }
+                    self.Button_Demon.SetActive(showButton);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         public static void OnCheckFuntionButton(this UIMainComponent self)
@@ -1183,7 +1317,10 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
 
-            for (int i = self.FunctionButtons.Count - 1; i >= 0; i--)
+            //1058变身大赛 1055喜从天降 1052狩猎活动 1045竞技场    1062争霸捐献 1063开区奖励 1064活跃     1065商城 1066活动      
+            //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行
+            int removeNumber = 0;
+            for (int i = 0; i< self.FunctionButtons.Count; i++)
             {
                 int functionId = self.FunctionButtons[i].FunctionId;
                 long sTime = self.FunctionButtons[i].BeginTime;
@@ -1192,71 +1329,18 @@ namespace ET
                 FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
                 bool functionOn = FunctionHelp.CheckFuncitonOn(self.ZoneScene(), funtionConfig);
 
+                bool showButton = functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1;
+
                 if (serverTime >= sTime)
                 {
-                    switch (functionId)
-                    {
-                        case 1023:
-                            self.Button_HongBao.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1
-                            && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
-                            break;
-                        case 1025:
-                            self.Btn_Battle.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        case 1031:
-                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
-                            {
-                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
-                            }
-                            break;
-                        case 1040:
-                            self.Btn_Auction.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        case 1045:
-                            self.Button_Solo.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        case 1052:
-                            self.Button_Hunt.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        case 1055:
-                            self.Button_Happy.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
-                            {
-                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), self.FunctionButtons[i].FunctionId);
-                            }
-                            break;
-                        case 1057:
-                            if (self.FunctionButtons[i].FunctionType == 1)
-                            {
-                                //出现终点位置
-                                self.OnTurtleEnd(true).Coroutine();
-                            }
-                            break;
-                        case 1058:
-                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
-                            {
-                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
-                            }
-                            self.Button_RunRace.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        case 1059:
-                            if (functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1)
-                            {
-                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
-                            }
-                            self.Button_Demon.SetActive(functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1);
-                            break;
-                        default:
-                            break;
-                    }
-                    self.FunctionButtons.RemoveAt(i);
+                    self.ShowFunctionButton( functionId, showButton );
+                    removeNumber++;
                 }
             }
+            self.FunctionButtons.RemoveRange(0, removeNumber);
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
-            if (self.FunctionButtons.Count > 0)
-            {
-                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(self.FunctionButtons[0].BeginTime + 10000, TimerType.UIMainTimer, self);
-            }
+
+            self.TimerFunctiuon = (self.FunctionButtons.Count > 0) ? TimerComponent.Instance.NewOnceTimer(self.FunctionButtons[0].BeginTime + 10000, TimerType.UIMainTimer, self) : 0;
         }
 
         public static void SetFenBianLv1(this UIMainComponent self)
@@ -1837,11 +1921,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsInt((int)NumericType.Now_Stall) == 1);
 
-            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
-            int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
-            int lastDay = WorldLvHelper.GetWorldLvLastDay();
-            self.Button_WorldLv.SetActive(openDay <= lastDay + 1);
-
+           
             self.OnTianQiChange(self.ZoneScene().GetComponent<AccountInfoComponent>().TianQiValue);
         }
 
