@@ -84,6 +84,7 @@ namespace ET
             {
                 self.InvestBtn.SetActive(false);
                 self.InvestedImg.SetActive(true);
+                self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Add(self.day);
                 // 刷新
                 self.GetParent<UIWelfareInvestComponent>().UpdateInfo();
             }

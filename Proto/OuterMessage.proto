@@ -337,6 +337,8 @@ message UserInfo
 	int64 CreateTime = 50;
 
 	repeated int32  WelfareInvestList = 51; //投资
+
+	repeated int32 
 }
 
 message KeyValuePair
@@ -6714,6 +6716,22 @@ message C2M_WelfareInvestRewardRequest // IActorLocationRequest
 }
 
 message M2C_WelfareInvestRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//累计充值奖励
+//ResponseType M2C_RechargeRewardResponse
+message C2M_RechargeRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;	
+	int32 RechargeNumber = 1;
+}
+
+message M2C_RechargeRewardResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

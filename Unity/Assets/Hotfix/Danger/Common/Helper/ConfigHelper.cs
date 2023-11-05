@@ -737,5 +737,16 @@ namespace ET
             //第七天
             new List<int>{ 71007001,71007002,71007003,71007004,71007005 },
         };
+
+
+        /// <summary>
+        /// 累充奖励
+        /// </summary>
+        public static Dictionary<int, string> RechargeReward = new Dictionary<int, string>()
+        {
+            { 50, "1;1"  },
+            { 90, "1;2" }
+        };
+
     }
 }

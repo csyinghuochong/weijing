@@ -180,6 +180,7 @@ namespace ET
             M2C_WelfareTaskRewardResponse response =
                     (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
+            self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareTaskRewards.Add(self.Day);
             self.UpdateInfo(self.Day);
         }
     }
