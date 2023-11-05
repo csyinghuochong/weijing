@@ -1128,11 +1128,9 @@ namespace ET
 
             //1058变身大赛 1055喜从天降 1052狩猎活动 1045竞技场    1062争霸捐献 1063开区奖励 1064活跃     1065商城 1066活动      
             //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行
-            //List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052, 1055, 1057, 1058, 1059,
-            //                                         1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014 };
 
-            List<int> functonIds = new List<int>() {
-                                                     1062 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052, 1055, 1057, 1058, 1059,
+                                                     1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1331,9 +1329,10 @@ namespace ET
 
                 bool showButton = functionOn && todayopen && self.FunctionButtons[i].FunctionType == 1;
 
+                self.ShowFunctionButton(functionId, showButton);
+
                 if (serverTime >= sTime)
                 {
-                    self.ShowFunctionButton( functionId, showButton );
                     removeNumber++;
                 }
             }

@@ -419,12 +419,14 @@ namespace ET
             self.GenerateUnionRace();
             self.OnCheckWinUnion().Coroutine();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
-            long chatServerId = DBHelper.GetChatServerId(self.DomainZone());
-            A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new A2A_ServerMessageRequest()
-                {
-                    MessageType = NoticeType.UnionRace,
-                });
+
+            ///////
+            //long chatServerId = DBHelper.GetChatServerId(self.DomainZone());
+            //A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+            //    (chatServerId, new A2A_ServerMessageRequest()
+            //    {
+            //        MessageType = NoticeType.UnionRace,
+            //    });
             List<UnionPlayerInfo> playerlist = new List<UnionPlayerInfo>();
             for (int i = 0; i < self.DBUnionManager.SignupUnions.Count; i++)
             {
