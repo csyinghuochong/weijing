@@ -147,7 +147,7 @@ namespace ET
                     return;
                 }
             }
-            if (self.CheckMove())
+            if (!self.EditorMode && self.ClickMode && self.CheckMove())
             {
                 return;
             }
@@ -179,7 +179,8 @@ namespace ET
             {
                 return;
             }
-            if (self.ClickMode && self.CheckMove())
+
+            if (!self.EditorMode && self.ClickMode && self.CheckMove())
             {
                 return;
             }
