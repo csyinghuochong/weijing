@@ -80,7 +80,7 @@ namespace ET
                     }
 
                     self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{userInfo.SeasonExp}/{seasonLevelConfig.UpExp}";
-                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = userInfo.SeasonExp / seasonLevelConfig.UpExp;
+                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f* userInfo.SeasonExp / seasonLevelConfig.UpExp;
                     break;
                 }
 
@@ -91,7 +91,7 @@ namespace ET
                 else
                 {
                     self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{userInfo.SeasonExp}/{seasonLevelConfig.UpExp}";
-                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = userInfo.SeasonExp / seasonLevelConfig.UpExp;
+                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * userInfo.SeasonExp / seasonLevelConfig.UpExp;
                     break;
                 }
             }
