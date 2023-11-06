@@ -19,6 +19,7 @@ namespace ET
 
         public GameObject Lab_RmbNum;
         public GameObject Lab_Num;
+        public GameObject UITowerShopItem;
     }
 
 
@@ -37,6 +38,8 @@ namespace ET
 
             self.Lab_RmbNum = rc.Get<GameObject>("Lab_RmbNum");
             self.Lab_Num = rc.Get<GameObject>("Lab_Num");
+            self.UITowerShopItem = rc.Get<GameObject>("UITowerShopItem");
+            self.UITowerShopItem.SetActive(false);
             self.Btn_BuyNum_jian10 = rc.Get<GameObject>("Btn_BuyNum_jian10");
             self.Btn_BuyNum_jian10.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(-10); });
             self.Btn_BuyNum_jian1 = rc.Get<GameObject>("Btn_BuyNum_jian1");
@@ -85,9 +88,6 @@ namespace ET
 
         public static void OnInitUI(this UITowerShopComponent self)
         {
-            string path_1 = ABPathHelper.GetUGUIPath("TowerDungeon/UITowerShopItem");
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
-
             int shopSellid = GlobalValueConfigCategory.Instance.Get(64).Value2;
             int playLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             while (shopSellid != 0)
@@ -99,7 +99,8 @@ namespace ET
                     continue;
                 }
 
-                GameObject storeItem = GameObject.Instantiate(bundleObj);
+                GameObject storeItem = GameObject.Instantiate(self.UITowerShopItem);
+                storeItem.SetActive(true);
                 UICommonHelper.SetParent(storeItem, self.ItemListNode);
                 UIStoreItemComponent uIItemComponent = self.AddChild<UIStoreItemComponent, GameObject>(storeItem);
                 uIItemComponent.OnUpdateData(storeSellConfig);
