@@ -28,6 +28,7 @@ namespace ET
         public GameObject NpcNodeList;
         public GameObject ImageSelect;
         public GameObject MapCamera;
+        public GameObject UIMapBigNpcItem;
 
         public MoveComponent MoveComponent;
         public List<GameObject> PathPointList = new List<GameObject>();
@@ -83,6 +84,8 @@ namespace ET
             self.NpcPostion = rc.Get<GameObject>("npcPostion");
             self.pathPoint = rc.Get<GameObject>("pathPoint");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
+            self.UIMapBigNpcItem = rc.Get<GameObject>("UIMapBigNpcItem");
+            self.UIMapBigNpcItem.SetActive(false);
 
             self.Btn_Close.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { self.OnCloseMiniMap(); });
 
@@ -394,9 +397,7 @@ namespace ET
                 self.RequestTeamerPosition().Coroutine();
                 self.ShowTeamBossList();
             }
- 
-            var path = ABPathHelper.GetUGUIPath("Main/MiniMap/UIMapBigNpcItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            
             GameObject mapCamera = self.MapCamera;
             if (npcList != null)
             {
@@ -427,7 +428,8 @@ namespace ET
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
 
-                    GameObject npcGo = GameObject.Instantiate(bundleGameObject);
+                    GameObject npcGo = GameObject.Instantiate(self.UIMapBigNpcItem);
+                    npcGo.SetActive(true);
                     UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                     UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
                     UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
@@ -438,7 +440,8 @@ namespace ET
 
             foreach (var item in self.BossList)
             {
-                GameObject npcGo = GameObject.Instantiate(bundleGameObject);
+                GameObject npcGo = GameObject.Instantiate(self.UIMapBigNpcItem);
+                npcGo.SetActive(true);
                 UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                 UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
                 UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();

@@ -25,6 +25,7 @@ namespace ET
         public GameObject InputCreateRoleName;
         public GameObject OccShow_ZhanShi;
         public GameObject OccShow_FaShi;
+        public GameObject UICreateRoleSkillItem;
 
         public GameObject RawImage;
         public UIModelShowComponent uIModelShowComponent;
@@ -61,6 +62,8 @@ namespace ET
 
             self.OccShow_ZhanShi = rc.Get<GameObject>("OccShow_ZhanShi");
             self.OccShow_FaShi = rc.Get<GameObject>("OccShow_FaShi");
+            self.UICreateRoleSkillItem = rc.Get<GameObject>("UICreateRoleSkillItem");
+            self.UICreateRoleSkillItem.SetActive(false);
 
             self.Text_Desc = rc.Get<GameObject>("Text_Desc");
             self.BtnRandomName = rc.Get<GameObject>("BtnRandomName");
@@ -233,8 +236,6 @@ namespace ET
             //}
             //self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.Occ);
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.Occ);
-            string path = ABPathHelper.GetUGUIPath("CreateRole/UICreateRoleSkillItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -254,7 +255,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UICreateRoleSkillItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.SkillListNode);
                     ui_1 = self.AddChild<UICommonSkillItemComponent, GameObject>(taskTypeItem);
                     self.SkillUIList.Add(ui_1);

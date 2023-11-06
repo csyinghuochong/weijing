@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 5117795468465190883}
   - component: {fileID: 4603712253624065945}
   m_Layer: 5
-  m_Name: UILevelGuide
+  m_Name: UICellDungeonCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

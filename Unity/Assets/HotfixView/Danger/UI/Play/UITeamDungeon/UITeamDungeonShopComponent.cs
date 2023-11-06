@@ -18,6 +18,7 @@ namespace ET
         public GameObject Btn_BuyNum_jia10;
         public GameObject Btn_BuyNum_jian1;
         public GameObject Btn_BuyNum_jian10;
+        public GameObject UIBattleShopItem;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
@@ -47,6 +48,8 @@ namespace ET
 
             self.Btn_BuyNum_jian10 = rc.Get<GameObject>("Btn_BuyNum_jian10");
             self.Btn_BuyNum_jian10.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(-10); });
+            self.UIBattleShopItem = rc.Get<GameObject>("UIBattleShopItem");
+            self.UIBattleShopItem.SetActive(false);
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
@@ -129,9 +132,7 @@ namespace ET
             {
                 return;
             }
-
-            string path_1 = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleShopItem");
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
+            
 
             int shopSellid = GlobalValueConfigCategory.Instance.Get(76).Value2;
             int playLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -144,7 +145,8 @@ namespace ET
                     continue;
                 }
 
-                GameObject storeItem = GameObject.Instantiate(bundleObj);
+                GameObject storeItem = GameObject.Instantiate(self.UIBattleShopItem);
+                storeItem.SetActive(true);
                 UICommonHelper.SetParent(storeItem, self.ItemListNode);
                 UIStoreItemComponent uIItemComponent = self.AddChild<UIStoreItemComponent, GameObject>(storeItem);
                 uIItemComponent.OnUpdateData(storeSellConfig);
