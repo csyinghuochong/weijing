@@ -33,11 +33,5 @@ namespace ET
             Sprite prefab =  ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             return prefab;
         }
-
-        public static async ETTask<Sprite> GetIconSpriteAsync(string path)
-        {
-            Sprite prefab =await ResourcesComponent.Instance.LoadAssetAsync<Sprite>(path);
-            return prefab;
-        }
     }
 }

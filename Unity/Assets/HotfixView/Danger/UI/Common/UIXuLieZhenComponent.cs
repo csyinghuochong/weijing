@@ -44,7 +44,7 @@ namespace ET
             for (int i = 0; i < titleConfig.AnimatorNumber; i++)
             {
                 var path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ChengHaoIcon, $"{titleConfig.AnimatorAsset}/{i + 1}");
-                Sprite sprite = await ABAtlasHelp.GetIconSpriteAsync(path);
+                Sprite sprite = await ResourcesComponent.Instance.LoadAssetAsync<Sprite>(path);
                 if (instanceId != self.InstanceId)
                 {
                     return;
