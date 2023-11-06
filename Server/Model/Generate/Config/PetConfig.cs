@@ -197,7 +197,7 @@ namespace ET
 		public int Base_MoveSpeed { get; set; }
 		/// <summary>攻击速度</summary>
 		[ProtoMember(41)]
-		public int Base_ActSpeed { get; set; }
+		public double Base_ActSpeed { get; set; }
 		/// <summary>攻击距离</summary>
 		[ProtoMember(42)]
 		public double ActDistance { get; set; }
