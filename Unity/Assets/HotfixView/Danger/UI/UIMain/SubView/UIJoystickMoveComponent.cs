@@ -57,7 +57,6 @@ namespace ET
         public long Timer;
 
         public int OperateMode;
-
     }
 
 

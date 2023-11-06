@@ -193,7 +193,7 @@ namespace ET
 
         public static async ETTask CheckWinUnion(this UnionSceneComponent self, Scene fubnescene, int minite)
         {
-            Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
+            Vector3 initPosi = new Vector3(-68.62f, 0f, -3.05f);
             Dictionary<long, int> map = new Dictionary<long, int>();
 
 
