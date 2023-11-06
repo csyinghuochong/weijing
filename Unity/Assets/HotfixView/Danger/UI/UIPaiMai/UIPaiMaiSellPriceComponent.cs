@@ -130,6 +130,14 @@ namespace ET
 
         public static async ETTask OnBtn_ChuShou(this UIPaiMaiSellPriceComponent self)
         {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            // 橙色装备不能上架
+            if (itemConfig.ItemQuality >= 5 && itemConfig.ItemType == 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能上架！");
+                return;
+            }
+
             PaiMaiItemInfo paiMaiItemInfo = new PaiMaiItemInfo();
             paiMaiItemInfo.BagInfo = ComHelp.DeepCopy<BagInfo>(self.BagInfo);
             paiMaiItemInfo.BagInfo.ItemNum = self.SellNum;

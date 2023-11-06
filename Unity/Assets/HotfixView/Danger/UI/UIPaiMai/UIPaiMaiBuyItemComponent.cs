@@ -115,6 +115,14 @@ namespace ET
 
         public static void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
         {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
+            // 橙色装备不能购买
+            if (itemConfig.ItemQuality >= 5 && itemConfig.ItemType == 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能购买！");
+                return;
+            }
+            
             if (self.PaiMaiItemInfo.BagInfo.ItemNum >= 10)
             {
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", $"你购买的道具数量为{self.PaiMaiItemInfo.BagInfo.ItemNum}，是否购买？",
