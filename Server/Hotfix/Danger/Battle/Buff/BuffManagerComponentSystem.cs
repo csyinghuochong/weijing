@@ -428,6 +428,10 @@ namespace ET
 
             int jifen = unit.GetMaoXianExp();
             int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
+            if (activityid == 0)
+            {
+                return;
+            }
 
             //移除之前的
             for (int i = 30001; i < activityid; i++)
@@ -449,6 +453,11 @@ namespace ET
 
             int jifen = unit.GetMaoXianExp();
             int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
+            if (activityid == 0)
+            {
+                return;
+            }
+
             List<int> buffids = ActivityConfigCategory.Instance.GetBuffIds(activityid);
             for (int i = 0; i < buffids.Count; i++)
             {
