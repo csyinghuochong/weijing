@@ -11,7 +11,7 @@ namespace ET
 
         public float detail = 1;//增加后，线条数量会减少，每个线条会更长。  
 
-        public float displacement = 2;//位移量，也就是线条数值方向偏移的最大值  
+        public float displacement = 0.5f;//位移量，也就是线条数值方向偏移的最大值  
 
         public Transform End;//链接目标  
 
@@ -29,5 +29,7 @@ namespace ET
         public LineRenderer _lineRender;
 
         public List<Vector3> _linePosList;
+
+        public float TextureOffsetX = 0;
     }
 }

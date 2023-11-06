@@ -76,6 +76,17 @@ namespace ET
                     endPos = self.End.position + Vector3.up * self.yOffset;
                 }
 
+                if (self.TextureOffsetX < 2f)
+                {
+                    self.TextureOffsetX += 0.1f;
+                }
+                else
+                {
+                    self.TextureOffsetX = 0;
+                }
+                Vector2 vector2 = new Vector2(self.TextureOffsetX, 0);
+                self._lineRender.material.SetTextureOffset("_MainTex",vector2);
+                
                 //获得开始点与结束点之间的随机生成点
                 self.CollectLinPos(startPos, endPos, self.displacement);
 

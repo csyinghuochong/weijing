@@ -41,7 +41,7 @@
             Unit target = null;
             if (this.HurtIds.Count == 0)
             {
-                target = AIHelp.GetNearestEnemy(lastTarget, 10f);
+                target = AIHelp.GetNearestEnemy(lastTarget, 10f, true);
                 if (target == null ||( target!= null && !this.CheckShape(target.Position)))
                 {
                     this.SetSkillState(SkillState.Finished);
