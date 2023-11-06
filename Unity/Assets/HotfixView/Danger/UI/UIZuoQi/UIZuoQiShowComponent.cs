@@ -29,7 +29,9 @@ namespace ET
     {
         public static  void OnInitUI(this UIZuoQiShowComponent self)
         {
-            List<ZuoQiShowConfig> zuoQiConfigs = ZuoQiShowConfigCategory.Instance.GetAll().Values.ToList();
+            List<ZuoQiShowConfig> zuoQiConfigs = new List<ZuoQiShowConfig>();
+            zuoQiConfigs.AddRange(ZuoQiShowConfigCategory.Instance.GetAll().Values.ToList());
+            zuoQiConfigs.Sort((a, b) => a.Quality - b.Quality);
             for (int i = 0; i < zuoQiConfigs.Count; i++)
             {
                 GameObject zuoqiItem = GameObject.Instantiate(self.UIZuoQiShowItem);
