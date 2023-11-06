@@ -1,122 +1,350 @@
 fileFormatVersion: 2
 guid: 050063daeae6b6e4883d0d29425b8d5a
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bip01_Backpack
-    100004: Bip01_Backpack02
-    100006: Bip01_Coat_1
-    100008: Bip01_Coat_102
-    100010: Bip01_Coat_2
-    100012: Bip01_Coat_202
-    100014: Bip01_Coat_3
-    100016: Bip01_Coat_302
-    100018: Bip01_Head
-    100020: Bip01_L_Calf
-    100022: Bip01_L_Clavicle
-    100024: Bip01_L_Finger0
-    100026: Bip01_L_Finger01
-    100028: Bip01_L_Finger1
-    100030: Bip01_L_Finger11
-    100032: Bip01_L_Finger2
-    100034: Bip01_L_Finger21
-    100036: Bip01_L_Finger3
-    100038: Bip01_L_Finger31
-    100040: Bip01_L_Foot
-    100042: Bip01_L_Forearm
-    100044: Bip01_L_Hand
-    100046: Bip01_L_Thigh
-    100048: Bip01_L_Toe0
-    100050: Bip01_L_UpperArm
-    100052: Bip01_Neck
-    100054: Bip01_Pelvis
-    100056: Bip01_R_Calf
-    100058: Bip01_R_Clavicle
-    100060: Bip01_R_Finger0
-    100062: Bip01_R_Finger01
-    100064: Bip01_R_Finger1
-    100066: Bip01_R_Finger11
-    100068: Bip01_R_Finger2
-    100070: Bip01_R_Finger21
-    100072: Bip01_R_Finger3
-    100074: Bip01_R_Finger31
-    100076: Bip01_R_Foot
-    100078: Bip01_R_Forearm
-    100080: Bip01_R_Hand
-    100082: Bip01_R_Thigh
-    100084: Bip01_R_Toe0
-    100086: Bip01_R_UpperArm
-    100088: Bip01_Spine
-    100090: Bip01_Spine1
-    100092: //RootNode
-    100094: gambler
-    100096: NPC_Gambler
-    100098: root
-    100100: tag_leftarm
-    100102: tag_lefthand
-    100104: tag_righthand
-    400000: Bip01
-    400002: Bip01_Backpack
-    400004: Bip01_Backpack02
-    400006: Bip01_Coat_1
-    400008: Bip01_Coat_102
-    400010: Bip01_Coat_2
-    400012: Bip01_Coat_202
-    400014: Bip01_Coat_3
-    400016: Bip01_Coat_302
-    400018: Bip01_Head
-    400020: Bip01_L_Calf
-    400022: Bip01_L_Clavicle
-    400024: Bip01_L_Finger0
-    400026: Bip01_L_Finger01
-    400028: Bip01_L_Finger1
-    400030: Bip01_L_Finger11
-    400032: Bip01_L_Finger2
-    400034: Bip01_L_Finger21
-    400036: Bip01_L_Finger3
-    400038: Bip01_L_Finger31
-    400040: Bip01_L_Foot
-    400042: Bip01_L_Forearm
-    400044: Bip01_L_Hand
-    400046: Bip01_L_Thigh
-    400048: Bip01_L_Toe0
-    400050: Bip01_L_UpperArm
-    400052: Bip01_Neck
-    400054: Bip01_Pelvis
-    400056: Bip01_R_Calf
-    400058: Bip01_R_Clavicle
-    400060: Bip01_R_Finger0
-    400062: Bip01_R_Finger01
-    400064: Bip01_R_Finger1
-    400066: Bip01_R_Finger11
-    400068: Bip01_R_Finger2
-    400070: Bip01_R_Finger21
-    400072: Bip01_R_Finger3
-    400074: Bip01_R_Finger31
-    400076: Bip01_R_Foot
-    400078: Bip01_R_Forearm
-    400080: Bip01_R_Hand
-    400082: Bip01_R_Thigh
-    400084: Bip01_R_Toe0
-    400086: Bip01_R_UpperArm
-    400088: Bip01_Spine
-    400090: Bip01_Spine1
-    400092: //RootNode
-    400094: gambler
-    400096: NPC_Gambler
-    400098: root
-    400100: tag_leftarm
-    400102: tag_lefthand
-    400104: tag_righthand
-    4300000: NPC_Gambler
-    7400000: Envi_Idle10_Cower
-    7400002: Fidget1
-    7400004: Idle
-    9500000: //RootNode
-    11100000: //RootNode
-    13700000: NPC_Gambler
-    2186277476908879412: ImportLogs
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bip01_Backpack
+  - first:
+      1: 100004
+    second: Bip01_Backpack02
+  - first:
+      1: 100006
+    second: Bip01_Coat_1
+  - first:
+      1: 100008
+    second: Bip01_Coat_102
+  - first:
+      1: 100010
+    second: Bip01_Coat_2
+  - first:
+      1: 100012
+    second: Bip01_Coat_202
+  - first:
+      1: 100014
+    second: Bip01_Coat_3
+  - first:
+      1: 100016
+    second: Bip01_Coat_302
+  - first:
+      1: 100018
+    second: Bip01_Head
+  - first:
+      1: 100020
+    second: Bip01_L_Calf
+  - first:
+      1: 100022
+    second: Bip01_L_Clavicle
+  - first:
+      1: 100024
+    second: Bip01_L_Finger0
+  - first:
+      1: 100026
+    second: Bip01_L_Finger01
+  - first:
+      1: 100028
+    second: Bip01_L_Finger1
+  - first:
+      1: 100030
+    second: Bip01_L_Finger11
+  - first:
+      1: 100032
+    second: Bip01_L_Finger2
+  - first:
+      1: 100034
+    second: Bip01_L_Finger21
+  - first:
+      1: 100036
+    second: Bip01_L_Finger3
+  - first:
+      1: 100038
+    second: Bip01_L_Finger31
+  - first:
+      1: 100040
+    second: Bip01_L_Foot
+  - first:
+      1: 100042
+    second: Bip01_L_Forearm
+  - first:
+      1: 100044
+    second: Bip01_L_Hand
+  - first:
+      1: 100046
+    second: Bip01_L_Thigh
+  - first:
+      1: 100048
+    second: Bip01_L_Toe0
+  - first:
+      1: 100050
+    second: Bip01_L_UpperArm
+  - first:
+      1: 100052
+    second: Bip01_Neck
+  - first:
+      1: 100054
+    second: Bip01_Pelvis
+  - first:
+      1: 100056
+    second: Bip01_R_Calf
+  - first:
+      1: 100058
+    second: Bip01_R_Clavicle
+  - first:
+      1: 100060
+    second: Bip01_R_Finger0
+  - first:
+      1: 100062
+    second: Bip01_R_Finger01
+  - first:
+      1: 100064
+    second: Bip01_R_Finger1
+  - first:
+      1: 100066
+    second: Bip01_R_Finger11
+  - first:
+      1: 100068
+    second: Bip01_R_Finger2
+  - first:
+      1: 100070
+    second: Bip01_R_Finger21
+  - first:
+      1: 100072
+    second: Bip01_R_Finger3
+  - first:
+      1: 100074
+    second: Bip01_R_Finger31
+  - first:
+      1: 100076
+    second: Bip01_R_Foot
+  - first:
+      1: 100078
+    second: Bip01_R_Forearm
+  - first:
+      1: 100080
+    second: Bip01_R_Hand
+  - first:
+      1: 100082
+    second: Bip01_R_Thigh
+  - first:
+      1: 100084
+    second: Bip01_R_Toe0
+  - first:
+      1: 100086
+    second: Bip01_R_UpperArm
+  - first:
+      1: 100088
+    second: Bip01_Spine
+  - first:
+      1: 100090
+    second: Bip01_Spine1
+  - first:
+      1: 100092
+    second: //RootNode
+  - first:
+      1: 100094
+    second: gambler
+  - first:
+      1: 100096
+    second: NPC_Gambler
+  - first:
+      1: 100098
+    second: root
+  - first:
+      1: 100100
+    second: tag_leftarm
+  - first:
+      1: 100102
+    second: tag_lefthand
+  - first:
+      1: 100104
+    second: tag_righthand
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bip01_Backpack
+  - first:
+      4: 400004
+    second: Bip01_Backpack02
+  - first:
+      4: 400006
+    second: Bip01_Coat_1
+  - first:
+      4: 400008
+    second: Bip01_Coat_102
+  - first:
+      4: 400010
+    second: Bip01_Coat_2
+  - first:
+      4: 400012
+    second: Bip01_Coat_202
+  - first:
+      4: 400014
+    second: Bip01_Coat_3
+  - first:
+      4: 400016
+    second: Bip01_Coat_302
+  - first:
+      4: 400018
+    second: Bip01_Head
+  - first:
+      4: 400020
+    second: Bip01_L_Calf
+  - first:
+      4: 400022
+    second: Bip01_L_Clavicle
+  - first:
+      4: 400024
+    second: Bip01_L_Finger0
+  - first:
+      4: 400026
+    second: Bip01_L_Finger01
+  - first:
+      4: 400028
+    second: Bip01_L_Finger1
+  - first:
+      4: 400030
+    second: Bip01_L_Finger11
+  - first:
+      4: 400032
+    second: Bip01_L_Finger2
+  - first:
+      4: 400034
+    second: Bip01_L_Finger21
+  - first:
+      4: 400036
+    second: Bip01_L_Finger3
+  - first:
+      4: 400038
+    second: Bip01_L_Finger31
+  - first:
+      4: 400040
+    second: Bip01_L_Foot
+  - first:
+      4: 400042
+    second: Bip01_L_Forearm
+  - first:
+      4: 400044
+    second: Bip01_L_Hand
+  - first:
+      4: 400046
+    second: Bip01_L_Thigh
+  - first:
+      4: 400048
+    second: Bip01_L_Toe0
+  - first:
+      4: 400050
+    second: Bip01_L_UpperArm
+  - first:
+      4: 400052
+    second: Bip01_Neck
+  - first:
+      4: 400054
+    second: Bip01_Pelvis
+  - first:
+      4: 400056
+    second: Bip01_R_Calf
+  - first:
+      4: 400058
+    second: Bip01_R_Clavicle
+  - first:
+      4: 400060
+    second: Bip01_R_Finger0
+  - first:
+      4: 400062
+    second: Bip01_R_Finger01
+  - first:
+      4: 400064
+    second: Bip01_R_Finger1
+  - first:
+      4: 400066
+    second: Bip01_R_Finger11
+  - first:
+      4: 400068
+    second: Bip01_R_Finger2
+  - first:
+      4: 400070
+    second: Bip01_R_Finger21
+  - first:
+      4: 400072
+    second: Bip01_R_Finger3
+  - first:
+      4: 400074
+    second: Bip01_R_Finger31
+  - first:
+      4: 400076
+    second: Bip01_R_Foot
+  - first:
+      4: 400078
+    second: Bip01_R_Forearm
+  - first:
+      4: 400080
+    second: Bip01_R_Hand
+  - first:
+      4: 400082
+    second: Bip01_R_Thigh
+  - first:
+      4: 400084
+    second: Bip01_R_Toe0
+  - first:
+      4: 400086
+    second: Bip01_R_UpperArm
+  - first:
+      4: 400088
+    second: Bip01_Spine
+  - first:
+      4: 400090
+    second: Bip01_Spine1
+  - first:
+      4: 400092
+    second: //RootNode
+  - first:
+      4: 400094
+    second: gambler
+  - first:
+      4: 400096
+    second: NPC_Gambler
+  - first:
+      4: 400098
+    second: root
+  - first:
+      4: 400100
+    second: tag_leftarm
+  - first:
+      4: 400102
+    second: tag_lefthand
+  - first:
+      4: 400104
+    second: tag_righthand
+  - first:
+      43: 4300000
+    second: NPC_Gambler
+  - first:
+      74: 7400000
+    second: Envi_Idle10_Cower
+  - first:
+      74: 7400002
+    second: Fidget1
+  - first:
+      74: 7400004
+    second: Idle
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: NPC_Gambler
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -124,7 +352,7 @@ ModelImporter:
       name: NPC_Gambler
     second: {fileID: 2100000, guid: 314cb145bc38ab44b9aa7c40048f5d1b, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -155,9 +383,9 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Toe0' has scale animation that
       will be discarded.\n\t'Bip01_L_Clavicle' has translation animation that will
-      be discarded.\n\t'Bip01_R_Clavicle' has translation animation that will be discarded.\n\nClip
-      'Idle' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
+      be discarded.\n\t'Bip01_R_Clavicle' has translation animation that will be
+      discarded.\n\nClip 'Idle' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
@@ -178,6 +406,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle10_Cower
       takeName: Envi_Idle10_Cower
+      internalID: 0
       firstFrame: 0
       lastFrame: 91
       wrapMode: 0
@@ -312,6 +541,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fidget1
       takeName: Fidget1
+      internalID: 0
       firstFrame: 0
       lastFrame: 141
       wrapMode: 0
@@ -446,6 +676,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -577,32 +808,39 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
-    importBlendShapes: 1
+    importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -611,10 +849,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Bip01_Pelvis
       humanName: Hips
@@ -1177,13 +1415,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

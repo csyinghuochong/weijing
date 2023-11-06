@@ -1,130 +1,362 @@
 fileFormatVersion: 2
 guid: ebadde39eab367e4ca55e74841c28b34
-timeCreated: 1528961313
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: Adventurer Aland
-    100002: //RootNode
-    100004: Rig
-    100006: RigHead
-    100008: RigHeadGizmo
-    100010: RigLArm1
-    100012: RigLArm1Gizmo
-    100014: RigLArm2
-    100016: RigLArm2Gizmo
-    100018: RigLArmCollarbone
-    100020: RigLArmIndex1
-    100022: RigLArmIndex2
-    100024: RigLArmIndex3
-    100026: RigLArmMiddle1
-    100028: RigLArmMiddle2
-    100030: RigLArmMiddle3
-    100032: RigLArmPalm
-    100034: RigLArmPalmGizmo
-    100036: RigLArmThumb1
-    100038: RigLArmThumb2
-    100040: RigLArmThumb3
-    100042: RigLLeg01
-    100044: RigLLeg02
-    100046: RigLLegFoot
-    100048: RigLLegPlatform
-    100050: RigLLegToes1
-    100052: RigNeck1
-    100054: RigNeck2
-    100056: RigPelvis
-    100058: RigPelvisGizmo
-    100060: RigRArm1
-    100062: RigRArm1Gizmo
-    100064: RigRArm2
-    100066: RigRArm2Gizmo
-    100068: RigRArmCollarbone
-    100070: RigRArmIndex1
-    100072: RigRArmIndex2
-    100074: RigRArmIndex3
-    100076: RigRArmMiddle1
-    100078: RigRArmMiddle2
-    100080: RigRArmMiddle3
-    100082: RigRArmPalm
-    100084: RigRArmPalmGizmo
-    100086: RigRArmThumb1
-    100088: RigRArmThumb2
-    100090: RigRArmThumb3
-    100092: RigRibcage
-    100094: RigRibcageGizmo
-    100096: RigRLeg01
-    100098: RigRLeg02
-    100100: RigRLegFoot
-    100102: RigRLegPlatform
-    100104: RigRLegToes1
-    100106: RigSpine1
-    100108: RigSpine2
-    100110: RigSpine3
-    400000: Adventurer Aland
-    400002: //RootNode
-    400004: Rig
-    400006: RigHead
-    400008: RigHeadGizmo
-    400010: RigLArm1
-    400012: RigLArm1Gizmo
-    400014: RigLArm2
-    400016: RigLArm2Gizmo
-    400018: RigLArmCollarbone
-    400020: RigLArmIndex1
-    400022: RigLArmIndex2
-    400024: RigLArmIndex3
-    400026: RigLArmMiddle1
-    400028: RigLArmMiddle2
-    400030: RigLArmMiddle3
-    400032: RigLArmPalm
-    400034: RigLArmPalmGizmo
-    400036: RigLArmThumb1
-    400038: RigLArmThumb2
-    400040: RigLArmThumb3
-    400042: RigLLeg01
-    400044: RigLLeg02
-    400046: RigLLegFoot
-    400048: RigLLegPlatform
-    400050: RigLLegToes1
-    400052: RigNeck1
-    400054: RigNeck2
-    400056: RigPelvis
-    400058: RigPelvisGizmo
-    400060: RigRArm1
-    400062: RigRArm1Gizmo
-    400064: RigRArm2
-    400066: RigRArm2Gizmo
-    400068: RigRArmCollarbone
-    400070: RigRArmIndex1
-    400072: RigRArmIndex2
-    400074: RigRArmIndex3
-    400076: RigRArmMiddle1
-    400078: RigRArmMiddle2
-    400080: RigRArmMiddle3
-    400082: RigRArmPalm
-    400084: RigRArmPalmGizmo
-    400086: RigRArmThumb1
-    400088: RigRArmThumb2
-    400090: RigRArmThumb3
-    400092: RigRibcage
-    400094: RigRibcageGizmo
-    400096: RigRLeg01
-    400098: RigRLeg02
-    400100: RigRLegFoot
-    400102: RigRLegPlatform
-    400104: RigRLegToes1
-    400106: RigSpine1
-    400108: RigSpine2
-    400110: RigSpine3
-    4300000: Adventurer Aland
-    7400000: Spell Cast
-    9500000: //RootNode
-    13700000: Adventurer Aland
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Adventurer Aland
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Rig
+  - first:
+      1: 100006
+    second: RigHead
+  - first:
+      1: 100008
+    second: RigHeadGizmo
+  - first:
+      1: 100010
+    second: RigLArm1
+  - first:
+      1: 100012
+    second: RigLArm1Gizmo
+  - first:
+      1: 100014
+    second: RigLArm2
+  - first:
+      1: 100016
+    second: RigLArm2Gizmo
+  - first:
+      1: 100018
+    second: RigLArmCollarbone
+  - first:
+      1: 100020
+    second: RigLArmIndex1
+  - first:
+      1: 100022
+    second: RigLArmIndex2
+  - first:
+      1: 100024
+    second: RigLArmIndex3
+  - first:
+      1: 100026
+    second: RigLArmMiddle1
+  - first:
+      1: 100028
+    second: RigLArmMiddle2
+  - first:
+      1: 100030
+    second: RigLArmMiddle3
+  - first:
+      1: 100032
+    second: RigLArmPalm
+  - first:
+      1: 100034
+    second: RigLArmPalmGizmo
+  - first:
+      1: 100036
+    second: RigLArmThumb1
+  - first:
+      1: 100038
+    second: RigLArmThumb2
+  - first:
+      1: 100040
+    second: RigLArmThumb3
+  - first:
+      1: 100042
+    second: RigLLeg01
+  - first:
+      1: 100044
+    second: RigLLeg02
+  - first:
+      1: 100046
+    second: RigLLegFoot
+  - first:
+      1: 100048
+    second: RigLLegPlatform
+  - first:
+      1: 100050
+    second: RigLLegToes1
+  - first:
+      1: 100052
+    second: RigNeck1
+  - first:
+      1: 100054
+    second: RigNeck2
+  - first:
+      1: 100056
+    second: RigPelvis
+  - first:
+      1: 100058
+    second: RigPelvisGizmo
+  - first:
+      1: 100060
+    second: RigRArm1
+  - first:
+      1: 100062
+    second: RigRArm1Gizmo
+  - first:
+      1: 100064
+    second: RigRArm2
+  - first:
+      1: 100066
+    second: RigRArm2Gizmo
+  - first:
+      1: 100068
+    second: RigRArmCollarbone
+  - first:
+      1: 100070
+    second: RigRArmIndex1
+  - first:
+      1: 100072
+    second: RigRArmIndex2
+  - first:
+      1: 100074
+    second: RigRArmIndex3
+  - first:
+      1: 100076
+    second: RigRArmMiddle1
+  - first:
+      1: 100078
+    second: RigRArmMiddle2
+  - first:
+      1: 100080
+    second: RigRArmMiddle3
+  - first:
+      1: 100082
+    second: RigRArmPalm
+  - first:
+      1: 100084
+    second: RigRArmPalmGizmo
+  - first:
+      1: 100086
+    second: RigRArmThumb1
+  - first:
+      1: 100088
+    second: RigRArmThumb2
+  - first:
+      1: 100090
+    second: RigRArmThumb3
+  - first:
+      1: 100092
+    second: RigRibcage
+  - first:
+      1: 100094
+    second: RigRibcageGizmo
+  - first:
+      1: 100096
+    second: RigRLeg01
+  - first:
+      1: 100098
+    second: RigRLeg02
+  - first:
+      1: 100100
+    second: RigRLegFoot
+  - first:
+      1: 100102
+    second: RigRLegPlatform
+  - first:
+      1: 100104
+    second: RigRLegToes1
+  - first:
+      1: 100106
+    second: RigSpine1
+  - first:
+      1: 100108
+    second: RigSpine2
+  - first:
+      1: 100110
+    second: RigSpine3
+  - first:
+      4: 400000
+    second: Adventurer Aland
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Rig
+  - first:
+      4: 400006
+    second: RigHead
+  - first:
+      4: 400008
+    second: RigHeadGizmo
+  - first:
+      4: 400010
+    second: RigLArm1
+  - first:
+      4: 400012
+    second: RigLArm1Gizmo
+  - first:
+      4: 400014
+    second: RigLArm2
+  - first:
+      4: 400016
+    second: RigLArm2Gizmo
+  - first:
+      4: 400018
+    second: RigLArmCollarbone
+  - first:
+      4: 400020
+    second: RigLArmIndex1
+  - first:
+      4: 400022
+    second: RigLArmIndex2
+  - first:
+      4: 400024
+    second: RigLArmIndex3
+  - first:
+      4: 400026
+    second: RigLArmMiddle1
+  - first:
+      4: 400028
+    second: RigLArmMiddle2
+  - first:
+      4: 400030
+    second: RigLArmMiddle3
+  - first:
+      4: 400032
+    second: RigLArmPalm
+  - first:
+      4: 400034
+    second: RigLArmPalmGizmo
+  - first:
+      4: 400036
+    second: RigLArmThumb1
+  - first:
+      4: 400038
+    second: RigLArmThumb2
+  - first:
+      4: 400040
+    second: RigLArmThumb3
+  - first:
+      4: 400042
+    second: RigLLeg01
+  - first:
+      4: 400044
+    second: RigLLeg02
+  - first:
+      4: 400046
+    second: RigLLegFoot
+  - first:
+      4: 400048
+    second: RigLLegPlatform
+  - first:
+      4: 400050
+    second: RigLLegToes1
+  - first:
+      4: 400052
+    second: RigNeck1
+  - first:
+      4: 400054
+    second: RigNeck2
+  - first:
+      4: 400056
+    second: RigPelvis
+  - first:
+      4: 400058
+    second: RigPelvisGizmo
+  - first:
+      4: 400060
+    second: RigRArm1
+  - first:
+      4: 400062
+    second: RigRArm1Gizmo
+  - first:
+      4: 400064
+    second: RigRArm2
+  - first:
+      4: 400066
+    second: RigRArm2Gizmo
+  - first:
+      4: 400068
+    second: RigRArmCollarbone
+  - first:
+      4: 400070
+    second: RigRArmIndex1
+  - first:
+      4: 400072
+    second: RigRArmIndex2
+  - first:
+      4: 400074
+    second: RigRArmIndex3
+  - first:
+      4: 400076
+    second: RigRArmMiddle1
+  - first:
+      4: 400078
+    second: RigRArmMiddle2
+  - first:
+      4: 400080
+    second: RigRArmMiddle3
+  - first:
+      4: 400082
+    second: RigRArmPalm
+  - first:
+      4: 400084
+    second: RigRArmPalmGizmo
+  - first:
+      4: 400086
+    second: RigRArmThumb1
+  - first:
+      4: 400088
+    second: RigRArmThumb2
+  - first:
+      4: 400090
+    second: RigRArmThumb3
+  - first:
+      4: 400092
+    second: RigRibcage
+  - first:
+      4: 400094
+    second: RigRibcageGizmo
+  - first:
+      4: 400096
+    second: RigRLeg01
+  - first:
+      4: 400098
+    second: RigRLeg02
+  - first:
+      4: 400100
+    second: RigRLegFoot
+  - first:
+      4: 400102
+    second: RigRLegPlatform
+  - first:
+      4: 400104
+    second: RigRLegToes1
+  - first:
+      4: 400106
+    second: RigSpine1
+  - first:
+      4: 400108
+    second: RigSpine2
+  - first:
+      4: 400110
+    second: RigSpine3
+  - first:
+      43: 4300000
+    second: Adventurer Aland
+  - first:
+      74: 7400000
+    second: Spell Cast
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Adventurer Aland
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -134,15 +366,16 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'RigRibcage'
-      : rotation error = 1.062137 deg\n\t'RigNeck1' : rotation error = 11.345114 deg\n"
+      : rotation error = 1.062137 deg\n\t'RigNeck1' : rotation error = 11.345114
+      deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'RigRibcage' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'RigLArm2' has scale animation
-      that will be discarded.\n\t'RigLArmPalm' has scale animation that will be discarded.\n\t'RigLArmThumb1'
-      has scale animation that will be discarded.\n\t'RigNeck1' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'RigRArm2'
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'RigRibcage' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'RigLArm2' has scale
+      animation that will be discarded.\n\t'RigLArmPalm' has scale animation that
+      will be discarded.\n\t'RigLArmThumb1' has scale animation that will be discarded.\n\t'RigNeck1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'RigRArm2'
       has scale animation that will be discarded.\n\t'RigRArmPalm' has scale animation
       that will be discarded.\n\t'RigRArmThumb1' has scale animation that will be
       discarded.\n\t'RigRArmMiddle1' has scale animation that will be discarded.\n\t'RigRArmMiddle2'
@@ -150,6 +383,8 @@ ModelImporter:
       that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -161,6 +396,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Spell Cast
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -186,25 +422,37 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -212,10 +460,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: RigPelvis
       humanName: Hips
@@ -788,15 +1039,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: bf416c38a6abfc3499702bd9411cb0a3,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

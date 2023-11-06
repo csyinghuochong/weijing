@@ -287,6 +287,9 @@ public class CustomEditorScript
                         modelImporter.importCameras = false;
                         modelImporter.importLights = false;
                         modelImporter.preserveHierarchy = false;
+
+                        modelImporter.meshCompression = ModelImporterMeshCompression.Medium;
+                        modelImporter.isReadable = false;   
                         // .....
 
                         modelImporter.materialImportMode = ModelImporterMaterialImportMode.None;

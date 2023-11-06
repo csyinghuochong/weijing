@@ -1,58 +1,158 @@
 fileFormatVersion: 2
 guid: 496f9b1a455802d449a1b01b284fff5a
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: calf_l
-    100002: calf_r
-    100004: foot_l
-    100006: foot_r
-    100008: hand_l
-    100010: hand_r
-    100012: head
-    100014: joint5
-    100016: lowerarm_l
-    100018: lowerarm_r
-    100020: neck_01
-    100022: nurbsCircle6
-    100024: pelvis
-    100026: spine_01
-    100028: tail01
-    100030: tail02
-    100032: tail03
-    100034: thigh_l
-    100036: thigh_r
-    100038: //RootNode
-    100040: Turtle
-    100042: upperarm_l
-    100044: upperarm_r
-    400000: calf_l
-    400002: calf_r
-    400004: foot_l
-    400006: foot_r
-    400008: hand_l
-    400010: hand_r
-    400012: head
-    400014: joint5
-    400016: lowerarm_l
-    400018: lowerarm_r
-    400020: neck_01
-    400022: nurbsCircle6
-    400024: pelvis
-    400026: spine_01
-    400028: tail01
-    400030: tail02
-    400032: tail03
-    400034: thigh_l
-    400036: thigh_r
-    400038: Turtle
-    400040: //RootNode
-    400042: upperarm_l
-    400044: upperarm_r
-    2100000: M_TurtleA
-    4300000: Turtle
-    9500000: //RootNode
-    13700000: Turtle
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: calf_l
+  - first:
+      1: 100002
+    second: calf_r
+  - first:
+      1: 100004
+    second: foot_l
+  - first:
+      1: 100006
+    second: foot_r
+  - first:
+      1: 100008
+    second: hand_l
+  - first:
+      1: 100010
+    second: hand_r
+  - first:
+      1: 100012
+    second: head
+  - first:
+      1: 100014
+    second: joint5
+  - first:
+      1: 100016
+    second: lowerarm_l
+  - first:
+      1: 100018
+    second: lowerarm_r
+  - first:
+      1: 100020
+    second: neck_01
+  - first:
+      1: 100022
+    second: nurbsCircle6
+  - first:
+      1: 100024
+    second: pelvis
+  - first:
+      1: 100026
+    second: spine_01
+  - first:
+      1: 100028
+    second: tail01
+  - first:
+      1: 100030
+    second: tail02
+  - first:
+      1: 100032
+    second: tail03
+  - first:
+      1: 100034
+    second: thigh_l
+  - first:
+      1: 100036
+    second: thigh_r
+  - first:
+      1: 100038
+    second: //RootNode
+  - first:
+      1: 100040
+    second: Turtle
+  - first:
+      1: 100042
+    second: upperarm_l
+  - first:
+      1: 100044
+    second: upperarm_r
+  - first:
+      4: 400000
+    second: calf_l
+  - first:
+      4: 400002
+    second: calf_r
+  - first:
+      4: 400004
+    second: foot_l
+  - first:
+      4: 400006
+    second: foot_r
+  - first:
+      4: 400008
+    second: hand_l
+  - first:
+      4: 400010
+    second: hand_r
+  - first:
+      4: 400012
+    second: head
+  - first:
+      4: 400014
+    second: joint5
+  - first:
+      4: 400016
+    second: lowerarm_l
+  - first:
+      4: 400018
+    second: lowerarm_r
+  - first:
+      4: 400020
+    second: neck_01
+  - first:
+      4: 400022
+    second: nurbsCircle6
+  - first:
+      4: 400024
+    second: pelvis
+  - first:
+      4: 400026
+    second: spine_01
+  - first:
+      4: 400028
+    second: tail01
+  - first:
+      4: 400030
+    second: tail02
+  - first:
+      4: 400032
+    second: tail03
+  - first:
+      4: 400034
+    second: thigh_l
+  - first:
+      4: 400036
+    second: thigh_r
+  - first:
+      4: 400038
+    second: Turtle
+  - first:
+      4: 400040
+    second: //RootNode
+  - first:
+      4: 400042
+    second: upperarm_l
+  - first:
+      4: 400044
+    second: upperarm_r
+  - first:
+      21: 2100000
+    second: M_TurtleA
+  - first:
+      43: 4300000
+    second: Turtle
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Turtle
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,7 +160,7 @@ ModelImporter:
       name: M_TurtleA
     second: {fileID: 2100000, guid: 0036914ca4fb1814d8146aa79d20d0b5, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 2
     materialLocation: 0
@@ -86,32 +186,39 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.005
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -120,10 +227,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -133,13 +240,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
