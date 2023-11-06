@@ -788,6 +788,9 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.PetSkin);
             rolePetInfo.Vs.Add(rolePetInfo.SkinId);
 
+            rolePetInfo.Ks.Add((int)NumericType.Now_ActSpeedPro);
+            rolePetInfo.Vs.Add((int)(petCof.Base_ActSpeed * 10000));
+
             rolePetInfo.Ks.Add((int)NumericType.Now_Cri);
             rolePetInfo.Vs.Add(0);
 
@@ -799,7 +802,7 @@ namespace ET
 
             rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
             rolePetInfo.Vs.Add(0);
-
+       
             //宠物之核
             Dictionary<int, long> attriDic = new Dictionary<int, long>();
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
