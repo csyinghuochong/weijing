@@ -587,6 +587,18 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             double skillcdTime = skillConfig.SkillCD;
+
+            if (skillConfig.SkillActType == 0 && unit.Type == UnitType.Monster)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                skillcdTime = monsterConfig.ActSpeed;
+            }
+            if(skillConfig.SkillActType == 0 && unit.Type == UnitType.Pet)
+            {
+                PetConfig petConfig = PetConfigCategory.Instance.Get(unit.ConfigId);
+                skillcdTime = petConfig.Base_ActSpeed;
+            }
+
             float nocdPro = numericComponent.GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
             {
