@@ -12,6 +12,16 @@ namespace ET
             try
             {
                 BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
+
+                if (bagInfo == null)
+                {
+                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, request.OperateBagID);
+                }
+                if (bagInfo == null)
+                {
+                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID);
+                }
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
                 if (itemConfig.EquipType == 101)
