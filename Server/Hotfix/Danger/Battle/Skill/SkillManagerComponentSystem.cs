@@ -591,7 +591,7 @@ namespace ET
             if (skillConfig.SkillActType == 0 && unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                skillcdTime = monsterConfig.ActSpeed;
+                skillcdTime = monsterConfig.ActInterValTime;
             }
             if(skillConfig.SkillActType == 0 && unit.Type == UnitType.Pet)
             {
@@ -613,8 +613,12 @@ namespace ET
 
             if (unit.Type != UnitType.Player && unit.MasterId != 0 && skillConfig.SkillActType == 0)
             {
-                float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-                skillcdTime /= attackSpped;
+                float attackSpped = 1f - numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
+                if (attackSpped <= 0.2f)
+                {
+                    attackSpped = 0.2f;
+                }
+                skillcdTime = skillcdTime * attackSpped;
             }
 
             float reduceCD = 0f;

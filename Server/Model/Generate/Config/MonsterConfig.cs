@@ -114,122 +114,119 @@ namespace ET
 		/// <summary>攻击距离</summary>
 		[ProtoMember(13)]
 		public double ActDistance { get; set; }
-		/// <summary>攻击速度</summary>
-		[ProtoMember(14)]
-		public int ActSpeed { get; set; }
 		/// <summary>巡逻速度</summary>
-		[ProtoMember(15)]
+		[ProtoMember(14)]
 		public int WalkSpeed { get; set; }
 		/// <summary>怪物生命</summary>
-		[ProtoMember(16)]
+		[ProtoMember(15)]
 		public int Hp { get; set; }
 		/// <summary>攻击</summary>
-		[ProtoMember(17)]
+		[ProtoMember(16)]
 		public int Act { get; set; }
 		/// <summary>魔法攻击</summary>
-		[ProtoMember(18)]
+		[ProtoMember(17)]
 		public int MageAct { get; set; }
 		/// <summary>物理防御</summary>
-		[ProtoMember(19)]
+		[ProtoMember(18)]
 		public int Def { get; set; }
 		/// <summary>魔法防御</summary>
-		[ProtoMember(20)]
+		[ProtoMember(19)]
 		public int Adf { get; set; }
 		/// <summary>暴击概率</summary>
-		[ProtoMember(21)]
+		[ProtoMember(20)]
 		public double Cri { get; set; }
 		/// <summary>抗暴概率</summary>
-		[ProtoMember(22)]
+		[ProtoMember(21)]
 		public double Res { get; set; }
 		/// <summary>附加命中概率</summary>
-		[ProtoMember(23)]
+		[ProtoMember(22)]
 		public double Hit { get; set; }
 		/// <summary>附加闪避概率</summary>
-		[ProtoMember(24)]
+		[ProtoMember(23)]
 		public double Dodge { get; set; }
 		/// <summary>怪物物理免伤</summary>
-		[ProtoMember(25)]
+		[ProtoMember(24)]
 		public double DefAdd { get; set; }
 		/// <summary>怪物魔法免伤</summary>
-		[ProtoMember(26)]
+		[ProtoMember(25)]
 		public double AdfAdd { get; set; }
 		/// <summary>怪物免伤</summary>
-		[ProtoMember(27)]
+		[ProtoMember(26)]
 		public double DamgeAdd { get; set; }
 		/// <summary>怪物复活时间</summary>
-		[ProtoMember(28)]
+		[ProtoMember(27)]
 		public double ReviveTime { get; set; }
 		/// <summary>巡逻范围</summary>
-		[ProtoMember(29)]
+		[ProtoMember(28)]
 		public double PatrolRange { get; set; }
 		/// <summary>追击范围</summary>
-		[ProtoMember(30)]
+		[ProtoMember(29)]
 		public double ChaseRange { get; set; }
 		/// <summary>攻击范围</summary>
-		[ProtoMember(31)]
+		[ProtoMember(30)]
 		public double ActRange { get; set; }
 		/// <summary>攻击间隔时间</summary>
-		[ProtoMember(32)]
-		public int ActInterValTime { get; set; }
+		[ProtoMember(31)]
+		public double ActInterValTime { get; set; }
 		/// <summary>怪物经验</summary>
-		[ProtoMember(33)]
+		[ProtoMember(32)]
 		public int Exp { get; set; }
 		/// <summary>是否显示大血条</summary>
-		[ProtoMember(34)]
+		[ProtoMember(33)]
 		public int IfBoss { get; set; }
 		/// <summary>选中条大小</summary>
-		[ProtoMember(35)]
+		[ProtoMember(34)]
 		public double SelectSize { get; set; }
 		/// <summary>掉落类型</summary>
-		[ProtoMember(36)]
+		[ProtoMember(35)]
 		public int DropType { get; set; }
 		/// <summary>造成伤害才有掉落</summary>
-		[ProtoMember(37)]
+		[ProtoMember(36)]
 		public int IfDamgeDrop { get; set; }
 		/// <summary>掉落ID</summary>
-		[ProtoMember(38)]
+		[ProtoMember(37)]
 		public int[] DropID { get; set; }
 		/// <summary>分级掉落</summary>
-		[ProtoMember(39)]
+		[ProtoMember(38)]
 		public string LvDropID { get; set; }
 		/// <summary>极品掉落概率</summary>
-		[ProtoMember(40)]
+		[ProtoMember(39)]
 		public double HideDropPro { get; set; }
 		/// <summary>怪物出现概率</summary>
-		[ProtoMember(41)]
+		[ProtoMember(40)]
 		public double MonsterShowPro { get; set; }
 		/// <summary>普通攻击ID</summary>
-		[ProtoMember(42)]
+		[ProtoMember(41)]
 		public int ActSkillID { get; set; }
 		/// <summary>技能ID</summary>
-		[ProtoMember(43)]
+		[ProtoMember(42)]
 		public int[] SkillID { get; set; }
 		/// <summary>怪物参数</summary>
-		[ProtoMember(44)]
+		[ProtoMember(43)]
 		public int[] Parameter { get; set; }
 		/// <summary>AI</summary>
-		[ProtoMember(45)]
+		[ProtoMember(44)]
 		public int AI { get; set; }
 		/// <summary>AI相关参数</summary>
-		[ProtoMember(46)]
+		[ProtoMember(45)]
 		public string AIParameter { get; set; }
 		/// <summary>AI延迟时间</summary>
-		[ProtoMember(47)]
+		[ProtoMember(46)]
 		public int AIDelay { get; set; }
 		/// <summary>怪物出生自动死亡时间</summary>
-		[ProtoMember(48)]
+		[ProtoMember(47)]
 		public int DeathTime { get; set; }
 		/// <summary>怪物死亡触发技能</summary>
-		[ProtoMember(49)]
+		[ProtoMember(48)]
 		public int DeathSkillId { get; set; }
 		/// <summary>开服天数刷怪变化</summary>
-		[ProtoMember(50)]
+		[ProtoMember(49)]
 		public string OpenDayMonster { get; set; }
 		/// <summary>攻击初始位置</summary>
-		[ProtoMember(51)]
+		[ProtoMember(50)]
 		public double ActBasePosiY { get; set; }
 		/// <summary>是否对敌人隐身</summary>
-		[ProtoMember(52)]
+		[ProtoMember(51)]
 		public int IfHide { get; set; }
 
 	}
