@@ -289,7 +289,9 @@ public class CustomEditorScript
                         modelImporter.preserveHierarchy = false;
                         // .....
 
-                        
+                        modelImporter.materialImportMode = ModelImporterMaterialImportMode.None;
+
+
                         EditorUtility.SetDirty(modelImporter);
                         AssetDatabase.ImportAsset(dependency); // 保存设置
                     }
