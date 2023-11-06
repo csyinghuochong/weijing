@@ -162,9 +162,9 @@ namespace ET
                     {
                         skillInfo = new SkillInfo();
                         skillInfo.WeaponSkillID = randomSkillId;
-                        skillInfo.PosX = target.Position.x;
-                        skillInfo.PosY = target.Position.y;
-                        skillInfo.PosZ = target.Position.z;
+                        skillInfo.PosX = target == null ? unit.Position.x : target.Position.x;
+                        skillInfo.PosY = target == null ? unit.Position.y : target.Position.y;
+                        skillInfo.PosZ = target == null ? unit.Position.z : target.Position.z;
                         skillInfo.TargetID = skillcmd.TargetID;
                         skillInfo.TargetAngle = skillcmd.TargetAngle;
                         skillInfo.SkillBeginTime = TimeHelper.ServerNow() + (long)(i * intervalTime * 1000);

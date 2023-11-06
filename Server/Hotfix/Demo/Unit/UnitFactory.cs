@@ -84,6 +84,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
             numericComponent.Set(NumericType.TeamId, master != null ? master.GetTeamId() : 0);
             numericComponent.Set(NumericType.AttackMode, master!=null ?  master.GetAttackMode() : 0);
+            numericComponent.Set(NumericType.UnionId_0, master != null ? master.GetUnionId() : 0, false);
             //出生点
             //numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
             //numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
@@ -469,6 +470,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
             numericComponent.Set(NumericType.AttackMode, master != null ? master.GetAttackMode() : 0);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
+            numericComponent.Set(NumericType.UnionId_0, master.GetUnionId(), false);
             //numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
