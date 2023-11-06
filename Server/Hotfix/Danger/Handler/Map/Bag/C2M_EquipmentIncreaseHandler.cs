@@ -18,9 +18,27 @@ namespace ET
             }
 
             BagInfo equipmentBagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.EquipmentBagInfo.BagInfoID);
+            if(equipmentBagInfo == null)
+            {
+                equipmentBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, request.EquipmentBagInfo.BagInfoID);
+            }
             if (equipmentBagInfo == null)
             {
-                response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                equipmentBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2, request.EquipmentBagInfo.BagInfoID);
+            }
+
+            if (equipmentBagInfo == null)
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipmentBagInfo.ItemID);
+
+            if (itemConfig.EquipType == 101)
+            {
+                response.Error = ErrorCode.ERR_ItemUseError;
                 reply();
                 return;
             }

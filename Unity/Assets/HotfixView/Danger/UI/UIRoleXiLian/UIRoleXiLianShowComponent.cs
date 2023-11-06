@@ -26,6 +26,8 @@ namespace ET
 		public UIItemComponent CostItemUI;
 		public UIItemComponent XiLianItemUI;
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
+		public UIPageButtonComponent UIPageComponent;
+		public int Page;
 
 		public BagInfo XilianBagInfo;
 		public ETCancellationToken ETCancellationToken;
@@ -58,6 +60,13 @@ namespace ET
 			self.NeedDiamond.GetComponent<Text>().text = GlobalValueConfigCategory.Instance.Get(73).Value;
 
 			self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+			GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+			UI uiPage = self.AddChild<UI, string, GameObject>( "BtnItemTypeSet", BtnItemTypeSet);
+			UIPageButtonComponent uIPageViewComponent  = uiPage.AddComponent<UIPageButtonComponent>();
+			uIPageViewComponent.SetClickHandler( (int page)=>{
+				self.OnClickPageButton(page);
+			} );
+			self.UIPageComponent = uIPageViewComponent;
 
 			self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -70,12 +79,18 @@ namespace ET
 
 	public static class UIRoleXiLianShowComponentSystem
 	{
+		public static void OnClickPageButton(this UIRoleXiLianShowComponent self, int page)
+		{
+			self.Page = page;
+			self.XilianBagInfo = null;
+			self.OnEquiListUpdate(page).Coroutine();
+		}
 
 		//显示的时候刷新
 		public static void OnUpdateUI(this UIRoleXiLianShowComponent self)
 		{
 			self.XilianBagInfo = null;
-			self.OnEquiListUpdate().Coroutine();
+			self.OnEquiListUpdate(0).Coroutine();
 		}
 
 		public static void UpdateAttribute(this UIRoleXiLianShowComponent self, BagInfo bagInfo)
@@ -131,7 +146,7 @@ namespace ET
 		{
 			self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
 			self.OnUpdateXinLian();
-			self.OnEquiListUpdate().Coroutine();
+			self.OnEquiListUpdate(self.Page).Coroutine();
 		}
 
 		public static async ETTask ShowXiLianEffect(this UIRoleXiLianShowComponent self)
@@ -150,13 +165,24 @@ namespace ET
 			self.XiLianEffect.SetActive(false);
 		}
 
-		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self)
+		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self,int page)
 		{
 			int number = 0;
 			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
 			var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-			List<BagInfo> equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
 
+			List<BagInfo> equipInfos = new List<BagInfo>();
+			
+			if (page == 0)
+			{
+				equipInfos.AddRange(self.BagComponent.GetEquipList());
+				equipInfos.AddRange(self.BagComponent.GetEquipList_2());
+			}
+			else
+			{
+				equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
+			}
+			
 			for (int i = 0; i < equipInfos.Count; i++)
 			{
 				if (equipInfos[i].IfJianDing)

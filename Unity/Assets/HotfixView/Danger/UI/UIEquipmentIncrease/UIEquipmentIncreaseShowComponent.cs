@@ -41,6 +41,8 @@ namespace ET
         /// 此次增幅所用的卷轴BagInfo
         /// </summary>
         public BagInfo ReelBagInfo;
+        public UIPageButtonComponent UIPageComponent;
+        public int Page;
 
         public ETCancellationToken ETCancellationToken;
     }
@@ -81,17 +83,32 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            UI uiPage = self.AddChild<UI, string, GameObject>( "BtnItemTypeSet", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent  = uiPage.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler( (int page)=>{
+                self.OnClickPageButton(page);
+            } );
+            self.UIPageComponent = uIPageViewComponent;
 
             self.OnUpdateUI();
             self.IncreaseItemUI = null;
             self.InitSubItemUI().Coroutine();
         }
 
+        public static void OnClickPageButton(this UIEquipmentIncreaseShowComponent self, int page)
+        {
+            self.Page = page;
+            self.EquipmentBagInfo = null;
+            self.OnEquiListUpdate(page).Coroutine();
+        }
+        
         //显示的时候刷新
         public static void OnUpdateUI(this UIEquipmentIncreaseShowComponent self)
         {
             self.EquipmentBagInfo = null;
-            self.OnEquiListUpdate().Coroutine();
+            self.OnEquiListUpdate(self.Page).Coroutine();
             self.OnReelListUpdate().Coroutine();
         }
 
@@ -136,12 +153,23 @@ namespace ET
         /// 可增幅装备列表刷新
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask OnEquiListUpdate(this UIEquipmentIncreaseShowComponent self)
+        public static async ETTask OnEquiListUpdate(this UIEquipmentIncreaseShowComponent self , int page)
         {
             int number = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<BagInfo> equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
+            
+            List<BagInfo> equipInfos = new List<BagInfo>();
+			
+            if (page == 0)
+            {
+                equipInfos.AddRange(self.BagComponent.GetEquipList());
+                equipInfos.AddRange(self.BagComponent.GetEquipList_2());
+            }
+            else
+            {
+                equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
+            }
 
             for (int i = 0; i < equipInfos.Count; i++)
             {
