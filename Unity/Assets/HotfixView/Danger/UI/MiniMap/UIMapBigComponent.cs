@@ -94,7 +94,7 @@ namespace ET
             self.MoveComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<MoveComponent>();
 
             self.OnAwake().Coroutine();
-            self.InitNpcList().Coroutine();
+            self.InitNpcList();
 
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
@@ -370,7 +370,7 @@ namespace ET
             }
         }
 
-        public static async ETTask InitNpcList(this UIMapBigComponent self)
+        public static  void InitNpcList(this UIMapBigComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             int[] npcList = null;

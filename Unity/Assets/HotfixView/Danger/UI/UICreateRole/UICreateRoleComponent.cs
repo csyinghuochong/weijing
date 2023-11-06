@@ -222,10 +222,10 @@ namespace ET
         {
             self.Occ = page + 1;
             self.ShowHeroSelect(self.Occ);
-            self.OnUpdateOccInfo().Coroutine();
+            self.OnUpdateOccInfo();
         }
 
-        public static async ETTask OnUpdateOccInfo(this UICreateRoleComponent self)
+        public static void  OnUpdateOccInfo(this UICreateRoleComponent self)
         {
             long instanceid = self.InstanceId;
             self.eTCancellation?.Cancel();
