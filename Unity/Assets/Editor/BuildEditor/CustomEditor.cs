@@ -281,12 +281,12 @@ public class CustomEditorScript
                     if (modelImporter != null)
                     {
                         // 修改设置
-                        modelImporter.bakeAxisConversion = true;
-                        modelImporter.importBlendShapes = true;
-                        modelImporter.importVisibility = true;
-                        modelImporter.importCameras = true;
-                        modelImporter.importLights = true;
-                        modelImporter.preserveHierarchy = true;
+                        modelImporter.bakeAxisConversion = false;
+                        modelImporter.importBlendShapes = false;
+                        modelImporter.importVisibility = false;
+                        modelImporter.importCameras = false;
+                        modelImporter.importLights = false;
+                        modelImporter.preserveHierarchy = false;
                         // .....
 
                         
