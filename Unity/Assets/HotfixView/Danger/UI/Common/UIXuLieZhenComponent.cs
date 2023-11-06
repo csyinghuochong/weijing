@@ -43,7 +43,8 @@ namespace ET
             List<Sprite> Sprites = new List<Sprite>();
             for (int i = 0; i < titleConfig.AnimatorNumber; i++)
             {
-                Sprite sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ChengHaoIcon, $"{titleConfig.AnimatorAsset}/{i+1}");
+                var path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ChengHaoIcon, $"{titleConfig.AnimatorAsset}/{i + 1}");
+                Sprite sprite = await ABAtlasHelp.GetIconSpriteAsync(path);
                 if (instanceId != self.InstanceId)
                 {
                     return;
