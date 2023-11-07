@@ -6740,3 +6740,18 @@ message M2C_RechargeRewardResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType M2C_PetMingOccupyResponse
+message C2M_PetMingOccupyRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Operate = 1;  //0 放弃 1 占领
+}
+
+message M2C_PetMingOccupyResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

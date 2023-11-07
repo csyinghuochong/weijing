@@ -5,9 +5,9 @@ namespace ET
     public static class PetMingDungeonComponentSystem
     {
 
-        public static async ETTask OnGameOver(this PetMingDungeonComponent self, int result)
+        public static async ETTask OnPetMingOccupy(this PetMingDungeonComponent self)
         {
-            if (result == CombatResultEnum.Win && self.MainUnit != null)
+            if (self.CombatResultEnum == CombatResultEnum.Win && self.MainUnit != null)
             {
                 long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());
                 A2M_PetMingBattleWinResponse r_GameStatusResponse = (A2M_PetMingBattleWinResponse)await ActorMessageSenderComponent.Instance.Call
@@ -20,13 +20,21 @@ namespace ET
                         WinPlayer = self.MainUnit.GetComponent<UserInfoComponent>().UserInfo.Name,
                     });
             }
+        }
 
+        public static async ETTask OnGameOver(this PetMingDungeonComponent self, int result)
+        {
+            self.CombatResultEnum = result;
 
+            self.OnPetMingOccupy().Coroutine();
+
+            long cdTime = result == CombatResultEnum.Win ? TimeHelper.Hour * 2 : TimeHelper.Minute * 10;
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = result;
             m2C_FubenSettlement.StarInfos = result == CombatResultEnum.Win ?  new List<int>() { 1, 1, 1 } : new List<int>() { 0,0,0};
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
             self.MainUnit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetMineBattle,1,0  );
+            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.PetMineCDTime, TimeHelper.ServerNow() + cdTime, 0);
             self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MineBattleNumber_402, 0, 1);
             await ETTask.CompletedTask;
         }

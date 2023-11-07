@@ -199,6 +199,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择一个队伍！");
                 return;
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            long cdTime = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.PetMineCDTime );
+            if (cdTime > TimeHelper.ServerNow())
+            {
+                FloatTipManager.Instance.ShowFloatTip("挑战冷却中！");
+                return;
+            }
 
             Scene zoneScene = self.ZoneScene();
             int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
@@ -207,6 +214,5 @@ namespace ET
             UIHelper.Remove( zoneScene, UIType.UIPetMiningChallenge );
             UIHelper.Remove(zoneScene, UIType.UIPetSet);
         }
-
     }
 }
