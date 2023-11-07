@@ -784,5 +784,16 @@ namespace ET
             // 超级 
             new List<int> { 11300501,11300502,11300503,11300504,11300505 }
         };
+
+
+        /// <summary>
+        /// 神兽羁绊属性
+        /// </summary>
+        public static Dictionary<int, List<PropertyValue>> ShenShouJiBan = new Dictionary<int, List<PropertyValue>>()
+        {
+            { 1, new List<PropertyValue>(){ new PropertyValue() { HideID = 105101,  HideValue = 0 } } },
+            { 2, new List<PropertyValue>(){ new PropertyValue() { HideID = 105101, HideValue = 0 }, new PropertyValue() { HideID = 105201, HideValue = 0 } } },
+            { 3, new List<PropertyValue>(){ new PropertyValue() { HideID = 105101, HideValue = 0 } } },
+        };
     }
 }

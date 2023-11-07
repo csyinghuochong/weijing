@@ -1965,6 +1965,18 @@ namespace ET
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicListCopy);
             }
 
+            //神兽羁绊属性
+            int shenshouNumber =  unit.GetComponent<PetComponent>().GetShenShouNumber();
+            List<PropertyValue> shenshoujiban = null;
+            ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
+            if (shenshoujiban != null)
+            {
+                for (int i = 0; i < shenshoujiban.Count; i++)
+                {
+                    AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicListCopy);
+                }
+            }
+
             //8类型不加战力的被动技能属性
             //int SkillLiLiang = 0;
             //int SkillZhiLi = 0;
@@ -1981,7 +1993,7 @@ namespace ET
             }
             */
 
-            
+
             List<PropertyValue> skillProList_8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
             for (int i = 0; i < skillProList_8.Count; i++)
             {

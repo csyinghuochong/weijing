@@ -1050,6 +1050,19 @@ namespace ET
             return self.RolePetInfos;
         }
 
+        public static int GetShenShouNumber(this PetComponent self)
+        {
+            int shenshouNumber = 0;
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (PetHelper.IsShenShou(self.RolePetInfos[i].ConfigId) )
+                {
+                    shenshouNumber++;
+                }
+            }
+            return shenshouNumber;
+        }
+
         public static int GetTotalStar(this PetComponent self)
         {
             int star = 0;
