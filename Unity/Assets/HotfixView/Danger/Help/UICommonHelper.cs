@@ -53,6 +53,7 @@ namespace ET
         public static void ShowOccIcon(GameObject go, int occ)
         {
             occ = occ == 0 ? 1 : occ;
+            /// PlayerIcon 可以不用释放
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PlayerIcon, occ.ToString());
             go.GetComponent<Image>().sprite = sp;
         }

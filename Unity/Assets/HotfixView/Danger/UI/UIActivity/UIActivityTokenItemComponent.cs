@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivityTokenItemComponent : Entity, IAwake
+    public class UIActivityTokenItemComponent : Entity, IAwake, IDestroy
     {
         public GameObject LingQuHint_3;
         public GameObject LingQuHint_2;
@@ -21,15 +21,17 @@ namespace ET
         public GameObject TextName;
 
         public ActivityConfig ActivityConfig;
+
+        public List<string> AssetPath = null;     //只有一个asset 不需要用List
     }
 
-
-    public class UIActivityTokenItemAwakeSystem : AwakeSystem<UIActivityTokenItemComponent>
+    public class UIActivityTokenItemAwake : AwakeSystem<UIActivityTokenItemComponent>
     {
         public override void Awake(UIActivityTokenItemComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.AssetPath = new List<string>();
             self.LingQuHint_3 = rc.Get<GameObject>("LingQuHint_3");
             self.LingQuHint_2 = rc.Get<GameObject>("LingQuHint_2");
             self.LingQuHint_1 = rc.Get<GameObject>("LingQuHint_1");
@@ -50,6 +52,21 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_LingQu_1, () => { self.On_Btn_LingQu(1).Coroutine(); });
 
             self.TextName = rc.Get<GameObject>("TextName");
+        }
+    }
+
+    public class UIActivityTokenItemDestroy : DestroySystem<UIActivityTokenItemComponent>
+    {
+        public override void Destroy(UIActivityTokenItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
         }
     }
 
@@ -116,12 +133,25 @@ namespace ET
 
         public static void UpdateItemUI(this UIActivityTokenItemComponent self, GameObject uiItemShow, string itemInfo)
         {
-            ItemConfig itemconfig1 = ItemConfigCategory.Instance.Get(int.Parse(itemInfo.Split(';')[0]));
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig1.Icon);
-            string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig1.ItemQuality);
 
+            ItemConfig itemconfig1 = ItemConfigCategory.Instance.Get(int.Parse(itemInfo.Split(';')[0]));
+
+            ////只需要处理ABAtlasHelp.GetIconSprite调用到的地方， 改成如下
+            /// string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.XXIcon, icon);
+            /// ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            /// self.AssetPath.Add(path);
+            ////全部修改完成后移除ABAtlasHelp.GetIconSprite此方法
+
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig1.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            self.AssetPath.Add(path);
             uiItemShow.transform.Find("Image_ItemIcon").GetComponent<Image>().sprite = sp;
-            uiItemShow.transform.Find("Image_ItemQuality").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+
+            string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig1.ItemQuality);
+            string path_1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            uiItemShow.transform.Find("Image_ItemQuality").GetComponent<Image>().sprite = ResourcesComponent.Instance.LoadAsset<Sprite>(path_1);
+            self.AssetPath.Add(path_1);
+
             uiItemShow.transform.Find("Label_ItemNum").GetComponent<Text>().text = itemInfo.Split(';')[1];
             uiItemShow.transform.Find("Label_ItemName").GetComponent<Text>().text = itemconfig1.ItemName;
         }
