@@ -7,7 +7,7 @@ namespace ET
 
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject JiBanBtn;
         public GameObject Text_ShouHu;
         public GameObject ImageShouHu;
 
@@ -125,6 +125,7 @@ namespace ET
             self.PropertyShowText = rc.Get<GameObject>("PropertyShowText");
             self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
             self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
+            self.JiBanBtn = rc.Get<GameObject>("JiBanBtn");
          
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI PageButton = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
@@ -135,6 +136,7 @@ namespace ET
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
 
+            ButtonHelp.AddListenerEx(self.JiBanBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIShenShouJiBan).Coroutine(); });
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
             ButtonHelp.AddListenerEx( self.ButtonRName, ()=> { self.OnButtonRName().Coroutine(); } );
             self.ButtonAddPoint = rc.Get<GameObject>("ButtonAddPoint");
