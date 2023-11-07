@@ -749,7 +749,7 @@ namespace ET
 
             int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + pro_LiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
             int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + pro_ZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
-            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + pro_TiZhi * 40 + pro_NaiLi * 10) * hpPro * rolePetInfo.ZiZhi_ChengZhang);
+            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + pro_TiZhi * 60 + pro_NaiLi * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);
             int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + pro_NaiLi * 5) * defPro * rolePetInfo.ZiZhi_ChengZhang);
             int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + pro_NaiLi * 5) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
 
