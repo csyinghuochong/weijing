@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIWelfareTaskComponent: Entity, IAwake
+    public class UIWelfareTaskComponent: Entity, IAwake,IDestroy
     {
         public GameObject DayProgressImg;
         public GameObject DayListNode;
@@ -18,6 +18,7 @@ namespace ET
 
         public int Day;
         public List<UIWelfareTaskItemComponent> UIWelfareTaskItemComponents = new List<UIWelfareTaskItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIWelfareTaskComponentAwakeSystem: AwakeSystem<UIWelfareTaskComponent>
@@ -46,7 +47,13 @@ namespace ET
                 if (i <= currentDay)
                 {
                     Image image = self.DayListNode.transform.GetChild(i).GetComponent<Image>();
-                    image.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Img_82");
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_82");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    image.sprite = sp;
                     image.rectTransform.localScale = new Vector3(1.1f, 1.1f, 1f);
                 }
                 else
@@ -65,7 +72,21 @@ namespace ET
             self.UpdateInfo(currentDay);
         }
     }
+    public class UIWelfareTaskComponentDestroy: DestroySystem<UIWelfareTaskComponent>
+    {
+        public override void Destroy(UIWelfareTaskComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIWelfareTaskComponentSystem
     {
         public static void UpdateInfo(this UIWelfareTaskComponent self, int day)

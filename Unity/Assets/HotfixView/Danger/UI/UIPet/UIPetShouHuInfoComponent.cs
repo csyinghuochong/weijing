@@ -21,6 +21,8 @@ namespace ET
 
         public int Index;
         public Action<int> SelectHandler;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetShouHuInfoComponentAwake : AwakeSystem<UIPetShouHuInfoComponent, GameObject>
@@ -58,6 +60,15 @@ namespace ET
     {
         public override void Destroy(UIPetShouHuInfoComponent self)
         {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+            
             self.UIModelShowComponent.ReleaseRenderTexture();
             self.RenderTexture.Release();
             GameObject.Destroy(self.RenderTexture);
@@ -89,7 +100,13 @@ namespace ET
 
             self.Index = index;
             self.Text_Name.text = ConfigHelper.PetShouHuAttri[index].Value;
-            self.ImageIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageIcon.sprite = sp;
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (index >= petComponent.PetShouHuList.Count)

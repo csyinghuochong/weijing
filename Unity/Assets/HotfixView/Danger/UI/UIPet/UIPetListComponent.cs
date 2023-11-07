@@ -80,6 +80,7 @@ namespace ET
         public UIPageButtonComponent UIPageButton;
 
         public int PetSkinId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -87,6 +88,16 @@ namespace ET
     {
         public override void Destroy(UIPetListComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+            
             self.PetUIList.Clear();
             self.PetSkillUIList.Clear();
             self.PetSkinList.Clear();
@@ -674,7 +685,12 @@ namespace ET
                 itemTransform.Find("Node_2/TextName").gameObject.GetComponent<Text>().text = itemConfig.ItemName;
                 itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = $"等级 {itemConfig.UseLv}";
                 Image ImageIcon = itemTransform.Find("Node_2/ImageIcon").gameObject.GetComponent<Image>();
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 ImageIcon.sprite = sp;
             }
         }
@@ -834,7 +850,13 @@ namespace ET
             gameObject.transform.Find("Text_Attribute1").GetComponent<Text>().text = value;
             if (iconid.Length > 0)
             {
-                gameObject.transform.Find("ImageIcon").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, iconid);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, iconid);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                gameObject.transform.Find("ImageIcon").GetComponent<Image>().sprite = sp;
             }
         }
 
@@ -996,7 +1018,13 @@ namespace ET
             self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
             self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
-            self.ImageShouHu.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageShouHu.GetComponent<Image>().sprite = sp;
 
             //更新宠物是否进化
             if (rolePetInfo.UpStageStatus == 0 || rolePetInfo.UpStageStatus == 1)

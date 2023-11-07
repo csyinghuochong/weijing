@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanPetWalkItemComponent : Entity, IAwake<GameObject>
+    public class UIJiaYuanPetWalkItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Image_Lock;
         public GameObject Button_Add;
@@ -31,6 +31,7 @@ namespace ET
         public int Position;
         public Action<int> ClickAddHandler;
         public Action ClickStopHandler;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIJiaYuanPetWalkItemComponentA : AwakeSystem<UIJiaYuanPetWalkItemComponent, GameObject>
@@ -66,7 +67,20 @@ namespace ET
             self.Button_Add.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Add().Coroutine(); });
         }
     }
-
+    public class UIJiaYuanPetWalkItemComponentDestroy : DestroySystem<UIJiaYuanPetWalkItemComponent>
+    {
+        public override void Destroy(UIJiaYuanPetWalkItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIJiaYuanPetWalkItemComponentSystem
     {
 
@@ -160,7 +174,12 @@ namespace ET
                 self.Text_Name.GetComponent<Text>().text = rolePetInfo.PetName;
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.ImagePetIcon.GetComponent<Image>().sprite = sp;
 
                 long walkTime = jiaYuanPet.StartTime > 0 ? TimeHelper.ServerNow() - jiaYuanPet.StartTime : 0;

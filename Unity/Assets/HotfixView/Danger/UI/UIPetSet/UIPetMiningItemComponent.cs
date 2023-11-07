@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetMiningItemComponent : Entity, IAwake<GameObject>
+    public class UIPetMiningItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public GameObject TextChanChu;
@@ -22,6 +22,8 @@ namespace ET
 
         public int MineType;
         public int Position;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetMiningItemComponentAwake : AwakeSystem<UIPetMiningItemComponent, GameObject>
@@ -50,7 +52,20 @@ namespace ET
             }
         }
     }
-
+    public class UIPetMiningItemComponentDestroy : DestroySystem<UIPetMiningItemComponent>
+    {
+        public override void Destroy(UIPetMiningItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetMiningItemComponentSystem
     {
 
@@ -66,7 +81,13 @@ namespace ET
             self.Position = index;
             self.ImHeXinShow.SetActive( hexin);
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mingType);   
-            self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageIcon.GetComponent<Image>().sprite = sp;
 
             self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name + (hexin ? "(核心矿)": string.Empty);
 
@@ -106,7 +127,13 @@ namespace ET
                     {
                         self.PetIconList[i].gameObject.SetActive(true);
                         PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
-                        self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                        string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                        Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                        if (!self.AssetPath.Contains(path))
+                        {
+                            self.AssetPath.Add(path);
+                        }
+                        self.PetIconList[i].sprite = sp;
                     }
                 }
             }

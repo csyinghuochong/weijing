@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivityTeHuiItemComponent : Entity, IAwake<GameObject>
+    public class UIActivityTeHuiItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject ImageReceived;
         public GameObject TextPrice;
@@ -15,6 +16,8 @@ namespace ET
         public GameObject ImageBox;
 
         public ActivityConfig ActivityConfig;
+
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -34,6 +37,22 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.ImageTitle = rc.Get<GameObject>("ImageTitle");
             self.ImageBox = rc.Get<GameObject>("ImageBox");
+        }
+    }
+
+    public class UIActivityTeHuiItemComponentDestroy: DestroySystem<UIActivityTeHuiItemComponent>
+    {
+        public override void Destroy(UIActivityTeHuiItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
         }
     }
 
@@ -72,7 +91,13 @@ namespace ET
             string ItemIcon = activityConfig.Icon;
             if (ItemIcon != "" && ItemIcon != null)
             {
-                self.ImageBox.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemIcon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                self.ImageBox.GetComponent<Image>().sprite = sp;
             }
         }
     }

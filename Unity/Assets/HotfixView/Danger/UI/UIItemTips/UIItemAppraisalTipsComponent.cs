@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIItemAppraisalTipsComponent : Entity, IAwake
+    public class UIItemAppraisalTipsComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Img_FengYin;
@@ -44,6 +45,7 @@ namespace ET
 
         public Vector2 Img_backVector2;
         public float Lab_ItemNameWidth;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -94,7 +96,21 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
     }
+    public class UIItemAppraisalTipsComponentDestroy: DestroySystem<UIItemAppraisalTipsComponent>
+    {
+        public override void Destroy(UIItemAppraisalTipsComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIItemAppraisalTipsComponentSystem
     { 
         //放入背包
@@ -203,9 +219,21 @@ namespace ET
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
 
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
-            self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageQualityLine.GetComponent<Image>().sprite = sp;
             string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
-            self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.ImageQualityBg.GetComponent<Image>().sprite = sp1;
 
             int itemType = itemconf.ItemType;
             int itemSubType = itemconf.ItemSubType;
@@ -295,7 +323,13 @@ namespace ET
             //显示图标
             //显示道具Icon
             string ItemIcon = itemconf.Icon;
-            self.Obj_ItemIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+            string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemIcon);
+            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
+            if (!self.AssetPath.Contains(path2))
+            {
+                self.AssetPath.Add(path2);
+            }
+            self.Obj_ItemIcon.GetComponent<Image>().sprite = sp2;
 
             self.Img_FengYin.SetActive( itemconf.EquipType == 101 );
             UICommonHelper.SetImageGray(self.Obj_ItemIcon, true);
@@ -305,7 +339,13 @@ namespace ET
             self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? "开启封印" : "鉴定";
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconf.ItemQuality);
-            self.Obj_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            string path3 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            Sprite sp3 = ResourcesComponent.Instance.LoadAsset<Sprite>(path3);
+            if (!self.AssetPath.Contains(path3))
+            {
+                self.AssetPath.Add(path3);
+            }
+            self.Obj_ItemQuality.GetComponent<Image>().sprite = sp3;
 
             string Text_ItemStory = itemconf.ItemDes;
             //显示道具描述

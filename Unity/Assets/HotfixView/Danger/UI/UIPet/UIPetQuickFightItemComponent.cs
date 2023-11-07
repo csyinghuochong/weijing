@@ -15,13 +15,23 @@ namespace ET
 
         public Action<long> ClickHandler;
         public long PetId;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
     public class UIPetQuickFightItemComponentDestroy : DestroySystem<UIPetQuickFightItemComponent>
     {
         public override void Destroy(UIPetQuickFightItemComponent self)
-        {        
+        {       
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
         }
     }
 
@@ -69,10 +79,14 @@ namespace ET
         {
             self.PetId = rolePetInfo.Id;
             self.ClickHandler = handler;
-
-            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Icon.GetComponent<Image>().sprite = sp;
         }
     }

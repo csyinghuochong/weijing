@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRankPetItemComponent : Entity, IAwake<GameObject>
+    public class UIRankPetItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Lab_Owner;
         public GameObject Lab_TeamName;
@@ -18,6 +18,7 @@ namespace ET
         public RankPetInfo RankPetInfo;
 
         public List<long> PetIdList = new List<long>(); 
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -48,7 +49,21 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_PVP, () => { self.OnClickBtn_PVP(); });
         }
     }
+    public class UIRankPetItemComponentDestroy: DestroySystem<UIRankPetItemComponent>
+    {
+        public override void Destroy(UIRankPetItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIRankPetItemComponentSystem
     {
 
@@ -113,7 +128,12 @@ namespace ET
                 }
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rankPetInfo.PetConfigId[i]);
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.ImageIconList[number].SetActive(true);
                 self.ImageIconList[number].GetComponent<Image>().sprite = sp;
                 self.Lab_PaiMing.GetComponent<Text>().text = rankPetInfo.RankId.ToString();

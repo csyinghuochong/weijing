@@ -18,6 +18,7 @@ namespace ET
 
         public long PetUpId;
         public long PetXianjiId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -50,6 +51,15 @@ namespace ET
     {
         public override void Destroy(UIPetXianjiComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
             DataUpdateComponent.Instance.RemoveListener(DataType.PetItemSelect, self);
         }
     }
@@ -68,7 +78,12 @@ namespace ET
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetXianjiId);
 
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.PetIcon.GetComponent<Image>().sprite = sp;
             self.PetIcon.SetActive(true);
 

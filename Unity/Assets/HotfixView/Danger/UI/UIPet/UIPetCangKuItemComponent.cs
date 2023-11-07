@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetCangKuItemComponent : Entity, IAwake<GameObject>
+    public class UIPetCangKuItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject GameObject;
         public GameObject ButtonPut;
@@ -19,6 +19,8 @@ namespace ET
 
         public Action PetCangKuAction;
         public int Index;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetCangKuItemComponentAwake : AwakeSystem<UIPetCangKuItemComponent, GameObject>
@@ -37,7 +39,20 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonPut, () => { self.OnButtonPut().Coroutine(); });
         }
     }
-
+    public class UIPetCangKuItemComponentDestroy : DestroySystem<UIPetCangKuItemComponent>
+    {
+        public override void Destroy(UIPetCangKuItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetCangKuItemComponentSystem
     {
 
@@ -53,7 +68,12 @@ namespace ET
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
         }
 

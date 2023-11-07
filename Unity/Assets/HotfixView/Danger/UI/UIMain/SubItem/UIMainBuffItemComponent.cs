@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 namespace ET
 {
-    public class UIMainBuffItemComponent : Entity, IAwake<GameObject>
+    public class UIMainBuffItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject TextNumber;
         public GameObject TextLeftTime;
@@ -21,6 +22,8 @@ namespace ET
         public string showTimeStr;
         public string BuffIcon;
         public string aBAtlasTypes;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIMainBuffItemComponentAwakeSystem : AwakeSystem<UIMainBuffItemComponent, GameObject>
@@ -39,7 +42,20 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.ImgBufflIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
         }
     }
-
+    public class UIMainBuffItemComponentDestroy : DestroySystem<UIMainBuffItemComponent>
+    {
+        public override void Destroy(UIMainBuffItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIMainBuffItemComponentSystem
     {
         public static async ETTask BeginDrag(this UIMainBuffItemComponent self, PointerEventData pdata)
@@ -125,7 +141,12 @@ namespace ET
             }
             self.aBAtlasTypes = aBAtlasTypes;
             self.BuffIcon = bufficon;
-            Sprite sp = ABAtlasHelp.GetIconSprite(aBAtlasTypes, bufficon);
+            string path =ABPathHelper.GetAtlasPath_2(aBAtlasTypes, bufficon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImgBufflIcon.GetComponent<Image>().sprite = sp;
         }
 

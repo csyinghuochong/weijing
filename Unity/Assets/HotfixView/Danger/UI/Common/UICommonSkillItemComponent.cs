@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICommonSkillItemComponent : Entity, IAwake<GameObject>
+    public class UICommonSkillItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public GameObject ImageIcon;
@@ -16,6 +17,8 @@ namespace ET
         public string SkillAtlas;
         public int SkillId;
         public string addTip;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -36,7 +39,20 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
         }
     }
-
+    public class UICommonSkillItemComponentDestroy : DestroySystem<UICommonSkillItemComponent>
+    {
+        public override void Destroy(UICommonSkillItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UICommonSkillItemComponentSystem
     {
 
@@ -53,8 +69,13 @@ namespace ET
             {
                 return;
             }
-           
-            Sprite sp = ABAtlasHelp.GetIconSprite(SkillAtlas, skillConfig.SkillIcon);
+            
+            string path =ABPathHelper.GetAtlasPath_2(SkillAtlas, skillConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.SkillAtlas = SkillAtlas;
             self.addTip = addtip;

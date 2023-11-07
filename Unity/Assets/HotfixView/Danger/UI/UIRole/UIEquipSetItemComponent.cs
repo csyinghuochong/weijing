@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIEquipSetItemComponent : Entity, IAwake<GameObject>
+    public class UIEquipSetItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Img_EquipBack;
         public GameObject Img_EquipIcon;
@@ -21,6 +21,8 @@ namespace ET
         public Action<BagInfo> OnClickAction;
 
         public ItemOperateEnum itemOperateEnum = ItemOperateEnum.Juese;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -39,7 +41,20 @@ namespace ET
             self.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnClickEquip(); });
         }
     }
-
+    public class UIEquipSetItemComponentDestroy : DestroySystem<UIEquipSetItemComponent>
+    {
+        public override void Destroy(UIEquipSetItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIEquipSetItemComponentSystem
     {
         public static void OnClickEquip(this UIEquipSetItemComponent self)
@@ -73,7 +88,12 @@ namespace ET
             if (subType < 100)
             {
                 string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.Img_EquipBack.GetComponent<Image>().sprite = sp;
             }
         }
@@ -88,14 +108,25 @@ namespace ET
                 self.EquipIdList = equipIdList;
                 ItemConfig itemconfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.Img_EquipIcon.SetActive(true);
                 self.Img_EquipIcon.GetComponent<Image>().sprite = sp;
 
                 //设置品质
                 string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig.ItemQuality);
                 self.Img_EquipQuality.SetActive(true);
-                self.Img_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+                string path2 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+                Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
+                if (!self.AssetPath.Contains(path2))
+                {
+                    self.AssetPath.Add(path2);
+                }
+                self.Img_EquipQuality.GetComponent<Image>().sprite = sp2;
 
                 //显示绑定
                 if (bagInfo.isBinging)

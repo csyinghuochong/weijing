@@ -45,6 +45,7 @@ namespace ET
         public UIRoleAddPointComponent UIRoleAddPointComponent;
         public int MaxPiLao;
         public int NowShowType;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -129,6 +130,16 @@ namespace ET
 
         public override void Destroy(UIRolePropertyComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+            
             //移除监听事件
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleProper, self);
 
@@ -398,7 +409,13 @@ namespace ET
                 //显示图标
                 if (showList.iconID != null && showList.iconID != "")
                 {
-                    rc.Get<GameObject>("Img_Icon").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, showList.iconID);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, showList.iconID);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    rc.Get<GameObject>("Img_Icon").GetComponent<Image>().sprite = sp;
                 }
             }
 

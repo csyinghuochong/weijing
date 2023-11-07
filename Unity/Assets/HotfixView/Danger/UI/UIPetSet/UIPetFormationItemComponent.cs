@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetFormationItemComponent : Entity, IAwake<GameObject>
+    public class UIPetFormationItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject ImageFight;
         public GameObject ImageBack;
@@ -18,6 +19,8 @@ namespace ET
         public Action<RolePetInfo, PointerEventData> DragingHandler;
         public Action<RolePetInfo, PointerEventData> EndDragHandler;
         public RolePetInfo RolePetInfo;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -39,7 +42,20 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
         }
     }
-
+    public class UIPetFormationItemComponentDestroy : DestroySystem<UIPetFormationItemComponent>
+    {
+        public override void Destroy(UIPetFormationItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetFormationItemComponentSystem
     {
         public static void SetFighting(this UIPetFormationItemComponent self, bool fighting)
@@ -86,7 +102,12 @@ namespace ET
         {
             self.RolePetInfo= rolePetInfo;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.ImageFight.SetActive(fighting);
             self.TextLv.GetComponent<Text>().text = $"等级: {rolePetInfo.PetLv}";

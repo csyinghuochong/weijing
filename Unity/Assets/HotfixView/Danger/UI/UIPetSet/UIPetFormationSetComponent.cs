@@ -6,7 +6,7 @@ using System;
 
 namespace ET
 {
-    public class UIPetFormationSetComponent : Entity, IAwake<GameObject>
+    public class UIPetFormationSetComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject GameObject;
         public GameObject IconItemDrag;
@@ -14,6 +14,8 @@ namespace ET
         public Action<long, int, int> DragEndHandler = null;
 
         public UIPetFormationItemComponent[] FormationItemComponents = new UIPetFormationItemComponent[9];
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetFormationSetComponentAwakeSystem : AwakeSystem<UIPetFormationSetComponent, GameObject>
@@ -30,7 +32,20 @@ namespace ET
             }
         }
     }
-
+    public class UIPetFormationSetComponentDestroy : DestroySystem<UIPetFormationSetComponent>
+    {
+        public override void Destroy(UIPetFormationSetComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetFormationSetComponentSystem
     {
 
@@ -73,7 +88,12 @@ namespace ET
         {
             self.IconItemDrag.SetActive(true);
             PetConfig petConfig = PetConfigCategory.Instance.Get(binfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);

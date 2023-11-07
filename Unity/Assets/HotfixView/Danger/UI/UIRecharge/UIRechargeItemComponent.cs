@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRechargeItemComponent: Entity, IAwake
+    public class UIRechargeItemComponent: Entity, IAwake,IDestroy
     {
 
         public GameObject ImageIcon;
@@ -16,6 +17,7 @@ namespace ET
      
         public int RechargeNumber;
         public Action<int> ClickHandler;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -36,7 +38,21 @@ namespace ET
             self.ButtonCharge.GetComponent<Button>().onClick.AddListener(() => { self.OnImageButton(); });
         }
     }
+    public class UIRechargeItemComponentDestroy: DestroySystem<UIRechargeItemComponent>
+    {
+        public override void Destroy(UIRechargeItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIRechargeItemComponentSystem
     {
 
@@ -49,7 +65,12 @@ namespace ET
             self.Text_ZuanShi.GetComponent<Text>().text = (recharge * 100).ToString();
             self.Text_RMB.GetComponent<Text>().text = "￥" + recharge.ToString();
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_"+ recharge.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_"+ recharge.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.ImageIcon.GetComponent<Image>().SetNativeSize();
             self.ImageIcon.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);

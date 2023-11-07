@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -34,7 +35,7 @@ namespace ET
         public int ItemID;
         public bool ShowTip;
 
-        public string AssetPath;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -59,6 +60,14 @@ namespace ET
     {
         public override void Destroy(UIItemComponent self)
         {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
             GameObject.Destroy( self.GameObject );
         }
     }
@@ -92,8 +101,6 @@ namespace ET
             self.Image_Lock?.SetActive(false);
             self.Image_Protect?.SetActive(false);
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
-
-            self.AssetPath = string.Empty;
         }
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
@@ -182,7 +189,12 @@ namespace ET
 
         public static  void ShowIcon(this UIItemComponent self, string itemIcon)
         {
-            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
         }
 
@@ -238,7 +250,13 @@ namespace ET
                 {
                     self.ShowIcon(itemconfig.Icon);
                     string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig.ItemQuality);
-                    self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    self.Image_ItemQuality.GetComponent<Image>().sprite = sp;
                     int itemType = itemconfig.ItemType;
                     //装备数字显示为空
                     if (itemType == 3)

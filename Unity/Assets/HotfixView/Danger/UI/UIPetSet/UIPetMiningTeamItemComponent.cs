@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPetMiningTeamItemComponent : Entity, IAwake<GameObject>
+    public class UIPetMiningTeamItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public int TeamId = 0;   //0 1 2
@@ -23,6 +23,8 @@ namespace ET
         public GameObject IconItemDrag;
 
         public GameObject ButtonSet;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetMiningTeamItemComponentAwake : AwakeSystem<UIPetMiningTeamItemComponent, GameObject>
@@ -47,7 +49,20 @@ namespace ET
             self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonSet().Coroutine();  } );
         }
     }
-
+    public class UIPetMiningTeamItemComponentDestroy : DestroySystem<UIPetMiningTeamItemComponent>
+    {
+        public override void Destroy(UIPetMiningTeamItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetMiningTeamItemComponentSystem
     {
         public static async ETTask OnButtonSet(this UIPetMiningTeamItemComponent self)
@@ -111,8 +126,6 @@ namespace ET
 
                 if (rolePetInfo != null)
                 {
-                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
                     self.FormationItemComponents[i].OnInitUI(rolePetInfo);
                     self.FormationItemComponents[i].GameObject.SetActive(true);
                 }
@@ -124,7 +137,12 @@ namespace ET
         {
             self.IconItemDrag.SetActive(true);
             PetConfig petConfig = PetConfigCategory.Instance.Get(binfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);

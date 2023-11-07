@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMakeLearnComponent : Entity, IAwake
+    public class UIMakeLearnComponent : Entity, IAwake,IDestroy
     {
         public GameObject Img_ShuLianPro;
         public GameObject Lab_ShuLianDu;
@@ -38,6 +38,8 @@ namespace ET
         public List<UIItemComponent> CostUIList = new List<UIItemComponent>();
         public UserInfoComponent userInfoComponent;
         public int MakeType;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -102,7 +104,21 @@ namespace ET
             self.UpdateShuLianDu();
         }
     }
+    public class UIMakeLearnComponentDestroy: DestroySystem<UIMakeLearnComponent>
+    {
+        public override void Destroy(UIMakeLearnComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIMakeLearnComponentSystem
     {
 
@@ -251,11 +267,22 @@ namespace ET
             self.Obj_Lab_LearnItemName.GetComponent<Text>().text = itemConfig.ItemName;
             self.Obj_Lab_LearnItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemConfig.ItemQuality);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
-            self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
+            string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
+            if (!self.AssetPath.Contains(path2))
+            {
+                self.AssetPath.Add(path2);
+            }
+            self.Image_ItemIcon.GetComponent<Image>().sprite = sp2;
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
-            self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_ItemQuality.GetComponent<Image>().sprite = sp1;
 
             //显示需要熟练度
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

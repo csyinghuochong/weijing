@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetUpStarComponent : Entity, IAwake
+    public class UIPetUpStarComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Text_UpRate;
@@ -25,6 +25,7 @@ namespace ET
 
         public int UpStarStoneId;
         public int UpStarStoneNum;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -80,10 +81,21 @@ namespace ET
             self.UpStarStoneNum = int.Parse(upStarStoneInfo[1]);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.UpStarStoneId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_ItemIcon.GetComponent<Image>().sprite = sp;
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
-            self.Img_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Img_ItemQuality.GetComponent<Image>().sprite = sp1;
             self.Text_ItemName.GetComponent<Text>().text = itemConfig.ItemName;
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
@@ -91,7 +103,21 @@ namespace ET
             self.OnInitUI().Coroutine();
         }
     }
+    public class UIPetUpStarComponentDestroy: DestroySystem<UIPetUpStarComponent>
+    {
+        public override void Destroy(UIPetUpStarComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetUpStarComponentSystem
     {
         public static async ETTask OnInitUI(this UIPetUpStarComponent self)

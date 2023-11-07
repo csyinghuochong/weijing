@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonStoreComponent: Entity, IAwake
+    public class UISeasonStoreComponent: Entity, IAwake,IDestroy
     {
         public GameObject SeasonStoreListNode;
         public GameObject UISeasonStoreItem;
@@ -12,6 +12,7 @@ namespace ET
         public GameObject GoldImg;
 
         public List<UISeasonStoreItemComponent> UISeasonStoreItemComponentList = new List<UISeasonStoreItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonStoreComponentAwakeSystem: AwakeSystem<UISeasonStoreComponent>
@@ -30,7 +31,21 @@ namespace ET
             self.UpdateInfo();
         }
     }
+    public class UISeasonStoreComponentDestroy: DestroySystem<UISeasonStoreComponent>
+    {
+        public override void Destroy(UISeasonStoreComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonStoreComponentSystem
     {
         public static void UpdateInfo(this UISeasonStoreComponent self)
@@ -40,7 +55,12 @@ namespace ET
                     .GetItemNumber(StoreSellConfigCategory.Instance.Get(seasonShopid).SellType).ToString();
 
             ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(StoreSellConfigCategory.Instance.Get(seasonShopid).SellType);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.GoldImg.GetComponent<Image>().sprite = sp;
 
             List<int> itemList = new List<int>();

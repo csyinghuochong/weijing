@@ -1,12 +1,13 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
 
-    public class UIPetListItemComponent : Entity, IAwake<GameObject>
+    public class UIPetListItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Image_Protect;
         public GameObject Lab_Status;
@@ -34,6 +35,7 @@ namespace ET
 
         public long  PetId;
         public Action<long> ClickPetHandler;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -76,7 +78,20 @@ namespace ET
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
         }
     }
-
+    public class UIPetListItemComponentDestroy : DestroySystem<UIPetListItemComponent>
+    {
+        public override void Destroy(UIPetListItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetListItemComponentSystem
     {
 
@@ -141,7 +156,12 @@ namespace ET
                 self.OnUpdatePetPoint(rolePetInfo);
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                 PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
                 self.Img_CanZhan.SetActive(rolePetInfo.PetStatus == 1);
@@ -161,14 +181,16 @@ namespace ET
             }
         }
 
-        public static void StartShowImg(this UIPetListItemComponent self,GameObject startObj) {
-
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Start_2");
+        public static void StartShowImg(this UIPetListItemComponent self,GameObject startObj)
+        {
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Start_2");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             startObj.GetComponent<Image>().sprite = sp;
-
         }
-
     }
-
 }
 

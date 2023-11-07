@@ -1,13 +1,16 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetSkillItemComponent : Entity, IAwake
+    public class UIPetSkillItemComponent : Entity, IAwake,IDestroy
     {
         public GameObject ImageKuang;
         public GameObject ImageIcon;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -20,7 +23,20 @@ namespace ET
             self.ImageIcon = rc.Get<GameObject>("Image_ItemIcon");
         }
     }
-
+    public class UIPetSkillItemComponentDestroy : DestroySystem<UIPetSkillItemComponent>
+    {
+        public override void Destroy(UIPetSkillItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
 
     public static class UIPetSkillItemComponentSystem
     {
@@ -28,7 +44,12 @@ namespace ET
         public static void OnUpdateUI(this UIPetSkillItemComponent self, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
         }
         

@@ -1,12 +1,13 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
 
-    public class UICellDungeonItemComponent : Entity, IAwake
+    public class UICellDungeonItemComponent : Entity, IAwake ,IDestroy
     {
         public GameObject ImageBossIcon;
         public GameObject Lab_EnterLevel;
@@ -24,6 +25,7 @@ namespace ET
         public float StartPosX;
         public Action<int> ClickHandler;
         public Vector3 CurPosition;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -51,7 +53,20 @@ namespace ET
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClikButton(); });
         }
     }
-
+    public class UICellDungeonItemComponentDestroy : DestroySystem<UICellDungeonItemComponent>
+    {
+        public override void Destroy(UICellDungeonItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UICellDungeonItemComponentSystem
     {
 
@@ -84,7 +99,13 @@ namespace ET
             self.ImageTiaozhan.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= (int)FubenDifficulty.Normal);
             self.ImageKunnan.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= (int)FubenDifficulty.TiaoZhan);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, chapterConfig.BossIcon.ToString());
+            
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, chapterConfig.BossIcon.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageBossIcon.GetComponent<Image>().sprite = sp;
         }
 

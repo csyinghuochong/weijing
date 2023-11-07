@@ -42,6 +42,8 @@ namespace ET
 
         public long Timer;
         public int Index;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetEggListItemComponentAwakeSystem : AwakeSystem<UIPetEggListItemComponent, GameObject>
@@ -78,6 +80,14 @@ namespace ET
         public override void Destroy(UIPetEggListItemComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
         }
     }
 
@@ -250,7 +260,12 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.PetEggIcon.GetComponent<Image>().sprite = sp;
             if (rolePetEgg.EndTime == 0)
             {

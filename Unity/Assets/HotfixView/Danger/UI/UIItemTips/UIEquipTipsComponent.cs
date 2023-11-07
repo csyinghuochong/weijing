@@ -100,6 +100,8 @@ namespace ET
 
         public Vector2 Img_backVector2;
         public float Lab_ItemNameWidth;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -206,6 +208,15 @@ namespace ET
     {
         public override void Destroy(UIEquipTipsComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
             self.OnDestroyTips();
         }
     }
@@ -450,7 +461,12 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemId);
                 text.GetComponent<Text>().text = itemConfig.ItemName;
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 icon.GetComponent<Image>().sprite = sp;
 
                 int equipShiShiGemNum = 0;
@@ -480,7 +496,12 @@ namespace ET
             else
             {
                 text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 icon.GetComponent<Image>().sprite = sp;
             }
         }
@@ -758,10 +779,23 @@ namespace ET
                 self.Obj_Img_EquipBangDing.SetActive(false);
             }
 
-            self.Obj_EquipIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Obj_EquipIcon.GetComponent<Image>().sprite = sp;
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(ItemQuality);
             Log.Info("qualityiconStr = " + qualityiconStr);
-            self.Obj_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            
+            path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Obj_EquipQuality.GetComponent<Image>().sprite = sp;
 
             //显示基础信息
             self.Obj_EquipName.GetComponent<Text>().text = equipName;
@@ -962,9 +996,22 @@ namespace ET
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
-            self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageQualityLine.GetComponent<Image>().sprite = sp;
             string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
-            self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            
+            path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageQualityBg.GetComponent<Image>().sprite = sp;
             self.ShowBaseAttribute();
             self.ZhuanJingStatus(occTwoValue, itemconf, baginfo);
             self.ShowButton();

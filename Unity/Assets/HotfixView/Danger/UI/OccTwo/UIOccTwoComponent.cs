@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIOccTwoComponent : Entity, IAwake
+    public class UIOccTwoComponent : Entity, IAwake, IDestroy
     {
         public GameObject Image_ZhiYe;
         public GameObject Image_ZhiYe_4;
@@ -57,6 +57,7 @@ namespace ET
             {  12,  GameSettingLanguge.LoadLocalization("轻甲") },
             {  13,  GameSettingLanguge.LoadLocalization("重甲") },
         };
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -118,7 +119,21 @@ namespace ET
             self.OnInitUI();
         }
     }
+    public class UIOccTwoComponentDestroy: DestroySystem<UIOccTwoComponent>
+    {
+        public override void Destroy(UIOccTwoComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIOccTwoComponentSystem
     {
 
@@ -165,11 +180,37 @@ namespace ET
             index = index < 0 ? 0 : index;
             self.OnButton_ZhiYe(index);
 
-            self.Button_ZhiYe_1.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[0]}");
-            self.Button_ZhiYe_2.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[1]}");
-            self.Button_ZhiYe_3.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[2]}");
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[0]}");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Button_ZhiYe_1.GetComponent<Image>().sprite = sp;
+            
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[1]}"); 
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Button_ZhiYe_2.GetComponent<Image>().sprite = sp;
+            
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[2]}"); 
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Button_ZhiYe_3.GetComponent<Image>().sprite = sp;
 
-            self.Image_ZhiYe.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Occ_{occ}");
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Occ_{occ}"); 
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Image_ZhiYe.GetComponent<Image>().sprite = sp;
         }
 
         public static void OnButton_ZhiYe(this UIOccTwoComponent self, int index)
@@ -220,13 +261,32 @@ namespace ET
             self.Text_ZhiYe_4.GetComponent<Text>().text = occupationTwoConfig.OccupationName;
             UICommonHelper.DestoryChild(self.SkillContainer);
 
-            self.Image_WuQi_Zhuan.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, $"HuJia_{occupationTwoConfig.ArmorMastery}" );
-            self.Image_WuQi_Type.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"WuQi_{occupationTwoConfig.WeaponType}");
+            string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"HuJia_{occupationTwoConfig.ArmorMastery}");
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_WuQi_Zhuan.GetComponent<Image>().sprite = sp1;
+            
+            path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"WuQi_{occupationTwoConfig.WeaponType}");
+            sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_WuQi_Type.GetComponent<Image>().sprite = sp1;
 
             self.Lab_HuJia.GetComponent<Text>().text = self.showType[occupationTwoConfig.ArmorMastery]+"专精";
             self.Lab_WuQi.GetComponent<Text>().text = self.showType[occupationTwoConfig.WeaponType] + "专精";
 
-            self.Image_ZhiYe_4.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"OccTwo_{occupationTwoConfig.Id}");
+            path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{occupationTwoConfig.Id}");
+            sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_ZhiYe_4.GetComponent<Image>().sprite = sp1;
 
             self.OccNengLi_1.transform.Find("Text_NengLiValue").GetComponent<Text>().text = occupationTwoConfig.Capacitys[0].ToString();
             self.OccNengLi_2.transform.Find("Text_NengLiValue").GetComponent<Text>().text = occupationTwoConfig.Capacitys[1].ToString();

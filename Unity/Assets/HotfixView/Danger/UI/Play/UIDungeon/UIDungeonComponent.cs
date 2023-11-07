@@ -21,7 +21,7 @@ namespace ET
         public GameObject ScrollView;
         public GameObject ChapterList;
         public GameObject ButtonClose;
-        public string AssetPath = string.Empty;
+        public List<string> AssetPath = new List<string>();
     }
 
     [Timer(TimerType.UIDungenBossRefreshTimer)]
@@ -38,7 +38,6 @@ namespace ET
         public override void Awake(UIDungeonComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.AssetPath = string.Empty;
             self.BossRefreshTimeList = rc.Get<GameObject>("BossRefreshTimeList");
             self.UIBossRefreshTimeItem = rc.Get<GameObject>("UIBossRefreshTimeItem");
             self.BossRefreshSettingBtn = rc.Get<GameObject>("BossRefreshSettingBtn");
@@ -64,10 +63,14 @@ namespace ET
     {
         public override void Destroy(UIDungeonComponent self)
         {
-            if (!string.IsNullOrEmpty(self.AssetPath))
+            for(int i = 0; i < self.AssetPath.Count; i++)
             {
-                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
             }
+            self.AssetPath = null;
 
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
@@ -80,7 +83,7 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.AssetPath = path;
+            self.AssetPath.Add(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -155,8 +158,13 @@ namespace ET
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
 
                 // Boss头像
-                Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
-                boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sprite;
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sp;
 
                 // Boss名字
                 boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.MonsterName;

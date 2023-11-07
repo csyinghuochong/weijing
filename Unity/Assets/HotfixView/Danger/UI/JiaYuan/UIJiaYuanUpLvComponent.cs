@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanUpLvComponent : Entity, IAwake
+    public class UIJiaYuanUpLvComponent : Entity, IAwake, IDestroy
     {
         public GameObject UpdateGet;
         public GameObject Btn_UpLv;
@@ -24,6 +25,8 @@ namespace ET
         public GameObject ExpDuiHuanAddShow;
         public GameObject ZiJinDuiHuanAddShow;
         public GameObject ImgGengDiIcon;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -65,13 +68,32 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
             {
-                self.ImgGengDiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "444");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "444");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                self.ImgGengDiIcon.GetComponent<Image>().sprite = sp;
             }
 
             self.OnUpdateUI();
         }
     }
-
+    public class UIJiaYuanUpLvComponentDestroy : DestroySystem<UIJiaYuanUpLvComponent>
+    {
+        public override void Destroy(UIJiaYuanUpLvComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIJiaYuanUpLvComponentSystem
     {
 

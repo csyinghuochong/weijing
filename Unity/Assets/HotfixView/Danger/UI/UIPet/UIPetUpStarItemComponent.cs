@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetUpStarItemComponent : Entity, IAwake
+    public class UIPetUpStarItemComponent : Entity, IAwake,IDestroy
     {
         public GameObject Lab_SuccessAdd;
         public GameObject Lab_PetLv;
@@ -14,6 +15,7 @@ namespace ET
         public GameObject Obj_Lab_SuccessAdd;
 
         public RolePetInfo RolePetInfo;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -32,7 +34,21 @@ namespace ET
             self.Obj_Lab_SuccessAdd = rc.Get<GameObject>("Lab_SuccessAdd");
         }
     }
+    public class UIPetUpStarItemComponentDestroy: DestroySystem<UIPetUpStarItemComponent>
+    {
+        public override void Destroy(UIPetUpStarItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetUpStarItemComponentSystem
     {
 
@@ -52,7 +68,12 @@ namespace ET
             }
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public class UITeamDungeonCreateComponent : Entity, IAwake
+    public class UITeamDungeonCreateComponent : Entity, IAwake,IDestroy
     {
         public GameObject ShenYuanButton;
         public GameObject ShenYuanMode;
@@ -22,6 +22,7 @@ namespace ET
         public int FubenId;
         public List<int> FubenIdList = new List<int>() { };
         public List<Transform> ButtonList = new List<Transform>();
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -79,7 +80,12 @@ namespace ET
                 rcSon.Get<GameObject>("Lab_Lv").GetComponent<Text>().text = "进入等级:" + sceneConfig[i].EnterLv.ToString() + "级";
                 rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().text = sceneConfig[i].Name;
 
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.TiTleIcon, sceneConfig[i].Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig[i].Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 rcSon.Get<GameObject>("Img_Show").GetComponent<Image>().sprite = sp;
 
 
@@ -98,7 +104,21 @@ namespace ET
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
+    public class UITeamDungeonCreateComponentDestroy: DestroySystem<UITeamDungeonCreateComponent>
+    {
+        public override void Destroy(UITeamDungeonCreateComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UITeamDungeonCreateComponentSystem
     {
         public static void OnClickButton(this UITeamDungeonCreateComponent self, Transform transform)

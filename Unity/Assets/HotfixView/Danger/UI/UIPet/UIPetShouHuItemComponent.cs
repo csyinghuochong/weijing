@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetShouHuItemComponent : Entity, IAwake<GameObject>
+    public class UIPetShouHuItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Node_1;
         public GameObject Node_2;
@@ -21,6 +21,8 @@ namespace ET
         public GameObject GameObject;
         public RolePetInfo RolePetInfo;
         public Action<long> ButtonShouHuHandler;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetShouHuItemComponentAwake : AwakeSystem<UIPetShouHuItemComponent, GameObject>
@@ -42,7 +44,20 @@ namespace ET
             ButtonHelp.AddListenerEx( self.ButtonShouHu, () => { self.ButtonShouHuHandler(self.RolePetInfo.Id);  });
         }
     }
-
+    public class UIPetShouHuItemComponentDestroy : DestroySystem<UIPetShouHuItemComponent>
+    {
+        public override void Destroy(UIPetShouHuItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetShouHuItemComponentSystem
     {
 
@@ -57,7 +72,12 @@ namespace ET
             self.RolePetInfo = rolePetInfo;
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
@@ -75,7 +95,13 @@ namespace ET
             {
                 self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
             }
-            self.Img_ShouHuIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
+            string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
+            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
+            if (!self.AssetPath.Contains(path2))
+            {
+                self.AssetPath.Add(path2);
+            }
+            self.Img_ShouHuIcon.GetComponent<Image>().sprite = sp2;
         }
 
     }

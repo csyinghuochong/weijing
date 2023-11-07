@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillSetComponent : Entity, IAwake
+    public class UISkillSetComponent : Entity, IAwake,IDestroy
     {
         public GameObject SkillIconItem;
         public GameObject SkillIPositionSet;
@@ -19,6 +19,7 @@ namespace ET
         public List<GameObject> SkillSetIconList = new List<GameObject>();
         public GameObject SkillIconItemCopy;
         public Vector2 localPoint;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -47,7 +48,21 @@ namespace ET
             self.UpdateItemSkillUI().Coroutine();
         }
     }
+    public class UISkillSetComponentDestroy: DestroySystem<UISkillSetComponent>
+    {
+        public override void Destroy(UISkillSetComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
 
     public static class UUISkillSetComponentSystem
     {
@@ -88,13 +103,23 @@ namespace ET
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(
                         SkillHelp.GetWeaponSkill(skillPro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList)
                        );
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     itemgo.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;
                 }
                 if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
                 {
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(skillPro.SkillID);
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     itemgo.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;
                 }
             }
@@ -185,7 +210,12 @@ namespace ET
             UICommonHelper.SetParent(self.SkillIconItemCopy, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
 
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(binfo.ItemID);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.SkillIconItemCopy.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;
         }
 

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICommonPropertyComponent: Entity, IAwake
+    public class UICommonPropertyComponent: Entity, IAwake, IDestroy
     {
         public GameObject NameText;
         public GameObject LvText;
@@ -14,6 +14,7 @@ namespace ET
         public GameObject SkillListNode;
 
         public List<ShowPropertyList> ShowPropertyList = new List<ShowPropertyList>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UICommonPropertyComponentAwakeSystem: AwakeSystem<UICommonPropertyComponent>
@@ -24,6 +25,20 @@ namespace ET
         }
     }
 
+    public class UICommonPropertyComponentDestroy : DestroySystem<UICommonPropertyComponent>
+    {
+        public override void Destroy(UICommonPropertyComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UICommonPropertyComponentSytstem
     {
         public static void Awake(this UICommonPropertyComponent self)
@@ -118,8 +133,13 @@ namespace ET
                     //显示图标
                     if (!string.IsNullOrEmpty(showList.iconID))
                     {
-                        rc.Get<GameObject>("Img_Icon").GetComponent<Image>().sprite =
-                                ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, showList.iconID);
+                        string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, showList.iconID);
+                        Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                        if (!self.AssetPath.Contains(path))
+                        {
+                            self.AssetPath.Add(path);
+                        }
+                        rc.Get<GameObject>("Img_Icon").GetComponent<Image>().sprite = sp;
                         rc.Get<GameObject>("Img_Icon").SetActive(true);
                     }
                 }

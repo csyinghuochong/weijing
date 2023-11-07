@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ET
 {
-    public class UIRoleXiLianTransferComponent : Entity, IAwake
+    public class UIRoleXiLianTransferComponent : Entity, IAwake,IDestroy
     {
         public GameObject ButtonTransfer;
         public GameObject UICommonCostItem;
@@ -25,6 +25,7 @@ namespace ET
         public List<UIItemComponent> UIEquipList = new List<UIItemComponent>();
         public Vector2 localPoint;
         public bool IsHoldDown;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -49,7 +50,21 @@ namespace ET
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
         }
     }
+    public class UIRoleXiLianTransferComponentDestroy: DestroySystem<UIRoleXiLianTransferComponent>
+    {
+        public override void Destroy(UIRoleXiLianTransferComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIRoleXiLianTransferComponentSystem
     {
         public static async ETTask OnButtonTransfer(this UIRoleXiLianTransferComponent self)
@@ -244,7 +259,12 @@ namespace ET
             UICommonHelper.SetParent(self.UICommonItem_Copy, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
 
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(binfo.ItemID);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.UICommonItem_Copy.transform.Find("Image_ItemIcon").GetComponent<Image>().sprite = sp;
             self.UICommonItem_Copy.transform.Find("Image_ItemQuality").gameObject.SetActive(false);
             self.UICommonItem_Copy.transform.Find("Image_Binding").gameObject.SetActive(false);

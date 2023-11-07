@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionMysteryItemComponent: Entity, IAwake<GameObject>
+    public class UIUnionMysteryItemComponent: Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject UIItemNode;
         public GameObject Text_Number;
@@ -14,6 +15,7 @@ namespace ET
 
         public MysteryItemInfo MysteryItemInfo;
         public UIItemComponent UICommonItem;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIUnionMysteryItemComponentAwakeSystem: AwakeSystem<UIUnionMysteryItemComponent, GameObject>
@@ -39,7 +41,21 @@ namespace ET
             self.UICommonItem.Label_ItemName.SetActive(true);
         }
     }
+    public class UIUnionMysteryItemComponentDestroy: DestroySystem<UIUnionMysteryItemComponent>
+    {
+        public override void Destroy(UIUnionMysteryItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIUnionMysteryItemComponentSystem
     {
         public static async ETTask OnButtonBuy(this UIUnionMysteryItemComponent self)
@@ -91,7 +107,12 @@ namespace ET
             self.UICommonItem.Label_ItemNum.SetActive(false);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellType);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_gold.GetComponent<Image>().sprite = sp;
         }
     }

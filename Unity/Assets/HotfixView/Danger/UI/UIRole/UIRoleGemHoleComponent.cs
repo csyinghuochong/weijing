@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRoleGemHoleComponent : Entity, IAwake<GameObject>
+    public class UIRoleGemHoleComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Image_SelectImg;
         public GameObject Lab_HoleName;
@@ -14,6 +15,7 @@ namespace ET
         public int Index;
         public Action<int> ClickHandler;
         public UIItemComponent UIGemItem;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -37,7 +39,21 @@ namespace ET
             self.UIGemItem.GameObject.SetActive(false);
         }
     }
+    public class UIRoleGemHoleComponentDestroy: DestroySystem<UIRoleGemHoleComponent>
+    {
+        public override void Destroy(UIRoleGemHoleComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIRoleGemHoleComponentSystem
     {
 
@@ -83,7 +99,12 @@ namespace ET
             }
             if (holeId != 0)
             {
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.ImageHoleName.GetComponent<Image>().sprite = sp;
                 self.ImageHoleName.SetActive(true);
             }
@@ -93,13 +114,23 @@ namespace ET
                 //self.ImageHoleName.SetActive(true);
                 self.UIGemItem.GameObject.SetActive(false);
                 self.Lab_HoleName.GetComponent<Text>().text = ItemViewHelp.GemHoleName[holeId];
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.ImageHoleName.GetComponent<Image>().sprite = sp;
                 self.ImageHoleName.SetActive(true);
                 return;
             }
             self.ImageHoleName.SetActive(true);
-            Sprite sp1 = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
             self.ImageHoleName.GetComponent<Image>().sprite = sp1;
             self.Lab_HoleName.SetActive(false);
             self.UIGemItem.GameObject.SetActive(true);

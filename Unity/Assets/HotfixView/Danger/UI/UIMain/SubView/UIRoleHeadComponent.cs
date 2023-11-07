@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRoleHeadComponent : Entity, IAwake<GameObject>
+    public class UIRoleHeadComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Img_RoleHuoLi;
         public GameObject Img_RolePiLao;
@@ -26,6 +27,7 @@ namespace ET
         public UserInfoComponent UserInfoComponent;
 
         public int MaxPiLao;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -68,7 +70,21 @@ namespace ET
             self.InitShow();
         }
     }
+    public class UIRoleHeadComponentDestroy: DestroySystem<UIRoleHeadComponent>
+    {
+        public override void Destroy(UIRoleHeadComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIRoleHeadComponentSystem
     {
 
@@ -115,7 +131,12 @@ namespace ET
 
             //宠物头像显示
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Obj_ImagePetHeadIcon.GetComponent<Image>().sprite = sp;
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             Unit pet = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);

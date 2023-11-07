@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonStoreItemComponent: Entity, IAwake<GameObject>
+    public class UISeasonStoreItemComponent: Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject GameObject;
         public GameObject UIItemNode;
@@ -14,6 +15,7 @@ namespace ET
 
         public UIItemComponent UICommonItem;
         public int StoreSellConfigId;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonStoreItemComponentAwakeSystem: AwakeSystem<UISeasonStoreItemComponent, GameObject>
@@ -38,7 +40,21 @@ namespace ET
             self.BuyBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnBuyBtn().Coroutine(); });
         }
     }
+    public class UISeasonStoreItemComponentDestroy: DestroySystem<UISeasonStoreItemComponent>
+    {
+        public override void Destroy(UISeasonStoreItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonStoreItemComponentSystem
     {
         public static async ETTask OnBuyBtn(this UISeasonStoreItemComponent self)
@@ -76,7 +92,12 @@ namespace ET
             self.ValueText.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
 
             ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(storeSellConfig.SellType);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.GoldImg.GetComponent<Image>().sprite = sp;
         }
     }

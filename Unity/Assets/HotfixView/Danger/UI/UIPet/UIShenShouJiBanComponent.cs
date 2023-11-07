@@ -36,9 +36,9 @@ namespace ET
         }
     }
 
-    public class UIShenShouJiBanComponentDestroySystem: DestroySystem<UIActivityTokenItemComponent>
+    public class UIShenShouJiBanComponentDestroySystem: DestroySystem<UIShenShouJiBanComponent>
     {
-        public override void Destroy(UIActivityTokenItemComponent self)
+        public override void Destroy(UIShenShouJiBanComponent self)
         {
             for (int i = 0; i < self.AssetPath.Count; i++)
             {

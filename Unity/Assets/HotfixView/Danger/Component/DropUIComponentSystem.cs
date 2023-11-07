@@ -40,6 +40,14 @@ namespace ET
         {
             self.Destroy();
             TimerComponent.Instance?.Remove(ref self.Timer);
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
         }
     }
 
@@ -117,7 +125,12 @@ namespace ET
             long instanceid = self.InstanceId;
             if (dropinfo.ItemID != 1)
             {
-                sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                sprite = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
             }
             if (sprite ==null || instanceid != self.InstanceId)
             {

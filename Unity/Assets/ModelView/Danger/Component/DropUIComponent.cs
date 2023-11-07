@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 { 
@@ -23,6 +24,8 @@ namespace ET
         public bool IfPlayEffect;
 
         public long CreatTime;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 }

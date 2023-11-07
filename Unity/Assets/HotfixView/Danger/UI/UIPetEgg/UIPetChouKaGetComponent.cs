@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 { 
-    public class UIPetChouKaGetComponent : Entity, IAwake
+    public class UIPetChouKaGetComponent : Entity, IAwake,IDestroy
     {
         public GameObject ImageStarList;
         public GameObject PetSkillNode;
@@ -27,6 +27,7 @@ namespace ET
 
         public GameObject NewSkinName;
         public GameObject PiFuJiHuo;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -63,7 +64,21 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Close, () => { self.OnBtn_Close(); });
         }
     }
+    public class UIPetChouKaGetComponentDestroy: DestroySystem<UIPetChouKaGetComponent>
+    {
+        public override void Destroy(UIPetChouKaGetComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetChouKaGetComponentSystem
     {
 
@@ -188,10 +203,10 @@ namespace ET
 
             self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            
           
             self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + "级";
-            ExpConfig expConfig = ExpConfigCategory.Instance.Get(rolePetInfo.PetLv);
+            
 
             self.Text_Quality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);
             self.Text_Quality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
@@ -221,12 +236,13 @@ namespace ET
 
         public static void StartShowImg(this UIPetChouKaGetComponent self, GameObject startObj)
         {
-
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, "Start_2");
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Start_2");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             startObj.GetComponent<Image>().sprite = sp;
-
         }
-
     }
-
 }

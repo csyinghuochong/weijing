@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetHeXinHeChengComponent : Entity, IAwake
+    public class UIPetHeXinHeChengComponent : Entity, IAwake,IDestroy
     {
         public GameObject Button_OneKey;
         public GameObject PetListNode;
@@ -18,6 +18,8 @@ namespace ET
 
         public bool IsHoldDown;
         public BagInfo BagInfo;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -40,7 +42,20 @@ namespace ET
             self.OnUpdateUI().Coroutine();
         }
     }
-
+    public class UIPetHeXinHeChengComponentDestroy : DestroySystem<UIPetHeXinHeChengComponent>
+    {
+        public override void Destroy(UIPetHeXinHeChengComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetHeXinHeChengComponentSystem
     {
         public static async ETTask Button_OneKey(this UIPetHeXinHeChengComponent self)
@@ -144,7 +159,12 @@ namespace ET
             UICommonHelper.SetParent(self.BagItemCopy, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
 
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(binfo.ItemID);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.BagItemCopy.GetComponent<Image>().sprite = sp;
         }
 

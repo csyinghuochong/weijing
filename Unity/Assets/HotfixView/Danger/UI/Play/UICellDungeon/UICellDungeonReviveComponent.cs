@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
 
-    public class UICellDungeonReviveComponent : Entity, IAwake
+    public class UICellDungeonReviveComponent : Entity, IAwake,IDestroy
     {
         public GameObject Text_CostName;
         public GameObject ImageCost;
@@ -18,6 +19,8 @@ namespace ET
         public long Timer;
         public int LeftTime;
         public int SceneType;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -39,7 +42,20 @@ namespace ET
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
         }
     }
-
+    public class UICellDungeonReviveComponentDestroy : DestroySystem<UICellDungeonReviveComponent>
+    {
+        public override void Destroy(UICellDungeonReviveComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UICellDungeonReviveComponentSystem
     {
 
@@ -91,7 +107,12 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(needList[0]));
             self.Text_CostName.GetComponent<Text>().text = itemConfig.ItemName;
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageCost.GetComponent<Image>().sprite = sp;
 
             //显示副本

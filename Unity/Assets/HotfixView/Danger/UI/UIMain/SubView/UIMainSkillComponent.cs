@@ -34,12 +34,23 @@ namespace ET
         public float LastPickTime;
 
         public long SwitchCDEndTime;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
     {
         public override void Destroy(UIMainSkillComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+            
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillCDUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillBeging, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillFinish, self);
@@ -188,7 +199,13 @@ namespace ET
             int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             self.Button_Switch_0.SetActive( occ == 3);
-            self.Button_Switch_0.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, equipIndex ==0 ? "c12" : "c11");
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex ==0 ? "c12" : "c11");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Button_Switch_0.GetComponent<Image>().sprite = sp;
         }
 
         public static void OnTransform(this UIMainSkillComponent self, int monsterId)

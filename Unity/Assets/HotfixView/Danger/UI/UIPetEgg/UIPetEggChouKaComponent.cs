@@ -4,13 +4,15 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetEggChouKaComponent : Entity, IAwake
+    public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
         public GameObject Text_DiamondNumber;
         public GameObject Text_CostNumber;
         public GameObject ItemImageIcon;
         public GameObject Btn_ChouKaTen;
         public GameObject Btn_ChouKa;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -33,7 +35,20 @@ namespace ET
         }
 
     }
-
+    public class UIPetEggChouKaComponentDestroy : DestroySystem<UIPetEggChouKaComponent>
+    {
+        public override void Destroy(UIPetEggChouKaComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetEggChouKaComponentSystem
     {
         public static void UpdateMoney(this UIPetEggChouKaComponent self)
@@ -44,7 +59,12 @@ namespace ET
             self.Text_DiamondNumber.GetComponent<Text>().text = needDimanond.ToString();
 
             string[] itemInfo = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0].Split(';');
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ItemImageIcon.GetComponent<Image>().sprite = sp;
             long haveNumber = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo[0]));
             self.Text_CostNumber.GetComponent<Text>().text = haveNumber + "/" + itemInfo[1];

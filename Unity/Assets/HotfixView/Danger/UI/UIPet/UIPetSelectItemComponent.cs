@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
 namespace ET
 {
 
-    public class UIPetSelectItemComponent : Entity, IAwake
+    public class UIPetSelectItemComponent : Entity, IAwake,IDestroy
     {
         public PetOperationType OperationType; //1合成 2洗练
 
@@ -21,6 +22,8 @@ namespace ET
         public GameObject Lab_StartLv;
 
         public RolePetInfo RolePetInfo;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -42,7 +45,20 @@ namespace ET
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
         }
     }
-
+    public class UIPetSelectItemComponentDestroy : DestroySystem<UIPetSelectItemComponent>
+    {
+        public override void Destroy(UIPetSelectItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetHeChengSelectItemComponentSystem
     {
 
@@ -51,7 +67,12 @@ namespace ET
             self.RolePetInfo = rolePetInfo;
 
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");

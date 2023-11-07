@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITuZhiMakeNeedComponent : Entity, IAwake
+    public class UITuZhiMakeNeedComponent : Entity, IAwake,IDestroy
     {
         public GameObject Image_EventTrigger;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
         public GameObject Label_ItemNum;
         public GameObject Label_ItemName;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -26,17 +28,42 @@ namespace ET
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");
         }
     }
+    public class UITuZhiMakeNeedComponentDestroy: DestroySystem<UITuZhiMakeNeedComponent>
+    {
+        public override void Destroy(UITuZhiMakeNeedComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UITuZhiMakeNeedComponentSystem
     {
 
         public static void UpdateItem(this UITuZhiMakeNeedComponent self, int itemId, int needNumber)
         {
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(itemId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig.ItemQuality);
-            self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_ItemQuality.GetComponent<Image>().sprite = sp1;
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             long haveNumber = bagComponent.GetItemNumber(itemId);

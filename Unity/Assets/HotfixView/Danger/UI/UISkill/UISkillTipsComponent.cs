@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
 namespace ET
 {
-    public class UISkillTipsComponent : Entity, IAwake
+    public class UISkillTipsComponent : Entity, IAwake,IDestroy
     {
         public GameObject PositionNode;
         public GameObject ImageButton;
@@ -12,7 +13,7 @@ namespace ET
         public GameObject Lab_SkillName;
         public GameObject Image_SkillIcon;
         public GameObject Lab_SkillType;
-
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -34,7 +35,21 @@ namespace ET
         }
 
     }
+    public class UISkillTipsComponentDestroy: DestroySystem<UISkillTipsComponent>
+    {
+        public override void Destroy(UISkillTipsComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillTipsComponentSystem
     {
         public static void OnImageButton(this UISkillTipsComponent self)
@@ -45,7 +60,12 @@ namespace ET
         public static void OnUpdateData(this UISkillTipsComponent self, int skillId, Vector3 vector3, string aBAtlasTypes = ABAtlasTypes.RoleSkillIcon, string addTip = "")
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(aBAtlasTypes, skillConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(aBAtlasTypes, skillConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_SkillIcon.GetComponent<Image>().sprite = sp;
 
             self.Lab_SkillName.GetComponent<Text>().text = skillConfig.SkillName;

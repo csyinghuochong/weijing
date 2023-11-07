@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -67,6 +68,7 @@ namespace ET
         public long SkillInfoShowTimer;
         public int Index;
         public Action<int> UseSkillHandler;
+        public List<string> AssetPath = new List<string>();
         
         public void Awake(GameObject gameObject)
         {
@@ -97,7 +99,21 @@ namespace ET
             this.SkillIndicatorComponent = this.ZoneScene().GetComponent<SkillIndicatorComponent>();
         }
     }
+    public class UISkillGridComponentDestroy: DestroySystem<UISkillGridComponent>
+    {
+        public override void Destroy(UISkillGridComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillGridComponentSystem
     {
 
@@ -410,7 +426,12 @@ namespace ET
                     return;
                 }
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 
                 self.SkillWuqiConfig = skillConfig;
@@ -429,7 +450,12 @@ namespace ET
 
                 self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillid);
                 self.SkillBaseConfig = self.SkillWuqiConfig;
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
             }
             self.Button_Cancle.SetActive(false);

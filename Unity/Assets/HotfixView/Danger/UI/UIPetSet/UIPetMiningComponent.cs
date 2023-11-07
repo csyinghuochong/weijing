@@ -37,14 +37,14 @@ namespace ET
 
         public List<GameObject> PetOccupyItemList = new List<GameObject>();
 
-        public List<string> AssetList = new List<string>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetMiningComponentAwake : AwakeSystem<UIPetMiningComponent>
     {
         public override void Awake(UIPetMiningComponent self)
         {
-            self.AssetList.Clear();
+            self.AssetPath.Clear();
             self.PetMiningItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -124,11 +124,11 @@ namespace ET
     {
         public override void Destroy(UIPetMiningComponent self)
         {
-            for (int i = 0; i < self.AssetList.Count; i++)
+            for (int i = 0; i < self.AssetPath.Count; i++)
             {
-                ResourcesComponent.Instance.UnLoadAsset(self.AssetList[i]);
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
             }
-            self.AssetList.Clear();
+            self.AssetPath.Clear();
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
@@ -187,7 +187,13 @@ namespace ET
                     RolePetInfo  rolePetInfo = petComponent.GetPetInfoByID(teamlist[i]);
                     self.TeamIconList[i].gameObject.SetActive(true);
                     PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-                    self.TeamIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    self.TeamIconList[i].sprite = sp;
                 }
                 else
                 {
@@ -276,7 +282,13 @@ namespace ET
                 Image Image_ItemIcon = gameObject.transform.Find("Image_ItemIcon").GetComponent<Image>();
 
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
-                Image_ItemIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                Image_ItemIcon.sprite = sp;
 
                 float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.PetMineExtend);
 
@@ -364,7 +376,7 @@ namespace ET
             self.ImageMineDi.GetComponent<Image>().sprite = atlas;
             self.Text_OccNumber.GetComponent<Text>().text = $"当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}";
 
-            self.AssetList.Add(path);
+            self.AssetPath.Add(path);
             //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
         }
     }

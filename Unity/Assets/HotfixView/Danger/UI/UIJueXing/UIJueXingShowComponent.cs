@@ -7,7 +7,7 @@ using System.Linq;
 namespace ET
 { 
     
-    public class UIJueXingShowComponent : Entity, IAwake
+    public class UIJueXingShowComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Text_11;
@@ -22,6 +22,8 @@ namespace ET
         public List<UIJueXingShowItemComponent> UIJueXingShowItems = new List<UIJueXingShowItemComponent>();
 
         public int JueXingId;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIJueXingShowComponentAwake : AwakeSystem<UIJueXingShowComponent>
@@ -49,7 +51,20 @@ namespace ET
             self.OnInitUI();
         }
     }
-
+    public class UIJueXingShowComponentDestroy : DestroySystem<UIJueXingShowComponent>
+    {
+        public override void Destroy(UIJueXingShowComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIJueXingShowComponentSystem
     {
         public static void OnInitUI(this UIJueXingShowComponent self)
@@ -110,7 +125,12 @@ namespace ET
             OccupationJueXingConfig occupationJueXingConfig = OccupationJueXingConfigCategory.Instance.Get(juexingid);
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(juexingid);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageSkillIcon.GetComponent<Image>().sprite = sp;
 
 

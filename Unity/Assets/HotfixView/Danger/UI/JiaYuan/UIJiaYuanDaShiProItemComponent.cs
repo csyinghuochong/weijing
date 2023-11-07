@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanDaShiProItemComponent : Entity, IAwake<GameObject>
+    public class UIJiaYuanDaShiProItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Text_Progess;
         public GameObject Text_Name;
@@ -20,6 +20,7 @@ namespace ET
 
         public Dictionary<int, string> jiayuanDaShi = new Dictionary<int, string>();
 
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIJiaYuanDaShiProItemComponentAwake : AwakeSystem<UIJiaYuanDaShiProItemComponent, GameObject>
@@ -65,7 +66,20 @@ namespace ET
             self.jiayuanDaShi.Add(110103, "PetPro_5");
         }
     }
-
+    public class UIJiaYuanDaShiProItemComponentDestroy : DestroySystem<UIJiaYuanDaShiProItemComponent>
+    {
+        public override void Destroy(UIJiaYuanDaShiProItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIJiaYuanDaShiProItemComponentSystem
     {
 
@@ -82,7 +96,13 @@ namespace ET
             self.ImageToLock.SetActive(false);
 
             //显示图标
-            self.ImageProIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, self.jiayuanDaShi[int.Parse(proinfo[0])]);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, self.jiayuanDaShi[int.Parse(proinfo[0])]);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageProIcon.GetComponent<Image>().sprite = sp;
         }
     }
 

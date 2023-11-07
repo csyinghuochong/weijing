@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetChallengeItemComponent : Entity, IAwake<GameObject>
+    public class UIPetChallengeItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject ImageIcon;
         public GameObject ImageDi;
@@ -24,6 +25,8 @@ namespace ET
 
         public Action<int> ClickHandler;
         public int PetFubenId;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -53,7 +56,20 @@ namespace ET
             gameObject.GetComponent<Button>().onClick.AddListener(self.OnClickChallengeItem);
         }
     }
-
+    public class UIPetChallengeItemComponentDestroy : DestroySystem<UIPetChallengeItemComponent>
+    {
+        public override void Destroy(UIPetChallengeItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetChallengeItemComponentSystem
     {
         public static void OnClickChallengeItem(this UIPetChallengeItemComponent self)
@@ -92,7 +108,12 @@ namespace ET
             self.Start_1.SetActive(star >= 2);
             self.Start_0.SetActive(star >= 1);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, petfubenConf.ShowIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, petfubenConf.ShowIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
             UICommonHelper.SetImageGray(self.ImageDi, locked);

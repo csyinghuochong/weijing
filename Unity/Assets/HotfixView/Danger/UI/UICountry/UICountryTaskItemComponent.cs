@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICountryTaskItemComponent : Entity, IAwake<GameObject>
+    public class UICountryTaskItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject ButtonComplete;
         public GameObject ButtonReceive;
@@ -16,6 +17,8 @@ namespace ET
 
         public GameObject GameObject;
         public TaskPro TaskPro;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -40,7 +43,20 @@ namespace ET
             self.ItemNumber = rc.Get<GameObject>("ItemNumber");
         }
     }
-
+    public class UICountryTaskItemComponentDestroy : DestroySystem<UICountryTaskItemComponent>
+    {
+        public override void Destroy(UICountryTaskItemComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UICountryTaskItemComponentSystem
     {
 
@@ -57,7 +73,13 @@ namespace ET
             self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " + string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue);
 
             //更新图标
-            self.ImageIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.TaskIcon, taskConfig.TaskIcon.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TaskIcon, taskConfig.TaskIcon.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageIcon.GetComponent<Image>().sprite = sp;
             //self.ImageIcon.GetComponent<Image>()
 
             //更新金币

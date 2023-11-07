@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetChouKaComponent : Entity, IAwake
+    public class UIPetChouKaComponent : Entity, IAwake, IDestroy
     {
 
         public GameObject Text_ChouKaNumber;
@@ -16,6 +16,8 @@ namespace ET
         public GameObject ItemImageIcon;
         public GameObject Text_CoinNumber;
         public PetComponent PetComponent;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -44,7 +46,20 @@ namespace ET
             self.UpdateChouKaTime();
         }
     }
-
+    public class UIPetChouKaComponentDestroy : DestroySystem<UIPetChouKaComponent>
+    {
+        public override void Destroy(UIPetChouKaComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetChouKaComponentSystem
     {
         public static void UpdateChouKaTime(this UIPetChouKaComponent self)
@@ -62,7 +77,12 @@ namespace ET
             self.Text_DiamondNumber.GetComponent<Text>().text = needDimanond.ToString(); //  $"{needDimanond}/{userInfo.Diamond}";
    
             string[] itemInfo = GlobalValueConfigCategory.Instance.Get(16).Value.Split(';');
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ItemImageIcon.GetComponent<Image>().sprite = sp;
             self.Text_CoinNumber.GetComponent<Text>().text = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo[0])) + "/" + itemInfo[1];
             //self.ItemNodeList.SetActive(false);

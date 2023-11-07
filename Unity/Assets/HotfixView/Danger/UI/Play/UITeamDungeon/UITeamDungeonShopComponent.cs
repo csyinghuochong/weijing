@@ -20,6 +20,7 @@ namespace ET
         public GameObject Btn_BuyNum_jian10;
         public GameObject UIBattleShopItem;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UITeamDungeonShopComponentAwake: AwakeSystem<UITeamDungeonShopComponent, GameObject>
@@ -64,6 +65,16 @@ namespace ET
     {
         public override void Destroy(UITeamDungeonShopComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+            
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
         }
     }
@@ -125,7 +136,13 @@ namespace ET
         {
             //更新自身拥有的货币显示
             int itemShowID = 10000149;
-            self.ItemIconShow.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemShowID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemShowID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ItemIconShow.GetComponent<Image>().sprite = sp;
             self.ItemNum.GetComponent<Text>().text = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(itemShowID).ToString();
 
             if (self.SellList.Count > 0)

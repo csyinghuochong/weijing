@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonHomeComponent: Entity, IAwake
+    public class UISeasonHomeComponent: Entity, IAwake,IDestroy
     {
         public GameObject SeasonText;
         public GameObject SeasonTimeText;
@@ -23,6 +23,7 @@ namespace ET
         public GameObject AcvityedImg;
 
         public DateTime EndTime;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonHomeComponentAwakeSystem: AwakeSystem<UISeasonHomeComponent>
@@ -56,7 +57,21 @@ namespace ET
             self.UpdateTime().Coroutine();
         }
     }
+    public class UISeasonHomeComponentDestroy: DestroySystem<UISeasonHomeComponent>
+    {
+        public override void Destroy(UISeasonHomeComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonHomeComponentSystem
     {
         public static void UpdateInfo(this UISeasonHomeComponent self)
@@ -104,7 +119,13 @@ namespace ET
 
             int bossId =  SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-            self.MonsterHeadImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.MonsterHeadImg.GetComponent<Image>().sprite = sp;
 
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);

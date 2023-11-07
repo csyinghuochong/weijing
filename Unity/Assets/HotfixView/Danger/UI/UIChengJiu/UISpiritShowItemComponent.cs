@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISpiritShowItemComponent : Entity, IAwake
+    public class UISpiritShowItemComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Lab_SpiritNum;
@@ -12,6 +13,7 @@ namespace ET
         public GameObject Ima_CompleteTask;
         public GameObject Ima_Icon;
         public GameObject Lab_TaskDes;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -31,7 +33,22 @@ namespace ET
         }
     }
 
+    public class UISpiritShowItemComponentDestroy: DestroySystem<UISpiritShowItemComponent>
+    {
+        public override void Destroy(UISpiritShowItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
+    
     public static class UISpiritShowItemComponentSystem
     {
 
@@ -57,7 +74,12 @@ namespace ET
 
             self.Lab_TaskDes.GetComponent<Text>().text = SpiritConfig.Des;
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, SpiritConfig.Icon.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, SpiritConfig.Icon.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Ima_Icon.GetComponent<Image>().sprite = sp;
             
             //self.Lab_SpiritNum.GetComponent<Text>().text = string.Format("成就点数:{0}", SpiritConfig.RewardNum);

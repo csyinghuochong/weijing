@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillTianFuItemComponent: Entity, IAwake
+    public class UISkillTianFuItemComponent: Entity, IAwake,IDestroy
     {
         public GameObject TextLv;
         public GameObject ImageIcon3;
@@ -17,6 +17,7 @@ namespace ET
 
         public List<int> TianFuList;
         public Action<int> ClickHandler;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -41,7 +42,21 @@ namespace ET
             self.TextName1 = rc.Get<GameObject>("TextName1");
         }
     }
+    public class UISkillTianFuItemComponentDestroy: DestroySystem<UISkillTianFuItemComponent>
+    {
+        public override void Destroy(UISkillTianFuItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillTianFuItemComponentSystem
     {
         public static GameObject GetKuangByIndex(this UISkillTianFuItemComponent self, int index)
@@ -69,18 +84,33 @@ namespace ET
             self.TianFuList = tianfus;
 
             TalentConfig skillConfig = TalentConfigCategory.Instance.Get(tianfus[0]);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
-            self.ImageIcon1.GetComponent<Image>().sprite = sp;
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.ImageIcon1.GetComponent<Image>().sprite = sp1;
             self.TextName1.GetComponent<Text>().text = skillConfig.Name;
 
             skillConfig = TalentConfigCategory.Instance.Get(tianfus[1]);
-            sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
-            self.ImageIcon2.GetComponent<Image>().sprite = sp;
+            string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
+            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
+            if (!self.AssetPath.Contains(path2))
+            {
+                self.AssetPath.Add(path2);
+            }
+            self.ImageIcon2.GetComponent<Image>().sprite = sp2;
             self.TextName2.GetComponent<Text>().text = skillConfig.Name;
 
             skillConfig = TalentConfigCategory.Instance.Get(tianfus[2]);
-            sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
-            self.ImageIcon3.GetComponent<Image>().sprite = sp;
+            string path3 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
+            Sprite sp3 = ResourcesComponent.Instance.LoadAsset<Sprite>(path3);
+            if (!self.AssetPath.Contains(path3))
+            {
+                self.AssetPath.Add(path3);
+            }
+            self.ImageIcon3.GetComponent<Image>().sprite = sp3;
             self.TextName3.GetComponent<Text>().text = skillConfig.Name;
 
             self.TextLv.GetComponent<Text>().text = skillConfig.LearnRoseLv.ToString() + "级激活此天赋";

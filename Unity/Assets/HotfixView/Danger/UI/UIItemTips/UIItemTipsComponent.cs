@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIItemTipsComponent : Entity, IAwake
+    public class UIItemTipsComponent : Entity, IAwake,IDestroy
     {
         public GameObject Btn_Split;
         public GameObject ImageQualityLine;
@@ -43,6 +43,7 @@ namespace ET
 
         public Vector2 Img_backVector2;
         public float Lab_ItemNameWidth;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIItemTipsComponentAwakeSystem : AwakeSystem<UIItemTipsComponent>
@@ -95,7 +96,21 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
     }
+    public class UIItemTipsComponentDestroy: DestroySystem<UIItemTipsComponent>
+    {
+        public override void Destroy(UIItemTipsComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIItemTipsComponentSystem
     {
         public static void On_Btn_HuiShou(this UIItemTipsComponent self)
@@ -511,9 +526,22 @@ namespace ET
             int itemSubType = itemconf.ItemSubType;
 
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
-            self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
-            string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
-            self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageQualityLine.GetComponent<Image>().sprite = sp;
+            
+            string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality); 
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+            sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.ImageQualityBg.GetComponent<Image>().sprite = sp;
 
             //类型描述
             string itemTypename = "消耗品";
@@ -569,10 +597,22 @@ namespace ET
             //显示图标
             //显示道具Icon
             string ItemIcon = itemconf.Icon;
-            self.Obj_ItemIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemIcon);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Obj_ItemIcon.GetComponent<Image>().sprite = sp1;
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconf.ItemQuality);
-            self.Obj_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+            sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Obj_ItemQuality.GetComponent<Image>().sprite = sp1;
 
             string Text_ItemStory = itemconf.ItemDes;
             //显示道具描述

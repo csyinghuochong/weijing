@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetInfoShowComponent : Entity, IAwake<GameObject>
+    public class UIPetInfoShowComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public int Weizhi; //-1左 1 右边
@@ -24,6 +24,8 @@ namespace ET
         public GameObject ImageStarList;
         public GameObject Btn_QieHuan;
         public GameObject GameObject;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -57,7 +59,20 @@ namespace ET
             self.Btn_QieHuan.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSelect().Coroutine(); });
         }
     }
-
+    public class UIPetInfoShowComponentDestroy : DestroySystem<UIPetInfoShowComponent>
+    {
+        public override void Destroy(UIPetInfoShowComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetInfoShowComponentSystem
     {
         public static async ETTask OnClickSelect(this UIPetInfoShowComponent self)
@@ -132,7 +147,12 @@ namespace ET
             self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
             self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");

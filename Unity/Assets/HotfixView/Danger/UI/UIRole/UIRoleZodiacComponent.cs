@@ -17,6 +17,7 @@ namespace ET
         public List<BagInfo> EquipInfoList = new List<BagInfo>();
         public ItemOperateEnum ItemOperateEnum;
         public int Occ;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIRoleZodiacComponentAwake : AwakeSystem<UIRoleZodiacComponent>
@@ -62,7 +63,15 @@ namespace ET
     {
         public override void Destroy(UIRoleZodiacComponent self)
         {
-            
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
         }
     }
 
@@ -108,25 +117,45 @@ namespace ET
                 //改变底框
                 if (page == 0)
                 {
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_2");
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, "ItemQuality_2");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
                 if (page == 1)
                 {
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_3");
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, "ItemQuality_3");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
                 if (page == 2)
                 {
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_4");
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, "ItemQuality_4");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
                 if (page == 3)
                 {
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_5");
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, "ItemQuality_5");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
@@ -190,7 +219,12 @@ namespace ET
 
                 if (ItemHelper.IfShengXiaoActiveLine(linkName, equiplist))
                 {
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, resName);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, resName);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
                     obj.GetComponent<Image>().sprite = sp;
                     obj.SetActive(true);
                 }

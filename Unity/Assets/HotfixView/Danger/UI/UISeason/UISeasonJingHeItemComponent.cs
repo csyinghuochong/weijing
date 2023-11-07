@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonJingHeItemComponent: Entity, IAwake<GameObject>
+    public class UISeasonJingHeItemComponent: Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject GameObject;
         public GameObject IconImg;
@@ -14,6 +14,7 @@ namespace ET
         public GameObject ClickBtn;
 
         public int JingHeId;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonJingHeItemComponentAwakeSystem: AwakeSystem<UISeasonJingHeItemComponent, GameObject>
@@ -32,7 +33,21 @@ namespace ET
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn(); });
         }
     }
+    public class UISeasonJingHeItemComponentDestroy: DestroySystem<UISeasonJingHeItemComponent>
+    {
+        public override void Destroy(UISeasonJingHeItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonJingHeItemComponentSystem
     {
         public static void OnClickBtn(this UISeasonJingHeItemComponent self)
@@ -56,7 +71,13 @@ namespace ET
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && itemConfig.ItemSubType == 2000 + self.JingHeId)
                 {
                     self.IconImg.SetActive(true);
-                    self.IconImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    self.IconImg.GetComponent<Image>().sprite = sp;
                     break;
                 }
             }

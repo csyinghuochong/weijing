@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonJingHeComponent: Entity, IAwake
+    public class UISeasonJingHeComponent: Entity, IAwake,IDestroy
     {
         public GameObject JingHeListNode;
         public GameObject UISeasonJingHeItem;
@@ -19,6 +19,7 @@ namespace ET
         public int JingHeId;
         public List<UISeasonJingHeItemComponent> UISeasonJingHeItemComponentList = new List<UISeasonJingHeItemComponent>();
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonJingHeComponentAwakeSystem: AwakeSystem<UISeasonJingHeComponent>
@@ -42,7 +43,21 @@ namespace ET
             self.InitCell();
         }
     }
+    public class UISeasonJingHeComponentDestroy: DestroySystem<UISeasonJingHeComponent>
+    {
+        public override void Destroy(UISeasonJingHeComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonJingHeComponentSystem
     {
         public static void InitCell(this UISeasonJingHeComponent self)
@@ -93,7 +108,13 @@ namespace ET
                 ReferenceCollector rc = self.NeedItem.GetComponent<ReferenceCollector>();
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costItemId);
 
-                rc.Get<GameObject>("IconImg").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                rc.Get<GameObject>("IconImg").GetComponent<Image>().sprite = sp;
                 rc.Get<GameObject>("ItemNameText").GetComponent<Text>().text = itemConfig.ItemName;
                 rc.Get<GameObject>("ItemNumText").GetComponent<Text>().text = $"{havedNum}/{cosrItemNum}";
 

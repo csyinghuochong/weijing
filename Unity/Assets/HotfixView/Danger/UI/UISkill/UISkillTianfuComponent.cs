@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UISkillTianFuComponent : Entity, IAwake
+    public class UISkillTianFuComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Btn_TianFu_2;
@@ -22,6 +22,7 @@ namespace ET
 
         public List<UI> TianItemListUI = new List<UI>();
         public int TianFuId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -55,7 +56,21 @@ namespace ET
             self.InitTianFuList();
         }
     }
+    public class UISkillTianFuComponentDestroy: DestroySystem<UISkillTianFuComponent>
+    {
+        public override void Destroy(UISkillTianFuComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillTianFuComponentSystem
     {
 
@@ -176,7 +191,12 @@ namespace ET
             self.Lab_SkillName.GetComponent<Text>().text = talentConfig.Name;
             self.Text_NeedLv.GetComponent<Text>().text = talentConfig.LearnRoseLv.ToString();
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, talentConfig.Icon.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, talentConfig.Icon.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.TianFuIcon.GetComponent<Image>().sprite = sp;
 
             for (int i = 0; i < self.TianItemListUI.Count; i++)

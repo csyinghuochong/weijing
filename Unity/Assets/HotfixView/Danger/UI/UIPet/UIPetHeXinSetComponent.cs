@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPetHeXinSetComponent : Entity, IAwake<GameObject>
+    public class UIPetHeXinSetComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject ButtonEquipXieXia;
         public GameObject ButtonHeXinHeCheng;
@@ -24,6 +24,7 @@ namespace ET
         public GameObject GameObject;
         public RolePetInfo RolePetInfo;
         public List<UIItemComponent> uIItems = new List<UIItemComponent> ();
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -53,7 +54,20 @@ namespace ET
             ButtonHelp.AddListenerEx( self.ButtonEquipXieXia, () => { self.OnButtonEquipXieXia().Coroutine();  });
         }
     }
-
+    public class UIPetHeXinSetComponentDestroy : DestroySystem<UIPetHeXinSetComponent>
+    {
+        public override void Destroy(UIPetHeXinSetComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetHeXinSetComponentSystem
     {
 
@@ -96,7 +110,12 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             self.TextName.GetComponent<Text>().text = itemConfig.ItemName;
             self.TextLevel.GetComponent<Text>().text = $"等级: {itemConfig.UseLv}";
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
             self.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
@@ -120,8 +139,13 @@ namespace ET
                 string icon = ItemViewHelp.GetAttributeIcon(numberType);
                 if (!string.IsNullOrEmpty(icon))
                 {
-                    Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, icon);
-                    gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, icon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sp;
                 }
                 int showType = NumericHelp.GetNumericValueType(numberType);
                 string attribute;

@@ -61,6 +61,7 @@ namespace ET
 
         public bool MyJiaYuan;
         public int JiaYuanLv;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -84,7 +85,13 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
             {
-                self.PlanIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "444");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "444");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                self.PlanIcon.GetComponent<Image>().sprite = sp;
             }
 
             self.ButtonWarehouse = rc.Get<GameObject>("ButtonWarehouse");
@@ -123,6 +130,16 @@ namespace ET
     {
         public override void Destroy(UIJiaYuanMainComponent self)
         {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+            
             if (self.SelectEffect != null)
             {
                 GameObject.Destroy(self.SelectEffect.gameObject);

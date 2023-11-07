@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIItemSellTipComponent : Entity, IAwake
+    public class UIItemSellTipComponent : Entity, IAwake,IDestroy
     {
         public GameObject SellMoneyTypeImg;
         public GameObject Btn_Cancel;
@@ -16,6 +17,7 @@ namespace ET
         public GameObject Btn_ChuShou;
 
         public BagInfo BagInfo;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIItemSellTipComponentAwake : AwakeSystem<UIItemSellTipComponent>
@@ -46,7 +48,20 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_ChuShou, self.OnBtn_ChuShou);
         }
     }
-
+    public class UIItemSellTipComponentDestroy : DestroySystem<UIItemSellTipComponent>
+    {
+        public override void Destroy(UIItemSellTipComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIItemSellTipComponentSystem
     {
 
@@ -113,7 +128,12 @@ namespace ET
             self.Lab_SellSumPro.GetComponent<Text>().text = price.ToString();
             
             ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(itemConfig.SellMoneyType);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, sellTypeItemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.SellMoneyTypeImg.GetComponent<Image>().sprite = sp;
         }
 

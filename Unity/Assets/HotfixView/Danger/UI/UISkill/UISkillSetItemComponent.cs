@@ -7,7 +7,7 @@ using static UnityEngine.UI.CanvasScaler;
 namespace ET
 {
 
-    public class UISkillSetItemComponent : Entity, IAwake<GameObject>
+    public class UISkillSetItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Img_SkillIconDi;
         public GameObject Lab_SkillLv;
@@ -19,6 +19,7 @@ namespace ET
         public SkillPro SkillPro;
         public GameObject GameObject;
         public bool canDrag = true;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -39,7 +40,21 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.Img_SkillIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
         }
     }
+    public class UISkillSetItemComponentDestroy: DestroySystem<UISkillSetItemComponent>
+    {
+        public override void Destroy(UISkillSetItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillSetItemComponentSystem
     {
 
@@ -121,7 +136,12 @@ namespace ET
             SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList    ));
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
             self.Lab_SkillLv.GetComponent<Text>().text = skillWeaponConfig.SkillLv.ToString();
-            Sprite sp = ABAtlasHelp.GetIconSprite( ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 
             self.canDrag = skillWeaponConfig.SkillType == (int)SkillTypeEnum.ActiveSkill;

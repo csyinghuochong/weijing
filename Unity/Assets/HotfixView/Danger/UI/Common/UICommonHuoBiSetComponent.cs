@@ -20,6 +20,8 @@ namespace ET
         public GameObject ButtonClose2;
         public GameObject Btn_AddZuanShi;
         public GameObject Btn_AddGold;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -40,7 +42,13 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
             {
-                self.ImageZuanShiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "3");
+                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "3");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                self.ImageZuanShiIcon.GetComponent<Image>().sprite = sp;
             }
 
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
@@ -88,7 +96,12 @@ namespace ET
                 titlePath = "UITeamDungeon";
             }
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.TiTleIcon, "Img_" + titlePath);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, "Img_" + titlePath);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Img_Back_Title.GetComponent<Image>().sprite = sp;
         }
 

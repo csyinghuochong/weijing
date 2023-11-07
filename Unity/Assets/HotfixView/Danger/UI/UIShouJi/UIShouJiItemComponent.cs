@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIShouJiItemComponent : Entity, IAwake<GameObject>
+    public class UIShouJiItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Label_HaveTag;
         public GameObject Label_StarNum;
@@ -11,6 +12,7 @@ namespace ET
         public GameObject Label_ItemName;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -25,6 +27,21 @@ namespace ET
             self.Label_HaveTag = go.Get<GameObject>("Label_HaveTag");
             self.Label_StarNum = go.Get<GameObject>("Label_StarNum");
         }
+    }    
+    public class UIShouJiItemComponentDestroy: DestroySystem<UIShouJiItemComponent>
+    {
+        public override void Destroy(UIShouJiItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
+        }
     }
 
     public static class UIShouJiItemComponentSystem
@@ -33,14 +50,25 @@ namespace ET
         {
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(shouJiItemConfig.ItemID);
             long instanceid = self.InstanceId;
-            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             if (instanceid != self.InstanceId)
             {
                 return;
             }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig.ItemQuality);
-            self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.Image_ItemQuality.GetComponent<Image>().sprite = sp1;
 
             self.Label_ItemName.GetComponent<Text>().text = itemconfig.ItemName;
             self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);

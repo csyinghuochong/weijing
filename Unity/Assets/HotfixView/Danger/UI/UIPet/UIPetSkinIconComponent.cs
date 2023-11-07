@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetSkinIconComponent : Entity, IAwake<GameObject>
+    public class UIPetSkinIconComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject GameObject;
         public GameObject TextSkinName;
@@ -15,6 +16,7 @@ namespace ET
         public GameObject JiHuoSet;
         public Action<int> ClickHandler;
         public int SkinId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -35,7 +37,21 @@ namespace ET
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener( self.OnImage_ItemButton);
         }
     }
+    public class UIPetSkinIconComponentDestroy: DestroySystem<UIPetSkinIconComponent>
+    {
+        public override void Destroy(UIPetSkinIconComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetSkinIconComponentSystem
     {
 
@@ -58,7 +74,12 @@ namespace ET
         {
             self.SkinId = skinId;
             PetSkinConfig skillConfig = PetSkinConfigCategory.Instance.Get(skinId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon,  skillConfig.IconID.ToString());
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon,  skillConfig.IconID.ToString());
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
             self.TextSkinName.GetComponent<Text>().text = skillConfig.Name;
             UICommonHelper.SetImageGray(self.Image_ItemIcon, !unlocked);

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillLearnItemComponent : Entity, IAwake<GameObject>
+    public class UISkillLearnItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public GameObject Reddot;
@@ -26,6 +26,7 @@ namespace ET
 
         public SkillPro SkillPro;
         public Action<SkillPro> ClickHandler;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -67,7 +68,21 @@ namespace ET
             });
         }
     }
+    public class UISkillLearnItemComponentDestroy: DestroySystem<UISkillLearnItemComponent>
+    {
+        public override void Destroy(UISkillLearnItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillLearnItemComponentSystem
     {
         public static void OnButtonUp(this UISkillLearnItemComponent self)
@@ -191,7 +206,12 @@ namespace ET
 
             int baseskill = SkillHelp.GetBaseSkill(weaponskill);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 

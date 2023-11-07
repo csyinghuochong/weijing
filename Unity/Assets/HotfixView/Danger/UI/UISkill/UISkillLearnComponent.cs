@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillLearnComponent : Entity, IAwake
+    public class UISkillLearnComponent : Entity, IAwake,IDestroy
     {
         public GameObject SkillInfoPanel;
         public GameObject SkillInfoconImg;
@@ -31,6 +31,7 @@ namespace ET
         public List<UISkillLearnSkillItemComponent> SkillLearnSkillItemComponents = new List<UISkillLearnSkillItemComponent>();
         public UIPageButtonComponent UIPageButton;
         public bool LinShiSkillStatus;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -83,7 +84,21 @@ namespace ET
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
         }
     }
+    public class UISkillLearnComponentDestroy: DestroySystem<UISkillLearnComponent>
+    {
+        public override void Destroy(UISkillLearnComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISkillLearnComponentSystem
     {
         public static void OnClickPageButton(this UISkillLearnComponent self,  int page)
@@ -360,7 +375,12 @@ namespace ET
             self.SkillPro = skillPro;
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
 
             self.SkillInfoNameText.GetComponent<Text>().text = skillConfig.SkillName;
             self.SkillInfoconImg.GetComponent<Image>().sprite = sp;

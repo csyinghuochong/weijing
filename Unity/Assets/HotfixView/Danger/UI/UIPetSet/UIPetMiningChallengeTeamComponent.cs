@@ -8,7 +8,7 @@ namespace ET
 {
 
 
-    public class UIPetMiningChallengeTeamComponent : Entity, IAwake<GameObject>
+    public class UIPetMiningChallengeTeamComponent : Entity, IAwake<GameObject>,IDestroy
     {
 
         public int TeamId = 0;   //0 1 2
@@ -29,6 +29,8 @@ namespace ET
 
         public bool Defend;
         public int PetNumber = 0;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetMiningChallengeTeamComponentAwake : AwakeSystem<UIPetMiningChallengeTeamComponent, GameObject>
@@ -56,7 +58,20 @@ namespace ET
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
         }
     }
-
+    public class UIPetMiningChallengeTeamComponentDestroy : DestroySystem<UIPetMiningChallengeTeamComponent>
+    {
+        public override void Destroy(UIPetMiningChallengeTeamComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetMiningChallengeTeamComponentSystem
     {
 
@@ -102,7 +117,13 @@ namespace ET
                 {
                     self.PetIcon_List[i].gameObject.SetActive(true);
                     PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-                    self.PetIcon_List[i].sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    self.PetIcon_List[i].sprite = sp;
                     self.PetNumber++;
                 }
             }

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIBuffTipsComponent : Entity, IAwake
+    public class UIBuffTipsComponent : Entity, IAwake, IDestroy
     {
         public GameObject Lab_Spellcaster;
         public GameObject PositionNode;
@@ -13,6 +14,7 @@ namespace ET
         public GameObject Image_SkillIcon;
         public GameObject Lab_BuffTime;
         public int BuffId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -37,6 +39,21 @@ namespace ET
         }
     }
 
+    public class UIBuffTipsComponentDestroy : DestroySystem<UIBuffTipsComponent>
+    {
+        public override void Destroy(UIBuffTipsComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
+    
     public static class UIBuffTipsComponentSystem
     {
         public static void OnImageButton(this UIBuffTipsComponent self)
@@ -49,9 +66,13 @@ namespace ET
             self.BuffId = buffid;
             SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(buffid);
 
-          
-            Sprite sp = ABAtlasHelp.GetIconSprite(aBAtlasTypes, bufficon);
-            self.Image_SkillIcon.GetComponent<Image>().sprite = sp;
+            string path =ABPathHelper.GetAtlasPath_2(aBAtlasTypes, bufficon);
+            Sprite sprite = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.Image_SkillIcon.GetComponent<Image>().sprite = sprite;
         
             self.Lab_SkillName.GetComponent<Text>().text = skillBufConfig.BuffName;
             self.Lab_SkillDes.GetComponent<Text>().text = skillBufConfig.BuffDescribe;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetFormationComponent : Entity, IAwake
+    public class UIPetFormationComponent : Entity, IAwake,IDestroy
     {
         public GameObject CloseButton;
         public GameObject ButtonChallenge;
@@ -22,6 +22,8 @@ namespace ET
 
         public Action SetHandler = null;
         public int SceneTypeEnum;
+        
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -51,7 +53,20 @@ namespace ET
             });
         }
     }
-
+    public class UIPetFormationComponentDestroy : DestroySystem<UIPetFormationComponent>
+    {
+        public override void Destroy(UIPetFormationComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetFormationComponentSystem
     {
 
@@ -229,7 +244,12 @@ namespace ET
         {
             self.IconItemDrag.SetActive(true);
             PetConfig petConfig = PetConfigCategory.Instance.Get(binfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);

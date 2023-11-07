@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetTuJianItemComponent : Entity, IAwake<GameObject>
+    public class UIPetTuJianItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject Label_ItemName;
         public GameObject Image_ItemButton;
@@ -14,6 +15,7 @@ namespace ET
         public GameObject GameObject;
         public Action<int> ClickHandler;
         public int PetId;
+        public List<string> AssetPath = new List<string>();
     }
 
 
@@ -32,6 +34,22 @@ namespace ET
             self.Image_XuanZhong = rc.Get<GameObject>("Image_XuanZhong");
             self.Image_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
 
+        }
+    }
+    
+    public class UIPetTuJianItemComponentDestroy: DestroySystem<UIPetTuJianItemComponent>
+    {
+        public override void Destroy(UIPetTuJianItemComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
         }
     }
 
@@ -58,7 +76,12 @@ namespace ET
             self.PetId = petid;
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(petid);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
             self.Label_ItemName.GetComponent<Text>().text = petConfig.PetName;
         }

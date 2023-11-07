@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetEggListComponent : Entity, IAwake
+    public class UIPetEggListComponent : Entity, IAwake,IDestroy
     {
         public GameObject TextTip;
         public GameObject ItemNodeList;
@@ -14,6 +14,7 @@ namespace ET
 
         public GameObject IconItemDrag;
         public List<UIPetEggListItemComponent> PetList = new List<UIPetEggListItemComponent> ();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetEggListComponentAwakeSystem : AwakeSystem<UIPetEggListComponent>
@@ -44,7 +45,20 @@ namespace ET
            
         }
     }
-
+    public class UIPetEggListComponentDestroy : DestroySystem<UIPetEggListComponent>
+    {
+        public override void Destroy(UIPetEggListComponent self)
+        {
+            for(int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                }
+            }
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetEggListComponentSystem
     {
 
@@ -102,7 +116,12 @@ namespace ET
             self.IconItemDrag.SetActive(true);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(binfo.ItemID);
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
-            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
         }
@@ -170,7 +189,12 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(petComponent.RolePetEggs[binfo].ItemId);
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonLordDetailComponent: Entity, IAwake
+    public class UISeasonLordDetailComponent: Entity, IAwake,IDestroy
     {
         public GameObject PositionText;
         public GameObject RefreshTimeText;
@@ -22,6 +22,7 @@ namespace ET
         public UIItemComponent CheckedItem;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
         public DateTime EndTime;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UISeasonLordDetailComponentAwakeSystem: AwakeSystem<UISeasonLordDetailComponent>
@@ -52,7 +53,21 @@ namespace ET
             self.UpdateTime().Coroutine();
         }
     }
+    public class UISeasonLordDetailComponentDestroy: DestroySystem<UISeasonLordDetailComponent>
+    {
+        public override void Destroy(UISeasonLordDetailComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UISeasonLordDetailComponentSystem
     {
         public static async ETTask OnUseItemBtn(this UISeasonLordDetailComponent self)
@@ -90,7 +105,13 @@ namespace ET
 
             int bossId = SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-            self.MonsterHeadImg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.MonsterHeadImg.GetComponent<Image>().sprite = sp;
         }
 
         public static async ETTask UpdateItemList(this UISeasonLordDetailComponent self)

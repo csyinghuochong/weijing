@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPetMiningTeamComponent : Entity, IAwake
+    public class UIPetMiningTeamComponent : Entity, IAwake,IDestroy
     {
         public GameObject PetListNode;
         public GameObject ButtonClose;
@@ -21,6 +21,7 @@ namespace ET
         public List<long> PetMingPosition = new List<long>();
 
         public Action UpdateTeam;
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIPetMiningTeamComponentAwake : AwakeSystem<UIPetMiningTeamComponent>
@@ -61,7 +62,21 @@ namespace ET
             self.UpdateTeamList();
         }
     }
+    public class UIPetMiningTeamComponentDestroy: DestroySystem<UIPetMiningTeamComponent>
+    {
+        public override void Destroy(UIPetMiningTeamComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
     public static class UIPetMiningTeamComponentSystem
     {
 
@@ -69,7 +84,12 @@ namespace ET
         {
             self.IconItemDrag.SetActive(true);
             PetConfig petConfig = PetConfigCategory.Instance.Get(binfo.ConfigId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
             GameObject icon = self.IconItemDrag.transform.Find("ImageIcon").gameObject;
             icon.GetComponent<Image>().sprite = sp;
             UICommonHelper.SetParent(self.IconItemDrag, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
