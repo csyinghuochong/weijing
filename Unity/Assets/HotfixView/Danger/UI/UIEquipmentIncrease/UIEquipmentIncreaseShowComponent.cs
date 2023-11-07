@@ -5,6 +5,8 @@ namespace ET
 {
     public class UIEquipmentIncreaseShowComponent: Entity, IAwake, IDestroy
     {
+        public GameObject ScrollViewEquip;
+        public GameObject EquipSet;
         public GameObject IncreaseEffect;
         public GameObject Obj_EquipPropertyText;
         public GameObject EquipBaseSetList;
@@ -15,6 +17,7 @@ namespace ET
         public GameObject FunctionBtnSet;
         public GameObject ImageButton;
 
+        public UIEquipSetComponent UIEquipSetComponent;
         public BagComponent BagComponent;
 
         /// <summary>
@@ -73,6 +76,8 @@ namespace ET
             self.IncreaseButton = rc.Get<GameObject>("IncreaseButton");
             ButtonHelp.AddListenerEx(self.IncreaseButton, () => { self.OnIncreaseButton().Coroutine(); });
 
+            self.ScrollViewEquip = rc.Get<GameObject>("ScrollViewEquip");
+            self.EquipSet = rc.Get<GameObject>("EquipSet");
             self.IncreaseEffect = rc.Get<GameObject>("IncreaseEffect");
             self.ReelListNode = rc.Get<GameObject>("ReelListNode");
             self.EquipListNode = rc.Get<GameObject>("EquipListNode");
@@ -81,6 +86,13 @@ namespace ET
             self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            BagInfo bagInfo = self.BagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
+            self.UIEquipSetComponent = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet, 0);
+            self.UIEquipSetComponent.PlayerLv(userInfo.Lv);
+            self.UIEquipSetComponent.PlayerName(userInfo.Name);
+            self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex));
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             
@@ -107,7 +119,6 @@ namespace ET
         //显示的时候刷新
         public static void OnUpdateUI(this UIEquipmentIncreaseShowComponent self)
         {
-            self.EquipmentBagInfo = null;
             self.OnEquiListUpdate(self.Page).Coroutine();
             self.OnReelListUpdate().Coroutine();
         }
@@ -135,6 +146,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnUpdateIncrease(this UIEquipmentIncreaseShowComponent self)
         {
+            self.EquipmentBagInfo = self.BagComponent.GetBagInfo(self.EquipmentBagInfo.BagInfoID);
             BagInfo bagInfo = self.EquipmentBagInfo;
             self.UpdateAttribute(bagInfo);
             if (bagInfo == null)
@@ -153,69 +165,76 @@ namespace ET
         /// 可增幅装备列表刷新
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask OnEquiListUpdate(this UIEquipmentIncreaseShowComponent self , int page)
+        public static async ETTask OnEquiListUpdate(this UIEquipmentIncreaseShowComponent self, int page)
         {
-            int number = 0;
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            
-            List<BagInfo> equipInfos = new List<BagInfo>();
-			
             if (page == 0)
             {
-                equipInfos.AddRange(self.BagComponent.GetEquipList());
-                equipInfos.AddRange(self.BagComponent.GetEquipList_2());
+                self.EquipSet.SetActive(true);
+                self.ScrollViewEquip.SetActive(false);
+
+                self.UIEquipSetComponent.PlayShowIdelAnimate(null);
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                self.UIEquipSetComponent.UpdateBagUI(self.BagComponent.GetEquipList(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
+                self.UIEquipSetComponent.UpdateBagUI_2(self.BagComponent.GetEquipList_2(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
+                self.UIEquipSetComponent.SetCallBack(self.OnSelectEquip);
             }
             else
             {
+                self.EquipSet.SetActive(false);
+                self.ScrollViewEquip.SetActive(true);
+                int number = 0;
+                var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+                var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+
+                List<BagInfo> equipInfos = new List<BagInfo>();
                 equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
-            }
-
-            for (int i = 0; i < equipInfos.Count; i++)
-            {
-                if (equipInfos[i].IfJianDing)
+                for (int i = 0; i < equipInfos.Count; i++)
                 {
-                    continue;
+                    if (equipInfos[i].IfJianDing)
+                    {
+                        continue;
+                    }
+
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
+                    if (itemConfig.EquipType == 101)
+                    {
+                        continue;
+                    }
+
+                    UIItemComponent uI = null;
+                    if (number < self.EquipUIList.Count)
+                    {
+                        uI = self.EquipUIList[number];
+                        uI.GameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject go = GameObject.Instantiate(bundleGameObject);
+                        UICommonHelper.SetParent(go, self.EquipListNode);
+                        uI = self.AddChild<UIItemComponent, GameObject>(go);
+                        uI.SetClickHandler((BagInfo bagInfo) => { self.OnSelectEquip(bagInfo); });
+                        self.EquipUIList.Add(uI);
+                    }
+
+                    number++;
+                    uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
                 }
 
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
-                if (itemConfig.EquipType == 101)
+                for (int i = number; i < self.EquipUIList.Count; i++)
                 {
-                    continue;
+                    self.EquipUIList[i].GameObject.SetActive(false);
                 }
 
-                UIItemComponent uI = null;
-                if (number < self.EquipUIList.Count)
+                // 默认选择第一个装备
+                if (self.EquipmentBagInfo != null)
                 {
-                    uI = self.EquipUIList[number];
-                    uI.GameObject.SetActive(true);
+                    self.OnSelectEquip(self.EquipmentBagInfo);
                 }
-                else
+                else if (number > 0)
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.EquipListNode);
-                    uI = self.AddChild<UIItemComponent, GameObject>(go);
-                    uI.SetClickHandler((BagInfo bagInfo) => { self.OnSelectEquip(bagInfo); });
-                    self.EquipUIList.Add(uI);
+                    self.EquipUIList[0].OnClickUIItem();
                 }
 
-                number++;
-                uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
-            }
-
-            for (int i = number; i < self.EquipUIList.Count; i++)
-            {
-                self.EquipUIList[i].GameObject.SetActive(false);
-            }
-
-            // 默认选择第一个装备
-            if (self.EquipmentBagInfo != null)
-            {
-                self.OnSelectEquip(self.EquipmentBagInfo);
-            }
-            else if (number > 0)
-            {
-                self.EquipUIList[0].OnClickUIItem();
             }
         }
 
@@ -448,12 +467,14 @@ namespace ET
                 {
                     await self.ZoneScene().GetComponent<BagComponent>().SendEquipmentIncrease(self.EquipmentBagInfo, self.ReelBagInfo);
                     FloatTipManager.Instance.ShowFloatTip("增幅成功");
+                    self.OnUpdateIncrease();
                 }, () => { }).Coroutine();
             }
             else
             {
                 await self.ZoneScene().GetComponent<BagComponent>().SendEquipmentIncrease(self.EquipmentBagInfo, self.ReelBagInfo);
                 FloatTipManager.Instance.ShowFloatTip("增幅成功");
+                self.OnUpdateIncrease();
             }
         }
 

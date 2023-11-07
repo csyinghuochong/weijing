@@ -6,6 +6,8 @@ namespace ET
 {
 	public class UIRoleXiLianShowComponent : Entity, IAwake
 	{
+		public GameObject EquipSet;
+		public GameObject ScrollViewEquip;
 		public GameObject NeedDiamond;
 		public GameObject XiLianEffect;
 		public GameObject XiLianTen;
@@ -23,6 +25,7 @@ namespace ET
 
 		public BagComponent BagComponent;
 
+		public UIEquipSetComponent UIEquipSetComponent;
 		public UIItemComponent CostItemUI;
 		public UIItemComponent XiLianItemUI;
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
@@ -41,6 +44,8 @@ namespace ET
 			self.EquipUIList.Clear();
 			self.XilianBagInfo = null;
 			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+			self.EquipSet = rc.Get<GameObject>("EquipSet");
+			self.ScrollViewEquip = rc.Get<GameObject>("ScrollViewEquip");
 			self.XiLianButton = rc.Get<GameObject>("XiLianButton");
 			ButtonHelp.AddListenerEx(self.XiLianButton, () => { self.OnXiLianButton(1).Coroutine(); });
 
@@ -58,8 +63,16 @@ namespace ET
 			self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
 			self.NeedDiamond = rc.Get<GameObject>("NeedDiamond");
 			self.NeedDiamond.GetComponent<Text>().text = GlobalValueConfigCategory.Instance.Get(73).Value;
-
+			
 			self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+			UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+			BagInfo bagInfo = self.BagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
+			self.UIEquipSetComponent = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet, 0);
+			self.UIEquipSetComponent.PlayerLv(userInfo.Lv);
+			self.UIEquipSetComponent.PlayerName(userInfo.Name);
+			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex));
+			
 			GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
 			UI uiPage = self.AddChild<UI, string, GameObject>( "BtnItemTypeSet", BtnItemTypeSet);
 			UIPageButtonComponent uIPageViewComponent  = uiPage.AddComponent<UIPageButtonComponent>();
@@ -165,67 +178,75 @@ namespace ET
 			self.XiLianEffect.SetActive(false);
 		}
 
-		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self,int page)
+		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self, int page)
 		{
-			int number = 0;
-			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-			var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
-			List<BagInfo> equipInfos = new List<BagInfo>();
-			
 			if (page == 0)
 			{
-				equipInfos.AddRange(self.BagComponent.GetEquipList());
-				equipInfos.AddRange(self.BagComponent.GetEquipList_2());
+				self.EquipSet.SetActive(true);
+				self.ScrollViewEquip.SetActive(false);
+				
+				self.UIEquipSetComponent.PlayShowIdelAnimate(null);
+				UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+				self.UIEquipSetComponent.UpdateBagUI(self.BagComponent.GetEquipList(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
+				self.UIEquipSetComponent.UpdateBagUI_2(self.BagComponent.GetEquipList_2(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
+				self.UIEquipSetComponent.SetCallBack(self.OnSelectItem);
 			}
 			else
 			{
-				equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
-			}
-			
-			for (int i = 0; i < equipInfos.Count; i++)
-			{
-				if (equipInfos[i].IfJianDing)
+				self.EquipSet.SetActive(false);
+				self.ScrollViewEquip.SetActive(true);
+				int number = 0;
+				var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+				var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+				
+				List<BagInfo> equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
+
+				for (int i = 0; i < equipInfos.Count; i++)
 				{
-					continue;
-				}
-				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
-				if (itemConfig.EquipType == 101)
-				{
-					continue;
+					if (equipInfos[i].IfJianDing)
+					{
+						continue;
+					}
+
+					ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
+					if (itemConfig.EquipType == 101)
+					{
+						continue;
+					}
+
+					UIItemComponent uI = null;
+					if (number < self.EquipUIList.Count)
+					{
+						uI = self.EquipUIList[number];
+						uI.GameObject.SetActive(true);
+					}
+					else
+					{
+						GameObject go = GameObject.Instantiate(bundleGameObject);
+						UICommonHelper.SetParent(go, self.EquipListNode);
+						uI = self.AddChild<UIItemComponent, GameObject>(go);
+						uI.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
+						self.EquipUIList.Add(uI);
+					}
+
+					number++;
+					uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
+
 				}
 
-				UIItemComponent uI = null;
-				if (number < self.EquipUIList.Count)
+				for (int i = number; i < self.EquipUIList.Count; i++)
 				{
-					uI = self.EquipUIList[number];
-					uI.GameObject.SetActive(true);
+					self.EquipUIList[i].GameObject.SetActive(false);
 				}
-				else
+
+				if (self.XilianBagInfo != null)
 				{
-					GameObject go = GameObject.Instantiate(bundleGameObject);
-					UICommonHelper.SetParent(go, self.EquipListNode);
-					uI = self.AddChild<UIItemComponent, GameObject>( go);
-					uI.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
-					self.EquipUIList.Add(uI);
+					self.OnSelectItem(self.XilianBagInfo);
 				}
-				number++;
-				uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
-
-			}
-
-			for (int i = number; i < self.EquipUIList.Count; i++)
-			{
-				self.EquipUIList[i].GameObject.SetActive(false);
-			}
-
-			if (self.XilianBagInfo != null)
-			{
-				self.OnSelectItem(self.XilianBagInfo);
-			}
-			else if (number > 0)
-			{
-				self.EquipUIList[0].OnClickUIItem();
+				else if (number > 0)
+				{
+					self.EquipUIList[0].OnClickUIItem();
+				}
 			}
 		}
 

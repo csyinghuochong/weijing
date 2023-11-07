@@ -18,6 +18,7 @@ namespace ET
         public GameObject GameObject;
         public BagInfo BagInfo;
         public int Occ;
+        public Action<BagInfo> OnClickAction;
 
         public ItemOperateEnum itemOperateEnum = ItemOperateEnum.Juese;
     }
@@ -46,6 +47,12 @@ namespace ET
             if (self.BagInfo == null)
                 return;
 
+            if (self.OnClickAction != null)
+            {
+               self.OnClickAction.Invoke(self.BagInfo); 
+               return;
+            }
+            
             EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
             EventType.ShowItemTips.Instance.bagInfo = self.BagInfo;
             EventType.ShowItemTips.Instance.itemOperateEnum = self.itemOperateEnum;

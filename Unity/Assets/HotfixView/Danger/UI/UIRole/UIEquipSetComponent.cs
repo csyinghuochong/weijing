@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -66,6 +67,18 @@ namespace ET
 
     public static class UIEquipSetComponentSystem
     {
+        public static void SetCallBack(this UIEquipSetComponent self, Action<BagInfo> action)
+        {
+            foreach (UIEquipSetItemComponent uiEquipSetItemComponent in self.EquipList)
+            {
+                uiEquipSetItemComponent.OnClickAction = action;
+            }
+
+            foreach (UIEquipSetItemComponent uiEquipSetItemComponent in self.EquipList_2)
+            {
+                uiEquipSetItemComponent.OnClickAction = action;
+            }
+        }
 
         public static  void InitModelShowView(this UIEquipSetComponent self, int index)
         {
