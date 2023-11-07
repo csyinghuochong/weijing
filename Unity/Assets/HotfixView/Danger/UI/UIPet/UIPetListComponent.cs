@@ -398,11 +398,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物副本上阵中,不能分解！");
                 return;
             }
-            if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
-            {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
-                return;
-            }
+            //if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
+            //{
+            //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
+            //    return;
+            //}
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生?"),
             () =>
             {

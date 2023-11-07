@@ -240,6 +240,17 @@ namespace ET
             self.UpdateMyMine();
         }
 
+        public static List<int> GetSelfPetMingTeam(this UIPetMiningComponent self)
+        {
+            List<int> teamids = new List<int>();
+            List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
+            for (int i = 0; i < petMingPlayers.Count; i++)
+            {
+                teamids.Add(petMingPlayers[i].TeamId);
+            }
+            return teamids;
+        }
+
         public static void UpdateMyMine(this UIPetMiningComponent self)
         {
             int chatchun = 0;

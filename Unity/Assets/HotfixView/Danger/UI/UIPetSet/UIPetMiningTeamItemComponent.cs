@@ -143,7 +143,7 @@ namespace ET
         public static void RequestFormationSet(this UIPetMiningTeamItemComponent self, long rolePetInfoId, int index, int operateType)
         {
             UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetMiningTeam);
-            ui.GetComponent<UIPetMiningTeamComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
+            ui.GetComponent<UIPetMiningTeamComponent>().OnDragFormationSet(rolePetInfoId, index, operateType, self.TeamId);
         }
 
         public static void EndDrag(this UIPetMiningTeamItemComponent self, RolePetInfo binfo, PointerEventData pdata)

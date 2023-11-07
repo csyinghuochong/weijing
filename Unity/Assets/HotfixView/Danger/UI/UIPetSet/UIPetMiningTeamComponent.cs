@@ -111,7 +111,7 @@ namespace ET
 
                 int index = int.Parse(name.Substring(name.Length - 1, 1));
                 Log.ILog.Debug($"index:   {index} {parent.name} ");
-                self.OnDragFormationSet(binfo.Id, team * 5 + index, 1);
+                self.OnDragFormationSet(binfo.Id, team * 5 + index, 1, team);
                 break;
             }
             UICommonHelper.SetParent(self.IconItemDrag, self.GetParent<UI>().GameObject);
@@ -125,8 +125,19 @@ namespace ET
         /// <param name="rolePetInfoId"></param>
         /// <param name="index"></param>
         /// <param name="operateType"></param>
-        public static void OnDragFormationSet(this UIPetMiningTeamComponent self, long rolePetInfoId, int index, int operateType)
+        public static void OnDragFormationSet(this UIPetMiningTeamComponent self, long rolePetInfoId, int index, int operateType, int team)
         {
+
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
+            UIPetMiningComponent petmingComponent = uI.GetComponent<UIPetSetComponent>().UIPageView.UISubViewList[(int)PetSetEnum.PetMining].GetComponent<UIPetMiningComponent>();
+            List<int> defendteamids = petmingComponent.GetSelfPetMingTeam();
+            if (defendteamids.Contains(team))
+            {
+                FloatTipManager.Instance.ShowFloatTip("占领矿场中，无法更换");
+                return;
+            }
+
+
             //上阵
             if (operateType == 1)
             {
