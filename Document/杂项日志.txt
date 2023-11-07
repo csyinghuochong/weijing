@@ -1,3 +1,5 @@
+com.guangying.yongshi
+
 git@github.com:csyinghuochong/yongshiyujiayuan.git
 https://github.com/csyinghuochong/yongshiyujiayuan.git
 
