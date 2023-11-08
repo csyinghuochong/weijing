@@ -8,8 +8,15 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_WelfareDrawRewardRequest request, M2C_WelfareDrawRewardResponse response, Action reply)
         {
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawReward) == 1)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            
             int index = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex);
-            if (index == 0 || index >= ConfigHelper.WelfareDrawList.Count)
+            if (index == 0 || index > ConfigHelper.WelfareDrawList.Count)
             {
                 reply();
                 return;
@@ -21,7 +28,7 @@ namespace ET
             { 
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 int weaponId = ComHelp.GetWelfareWeapon( userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.OccTwo );
-                reward = $"1;{weaponId}";
+                reward = $"{weaponId};1";
             }
 
             unit.GetComponent<BagComponent>().OnAddItemData(  reward, $"{ItemGetWay.Welfare}_{TimeHelper.ServerNow()}");
