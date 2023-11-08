@@ -57,7 +57,7 @@ namespace ET
                     effect = "SkillZhishi/Skill_Area_120";
                     break;
                case  SkillZhishiType.TargetOnly:
-                    effect = "SkillZhishi/Skill_Position";
+                    effect = "SkillZhishi/Skill_TargetOnly";
                     break;
             }
 
@@ -178,8 +178,7 @@ namespace ET
                         break;
                     case SkillZhishiType.TargetOnly:
                         innerRadius = (float)self.mSkillConfig.DamgeRange[0] * 2f;
-                         outerRadius = (float)self.mSkillConfig.SkillRangeSize * 2f;   //半径 * 2
-                        skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.localScale = Vector3.one * innerRadius;
+                        outerRadius = (float)self.mSkillConfig.SkillRangeSize * 2f;   //半径 * 2
                         skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * outerRadius;
 
                         break;
@@ -261,7 +260,7 @@ namespace ET
                 return;
             }
 
-            if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position)
+            if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position || skillIndicatorItem.SkillZhishiType == SkillZhishiType.TargetOnly)
             {
                 float rate = 1;
                 rate = self.StartIndicator.magnitude / 120f;
@@ -350,6 +349,49 @@ namespace ET
                     rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
                     skillTarget = rotation * Vector3.forward + unit.Position;
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_120").transform.LookAt(skillTarget);
+                    break;
+                case SkillZhishiType.TargetOnly:
+                    rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
+                    skillTarget = rotation * Vector3.forward + unit.Position;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_60").transform.LookAt(skillTarget);
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.localPosition = rotation * Vector3.forward * skillIndicatorItem.AttackDistance;
+                    Vector3 position = skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.position;
+                    
+                    float mindis = 2f; // 指示器锁定怪物最大距离
+                    float distance = 10f;
+                    Vector3 vector3 = new Vector3();
+                    long monsterId = 0;
+                    foreach (Unit u in self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll())
+                    {
+                        if (u.Type == UnitType.Monster)
+                        {
+                            // 1. 领主
+                            // 2. 血量值低（如追求进阶可设置内选择血量百分比低或是绝对值低）
+                            // 3. 距离近
+                            Vector2 v1 = new Vector2(u.Position.x, u.Position.z);
+                            Vector2 v2 = new Vector2(position.x, position.z);
+                            float dis = Vector2.Distance(v1, v2);
+                            if (dis < mindis && dis < distance)
+                            {
+                                distance = dis;
+                                vector3 = u.Position;
+                                monsterId = u.Id;
+                            }
+                        }
+                    }
+
+                    GameObject Skill_Target = skillIndicatorItem.GameObject.Get<GameObject>("Skill_Target");
+                    if (distance < mindis)
+                    {
+                        Skill_Target.SetActive(true);
+                        Skill_Target.transform.position = vector3;
+                        self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(monsterId);
+                    }
+                    else
+                    {
+                        Skill_Target.SetActive(false);
+                    }
+
                     break;
             }
         }
