@@ -19,7 +19,7 @@
 {"_t":"EquipSuitConfig","_id":14011,"Name":"命运套装","NeedEquipID":[15401002,15402002,15403002,15404002,15405002,15411002,15411011],"SuitPropertyID":"2,140111;4,140112;6,140113","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":14021,"Name":"圣灵套装","NeedEquipID":[15401004,15402004,15403004,15404004,15405004,15411004,15411012],"SuitPropertyID":"2,140121;4,140122;6,140123","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":14031,"Name":"破灵套装","NeedEquipID":[15401006,15402006,15403006,15404006,15405006,15411006,15411013],"SuitPropertyID":"2,140131;4,140132;6,140133","SuitType":0,"Occ":0},
-{"_t":"EquipSuitConfig","_id":14051,"Name":"毁灭者套装","NeedEquipID":[15406003,15410011,15410012,15410111,15410112,15400211],"SuitPropertyID":"2,200001","SuitType":0,"Occ":0},
+{"_t":"EquipSuitConfig","_id":14051,"Name":"毁灭者套装","NeedEquipID":[15406003,15410011,15410012,15410111,15410112,15410211],"SuitPropertyID":"2,200001","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":15011,"Name":"风灵套装","NeedEquipID":[15501002,15502002,15503002,15504002,15505002,15511002,15511011],"SuitPropertyID":"2,150111;4,150112;6,150113","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":15021,"Name":"神谕套装","NeedEquipID":[15501004,15502004,15503004,15504004,15505004,15511004,15511012],"SuitPropertyID":"2,150121;4,150122;6,150123","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":15031,"Name":"永恒套装","NeedEquipID":[15501006,15502006,15503006,15504006,15505006,15511006,15511013],"SuitPropertyID":"2,150131;4,150132;6,150133","SuitType":0,"Occ":0},
