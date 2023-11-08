@@ -385,6 +385,9 @@ namespace ET
                     {
                         Skill_Target.SetActive(true);
                         Skill_Target.transform.position = vector3;
+                        Vector3 localPosition = Skill_Target.transform.localPosition;
+                        localPosition = new Vector3(localPosition.x, 0, localPosition.z);
+                        Skill_Target.transform.localPosition = localPosition;
                         self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(monsterId);
                     }
                     else
