@@ -438,22 +438,22 @@ namespace ET
 
         public static void InitMaoXianJiaBuff(this BuffManagerComponent self)
         {
-            Unit unit = self.GetParent<Unit>();
-            if (unit.Type != UnitType.Player)
-            {
-                return;
-            }
+            //Unit unit = self.GetParent<Unit>();
+            //if (unit.Type != UnitType.Player)
+            //{
+            //    return;
+            //}
 
-            int jifen = unit.GetMaoXianExp();   
-            int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
-            List<int> buffids = ActivityConfigCategory.Instance.GetBuffIds(activityid);
-            for (int i = 0; i < buffids.Count; i++)
-            {
-                BuffData buffData_2 = new BuffData();
-                buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = buffids[i];
-                self.BuffFactory(buffData_2, unit, null);
-            }
+            //int jifen = unit.GetMaoXianExp();   
+            //int activityid = unit.GetComponent<ActivityComponent>().GetMaxActivityId(jifen);
+            //List<int> buffids = ActivityConfigCategory.Instance.GetBuffIds(activityid);
+            //for (int i = 0; i < buffids.Count; i++)
+            //{
+            //    BuffData buffData_2 = new BuffData();
+            //    buffData_2.SkillId = 67000278;
+            //    buffData_2.BuffId = buffids[i];
+            //    self.BuffFactory(buffData_2, unit, null);
+            //}
         }
 
         public static void InitBaoShiBuff(this BuffManagerComponent self)

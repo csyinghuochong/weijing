@@ -474,6 +474,7 @@ namespace ET
                 }
             }
             self.Button_RechargeReward.SetActive(showButton);
+            self.Button_RechargeReward.SetActive(false);
         }
 
         public static void OnBtn_Union(this UIMainComponent self)
