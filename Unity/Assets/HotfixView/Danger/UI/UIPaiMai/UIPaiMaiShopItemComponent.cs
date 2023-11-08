@@ -48,8 +48,8 @@ namespace ET
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.ItemTipsSet);
 
-            UI uiitem = self.AddChild<UI, string, GameObject>("UIItem", bagSpace);
-            self.UIItemComponent = uiitem.AddComponent<UIItemComponent>();
+            UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>(bagSpace);
+            self.UIItemComponent = uiitem;
             self.UIItemComponent.ClickItemHandler = (BagInfo baginfo) => { self.OnClickPaiMaiItem(baginfo.BagInfoID); };
             uiitem.GameObject.transform.localScale = Vector3.one * 0.9f;
             if (self.PaiMaiId != 0)

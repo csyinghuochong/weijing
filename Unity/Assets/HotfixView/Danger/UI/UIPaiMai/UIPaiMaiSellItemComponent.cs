@@ -13,7 +13,7 @@ namespace ET
         public GameObject TextPrice;
         public GameObject TextTime;
 
-        public UI UIItem;
+        public UIItemComponent UIItem;
         public PaiMaiItemInfo PaiMaiItemInfo;
         public Action<PaiMaiItemInfo> ClickHandler;
         public GameObject GameObject;
@@ -53,10 +53,9 @@ namespace ET
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.ItemSet);
 
-            self.UIItem = self.AddChild<UI, string, GameObject>("UIItem", bagSpace);
-            self.UIItem.AddComponent<UIItemComponent>();
+            self.UIItem = self.AddChild<UIItemComponent, GameObject>(bagSpace);
             self.UIItem.GameObject.transform.localScale = Vector3.one * 1f;
-            self.UIItem.GetComponent<UIItemComponent>().Label_ItemName.SetActive(false);
+            self.UIItem.Label_ItemName.SetActive(false);
 
             if (self.PaiMaiItemInfo != null)
             {
@@ -77,8 +76,8 @@ namespace ET
                 return;
             }
 
-            self.UIItem.GetComponent<UIItemComponent>().UpdateItem( new BagInfo() {ItemID = paiMaiItemInfo.BagInfo.ItemID}, ItemOperateEnum.None );
-            self.UIItem.GetComponent<UIItemComponent>().Label_ItemNum.GetComponent<Text>().text = paiMaiItemInfo.BagInfo.ItemNum.ToString();
+            self.UIItem.UpdateItem( new BagInfo() {ItemID = paiMaiItemInfo.BagInfo.ItemID}, ItemOperateEnum.None );
+            self.UIItem.Label_ItemNum.GetComponent<Text>().text = paiMaiItemInfo.BagInfo.ItemNum.ToString();
             self.TextPrice.GetComponent<Text>().text = (self.PaiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum).ToString();
 
             long serverTime = TimeHelper.ServerNow();
@@ -87,7 +86,7 @@ namespace ET
 
             self.TextName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).ItemName;
 
-            self.UIItem.GetComponent<UIItemComponent>().Baginfo = self.PaiMaiItemInfo.BagInfo;
+            self.UIItem.Baginfo = self.PaiMaiItemInfo.BagInfo;
         }
 
         public static void SetClickHandler(this UIPaiMaiSellItemComponent self, Action<PaiMaiItemInfo> action)

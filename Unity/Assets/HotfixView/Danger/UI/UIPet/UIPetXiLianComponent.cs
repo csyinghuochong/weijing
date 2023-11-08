@@ -13,7 +13,7 @@ namespace ET
         public GameObject Btn_XiLian;
         public GameObject PetSkillNode;
 
-        public List<UI> CostUIList;
+        public List<UIItemComponent> CostUIList;
         public UIPetInfoShowComponent UIPetInfoShowComponent;
         public BagInfo CostItemInfo;
         public RolePetInfo RolePetInfo;
@@ -25,7 +25,7 @@ namespace ET
     {
         public override void Awake(UIPetXiLianComponent self)
         {
-            self.CostUIList = new List<UI>();
+            self.CostUIList = new List<UIItemComponent>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Text_ItemName = rc.Get<GameObject>("Text_ItemName");
@@ -167,7 +167,7 @@ namespace ET
                 {
                     continue;
                 }
-                UI ui_item = null;
+                UIItemComponent ui_item = null;
                 if (number < self.CostUIList.Count)
                 {
                     ui_item = self.CostUIList[number];
@@ -178,16 +178,15 @@ namespace ET
                     GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(bagSpace, self.PetSkillNode);
 
-                    ui_item = self.AddChild<UI, string, GameObject>("UIItem_" + i.ToString(), bagSpace);
-                    UIItemComponent uIItemComponent = ui_item.AddComponent<UIItemComponent>();
-                    uIItemComponent.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
+                    ui_item = self.AddChild<UIItemComponent, GameObject>(bagSpace);
+                    ui_item.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
                     self.CostUIList.Add(ui_item);
                 }
                 number++;
 
-                ui_item.GetComponent<UIItemComponent>().HideItemName();
-                ui_item.GetComponent<UIItemComponent>().UpdateItem(bagList[i], ItemOperateEnum.PetXiLian);
-                ui_item.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(true);
+                ui_item.HideItemName();
+                ui_item.UpdateItem(bagList[i], ItemOperateEnum.PetXiLian);
+                ui_item.Label_ItemNum.SetActive(true);
             }
 
             for (int i = number; i < self.CostUIList.Count; i++)

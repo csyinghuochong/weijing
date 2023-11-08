@@ -147,8 +147,7 @@ namespace ET
             {
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, itemNodeList);
-                UI ui_2 = entity.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
-                UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
+                UIItemComponent uIItemComponent = entity.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(showName);
                 uIItemComponent.Label_ItemNum.SetActive(showNumber);

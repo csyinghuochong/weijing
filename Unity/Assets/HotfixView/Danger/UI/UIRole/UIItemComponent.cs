@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIItemComponent : Entity, IAwake, IAwake<GameObject>, IDestroy
+    public class UIItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Image_Protect;
         public GameObject Image_UpTip;
@@ -48,13 +48,13 @@ namespace ET
     }
 
 
-    public class UIItemComponentAwakeSystem : AwakeSystem<UIItemComponent>
-    {
-        public override void Awake(UIItemComponent self)
-        {
-            self.OnAwake(self.GetParent<UI>().GameObject);
-        }
-    }
+    // public class UIItemComponentAwakeSystem : AwakeSystem<UIItemComponent>
+    // {
+    //     public override void Awake(UIItemComponent self)
+    //     {
+    //         self.OnAwake(self.GetParent<UI>().GameObject);
+    //     }
+    // }
 
     public class UIItemComponentDestroy : DestroySystem<UIItemComponent>
     {

@@ -15,7 +15,7 @@ namespace ET
         public Action<int> ClickHandler;
         public int Index = -1;
         public bool IsSelect;
-        public UI UiItem;
+        public UIItemComponent UiItem;
 
         public GameObject ItemNode;
         public GameObject GameObject;
@@ -53,13 +53,12 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject UIItem = GameObject.Instantiate(bundleGameObject);
-            UI ui_1 = self.AddChild<UI, string, GameObject>("item_reward", UIItem);
-            ui_1.AddComponent<UIItemComponent>();
+            UIItemComponent ui_1 = self.AddChild<UIItemComponent, GameObject>(UIItem);
             UICommonHelper.SetParent(UIItem, self.ItemNode);
             self.UiItem = ui_1;
             if (self.RewardItem != null)
             {
-                self.UiItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.RewardItem.ItemID, ItemNum = self.RewardItem.ItemNum }, ItemOperateEnum.None);
+                self.UiItem.UpdateItem(new BagInfo() { ItemID = self.RewardItem.ItemID, ItemNum = self.RewardItem.ItemNum }, ItemOperateEnum.None);
             }
         }
 
@@ -68,7 +67,7 @@ namespace ET
             self.RewardItem = rewardItem;
             if (self.UiItem != null)
             {
-                self.UiItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.RewardItem.ItemID, ItemNum = self.RewardItem.ItemNum }, ItemOperateEnum.None);
+                self.UiItem.UpdateItem(new BagInfo() { ItemID = self.RewardItem.ItemID, ItemNum = self.RewardItem.ItemNum }, ItemOperateEnum.None);
             }
         }
 

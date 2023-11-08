@@ -57,8 +57,7 @@ namespace ET
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.UIItemMake);
-            UI ui_1 = self.AddChild<UI, string, GameObject>("NeedUIItem", bagSpace);
-            UIItemComponent uIItemComponent = ui_1.AddComponent<UIItemComponent>();
+            UIItemComponent uIItemComponent = self.AddChild<UIItemComponent,GameObject>(bagSpace);
             uIItemComponent.Label_ItemNum.SetActive(false);
             uIItemComponent.Label_ItemName.SetActive(false);
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.MakeId);

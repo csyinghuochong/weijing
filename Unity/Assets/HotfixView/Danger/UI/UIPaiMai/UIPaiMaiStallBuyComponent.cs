@@ -69,8 +69,8 @@ namespace ET
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.ItemShowSet);
-            UI uiItem = self.AddChild<UI, string, GameObject>("XiLianItem", go);
-            self.UIItemComponent = uiItem.AddComponent<UIItemComponent>();
+            UIItemComponent uiItem = self.AddChild<UIItemComponent, GameObject>(go);
+            self.UIItemComponent = uiItem;
             self.UIItemComponent.Label_ItemName.SetActive(false);
 
             if (self.PaiMaiItemInfo != null)

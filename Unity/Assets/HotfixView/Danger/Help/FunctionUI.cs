@@ -709,11 +709,10 @@ namespace ET
 
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, itemShowPar);
-            UI ItemUI = parUI.AddChild<UI, string, GameObject>( "XiLianItem", go);
-            ItemUI.AddComponent<UIItemComponent>();
-            ItemUI.GetComponent<UIItemComponent>().Label_ItemName.SetActive(ifShowName);
+            UIItemComponent ItemUI = parUI.AddChild<UIItemComponent, GameObject>(go);
+            ItemUI.Label_ItemName.SetActive(ifShowName);
             ItemUI.GameObject.transform.localScale = Vector3.one * size;
-            ItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfo, itemOperateEnum);
+            ItemUI.UpdateItem(bagInfo, itemOperateEnum);
         }
 
 

@@ -51,8 +51,8 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.ItemNodeSet);
-            UI uiItem = self.AddChild<UI, string, GameObject>("XiLianItem", go);
-            self.UIItemComponent = uiItem.AddComponent<UIItemComponent>();
+            UIItemComponent uiItem = self.AddChild<UIItemComponent, GameObject>(go);
+            self.UIItemComponent = uiItem;
             self.UIItemComponent.Label_ItemName.SetActive(false);
         }
 
