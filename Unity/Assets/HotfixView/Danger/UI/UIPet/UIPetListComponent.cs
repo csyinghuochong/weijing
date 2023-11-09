@@ -137,7 +137,8 @@ namespace ET
             self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
             self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
             self.JiBanBtn = rc.Get<GameObject>("JiBanBtn");
-         
+            self.JiBanBtn.SetActive(false);
+
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI PageButton = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
@@ -661,6 +662,7 @@ namespace ET
             self.UpdatePetModel(self.LastSelectItem);
             self.UpdatePetSelected(self.LastSelectItem);
             self.UpdatePetHeXin(self.LastSelectItem);
+            self.JiBanBtn.SetActive( PetHelper.IsShenShou(self.LastSelectItem.ConfigId) );
         }
 
         public static void UpdatePetHeXin(this UIPetListComponent self, RolePetInfo rolePetItem)
