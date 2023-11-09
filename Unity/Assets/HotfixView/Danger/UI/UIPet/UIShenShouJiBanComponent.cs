@@ -102,7 +102,7 @@ namespace ET
 
                     if (showType == 2)
                     {
-                        float value = (float)propertyValue.HideValue / 100f;
+                        float value = (float)propertyValue.HideValue / 10000f;
                         str += proName + " " + value.ToString("0.##") + "%" + " ";
                     }
                     else

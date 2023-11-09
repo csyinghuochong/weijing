@@ -143,9 +143,12 @@ namespace ET
                     }
                     else
                     {
-                        self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] += chanchu;
+                        long oldValue = self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId];
+                        oldValue += chanchu;
+                        //if (oldValue >= mineBattleConfig.)
+
+                        self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] = oldValue;
                     }
-                  
                 }
                 self.CheckIndex = 0;
             }

@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>金币产出/小时</summary>
 		[ProtoMember(5)]
 		public int GoldOutPut { get; set; }
+		/// <summary>上限</summary>
+		[ProtoMember(6)]
+		public int ChanChuLimit { get; set; }
 
 	}
 }
