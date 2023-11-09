@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -361,7 +362,8 @@ namespace ET
                     float distance = 10f;
                     Vector3 vector3 = new Vector3();
                     long monsterId = 0;
-                    foreach (Unit u in self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll())
+                    List<Unit> allunits = unit.GetParent<UnitComponent>().GetAll();
+                    foreach (Unit u in allunits)
                     {
                         if (u.Type == UnitType.Monster)
                         {
