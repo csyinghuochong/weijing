@@ -89,7 +89,7 @@ namespace ET
                 //60030060 吟唱   61022102光能击  67000277旋转攻击
                 //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);66001012玩家预警技能  66001013玩家燃烧技能
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
-                List<int> skillids = new List<int>() { 61031111 }; //心灵光环
+                List<int> skillids = new List<int>() { 90010908 }; //心灵光环
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 long targetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillids[RandomHelper.RandomNumber(0, skillids.Count)],
