@@ -91,6 +91,8 @@ namespace ET
                 }
             }
 
+            int shenshouNumber = self.ZoneScene().GetComponent<PetComponent>().GetShenShouNumber();
+
             for (int i = 1; i <= ConfigHelper.ShenShouJiBan.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(self.EffectText);
@@ -102,7 +104,7 @@ namespace ET
 
                     if (showType == 2)
                     {
-                        float value = (float)propertyValue.HideValue / 10000f;
+                        float value = (float)propertyValue.HideValue / 100f;
                         str += proName + " " + value.ToString("0.##") + "%" + " ";
                     }
                     else
@@ -112,6 +114,8 @@ namespace ET
                 }
 
                 go.GetComponent<Text>().text = str;
+                go.GetComponent<Text>().color = shenshouNumber >= i ? new Color(110f, 140f, 7f) : new Color(128f,128f,128f);
+
                 UICommonHelper.SetParent(go, self.EffectListNode);
                 go.SetActive(true);
             }

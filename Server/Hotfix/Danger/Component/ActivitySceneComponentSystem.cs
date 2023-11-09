@@ -145,8 +145,8 @@ namespace ET
                     {
                         long oldValue = self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId];
                         oldValue += chanchu;
-                        //if (oldValue >= mineBattleConfig.)
-
+                        oldValue = Math.Min(oldValue, mineBattleConfig.ChanChuLimit);
+                        
                         self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] = oldValue;
                     }
                 }

@@ -36,6 +36,19 @@ namespace ET
             self.RolePetInfos.AddRange(m2C_RolePetUpdate.PetInfoAdd);
         }
 
+        public static int GetShenShouNumber(this PetComponent self)
+        {
+            int shenshouNumber = 0;
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (PetHelper.IsShenShou(self.RolePetInfos[i].ConfigId))
+                {
+                    shenshouNumber++;
+                }
+            }
+            return shenshouNumber;
+        }
+
 
         public static RolePetInfo GetPetInfoByID(this PetComponent self, long petid)
         {
