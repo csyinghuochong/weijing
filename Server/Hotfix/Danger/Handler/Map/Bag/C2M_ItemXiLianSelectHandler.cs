@@ -8,6 +8,11 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ItemXiLianSelectRequest request, M2C_ItemXiLianSelectResponse response, Action reply)
         {
+            if (request.ItemXiLianResult == null)
+            {
+                reply();
+                return;
+            }
             BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
             ItemXiLianResult itemXiLian = request.ItemXiLianResult;
             bagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼

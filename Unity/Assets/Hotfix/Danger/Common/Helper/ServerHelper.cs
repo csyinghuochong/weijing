@@ -258,16 +258,18 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 46, ServerIp = $"{ip}:20475", ServerName = "执子之手", ServerOpenTime = 1694170800000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 47, ServerIp = $"{ip}:20475", ServerName = "与子偕老", ServerOpenTime = 1694752200000, New = 0, Show = 0 });
 
-                //合区1026  流云若梦-欢度国庆  48 / 49
                 serverItems_1.Add(new ServerItem() { ServerId = 48, ServerIp = $"{ip}:20365", ServerName = "流云若梦", ServerOpenTime = 1695380400000, New = 0, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 49, ServerIp = $"{ip}:20365", ServerName = "欢度国庆", ServerOpenTime = 1695961800000, New = 0, Show = 1 });
-                
+                serverItems_1.Add(new ServerItem() { ServerId = 49, ServerIp = $"{ip}:20365", ServerName = "欢度国庆", ServerOpenTime = 1695961800000, New = 0, Show = 0 });
+
+                //合区1110  金戈铁马-迷雾森林  50 / 51
                 serverItems_1.Add(new ServerItem() { ServerId = 50, ServerIp = $"{ip}:20405", ServerName = "金戈铁马", ServerOpenTime = 1696566600000, New = 0, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 51, ServerIp = $"{ip}:20455", ServerName = "迷雾森林", ServerOpenTime = 1697171400000, New = 0, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 51, ServerIp = $"{ip}:20405", ServerName = "迷雾森林", ServerOpenTime = 1697171400000, New = 0, Show = 0 });
+               
                 serverItems_1.Add(new ServerItem() { ServerId = 52, ServerIp = $"{ip}:20445", ServerName = "希望之树", ServerOpenTime = 1697799600000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 53, ServerIp = $"{ip}:20375", ServerName = "梦境之海", ServerOpenTime = 1698381000000, New = 0, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 54, ServerIp = $"{ip}:20395", ServerName = "百年风华", ServerOpenTime = 1698985800000, New = 0, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 54, ServerIp = $"{ip}:20395", ServerName = "百年风华", ServerOpenTime = 1698985800000, New = 1, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20435", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 1, Show = 1 });
             }
 
             return serverItems_1;

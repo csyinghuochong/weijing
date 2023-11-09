@@ -47,7 +47,7 @@ namespace ET
                 }
                 if (equipInfo == null)
                 {
-                    Log.Error($"equipInfo == null {equipid}");
+                    Log.Warning($"equipInfo == null {equipid}");
                     reply();
                     return;
                 }
