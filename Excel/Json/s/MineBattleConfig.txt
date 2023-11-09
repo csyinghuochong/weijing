@@ -1,4 +1,4 @@
-{"list":[{"_t":"MineBattleConfig","_id":10001,"Name":"黄金矿","Type":-1,"Icon":"Mine_3","GoldOutPut":32000,"ChanChuLimit":1000000},
-{"_t":"MineBattleConfig","_id":10002,"Name":"白银矿","Type":-1,"Icon":"Mine_2","GoldOutPut":16000,"ChanChuLimit":500000},
-{"_t":"MineBattleConfig","_id":10003,"Name":"青铜矿","Type":-1,"Icon":"Mine_1","GoldOutPut":6000,"ChanChuLimit":250000},
+{"list":[{"_t":"MineBattleConfig","_id":10001,"Name":"黄金矿","Type":-1,"Icon":"Mine_3","GoldOutPut":24000,"ChanChuLimit":1000000},
+{"_t":"MineBattleConfig","_id":10002,"Name":"白银矿","Type":-1,"Icon":"Mine_2","GoldOutPut":12000,"ChanChuLimit":500000},
+{"_t":"MineBattleConfig","_id":10003,"Name":"青铜矿","Type":-1,"Icon":"Mine_1","GoldOutPut":4500,"ChanChuLimit":250000},
 ]}
