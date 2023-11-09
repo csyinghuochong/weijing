@@ -96,7 +96,7 @@ namespace ET
             for (int i = 1; i <= ConfigHelper.ShenShouJiBan.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(self.EffectText);
-                string str = $"激活({i}/{i}) ";
+                string str = $"激活({shenshouNumber}/{i}) ";
                 foreach (PropertyValue propertyValue in ConfigHelper.ShenShouJiBan[i])
                 {
                     string proName = ItemViewHelp.GetAttributeName(propertyValue.HideID);
