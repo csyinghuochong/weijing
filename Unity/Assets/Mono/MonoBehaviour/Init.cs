@@ -148,6 +148,9 @@ namespace ET
 #elif Platform4
 			Log.ILog.Debug("unity111  Platform4=true");
 			this.Platform = 4;
+#elif TikTok5
+			Log.ILog.Debug("unity111  TikTok5=true");
+			this.Platform = 5;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif
