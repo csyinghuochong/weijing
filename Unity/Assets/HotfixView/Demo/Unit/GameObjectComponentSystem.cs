@@ -729,35 +729,6 @@ namespace ET
             }
         }
 
-        public static void OnHighLight(this GameObjectComponent self)
-        {
-            if (GlobalHelp.GetBigVersion() < 15)
-            {
-                return;
-            }
-           
-
-            if (self.Material != null)
-            {
-                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
-                //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
-                TimerComponent.Instance.Remove(ref  self.HighLightTimer);
-                self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 120, TimerType.HighLightTimer, self);
-            }
-        }
-
-        public static void OnResetShader(this GameObjectComponent self)
-        {
-            if (GlobalHelp.GetBigVersion() < 15)
-            {
-                return;
-            }
-            if (self.Material != null)
-            {
-                self.Material.shader = GlobalHelp.Find(self.OldShader);
-            }
-        }
-
         public static void ShowWeapon(this GameObjectComponent self)
         {
             //GameObject xxxxx = null;
@@ -779,76 +750,36 @@ namespace ET
         }
 
         /// <summary>
-        /// 退出隐身
+        // public static string ToonBasic = "Toon/Basic";  
+        // public static string ToonBasicOutline = "Toon/BasicOutline";
         /// </summary>
         /// <param name="self"></param>
-        public static void ExitStealth(this GameObjectComponent self)
+        public static void OnHighLight(this GameObjectComponent self)
         {
-            Unit unit = self.GetParent<Unit>();
-
-            Log.ILog.Debug($"ExitStealth: {unit.Id}");
-
-            //退出隐身
-            float alpha = 1f;
-            self.Material.shader = GlobalHelp.Find(self.OldShader);
-
-            // 脚底阴影恢复
-            GameObject di = null;
-            if (self.GameObject.transform.Find("fake shadow (5)")!=null)
+            if (GlobalHelp.GetBigVersion() < 15)
             {
-                di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
-                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
-                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
+                return;
             }
 
-            // 脚底Buff恢复
-            foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
+            if (self.Material != null)
             {
-                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
-                {
-                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
-                    if (particleSystem != null)
-                    {
-                        Material material = particleSystem.GetComponent<Renderer>().material;
-                        if (material.HasProperty("_TintColor"))
-                        {
-                            Color oldColor = material.GetColor("_TintColor");
-                            oldColor.a = 0.5f;
-                            material.SetColor("_TintColor", oldColor);
-                        }
-                    }
-                }
+                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
+                //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
+                TimerComponent.Instance.Remove(ref self.HighLightTimer);
+                self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 120, TimerType.HighLightTimer, self);
             }
-            // 血条恢复
-            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
-            foreach (Image image in hpImages)
+        }
+
+        public static void OnResetShader(this GameObjectComponent self)
+        {
+            if (GlobalHelp.GetBigVersion() < 15)
             {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                return;
             }
-
-            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
-
-            // 名称恢复
-            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
-            foreach (Image image in nameImages)
+            if (self.Material != null)
             {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                self.Material.shader = GlobalHelp.Find(self.OldShader);
             }
-
-            //TextMeshProUGUI[] nameTextMeshPros =
-            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
         }
 
         /// <summary>
@@ -858,9 +789,7 @@ namespace ET
         public static void EnterStealth(this GameObjectComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-
             Log.ILog.Debug($"EnterStealth: {unit.Id}");
-
             float alpha = 1f;
             // 对自己半透明
             if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
@@ -872,7 +801,6 @@ namespace ET
             {
                 alpha = 0f;
             }
-
              // 身体隐形
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             self.Material.SetFloat("_Alpha", alpha);
@@ -937,6 +865,80 @@ namespace ET
             //}
 
         }
+
+        /// <summary>
+        /// 退出隐身
+        /// </summary>
+        /// <param name="self"></param>
+        public static void ExitStealth(this GameObjectComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            Log.ILog.Debug($"ExitStealth: {unit.Id}");
+
+            //退出隐身
+            float alpha = 1f;
+            self.Material.shader = GlobalHelp.Find(self.OldShader);
+
+            // 脚底阴影恢复
+            GameObject di = null;
+            if (self.GameObject.transform.Find("fake shadow (5)") != null)
+            {
+                di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
+            }
+
+            // 脚底Buff恢复
+            foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
+            {
+                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                {
+                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                    if (particleSystem != null)
+                    {
+                        Material material = particleSystem.GetComponent<Renderer>().material;
+                        if (material.HasProperty("_TintColor"))
+                        {
+                            Color oldColor = material.GetColor("_TintColor");
+                            oldColor.a = 0.5f;
+                            material.SetColor("_TintColor", oldColor);
+                        }
+                    }
+                }
+            }
+            // 血条恢复
+            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
+            foreach (Image image in hpImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
+
+            // 名称恢复
+            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
+            foreach (Image image in nameImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            //TextMeshProUGUI[] nameTextMeshPros =
+            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
+        }
+
 
         public static void OnHui(this GameObjectComponent self)
         {
