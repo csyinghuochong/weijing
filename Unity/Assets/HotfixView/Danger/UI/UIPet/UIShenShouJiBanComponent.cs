@@ -114,7 +114,7 @@ namespace ET
                 }
 
                 go.GetComponent<Text>().text = str;
-                go.GetComponent<Text>().color = shenshouNumber >= i ? new Color(110f, 140f, 7f, 255f) : new Color(128f,128f,128f, 255f);
+                go.GetComponent<Text>().color = shenshouNumber >= i ? new Color(110f/225f, 140f / 225f, 7f / 225f, 1f) : new Color(128f / 225f, 128f / 225f, 128f / 225f, 1f);
 
                 UICommonHelper.SetParent(go, self.EffectListNode);
                 go.SetActive(true);
