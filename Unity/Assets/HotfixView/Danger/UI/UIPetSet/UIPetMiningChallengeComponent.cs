@@ -8,6 +8,7 @@ namespace ET
     public class UIPetMiningChallengeComponent : Entity, IAwake,IDestroy
     {
 
+        public GameObject TextChallengeCD;
         public GameObject RawImage;
         public GameObject ButtonClose;
         public GameObject ButtonConfirm;
@@ -38,6 +39,9 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetMiningChallenge); });
+
+            self.TextChallengeCD = rc.Get<GameObject>("TextChallengeCD");
+            self.TextChallengeCD.GetComponent<Text>().text = string.Empty;
 
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
             ButtonHelp.AddListenerEx(self.ButtonConfirm, () => { self.OnButtonConfirm(); });
@@ -205,6 +209,27 @@ namespace ET
                     }
                     self.PetIconList[i].sprite = _sp;
                 }
+            }
+
+            self.ShowChallengeCD().Coroutine();
+        }
+
+        public static async ETTask ShowChallengeCD(this UIPetMiningChallengeComponent self)
+        {
+            long instanceid = self.InstanceId;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long cdTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime) - TimeHelper.ServerNow();
+
+            while (cdTime > 0)
+            {
+                self.TextChallengeCD.GetComponent<Text>().text = "挑战冷却时间: "+ TimeHelper.ShowLeftTime(cdTime);   
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+
+                cdTime -= 1000;
             }
         }
 

@@ -1,0 +1,10 @@
+{
+  "app_id": "554726",
+  "screen_orientation": "sensorLandscape",
+  "union_mode": 1,
+  "osdk_type": "Android_Merge",
+  "client_key": {
+    "douyin_key": ""
+  },
+  "debug_mode": false
+}
