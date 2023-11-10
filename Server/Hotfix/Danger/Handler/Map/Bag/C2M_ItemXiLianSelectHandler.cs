@@ -8,16 +8,19 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ItemXiLianSelectRequest request, M2C_ItemXiLianSelectResponse response, Action reply)
         {
-            if (request.ItemXiLianResult == null)
-            {
-                reply();
-                return;
-            }
             BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
+            if (bagInfo == null)
+            {
+                bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, request.OperateBagID);
+            }
+
             ItemXiLianResult itemXiLian = request.ItemXiLianResult;
-            bagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
-            bagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
-            bagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
+            if (itemXiLian != null)
+            {
+                bagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
+                bagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
+                bagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
+            }
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变
