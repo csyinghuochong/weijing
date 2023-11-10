@@ -524,7 +524,7 @@ namespace ET
             }
             bool drop = true;
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
-            if (SceneConfigHelper.IsSingleFuben(sceneType) && main!=null && main.Type == UnitType.Player)
+            if (SceneConfigHelper.IsSingleFuben(sceneType) )
             {
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
 
@@ -545,6 +545,16 @@ namespace ET
                     drop = false;
                 }
             }
+            if (ActivityHelper.IsShowLieOpen() && !drop && !main.IsRobot())
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
+                int userlv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                if( monsterConfig.Lv >= 50 || Mathf.Abs(userlv - monsterConfig.Lv) <= 9 ) 
+                {
+                    drop = true;    
+                }
+            }
+
             if (!drop)
             {
                 return;
