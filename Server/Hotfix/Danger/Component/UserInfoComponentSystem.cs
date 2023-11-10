@@ -81,6 +81,7 @@ namespace ET
 
         public static void CheckData(this UserInfoComponent self)
         {
+
             if (self.UserInfo.JiaYuanLv <= 0)
             {
                 self.UserInfo.JiaYuanLv = 10001;
@@ -104,6 +105,12 @@ namespace ET
             {
                 numericComponent.Set(NumericType.TrialDungeonId, maxTowerId, false);
             }
+
+            //if (self.UserInfo.UserId == 2091730437935267840)
+            //{
+            //    self.UserInfo.UnionName = "清风醉花亭";
+            //    numericComponent.ApplyValue(NumericType.UnionId_0, 2091902218525016328, false);
+            //}
         }
 
         public static void OnOffLine(this UserInfoComponent self)
