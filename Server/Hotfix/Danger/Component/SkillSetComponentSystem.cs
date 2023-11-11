@@ -744,7 +744,7 @@ namespace ET
 		/// <param name="bagInfo"></param>
 		public static void OnTakeOffEquip(this SkillSetComponent self, ItemLocType ItemLocBag, BagInfo bagInfo)
 		{
-			if (ItemLocBag != ItemLocType.ItemLocEquip)
+			if (ItemLocBag != ItemLocType.ItemLocEquip && ItemLocBag != ItemLocType.ItemLocEquip_2)
 			{
 				return;
 			}
@@ -844,7 +844,7 @@ namespace ET
         /// <param name="bagInfo"></param>
         public static void OnWearEquip(this SkillSetComponent self, BagInfo bagInfo)
 		{
-			if (bagInfo.Loc != (int)ItemLocType.ItemLocEquip)
+			if (bagInfo.Loc != (int)ItemLocType.ItemLocEquip  && bagInfo.Loc != (int)ItemLocType.ItemLocEquip_2)
 			{
 				return;
 			}

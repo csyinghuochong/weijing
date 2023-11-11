@@ -11,15 +11,18 @@ namespace ET
         {
             try
             {
+                ItemLocType itemLocType = ItemLocType.ItemLocBag;
                 BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
 
                 if (bagInfo == null)
                 {
                     bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, request.OperateBagID);
+                    itemLocType = ItemLocType.ItemLocEquip;
                 }
                 if (bagInfo == null)
                 {
-                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID);
+                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID); 
+                    itemLocType = ItemLocType.ItemLocEquip_2;
                 }
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
@@ -88,7 +91,13 @@ namespace ET
 
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<TaskComponent>().OnEquipXiLian(request.Times);
-                unit.GetComponent<DataCollationComponent>().OnXiLian(request.Times);    
+                unit.GetComponent<DataCollationComponent>().OnXiLian(request.Times);
+
+                if (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2)
+                {
+                    unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(itemLocType, bagInfo);
+                    unit.GetComponent<SkillSetComponent>().OnWearEquip( bagInfo);
+                }
 
                 string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
                 int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));
