@@ -21,6 +21,11 @@ namespace ET
                 itemLocType = ItemLocType.ItemLocEquip_2;
             }
 
+            if (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2)
+            {
+                unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(itemLocType, bagInfo, bagInfo.BagInfoID);
+            }
+
             ItemXiLianResult itemXiLian = request.ItemXiLianResult;
             if (itemXiLian != null)
             {
@@ -31,8 +36,7 @@ namespace ET
 
             if (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2)
             {
-                unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(itemLocType, bagInfo);
-                unit.GetComponent<SkillSetComponent>().OnWearEquip(bagInfo);
+                    unit.GetComponent<SkillSetComponent>().OnWearEquip(bagInfo);
             }
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();

@@ -67,6 +67,12 @@ namespace ET
                 {
                     response.ItemXiLianResults.Add( XiLianHelper.XiLianItem(unit, bagInfo, 1, xilianLevel) );     //精炼属性不进行重置
                 }
+
+                if (request.Times == 1 && (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2))
+                {
+                        unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(itemLocType, bagInfo, bagInfo.BagInfoID);
+                }
+
                 if (request.Times == 1)
                 {
                     ItemXiLianResult itemXiLian = response.ItemXiLianResults[0];
@@ -78,6 +84,12 @@ namespace ET
                     //通知客户端背包道具发生改变
                     m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
                     MessageHelper.SendToClient(unit, m2c_bagUpdate);
+                }
+
+                if (request.Times == 1 && (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2))
+                {
+
+                    unit.GetComponent<SkillSetComponent>().OnWearEquip(bagInfo);
                 }
 
                 for (int i = 0; i < response.ItemXiLianResults.Count; i++)
@@ -93,11 +105,6 @@ namespace ET
                 unit.GetComponent<TaskComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<DataCollationComponent>().OnXiLian(request.Times);
 
-                if (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2)
-                {
-                    unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(itemLocType, bagInfo);
-                    unit.GetComponent<SkillSetComponent>().OnWearEquip( bagInfo);
-                }
 
                 string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
                 int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));

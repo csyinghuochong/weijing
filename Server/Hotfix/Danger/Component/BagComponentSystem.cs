@@ -478,10 +478,15 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="skillId"></param>
         /// <returns></returns>
-        public static bool IsHaveEquipSkill(this BagComponent self, int skillId)
+        public static bool IsHaveEquipSkill(this BagComponent self, int skillId, long xilianequip)
         {
             for (int i = 0; i < self.EquipList.Count; i++)
             {
+                if (self.EquipList[i].BagInfoID == xilianequip)
+                {
+                    continue;
+                }
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
                 if (itemConfig.SkillID.Contains(skillId.ToString()))
                 {

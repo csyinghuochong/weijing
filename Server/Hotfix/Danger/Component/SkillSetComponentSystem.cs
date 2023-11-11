@@ -690,7 +690,7 @@ namespace ET
             self.UpdateSkillSet();
 		}
 
-		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills)
+		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills, long baginfoid)
 		{
 			
             Unit unit = self.GetParent<Unit>();
@@ -705,7 +705,7 @@ namespace ET
 				}
 
 				//其他装备也持有该技能
-				if (bagComponent.IsHaveEquipSkill(skillId))
+				if (bagComponent.IsHaveEquipSkill(skillId, baginfoid))
 				{
 					continue;
 				}
@@ -737,29 +737,7 @@ namespace ET
             self.UpdateSkillSet();
 		}
 
-		/// <summary>
-		/// 脱下装备
-		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="bagInfo"></param>
-		public static void OnTakeOffEquip(this SkillSetComponent self, ItemLocType ItemLocBag, BagInfo bagInfo)
-		{
-			if (ItemLocBag != ItemLocType.ItemLocEquip && ItemLocBag != ItemLocType.ItemLocEquip_2)
-			{
-				return;
-			}
-
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
-
-			itemSkills.AddRange(bagInfo.HideSkillLists);
-            itemSkills.AddRange(bagInfo.InheritSkills);
-            self.OnRmItemSkill( itemSkills );
-
-			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			self.TianFuRemove(equipConfig.TianFuId);
-		}
-
+		
         public static void OnActiveTianfu(this SkillSetComponent self, C2M_TianFuActiveRequest request)
         {
             int tianfuId = request.TianFuId;
@@ -832,9 +810,32 @@ namespace ET
 
         public static void OnChangeEquipIndex(this SkillSetComponent self,  int equipIndex)
 		{
-			self.OnRmItemSkill(ConfigHelper.HunterFarSkill);
-            self.OnRmItemSkill(ConfigHelper.HunterNearSkill);
+			self.OnRmItemSkill(ConfigHelper.HunterFarSkill, 0);
+            self.OnRmItemSkill(ConfigHelper.HunterNearSkill,0);
             self.OnAddItemSkill( equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill );
+        }
+
+        /// <summary>
+        /// 脱下装备
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="bagInfo"></param>
+        public static void OnTakeOffEquip(this SkillSetComponent self, ItemLocType ItemLocBag, BagInfo bagInfo, long baginfoid = 0)
+        {
+            if (ItemLocBag != ItemLocType.ItemLocEquip && ItemLocBag != ItemLocType.ItemLocEquip_2)
+            {
+                return;
+            }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
+
+            itemSkills.AddRange(bagInfo.HideSkillLists);
+            itemSkills.AddRange(bagInfo.InheritSkills);
+            self.OnRmItemSkill(itemSkills, baginfoid);
+
+            EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+            self.TianFuRemove(equipConfig.TianFuId);
         }
 
         /// <summary>
