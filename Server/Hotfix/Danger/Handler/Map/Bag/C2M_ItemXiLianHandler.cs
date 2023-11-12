@@ -104,6 +104,7 @@ namespace ET
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<TaskComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<DataCollationComponent>().OnXiLian(request.Times);
+                Function_Fight.GetInstance().UnitUpdateProperty_Base( unit, true, true );
 
 
                 string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
