@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,6 +8,8 @@ namespace ET
     public class UIPetMiningChallengeComponent : Entity, IAwake,IDestroy
     {
 
+        public GameObject TextChallengeTime;
+        public GameObject ButtonReset;
         public GameObject TextChallengeCD;
         public GameObject RawImage;
         public GameObject ButtonClose;
@@ -54,6 +56,11 @@ namespace ET
 
             self.DefendTeam = rc.Get<GameObject>("DefendTeam");
             self.PetIconList.Clear();
+
+            self.TextChallengeTime = rc.Get<GameObject>("TextChallengeTime");
+
+            self.ButtonReset = rc.Get<GameObject>("ButtonReset");
+            ButtonHelp.AddListenerEx(self.ButtonReset, self.OnButtonReset);
 
             GameObject gameObject_0 = self.DefendTeam.transform.Find($"PetIcon_{0}").gameObject;
             gameObject_0.GetComponent<Button>().onClick.AddListener(() =>{  self.RequestPetInfo(0).Coroutine();  });
@@ -109,6 +116,49 @@ namespace ET
     }
     public static class UIPetMiningChallengeComponentSystem
     {
+
+        public static  void OnButtonReset(this UIPetMiningChallengeComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置挑战", "是否花费200钻石重置五次挑战次数, 上限为十次?", () =>
+            {
+                self.RequestPetMingReset().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestPetMingReset(this UIPetMiningChallengeComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetMineReset) >= 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("每天最多只能重置三次！");
+                return;
+            }
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Diamond < 200)
+            {
+                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                return;
+            }
+
+            long instanceid = self.InstanceId;
+            int errorCode = await NetHelper.RequestPetMingReset( self.ZoneScene() );
+            if (instanceid != self.InstanceId || errorCode != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            self.UpdateChallengeTime();
+        }
+
+        public static void UpdateChallengeTime(this UIPetMiningChallengeComponent self)
+        {
+            int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get( sceneid );
+
+            int useTime = (int)self.ZoneScene().GetComponent<UserInfoComponent>().GetSceneFubenTimes(sceneid);
+            self.TextChallengeTime.GetComponent<Text>().text = $"挑战剩余次数:{sceneConfig.DayEnterNum - useTime}";
+        }
 
         public static async ETTask RequestPetInfo(this UIPetMiningChallengeComponent self, int index)
         {
@@ -212,6 +262,8 @@ namespace ET
             }
 
             self.ShowChallengeCD().Coroutine();
+
+            self.UpdateChallengeTime();
         }
 
         public static async ETTask ShowChallengeCD(this UIPetMiningChallengeComponent self)

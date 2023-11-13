@@ -58,26 +58,28 @@ namespace ET
                 petMingRecord.WinPlayer = request.WinPlayer;    
 
                 //通知玩家
-                long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
-                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                   (gateServerId, new T2G_GateUnitInfoRequest()
-                   {
-                       UserID = oldUnitid
-                   });
-                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                //long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
+                //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                //   (gateServerId, new T2G_GateUnitInfoRequest()
+                //   {
+                //       UserID = oldUnitid
+                //   });
+                //if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                //{
+                   
+                //}
+                //else
+                //{
+                    
+                //}
+                A2M_PetMingRecordRequest a2M_PetMing = new A2M_PetMingRecordRequest()
                 {
-                    A2M_PetMingRecordRequest a2M_PetMing = new A2M_PetMingRecordRequest()
-                    {
-                        UnitID = oldUnitid,
-                        PetMingRecord =  petMingRecord
-                    };
+                    UnitID = oldUnitid,
+                    PetMingRecord = petMingRecord
+                };
 
-                    M2A_PetMingRecordResponse m2G_RechargeResponse = (M2A_PetMingRecordResponse)await ActorLocationSenderComponent.Instance.Call(oldUnitid, a2M_PetMing);
-                    if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
-                    {
-                    }
-                }
-                else
+                M2A_PetMingRecordResponse m2G_RechargeResponse = (M2A_PetMingRecordResponse)await ActorLocationSenderComponent.Instance.Call(oldUnitid, a2M_PetMing);
+                if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
                 {
                     long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
                     D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = oldUnitid, Component = DBHelper.PetComponent });
@@ -89,6 +91,11 @@ namespace ET
                     ReddotComponent redComponent = d2GGet_2.Component as ReddotComponent;
                     redComponent.AddReddont(601);
                     D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = oldUnitid, EntityByte = MongoHelper.ToBson(redComponent), ComponentType = DBHelper.ReddotComponent });
+
+                    D2G_GetComponent d2GGet_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = oldUnitid, Component = DBHelper.NumericComponent });
+                    NumericComponent numComponent = d2GGet_3.Component as NumericComponent;
+                    numComponent.ApplyValue( NumericType.PetMineCDTime, 0, false );
+                    D2M_SaveComponent d2GSave_3 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = oldUnitid, EntityByte = MongoHelper.ToBson(numComponent), ComponentType = DBHelper.NumericComponent });
                 }
             }
 

@@ -925,6 +925,23 @@ namespace ET
             return 0;
         }
 
+        public static void AddFubenTimes(this UserInfoComponent self, int sceneId, int times)
+        {
+            for (int i = 0; i < self.UserInfo.DayFubenTimes.Count; i++)
+            {
+                if (self.UserInfo.DayFubenTimes[i].KeyId == sceneId)
+                {
+                    long curTimes = self.UserInfo.DayFubenTimes[i].Value -= times;
+                    if (curTimes < 0)
+                    {
+                        curTimes = 0;
+                    }
+                    self.UserInfo.DayFubenTimes[i].Value = curTimes;
+                    break;
+                }
+            }
+        }
+
         public static void ClearFubenTimes(this UserInfoComponent self, int sceneId)
         {
             for (int i = 0; i < self.UserInfo.DayFubenTimes.Count; i++)

@@ -10,6 +10,8 @@ namespace ET
         {
             unit.GetComponent<PetComponent>().OnPetMingRecord( request.PetMingRecord );
 
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.PetMineCDTime, 0 );
+
             ///红点
             unit.GetComponent<ReddotComponent>().AddReddont(601);
             //unit.GetComponent<ReddotComponent>().AddReddont(ReddotType.PetMine);

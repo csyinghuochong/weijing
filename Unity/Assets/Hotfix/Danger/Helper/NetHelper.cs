@@ -6,6 +6,27 @@ namespace ET
     public static class NetHelper
     {
 
+        public static async ETTask<int> RequestPetMingReset(Scene zoneScene)
+        {
+            try
+            {
+                C2M_PetMingResetRequest reuqest = new C2M_PetMingResetRequest();
+                M2C_PetMingResetResponse response = (M2C_PetMingResetResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(reuqest);
+                if (response.Error == ErrorCode.ERR_Success)
+                {
+                    int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
+                    zoneScene.GetComponent<UserInfoComponent>().AddFubenTimes (sceneid, 5);
+                }
+                return response.Error;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                return ErrorCode.ERR_NetWorkError;
+            }
+            
+        }
+
         public static async ETTask<int> RequestPetMingReward(Scene zoneScene, int number)
         {
             try

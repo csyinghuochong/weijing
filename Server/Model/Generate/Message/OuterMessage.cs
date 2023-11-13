@@ -14067,4 +14067,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PetMingResetResponse))]
+	[Message(OuterOpcode.C2M_PetMingResetRequest)]
+	[ProtoContract]
+	public partial class C2M_PetMingResetRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetMingResetResponse)]
+	[ProtoContract]
+	public partial class M2C_PetMingResetResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

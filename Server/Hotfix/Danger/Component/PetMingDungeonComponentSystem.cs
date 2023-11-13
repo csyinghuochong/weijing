@@ -28,7 +28,7 @@ namespace ET
 
             self.OnPetMingOccupy().Coroutine();
 
-            long cdTime = result == CombatResultEnum.Win ? TimeHelper.Hour * 2 : TimeHelper.Minute * 10;
+            long cdTime = result == CombatResultEnum.Win ? TimeHelper.Hour : TimeHelper.Minute * 10;
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = result;
             m2C_FubenSettlement.StarInfos = result == CombatResultEnum.Win ?  new List<int>() { 1, 1, 1 } : new List<int>() { 0,0,0};

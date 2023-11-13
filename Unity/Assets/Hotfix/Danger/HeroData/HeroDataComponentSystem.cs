@@ -205,6 +205,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.DrawIndex, 0, notice);
             numericComponent.ApplyValue(NumericType.DrawReward, 0, notice);
 
+            numericComponent.ApplyValue(NumericType.PetMineReset, 0, notice);
+
             int lirun =  (int)(numericComponent.GetAsInt(NumericType.InvestTotal) * 0.25f);
             numericComponent.ApplyValue(NumericType.InvestTotal, numericComponent.GetAsInt(NumericType.InvestTotal) + lirun, notice);
         }
