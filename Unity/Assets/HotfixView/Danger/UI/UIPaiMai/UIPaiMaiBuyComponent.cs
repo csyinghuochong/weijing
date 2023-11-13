@@ -100,6 +100,18 @@ namespace ET
 
     public static class UIPaiMaiBuyComponentSystem
     {
+        public static async ETTask OnClickGoToPaiMai(this UIPaiMaiBuyComponent self, long paimaiItemId)
+        {
+            await ETTask.CompletedTask;
+            Log.Debug($"定位道具ID: {paimaiItemId}");
+
+            ////定位对应的切页 和 道具所在的位置
+            ////协议未实现， 可以直接返回所在页再通过C2P_PaiMaiListRequest处理
+            /// 也可以直接返回道具所在页的所有道具 。
+            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
+        }
+
+
         //初始化数据列表
         public static List<TypeButtonInfo> InitTypeButtonInfos(this UIPaiMaiBuyComponent self)
         {
