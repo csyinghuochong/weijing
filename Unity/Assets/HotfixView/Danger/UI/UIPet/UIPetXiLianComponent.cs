@@ -91,6 +91,13 @@ namespace ET
                 return;
             }
 
+            PetConfig petConfig = PetConfigCategory.Instance.Get(self.RolePetInfo.ConfigId);
+            if (itemConfig.ItemSubType == 119 && self.RolePetInfo.ZiZhi_ChengZhang >= petConfig.ZiZhi_ChengZhang_Max) //成长
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物成长已经达到上限！");
+                return;
+            }
+
             self.ZoneScene().GetComponent<PetComponent>().RequestXiLian(self.CostItemInfo.BagInfoID, self.RolePetInfo.Id).Coroutine();
         }
 
