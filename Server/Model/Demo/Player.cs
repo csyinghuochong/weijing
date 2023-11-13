@@ -12,6 +12,10 @@
 	{ 
 		public long AccountId { get; set; }
 
+
+		/// <summary>
+		/// 玩家离线就会置空，还没有移除的情况下也会置空
+		/// </summary>
 		public Session ClientSession { get; set; }
 
 		public long UnitId { get; set; }		//unitid  ==  userid

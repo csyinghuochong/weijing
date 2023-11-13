@@ -301,7 +301,7 @@ namespace ET
         /// <summary>
         /// 发送RPC协议给Actor
         /// </summary>
-        /// <param name="actorId">注册Actor的InstanceId</param>
+        /// <param name="actorId">注册Actor的InstanceId， 可以通过InstanceId获得所在进程</param>
         /// <param name="message"></param>
         /// <returns></returns>
         public static async ETTask<IActorResponse> CallActor(long actorId, IActorRequest message)
@@ -312,7 +312,7 @@ namespace ET
         /// <summary>
         /// 发送RPC协议给ActorLocation
         /// </summary>
-        /// <param name="id">注册Actor的Id</param>
+        /// <param name="id">注册Actor的Id. 需要通过Location需要所在进程</param>
         /// <param name="message"></param>
         /// <returns></returns>
         public static async ETTask<IActorResponse> CallLocationActor(long id, IActorLocationRequest message)

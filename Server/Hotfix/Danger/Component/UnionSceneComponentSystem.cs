@@ -120,29 +120,54 @@ namespace ET
             }
             if (!exist && replyCode == 1)
             {
-                bool operateSucess = false; 
-                //通知玩家
-                long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
-                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                   (gateServerId, new T2G_GateUnitInfoRequest()
-                   {
-                       UserID = unitid
-                   });
-                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                bool operateSucess = false;
+
+                ////通知玩家
+                //long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
+                //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                //   (gateServerId, new T2G_GateUnitInfoRequest()
+                //   {
+                //       UserID = unitid
+                //   });
+
+                //if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                //{
+                //    U2M_UnionApplyRequest r2M_RechargeRequest = new U2M_UnionApplyRequest() { UnionId = unionid, UnionName = dBUnionInfo.UnionInfo.UnionName };
+                //    M2U_UnionApplyResponse m2G_RechargeResponse = (M2U_UnionApplyResponse)await ActorLocationSenderComponent.Instance.Call(g2M_UpdateUnitResponse.UnitId, r2M_RechargeRequest);
+                //    if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
+                //    {
+                //        operateSucess = true;
+                //    }
+                //    else
+                //    {
+                //        Log.Warning($"加入帮会失败: {self.DomainZone()} {g2M_UpdateUnitResponse.UnitId}");
+                //    }
+                //}
+                //else
+                //{
+                //    operateSucess = true;
+                //    long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+                //    D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.NumericComponent });
+                //    NumericComponent numericComponent = d2GGet.Component as NumericComponent;
+                //    numericComponent.Set(NumericType.UnionId_0, unionid, false);
+                //    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(numericComponent), ComponentType = DBHelper.NumericComponent });
+
+                //    d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.UserInfoComponent });
+                //    UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
+                //    userInfoComponent.UserInfo.UnionName = dBUnionInfo.UnionInfo.UnionName;
+                //    d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
+                //}
+
+                U2M_UnionApplyRequest r2M_RechargeRequest = new U2M_UnionApplyRequest() { UnionId = unionid, UnionName = dBUnionInfo.UnionInfo.UnionName };
+                M2U_UnionApplyResponse m2G_RechargeResponse = (M2U_UnionApplyResponse)await ActorLocationSenderComponent.Instance.Call(unitid, r2M_RechargeRequest);
+                if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
                 {
-                    U2M_UnionApplyRequest r2M_RechargeRequest = new U2M_UnionApplyRequest() { UnionId = unionid, UnionName = dBUnionInfo.UnionInfo.UnionName };
-                    M2U_UnionApplyResponse m2G_RechargeResponse = (M2U_UnionApplyResponse)await ActorLocationSenderComponent.Instance.Call(g2M_UpdateUnitResponse.UnitId, r2M_RechargeRequest);
-                    if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
-                    {
-                        operateSucess = true;
-                    }
-                    else
-                    {
-                        Log.Warning($"加入帮会失败: {self.DomainZone()} {g2M_UpdateUnitResponse.UnitId}");
-                    }
+                    operateSucess = true;
                 }
                 else
                 {
+                    Log.Warning($"加入帮会不在线: {unitid}: {self.DomainZone()} {unitid}");
+
                     operateSucess = true;
                     long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
                     D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.NumericComponent });
