@@ -16,8 +16,10 @@ namespace ET
 					return;
 				}
 				//获取出售数据
-				request.PaiMaiItemInfo.Id = IdGenerater.Instance.GenerateId();
-				request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+				long paimaiItemId = IdGenerater.Instance.GenerateId();
+				request.PaiMaiItemInfo.Id = paimaiItemId;
+
+                request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
 				request.PaiMaiItemInfo.UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
 
 				//获取时间戳
@@ -41,8 +43,8 @@ namespace ET
 				}
 
 				//判断道具是否可以上架和绑定
-				ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-				if (itemCof.IfStopPaiMai == 1) {
+				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+				if (itemConfig.IfStopPaiMai == 1) {
 					response.Error = ErrorCode.Err_StopPaiMai;      //道具无法上架
 					reply();
 					return;
@@ -75,8 +77,16 @@ namespace ET
 					unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PaiMaiSell_15, 0, 1);
 					response.PaiMaiItemInfo = request.PaiMaiItemInfo;
 					LogHelper.LogWarning(response.PaiMaiItemInfo.PlayerName + "上架道具：" + request.PaiMaiItemInfo.BagInfo.ItemID + "数量" + request.PaiMaiItemInfo.BagInfo.ItemNum + "时间戳:" + currentTime.ToString(), true);
-				}
-				response.Error = r_GameStatusResponse.Error;
+
+
+                    //紫色装备广播
+                    if (itemConfig.ItemQuality >= 4 && itemConfig.ItemType == 3)
+                    {
+                        string text = $"上架道具: {itemConfig.ItemName}！<color=#B5FF28>点击前往拍卖行</color> <link=paimai_{paimaiItemId}></link>";
+						ServerMessageHelper.SendBroadMessage( unit.DomainZone(), NoticeType.PaiMai, text);
+                    }
+                }
+                response.Error = r_GameStatusResponse.Error;
 				reply();
 				await ETTask.CompletedTask;
 			}

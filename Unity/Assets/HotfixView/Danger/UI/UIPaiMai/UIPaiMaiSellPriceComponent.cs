@@ -142,8 +142,6 @@ namespace ET
             paiMaiItemInfo.BagInfo = ComHelp.DeepCopy<BagInfo>(self.BagInfo);
             paiMaiItemInfo.BagInfo.ItemNum = self.SellNum;
             paiMaiItemInfo.Price = self.nowPrice;
-
-
             UI ui =  UIHelper.GetUI(self.ZoneScene(), UIType.UIPaiMai);
             if (ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos.ContainsKey(paiMaiItemInfo.BagInfo.ItemID))
             {
@@ -166,6 +164,7 @@ namespace ET
             {
                 return;
             }
+
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
 

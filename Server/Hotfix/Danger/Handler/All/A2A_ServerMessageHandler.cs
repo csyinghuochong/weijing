@@ -58,9 +58,20 @@ namespace ET
                         if (request.MessageType == NoticeType.PlayerExit)
                         {
                             long unitid = long.Parse(request.MessageValue);
-                            if (chatInfoUnitsComponent.Get(unitid)!=null)
+                            if (chatInfoUnitsComponent.Get(unitid) != null)
                             {
                                 chatInfoUnitsComponent.Remove(unitid);
+                            }
+                        }
+                        else if (request.MessageType == NoticeType.PaiMai)
+                        {
+                            M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
+                            m2C_SyncChatInfo.ChatInfo = new ChatInfo();
+                            m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.PaiMai;
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg = request.MessageValue;   
+                            foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
+                            {
+                                MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
                             }
                         }
                         else

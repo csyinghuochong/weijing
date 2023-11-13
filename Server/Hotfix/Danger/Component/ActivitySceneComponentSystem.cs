@@ -130,8 +130,24 @@ namespace ET
                 int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
 
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
+
+                Dictionary<long, long> playerLimitList = new Dictionary<long, long>();
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
+                    MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
+                    int chanchu = mineBattleConfig.ChanChuLimit;
+
+                    if (!playerLimitList.ContainsKey(petMingPlayers[i].UnitId))
+                    {
+                        playerLimitList.Add(petMingPlayers[i].UnitId, 0);
+                    }
+                    playerLimitList[petMingPlayers[i].UnitId] += chanchu;
+                }
+
+                for (int i = 0; i < petMingPlayers.Count; i++)
+                {
+                    long playerLimit = playerLimitList[petMingPlayers[i].UnitId];
+
                     float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexinList);
 
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
@@ -145,7 +161,7 @@ namespace ET
                     {
                         long oldValue = self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId];
                         oldValue += chanchu;
-                        oldValue = Math.Min(oldValue, mineBattleConfig.ChanChuLimit);
+                        oldValue = Math.Min(oldValue, playerLimit);
                         
                         self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] = oldValue;
                     }

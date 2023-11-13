@@ -46,13 +46,13 @@ namespace ET
             ButtonHelp.AddListenerEx( self.Button_Enter, ()=> { self.OnButton_Enter().Coroutine();  } );
 
             self.Button_Call = rc.Get<GameObject>("Button_Call");
-            ButtonHelp.AddListenerEx(self.Button_Call, () => { self.OnButton_Call(); });
+            ButtonHelp.AddListenerEx(self.Button_Call, self.OnButton_Call);
 
             self.Button_Leave = rc.Get<GameObject>("Button_Leave");
-            ButtonHelp.AddListenerEx(self.Button_Leave, () => { self.OnButton_Leave(); });
+            ButtonHelp.AddListenerEx(self.Button_Leave, self.OnButton_Leave);
 
             self.ButtonApplyList = rc.Get<GameObject>("ButtonApplyList");
-            ButtonHelp.AddListenerEx(self.ButtonApplyList, () => { self.OnButtonApplyList(); });
+            ButtonHelp.AddListenerEx(self.ButtonApplyList, self.OnButtonApplyList);
 
             self.Button_Robot = rc.Get<GameObject>("Button_Robot");
             ButtonHelp.AddListenerEx(self.Button_Robot, () => { self.OnButton_Robot().Coroutine(); });

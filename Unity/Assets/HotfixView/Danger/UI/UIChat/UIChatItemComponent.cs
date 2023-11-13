@@ -69,7 +69,13 @@ namespace ET
         public static void OnClickRickText(this UIChatItemComponent self, string text)
         {
             string[] paramss = text.Split('_');
-            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(long.Parse(paramss[1]), int.Parse(paramss[2]), int.Parse(paramss[3]), int.Parse(paramss[4]), true).Coroutine();
+            if (paramss[0] == "team")
+            {
+                self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(long.Parse(paramss[1]), int.Parse(paramss[2]), int.Parse(paramss[3]), int.Parse(paramss[4]), true).Coroutine();
+            }
+            if (paramss[0] == "paimai")
+            {
+            }
         }
 
         public static void OnText_TMP(this UIChatItemComponent self)

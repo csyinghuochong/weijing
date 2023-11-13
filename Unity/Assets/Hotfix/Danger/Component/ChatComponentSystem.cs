@@ -15,6 +15,7 @@ namespace ET
             self.ChatTypeList.Add(ChannelEnum.Union, new List<ChatInfo>());
             self.ChatTypeList.Add(ChannelEnum.Friend, new List<ChatInfo>());
             self.ChatTypeList.Add(ChannelEnum.Pick, new List<ChatInfo>());
+            self.ChatTypeList.Add(ChannelEnum.PaiMai, new List<ChatInfo>());
         }
     }
 

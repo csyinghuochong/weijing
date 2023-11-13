@@ -11,8 +11,9 @@ namespace ET
         public const int System = 3;             //系统
         public const int Friend = 4;             //私聊
         public const int Pick = 5;
+        public const int PaiMai = 6;            //拍卖
 
-        public const int Number = 6;
+        public const int Number = 7;
     }
 
     public static class NoticeType
@@ -41,6 +42,7 @@ namespace ET
         public const int BaoZang = 19;
         public const int RunRace = 20;
         public const int Demon = 21;
+        public const int PaiMai = 22;
     }
 
 }
