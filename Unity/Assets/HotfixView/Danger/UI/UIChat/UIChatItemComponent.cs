@@ -69,10 +69,11 @@ namespace ET
         public static async ETTask OnClickRickText(this UIChatItemComponent self, string text)
         {
             string[] paramss = text.Split('_');
-            if (paramss[0] == "team")
+            if (paramss[0] == "team" && paramss.Length >= 5 )
             {
                 self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(long.Parse(paramss[1]), int.Parse(paramss[2]), int.Parse(paramss[3]), int.Parse(paramss[4]), true).Coroutine();
             }
+
             if (paramss[0] == "paimai")
             {
                 UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPaiMai );
@@ -106,12 +107,8 @@ namespace ET
             //_{ teamInfo.FubenType}
             //_{ teamInfo.PlayerList[0].PlayerLv}>< color =#B5FF28><u>点击申请加入</u></color></link>";
 
-            string[] teaminfos = showValue.Split('_');
-            if (teaminfos.Length < 5 || teaminfos[0] != "team")
-            {
-                return;
-            }
-            self.OnClickRickText(showValue);
+           
+            self.OnClickRickText(showValue).Coroutine();
         }
 
         //<link="ID">my link</link>
