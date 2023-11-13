@@ -165,6 +165,16 @@ namespace ET
                 return;
             }
 
+
+            //紫色装备广播
+            if (itemConfig.ItemQuality >= 4 && m2C_PaiMaiBuyResponse.PaiMaiItemInfo!=null)
+            {
+                long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;
+                string text = $"上架道具: {itemConfig.ItemName}！<color=#B5FF28>点击前往拍卖行</color> <link=paimai_{paimaiItemId}></link>";
+                self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.PaiMai, text).Coroutine();
+            }
+
+
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
 

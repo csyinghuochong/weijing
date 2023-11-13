@@ -81,6 +81,40 @@ namespace ET
     public static class UIPaiMaiSellComponentSystem
     {
 
+        public static async ETTask OnClickGoToPaiMai(this UIPaiMaiSellComponent self, long paimaiItemId)
+        {
+            await ETTask.CompletedTask;
+            Log.Debug($"定位道具ID: {paimaiItemId}");
+
+            ////定位对应的切页 和 道具所在的位置
+            ////协议未实现， 可以直接返回所在页再通过C2P_PaiMaiListRequest处理
+            /// 也可以直接返回道具所在页的所有道具 。
+            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
+        }
+
+        public static async ETTask RequestSelfPaiMaiList(this UIPaiMaiSellComponent self)
+        {
+            C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
+            {
+                PaiMaiType = 1,
+                UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
+            };
+            P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
+        }
+
+        public static void OnUpdateUI(this UIPaiMaiSellComponent self)
+        {
+            self.UpdateBagItemUIList().Coroutine();
+            self.UIPageButton.OnSelectIndex(0);
+        }
+
         public static void OnClickPageButton(this UIPaiMaiSellComponent self, int page)
         {
             self.UpdateSellItemUILIist(page);
@@ -173,26 +207,6 @@ namespace ET
 
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiSellPrice);
             uI.GetComponent<UIPaiMaiSellPriceComponent>().InitPriceUI(self.BagInfo);
-        }
-
-        public static void OnUpdateUI(this UIPaiMaiSellComponent self)
-        {
-            self.UpdateBagItemUIList().Coroutine();
-            self.UIPageButton.OnSelectIndex(0);
-        }
-
-        public static async ETTask RequestSelfPaiMaiList(this UIPaiMaiSellComponent self)
-        {
-            C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest() {  PaiMaiType = 1,
-                UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
-            P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
-            if (self.IsDisposed)
-            {
-                return;
-            }
-
-            self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
-            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
         public static async ETTask UpdateBagItemUIList(this UIPaiMaiSellComponent self)

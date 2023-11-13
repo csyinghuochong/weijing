@@ -14095,4 +14095,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2C_PaiMaiFindResponse))]
+	[Message(OuterOpcode.C2P_PaiMaiFindRequest)]
+	[ProtoContract]
+	public partial class C2P_PaiMaiFindRequest: Object, IPaiMaiListRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long PaiMaiItemInfoId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.P2C_PaiMaiFindResponse)]
+	[ProtoContract]
+	public partial class P2C_PaiMaiFindResponse: Object, IPaiMaiListResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int Page { get; set; }
+
+	}
+
 }

@@ -77,14 +77,6 @@ namespace ET
 					unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PaiMaiSell_15, 0, 1);
 					response.PaiMaiItemInfo = request.PaiMaiItemInfo;
 					LogHelper.LogWarning(response.PaiMaiItemInfo.PlayerName + "上架道具：" + request.PaiMaiItemInfo.BagInfo.ItemID + "数量" + request.PaiMaiItemInfo.BagInfo.ItemNum + "时间戳:" + currentTime.ToString(), true);
-
-
-                    //紫色装备广播
-                    if (itemConfig.ItemQuality >= 4 && itemConfig.ItemType == 3)
-                    {
-                        string text = $"上架道具: {itemConfig.ItemName}！<color=#B5FF28>点击前往拍卖行</color> <link=paimai_{paimaiItemId}></link>";
-						ServerMessageHelper.SendBroadMessage( unit.DomainZone(), NoticeType.PaiMai, text);
-                    }
                 }
                 response.Error = r_GameStatusResponse.Error;
 				reply();

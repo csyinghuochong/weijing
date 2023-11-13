@@ -77,6 +77,14 @@ namespace ET
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
+
+
+        public static void OnClickGoToPaiMai(this UIPaiMaiComponent self, long paimaiItemId)
+        {
+            self.UIPageButton.OnSelectIndex( 2 );
+            self.UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnClickGoToPaiMai(paimaiItemId);
+            //self.UIPageView.OnSelectIndex(page).Coroutine();
+        }
     }
 
 }

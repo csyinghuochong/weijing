@@ -66,7 +66,7 @@ namespace ET
             uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, self.mChatInfo.UserId).Coroutine();
         }
 
-        public static void OnClickRickText(this UIChatItemComponent self, string text)
+        public static async ETTask OnClickRickText(this UIChatItemComponent self, string text)
         {
             string[] paramss = text.Split('_');
             if (paramss[0] == "team")
@@ -75,6 +75,8 @@ namespace ET
             }
             if (paramss[0] == "paimai")
             {
+                UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPaiMai );
+                uI.GetComponent<UIPaiMaiComponent>().OnClickGoToPaiMai(long.Parse(paramss[1]));
             }
         }
 
