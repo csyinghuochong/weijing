@@ -795,5 +795,15 @@ namespace ET
             { 2, new List<PropertyValue>(){ new PropertyValue() { HideID = 200903, HideValue = 500 }/*, new PropertyValue() { HideID = 105201, HideValue = 0 }*/ } },
             { 3, new List<PropertyValue>(){ new PropertyValue() { HideID = 200101, HideValue = 1000 } } },
         };
+
+
+        /// <summary>
+        /// 吟唱时buff
+        /// </summary>
+        public static Dictionary<int, int> SingingBuffList = new Dictionary<int, int>
+        {
+            { 61022101, 80001031 },
+            { 61022102, 80001031 } ,
+        };
     }
 }
