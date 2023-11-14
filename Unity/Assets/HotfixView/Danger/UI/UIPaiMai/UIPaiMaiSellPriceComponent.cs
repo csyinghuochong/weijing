@@ -165,15 +165,13 @@ namespace ET
                 return;
             }
 
-
             //紫色装备广播
             if (itemConfig.ItemQuality >= 4 && m2C_PaiMaiBuyResponse.PaiMaiItemInfo!=null)
             {
-                long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;
-                string text = $"上架道具: <color=#DD2BBA>{itemConfig.ItemName}</color>！点击前往拍卖行 <link=paimai_{itemConfig.ItemType}_{paimaiItemId}></link>";
+                long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;        //
+                string text = $"在拍卖行上架道具<color=#{ComHelp.QualityReturnColor(4)}>{itemConfig.ItemName}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{itemConfig.ItemType}_{paimaiItemId}></link>";
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.PaiMai, text).Coroutine();
             }
-
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
@@ -201,7 +199,6 @@ namespace ET
             self.Lab_Tuijian.GetComponent<Text>().text = self.oldPrice.ToString();
             //self.Text_Price.GetComponent<Text>().text = (self.oldPrice * self.SellNum).ToString();
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
-
 
             //初始化显示
             self.priceProNum = 1;

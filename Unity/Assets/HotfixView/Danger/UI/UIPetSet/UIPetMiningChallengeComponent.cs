@@ -119,7 +119,7 @@ namespace ET
 
         public static  void OnButtonReset(this UIPetMiningChallengeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置挑战", "是否花费200钻石重置五次挑战次数, 上限为十次?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置挑战", "是否花费350钻石重置5次挑战次数？/n提示:挑战次数上限为10", () =>
             {
                 self.RequestPetMingReset().Coroutine();
             }, null).Coroutine();
@@ -127,15 +127,15 @@ namespace ET
 
         public static async ETTask RequestPetMingReset(this UIPetMiningChallengeComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetMineReset) >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("每天最多只能重置三次！");
+                FloatTipManager.Instance.ShowFloatTip("每天最多只能重置3次！");
                 return;
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.Diamond < 200)
+            if (userInfoComponent.UserInfo.Diamond < 350)
             {
                 FloatTipManager.Instance.ShowFloatTip("钻石不足！");
                 return;
@@ -157,7 +157,7 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get( sceneid );
 
             int useTime = (int)self.ZoneScene().GetComponent<UserInfoComponent>().GetSceneFubenTimes(sceneid);
-            self.TextChallengeTime.GetComponent<Text>().text = $"挑战剩余次数:{sceneConfig.DayEnterNum - useTime}";
+            self.TextChallengeTime.GetComponent<Text>().text = $"挑战剩余次数:{sceneConfig.DayEnterNum - useTime}/10";
         }
 
         public static async ETTask RequestPetInfo(this UIPetMiningChallengeComponent self, int index)
