@@ -104,6 +104,9 @@ namespace ET
                 {
                     self.GameObject.SetActive(false);
                 }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
+                self.GetParent<UIPaiMaiBuyComponent>().RemoveItem(itemConfig.ItemType, self.PaiMaiItemInfo);
             }
 
             //刷新列表

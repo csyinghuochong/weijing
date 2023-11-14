@@ -100,15 +100,43 @@ namespace ET
 
     public static class UIPaiMaiBuyComponentSystem
     {
-        public static async ETTask OnClickGoToPaiMai(this UIPaiMaiBuyComponent self, long paimaiItemId)
+        public static async ETTask OnClickGoToPaiMai(this UIPaiMaiBuyComponent self, int itemtype, long paimaiItemId)
         {
-            await ETTask.CompletedTask;
-            Log.Debug($"定位道具ID: {paimaiItemId}");
+            // 定位对应的切页 和 道具所在的位置
+            // 协议未实现， 可以直接返回所在页再通过C2P_PaiMaiListRequest处理
+            // 也可以直接返回道具所在页的所有道具
+            if (itemtype != 1)
+            {
+                foreach (var value in self.UITypeViewComponent.TypeButtonComponents)
+                {
+                    if (value.TypeId == itemtype)
+                    {
+                        value.OnClickTypeButton();
+                        break;
+                    }
+                }
+            }
 
-            ////定位对应的切页 和 道具所在的位置
-            ////协议未实现， 可以直接返回所在页再通过C2P_PaiMaiListRequest处理
-            /// 也可以直接返回道具所在页的所有道具 。
-            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
+            await TimerComponent.Instance.WaitAsync(500);
+            // 移动到指定位置
+            for (int i = 0; i < self.PaiMaiIteminfos_Now.Count; i++)
+            {
+                if (self.PaiMaiIteminfos_Now[i].Id == paimaiItemId)
+                {
+                    int count = self.PaiMaiIteminfos_Now.Count;
+                    if (i < 6)
+                    {
+                        i = 0;
+                    }
+                    else if (count > 6 && i >= self.PaiMaiIteminfos_Now.Count - 5)
+                    {
+                        i = count - 5;
+                    }
+
+                    self.ItemListNode.GetComponent<RectTransform>().localPosition = new Vector3(0, i * 124f, 0);
+                    break;
+                }
+            }
         }
 
 
@@ -162,6 +190,41 @@ namespace ET
             typeButtonInfos.Add(typeButtonInfo);
 
             return typeButtonInfos;
+        }
+
+        public static void RemoveItem(this UIPaiMaiBuyComponent self, int type, PaiMaiItemInfo paiMaiItemInfo)
+        {
+            switch (type)
+            {
+                case 1:
+                    foreach (var value in self.PaiMaiItemInfosAll_Consume.Values)
+                    {
+                        value.Remove(paiMaiItemInfo);
+                    }
+                    self.PaiMaiItemInfos_Consume.Remove(paiMaiItemInfo);
+                    break;
+                case 2:
+                    foreach (var value in self.PaiMaiItemInfosAll_Material.Values)
+                    {
+                        value.Remove(paiMaiItemInfo);
+                    }
+                    self.PaiMaiItemInfos_Material.Remove(paiMaiItemInfo);
+                    break;
+                case 3:
+                    foreach (var value in self.PaiMaiItemInfosAll_Equipment.Values)
+                    {
+                        value.Remove(paiMaiItemInfo);
+                    }
+                    self.PaiMaiItemInfos_Equipment.Remove(paiMaiItemInfo);
+                    break;
+                case 4:
+                    foreach (var value in self.PaiMaiItemInfosAll_Gemstone.Values)
+                    {
+                        value.Remove(paiMaiItemInfo);
+                    }
+                    self.PaiMaiItemInfos_Gemstone.Remove(paiMaiItemInfo);
+                    break;
+            }
         }
 
         public static async ETTask OnClickTypeItem(this UIPaiMaiBuyComponent self, int typeid, int subtypeid)

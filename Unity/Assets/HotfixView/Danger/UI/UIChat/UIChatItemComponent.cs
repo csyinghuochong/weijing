@@ -77,7 +77,7 @@ namespace ET
             if (paramss[0] == "paimai")
             {
                 UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPaiMai );
-                uI.GetComponent<UIPaiMaiComponent>().OnClickGoToPaiMai(long.Parse(paramss[1]));
+                uI.GetComponent<UIPaiMaiComponent>().OnClickGoToPaiMai(int.Parse(paramss[1]), long.Parse(paramss[2]));
             }
         }
 

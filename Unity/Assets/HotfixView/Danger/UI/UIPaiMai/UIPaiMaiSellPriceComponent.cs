@@ -170,7 +170,7 @@ namespace ET
             if (itemConfig.ItemQuality >= 4 && m2C_PaiMaiBuyResponse.PaiMaiItemInfo!=null)
             {
                 long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;
-                string text = $"上架道具: <color=#DD2BBA>{itemConfig.ItemName}</color>！点击前往拍卖行 <link=paimai_{paimaiItemId}></link>";
+                string text = $"上架道具: <color=#DD2BBA>{itemConfig.ItemName}</color>！点击前往拍卖行 <link=paimai_{itemConfig.ItemType}_{paimaiItemId}></link>";
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.PaiMai, text).Coroutine();
             }
 

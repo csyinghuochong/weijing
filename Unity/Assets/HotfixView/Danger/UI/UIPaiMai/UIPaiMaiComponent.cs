@@ -79,10 +79,10 @@ namespace ET
         }
 
 
-        public static void OnClickGoToPaiMai(this UIPaiMaiComponent self, long paimaiItemId)
+        public static void OnClickGoToPaiMai(this UIPaiMaiComponent self,int itemType, long paimaiItemId)
         {
             self.UIPageButton.OnSelectIndex( 1 );
-            self.UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiBuy].GetComponent<UIPaiMaiBuyComponent>().OnClickGoToPaiMai(paimaiItemId).Coroutine();
+            self.UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiBuy].GetComponent<UIPaiMaiBuyComponent>().OnClickGoToPaiMai(itemType,paimaiItemId).Coroutine();
             //self.UIPageView.OnSelectIndex(page).Coroutine();
         }
     }
