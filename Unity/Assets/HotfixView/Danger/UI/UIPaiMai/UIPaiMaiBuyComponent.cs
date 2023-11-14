@@ -117,22 +117,55 @@ namespace ET
                 }
             }
 
-            await TimerComponent.Instance.WaitAsync(500); // 前面携程,等等
+            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
+            P2C_PaiMaiFindResponse response = (P2C_PaiMaiFindResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+            if (response.Page == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了!");
+                return;
+            }
+
+            await TimerComponent.Instance.WaitAsync(500);
+            
+            self.OnClearnNowList();
+            switch (itemtype)
+            {
+                case 1:
+                    self.ShowNum_Consume = response.Page;
+                    self.PageIndex = self.ShowNum_Consume;
+                    break;
+                case 2:
+                    self.ShowNum_Material = response.Page;
+                    self.PageIndex = self.ShowNum_Material;
+                    break;
+
+                case 3:
+                    self.ShowNum_Equipment = response.Page;
+                    self.PageIndex = self.ShowNum_Equipment;
+                    break;
+
+                case 4:
+                    self.ShowNum_Material = response.Page;
+                    self.PageIndex = self.ShowNum_Material;
+                    break;
+            }
+
+            await self.PaiMaiBuyInit(itemtype);
+
+            //显示列表
+            self.OnClickTypeItem(itemtype, 0).Coroutine();
+
+            //显示页数
+            self.Text_PageShow.GetComponent<Text>().text = self.PageIndex.ToString();
+
             // 移动到指定位置
-            bool flag = true;
             for (int i = 0; i < self.PaiMaiIteminfos_Now.Count; i++)
             {
                 if (self.PaiMaiIteminfos_Now[i].Id == paimaiItemId)
                 {
-                    flag = false;
                     self.ItemListNode.GetComponent<RectTransform>().localPosition = new Vector3(0, i * 124f, 0);
                     break;
                 }
-            }
-
-            if (flag)
-            {
-                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了!");
             }
         }
 
@@ -505,7 +538,12 @@ namespace ET
             if (self.PageIndex < 1) {
                 self.PageIndex = 1;
             }
-
+            
+            if (self.PaiMaiIteminfos_Now.Count==0)
+            {
+                await self.PaiMaiBuyInit(self.NowTypeid);
+            }
+            
             //显示页数
             self.Text_PageShow.GetComponent<Text>().text = self.PageIndex.ToString();
 

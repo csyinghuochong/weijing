@@ -128,7 +128,7 @@ namespace ET
 
 
                 int page = (int)request.ActorId;
-                int pagenum = 300;  //每页的数量
+                int pagenum = int.Parse(GlobalValueConfigCategory.Instance.Get(104).Value);  //每页的数量
 
                 int maxpage = paimaiListShow.Count / pagenum;
                 int extra = (paimaiListShow.Count % pagenum) > 0 ? 1 : 0;
