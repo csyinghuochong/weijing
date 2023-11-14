@@ -117,25 +117,22 @@ namespace ET
                 }
             }
 
-            await TimerComponent.Instance.WaitAsync(500);
+            await TimerComponent.Instance.WaitAsync(500); // 前面携程,等等
             // 移动到指定位置
+            bool flag = true;
             for (int i = 0; i < self.PaiMaiIteminfos_Now.Count; i++)
             {
                 if (self.PaiMaiIteminfos_Now[i].Id == paimaiItemId)
                 {
-                    int count = self.PaiMaiIteminfos_Now.Count;
-                    if (i < 6)
-                    {
-                        i = 0;
-                    }
-                    else if (count > 6 && i >= self.PaiMaiIteminfos_Now.Count - 5)
-                    {
-                        i = count - 5;
-                    }
-
+                    flag = false;
                     self.ItemListNode.GetComponent<RectTransform>().localPosition = new Vector3(0, i * 124f, 0);
                     break;
                 }
+            }
+
+            if (flag)
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了!");
             }
         }
 
