@@ -107,13 +107,16 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, unit.Id))
             {
                 long rechareId = DBHelper.GetRechargeCenter();
+
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 R2M_RechargeResponse r2M_RechargeResponse = (R2M_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(rechareId, new M2R_RechargeRequest()
                 {
                     Zone = unit.DomainZone(),
                     PayType = PayTypeEnum.IOSPay,
                     UnitId = unit.Id,
                     payMessage = request.payMessage,
-                    UnitName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                    UnitName = userInfoComponent.UserInfo.Name,
+                    Account = userInfoComponent.Account,
                 });
             }
             reply();

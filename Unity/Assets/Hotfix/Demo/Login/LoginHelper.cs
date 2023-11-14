@@ -192,6 +192,7 @@ namespace ET
                     DeviceName = devicename,
                     Version = ComHelp.Version,
                     AccountId = accountId,
+                    Platform = plaform,
                 });
             }
             catch (Exception e)

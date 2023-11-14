@@ -97,7 +97,7 @@ namespace ET
         }
 
         /// <summary>
-        /// /0 默认 taptap1  QQ2 platform3 小说推广 platform4备用    ios20001
+        /// /0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  ios20001
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()

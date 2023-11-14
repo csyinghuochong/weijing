@@ -148,6 +148,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string UnitName { get; set; }
 
+		[ProtoMember(6)]
+		public string Account { get; set; }
+
 	}
 
 	[Message(InnerOpcode.R2M_RechargeResponse)]

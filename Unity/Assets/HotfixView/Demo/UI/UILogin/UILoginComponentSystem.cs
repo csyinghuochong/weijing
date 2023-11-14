@@ -1,5 +1,5 @@
-﻿using cn.sharesdk.unity3d;
-using System;
+﻿using System;
+using cn.sharesdk.unity3d;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -100,8 +100,9 @@ namespace ET
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
+                GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
 
-				self.RealNameButton = rc.Get<GameObject>("RealNameButton");
+                self.RealNameButton = rc.Get<GameObject>("RealNameButton");
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(() => { self.OnRealNameButton(); });
 
 				self.loginBtn = rc.Get<GameObject>("LoginBtn");
@@ -151,16 +152,15 @@ namespace ET
 				uirotate.AddComponent<UIRotateComponent>();
 				self.UIRotateComponent = uirotate;
 				self.Loading.SetActive(false);
-				self.RequestAllServer().Coroutine();
+				
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
 				self.PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
 
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
 				self.InitLoginType();
-				self.UpdateLoginType();
 
-                Log.ILog.Debug($"UILoginComponent  222");
+                self.RequestAllServer().Coroutine();
 
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
@@ -285,7 +285,51 @@ namespace ET
 			}
 		}
 
-		public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
+		public static void GetTiktokAccesstoken(this UILoginComponent self)
+		{
+            Log.ILog.Debug("GetTiktokAccesstoken: ");
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+			init.TikTokLogin();
+        }
+
+		public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
+		{
+            long serverNow = TimeHelper.ServerNow() / 1000;
+            Dictionary<string, string> paramslist = new Dictionary<string, string>();
+            paramslist.Add("app_id", TikTokHelper.AppID.ToString());
+            paramslist.Add("access_token", access_token);
+            paramslist.Add("ts", "1555912969");
+            string sign = TikTokHelper.getSign(paramslist);
+            paramslist.Add("sign", sign);
+            string result = HttpHelper.OnWebRequestPost_1("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+            Log.ILog.Debug("sign: " + sign);
+            Log.ILog.Debug("OnWebRequestPost_1: " + result);
+
+			try
+            {
+				////以上为客户端测试代码
+                C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
+
+                Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+                A2C_TikTokVerifyUser a2C_TikTokVerifyUser = (A2C_TikTokVerifyUser)await accountSession.Call(c2A_TikTokVerifyUser);
+				if (a2C_TikTokVerifyUser.Error == ErrorCode.ERR_Success)
+				{
+					self.Account.GetComponent<InputField>().text = a2C_TikTokVerifyUser.sdk_open_id.ToString();
+					self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+				}
+				else 
+				{
+                    self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                    self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                }
+            }
+			catch (Exception ex)
+			{
+				Log.Error(ex.ToString());
+			}
+        }
+
+        public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
         {
 			await ETTask.CompletedTask;
             Init init = GameObject.Find("Global").GetComponent<Init>();
@@ -365,6 +409,13 @@ namespace ET
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
 #endif
 			}
+
+			//抖音只有一个登录方式
+			if (GlobalHelp.GetPlatform() == 5)
+			{
+                self.LoginType = LoginTypeEnum.TikTok.ToString();
+            }
+
             Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
@@ -408,6 +459,10 @@ namespace ET
 					break;
 				case LoginTypeEnum.TapTap:
                     self.GetTapUserInfo(self.LoginType).Coroutine();
+                    break;
+				case LoginTypeEnum.TikTok:
+                    self.ThirdLoginBg.SetActive(false);
+                    self.GetTiktokAccesstoken();
                     break;
 				case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
@@ -546,7 +601,9 @@ namespace ET
 					}
 				}
 				self.OnSelectServer(serverItem);
-			}
+
+                self.UpdateLoginType();
+            }
 			catch (Exception ex)
 			{
 				Log.Debug(ex.ToString());
@@ -873,7 +930,9 @@ namespace ET
 			self.ResetPlayerPrefs(LoginTypeEnum.QQLogin.ToString());
 			self.ResetPlayerPrefs(LoginTypeEnum.PhoneCodeLogin.ToString());
 			self.ResetPlayerPrefs(LoginTypeEnum.PhoneNumLogin.ToString());
-			self.InitLoginType();
+            self.ResetPlayerPrefs(LoginTypeEnum.TapTap.ToString());
+            self.ResetPlayerPrefs(LoginTypeEnum.TikTok.ToString());
+            self.InitLoginType();
 		}
 
 		public static void ResetPlayerPrefs(this UILoginComponent self, string loingType)

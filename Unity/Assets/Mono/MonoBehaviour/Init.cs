@@ -49,7 +49,9 @@ namespace ET
 		public Action<string> OnGetPhoneNumHandler;
         public Action<string> OnGetPermissionsHandler;
         public Action<bool> OnApplicationFocusHandler;
-		public Action OnApplicationQuitHandler;
+		public Action<string> OnRiskControlInfoHandler;
+        public Action<string> OnTikTokAccesstokenHandler;
+        public Action OnApplicationQuitHandler;
 
 		public Action<int> OnGetKeyHandler;
 		public Action OnGetMouseButtonDown_1;
@@ -179,6 +181,73 @@ namespace ET
 				UnityEngine.Debug.LogError(stackTrace);
 			}
 		}
+
+        public void TikTokInit()
+        {
+			if (this.Platform != 5)
+			{
+				return;
+			}
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("TikTokInit", "weijing" );
+#else
+
+#endif
+        }
+
+		public void TikTokLogin()
+		{
+			if (this.Platform != 5)
+			{
+				return;
+			}
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("TikTokLogin", "weijing" );
+#else
+			this.OnRecvTikTokAccesstoken("q3fafa33sHFU+V9h32h0v8weVEH/04hgsrHFHOHNNQOBC9fnwejasubw==");
+#endif
+        }
+
+		/// <summary>
+		/// 也可以直接返回sdkid token age
+		/// </summary>
+		/// <param name="access_token"></param>
+        public void OnRecvTikTokAccesstoken(string access_token)
+        {
+            Log.ILog.Debug($"OnRecvTikTokAccesstoken: {access_token}");
+            this.OnTikTokAccesstokenHandler?.Invoke(access_token);
+        }
+
+		public void TikTokRiskControlInfo()
+		{
+            if (this.Platform != 5)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("GetTikTokRiskControlInfo", "weijing" );
+#else
+			this.OnRiskControlInfoHandler?.Invoke("");
+#endif
+        }
+        public void OnRecvRiskControlInfo(string riskcontrol)
+        {
+            this.OnRiskControlInfoHandler?.Invoke(riskcontrol);
+        }
+
+        public void TikTokPay(string payinfo)
+		{
+            if (this.Platform != 5)
+            {
+                return;
+            }
+
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("TikTokPay", payinfo );
+#else
+#endif
+        }
 
         public async ETTask<string> TapTapLogin()
         {

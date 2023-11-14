@@ -18,7 +18,7 @@ namespace ET
         public GameObject RechargeList;
 
         public int PayType; //1微信  2支付宝
-        public int ChargetNumber;
+        public int ReChargeNumber;
 
         public string AssetPath = string.Empty;
     }
@@ -27,6 +27,7 @@ namespace ET
     {
         public override void Destroy(UIRechargeComponent self)
         {
+            GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler = null;
             if (!string.IsNullOrEmpty(self.AssetPath))
             {
                 ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
@@ -74,12 +75,21 @@ namespace ET
 
             self.InitRechargeList().Coroutine();
 
+            if (GlobalHelp.GetPlatform() == 5)
+            {
+                self.PayType = PayTypeEnum.TikTok;
+                self.ImageSelect1.SetActive(false);
+                self.ImageSelect2.SetActive(false);
+                self.ButtonAliPay.SetActive(false);
+                self.ButtonWeiXin.SetActive(false);
+            }
 #if UNITY_IPHONE && !UNITY_EDITOR
             self.ImageSelect1.SetActive(false);
             self.ImageSelect2.SetActive(false);
             self.ButtonAliPay.SetActive(false);
             self.ButtonWeiXin.SetActive(false);    
 #endif
+            GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler =  (string text) => { self.OnGetRiskControlInfo(text); };
         }
     }
 
@@ -106,34 +116,19 @@ namespace ET
             }
         }
 
-        public static async ETTask OnClickRechargeItem(this UIRechargeComponent self, int chargetNumber)
+        public static  void OnGetRiskControlInfo(this UIRechargeComponent self, string riskControl)
         {
-            FangChenMiComponent fangChenMiComponent = self.ZoneScene().GetComponent<FangChenMiComponent>();
-            int code = fangChenMiComponent.CanRechage(chargetNumber);
-            if (code != ErrorCode.ERR_Success)
+            self.RequestRecharge(riskControl).Coroutine();
+        }
+
+        public static async ETTask RequestRecharge(this UIRechargeComponent self, string riskControl = "")
+        {
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest()
             {
-                //EventSystem.Instance.Publish( new EventType.CommonHintError() {  errorValue = code } );
-                string tips = "";
-                if (code == ErrorCode.ERR_FangChengMi_Tip3)
-                {
-                    tips = $"{ErrorHelp.Instance.ErrorHintList[code]}";
-                }
-                else {
-                    tips = $"{ErrorHelp.Instance.ErrorHintList[code]} 你本月已充值{fangChenMiComponent.GetMouthTotal()}元";
-                }
+                RiskControlInfo = riskControl,  
+                RechargeNumber = self.ReChargeNumber,
+                PayType = self.PayType };
 
-                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(),"防沉迷提示", tips, () => { }).Coroutine();
-                return;
-            }
-            self.ChargetNumber = chargetNumber;
-
-#if UNITY_IPHONE
-            self.Loading.SetActive(true);
-            GlobalHelp.OnIOSPurchase(chargetNumber);
-            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.IOSPay };
-            self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
-#else
-            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() {  RechargeNumber = chargetNumber, PayType = self.PayType };
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
             if (sendChatResponse.Error != ErrorCode.ERR_Success)
@@ -152,7 +147,49 @@ namespace ET
             {
                 GlobalHelp.WeChatPay(sendChatResponse.Message);
             }
+            if (self.PayType == PayTypeEnum.TikTok)
+            {
+                GameObject.Find("Global").GetComponent<Init>().TikTokPay(sendChatResponse.Message);
+            }
+        }
 
+        public static async ETTask OnClickRechargeItem(this UIRechargeComponent self, int chargetNumber)
+        {
+
+            FangChenMiComponent fangChenMiComponent = self.ZoneScene().GetComponent<FangChenMiComponent>();
+            int code = fangChenMiComponent.CanRechage(chargetNumber);
+            if (code != ErrorCode.ERR_Success)
+            {
+                //EventSystem.Instance.Publish( new EventType.CommonHintError() {  errorValue = code } );
+                string tips = "";
+                if (code == ErrorCode.ERR_FangChengMi_Tip3)
+                {
+                    tips = $"{ErrorHelp.Instance.ErrorHintList[code]}";
+                }
+                else {
+                    tips = $"{ErrorHelp.Instance.ErrorHintList[code]} 你本月已充值{fangChenMiComponent.GetMouthTotal()}元";
+                }
+
+                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(),"防沉迷提示", tips, () => { }).Coroutine();
+                return;
+            }
+            self.ReChargeNumber = chargetNumber;
+
+#if UNITY_IPHONE
+            self.Loading.SetActive(true);
+            GlobalHelp.OnIOSPurchase(chargetNumber);
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.IOSPay };
+            self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
+#else
+
+            if (GlobalHelp.GetPlatform() == 5)
+            {
+                GameObject.Find("Global").GetComponent<Init>().TikTokRiskControlInfo();
+            }
+            else
+            {
+                self.RequestRecharge().Coroutine();
+            }
 
             //记录tap数据
             try

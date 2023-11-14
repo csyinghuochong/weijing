@@ -1181,6 +1181,7 @@ message C2M_RechargeRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int32 RechargeNumber = 1;
 	int64 PayType = 2;
+	string RiskControlInfo = 3;
 }
 
 message M2C_RechargeResponse // IActorLocationResponse
@@ -6784,4 +6785,21 @@ message P2C_PaiMaiFindResponse // IPaiMaiListResponse
 	int32 Error = 91;
 	string Message = 92;
 	int32 Page = 1;
+}
+
+//ResponseType A2C_TikTokVerifyUser
+message C2A_TikTokVerifyUser // IRequest
+{
+	int32 RpcId = 90;
+	string	access_token	= 1;	// 帐号
+}
+
+message A2C_TikTokVerifyUser // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int64 sdk_open_id = 1;	//用户唯一标识
+	int32 age_type = 2;	//实名年龄段
 }

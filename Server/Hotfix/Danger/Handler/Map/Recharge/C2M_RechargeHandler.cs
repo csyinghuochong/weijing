@@ -33,7 +33,8 @@ namespace ET
                 }
 
                 string serverName = ServerHelper.GetGetServerItem(false, unit.DomainZone()).ServerName;
-                string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                string userName = userInfoComponent.UserInfo.Name;
 
                 if (request.PayType == PayTypeEnum.IOSPay)
                 {
@@ -56,7 +57,14 @@ namespace ET
                     Log.Console($"拉起支付订单[支付宝]: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                 }
 
+                if (request.PayType == PayTypeEnum.TikTok)
+                {
+                    Log.Warning($"拉起支付订单[TikTok]: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[TikTok]: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                }
+
                 long rechareId = DBHelper.GetRechargeCenter();
+              
                 R2M_RechargeResponse r2M_RechargeResponse = (R2M_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(rechareId, new M2R_RechargeRequest()
                 {
                     Zone = unit.DomainZone(),
@@ -64,6 +72,7 @@ namespace ET
                     UnitId = unit.Id,
                     UnitName = userName,
                     RechargeNumber = request.RechargeNumber,
+                    Account = userInfoComponent.Account,
                 });
 
                 response.Message = r2M_RechargeResponse.Message;

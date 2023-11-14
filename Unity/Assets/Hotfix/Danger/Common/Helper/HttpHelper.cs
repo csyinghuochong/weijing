@@ -83,7 +83,7 @@ namespace ET
                     httpClient.DefaultRequestHeaders.Add(kv.Key, kv.Value);
                 }
                 HttpContent httpContent = new StringContent("");
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
                 HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
                 string statusCode = response.StatusCode.ToString();

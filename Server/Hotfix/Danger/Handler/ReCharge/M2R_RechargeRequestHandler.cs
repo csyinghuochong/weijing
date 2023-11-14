@@ -29,6 +29,9 @@ namespace ET
                 case PayTypeEnum.IOSPay:
                     response.Error = await scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify(request);
                     break;
+                case PayTypeEnum.TikTok:
+                    response.Message = scene.GetComponent<ReChargeTikTokComponent>().TikTokPay(request);
+                    break;
             }
 
             reply();

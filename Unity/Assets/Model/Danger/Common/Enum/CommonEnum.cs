@@ -3,6 +3,21 @@
 namespace ET
 {
 
+    public sealed class TikTokCode
+    {
+        public int code;        //返回码
+        public string message;  //说明
+        public string log_id;   //调用链id
+
+        public TikTokData tikTokData;
+    }
+
+    public sealed class TikTokData
+    {
+        public long sdk_open_id;      //用户唯一标识
+        public int age_type;        //实名年龄段
+    }
+
     public struct ActivityTimer
     {
         public long BeginTime;
@@ -96,6 +111,7 @@ namespace ET
         public const int PhoneCodeLogin = 3;         //短信验证吗登录
         public const int PhoneNumLogin = 4;        //手机号登录
         public const int TapTap = 5;                //taptap登录
+        public const int TikTok = 6;                //抖音登录
     }
 
     public static class PayTypeEnum
@@ -104,6 +120,7 @@ namespace ET
         public const int AliPay = 2;
         public const int QuDaoPay = 3;
         public const int IOSPay = 4;
+        public const int TikTok = 5;
     }
 
     public static class HeadBarType
