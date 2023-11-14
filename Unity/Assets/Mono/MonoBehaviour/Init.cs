@@ -208,10 +208,10 @@ namespace ET
 #endif
         }
 
-		/// <summary>
-		/// 也可以直接返回sdkid token age
-		/// </summary>
-		/// <param name="access_token"></param>
+        /// <summary>
+        ///  由接入方实现，通过游戏服务端向抖音游戏服务端校验用户登录态、获取sdk_open_id，参考服务端接入登录验证部分
+        /// </summary>
+        /// <param name="access_token"></param>
         public void OnRecvTikTokAccesstoken(string access_token)
         {
             Log.ILog.Debug($"OnRecvTikTokAccesstoken: {access_token}");
