@@ -147,16 +147,16 @@ namespace ET
         /// <param name="operateType"></param>
         public static void OnDragFormationSet(this UIPetMiningTeamComponent self, long rolePetInfoId, int index, int operateType, int team)
         {
-            //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
-            //UIPetMiningComponent petmingComponent = uI.GetComponent<UIPetSetComponent>().UIPageView.UISubViewList[(int)PetSetEnum.PetMining].GetComponent<UIPetMiningComponent>();
-            //List<int> defendteamids = petmingComponent.GetSelfPetMingTeam();
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
+            UIPetMiningComponent petmingComponent = uI.GetComponent<UIPetSetComponent>().UIPageView.UISubViewList[(int)PetSetEnum.PetMining].GetComponent<UIPetMiningComponent>();
+            List<int> defendteamids = petmingComponent.GetSelfPetMingTeam();
             //if (defendteamids.Contains(team))
             //{
             //    FloatTipManager.Instance.ShowFloatTip("占领矿场中，无法更换");
             //    return;
             //}
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            if(unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime) > TimeHelper.ServerNow())
+            if(defendteamids.Contains(team) && unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime) > TimeHelper.ServerNow())
             {
                 FloatTipManager.Instance.ShowFloatTip("挑战冷却中，无法更换");
                 return;
