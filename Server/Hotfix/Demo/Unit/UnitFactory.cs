@@ -549,7 +549,7 @@ namespace ET
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
                 int userlv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                if( monsterConfig.Lv >= 50 || Mathf.Abs(userlv - monsterConfig.Lv) <= 9 ) 
+                if( monsterConfig.Lv >= 60 || Mathf.Abs(userlv - monsterConfig.Lv) <= 9 ) 
                 {
                     drop = true;    
                 }
