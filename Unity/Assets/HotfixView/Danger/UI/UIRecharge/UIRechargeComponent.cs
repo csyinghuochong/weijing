@@ -127,7 +127,8 @@ namespace ET
             {
                 RiskControlInfo = riskControl,  
                 RechargeNumber = self.ReChargeNumber,
-                PayType = self.PayType };
+                PayType = self.PayType 
+            };
 
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
@@ -184,7 +185,7 @@ namespace ET
 
             if (GlobalHelp.GetPlatform() == 5)
             {
-                GameObject.Find("Global").GetComponent<Init>().TikTokRiskControlInfo();
+                //GameObject.Find("Global").GetComponent<Init>().TikTokRiskControlInfo();
             }
             else
             {
@@ -197,9 +198,7 @@ namespace ET
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-#if UNITY_ANDROID
                 TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
-#endif
             }
             catch (Exception ex) {
                 Log.Debug("UIRecharge ex:" + ex);
