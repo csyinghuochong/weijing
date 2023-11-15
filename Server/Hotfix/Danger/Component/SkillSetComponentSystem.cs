@@ -286,6 +286,10 @@ namespace ET
 				{
 					continue;
 				}
+				if (!SkillConfigCategory.Instance.Contain(self.SkillList[i].SkillID))
+				{
+					continue;
+				}
 
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
 
