@@ -186,7 +186,7 @@ public class UIYinSi : MonoBehaviour
             PlayerPrefs.SetString("UIYinSi_0", "1");
             Log.ILog.Debug($"onRequestPermissionsResult: StartUpdate");
 
-            GameObject.Find("Global").GetComponent<Init>().TikTokInit();
+            //GameObject.Find("Global").GetComponent<Init>().TikTokInit();
             GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
         }
     }

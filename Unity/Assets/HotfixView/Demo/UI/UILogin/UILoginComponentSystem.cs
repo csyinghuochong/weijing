@@ -100,7 +100,7 @@ namespace ET
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
-                GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
+                //GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
 
                 self.RealNameButton = rc.Get<GameObject>("RealNameButton");
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(() => { self.OnRealNameButton(); });
@@ -288,8 +288,8 @@ namespace ET
 		public static void GetTiktokAccesstoken(this UILoginComponent self)
 		{
             Log.ILog.Debug("GetTiktokAccesstoken: ");
-            Init init = GameObject.Find("Global").GetComponent<Init>();
-			init.TikTokLogin();
+            //Init init = GameObject.Find("Global").GetComponent<Init>();
+			//init.TikTokLogin();
         }
 
 		public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)

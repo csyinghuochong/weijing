@@ -27,7 +27,7 @@ namespace ET
     {
         public override void Destroy(UIRechargeComponent self)
         {
-            GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler = null;
+            //GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler = null;
             if (!string.IsNullOrEmpty(self.AssetPath))
             {
                 ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
@@ -89,7 +89,7 @@ namespace ET
             self.ButtonAliPay.SetActive(false);
             self.ButtonWeiXin.SetActive(false);    
 #endif
-            GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler =  (string text) => { self.OnGetRiskControlInfo(text); };
+            //GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler =  (string text) => { self.OnGetRiskControlInfo(text); };
         }
     }
 
