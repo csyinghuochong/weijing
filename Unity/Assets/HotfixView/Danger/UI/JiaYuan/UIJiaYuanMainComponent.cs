@@ -319,7 +319,7 @@ namespace ET
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(3f);
                 return;
             }
 
@@ -390,7 +390,7 @@ namespace ET
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(3f);
                 return;
             }
 

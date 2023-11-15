@@ -263,7 +263,7 @@ namespace ET
         {
 
             //点一下拾取按钮
-            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(10f);
 
             //判断背包是否满了
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
