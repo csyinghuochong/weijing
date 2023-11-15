@@ -100,7 +100,15 @@ namespace ET
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
-                //GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
+
+			
+				if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
+				{
+#if TikTok5
+					Log.ILog.Debug("uilogincomponent.OnTikTokAccesstokenHandler");
+					GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
+#endif
+                }
 
                 self.RealNameButton = rc.Get<GameObject>("RealNameButton");
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(() => { self.OnRealNameButton(); });
@@ -413,7 +421,10 @@ namespace ET
 			//抖音只有一个登录方式
 			if (GlobalHelp.GetPlatform() == 5)
 			{
-                self.LoginType = LoginTypeEnum.TikTok.ToString();
+#if TikTok5
+			 self.LoginType = LoginTypeEnum.TikTok.ToString();
+#endif
+
             }
 
             Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
@@ -601,7 +612,6 @@ namespace ET
 					}
 				}
 				self.OnSelectServer(serverItem);
-
                 self.UpdateLoginType();
             }
 			catch (Exception ex)
