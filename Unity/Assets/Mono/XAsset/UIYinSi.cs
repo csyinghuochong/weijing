@@ -184,7 +184,7 @@ public class UIYinSi : MonoBehaviour
         this.AgreeNumber++;
         if (this.AgreeNumber >= 3 || permissons == "1_1")
         {
-            PlayerPrefs.SetString("UIYinSi_0", "1");
+            PlayerPrefs.SetString("UIYinSi_0111", "1");
             Log.ILog.Debug($"onRequestPermissionsResult: StartUpdate");
 
             //GameObject.Find("Global").GetComponent<Init>().TikTokInit();

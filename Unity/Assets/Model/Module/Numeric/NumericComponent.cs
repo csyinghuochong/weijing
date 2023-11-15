@@ -239,11 +239,12 @@ namespace ET
             long old = this.GetByKey(numericType);
             NumericDic[numericType] = value;
 
+#if SERVER
             if (old == value)
             {
                 return;
             }
-
+#endif
             if (notice)
             {
                 //发送改变属性的相关消息

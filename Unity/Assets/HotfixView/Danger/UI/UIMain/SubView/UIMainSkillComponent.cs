@@ -35,6 +35,8 @@ namespace ET
 
         public long SwitchCDEndTime;
         public List<string> AssetPath = new List<string>();
+
+        public int JueXingSkillId;
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
@@ -484,7 +486,6 @@ namespace ET
             }
         }
 
-
         public static void OnSkillBeging(this UIMainSkillComponent self, string dataParams)
         { 
             int skillId = int.Parse(dataParams);
@@ -532,6 +533,10 @@ namespace ET
                 uISkillGridComponent.OnUpdate(self.SkillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), i < 8 ? pulicCd : 0);
             }
 
+            if (self.JueXingSkillId > 0)
+            {
+                self.UISkillJueXing.OnUpdate(self.SkillManagerComponent.GetCdTime(self.JueXingSkillId, serverTime), pulicCd);
+            }
             self.UISkillBianSheng?.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UISkillBianSheng.GetSkillId(), serverTime), pulicCd);
             self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }
@@ -619,6 +624,7 @@ namespace ET
             OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
             int juexingid = occupationConfigCategory.JueXingSkill[7];
             self.UISkillJueXing.UpdateSkillInfo(skillSetComponent.GetSkillPro(juexingid));
+            self.JueXingSkillId = juexingid;
         }
     }
 }
