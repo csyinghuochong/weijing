@@ -247,6 +247,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (!SkillConfigCategory.Instance.Contain(skillList[i].SkillID))
+                {
+                    continue;
+                }
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillList[i].SkillID);
                 self.AddPassiveSkillByType(skillConfig);
             }
