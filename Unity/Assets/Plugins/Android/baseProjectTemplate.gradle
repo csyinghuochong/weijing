@@ -17,15 +17,6 @@ allprojects {
             maven {
                 url "https://storage.googleapis.com/snap-kit-build/maven"
             }
-
-
-            maven {
-                url 'https://artifact.bytedance.com/repository/ttgamesdk/'
-            }
-            maven {
-                url 'https://jitpack.io'
-            }
-
         //====================== snapchat ======================
         }
 
@@ -34,10 +25,8 @@ allprojects {
             // See which Gradle version is preinstalled with Unity here https://docs.unity3d.com/Manual/android-gradle-overview.html
             // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
             // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
-            classpath 'com.android.tools.build:gradle:3.5.4'
+            classpath 'com.android.tools.build:gradle:3.4.0'
             classpath 'com.mob.sdk:MobSDK:+'
-            classpath 'com.bytedance.ttgame:gbsdk_helper:1.0.10'
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30"
         }
     }
 
@@ -45,13 +34,6 @@ allprojects {
         maven {
             url "http://mvn.mob.com/android"
             //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
-        }
-
-        maven {
-            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
-        }
-        maven {
-            url 'https://jitpack.io'
         }
 
         google()

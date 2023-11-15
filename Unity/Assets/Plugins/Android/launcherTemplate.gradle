@@ -2,7 +2,6 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
-apply plugin: 'gbsdk.helper'
 //apply from: '/Users/lixiang/Downloads/CHAJIAN/UNITY/gradle_2019+/New-Unity-For-ShareSDK/ShareSDK/Assets/Plugins/Android/ShareSDK/MobSDK.gradle'
 
 
@@ -156,13 +155,6 @@ MobSDK {
     }
 }
 
-gbsdk {
-    appId '554726'     // 抖音游戏开放平台创建应用分配的 appId，格式为6位数字
-    version '2.2.3.0'  // OSDK 的版本，如 2.2.3.0
-    plugin true        // 固定填 true，使用插件版本的SDK组件
-    optionals (['applog', 'aweme', 'union'] as String[]) // 组件列表，这里以流水分账为示例
-}
-
 dependencies {
     implementation project(':unityLibrary')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -187,13 +179,6 @@ android {
         }
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
-    }
-
-    //解决so冲突
-    packagingOptions {
-        pickFirst 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libweibosdkcore.so'
     }
 
     signingConfigs {

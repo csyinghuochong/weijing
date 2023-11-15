@@ -42,9 +42,9 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 15;
-		public int BigVersionIOS = 15;
-		public GameObject Updater;
+		public int BigVersion = 17;      //抖音sdk能力
+		public int BigVersionIOS = 17;   //抖音sdk能力
+        public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
         public Action<string> OnGetPermissionsHandler;
