@@ -890,6 +890,21 @@ namespace ET
                 }
             }
 
+            //神兽羁绊
+            if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+            {
+                int shenshouNumber = self.GetShenShouNumber();
+                List<PropertyValue> shenshoujiban = null;
+                ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
+                if (shenshoujiban != null)
+                {
+                    for (int i = 0; i < shenshoujiban.Count; i++)
+                    {
+                        Function_Fight.AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, attriDic);
+                    }
+                }
+            }
+          
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;

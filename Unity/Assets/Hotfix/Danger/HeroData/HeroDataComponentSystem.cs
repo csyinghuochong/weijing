@@ -494,7 +494,9 @@ namespace ET
 
         public static void InitPet(this HeroDataComponent self, RolePetInfo rolePetInfo, bool notice)
         {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            Unit unit = self.GetParent<Unit>();
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             for (int i = 0; i < rolePetInfo.Ks.Count; i++)
             {
                 numericComponent.Set(rolePetInfo.Ks[i], rolePetInfo.Vs[i], notice);

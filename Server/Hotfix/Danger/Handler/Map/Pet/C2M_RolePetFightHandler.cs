@@ -34,6 +34,7 @@ namespace ET
                 }
                 if (unit.GetParent<UnitComponent>().Get(petinfo.Id) == null)
                 {
+                    unit.GetComponent<PetComponent>().UpdatePetAttribute(petinfo, false);
                     UnitFactory.CreatePet(unit, petinfo);
                 }
 
