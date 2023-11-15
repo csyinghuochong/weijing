@@ -42,7 +42,7 @@ namespace ET
     public static class UIPageViewComponentSystem
     {
 
-        public static async ETTask OnSelectIndex(this UIPageViewComponent self, int page)
+        public static async ETTask<UI> OnSelectIndex(this UIPageViewComponent self, int page)
         {
             if (self.UISubViewList[page] == null && self.UISubViewPath[page].Length > 0)
             {
@@ -52,7 +52,7 @@ namespace ET
                 GameObject bundleObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
                 if (instanceid != self.InstanceId)
                 {
-                    return;
+                    return null;
                 }
                 self.AssetList.Add(path);
                 GameObject go = GameObject.Instantiate(bundleObject);
@@ -80,7 +80,7 @@ namespace ET
 
             //播放音效
             UIHelper.PlayUIMusic("10007");
-
+            return self.UISubViewList[page];
         }
 
     }

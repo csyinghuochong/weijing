@@ -78,12 +78,11 @@ namespace ET
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
 
-
-        public static void OnClickGoToPaiMai(this UIPaiMaiComponent self,int itemType, long paimaiItemId)
+        public static async ETTask OnClickGoToPaiMai(this UIPaiMaiComponent self,int itemType, long paimaiItemId)
         {
-            self.UIPageButton.OnSelectIndex( 1 );
-            self.UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiBuy].GetComponent<UIPaiMaiBuyComponent>().OnClickGoToPaiMai(itemType,paimaiItemId).Coroutine();
-            //self.UIPageView.OnSelectIndex(page).Coroutine();
+            self.UIPageButton.OnSelectIndex((int)PaiMaiPageEnum.PaiMaiBuy, false);
+            UI uI = await self.UIPageView.OnSelectIndex((int)PaiMaiPageEnum.PaiMaiBuy);
+            uI.GetComponent<UIPaiMaiBuyComponent>().OnClickGoToPaiMai(itemType,paimaiItemId).Coroutine();
         }
     }
 
