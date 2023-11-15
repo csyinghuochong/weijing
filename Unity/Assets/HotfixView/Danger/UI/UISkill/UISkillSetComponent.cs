@@ -144,7 +144,8 @@ namespace ET
                     continue;
                 }
                 if (skillConfig.SkillType == (int)SkillTypeEnum.PassiveSkill
-                    || skillConfig.SkillType == (int)SkillTypeEnum.PassiveAddProSkill)
+                    || skillConfig.SkillType == (int)SkillTypeEnum.PassiveAddProSkill
+                    || skillConfig.SkillType == (int)SkillTypeEnum.PassiveAddProSkillNoFight)
                 {
                     continue;
                 }
