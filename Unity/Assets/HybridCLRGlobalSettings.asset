@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: HybridCLRGlobalSettings
   m_EditorClassIdentifier: 
   enable: 1
-  cloneFromGitee: 1
+  useGlobalIl2cpp: 0
+  hybridclrRepoURL: https://gitee.com/focus-creative-games/hybridclr
+  il2cppPlusRepoURL: https://gitee.com/focus-creative-games/il2cpp_plus
   hotUpdateAssemblyDefinitions:
   - {fileID: 5897886265953266890, guid: d725d56788dfdfc4686ac0ca4bb40917, type: 3}
   - {fileID: 5897886265953266890, guid: 78dd3c697457f134d8b8fe7e48720c37, type: 3}
   - {fileID: 5897886265953266890, guid: 150d0068114f80041876aa10c6145346, type: 3}
   - {fileID: 5897886265953266890, guid: e33f4baaabd128c47a314a1c6304d290, type: 3}
   hotUpdateAssemblies: []
+  preserveHotUpdateAssemblies: []
+  hotUpdateDllCompileOutputRootDir: HybridCLRData/HotUpdateDlls
+  externalHotUpdateAssembliyDirs: []
+  strippedAOTDllOutputRootDir: HybridCLRData/AssembliesPostIl2CppStrip
+  patchAOTAssemblies: []
   outputLinkFile: HybridCLR/link.xml
-  outputAOTGenericReferenceFile: Main/AOTGenericReferences.cs
+  outputAOTGenericReferenceFile: HybridCLR/AOTGenericReferences.cs
   maxGenericReferenceIteration: 4
-  ReversePInvokeWrapperCount: 10
   maxMethodBridgeGenericIteration: 4
-  hotUpdateDllOutputDir: HotUpdateDlls
-  hybridCLRDataDir: HybridCLRData
-  strippedAssemblyDir: AssembliesPostIl2CppStrip
