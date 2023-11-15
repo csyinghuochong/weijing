@@ -150,7 +150,7 @@ namespace ET
             }
             if (self.PayType == PayTypeEnum.TikTok)
             {
-                GameObject.Find("Global").GetComponent<Init>().TikTokPay(sendChatResponse.Message);
+                //GameObject.Find("Global").GetComponent<Init>().TikTokPay(sendChatResponse.Message);
             }
         }
 
