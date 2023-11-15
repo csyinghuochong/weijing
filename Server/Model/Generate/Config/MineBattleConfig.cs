@@ -93,6 +93,9 @@ namespace ET
 		/// <summary>上限</summary>
 		[ProtoMember(6)]
 		public int ChanChuLimit { get; set; }
+		/// <summary>默认守护</summary>
+		[ProtoMember(7)]
+		public int[] PetDefendInit { get; set; }
 
 	}
 }

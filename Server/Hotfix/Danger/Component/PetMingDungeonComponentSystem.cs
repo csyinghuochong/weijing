@@ -122,36 +122,58 @@ namespace ET
             //敌方队伍
             if (r_GameStatusResponse.PetMingPlayerInfo == null)
             {
-                return;
-            }
-            long enemyId = r_GameStatusResponse.PetMingPlayerInfo.UnitId;
-            int teamid = r_GameStatusResponse.PetMingPlayerInfo.TeamId;
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.PetComponent });
-            if (d2GGetUnit.Component != null)
-            {
-                PetComponent petComponent_enemy = d2GGetUnit.Component as PetComponent;
-                List<long> petsenemy = petComponent_enemy.PetMingList;
-                for (int i = 0; i < 5; i++)
+                MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(self.MineType);
+                int[] petdefendlist = mineBattleConfig.PetDefendInit;
+                //初始配置
+
+                for (int k = 0; k < petdefendlist.Length; k++)
                 {
-                    long petinfoid = petsenemy[i + teamid * 5];
-                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petinfoid);
-                    if (rolePetInfo == null)
+                    if (petdefendlist[k] == 0)
                     {
                         continue;
                     }
-                    if (unit.GetParent<UnitComponent>().Get(rolePetInfo.Id) != null)
-                    {
-                        Log.Debug($"宠物ID重复：{unit.Id}");
-                        continue;
-                    }
 
-                    int position = petComponent_enemy.PetMingPosition.IndexOf(petinfoid);
-                    position = position != -1 ? position %= 9 : i;
-
+                    RolePetInfo petInfo = petComponent.GenerateNewPet(petdefendlist[k], 0);
+                    petComponent.PetXiLian(petInfo, 1);
+                    petComponent.UpdatePetAttribute(petInfo, false);
+                    petInfo.PlayerName = "机器人";
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
-                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[position], 180f);
+                       CampEnum.CampPlayer_2, petInfo, AIHelp.Formation_2[k], 180f);
                 }
+            }
+            else
+            {
+
+                long enemyId = r_GameStatusResponse.PetMingPlayerInfo.UnitId;
+                int teamid = r_GameStatusResponse.PetMingPlayerInfo.TeamId;
+                long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.PetComponent });
+                if (d2GGetUnit.Component != null)
+                {
+                    PetComponent petComponent_enemy = d2GGetUnit.Component as PetComponent;
+                    List<long> petsenemy = petComponent_enemy.PetMingList;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        long petinfoid = petsenemy[i + teamid * 5];
+                        RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petinfoid);
+                        if (rolePetInfo == null)
+                        {
+                            continue;
+                        }
+                        if (unit.GetParent<UnitComponent>().Get(rolePetInfo.Id) != null)
+                        {
+                            Log.Debug($"宠物ID重复：{unit.Id}");
+                            continue;
+                        }
+
+                        int position = petComponent_enemy.PetMingPosition.IndexOf(petinfoid);
+                        position = position != -1 ? position %= 9 : i;
+
+                        Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
+                           CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[position], 180f);
+                    }
+                }
+
             }
         }
     }
