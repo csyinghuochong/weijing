@@ -116,6 +116,7 @@ namespace ET
                     }
                 }
             }
+            long instanceid = self.InstanceId;
 
             C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
             P2C_PaiMaiFindResponse response = (P2C_PaiMaiFindResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(reuqest);
@@ -126,6 +127,10 @@ namespace ET
             }
 
             await TimerComponent.Instance.WaitAsync(500);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             
             self.OnClearnNowList();
             switch (itemtype)
@@ -151,6 +156,10 @@ namespace ET
             }
 
             await self.PaiMaiBuyInit(itemtype);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
 
             //显示列表
             self.OnClickTypeItem(itemtype, 0).Coroutine();
