@@ -239,9 +239,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("孔位不符！");
                 return -1;
             }
+
+            long instanceid = self.InstanceId;
             C2M_RolePetHeXin c2M_RolePetHeXin = new C2M_RolePetHeXin() { OperateType = 1,  BagInfoId = self.BagInfo.BagInfoID, PetInfoId = self.RolePetInfo.Id, Position = self.Position };
             M2C_RolePetHeXin m2C_RolePetHeXin = (M2C_RolePetHeXin)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeXin);
             if (m2C_RolePetHeXin.Error != ErrorCode.ERR_Success)
+            {
+                return -1;
+            }
+            if (instanceid != self.InstanceId)
             {
                 return -1;
             }
