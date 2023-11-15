@@ -162,6 +162,7 @@ public class UIYinSi : MonoBehaviour
         {
             Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
             this.gameObject.SetActive(false);
+            //GameObject.Find("Global").GetComponent<Init>().TikTokInit();
             GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
         }
     }
