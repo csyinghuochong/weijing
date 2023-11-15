@@ -289,7 +289,7 @@ namespace ET
             float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge);
 
             float addHitLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_HitLv), defendUnitLv);
-            float addDodgeLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_DodgeLv), attackUnitLv);
+            float addDodgeLvPro = LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_DodgeLv), attackUnitLv);
 
 
             addHitPro += addHitLvPro;
@@ -345,27 +345,27 @@ namespace ET
             //技能闪避
             if (skillconfig.SkillActType == 1)
             {
-                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_SkillDodgePro))
+                if (RandomHelper.RandFloat() <= numericComponentDefend.GetAsFloat(NumericType.Now_SkillDodgePro))
                 {
-                    ifHit = true;
+                    ifHit = false;
                 }
             }
 
             //物理闪避
             if (skillconfig.DamgeType == 1)
             {
-                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_ActDodgePro))
+                if (RandomHelper.RandFloat() <= numericComponentDefend.GetAsFloat(NumericType.Now_ActDodgePro))
                 {
-                    ifHit = true;
+                    ifHit = false;
                 }
             }
 
             //魔法闪避
             if (skillconfig.DamgeType == 2)
             {
-                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_MageDodgePro))
+                if (RandomHelper.RandFloat() <= numericComponentDefend.GetAsFloat(NumericType.Now_MageDodgePro))
                 {
-                    ifHit = true;
+                    ifHit = false;
                 }
             }
 
