@@ -180,6 +180,8 @@ namespace ET
                     }
                     rolePetInfo.ShouHuPos = 5;
                 }
+
+                self.UpdatePetAttribute(rolePetInfo, false);
             }
         }
 
@@ -217,6 +219,8 @@ namespace ET
         {
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
+
+
         }
 
         public static void CheckPetPingFen(this PetComponent self)
@@ -1031,11 +1035,18 @@ namespace ET
                 {
                     int cofID = self.RolePetInfos[i].ConfigId;
                     self.RolePetInfos.RemoveAt(i);
-
-                 
                     break;
                 }
             }
+
+            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
+            {
+                self.UpdatePetAttribute(self.RolePetInfos[i], false);
+            }
+
+            M2C_PetListMessage  m2C_PetListMessage = new M2C_PetListMessage();
+            m2C_PetListMessage.PetList = self.RolePetInfos;
+            MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_PetListMessage );
         }
 
         public static int GetMaxSkillNumber(this PetComponent self)

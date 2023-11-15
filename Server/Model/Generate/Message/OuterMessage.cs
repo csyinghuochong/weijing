@@ -14166,4 +14166,14 @@ namespace ET
 
 	}
 
+//宠物更新
+	[Message(OuterOpcode.M2C_PetListMessage)]
+	[ProtoContract]
+	public partial class M2C_PetListMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<RolePetInfo> PetList = new List<RolePetInfo>();
+
+	}
+
 }

@@ -6803,3 +6803,9 @@ message A2C_TikTokVerifyUser // IResponse
 	int64 sdk_open_id = 1;	//用户唯一标识
 	int32 age_type = 2;	//实名年龄段
 }
+
+//宠物更新
+message M2C_PetListMessage	// IActorMessage
+{
+	repeated RolePetInfo PetList = 1;
+}
