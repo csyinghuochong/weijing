@@ -204,6 +204,8 @@ namespace cn.sharesdk.unity3d
 
                     savePlatformInfoWithId(platformId, info, deviceInfoPlatforms);
 
+                    UnityEngine.Debug.LogWarning("xxxxx: " + info.ToString());
+
                     if (info.GetType().GetField("app_universalLink") != null)
                     {
                         string app_universalLink = GetValueByName(info, "app_universalLink");

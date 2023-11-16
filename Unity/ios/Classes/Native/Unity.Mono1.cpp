@@ -28006,6 +28006,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_Awake_m31D29836728015B65429E4BE3B1B
 	AppDomain_tBEB6322D51DCB12C09A56A49886C2D09BA1C1A8A * G_B2_1 = NULL;
 	UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * G_B1_0 = NULL;
 	AppDomain_tBEB6322D51DCB12C09A56A49886C2D09BA1C1A8A * G_B1_1 = NULL;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B4_0 = NULL;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B3_0 = NULL;
+	int32_t G_B5_0 = 0;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B5_1 = NULL;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B7_0 = NULL;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B6_0 = NULL;
+	int32_t G_B8_0 = 0;
+	Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * G_B8_1 = NULL;
 	{
 		// System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 		// {
@@ -28090,66 +28098,110 @@ IL_0024:
 		int32_t L_19 = __this->get_CodeMode_31();
 		NullCheck(L_18);
 		CodeLoader_set_CodeMode_m9D39039A4BBF0B1F8E2295FEC4F9FC1018ADD4DB_inline(L_18, L_19, /*hidden argument*/NULL);
-		// Options.Instance.Develop = 1; // OueNetMode ? 0 : 1;
+		// Options.Instance.Develop = OueNetMode ? 0 : 1;
 		Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * L_20;
 		L_20 = Options_get_Instance_m6C7B74EC02E18F3D220102B812EC443346E452C5_inline(/*hidden argument*/NULL);
-		NullCheck(L_20);
-		Options_set_Develop_mC3A89AE2200A3BAACF03F56FA6DAC3DED1B30AF1_inline(L_20, 1, /*hidden argument*/NULL);
-		// Options.Instance.LogLevel = 1;// OueNetMode ? 6 : 1;
-		Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * L_21;
-		L_21 = Options_get_Instance_m6C7B74EC02E18F3D220102B812EC443346E452C5_inline(/*hidden argument*/NULL);
-		NullCheck(L_21);
-		Options_set_LogLevel_mCD873F49039C17E756967DFF858B3A6F468669BA_inline(L_21, 1, /*hidden argument*/NULL);
+		bool L_21 = __this->get_OueNetMode_6();
+		G_B3_0 = L_20;
+		if (L_21)
+		{
+			G_B4_0 = L_20;
+			goto IL_00d9;
+		}
+	}
+	{
+		G_B5_0 = 1;
+		G_B5_1 = G_B3_0;
+		goto IL_00da;
+	}
+
+IL_00d9:
+	{
+		G_B5_0 = 0;
+		G_B5_1 = G_B4_0;
+	}
+
+IL_00da:
+	{
+		NullCheck(G_B5_1);
+		Options_set_Develop_mC3A89AE2200A3BAACF03F56FA6DAC3DED1B30AF1_inline(G_B5_1, G_B5_0, /*hidden argument*/NULL);
+		// Options.Instance.LogLevel = OueNetMode ? 6 : 1;
+		Options_t7957E7ED20A52CE0BE76A1F592E0B3C94F4DCC59 * L_22;
+		L_22 = Options_get_Instance_m6C7B74EC02E18F3D220102B812EC443346E452C5_inline(/*hidden argument*/NULL);
+		bool L_23 = __this->get_OueNetMode_6();
+		G_B6_0 = L_22;
+		if (L_23)
+		{
+			G_B7_0 = L_22;
+			goto IL_00ef;
+		}
+	}
+	{
+		G_B8_0 = 1;
+		G_B8_1 = G_B6_0;
+		goto IL_00f0;
+	}
+
+IL_00ef:
+	{
+		G_B8_0 = 6;
+		G_B8_1 = G_B7_0;
+	}
+
+IL_00f0:
+	{
+		NullCheck(G_B8_1);
+		Options_set_LogLevel_mCD873F49039C17E756967DFF858B3A6F468669BA_inline(G_B8_1, G_B8_0, /*hidden argument*/NULL);
 		// Log.ILog.Debug("unity111  Awake");
-		RuntimeObject* L_22;
-		L_22 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
-		NullCheck(L_22);
-		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_22, _stringLiteral9FA7C46673E76BFF85892E3E5960CFF57FADA588);
-		// CheckIphoneYueyu( string.Empty );
-		String_t* L_23 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
-		Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222(L_23, /*hidden argument*/NULL);
-		// Log.ILog.Debug("unity111  this.Platform = 0");
 		RuntimeObject* L_24;
 		L_24 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
 		NullCheck(L_24);
-		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_24, _stringLiteral997C4C2883A0FBC1752DD07D1FF7B504F32473B8);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_24, _stringLiteral9FA7C46673E76BFF85892E3E5960CFF57FADA588);
+		// CheckIphoneYueyu( string.Empty );
+		String_t* L_25 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
+		Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222(L_25, /*hidden argument*/NULL);
+		// Log.ILog.Debug("unity111  this.Platform = 0");
+		RuntimeObject* L_26;
+		L_26 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
+		NullCheck(L_26);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_26, _stringLiteral997C4C2883A0FBC1752DD07D1FF7B504F32473B8);
 		// this.Platform = 20001;
 		__this->set_Platform_33(((int32_t)20001));
 		// GameObject sharesdk = GameObject.Find("Global");
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_25;
-		L_25 = GameObject_Find_m20157C941F1A9DA0E33E0ACA1324FAA41C2B199B(_stringLiteralEA06B3FAEB1638A5812A56A07DEFB21D6AB902DB, /*hidden argument*/NULL);
-		V_0 = L_25;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_27;
+		L_27 = GameObject_Find_m20157C941F1A9DA0E33E0ACA1324FAA41C2B199B(_stringLiteralEA06B3FAEB1638A5812A56A07DEFB21D6AB902DB, /*hidden argument*/NULL);
+		V_0 = L_27;
 		// ssdk = sharesdk.GetComponent<ShareSDK>();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_26 = V_0;
-		NullCheck(L_26);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_27;
-		L_27 = GameObject_GetComponent_TisShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6_m2B29F6C2F62392C139F76DB1028BDDE214A69066(L_26, /*hidden argument*/GameObject_GetComponent_TisShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6_m2B29F6C2F62392C139F76DB1028BDDE214A69066_RuntimeMethod_var);
-		__this->set_ssdk_20(L_27);
-		// ssdk.shareHandler = OnShareResultHandler;
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_28 = __this->get_ssdk_20();
-		EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 * L_29 = (EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 *)il2cpp_codegen_object_new(EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09_il2cpp_TypeInfo_var);
-		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_29, __this, (intptr_t)((intptr_t)Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0_RuntimeMethod_var), /*hidden argument*/NULL);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_28 = V_0;
 		NullCheck(L_28);
-		L_28->set_shareHandler_11(L_29);
-		// ssdk.getFriendsHandler = OnGetFriendsResultHandler;
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_29;
+		L_29 = GameObject_GetComponent_TisShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6_m2B29F6C2F62392C139F76DB1028BDDE214A69066(L_28, /*hidden argument*/GameObject_GetComponent_TisShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6_m2B29F6C2F62392C139F76DB1028BDDE214A69066_RuntimeMethod_var);
+		__this->set_ssdk_20(L_29);
+		// ssdk.shareHandler = OnShareResultHandler;
 		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_30 = __this->get_ssdk_20();
 		EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 * L_31 = (EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 *)il2cpp_codegen_object_new(EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09_il2cpp_TypeInfo_var);
-		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_31, __this, (intptr_t)((intptr_t)Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA_RuntimeMethod_var), /*hidden argument*/NULL);
+		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_31, __this, (intptr_t)((intptr_t)Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0_RuntimeMethod_var), /*hidden argument*/NULL);
 		NullCheck(L_30);
-		L_30->set_getFriendsHandler_13(L_31);
-		// ssdk.followFriendHandler = OnFollowFriendResultHandler;
+		L_30->set_shareHandler_11(L_31);
+		// ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_32 = __this->get_ssdk_20();
 		EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 * L_33 = (EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 *)il2cpp_codegen_object_new(EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09_il2cpp_TypeInfo_var);
-		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_33, __this, (intptr_t)((intptr_t)Init_OnFollowFriendResultHandler_m0B7C58BFFFEF3DD383EDD9B2997D9CF7A3AC40DD_RuntimeMethod_var), /*hidden argument*/NULL);
+		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_33, __this, (intptr_t)((intptr_t)Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA_RuntimeMethod_var), /*hidden argument*/NULL);
 		NullCheck(L_32);
-		L_32->set_followFriendHandler_14(L_33);
-		// mobsdk = gameObject.GetComponent<MobSDK>();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_34;
-		L_34 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		L_32->set_getFriendsHandler_13(L_33);
+		// ssdk.followFriendHandler = OnFollowFriendResultHandler;
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_34 = __this->get_ssdk_20();
+		EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 * L_35 = (EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09 *)il2cpp_codegen_object_new(EventHandler_tEA4F2A6D122C64DD24D719E3BBB39FAD5761DB09_il2cpp_TypeInfo_var);
+		EventHandler__ctor_m9DC556B183162C42A37638528C9A01FF10F898C4(L_35, __this, (intptr_t)((intptr_t)Init_OnFollowFriendResultHandler_m0B7C58BFFFEF3DD383EDD9B2997D9CF7A3AC40DD_RuntimeMethod_var), /*hidden argument*/NULL);
 		NullCheck(L_34);
-		MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * L_35;
-		L_35 = GameObject_GetComponent_TisMobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7_m8B71C3A97F0D1DB2C8A43055AC588C84C82E8A79(L_34, /*hidden argument*/GameObject_GetComponent_TisMobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7_m8B71C3A97F0D1DB2C8A43055AC588C84C82E8A79_RuntimeMethod_var);
-		__this->set_mobsdk_21(L_35);
+		L_34->set_followFriendHandler_14(L_35);
+		// mobsdk = gameObject.GetComponent<MobSDK>();
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_36;
+		L_36 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		NullCheck(L_36);
+		MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * L_37;
+		L_37 = GameObject_GetComponent_TisMobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7_m8B71C3A97F0D1DB2C8A43055AC588C84C82E8A79(L_36, /*hidden argument*/GameObject_GetComponent_TisMobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7_m8B71C3A97F0D1DB2C8A43055AC588C84C82E8A79_RuntimeMethod_var);
+		__this->set_mobsdk_21(L_37);
 		// }
 		return;
 	}
