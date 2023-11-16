@@ -4,7 +4,7 @@ using System;
 
 namespace cn.sharesdk.unity3d 
 {
-	[HideInInspector]
+	[Serializable]
 	public class DevInfoSet
 	{
 		public SinaWeiboDevInfo sinaweibo;
@@ -15,13 +15,13 @@ namespace cn.sharesdk.unity3d
 		public WeChatFavorites wechatFavorites;
     }
 
-    [HideInInspector]
+    [Serializable]
     public class DevInfo 
 	{	
 		public bool Enable = true;
 	}
 
-    [HideInInspector]
+    [Serializable]
     public class SinaWeiboDevInfo : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -41,7 +41,8 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[HideInInspector]
+
+	[Serializable]
 	public class QQ : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -70,7 +71,7 @@ namespace cn.sharesdk.unity3d
 #endif
     }
 
-    [HideInInspector]
+    [Serializable]
 	public class QZone : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -88,7 +89,7 @@ namespace cn.sharesdk.unity3d
     }
 
 
-    [HideInInspector]
+    [Serializable]
 	public class WeChat : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -109,7 +110,7 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[HideInInspector]
+	[Serializable]
 	public class WeChatMoments : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -126,7 +127,7 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[HideInInspector]
+	[Serializable]
 	public class WeChatFavorites : DevInfo 
 	{
 #if UNITY_ANDROID
