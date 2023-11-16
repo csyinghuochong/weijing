@@ -61,7 +61,7 @@ namespace ET
 
 		public int LoginErrorNumber;
 
-		public bool IOSReview = false;
+		public bool IOSReview = true;
 
 		public ShareSDK ssdk;
 	}
