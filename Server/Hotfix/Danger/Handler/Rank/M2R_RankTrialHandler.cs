@@ -15,11 +15,25 @@ namespace ET
             bool have = false;
             for (int i = 0; i < rankRunRace.Count; i++)
             {
-                if (rankRunRace[i].KeyId == request.RankingInfo.KeyId)
+                if (rankRunRace[i].KeyId != request.RankingInfo.KeyId)
+                {
+                    continue;
+                }
+                if (rankRunRace[i].Value2 > request.RankingInfo.Value2)
+                {
+                    continue;
+                }
+
+                if (rankRunRace[i].Value2 < request.RankingInfo.Value2)
+                {
+                    rankRunRace[i].Value = request.RankingInfo.Value;
+                    rankRunRace[i].Value2 = request.RankingInfo.Value2;
+                }
+                if(rankRunRace[i].Value2 == request.RankingInfo.Value2)
                 {
                     rankRunRace[i].Value = Math.Max(rankRunRace[i].Value, request.RankingInfo.Value);
-                    have = true;
                 }
+                have = true;
             }
 
             if (!have)
