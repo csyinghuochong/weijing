@@ -22,9 +22,9 @@ namespace cn.sharesdk.unity3d
         /// 切记 切记  安卓和ios的mob是分开的 微信一样 qq区分
         /// </summary>
 #if UNITY_ANDROID
-        [SerializeField]
+        [HideInInspector]
         public string appKey = "36af6e3967670";
-        [SerializeField]
+        [HideInInspector]
         public string appSecret = "c2b2d9e1afdfd9f6e1cfb3a399d01703";
 #elif UNITY_IPHONE
 		[SerializeField]
