@@ -63,7 +63,7 @@
 {"_t":"FuntionConfig","_id":1063,"Name":"UIZhanQu","ConditionType":[1],"ConditionParam":[12],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1064,"Name":"UICountry","ConditionType":[1],"ConditionParam":[5],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1065,"Name":"UIRecharge","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
-{"_t":"FuntionConfig","_id":1066,"Name":"UIActivity","ConditionType":[1],"ConditionParam":[6],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
+{"_t":"FuntionConfig","_id":1066,"Name":"UIActivity","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1067,"Name":"UINewYear","ConditionType":[1],"ConditionParam":[2],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1068,"Name":"UIWelfare","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1069,"Name":"UIFenXiang","ConditionType":[1],"ConditionParam":[3],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
