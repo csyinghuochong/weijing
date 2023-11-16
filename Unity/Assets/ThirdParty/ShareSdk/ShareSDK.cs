@@ -15,17 +15,21 @@ namespace cn.sharesdk.unity3d
     public class ShareSDK : MonoBehaviour 
 	{
 		private int reqID;
-		//配置ShareSDK AppKey
-		//注:此处区分仅为demo测试而区分，实际使用时可以不区分安卓或iOS
+        //配置ShareSDK AppKey
+        //注:此处区分仅为demo测试而区分，实际使用时可以不区分安卓或iOS
 
-		/// <summary>
-		/// 切记 切记  安卓和ios的mob是分开的 微信一样 qq区分
-		/// </summary>
+        /// <summary>
+        /// 切记 切记  安卓和ios的mob是分开的 微信一样 qq区分
+        /// </summary>
 #if UNITY_ANDROID
-		public string appKey = "36af6e3967670";
-		public string appSecret = "c2b2d9e1afdfd9f6e1cfb3a399d01703";
+        [SerializeField]
+        public string appKey = "36af6e3967670";
+        [SerializeField]
+        public string appSecret = "c2b2d9e1afdfd9f6e1cfb3a399d01703";
 #elif UNITY_IPHONE
+		[SerializeField]
 		public string appKey = "2d21337c7dc80";
+		[SerializeField]
 		public string appSecret = "a2c24f564def8b4a450a88491e5cc353";
         public List<string> customAssociatedDomains = new List<string>();
 #endif
