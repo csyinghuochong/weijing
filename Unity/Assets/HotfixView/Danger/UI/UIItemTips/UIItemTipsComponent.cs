@@ -440,6 +440,16 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
+
+            // 弹出道具批量使用
+            if (self.BagInfo.ItemNum >= 2 && ConfigHelper.BatchUseItemList.Contains(itemConfig.Id))
+            {
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIItemBatchUse);
+                uI.GetComponent<UIItemBatchUseComponent>().OnInitUI(self.BagInfo);
+                self.OnCloseTips();
+                return;
+            }
+
             if (itemConfig.ItemSubType == 113 || itemConfig.ItemSubType == 127)
             {
                 int curSceneId = 0;

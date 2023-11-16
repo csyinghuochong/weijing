@@ -30,6 +30,7 @@ namespace ET
 		public const string UIItemTips = "Main/ItemTips/UIItemTips";
 		public const string UIItemSellTip = "Main/ItemTips/UIItemSellTip";
         public const string UIItemExpBox = "Main/ItemTips/UIItemExpBox";
+        public const string UIItemBatchUse = "Main/ItemTips/UIItemBatchUse";
 		public const string UIItemFumoSelect = "Main/ItemTips/UIItemFumoSelect";
 		public const string UIEquipDuiBiTips = "Main/ItemTips/UIEquipDuiBiTips";
 		public const string UICommonHuoBiSet = "Common/UICommonHuoBiSet";
