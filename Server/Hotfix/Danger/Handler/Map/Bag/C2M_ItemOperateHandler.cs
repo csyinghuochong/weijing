@@ -114,6 +114,15 @@ namespace ET
                         return;
                     }
 
+                    if (itemConfig.ItemSubType == 111 && ConfigHelper.BatchUseItemList.Contains(itemConfig.Id))
+                    {
+                        //目前只有111类型支持批量使用
+                        if (!string.IsNullOrEmpty(request.OperatePar))
+                        {
+                            costNumber = int.Parse(request.OperatePar);
+                        }
+                    }
+
                     if (itemConfig.ItemSubType == 14      //召唤卷轴
                         || itemConfig.ItemSubType == 114) //宝石
                     {
@@ -293,7 +302,8 @@ namespace ET
                                 string[] jinbiInfos = itemConfig.ItemUsePar.Split(';');
                                 int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
-                                int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
+                                long addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
+                                addCoin *= costNumber;
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, 39);
                                 break;
                             //经验木桩
