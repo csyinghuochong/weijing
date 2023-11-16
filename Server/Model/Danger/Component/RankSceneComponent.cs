@@ -14,7 +14,7 @@ namespace ET
 
 
         public long RankingTrialLastTime = 0;
-        public List<RankingInfo> RankingTrials = new List<RankingInfo>();   
+        public List<RankingTrialInfo> RankingTrials = new List<RankingTrialInfo>();   
 
         public int UpdateCombat = 0;
     }

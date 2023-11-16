@@ -789,5 +789,6 @@ namespace ET
 		 public const ushort C2A_TikTokVerifyUser = 10786;
 		 public const ushort A2C_TikTokVerifyUser = 10787;
 		 public const ushort M2C_PetListMessage = 10788;
+		 public const ushort RankingTrialInfo = 10789;
 	}
 }

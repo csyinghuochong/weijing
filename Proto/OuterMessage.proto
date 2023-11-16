@@ -358,6 +358,7 @@ message KeyValuePairLong
 {
 	int64 KeyId = 1;	
 	int64 Value = 2;
+	int64 Value2 = 3;
 }
 
 message CreateRoleInfo
@@ -6499,7 +6500,7 @@ message R2C_RankTrialListResponse // IRankActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated RankingInfo RankList = 1;		//排行榜列表
+	repeated RankingTrialInfo RankList = 1;		//排行榜列表
 }
 
 //ResponseType M2C_TeamerPositionResponse
@@ -6808,4 +6809,14 @@ message A2C_TikTokVerifyUser // IResponse
 message M2C_PetListMessage	// IActorMessage
 {
 	repeated RolePetInfo PetList = 1;
+}
+
+message RankingTrialInfo
+{
+	int64 UserId = 1;
+	string PlayerName = 2;
+	int32 PlayerLv = 3;
+	int64 Hurt  = 4;
+	int32 Occ = 5;
+	int32 FubenId = 6;
 }

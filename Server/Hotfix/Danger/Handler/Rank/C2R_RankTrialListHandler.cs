@@ -31,13 +31,14 @@ namespace ET
                         continue;
                     }
                     UserInfoComponent userinfoComponent = (d2GGetUnit.Component as UserInfoComponent);
-                    response.RankList.Add(new RankingInfo()
+                    response.RankList.Add(new RankingTrialInfo()
                     { 
                         UserId = list[i].KeyId,
-                        Combat = list[i].Value,
+                        Hurt = list[i].Value,
+                        FubenId = (int)(list[i].Value2),
                         PlayerLv = userinfoComponent.UserInfo.Lv,
                         PlayerName = userinfoComponent.UserInfo.Name,   
-                        Occ = userinfoComponent.UserInfo.Occ
+                        Occ = userinfoComponent.UserInfo.Occ,
                     });
                 }
                 rankComponent.RankingTrialLastTime = TimeHelper.ServerNow();

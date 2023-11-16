@@ -700,6 +700,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long Value { get; set; }
 
+		[ProtoMember(3)]
+		public long Value2 { get; set; }
+
 	}
 
 	[Message(OuterOpcode.CreateRoleInfo)]
@@ -13552,7 +13555,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<RankingInfo> RankList = new List<RankingInfo>();
+		public List<RankingTrialInfo> RankList = new List<RankingTrialInfo>();
 
 	}
 
@@ -14173,6 +14176,30 @@ namespace ET
 	{
 		[ProtoMember(1)]
 		public List<RolePetInfo> PetList = new List<RolePetInfo>();
+
+	}
+
+	[Message(OuterOpcode.RankingTrialInfo)]
+	[ProtoContract]
+	public partial class RankingTrialInfo: Object
+	{
+		[ProtoMember(1)]
+		public long UserId { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public int PlayerLv { get; set; }
+
+		[ProtoMember(4)]
+		public long Hurt { get; set; }
+
+		[ProtoMember(5)]
+		public int Occ { get; set; }
+
+		[ProtoMember(6)]
+		public int FubenId { get; set; }
 
 	}
 

@@ -119,7 +119,7 @@ namespace ET
                 GameObject skillItem = GameObject.Instantiate(self.UITrialRankItem);
                 skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, self.RankListNode);
-                UIRankShowItemComponent uIItemComponent = self.AddChild<UIRankShowItemComponent, GameObject>(skillItem);
+                UITrialRankShowItemComponent uIItemComponent = self.AddChild<UITrialRankShowItemComponent, GameObject>(skillItem);
                 uIItemComponent.OnInitData(i + 1, r2C_Response.RankList[i]);
 
                 if (selfId == r2C_Response.RankList[i].UserId)

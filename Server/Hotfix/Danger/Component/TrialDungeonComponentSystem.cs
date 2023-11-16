@@ -58,12 +58,12 @@ namespace ET
             hurtValue = hurtValue / usetime;
 
             players[0].GetComponent<DataCollationComponent>().OnSceondHurt(hurtValue);
-
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
             R2M_RankTrialResponse Response = (R2M_RankTrialResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankTrialRequest()
                      {
-                         RankingInfo = new KeyValuePairLong() { KeyId = unitId, Value = hurtValue }
+                         RankingInfo = new KeyValuePairLong() { KeyId = unitId, Value = hurtValue, Value2 = mapComponent.SonSceneId }
                      });
             self.HurtValue = 0;
             await ETTask.CompletedTask;

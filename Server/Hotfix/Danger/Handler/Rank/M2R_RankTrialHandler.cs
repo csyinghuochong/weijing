@@ -26,9 +26,18 @@ namespace ET
             {
                 rankRunRace.Add(request.RankingInfo);
             }
+
+            ///试炼之塔排行先按照层树排序,层序一样按照秒伤 试炼排行榜得秒伤处也显示层数和秒伤,比如40层50000秒伤 显示格式为: 40层(50000/秒)
             rankRunRace.Sort(delegate (KeyValuePairLong a, KeyValuePairLong b)
             {
-                return (int)b.Value - (int)a.Value;
+                if (b.Value2 == a.Value2)
+                {
+                    return (int)b.Value2 - (int)a.Value2;
+                }
+                else
+                {
+                    return (int)b.Value - (int)a.Value;
+                }
             });
 
             int maxnumber = Math.Min(rankRunRace.Count, 100);
