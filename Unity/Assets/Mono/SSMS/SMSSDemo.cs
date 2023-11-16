@@ -25,11 +25,10 @@ public class SMSSDemo : MonoBehaviour, SMSSDKHandler
         smssdk.setHandler(this);
         //调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
         //smssdk.submitPolicyGrantResult(true);
-
 #if UNITY_ANDROID 
        tempCode = "3076936";
 #elif UNITY_IPHONE || UNITY_IOS
-       tempCode = "3076936";
+       tempCode = "8827552";
 #endif
     }
 
