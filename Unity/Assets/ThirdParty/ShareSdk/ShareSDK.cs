@@ -19,7 +19,7 @@ namespace cn.sharesdk.unity3d
 		//注:此处区分仅为demo测试而区分，实际使用时可以不区分安卓或iOS
 
 		/// <summary>
-		/// 切记 切记  安卓和ios的mob是分开的
+		/// 切记 切记  安卓和ios的mob是分开的 微信一样 qq区分
 		/// </summary>
 #if UNITY_ANDROID
 		[HideInInspector]
@@ -33,7 +33,6 @@ namespace cn.sharesdk.unity3d
 		public string appSecret = "a2c24f564def8b4a450a88491e5cc353";
         public List<string> customAssociatedDomains = new List<string>();
 #endif
-
         public DevInfoSet devInfo;
 		public ShareSDKImpl shareSDKUtils;
 

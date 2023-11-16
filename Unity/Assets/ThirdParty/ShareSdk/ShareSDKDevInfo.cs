@@ -50,7 +50,6 @@ namespace cn.sharesdk.unity3d
 		public string AppId = "1105893765";
 		public string AppKey = "8DpWsEXj40TfCKzz";
 		public bool ShareByAppClient = true;
-
         //========================================================
         //when you test QQ miniprogram, you should use this params
         //At the same time, the package name and signature should 
@@ -65,8 +64,8 @@ namespace cn.sharesdk.unity3d
         //========================================================
 #elif UNITY_IPHONE
 		public const int type = (int) PlatformType.QQ;
-		public string app_id = "1105893765";
-		public string app_key = "8DpWsEXj40TfCKzz";
+		public string app_id = "101883752";
+		public string app_key = "ab9d332ee43d3259991047c7796767dd";
 //		public string auth_type = "both";  //can pass "both","sso",or "web" 
 #endif
     }
@@ -82,8 +81,8 @@ namespace cn.sharesdk.unity3d
 		public bool ShareByAppClient = true;
 #elif UNITY_IPHONE
 		public const int type = (int) PlatformType.QZone;
-		public string app_id = "1105893765";
-		public string app_key = "8DpWsEXj40TfCKzz";
+		public string app_id = "101883752";
+		public string app_key = "ab9d332ee43d3259991047c7796767dd";
 //		public string auth_type = "both";  //can pass "both","sso",or "web" 
 #endif
     }
