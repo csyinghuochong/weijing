@@ -1043,9 +1043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
+  Development: 1
   EditorMode: 1
-  OueNetMode: 1
+  OueNetMode: 0
   BigVersion: 17
   BigVersionIOS: 17
   Updater: {fileID: 2018631435}
@@ -1093,47 +1093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appKey: 36af6e3967670
   appSecret: c2b2d9e1afdfd9f6e1cfb3a399d01703
-  devInfo:
-    sinaweibo:
-      Enable: 1
-      SortId: 4
-      AppKey: 4243223096
-      AppSecret: a94b60256e1652fdcb379984db56a158
-      RedirectUrl: http://www.sharesdk.cn
-      ShareByAppClient: 1
-    qq:
-      Enable: 1
-      SortId: 2
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
-      ShareByAppClient: 1
-    qzone:
-      Enable: 1
-      SortId: 1
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
-      ShareByAppClient: 1
-    wechat:
-      Enable: 1
-      SortId: 5
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
-      UserName: gh_afb25ac019c9@app
-      Path: /page/API/pages/share/share
-      BypassApproval: 0
-      WithShareTicket: 1
-      MiniprogramType: 0
-    wechatMoments:
-      Enable: 1
-      SortId: 6
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
-      BypassApproval: 1
-    wechatFavorites:
-      Enable: 1
-      SortId: 7
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
