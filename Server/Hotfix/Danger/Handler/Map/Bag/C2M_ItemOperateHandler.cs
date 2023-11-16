@@ -68,7 +68,7 @@ namespace ET
                     int costNumber = 1;
                     bool bagIsFull = false;
                     List<RewardItem> droplist = new List<RewardItem>();
-                    if (itemConfig.ItemSubType == 8)
+                    if (itemConfig.ItemSubType == 8)   //碎片兑换
                     {
                         string[] duihuanparams = itemConfig.ItemUsePar.Split(';');
                         int neednum = int.Parse(duihuanparams[0]);
@@ -79,7 +79,7 @@ namespace ET
                             return;
                         }
                     }
-                    if (itemConfig.ItemSubType == 9)
+                    if (itemConfig.ItemSubType == 9)   //充值达到一定额度开启宝箱获得道具
                     { 
                         string[] itemPar = itemConfig.ItemUsePar.Split(';');
                         if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) < long.Parse(itemPar[0]))
@@ -89,14 +89,14 @@ namespace ET
                             return;
                         }
                     }
-                    if (itemConfig.ItemSubType == 102 || (itemConfig.ItemSubType == 103))
+                    if (itemConfig.ItemSubType == 102 || (itemConfig.ItemSubType == 103))  //宠物蛋(点击使用直接获得1个宠物)
                     {
                         if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
                         {
                             bagIsFull = true;
                         }
                     }
-                    if (itemConfig.ItemSubType == 104)
+                    if (itemConfig.ItemSubType == 104)  //随机道具盒子
                     {
                         int dropid = int.Parse(itemConfig.ItemUsePar);
                         droplist = new List<RewardItem>();
@@ -107,7 +107,7 @@ namespace ET
                         }
                     }
 
-                    if (itemConfig.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneId != 2000001)
+                    if (itemConfig.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneId != 2000001) // 领主怪物召唤
                     {
                         response.Error = ErrorCode.ERR_ItemOnlyUseMiJing;
                         reply();
@@ -119,7 +119,7 @@ namespace ET
                     {
                         costNumber = 0;
                     }
-                    if (itemConfig.ItemSubType == 112)
+                    if (itemConfig.ItemSubType == 112)   //经验木桩
                     {
                         int openDay = DBHelper.GetOpenServerDay(unit.DomainZone());
                         if (openDay <= 1)
