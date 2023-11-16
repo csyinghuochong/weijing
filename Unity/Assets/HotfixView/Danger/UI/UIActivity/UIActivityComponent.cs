@@ -10,7 +10,7 @@ namespace ET
 		MaoXian = 1,
 		Token = 2,
 		TeHui = 3,
-		Recharge = 4,
+
 		Number,
 	}
 
@@ -44,13 +44,11 @@ namespace ET
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.MaoXian] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityMaoXian");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.Token] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityToken");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.TeHui] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityTeHui");
-			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.Recharge] = ABPathHelper.GetUGUIPath("Main/Recharge/UIRecharge");
 
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.YueKa] = typeof(UIActivityYueKaComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.MaoXian] = typeof(UIActivityMaoXianComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.Token] = typeof(UIActivityTokenComponent );
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.TeHui] = typeof(UIActivityTeHuiComponent);
-			pageViewComponent.UISubViewType[(int)ActivityPageEnum.Recharge] = typeof(UIRechargeComponent);
 			self.UIPageView = pageViewComponent;
 
 			//单选组件

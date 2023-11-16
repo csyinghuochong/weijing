@@ -99,6 +99,7 @@ namespace ET
         public GameObject Btn_Battle;
         public GameObject Btn_TopRight_2;
         public GameObject Btn_TopRight_1;
+        public GameObject Button_Recharge;
         public GameObject Btn_Rank;
         public GameObject UGuaJiSet;
         public GameObject Btn_StopGuaJi;
@@ -318,7 +319,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_ZhanQu, self.OnButton_ZhanQu);
             //int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             //Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
-            
+
+            self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
+            ButtonHelp.AddListenerEx(self.Button_Recharge, self.OnButton_Recharge);
 
             self.Btn_Rank = rc.Get<GameObject>("Btn_Rank");
             ButtonHelp.AddListenerEx(self.Btn_Rank, () => { self.OnBtn_Rank(); });
@@ -1259,6 +1262,9 @@ namespace ET
                 case 1066:
                     self.Btn_HuoDong.SetActive(showButton);
                     break;
+                case 1065:
+                    self.Button_Recharge.SetActive(showButton);
+                    break;
                 case 1064:
                     self.Btn_EveryTask.SetActive(showButton);
                     break;
@@ -2083,6 +2089,11 @@ namespace ET
         public static void OnButton_ZhanQu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIZhanQu).Coroutine();
+        }
+
+        public static void OnButton_Recharge(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine();
         }
 
         public static void OnBtn_Rank(this UIMainComponent self)
