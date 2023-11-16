@@ -4,7 +4,7 @@ using System;
 
 namespace cn.sharesdk.unity3d 
 {
-	[Serializable]
+	[HideInInspector]
 	public class DevInfoSet
 	{
 		public SinaWeiboDevInfo sinaweibo;
@@ -15,13 +15,13 @@ namespace cn.sharesdk.unity3d
 		public WeChatFavorites wechatFavorites;
     }
 
-    [Serializable]
+    [HideInInspector]
     public class DevInfo 
 	{	
 		public bool Enable = true;
 	}
 
-    [Serializable]
+    [HideInInspector]
     public class SinaWeiboDevInfo : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -41,7 +41,7 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[Serializable]
+	[HideInInspector]
 	public class QQ : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -70,7 +70,7 @@ namespace cn.sharesdk.unity3d
 #endif
     }
 
-    [Serializable]
+    [HideInInspector]
 	public class QZone : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -88,7 +88,7 @@ namespace cn.sharesdk.unity3d
     }
 
 
-    [Serializable]
+    [HideInInspector]
 	public class WeChat : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -109,7 +109,7 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[Serializable]
+	[HideInInspector]
 	public class WeChatMoments : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -126,7 +126,7 @@ namespace cn.sharesdk.unity3d
 #endif
 	}
 
-	[Serializable]
+	[HideInInspector]
 	public class WeChatFavorites : DevInfo 
 	{
 #if UNITY_ANDROID
@@ -143,7 +143,7 @@ namespace cn.sharesdk.unity3d
 	}
 
 	// 下列为闭环分享相关类
-	[Serializable]
+	[HideInInspector]
     public class RestoreSceneConfigure
     {
         public bool Enable = false;
