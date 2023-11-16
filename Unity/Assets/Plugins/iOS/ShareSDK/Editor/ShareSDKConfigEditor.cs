@@ -203,7 +203,7 @@ namespace cn.sharesdk.unity3d
 					enablePlatforms.Add (platformId,appkey);
 
                     savePlatformInfoWithId(platformId, info, deviceInfoPlatforms);
-                    
+
                     if (info.GetType().GetField("app_universalLink") != null)
                     {
                         string app_universalLink = GetValueByName(info, "app_universalLink");
