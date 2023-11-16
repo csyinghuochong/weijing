@@ -48,23 +48,16 @@ namespace ET
         public static void OnInitUI(this UIItemBatchUseComponent self, BagInfo bagInfo)
         {
             self.BagInfo = bagInfo;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            string[] expInfos = itemConfig.ItemUsePar.Split('@');
             self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.UpdateNumber();
         }
 
-        public static long UpdateNumber(this UIItemBatchUseComponent self)
+        public static void UpdateNumber(this UIItemBatchUseComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             self.BagInfo = bagComponent.GetBagInfo(self.BagInfo.BagInfoID);
-            if (self.BagInfo == null)
-            {
-                return 0;
-            }
-
             self.Label_ItemNum.GetComponent<Text>().text = self.BagInfo.ItemNum.ToString();
-            return self.BagInfo.ItemNum;
+            self.PriceInputField.text = self.BagInfo.ItemNum.ToString();
         }
 
         public static async ETTask OnBtn_Open(this UIItemBatchUseComponent self)
@@ -84,9 +77,9 @@ namespace ET
             {
                 return;
             }
-            
+
             self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, useNum.ToString()).Coroutine();
-            
+
             UIHelper.Remove(self.ZoneScene(), UIType.UIItemBatchUse);
         }
 
