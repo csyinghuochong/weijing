@@ -29,7 +29,7 @@ namespace ET
                     rankRunRace[i].Value = request.RankingInfo.Value;
                     rankRunRace[i].Value2 = request.RankingInfo.Value2;
                 }
-                if(rankRunRace[i].Value2 == request.RankingInfo.Value2)
+                else
                 {
                     rankRunRace[i].Value = Math.Max(rankRunRace[i].Value, request.RankingInfo.Value);
                 }
