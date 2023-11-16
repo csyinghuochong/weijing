@@ -5306,45 +5306,17 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Matrix4x4
 
-		//System.Boolean UnityEngine.Matrix4x4::Inverse3DAffine_Injected(UnityEngine.Matrix4x4&,UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_Inverse3DAffine_Injected();
-		Register_UnityEngine_Matrix4x4_Inverse3DAffine_Injected();
-
-		//System.Boolean UnityEngine.Matrix4x4::IsIdentity_Injected(UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_IsIdentity_Injected();
-		Register_UnityEngine_Matrix4x4_IsIdentity_Injected();
-
-		//System.Boolean UnityEngine.Matrix4x4::ValidTRS_Injected(UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_ValidTRS_Injected();
-		Register_UnityEngine_Matrix4x4_ValidTRS_Injected();
-
-		//System.Single UnityEngine.Matrix4x4::GetDeterminant_Injected(UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_GetDeterminant_Injected();
-		Register_UnityEngine_Matrix4x4_GetDeterminant_Injected();
-
 		//System.Void UnityEngine.Matrix4x4::DecomposeProjection_Injected(UnityEngine.Matrix4x4&,UnityEngine.FrustumPlanes&)
 		void Register_UnityEngine_Matrix4x4_DecomposeProjection_Injected();
 		Register_UnityEngine_Matrix4x4_DecomposeProjection_Injected();
-
-		//System.Void UnityEngine.Matrix4x4::Frustum_Injected(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_Frustum_Injected();
-		Register_UnityEngine_Matrix4x4_Frustum_Injected();
 
 		//System.Void UnityEngine.Matrix4x4::GetLossyScale_Injected(UnityEngine.Matrix4x4&,UnityEngine.Vector3&)
 		void Register_UnityEngine_Matrix4x4_GetLossyScale_Injected();
 		Register_UnityEngine_Matrix4x4_GetLossyScale_Injected();
 
-		//System.Void UnityEngine.Matrix4x4::GetRotation_Injected(UnityEngine.Matrix4x4&,UnityEngine.Quaternion&)
-		void Register_UnityEngine_Matrix4x4_GetRotation_Injected();
-		Register_UnityEngine_Matrix4x4_GetRotation_Injected();
-
 		//System.Void UnityEngine.Matrix4x4::Inverse_Injected(UnityEngine.Matrix4x4&,UnityEngine.Matrix4x4&)
 		void Register_UnityEngine_Matrix4x4_Inverse_Injected();
 		Register_UnityEngine_Matrix4x4_Inverse_Injected();
-
-		//System.Void UnityEngine.Matrix4x4::LookAt_Injected(UnityEngine.Vector3&,UnityEngine.Vector3&,UnityEngine.Vector3&,UnityEngine.Matrix4x4&)
-		void Register_UnityEngine_Matrix4x4_LookAt_Injected();
-		Register_UnityEngine_Matrix4x4_LookAt_Injected();
 
 		//System.Void UnityEngine.Matrix4x4::Ortho_Injected(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,UnityEngine.Matrix4x4&)
 		void Register_UnityEngine_Matrix4x4_Ortho_Injected();
@@ -7250,125 +7222,17 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Profiling.Profiler
 
-		//System.Boolean UnityEngine.Profiling.Profiler::GetAreaEnabled(UnityEngine.Profiling.ProfilerArea)
-		void Register_UnityEngine_Profiling_Profiler_GetAreaEnabled();
-		Register_UnityEngine_Profiling_Profiler_GetAreaEnabled();
-
-		//System.Boolean UnityEngine.Profiling.Profiler::SetTempAllocatorRequestedSize(System.UInt32)
-		void Register_UnityEngine_Profiling_Profiler_SetTempAllocatorRequestedSize();
-		Register_UnityEngine_Profiling_Profiler_SetTempAllocatorRequestedSize();
-
-		//System.Boolean UnityEngine.Profiling.Profiler::get_enableAllocationCallstacks()
-		void Register_UnityEngine_Profiling_Profiler_get_enableAllocationCallstacks();
-		Register_UnityEngine_Profiling_Profiler_get_enableAllocationCallstacks();
-
-		//System.Boolean UnityEngine.Profiling.Profiler::get_enableBinaryLog()
-		void Register_UnityEngine_Profiling_Profiler_get_enableBinaryLog();
-		Register_UnityEngine_Profiling_Profiler_get_enableBinaryLog();
-
-		//System.Boolean UnityEngine.Profiling.Profiler::get_enabled()
-		void Register_UnityEngine_Profiling_Profiler_get_enabled();
-		Register_UnityEngine_Profiling_Profiler_get_enabled();
-
-		//System.Boolean UnityEngine.Profiling.Profiler::get_supported()
-		void Register_UnityEngine_Profiling_Profiler_get_supported();
-		Register_UnityEngine_Profiling_Profiler_get_supported();
-
-		//System.Int32 UnityEngine.Profiling.Profiler::get_maxUsedMemory()
-		void Register_UnityEngine_Profiling_Profiler_get_maxUsedMemory();
-		Register_UnityEngine_Profiling_Profiler_get_maxUsedMemory();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetAllocatedMemoryForGraphicsDriver()
-		void Register_UnityEngine_Profiling_Profiler_GetAllocatedMemoryForGraphicsDriver();
-		Register_UnityEngine_Profiling_Profiler_GetAllocatedMemoryForGraphicsDriver();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetMonoHeapSizeLong()
-		void Register_UnityEngine_Profiling_Profiler_GetMonoHeapSizeLong();
-		Register_UnityEngine_Profiling_Profiler_GetMonoHeapSizeLong();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetMonoUsedSizeLong()
-		void Register_UnityEngine_Profiling_Profiler_GetMonoUsedSizeLong();
-		Register_UnityEngine_Profiling_Profiler_GetMonoUsedSizeLong();
-
 		//System.Int64 UnityEngine.Profiling.Profiler::GetRuntimeMemorySizeLong(UnityEngine.Object)
 		void Register_UnityEngine_Profiling_Profiler_GetRuntimeMemorySizeLong();
 		Register_UnityEngine_Profiling_Profiler_GetRuntimeMemorySizeLong();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalAllocatedMemoryLong()
-		void Register_UnityEngine_Profiling_Profiler_GetTotalAllocatedMemoryLong();
-		Register_UnityEngine_Profiling_Profiler_GetTotalAllocatedMemoryLong();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalReservedMemoryLong()
-		void Register_UnityEngine_Profiling_Profiler_GetTotalReservedMemoryLong();
-		Register_UnityEngine_Profiling_Profiler_GetTotalReservedMemoryLong();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalUnusedReservedMemoryLong()
-		void Register_UnityEngine_Profiling_Profiler_GetTotalUnusedReservedMemoryLong();
-		Register_UnityEngine_Profiling_Profiler_GetTotalUnusedReservedMemoryLong();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::InternalGetTotalFragmentationInfo(System.IntPtr,System.Int32)
-		void Register_UnityEngine_Profiling_Profiler_InternalGetTotalFragmentationInfo();
-		Register_UnityEngine_Profiling_Profiler_InternalGetTotalFragmentationInfo();
-
-		//System.Int64 UnityEngine.Profiling.Profiler::get_usedHeapSizeLong()
-		void Register_UnityEngine_Profiling_Profiler_get_usedHeapSizeLong();
-		Register_UnityEngine_Profiling_Profiler_get_usedHeapSizeLong();
-
-		//System.String UnityEngine.Profiling.Profiler::get_logFile()
-		void Register_UnityEngine_Profiling_Profiler_get_logFile();
-		Register_UnityEngine_Profiling_Profiler_get_logFile();
-
-		//System.UInt32 UnityEngine.Profiling.Profiler::GetTempAllocatorSize()
-		void Register_UnityEngine_Profiling_Profiler_GetTempAllocatorSize();
-		Register_UnityEngine_Profiling_Profiler_GetTempAllocatorSize();
-
-		//System.Void UnityEngine.Profiling.Profiler::AddFramesFromFile_Internal(System.String,System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_AddFramesFromFile_Internal();
-		Register_UnityEngine_Profiling_Profiler_AddFramesFromFile_Internal();
 
 		//System.Void UnityEngine.Profiling.Profiler::BeginSampleImpl(System.String,UnityEngine.Object)
 		void Register_UnityEngine_Profiling_Profiler_BeginSampleImpl();
 		Register_UnityEngine_Profiling_Profiler_BeginSampleImpl();
 
-		//System.Void UnityEngine.Profiling.Profiler::BeginThreadProfilingInternal(System.String,System.String)
-		void Register_UnityEngine_Profiling_Profiler_BeginThreadProfilingInternal();
-		Register_UnityEngine_Profiling_Profiler_BeginThreadProfilingInternal();
-
 		//System.Void UnityEngine.Profiling.Profiler::EndSample()
 		void Register_UnityEngine_Profiling_Profiler_EndSample();
 		Register_UnityEngine_Profiling_Profiler_EndSample();
-
-		//System.Void UnityEngine.Profiling.Profiler::Internal_EmitGlobalMetaData_Array(System.Void*,System.Int32,System.Int32,System.Array,System.Int32,System.Int32,System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Array();
-		Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Array();
-
-		//System.Void UnityEngine.Profiling.Profiler::Internal_EmitGlobalMetaData_Native(System.Void*,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Native();
-		Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Native();
-
-		//System.Void UnityEngine.Profiling.Profiler::SetAreaEnabled(UnityEngine.Profiling.ProfilerArea,System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_SetAreaEnabled();
-		Register_UnityEngine_Profiling_Profiler_SetAreaEnabled();
-
-		//System.Void UnityEngine.Profiling.Profiler::set_enableAllocationCallstacks(System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_set_enableAllocationCallstacks();
-		Register_UnityEngine_Profiling_Profiler_set_enableAllocationCallstacks();
-
-		//System.Void UnityEngine.Profiling.Profiler::set_enableBinaryLog(System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_set_enableBinaryLog();
-		Register_UnityEngine_Profiling_Profiler_set_enableBinaryLog();
-
-		//System.Void UnityEngine.Profiling.Profiler::set_enabled(System.Boolean)
-		void Register_UnityEngine_Profiling_Profiler_set_enabled();
-		Register_UnityEngine_Profiling_Profiler_set_enabled();
-
-		//System.Void UnityEngine.Profiling.Profiler::set_logFile(System.String)
-		void Register_UnityEngine_Profiling_Profiler_set_logFile();
-		Register_UnityEngine_Profiling_Profiler_set_logFile();
-
-		//System.Void UnityEngine.Profiling.Profiler::set_maxUsedMemory(System.Int32)
-		void Register_UnityEngine_Profiling_Profiler_set_maxUsedMemory();
-		Register_UnityEngine_Profiling_Profiler_set_maxUsedMemory();
 
 	//End Registrations for type : UnityEngine.Profiling.Profiler
 
@@ -10594,9 +10458,17 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_TextGenerator_get_characterCount();
 		Register_UnityEngine_TextGenerator_get_characterCount();
 
+		//System.Int32 UnityEngine.TextGenerator::get_fontSizeUsedForBestFit()
+		void Register_UnityEngine_TextGenerator_get_fontSizeUsedForBestFit();
+		Register_UnityEngine_TextGenerator_get_fontSizeUsedForBestFit();
+
 		//System.Int32 UnityEngine.TextGenerator::get_lineCount()
 		void Register_UnityEngine_TextGenerator_get_lineCount();
 		Register_UnityEngine_TextGenerator_get_lineCount();
+
+		//System.Int32 UnityEngine.TextGenerator::get_vertexCount()
+		void Register_UnityEngine_TextGenerator_get_vertexCount();
+		Register_UnityEngine_TextGenerator_get_vertexCount();
 
 		//System.IntPtr UnityEngine.TextGenerator::Internal_Create()
 		void Register_UnityEngine_TextGenerator_Internal_Create();
@@ -10621,6 +10493,18 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.TextGenerator::get_rectExtents_Injected(UnityEngine.Rect&)
 		void Register_UnityEngine_TextGenerator_get_rectExtents_Injected();
 		Register_UnityEngine_TextGenerator_get_rectExtents_Injected();
+
+		//UnityEngine.UICharInfo[] UnityEngine.TextGenerator::GetCharactersArray()
+		void Register_UnityEngine_TextGenerator_GetCharactersArray();
+		Register_UnityEngine_TextGenerator_GetCharactersArray();
+
+		//UnityEngine.UILineInfo[] UnityEngine.TextGenerator::GetLinesArray()
+		void Register_UnityEngine_TextGenerator_GetLinesArray();
+		Register_UnityEngine_TextGenerator_GetLinesArray();
+
+		//UnityEngine.UIVertex[] UnityEngine.TextGenerator::GetVerticesArray()
+		void Register_UnityEngine_TextGenerator_GetVerticesArray();
+		Register_UnityEngine_TextGenerator_GetVerticesArray();
 
 	//End Registrations for type : UnityEngine.TextGenerator
 

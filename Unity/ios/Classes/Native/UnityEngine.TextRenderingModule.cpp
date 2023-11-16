@@ -146,6 +146,9 @@ struct TextGenerationSettings_tAD927E4DCB8644B1B2BB810B5FB13C90B753898A_marshale
 
 struct DelegateU5BU5D_t677D8FE08A5F99E8EE49150B73966CD6E9BF7DB8;
 struct ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE;
+struct UICharInfoU5BU5D_t5B6AEA3245EC021FAA20582D295434FF61FBF1F0;
+struct UILineInfoU5BU5D_tBE1D9E4EC8C7A5A1F98B7CCF93D8A8A2FF9B2F69;
+struct UIVertexU5BU5D_tE3D523C48DFEBC775876720DE2539A79FB7E5E5A;
 
 IL2CPP_EXTERN_C_BEGIN
 IL2CPP_EXTERN_C_END
@@ -2289,6 +2292,111 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)m_Items + index, (void*)value);
 	}
 };
+// UnityEngine.UIVertex[]
+struct UIVertexU5BU5D_tE3D523C48DFEBC775876720DE2539A79FB7E5E5A  : public RuntimeArray
+{
+public:
+	ALIGN_FIELD (8) UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A  m_Items[1];
+
+public:
+	inline UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A  GetAt(il2cpp_array_size_t index) const
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items[index];
+	}
+	inline UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A * GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + index;
+	}
+	inline void SetAt(il2cpp_array_size_t index, UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A  value)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		m_Items[index] = value;
+	}
+	inline UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A  GetAtUnchecked(il2cpp_array_size_t index) const
+	{
+		return m_Items[index];
+	}
+	inline UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A * GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + index;
+	}
+	inline void SetAtUnchecked(il2cpp_array_size_t index, UIVertex_tD94AAC5F0B42DBC441AAA8ADBFCFF9E5C320C03A  value)
+	{
+		m_Items[index] = value;
+	}
+};
+// UnityEngine.UICharInfo[]
+struct UICharInfoU5BU5D_t5B6AEA3245EC021FAA20582D295434FF61FBF1F0  : public RuntimeArray
+{
+public:
+	ALIGN_FIELD (8) UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A  m_Items[1];
+
+public:
+	inline UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A  GetAt(il2cpp_array_size_t index) const
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items[index];
+	}
+	inline UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A * GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + index;
+	}
+	inline void SetAt(il2cpp_array_size_t index, UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A  value)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		m_Items[index] = value;
+	}
+	inline UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A  GetAtUnchecked(il2cpp_array_size_t index) const
+	{
+		return m_Items[index];
+	}
+	inline UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A * GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + index;
+	}
+	inline void SetAtUnchecked(il2cpp_array_size_t index, UICharInfo_tDEA65B831FAD06D1E9B10A6088E05C6D615B089A  value)
+	{
+		m_Items[index] = value;
+	}
+};
+// UnityEngine.UILineInfo[]
+struct UILineInfoU5BU5D_tBE1D9E4EC8C7A5A1F98B7CCF93D8A8A2FF9B2F69  : public RuntimeArray
+{
+public:
+	ALIGN_FIELD (8) UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C  m_Items[1];
+
+public:
+	inline UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C  GetAt(il2cpp_array_size_t index) const
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items[index];
+	}
+	inline UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C * GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + index;
+	}
+	inline void SetAt(il2cpp_array_size_t index, UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C  value)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		m_Items[index] = value;
+	}
+	inline UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C  GetAtUnchecked(il2cpp_array_size_t index) const
+	{
+		return m_Items[index];
+	}
+	inline UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C * GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + index;
+	}
+	inline void SetAtUnchecked(il2cpp_array_size_t index, UILineInfo_tD082FF4894030AD4EBF57ACF6A997135E4B8B67C  value)
+	{
+		m_Items[index] = value;
+	}
+};
 // System.Delegate[]
 struct DelegateU5BU5D_t677D8FE08A5F99E8EE49150B73966CD6E9BF7DB8  : public RuntimeArray
 {
@@ -3928,6 +4036,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Rect_t7D9187DB6339DBA5741C09B6CCEF2F54F196687
 		return L_0;
 	}
 }
+// System.Int32 UnityEngine.TextGenerator::get_vertexCount()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t TextGenerator_get_vertexCount_m299B18C4DDB3856BBFE165B56D52C867327D6491 (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
+{
+	typedef int32_t (*TextGenerator_get_vertexCount_m299B18C4DDB3856BBFE165B56D52C867327D6491_ftn) (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 *);
+	static TextGenerator_get_vertexCount_m299B18C4DDB3856BBFE165B56D52C867327D6491_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (TextGenerator_get_vertexCount_m299B18C4DDB3856BBFE165B56D52C867327D6491_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::get_vertexCount()");
+	int32_t icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
 // System.Int32 UnityEngine.TextGenerator::get_characterCount()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t TextGenerator_get_characterCount_mD4396E0258CB4E23B8ADA5F869504A69CA34580B (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
 {
@@ -3945,6 +4063,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t TextGenerator_get_lineCount_m20F52972
 	static TextGenerator_get_lineCount_m20F5297212E59393F574E277D9A5E5843E72FD6A_ftn _il2cpp_icall_func;
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (TextGenerator_get_lineCount_m20F5297212E59393F574E277D9A5E5843E72FD6A_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::get_lineCount()");
+	int32_t icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
+// System.Int32 UnityEngine.TextGenerator::get_fontSizeUsedForBestFit()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t TextGenerator_get_fontSizeUsedForBestFit_m9DAE6BEFDB57CBBAF37DAF8425AA3E7E8D82AC13 (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
+{
+	typedef int32_t (*TextGenerator_get_fontSizeUsedForBestFit_m9DAE6BEFDB57CBBAF37DAF8425AA3E7E8D82AC13_ftn) (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 *);
+	static TextGenerator_get_fontSizeUsedForBestFit_m9DAE6BEFDB57CBBAF37DAF8425AA3E7E8D82AC13_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (TextGenerator_get_fontSizeUsedForBestFit_m9DAE6BEFDB57CBBAF37DAF8425AA3E7E8D82AC13_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::get_fontSizeUsedForBestFit()");
 	int32_t icallRetVal = _il2cpp_icall_func(__this);
 	return icallRetVal;
 }
@@ -4073,6 +4201,36 @@ IL_0063:
 		bool L_33 = V_3;
 		return L_33;
 	}
+}
+// UnityEngine.UIVertex[] UnityEngine.TextGenerator::GetVerticesArray()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UIVertexU5BU5D_tE3D523C48DFEBC775876720DE2539A79FB7E5E5A* TextGenerator_GetVerticesArray_m395FE697DE16C10751B46DA29FD568D51A5E0068 (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
+{
+	typedef UIVertexU5BU5D_tE3D523C48DFEBC775876720DE2539A79FB7E5E5A* (*TextGenerator_GetVerticesArray_m395FE697DE16C10751B46DA29FD568D51A5E0068_ftn) (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 *);
+	static TextGenerator_GetVerticesArray_m395FE697DE16C10751B46DA29FD568D51A5E0068_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (TextGenerator_GetVerticesArray_m395FE697DE16C10751B46DA29FD568D51A5E0068_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::GetVerticesArray()");
+	UIVertexU5BU5D_tE3D523C48DFEBC775876720DE2539A79FB7E5E5A* icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
+// UnityEngine.UICharInfo[] UnityEngine.TextGenerator::GetCharactersArray()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UICharInfoU5BU5D_t5B6AEA3245EC021FAA20582D295434FF61FBF1F0* TextGenerator_GetCharactersArray_m173024631D67E56AB5EF6395B5FB475F4232D0CE (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
+{
+	typedef UICharInfoU5BU5D_t5B6AEA3245EC021FAA20582D295434FF61FBF1F0* (*TextGenerator_GetCharactersArray_m173024631D67E56AB5EF6395B5FB475F4232D0CE_ftn) (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 *);
+	static TextGenerator_GetCharactersArray_m173024631D67E56AB5EF6395B5FB475F4232D0CE_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (TextGenerator_GetCharactersArray_m173024631D67E56AB5EF6395B5FB475F4232D0CE_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::GetCharactersArray()");
+	UICharInfoU5BU5D_t5B6AEA3245EC021FAA20582D295434FF61FBF1F0* icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
+// UnityEngine.UILineInfo[] UnityEngine.TextGenerator::GetLinesArray()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UILineInfoU5BU5D_tBE1D9E4EC8C7A5A1F98B7CCF93D8A8A2FF9B2F69* TextGenerator_GetLinesArray_mE236570EC0CADE9F024A142BCD01FA1535976F9E (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, const RuntimeMethod* method)
+{
+	typedef UILineInfoU5BU5D_tBE1D9E4EC8C7A5A1F98B7CCF93D8A8A2FF9B2F69* (*TextGenerator_GetLinesArray_mE236570EC0CADE9F024A142BCD01FA1535976F9E_ftn) (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 *);
+	static TextGenerator_GetLinesArray_mE236570EC0CADE9F024A142BCD01FA1535976F9E_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (TextGenerator_GetLinesArray_mE236570EC0CADE9F024A142BCD01FA1535976F9E_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TextGenerator::GetLinesArray()");
+	UILineInfoU5BU5D_tBE1D9E4EC8C7A5A1F98B7CCF93D8A8A2FF9B2F69* icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
 }
 // System.Void UnityEngine.TextGenerator::GetVerticesInternal(System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextGenerator_GetVerticesInternal_m1090ABB82FD178A8D32D6D37907E9D04B940E1D8 (TextGenerator_t893F256D3587633108E00E5731CDC5A77AFF1B70 * __this, RuntimeObject * ___vertices0, const RuntimeMethod* method)

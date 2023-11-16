@@ -125,24 +125,6 @@ struct Enum_t23B90B40F60E677A8025267341651C94AE079CDA_marshaled_com
 {
 };
 
-// System.Int32
-struct Int32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046 
-{
-public:
-	// System.Int32 System.Int32::m_value
-	int32_t ___m_value_0;
-
-public:
-	inline static int32_t get_offset_of_m_value_0() { return static_cast<int32_t>(offsetof(Int32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046, ___m_value_0)); }
-	inline int32_t get_m_value_0() const { return ___m_value_0; }
-	inline int32_t* get_address_of_m_value_0() { return &___m_value_0; }
-	inline void set_m_value_0(int32_t value)
-	{
-		___m_value_0 = value;
-	}
-};
-
-
 // HybridCLR.HomologousImageMode
 struct HomologousImageMode_tEA044A6CF7B5DEFFAC4ED4B7A6781729F02805E9 
 {
@@ -219,9 +201,6 @@ public:
 
 
 
-// System.Int32 HybridCLR.RuntimeApi::LoadMetadataForAOTAssembly(System.Byte*,System.Int32,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t RuntimeApi_LoadMetadataForAOTAssembly_m01FA4A32F569884A3A7A32431AF4516B5B6F912B (uint8_t* ___dllBytes0, int32_t ___dllSize1, int32_t ___mode2, const RuntimeMethod* method);
-IL2CPP_EXTERN_C int32_t DEFAULT_CALL RuntimeApi_LoadMetadataForAOTAssembly(uint8_t*, int32_t, int32_t);
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
@@ -254,61 +233,12 @@ IL2CPP_EXTERN_C int32_t DEFAULT_CALL RuntimeApi_LoadMetadataForAOTAssembly(uint8
 // HybridCLR.LoadImageErrorCode HybridCLR.RuntimeApi::LoadMetadataForAOTAssembly(System.Byte[],HybridCLR.HomologousImageMode)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t RuntimeApi_LoadMetadataForAOTAssembly_m95C2994E990D0C309A122ADD676F6AA87B3D42B6 (ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* ___dllBytes0, int32_t ___mode1, const RuntimeMethod* method)
 {
-	uint8_t* V_0 = NULL;
-	ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* V_1 = NULL;
-	{
-		// fixed(byte* data = dllBytes)
-		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_0 = ___dllBytes0;
-		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_1 = L_0;
-		V_1 = L_1;
-		if (!L_1)
-		{
-			goto IL_000a;
-		}
-	}
-	{
-		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_2 = V_1;
-		NullCheck(L_2);
-		if (((int32_t)((int32_t)(((RuntimeArray*)L_2)->max_length))))
-		{
-			goto IL_000f;
-		}
-	}
-
-IL_000a:
-	{
-		V_0 = (uint8_t*)((uintptr_t)0);
-		goto IL_0018;
-	}
-
-IL_000f:
-	{
-		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_3 = V_1;
-		NullCheck(L_3);
-		V_0 = (uint8_t*)((uintptr_t)((L_3)->GetAddressAt(static_cast<il2cpp_array_size_t>(0))));
-	}
-
-IL_0018:
-	{
-		// return (LoadImageErrorCode)LoadMetadataForAOTAssembly(data, dllBytes.Length, (int)mode);
-		uint8_t* L_4 = V_0;
-		ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726* L_5 = ___dllBytes0;
-		NullCheck(L_5);
-		int32_t L_6 = ___mode1;
-		int32_t L_7;
-		L_7 = RuntimeApi_LoadMetadataForAOTAssembly_m01FA4A32F569884A3A7A32431AF4516B5B6F912B((uint8_t*)(uint8_t*)L_4, ((int32_t)((int32_t)(((RuntimeArray*)L_5)->max_length))), L_6, /*hidden argument*/NULL);
-		return (int32_t)(L_7);
-	}
-}
-// System.Int32 HybridCLR.RuntimeApi::LoadMetadataForAOTAssembly(System.Byte*,System.Int32,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t RuntimeApi_LoadMetadataForAOTAssembly_m01FA4A32F569884A3A7A32431AF4516B5B6F912B (uint8_t* ___dllBytes0, int32_t ___dllSize1, int32_t ___mode2, const RuntimeMethod* method)
-{
-	typedef int32_t (DEFAULT_CALL *PInvokeFunc) (uint8_t*, int32_t, int32_t);
-
-	// Native function invocation
-	int32_t returnValue = reinterpret_cast<PInvokeFunc>(RuntimeApi_LoadMetadataForAOTAssembly)(___dllBytes0, ___dllSize1, ___mode2);
-
-	return returnValue;
+	typedef int32_t (*RuntimeApi_LoadMetadataForAOTAssembly_m95C2994E990D0C309A122ADD676F6AA87B3D42B6_ftn) (ByteU5BU5D_tDBBEB0E8362242FA7223000D978B0DD19D4B0726*, int32_t);
+	static RuntimeApi_LoadMetadataForAOTAssembly_m95C2994E990D0C309A122ADD676F6AA87B3D42B6_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (RuntimeApi_LoadMetadataForAOTAssembly_m95C2994E990D0C309A122ADD676F6AA87B3D42B6_ftn)il2cpp_codegen_resolve_icall ("HybridCLR.RuntimeApi::LoadMetadataForAOTAssembly(System.Byte[],HybridCLR.HomologousImageMode)");
+	int32_t icallRetVal = _il2cpp_icall_func(___dllBytes0, ___mode1);
+	return icallRetVal;
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

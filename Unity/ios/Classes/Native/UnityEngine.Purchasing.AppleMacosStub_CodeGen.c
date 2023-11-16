@@ -44,15 +44,15 @@ static Il2CppMethodPointer s_methodPointers[9] =
 };
 static const int32_t s_InvokerIndices[9] = 
 {
-	7853,
-	9357,
-	9357,
-	7853,
-	4724,
-	4724,
-	9250,
-	9357,
-	9357,
+	7855,
+	9359,
+	9359,
+	7855,
+	4726,
+	4726,
+	9252,
+	9359,
+	9359,
 };
 extern const CustomAttributesCacheGenerator g_UnityEngine_Purchasing_AppleMacosStub_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_Purchasing_AppleMacosStub_CodeGenModule;
