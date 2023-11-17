@@ -39,7 +39,7 @@ namespace ET
             self.Btn_Add.GetComponent<Button>().onClick.AddListener(self.OnBtn_Add);
 
             self.Btn_Open = rc.Get<GameObject>("Btn_Open");
-            self.Btn_Open.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Open().Coroutine(); });
+            self.Btn_Open.GetComponent<Button>().onClick.AddListener(self.OnBtn_Open);
         }
     }
 
@@ -60,7 +60,7 @@ namespace ET
             self.PriceInputField.text = self.BagInfo.ItemNum.ToString();
         }
 
-        public static async ETTask OnBtn_Open(this UIItemBatchUseComponent self)
+        public static void  OnBtn_Open(this UIItemBatchUseComponent self)
         {
             long useNum = 0;
             try
