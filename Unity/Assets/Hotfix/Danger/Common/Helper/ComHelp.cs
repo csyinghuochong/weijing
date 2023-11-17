@@ -603,14 +603,21 @@ namespace ET
 
         public static float GetTaskExpRewardCof(int playerlv)
         {
-            
-            return 1f;
+            float pro = 1 + (playerlv * 2 / 100);
+            if (pro >= 3) {
+                pro = 3;
+            }
+            return pro;
         }
 
         public static float GetTaskCoinRewardCof(int playerlv)
         {
-
-            return 1f;
+            float pro = 1 + (playerlv * 2 / 100);
+            if (pro >= 3)
+            {
+                pro = 3;
+            }
+            return pro;
         }
 
         //宠物守护

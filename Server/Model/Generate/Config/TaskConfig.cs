@@ -132,7 +132,7 @@ namespace ET
 		/// <summary>任务描述</summary>
 		[ProtoMember(19)]
 		public string TaskDes { get; set; }
-		/// <summary>目标类型</summary>
+		/// <summary>任务经验和金币是否跟随等级成长</summary>
 		[ProtoMember(20)]
 		public int Development { get; set; }
 
