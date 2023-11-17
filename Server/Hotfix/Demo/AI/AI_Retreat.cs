@@ -78,7 +78,7 @@ namespace ET
             List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
             for (int i = 0; i < units.Count; i++)
             {
-                units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);
+                units[i].GetComponent<BuffManagerComponent>().OnRetreatRemoveBuff(unit.Id);
             }
             Vector3 bornVector3 = unit.GetBornPostion();
 

@@ -228,6 +228,9 @@ namespace ET
 		/// <summary>是否对敌人隐身</summary>
 		[ProtoMember(51)]
 		public int IfHide { get; set; }
+		/// <summary>是否带走buff</summary>
+		[ProtoMember(52)]
+		public int RemoveBuff { get; set; }
 
 	}
 }

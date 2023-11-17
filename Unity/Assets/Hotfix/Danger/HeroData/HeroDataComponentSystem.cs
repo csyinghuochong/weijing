@@ -397,12 +397,12 @@ namespace ET
                 }
             }
             //怪物死亡， 清除玩家BUFF
-            if (unit.Type == UnitType.Monster)
+            if (unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.Get(unit.ConfigId).RemoveBuff == 0)
             {
                 List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
                 for (int i = 0; i < units.Count; i++)
                 {
-                    units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);
+                    units[i].GetComponent<BuffManagerComponent>().OnDeadRemoveBuffBy(unit.Id);
                 }
             }
             int waitRevive = self.OnWaitRevive();
