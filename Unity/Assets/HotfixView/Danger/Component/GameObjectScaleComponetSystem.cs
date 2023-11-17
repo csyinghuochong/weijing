@@ -62,7 +62,7 @@ namespace ET
         public static void OnUpdate(this BuffScaleComponet self)
         {
             self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
-            float passvalue = (self.PassTime / self.ButtTime);
+            float passvalue = (self.PassTime * 1f/ self.ButtTime);
             if (passvalue > 1f)
             {
                 passvalue = 1f;
