@@ -1,5 +1,4 @@
-﻿using ET;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
@@ -33,16 +32,30 @@ namespace ET
             {
                 return;
             }
-            if (this.EffectInstanceId.Count == 0)
-            {
-                this.PlaySkillEffects(this.NowPosition);
-            }
-
+            
             Unit TheUnitBelongto = TheUnitFrom.GetParent<UnitComponent>().Get(SkillInfo.TargetID);
             if (TheUnitBelongto != null)
             {
                 this.TargetPosition = TheUnitBelongto.Position;
                 this.TargetPosition.y = TheUnitBelongto.Position.y + SkillHelp.GetCenterHigh(TheUnitBelongto.Type, TheUnitBelongto.ConfigId);
+            }
+            
+            if (this.EffectInstanceId.Count == 0)
+            {
+                Vector3 newestPositon = this.TheUnitFrom.Position;
+                newestPositon.y = this.TheUnitFrom.Position.y + SkillHelp.GetCenterHigh(this.TheUnitFrom.Type, this.TheUnitFrom.ConfigId);
+                float effectAngle = 0;
+                if (Vector3.Distance(newestPositon, this.NowPosition) > 0.2f)
+                {
+                    // 位置预测
+                    Vector3 dire = newestPositon - this.NowPosition;
+                    this.NowPosition += dire * 4.2f;
+
+                    // 角度,后面更新位置的时候也可以更新一下角度,这样看起来箭不是斜着射过去的，因为目标是移动的，箭的角度不变
+                    Vector3 dire2 = (this.TargetPosition - this.NowPosition).normalized;
+                    effectAngle = Mathf.Atan2(dire2.x, dire2.z) * 180 / 3.141592653589793f;
+                }
+                this.PlaySkillEffects(this.NowPosition, effectAngle);
             }
 
             Vector3 dir = (this.TargetPosition - this.NowPosition).normalized;
