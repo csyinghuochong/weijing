@@ -51,8 +51,8 @@ namespace ET
             }
 
             self.PassTime = 0;
-            self.ButtTime = skillBuff.BuffTime;
-            self.ToScaleValue = (float)skillBuff.buffParameterValue;
+            self.ButtTime = skillBuff.BuffLoopTime;
+            self.ToScaleValue = operateType ==1 ? (float)skillBuff.buffParameterValue : 1;
             self.InitScaleValue = gameObject.transform.localScale.x;
             self.Transform = gameObject.transform;
             self.BeginTime = TimeHelper.ServerNow();

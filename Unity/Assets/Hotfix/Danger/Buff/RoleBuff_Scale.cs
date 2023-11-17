@@ -18,6 +18,8 @@ namespace ET
             EventSystem.Instance.PublishClass(EventType.BuffScale.Instance);
         }
 
+
+
         public override void OnFinished()
         {
             EventType.BuffScale.Instance.Unit = this.TheUnitBelongto;
