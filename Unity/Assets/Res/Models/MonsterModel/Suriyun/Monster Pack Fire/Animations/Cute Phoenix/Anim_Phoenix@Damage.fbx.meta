@@ -1,41 +1,101 @@
 fileFormatVersion: 2
 guid: f4d662869e5ea6544a362d477cb8b784
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: center
-    100004: head_01
-    100006: head_02
-    100008: root
-    100010: tail_01
-    100012: tail_02
-    100014: tail_03
-    100016: wing_01_l
-    100018: wing_01_r
-    100020: wing_02_l
-    100022: wing_02_r
-    100024: wing_03_l
-    100026: wing_03_r
-    400000: //RootNode
-    400002: center
-    400004: head_01
-    400006: head_02
-    400008: root
-    400010: tail_01
-    400012: tail_02
-    400014: tail_03
-    400016: wing_01_l
-    400018: wing_01_r
-    400020: wing_02_l
-    400022: wing_02_r
-    400024: wing_03_l
-    400026: wing_03_r
-    7400000: Damage
-    9500000: //RootNode
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: center
+  - first:
+      1: 100004
+    second: head_01
+  - first:
+      1: 100006
+    second: head_02
+  - first:
+      1: 100008
+    second: root
+  - first:
+      1: 100010
+    second: tail_01
+  - first:
+      1: 100012
+    second: tail_02
+  - first:
+      1: 100014
+    second: tail_03
+  - first:
+      1: 100016
+    second: wing_01_l
+  - first:
+      1: 100018
+    second: wing_01_r
+  - first:
+      1: 100020
+    second: wing_02_l
+  - first:
+      1: 100022
+    second: wing_02_r
+  - first:
+      1: 100024
+    second: wing_03_l
+  - first:
+      1: 100026
+    second: wing_03_r
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: center
+  - first:
+      4: 400004
+    second: head_01
+  - first:
+      4: 400006
+    second: head_02
+  - first:
+      4: 400008
+    second: root
+  - first:
+      4: 400010
+    second: tail_01
+  - first:
+      4: 400012
+    second: tail_02
+  - first:
+      4: 400014
+    second: tail_03
+  - first:
+      4: 400016
+    second: wing_01_l
+  - first:
+      4: 400018
+    second: wing_01_r
+  - first:
+      4: 400020
+    second: wing_02_l
+  - first:
+      4: 400022
+    second: wing_02_r
+  - first:
+      4: 400024
+    second: wing_03_l
+  - first:
+      4: 400026
+    second: wing_03_r
+  - first:
+      74: 7400000
+    second: Damage
+  - first:
+      95: 9500000
+    second: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -64,6 +124,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Damage
       takeName: Anim_Phoenix@Damage
+      internalID: 0
       firstFrame: 91
       lastFrame: 105
       wrapMode: 0
@@ -89,32 +150,39 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -123,10 +191,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -136,13 +204,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,70 +1,148 @@
 fileFormatVersion: 2
 guid: 476494ec594bdd448896abbca72f8ee8
-timeCreated: 1458381471
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: nurbsCircle1
-    100002: s:ikHandle1
-    100004: s:ikHandle2
-    100006: s:joint10
-    100008: s:joint2
-    100010: s:joint3
-    100012: s:joint4
-    100014: s:joint5
-    100016: s:joint6
-    100018: s:joint7
-    100020: s:joint8
-    100022: s:joint9
-    100024: s:nurbsCircle1
-    100026: s:nurbsCircle2
-    100028: sjoint1
-    100030: snake 1
-    100032: //RootNode
-    400000: nurbsCircle1
-    400002: s:ikHandle1
-    400004: s:ikHandle2
-    400006: s:joint10
-    400008: s:joint2
-    400010: s:joint3
-    400012: s:joint4
-    400014: s:joint5
-    400016: s:joint6
-    400018: s:joint7
-    400020: s:joint8
-    400022: s:joint9
-    400024: s:nurbsCircle1
-    400026: s:nurbsCircle2
-    400028: sjoint1
-    400030: snake 1
-    400032: //RootNode
-    7400000: Damage
-    9500000: //RootNode
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: nurbsCircle1
+  - first:
+      1: 100002
+    second: s:ikHandle1
+  - first:
+      1: 100004
+    second: s:ikHandle2
+  - first:
+      1: 100006
+    second: s:joint10
+  - first:
+      1: 100008
+    second: s:joint2
+  - first:
+      1: 100010
+    second: s:joint3
+  - first:
+      1: 100012
+    second: s:joint4
+  - first:
+      1: 100014
+    second: s:joint5
+  - first:
+      1: 100016
+    second: s:joint6
+  - first:
+      1: 100018
+    second: s:joint7
+  - first:
+      1: 100020
+    second: s:joint8
+  - first:
+      1: 100022
+    second: s:joint9
+  - first:
+      1: 100024
+    second: s:nurbsCircle1
+  - first:
+      1: 100026
+    second: s:nurbsCircle2
+  - first:
+      1: 100028
+    second: sjoint1
+  - first:
+      1: 100030
+    second: snake 1
+  - first:
+      1: 100032
+    second: //RootNode
+  - first:
+      4: 400000
+    second: nurbsCircle1
+  - first:
+      4: 400002
+    second: s:ikHandle1
+  - first:
+      4: 400004
+    second: s:ikHandle2
+  - first:
+      4: 400006
+    second: s:joint10
+  - first:
+      4: 400008
+    second: s:joint2
+  - first:
+      4: 400010
+    second: s:joint3
+  - first:
+      4: 400012
+    second: s:joint4
+  - first:
+      4: 400014
+    second: s:joint5
+  - first:
+      4: 400016
+    second: s:joint6
+  - first:
+      4: 400018
+    second: s:joint7
+  - first:
+      4: 400020
+    second: s:joint8
+  - first:
+      4: 400022
+    second: s:joint9
+  - first:
+      4: 400024
+    second: s:nurbsCircle1
+  - first:
+      4: 400026
+    second: s:nurbsCircle2
+  - first:
+      4: 400028
+    second: sjoint1
+  - first:
+      4: 400030
+    second: snake 1
+  - first:
+      4: 400032
+    second: //RootNode
+  - first:
+      74: 7400000
+    second: Damage
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Damage
       takeName: Snake@Damage
+      internalID: 0
       firstFrame: 100
       lastFrame: 120
       wrapMode: 0
@@ -124,31 +202,51 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 100
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 50
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
-    importBlendShapes: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -158,11 +256,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 50
     rootMotionBoneName: 
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

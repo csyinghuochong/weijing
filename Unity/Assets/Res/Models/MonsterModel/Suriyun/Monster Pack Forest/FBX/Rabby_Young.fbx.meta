@@ -1,41 +1,101 @@
 fileFormatVersion: 2
 guid: f5885cbe5b218f14c91a2cb1bbdc26ba
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: center
-    100002: ear_l1
-    100004: ear_l2
-    100006: ear_r1
-    100008: ear_r2
-    100010: head
-    100012: knot_l
-    100014: knot_r
-    100016: //RootNode
-    100018: Rabby_Young
-    100020: Root
-    100022: tail01
-    100024: tail02
-    400000: center
-    400002: ear_l1
-    400004: ear_l2
-    400006: ear_r1
-    400008: ear_r2
-    400010: head
-    400012: knot_l
-    400014: knot_r
-    400016: //RootNode
-    400018: Rabby_Young
-    400020: Root
-    400022: tail01
-    400024: tail02
-    2100000: M_Rabby_01
-    4300000: Rabby_Young
-    9500000: //RootNode
-    13700000: Rabby_Young
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: center
+  - first:
+      1: 100002
+    second: ear_l1
+  - first:
+      1: 100004
+    second: ear_l2
+  - first:
+      1: 100006
+    second: ear_r1
+  - first:
+      1: 100008
+    second: ear_r2
+  - first:
+      1: 100010
+    second: head
+  - first:
+      1: 100012
+    second: knot_l
+  - first:
+      1: 100014
+    second: knot_r
+  - first:
+      1: 100016
+    second: //RootNode
+  - first:
+      1: 100018
+    second: Rabby_Young
+  - first:
+      1: 100020
+    second: Root
+  - first:
+      1: 100022
+    second: tail01
+  - first:
+      1: 100024
+    second: tail02
+  - first:
+      4: 400000
+    second: center
+  - first:
+      4: 400002
+    second: ear_l1
+  - first:
+      4: 400004
+    second: ear_l2
+  - first:
+      4: 400006
+    second: ear_r1
+  - first:
+      4: 400008
+    second: ear_r2
+  - first:
+      4: 400010
+    second: head
+  - first:
+      4: 400012
+    second: knot_l
+  - first:
+      4: 400014
+    second: knot_r
+  - first:
+      4: 400016
+    second: //RootNode
+  - first:
+      4: 400018
+    second: Rabby_Young
+  - first:
+      4: 400020
+    second: Root
+  - first:
+      4: 400022
+    second: tail01
+  - first:
+      4: 400024
+    second: tail02
+  - first:
+      21: 2100000
+    second: M_Rabby_01
+  - first:
+      43: 4300000
+    second: Rabby_Young
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Rabby_Young
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 2
     materialLocation: 0
@@ -61,32 +121,39 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -95,10 +162,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -108,13 +175,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
