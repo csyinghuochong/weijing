@@ -701,6 +701,16 @@ namespace ET
             public Unit Unit;
         }
 
+        public class BuffScale : DisposeObject
+        {
+            public static readonly BuffUpdate Instance = new BuffUpdate();
+            public ABuffHandler ABuffHandler;
+            public int OperateType;    //0开始 1结束
+
+            public Scene ZoneScene;
+            public Unit Unit;
+        }
+
         public class JingLingGet : DisposeObject
         {
             public static readonly JingLingGet Instance = new JingLingGet();
