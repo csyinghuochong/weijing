@@ -601,9 +601,15 @@ namespace ET
             return itemID;
         }
 
-        public static float GetTaskRewardCof(int playerlv)
+        public static float GetTaskExpRewardCof(int playerlv)
         {
             
+            return 1f;
+        }
+
+        public static float GetTaskCoinRewardCof(int playerlv)
+        {
+
             return 1f;
         }
 

@@ -456,14 +456,16 @@ namespace ET
             }
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
-            float coffi = 1f;
+            float coffiexp = 1f;
+            float cofficoin = 1f;
             if (taskConfig.Development == 1)
             {
-                coffi = ComHelp.GetTaskRewardCof(userInfoComponent.UserInfo.Lv );
+                coffiexp = ComHelp.GetTaskExpRewardCof(userInfoComponent.UserInfo.Lv );
+                cofficoin = ComHelp.GetTaskCoinRewardCof(userInfoComponent.UserInfo.Lv);
             }
 
-            int TaskExp = (int)(taskConfig.TaskExp * coffi);
-            int TaskCoin = (int)(taskConfig.TaskCoin* coffi);
+            int TaskExp = (int)(taskConfig.TaskExp * coffiexp);
+            int TaskCoin = (int)(taskConfig.TaskCoin* cofficoin);
 
             userInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
