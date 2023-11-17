@@ -11,6 +11,7 @@ namespace ET
         public GameObject BuildingList1;
         public GameObject BuildingList2;
         public GameObject ButtonPack;
+        public GameObject ButtonQuick;
 
         public BagComponent BagComponent;
         public UIPageButtonComponent UIPageComponent;
@@ -34,7 +35,10 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
-            self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi(); });
+            self.ButtonPack.GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhengLi);
+
+            self.ButtonQuick = rc.Get<GameObject>("ButtonQuick");
+            self.ButtonQuick.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonQuick().Coroutine(); });
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
@@ -123,6 +127,14 @@ namespace ET
             int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
             self.UpdateLockList(cangkuNumber - 1);
             self.UIPageComponent.OnSelectIndex(cangkuNumber - 1);
+        }
+
+        public static async ETTask OnButtonQuick(this UIWarehouseComponent self)
+        {
+            int itemType = self.UIPageComponent.GetCurrentIndex();
+            int currentHouse = itemType + (int)ItemLocType.ItemWareHouse1;
+            C2M_ItemQuickPutRequest request = new C2M_ItemQuickPutRequest() { HorseId = currentHouse };
+            M2C_ItemQuickPutResponse response = (M2C_ItemQuickPutResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static void OnBtn_ZhengLi(this UIWarehouseComponent self)

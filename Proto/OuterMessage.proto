@@ -6820,3 +6820,18 @@ message RankingTrialInfo
 	int32 Occ = 5;
 	int32 FubenId = 6;
 }
+
+//一键存放
+//ResponseType M2C_ItemQuickPutResponse
+message C2M_ItemQuickPutRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 HorseId = 1;
+}
+
+message M2C_ItemQuickPutResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

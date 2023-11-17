@@ -14203,4 +14203,33 @@ namespace ET
 
 	}
 
+//一键存放
+	[ResponseType(nameof(M2C_ItemQuickPutResponse))]
+	[Message(OuterOpcode.C2M_ItemQuickPutRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemQuickPutRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int HorseId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemQuickPutResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemQuickPutResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }
