@@ -454,14 +454,20 @@ namespace ET
                     self.RoleComoleteTaskList.Add(taskid);
                 }
             }
-           
-            int TaskExp = taskConfig.TaskExp;
-            int TaskCoin = taskConfig.TaskCoin;
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
-            UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
-            unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
-            unitInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
-            int roleLv = unitInfoComponent.UserInfo.Lv;
+            float coffi = 1f;
+            if (taskConfig.Development == 1)
+            {
+                coffi = ComHelp.GetTaskRewardCof(userInfoComponent.UserInfo.Lv );
+            }
+
+            int TaskExp = (int)(taskConfig.TaskExp * coffi);
+            int TaskCoin = (int)(taskConfig.TaskCoin* coffi);
+
+            userInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
+            userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
+            int roleLv = userInfoComponent.UserInfo.Lv;
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {

@@ -601,6 +601,12 @@ namespace ET
             return itemID;
         }
 
+        public static float GetTaskRewardCof(int playerlv)
+        {
+            
+            return 1f;
+        }
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

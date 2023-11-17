@@ -132,6 +132,9 @@ namespace ET
 		/// <summary>任务描述</summary>
 		[ProtoMember(19)]
 		public string TaskDes { get; set; }
+		/// <summary>目标类型</summary>
+		[ProtoMember(20)]
+		public int Development { get; set; }
 
 	}
 }
