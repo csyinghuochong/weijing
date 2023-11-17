@@ -76,6 +76,10 @@ namespace ET
 
         public static void RecoverGameObject(this GameObjectComponent self)
         {
+            if (self.GameObject != null)
+            { 
+                self.GameObject.transform.localScale = Vector3.one; 
+            }
             if (string.IsNullOrEmpty(self.UnitAssetsPath) && self.GameObject != null)
             {
                 UnityEngine.Object.Destroy(self.GameObject);

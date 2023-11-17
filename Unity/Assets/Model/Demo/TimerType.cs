@@ -91,6 +91,7 @@
         public const int DelayShowTimer = 1104;
         public const int UnionJingXuanTimer = 1105;
         public const int TransferUITimer = 1106;
+        public const int BuffScaleTimer = 1107;
         // 不能超过10000
     }
 }
