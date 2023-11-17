@@ -339,6 +339,11 @@ namespace ET
             float expcoefficient = 1f;
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
+
+            if ( ComHelp.IsOpenSeason() && Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 15)
+            {
+                self.UpdateRoleData(UserDataType.SeasonExp, "5");
+            }
         }
 
         public static void UpdateRoleDataBroadcast(this UserInfoComponent self, int Type, string value)

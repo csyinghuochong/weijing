@@ -1,6 +1,18 @@
-
 public static class SeasonHelper
 {
+
+//#if NOT_UNITY
+//    public static bool IsOpenSeason()
+//    {
+//        if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
+//           || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
+//        {
+//            return true;
+//        }
+//        return false;
+//    }
+//#endif
+
     /// <summary>
     /// 赛季时间
     /// </summary>
