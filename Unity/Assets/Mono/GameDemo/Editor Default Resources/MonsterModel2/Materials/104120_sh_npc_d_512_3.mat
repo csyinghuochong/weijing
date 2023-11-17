@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 104120_sh_npc_d_512
+  m_Name: 104120_sh_npc_d_512_3
   m_Shader: {fileID: 4800000, guid: c77106edf52b9e846a7416d8f8c8298a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c78473d07bed7844080298006adac05d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 220bcf36fed63334187e01b89174b2a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
