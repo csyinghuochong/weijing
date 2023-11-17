@@ -11,7 +11,6 @@ namespace ET
         {
             base.OnInit(buffData, theUnitBelongto);
 
-
             EventType.BuffScale.Instance.Unit = this.TheUnitBelongto;
             EventType.BuffScale.Instance.ZoneScene = this.TheUnitBelongto.ZoneScene();
             EventType.BuffScale.Instance.ABuffHandler = this;
