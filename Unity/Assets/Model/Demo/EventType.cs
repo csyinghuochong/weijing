@@ -703,7 +703,7 @@ namespace ET
 
         public class BuffScale : DisposeObject
         {
-            public static readonly BuffUpdate Instance = new BuffUpdate();
+            public static readonly BuffScale Instance = new BuffScale();
             public ABuffHandler ABuffHandler;
             public int OperateType;    //0开始 1结束
 
