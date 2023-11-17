@@ -408,7 +408,7 @@ namespace ET
             }
             long masterId = unit.GetMasterId();
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.GameObject.SetActive(masterId == mainUnit.Id || unit.GetTeamId() == mainUnit.GetTeamId());
+            self.GameObject.SetActive(masterId == mainUnit.Id || unit.IsSameTeam(mainUnit) );
         }
 
         public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)
