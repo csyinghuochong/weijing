@@ -3,8 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace ET
-{ 
-    public class UnitInfoComponent : Entity, IAwake, ITransfer, IDestroy
+{
+
+#if SERVER
+        public class UnitInfoComponent : Entity, IAwake, ITransfer, IDestroy
+#else
+        public class UnitInfoComponent : Entity, IAwake, IDestroy
+#endif
     {
        
         public int EnergySkillId { get; set; }

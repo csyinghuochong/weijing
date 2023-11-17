@@ -30,6 +30,7 @@ namespace ET
         {
             string path = ABPathHelper.GetEffetPath("MonsterActRange");
             GameObjectPoolComponent.Instance.RecoverGameObject(path, self.MonsterActRange);
+            self.MonsterActRange = null;
         }
     }
 

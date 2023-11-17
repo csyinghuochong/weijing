@@ -42,14 +42,19 @@ namespace ET
 
         public static void OnDispose(this EffectViewComponent self)
         {
-            for (int i = self.Effects.Count - 1; i >= 0; i--)
+            if (self.Effects != null)
             {
-                AEffectHandler aEffectHandler = self.Effects[i];
-                aEffectHandler.OnFinished();
-                aEffectHandler.Dispose();
-                self.Effects.RemoveAt(i);
+                for (int i = self.Effects.Count - 1; i >= 0; i--)
+                {
+                    AEffectHandler aEffectHandler = self.Effects[i];
+                    aEffectHandler.OnFinished();
+                    aEffectHandler.Dispose();
+                    self.Effects.RemoveAt(i);
+                }
+                self.Effects.Clear();
+                self.Effects = null;
             }
-            self.Effects.Clear();
+          
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 

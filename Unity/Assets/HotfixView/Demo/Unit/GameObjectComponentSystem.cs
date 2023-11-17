@@ -494,14 +494,14 @@ namespace ET
                     {
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                         self.OnAddCollider(go);
-                        unit.AddComponent<EffectViewComponent>();            //添加特效组建
-                        unit.AddComponent<AnimatorComponent>();
-                        unit.AddComponent<FsmComponent>();                 //当前状态组建
-                        unit.AddComponent<SkillYujingComponent>();
+                        unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
+                        unit.AddComponent<AnimatorComponent>(true);
+                        unit.AddComponent<FsmComponent>(true);                 //当前状态组建
+                        unit.AddComponent<SkillYujingComponent>(true);
                     }
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
-                        unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id);         //血条UI组件
+                        unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id, true);         //血条UI组件
 
                         mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                         bool shenYuan = mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && mapComponent.FubenDifficulty == TeamFubenType.ShenYuan;
@@ -526,13 +526,13 @@ namespace ET
                     {
                         self.OnAddCollider(go);
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>(); //血条UI组件
+                        unit.AddComponent<SceneItemUIComponent>(true); //血条UI组件
                     }
                     else if (monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59)
                     {
                         self.OnAddCollider(go);
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
+                        unit.AddComponent<SceneItemUIComponent>(true);         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
 
                         if (monsterCof.MonsterSonType == 58)
@@ -550,21 +550,21 @@ namespace ET
                     else if (unit.IsChest() || monsterCof.MonsterSonType == 60)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
+                        unit.AddComponent<SceneItemUIComponent>(true);         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
                     }
                     else if (monsterCof.MonsterSonType == 61)
                     {
                         self.OnAddCollider(go);
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
+                        unit.AddComponent<SceneItemUIComponent>(true);         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     }
                     else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem)
                     {
                         unit.UpdateUIType = HeadBarType.HeroHeadBar;
-                        unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
-                        unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
+                        unit.AddComponent<HeroTransformComponent>(true);       //获取角色绑点组件
+                        unit.AddComponent<UIUnitHpComponent>(true);         //血条UI组件
                     }
 
                     if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)

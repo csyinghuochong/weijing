@@ -22,7 +22,7 @@ namespace ET
 	}
 	
 	[ObjectSystem]
-	public class NumericComponentAwakeSystem : AwakeSystem<NumericComponent>
+	public class NumericComponentAwake : AwakeSystem<NumericComponent>
 	{
 		public override void Awake(NumericComponent self)
 		{
@@ -30,7 +30,16 @@ namespace ET
 		}
 	}
 
-	public class NumericComponent: Entity, IAwake, ITransfer, IUnitCache
+    [ObjectSystem]
+    public class NumericComponentDestroy : DestroySystem<NumericComponent>
+    {
+        public override void Destroy(NumericComponent self)
+        {
+           self.NumericDic.Clear();	
+        }
+    }
+
+    public class NumericComponent: Entity, IAwake, ITransfer, IUnitCache, IDestroy
 	{
 		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
 		public Dictionary<int, long> NumericDic = new Dictionary<int, long>();

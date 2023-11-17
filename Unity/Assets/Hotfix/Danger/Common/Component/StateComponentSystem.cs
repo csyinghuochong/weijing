@@ -1,15 +1,7 @@
 namespace ET
 {
 
-    [ObjectSystem]
-    public class StateComponentAwakeSystem : AwakeSystem<StateComponent>
-    {
-        public override void Awake(StateComponent self)
-        {
-            self.Awake();
-        }
-    }
-
+#if SERVER
     [ObjectSystem]
     public class StateComponentDeserializeSystem : DeserializeSystem<StateComponent>
     {
@@ -18,6 +10,16 @@ namespace ET
             self.CurrentStateType = StateTypeEnum.None;
             self.RigidityEndTime = 0;
             self.ObstructStatus = 0;
+        }
+    }
+#endif
+
+    [ObjectSystem]
+    public class StateComponentAwakeSystem : AwakeSystem<StateComponent>
+    {
+        public override void Awake(StateComponent self)
+        {
+            self.Awake();
         }
     }
 
@@ -285,6 +287,10 @@ namespace ET
         /// <param name="stateValue"></param>
         public static void SendUpdateState(this StateComponent self, int operatype, long stateType, string stateValue)
         {
+            if (self.c2M_UnitStateUpdate == null)
+            {
+                self.c2M_UnitStateUpdate = new C2M_UnitStateUpdate();
+            }
             C2M_UnitStateUpdate c2M_UnitStateUpdate = self.c2M_UnitStateUpdate;
             c2M_UnitStateUpdate.StateOperateType = operatype;
             c2M_UnitStateUpdate.StateType = stateType;

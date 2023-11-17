@@ -100,29 +100,29 @@ namespace ET
 			unitComponent.Add(unit);
 			unit.Type = UnitType.Monster;
 			unit.ConfigId = unitInfo.MonsterID;
-			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+			NumericComponent numericComponent = unit.AddComponent<NumericComponent>(true);
 			for (int i = 0; i < unitInfo.Ks.Count; ++i)
 			{
 				numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i], false);
 			}
 
-			unit.AddComponent<ObjectWait>();
-			unit.AddComponent<HeroDataComponent>();
-			unit.AddComponent<StateComponent>();
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<ObjectWait>(true);
+			unit.AddComponent<HeroDataComponent>(true);
+			unit.AddComponent<StateComponent>(true);
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
 			unitInfoComponent.EnergySkillId = unitInfo.SkillId;
 			
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
 			if (monsterCof.AI != 0)
 			{
-				unit.AddComponent<BuffManagerComponent>();              //buff管理器组建
-				unit.AddComponent<SkillManagerComponent>();
+				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建
+				unit.AddComponent<SkillManagerComponent>(true);
                 unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
                 unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
             }
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
-			unit.AddComponent<MoveComponent>();
+			unit.AddComponent<MoveComponent>(true);
            
             OnAfterCreateUnit(unit);
 			return unit;

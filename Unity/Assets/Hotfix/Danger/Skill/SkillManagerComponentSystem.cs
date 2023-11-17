@@ -144,6 +144,10 @@ namespace ET
             try
             {
                 Unit unit = self.GetParent<Unit>();
+                if (self.SkillCmd == null)
+                {
+                    self.SkillCmd = new C2M_SkillCmd();
+                }
                 C2M_SkillCmd skillCmd = self.SkillCmd;
                 skillCmd.SkillID = skillid;
                 skillCmd.TargetAngle = angle;

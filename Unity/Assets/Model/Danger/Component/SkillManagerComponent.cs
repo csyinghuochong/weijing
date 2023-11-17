@@ -8,7 +8,7 @@ namespace ET
         public List<SkillInfo> t_Skills = new List<SkillInfo>();
         public List<ASkillHandler> Skills = new List<ASkillHandler>();
         public List<SkillCDItem> SkillCDs = new List<SkillCDItem>();       //冷却时间列表
-        public C2M_SkillCmd SkillCmd = new C2M_SkillCmd();
+        public C2M_SkillCmd SkillCmd = null;
         public long SkillPublicCDTime;                                                              //技能公共CD
         public int FangunSkillId;
         public long FangunLastTime;

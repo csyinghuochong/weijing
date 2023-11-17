@@ -23,6 +23,7 @@ namespace ET
                 GameObject.Destroy(self.GameObject);
                 self.GameObject = null;
             }
+            self.HeadBarUI = null;
         }
     }
 
