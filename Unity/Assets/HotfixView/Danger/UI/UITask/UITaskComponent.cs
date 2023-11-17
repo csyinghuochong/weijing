@@ -187,16 +187,27 @@ namespace ET
 
 			string rewardStr = self.TaskConfig.ItemID;
 			string rewardNum = self.TaskConfig.ItemNum;
-			if (ComHelp.IfNull(rewardStr))
+
+            float coffi = 1f;
+            if (self.TaskConfig.Development == 1)
+            {
+				UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                coffi = ComHelp.GetTaskRewardCof(userInfoComponent.UserInfo.Lv);
+            }
+
+            int TaskExp = (int)(self.TaskConfig.TaskExp * coffi);
+            int TaskCoin = (int)(self.TaskConfig.TaskCoin * coffi);
+
+            if (ComHelp.IfNull(rewardStr))
 			{
 
 				rewardStr = "1;2";
-				rewardNum = self.TaskConfig.TaskCoin + ";" + self.TaskConfig.TaskExp;
+				rewardNum = TaskCoin + ";" + TaskExp;
 			}
 			else 
 			{
 				rewardStr = "1;2;" + rewardStr;
-				rewardNum = self.TaskConfig.TaskCoin + ";" + self.TaskConfig.TaskExp + ";" + rewardNum;
+				rewardNum = TaskCoin + ";" + TaskExp + ";" + rewardNum;
 			}
 
 			string[] rewarditems = rewardStr.Split(';');
