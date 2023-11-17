@@ -9,8 +9,9 @@ namespace ET
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (petComponent.RolePetInfos.Count >= ComHelp.GetPetMaxNumber(unit, userLv))
+            if (PetHelper.GetBagPetNum(petComponent.RolePetInfos) >= ComHelp.GetPetMaxNumber(unit, userLv))
             {
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

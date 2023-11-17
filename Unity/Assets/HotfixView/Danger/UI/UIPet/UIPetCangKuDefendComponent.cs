@@ -37,7 +37,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonQuHui, () => { self.OnButtonQuHui().Coroutine(); });
 
             self.ButtonOpen = rc.Get<GameObject>("ButtonOpen");
-            ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen(); });
+            ButtonHelp.AddListenerEx(self.ButtonOpen, self.OnButtonOpen);
 
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
