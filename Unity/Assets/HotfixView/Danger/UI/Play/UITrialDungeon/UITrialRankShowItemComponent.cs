@@ -82,7 +82,7 @@ namespace ET
                 rankingInfo.FubenId = 20001;
             }
            
-            self.Text_Combat.GetComponent<Text>().text = $" {rankingInfo.FubenId%20000}层({rankingInfo.Hurt}/ 秒)";
+            self.Text_Combat.GetComponent<Text>().text = $" {rankingInfo.FubenId%20000}层({rankingInfo.Hurt}/秒)";
             self.Text_Level.GetComponent<Text>().text = rankingInfo.PlayerLv.ToString();
             self.Text_Name.GetComponent<Text>().text = rankingInfo.PlayerName.ToString();
             self.Text_Rank.GetComponent<Text>().text = rank.ToString();
