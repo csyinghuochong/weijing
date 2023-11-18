@@ -47,7 +47,7 @@ namespace ET
             self.AcvityedImg = rc.Get<GameObject>("AcvityedImg");
 
             self.UISeasonDayTaskItem.SetActive(false);
-            self.GetBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnGetBtn(); });
+            self.GetBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnGetBtn().Coroutine(); });
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -63,7 +63,6 @@ namespace ET
     {
         public static void OnClickPageButton(this UISeasonTaskComponent self, int page)
         {
-            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (page == 0)
             {
                 self.TaskType = 0;
@@ -78,6 +77,7 @@ namespace ET
                     if (taskConfig.TaskType == TaskTypeEnum.Season)
                     {
                         self.TaskPro = taskPros[i];
+                        break;
                     }
                 }
 
@@ -86,30 +86,26 @@ namespace ET
                 {
                     if (taskConfig.TaskType == TaskTypeEnum.Season)
                     {
-                        self.SeasonTaskList.transform.GetChild(index).GetComponent<Button>().onClick.AddListener(() =>
+                        ReferenceCollector rc = self.SeasonTaskList.transform.GetChild(index).GetComponent<ReferenceCollector>();
+                        int index1 = index;
+                        rc.Get<GameObject>("SeasonIcon").GetComponent<Button>().onClick.AddListener(() =>
                         {
-                            self.UpdateInfo(taskConfig.Id);
+                            self.UpdateInfo(taskConfig.Id ,index1);
                         });
-                        if (taskConfig.Id < self.TaskPro.taskID)
+                        self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(taskConfig.Id < self.TaskPro.taskID);
+
+                        
+                        if (taskConfig.Id == self.TaskPro.taskID)
                         {
-                            self.SeasonTaskList.transform.GetChild(index).GetComponentInChildren<Text>().text = "已完成";
-                            self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(true);
-                        }
-                        else
-                        {
-                            self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(false);
+                            self.UpdateInfo(self.TaskPro.taskID, index1);
                         }
                         
-
                         index++;
                     }
                 }
+                
 
-                if (self.TaskPro != null)
-                {
-                    self.UpdateInfo(self.TaskPro.taskID);
-                }
-
+                // 多余的任务按钮隐藏
                 for (int i = index; i < self.SeasonTaskList.transform.childCount; i++)
                 {
                     self.SeasonTaskList.transform.GetChild(i).gameObject.SetActive(false);
@@ -206,14 +202,14 @@ namespace ET
             self.GetBtn.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
         }
 
-        public static void UpdateInfo(this UISeasonTaskComponent self, int taskId)
+        public static void UpdateInfo(this UISeasonTaskComponent self, int taskId ,int index)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
             if (taskId < self.TaskPro.taskID)
             {
                 self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                        string.Format("{0}/{1}", taskConfig.TargetValue, taskConfig.TargetValue[0]);
+                        string.Format("{0}/{1}", taskConfig.TargetValue[0], taskConfig.TargetValue[0]);
                 self.AcvityedImg.SetActive(true);
                 self.GetBtn.SetActive(false);
             }
@@ -242,9 +238,14 @@ namespace ET
                 rewardItems.AddRange(TaskHelper.GetTaskRewards(taskId));
                 UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             }
+
+            for (int i = 0; i < self.SeasonTaskList.transform.childCount; i++)
+            {
+                self.SeasonTaskList.transform.GetChild(i).GetComponent<ReferenceCollector>().Get<GameObject>("ScelectImg").SetActive(i == index);
+            }
         }
 
-        public static  void OnGetBtn(this UISeasonTaskComponent self)
+        public static async ETTask OnGetBtn(this UISeasonTaskComponent self)
         {
             if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
             {
@@ -260,12 +261,14 @@ namespace ET
 
             if (self.TaskType == 0)
             {
-                self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskPro.taskID, 0).Coroutine();
+                await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskPro.taskID, 0);
             }
             else
             {
-                self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID).Coroutine();
+                await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
             }
+
+            self.OnClickPageButton(self.TaskType);
         }
     }
 }
