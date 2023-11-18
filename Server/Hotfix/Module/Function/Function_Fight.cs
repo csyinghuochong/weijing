@@ -433,6 +433,13 @@ namespace ET
                     //actValue = (int)(actValue * 1.5f);
                 }
 
+                //宠物打宠物计算伤害
+                if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Pet)
+                {
+                    
+                    //actValue = (int)(actValue * (1 + GetFightValueActProValue(attackUnit.GetComponent<PetComponent>().GetPetInfo(attackUnit.Id).PetPingFen, defendUnit.GetComponent<PetComponent>().GetPetInfo(defendUnit.Id).PetPingFen)));
+                }
+
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
@@ -777,6 +784,9 @@ namespace ET
                     {
                         damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerSkillDamgeSubPro);
                     }
+
+                    //根据双方战力调整系数
+                    damgePro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
                 }
 
                 damgePro = damgePro < 0 ? 0 : damgePro;
@@ -961,6 +971,25 @@ namespace ET
                 proValue = 0.75f;
             }
             return proValue;
+        }
+
+        //根据双方战力比调整攻击系数，攻击者打弱势有额外的攻击加成
+        public static float GetFightValueActProValue(int actFightValue, int defFightValue) {
+
+            float addPro = actFightValue / defFightValue;
+
+            //范围限制
+            if (addPro < 0) {
+                addPro = 0;
+            }
+
+            if (addPro > 0.2f) {
+                addPro = 0.2f;
+            }
+
+            return addPro;
+
+
         }
 
         //字典是引用,进来的值会发生改变
