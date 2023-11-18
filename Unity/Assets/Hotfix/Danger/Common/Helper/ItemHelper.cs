@@ -272,12 +272,22 @@ namespace ET
             return GetNeedCell(rewards);
         }
 
-        public static int GetNeedCell(List<RewardItem> rewardItems)
+        public static int GetNeedCell(List<RewardItem> rewardItems_1)
         {
-            int bagCellNumber = 1;
-            for (int i = 0; i < rewardItems.Count; i++)
+            Dictionary<int, int > rewardItems = new Dictionary<int, int>();
+            for (int i = 0; i < rewardItems_1.Count; i++)
             {
-                int itemId = rewardItems[i].ItemID;
+                if (!rewardItems.ContainsKey(rewardItems_1[i].ItemID))
+                {
+                    rewardItems.Add(rewardItems_1[i].ItemID, 0);
+                }
+                rewardItems[rewardItems_1[i].ItemID] += rewardItems_1[i].ItemNum;
+            }
+
+            int bagCellNumber = 1;
+            foreach( var item in rewardItems )
+            {
+                int itemId = item.Key;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
                 if (itemConfig.ItemPileSum == 999999)
                 {
@@ -286,14 +296,14 @@ namespace ET
 
                 }
                 int ItemPileSum = itemConfig.ItemPileSum;
-                if (rewardItems[i].ItemNum <= ItemPileSum)
+                if (item.Value <= ItemPileSum)
                 {
                     bagCellNumber += 1;
                 }
                 else
                 {
-                    bagCellNumber += (int)(1f * rewardItems[i].ItemNum / ItemPileSum);
-                    bagCellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
+                    bagCellNumber += (int)(1f * item.Value / ItemPileSum);
+                    bagCellNumber += (item.Value % ItemPileSum > 0 ? 1 : 0);
                 }
                 //needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
             }
