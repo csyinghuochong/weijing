@@ -439,8 +439,6 @@ namespace ET
                     int attackPingfen = numericComponentAttack.GetAsInt(NumericType.PetPinFen);
                     int defPingfen = numericComponentDefend.GetAsInt(NumericType.PetPinFen);
                     actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
-
-                    Log.Console($"attackPingfen:  {attackPingfen}  {defPingfen}");
                 }
 
                 //计算战斗公式
