@@ -22,7 +22,7 @@ namespace ET
 
         public static List<PropertyValue> GetGemProLists(this BagComponent self)
         {
-            List <PropertyValue>  list = new List<PropertyValue>(); 
+            List<PropertyValue> list = new List<PropertyValue>();
             for (int i = 0; i < self.GemList.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.GemList[i].ItemID);
@@ -45,7 +45,7 @@ namespace ET
                     {
                         hide_value = long.Parse(attributeItem[1]);
                     }
-                    list.Add( new PropertyValue() {  HideID = hideId, HideValue = hide_value } );
+                    list.Add(new PropertyValue() { HideID = hideId, HideValue = hide_value });
                 }
             }
 
@@ -165,6 +165,7 @@ namespace ET
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
 
+
             Dictionary<int, List<BagInfo>> ItemSameList_1 = new Dictionary<int, List<BagInfo>>();
             Dictionary<int, List<BagInfo>> ItemSameList_2 = new Dictionary<int, List<BagInfo>>();
             //找出可以堆叠并且格子未放满的道具
@@ -223,10 +224,10 @@ namespace ET
                 int quliatyb = itemConfig_b.ItemQuality;
                 int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
                 int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
-                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0; 
+                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0;
                 int dungeonidb = (itemConfig_b.ItemSubType == 113 || itemConfig_b.ItemSubType == 127) ? int.Parse(b.ItemPar.Split('@')[0]) : 0;
                 //bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
-                
+
                 if (isBinginga == isBingingb)
                 {
                     if (quliatya == quliatyb)
@@ -271,7 +272,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
             int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
-            for (int i = bagInfos.Count -1; i >= 0; i--)
+            for (int i = bagInfos.Count - 1; i >= 0; i--)
             {
                 if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
                 {
@@ -279,7 +280,7 @@ namespace ET
                 }
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.EquipType != 101 && itemConfig.ItemType == ItemTypeEnum.Equipment  && bagInfos[i].InheritSkills.Count == 0 && itemConfig.ItemQuality >= 5 && itemConfig.UseLv >= 60)
+                if (itemConfig.EquipType != 101 && itemConfig.ItemType == ItemTypeEnum.Equipment && bagInfos[i].InheritSkills.Count == 0 && itemConfig.ItemQuality >= 5 && itemConfig.UseLv >= 60)
                 {
                     int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, occ, occTwo);
                     if (skillid != 0)
@@ -298,7 +299,7 @@ namespace ET
                     bagInfos[i].InheritSkills.Clear();
                 }
 
-                if (itemConfig.EquipType == 101 && bagInfos[i].HideProLists!= null)
+                if (itemConfig.EquipType == 101 && bagInfos[i].HideProLists != null)
                 {
                     bagInfos[i].HideProLists.Clear();
                 }
@@ -357,8 +358,8 @@ namespace ET
             return baginfo;
         }
 
-            //获取某个道具的数量[只取背包的]
-         public static long GetItemNumber(this BagComponent self, int itemId)
+        //获取某个道具的数量[只取背包的]
+        public static long GetItemNumber(this BagComponent self, int itemId)
         {
             int userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;
@@ -454,7 +455,7 @@ namespace ET
         {
             return 100 - self.ChouKaWarehouse.Count;
         }
-        
+
         public static void OnChangeItemLoc(this BagComponent self, BagInfo bagInfo, ItemLocType itemLocTypeDest, ItemLocType itemLocTypeSour)
         {
             List<BagInfo> ItemTypeListSour = self.GetItemByLoc(itemLocTypeSour);
@@ -491,7 +492,7 @@ namespace ET
                 {
                     return true;
                 }
-                if ( self.EquipList[i].HideSkillLists.Contains(skillId) )
+                if (self.EquipList[i].HideSkillLists.Contains(skillId))
                 {
                     return true;
                 }
@@ -534,7 +535,7 @@ namespace ET
         //获取某个装备位置的道具数据
         public static BagInfo GetEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType)
         {
-            List<BagInfo> equipList = self.GetItemByLoc(equipIndex); 
+            List<BagInfo> equipList = self.GetItemByLoc(equipIndex);
             for (int i = 0; i < equipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
@@ -546,7 +547,7 @@ namespace ET
             return null;
         }
 
-        public static void OnLogin(this BagComponent self, int robotId )
+        public static void OnLogin(this BagComponent self, int robotId)
         {
             Unit unit = self.GetParent<Unit>();
             int zodiacnumber = self.GetZodiacnumber();
@@ -651,7 +652,7 @@ namespace ET
         }
 
         //字符串添加道具 
-        public static bool OnAddItemData(this BagComponent self, string rewardItems, string getType, bool  notice = true)
+        public static bool OnAddItemData(this BagComponent self, string rewardItems, string getType, bool notice = true)
         {
             List<RewardItem> costItems = new List<RewardItem>();
             string[] needList = rewardItems.Split('@');
@@ -718,7 +719,7 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
         }
 
-        public static void OnAddItemDataNewCell(this BagComponent self, BagInfo bagInfo,int itemnumber)
+        public static void OnAddItemDataNewCell(this BagComponent self, BagInfo bagInfo, int itemnumber)
         {
             int itemid = bagInfo.ItemID;
             BagInfo useBagInfo = new BagInfo();
@@ -740,7 +741,7 @@ namespace ET
         }
 
         //添加背包道具道具[支持同时添加多个]
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID, string getWay, bool notice = true, bool gm = false, ItemLocType UseLocType = ItemLocType.ItemLocBag)
+        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems_init, string makeUserID, string getWay, bool notice = true, bool gm = false, ItemLocType UseLocType = ItemLocType.ItemLocBag)
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
@@ -751,10 +752,30 @@ namespace ET
                 return true;
             }
 
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            for (int i = rewardItems_init.Count - 1; i >= 0; i--)
+            {
+                bool have = false;
+                for (int bb = rewardItems.Count - 1; bb >= 0; bb--)
+                {
+                    if (rewardItems[bb].ItemID == rewardItems_init[i].ItemID)
+                    {
+                        rewardItems[bb].ItemNum += rewardItems_init[i].ItemNum;
+                        have = true;
+                        break;
+                    }
+                }
+
+                if (!have)
+                {
+                    rewardItems.Add(rewardItems_init[i]);
+                }
+            }
+
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
-                if (rewardItems[i].ItemID == 0 || !ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID)) 
-                { 
+                if (rewardItems[i].ItemID == 0 || !ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID))
+                {
                     continue;
                 }
 
@@ -790,7 +811,7 @@ namespace ET
                 }
                 else
                 {
-                    bagCellNumber += (int)(1f* rewardItems[i].ItemNum / ItemPileSum);
+                    bagCellNumber += (int)(1f * rewardItems[i].ItemNum / ItemPileSum);
                     bagCellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
                 }
             }
@@ -811,7 +832,7 @@ namespace ET
             M2C_RoleBagUpdate m2c_bagUpdate = self.message;
             m2c_bagUpdate.BagInfoAdd.Clear();
             m2c_bagUpdate.BagInfoUpdate.Clear();
-            m2c_bagUpdate.BagInfoDelete.Clear();    
+            m2c_bagUpdate.BagInfoDelete.Clear();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 int itemID = rewardItems[i].ItemID;
@@ -844,7 +865,7 @@ namespace ET
 
                 //最大堆叠数量
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
-                if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
+                if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id <= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
                     LogHelper.LogWarning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
@@ -853,7 +874,7 @@ namespace ET
                     LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
 
-                int maxPileSum = (gm && itemCof.ItemPileSum > 1 ) ? 1000000 :  itemCof.ItemPileSum;
+                int maxPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;
                 ItemLocType itemLockType = ItemLocType.ItemLocBag;
                 List<BagInfo> itemlist = null;
                 if (itemCof.ItemType == ItemTypeEnum.Equipment)
@@ -953,12 +974,12 @@ namespace ET
                             }
                         }
                         int equipId = itemCof.ItemEquipID;
-                        if (equipId!= 0 && EquipConfigCategory.Instance.Get(equipId).AppraisalItem == 0)
+                        if (equipId != 0 && EquipConfigCategory.Instance.Get(equipId).AppraisalItem == 0)
                         {
-                            useBagInfo.IfJianDing = false ;
+                            useBagInfo.IfJianDing = false;
                         }
 
-                        if (itemCof.EquipType == 101) 
+                        if (itemCof.EquipType == 101)
                         {
                             useBagInfo.IfJianDing = itemCof.ItemQuality >= 5;
                         }
@@ -970,7 +991,8 @@ namespace ET
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
 
                         int xilianType = 0;
-                        if (getType == ItemGetWay.SkillMake || getType == ItemGetWay.TreasureMap) {
+                        if (getType == ItemGetWay.SkillMake || getType == ItemGetWay.TreasureMap)
+                        {
                             xilianType = 2;
                         }
 
@@ -1003,9 +1025,9 @@ namespace ET
                     }
 
                     //掉落的橙色装备默认为绑定的物品
-                    if (( (getType == ItemGetWay.PickItem 
-                        || getType == ItemGetWay.ChouKa) 
-                        && itemCof.ItemQuality >= 5  )|| itemCof.IfLock == 1)
+                    if (((getType == ItemGetWay.PickItem
+                        || getType == ItemGetWay.ChouKa)
+                        && itemCof.ItemQuality >= 5) || itemCof.IfLock == 1)
                     {
                         useBagInfo.isBinging = true;
                     }
@@ -1027,12 +1049,12 @@ namespace ET
                     //食物
                     if (itemCof.ItemType == 1 && itemCof.ItemSubType == 131)
                     {
-                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString(); 
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
                     }
                     //家园烹饪
                     if (getType == ItemGetWay.JiaYuanCook)
                     {
-                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString(); 
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
                     }
                     //拾取到橙色装备
                     if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
@@ -1328,7 +1350,7 @@ namespace ET
             Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
         }
 
-        public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType,  int number)
+        public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType, int number)
         {
             List<BagInfo> bagInfos = self.GetItemByLoc(locType);
 
