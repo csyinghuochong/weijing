@@ -196,7 +196,13 @@ namespace ET
                                 rewardItems = new List<RewardItem>();
                                 string[] rewardInfos = itemConfig.ItemUsePar.Split(';');
                                 DropHelper.DropIDToDropItem(int.Parse(rewardInfos[1]), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_9}_{TimeHelper.ServerNow()}");
+                                bool addsussess =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_9}_{TimeHelper.ServerNow()}");
+                                if (!addsussess)
+                                {
+                                    response.Error = ErrorCode.ERR_BagIsFull;
+                                    reply();
+                                    return;
+                                }
                                 break;
                             //冷却时间清空卷轴"
                             case 12:
