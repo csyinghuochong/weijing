@@ -803,7 +803,7 @@ namespace ET
 
             rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
             rolePetInfo.Vs.Add(0);
-       
+
             //宠物之核
             Dictionary<int, long> attriDic = new Dictionary<int, long>();
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
@@ -920,6 +920,15 @@ namespace ET
                 }
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
+
+            int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
+            if (pingfenIndex != -1)
+            {
+                rolePetInfo.Ks.RemoveAt(pingfenIndex);
+                rolePetInfo.Vs.RemoveAt(pingfenIndex);
+            }
+            rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
+            rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
 
             //如果是出战的宠物。再广播一下属性
             if (updateUnit == false)

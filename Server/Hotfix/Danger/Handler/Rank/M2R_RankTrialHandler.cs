@@ -46,11 +46,11 @@ namespace ET
             {
                 if (b.Value2 == a.Value2)
                 {
-                    return (int)b.Value2 - (int)a.Value2;
+                    return (int)b.Value - (int)a.Value;
                 }
                 else
                 {
-                    return (int)b.Value - (int)a.Value;
+                    return (int)b.Value2 - (int)a.Value2;
                 }
             });
 

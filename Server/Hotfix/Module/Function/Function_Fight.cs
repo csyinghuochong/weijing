@@ -436,8 +436,11 @@ namespace ET
                 //宠物打宠物计算伤害
                 if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Pet)
                 {
-                    
-                    //actValue = (int)(actValue * (1 + GetFightValueActProValue(attackUnit.GetComponent<PetComponent>().GetPetInfo(attackUnit.Id).PetPingFen, defendUnit.GetComponent<PetComponent>().GetPetInfo(defendUnit.Id).PetPingFen)));
+                    int attackPingfen = numericComponentAttack.GetAsInt(NumericType.PetPinFen);
+                    int defPingfen = numericComponentDefend.GetAsInt(NumericType.PetPinFen);
+                    actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
+
+                    Log.Console($"attackPingfen:  {attackPingfen}  {defPingfen}");
                 }
 
                 //计算战斗公式
@@ -912,15 +915,15 @@ namespace ET
                 }
 
                 //即将死亡
-                if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
+                if (numericComponentDefend.GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {
                     //判定是否复活
-                    if (RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_FuHuoPro))
+                    if (RandomHelper.RandFloat01() < numericComponentDefend.GetAsFloat(NumericType.Now_FuHuoPro))
                     {
                         //复活存在30%的血量
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 0.3f), 0);
                     }
-                    else if (RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ShenYouPro))
+                    else if (RandomHelper.RandFloat01() < numericComponentDefend.GetAsFloat(NumericType.Now_ShenYouPro))
                     {
                         //神佑存在100%的血量
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 1f), 0);
@@ -932,17 +935,17 @@ namespace ET
                     }
                 }
                 //普通攻击反弹伤害
-                if (defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro) > 0 && skillconfig.DamgeType == 1) {
-                    int fantanValue = (int)((float)damge * defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro));
-                    attackUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
+                if (numericComponentDefend.GetAsFloat(NumericType.Now_ActReboundDamgePro) > 0 && skillconfig.DamgeType == 1) {
+                    int fantanValue = (int)((float)damge * numericComponentDefend.GetAsFloat(NumericType.Now_ActReboundDamgePro));
+                    numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
                 }
                 if (attackUnit.IsDisposed == false)
                 {
                     //设置目标当前
-                    defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
+                    numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
 
                     //攻击方反弹即将死亡
-                    if (attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) <= 0)
+                    if (numericComponentAttack.GetAsInt(NumericType.Now_Hp) <= 0)
                     {
                         //死亡
                         attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
@@ -952,8 +955,8 @@ namespace ET
             else
             {
                 //设置伤害为0,用于伤害飘字
-                long now_hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
-                defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Hp, now_hp,true, false);
+                long now_hp = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
+                numericComponentDefend.ApplyValue(NumericType.Now_Hp, now_hp,true, false);
 
                 //闪避触发被动技能
                 defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.ShanBi_5, attackUnit.Id);

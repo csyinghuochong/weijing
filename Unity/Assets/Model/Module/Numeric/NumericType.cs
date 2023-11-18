@@ -147,6 +147,7 @@
         public const int SeasonOpenTime = 3147;                             //赛季时间
         public const int PetMineCDTime = 3148;                              //挑战冷却时间
         public const int PetMineReset = 3149;
+        public const int PetPinFen = 3150;
 
 
         public const int Max = 10000;
