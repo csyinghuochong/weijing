@@ -885,7 +885,8 @@ namespace ET
                             continue;
                         }
                         int typeId = int.Parse(attriItem[0]);
-                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                        long typevalue = NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]);
+                        Function_Fight.AddUpdateProDicList(typeId, typevalue, attriDic);
                     }
                     catch (Exception ex)
                     {
