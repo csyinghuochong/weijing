@@ -9,7 +9,8 @@ namespace ET
             PetComponent petComponent = session.ZoneScene().GetComponent<PetComponent>();
             petComponent.RolePetInfos = message.PetList;
 
-
+            petComponent.ResetFormation(petComponent.TeamPetList, message.RemovePetId);
+            petComponent.ResetFormation(petComponent.PetFormations, message.RemovePetId);
         }
     }
 }

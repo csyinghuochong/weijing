@@ -1041,7 +1041,6 @@ namespace ET
 
         public static void OnRolePetFenjie(this PetComponent self, long petId)
         {
-
             self.RemovePet(petId);
 
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
@@ -1051,6 +1050,7 @@ namespace ET
 
             M2C_PetListMessage  m2C_PetListMessage = new M2C_PetListMessage();
             m2C_PetListMessage.PetList = self.RolePetInfos;
+            m2C_PetListMessage.RemovePetId = petId;
             MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_PetListMessage );
         }
 

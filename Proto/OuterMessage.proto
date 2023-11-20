@@ -6809,6 +6809,7 @@ message A2C_TikTokVerifyUser // IResponse
 message M2C_PetListMessage	// IActorMessage
 {
 	repeated RolePetInfo PetList = 1;
+	int64 RemovePetId = 2;
 }
 
 message RankingTrialInfo
