@@ -452,9 +452,8 @@ namespace ET
 
         public static async ETTask SendGameMemory(this UISettingGameComponent self)
         {
-
 #if UNITY_ANDROID
-            if (GlobalHelp.GetBigVersion() < 16)
+            if (GlobalHelp.GetBigVersion() < 17)
             {
                 return;
             }

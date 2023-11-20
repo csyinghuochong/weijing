@@ -753,5 +753,26 @@ namespace ET
             public int CameraType;
             public Scene ZoneScene;
         }
+
+        public class TikTokGetAccesstoken : DisposeObject
+        {
+            public static readonly TikTokGetAccesstoken Instance = new TikTokGetAccesstoken();
+            public Action<string> AccesstokenHandler;
+            public Scene ZoneScene;
+        }
+
+        public class TikTokRiskControlInfo : DisposeObject
+        {
+            public static readonly TikTokRiskControlInfo Instance = new TikTokRiskControlInfo();
+            public Action<string> RiskControlInfoHandler;
+            public Scene ZoneScene;
+        }
+
+        public class TikTokPayRequest : DisposeObject
+        {
+            public static readonly TikTokPayRequest Instance = new TikTokPayRequest();
+            public string PayMessage; 
+            public Scene ZoneScene;
+        }
     }
 }

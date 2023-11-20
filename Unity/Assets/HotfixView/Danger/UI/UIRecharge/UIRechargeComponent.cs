@@ -52,12 +52,12 @@ namespace ET
             uirotate.AddComponent<UIRotateComponent>().Start = true;
 
             self.ButtonAliPay = rc.Get<GameObject>("ButtonAliPay");
-            self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(() => 
+            self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(() =>
             {
                 self.ImageSelect1.SetActive(false);
                 self.ImageSelect2.SetActive(true);
                 self.PayType = PayTypeEnum.AliPay;
-            } );
+            });
             self.ButtonWeiXin = rc.Get<GameObject>("ButtonWeiXin");
             self.ButtonWeiXin.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -89,7 +89,8 @@ namespace ET
             self.ButtonAliPay.SetActive(false);
             self.ButtonWeiXin.SetActive(false);    
 #endif
-            //GameObject.Find("Global").GetComponent<Init>().OnRiskControlInfoHandler =  (string text) => { self.OnGetRiskControlInfo(text); };
+
+           
         }
     }
 
@@ -125,9 +126,9 @@ namespace ET
         {
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest()
             {
-                RiskControlInfo = riskControl,  
+                RiskControlInfo = riskControl,
                 RechargeNumber = self.ReChargeNumber,
-                PayType = self.PayType 
+                PayType = self.PayType
             };
 
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
@@ -150,7 +151,14 @@ namespace ET
             }
             if (self.PayType == PayTypeEnum.TikTok)
             {
-                //GameObject.Find("Global").GetComponent<Init>().TikTokPay(sendChatResponse.Message);
+                if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
+                {
+#if UNITY_ANDROID
+                    EventType.TikTokPayRequest.Instance.ZoneScene = self.ZoneScene();
+                    EventType.TikTokPayRequest.Instance.PayMessage = sendChatResponse.Message;
+                    EventSystem.Instance.PublishClass(EventType.TikTokPayRequest.Instance);
+#endif
+                }
             }
         }
 
@@ -185,7 +193,15 @@ namespace ET
 
             if (GlobalHelp.GetPlatform() == 5)
             {
-                //GameObject.Find("Global").GetComponent<Init>().TikTokRiskControlInfo();
+                if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
+                {
+#if UNITY_ANDROID
+                    EventType.TikTokRiskControlInfo.Instance.ZoneScene = self.ZoneScene();
+                    EventType.TikTokRiskControlInfo.Instance.RiskControlInfoHandler = (string text) => { self.OnGetRiskControlInfo(text); };
+                    EventSystem.Instance.PublishClass(EventType.TikTokRiskControlInfo.Instance);
+#endif
+                }
+
             }
             else
             {

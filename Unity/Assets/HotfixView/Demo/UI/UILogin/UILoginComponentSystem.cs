@@ -48,17 +48,12 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 				bool taptap = false;
-#if TapTap1
-				taptap = true;
-#endif
-				if (GlobalHelp.GetPlatform() == 1)
-				{
-					taptap = true;
-				}
                 int bigversion = GlobalHelp.GetBigVersion();
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 15 && taptap);
+#if UNITY_ANDROID
+                taptap = bigversion >= 15 && GlobalHelp.GetPlatform() == 1;
+#endif 
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.AccountText = rc.Get<GameObject>("AccountText");
-
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
@@ -100,15 +95,6 @@ namespace ET
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
-
-			
-				if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
-				{
-#if TikTok5
-					Log.ILog.Debug("uilogincomponent.OnTikTokAccesstokenHandler");
-					GameObject.Find("Global").GetComponent<Init>().OnTikTokAccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
-#endif
-                }
 
                 self.RealNameButton = rc.Get<GameObject>("RealNameButton");
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(() => { self.OnRealNameButton(); });
@@ -293,14 +279,8 @@ namespace ET
 			}
 		}
 
-		public static void GetTiktokAccesstoken(this UILoginComponent self)
-		{
-            Log.ILog.Debug("GetTiktokAccesstoken: ");
-            //Init init = GameObject.Find("Global").GetComponent<Init>();
-			//init.TikTokLogin();
-        }
 
-		public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
+        public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
 		{
             long serverNow = TimeHelper.ServerNow() / 1000;
             Dictionary<string, string> paramslist = new Dictionary<string, string>();
@@ -418,11 +398,11 @@ namespace ET
 #endif
 			}
 
-			//抖音只有一个登录方式
-			if (GlobalHelp.GetPlatform() == 5)
-			{
-#if TikTok5
-			 self.LoginType = LoginTypeEnum.TikTok.ToString();
+            //抖音只有一个登录方式
+            if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
+            {
+#if UNITY_ANDROID
+                self.LoginType = LoginTypeEnum.TikTok.ToString();
 #endif
 
             }
@@ -473,7 +453,10 @@ namespace ET
                     break;
 				case LoginTypeEnum.TikTok:
                     self.ThirdLoginBg.SetActive(false);
-                    self.GetTiktokAccesstoken();
+
+                    EventType.TikTokGetAccesstoken.Instance.ZoneScene = self.ZoneScene();
+                    EventType.TikTokGetAccesstoken.Instance.AccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
+                    EventSystem.Instance.PublishClass(EventType.TikTokGetAccesstoken.Instance);
                     break;
 				case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
