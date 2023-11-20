@@ -356,8 +356,48 @@ namespace ET
         /// <param name="petinfo"></param>
         /// <returns></returns>
         public static bool IsTaskGivePet(int taskId, RolePetInfo petinfo)
-        { 
-            
+        {
+            if (petinfo == null)
+            {
+                return false;
+            }
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
+            if (taskConfig.TargetType != (int)TaskTargetType.GivePet_25)
+            {
+                return false;
+            }
+            if (taskConfig.Target.Length != taskConfig.TargetValue.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < taskConfig.Target.Length; i++)
+            {
+                bool value = false;
+                int targetType = taskConfig.Target[i];
+                int targetValue = taskConfig.TargetValue[i];
+
+                switch (targetType)
+                {
+                    case 1:
+                        int combat = PetHelper.PetPingJia(petinfo);
+                        value = combat >= targetValue;
+                        break;
+                    case 2:
+                        value = petinfo.PetSkill.Count >= targetValue;
+                        break;
+                    case 3:
+                        value = petinfo.ZiZhi_Hp >= targetValue;
+                        break;
+                }
+
+                if (!value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         //目标类型为10：

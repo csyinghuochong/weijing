@@ -340,7 +340,7 @@ namespace ET
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
 
-            if ( ComHelp.IsOpenSeason() && Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 15)
+            if (SeasonHelper.IsOpenSeason() && Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 15)
             {
                 self.UpdateRoleData(UserDataType.SeasonExp, "5");
             }

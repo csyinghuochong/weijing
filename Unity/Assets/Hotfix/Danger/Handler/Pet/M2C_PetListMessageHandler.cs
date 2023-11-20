@@ -6,7 +6,10 @@ namespace ET
     {
         protected override void Run(Session session, M2C_PetListMessage message)
         {
-            session.ZoneScene().GetComponent<PetComponent>().RolePetInfos = message.PetList;
+            PetComponent petComponent = session.ZoneScene().GetComponent<PetComponent>();
+            petComponent.RolePetInfos = message.PetList;
+
+
         }
     }
 }

@@ -997,6 +997,8 @@ namespace ET
 
             self.ResetFormation(self.PetFormations, petId);
             self.ResetFormation(self.TeamPetList, petId);
+            self.ResetFormation(self.PetMingList, petId);
+            self.ResetFormation(self.PetMingPosition, petId);
         }
 
         /// <summary>
@@ -1039,15 +1041,8 @@ namespace ET
 
         public static void OnRolePetFenjie(this PetComponent self, long petId)
         {
-            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
-            {
-                if (self.RolePetInfos[i].Id == petId)
-                {
-                    int cofID = self.RolePetInfos[i].ConfigId;
-                    self.RolePetInfos.RemoveAt(i);
-                    break;
-                }
-            }
+
+            self.RemovePet(petId);
 
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {

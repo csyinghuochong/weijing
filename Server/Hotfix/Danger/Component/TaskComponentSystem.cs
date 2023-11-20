@@ -434,6 +434,23 @@ namespace ET
 
                 bagComponent.OnCostItemData(baginfoId, 1);
             }
+            //给予宠物
+            if(taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+            {
+                long petInfo = request.BagInfoID;
+                PetComponent petComponent = unit.GetComponent<PetComponent>();
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(petInfo);
+                if (rolePetInfo == null)
+                {
+                    return ErrorCode.ERR_ItemNotExist;
+                }
+                if (!TaskHelper.IsTaskGivePet(taskid, rolePetInfo))
+                {
+                    return ErrorCode.ERR_ItemNotEnoughError;
+                }
+
+                petComponent.OnRolePetFenjie(petInfo);  
+            }
 
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
@@ -811,7 +828,7 @@ namespace ET
                 self.UpdateDayTask(false);
             }
 
-            if (ComHelp.IsOpenSeason())
+            if (SeasonHelper.IsOpenSeason())
             {
                 self.CheckSeasonMainTask();
             }

@@ -603,6 +603,7 @@ namespace ET
             if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 ///给予宠物界面
+                ////TaskHelper.IsTaskGivePet();
             }
             else
             {

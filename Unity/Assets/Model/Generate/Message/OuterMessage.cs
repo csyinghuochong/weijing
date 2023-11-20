@@ -14177,6 +14177,18 @@ namespace ET
 		[ProtoMember(1)]
 		public List<RolePetInfo> PetList = new List<RolePetInfo>();
 
+		[ProtoMember(2)]
+		public List<long> TeamPetList = new List<long>();
+
+		[ProtoMember(4)]
+		public List<long> PetFormations = new List<long>();
+
+		[ProtoMember(11)]
+		public List<long> PetMingList = new List<long>();
+
+		[ProtoMember(12)]
+		public List<long> PetMingPosition = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.RankingTrialInfo)]

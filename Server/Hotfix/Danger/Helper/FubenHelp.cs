@@ -204,7 +204,7 @@ namespace ET
 			}
 
             string[] monsters = createMonster.Split('@');
-            if (ComHelp.IsOpenSeason())
+            if (SeasonHelper.IsOpenSeason())
 			{
 				//赛季boss
 				long serverNow = TimeHelper.ServerNow();
