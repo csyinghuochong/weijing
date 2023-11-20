@@ -289,7 +289,7 @@ namespace ET
             paramslist.Add("ts", "1555912969");
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);
-            string result = HttpHelper.OnWebRequestPost_1("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+            string result = HttpHelper.OnWebRequestPost_Form("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
             Log.ILog.Debug("sign: " + sign);
             Log.ILog.Debug("OnWebRequestPost_1: " + result);
 
