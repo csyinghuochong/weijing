@@ -52,7 +52,6 @@ namespace ET
                     self.Effects.RemoveAt(i);
                 }
                 self.Effects.Clear();
-                self.Effects = null;
             }
           
             TimerComponent.Instance?.Remove(ref self.Timer);
