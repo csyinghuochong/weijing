@@ -56067,6 +56067,8 @@ MonoBehaviour:
     gameObject: {fileID: 2647518886045049838}
   - key: Text_ShieldDesc
     gameObject: {fileID: 4707181213225716940}
+  - key: ScrollView_2
+    gameObject: {fileID: 7761500616494099846}
 --- !u!1 &7400548121347269585
 GameObject:
   m_ObjectHideFlags: 0

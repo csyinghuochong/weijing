@@ -8,6 +8,7 @@ namespace ET
 {
     public class UISkillLifeShieldComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ScrollView_2;
         public GameObject Text_ShieldDesc;
         public GameObject Text_Progess;
         public GameObject Text_ShieldName;
@@ -22,6 +23,8 @@ namespace ET
 
         public BagComponent BagComponent;
 
+        public bool IsDrag;
+        public long ClickTime;
         public int ShieldType;
 
         public bool IsHoldDown;
@@ -34,6 +37,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
             self.Text_ShieldDesc = rc.Get<GameObject>("Text_ShieldDesc");
             self.Text_Progess = rc.Get<GameObject>("Text_Progess");
             self.Text_ShieldName = rc.Get<GameObject>("Text_ShieldName");
@@ -274,7 +278,9 @@ namespace ET
                     uI_1.SetEventTrigger(true);
                     uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
-
+                    uI_1.BeginDragHandler =  (BagInfo binfo, PointerEventData pdata) => { self.OnBeginDrag(binfo, pdata); };
+                    uI_1.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnDraging(binfo, pdata); };
+                    uI_1.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnEndDrag(binfo, pdata); };
                     self.ItemUIlist.Add(uI_1);
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
@@ -288,12 +294,27 @@ namespace ET
             }
         }
 
+        public static void OnBeginDrag(this UISkillLifeShieldComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnBeginDrag(pdata);
+            self.IsDrag = true;
+        }
+        public static void OnDraging(this UISkillLifeShieldComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnDrag(pdata);
+            self.IsDrag = true;
+        }
+        public static void OnEndDrag(this UISkillLifeShieldComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnEndDrag(pdata);
+            self.IsDrag = false;
+        }
         public static async ETTask OnPointerDown(this UISkillLifeShieldComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = true;
-            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
+            self.ClickTime = TimeHelper.ClientNow();
             await TimerComponent.Instance.WaitAsync(500);
-            if (!self.IsHoldDown)
+            if (!self.IsHoldDown || self.IsDrag)
                 return;
             EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
             EventType.ShowItemTips.Instance.bagInfo = binfo;
@@ -305,6 +326,10 @@ namespace ET
 
         public static void OnPointerUp(this UISkillLifeShieldComponent self, BagInfo binfo, PointerEventData pdata)
         {
+            if (TimeHelper.ClientNow() - self.ClickTime < 200)
+            {
+                HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
+            }
             self.IsHoldDown = false;
         }
 
