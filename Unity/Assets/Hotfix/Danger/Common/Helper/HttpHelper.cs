@@ -94,6 +94,50 @@ namespace ET
             return result;  
         }
 
+        public static string OnWebRequestPost_Form2(string url, Dictionary<string, string> paramList)
+        {
+            string result = string.Empty;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+                HttpContent content = new FormUrlEncodedContent(new[]
+                {
+                    new KeyValuePair<string, string>("rPath",  "/RootFolder/"),
+                    new KeyValuePair<string, string>("nName", "TestFolder"),
+                    new KeyValuePair<string, string>("type", "Folder")
+                });
+
+                content.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+                content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+                formData.Add(content);
+
+                HttpResponseMessage response = new HttpResponseMessage();
+                using (var client = new HttpClient() { })
+                {
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "xxxxxxx=");
+                    response = client.PostAsync(url, content).Result;
+                }
+
+                string statusCode = response.StatusCode.ToString();
+                if (response.IsSuccessStatusCode)
+                {
+                    result = response.Content.ReadAsStringAsync().Result;
+                    return result;
+                }
+                else
+                {
+                    return statusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
+        }
+
         public static string OnWebRequestPost_1(string url, Dictionary<string, string> dic)
         {
             try
