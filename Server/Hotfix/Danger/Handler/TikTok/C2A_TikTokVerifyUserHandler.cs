@@ -34,6 +34,7 @@ namespace ET
             }
 
             Log.Console($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
+            Log.Warning($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
 
             response.sdk_open_id = 0;
             reply();

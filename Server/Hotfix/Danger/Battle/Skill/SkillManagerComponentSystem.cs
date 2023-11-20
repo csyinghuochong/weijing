@@ -257,6 +257,7 @@ namespace ET
                 skillInfos[0].PosY = target3.y;
                 skillInfos[0].PosZ = target3.z;
             }
+            //90010909
             if (skillConfig.GameObjectName == "Skill_ShanXian_2" && skillInfos.Count > 0)
             {
                 skillInfos[0].PosX = target.Position.x;

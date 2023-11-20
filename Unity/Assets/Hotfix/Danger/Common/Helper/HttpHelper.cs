@@ -71,6 +71,29 @@ namespace ET
             return result;//读取微信返回的数据
         }
 
+        public static string OnWebRequestPost_Form(string url, Dictionary<string, string> paramList)
+        {
+            string result = string.Empty;
+
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                var multipartFormDataContent = new MultipartFormDataContent();
+                foreach (var keyValuePair in paramList)
+                {
+                    httpClient.DefaultRequestHeaders.Add(keyValuePair.Key, keyValuePair.Value);
+                }
+                multipartFormDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                HttpResponseMessage response = httpClient.PostAsync(url, multipartFormDataContent).Result;
+                result = response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;  
+        }
+
         public static string OnWebRequestPost_1(string url, Dictionary<string, string> dic)
         {
             try
