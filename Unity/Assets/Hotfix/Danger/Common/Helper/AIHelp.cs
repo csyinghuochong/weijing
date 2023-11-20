@@ -235,7 +235,7 @@ namespace ET
 
             enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
             {
-                return (int)(b.Distacne - a.Distacne);
+                return (int)(a.Distacne - b.Distacne);
             });
             switch (numberType)
             {

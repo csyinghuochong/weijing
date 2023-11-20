@@ -181,7 +181,6 @@ namespace ET
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
             if (unit.Type == UnitType.Player && unit.ConfigId == 3)
             {
-                
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
                 int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
@@ -412,13 +411,19 @@ namespace ET
                     return;
                 }
 
-                if (skillConfig.SkillTargetTypeNum > 0)
+                if (skillConfig.SkillTargetTypeNum == 0)
                 {
-                    targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetTypeNum));
+                    targetIdList.Add(targetId);
                 }
                 else
                 {
-                    targetIdList.Add(targetId);
+                    List<long> enemyids = AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetTypeNum);
+                    if ( ( skillConfig.SkillTargetTypeNum == 2 || skillConfig.SkillTargetTypeNum == 3) && enemyids.Count > 0)
+                    {
+                        aIComponent.ChangeTarget(enemyids[0]);
+                    }
+
+                    targetIdList.AddRange(enemyids);
                 }
             }
             if (targetIdList.Count == 0)
@@ -439,7 +444,16 @@ namespace ET
             {
                 C2M_SkillCmd cmd = self.C2M_SkillCmd;
                 cmd.TargetAngle = targetAngle;
-                cmd.SkillID = skillIfo.SkillId;
+
+                if (unit.Type == UnitType.Monster)
+                {
+                    cmd.SkillID = skillIfo.SkillId; 
+                }
+                else
+                {
+                    cmd.SkillID = skillIfo.SkillId;
+                }
+
                 cmd.TargetID = targetIdList[i];
                 skillManagerComponent.OnUseSkill(cmd, false);
             }
