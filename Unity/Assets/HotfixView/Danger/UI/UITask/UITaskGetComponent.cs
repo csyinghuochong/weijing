@@ -568,7 +568,8 @@ namespace ET
 
             TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(taskid);
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
-            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10
+                || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 self.ButtonGiveTask.SetActive(taskPro != null);
                 self.ButtonGet.SetActive(taskPro == null);
