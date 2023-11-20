@@ -1,15 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace ET
 {
-    //闪现(玩家技能)
+    //闪现(怪物技能)
     [SkillHandler]
-    public class Skill_ShanXian_1 : ASkillHandler
+    public class Skill_ShanXian_2 : ASkillHandler
     {
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            
+
             this.OnExecute();
         }
 
@@ -19,7 +19,6 @@ namespace ET
             if (this.SkillConf.GameObjectParameter == "0")
             {
                 //先跳过去再触发伤害
-                //TheUnitFrom.Position = TargetPosition;
                 this.PlaySkillEffects(this.TargetPosition);
             }
             else
@@ -33,12 +32,7 @@ namespace ET
 
         public override void OnUpdate()
         {
-            long serverNow = TimeHelper.ServerNow();
-            if (this.SkillConf.GameObjectParameter == "1" && this.IsExcuteHurt && serverNow >= this.SkillExcuteHurtTime)
-            {
-                //先跳过去再触发伤害
-                //TheUnitFrom.Position = TargetPosition;
-            }
+            
             this.BaseOnUpdate();
         }
 

@@ -3,8 +3,8 @@
 namespace ET
 {
 
-    //闪现(玩家技能）
-    public class Skill_ShanXian_1 : SkillHandler
+    //闪现2(怪物技能)
+    public class Skill_ShanXian_2 : SkillHandler
     {
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
@@ -53,10 +53,10 @@ namespace ET
             }
 
             this.BaseOnUpdate();
-            if (this.SkillConf.GameObjectParameter == "1"  && serverNow > this.SkillExcuteHurtTime)
+            if (this.SkillConf.GameObjectParameter == "1" && serverNow > this.SkillExcuteHurtTime)
             {
                 this.SyncPostion();
-                this.SetSkillState( SkillState.Finished);
+                this.SetSkillState(SkillState.Finished);
             }
         }
 

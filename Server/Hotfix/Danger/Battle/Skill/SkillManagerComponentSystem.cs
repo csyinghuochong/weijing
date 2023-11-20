@@ -257,6 +257,12 @@ namespace ET
                 skillInfos[0].PosY = target3.y;
                 skillInfos[0].PosZ = target3.z;
             }
+            if (skillConfig.GameObjectName == "Skill_ShanXian_2" && skillInfos.Count > 0)
+            {
+                skillInfos[0].PosX = target.Position.x;
+                skillInfos[0].PosY = target.Position.y;
+                skillInfos[0].PosZ = target.Position.z;
+            }
             return skillInfos;
         }
 
