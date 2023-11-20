@@ -905,6 +905,8 @@ MonoBehaviour:
     gameObject: {fileID: 5613808182916364956}
   - key: SeasonIcon
     gameObject: {fileID: 4835902781816307884}
+  - key: Text
+    gameObject: {fileID: 4695968969846291465}
 --- !u!1 &1100584383698886756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,6 +1143,8 @@ MonoBehaviour:
     gameObject: {fileID: 3274713962833153736}
   - key: SeasonIcon
     gameObject: {fileID: 2590899807455238540}
+  - key: Text
+    gameObject: {fileID: 6215506949700357316}
 --- !u!1 &1593922538582338579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1676,8 @@ MonoBehaviour:
     gameObject: {fileID: 774344346230231804}
   - key: SeasonIcon
     gameObject: {fileID: 8562124905684830395}
+  - key: Text
+    gameObject: {fileID: 6694873725377022300}
 --- !u!1 &2028802550048099469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,6 +1914,8 @@ MonoBehaviour:
     gameObject: {fileID: 5491228925161511440}
   - key: SeasonIcon
     gameObject: {fileID: 4102249587321405230}
+  - key: Text
+    gameObject: {fileID: 5533566025775907729}
 --- !u!1 &2240925060274942521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4064,6 +4072,8 @@ MonoBehaviour:
     gameObject: {fileID: 4443830990661167197}
   - key: SeasonIcon
     gameObject: {fileID: 1975716772573256573}
+  - key: Text
+    gameObject: {fileID: 3574984245707951124}
 --- !u!1 &4695968969846291465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,6 +5467,8 @@ MonoBehaviour:
     gameObject: {fileID: 5790969868108074029}
   - key: SeasonIcon
     gameObject: {fileID: 5255440988847841229}
+  - key: Text
+    gameObject: {fileID: 1100584383698886756}
 --- !u!1 &5925530002278770691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6592,7 +6604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267, y: 31}
+  m_AnchoredPosition: {x: 238.4, y: 31}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6288326936995112452
@@ -6636,7 +6648,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5/5
+  m_Text: "\u8FDB\u5EA6:5/5"
 --- !u!114 &785367810654930306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7272,6 +7284,8 @@ MonoBehaviour:
     gameObject: {fileID: 7171093684456892451}
   - key: SeasonIcon
     gameObject: {fileID: 8034346695112138086}
+  - key: Text
+    gameObject: {fileID: 6293745015051265545}
 --- !u!1 &8075984009525095625
 GameObject:
   m_ObjectHideFlags: 0

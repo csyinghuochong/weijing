@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonJingHeComponent: Entity, IAwake,IDestroy
+    public class UISeasonJingHeComponent: Entity, IAwake, IDestroy
     {
         public GameObject JingHeListNode;
         public GameObject UISeasonJingHeItem;
@@ -43,6 +43,7 @@ namespace ET
             self.InitCell();
         }
     }
+
     public class UISeasonJingHeComponentDestroy: DestroySystem<UISeasonJingHeComponent>
     {
         public override void Destroy(UISeasonJingHeComponent self)
@@ -58,6 +59,7 @@ namespace ET
             self.AssetPath = null;
         }
     }
+
     public static class UISeasonJingHeComponentSystem
     {
         public static void InitCell(this UISeasonJingHeComponent self)
@@ -108,15 +110,29 @@ namespace ET
                 ReferenceCollector rc = self.NeedItem.GetComponent<ReferenceCollector>();
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costItemId);
 
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
                 rc.Get<GameObject>("IconImg").GetComponent<Image>().sprite = sp;
+                
+                string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
+                string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+                Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+                if (!self.AssetPath.Contains(path1))
+                {
+                    self.AssetPath.Add(path1);
+                }
+                rc.Get<GameObject>("Back").GetComponent<Image>().sprite = sp1;
+                
+                
                 rc.Get<GameObject>("ItemNameText").GetComponent<Text>().text = itemConfig.ItemName;
+                rc.Get<GameObject>("ItemNameText").GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemConfig.ItemQuality);
                 rc.Get<GameObject>("ItemNumText").GetComponent<Text>().text = $"{havedNum}/{cosrItemNum}";
+                rc.Get<GameObject>("ItemNumText").GetComponent<Text>().color =
+                        havedNum >= cosrItemNum? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
 
                 self.ItemListNode.SetActive(false);
                 self.NeedItem.SetActive(true);
@@ -149,7 +165,7 @@ namespace ET
                         uI.UpdateItem(null, ItemOperateEnum.None);
                     }
                 }
-                
+
                 List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
                 for (int i = 0; i < bagInfos.Count; i++)
                 {

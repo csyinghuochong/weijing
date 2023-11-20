@@ -40,7 +40,7 @@ namespace ET
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
 
             taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue? taskConfig.TargetValue : taskPro.taskTargetNum_1;
-            self.ProgressText.GetComponent<Text>().text = string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue);
+            self.ProgressText.GetComponent<Text>().text = $"进度:{taskPro.taskTargetNum_1}/{taskConfig.TargetValue}";
         }
     }
 }

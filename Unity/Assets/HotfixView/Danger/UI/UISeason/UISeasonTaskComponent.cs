@@ -92,6 +92,7 @@ namespace ET
                         {
                             self.UpdateInfo(taskConfig.Id ,index1);
                         });
+                        rc.Get<GameObject>("Text").GetComponent<Text>().text = taskConfig.TaskName;
                         self.LinkShowSet.transform.GetChild(index).gameObject.SetActive(taskConfig.Id < self.TaskPro.taskID);
 
                         
