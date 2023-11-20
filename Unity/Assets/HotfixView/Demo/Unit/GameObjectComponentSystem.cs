@@ -729,6 +729,11 @@ namespace ET
                         self.OldShader = StringBuilderHelper.ToonBasicOutline;
                         break;
                     }
+                    // if (materials[i].shader.name.Equals("Toon/BasicOutlineNew"))
+                    // {
+                    //     self.Material = materials[i];
+                    //     break;
+                    // }
                 }
             }
         }
@@ -768,6 +773,7 @@ namespace ET
             if (self.Material != null)
             {
                 self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
+                // self.Material.SetInt("_Type", 1);
                 //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
                 TimerComponent.Instance.Remove(ref self.HighLightTimer);
                 self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 120, TimerType.HighLightTimer, self);
@@ -783,6 +789,7 @@ namespace ET
             if (self.Material != null)
             {
                 self.Material.shader = GlobalHelp.Find(self.OldShader);
+                // self.Material.SetInt("_Type", 0);
             }
         }
 
