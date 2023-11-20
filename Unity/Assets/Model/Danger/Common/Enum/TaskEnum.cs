@@ -60,6 +60,7 @@ namespace ET
     //22:家园等级达到X级
     //23:进行一次宠物合成
     //24:获得任意宠物N个(不算之前)
+    //25: 给予任务(宠物)
 
     //101：击杀挑战难度的指定ID怪物(击杀地狱也算)
     //102：击杀地狱难度指定ID怪物
@@ -96,6 +97,7 @@ namespace ET
         JiaYuanLevel_22,                    //22:家园等级达到X级
         PetHeCheng_23,                      //23:进行一次宠物合成
         PetNumber2_24,                      //24:获得任意宠物N个(不算之前)
+        GivePet_25,
 
         KillTiaoZhanMonsterID_101 = 101,        //击杀挑战难度以及以上怪物ID
         KillDiYuMonsterID_102 = 102,            //击杀地狱难度怪物

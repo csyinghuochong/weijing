@@ -598,10 +598,18 @@ namespace ET
         public static async ETTask OnButtonGiveTask(this UITaskGetComponent self)
         {
             //打开界面选择道具。
-            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
-            ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskId);
-            UIHelper.Remove(self.ZoneScene(),UIType.UITaskGet);
-            await ETTask.CompletedTask;
+            //给予道具和给予宠物界面分开
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskId);
+            if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+            {
+                ///给予宠物界面
+            }
+            else
+            {
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
+                ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskId);
+                UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
+            }
         }
 
         public static void OnButtonGetTask(this UITaskGetComponent self)

@@ -347,6 +347,19 @@ namespace ET
             return taskRewards;
         }
 
+        /// <summary>
+        /// 1 战力
+        ///2 技能数量
+        ///3 生命资质
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="petinfo"></param>
+        /// <returns></returns>
+        public static bool IsTaskGivePet(int taskId, RolePetInfo petinfo)
+        { 
+            
+        }
+
         //目标类型为10：
         //支持多个 比如Target字段配置1,3 TargetValue字段配置10,3 就是找一个10级以上,品质为蓝色以上的道具。
         //            目标值配对应的值
