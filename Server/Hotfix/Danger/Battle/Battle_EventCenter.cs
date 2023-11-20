@@ -63,11 +63,31 @@ namespace ET
         }
     }
 
+    //[Event]
+    //public class MoveStart_NotifyUnit : AEventClass<EventType.MoveStart>
+    //{
+    //    protected override void Run(object cls)
+    //    {
+    //        EventType.MoveStart args = (EventType.MoveStart)cls;
+    //        Unit unit = args.Unit;
+    //    }
+    //}
+
+    //[Event]
+    //public class MoveStop_NotifyUnit : AEventClass<EventType.MoveStop>
+    //{
+    //    protected override void Run(object cls)
+    //    {
+    //        EventType.MoveStop args = (EventType.MoveStop)cls;
+    //        Unit unit = args.Unit;
+            
+    //    }
+    //}
+
     //击杀事件
     [Event]
     public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
     {
-
         private async ETTask OnRemoveUnit(EventType.KillEvent args, long waittime)
         {
             Unit unitDefend = args.UnitDefend;

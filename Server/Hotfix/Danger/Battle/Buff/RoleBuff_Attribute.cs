@@ -26,7 +26,6 @@ namespace ET
                 this.BuffState = BuffState.Finished;
                 return;
             }
-
             this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
             //执行buff
             if (!this.IsTrigger && this.PassTime >= this.DelayTime)
@@ -56,6 +55,14 @@ namespace ET
 
         private void buffSetProperty(NumericComponent heroCom)
         {
+            ///移动才触发
+            if (this.mBuffConfig.MoveAction == 1)
+            {
+                if (heroCom.GetComponent<MoveComponent>().IsArrived())
+                {
+                    return;
+                }
+            }
 
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
             switch (this.mBuffConfig.BuffType)

@@ -165,6 +165,9 @@ namespace ET
 		/// <summary>移除机制</summary>
 		[ProtoMember(31)]
 		public int Remove { get; set; }
+		/// <summary>移动触发</summary>
+		[ProtoMember(32)]
+		public int MoveAction { get; set; }
 
 	}
 }
