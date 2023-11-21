@@ -605,7 +605,12 @@ namespace ET
             if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 ///给予宠物界面
-                ///参考一下宠物界面 不能放生的宠物此处也不同提交。 
+                ///参考一下宠物界面 不能放生的宠物此处也不同提交。 添加道具检测一遍。  
+                ///加个任务测试
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGivePet);
+                ui.GetComponent<UIGivePetComponent>().InitTask(self.TaskId);
+                ui.GetComponent<UIGivePetComponent>().OnUpdateUI();
+                UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
                 ////TaskHelper.IsTaskGivePet();
               
                 //PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
