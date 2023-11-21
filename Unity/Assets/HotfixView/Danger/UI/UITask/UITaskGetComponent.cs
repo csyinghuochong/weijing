@@ -524,7 +524,8 @@ namespace ET
                     continue;
                 }
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID );
-                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 && taskConfig.CompleteNpcID == self.NpcID)
+                if ((taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                    && taskConfig.CompleteNpcID == self.NpcID)
                 {
                     taskids.Add(taskPros[i].taskID);
                 }
@@ -604,6 +605,8 @@ namespace ET
             if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 ///给予宠物界面
+                ///参考一下宠物界面 不能放生的宠物此处也不同提交。 添加道具检测一遍。  
+                ///加个任务测试
                 ////TaskHelper.IsTaskGivePet();
             }
             else

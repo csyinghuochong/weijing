@@ -48,6 +48,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.JiaYuanLevel_22, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = JiaYuanLevel_22 });
             TaskTypeLogic.Add(TaskTargetType.PetHeCheng_23, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetHeCheng_23 });
             TaskTypeLogic.Add(TaskTargetType.PetNumber2_24, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber2_24 });
+            TaskTypeLogic.Add(TaskTargetType.GivePet_25, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = GivePet_25 });
 
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
@@ -469,6 +470,13 @@ namespace ET
         public string PetNumber1_11(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("获得宠物数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string GivePet_25(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("给予一个宠物 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }

@@ -435,7 +435,7 @@ namespace ET
                 bagComponent.OnCostItemData(baginfoId, 1);
             }
             //给予宠物
-            if(taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+            if(taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 long petInfo = request.BagInfoID;
                 PetComponent petComponent = unit.GetComponent<PetComponent>();
