@@ -295,7 +295,11 @@ namespace ET
 				string sign = TikTokHelper.getSign(paramslist);
 				paramslist.Add("sign", sign);
 				string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
-                TikTokCode  tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
+
+#if UNITY_EDITOR
+				result = "{\"code\":0,\"data\":{\"age_type\":100,\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"sdk_open_id\":\"7303474616922905355\"},\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"message\":\"success\"}";
+#endif
+				TikTokCode  tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
                 //{"code":0,"data":{"age_type":100,"log_id":"20231121162107BEDB3B3662AD2265532E","sdk_open_id":"7303474616922905355"},"log_id":"20231121162107BEDB3B3662AD2265532E","message":"success"}
                 //Log.ILog.Debug("ts: " + serverNow);
                 //Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
