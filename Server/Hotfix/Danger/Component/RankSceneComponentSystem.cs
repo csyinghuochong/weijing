@@ -332,6 +332,19 @@ namespace ET
             }
         }
 
+        public static int GetTrialRank(this RankSceneComponent self, long userId)
+        {
+            for (int i = 0; i < self.DBRankInfo.rankingTrial.Count; i++)
+            {
+                if (self.DBRankInfo.rankingTrial[i].KeyId == userId)
+                {
+                    return i + 1;
+                }
+
+            }
+            return 0;
+        }
+
         public static int GetPetRank(this RankSceneComponent self, long userId)
         {
             for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)

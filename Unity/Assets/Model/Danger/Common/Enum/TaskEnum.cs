@@ -83,23 +83,41 @@ namespace ET
         JoinUnion_9 = 9,
         GiveItem_10 = 10,
 
-        PetNumber1_11,                      //11:获得任意宠物N个(算上之前)
-        MakeNumber_12,                      //12:制造N个道具
-        EquipXiLian_13,                     //13:洗炼装备次数N次
-        PetTianTiNumber_14,                 //14:宠物在天梯战斗N次
-        DuiHuanGold_15,                     //15:钻石兑换金币次数
-        EquipHuiShou_16,                    //16:装备重铸次数达到N次 （就是装备分解）
-        QiangHuaLevel_17,                   //17:强化装备最高一级达到N级
-        PetNSkill_18,                       //18:拥有一个N技能宠物
-        PetFubenId_19,                      //19:宠物探险通关第N关卡
-        TotalCostGold_20,                   //20:消耗X金币
-        KillPlayer_21,                      //21:在野外击败敌人X次
-        JiaYuanLevel_22,                    //22:家园等级达到X级
-        PetHeCheng_23,                      //23:进行一次宠物合成
-        PetNumber2_24,                      //24:获得任意宠物N个(不算之前)
-        GivePet_25,
+        PetNumber1_11 = 11,                      //11:获得任意宠物N个(算上之前)
+        MakeNumber_12 = 12,                      //12:制造N个道具
+        EquipXiLian_13 = 13,                     //13:洗炼装备次数N次
+        PetTianTiNumber_14 = 14,                 //14:宠物在天梯战斗N次
+        DuiHuanGold_15 = 15,                     //15:钻石兑换金币次数
+        EquipHuiShou_16 = 16,                    //16:装备重铸次数达到N次 （就是装备分解）
+        QiangHuaLevel_17 = 17,                   //17:强化装备最高一级达到N级
+        PetNSkill_18 = 18,                       //18:拥有一个N技能宠物
+        PetFubenId_19 = 19,                      //19:宠物探险通关第N关卡
+        TotalCostGold_20 = 20,                   //20:消耗X金币
+        KillPlayer_21 = 21,                      //21:在野外击败敌人X次
+        JiaYuanLevel_22 = 22,                    //22:家园等级达到X级
+        PetHeCheng_23 = 23,                      //23:进行一次宠物合成
+        PetNumber2_24 = 24,                      //24:获得任意宠物N个(不算之前)
+        GivePet_25 = 25,
+        TreasureMapNormal_26 = 26,               //26.使用普通藏宝图x次
+        TreasureMapHigh_27 = 27,                 //27.使用高级藏宝图
+        TowerOfSeal_28 = 28,                     //28.封印之塔挑战X
+        MakeQulityNumber_29 = 29,                //29:制造品质道具
 
-        MakeQulityNumber_29,                //26:制造品质道具
+        PetNumber_31 = 31,                       //31.获得X只新的宠物(接取任务才开始算获取)  (24 / 31的区别)
+        PetHeChengCombat_32 = 32,                //32.合成1只战力达到X点的宠物
+        PetXiLian10010086_33 = 33,               //33.宠物使用宠之晶洗炼宠物达到X次
+        PetFuHuaNumber_34 = 34,                  //34.在孵化系统中孵化成功宠物X次
+        PetFuHuaId_35 = 35,                      //35.在孵化系统中孵化指定的宠物蛋成功X次（俩参数:宠物蛋ID，次数）
+
+        FuMoQulity_41 = 41,                      //41.使用N点品质的鉴定附魔道具给装备附魔X次（俩参数:附魔道具品质，次数）
+        JianDingQulity_42 = 42,                  //42.使用N点品质的鉴定道具给装备鉴定X次（俩参数:鉴定道具品质，次数）
+        JianDingAttrNumber_43 = 43,               //43.鉴定装备时出一个大于N条属性的装备X个（俩参数:鉴定属性条目数量，数量）
+        XiLianSkillNumber_44 = 44,            //44.洗炼出带有任何隐藏技能的装备X个
+        XiLianAttriId_45 = 45,                //45.洗炼出带有指定属性的装备X个（俩参数:指定属性ID，数量）
+
+        TrialRank_81 = 81,                 //81:试炼之地的输出排行榜进入前N名次，X次（俩参数:前N名，次数）
+        PetTianTiRank_82 = 82,                    //82:宠物天梯进入排行榜前N名次，X次（俩参数:前N名，次数）
+        CombatRank_83 = 83,                //83:战力排行榜进入前N名次，X次（俩参数:前N名，次数）
 
         KillTiaoZhanMonsterID_101 = 101,        //击杀挑战难度以及以上怪物ID
         KillDiYuMonsterID_102 = 102,            //击杀地狱难度怪物
@@ -112,6 +130,7 @@ namespace ET
 
         CombatToValue_133 = 133,                //战力评分达到指定值
         TrialTowerCeng_134 = 134,               //试炼之塔达到多少层
+        ShenYuanNumber_135 = 135,               //135: 挑战深渊模式的副本X次
     }
 
     //1：登陆

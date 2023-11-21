@@ -99,6 +99,13 @@ namespace ET
                     {
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, itemXiLianResult.HideSkillLists[skill], 1);
                     }
+
+                    for (int attr = 0;  attr < itemXiLianResult.XiLianHideProLists.Count; attr++ )
+                    {
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.XiLianAttriId_45, itemXiLianResult.XiLianHideProLists[0].HideID, 1);
+                    }
+
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.XiLianSkillNumber_44, itemXiLianResult.HideSkillLists.Count, 1);
                 }
 
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);

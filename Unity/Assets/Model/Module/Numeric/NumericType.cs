@@ -75,12 +75,12 @@
         public const int TeamDungeonXieZhu = 3075;                                  //协作副本
         public const int FubenTimesReset = 3076;                                    //宠物天梯重置
         public const int FenShangSet = 3077;                                           //分享
-        public const int RankID = 3078;                                             //排名
+        public const int CombatRankID = 3078;                                             //排名
         public const int HorseFightID = 3079;                                       //出战的坐骑
         public const int HorseRide = 3080;                                          //骑乘状态
         public const int TitleID = 3081;                                              //称号
         public const int ArenaNumber = 3082;                                           //角斗场次数
-        public const int PetRankID = 3083;                                          //宠物天梯排名
+        public const int PetTianTiRankID = 3083;                                          //宠物天梯排名
         public const int LoopTaskID = 3084;                                         //赏金任务ID
         public const int BossBelongID = 3085;                                       //归属ID
         public const int LocalDungeonTime = 3086;                                    //剧情副本次数
@@ -148,6 +148,7 @@
         public const int PetMineCDTime = 3148;                              //挑战冷却时间
         public const int PetMineReset = 3149;
         public const int PetPinFen = 3150;
+        public const int TrialRankId = 3151;
 
 
         public const int Max = 10000;

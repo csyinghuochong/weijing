@@ -2853,6 +2853,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int SoloRankId { get; set; }
 
+		[ProtoMember(4)]
+		public int TrialRankId { get; set; }
+
 	}
 
 	[ResponseType(nameof(Union2G_EnterUnion))]

@@ -32,6 +32,7 @@ namespace ET
             response.ReardItem = rewardItems[0];
             useBagInfo.HideProLists.Clear();
             useBagInfo.HideProLists.Add(new HideProList() { HideID = rewardItems[0].ItemID, HideValue = rewardItems[0].ItemNum });
+
             reply();
             await ETTask.CompletedTask;
         }

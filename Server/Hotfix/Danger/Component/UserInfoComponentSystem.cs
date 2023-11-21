@@ -653,8 +653,8 @@ namespace ET
             {
                 return;
             }
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, Response.PetRankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CombatRankID, Response.RankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetTianTiRankID, Response.PetRankId);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SoloRankId, Response.SoloRankId);
         }
 

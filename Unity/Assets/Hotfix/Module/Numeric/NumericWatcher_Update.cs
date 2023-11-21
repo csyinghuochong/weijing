@@ -57,7 +57,7 @@
         }
     }
 
-    [NumericWatcher((int)NumericType.RankID)]
+    [NumericWatcher((int)NumericType.CombatRankID)]
 	public class NumericWatcher_RankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

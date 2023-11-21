@@ -356,6 +356,10 @@ namespace ET
 							{
 								unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
 							}
+							if (fubenType == TeamFubenType.ShenYuan)
+							{
+								unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.ShenYuanNumber_135, 0, 1);
+							}
                         }
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
@@ -394,6 +398,8 @@ namespace ET
 	                    scene.GetComponent<TowerOfSealComponent>()
 			                    .GenerateFuben(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealArrived),
 				                    unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished));
+
+						unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TowerOfSeal_28, 0, 1 );
 	                    break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());

@@ -46,6 +46,8 @@ namespace ET
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.OpenZGPetEggNumber_306, 0, 1);
             }
             response.PetInfo =  unit.GetComponent<PetComponent>().OnAddPet(petlists[index]);
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.PetFuHuaNumber_34, 0, 1 );
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetFuHuaId_35, rolePetEgg.ItemId, 1);
             rolePetEgg.ItemId = 0;
             rolePetEgg.EndTime = 0;
             reply();

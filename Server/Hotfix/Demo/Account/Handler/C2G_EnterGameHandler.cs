@@ -254,9 +254,10 @@ namespace ET
 
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			long unionid = unit.GetUnionId();
-			numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
-			numericComponent.ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
+			numericComponent.ApplyValue(NumericType.CombatRankID, chat2G_EnterChat.RankId, false,false);
+			numericComponent.ApplyValue(NumericType.PetTianTiRankID, chat2G_EnterChat.PetRankId, false, false);
             numericComponent.ApplyValue(NumericType.SoloRankId, chat2G_EnterChat.SoloRankId, false, false);
+            numericComponent.ApplyValue(NumericType.TrialRankId, chat2G_EnterChat.TrialRankId, false, false);
 
             long unionsceneid = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Union)).InstanceId;
 			Union2G_EnterUnion union2G_EnterChat = (Union2G_EnterUnion)await MessageHelper.CallActor(unionsceneid, new G2Union_EnterUnion()

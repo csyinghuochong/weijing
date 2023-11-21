@@ -1360,6 +1360,7 @@ message Rank2G_EnterRank //IActorResponse
 	int32 RankId = 1;   
 	int32 PetRankId = 2;   
 	int32 SoloRankId = 3;
+	int32 TrialRankId = 4;
 }
 
 //ResponseType Union2G_EnterUnion

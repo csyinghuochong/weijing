@@ -560,6 +560,9 @@ namespace ET
             self.TriggerTaskEvent(TaskTargetType.PetNumber2_24, 0, 1);
             self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_8, 0, 1);
+
+            int combat = PetHelper.PetPingJia(rolePetInfo);
+            self.TriggerTaskEvent(TaskTargetType.PetHeChengCombat_32, combat, 1);
         }
 
         /// <summary>
@@ -571,6 +574,7 @@ namespace ET
             self.TriggerTaskEvent( TaskTargetType.PetNumber1_11, 0, 1 );
             self.TriggerTaskEvent(TaskTargetType.PetNumber2_24, 0, 1);
             self.TriggerTaskEvent( TaskTargetType.PetNSkill_18,  0, rolePetInfo.PetSkill.Count);
+            self.TriggerTaskEvent(TaskTargetType.PetNumber_31, 0, 1);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_8, 0, 1);
         }
 
@@ -834,6 +838,14 @@ namespace ET
             }
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
+
+            //numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false, false);
+            //numericComponent.ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
+            //numericComponent.ApplyValue(NumericType.SoloRankId, chat2G_EnterChat.SoloRankId, false, false);
+            //numericComponent.ApplyValue(NumericType.TrialRankId, chat2G_EnterChat.TrialRankId, false, false);
+            self.TriggerTaskEvent( TaskTargetType.TrialRank_81, numericComponent.GetAsInt(NumericType.TrialRankId),1 );
+            self.TriggerTaskEvent(TaskTargetType.PetTianTiRank_82, numericComponent.GetAsInt(NumericType.PetTianTiRankID), 1);
+            self.TriggerTaskEvent(TaskTargetType.CombatRank_83, numericComponent.GetAsInt(NumericType.CombatRankID), 1);
         }
 
         //收集道具
@@ -861,9 +873,23 @@ namespace ET
        
                 for (int t = 0; t < taskConfig.Target.Length; t++)
                 {
-                    if (targetType == TaskTargetType.MakeQulityNumber_29)
+                    if (targetType == TaskTargetType.MakeQulityNumber_29
+                     || targetType == TaskTargetType.PetHeChengCombat_32
+                     || targetType == TaskTargetType.FuMoQulity_41
+                     || targetType == TaskTargetType.JianDingQulity_42
+                     || targetType == TaskTargetType.JianDingAttrNumber_43
+                     || targetType == TaskTargetType.XiLianSkillNumber_44)
                     {
                         if (taskConfig.Target[t] > targetTypeId)
+                        {
+                            continue;
+                        }
+                    }
+                    else if (targetType == TaskTargetType.TrialRank_81
+                        || targetType == TaskTargetType.PetTianTiRank_82
+                        || targetType == TaskTargetType.CombatRank_83)
+                    {
+                        if (taskConfig.Target[t] < targetTypeId || targetTypeId == 0)
                         {
                             continue;
                         }

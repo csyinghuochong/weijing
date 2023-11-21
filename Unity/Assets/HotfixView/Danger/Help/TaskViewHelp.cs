@@ -49,9 +49,27 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.PetHeCheng_23, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetHeCheng_23 });
             TaskTypeLogic.Add(TaskTargetType.PetNumber2_24, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber2_24 });
             TaskTypeLogic.Add(TaskTargetType.GivePet_25, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = GivePet_25 });
-
+            TaskTypeLogic.Add(TaskTargetType.TreasureMapNormal_26, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TreasureMapNormal_26 });
+            TaskTypeLogic.Add(TaskTargetType.TreasureMapHigh_27, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TreasureMapHigh_27 });
+            TaskTypeLogic.Add(TaskTargetType.TowerOfSeal_28, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TowerOfSeal_28 });
             TaskTypeLogic.Add(TaskTargetType.MakeQulityNumber_29, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = MakeQulityNumber_29 });
 
+            TaskTypeLogic.Add(TaskTargetType.PetNumber_31, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber_31 });
+            TaskTypeLogic.Add(TaskTargetType.PetHeChengCombat_32, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetHeChengCombat_32 });
+            TaskTypeLogic.Add(TaskTargetType.PetXiLian10010086_33, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetXiLian10010086_33 });
+            TaskTypeLogic.Add(TaskTargetType.PetFuHuaNumber_34, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetFuHuaNumber_34 });
+            TaskTypeLogic.Add(TaskTargetType.PetFuHuaId_35, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetFuHuaId_35 });
+
+            TaskTypeLogic.Add(TaskTargetType.FuMoQulity_41, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = FuMoQulity_41 });
+            TaskTypeLogic.Add(TaskTargetType.JianDingQulity_42, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = JianDingQulity_42 });
+            TaskTypeLogic.Add(TaskTargetType.JianDingAttrNumber_43, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = JianDingAttrNumber_43 });
+            TaskTypeLogic.Add(TaskTargetType.XiLianSkillNumber_44, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = XiLianSkillNumber_44 });
+            TaskTypeLogic.Add(TaskTargetType.XiLianAttriId_45, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = XiLianAttriId_45 });
+
+            TaskTypeLogic.Add(TaskTargetType.TrialRank_81, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TrialRank_81 });
+            TaskTypeLogic.Add(TaskTargetType.PetTianTiRank_82, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetTianTiRank_82 });
+            TaskTypeLogic.Add(TaskTargetType.CombatRank_83, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = CombatRank_83 });
+            
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -62,6 +80,8 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.KillDiYuBossNumber_132, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalBossNumber });
             TaskTypeLogic.Add(TaskTargetType.CombatToValue_133, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescCombatToValue });
             TaskTypeLogic.Add(TaskTargetType.TrialTowerCeng_134, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetTrialTowerCeng });
+            
+            TaskTypeLogic.Add(TaskTargetType.ShenYuanNumber_135, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = ShenYuanNumber_135 });
         }
 
         public bool ExcutePlayerLv(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
@@ -476,13 +496,6 @@ namespace ET
             return text1;
         }
 
-        public string GivePet_25(TaskPro taskPro, TaskConfig taskConfig)
-        {
-            string progress = GameSettingLanguge.LoadLocalization("给予一个宠物 {0}/{1}");
-            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
-            return text1;
-        }
-
         public string MakeNumber_12(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
@@ -490,13 +503,7 @@ namespace ET
             return text1;
         }
 
-        public string MakeQulityNumber_29(TaskPro taskPro, TaskConfig taskConfig)
-        {
-            string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
-            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
-            return text1;
-        }
-
+      
         public string EquipXiLian_13(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("装备洗练次数 {0}/{1}");
@@ -582,6 +589,132 @@ namespace ET
             return text1;
         }
 
+        public string GivePet_25(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("给予一个宠物 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string TreasureMapNormal_26(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("使用普通藏宝图 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string TreasureMapHigh_27(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("使用高级藏宝图 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string TowerOfSeal_28(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("封印之塔挑战 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string MakeQulityNumber_29(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetNumber_31(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("获得X只新的宠物 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetHeChengCombat_32(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("合成1只战力达到X点的宠物 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetXiLian10010086_33(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("宠物使用宠之晶洗炼宠物次数 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetFuHuaNumber_34(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("在孵化系统中孵化成功宠物 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetFuHuaId_35(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("在孵化系统中孵化指定的宠物蛋成功 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string FuMoQulity_41(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("使用N点品质的鉴定附魔道具给装备附魔 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string JianDingQulity_42(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("使用N点品质的鉴定道具给装备鉴定 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string JianDingAttrNumber_43(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("鉴定装备时出一个大于N条属性的装备 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string XiLianSkillNumber_44(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("洗炼出带有任何隐藏技能的装备 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string XiLianAttriId_45(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("洗炼出带有指定属性的装备 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string TrialRank_81(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("试炼之地的输出排行榜进入前 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string PetTianTiRank_82(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("宠物天梯进入排行榜前 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string CombatRank_83(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("战力排行榜进入前 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
         public string GetJoinUnion(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("加入家族 {0}/{1}");
@@ -656,6 +789,13 @@ namespace ET
             return text1;
         }
 
+        public string ShenYuanNumber_135(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("挑战深渊模式的副本 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+        
         public string GetDescKillInfernalBossNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("击败地狱级任意领主怪物{0}/{1}");
