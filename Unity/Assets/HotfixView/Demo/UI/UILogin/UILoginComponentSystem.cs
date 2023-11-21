@@ -290,7 +290,9 @@ namespace ET
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);
             string result = HttpHelper.OnWebRequestPost_Form("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
-            Log.ILog.Debug("sign: " + sign);
+            Log.ILog.Debug("ts: " + serverNow);
+            Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
+            Log.ILog.Debug("access_token: " + access_token);
             Log.ILog.Debug("OnWebRequestPost_1: " + result);
 
 			try
