@@ -205,29 +205,6 @@ namespace ET
             }
             return result;//读取微信返回的数据
         }
-#else
-        public static string OnWebRequestPost_2(string url, Dictionary<string, string> dic)
-        {
-            string result = "";
-            try
-            {
-                string postData = string.Empty;
-                postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
-                HttpClient httpClient = new HttpClient();
-                httpClient.Timeout = TimeSpan.FromMinutes(100);
-                HttpContent httpContent = new StringContent(postData);
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-                HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
-                response.EnsureSuccessStatusCode();//用来抛异常的
-                result = response.Content.ReadAsStringAsync().Result;
-            }
-            catch (Exception ex)
-            {
-                Log.Info($"Exception ex: {ex}");
-                return "";
-            }
-            return result;//读取微信返回的数据
-        }
 #endif
 
         //计算签名的时候不需要对参数进行urlencode处理（"application/x-www-form-urlencoded"编码），但是发送请求的时候需要进行urlencode处理

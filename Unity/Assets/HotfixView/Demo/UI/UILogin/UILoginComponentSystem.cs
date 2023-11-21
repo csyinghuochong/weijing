@@ -283,65 +283,26 @@ namespace ET
 
         public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
 		{
-			bool useClient = true;
+            try
+            {
+                C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
 
-			if (useClient)
-			{
-				long serverNow = TimeHelper.ServerNow() / 1000;
-				Dictionary<string, string> paramslist = new Dictionary<string, string>();
-				paramslist.Add("app_id", TikTokHelper.AppID.ToString());
-				paramslist.Add("access_token", access_token);
-				paramslist.Add("ts", serverNow.ToString());
-				string sign = TikTokHelper.getSign(paramslist);
-				paramslist.Add("sign", sign);
-				string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
-
-#if UNITY_EDITOR
-				result = "{\"code\":0,\"data\":{\"age_type\":100,\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"sdk_open_id\":\"7303474616922905355\"},\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"message\":\"success\"}";
-#endif
-				TikTokCode  tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
-                //{"code":0,"data":{"age_type":100,"log_id":"20231121162107BEDB3B3662AD2265532E","sdk_open_id":"7303474616922905355"},"log_id":"20231121162107BEDB3B3662AD2265532E","message":"success"}
-                //Log.ILog.Debug("ts: " + serverNow);
-                //Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
-                //Log.ILog.Debug("access_token: " + access_token)
-                
-                Log.ILog.Debug("OnWebRequestPost_2: " + result);
-                if (tikTokCode.code == 0 && tikTokCode.data != null) 
-				{
-                    self.Account.GetComponent<InputField>().text = tikTokCode.data.sdk_open_id;
+                Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+                A2C_TikTokVerifyUser a2C_TikTokVerifyUser = (A2C_TikTokVerifyUser)await accountSession.Call(c2A_TikTokVerifyUser);
+                if (a2C_TikTokVerifyUser.Error == ErrorCode.ERR_Success)
+                {
+                    self.Account.GetComponent<InputField>().text = a2C_TikTokVerifyUser.sdk_open_id.ToString();
                     self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-					Log.ILog.Debug($"抖音登录成功： {tikTokCode.data.age_type}");
                 }
-				else
-				{
-					FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
-                    Log.ILog.Debug($"抖音登录失败");
+                else
+                {
+                    self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                    self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
                 }
             }
-            else
-			{
-                try
-                {
-                    ////以上为客户端测试代码
-                    C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
-
-                    Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
-                    A2C_TikTokVerifyUser a2C_TikTokVerifyUser = (A2C_TikTokVerifyUser)await accountSession.Call(c2A_TikTokVerifyUser);
-                    if (a2C_TikTokVerifyUser.Error == ErrorCode.ERR_Success)
-                    {
-                        self.Account.GetComponent<InputField>().text = a2C_TikTokVerifyUser.sdk_open_id.ToString();
-                        self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-                    }
-                    else
-                    {
-                        self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-                        self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex.ToString());
-                }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
             }
         }
 
