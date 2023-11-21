@@ -104,6 +104,8 @@ namespace ET
         {
             if (TaskHelper.IsTaskGiveItem(self.TaskId, self.BagInfo))
             {
+                TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                taskPro.taskStatus = (int)TaskStatuEnum.Completed;
                 int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.BagInfo.BagInfoID);
                 if (errorCode == ErrorCode.ERR_Success)
                 {
