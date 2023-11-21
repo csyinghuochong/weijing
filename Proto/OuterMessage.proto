@@ -6801,7 +6801,7 @@ message A2C_TikTokVerifyUser // IResponse
 	int32 Error = 91;
 	string Message = 92;
 
-	int64 sdk_open_id = 1;	//用户唯一标识
+	string sdk_open_id = 1;	//用户唯一标识
 	int32 age_type = 2;	//实名年龄段
 }
 

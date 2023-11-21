@@ -22,10 +22,10 @@ namespace ET
             string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
             //OnWebRequestPost_1: {"code":-1001,"log_id":"202311141714565D4B186ED56A781CCE8D","message":"invalid parameter: app_id error"}
             TikTokCode tikTokCode = BsonSerializer.Deserialize<TikTokCode>(result); ;
-            if (tikTokCode.code == 0 && tikTokCode.tikTokData != null)
+            if (tikTokCode.code == 0 && tikTokCode.data != null)
             {
-                response.sdk_open_id = tikTokCode.tikTokData.sdk_open_id;
-                response.age_type = tikTokCode.tikTokData.age_type;
+                response.sdk_open_id = tikTokCode.data.sdk_open_id;
+                response.age_type = tikTokCode.data.age_type;
             }
             else
             {

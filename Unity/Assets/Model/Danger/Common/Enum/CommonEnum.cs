@@ -9,12 +9,12 @@ namespace ET
         public string message;  //说明
         public string log_id;   //调用链id
 
-        public TikTokData tikTokData;
+        public TikTokData data;
     }
 
     public sealed class TikTokData
     {
-        public long sdk_open_id;      //用户唯一标识
+        public string sdk_open_id;      //用户唯一标识
         public int age_type;        //实名年龄段
     }
 
