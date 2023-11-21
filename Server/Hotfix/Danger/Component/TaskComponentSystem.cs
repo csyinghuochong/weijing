@@ -1027,7 +1027,11 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             taskCountryList.AddRange(TaskHelper.GetMineTask());
-            taskCountryList.AddRange(TaskHelper.GetSeasonTask());
+
+            if (SeasonHelper.IsOpenSeason())
+            {
+                taskCountryList.AddRange(TaskHelper.GetSeasonTask());
+            }
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
