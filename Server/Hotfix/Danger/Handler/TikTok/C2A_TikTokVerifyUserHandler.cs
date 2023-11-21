@@ -13,8 +13,8 @@ namespace ET
         {
             long serverNow = TimeHelper.ServerNow() / 1000;
             Dictionary<string, string> paramslist = new Dictionary<string, string>();
-            paramslist.Add("app_id", TikTokHelper.AppID.ToString());
             paramslist.Add("access_token", request.access_token);
+            paramslist.Add("app_id", TikTokHelper.AppID.ToString());
             paramslist.Add("ts", serverNow.ToString());
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);

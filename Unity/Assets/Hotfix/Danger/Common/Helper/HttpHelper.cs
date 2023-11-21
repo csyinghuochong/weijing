@@ -145,17 +145,19 @@ namespace ET
             string result = "";
             try
             {
+                string postData = string.Empty;
+
                 foreach (var item in dic)
                 {
                     if (item.Key.Equals("sign"))
                     {
+                        postData = postData + $"{item.Key}={item.Value}";
                         continue;
                     }
                     dic[item.Key] = System.Web.HttpUtility.UrlEncode(dic[item.Key], System.Text.Encoding.UTF8);
+                    postData = postData + $"{item.Key}={item.Value}&";
                 }
 
-                string postData = string.Empty;
-                postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);
                 HttpContent httpContent = new StringContent(postData);
