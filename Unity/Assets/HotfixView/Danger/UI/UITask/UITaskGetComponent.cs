@@ -605,8 +605,7 @@ namespace ET
             if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
             {
                 ///给予宠物界面
-                ///参考一下宠物界面 不能放生的宠物此处也不同提交。 添加道具检测一遍。  
-                ///加个任务测试
+                ///参考一下宠物界面 不能放生的宠物此处也不同提交。 
                 ////TaskHelper.IsTaskGivePet();
               
                 //PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
