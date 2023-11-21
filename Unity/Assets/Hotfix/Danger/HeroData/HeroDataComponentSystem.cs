@@ -142,12 +142,22 @@ namespace ET
                 Log.Console($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
             }
 
-            ///赛季临时数据
-            if (SeasonHelper.IsOpenSeason() && numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime) == 0)
+            ///赛季临时数据[赛季开始]
+            if (SeasonHelper.IsOpenSeason() )
             {
-                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
-                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() +  TimeHelper.Minute);
+                long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
+                if (seasonopenTime!=0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
+                {
+                    //清空赛季相关数据
+                }
+
+                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0)
+                {
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+                    numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Minute);
+                    numericComponent.ApplyValue(NumericType.SeasonOpenTime, SeasonHelper.SeasonOpenTime);
+                }
             }
         }
 
