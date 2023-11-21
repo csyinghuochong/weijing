@@ -119,6 +119,7 @@ namespace ET
 
         public static  void OnGetRiskControlInfo(this UIRechargeComponent self, string riskControl)
         {
+            Log.ILog.Debug($"OnGetRiskControlInfo: {riskControl}");
             self.RequestRecharge(riskControl).Coroutine();
         }
 

@@ -26,6 +26,9 @@ namespace ET
         public static string TikTokPay(this ReChargeTikTokComponent self, M2R_RechargeRequest request)
         {
             Dictionary<string, string> paramlist = new Dictionary<string, string>();    
+
+
+
             string result = HttpHelper.OnWebRequestPost_1( self.TikTokRreOrder, paramlist);
 
             return result;

@@ -235,7 +235,8 @@ namespace ET
             this.OnRiskControlInfoHandler?.Invoke(riskcontrol);
         }
 
-        public void TikTokPay(string payinfo)
+        //TikTokPay(String cpOrderId, int amountInCent, String productId, String productName, String sdkParam)
+        public void TikTokPay(string cpOrderId, int amountInCent, string productId, string productName, string sdkParam)
 		{
             if (this.Platform != 5)
             {
@@ -244,7 +245,7 @@ namespace ET
 
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("TikTokPay", payinfo );
+			jo.Call("TikTokPay", cpOrderId,amountInCent,  productId,productName, sdkParam);
 #else
 #endif
         }
