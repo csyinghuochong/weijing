@@ -45,7 +45,7 @@ namespace ET
             paramlist.Add("sign", sign);
 
             string result = HttpHelper.OnWebRequestPost_2( self.TikTokRreOrder, paramlist);
-
+            Log.Console($"ReChargeTikTok:  {result}");
             return result;
         }
 

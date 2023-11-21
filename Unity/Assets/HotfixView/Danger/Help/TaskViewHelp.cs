@@ -50,6 +50,8 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.PetNumber2_24, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber2_24 });
             TaskTypeLogic.Add(TaskTargetType.GivePet_25, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = GivePet_25 });
 
+            TaskTypeLogic.Add(TaskTargetType.MakeQulityNumber_29, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = MakeQulityNumber_29 });
+
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -482,6 +484,13 @@ namespace ET
         }
 
         public string MakeNumber_12(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
+            return text1;
+        }
+
+        public string MakeQulityNumber_29(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("制造道具数量 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);

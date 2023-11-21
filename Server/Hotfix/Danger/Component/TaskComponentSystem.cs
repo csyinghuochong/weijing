@@ -861,9 +861,19 @@ namespace ET
        
                 for (int t = 0; t < taskConfig.Target.Length; t++)
                 {
-                    if (taskConfig.Target[t] != targetTypeId)
+                    if (targetType == TaskTargetType.MakeQulityNumber_29)
                     {
-                        continue;
+                        if (taskConfig.Target[t] > targetTypeId)
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (taskConfig.Target[t] != targetTypeId)
+                        {
+                            continue;
+                        }
                     }
 
                     updateTask = true;

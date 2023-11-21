@@ -99,6 +99,8 @@ namespace ET
         PetNumber2_24,                      //24:获得任意宠物N个(不算之前)
         GivePet_25,
 
+        MakeQulityNumber_29,                //26:制造品质道具
+
         KillTiaoZhanMonsterID_101 = 101,        //击杀挑战难度以及以上怪物ID
         KillDiYuMonsterID_102 = 102,            //击杀地狱难度怪物
         PassTianZhanFubenID_111 = 111,          //通关挑战难度的副本

@@ -111,6 +111,8 @@ namespace ET
                 && equipMakeConfig.ProficiencyValue!=null 
                 && equipMakeConfig.ProficiencyValue.Length > 1)
             {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
+
                 int curShuLian = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                 int addShuLian = RandomHelper.RandomNumber(equipMakeConfig.ProficiencyValue[0], equipMakeConfig.ProficiencyValue[1]);
                 curShuLian += addShuLian;
@@ -119,6 +121,7 @@ namespace ET
                 unit.GetComponent<ChengJiuComponent>().OnSkillShuLianDu(curShuLian);
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.MakeNumber_216, 0, 1);
                 unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.MakeNumber_12, 0 , 1);
+                unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MakeQulityNumber_29, itemConfig.ItemQuality, 1);
             }
 
             reply();
