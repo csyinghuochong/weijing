@@ -227,7 +227,8 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("GetTikTokRiskControlInfo", "weijing" );
 #else
-			this.OnRiskControlInfoHandler?.Invoke("");
+			string riskinfo = "{\"app_name\":\"危境\",\"bd_did\":\"ZCU2UQLICRZL35L3735CUZQTCNQZRY3TTVN74WYXU6CEENNLPWBQ01\",\"iid\":\"1154923994817115\",\"os_version\":\"10\",\"app_package\":\"com.example.weijinggame.bytedance.gamecenter\",\"version_code\":\"2\",\"device_platform\":\"android\",\"device_type\":\"POT-AL00a\",\"device_brand\":\"HUAWEI\",\"channel\":\"osdk\",\"update_version_code\":\"22300\",\"sdk_version\":\"2.2.3.0\",\"aid\":\"554726\",\"language\":\"zh\",\"open_udid\":\"077ce378500da5ca\",\"resolution\":\"1506*720\",\"os\":\"android\",\"os_api\":29,\"manifest_version_code\":\"2\",\"dpi\":320,\"screen_width\":1506,\"version_name\":\"2.0.3\",\"uuid\":\"\",\"user_agent\":\"Dalvik\\/2.1.0 (Linux; U; Android 10; POT-AL00a Build\\/HUAWEIPOT-AL00a)\",\"is_cloud_env\":false} ";
+            this.OnRiskControlInfoHandler?.Invoke(riskinfo);
 #endif
         }
         public void OnRecvRiskControlInfo(string riskcontrol)
