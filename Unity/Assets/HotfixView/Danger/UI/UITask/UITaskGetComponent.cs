@@ -608,6 +608,19 @@ namespace ET
                 ///参考一下宠物界面 不能放生的宠物此处也不同提交。 添加道具检测一遍。  
                 ///加个任务测试
                 ////TaskHelper.IsTaskGivePet();
+              
+                //PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                //TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                //for ( int i = 0; i < petComponent.RolePetInfos.Count; i++ )
+                //{
+                //    bool give = TaskHelper.IsTaskGivePet( self.TaskId, petComponent.RolePetInfos[i] );
+                //    if (give)
+                //    {
+                //        taskPro.taskStatus = (int)TaskStatuEnum.Completed;
+                //        self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, petComponent.RolePetInfos[i].Id).Coroutine();
+                //        break;
+                //    }
+                //}
             }
             else
             {
