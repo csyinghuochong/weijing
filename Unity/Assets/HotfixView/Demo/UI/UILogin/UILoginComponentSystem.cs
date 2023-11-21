@@ -289,7 +289,7 @@ namespace ET
             paramslist.Add("ts", serverNow.ToString());
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);
-            string result = HttpHelper.OnWebRequestPost_Form("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+            string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
             Log.ILog.Debug("ts: " + serverNow);
             Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
             Log.ILog.Debug("access_token: " + access_token);
