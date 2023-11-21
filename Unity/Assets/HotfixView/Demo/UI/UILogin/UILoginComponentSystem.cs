@@ -295,13 +295,15 @@ namespace ET
 				string sign = TikTokHelper.getSign(paramslist);
 				paramslist.Add("sign", sign);
 				string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+               
+                TikTokCode  tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
+                //{"code":0,"data":{"age_type":100,"log_id":"20231121162107BEDB3B3662AD2265532E","sdk_open_id":"7303474616922905355"},"log_id":"20231121162107BEDB3B3662AD2265532E","message":"success"}
                 //Log.ILog.Debug("ts: " + serverNow);
                 //Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
-                //Log.ILog.Debug("access_token: " + access_token);
-                //Log.ILog.Debug("OnWebRequestPost_1: " + result);
-                TikTokCode  tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
-				//{"code":0,"data":{"age_type":100,"log_id":"20231121162107BEDB3B3662AD2265532E","sdk_open_id":"7303474616922905355"},"log_id":"20231121162107BEDB3B3662AD2265532E","message":"success"}
-				if (tikTokCode.code == 0 && tikTokCode.tikTokData != null) 
+                //Log.ILog.Debug("access_token: " + access_token)
+
+                Log.ILog.Debug("OnWebRequestPost_2: " + result);
+                if (tikTokCode.code == 0 && tikTokCode.tikTokData != null) 
 				{
                     self.Account.GetComponent<InputField>().text = tikTokCode.tikTokData.sdk_open_id.ToString();
                     self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
