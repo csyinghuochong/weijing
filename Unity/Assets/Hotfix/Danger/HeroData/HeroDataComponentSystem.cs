@@ -145,7 +145,8 @@ namespace ET
             ///赛季临时数据
             if (SeasonHelper.IsOpenSeason() && numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime) == 0)
             {
-                numericComponent.ApplyValue(NumericType.SeasonBossFuben, 10001);
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
                 numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() +  TimeHelper.Minute);
             }
         }

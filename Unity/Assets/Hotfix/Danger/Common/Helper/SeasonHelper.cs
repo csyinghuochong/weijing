@@ -16,6 +16,11 @@ namespace ET
         }
 #endif
 
+        public static int GetFubenId(int lv)
+        {
+            return 10001;
+        }
+
         /// <summary>
         /// 赛季时间
         /// </summary>
