@@ -28,6 +28,18 @@ namespace ET
             Dictionary<string, string> paramlist = new Dictionary<string, string>();
 
             string orderId = "1";
+            string nowTime = TimeHelper.ServerNow().ToString();
+            if (self.DingdanlastTime != nowTime)
+            {
+                self.DingdanXuHao = 0;
+            }
+            else
+            {
+                self.DingdanXuHao++;
+            }
+            string dingDanID = $"{nowTime}{self.DingdanXuHao}_{request.Zone}_{request.RechargeNumber}";
+            self.DingdanlastTime = nowTime;
+            self.OrderDic.Add(dingDanID, $"{request.UnitId}_{request.UnitName}");
 
             paramlist.Add("aid", TikTokHelper.AppID.ToString());
             paramlist.Add("cp_order_id", orderId);

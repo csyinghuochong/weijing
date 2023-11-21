@@ -11,6 +11,9 @@ namespace ET
     public class ReChargeTikTokComponent : Entity, IAwake
     {
 
+        public string DingdanlastTime;
+        public long DingdanXuHao;
+
         public HttpListener HttpListener;
         public string HttpListenerUrl = @"http://172.17.94.24:20005/";
         public string TikTokRreOrder = "https://usdk.dailygn.com/gsdk/usdk/payment/live_pre_order";

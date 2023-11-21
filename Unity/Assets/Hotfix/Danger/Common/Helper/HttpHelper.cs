@@ -145,9 +145,14 @@ namespace ET
             string result = "";
             try
             {
-                dic["access_token"] = System.Web.HttpUtility.UrlEncode(dic["access_token"], System.Text.Encoding.UTF8);
-                dic["app_id"] = System.Web.HttpUtility.UrlEncode(dic["app_id"], System.Text.Encoding.UTF8);
-                dic["ts"] = System.Web.HttpUtility.UrlEncode(dic["ts"], System.Text.Encoding.UTF8);
+                foreach (var item in dic)
+                {
+                    if (item.Key.Equals("sign"))
+                    {
+                        continue;
+                    }
+                    dic[item.Key] = System.Web.HttpUtility.UrlEncode(dic[item.Key], System.Text.Encoding.UTF8);
+                }
 
                 string postData = string.Empty;
                 postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
