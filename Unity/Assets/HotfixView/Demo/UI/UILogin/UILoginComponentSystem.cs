@@ -286,7 +286,7 @@ namespace ET
             Dictionary<string, string> paramslist = new Dictionary<string, string>();
             paramslist.Add("app_id", TikTokHelper.AppID.ToString());
             paramslist.Add("access_token", access_token);
-            paramslist.Add("ts", "1555912969");
+            paramslist.Add("ts", serverNow.ToString());
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);
             string result = HttpHelper.OnWebRequestPost_Form("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
