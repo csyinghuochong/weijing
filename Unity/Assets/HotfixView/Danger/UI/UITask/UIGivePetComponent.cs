@@ -60,10 +60,10 @@ namespace ET
             self.PetSkinId = 0;
             self.LastSelectItem = null;
 
-            self.OnInitPetList().Coroutine();
+            self.OnInitPetList();
         }
 
-        public static async ETTask OnInitPetList(this UIGivePetComponent self)
+        public static  void OnInitPetList(this UIGivePetComponent self)
         {
             List<RolePetInfo> rolePetInfos = self.PetComponent.RolePetInfos;
             List<RolePetInfo> showList = new List<RolePetInfo>();

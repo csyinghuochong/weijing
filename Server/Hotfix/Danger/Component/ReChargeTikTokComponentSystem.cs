@@ -27,8 +27,10 @@ namespace ET
         {
             Dictionary<string, string> paramlist = new Dictionary<string, string>();
 
+            string orderId = "1";
+
             paramlist.Add("aid", TikTokHelper.AppID.ToString());
-            paramlist.Add("cp_order_id", "1");
+            paramlist.Add("cp_order_id", orderId);
             paramlist.Add("product_id", request.RechargeNumber.ToString());
             paramlist.Add("product_name", "钻石");
             paramlist.Add("product_desc", "钻石");
