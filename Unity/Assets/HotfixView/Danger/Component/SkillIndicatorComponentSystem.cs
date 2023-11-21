@@ -365,7 +365,7 @@ namespace ET
                     List<Unit> allunits = unit.GetParent<UnitComponent>().GetAll();
                     foreach (Unit u in allunits)
                     {
-                        if (u.Type == UnitType.Monster)
+                        if (u.Type == UnitType.Monster && MonsterConfigCategory.Instance.Get(u.ConfigId).MonsterType != 5)
                         {
                             // 1. 领主
                             // 2. 血量值低（如追求进阶可设置内选择血量百分比低或是绝对值低）
