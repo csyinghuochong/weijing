@@ -151,6 +151,9 @@ namespace ET
 		[ProtoMember(6)]
 		public string Account { get; set; }
 
+		[ProtoMember(7)]
+		public string ClientIp { get; set; }
+
 	}
 
 	[Message(InnerOpcode.R2M_RechargeResponse)]

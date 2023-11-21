@@ -71,6 +71,7 @@ message M2R_RechargeRequest // IActorRequest
 	string payMessage = 4;
 	string UnitName = 5;
 	string Account = 6;
+	string ClientIp = 7;
 }
 
 message R2M_RechargeResponse // IActorResponse

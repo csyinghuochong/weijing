@@ -25,11 +25,26 @@ namespace ET
 
         public static string TikTokPay(this ReChargeTikTokComponent self, M2R_RechargeRequest request)
         {
-            Dictionary<string, string> paramlist = new Dictionary<string, string>();    
+            Dictionary<string, string> paramlist = new Dictionary<string, string>();
 
+            paramlist.Add("aid", TikTokHelper.AppID.ToString());
+            paramlist.Add("cp_order_id", "1");
+            paramlist.Add("product_id", request.RechargeNumber.ToString());
+            paramlist.Add("product_name", "钻石");
+            paramlist.Add("product_desc", "钻石");
+            paramlist.Add("product_amount", "1");
+            paramlist.Add("sdk_open_id", request.Account);
+            paramlist.Add("client_ip", request.ClientIp);
+            paramlist.Add("callback_url", self.HttpListenerUrl);
+            paramlist.Add("actual_amount", "1");
+            paramlist.Add("coupon_id", "0");
+            paramlist.Add("risk_control_info", request.payMessage);
+            paramlist.Add("trade_type", "2");
 
+            string sign = TikTokHelper.getSign(paramlist); 
+            paramlist.Add("sign", sign);
 
-            string result = HttpHelper.OnWebRequestPost_1( self.TikTokRreOrder, paramlist);
+            string result = HttpHelper.OnWebRequestPost_2( self.TikTokRreOrder, paramlist);
 
             return result;
         }

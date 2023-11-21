@@ -14162,7 +14162,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public long sdk_open_id { get; set; }
+		public string sdk_open_id { get; set; }
 
 		[ProtoMember(2)]
 		public int age_type { get; set; }

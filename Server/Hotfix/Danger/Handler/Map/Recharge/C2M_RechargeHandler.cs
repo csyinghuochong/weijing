@@ -73,6 +73,8 @@ namespace ET
                     UnitName = userName,
                     RechargeNumber = request.RechargeNumber,
                     Account = userInfoComponent.Account,
+                    payMessage = request.RiskControlInfo,
+                    ClientIp = userInfoComponent.RemoteAddress
                 });
 
                 response.Message = r2M_RechargeResponse.Message;
