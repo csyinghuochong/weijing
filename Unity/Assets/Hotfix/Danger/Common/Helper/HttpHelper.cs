@@ -145,6 +145,33 @@ namespace ET
             string result = "";
             try
             {
+                dic["access_token"] = System.Web.HttpUtility.UrlEncode(dic["access_token"], System.Text.Encoding.UTF8);
+                dic["app_id"] = System.Web.HttpUtility.UrlEncode(dic["app_id"], System.Text.Encoding.UTF8);
+                dic["ts"] = System.Web.HttpUtility.UrlEncode(dic["ts"], System.Text.Encoding.UTF8);
+
+                string postData = string.Empty;
+                postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
+                HttpClient httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromMinutes(100);
+                HttpContent httpContent = new StringContent(postData);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
+                response.EnsureSuccessStatusCode();//用来抛异常的
+                result = response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Log.Info($"Exception ex: {ex}");
+                return "";
+            }
+            return result;//读取微信返回的数据
+        }
+
+        public static string OnWebRequestPost_Pay(string url, Dictionary<string, string> dic)
+        {
+            string result = "";
+            try
+            {
                 string postData = string.Empty;
 
                 foreach (var item in dic)
@@ -152,6 +179,11 @@ namespace ET
                     if (item.Key.Equals("sign"))
                     {
                         postData = postData + $"{item.Key}={item.Value}";
+                        continue;
+                    }
+                    if (item.Key.Equals("client_ip"))
+                    {
+                        postData = postData + $"{item.Key}={item.Value}&";
                         continue;
                     }
                     dic[item.Key] = System.Web.HttpUtility.UrlEncode(dic[item.Key], System.Text.Encoding.UTF8);

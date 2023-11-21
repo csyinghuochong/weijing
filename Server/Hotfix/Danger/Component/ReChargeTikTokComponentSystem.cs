@@ -58,7 +58,7 @@ namespace ET
             string sign = TikTokHelper.getSign(paramlist); 
             paramlist.Add("sign", sign);
 
-            string result = HttpHelper.OnWebRequestPost_2( self.TikTokRreOrder, paramlist);
+            string result = HttpHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);
             Log.Console($"ReChargeTikTok:  {result}");
             return result;
         }
