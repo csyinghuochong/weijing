@@ -53,6 +53,15 @@ namespace ET
             paramlist.Add("coupon_id", "0");
             paramlist.Add("risk_control_info", request.payMessage);
             paramlist.Add("trade_type", "2");
+            paramlist.Add("extra_info", string.Empty);
+            paramlist.Add("game_user_id", request.UnitId.ToString());
+            paramlist.Add("role_id", request.UnitId.ToString());
+            paramlist.Add("role_level", "1");
+            paramlist.Add("role_name", request.UnitName);
+            paramlist.Add("role_vip_leve", "0");
+            paramlist.Add("server_id", request.Zone.ToString());
+            paramlist.Add("server_id", request.Zone.ToString());
+            paramlist.Add("user_agent", "");
 
             string signparamlist = string.Empty;
             foreach (var item in paramlist)

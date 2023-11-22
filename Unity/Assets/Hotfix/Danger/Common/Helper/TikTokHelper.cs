@@ -109,6 +109,8 @@ namespace ET
 
             //使用密钥进行Hmac-sha1加密
             string sign = HMACSHA1Text_2(sb.ToString(), AppSecret);
+
+            Log.Warning($"sign结算结果:  {sign}");
             return sign;    
         }
 
