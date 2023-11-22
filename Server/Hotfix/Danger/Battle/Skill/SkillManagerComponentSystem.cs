@@ -711,7 +711,11 @@ namespace ET
             { 
                 return ErrorCode.ERR_SkillMoveTime;
             }
-
+            if (!SkillConfigCategory.Instance.Contain(nowSkillID))
+            {
+                return ErrorCode.ERR_ItemNotExist;
+            }
+            
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
             StateComponent stateComponent = unit.GetComponent<StateComponent>();

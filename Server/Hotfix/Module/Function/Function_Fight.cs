@@ -438,6 +438,15 @@ namespace ET
                 {
                     int attackPingfen = numericComponentAttack.GetAsInt(NumericType.PetPinFen);
                     int defPingfen = numericComponentDefend.GetAsInt(NumericType.PetPinFen);
+
+                    if (attackPingfen == 0)
+                    {
+                        attackPingfen = 200;
+                    }
+                    if (defPingfen == 0)
+                    {
+                        defPingfen = 200;
+                    }
                     actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
                 }
 
