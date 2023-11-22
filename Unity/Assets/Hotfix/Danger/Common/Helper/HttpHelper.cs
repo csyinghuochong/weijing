@@ -287,21 +287,17 @@ namespace ET
 
         public static string UrlEncodeInterface(string str)
         {
-            int useType = TimeHelper.DateTimeNow().Minute % 4;
+            int useType = TimeHelper.DateTimeNow().Minute % 3;
             Log.Console($"useType:  {useType}");
             if (useType == 0)
             {
-                return UrlEncode_1(str);
+                return UrlEncode_2(str);
             }
             if (useType == 1)
             {
-                return UrlEncode_2(str);
-            }
-            if (useType == 2)
-            {
                 return Uri.EscapeDataString(str);
             }
-            if (useType == 3)
+            if (useType == 2)
             {
                 return System.Web.HttpUtility.UrlEncode(str, System.Text.Encoding.UTF8);
             }
