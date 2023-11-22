@@ -285,21 +285,39 @@ namespace ET
 
 #if SERVER
 
+        public static string UrlEncodeInterface(string str)
+        {
+            int useType = TimeHelper.DateTimeNow().Minute % 4;
+            Log.Console($"useType:  {useType}");
+            if (useType == 0)
+            {
+                return UrlEncode_1(str);
+            }
+            if (useType == 1)
+            {
+                return UrlEncode_2(str);
+            }
+            if (useType == 2)
+            {
+                return Uri.EscapeDataString(str);
+            }
+            if (useType == 3)
+            {
+                return System.Web.HttpUtility.UrlEncode(str, System.Text.Encoding.UTF8);
+            }
+            return Uri.EscapeDataString(str);
+        }
+
         public static string OnWebRequestPost_TikTokLogin(string url, Dictionary<string, string> dic)
         {
             string result = "";
             try
             {
-                string urlencode1 = UrlEncode_1(dic["access_token"]);
-                string urlencode2 = Uri.EscapeDataString(dic["access_token"]);
-                string urlencode3 = UrlEncode_2(dic["access_token"]);
-
-                dic["access_token"] = System.Web.HttpUtility.UrlEncode(dic["access_token"], System.Text.Encoding.UTF8);
-                dic["app_id"] = System.Web.HttpUtility.UrlEncode(dic["app_id"], System.Text.Encoding.UTF8);
-                dic["ts"] = System.Web.HttpUtility.UrlEncode(dic["ts"], System.Text.Encoding.UTF8);
-
+                string url_access_token = UrlEncodeInterface(dic["access_token"]);
+                string url_app_id = UrlEncodeInterface(dic["app_id"]);
+                string url_ts = UrlEncodeInterface(dic["ts"]);
                 string postData = string.Empty;
-                postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
+                postData = $"access_token={url_access_token}&app_id={url_app_id}&ts={url_ts}&sign={dic["sign"]}";
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);
                 HttpContent httpContent = new StringContent(postData);
@@ -331,10 +349,11 @@ namespace ET
                     }
                     else
                     {
-                        dic[item.Key] = System.Web.HttpUtility.UrlEncode(item.Value, System.Text.Encoding.UTF8);
+                        dic[item.Key] = UrlEncodeInterface(item.Value);
                         postData = postData + $"{item.Key}={dic[item.Key]}&";
                     }
                 }
+                Log.Console($"OnWebRequestPost_Pay:  {postData}");
                 Log.Warning($"OnWebRequestPost_Pay:  {postData}");
 
                 HttpClient httpClient = new HttpClient();
