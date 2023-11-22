@@ -164,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.example.weijinggame.bytedance.gamecenter
+    Android: com.example.weijinggame
     Standalone: com.yinghuochong.mjcs
     Tizen: com.Company.ProductName
     iPhone: com.guangying.weijing2
@@ -849,7 +849,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: ILRuntime;SUBSTANCE_PLUGIN_ENABLED
     4: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO
-    7: NET452;DISABLE_ILRUNTIME_DEBUG;TikTok5
+    7: NET452;DISABLE_ILRUNTIME_DEBUG
     13: NET452;ILRuntime
   additionalCompilerArguments: {}
   platformArchitecture:
