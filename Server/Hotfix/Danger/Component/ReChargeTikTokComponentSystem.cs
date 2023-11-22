@@ -66,6 +66,7 @@ namespace ET
             Log.Console($"sdk_open_id:  {request.Account}");
             Log.Console($"risk_control_info:  {request.payMessage}");
             Log.Console($"ReChargeTikTok:  {result}");
+            Log.Warning($"ReChargeTikTok:  {result}");
             return result;
         }
 
