@@ -112,7 +112,6 @@ namespace ET
             {
                 return null;
             }
-
             Dictionary<string, string> dic = new Dictionary<string, string>();
             //每个字段之间用"&"拼接
             string[] dicStrs = value.Split('&');
@@ -151,6 +150,12 @@ namespace ET
 
                 Dictionary<string, string> aliPayResultDic = self.StringToDictionary(pay_notice);
                 if (aliPayResultDic == null)
+                {
+                    return;
+                }
+
+                string orderId = aliPayResultDic["cp_order_id"];
+                if (!self.OrderDic.ContainsKey(orderId))
                 {
                     return;
                 }
