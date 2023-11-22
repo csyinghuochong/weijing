@@ -3,7 +3,6 @@ using System;
 
 namespace ET
 {
-
     [ActorMessageHandler]
     public class M2R_RechargeRequestHandler : AMActorRpcHandler<Scene, M2R_RechargeRequest, R2M_RechargeResponse>
     {

@@ -18,6 +18,13 @@ namespace ET
         public int age_type;        //实名年龄段
     }
 
+    public sealed class TikTokPay
+    {
+        public int code;        //返回码
+        public string message;  //说明
+        public string sdk_param;   //调用链id
+    }
+
     public struct ActivityTimer
     {
         public long BeginTime;

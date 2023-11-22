@@ -27,7 +27,6 @@ namespace ET
         {
             Dictionary<string, string> paramlist = new Dictionary<string, string>();
 
-            string orderId = "1";
             string nowTime = TimeHelper.ServerNow().ToString();
             if (self.DingdanlastTime != nowTime)
             {
@@ -42,7 +41,7 @@ namespace ET
             self.OrderDic.Add(dingDanID, $"{request.UnitId}_{request.UnitName}");
 
             paramlist.Add("aid", TikTokHelper.AppID.ToString());
-            paramlist.Add("cp_order_id", orderId);
+            paramlist.Add("cp_order_id", dingDanID);
             paramlist.Add("product_id", "6");
             paramlist.Add("product_name", "钻石");
             paramlist.Add("product_desc", "钻石");
@@ -53,14 +52,14 @@ namespace ET
             //paramlist.Add("coupon_id", "0");
             paramlist.Add("risk_control_info", request.payMessage);
             paramlist.Add("trade_type", "2");
-            paramlist.Add("extra_info", string.Empty);
+            paramlist.Add("extra_info", "0");
             paramlist.Add("game_user_id", request.UnitId.ToString());
             paramlist.Add("role_id", request.UnitId.ToString());
             paramlist.Add("role_level", "1");
             paramlist.Add("role_name", request.UnitName);
             //paramlist.Add("role_vip_leve", "0");
             paramlist.Add("server_id", request.Zone.ToString());
-            paramlist.Add("user_agent", "");
+            paramlist.Add("user_agent", "false");
 
             string signparamlist = string.Empty;
             foreach (var item in paramlist)
@@ -77,7 +76,6 @@ namespace ET
             paramlist.Add("sign", sign);
 
             string result = HttpHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);
-
             Log.Console($"sdk_open_id:  {request.Account}");
             Log.Console($"risk_control_info:  {request.payMessage}");
             Log.Console($"ReChargeTikTok:  {result}");
