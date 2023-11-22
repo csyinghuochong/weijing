@@ -622,10 +622,15 @@ namespace ET
 
             if (unit.Type != UnitType.Player && unit.MasterId != 0 && skillConfig.SkillActType == 0)
             {
-                float attackSpped = 1f - numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-                if (attackSpped <= 0.2f)
+                //float attackSpped = 1f - numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
+
+                //攻击速度调整
+                float attackSpped = 1f / (1 +  numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro));
+
+                //最低是0.25秒触发一次
+                if (attackSpped <= 0.25f)
                 {
-                    attackSpped = 0.2f;
+                    attackSpped = 0.25f;
                 }
                 skillcdTime = skillcdTime * attackSpped;
             }
