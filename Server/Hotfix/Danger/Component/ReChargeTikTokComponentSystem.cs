@@ -47,7 +47,7 @@ namespace ET
             paramlist.Add("product_desc", "钻石");
             paramlist.Add("product_amount", "1");
             paramlist.Add("sdk_open_id", request.Account);
-            paramlist.Add("callback_url", self.HttpListenerUrl);
+            paramlist.Add("callback_url", @"http://weijinggameservertestpay.weijinggame.com:20005/");
             paramlist.Add("actual_amount", "1");
             //paramlist.Add("coupon_id", "0");
             paramlist.Add("risk_control_info", request.payMessage);
@@ -103,6 +103,29 @@ namespace ET
             self.HttpListener.BeginGetContext(self.CheckTikTokPayResult, self.HttpListener);
         }
 
+        /// <summary>
+        /// 支付结果返回来的是字符串格式,而验证结果的API需要一个字典结构 so..提供这样的一个API
+        /// </summary>
+        public static Dictionary<string, string> StringToDictionary(this ReChargeTikTokComponent self, string value)
+        {
+            if (value.Length < 1)
+            {
+                return null;
+            }
+
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            //每个字段之间用"&"拼接
+            string[] dicStrs = value.Split('&');
+            foreach (string str in dicStrs)
+            {
+                //    Console.Write("183value--" + str); 
+                //每个字段的结构是通过"="拼接键值
+                string[] strs = str.Split(new char[] { '=' }, 2);
+                dic.Add(strs[0], strs[1]);
+            }
+            return dic;
+        }
+
         public static void CheckTikTokPayResult(this ReChargeTikTokComponent self, IAsyncResult ar)
         {
             try
@@ -120,10 +143,30 @@ namespace ET
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息
 
                 Log.Console($"pay_notice:  {pay_notice}");
+                Log.Warning($"pay_notice:  {pay_notice}");
                 if (string.IsNullOrEmpty(pay_notice))
                 {
                     return;
                 }
+
+                Dictionary<string, string> aliPayResultDic = self.StringToDictionary(pay_notice);
+                if (aliPayResultDic == null)
+                {
+                    return;
+                }
+
+                //成功了就需要给回消息“SUCCESS”
+                //https://docs.open.alipay.com/204/105301/
+                HttpListenerResponse response = context.Response;
+
+                //给支付宝服务器返回success,如果不返回,支付宝服务器会间隔一段时间就向此服务器支付成功的回调信息
+                string responseString = "SUCCESS";
+                byte[] buffer = Encoding.UTF8.GetBytes(responseString);
+                response.ContentLength64 = buffer.Length;
+                Stream output = response.OutputStream;
+                output.Write(buffer, 0, buffer.Length);//响应支付服务器本次的通知
+                output.Close();
+                response.Close();
             }
             catch (Exception ex) 
             {

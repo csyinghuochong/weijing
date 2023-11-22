@@ -12,7 +12,6 @@ using System.Web;
 
 namespace ET
 {
-
     [ObjectSystem]
     public class ReChargeAliComponentAwakeSystem : AwakeSystem<ReChargeAliComponent>
     {
