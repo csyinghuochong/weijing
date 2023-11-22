@@ -66,9 +66,9 @@ namespace ET
             {
                 signparamlist = signparamlist + $"{item.Key}: {item.Value} \n";
             }
-            Log.Warning($"参与sign的参数: {signparamlist}");
+            //Log.Warning($"参与sign的参数: {signparamlist}");
             string sign = TikTokHelper.getSign(paramlist);
-            Log.Warning($"sign的结果:    {sign}");
+            //Log.Warning($"sign的结果:    {sign}");
 
             //接口参数  （除了client_ip、sign字段，其他的都参加sign计算；选传的参数，如果是空值则不加入sign计算）
 
@@ -76,10 +76,10 @@ namespace ET
             paramlist.Add("sign", sign);
 
             string result = HttpHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);
-            Log.Console($"sdk_open_id:  {request.Account}");
-            Log.Console($"risk_control_info:  {request.payMessage}");
-            Log.Console($"ReChargeTikTok:  {result}");
-            Log.Warning($"ReChargeTikTok:  {result}");
+            //Log.Console($"sdk_open_id:  {request.Account}");
+            //Log.Console($"risk_control_info:  {request.payMessage}");
+            //Log.Console($"ReChargeTikTok:  {result}");
+            //Log.Warning($"ReChargeTikTok:  {result}");
             return result + "&" + dingDanID;
         }
 
@@ -142,8 +142,8 @@ namespace ET
                 //将传入的数据进行解码
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息
 
-                Log.Console($"pay_notice:  {pay_notice}");
-                Log.Warning($"pay_notice:  {pay_notice}");
+                //Log.Console($"pay_notice:  {pay_notice}");
+                //Log.Warning($"pay_notice:  {pay_notice}");
                 if (string.IsNullOrEmpty(pay_notice))
                 {
                     return;
@@ -167,6 +167,8 @@ namespace ET
                 output.Write(buffer, 0, buffer.Length);//响应支付服务器本次的通知
                 output.Close();
                 response.Close();
+
+                Log.Console($"CheckTikTokPayResult: 2");
             }
             catch (Exception ex) 
             {

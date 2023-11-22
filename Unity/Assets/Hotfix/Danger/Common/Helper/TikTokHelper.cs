@@ -105,12 +105,10 @@ namespace ET
                 }
             }
 
-            Log.Warning($"sign参数拼接:  {sb.ToString()}");
-
+            //Log.Warning($"sign参数拼接:  {sb.ToString()}");
             //使用密钥进行Hmac-sha1加密
             string sign = HMACSHA1Text_2(sb.ToString(), AppSecret);
-
-            Log.Warning($"sign结算结果:  {sign}");
+            //Log.Warning($"sign结算结果:  {sign}");
             return sign;    
         }
 
