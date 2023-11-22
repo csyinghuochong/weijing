@@ -19,7 +19,7 @@ namespace ET
             string sign = TikTokHelper.getSign(paramslist);
             paramslist.Add("sign", sign);
 
-            string result = HttpHelper.OnWebRequestPost_2("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+            string result = HttpHelper.OnWebRequestPost_TikTokLogin("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
             //OnWebRequestPost_1: {"code":-1001,"log_id":"202311141714565D4B186ED56A781CCE8D","message":"invalid parameter: app_id error"}
             TikTokCode tikTokCode = BsonSerializer.Deserialize<TikTokCode>(result);
             if (tikTokCode.code == 0 && tikTokCode.data != null)

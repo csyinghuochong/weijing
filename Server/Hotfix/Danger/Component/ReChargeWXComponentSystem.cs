@@ -40,7 +40,6 @@ namespace ET
             //string tempXML = self.GetParamSrc(dics);
             //// 第二步:下单请求 - 获取响应的参数
             ////此处为关键代码,游戏服务器像支付服务器发送支付请求,并且返回数据到result中
-            //string result = await ComHelp.OnWebRequestPost_2(self.getWeChatPayParameterURL, JsonHelper.ToJson(dics));
             Dictionary<string, string> data = new Dictionary<string, string>();
             data.Add("appid", self.appId);
             data.Add("mch_id", self.merchantId);

@@ -140,7 +140,7 @@ namespace ET
 
 
 #if SERVER
-        public static string OnWebRequestPost_2(string url, Dictionary<string, string> dic)
+        public static string OnWebRequestPost_TikTokLogin(string url, Dictionary<string, string> dic)
         {
             string result = "";
             try
@@ -205,7 +205,46 @@ namespace ET
             }
             return result;//读取微信返回的数据
         }
+#else
+
+        public static string OnWebRequestPost_TikTokLogin(string url, Dictionary<string, string> dic)
+        {
+            string result = "";
+            try
+            {
+                dic["access_token"] = UrlEncode(dic["access_token"]);
+                dic["app_id"] = UrlEncode(dic["app_id"]);
+                dic["ts"] = UrlEncode(dic["ts"]);
+                string postData = string.Empty;
+                postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
+                HttpClient httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromMinutes(100);
+                HttpContent httpContent = new StringContent(postData);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
+                response.EnsureSuccessStatusCode();//用来抛异常的
+                result = response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Log.Info($"Exception ex: {ex}");
+                return "";
+            }
+            return result;//读取微信返回的数据
+        }
 #endif
+
+        public static string UrlEncode(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            byte[] byStr = System.Text.Encoding.UTF8.GetBytes(str); //默认是System.Text.Encoding.Default.GetBytes(str)
+            for (int i = 0; i < byStr.Length; i++)
+            {
+                sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+            }
+
+            return (sb.ToString());
+        }
 
         //计算签名的时候不需要对参数进行urlencode处理（"application/x-www-form-urlencoded"编码），但是发送请求的时候需要进行urlencode处理
         //sign参数不参与签名，其他字段都会参与验签
