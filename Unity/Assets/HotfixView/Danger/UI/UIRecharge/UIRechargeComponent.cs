@@ -155,6 +155,7 @@ namespace ET
                 if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
                 {
 #if UNITY_ANDROID
+                    Log.ILog.Debug($"M2C_RechargeResponse: {sendChatResponse.Message}");
                     EventType.TikTokPayRequest.Instance.ZoneScene = self.ZoneScene();
                     EventType.TikTokPayRequest.Instance.PayMessage = sendChatResponse.Message;
                     EventSystem.Instance.PublishClass(EventType.TikTokPayRequest.Instance);

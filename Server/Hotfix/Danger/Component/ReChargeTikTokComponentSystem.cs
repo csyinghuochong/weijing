@@ -80,7 +80,7 @@ namespace ET
             Log.Console($"risk_control_info:  {request.payMessage}");
             Log.Console($"ReChargeTikTok:  {result}");
             Log.Warning($"ReChargeTikTok:  {result}");
-            return result;
+            return result + "&" + dingDanID;
         }
 
         public static void ListenerTikTokResult(this ReChargeTikTokComponent self)
