@@ -38,24 +38,6 @@ namespace ET
 
         }
 
-        /// <summary>
-        /// HMACSHA1加密
-        /// </summary>
-        /// <param name="text">要加密的原串</param>
-        ///<param name="key">私钥</param>
-        /// <returns></returns>
-        public static string HMACSHA1Text_2(string text, string key)
-        {
-            //HMACSHA1加密
-            HMACSHA1 hmacsha1 = new HMACSHA1();
-            hmacsha1.Key = System.Text.Encoding.UTF8.GetBytes(key);
-
-            byte[] dataBuffer = System.Text.Encoding.UTF8.GetBytes(text);
-            byte[] hashBytes = hmacsha1.ComputeHash(dataBuffer);
-
-            return Convert.ToBase64String(hashBytes);
-        }
-
         public static string HMACSHA1Text_3(string your_data, string your_key)
         {
             var key = Encoding.UTF8.GetBytes(your_key);
@@ -127,6 +109,25 @@ namespace ET
             string sign = HMACSHA1Text_2(sb.ToString(), AppSecret);
             return sign;    
         }
+
+        /// <summary>
+        /// HMACSHA1加密
+        /// </summary>
+        /// <param name="text">要加密的原串</param>
+        ///<param name="key">私钥</param>
+        /// <returns></returns>
+        public static string HMACSHA1Text_2(string text, string key)
+        {
+            //HMACSHA1加密
+            HMACSHA1 hmacsha1 = new HMACSHA1();
+            hmacsha1.Key = System.Text.Encoding.UTF8.GetBytes(key);
+
+            byte[] dataBuffer = System.Text.Encoding.UTF8.GetBytes(text);
+            byte[] hashBytes = hmacsha1.ComputeHash(dataBuffer);
+
+            return Convert.ToBase64String(hashBytes);
+        }
+
     }
 
 }

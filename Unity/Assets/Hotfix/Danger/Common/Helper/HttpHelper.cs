@@ -316,8 +316,9 @@ namespace ET
                 string url_access_token = UrlEncodeInterface(dic["access_token"]);
                 string url_app_id = UrlEncodeInterface(dic["app_id"]);
                 string url_ts = UrlEncodeInterface(dic["ts"]);
-                string postData = string.Empty;
-                postData = $"access_token={url_access_token}&app_id={url_app_id}&ts={url_ts}&sign={dic["sign"]}";
+                string url_sign = UrlEncodeInterface(dic["sign"]);
+
+                string postData = $"access_token={url_access_token}&app_id={url_app_id}&ts={url_ts}&sign={url_sign}";
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);
                 HttpContent httpContent = new StringContent(postData);
@@ -345,7 +346,8 @@ namespace ET
                 {
                     if (item.Key.Equals("sign"))
                     {
-                        postData = postData + $"{item.Key}={item.Value}";
+                        dic[item.Key] = UrlEncodeInterface(item.Value);
+                        postData = postData + $"{item.Key}={dic[item.Key]}";
                     }
                     else
                     {
