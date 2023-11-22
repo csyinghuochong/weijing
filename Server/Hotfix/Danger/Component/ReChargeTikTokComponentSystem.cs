@@ -48,14 +48,17 @@ namespace ET
             paramlist.Add("product_desc", "钻石");
             paramlist.Add("product_amount", "1");
             paramlist.Add("sdk_open_id", request.Account);
-            paramlist.Add("client_ip", request.ClientIp);
             paramlist.Add("callback_url", self.HttpListenerUrl);
             paramlist.Add("actual_amount", "1");
             paramlist.Add("coupon_id", "0");
             paramlist.Add("risk_control_info", request.payMessage);
             paramlist.Add("trade_type", "2");
 
-            string sign = TikTokHelper.getSign(paramlist); 
+            string sign = TikTokHelper.getSign(paramlist);
+
+            //接口参数  （除了client_ip、sign字段，其他的都参加sign计算；选传的参数，如果是空值则不加入sign计算）
+          
+            paramlist.Add("client_ip", request.ClientIp);
             paramlist.Add("sign", sign);
 
             string result = HttpHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);

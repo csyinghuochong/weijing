@@ -101,6 +101,11 @@ namespace ET
             string lastKey = string.Empty;
             foreach (var item in dictList)
             {
+                if (string.IsNullOrEmpty(item.Value))
+                {
+                    continue;
+                }
+
                 params1.Add(item.Key, item.Value);
                 lastKey = item.Key; 
             }

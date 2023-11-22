@@ -283,6 +283,7 @@ namespace ET
 
         public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
 		{
+			await ETTask.CompletedTask;
             bool useClient = true;
 			if (useClient)
 			{
@@ -294,16 +295,16 @@ namespace ET
 				string sign = TikTokHelper.getSign(paramslist);
 				paramslist.Add("sign", sign);
 				string result = HttpHelper.OnWebRequestPost_TikTokLogin("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
-
+                Log.ILog.Debug("access_token.result1 : " + result);
 #if UNITY_EDITOR
-				result = "{\"code\":0,\"data\":{\"age_type\":100,\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"sdk_open_id\":\"7303474616922905355\"},\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"message\":\"success\"}";
+                result = "{\"code\":0,\"data\":{\"age_type\":100,\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"sdk_open_id\":\"7303474616922905355\"},\"log_id\":\"20231121162107BEDB3B3662AD2265532E\",\"message\":\"success\"}";
 #endif
 				TikTokCode tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
 				//{"code":0,"data":{"age_type":100,"log_id":"20231121162107BEDB3B3662AD2265532E","sdk_open_id":"7303474616922905355"},"log_id":"20231121162107BEDB3B3662AD2265532E","message":"success"}
 				//Log.ILog.Debug("ts: " + serverNow);
 				//Log.ILog.Debug("app_id: " + TikTokHelper.AppID);
 				//Log.ILog.Debug("access_token: " + access_token)
-				Log.ILog.Debug("access_token.result : " + result);
+				Log.ILog.Debug("access_token.result2 : " + result);
                 if (tikTokCode.code == 0 && tikTokCode.data != null)
 				{
 					self.Account.GetComponent<InputField>().text = tikTokCode.data.sdk_open_id;
@@ -316,9 +317,9 @@ namespace ET
 					Log.ILog.Debug($"抖音登录失败");
 				}
 			}
-
-			if(useClient)
+			else
 			{
+#if !UNITY_EDITOR
                 try
                 {
                     C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
@@ -339,7 +340,9 @@ namespace ET
                 {
                     Log.Error(ex.ToString());
                 }
-            }
+
+#endif
+			}
         }
 
         public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)

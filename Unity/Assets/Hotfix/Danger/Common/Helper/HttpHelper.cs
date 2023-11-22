@@ -9,6 +9,22 @@ using System.Text;
 
 namespace ET
 {
+    class HexConverter
+    {
+        public static char ToCharUpper(int value)
+        {
+            value &= 0xF;
+            value += '0';
+
+            if (value > '9')
+            {
+                value += ('A' - ('9' + 1));
+            }
+
+            return (char)value;
+        }
+    }
+
     public static class HttpHelper
     {
         /// <summary>
@@ -138,13 +154,146 @@ namespace ET
             return result;
         }
 
+        public static string UrlEncode_2(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return value;
+
+            int safeCount = 0;
+            int spaceCount = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                char ch = value[i];
+                if (IsUrlSafeChar(ch))
+                {
+                    safeCount++;
+                }
+                else if (ch == ' ')
+                {
+                    spaceCount++;
+                }
+            }
+
+            int unexpandedCount = safeCount + spaceCount;
+            if (unexpandedCount == value.Length)
+            {
+                if (spaceCount != 0)
+                {
+                    // Only spaces to encode
+                    return value.Replace(' ', '+');
+                }
+
+                // Nothing to expand
+                return value;
+            }
+
+            int byteCount = Encoding.UTF8.GetByteCount(value);
+            int unsafeByteCount = byteCount - unexpandedCount;
+            int byteIndex = unsafeByteCount * 2;
+
+            // Instead of allocating one array of length `byteCount` to store
+            // the UTF-8 encoded bytes, and then a second array of length
+            // `3 * byteCount - 2 * unexpandedCount`
+            // to store the URL-encoded UTF-8 bytes, we allocate a single array of
+            // the latter and encode the data in place, saving the first allocation.
+            // We store the UTF-8 bytes to the end of this array, and then URL encode to the
+            // beginning of the array.
+            byte[] newBytes = new byte[byteCount + byteIndex];
+            Encoding.UTF8.GetBytes(value, 0, value.Length, newBytes, byteIndex);
+
+            GetEncodedBytes(newBytes, byteIndex, byteCount, newBytes);
+            return Encoding.UTF8.GetString(newBytes);
+        }
+
+        private static bool IsUrlSafeChar(char ch)
+        {
+            // Set of safe chars, from RFC 1738.4 minus '+'
+            /*
+            if (ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch >= '0' && ch <= '9')
+                return true;
+
+            switch (ch)
+            {
+                case '-':
+                case '_':
+                case '.':
+                case '!':
+                case '*':
+                case '(':
+                case ')':
+                    return true;
+            }
+
+            return false;
+            */
+            // Optimized version of the above:
+
+            int code = (int)ch;
+
+            const int safeSpecialCharMask = 0x03FF0000 | // 0..9
+                1 << ((int)'!' - 0x20) | // 0x21
+                1 << ((int)'(' - 0x20) | // 0x28
+                1 << ((int)')' - 0x20) | // 0x29
+                1 << ((int)'*' - 0x20) | // 0x2A
+                1 << ((int)'-' - 0x20) | // 0x2D
+                1 << ((int)'.' - 0x20); // 0x2E
+
+            return IsAsciiLetter(ch) ||
+                   ((uint)(code - 0x20) <= (uint)('9' - 0x20) && ((1 << (code - 0x20)) & safeSpecialCharMask) != 0) ||
+                   (code == (int)'_');
+        }
+
+        private static void GetEncodedBytes(byte[] originalBytes, int offset, int count, byte[] expandedBytes)
+        {
+            int pos = 0;
+            int end = offset + count;
+            //Debug.Assert(offset < end && end <= originalBytes.Length);
+            for (int i = offset; i < end; i++)
+            {
+#if DEBUG
+                // Make sure we never overwrite any bytes if originalBytes and
+                // expandedBytes refer to the same array
+                if (originalBytes == expandedBytes)
+                {
+                    //Debug.Assert(i >= pos);
+                }
+#endif
+
+                byte b = originalBytes[i];
+                char ch = (char)b;
+                if (IsUrlSafeChar(ch))
+                {
+                    expandedBytes[pos++] = b;
+                }
+                else if (ch == ' ')
+                {
+                    expandedBytes[pos++] = (byte)'+';
+                }
+                else
+                {
+                    expandedBytes[pos++] = (byte)'%';
+                    expandedBytes[pos++] = (byte)HexConverter.ToCharUpper(b >> 4);
+                    expandedBytes[pos++] = (byte)HexConverter.ToCharUpper(b);
+                }
+            }
+        }
+
+        public static bool IsAsciiLetter(char c)
+        {
+            return (uint)((c | 0x20) - 'a') <= 'z' - 'a';
+        }
 
 #if SERVER
+
         public static string OnWebRequestPost_TikTokLogin(string url, Dictionary<string, string> dic)
         {
             string result = "";
             try
             {
+                string urlencode1 = UrlEncode_1(dic["access_token"]);
+                string urlencode2 = Uri.EscapeDataString(dic["access_token"]);
+                string urlencode3 = UrlEncode_2(dic["access_token"]);
+
                 dic["access_token"] = System.Web.HttpUtility.UrlEncode(dic["access_token"], System.Text.Encoding.UTF8);
                 dic["app_id"] = System.Web.HttpUtility.UrlEncode(dic["app_id"], System.Text.Encoding.UTF8);
                 dic["ts"] = System.Web.HttpUtility.UrlEncode(dic["ts"], System.Text.Encoding.UTF8);
@@ -179,16 +328,14 @@ namespace ET
                     if (item.Key.Equals("sign"))
                     {
                         postData = postData + $"{item.Key}={item.Value}";
-                        continue;
                     }
-                    if (item.Key.Equals("client_ip"))
+                    else
                     {
+                        dic[item.Key] = System.Web.HttpUtility.UrlEncode(item.Value, System.Text.Encoding.UTF8);
                         postData = postData + $"{item.Key}={item.Value}&";
-                        continue;
                     }
-                    dic[item.Key] = System.Web.HttpUtility.UrlEncode(dic[item.Key], System.Text.Encoding.UTF8);
-                    postData = postData + $"{item.Key}={item.Value}&";
                 }
+                Log.Warning($"OnWebRequestPost_Pay:  {postData}");
 
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);
@@ -212,9 +359,9 @@ namespace ET
             string result = "";
             try
             {
-                dic["access_token"] = UrlEncode(dic["access_token"]);
-                dic["app_id"] = UrlEncode(dic["app_id"]);
-                dic["ts"] = UrlEncode(dic["ts"]);
+                dic["access_token"] = UrlEncode_1(dic["access_token"]);
+                dic["app_id"] = UrlEncode_1(dic["app_id"]);
+                dic["ts"] = UrlEncode_1(dic["ts"]);
                 string postData = string.Empty;
                 postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
                 HttpClient httpClient = new HttpClient();
@@ -234,7 +381,7 @@ namespace ET
         }
 #endif
 
-        public static string UrlEncode(string str)
+        public static string UrlEncode_1(string str)
         {
             StringBuilder sb = new StringBuilder();
             byte[] byStr = System.Text.Encoding.UTF8.GetBytes(str); //默认是System.Text.Encoding.Default.GetBytes(str)

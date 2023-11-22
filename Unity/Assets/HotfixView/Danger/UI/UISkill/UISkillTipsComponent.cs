@@ -59,6 +59,12 @@ namespace ET
 
         public static void OnUpdateData(this UISkillTipsComponent self, int skillId, Vector3 vector3, string aBAtlasTypes = ABAtlasTypes.RoleSkillIcon, string addTip = "")
         {
+            if (!SkillConfigCategory.Instance.Contain(skillId))
+            {
+                ///可能是道具
+                return;
+            }
+
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             string path =ABPathHelper.GetAtlasPath_2(aBAtlasTypes, skillConfig.SkillIcon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
