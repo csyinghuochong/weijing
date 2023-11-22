@@ -30,7 +30,6 @@ namespace ET
             int monsterId = 0; 
             float range = 0f; 
             int number = 0;
-
             try
             {
                 monsterId = int.Parse(summonParList[0]);

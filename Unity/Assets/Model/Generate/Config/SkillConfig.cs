@@ -186,7 +186,7 @@ namespace ET
 		/// <summary>施法中吟唱时间</summary>
 		[ProtoMember(37)]
 		public double SkillSingTime { get; set; }
-		/// <summary></summary>
+		/// <summary>技能僵直</summary>
 		[ProtoMember(38)]
 		public double SkillRigidity { get; set; }
 		/// <summary>技能存在时间[毫秒]</summary>
