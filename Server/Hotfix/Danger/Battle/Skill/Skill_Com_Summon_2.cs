@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -25,9 +26,24 @@ namespace ET
             //召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值;保留之前的怪
             string gameObjectParameter = this.SkillConf.GameObjectParameter;
             string[] summonParList = gameObjectParameter.Split(';');
-            int monsterId = int.Parse(summonParList[0]);
-            float range = float.Parse(summonParList[2]);
-            int number = int.Parse(summonParList[3]);
+
+            int monsterId = 0; 
+            float range = 0f; 
+            int number = 0;
+
+            try
+            {
+                monsterId = int.Parse(summonParList[0]);
+                range = float.Parse(summonParList[2]);
+                number = int.Parse(summonParList[3]);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Skill_Com_Summon_2:Error:  ", this.SkillConf.Id);
+                Log.Error(ex.ToString());
+                return;
+            }
+
             List<int> destoryOldMonsterList = new List<int>();
             if (summonParList.Length >= 7)
             {
