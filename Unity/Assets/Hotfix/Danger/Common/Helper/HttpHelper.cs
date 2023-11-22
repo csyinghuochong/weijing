@@ -287,21 +287,22 @@ namespace ET
 
         public static string UrlEncodeInterface(string str)
         {
-            int useType = TimeHelper.DateTimeNow().Minute % 3;
-            Log.Console($"useType:  {useType}");
-            if (useType == 0)
-            {
-                return UrlEncode_2(str);
-            }
-            if (useType == 1)
-            {
-                return Uri.EscapeDataString(str);
-            }
-            if (useType == 2)
-            {
-                return System.Web.HttpUtility.UrlEncode(str, System.Text.Encoding.UTF8);
-            }
             return Uri.EscapeDataString(str);
+            //int useType = TimeHelper.DateTimeNow().Minute % 3;
+            //Log.Console($"useType:  {useType}");
+            //if (useType == 0)
+            //{
+            //    return UrlEncode_2(str);
+            //}
+            //if (useType == 1)
+            //{
+            //    return Uri.EscapeDataString(str);
+            //}
+            //if (useType == 2)
+            //{
+            //    return System.Web.HttpUtility.UrlEncode(str, System.Text.Encoding.UTF8);
+            //}
+            //return Uri.EscapeDataString(str);
         }
 
         public static string OnWebRequestPost_TikTokLogin(string url, Dictionary<string, string> dic)

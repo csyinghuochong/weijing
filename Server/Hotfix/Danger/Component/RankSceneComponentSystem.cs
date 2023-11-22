@@ -739,7 +739,7 @@ namespace ET
                 mailInfo.Context = $"恭喜您获得狩猎排行榜第{i + 1}名奖励";
                 mailInfo.Title = "狩猎排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
-                Log.Debug($"发放狩猎排行榜奖励：zone. {zone} rankid.{i + 1}  unitid.{rankingInfos[i].UnitID}");
+                Log.Debug($"发放狩猎排行榜奖励：zone. {zone} rankid.{i + 1}  unitid.{rankingInfos[i].UnitID}  {rankingInfos[i].PlayerName}  {rankingInfos[i].KillNumber}");
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
                 for (int k = 0; k < needList.Length; k++)
                 {
