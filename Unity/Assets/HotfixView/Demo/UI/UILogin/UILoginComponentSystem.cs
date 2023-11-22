@@ -317,8 +317,8 @@ namespace ET
 					Log.ILog.Debug($"抖音登录失败");
 				}
 			}
-			else
-			{
+
+
 #if !UNITY_EDITOR
                 try
                 {
@@ -342,7 +342,6 @@ namespace ET
                 }
 
 #endif
-			}
         }
 
         public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)

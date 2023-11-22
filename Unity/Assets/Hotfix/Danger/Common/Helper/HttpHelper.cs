@@ -332,7 +332,7 @@ namespace ET
                     else
                     {
                         dic[item.Key] = System.Web.HttpUtility.UrlEncode(item.Value, System.Text.Encoding.UTF8);
-                        postData = postData + $"{item.Key}={item.Value}&";
+                        postData = postData + $"{item.Key}={dic[item.Key]}&";
                     }
                 }
                 Log.Warning($"OnWebRequestPost_Pay:  {postData}");
@@ -359,9 +359,9 @@ namespace ET
             string result = "";
             try
             {
-                dic["access_token"] = UrlEncode_1(dic["access_token"]);
-                dic["app_id"] = UrlEncode_1(dic["app_id"]);
-                dic["ts"] = UrlEncode_1(dic["ts"]);
+                dic["access_token"] = Uri.EscapeDataString(dic["access_token"]);
+                dic["app_id"] = Uri.EscapeDataString(dic["app_id"]);
+                dic["ts"] = Uri.EscapeDataString(dic["ts"]);
                 string postData = string.Empty;
                 postData = $"access_token={dic["access_token"]}&app_id={dic["app_id"]}&ts={dic["ts"]}&sign={dic["sign"]}";
                 HttpClient httpClient = new HttpClient();
