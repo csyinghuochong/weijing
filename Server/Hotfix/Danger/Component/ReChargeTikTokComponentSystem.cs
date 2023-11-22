@@ -60,7 +60,6 @@ namespace ET
             paramlist.Add("role_name", request.UnitName);
             paramlist.Add("role_vip_leve", "0");
             paramlist.Add("server_id", request.Zone.ToString());
-            paramlist.Add("server_id", request.Zone.ToString());
             paramlist.Add("user_agent", "");
 
             string signparamlist = string.Empty;
