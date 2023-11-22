@@ -43,7 +43,7 @@ namespace ET
 
             paramlist.Add("aid", TikTokHelper.AppID.ToString());
             paramlist.Add("cp_order_id", orderId);
-            paramlist.Add("product_id", request.RechargeNumber.ToString());
+            paramlist.Add("product_id", "6");
             paramlist.Add("product_name", "钻石");
             paramlist.Add("product_desc", "钻石");
             paramlist.Add("product_amount", "1");
@@ -54,10 +54,17 @@ namespace ET
             paramlist.Add("risk_control_info", request.payMessage);
             paramlist.Add("trade_type", "2");
 
+            string signparamlist = string.Empty;
+            foreach (var item in paramlist)
+            {
+                signparamlist = signparamlist + $"{item.Key}: {item.Value} \n";
+            }
+            Log.Warning($"参与sign的参数: {signparamlist}");
             string sign = TikTokHelper.getSign(paramlist);
+            Log.Warning($"sign的结果:    {sign}");
 
             //接口参数  （除了client_ip、sign字段，其他的都参加sign计算；选传的参数，如果是空值则不加入sign计算）
-          
+
             paramlist.Add("client_ip", request.ClientIp);
             paramlist.Add("sign", sign);
 
