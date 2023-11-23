@@ -63,10 +63,10 @@ namespace ET
             self.TextBaoZhenJin.GetComponent<Text>().text = string.Empty;
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
-            ButtonHelp.AddListenerEx(self.Btn_Auction, self.OnBtn_Auction);
+            ButtonHelp.AddListenerEx(self.Btn_Auction, () => { self.OnBtn_Auction().Coroutine(); });
 
             self.Btn_CanYu = rc.Get<GameObject>("Btn_CanYu");
-            ButtonHelp.AddListenerEx(self.Btn_CanYu, () => { self.OnBtn_CanYu();  });
+            ButtonHelp.AddListenerEx(self.Btn_CanYu, self.OnBtn_CanYu);
 
             self.Btn_Record = rc.Get<GameObject>("Btn_Record");
             ButtonHelp.AddListenerEx(self.Btn_Record, () => { UIHelper.Create( self.ZoneScene(), UIType.UIAuctionRecode ).Coroutine() ; });
