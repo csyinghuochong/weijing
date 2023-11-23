@@ -734,9 +734,9 @@ namespace ET
             }
 
             //attributeAdd   (boss成长boss加成)
-            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)(monsterConfig.Hp * hpCoefficient), false);
-            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)(monsterConfig.Act * ackCoefficient), false);
-            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)(monsterConfig.Act * ackCoefficient), false);
+            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)(monsterConfig.Hp * hpCoefficient * attributeAdd), false);
+            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)(monsterConfig.Act * ackCoefficient * attributeAdd), false);
+            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)(monsterConfig.Act * ackCoefficient * attributeAdd), false);
             numericComponent.Set((int)NumericType.Base_MinDef_Base, monsterConfig.Def, false);
             numericComponent.Set((int)NumericType.Base_MaxDef_Base, monsterConfig.Def, false);
             numericComponent.Set((int)NumericType.Base_MinAdf_Base, monsterConfig.Adf, false);

@@ -823,8 +823,8 @@ namespace ET
             new BossDevelopment(){ Name = "初级领主", Level = 1, AttributeAdd = 1f,     ReviveTimeAdd = 1f,     DropAdd = 1f,   KillNumber = 0 },
             new BossDevelopment(){ Name = "次级领主", Level = 2, AttributeAdd = 1.1f,   ReviveTimeAdd = 1.5f,   DropAdd = 1.2f, KillNumber = 2 },
             new BossDevelopment(){ Name = "中级领主", Level = 3, AttributeAdd = 1.2f,   ReviveTimeAdd = 2f,     DropAdd = 1.4f, KillNumber = 3 },
-            new BossDevelopment(){ Name = "高级领主", Level = 4, AttributeAdd = 1.4f,   ReviveTimeAdd = 2.5f,   DropAdd = 1.6f, KillNumber = 5 },
-            new BossDevelopment(){ Name = "终级领主", Level = 5, AttributeAdd = 1.7f,   ReviveTimeAdd = 3f,     DropAdd = 1.8f, KillNumber = 10 },
+            new BossDevelopment(){ Name = "高级领主", Level = 4, AttributeAdd = 1.3f,   ReviveTimeAdd = 2.5f,   DropAdd = 1.6f, KillNumber = 5 },
+            new BossDevelopment(){ Name = "终级领主", Level = 5, AttributeAdd = 1.5f,   ReviveTimeAdd = 3f,     DropAdd = 1.8f, KillNumber = 10 },
         };
 
         public static BossDevelopment GetBossDevelopment(int killNumber)
