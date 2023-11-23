@@ -300,7 +300,7 @@ namespace ET
                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                     UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
                     int killNumber = userInfoComponent.GetMonsterKillNumber(unit.ConfigId);
-                    BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                    BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
                     resurrection = (int)(resurrection * bossDevelopment.ReviveTimeAdd);
 
                     resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
@@ -654,7 +654,7 @@ namespace ET
                             LocalDungeonComponent localDungeonComponent = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>();
                             Unit mainUnit = localDungeonComponent.MainUnit;
                             int killNumber = mainUnit.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterConfig.Id);
-                            BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                            BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
                             attributeAdd = bossDevelopment.AttributeAdd;
                             fubenDifficulty = localDungeonComponent.FubenDifficulty;
                         }

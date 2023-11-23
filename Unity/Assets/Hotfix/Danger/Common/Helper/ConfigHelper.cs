@@ -827,7 +827,7 @@ namespace ET
             new BossDevelopment(){ Name = "终级领主", Level = 5, AttributeAdd = 1.5f,   ReviveTimeAdd = 3f,     DropAdd = 1.8f, KillNumber = 10 },
         };
 
-        public static BossDevelopment GetBossDevelopment(int killNumber)
+        public static BossDevelopment GetBossDevelopmentByKill(int killNumber)
         {
             for (int i = BossDevelopmentList.Count - 1; i >=0; i--)
             {

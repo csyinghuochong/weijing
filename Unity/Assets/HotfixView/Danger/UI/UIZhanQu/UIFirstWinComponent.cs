@@ -320,8 +320,8 @@ namespace ET
 			self.Text_UpdateStatus.GetComponent<Text>().color = noupdatestatus ? new Color(164f / 255, 66f / 255f, 8f / 255f): new Color(25f/255,180f/255f,25f/255f);
 
 			int killNumber = userInfoComponent.GetMonsterKillNumber( bossId );
-			BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
-			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopment(bossDevelopment.Level + 1);
+			BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
+			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopmentById(bossDevelopment.Level + 1);
 			if (bossDevelopmentNext == null)
 			{
                 self.Text_BossDevp.GetComponent<Text>().text = $"{bossDevelopment.Name}";

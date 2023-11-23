@@ -621,7 +621,7 @@ namespace ET
             if (sceneType == SceneTypeEnum.LocalDungeon && bekill.IsBoss())
             {
                 int killNumber =  main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterCof.Id);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
                 dropAdd_Pro *= bossDevelopment.DropAdd;
             }
 

@@ -171,7 +171,7 @@ namespace ET
             {
                 Unit unitboss = unit.GetParent<UnitComponent>().Get(bossid);
                 int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitbelong.ConfigId);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
                 self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
                 self.Lab_Deve.text = bossDevelopment.Name;
             }
