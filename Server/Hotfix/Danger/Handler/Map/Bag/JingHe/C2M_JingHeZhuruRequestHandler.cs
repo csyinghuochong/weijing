@@ -23,7 +23,7 @@ namespace ET
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             List<long> huishouList = request.OperateBagID;
             List<long> bagsList = new List<long>();
-            List<int> qulitylist = new List<int> {  };
+            List<int> qulitylist = new List<int> { };
             for (int i = 0; i < huishouList.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
@@ -35,7 +35,7 @@ namespace ET
                 bagsList.Add(huishouList[i]);
                 if (!string.IsNullOrEmpty(bagInfo.ItemPar))
                 {
-                    qulitylist.Add( int.Parse(bagInfo.ItemPar) );
+                    qulitylist.Add(int.Parse(bagInfo.ItemPar));
                 }
             }
 
@@ -54,7 +54,7 @@ namespace ET
             //}
 
             bagInfoJinHe.ItemPar = oldqulity.ToString();
-            m2c_bagUpdate.BagInfoUpdate.Add( bagInfoJinHe );
+            m2c_bagUpdate.BagInfoUpdate.Add(bagInfoJinHe);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
             bagComponent.OnCostItemData(bagsList, ItemLocType.ItemLocBag);

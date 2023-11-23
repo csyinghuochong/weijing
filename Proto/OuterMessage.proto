@@ -6892,3 +6892,19 @@ message M2C_UpdateUserInfoMessage	// IActorMessage
 {
 	UserInfo UserInfo = 1;
 }
+
+//ResponseType M2C_JingHeWearResponse
+message C2M_JingHeWearRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;				//操作类型 1 穿戴 2卸下
+	int64 OperateBagID = 2;				
+	string OperatePar = 3;				// 类型参数
+}
+
+message M2C_JingHeWearResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

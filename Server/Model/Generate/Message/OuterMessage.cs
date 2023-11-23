@@ -14349,4 +14349,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JingHeWearResponse))]
+	[Message(OuterOpcode.C2M_JingHeWearRequest)]
+	[ProtoContract]
+	public partial class C2M_JingHeWearRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(3)]
+		public string OperatePar { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JingHeWearResponse)]
+	[ProtoContract]
+	public partial class M2C_JingHeWearResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

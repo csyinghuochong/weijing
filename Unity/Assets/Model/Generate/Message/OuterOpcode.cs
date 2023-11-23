@@ -799,5 +799,7 @@ namespace ET
 		 public const ushort C2M_JingHePlanRequest = 10796;
 		 public const ushort M2C_JingHePlanResponse = 10797;
 		 public const ushort M2C_UpdateUserInfoMessage = 10798;
+		 public const ushort C2M_JingHeWearRequest = 10799;
+		 public const ushort M2C_JingHeWearResponse = 10800;
 	}
 }
