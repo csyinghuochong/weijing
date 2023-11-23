@@ -156,7 +156,7 @@ namespace ET
             self.Lab_RmbNum.text = curprice.ToString();
         }
 
-        public static void OnBtn_Auction(this UIPaiMaiAuctionComponent self)
+        public static async ETTask OnBtn_Auction(this UIPaiMaiAuctionComponent self)
         {
             string text = self.Lab_RmbNum.text;
             if (string.IsNullOrEmpty(text))
@@ -177,7 +177,7 @@ namespace ET
 
 
             C2M_PaiMaiAuctionPriceRequest request = new C2M_PaiMaiAuctionPriceRequest() { Price = price };
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
+            M2C_PaiMaiAuctionPriceResponse response = (M2C_PaiMaiAuctionPriceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static  void OnBtn_CanYu(this UIPaiMaiAuctionComponent self)
