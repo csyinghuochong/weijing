@@ -9,7 +9,8 @@ namespace ET
 {
     public class UIDungeonComponent: Entity, IAwake, IDestroy
     {
-        public Dictionary<long, Text> BossRefreshObjs = new Dictionary<long, Text>();
+        public Dictionary<int, Text> BossRefreshObjs = new Dictionary<int, Text>();
+        public Dictionary<int, long> BossRefreshTime = new Dictionary<int, long>();
         public long Timer;
         public GameObject BossRefreshTimeList;
         public GameObject UIBossRefreshTimeItem;
@@ -180,8 +181,8 @@ namespace ET
                 }
 
                 // Boss刷新时间
-                long time = long.Parse(bossRevivesTime[i].Value);
-                self.BossRefreshObjs.Add(time, go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
+                self.BossRefreshTime.Add(bossRevivesTime[i].KeyId, long.Parse(bossRevivesTime[i].Value));
+                self.BossRefreshObjs.Add(bossRevivesTime[i].KeyId, go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
                 // 先提前刷新一下
                 self.UpdateBossRefreshTimer();
 
@@ -203,9 +204,9 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateBossRefreshTimer(this UIDungeonComponent self)
         {
-            foreach (KeyValuePair<long, Text> it in self.BossRefreshObjs)
+            foreach (KeyValuePair<int, long> it in self.BossRefreshTime)
             {
-                long time = it.Key;
+                long time = it.Value;
                 if (time > TimeHelper.ServerNow())
                 {
                     time -= TimeHelper.ClientNow();
@@ -214,11 +215,11 @@ namespace ET
                     int min = (int)((time - (hour * 3600)) / 60);
                     int sec = (int)(time - (hour * 3600) - (min * 60));
                     string showStr = hour + "时" + min + "分" + sec + "秒";
-                    it.Value.text = $"刷新时间:{showStr}";
+                    self.BossRefreshObjs[it.Key].text = $"刷新时间:{showStr}";
                 }
                 else
                 {
-                    it.Value.text = "已刷新";
+                    self.BossRefreshObjs[it.Key].text = "已刷新";
                 }
             }
         }
