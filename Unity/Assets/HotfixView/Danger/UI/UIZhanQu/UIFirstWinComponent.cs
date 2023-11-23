@@ -341,7 +341,7 @@ namespace ET
             }
             self.Text_BossDevpName.text = bossDevelopment.Name;
 			long cdTime = (long)(monsterConfig.ReviveTime * 1000 * bossDevelopment.ReviveTimeAdd);
-			self.Text_BossFreshTIme.text = TimeHelper.ShowLeftTime(cdTime);
+			self.Text_BossFreshTIme.text = "冷却时间:"+TimeHelper.ShowLeftTime(cdTime);
 
 
             List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);

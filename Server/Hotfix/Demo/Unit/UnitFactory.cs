@@ -623,7 +623,7 @@ namespace ET
                 int killNumber =  main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterCof.Id);
                 int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(scenid);
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
-                dropAdd_Pro *= bossDevelopment.DropAdd;
+                dropAdd_Pro += bossDevelopment.DropAdd;
             }
 
             //创建掉落
