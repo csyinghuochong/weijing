@@ -582,18 +582,6 @@ namespace ET
             numericComponent.Set((int)NumericType.Base_MinAdf_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MinAdf) * float.Parse(attributeList_1[4]) * (1 + masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[4]), false);
             numericComponent.Set((int)NumericType.Base_MaxAdf_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MaxAdf) * float.Parse(attributeList_1[4]) * (1 + masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[4]), false);
 
-            //新增的参数
-            //血量比例,攻击比例,魔法比例,物防比例，魔防比例,新增比列1，新增比列2....；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值，新增固定值1,新增固定值2..
-            if (attributeList_1.Length > 5)
-            {
-                float a = masterNumberComponent.GetAsFloat(NumericType.Now_Cri);
-                //暴击,命中,闪避,韧性
-                numericComponent.Set((int)NumericType.Base_Cri_Base, (float.Parse(attributeList_1[5]) * masterNumberComponent.GetAsFloat(NumericType.Now_Cri)), false);
-                numericComponent.Set((int)NumericType.Base_Hit_Base, (float.Parse(attributeList_1[6]) * masterNumberComponent.GetAsFloat(NumericType.Now_Hit)), false);
-                numericComponent.Set((int)NumericType.Base_Dodge_Base, (float.Parse(attributeList_1[7]) * masterNumberComponent.GetAsFloat(NumericType.Now_Dodge)), false);
-                numericComponent.Set((int)NumericType.Base_Res_Base, (float.Parse(attributeList_1[8]) * masterNumberComponent.GetAsFloat(NumericType.Now_Res)), false);
-            }
-
             //属性
             numericComponent.Set((int)NumericType.Base_Speed_Base, monsterConfig.MoveSpeed, false);
             numericComponent.Set((int)NumericType.Base_Cri_Base, monsterConfig.Cri, false);
@@ -607,6 +595,17 @@ namespace ET
             numericComponent.Set((int)NumericType.Now_Hp, numericComponent.GetAsInt(NumericType.Now_MaxHp));
             //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));
 
+            //新增的参数
+            //血量比例,攻击比例,魔法比例,物防比例，魔防比例,新增比列1，新增比列2....；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值，新增固定值1,新增固定值2..
+            if (attributeList_1.Length > 5)
+            {
+                float a = masterNumberComponent.GetAsFloat(NumericType.Now_Cri);
+                //暴击,命中,闪避,韧性
+                numericComponent.Set((int)NumericType.Base_Cri_Base, (float.Parse(attributeList_1[5]) * masterNumberComponent.GetAsFloat(NumericType.Now_Cri)), false);
+                numericComponent.Set((int)NumericType.Base_Hit_Base, (float.Parse(attributeList_1[6]) * masterNumberComponent.GetAsFloat(NumericType.Now_Hit)), false);
+                numericComponent.Set((int)NumericType.Base_Dodge_Base, (float.Parse(attributeList_1[7]) * masterNumberComponent.GetAsFloat(NumericType.Now_Dodge)), false);
+                numericComponent.Set((int)NumericType.Base_Res_Base, (float.Parse(attributeList_1[8]) * masterNumberComponent.GetAsFloat(NumericType.Now_Res)), false);
+            }
 
         }
 
