@@ -265,17 +265,17 @@ namespace ET
 			{
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIds[i]);
 				string str = $"{skillConfig.SkillName}:" + skillConfig.SkillDescribe;
-				float height = (str.Length / 16 + 1) * 40; // 16个字一行
+				float height = (str.Length / 30 + 1) * 40; // 16个字一行
 				if (i == 0)
 				{
-					self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+					self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(750, height);
 					self.SkillDescriptionList[i].GetComponent<Text>().text = str;
 				}
 				else
 				{
 					if (self.SkillDescriptionList.Count > i)
 					{
-						self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+						self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(750, height);
 						self.SkillDescriptionList[i].GetComponent<Text>().text =str;
 						self.SkillDescriptionList[i].SetActive(true);
 					}
@@ -285,7 +285,7 @@ namespace ET
 						obj.SetActive(true);
 						UICommonHelper.SetParent(obj, self.SkillDescriptionListNode);
 						self.SkillDescriptionList.Add(obj);
-						obj.GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+						obj.GetComponent<RectTransform>().sizeDelta = new Vector2(750, height);
 						obj.GetComponent<Text>().text = str;
 					}
 				}
