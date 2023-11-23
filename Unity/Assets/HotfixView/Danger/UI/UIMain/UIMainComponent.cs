@@ -1807,9 +1807,6 @@ namespace ET
             //晶核装备    ItemConfig EquipType=201  ItemSubType2001+。  
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
-            //已经装备的晶核。 可以更加子类型显示在对应的晶核孔位
-            List<BagInfo> jinghelist =  bagComponent.GetItemsByLoc(ItemLocType.SeasonJingHe);
-
             //赛季任务。  主任务面板要屏蔽赛季任务
             //服务器只记录当前的赛季任务。 小于此任务id的为已完成任务, 客户端需要显示所有的赛季任务
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();

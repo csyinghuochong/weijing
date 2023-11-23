@@ -62,11 +62,14 @@ namespace ET
                 return;
             }
 
-            List<BagInfo> equiplist = self.ZoneScene().GetComponent<BagComponent>().GetEquipList();
+            ///应该放入SeasonJingHe。 穿戴和卸下晶核给单独协议
+            List<BagInfo> equiplist = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc( ItemLocType.SeasonJingHe );
 
             self.IconImg.SetActive(false);
             for (int i = 0; i < equiplist.Count; i++)
             {
+                ///equiplist[i].EquipPlan; 第几套晶核
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && itemConfig.ItemSubType == 2000 + self.JingHeId)
                 {

@@ -1665,6 +1665,9 @@ namespace ET
 		[ProtoMember(25)]
 		public List<int> IncreaseSkillLists = new List<int>();
 
+		[ProtoMember(26)]
+		public int EquipPlan { get; set; }
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
