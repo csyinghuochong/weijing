@@ -647,10 +647,12 @@ namespace ET
                     case SceneTypeEnum.LocalDungeon:
                         if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
                         {
-                            fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
-                            int killNumber = nowUnit.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterConfig.Id);
+                            LocalDungeonComponent localDungeonComponent = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>();
+                            Unit mainUnit = localDungeonComponent.MainUnit;
+                            int killNumber = mainUnit.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterConfig.Id);
                             BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
                             attributeAdd = bossDevelopment.AttributeAdd;
+                            fubenDifficulty = localDungeonComponent.FubenDifficulty;
                         }
                         break;
                     default:
