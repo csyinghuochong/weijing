@@ -189,11 +189,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("此道具禁止上架！");
                 return;
             }
-            // if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
-            // {
-            //     FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
-            //     return;
-            // }
+            if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
+                return;
+            }
 
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiSellPrice);
             uI.GetComponent<UIPaiMaiSellPriceComponent>().InitPriceUI(self.BagInfo);
