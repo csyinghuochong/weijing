@@ -407,11 +407,13 @@ namespace ET
         //2.道具部位
         //3.道具品质
         //4:具体道具ID
+        //5:道具鉴定条目数
         //105101.装备鉴定属性力量
         //105201.装备鉴定属性敏捷
         //105301.装备鉴定属性智力
         //105401.装备鉴定属性耐力
         //105501.装备鉴定属性体质
+
         public static bool IsTaskGiveItem(int taskId, BagInfo bagInfo)
         {
             if (bagInfo == null)
@@ -457,6 +459,12 @@ namespace ET
                         break;
                     case 3:
                         value = itemConfig.ItemQuality >= targetValue;
+                        break;
+                    case 4:
+                        value = itemConfig.Id == targetValue;
+                        break;
+                    case 5:
+                        value = bagInfo.HideProLists.Count >= targetValue;  
                         break;
                     case 105101:
                     case 105201:
