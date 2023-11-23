@@ -174,7 +174,8 @@ namespace ET
             }
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
-            uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
+            UIPaiMaiSellComponent uIPaiMaiSellComponent = uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>();
+            uIPaiMaiSellComponent?.OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
 
             UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice );
         }
