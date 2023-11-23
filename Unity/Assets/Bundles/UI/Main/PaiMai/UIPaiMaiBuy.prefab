@@ -1118,16 +1118,16 @@ MonoBehaviour:
     gameObject: {fileID: 5040667954586225959}
   - key: TypeListNode
     gameObject: {fileID: 8838766630563726476}
-  - key: Btn_Refresh
-    gameObject: {fileID: 6893045342582271655}
-  - key: Btn_UpPage
-    gameObject: {fileID: 7119380086030474915}
   - key: Text_PageShow
     gameObject: {fileID: 8310153669413845769}
   - key: ShowPage
     gameObject: {fileID: 7114766317222496074}
   - key: UIPaiMaiBuyItem
     gameObject: {fileID: 5523659878062497778}
+  - key: NextPageBtn
+    gameObject: {fileID: 6893045342582271655}
+  - key: PrePageBtn
+    gameObject: {fileID: 7119380086030474915}
 --- !u!1 &2927870426747706162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2293,7 @@ GameObject:
   - component: {fileID: 4746676383855858662}
   - component: {fileID: 3399518664061460121}
   m_Layer: 5
-  m_Name: Btn_Refresh
+  m_Name: NextPageBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2654,7 +2654,7 @@ GameObject:
   - component: {fileID: 3904068822177088465}
   - component: {fileID: 1762752518788653951}
   m_Layer: 5
-  m_Name: Btn_UpPage
+  m_Name: PrePageBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
