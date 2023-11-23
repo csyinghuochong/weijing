@@ -817,11 +817,6 @@ namespace ET
             return false;
         }
 
-        public static void OnCleanBossCD(this UserInfoComponent self)
-        {
-            self.UserInfo.MonsterRevives.Clear();
-        }
-
         public static int OnGetFirstWinSelf(this UserInfoComponent self, int firstwinid, int difficulty)
         {
             KeyValuePair keyValuePair1 = null;
@@ -893,6 +888,14 @@ namespace ET
             MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_FirstWinSelfUpdateMessage);
         }
 
+        public static void OnCleanBossCD(this UserInfoComponent self)
+        {
+            for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)
+            {
+                self.UserInfo.MonsterRevives[i].Value = "0";
+            }
+        }
+
         public static void OnAddRevive(this UserInfoComponent self, int monsterId, long reviveTime)
         {
             bool have = false;  
@@ -917,7 +920,6 @@ namespace ET
             {
                 self.UserInfo.MonsterRevives.Add(new KeyValuePair() { KeyId = monsterId, Value = reviveTime.ToString(), Value2 = "1" });
             }
-
         }
 
         public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)
