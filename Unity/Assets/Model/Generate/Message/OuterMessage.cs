@@ -14340,4 +14340,13 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_UpdateUserInfoMessage)]
+	[ProtoContract]
+	public partial class M2C_UpdateUserInfoMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public UserInfo UserInfo { get; set; }
+
+	}
+
 }

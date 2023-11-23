@@ -6887,3 +6887,8 @@ message M2C_JingHePlanResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message M2C_UpdateUserInfoMessage	// IActorMessage
+{
+	UserInfo UserInfo = 1;
+}
