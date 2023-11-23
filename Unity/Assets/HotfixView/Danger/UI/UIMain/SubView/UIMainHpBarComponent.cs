@@ -148,15 +148,28 @@ namespace ET
         {
             self.Lab_Owner.text = string.Empty;
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Unit unitbelong = unit.GetParent<UnitComponent>().Get(belongid);
+            Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unitboss = unitmain.GetParent<UnitComponent>().Get(bossid);
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitboss.ConfigId);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
+                self.Lab_Deve.text = bossDevelopment.Name;
+            }
+            else
+            {
+                self.Lab_Deve.text = string.Empty;
+            }
+
+            Unit unitbelong = unitmain.GetParent<UnitComponent>().Get(belongid);
             if (unitbelong == null)
             {
                 self.Lab_Owner.text = string.Empty;
                 return;
             }
 
-            if (unitbelong.Id == unit.Id)
+            if (unitbelong.Id == unitmain.Id)
             {
                 self.Lab_Owner.color = new Color(148f/255f,1,0);      //绿色
             }
@@ -164,22 +177,7 @@ namespace ET
             {
                 self.Lab_Owner.color = new Color(255f / 255f, 99f / 255f, 66f / 255f);      //红色
             }
-
-            string bossDeve = string.Empty;
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
-            {
-                Unit unitboss = unit.GetParent<UnitComponent>().Get(bossid);
-                int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitbelong.ConfigId);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
-                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
-                self.Lab_Deve.text = bossDevelopment.Name;
-            }
-            else
-            {
-                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
-                self.Lab_Deve.text = string.Empty ; 
-            }
+            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
         }
 
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
