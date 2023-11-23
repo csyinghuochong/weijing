@@ -258,35 +258,48 @@ namespace ET
             //最高伤害额外奖励
             long idExtra = 0;
             int damageMax = 0;
+            int damageTotal = 0;    
+            Dictionary<long, int> hurtList = new Dictionary<long, int>();
             for (int i = 0; i < m2C_FubenSettlement.PlayerList.Count; i++)
             {
-                if (m2C_FubenSettlement.PlayerList[i].Damage >= damageMax)
+                TeamPlayerInfo teamPlayerInfo = m2C_FubenSettlement.PlayerList[i];
+                if (teamPlayerInfo.Damage >= damageMax)
                 {
-                    damageMax = m2C_FubenSettlement.PlayerList[i].Damage;
-                    idExtra = m2C_FubenSettlement.PlayerList[i].UserID;
+                    damageMax = teamPlayerInfo.Damage;
+                    idExtra = teamPlayerInfo.UserID;
+                }
+                damageTotal += teamPlayerInfo.Damage;
+                if(!hurtList.ContainsKey(teamPlayerInfo.UserID))
+                {
+                    hurtList.Add(teamPlayerInfo.UserID, teamPlayerInfo.Damage);
                 }
             }
 
-            List<Unit> units = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
+            //TeamDungeonHurt_136
+            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                Unit unit1 = units[i] as Unit;
-                if (unit1.Type != UnitType.Player)
+                Unit unititem = units[i] as Unit;
+                if (unititem.Type != UnitType.Player || unititem.IsRobot())
                 {
                     continue;
                 }
 
-                unit1.GetComponent<TaskComponent>().OnPassTeamFuben();
-                unit1.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamFubenNumber_20, 0, 1);
+                int hurtvalue = hurtList[unititem.Id];
+                int hurtRate = (int)(hurtvalue * 100f / damageTotal);
+                unititem.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TeamDungeonHurt_136, self.TeamInfo.SceneId, hurtRate);
+
+                unititem.GetComponent<TaskComponent>().OnPassTeamFuben();
+                unititem.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamFubenNumber_20, 0, 1);
                 if (self.FubenType == TeamFubenType.ShenYuan)
                 {
-                    unit1.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamShenYuanNumber_21, 0, 1);
+                    unititem.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamShenYuanNumber_21, 0, 1);
                 }
-                if (unit1.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
+                if (unititem.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
-                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    unititem.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
                 }
-                MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
+                MessageHelper.SendToClient(unititem, m2C_FubenSettlement);
             }
 
             (self.Parent.Parent as TeamSceneComponent).OnDungeonOver(self.TeamInfo.TeamId);

@@ -45,7 +45,6 @@ namespace ET
     //8: 转职
     //9: 加入家族
     //10：给与任务
-
     //11:获得任意宠物N个(算上之前)
     //12:制造N个道具
     //13:洗炼装备次数N次
@@ -61,7 +60,6 @@ namespace ET
     //23:进行一次宠物合成
     //24:获得任意宠物N个(不算之前)
     //25: 给予任务(宠物)
-
     //26.使用普通藏宝图x次
     //27.使用高级藏宝图X次
     //28.封印之塔挑战X次
@@ -93,7 +91,6 @@ namespace ET
     //132：击败地狱难度任意boss怪物
     //133: 战力达到多少
     //134: 试炼之地达到多少层
-
     //135: 挑战深渊模式的副本X次
     //136: 在N级组队副本中,自身输出超过X% (俩参数:副本等级,伤害百分比,比如40%就配置40)
 
@@ -109,7 +106,6 @@ namespace ET
         ChangeOcc_8 = 8,
         JoinUnion_9 = 9,
         GiveItem_10 = 10,
-
         PetNumber1_11 = 11,                      //11:获得任意宠物N个(算上之前)
         MakeNumber_12 = 12,                      //12:制造N个道具
         EquipXiLian_13 = 13,                     //13:洗炼装备次数N次
@@ -154,10 +150,10 @@ namespace ET
         KillDiYuMonsterNumber_122 = 122,        //击杀地狱难度怪物数量
         KillTianZhanBossNumber_131 = 131,       //击杀挑战难度以及以上Boss数量
         KillDiYuBossNumber_132 = 132,           //击杀地狱难度以及以上Boss数量
-
         CombatToValue_133 = 133,                //战力评分达到指定值
         TrialTowerCeng_134 = 134,               //试炼之塔达到多少层
         ShenYuanNumber_135 = 135,               //135: 挑战深渊模式的副本X次
+        TeamDungeonHurt_136 = 136,              //组队副本伤害比较 
     }
 
     //1：登陆

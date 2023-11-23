@@ -82,6 +82,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.TrialTowerCeng_134, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetTrialTowerCeng });
             
             TaskTypeLogic.Add(TaskTargetType.ShenYuanNumber_135, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = ShenYuanNumber_135 });
+            TaskTypeLogic.Add(TaskTargetType.TeamDungeonHurt_136, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = TeamDungeonHurt_136 });
         }
 
         public bool ExcutePlayerLv(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
@@ -795,7 +796,14 @@ namespace ET
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
-        
+
+        public string TeamDungeonHurt_136(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("组队副本伤害值 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+
         public string GetDescKillInfernalBossNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("击败地狱级任意领主怪物{0}/{1}");

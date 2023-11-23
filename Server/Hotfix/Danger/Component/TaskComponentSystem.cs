@@ -870,7 +870,6 @@ namespace ET
                 {
                     continue;
                 }
-       
                 for (int t = 0; t < taskConfig.Target.Length; t++)
                 {
                     if (targetType == TaskTargetType.MakeQulityNumber_29
@@ -890,6 +889,17 @@ namespace ET
                         || targetType == TaskTargetType.CombatRank_83)
                     {
                         if (taskConfig.Target[t] < targetTypeId || targetTypeId == 0)
+                        {
+                            continue;
+                        }
+                    }
+                    else if (targetType == TaskTargetType.TeamDungeonHurt_136)
+                    {
+                        if(i == 0 && taskConfig.Target[i] != targetTypeId)
+                        {
+                            continue;
+                        }
+                        if(i == 1 && taskConfig.Target[i] > targetValue)
                         {
                             continue;
                         }
@@ -934,6 +944,11 @@ namespace ET
                         {
                             taskPro.taskTargetNum_2 = targetValue;
                         }
+                    }
+                    else if (targetType == TaskTargetType.TeamDungeonHurt_136)
+                    {
+                        taskPro.taskTargetNum_1 = 1;
+                        taskPro.taskTargetNum_2 = 1;
                     }
                     else
                     {
