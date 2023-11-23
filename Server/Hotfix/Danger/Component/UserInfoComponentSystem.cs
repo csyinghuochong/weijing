@@ -909,7 +909,7 @@ namespace ET
                 }
 
                 keyValuePair.Value = reviveTime.ToString();
-                keyValuePair.Value2 = (int.Parse(keyValuePair.Value2)).ToString();  
+                keyValuePair.Value2 = (int.Parse(keyValuePair.Value2) + 1).ToString();  
                 have = true;
                 break;
             }
@@ -917,6 +917,7 @@ namespace ET
             {
                 self.UserInfo.MonsterRevives.Add(new KeyValuePair() { KeyId = monsterId, Value = reviveTime.ToString(), Value2 = "1" });
             }
+
         }
 
         public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)

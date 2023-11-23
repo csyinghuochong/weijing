@@ -272,6 +272,10 @@ namespace ET
 
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             int resurrection = (int)monsterConfig.ReviveTime;
+            if (SeasonHelper.IsOpenSeason() && SeasonHelper.SeasonBossId == unit.ConfigId)
+            {
+                resurrection = 0;
+            }
             if (resurrection == 0)
             {
                 return 0;
