@@ -1190,6 +1190,7 @@ message M2C_RechargeResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	string PayMessage = 1;
 }
 
 message M2C_HorseNoticeInfo // IActorMessage

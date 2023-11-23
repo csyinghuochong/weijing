@@ -79,6 +79,7 @@ message R2M_RechargeResponse // IActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	string PayMessage = 1;
 }
 
 //ResponseType G2R_RechargeResultResponse
