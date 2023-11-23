@@ -151,33 +151,55 @@ namespace ET
 
 #if SERVER
         //刷新拍卖数据
-        public static void UpdatePaiMaiDate(Scene scene,int showType) {
-
+        public static void UpdatePaiMaiDate(Scene scene, int itemType)
+        {
             PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
             List<PaiMaiItemInfo> PaiMaiItemInfo = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos;
-            List<PaiMaiItemInfo> paimaiListShow = new List<PaiMaiItemInfo>();
-
-            switch (showType)
+            
+            switch (itemType)
             {
-
                 //消耗品
                 case 1:
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in paiMaiComponent.PaiMaiItemInfos_Consume_New.Values)
+                    {
+                        paiMaiItemInfos.Clear();
+                    }
+
+                    if (!paiMaiComponent.PaiMaiItemInfos_Consume_New.ContainsKey(0))
+                    {
+                        paiMaiComponent.PaiMaiItemInfos_Consume_New.Add(0, new List<PaiMaiItemInfo>());
+                    }
 
                     for (int i = 0; i < PaiMaiItemInfo.Count; i++)
                     {
                         ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
                         if (itemcof.ItemType == 1)
                         {
-                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                            paiMaiComponent.PaiMaiItemInfos_Consume_New[0].Add(PaiMaiItemInfo[i]);
+
+                            int itemSubType = itemcof.ItemSubType;
+                            if (!paiMaiComponent.PaiMaiItemInfos_Consume_New.ContainsKey(itemSubType))
+                            {
+                                paiMaiComponent.PaiMaiItemInfos_Consume_New.Add(itemSubType, new List<PaiMaiItemInfo>());
+                            }
+
+                            paiMaiComponent.PaiMaiItemInfos_Consume_New[itemSubType].Add(PaiMaiItemInfo[i]);
                         }
                     }
-
-                    paiMaiComponent.PaiMaiItemInfos_Consume = paimaiListShow;
 
                     break;
 
                 //材料
                 case 2:
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in paiMaiComponent.PaiMaiItemInfos_Material_New.Values)
+                    {
+                        paiMaiItemInfos.Clear();
+                    }
+
+                    if (!paiMaiComponent.PaiMaiItemInfos_Material_New.ContainsKey(0))
+                    {
+                        paiMaiComponent.PaiMaiItemInfos_Material_New.Add(0, new List<PaiMaiItemInfo>());
+                    }
 
                     for (int i = 0; i < PaiMaiItemInfo.Count; i++)
                     {
@@ -185,46 +207,87 @@ namespace ET
                         //材料或者宠物技能
                         if (itemcof.ItemType == 2 || itemcof.ItemType == 5)
                         {
-                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                            paiMaiComponent.PaiMaiItemInfos_Material_New[0].Add(PaiMaiItemInfo[i]);
+
+                            int itemSubType = itemcof.ItemSubType;
+                            if (!paiMaiComponent.PaiMaiItemInfos_Material_New.ContainsKey(itemSubType))
+                            {
+                                paiMaiComponent.PaiMaiItemInfos_Material_New.Add(itemSubType, new List<PaiMaiItemInfo>());
+                            }
+
+                            paiMaiComponent.PaiMaiItemInfos_Material_New[itemSubType].Add(PaiMaiItemInfo[i]);
                         }
                     }
-
-                    paiMaiComponent.PaiMaiItemInfos_Material = paimaiListShow;
 
                     break;
 
                 //装备
                 case 3:
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in paiMaiComponent.PaiMaiItemInfos_Equipment_New.Values)
+                    {
+                        paiMaiItemInfos.Clear();
+                    }
+
+                    if (!paiMaiComponent.PaiMaiItemInfos_Equipment_New.ContainsKey(0))
+                    {
+                        paiMaiComponent.PaiMaiItemInfos_Equipment_New.Add(0, new List<PaiMaiItemInfo>());
+                    }
 
                     for (int i = 0; i < PaiMaiItemInfo.Count; i++)
                     {
                         ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
                         if (itemcof.ItemType == 3)
                         {
-                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                            paiMaiComponent.PaiMaiItemInfos_Equipment_New[0].Add(PaiMaiItemInfo[i]);
+
+                            // 生肖特殊处理
+                            int itemSubType = itemcof.ItemSubType;
+                            if (itemSubType >= 1101 && itemSubType < 1600)
+                            {
+                                itemSubType = 1100;
+                            }
+
+                            if (!paiMaiComponent.PaiMaiItemInfos_Equipment_New.ContainsKey(itemSubType))
+                            {
+                                paiMaiComponent.PaiMaiItemInfos_Equipment_New.Add(itemSubType, new List<PaiMaiItemInfo>());
+                            }
+
+                            paiMaiComponent.PaiMaiItemInfos_Equipment_New[itemSubType].Add(PaiMaiItemInfo[i]);
                         }
                     }
-
-                    paiMaiComponent.PaiMaiItemInfos_Equipment = paimaiListShow;
 
                     break;
 
                 //宝石
                 case 4:
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in paiMaiComponent.PaiMaiItemInfos_Gemstone_New.Values)
+                    {
+                        paiMaiItemInfos.Clear();
+                    }
+
+                    if (!paiMaiComponent.PaiMaiItemInfos_Gemstone_New.ContainsKey(0))
+                    {
+                        paiMaiComponent.PaiMaiItemInfos_Gemstone_New.Add(0, new List<PaiMaiItemInfo>());
+                    }
 
                     for (int i = 0; i < PaiMaiItemInfo.Count; i++)
                     {
                         ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
                         if (itemcof.ItemType == 4)
                         {
-                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                            paiMaiComponent.PaiMaiItemInfos_Gemstone_New[0].Add(PaiMaiItemInfo[i]);
+
+                            int itemSubType = itemcof.ItemSubType;
+                            if (!paiMaiComponent.PaiMaiItemInfos_Gemstone_New.ContainsKey(itemSubType))
+                            {
+                                paiMaiComponent.PaiMaiItemInfos_Gemstone_New.Add(itemSubType, new List<PaiMaiItemInfo>());
+                            }
+
+                            paiMaiComponent.PaiMaiItemInfos_Gemstone_New[itemSubType].Add(PaiMaiItemInfo[i]);
                         }
                     }
 
-                    paiMaiComponent.PaiMaiItemInfos_Gemstone = paimaiListShow;
-
                     break;
-
             }
         }
 #endif

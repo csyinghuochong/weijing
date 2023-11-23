@@ -106,7 +106,7 @@ namespace ET
             long instanceId = self.InstanceId;
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
-                PaiMaiType = 1,
+                PaiMaiType = 0,
                 UserId = self.UserId
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);

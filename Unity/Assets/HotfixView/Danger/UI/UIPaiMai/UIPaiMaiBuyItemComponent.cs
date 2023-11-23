@@ -93,13 +93,6 @@ namespace ET
 
             if (m2C_PaiMaiBuyResponse.Error == 0)
             {
-                /*
-                if (self.GetParent<UI>() != null)
-                {
-                    self.GetParent<UI>().GameObject.SetActive(false);
-                }
-                */
-
                 if (self.GameObject != null)
                 {
                     self.GameObject.SetActive(false);
@@ -108,12 +101,10 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
                 self.GetParent<UIPaiMaiBuyComponent>().RemoveItem(itemConfig.ItemType, self.PaiMaiItemInfo);
             }
-
-            //刷新列表
-            /*
-            UI uipaimai = UIHelper.GetUI( self.DomainScene(), UIType.UIPaiMai );
-            uipaimai.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiBuy].GetComponent<UIPaiMaiBuyComponent>().OnUpdateUI();
-            */
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了！");
+            }
         }
 
         public static void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)

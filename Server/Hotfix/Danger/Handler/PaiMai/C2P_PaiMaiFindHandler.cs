@@ -40,19 +40,35 @@ namespace ET
             {
                 //消耗品
                 case 1:
-                    paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Consume;
+                    if (paiMaiComponent.PaiMaiItemInfos_Consume_New.ContainsKey(0))
+                    {
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Consume_New[0];
+                    }
+
                     break;
                 //材料
                 case 2:
-                    paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Material;
+                    if (paiMaiComponent.PaiMaiItemInfos_Material_New.ContainsKey(0))
+                    {
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Material_New[0];
+                    }
+
                     break;
                 //装备
                 case 3:
-                    paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Equipment;
+                    if (paiMaiComponent.PaiMaiItemInfos_Equipment_New.ContainsKey(0))
+                    {
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Equipment_New[0];
+                    }
+
                     break;
                 //宝石
                 case 4:
-                    paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Gemstone;
+                    if (paiMaiComponent.PaiMaiItemInfos_Gemstone_New.ContainsKey(0))
+                    {
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Gemstone_New[0];
+                    }
+
                     break;
             }
 
