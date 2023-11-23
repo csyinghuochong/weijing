@@ -27,7 +27,11 @@ namespace ET
             if (!paiMaiSceneComponent.AuctionJoinList.Contains(request.UnitID))
             {
                 paiMaiSceneComponent.AuctionJoinList.Add(request.UnitID);
-                response.CostGold = returngold; 
+                response.CostGold = returngold;
+            }
+            else
+            {
+                response.CostGold = 0;
             }
 
             reply();

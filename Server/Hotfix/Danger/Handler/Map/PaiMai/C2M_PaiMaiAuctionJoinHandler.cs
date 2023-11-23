@@ -7,20 +7,23 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PaiMaiAuctionJoinRequest request, M2C_PaiMaiAuctionJoinResponse response, Action reply)
         {
-            long paimaiserverid = DBHelper.GetPaiMaiServerId( unit.DomainZone() );
-            P2M_PaiMaiAuctionJoinResponse r_GameStatusResponse = (P2M_PaiMaiAuctionJoinResponse)await ActorMessageSenderComponent.Instance.Call
-                    (paimaiserverid, new M2P_PaiMaiAuctionJoinRequest()
-                    {
-                        UnitID = unit.Id,
-                        Gold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
-                    });
-
-            if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold,  (-1 * r_GameStatusResponse.CostGold).ToString(), true, ItemGetWay.AuctionJoin);
+                long paimaiserverid = DBHelper.GetPaiMaiServerId(unit.DomainZone());
+                P2M_PaiMaiAuctionJoinResponse r_GameStatusResponse = (P2M_PaiMaiAuctionJoinResponse)await ActorMessageSenderComponent.Instance.Call
+                        (paimaiserverid, new M2P_PaiMaiAuctionJoinRequest()
+                        {
+                            UnitID = unit.Id,
+                            Gold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
+                        });
+
+                if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)
+                {
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (-1 * r_GameStatusResponse.CostGold).ToString(), true, ItemGetWay.AuctionJoin);
+                }
+                response.Error = r_GameStatusResponse.Error;
+                reply();
             }
-            response.Error = r_GameStatusResponse.Error;    
-            reply();
             await ETTask.CompletedTask;
         }
     }

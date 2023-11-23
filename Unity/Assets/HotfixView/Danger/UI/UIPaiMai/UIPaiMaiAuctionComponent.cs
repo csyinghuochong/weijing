@@ -40,6 +40,8 @@ namespace ET
         public long LeftTime;
         public long AuctionStart;   //起拍价
         public bool BaoZhenJin;
+
+        public bool AuctionJoin;
     }
 
     public class UIPaiMaiAuctionComponentAwake : AwakeSystem<UIPaiMaiAuctionComponent>
@@ -47,6 +49,7 @@ namespace ET
         public override void Awake(UIPaiMaiAuctionComponent self)
         {
             self.BaoZhenJin = false;
+            self.AuctionJoin = false;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.TextPrice = rc.Get<GameObject>("TextPrice");
@@ -192,6 +195,11 @@ namespace ET
 
         public static async ETTask RquestCanYu(this UIPaiMaiAuctionComponent self)
         {
+            if (self.AuctionJoin)
+            {
+                return;
+            }
+            self.AuctionJoin = true;
             C2M_PaiMaiAuctionJoinRequest request = new C2M_PaiMaiAuctionJoinRequest() { };
             M2C_PaiMaiAuctionJoinResponse response = (M2C_PaiMaiAuctionJoinResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCode.ERR_Success)
@@ -220,7 +228,7 @@ namespace ET
 
             self.Btn_CanYu.SetActive(!response.AuctionJoin);
             self.Btn_Auction.SetActive(response.AuctionJoin);
-
+            self.AuctionJoin = false;
             if (response.AuctionJoin)
             {
                 int returngold = (int)(response.AuctionStart * 0.1f);
