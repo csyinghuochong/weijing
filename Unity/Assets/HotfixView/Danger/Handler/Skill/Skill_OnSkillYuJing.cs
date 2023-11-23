@@ -9,8 +9,7 @@ namespace ET
 
             Unit unit = args.Unit;
             Unit mainUnit = UnitHelper.GetMyUnitFromCurrentScene(unit.DomainScene());
-            bool canattack = mainUnit.IsCanAttackUnit(unit);
-
+            bool canattack = mainUnit.IsCanAttackUnit(unit) || unit.IsCanAttackUnit(mainUnit);
             args.Unit.GetComponent<SkillYujingComponent>()?.ShowMonsterSkillYujin(args.SkillInfo, args.SkillConfig.SkillDelayTime, canattack);
         }
     }

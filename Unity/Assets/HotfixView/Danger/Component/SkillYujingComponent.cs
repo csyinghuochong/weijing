@@ -81,7 +81,7 @@ namespace ET
         }
 
         //怪物技能预警
-        public static  void ShowMonsterSkillYujin(this SkillYujingComponent self, SkillInfo skillcmd, double delayTime, bool enemyColor)
+        public static  void ShowMonsterSkillYujin(this SkillYujingComponent self, SkillInfo skillcmd, double delayTime, bool enemy)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             self.mSkillConfig = skillConfig;
@@ -93,7 +93,7 @@ namespace ET
             skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;
             skillIndicatorItem.PassTime = 0;
             skillIndicatorItem.LiveTime = (float)delayTime;
-            skillIndicatorItem.EnemyColor = enemyColor;
+            skillIndicatorItem.Enemy = enemy;
             self.SkillIndicatorList.Add(skillIndicatorItem);
             GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, skillIndicatorItem.InstanceId, self.OnLoadGameObject);
         }
@@ -133,12 +133,11 @@ namespace ET
             switch (skillIndicatorItem.SkillZhishiType)
             {
                 case SkillZhishiType.Position:
-                    //effect = "SkillZhishi/Yujing_Position";
                     Quad_1 = gameObject.transform.Find("Skill_InnerArea/Position/Quad").gameObject;
                     Quad_2 = gameObject.transform.Find("Skill_OuterArea/Position/Quad").gameObject;
 
-                    //Quad_1.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.EnemyColor ? Color.red : Color.green;
-                    //Quad_2.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.EnemyColor ? Color.red : Color.green;
+                    //Quad_1.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.Enemy ? Color.red : Color.green;
+                    //Quad_2.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.Enemy ? Color.red : Color.green;
                     break;
                 case SkillZhishiType.Line:
                     //effect = "SkillZhishi/Yujing_Dir";
@@ -157,8 +156,8 @@ namespace ET
                     break;
             }
 
-            Quad_1.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
-            Quad_2.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
+            Quad_1.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.Enemy ? colorred : colorgreen);
+            Quad_2.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.Enemy ? colorred : colorgreen);
 
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);

@@ -33,6 +33,8 @@ namespace ET
                     skillInfo.TargetAngle = int.Parse(message.StateValue.Split('_')[1]);
                     skillInfo.WeaponSkillID = int.Parse(message.StateValue.Split('_')[0]);
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillInfo.WeaponSkillID);
+                    //Unit mainUnit = UnitHelper.GetMyUnitFromCurrentScene(args.Unit.DomainScene());
+                    //bool canattack = mainUnit.IsCanAttackUnit(args.Unit);
                     args.Unit.GetComponent<SkillYujingComponent>()?.ShowMonsterSkillYujin(skillInfo, skillConfig.SkillFrontSingTime, true);
                 }
             }

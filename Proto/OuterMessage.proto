@@ -6869,3 +6869,19 @@ message M2C_JingHeActivateResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//晶核使用方案
+//ResponseType M2C_JingHePlanResponse
+message C2M_JingHePlanRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 JingHePlan = 1;   //激活的晶核ID
+}
+
+message M2C_JingHePlanResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

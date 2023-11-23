@@ -30,6 +30,7 @@ namespace ET
         /// 穿戴的时装
         /// </summary>
         public List<int> FashionEquipList = new List<int>();
+
 #if SERVER
         public List<BagInfo> BagItemList =new List<BagInfo>();
         public List<BagInfo> BagItemPetHeXin = new List<BagInfo>();

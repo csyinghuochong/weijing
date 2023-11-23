@@ -19,7 +19,7 @@ namespace ET
         public float LiveTime = -1;
         public float PassTime;
         public long InstanceId;
-        public bool EnemyColor;
+        public bool Enemy;
         public SkillInfo SkillInfo;
         public GameObject GameObject;
     }

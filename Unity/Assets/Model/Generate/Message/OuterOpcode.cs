@@ -796,5 +796,7 @@ namespace ET
 		 public const ushort M2C_JingHeZhuruResponse = 10793;
 		 public const ushort C2M_JingHeActivateRequest = 10794;
 		 public const ushort M2C_JingHeActivateResponse = 10795;
+		 public const ushort C2M_JingHePlanRequest = 10796;
+		 public const ushort M2C_JingHePlanResponse = 10797;
 	}
 }
