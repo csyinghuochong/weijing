@@ -19,7 +19,7 @@ namespace ET
             Unit theUnitFrom = this.TheUnitFrom;
             //获取参数
             UnitInfoComponent unitInfoComponent = theUnitFrom.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.GetZhaoHuanNumber() >= 10)
+            if (unitInfoComponent.GetZhaoHuanNumber() >= 100)
             {
                 return;
             }

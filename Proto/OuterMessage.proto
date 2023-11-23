@@ -777,11 +777,11 @@ message BagInfo
 	string GemHole = 6;	//对应的孔位颜色
 	int32 Loc = 8; //0背包 1装备
 	bool IfJianDing = 9;
-	repeated HideProList HideProLists = 10;
-	repeated HideProList XiLianHideProLists = 11;
+	repeated HideProList HideProLists = 10;					//鉴定属性
+	repeated HideProList XiLianHideProLists = 11;           //洗练属性
 	repeated int32 HideSkillLists = 12;
 	bool isBinging = 13;
-	repeated HideProList XiLianHideTeShuProLists = 14;
+	repeated HideProList XiLianHideTeShuProLists = 14;		//洗练特殊属性
 	string GetWay = 16; //来源方式
 	string GemIDNew = 17;	//对应的宝石ID
 	string MakePlayer = 18;					//制作玩家名字
@@ -6835,4 +6835,37 @@ message M2C_ItemQuickPutResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+}
+
+//晶核注入
+//ResponseType M2C_JingHeZhuruResponse
+message C2M_JingHeZhuruRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 BagInfoId = 1;				//操作的晶核
+	repeated int64 OperateBagID = 2;   //消耗的晶核列表
+}
+
+message M2C_JingHeZhuruResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//晶核激活
+//ResponseType M2C_JingHeActivateResponse
+message C2M_JingHeActivateRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 BagInfoId = 1;   //激活的晶核ID
+}
+
+message M2C_JingHeActivateResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

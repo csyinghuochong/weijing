@@ -12,6 +12,102 @@ namespace ET
         public static List<int> GemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
         public static List<int> GemWeight = new List<int>() { 50, 25, 15, 10, 0 };
 
+
+
+        /// <summary>
+        /// 晶核增加品质
+        /// </summary>
+        /// <param name="qulitylv">传入消耗晶核的品质。 baginfo.itempar</param>
+        /// <returns>返回一个本次预计增加品质范围(客户端显示用， 服务器随机取值)</returns>
+        public static List<int> GetJingHeAddQulity(List<int> qulitylv)
+        {
+            int min = 10;
+            int max = 20;
+            return new List<int>() { min, max };
+        }
+
+        //晶核初始品质
+        public static int GetJingHeInitQulity(int itemid)
+        {
+            //1,30@1;202103,0.01,0.03
+            //初始品质最小值,初始品质最大值;属性类型;属性值
+            //下面时属性类型
+            //1; 属性ID,属性最大值,属性最小值
+            //2;附带技能
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] parmainfos = itemConfig.ItemUsePar.Split('@');
+            string[] qulityinfo = parmainfos[0].Split(',');
+            int lowlevel = int.Parse(qulityinfo[0]);
+            int highlevel = int.Parse((qulityinfo[1]));
+
+            return RandomHelper.RandomNumber(lowlevel, highlevel + 1);
+        }
+
+#if SERVER
+        //晶核属性类型
+        public static int GetJingHeProType(int itemid)
+        {
+            //1,30@1;202103,0.01,0.03   增加属性
+            //1,30@2;62000001           增加技能
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] parmainfos = itemConfig.ItemUsePar.Split('@');
+            string[] attriinfos = parmainfos[1].Split(';');
+            int addType = int.Parse(attriinfos[0]);
+            return addType;
+        }
+
+        //晶核属性类型
+        public static int GetJingHeSkillId(int itemid)
+        {
+            //1,30@1;202103,0.01,0.03   增加属性
+            //1,30@2;62000001           增加技能
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] parmainfos = itemConfig.ItemUsePar.Split('@');
+            string[] attriinfos = parmainfos[1].Split(';');
+            int addType = int.Parse(attriinfos[0]);
+            if (addType != 2)
+            {
+                return 0;
+            }
+            return int.Parse(attriinfos[1]);
+        }
+
+        //生成晶核属性. 
+        public static HideProList GetJingHeHidePro(int itemid, int qulity) 
+        {
+            //1,30@1;202103,0.01,0.03   增加属性
+            //1,30@2;62000001           增加技能
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] parmainfos = itemConfig.ItemUsePar.Split('@');
+            string[] attriinfos = parmainfos[1].Split(';'); 
+
+            int addType = int.Parse(attriinfos[0]);
+            if (addType != 1)
+            {
+                return null;
+            }
+
+            string[] hidevalueinfo = attriinfos[1].Split(',');
+            int hideid = int.Parse(hidevalueinfo[0]);
+            int showType = NumericHelp.GetNumericValueType(hideid);
+            if (showType == 2)
+            {
+                float hidevaluemin = float.Parse(hidevalueinfo[1]);
+                float hidevalueman = float.Parse(hidevalueinfo[2]);
+                float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman);
+                return new HideProList() { HideID = hideid, HideValue = (long)(hidevalue * 10000) };
+            }
+            else
+            {
+                int hidevaluemin = int.Parse(hidevalueinfo[1]);
+                int hidevaluemax = int.Parse(hidevalueinfo[2]);
+                int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax);
+                return new HideProList() { HideID = hideid, HideValue = hidevalue };
+            }
+        }
+#endif
+
         /// <summary>
         /// 套装属性
         /// </summary>

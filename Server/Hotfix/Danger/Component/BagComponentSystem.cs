@@ -1086,6 +1086,20 @@ namespace ET
                         useBagInfo.IncreaseSkillLists.AddRange(ItemHelper.GetHideSkill(useBagInfo.ItemID));
                     }
 
+                    // 赛季晶核
+                    if (itemCof.ItemType == ItemTypeEnum.Equipment && itemCof.EquipType == 201)
+                    {
+                        useBagInfo.ItemPar = ItemHelper.GetJingHeInitQulity(useBagInfo.ItemID).ToString();
+
+                        //增加技能的晶核无须鉴定
+                        int jingheSkill = ItemHelper.GetJingHeSkillId(useBagInfo.ItemID);
+                        if (jingheSkill > 0)
+                        {
+                            useBagInfo.IfJianDing = false;
+                            useBagInfo.HideSkillLists.Add(jingheSkill); 
+                        }
+                    }
+
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
                     m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }

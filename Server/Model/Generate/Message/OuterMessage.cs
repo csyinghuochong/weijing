@@ -14235,4 +14235,71 @@ namespace ET
 
 	}
 
+//晶核注入
+	[ResponseType(nameof(M2C_JingHeZhuruResponse))]
+	[Message(OuterOpcode.C2M_JingHeZhuruRequest)]
+	[ProtoContract]
+	public partial class C2M_JingHeZhuruRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long BagInfoId { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> OperateBagID = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_JingHeZhuruResponse)]
+	[ProtoContract]
+	public partial class M2C_JingHeZhuruResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//晶核激活
+	[ResponseType(nameof(M2C_JingHeActivateResponse))]
+	[Message(OuterOpcode.C2M_JingHeActivateRequest)]
+	[ProtoContract]
+	public partial class C2M_JingHeActivateRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long BagInfoId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JingHeActivateResponse)]
+	[ProtoContract]
+	public partial class M2C_JingHeActivateResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

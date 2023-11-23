@@ -994,6 +994,10 @@ namespace ET
             self.BagInfo = baginfo;
             self.EquipTipsType = equipTipsType;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
+            if(itemconf.ItemEquipID == 0)
+            {
+                return;
+            }
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconLine);

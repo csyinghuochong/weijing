@@ -26,7 +26,6 @@ namespace ET
         public static string TikTokPay(this ReChargeTikTokComponent self, M2R_RechargeRequest request)
         {
             Dictionary<string, string> paramlist = new Dictionary<string, string>();
-
             string nowTime = TimeHelper.ServerNow().ToString();
             if (self.DingdanlastTime != nowTime)
             {
@@ -159,7 +158,7 @@ namespace ET
                 {
                     return;
                 }
-
+                
                 //成功了就需要给回消息“SUCCESS”
                 //https://docs.open.alipay.com/204/105301/
                 HttpListenerResponse response = context.Response;

@@ -792,5 +792,9 @@ namespace ET
 		 public const ushort RankingTrialInfo = 10789;
 		 public const ushort C2M_ItemQuickPutRequest = 10790;
 		 public const ushort M2C_ItemQuickPutResponse = 10791;
+		 public const ushort C2M_JingHeZhuruRequest = 10792;
+		 public const ushort M2C_JingHeZhuruResponse = 10793;
+		 public const ushort C2M_JingHeActivateRequest = 10794;
+		 public const ushort M2C_JingHeActivateResponse = 10795;
 	}
 }

@@ -112,7 +112,46 @@ namespace ET
         }
     }
     public static class UIItemAppraisalTipsComponentSystem
-    { 
+    {
+
+        //晶核注入。增加品质
+        public static async ETTask OnBtn_JingHeZhuYu(this UIItemAppraisalTipsComponent self)
+        {
+            //传入消耗道具的品质，返回可增加的品质范围
+            //List<int> valuerange = ItemHelper.GetJingHeAddQulity(qulitylist);
+            List<long> costIds = new List<long>();
+            List<BagInfo> bagList = self.BagComponent.GetBagList();
+            int itemCount = bagList.Count;
+            for (int i = 0; i < itemCount; i++)
+            { 
+                BagInfo bagInfo  = bagList[i];
+                if (bagInfo.BagInfoID == self.BagInfo.BagInfoID)
+                {
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment &&  itemConfig.EquipType == 201  )
+                {
+                    //随机给一个，测试
+                    costIds.Add(bagInfo.BagInfoID);
+                    break;
+                }
+            }
+
+            C2M_JingHeZhuruRequest request = new C2M_JingHeZhuruRequest() { BagInfoId = self.BagInfo.BagInfoID, OperateBagID = costIds };
+            M2C_JingHeZhuruResponse response = (M2C_JingHeZhuruResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            await ETTask.CompletedTask;
+        }
+
+        //晶核激活
+        public static async ETTask OnBtn_JingHeActivate(this UIItemAppraisalTipsComponent self)
+        {
+            C2M_JingHeActivateRequest request = new C2M_JingHeActivateRequest() { BagInfoId = self.BagInfo.BagInfoID };
+            M2C_JingHeActivateResponse response = (M2C_JingHeActivateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            await ETTask.CompletedTask;
+        }
+
         //放入背包
         public static void OnBtn_PutBag(this UIItemAppraisalTipsComponent self)
         {
@@ -176,13 +215,12 @@ namespace ET
         //鉴定道具
         public static async ETTask OnClickUse(this UIItemAppraisalTipsComponent self)
         {
-
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
 
             if (itemConfig.EquipType == 101)
             {
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID).AppraisalItem;
-               
+
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 BagInfo costbaginfo = bagComponent.GetBagInfo(appraisalItem);
                 if (costbaginfo == null)
