@@ -269,7 +269,7 @@ namespace ET
         {
             self.ShouLieKill++;
             long serverTime = TimeHelper.ServerNow();
-            if (serverTime - self.ShouLieSendTime < 30 * TimeHelper.Second)
+            if (serverTime - self.ShouLieSendTime < 10 * TimeHelper.Second)
             {
                 return;
             }
