@@ -586,10 +586,12 @@ namespace ET
             //血量比例,攻击比例,魔法比例,物防比例，魔防比例,新增比列1，新增比列2....；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值，新增固定值1,新增固定值2..
             if (attributeList_1.Length > 5)
             {
-                //(float.Parse(attributeList_1[5]) * (1 + masterNumberComponent.GetAsFloat(NumericType.XX))) + int.Parse(attributeList_2[5]));
-                //(float.Parse(attributeList_1[6]) * (1 + masterNumberComponent.GetAsFloat(NumericType.XX))) + int.Parse(attributeList_2[6]));
-                //(float.Parse(attributeList_1[7]) * (1 + masterNumberComponent.GetAsFloat(NumericType.XX))) + int.Parse(attributeList_2[7]));
-                //(float.Parse(attributeList_1[8]) * (1 + masterNumberComponent.GetAsFloat(NumericType.XX))) + int.Parse(attributeList_2[8]));
+                float a = masterNumberComponent.GetAsFloat(NumericType.Now_Cri);
+                //暴击,命中,闪避,韧性
+                numericComponent.Set((int)NumericType.Base_Cri_Base, (float.Parse(attributeList_1[5]) * masterNumberComponent.GetAsFloat(NumericType.Now_Cri)), false);
+                numericComponent.Set((int)NumericType.Base_Hit_Base, (float.Parse(attributeList_1[6]) * masterNumberComponent.GetAsFloat(NumericType.Now_Hit)), false);
+                numericComponent.Set((int)NumericType.Base_Dodge_Base, (float.Parse(attributeList_1[7]) * masterNumberComponent.GetAsFloat(NumericType.Now_Dodge)), false);
+                numericComponent.Set((int)NumericType.Base_Res_Base, (float.Parse(attributeList_1[8]) * masterNumberComponent.GetAsFloat(NumericType.Now_Res)), false);
             }
 
             //属性
