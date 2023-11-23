@@ -154,7 +154,8 @@ namespace ET
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
                 int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitboss.ConfigId);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
+                int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(mapComponent.SceneId);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
                 self.Lab_Deve.text = bossDevelopment.Name;
             }
             else

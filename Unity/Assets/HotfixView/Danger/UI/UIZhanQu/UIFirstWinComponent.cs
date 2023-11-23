@@ -38,6 +38,8 @@ namespace ET
 		public long LastUpdateTime;
 
 		public UIModelShowComponent UIModelShowComponent;
+
+		public int ChapterId;
 	}
 
 
@@ -202,7 +204,9 @@ namespace ET
 			}
 			self.LastUpdateTime = TimeHelper.ServerNow();
 			self.FirstWinId = firstwinId;
-			self.UpdateBossInfo(firstwinId);
+			self.ChapterId = typeid;
+
+            self.UpdateBossInfo(firstwinId);
 		}
 
 		public static FirstWinInfo GetFirstWinInfo(this UIFirstWinComponent self, int firstWinId, int difficulty)
@@ -323,8 +327,8 @@ namespace ET
 			self.Text_UpdateStatus.GetComponent<Text>().color = noupdatestatus ? new Color(164f / 255, 66f / 255f, 8f / 255f): new Color(25f/255,180f/255f,25f/255f);
 
 			int killNumber = userInfoComponent.GetMonsterKillNumber( bossId );
-			BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
-			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopmentById(bossDevelopment.Level + 1);
+            BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(self.ChapterId, killNumber);
+			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopmentById(self.ChapterId, bossDevelopment.Level + 1);
 			if (bossDevelopmentNext == null)
 			{
                 self.Text_BossDevp.GetComponent<Text>().text = $"{bossDevelopment.Name}";

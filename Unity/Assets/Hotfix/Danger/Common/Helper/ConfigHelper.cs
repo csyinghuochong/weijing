@@ -818,7 +818,7 @@ namespace ET
         public static List<int> BatchUseItemList = new List<int>() { 10010042, 10010043 };
 
 
-        public static List<BossDevelopment> BossDevelopmentList = new List<BossDevelopment>()
+        public static List<BossDevelopment> BossDevelopmentList_5 = new List<BossDevelopment>()
         {
             new BossDevelopment(){ Name = "初级领主", Level = 1, AttributeAdd = 1f,     ReviveTimeAdd = 1f,     DropAdd = 1f,   KillNumber = 0 },
             new BossDevelopment(){ Name = "次级领主", Level = 2, AttributeAdd = 1.1f,   ReviveTimeAdd = 1.5f,   DropAdd = 1.2f, KillNumber = 2 },
@@ -827,8 +827,31 @@ namespace ET
             new BossDevelopment(){ Name = "终级领主", Level = 5, AttributeAdd = 1.5f,   ReviveTimeAdd = 3f,     DropAdd = 1.8f, KillNumber = 10 },
         };
 
-        public static BossDevelopment GetBossDevelopmentByKill(int killNumber)
+        public static List<BossDevelopment> BossDevelopmentList_6 = new List<BossDevelopment>()
         {
+            new BossDevelopment(){ Name = "初级领主", Level = 1, AttributeAdd = 1f,     ReviveTimeAdd = 1f,     DropAdd = 1f,   KillNumber = 0 },
+            new BossDevelopment(){ Name = "次级领主", Level = 2, AttributeAdd = 1.1f,   ReviveTimeAdd = 1.5f,   DropAdd = 1.2f, KillNumber = 2 },
+            new BossDevelopment(){ Name = "中级领主", Level = 3, AttributeAdd = 1.2f,   ReviveTimeAdd = 2f,     DropAdd = 1.4f, KillNumber = 3 },
+            new BossDevelopment(){ Name = "高级领主", Level = 4, AttributeAdd = 1.3f,   ReviveTimeAdd = 2.5f,   DropAdd = 1.6f, KillNumber = 5 },
+            new BossDevelopment(){ Name = "终级领主", Level = 5, AttributeAdd = 1.5f,   ReviveTimeAdd = 3f,     DropAdd = 1.8f, KillNumber = 10 },
+        };
+
+        public static List<BossDevelopment> GetBossDevelopmentByChapter(int chapterid)
+        {
+            if (chapterid == 6)
+            {
+                return BossDevelopmentList_6;
+            }
+            else
+            {
+                return BossDevelopmentList_5;
+            }
+        }
+
+        public static BossDevelopment GetBossDevelopmentByKill(int chapterid, int killNumber)
+        {
+            List<BossDevelopment> BossDevelopmentList = GetBossDevelopmentByChapter(chapterid);
+
             for (int i = BossDevelopmentList.Count - 1; i >=0; i--)
             {
                 if (killNumber >= BossDevelopmentList[i].KillNumber)
@@ -839,8 +862,10 @@ namespace ET
             return BossDevelopmentList[0];
         }
 
-        public static BossDevelopment GetBossDevelopmentById(int level)
+        public static BossDevelopment GetBossDevelopmentById(int chapterid, int level)
         {
+            List<BossDevelopment> BossDevelopmentList = GetBossDevelopmentByChapter(chapterid);
+
             for (int i = BossDevelopmentList.Count - 1; i >= 0; i--)
             {
                 if (level == BossDevelopmentList[i].Level)

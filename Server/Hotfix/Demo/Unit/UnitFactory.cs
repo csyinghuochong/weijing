@@ -516,7 +516,7 @@ namespace ET
         /// <param name="main"></param>
         /// <param name="sceneType"></param>
         /// <param name="playerNumer"></param>
-        public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
+        public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int scenid, int playerNumer)
         {
             if (bekill.Type != UnitType.Monster || main.Type != UnitType.Player)
             {
@@ -621,7 +621,8 @@ namespace ET
             if (sceneType == SceneTypeEnum.LocalDungeon && bekill.IsBoss())
             {
                 int killNumber =  main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterCof.Id);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(killNumber);
+                int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(scenid);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
                 dropAdd_Pro *= bossDevelopment.DropAdd;
             }
 

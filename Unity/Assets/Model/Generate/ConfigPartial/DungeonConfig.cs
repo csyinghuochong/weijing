@@ -38,6 +38,13 @@ namespace ET
             }
         }
 
+        public int GetChapterByDungeon(int dungeonId)
+        {
+            int chapte = 0;
+            DungeonToChapter.TryGetValue(dungeonId, out chapte);
+            return chapte == 0 ? 1 : chapte;
+        }
+
         public int GetTransformId(int dungoenid, int targetdungoen)
         {
             List<KeyValuePairInt> keyValuePairInts = null;

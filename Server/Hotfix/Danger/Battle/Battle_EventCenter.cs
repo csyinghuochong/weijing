@@ -184,7 +184,7 @@ namespace ET
                     attackUnit.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
                 }
 
-                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, realPlayer);
+                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, sceneId, realPlayer);
 
                 if (mainAttack.Type == UnitType.Player)
                 {
