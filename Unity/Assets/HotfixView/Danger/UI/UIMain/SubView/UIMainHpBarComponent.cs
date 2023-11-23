@@ -24,6 +24,7 @@ namespace ET
     public class UIMainHpBarComponent : Entity, IAwake<GameObject>, IDestroy
     {
 
+        public Text Lab_Deve;
         public Text HurtTextPet;
         public Text HurtTextPlayer;
         public GameObject HurtTextNode;
@@ -90,6 +91,7 @@ namespace ET
 
             self.HurtTextPet = rc.Get<GameObject>("HurtTextPet").GetComponent<Text>();
             self.HurtTextPlayer = rc.Get<GameObject>("HurtTextPlayer").GetComponent<Text>();
+            self.Lab_Deve = rc.Get<GameObject>("Lab_Deve").GetComponent<Text>();
 
             self.HurtTextNode = rc.Get<GameObject>("HurtTextNode");
             self.SingNode = rc.Get<GameObject>("SingNode");
@@ -170,11 +172,13 @@ namespace ET
                 Unit unitboss = unit.GetParent<UnitComponent>().Get(bossid);
                 int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitbelong.ConfigId);
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
-                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}  {bossDevelopment.Name}";
+                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
+                self.Lab_Deve.text = bossDevelopment.Name;
             }
             else
             {
                 self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
+                self.Lab_Deve.text = string.Empty ; 
             }
         }
 

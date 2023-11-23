@@ -9,7 +9,8 @@ namespace ET
     public class UIFirstWinComponent : Entity, IAwake, IDestroy
     {
 
-		public GameObject Text_BossDevp;
+		public GameObject ImageProgress;
+        public GameObject Text_BossDevp;
         public GameObject Text_JiSha_3;
 		public GameObject Text_JiSha_2;
 		public GameObject Text_JiSha_1;
@@ -58,6 +59,7 @@ namespace ET
 			self.SkillDescriptionItemText = rc.Get<GameObject>("SkillDescriptionItemText");
 			self.SkillDescriptionListNode = rc.Get<GameObject>("SkillDescriptionListNode");
 			self.Text_BossDevp = rc.Get<GameObject>("Text_BossDevp");
+			self.ImageProgress = rc.Get<GameObject>("ImageProgress");
 
             self.SkillDescriptionList.Add(self.SkillDescriptionItemText);
 			
@@ -323,10 +325,12 @@ namespace ET
 			if (bossDevelopmentNext == null)
 			{
                 self.Text_BossDevp.GetComponent<Text>().text = $"{bossDevelopment.Name}";
+				self.ImageProgress.GetComponent<Image>().fillAmount = 1f;
             }
 			else
 			{
                 self.Text_BossDevp.GetComponent<Text>().text = $"领主升级: {killNumber}/{bossDevelopmentNext.KillNumber}";
+				self.ImageProgress.GetComponent<Image>().fillAmount = killNumber * 1f / bossDevelopmentNext.KillNumber;
             }
 
 
