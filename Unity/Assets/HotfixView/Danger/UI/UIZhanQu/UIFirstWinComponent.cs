@@ -9,7 +9,8 @@ namespace ET
     public class UIFirstWinComponent : Entity, IAwake, IDestroy
     {
 
-		public GameObject Text_JiSha_3;
+		public GameObject Text_BossDevp;
+        public GameObject Text_JiSha_3;
 		public GameObject Text_JiSha_2;
 		public GameObject Text_JiSha_1;
 		public GameObject Text_SkillJieShao;
@@ -56,8 +57,9 @@ namespace ET
 			self.Text_Lv = rc.Get<GameObject>("Text_Lv");
 			self.SkillDescriptionItemText = rc.Get<GameObject>("SkillDescriptionItemText");
 			self.SkillDescriptionListNode = rc.Get<GameObject>("SkillDescriptionListNode");
+			self.Text_BossDevp = rc.Get<GameObject>("Text_BossDevp");
 
-			self.SkillDescriptionList.Add(self.SkillDescriptionItemText);
+            self.SkillDescriptionList.Add(self.SkillDescriptionItemText);
 			
 			self.RawImage = rc.Get<GameObject>("RawImage");
 
@@ -314,7 +316,21 @@ namespace ET
 			DateTime dateTime = TimeInfo.Instance.ToDateTime(userInfoComponent.GetReviveTime(bossId));
 			self.Text_UpdateStatus.GetComponent<Text>().text = noupdatestatus ? $"下次刷新时间\n{dateTime.ToString()}" : "(已刷新)";
 			self.Text_UpdateStatus.GetComponent<Text>().color = noupdatestatus ? new Color(164f / 255, 66f / 255f, 8f / 255f): new Color(25f/255,180f/255f,25f/255f);
-			List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);
+
+			int killNumber = userInfoComponent.GetMonsterKillNumber( bossId );
+			BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopment(bossDevelopment.Level + 1);
+			if (bossDevelopmentNext == null)
+			{
+                self.Text_BossDevp.GetComponent<Text>().text = $"{bossDevelopment.Name}";
+            }
+			else
+			{
+                self.Text_BossDevp.GetComponent<Text>().text = $"领主升级: {killNumber}/{bossDevelopmentNext.KillNumber}";
+            }
+
+
+            List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);
 			List<int> itemIdList = new List<int>();
 			for (int i = droplist.Count - 1; i >=0;  i--)
 			{

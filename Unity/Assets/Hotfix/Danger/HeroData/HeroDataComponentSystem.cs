@@ -290,25 +290,35 @@ namespace ET
             }
             else
             {
-                long resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
+                long resurrectionTime = 0;
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                 {
                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                     UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
+                    int killNumber = userInfoComponent.GetMonsterKillNumber(unit.ConfigId);
+                    BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                    resurrection = (int)(resurrection * bossDevelopment.ReviveTimeAdd);
+
+                    resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
                     userInfoComponent.OnAddRevive(unit.ConfigId, resurrectionTime);
                     unit.RemoveComponent<ReviveTimeComponent>();
                     unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
-             
+
                     userInfoComponent.OnAddFirstWinSelf(unit, localDungeon.FubenDifficulty);
                     FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
                     return 1;
                 }
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
+                else
                 {
-                    unit.RemoveComponent<ReviveTimeComponent>();
-                    unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
-                    return 1;
+                    resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
+                    if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
+                    {
+                        unit.RemoveComponent<ReviveTimeComponent>();
+                        unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
+                        return 1;
+                    }
                 }
                 return 0;
             }
@@ -625,6 +635,8 @@ namespace ET
             int sceneType = mapComponent.SceneTypeEnum;
             int fubenDifficulty = FubenDifficulty.None;
 
+            float attributeAdd = 1f;
+
             if (sceneType == SceneTypeEnum.CellDungeon || sceneType == SceneTypeEnum.LocalDungeon)
             {
                 switch (sceneType)
@@ -633,7 +645,13 @@ namespace ET
                         fubenDifficulty = nowUnit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
                         break;
                     case SceneTypeEnum.LocalDungeon:
-                        fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                        if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
+                        {
+                            fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                            int killNumber = nowUnit.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterConfig.Id);
+                            BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                            attributeAdd = bossDevelopment.AttributeAdd;
+                        }
                         break;
                     default:
                         break;
@@ -709,6 +727,7 @@ namespace ET
                 monsterConfig.Lv = playerLv;
             }
 
+            //attributeAdd   (boss成长boss加成)
             numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)(monsterConfig.Hp * hpCoefficient), false);
             numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)(monsterConfig.Act * ackCoefficient), false);
             numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)(monsterConfig.Act * ackCoefficient), false);

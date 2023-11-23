@@ -321,7 +321,7 @@ namespace ET
 
                     return self.PaiMaiItemInfos_Consume[itemSubType][self.PageIndex];
 
-                    break;
+
 
                 case 2:
                     if (!self.PaiMaiItemInfos_Material.ContainsKey(itemSubType))
@@ -336,7 +336,6 @@ namespace ET
 
                     return self.PaiMaiItemInfos_Material[itemSubType][self.PageIndex];
 
-                    break;
 
                 case 3:
 
@@ -352,7 +351,7 @@ namespace ET
 
                     return self.PaiMaiItemInfos_Equipment[itemSubType][self.PageIndex];
 
-                    break;
+
 
                 case 4:
 
@@ -367,8 +366,6 @@ namespace ET
                     }
 
                     return self.PaiMaiItemInfos_Gemstone[itemSubType][self.PageIndex];
-
-                    break;
             }
 
             return null;

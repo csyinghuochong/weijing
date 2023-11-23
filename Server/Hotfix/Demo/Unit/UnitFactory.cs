@@ -617,6 +617,14 @@ namespace ET
                 dropAdd_Pro += 1f;
             }
 
+            //个人副本根据成长来
+            if (sceneType == SceneTypeEnum.LocalDungeon && bekill.IsBoss())
+            {
+                int killNumber =  main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterCof.Id);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                dropAdd_Pro *= bossDevelopment.DropAdd;
+            }
+
             //创建掉落
             if (main != null && monsterCof.MonsterSonType == 1)
             {

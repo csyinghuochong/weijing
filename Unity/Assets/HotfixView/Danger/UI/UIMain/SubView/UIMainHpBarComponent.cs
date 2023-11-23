@@ -145,10 +145,7 @@ namespace ET
         public static void OnUpdateBelongID(this UIMainHpBarComponent self, long bossid, long belongid)
         {
             self.Lab_Owner.text = string.Empty;
-            //if (self.LockMonsterId != bossid)
-            //{
-            //    return;
-            //}
+
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit unitbelong = unit.GetParent<UnitComponent>().Get(belongid);
             if (unitbelong == null)
@@ -156,13 +153,28 @@ namespace ET
                 self.Lab_Owner.text = string.Empty;
                 return;
             }
-            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
+
             if (unitbelong.Id == unit.Id)
             {
                 self.Lab_Owner.color = new Color(148f/255f,1,0);      //绿色
             }
-            else {
+            else 
+            {
                 self.Lab_Owner.color = new Color(255f / 255f, 99f / 255f, 66f / 255f);      //红色
+            }
+
+            string bossDeve = string.Empty;
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                Unit unitboss = unit.GetParent<UnitComponent>().Get(bossid);
+                int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitbelong.ConfigId);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopment(killNumber);
+                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}  {bossDevelopment.Name}";
+            }
+            else
+            {
+                self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
             }
         }
 

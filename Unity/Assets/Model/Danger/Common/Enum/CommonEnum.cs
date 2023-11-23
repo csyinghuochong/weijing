@@ -46,6 +46,16 @@ namespace ET
         public long HideValue;
     }
 
+    public class BossDevelopment
+    {
+        public string Name;
+        public int Level;
+        public float AttributeAdd;    //属性加成
+        public float ReviveTimeAdd;     //复活时间
+        public float DropAdd;           //掉落加成
+        public int KillNumber;          //击杀次数
+    }
+
     public struct JianDingDate
     {
         public int MaxNum;
