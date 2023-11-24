@@ -1,4 +1,3 @@
-
 using System;
 
 namespace ET
@@ -41,6 +40,7 @@ namespace ET
                         if (ConfigHelper.ChengJiuLianJin.Contains(request.ItemId))
                         {
                             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.BattleUseItem_214, 0, 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.BattleUseItem_30, 0, 1);
                         }
                     }
                     if (juexingid == request.SkillID)

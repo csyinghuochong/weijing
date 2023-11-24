@@ -73,6 +73,7 @@ namespace ET
                         unitplan.GetComponent<NumericComponent>().ApplyValue(NumericType.GatherLastTime, TimeHelper.ServerNow());
                         unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPlant_401, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPlant_93, 0, 1);
                         jiaYuanPlan.GatherNumber += 1;
                         jiaYuanPlan.StealNumber += 1;
                         jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
@@ -117,6 +118,7 @@ namespace ET
                         unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
 
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPasture_402, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPasture_95, 0, 1);
                         jiaYuanPasture.GatherNumber += 1;
                         jiaYuanPasture.StealNumber += 1;
                         jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();

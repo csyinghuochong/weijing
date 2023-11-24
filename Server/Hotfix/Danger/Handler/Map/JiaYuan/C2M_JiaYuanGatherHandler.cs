@@ -60,6 +60,7 @@ namespace ET
                         PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                     }) ;
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPlant_401, 0, 1);
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPlant_93, 0, 1);
                     break;
                 case 2:
                     JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
@@ -86,6 +87,7 @@ namespace ET
                     jiaYuanPasture.GatherNumber += 1;
                     jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPasture_402, 0, 1);
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPasture_95, 0, 1);
                     break;
             }
 

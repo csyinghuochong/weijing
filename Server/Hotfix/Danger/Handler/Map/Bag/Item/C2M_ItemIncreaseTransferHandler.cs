@@ -110,7 +110,9 @@ namespace ET
                 }
                 bagInfo_2.IncreaseSkillLists.AddRange(canTransfSkillLists);
             }
-            
+
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.IncreaseNumber_46, 0, 1);
+
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变
             m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
