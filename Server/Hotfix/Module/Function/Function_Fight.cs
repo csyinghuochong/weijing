@@ -171,6 +171,10 @@ namespace ET
                     case 2:
                         attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_MageQiangDuAdd);
                         break;
+                    //猎人
+                    case 3:
+                        attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_ActQiangDuAdd);
+                        break;
                 }
             }
             //long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
@@ -862,8 +866,11 @@ namespace ET
                     if (RandomHelper.RandFloat() <= CriPro)
                     {
                         DamgeType = 1;
-                        float criDamge = 1.75f + numericComponentAttack.GetAsFloat(NumericType.Now_CriDamgeAdd_Pro);
+                        float criDamge = 1.7f + numericComponentAttack.GetAsFloat(NumericType.Now_CriDamgeAdd_Pro) + numericComponentDefend.GetAsFloat(NumericType.Now_CriHitDamgeAdd_Pro);
                         damge = (long)((float)damge * criDamge);
+
+                        
+
                         //Log.Debug("暴击了!");
 
                         //闪避触发被动技能

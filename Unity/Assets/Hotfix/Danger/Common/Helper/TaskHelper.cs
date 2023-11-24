@@ -401,7 +401,7 @@ namespace ET
                         value = petinfo.ZiZhi_Def >= targetValue;
                         break;
                     case 7:
-                        value = petinfo.ZiZhi_Def >= targetValue;
+                        value = petinfo.ZiZhi_Adf >= targetValue;
                         break;
                     case 8:
                         value = petinfo.ZiZhi_ChengZhang >= targetValue;

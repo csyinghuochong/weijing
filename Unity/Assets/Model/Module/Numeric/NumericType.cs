@@ -831,7 +831,7 @@
         public const int Extra_Buff_PlayerHitSubPro_Add = Now_PlayerHitSubPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PlayerHitSubPro_Mul = Now_PlayerHitSubPro * 100 + 12;            //属性Buff附加乘法
 
-        public const int Now_CriDamgeAdd_Pro = 2062;          //当前暴击加成
+        public const int Now_CriDamgeAdd_Pro = 2062;          //当前暴击伤害加成
         public const int Base_CriDamgeAdd_Pro_Base = Now_CriDamgeAdd_Pro * 100 + 1;              //属性累加
         public const int Base_CriDamgeAdd_Pro_Mul = Now_CriDamgeAdd_Pro * 100 + 2;               //属性乘法
         public const int Base_CriDamgeAdd_Pro_Add = Now_CriDamgeAdd_Pro * 100 + 3;                   //属性附加
@@ -866,13 +866,19 @@
         public const int Extra_Buff_AllXiXuePro_Add = Now_AllXiXuePro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_AllXiXuePro_Mul = Now_AllXiXuePro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_CriHitDamgeAdd_Pro = 2067;          //当前受到暴击伤害的加成
+        public const int Base_CriHitDamgeAdd_Pro_Base = Now_CriHitDamgeAdd_Pro * 100 + 1;              //属性累加
+        public const int Base_CriHitDamgeAdd_Pro_Mul = Now_CriHitDamgeAdd_Pro * 100 + 2;               //属性乘法
+        public const int Base_CriHitDamgeAdd_Pro_Add = Now_CriHitDamgeAdd_Pro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_CriHitDamgeAdd_Pro_Add = Now_CriHitDamgeAdd_Pro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_CriHitDamgeAdd_Pro_Mul = Now_CriHitDamgeAdd_Pro * 100 + 12;            //属性Buff附加乘法
+
         public const int Now_GongActAddPro = 2071;          //弓箭附加伤害
         public const int Base_GongActAddPro_Base = Now_GongActAddPro * 100 + 1;                  //属性累加
         public const int Base_GongActAddPro_Mul = Now_GongActAddPro * 100 + 2;                   //属性乘法
         public const int Base_GongActAddPro_Add = Now_GongActAddPro * 100 + 3;                   //属性附加
         public const int Extra_Buff_GongActAddPro_Add = Now_GongActAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_GongActAddPro_Mul = Now_GongActAddPro * 100 + 12;            //属性Buff附加乘法
-
 
 
         //----------------抗性-------------
