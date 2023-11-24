@@ -1488,6 +1488,7 @@ namespace ET
 
             self.UIMapMini.BeginChangeScene(lastScene);
             self.UISingingComponent.GameObject.SetActive(false);
+            self.UIMainHpBar.BeginEnterScene();
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(0);

@@ -25,7 +25,7 @@ namespace ET
     {
         public GameObject TextCoundown;
         public GameObject ButtonTiaozhan;
-        public GameObject TextHurt;
+        public Text TextHurt;
 
         public int Countdown;
         public long Timer;
@@ -54,10 +54,10 @@ namespace ET
 
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
-            self.TextHurt = rc.Get<GameObject>("TextHurt");
+            self.TextHurt = rc.Get<GameObject>("TextHurt").GetComponent<Text>();
             self.OnUpdateHurt(0);
 
-            ButtonHelp.AddListenerEx(self.ButtonTiaozhan, () => { self.OnButtonTiaozhan(); });
+            ButtonHelp.AddListenerEx(self.ButtonTiaozhan, self.OnButtonTiaozhan);
 
             self.BeginTimer();
         }
@@ -77,7 +77,7 @@ namespace ET
             if (self.FightTime <= 0) {
                 self.FightTime = 1;
             }
-            self.TextHurt.GetComponent<Text>().text = $"伤害总值:{ self.HurtValue}\n伤害秒值:{(int)((float)self.HurtValue / self.FightTime)}";
+            self.TextHurt.text = $"伤害总值:{ self.HurtValue}\n伤害秒值:{(int)((float)self.HurtValue / self.FightTime)}";
         }
 
         public static void BeginTimer(this UITrialMainComponent self)

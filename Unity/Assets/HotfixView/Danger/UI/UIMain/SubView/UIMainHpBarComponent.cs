@@ -134,7 +134,7 @@ namespace ET
 
     public static class UIMainHpBarComponentSystem
     {
-        public static void OnChangeScene(this UIMainHpBarComponent self)
+        public static void BeginEnterScene(this UIMainHpBarComponent self)
         {
             self.MonsterNode.SetActive(false);
             self.Lab_Owner.text = string.Empty;
