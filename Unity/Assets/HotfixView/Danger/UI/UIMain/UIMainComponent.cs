@@ -1539,6 +1539,7 @@ namespace ET
             self.Btn_TopRight_1.SetActive(zhankai && SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(zhankai && SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
+            self.Btn_MapTransfer.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.ShrinkBtn.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
