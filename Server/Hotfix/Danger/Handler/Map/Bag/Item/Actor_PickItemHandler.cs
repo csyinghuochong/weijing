@@ -242,6 +242,13 @@ namespace ET
                     request.ItemIds.RemoveAt(i);
                 }
             }
+            if (request.ItemIds.Count ==0)
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
