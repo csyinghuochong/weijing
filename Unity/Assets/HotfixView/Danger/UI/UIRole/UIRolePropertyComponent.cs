@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -406,6 +408,12 @@ namespace ET
                     }
                 }
 
+                if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
+                {
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
+                }
+                
                 //显示图标
                 if (showList.iconID != null && showList.iconID != "")
                 {
@@ -498,6 +506,11 @@ namespace ET
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString() + "%";
                     }
                 }
+                if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
+                {
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
+                }
             }
 
             if (type == 3)
@@ -528,6 +541,11 @@ namespace ET
                             rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString() + "%";
                         }
                     }
+                    if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
+                    {
+                        ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
+                        ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
+                    }
                 }
             }
 
@@ -539,6 +557,25 @@ namespace ET
 
         }
 
+        public static async ETTask OnPointerDown(this UIRolePropertyComponent self, PointerEventData pdata, string name ,string des)
+        {
+            UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UIPropertyHint);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            Vector2 localPoint;
+            RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
+            Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
+            skillTips.GetComponent<UIPropertyHintComponent>().OnUpdateData(new Vector3(localPoint.x, localPoint.y, 0f), name, des);
+        }
+
+        public static void OnPointerUp(this UIRolePropertyComponent self, PointerEventData pdata)
+        {
+            UIHelper.Remove(self.DomainScene(), UIType.UIPropertyHint);
+        }
 	}
 
 }

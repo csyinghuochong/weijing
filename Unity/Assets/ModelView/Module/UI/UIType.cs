@@ -21,6 +21,7 @@ namespace ET
 		public const string UIRoleZodiac = "Main/Role/UIRoleZodiac";
 		public const string UIRoleBagSplit = "Main/Role/UIRoleBagSplit";
 		public const string UITreasureOpen = "Main/Role/UITreasureOpen";
+		public const string UIPropertyHint = "Main/Role/UIPropertyHint";
 		public const string UITask = "Main/Task/UITask";
 		public const string UITaskGet = "Main/Task/UITaskGet";
 		public const string UIGivePet = "Main/Task/UIGivePet";

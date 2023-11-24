@@ -768,6 +768,48 @@ namespace ET
             { 303, "2@0@1@1@1" }
         };
 
+        public static Dictionary<int, string> PropertyHint = new Dictionary<int, string>()
+        {
+            { NumericType.Now_MaxHp, "自身的生命值上限,当生命值为0时便意味着自身的挑战失败" },
+            { NumericType.Now_MaxAct, "伤害基础值,对目标造成伤害的主要属性" },
+            { NumericType.Now_MaxDef, "物理防御,可以抵扣物理攻击带来的伤害" },
+            { NumericType.Now_MaxAdf, "法术防御,可以抵扣魔法攻击带来的伤害" },
+            { NumericType.Now_Mage, "会额外提升你所有的技能造成的伤害" },
+            { NumericType.Now_Constitution, "提升生命和闪避，伤害减免属性" },
+            { NumericType.Now_Power, "提升攻击，物防和物穿攻速属性" },
+            { NumericType.Now_Intellect, "提升技能伤害，魔防和魔穿属性" },
+            { NumericType.Now_Stamina, "提升双防，抗暴，战斗回血属性" },
+            { NumericType.Now_Agility, "提升攻速，攻击，冷却缩减属性" },
+            { NumericType.Now_Cri, "本次攻击触发暴击的概率" },
+            { NumericType.Now_MageDamgeSubPro, "降低受到魔法类技能的伤害" },
+            { NumericType.Now_Res, "抵抗对方暴击的概率和抵抗眩晕等控制类技能" },
+            { NumericType.Now_ZhongJiPro, "攻击有概率使目标的防御降低为0,无视对方防御进行攻击" },
+            { NumericType.Now_Hit, "命中敌人的附加概率，和闪避概率进行抵消" },
+            { NumericType.Now_ZhongJi, "触发重击后额外附加的伤害值" },
+            { NumericType.Now_Dodge, "受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能" },
+            { NumericType.Now_HuShiActPro, "攻击中降低敌人物理防御值百分比" },
+            { NumericType.Now_HuShiMagePro, "攻击中降低敌人魔法防御值百分比" },
+            { NumericType.Now_DamgeSubPro, "受到敌人攻击的伤害后，降低本次受到的伤害" },
+            { NumericType.Now_HuShiDef, "攻击中降低敌人物理防御值固定值" },
+            { NumericType.Now_Speed, "自身在地图中移动的速度" },
+            { NumericType.Now_SkillCDTimeCostPro, "降低释放技能的冷却时间" },
+            { NumericType.Now_CriLv, "根据当前的暴击等级换算成暴击概率附加到自身属性" },
+            { NumericType.Now_MageDodgePro, "受到魔法技能伤害时,可以躲避本次魔法伤害的概率" },
+            { NumericType.Now_ResLv, "根据当前的韧性等级换算成韧性概率附加到自身属性" },
+            { NumericType.Now_ActDodgePro, "受到物理技能伤害时,可以躲避本次魔法伤害的概率" },
+            { NumericType.Now_HitLv, "根据当前的命中等级换算成命中概率附加到自身属性" },
+            { NumericType.Now_GeDang, "受到伤害可以减免对应的伤害值" },
+            { NumericType.Now_DodgeLv, "根据当前的闪避等级换算成闪避概率附加到自身属性" },
+            { NumericType.Now_ZhenShi, "每次攻击额外增加的固定伤害" },
+            { NumericType.Now_ActDamgeAddPro, "使用物理攻击目标时额外造成的伤害" },
+            { NumericType.Now_ActSpeedPro, "可以加快自身普通攻击的攻击频率" },
+            { NumericType.Now_MageDamgeAddPro, "使用魔法攻击目标时额外造成的伤害" },
+            { NumericType.Now_ShenNongPro, "使用药剂和技能为自身恢复生命值时,可以获得额外恢复的能力" },
+            { NumericType.Now_ActDamgeSubPro, "受到物理伤害可以降低自身受到的伤害值" },
+            { NumericType.Now_HuiXue, "战斗中提升额外的生命恢复" }
+        };
+        
+        
         /// <summary>
         /// 背包一键出售
         /// </summary>
