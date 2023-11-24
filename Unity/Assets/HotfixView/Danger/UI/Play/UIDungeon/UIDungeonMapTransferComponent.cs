@@ -84,23 +84,10 @@ namespace ET
         public static async ETTask UpdateChapterList(this UIDungeonMapTransferComponent self)
         {
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            int chapterid = 0;
-            DungeonSectionConfig mdungeonSectionConfig = null;
-            foreach (DungeonSectionConfig dungeonSectionConfig in DungeonSectionConfigCategory.Instance.GetAll().Values)
-            {
-                if (dungeonSectionConfig.RandomArea.Contains(sceneId))
-                {
-                    chapterid = dungeonSectionConfig.Id;
-                    mdungeonSectionConfig = dungeonSectionConfig;
-                    break;
-                }
-            }
+            DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(sceneId);
+            int chapterid = dungeonConfig.ChapterId;
 
-            if (chapterid == 0)
-            {
-                return;
-            }
-
+            DungeonSectionConfig mdungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chapterid);
             self.ChapterText.GetComponent<Text>().text = mdungeonSectionConfig.ChapterName;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
