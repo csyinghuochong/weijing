@@ -789,6 +789,47 @@ namespace ET
             string equipLv = itemconf.UseLv.ToString();
             string ItemBlackDes = itemconf.ItemDes;
 
+            // 赛季晶核
+            if (itemconf.ItemType == 3 && itemconf.EquipType == 201)
+            {
+                string showColor = "1";
+                if (baginfo.XiLianHideProLists != null)
+                {
+                    foreach (HideProList hideProList in baginfo.XiLianHideProLists)
+                    {
+                        if (hideProList.HideID == 0) continue;
+                        string attribute = "";
+                        string proName = ItemViewHelp.GetAttributeName(hideProList.HideID);
+                        int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
+                        if (showType == 2)
+                        {
+                            attribute = $"当前附加 {proName}:" + hideProList.HideValue.ToString("0.##") + "%";
+                        }
+                        else
+                        {
+                            attribute = $"当前附加 {proName}:" + hideProList.HideValue;
+                        }
+
+                        ShowPropertyText(attribute, showColor, Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                        properShowNum += 1;
+                    }
+                }
+
+                if (baginfo.HideSkillLists != null)
+                {
+                    for (int i = 0; i < baginfo.HideSkillLists.Count; i++)
+                    {
+                        int skillID = baginfo.HideSkillLists[i];
+                        SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
+                        string proStr = "当前附加技能" + ":" + skillCof.SkillName;
+                        ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                        properShowNum += 1;
+                    }
+                }
+
+                return properShowNum;
+            }
+            
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
             int equip_Hp = equipconf.Equip_Hp;
             int equip_MinAct = equipconf.Equip_MinAct;

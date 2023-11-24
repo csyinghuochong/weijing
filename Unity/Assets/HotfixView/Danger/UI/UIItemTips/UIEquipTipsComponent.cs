@@ -922,6 +922,18 @@ namespace ET
                         self.Obj_SaveStoreHouse.SetActive(false);
                         self.Obj_Diu.SetActive(true);
                     }
+
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+                    // 赛季晶核
+                    if (itemConfig.ItemType == 3 && itemConfig.EquipType == 201)
+                    {
+                        self.Obj_Lab_EquipMake.SetActive(false);
+                        self.Btn_Use.SetActive(false);
+                        Vector3 localPosition = self.Btn_Sell.GetComponent<RectTransform>().localPosition;
+                        localPosition.x = 0;
+                        self.Btn_Sell.GetComponent<RectTransform>().localPosition = localPosition;
+                    }
+
                     break;
                 case ItemOperateEnum.XiangQianBag:
                     self.Obj_BagOpenSet.SetActive(false);

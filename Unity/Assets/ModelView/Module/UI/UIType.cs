@@ -75,6 +75,7 @@ namespace ET
         public const string UIChengJiu = "Main/ChengJiu/UIChengJiu";
 		public const string UISeason = "Main/Season/UISeason";
 		public const string UISeasonLordDetail = "Main/Season/UISeasonLordDetail";
+		public const string UISeasonJingHeZhuru = "Main/Season/UISeasonJingHeZhuru";
 		public const string UIJingLingGet = "Main/ChengJiu/UIJingLingGet";
 		public const string UIChengJiuActivite = "Main/ChengJiu/UIChengJiuActivite";
 		public const string UISpirit = "Main/ChengJiu/UISpirit";

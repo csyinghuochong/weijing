@@ -7,7 +7,8 @@ namespace ET
 {
     public class UIItemAppraisalTipsComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject Lab_ItemJingHeQuality;
+        public GameObject Lab_ItemJingHeProperty;
         public GameObject Img_FengYin;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
@@ -26,6 +27,8 @@ namespace ET
         public GameObject Obj_Btn_GemHoleText;
         public GameObject Obj_Btn_HuiShou;
         public GameObject Obj_Btn_HuiShouCancle;
+        public GameObject Btn_JingHeAddQuality;
+        public GameObject Btn_JingHeActivate;
         public GameObject Obj_Btn_XieXiaGemSet;
         public GameObject Obj_Lab_ItemCostDes;
         public GameObject selPastureItemUICommonHint;
@@ -61,6 +64,10 @@ namespace ET
             self.Obj_Btn_XieXiaGemSet = rc.Get<GameObject>("Btn_XieXiaGem");
             self.Obj_Btn_HuiShouCancle = rc.Get<GameObject>("Btn_HuiShouCancle");
             self.Obj_Btn_HuiShou = rc.Get<GameObject>("Btn_HuiShou");
+            self.Btn_JingHeAddQuality = rc.Get<GameObject>("Btn_JingHeAddQuality");
+            self.Btn_JingHeActivate = rc.Get<GameObject>("Btn_JingHeActivate");
+            self.Lab_ItemJingHeQuality = rc.Get<GameObject>("Lab_ItemJingHeQuality");
+            self.Lab_ItemJingHeProperty = rc.Get<GameObject>("Lab_ItemJingHeProperty");
             self.Btn_TakeStoreHouse = rc.Get<GameObject>("Btn_TakeStoreHouse");
             self.Obj_SaveStoreHouse = rc.Get<GameObject>("Btn_SaveStoreHouse");
             self.Obj_Diu = rc.Get<GameObject>("Btn_Diu");
@@ -90,6 +97,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });
             ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShou, self.On_Btn_HuiShou);
             ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShouCancle, self.OnBtn_HuiShouCancle);
+            ButtonHelp.AddListenerEx(self.Btn_JingHeAddQuality, () => { self.OnBtn_JingHeZhuYu().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_JingHeActivate, () => { self.OnBtn_JingHeActivate().Coroutine(); });
             ButtonHelp.AddListenerEx(self.Obj_SaveStoreHouse, self.OnBtn_PutStoreHouse);
             ButtonHelp.AddListenerEx(self.Btn_TakeStoreHouse, self.OnBtn_PutBag);
 
@@ -117,31 +126,9 @@ namespace ET
         //晶核注入。增加品质
         public static async ETTask OnBtn_JingHeZhuYu(this UIItemAppraisalTipsComponent self)
         {
-            //传入消耗道具的品质，返回可增加的品质范围
-            //List<int> valuerange = ItemHelper.GetJingHeAddQulity(qulitylist);
-            List<long> costIds = new List<long>();
-            List<BagInfo> bagList = self.BagComponent.GetBagList();
-            int itemCount = bagList.Count;
-            for (int i = 0; i < itemCount; i++)
-            { 
-                BagInfo bagInfo  = bagList[i];
-                if (bagInfo.BagInfoID == self.BagInfo.BagInfoID)
-                {
-                    continue;
-                }
-
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment &&  itemConfig.EquipType == 201  )
-                {
-                    //随机给一个，测试
-                    costIds.Add(bagInfo.BagInfoID);
-                    break;
-                }
-            }
-
-            C2M_JingHeZhuruRequest request = new C2M_JingHeZhuruRequest() { BagInfoId = self.BagInfo.BagInfoID, OperateBagID = costIds };
-            M2C_JingHeZhuruResponse response = (M2C_JingHeZhuruResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            await ETTask.CompletedTask;
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISeasonJingHeZhuru);
+            ui.GetComponent<UISeasonJingHeZhuruComponent>().InitInfo(self.BagInfo);
+            self.OnCloseTips();
         }
 
         //晶核激活
@@ -149,7 +136,7 @@ namespace ET
         {
             C2M_JingHeActivateRequest request = new C2M_JingHeActivateRequest() { BagInfoId = self.BagInfo.BagInfoID };
             M2C_JingHeActivateResponse response = (M2C_JingHeActivateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            await ETTask.CompletedTask;
+            self.OnCloseTips();
         }
 
         //放入背包
@@ -279,7 +266,7 @@ namespace ET
             string itemTypename = "消耗品";
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
             self.ItemType.GetComponent<Text>().text =  "类型:" + itemTypename;
-            if (itemconf.ItemEquipID != 0)
+            if (itemconf.ItemEquipID != 0 && itemconf.EquipType != 201)
             {
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID).AppraisalItem;
                 if (appraisalItem != 0)
@@ -373,6 +360,47 @@ namespace ET
             UICommonHelper.SetImageGray(self.Obj_ItemIcon, true);
 
             self.ItemDes.GetComponent<Text>().text = itemconf.EquipType == 101 ? "封印生肖" : "未鉴定装备";
+            // 赛季晶核
+            if (itemType == 3 && itemconf.EquipType == 201)
+            {
+                self.ItemDes.SetActive(false);
+                self.Lab_ItemJingHeQuality.SetActive(true);
+                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"当前品质:{baginfo.ItemPar}";
+                // 属性显示itemConfig.ItemUsePar
+                string attribute = "";
+                string[] parmainfos = itemconf.ItemUsePar.Split('@');
+                string[] attriinfos = parmainfos[1].Split(';');
+                int addType = int.Parse(attriinfos[0]);
+                if (addType == 1)
+                {
+                    string[] hidevalueinfo = attriinfos[1].Split(',');
+                    int hideid = int.Parse(hidevalueinfo[0]);
+                    string proName = ItemViewHelp.GetAttributeName(hideid);
+                    int showType = NumericHelp.GetNumericValueType(hideid);
+                    if (showType == 2)
+                    {
+                        float hidevaluemin = float.Parse(hidevalueinfo[1]);
+                        float hidevalueman = float.Parse(hidevalueinfo[2]);
+                        attribute = $"当前附加 {proName}:" + (hidevaluemin * 10000).ToString("0.##") + "~" + (hidevalueman * 10000).ToString("0.##") +
+                                "%\n";
+                    }
+                    else
+                    {
+                        int hidevaluemin = int.Parse(hidevalueinfo[1]);
+                        int hidevaluemax = int.Parse(hidevalueinfo[2]);
+                        attribute = $"当前附加 {proName}:" + hidevaluemin + "~" + hidevaluemax;
+                    }
+                }
+                // else if (addType == 2)
+                // {
+                //     string[] hidevalueinfo = attriinfos[1].Split(',');
+                //     int hideid = int.Parse(hidevalueinfo[0]);
+                //     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideid);
+                //     string skillName = skillConfig.SkillName;
+                //     attribute = $"当前附加 {skillName}:"+"\n";
+                // }
+                self.Lab_ItemJingHeProperty.GetComponent<Text>().text = attribute;
+            }
 
             self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? "开启封印" : "鉴定";
 
@@ -395,6 +423,8 @@ namespace ET
             self.Btn_TakeStoreHouse.SetActive(false);
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
+            self.Btn_JingHeAddQuality.SetActive(false);
+            self.Btn_JingHeActivate.SetActive(false);
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
 
             //显示按钮
@@ -422,6 +452,16 @@ namespace ET
                         self.Obj_SaveStoreHouse.SetActive(false);
                         self.Obj_Diu.SetActive(true);
                     }
+                    
+                    // 赛季晶核
+                    if (itemType == 3 && itemconf.EquipType == 201)
+                    {
+                        self.Btn_Use.SetActive(false);
+                        self.Btn_Sell.SetActive(false);
+                        self.Btn_JingHeAddQuality.SetActive(true);
+                        self.Btn_JingHeActivate.SetActive(true);
+                    }
+
                     break;
                 //角色栏打开显示对应功能按钮
                 case ItemOperateEnum.Juese:

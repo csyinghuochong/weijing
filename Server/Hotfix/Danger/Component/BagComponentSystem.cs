@@ -998,7 +998,7 @@ namespace ET
 
                         //装备洗炼
                         ItemXiLianResult itemXiLian = new ItemXiLianResult();
-                        if (itemCof.EquipType != 101)
+                        if (itemCof.EquipType != 101 && itemCof.EquipType != 201)
                         {
                             itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
                         }
@@ -1097,6 +1097,10 @@ namespace ET
                         {
                             useBagInfo.IfJianDing = false;
                             useBagInfo.HideSkillLists.Add(jingheSkill); 
+                        }
+                        else
+                        {
+                            useBagInfo.IfJianDing = true;
                         }
                     }
 
