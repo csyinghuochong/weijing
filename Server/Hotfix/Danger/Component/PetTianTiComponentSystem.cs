@@ -102,6 +102,7 @@ namespace ET
                 m2C_FubenSettlement.StarInfos = new List<int> { 1, 1, 1 };
 
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetTianTiReward}_{TimeHelper.ServerNow()}");
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.PetTianDiWin_37, 0, 1 );
             }
             else
             {
