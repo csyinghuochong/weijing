@@ -78,6 +78,11 @@ namespace ET
             {
                 return;
             }
+            if (self.UnitModel != null)
+            {
+                GameObject.Destroy(self.UnitModel);
+                self.UnitModel = null;
+            }
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             LayerHelp.ChangeLayerAll(go.transform, LayerEnum.RenderTexture);
             go.transform.SetParent(self.ModelParent);
