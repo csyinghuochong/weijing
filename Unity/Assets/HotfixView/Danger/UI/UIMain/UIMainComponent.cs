@@ -45,6 +45,7 @@ namespace ET
         public GameObject Button_Welfare;
         public GameObject Button_Season;
         public GameObject Btn_RerurnDungeon;
+        public GameObject Btn_MapTransfer;
         public GameObject ShrinkBtn;
         public GameObject Button_Demon;
         public GameObject Button_RunRace;
@@ -185,6 +186,10 @@ namespace ET
             self.Btn_RerurnDungeon = rc.Get<GameObject>("Btn_RerurnDungeon");
             self.Btn_RerurnDungeon.GetComponent<Button>().onClick.AddListener(self.OnBtn_RerurnDungeon);
             self.Btn_RerurnDungeon.SetActive(false);
+
+            self.Btn_MapTransfer = rc.Get<GameObject>("Btn_MapTransfer");
+            self.Btn_MapTransfer.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_MapTransfer().Coroutine(); });
+            self.Btn_MapTransfer.SetActive(false);
 
             self.Button_Season = rc.Get<GameObject>("Button_Season");
             self.Button_Season.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Season().Coroutine(); });
@@ -1629,6 +1634,7 @@ namespace ET
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
                 bool shenmizhimen = DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(self.ZoneScene().GetComponent<MapComponent>().SceneId);
                 self.Btn_RerurnDungeon.SetActive(shenmizhimen);
+                self.Btn_MapTransfer.SetActive(!shenmizhimen);
                 self.buttonReturn.SetActive(!shenmizhimen);
             }
 
@@ -1916,6 +1922,13 @@ namespace ET
                     }
                 },
                 null).Coroutine();
+        }
+
+        public static async ETTask OnBtn_MapTransfer(this UIMainComponent self)
+        {
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIDungeonMapTransfer);
+            uI.GetComponent<UIDungeonMapTransferComponent>().UpdateChapterList().Coroutine();
+            uI.GetComponent<UIDungeonMapTransferComponent>().UpdateBossRefreshTimeList().Coroutine();
         }
 
         public static void OnClickReturnButton(this UIMainComponent self)

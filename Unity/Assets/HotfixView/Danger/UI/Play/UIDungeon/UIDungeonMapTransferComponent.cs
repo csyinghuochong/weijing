@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIDungeonComponent: Entity, IAwake, IDestroy
+    public class UIDungeonMapTransferComponent: Entity, IAwake, IDestroy
     {
+        public List<UIDungeonMapTransferItemComponent> LevelListUI = new List<UIDungeonMapTransferItemComponent>();
         public Dictionary<int, Text> BossRefreshObjs = new Dictionary<int, Text>();
         public Dictionary<int, long> BossRefreshTime = new Dictionary<int, long>();
         public long Timer;
+        public GameObject ChapterText;
         public GameObject BossRefreshTimeList;
         public GameObject UIBossRefreshTimeItem;
         public GameObject BossRefreshSettingBtn;
@@ -19,26 +19,18 @@ namespace ET
         public GameObject BossRefreshSettingList;
         public GameObject UIBossRefreshSettingItem;
         public GameObject CloseBossRefreshSettingBtn;
-        public GameObject ScrollView;
         public GameObject ChapterList;
+        public GameObject UIDungeonLevelItem;
         public GameObject ButtonClose;
         public List<string> AssetPath = new List<string>();
     }
 
-    [Timer(TimerType.UIDungenBossRefreshTimer)]
-    public class UIDungenBossRefreshTimer: ATimer<UIDungeonComponent>
+    public class UIDungeonMapTransferComponentAwakeSystem: AwakeSystem<UIDungeonMapTransferComponent>
     {
-        public override void Run(UIDungeonComponent self)
-        {
-            self.UpdateBossRefreshTimer();
-        }
-    }
-
-    public class UIDungeonComponentAwakeSystem: AwakeSystem<UIDungeonComponent>
-    {
-        public override void Awake(UIDungeonComponent self)
+        public override void Awake(UIDungeonMapTransferComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.ChapterText = rc.Get<GameObject>("ChapterText");
             self.BossRefreshTimeList = rc.Get<GameObject>("BossRefreshTimeList");
             self.UIBossRefreshTimeItem = rc.Get<GameObject>("UIBossRefreshTimeItem");
             self.BossRefreshSettingBtn = rc.Get<GameObject>("BossRefreshSettingBtn");
@@ -48,8 +40,9 @@ namespace ET
             self.CloseBossRefreshSettingBtn = rc.Get<GameObject>("CloseBossRefreshSettingBtn");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterList = rc.Get<GameObject>("ChapterList");
-            self.ScrollView = rc.Get<GameObject>("ScrollView");
+            self.UIDungeonLevelItem = rc.Get<GameObject>("UIDungeonLevelItem");
 
+            self.UIDungeonLevelItem.SetActive(false);
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
             self.BossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnBossRefreshSetting);
             self.CloseBossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnCloseBossRefreshSetting);
@@ -60,63 +53,94 @@ namespace ET
         }
     }
 
-    public class UIDungeonComponentDestoySystem: DestroySystem<UIDungeonComponent>
+    public class UIDungeonMapTransferComponentDestoySystem: DestroySystem<UIDungeonMapTransferComponent>
     {
-        public override void Destroy(UIDungeonComponent self)
+        public override void Destroy(UIDungeonMapTransferComponent self)
         {
-            for(int i = 0; i < self.AssetPath.Count; i++)
+            for (int i = 0; i < self.AssetPath.Count; i++)
             {
                 if (!string.IsNullOrEmpty(self.AssetPath[i]))
                 {
-                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
-            self.AssetPath = null;
 
+            self.AssetPath = null;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
-    public static class UIDungeonComponentSystem
+    [Timer(TimerType.MapTransferBossRefreshTimer)]
+    public class MapTransferBossRefreshTimer: ATimer<UIDungeonMapTransferComponent>
     {
-        public static async ETTask UpdateChapterList(this UIDungeonComponent self)
+        public override void Run(UIDungeonMapTransferComponent self)
         {
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.AssetPath.Add(path);
-            if (instanceid != self.InstanceId)
+            self.UpdateBossRefreshTimer();
+        }
+    }
+
+    public static class UIDungeonMapTransferComponentSystem
+    {
+        public static async ETTask UpdateChapterList(this UIDungeonMapTransferComponent self)
+        {
+            int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            int chapterid = 0;
+            DungeonSectionConfig mdungeonSectionConfig = null;
+            foreach (DungeonSectionConfig dungeonSectionConfig in DungeonSectionConfigCategory.Instance.GetAll().Values)
+            {
+                if (dungeonSectionConfig.RandomArea.Contains(sceneId))
+                {
+                    chapterid = dungeonSectionConfig.Id;
+                    mdungeonSectionConfig = dungeonSectionConfig;
+                    break;
+                }
+            }
+
+            if (chapterid == 0)
             {
                 return;
             }
 
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < dungeonConfigs.Count; i++)
+            self.ChapterText.GetComponent<Text>().text = mdungeonSectionConfig.ChapterName;
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+
+            int number = 0;
+            for (int i = 0; i < mdungeonSectionConfig.RandomArea.Length; i++)
             {
-                int chapterid = dungeonConfigs[i].Id;
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                //只显示满足进入等级的关卡
+                DungeonConfig chapterCof = DungeonConfigCategory.Instance.Get(mdungeonSectionConfig.RandomArea[i]);
+                if (userInfo.Lv < chapterCof.EnterLv)
+                {
+                    break;
+                }
 
-                UICommonHelper.SetParent(go, self.ChapterList);
-                UIDungeonItemComponent uIChapterItemComponent = self.AddChild<UIDungeonItemComponent, GameObject>(go);
-                uIChapterItemComponent.OnInitData(i, chapterid).Coroutine();
+                UIDungeonMapTransferItemComponent uiitem = null;
+                if (number < self.LevelListUI.Count)
+                {
+                    uiitem = self.LevelListUI[i];
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(self.UIDungeonLevelItem);
+                    go.transform.SetParent(self.ChapterList.transform);
+                    go.SetActive(true);
+                    go.transform.localPosition = Vector3.zero;
+                    go.transform.localScale = Vector3.one;
+
+                    uiitem = self.AddChild<UIDungeonMapTransferItemComponent, GameObject>(go);
+                    uiitem.OnInitData(chapterid, i, mdungeonSectionConfig.RandomArea[i]);
+                    self.LevelListUI.Add(uiitem);
+                }
+
+                number++;
             }
-
-            if (userInfoComponent.UserInfo.Lv > 50)
-            {
-                await TimerComponent.Instance.WaitAsync(10);
-                self.ScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
-            }
-
-            await TimerComponent.Instance.WaitAsync(10);
-            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeon);
         }
 
         /// <summary>
         /// Boss刷新倒计时显示
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask UpdateBossRefreshTimeList(this UIDungeonComponent self)
+        public static async ETTask UpdateBossRefreshTimeList(this UIDungeonMapTransferComponent self)
         {
             // 重新从服务器同步Booss刷新数据
             long instance = self.InstanceId;
@@ -160,17 +184,17 @@ namespace ET
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
 
                 // Boss头像
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
+
                 boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sp;
 
                 // Boss名字
                 boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.MonsterName;
-
 
                 int dungeonid = SceneConfigHelper.GetFubenByMonster(monsterConfig.Id);
                 if (dungeonid > 0)
@@ -178,8 +202,8 @@ namespace ET
                     // Boss出生地
                     boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
                             $"({DungeonConfigCategory.Instance.Get(dungeonid).ChapterName})";
-
                 }
+
                 if (self.BossRefreshTime.ContainsKey(bossRevivesTime[i].KeyId))
                 {
                     continue;
@@ -187,12 +211,13 @@ namespace ET
 
                 // Boss刷新时间
                 self.BossRefreshTime.Add(bossRevivesTime[i].KeyId, long.Parse(bossRevivesTime[i].Value));
-                self.BossRefreshObjs.Add(bossRevivesTime[i].KeyId, go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
-                // 先提前刷新一下
-                self.UpdateBossRefreshTimer();
+                self.BossRefreshObjs.Add(bossRevivesTime[i].KeyId,
+                    go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
 
                 UICommonHelper.SetParent(go, self.BossRefreshTimeList);
             }
+
+            self.UpdateBossRefreshTimer();
 
             // 开启定时器
             if (self.Timer != 0)
@@ -200,14 +225,14 @@ namespace ET
                 TimerComponent.Instance.Remove(ref self.Timer);
             }
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.UIDungenBossRefreshTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MapTransferBossRefreshTimer, self);
         }
 
         /// <summary>
         /// UI刷新Bosss复活时间
         /// </summary>
         /// <param name="self"></param>
-        public static void UpdateBossRefreshTimer(this UIDungeonComponent self)
+        public static void UpdateBossRefreshTimer(this UIDungeonMapTransferComponent self)
         {
             foreach (KeyValuePair<int, long> it in self.BossRefreshTime)
             {
@@ -229,16 +254,16 @@ namespace ET
             }
         }
 
-        public static void OnCloseChapter(this UIDungeonComponent self)
+        public static void OnCloseChapter(this UIDungeonMapTransferComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);
+            UIHelper.Remove(self.DomainScene(), UIType.UIDungeonMapTransfer);
         }
 
         /// <summary>
         /// 打开Boss刷新设置界面
         /// </summary>
         /// <param name="self"></param>
-        public static void OnBossRefreshSetting(this UIDungeonComponent self)
+        public static void OnBossRefreshSetting(this UIDungeonMapTransferComponent self)
         {
             self.BossRefreshSettingPanel.SetActive(true);
             // 为Boss设置列表添加子物体
@@ -275,7 +300,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public static void OnSettingChanged(this UIDungeonComponent self, string key, GameObject obj)
+        public static void OnSettingChanged(this UIDungeonMapTransferComponent self, string key, GameObject obj)
         {
             if (PlayerPrefs.GetString(key) == "0")
             {
@@ -293,7 +318,7 @@ namespace ET
         /// 关闭Boss刷新列表界面
         /// </summary>
         /// <param name="self"></param>
-        public static void OnCloseBossRefreshSetting(this UIDungeonComponent self)
+        public static void OnCloseBossRefreshSetting(this UIDungeonMapTransferComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
 

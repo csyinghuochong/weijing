@@ -92,6 +92,7 @@
         public const int UnionJingXuanTimer = 1105;
         public const int TransferUITimer = 1106;
         public const int BuffScaleTimer = 1107;
+        public const int MapTransferBossRefreshTimer = 1108;
         // 不能超过10000
     }
 }
