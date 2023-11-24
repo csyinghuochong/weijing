@@ -103,6 +103,7 @@ namespace ET
     //135: 挑战深渊模式的副本X次
     //136: 在N级组队副本中,自身输出超过X% (俩参数:副本等级,伤害百分比,比如40%就配置40)
 
+    //401 矿ID 占领次数
     public enum TaskTargetType
     { 
         KillMonsterID_1 = 1,                    //击杀指定ID野怪
@@ -173,6 +174,8 @@ namespace ET
         TrialTowerCeng_134 = 134,               //试炼之塔达到多少层
         ShenYuanNumber_135 = 135,               //135: 挑战深渊模式的副本X次
         TeamDungeonHurt_136 = 136,              //组队副本伤害比较 
+
+        MineHaveNumber_401 = 401,
     }
 
     //1：登陆

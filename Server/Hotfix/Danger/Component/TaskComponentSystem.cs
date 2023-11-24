@@ -1014,12 +1014,14 @@ namespace ET
                 for (int mineid = petMingPlayers[i].MineType; mineid <= 10003; mineid++)
                 {
                     self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, mineid, 1);
+                    self.TriggerTaskEvent( TaskTargetType.MineHaveNumber_401, mineid, 1);
                 }
 
                 bool hexin = ComHelp.IsHexinMine(petMingPlayers[i].MineType, petMingPlayers[i].Postion, extends);
                 if (hexin)
                 {
                     self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, 0, 1);
+                    self.TriggerTaskEvent(TaskTargetType.MineHaveNumber_401, 0, 1);
                 }
             }
         }
