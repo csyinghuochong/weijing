@@ -351,6 +351,7 @@ namespace ET
         /// 1 战力
         ///2 技能数量
         ///3 生命资质
+        ///4 攻击资质 5 魔法资质 6 防御资质 7 魔防资质 8 成长
         /// </summary>
         /// <param name="taskId"></param>
         /// <param name="petinfo"></param>
@@ -388,6 +389,22 @@ namespace ET
                         break;
                     case 3:
                         value = petinfo.ZiZhi_Hp >= targetValue;
+                        break;
+                    //4 攻击资质 5 魔法资质 6 防御资质 7 魔防资质 8 成长
+                    case 4:
+                        value = petinfo.ZiZhi_Act >= targetValue;
+                        break;
+                    case 5:
+                        value = petinfo.ZiZhi_MageAct >= targetValue;
+                        break;
+                    case 6:
+                        value = petinfo.ZiZhi_Def >= targetValue;
+                        break;
+                    case 7:
+                        value = petinfo.ZiZhi_Def >= targetValue;
+                        break;
+                    case 8:
+                        value = petinfo.ZiZhi_ChengZhang >= targetValue;
                         break;
                 }
 
