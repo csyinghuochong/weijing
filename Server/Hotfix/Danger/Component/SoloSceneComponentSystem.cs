@@ -241,8 +241,6 @@ namespace ET
             }
 
             self.MatchList.Add(teamPlayerInfo);
-            self.MatchList.Add(teamPlayerInfo);
-
             //添加积分列表
             if (!self.PlayerIntegralList.ContainsKey(teamPlayerInfo.UnitId)) {
                 self.PlayerIntegralList.Add(teamPlayerInfo.UnitId,0);
