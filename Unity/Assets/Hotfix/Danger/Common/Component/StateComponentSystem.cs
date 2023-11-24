@@ -117,6 +117,10 @@ namespace ET
             {
                 return ErrorCode.ERR_CanNotMove_Rigidity;
             }
+            if (self.StateTypeGet(StateTypeEnum.Silence))
+            {
+                return ErrorCode.ERR_CanNotMove_Dizziness;
+            }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
                 return ErrorCode.ERR_CanNotMove_Dizziness;
