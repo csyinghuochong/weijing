@@ -377,20 +377,13 @@ namespace ET
             string result = "";
             try
             {
-                string postData = string.Empty;
-                foreach (var item in dic)
-                {
-                    if (item.Key.Equals("sign"))
-                    {
-                        dic[item.Key] =  Uri.EscapeDataString(item.Value);
-                        postData = postData + $"{item.Key}={dic[item.Key]}";
-                    }
-                    else
-                    {
-                        dic[item.Key] = Uri.EscapeDataString(item.Value);
-                        postData = postData + $"{item.Key}={dic[item.Key]}&";
-                    }
-                }
+                string url_access_token = Uri.EscapeDataString(dic["access_token"]);
+                string url_app_id = Uri.EscapeDataString(dic["app_id"]);
+                string url_ts = Uri.EscapeDataString(dic["ts"]);
+                string url_sign = Uri.EscapeDataString(dic["sign"]);
+
+                string postData = $"access_token={url_access_token}&app_id={url_app_id}&ts={url_ts}&sign={url_sign}";
+
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);
                 HttpContent httpContent = new StringContent(postData);
