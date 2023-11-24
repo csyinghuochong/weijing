@@ -104,7 +104,7 @@ namespace ET
     //135: 挑战深渊模式的副本X次
     //136: 在N级组队副本中,自身输出超过X% (俩参数:副本等级,伤害百分比,比如40%就配置40)
 
-    //401 矿ID 占领次数
+    //401 矿场占领次数
     public enum TaskTargetType
     { 
         KillMonsterID_1 = 1,                    //击杀指定ID野怪
