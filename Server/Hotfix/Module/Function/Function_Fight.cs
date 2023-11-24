@@ -328,8 +328,8 @@ namespace ET
             }
 
             //最低命中
-            if (HitPro <= 0.75f) {
-                HitPro = 0.75f;
+            if (HitPro <= 0.5f) {
+                HitPro = 0.5f;
             }
 
             //百发百中(只有玩家对怪物有效)
