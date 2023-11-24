@@ -140,8 +140,8 @@ namespace ET
                 //将传入的数据进行解码
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息
 
-                //Log.Console($"pay_notice:  {pay_notice}");
-                //Log.Warning($"pay_notice:  {pay_notice}");
+                Log.Console($"pay_notice:  {pay_notice}");
+                Log.Warning($"pay_notice:  {pay_notice}");
                 if (string.IsNullOrEmpty(pay_notice))
                 {
                     return;
@@ -152,13 +152,27 @@ namespace ET
                 {
                     return;
                 }
-
+               
                 string orderId = aliPayResultDic["cp_order_id"];
-                if (!self.OrderDic.ContainsKey(orderId))
+                if (aliPayResultDic["status"] == "2" && !self.OrderDic.ContainsKey(orderId))
                 {
-                    return;
+                    string userInfo = self.OrderDic[orderId];
+                    long userId = long.Parse(userInfo.Split('_')[0]);
+                    Log.Warning($"支付成功[抖音]  {userId}  {int.Parse(orderId.Split('_')[2])}");
+
+                    int zone = int.Parse(orderId.Split('_')[1]);
+                    int amount = int.Parse(orderId.Split('_')[2]);
+                    string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
+                    Log.Console($"支付成功[抖音]: 区：{serverName}     玩家名字：{userInfo.Split('_')[1]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+
+                    RechargeHelp.OnPaySucessToGate(zone, userId, amount, orderId).Coroutine();
+                    self.OrderDic.Remove(orderId);
                 }
-                
+                else 
+                {
+                    Log.Warning("抖音支付失败");
+                }
+               
                 //成功了就需要给回消息“SUCCESS”
                 //https://docs.open.alipay.com/204/105301/
                 HttpListenerResponse response = context.Response;
