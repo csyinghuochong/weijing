@@ -866,6 +866,34 @@ namespace ET
             return ComHelp.PetHeXinMax - self.GetItemsByLoc(ItemLocType.ItemPetHeXinBag).Count;
         }
 
+        public static List<BagInfo> GetCurJingHeList(this BagComponent self)
+        {
+            List<BagInfo> bagInfos = new List<BagInfo>();
+            List<BagInfo> jingheList = self.GetItemsByLoc(  ItemLocType.SeasonJingHe );
+            for (int i = 0; i < jingheList.Count; i++)
+            {
+                if (jingheList[i].EquipPlan == self.SeasonJingHePlan)
+                {
+                    bagInfos.Add(jingheList[i]);
+                }
+            }
+            return bagInfos;
+        }
+
+        public static BagInfo GetJingHeByWeiZhi(this BagComponent self, int subType)
+        {
+            List<BagInfo> bagInfos = self.GetCurJingHeList();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemSubType == subType)
+                {
+                    return bagInfos[i];
+                }
+            }
+            return null;
+        }
+
         public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, int position)
         {
             List<BagInfo> bagInfos = new List<BagInfo>();

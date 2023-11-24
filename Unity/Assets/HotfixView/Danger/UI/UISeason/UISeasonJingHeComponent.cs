@@ -6,6 +6,7 @@ namespace ET
 {
     public class UISeasonJingHeComponent: Entity, IAwake, IDestroy
     {
+        public GameObject TakeOffBtn;
         public GameObject Btn_TianFu_2;
         public GameObject Btn_TianFu_1;
         public GameObject JingHeListNode;
@@ -39,10 +40,13 @@ namespace ET
             self.NeedItem = rc.Get<GameObject>("NeedItem");
             self.OpenBtn = rc.Get<GameObject>("OpenBtn");
             self.EquipBtn = rc.Get<GameObject>("EquipBtn");
+            self.TakeOffBtn = rc.Get<GameObject>("TakeOffBtn");
 
             self.UISeasonJingHeItem.SetActive(false);
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
             self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn().Coroutine(); });
+            self.TakeOffBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnTakeOffBtn().Coroutine(); });
+            self.TakeOffBtn.SetActive(false);
 
             self.Btn_TianFu_2 = rc.Get<GameObject>("Btn_TianFu_2");
             self.Btn_TianFu_1 = rc.Get<GameObject>("Btn_TianFu_1");
@@ -90,6 +94,7 @@ namespace ET
                 return;
             }
             self.UpdatePlanButton();
+            self.UpdateInfo(self.JingHeId).Coroutine();
         }
 
         public static void UpdatePlanButton(this UISeasonJingHeComponent self)
@@ -121,6 +126,9 @@ namespace ET
         {
             // 更新孔位信息
             self.JingHeId = jingHeId;
+
+            self.TakeOffBtn.SetActive(self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(jingHeId + 2000) != null);
+
             foreach (UISeasonJingHeItemComponent uiSeasonJingHeItemComponent in self.UISeasonJingHeItemComponentList)
             {
                 uiSeasonJingHeItemComponent.OnUpdateData();
@@ -289,6 +297,29 @@ namespace ET
                 userInfoComponent.UserInfo.OpenJingHeIds.Add(self.JingHeId);
                 self.UpdateInfo(self.JingHeId).Coroutine();
             }
+        }
+
+        /// <summary>
+        /// 卸下晶核
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static async ETTask OnTakeOffBtn(this UISeasonJingHeComponent self)
+        {
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(self.JingHeId + 2000);
+            if (bagInfo == null)
+            {
+                return;
+            }
+
+            C2M_JingHeWearRequest request = new C2M_JingHeWearRequest() { OperateBagID = bagInfo.BagInfoID, OperateType = 2 };
+            M2C_JingHeWearResponse response = (M2C_JingHeWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.InstanceId == 0)
+            {
+                return;
+            }
+
+            self.UpdateInfo(self.JingHeId).Coroutine();
         }
 
         public static async ETTask OnEquipBtn(this UISeasonJingHeComponent self)

@@ -63,7 +63,10 @@ namespace ET
             }
 
             ///应该放入SeasonJingHe。 穿戴和卸下晶核给单独协议
-            List<BagInfo> equiplist = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc( ItemLocType.SeasonJingHe );
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> equiplist = bagComponent.GetCurJingHeList(  );
+
+            // bagComponent.SeasonJingHePlan
 
             self.IconImg.SetActive(false);
             for (int i = 0; i < equiplist.Count; i++)

@@ -31,7 +31,7 @@ namespace ET
         /// </summary>
         public List<int> FashionEquipList = new List<int>();
 
-        public int SeasonJingHePlan = 0;    
+        public int SeasonJingHePlan = 0;      
 
 #if SERVER
         public List<BagInfo> BagItemList =new List<BagInfo>();

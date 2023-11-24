@@ -35,6 +35,8 @@ namespace ET
                 BagInfo beforeequip = bagComponent.GetJingHeByWeiZhi(itemConfig.ItemSubType);
                 if (beforeequip != null)
                 {
+                    beforeequip.EquipPlan = 0;
+                    useBagInfo.EquipPlan = bagComponent.SeasonJingHePlan;
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(beforeequip, ItemLocType.ItemLocBag, ItemLocType.SeasonJingHe);
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.SeasonJingHe, ItemLocType.ItemLocBag);
 
@@ -44,6 +46,7 @@ namespace ET
                 }
                 else
                 {
+                    useBagInfo.EquipPlan = bagComponent.SeasonJingHePlan;
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.SeasonJingHe, ItemLocType.ItemLocBag);
                     unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
                 }
@@ -54,7 +57,6 @@ namespace ET
             }
             if (request.OperateType == 2)
             {
-
                 //卸下  判断背包格子是否足够
                 bool full = unit.GetComponent<BagComponent>().IsBagFull();
                 if (full)
@@ -63,6 +65,7 @@ namespace ET
                     reply();
                     return;
                 }
+                useBagInfo.EquipPlan = 0;
                 unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, ItemLocType.SeasonJingHe);
                 unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(ItemLocType.SeasonJingHe, useBagInfo);
                 Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);

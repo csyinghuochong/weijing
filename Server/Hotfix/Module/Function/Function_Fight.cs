@@ -1220,6 +1220,10 @@ namespace ET
             List<int> equipIDList = new List<int>();
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
+
+            ///晶核列表
+            List<BagInfo> jingHeList = unit.GetComponent<BagComponent>().GetCurJingHeList();
+
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
                 BagInfo userBagInfo = equipList[i];
