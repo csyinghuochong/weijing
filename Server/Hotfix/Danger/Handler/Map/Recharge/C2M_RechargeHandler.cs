@@ -25,6 +25,12 @@ namespace ET
                     reply();
                     return;
                 }
+                if (ComHelp.IsInnerNet())
+                {
+                    reply();
+                    return;
+                }
+
                 if (request.RechargeNumber <= 0 || ConfigHelper.GetDiamondNumber(request.RechargeNumber) <= 0)
                 {
                     Log.Console($"充值作弊： 区：{unit.DomainZone()}  ID：{unit.Id}  rechargenumber: {request.RechargeNumber}");

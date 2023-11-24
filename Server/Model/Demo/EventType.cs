@@ -83,6 +83,11 @@ namespace ET
             public Scene AccountCenterScene;
         }
 
+        public struct RechargeScene
+        {
+            public Scene DomainScene;
+        }
+
         public class ChangePosition : DisposeObject
 		{
 			public static readonly ChangePosition Instance = new ChangePosition();

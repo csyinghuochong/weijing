@@ -406,6 +406,8 @@ namespace ET
                     case 8:
                         value = petinfo.ZiZhi_ChengZhang >= targetValue;
                         break;
+                    default:
+                        break;
                 }
 
                 if (!value)
