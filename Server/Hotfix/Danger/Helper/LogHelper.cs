@@ -256,6 +256,12 @@ namespace ET
             }
         }
 
+
+        public static void SoloInfo(string soloInfo, int zone)
+        { 
+            
+        }
+
         /// <summary>
         /// 每小时检测一次
         /// </summary>

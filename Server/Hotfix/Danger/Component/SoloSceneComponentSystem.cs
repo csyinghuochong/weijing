@@ -89,12 +89,27 @@ namespace ET
             }
         }
 
+        public static void RecordSoloRank(this SoloSceneComponent self)
+        {
+            List<string> sololist = new List<string>(); 
+            List<SoloPlayerResultInfo> soloPlayerList  = self.GetSoloResult();
+            for (int i = 0; i < soloPlayerList.Count; i++)
+            {
+                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{soloPlayerList[i].Occ}  战力:{soloPlayerList[i].Combat}";
+                sololist.Add(soloInfo);
+            }
+
+            LogHelper.WriteLogList(sololist, $"../Logs/Solo/Rank_{self.DomainZone()}.txt"); 
+        }
+
         //竞技场结束
         public static async ETTask OnSoloOver(this SoloSceneComponent self)
         {
             Log.Console($"OnSoloOver: {self.DomainZone()}");
 
             self.MatchList.Clear();
+
+            self.RecordSoloRank();
 
             Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
             List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
