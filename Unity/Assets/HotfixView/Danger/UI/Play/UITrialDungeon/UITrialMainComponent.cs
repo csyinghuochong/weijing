@@ -72,6 +72,11 @@ namespace ET
 
         public static void OnUpdateHurt(this UITrialMainComponent self, long hurt)
         {
+            if (hurt > 0)
+            {
+                return;
+            }
+            hurt *= -1;
             self.HurtValue += hurt;
 
             if (self.FightTime <= 0) {

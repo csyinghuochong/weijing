@@ -106,6 +106,28 @@ namespace ET
             self.CheckSameId();
         }
 
+        /// <summary>
+        /// 穿戴晶核
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="bagInfo"></param>
+        /// <param name="operateType">1穿戴 2卸下</param>
+        /// <returns></returns>
+        public static async ETTask<int> SendWearJingHe(this BagComponent self, BagInfo bagInfo, int operateType, string operatePar)
+        {
+            try
+            {
+                C2M_JingHeWearRequest request = new C2M_JingHeWearRequest() { OperateBagID = bagInfo.BagInfoID, OperateType = 1, OperatePar = operatePar };
+                M2C_JingHeWearResponse response = (M2C_JingHeWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                return response.Error;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                return ErrorCode.ERR_NetWorkError;
+            }
+        }
+
         //穿戴装备
         public static async ETTask SendWearEquip(this BagComponent self, BagInfo bagInfo)
         {

@@ -179,6 +179,10 @@ namespace ET
                             $"({DungeonConfigCategory.Instance.Get(dungeonid).ChapterName})";
 
                 }
+                if (self.BossRefreshTime.ContainsKey(bossRevivesTime[i].KeyId))
+                {
+                    continue;
+                }
 
                 // Boss刷新时间
                 self.BossRefreshTime.Add(bossRevivesTime[i].KeyId, long.Parse(bossRevivesTime[i].Value));

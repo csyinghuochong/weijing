@@ -265,8 +265,9 @@ namespace ET
             }
 
             //装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType = 201  ItemSubType2001 +
-            await bagComponent.SendWearEquip(self.BagInfo);
+            int page = 0;
 
+            await bagComponent.SendWearJingHe(self.BagInfo, 1, page.ToString());
             self.BagInfo = null;
             self.UpdateInfo(self.JingHeId).Coroutine();
         }

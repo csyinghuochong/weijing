@@ -8,6 +8,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JingHeWearRequest request, M2C_JingHeWearResponse response, Action reply)
         {
+
+
             reply();
             await ETTask.CompletedTask;
         }
