@@ -17,8 +17,10 @@ namespace ET
         public GameObject ZhuRuBtn;
 
         public BagInfo MainBagInfo;
-        public BagInfo SelectedBagInfo;
         public UIItemComponent UIItemComponent;
+        public List<long> CostIds = new List<long>();
+        public int MaxAdd;
+        public int MinAdd;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
         public List<string> AssetPath = new List<string>();
     }
@@ -49,21 +51,20 @@ namespace ET
     {
         public static async ETTask OnZhuRuBtn(this UISeasonJingHeZhuruComponent self)
         {
-            if (self.SelectedBagInfo == null)
+            if (self.CostIds.Count <= 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("未选择道具！");
                 return;
             }
 
-            List<long> costIds = new List<long>();
-            costIds.Add(self.SelectedBagInfo.BagInfoID);
-
-            C2M_JingHeZhuruRequest request = new C2M_JingHeZhuruRequest() { BagInfoId = self.MainBagInfo.BagInfoID, OperateBagID = costIds };
+            C2M_JingHeZhuruRequest request = new C2M_JingHeZhuruRequest() { BagInfoId = self.MainBagInfo.BagInfoID, OperateBagID = self.CostIds };
             M2C_JingHeZhuruResponse response = (M2C_JingHeZhuruResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.SelectedBagInfo = null;
             self.MainBagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(self.MainBagInfo.BagInfoID);
             self.AddQualityText.GetComponent<Text>().text = "";
+            self.MinAdd = 0;
+            self.MaxAdd = 0;
+            self.CostIds.Clear();
             self.UpdateItemList();
             self.NowQualityText.GetComponent<Text>().text = $"当前品质:{self.MainBagInfo.ItemPar}";
         }
@@ -142,14 +143,37 @@ namespace ET
 
         public static void OnSelect(this UISeasonJingHeZhuruComponent self, BagInfo bagInfo)
         {
-            self.SelectedBagInfo = bagInfo;
+            bool selected = false;
             for (int i = 0; i < self.ItemList.Count; i++)
             {
-                self.ItemList[i].SetSelected(bagInfo);
+                if (self.ItemList[i].Baginfo != null && self.ItemList[i].Baginfo.BagInfoID == bagInfo.BagInfoID)
+                {
+                    selected = !self.ItemList[i].Image_XuanZhong.activeSelf;
+                    self.ItemList[i].Image_XuanZhong.SetActive(selected);
+
+                    List<int> valuerange = ItemHelper.GetJingHeAddQulity(new List<int>() { int.Parse(bagInfo.ItemPar) });
+                    if (selected)
+                    {
+                        if (!self.CostIds.Contains(bagInfo.BagInfoID))
+                        {
+                            self.CostIds.Add(bagInfo.BagInfoID);
+                        }
+
+                        self.MinAdd += valuerange[0];
+                        self.MaxAdd += valuerange[1];
+                    }
+                    else
+                    {
+                        self.CostIds.Remove(bagInfo.BagInfoID);
+                        self.MinAdd -= valuerange[0];
+                        self.MaxAdd -= valuerange[1];
+                    }
+
+                    break;
+                }
             }
 
-            List<int> valuerange = ItemHelper.GetJingHeAddQulity(new List<int>() { int.Parse(self.SelectedBagInfo.ItemPar) });
-            self.AddQualityText.GetComponent<Text>().text = $"{valuerange[0]}~{valuerange[1]}";
+            self.AddQualityText.GetComponent<Text>().text = $"{self.MinAdd}~{self.MaxAdd}";
         }
     }
 }
