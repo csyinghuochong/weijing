@@ -21,8 +21,8 @@ namespace ET
         public GameObject TextDesc1;
 
         public List<UI> TianItemListUI = new List<UI>();
-        public int TianFuId;
         public List<string> AssetPath = new List<string>();
+        public int TianFuId;
     }
 
 

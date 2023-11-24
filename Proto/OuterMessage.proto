@@ -1534,6 +1534,7 @@ message Actor_ItemInitResponse  // IActorLocationResponse
 	repeated int32 WarehouseAddedCell = 5;
 	repeated int32 FashionActiveIds = 6;
 	repeated int32 FashionEquipList = 7;
+	int32 SeasonJingHePlan = 8;
 }
 
 
@@ -6878,7 +6879,7 @@ message C2M_JingHePlanRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 JingHePlan = 1;   //激活的晶核ID
+	int32 JingHePlan = 1;   //
 }
 
 message M2C_JingHePlanResponse // IActorLocationResponse

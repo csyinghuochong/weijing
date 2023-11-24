@@ -456,9 +456,9 @@ namespace ET
             return 100 - self.ChouKaWarehouse.Count;
         }
 
-        public static void OnChangeItemLoc(this BagComponent self, BagInfo bagInfo, ItemLocType itemLocTypeDest, ItemLocType itemLocTypeSour)
+        public static void OnChangeItemLoc(this BagComponent self, BagInfo bagInfo, ItemLocType itemLocTypeTo, ItemLocType itemLocTypeFrom)
         {
-            List<BagInfo> ItemTypeListSour = self.GetItemByLoc(itemLocTypeSour);
+            List<BagInfo> ItemTypeListSour = self.GetItemByLoc(itemLocTypeFrom);
             for (int i = ItemTypeListSour.Count - 1; i >= 0; i--)
             {
                 if (ItemTypeListSour[i].BagInfoID == bagInfo.BagInfoID)
@@ -467,8 +467,8 @@ namespace ET
                 }
             }
 
-            List<BagInfo> ItemTypeListDest = self.GetItemByLoc(itemLocTypeDest);
-            bagInfo.Loc = (int)itemLocTypeDest;
+            List<BagInfo> ItemTypeListDest = self.GetItemByLoc(itemLocTypeTo);
+            bagInfo.Loc = (int)itemLocTypeTo;
             ItemTypeListDest.Add(bagInfo);
         }
 
@@ -502,6 +502,33 @@ namespace ET
                 }
             }
             return false;
+        }
+
+        public static List<BagInfo> GetCurJingHeList(this BagComponent self)
+        {
+            List<BagInfo> bagInfos = new List<BagInfo>();
+            for (  int i = 0; i < self.SeasonJingHe.Count; i++ )
+            {
+                if (self.SeasonJingHe[i].EquipPlan == self.SeasonJingHePlan)
+                {
+                    bagInfos.Add(self.SeasonJingHe[i]);
+                }
+            }
+            return bagInfos;
+        }
+
+        public static BagInfo GetJingHeByWeiZhi(this BagComponent self, int subType)
+        {
+            List<BagInfo> bagInfos = self.GetCurJingHeList();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID );
+                if (itemConfig.ItemSubType == subType)
+                { 
+                    return bagInfos[i]; 
+                }
+            }
+            return null;
         }
 
         public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, ItemLocType equipIndex, int position)

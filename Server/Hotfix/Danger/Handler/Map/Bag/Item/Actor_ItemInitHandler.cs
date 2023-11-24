@@ -57,8 +57,13 @@ namespace ET
 			response.BagAddedCell = bagComponent.BagAddedCell;
 			response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
-			response.FashionEquipList = bagComponent.FashionEquipList;	
-			reply();
+			response.FashionEquipList = bagComponent.FashionEquipList;
+
+			if (ComHelp.IsInnerNet())
+			{
+                response.SeasonJingHePlan = bagComponent.SeasonJingHePlan;
+            }
+            reply();
 			await ETTask.CompletedTask;
 		}
 	}

@@ -6,6 +6,8 @@ namespace ET
 {
     public class UISeasonJingHeComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Btn_TianFu_2;
+        public GameObject Btn_TianFu_1;
         public GameObject JingHeListNode;
         public GameObject UISeasonJingHeItem;
         public GameObject NameText;
@@ -15,11 +17,12 @@ namespace ET
         public GameObject OpenBtn;
         public GameObject EquipBtn;
 
-        public BagInfo BagInfo;
-        public int JingHeId;
         public List<UISeasonJingHeItemComponent> UISeasonJingHeItemComponentList = new List<UISeasonJingHeItemComponent>();
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
         public List<string> AssetPath = new List<string>();
+
+        public BagInfo BagInfo;
+        public int JingHeId;
     }
 
     public class UISeasonJingHeComponentAwakeSystem: AwakeSystem<UISeasonJingHeComponent>
@@ -40,12 +43,20 @@ namespace ET
             self.UISeasonJingHeItem.SetActive(false);
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
             self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn().Coroutine(); });
+
+            self.Btn_TianFu_2 = rc.Get<GameObject>("Btn_TianFu_2");
+            self.Btn_TianFu_1 = rc.Get<GameObject>("Btn_TianFu_1");
+            ButtonHelp.AddListenerEx(self.Btn_TianFu_2, () => { self.OnBtn_TianFuPlan(1).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_TianFu_1, () => { self.OnBtn_TianFuPlan(0).Coroutine(); });
+
             self.InitCell();
+            self.UpdatePlanButton();
         }
     }
 
     public class UISeasonJingHeComponentDestroy: DestroySystem<UISeasonJingHeComponent>
     {
+
         public override void Destroy(UISeasonJingHeComponent self)
         {
             for (int i = 0; i < self.AssetPath.Count; i++)
@@ -62,6 +73,32 @@ namespace ET
 
     public static class UISeasonJingHeComponentSystem
     {
+
+        public static async ETTask OnBtn_TianFuPlan(this UISeasonJingHeComponent self, int plan)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.SeasonJingHePlan == plan)
+            {
+                return;
+            }
+            C2M_JingHePlanRequest c2M_JingHePlanRequest = new C2M_JingHePlanRequest() { JingHePlan = plan };
+            M2C_JingHePlanResponse m2C_JingHePlan = (M2C_JingHePlanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_JingHePlanRequest);
+            bagComponent.SeasonJingHePlan = plan;
+
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.UpdatePlanButton();
+        }
+
+        public static void UpdatePlanButton(this UISeasonJingHeComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.Btn_TianFu_1.transform.Find("Image").gameObject.SetActive(bagComponent.SeasonJingHePlan == 0);
+            self.Btn_TianFu_2.transform.Find("Image").gameObject.SetActive(bagComponent.SeasonJingHePlan == 1);
+        }
+
         public static void InitCell(this UISeasonJingHeComponent self)
         {
             foreach (SeasonJingHeConfig seasonJingHeConfig in SeasonJingHeConfigCategory.Instance.GetAll().Values)

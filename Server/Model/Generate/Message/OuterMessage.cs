@@ -3249,6 +3249,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<int> FashionEquipList = new List<int>();
 
+		[ProtoMember(8)]
+		public int SeasonJingHePlan { get; set; }
+
 	}
 
 //活跃宝箱
@@ -14321,7 +14324,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long JingHePlan { get; set; }
+		public int JingHePlan { get; set; }
 
 	}
 

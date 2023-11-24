@@ -3630,8 +3630,10 @@ MonoBehaviour:
     gameObject: {fileID: 8349151072022328322}
   - key: NeedItem
     gameObject: {fileID: 6620872891100755804}
-  - key: TitleSet
-    gameObject: {fileID: 105618841744410736}
+  - key: Btn_TianFu_1
+    gameObject: {fileID: 6026333213424518125}
+  - key: Btn_TianFu_2
+    gameObject: {fileID: 8271858844972274744}
 --- !u!114 &6848650734163133635
 MonoBehaviour:
   m_ObjectHideFlags: 0

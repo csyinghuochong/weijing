@@ -35,6 +35,7 @@ namespace ET
             self.WarehouseAddedCell = r2C_Bag.WarehouseAddedCell;
             self.FashionActiveIds = r2C_Bag.FashionActiveIds;
             self.FashionEquipList = r2C_Bag.FashionEquipList;
+            self.SeasonJingHePlan = r2C_Bag.SeasonJingHePlan;
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 
