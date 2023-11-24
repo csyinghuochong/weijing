@@ -258,7 +258,7 @@ namespace ET
                 skillInfos[0].PosZ = target3.z;
             }
             //90010909
-            if (skillConfig.GameObjectName == "Skill_ShanXian_2" && skillInfos.Count > 0)
+            if (skillConfig.GameObjectName == "Skill_ShanXian_2" && skillInfos.Count > 0 && target!=null)
             {
                 Vector3 dir =  target.Rotation * Vector3.back;
                 Vector3 vector3 = target.Position + dir * 1f;
