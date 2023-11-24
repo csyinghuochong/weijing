@@ -1928,7 +1928,7 @@ namespace ET
         public static async ETTask OnBtn_MapTransfer(this UIMainComponent self)
         {
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIDungeonMapTransfer);
-            uI.GetComponent<UIDungeonMapTransferComponent>().UpdateChapterList().Coroutine();
+            uI.GetComponent<UIDungeonMapTransferComponent>().UpdateChapterList();
             uI.GetComponent<UIDungeonMapTransferComponent>().UpdateBossRefreshTimeList().Coroutine();
         }
 

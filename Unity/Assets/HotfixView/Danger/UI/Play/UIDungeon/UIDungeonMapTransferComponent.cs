@@ -81,7 +81,7 @@ namespace ET
 
     public static class UIDungeonMapTransferComponentSystem
     {
-        public static async ETTask UpdateChapterList(this UIDungeonMapTransferComponent self)
+        public static void  UpdateChapterList(this UIDungeonMapTransferComponent self)
         {
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(sceneId);
