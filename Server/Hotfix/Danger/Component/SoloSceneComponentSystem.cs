@@ -99,7 +99,7 @@ namespace ET
                 sololist.Add(soloInfo);
             }
 
-            LogHelper.WriteLogList(sololist, $"../Logs/Solo/Rank_{self.DomainZone()}.txt"); 
+            LogHelper.WriteLogList(sololist, $"../Logs/WJ_Solo/Rank_{self.DomainZone()}.txt"); 
         }
 
         //竞技场结束
@@ -240,6 +240,7 @@ namespace ET
                 }
             }
 
+            self.MatchList.Add(teamPlayerInfo);
             self.MatchList.Add(teamPlayerInfo);
 
             //添加积分列表
