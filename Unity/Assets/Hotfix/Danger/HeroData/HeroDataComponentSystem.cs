@@ -299,7 +299,7 @@ namespace ET
                 {
                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                     UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
-                    int killNumber = userInfoComponent.GetMonsterKillNumber(unit.ConfigId);
+                    int killNumber = userInfoComponent.GetMonsterKillNumber(unit.ConfigId)  +  1;
                     int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(mapComponent.SceneId);
                     BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid , killNumber);
                     resurrection = (int)(resurrection * bossDevelopment.ReviveTimeAdd);
