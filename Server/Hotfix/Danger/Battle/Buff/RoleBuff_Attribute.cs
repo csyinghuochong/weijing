@@ -58,7 +58,8 @@ namespace ET
             ///移动才触发
             if (this.mBuffConfig.MoveAction == 1)
             {
-                if (heroCom.GetComponent<MoveComponent>().IsArrived())
+                MoveComponent moveComponent = this.TheUnitBelongto.GetComponent<MoveComponent>();
+                if (moveComponent!=null && moveComponent.IsArrived())
                 {
                     return;
                 }
