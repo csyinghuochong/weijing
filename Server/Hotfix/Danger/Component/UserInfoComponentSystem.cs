@@ -343,7 +343,7 @@ namespace ET
                 int killNumber = main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(mCof.Id);
                 int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(sceneId);
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
-                expcoefficient *= bossDevelopment.ExpAdd;
+                //expcoefficient *= bossDevelopment.ExpAdd;
             }
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
