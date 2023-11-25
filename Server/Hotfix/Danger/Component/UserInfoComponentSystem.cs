@@ -337,6 +337,14 @@ namespace ET
 
             MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             float expcoefficient = 1f;
+
+            if (sceneType == SceneTypeEnum.LocalDungeon && beKill.IsBoss())
+            {
+                int killNumber = main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(mCof.Id);
+                int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(sceneId);
+                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
+                expcoefficient *= bossDevelopment.ExpAdd;
+            }
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
 

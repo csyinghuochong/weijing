@@ -54,6 +54,7 @@ namespace ET
         public float ReviveTimeAdd;     //复活时间
         public float DropAdd;           //掉落加成
         public int KillNumber;          //击杀次数
+        public float ExpAdd;
     }
 
     public struct JianDingDate

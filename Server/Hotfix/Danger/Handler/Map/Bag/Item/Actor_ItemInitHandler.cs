@@ -59,7 +59,7 @@ namespace ET
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
 			response.FashionEquipList = bagComponent.FashionEquipList;
 
-			if (ComHelp.IsInnerNet())
+			if (SeasonHelper.IsOpenSeason())
 			{
                 response.SeasonJingHePlan = bagComponent.SeasonJingHePlan;
             }
