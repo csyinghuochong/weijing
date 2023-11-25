@@ -145,6 +145,13 @@ namespace ET
                             return;
                         }
                     }
+                    if (itemConfig.ItemSubType == 127)
+                    {
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                        {
+                            bagIsFull = true;
+                        }
+                    }
 
                     if (bagIsFull)
                     {
