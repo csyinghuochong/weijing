@@ -452,6 +452,12 @@ namespace ET
 
             if (itemConfig.ItemSubType == 113 || itemConfig.ItemSubType == 127)
             {
+                if (self.BagComponent.GetLeftSpace() < 1)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("背包格子不够！");
+                    return;
+                }
+
                 int curSceneId = 0;
                 int needSceneId = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
                 MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
