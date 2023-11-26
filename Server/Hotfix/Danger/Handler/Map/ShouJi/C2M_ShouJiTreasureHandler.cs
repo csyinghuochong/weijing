@@ -38,6 +38,10 @@ namespace ET
             for (int i = 0; i < huishouList.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
+                if (bagInfo == null)
+                {
+                    continue;
+                }
 
                 if (needNumber < bagInfo.ItemNum)
                 {
