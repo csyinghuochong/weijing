@@ -154,6 +154,18 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选中道具");
                 return;
             }
+            
+            for (int i = self.PaiMaiItemInfos.Count - 1; i >= 0; i--)
+            {
+                if (self.PaiMaiItemInfos[i].Id == self.PaiMaiItemInfoId)
+                {
+                    if (self.PaiMaiItemInfos[i].UserId != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("数据错误!");
+                        return;
+                    }
+                }
+            }
 
             C2M_PaiMaiXiaJiaRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiXiaJiaRequest() {  PaiMaiItemInfoId = self.PaiMaiItemInfoId };
             M2C_PaiMaiXiaJiaResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiXiaJiaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);

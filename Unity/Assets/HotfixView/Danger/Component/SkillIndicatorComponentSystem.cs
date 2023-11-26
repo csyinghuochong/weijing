@@ -320,14 +320,14 @@ namespace ET
         public static void OnMainHeroMove(this SkillIndicatorComponent self)
         {
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null || unit == null)
+            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null || myUnit == null)
             {
                 return;
             }
 
             Quaternion rotation;
-            skillIndicatorItem.GameObject.transform.localPosition = unit.Position;
+            skillIndicatorItem.GameObject.transform.localPosition = myUnit.Position;
             switch (skillIndicatorItem.SkillZhishiType)
             {
                 case SkillZhishiType.CommonAttack:
@@ -338,22 +338,22 @@ namespace ET
                     break;
                 case SkillZhishiType.Line:
                     rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
-                    Vector3 skillTarget = rotation * Vector3.forward + unit.Position;
+                    Vector3 skillTarget = rotation * Vector3.forward + myUnit.Position;
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Dir").transform.LookAt(skillTarget);
                     break;
                 case SkillZhishiType.Angle60:
                     rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
-                    skillTarget = rotation * Vector3.forward + unit.Position;
+                    skillTarget = rotation * Vector3.forward + myUnit.Position;
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_60").transform.LookAt(skillTarget);
                     break;
                 case SkillZhishiType.Angle120:
                     rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
-                    skillTarget = rotation * Vector3.forward + unit.Position;
+                    skillTarget = rotation * Vector3.forward + myUnit.Position;
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_120").transform.LookAt(skillTarget);
                     break;
                 case SkillZhishiType.TargetOnly:
                     rotation = Quaternion.Euler(0, skillIndicatorItem.TargetAngle, 0);
-                    skillTarget = rotation * Vector3.forward + unit.Position;
+                    skillTarget = rotation * Vector3.forward + myUnit.Position;
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Dir").transform.LookAt(skillTarget);
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.localPosition = rotation * Vector3.forward * skillIndicatorItem.AttackDistance;
                     Vector3 position = skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.position;
@@ -362,23 +362,27 @@ namespace ET
                     float distance = 10f;
                     Vector3 vector3 = new Vector3();
                     long monsterId = 0;
-                    List<Unit> allunits = unit.GetParent<UnitComponent>().GetAll();
+                    List<Unit> allunits = myUnit.GetParent<UnitComponent>().GetAll();
                     foreach (Unit u in allunits)
                     {
-                        if (u.Type == UnitType.Monster && MonsterConfigCategory.Instance.Get(u.ConfigId).MonsterType != 5)
+                        if (!myUnit.IsCanAttackUnit(u) && !u.IsJingLingMonster())
                         {
-                            // 1. 领主
-                            // 2. 血量值低（如追求进阶可设置内选择血量百分比低或是绝对值低）
-                            // 3. 距离近
-                            Vector2 v1 = new Vector2(u.Position.x, u.Position.z);
-                            Vector2 v2 = new Vector2(position.x, position.z);
-                            float dis = Vector2.Distance(v1, v2);
-                            if (dis < mindis && dis < distance)
-                            {
-                                distance = dis;
-                                vector3 = u.Position;
-                                monsterId = u.Id;
-                            }
+                            continue;
+                        }
+
+                        if (u.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                        {
+                            continue;
+                        }
+                        
+                        Vector2 v1 = new Vector2(u.Position.x, u.Position.z);
+                        Vector2 v2 = new Vector2(position.x, position.z);
+                        float dis = Vector2.Distance(v1, v2);
+                        if (dis < mindis && dis < distance)
+                        {
+                            distance = dis;
+                            vector3 = u.Position;
+                            monsterId = u.Id;
                         }
                     }
 
