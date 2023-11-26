@@ -19,7 +19,11 @@ namespace ET
 
 		public const int InnerPacketSizeLength = 4;
 		public const int OuterPacketSizeLength = 2;
-		public MemoryStream MemoryStream;
+
+        public static int OuterPacketSizeLengthC = 4;
+        public static int OuterPacketSizeLengthS = 4;
+
+        public MemoryStream MemoryStream;
 
 		public PacketParser(CircularBuffer buffer, AService service)
 		{
