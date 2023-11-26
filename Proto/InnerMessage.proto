@@ -652,6 +652,7 @@ message M2P_PaiMaiXiaJiaRequest // IActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     int64 PaiMaiItemInfoId = 2;
+	int64 UnitID = 3;
 }
 
 message P2M_PaiMaiXiaJiaResponse // IActorResponse

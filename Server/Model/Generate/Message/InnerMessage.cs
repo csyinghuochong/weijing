@@ -1395,6 +1395,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long PaiMaiItemInfoId { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
 	}
 
 	[Message(InnerOpcode.P2M_PaiMaiXiaJiaResponse)]
