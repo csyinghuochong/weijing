@@ -176,7 +176,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_PeopleNumber, "人口已达上限");
             ErrorHintList.Add(ErrorCode.ERR_JiaYuanSteal, "该作物已达偷取上限");
             ErrorHintList.Add(ErrorCode.ERR_PeopleNoEnough, "购买后人口超过上限");
-
+            ErrorHintList.Add(ErrorCode.ERR_CanNotGather, "未成熟或者收获次数用完，请重登尝试");
+            
             ErrorHintList.Add(ErrorCode.ERR_PopularizeThe, "相同账号的角色不能互相推广");
             ErrorHintList.Add(ErrorCode.ERR_SerialNoExist, "序列号不存在");
             ErrorHintList.Add(ErrorCode.ERR_PopularizeNot, "被推广人不存在");
