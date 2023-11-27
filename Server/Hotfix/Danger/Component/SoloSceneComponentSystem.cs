@@ -102,7 +102,7 @@ namespace ET
                 sololist.Add(soloInfo);
             }
 
-            LogHelper.WriteLogList(sololist, $"../Logs/WJ_Solo/Rank_{self.DomainZone()}.txt"); 
+            LogHelper.WriteLogList(sololist, $"../Logs/WJ_Solo/Rank_{self.DomainZone()}.txt", false); 
         }
 
         //竞技场结束

@@ -199,13 +199,18 @@ namespace ET
             KillInfoList.Clear();
         }
 
-        public static void WriteLogList(List<string> infolist, string filePath)
+        public static void WriteLogList(List<string> infolist, string filePath, bool add = true)
         {
             string text = string.Empty;
             for (int i = 0; i < infolist.Count; i++)
             {
                 text += infolist[i];
                 text += "\r\n";
+            }
+
+            if (!add && File.Exists(filePath))
+            {
+                File.Delete(filePath);
             }
 
             if (File.Exists(filePath))

@@ -59,24 +59,48 @@ namespace ET
 			//刷新转职技能
 			if ( occTwo != 0)
 			{
+				///移除重复的转职技能
+
 				OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+
 				List<int> occTwoSkillList = new List<int>(occupationTwo.SkillID) {  };
-				
-				for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
+				List<int> selfoccTwoSkill = new List<int>() { };
+
+				List<int> removeList = new List<int>() { };
+                for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
 				{
 					int initskillid = SkillConfigCategory.Instance.GetInitSkill(skillSetComponent.SkillList[i].SkillID);
 					if (initskillid == 0)
 					{
 						continue;
 					}
-					if (occTwoSkillList.Contains(initskillid))
+					if (!occTwoSkillList.Contains(initskillid))
                     {
-                        occTwoSkillList.Remove(initskillid);
+						continue;
+                    }
+
+					if (selfoccTwoSkill.Contains(initskillid))
+					{
+                        removeList.Add( i );
+                    }
+					else
+					{
+                        selfoccTwoSkill.Add(initskillid);
                     }
                 }
 
-				for (int i = 0; i < occTwoSkillList.Count; i++)
+				for (int i = 0; i < removeList.Count; i++)
 				{
+					skillSetComponent.SkillList.RemoveAt(removeList[i]);
+                }
+
+                for (int i = 0; i < occTwoSkillList.Count; i++)
+				{
+					if (selfoccTwoSkill.Contains(occTwoSkillList[i]))
+					{
+						continue;
+					}
+
                     skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
                 }
 			}
