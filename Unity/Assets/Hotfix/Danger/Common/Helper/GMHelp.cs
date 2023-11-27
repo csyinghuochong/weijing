@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -155,5 +156,9 @@ namespace ET
         }
 #endif
 
+        public static int GetRandomNumber()
+        {
+            return 2;
+        }
     }
 }
