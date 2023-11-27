@@ -122,7 +122,7 @@ namespace ET
             self.PetIdList.Clear();
             for (int i = 0; i < rankPetInfo.PetConfigId.Count; i++ )
             {
-                if (rankPetInfo.PetConfigId[i] == 0 || number>=3)
+                if (rankPetInfo.PetConfigId[i] == 0 || number>=5)
                 {
                     continue;
                 }
