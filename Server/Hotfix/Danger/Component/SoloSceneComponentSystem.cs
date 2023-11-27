@@ -95,7 +95,13 @@ namespace ET
             List<SoloPlayerResultInfo> soloPlayerList  = self.GetSoloResult();
             for (int i = 0; i < soloPlayerList.Count; i++)
             {
-                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{soloPlayerList[i].Occ}  战力:{soloPlayerList[i].Combat}";
+                long combat = 0;
+                if (self.AllPlayerDateList.ContainsKey(soloPlayerList[i].UnitId))
+                {
+                    combat = self.AllPlayerDateList[soloPlayerList[i].UnitId].Combat;
+                }
+
+                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{soloPlayerList[i].Occ}  战力:{combat}";
                 sololist.Add(soloInfo);
             }
 

@@ -75,6 +75,12 @@ namespace ET
             return ShowTimeDifferenceStr(dt1, dt2);
         }
 
+        public static int GetRandomNumber()
+        {
+            DateTime dt1 = TimeInfo.Instance.ToDateTime(ServerNow());
+            return dt1.Day % 3 + 2;
+        }
+
         public static string ShowLeftTime(long time)
         {
             string str = "";

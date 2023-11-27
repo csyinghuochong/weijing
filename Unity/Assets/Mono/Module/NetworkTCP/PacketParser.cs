@@ -20,8 +20,8 @@ namespace ET
 		public const int InnerPacketSizeLength = 4;
 		public const int OuterPacketSizeLength = 2;
 
-        public static int OuterPacketSizeLengthC = 4;
-        public static int OuterPacketSizeLengthS = 4;
+        public static int OuterPacketSizeLengthC = 2;
+        public static int OuterPacketSizeLengthS = 2;
 
         public MemoryStream MemoryStream;
 
