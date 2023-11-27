@@ -774,5 +774,14 @@ namespace ET
             public string PayMessage; 
             public Scene ZoneScene;
         }
+
+        public class TikTokShare : DisposeObject
+        {
+            public static readonly TikTokShare Instance = new TikTokShare();
+            public int ShareMode;
+            public List<string> ShareMessage;
+            public Action<int, bool> ShareHandler;
+            public Scene ZoneScene;
+        }
     }
 }

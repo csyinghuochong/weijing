@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using cn.sharesdk.unity3d;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -10,6 +11,7 @@ namespace ET
         public GameObject FenXiang_WeiXin;
         public GameObject FenXiang_QQ;
         public GameObject Button_AddQQ;
+        public GameObject FenXiang_TikTok;
         public string PopularizeCode;
 
         public int ShareType;
@@ -26,13 +28,29 @@ namespace ET
             self.FenXiang_WeiXin = rc.Get<GameObject>("FenXiang_WeiXin");
             self.FenXiang_QQ = rc.Get<GameObject>("FenXiang_QQ");
             self.Button_AddQQ = rc.Get<GameObject>("Button_AddQQ");
+            self.FenXiang_TikTok = rc.Get<GameObject>("FenXiang_TikTok");
 
+            if (GlobalHelp.GetPlatform() == 5)
+            {
+                self.FenXiang_TikTok.SetActive(true);
+                self.FenXiang_WeiXin.SetActive(false);
+                self.FenXiang_QQ.SetActive(false);
+            }
+            else
+            {
+                self.FenXiang_TikTok.SetActive(false);
+                self.FenXiang_WeiXin.SetActive(true);
+                self.FenXiang_QQ.SetActive(true);
+            }
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Share").gameObject, self.OnQQZone);
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Friend").gameObject, self.OnQQShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Share").gameObject, self.OnWeiXinShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Friend").gameObject, self.OnWeChatMoments);
             ButtonHelp.AddListenerEx(self.Button_support, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine(); });
             ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OpenAddQQ(); });
+
+            ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Share").gameObject, self.OnTikTokShare);
+            ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Friend").gameObject, self.OnTikTokShare);
 
             GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (int pType, bool value) => { self.OnShareHandler(pType, value).Coroutine(); };
             self.RequestPopularizeCode().Coroutine();
@@ -152,6 +170,20 @@ namespace ET
                 return;
             }
             self.FenXiangByType(2);
+        }
+
+        public static void OnTikTokShare(this UIFenXiangSetComponent self, int sharemode, bool sucess)
+        { 
+            
+        }
+
+        public static void OnTikTokShare(this UIFenXiangSetComponent self)
+        {
+            Log.ILog.Debug($"OnTikTokShare:");
+            EventType.TikTokShare.Instance.ZoneScene = self.ZoneScene();
+            EventType.TikTokShare.Instance.ShareHandler = self.OnTikTokShare;
+            EventType.TikTokShare.Instance.ShareMessage = new List<string>() { };
+            EventSystem.Instance.PublishClass(EventType.TikTokShare.Instance);
         }
     }
 }

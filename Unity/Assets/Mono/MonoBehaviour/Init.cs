@@ -15,6 +15,7 @@ using TapTap.Common;
 using TapTap.TapDB;
 using UnityEngine.Android;
 using cn.SMSSDK.Unity;
+using System.Collections.Generic;
 #endif
 
 namespace ET
@@ -247,6 +248,19 @@ namespace ET
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("TikTokPay", cpOrderId,amountInCent,  productId,productName, sdkParam);
+#else
+#endif
+        }
+
+        public void TikTokShareImage(List<string> strings)
+        {
+            if (this.Platform != 5)
+            {
+                return;
+            }
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("TikTokShareImage", strings);
 #else
 #endif
         }
