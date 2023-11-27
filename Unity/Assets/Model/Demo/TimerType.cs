@@ -93,6 +93,7 @@
         public const int TransferUITimer = 1106;
         public const int BuffScaleTimer = 1107;
         public const int MapTransferBossRefreshTimer = 1108;
+        public const int ShouLieUpLoadTimer = 1109;
         // 不能超过10000
     }
 }

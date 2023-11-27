@@ -5,12 +5,38 @@ using UnityEngine;
 namespace ET
 {
 
+    [Timer(TimerType.ShouLieUpLoadTimer)]
+    public class ShouLieUpLoadTimer : ATimer<UserInfoComponent>
+    {
+        public override void Run(UserInfoComponent self)
+        {
+            try
+            {
+                self.UpdateShowLie().Coroutine();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+
     [ObjectSystem]
-    public class UserInfoComponentAwakeSystem : AwakeSystem<UserInfoComponent>
+    public class UserInfoComponentAwake : AwakeSystem<UserInfoComponent>
     {
         public override void Awake(UserInfoComponent self)
         {
 
+        }
+    }
+
+    [ObjectSystem]
+    public class UserInfoComponentDestroy : DestroySystem<UserInfoComponent>
+    {
+        public override void Destroy(UserInfoComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.ShouLieUpLoadTimer);
         }
     }
 
@@ -269,23 +295,28 @@ namespace ET
         public static void OnShowLieKill(this UserInfoComponent self)
         {
             self.ShouLieKill++;
+
             long serverTime = TimeHelper.ServerNow();
-            if (serverTime - self.ShouLieSendTime < 10 * TimeHelper.Second)
+
+            if (self.ShouLieUpLoadTimer == 0)
             {
-                return;
+                self.ShouLieUpLoadTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5 * TimeHelper.Second, TimerType.ShouLieUpLoadTimer, self);
             }
-            self.ShouLieSendTime = serverTime;
-            self.UpdateShowLie().Coroutine();
+            else
+            {
+                self.UpdateShowLie().Coroutine();
+            }
         }
 
         public static async ETTask UpdateShowLie(this UserInfoComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.IsRobot())
+            if (!ActivityHelper.IsShowLieOpen() || unit.IsRobot())
             {
                 return;
             }
-           
+            self.ShouLieSendTime = TimeHelper.ServerNow();
+            TimerComponent.Instance.Remove(ref self.ShouLieUpLoadTimer);
             RankShouLieInfo rankPetInfo = new RankShouLieInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             rankPetInfo.UnitID = userInfoComponent.UserInfo.UserId;

@@ -1,4 +1,9 @@
-﻿namespace ET
+﻿#if SERVER
+using MongoDB.Bson.Serialization.Attributes;
+#endif
+
+
+namespace ET
 {
 
     public static class UserDataType
@@ -45,15 +50,12 @@
         public const int Max = 100;
     }
 
-    public class UserInfoComponent : Entity, IAwake, ITransfer, IUnitCache
+#if SERVER
+    public class UserInfoComponent : Entity, IAwake, IDestroy, ITransfer, IUnitCache
+#else
+     public class UserInfoComponent : Entity, IAwake
+#endif
     {
-        /// <summary>
-        /// 狩猎击杀野怪数量
-        /// </summary>
-        public int ShouLieKill;
-
-        public long ShouLieSendTime;
-
         /// <summary>
         /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
         /// </summary>
@@ -70,15 +72,27 @@
         public long TodayOnLine;
 
         public long LastJiaYuanExpTime = 0;
-
         public string RemoteAddress;
         public string DeviceName;
         public string UserName;
         public string Account;
         public UserInfo UserInfo = new UserInfo();
 #if SERVER
+
+        /// <summary>
+        /// 狩猎击杀野怪数量
+        /// </summary>
+        public int ShouLieKill;
+
+        public long ShouLieSendTime;
+
+        [BsonIgnore]
         public readonly M2C_RoleDataBroadcast m2C_RoleDataBroadcast  = new M2C_RoleDataBroadcast();
+        [BsonIgnore]
         public readonly M2C_RoleDataUpdate m2C_RoleDataUpdate = new M2C_RoleDataUpdate();
+
+        [BsonIgnore]
+        public long ShouLieUpLoadTimer;
 #endif
     }
 }

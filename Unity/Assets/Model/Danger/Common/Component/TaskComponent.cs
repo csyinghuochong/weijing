@@ -6,7 +6,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ET
 {
-    public  class TaskComponent: Entity, IAwake, ITransfer, IDestroy, IUnitCache, IDeserialize
+#if SERVER
+     public  class TaskComponent: Entity, IAwake, ITransfer, IDestroy, IUnitCache, IDeserialize
+#else
+    public class TaskComponent : Entity, IAwake
+#endif
     {
         public int OnLineTime = 0;
         public List<int> ReceiveHuoYueIds = new List<int>();
