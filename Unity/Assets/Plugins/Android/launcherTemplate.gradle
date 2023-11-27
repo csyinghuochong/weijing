@@ -160,7 +160,7 @@ gbsdk {
     appId '554726'     // 抖音游戏开放平台创建应用分配的 appId，格式为6位数字
     version '2.2.3.0'  // OSDK 的版本，如 2.2.3.0
     plugin true        // 固定填 true，使用插件版本的SDK组件
-    optionals (['applog', 'aweme', 'union'] as String[]) // 组件列表，这里以流水分账为示例
+    optionals (['applog', 'aweme', 'union', 'share'] as String[]) // 组件列表，这里以流水分账为示例
 }
 
 dependencies {
