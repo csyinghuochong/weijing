@@ -191,6 +191,7 @@ namespace ET
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;
+            self.ShouLieSendTime = 0;
         }
 
         public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)

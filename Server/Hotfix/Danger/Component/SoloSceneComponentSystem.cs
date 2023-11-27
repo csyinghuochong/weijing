@@ -258,7 +258,8 @@ namespace ET
         //添加玩家缓存
         public static void OnAddSoloDateList(this SoloSceneComponent self, long unitID , string name,int occ)
         {
-            if (!self.AllPlayerDateList.ContainsKey(unitID)) {
+            if (!self.AllPlayerDateList.ContainsKey(unitID)) 
+            {
                 SoloPlayerInfo soloPlayerInfo = new SoloPlayerInfo();
                 soloPlayerInfo.Name = name;
                 soloPlayerInfo.Occ = occ;
@@ -421,7 +422,9 @@ namespace ET
 
                 SoloPlayerResultInfo soloPlayerRes = new SoloPlayerResultInfo();
                 soloPlayerRes.Combat = self.PlayerIntegralList[unitId];
-                if (self.AllPlayerDateList.ContainsKey(unitId)) {
+                if (self.AllPlayerDateList.ContainsKey(unitId))
+                {
+                    soloPlayerRes.UnitId = unitId;  
                     soloPlayerRes.Name = self.AllPlayerDateList[unitId].Name;
                     soloPlayerRes.Occ = self.AllPlayerDateList[unitId].Occ;
                     soloPlayerRes.WinNum = self.AllPlayerDateList[unitId].WinNum;
