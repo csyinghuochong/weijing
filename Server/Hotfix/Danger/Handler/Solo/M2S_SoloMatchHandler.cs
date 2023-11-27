@@ -13,11 +13,18 @@ namespace ET
 
 
             //给当前solo场景加入匹配的玩家
-            response.Error = scene.GetComponent<SoloSceneComponent>().OnJoinMatch(request.SoloPlayerInfo);
+            SoloSceneComponent soloSceneComponent = scene.GetComponent<SoloSceneComponent>();
+
+            response.Error = soloSceneComponent.OnJoinMatch(request.SoloPlayerInfo);
 
 
             //添加数据缓存
-            scene.GetComponent<SoloSceneComponent>().OnAddSoloDateList(request.SoloPlayerInfo.UnitId, request.SoloPlayerInfo.Name, request.SoloPlayerInfo.Occ);
+            soloSceneComponent.OnAddSoloDateList(request.SoloPlayerInfo.UnitId, request.SoloPlayerInfo.Name, request.SoloPlayerInfo.Occ);
+
+            if (!soloSceneComponent.PlayerCombatList.ContainsKey(request.SoloPlayerInfo.UnitId))
+            {
+                soloSceneComponent.PlayerCombatList.Add(request.SoloPlayerInfo.UnitId, request.SoloPlayerInfo.Combat);
+            }
 
             reply();
             await ETTask.CompletedTask;
