@@ -24,6 +24,13 @@ namespace ET
             if (request.OperateType == 1)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
+
+                if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < itemConfig.UseLv)
+                {
+                    response.Error = ErrorCode.ERR_EquipLvLimit;
+                    reply();
+                    return;
+                }
                 if (itemConfig.ItemType != ItemTypeEnum.Equipment || itemConfig.EquipType != 201)
                 {
                     response.Error = ErrorCode.ERR_EquipType;
