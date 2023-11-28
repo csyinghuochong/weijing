@@ -35,7 +35,15 @@ namespace ET
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
             self.MainUnit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetMineBattle,1,0  );
             self.MainUnit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.PetMineCDTime, TimeHelper.ServerNow() + cdTime, 0);
+
+            self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MineBattleNumber_402, 0, 1);
             self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MineBattleNumber_402, 0, 1);
+            if (result == CombatResultEnum.Win)
+            {
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MineWinNumber_403, 0, 1);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MineWinNumber_403, 0, 1);
+            }
+
             await ETTask.CompletedTask;
         }
 

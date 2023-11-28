@@ -1116,9 +1116,7 @@ namespace ET
                     taskInfo.taskTargetNum_1 = targetValue;
                 }
                 else if (taskCountryTargetType == TaskCountryTargetType.PetNSkill_18
-                    || taskCountryTargetType == TaskCountryTargetType.PetFubenId_19
-                    || taskCountryTargetType == TaskCountryTargetType.MakeQulityNumber_29
-                    || taskCountryTargetType == TaskCountryTargetType.PetHeChengCombat_32)
+                    || taskCountryTargetType == TaskCountryTargetType.PetFubenId_19 )
                 {
                     if (taskCountryConfig.Target != targetTypeId)
                     {
@@ -1130,7 +1128,9 @@ namespace ET
                         taskInfo.taskTargetNum_1 = targetValue;
                     }
                 }
-                else if (taskCountryTargetType == TaskCountryTargetType.FuMoQulity_41
+                else if (taskCountryTargetType == TaskCountryTargetType.MakeQulityNumber_29
+                    || taskCountryTargetType == TaskCountryTargetType.PetHeChengCombat_32
+                    || taskCountryTargetType == TaskCountryTargetType.FuMoQulity_41
                     || taskCountryTargetType == TaskCountryTargetType.JianDingQulity_42
                     || taskCountryTargetType == TaskCountryTargetType.JianDingAttrNumber_43
                     || taskCountryTargetType == TaskCountryTargetType.XiLianSkillNumber_44)
