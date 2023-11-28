@@ -759,8 +759,8 @@ namespace ET
                 self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + 0 + langStr;
             }
 
-            //生效不显示
-            if (itemconf.ItemType == 3 && itemconf.EquipType == 101) {
+            //生肖和晶核不显示强化
+            if (itemconf.ItemType == 3 && (itemconf.EquipType == 101 || itemconf.EquipType == 201)) {
                 self.Obj_Lab_EquipQiangHua.SetActive(false);
             }
 

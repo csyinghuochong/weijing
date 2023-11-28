@@ -801,7 +801,7 @@ namespace ET
                         int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
                         if (showType == 2)
                         {
-                            attribute = $"当前附加 {proName}:" + hideProList.HideValue.ToString("0.##") + "%";
+                            attribute = $"当前附加 {proName}:" + (hideProList.HideValue / 100f).ToString("0.##") + "%";
                         }
                         else
                         {
@@ -824,8 +824,6 @@ namespace ET
                         properShowNum += 1;
                     }
                 }
-
-                return properShowNum;
             }
             
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);

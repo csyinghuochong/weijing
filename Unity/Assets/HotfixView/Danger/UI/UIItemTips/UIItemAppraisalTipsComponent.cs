@@ -389,7 +389,7 @@ namespace ET
                     {
                         float hidevaluemin = float.Parse(hidevalueinfo[1]);
                         float hidevalueman = float.Parse(hidevalueinfo[2]);
-                        attribute = $"当前附加 {proName}:" + (hidevaluemin * 10000).ToString("0.##") + "~" + (hidevalueman * 10000).ToString("0.##") +
+                        attribute = $"当前附加 {proName}:" + (hidevaluemin * 100).ToString("0.##") + "~" + (hidevalueman * 100).ToString("0.##") +
                                 "%\n";
                     }
                     else
