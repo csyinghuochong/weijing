@@ -69,6 +69,15 @@ namespace ET
             return string.Empty;
         }
 
+        public static string GetExpTip(long exp)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append("获得");
+            stringBuilder.Append(exp);
+            stringBuilder.Append("经验");
+            return stringBuilder.ToString();
+        }
+
         public static string GetFashionDefault(int occ, string asset) 
         {
             string stringpath = UnitFashionPath_1;
