@@ -120,6 +120,7 @@ namespace ET
 
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPasture_402, 0, 1);
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPasture_95, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanGatherPasture_95, 0, 1);
                         jiaYuanPasture.GatherNumber += 1;
                         jiaYuanPasture.StealNumber += 1;
                         jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();

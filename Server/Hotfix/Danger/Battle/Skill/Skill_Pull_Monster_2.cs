@@ -31,6 +31,54 @@ namespace ET
             this.OnUpdate();
         }
 
+        public void UpdatePullPlayer()
+        {
+            List<Unit> players = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(2f * this.SkillConf.DamgeRange[0]));
+            for (int i = players.Count - 1; i >= 0; i--)
+            {
+                Unit unit = players[i];
+                if (unit.Type != UnitType.Player)
+                {
+                    continue;
+                }
+
+                if (this.LastHurtTimes.ContainsKey(players[i].Id))
+                {
+                    continue;
+                }
+                this.LastHurtTimes.Add(players[i].Id, TimeHelper.ServerNow());
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = this.SkillConf.Id;
+                buffData_2.BuffId = 99002001;
+                unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
+                players[i].Stop(0);
+            }
+
+            List<long> removeIds = new List<long>();
+            foreach ((long uid, long time) in this.LastHurtTimes)
+            {
+                Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(uid);
+                if (unit == null)
+                {
+                    removeIds.Add(uid);
+                    continue;
+                }
+              
+                if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
+                {
+                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                    removeIds.Add(uid);
+                    continue;
+                }
+            }
+            for (int i = 0; i < removeIds.Count; i++)
+            {
+                this.LastHurtTimes.Remove(removeIds[i]);
+            }
+        }
+
         public void UpdatePullMonster()
         {
             List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(2f *this.SkillConf.DamgeRange[0]));
@@ -144,7 +192,13 @@ namespace ET
             move = Mathf.Min(dis, move);
             this.NowPosition = this.NowPosition + move * dir;
             this.NowPosition.y = this.TargetPosition.y + 0.5f;
+
             this.UpdatePullMonster();
+            if(this.SkillConf.GameObjectParameter == "1")
+            {
+                this.UpdatePullPlayer();
+            }
+
             this.UpdateCheckPoint(this.NowPosition);
             this.IsExcuteHurt = false;
             this.BaseOnUpdate();
