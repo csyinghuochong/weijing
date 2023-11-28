@@ -57,19 +57,17 @@ namespace ET
                 {
                     ui_1 = self.TrackTaskList[number];
                     ui_1.GameObject.SetActive(true);
-                    ui_1.OnUpdateItem(taskPros[i]);
+                 
                 }
                 else
                 {
                     GameObject item = GameObject.Instantiate(self.TaskShowItem);
                     item.SetActive(true);
                     UICommonHelper.SetParent(item, self.TaskShowList);
-
                     ui_1 = self.AddChild<UIMainTaskItemComponent, GameObject>( item);
-                    ui_1.OnUpdateItem(taskPros[i]);
-
                     self.TrackTaskList.Add(ui_1);
                 }
+                ui_1.OnUpdateItem(taskPros[i]);
                 number++;
             }
 

@@ -633,6 +633,12 @@ namespace ET
             self.UIRoleHead.UpdateShowRolePiLao();
         }
 
+        public static async ETTask UpdateTaskList(this UIMainComponent self)
+        {
+            await  NetHelper.RequestIniTask(self.ZoneScene());
+            self.OnRecvTaskUpdate();
+        }
+
         public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -655,6 +661,7 @@ namespace ET
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
                     self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
+                    self.UpdateTaskList().Coroutine();
                     break;
                 case UserDataType.Name:
                     self.UIRoleHead.UpdateShowRoleName();
