@@ -401,8 +401,6 @@ namespace ET
 			                    .GenerateFuben(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealArrived),
 				                    unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished));
 
-						unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TowerOfSeal_28, 0, 1 );
-                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TowerOfSeal_28, 0, 1);
                         break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());

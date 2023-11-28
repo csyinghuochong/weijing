@@ -134,6 +134,10 @@ namespace ET
             // 重置关卡
             towerOfSealComponent.GenerateFuben(numericComponent.GetAsInt(NumericType.TowerOfSealArrived),
                 numericComponent.GetAsInt(NumericType.TowerOfSealFinished));
+
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.TowerOfSeal_28, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TowerOfSeal_28, 0, 1);
+
             reply();
             await ETTask.CompletedTask;
         }
