@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Danger\Handler\Realm\" />
-    <Folder Include="Module\Console\Custom\" />
     <Folder Include="Module\Function\" />
   </ItemGroup>
   <ItemGroup>

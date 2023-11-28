@@ -98,7 +98,9 @@ namespace ET
                 long combat = 0;
                 self.PlayerCombatList.TryGetValue(soloPlayerList[i].UnitId, out combat);
 
-                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{soloPlayerList[i].Occ}  战力:{combat}";
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(soloPlayerList[i].Occ);
+
+                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{occupationConfig.OccupationName}  战力:{combat}";
                 sololist.Add(soloInfo);
             }
 

@@ -21,6 +21,7 @@ namespace ET
         public const string Combat = "combat";
         public const string ServerRank = "serverrank";
         public const string Watcher = "watcher";
+        public const string Level = "level";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad
