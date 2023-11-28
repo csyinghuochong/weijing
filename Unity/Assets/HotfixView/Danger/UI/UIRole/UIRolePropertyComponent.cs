@@ -9,6 +9,8 @@ namespace ET
 
     public class UIRolePropertyComponent : Entity, IAwake,IDestroy
     {
+        public GameObject ScrollView1;
+        public GameObject ScrollView2;
         public GameObject ImageBaoShiDu;
         public GameObject Text_BaoShiDu;
         public GameObject ButtonTiLi;
@@ -67,6 +69,8 @@ namespace ET
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(10);
             self.MaxPiLao = int.Parse(globalValueConfig.Value);
 
+            self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
+            self.ScrollView2 = rc.Get<GameObject>("ScrollView2");
             self.Text_BaoShiDu = rc.Get<GameObject>("Text_BaoShiDu");
             self.ImageBaoShiDu = rc.Get<GameObject>("ImageBaoShiDu");
             self.Text_PiLao = rc.Get<GameObject>("Text_PiLao");
@@ -410,8 +414,11 @@ namespace ET
 
                 if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
                 {
-                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType],rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnBeginDrag(pdata,self.ScrollView1); }, EventTriggerType.BeginDrag);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnDraging(pdata,self.ScrollView1); }, EventTriggerType.Drag);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnEndDrag(pdata,self.ScrollView1); }, EventTriggerType.EndDrag);
                 }
                 
                 //显示图标
@@ -508,8 +515,11 @@ namespace ET
                 }
                 if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
                 {
-                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType],rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnBeginDrag(pdata,self.ScrollView2); }, EventTriggerType.BeginDrag);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnDraging(pdata,self.ScrollView2); }, EventTriggerType.Drag);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnEndDrag(pdata,self.ScrollView2); }, EventTriggerType.EndDrag);
                 }
             }
 
@@ -541,11 +551,6 @@ namespace ET
                             rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString() + "%";
                         }
                     }
-                    if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
-                    {
-                        ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType]).Coroutine(); }, EventTriggerType.PointerDown);
-                        ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
-                    }
                 }
             }
 
@@ -557,7 +562,7 @@ namespace ET
 
         }
 
-        public static async ETTask OnPointerDown(this UIRolePropertyComponent self, PointerEventData pdata, string name ,string des)
+        public static async ETTask OnPointerDown(this UIRolePropertyComponent self, PointerEventData pdata, string name ,string des,GameObject go)
         {
             UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UIPropertyHint);
             if (self.IsDisposed)
@@ -576,6 +581,22 @@ namespace ET
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIPropertyHint);
         }
-	}
+
+        public static void OnBeginDrag(this UIRolePropertyComponent self, PointerEventData pdata, GameObject go)
+        {
+            UIHelper.Remove(self.DomainScene(), UIType.UIPropertyHint);
+            go.GetComponent<ScrollRect>().OnBeginDrag(pdata);
+        }
+
+        public static void OnDraging(this UIRolePropertyComponent self, PointerEventData pdata, GameObject go)
+        {
+            go.GetComponent<ScrollRect>().OnDrag(pdata);
+        }
+
+        public static void OnEndDrag(this UIRolePropertyComponent self, PointerEventData pdata, GameObject go)
+        {
+            go.GetComponent<ScrollRect>().OnEndDrag(pdata);
+        }
+    }
 
 }

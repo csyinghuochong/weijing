@@ -8538,6 +8538,10 @@ MonoBehaviour:
     gameObject: {fileID: 1033683863663332678}
   - key: ButtonBaoShi
     gameObject: {fileID: 5882340284023938581}
+  - key: ScrollView2
+    gameObject: {fileID: 83217852418138520}
+  - key: ScrollView1
+    gameObject: {fileID: 6386756420934908671}
 --- !u!1 &6770916700336806838
 GameObject:
   m_ObjectHideFlags: 0
