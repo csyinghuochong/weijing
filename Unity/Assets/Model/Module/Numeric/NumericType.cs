@@ -149,6 +149,7 @@
         public const int PetMineReset = 3149;
         public const int PetPinFen = 3150;
         public const int TrialRankId = 3151;
+        public const int SeasonTask = 3152;
 
 
         public const int Max = 10000;

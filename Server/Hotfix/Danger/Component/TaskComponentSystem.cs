@@ -509,10 +509,10 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.Season)
             {
-                int nextTask = taskid + 1;
-                if (TaskConfigCategory.Instance.Contain(nextTask) && TaskConfigCategory.Instance.Get(nextTask).TaskType == TaskTypeEnum.Season)
+                numericComponent.ApplyValue(NumericType.SeasonTask, taskid);
+                if (TaskConfigCategory.Instance.Contain(taskid + 1) && TaskConfigCategory.Instance.Get(taskid + 1).TaskType == TaskTypeEnum.Season)
                 {
-                    self.OnAcceptedTask(nextTask);
+                    self.OnAcceptedTask(taskid + 1);
 
                     M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
                     m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
@@ -876,7 +876,7 @@ namespace ET
 
             if (SeasonHelper.IsOpenSeason())
             {
-                self.CheckSeasonMainTask();
+                self.InitSeasonMainTask();
             }
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1001, 0, 1, false );
@@ -1212,7 +1212,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
         }
 
-        public static void CheckSeasonMainTask(this TaskComponent self)
+        public static void InitSeasonMainTask(this TaskComponent self)
         {
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
@@ -1229,17 +1229,15 @@ namespace ET
                 return;
             }
 
-            int seasonTaskid = 0;
+            int curTakskid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTask);
             foreach ( ( int taskid, TaskConfig taskcofnig ) in TaskConfigCategory.Instance.GetAll())
             {
-                if (taskcofnig.TaskType == TaskTypeEnum.Season)
+                if (taskcofnig.TaskType == TaskTypeEnum.Season && taskid > curTakskid)
                 {
-                    seasonTaskid = taskid;
+                    self.OnAcceptedTask(taskid);
                     break;   
                 }
             }
-
-            self.OnAcceptedTask(seasonTaskid);
         }
 
         public static void UpdateTargetTask(this TaskComponent self, bool notice)

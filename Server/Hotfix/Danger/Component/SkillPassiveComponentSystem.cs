@@ -571,6 +571,7 @@ namespace ET
                     case SkillPassiveTypeEnum.AckDistance_10:
                     case SkillPassiveTypeEnum.IdleStill_14:
                     case SkillPassiveTypeEnum.EquipIndex_15:
+                    case SkillPassiveTypeEnum.AllSkill_17:
                         trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:
