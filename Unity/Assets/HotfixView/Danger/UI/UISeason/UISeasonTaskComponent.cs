@@ -124,11 +124,6 @@ namespace ET
                         });
                         rc.Get<GameObject>("Text").GetComponent<Text>().text = taskConfig.TaskName;
 
-                        if (taskConfig.Id == self.TaskPro.taskID)
-                        {
-                            self.UpdateInfo(self.TaskPro.taskID, index1);
-                        }
-
                         if (index / 2 % 2 == 0)
                         {
                             dre = 1;
@@ -153,6 +148,7 @@ namespace ET
                     }
                 }
 
+                self.UpdateInfo(self.TaskPro.taskID, index - 1);
                 // 尾巴隐藏
                 if (self.UISeasonTaskItemList.Count > 0)
                 {
@@ -269,9 +265,9 @@ namespace ET
                 UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             }
 
-            for (int i = 0; i < self.SeasonTaskListNode.transform.childCount; i++)
+            for (int i = 0; i < self.UISeasonTaskItemList.Count; i++)
             {
-                self.SeasonTaskListNode.transform.GetChild(i).GetComponent<ReferenceCollector>().Get<GameObject>("ScelectImg").SetActive(i == index);
+                self.UISeasonTaskItemList[i].GetComponent<ReferenceCollector>().Get<GameObject>("ScelectImg").SetActive(i == index);
             }
         }
 
