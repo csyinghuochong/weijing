@@ -551,6 +551,8 @@ namespace ET
         public static void OnPetXiLian(this TaskComponent self, RolePetInfo rolePetInfo)
         {
             self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
+
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PetXiLian_1007, 0, 1);
         }
 
@@ -566,6 +568,8 @@ namespace ET
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PetNumber2_24, 0, 1);
 
             self.TriggerTaskEvent(TaskTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.PetNSkill_18, 0, rolePetInfo.PetSkill.Count);
+
             self.TriggerTaskCountryEvent(TaskCountryTargetType.GetPet_1008, 0, 1);
 
             int combat = PetHelper.PetPingJia(rolePetInfo);
