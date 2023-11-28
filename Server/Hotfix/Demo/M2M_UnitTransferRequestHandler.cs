@@ -336,31 +336,36 @@ namespace ET
 						{
 							TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
 							int fubenType = teamDungeonComponent.FubenType;
-							if (fubenType == TeamFubenType.XieZhu && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
+							bool firstEnter = !teamDungeonComponent.EnterPlayers.Contains(unit.Id);
+							if (firstEnter)
 							{
-								int times_2 = unit.GetTeamDungeonXieZhu();
-								int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-								if (totalTimes_2 > times_2)
-								{
-									unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
-								}
-								else
-								{
-									unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
-								}
-							}
-							else
-							{
-								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
-							}
-							if (fubenType == TeamFubenType.ShenYuan && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
-							{
-								unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
-							}
-							if (fubenType == TeamFubenType.ShenYuan)
-							{
-								unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.ShenYuanNumber_135, 0, 1);
-                                unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.ShenYuanNumber_135, 0, 1);
+                                teamDungeonComponent.EnterPlayers.Add(unit.Id);
+                                if (fubenType == TeamFubenType.XieZhu && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
+                                {
+                                    int times_2 = unit.GetTeamDungeonXieZhu();
+                                    int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                                    if (totalTimes_2 > times_2)
+                                    {
+                                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
+                                    }
+                                    else
+                                    {
+                                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+                                    }
+                                }
+                                else
+                                {
+                                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+                                }
+                                if (fubenType == TeamFubenType.ShenYuan && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
+                                {
+                                    unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
+                                }
+                                if (fubenType == TeamFubenType.ShenYuan)
+                                {
+                                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.ShenYuanNumber_135, 0, 1);
+                                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.ShenYuanNumber_135, 0, 1);
+                                }
                             }
                         }
 						if (request.SceneType == (int)SceneTypeEnum.Tower)

@@ -17,8 +17,11 @@ namespace ET
         public int FubenType;
         public long EnterTime;
         public TeamInfo TeamInfo;
-        public Dictionary<long, TeamPlayerInfo> TeamPlayers = new Dictionary<long, TeamPlayerInfo>();
 
+        public List<long> EnterPlayers = new List<long> { };    
+
+        public Dictionary<long, TeamPlayerInfo> TeamPlayers = new Dictionary<long, TeamPlayerInfo>();
+       
         public List<int> BoxReward = new List<int>();
         public List<int> KillBossList = new List<int>();
         public List<TeamDropItem> TeamDropItems = new List<TeamDropItem>();
