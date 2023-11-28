@@ -743,7 +743,7 @@ namespace ET
                 }
 
                 self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
-                self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonsterID_1, 0, 1);
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonsterID_1, unitconfigId, 1);
 
                 self.TriggerTaskEvent(TaskTargetType.KillMonster_5, 0, 1);
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonster_5, 0, 1);
@@ -1100,6 +1100,10 @@ namespace ET
                     continue;
                 }
 
+                if (targetType == TaskCountryTargetType.ItemID_Number_2)
+                {
+                    targetValue = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskCountryConfig.Target);
+                }
                 updateTask = true;
                 if (taskCountryTargetType == TaskCountryTargetType.PlayerLv_4
                     || taskCountryTargetType == TaskCountryTargetType.QiangHuaLevel_17)
