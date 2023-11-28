@@ -365,7 +365,15 @@ namespace ET
             {
                 self.ItemDes.SetActive(false);
                 self.Lab_ItemJingHeQuality.SetActive(true);
-                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"当前品质:{baginfo.ItemPar}";
+                int qua = 1;
+                int nowQua = int.Parse(baginfo.ItemPar);
+                qua = (int)(nowQua / 20) + 1;
+                if (qua >= 5) {
+                    qua = 5;
+                }
+                string colorValue = ComHelp.QualityReturnColorUI(qua);
+                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"<color=#{colorValue}>当前品质:{baginfo.ItemPar}</color>";
+                //self.Lab_ItemJingHeQuality.AddComponent<Outline>();
                 // 属性显示itemConfig.ItemUsePar
                 string attribute = "";
                 string[] parmainfos = itemconf.ItemUsePar.Split('@');
