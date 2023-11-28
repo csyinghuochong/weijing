@@ -139,7 +139,7 @@ namespace ET
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
             // 更新角色属性
-            // Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
 
             reply();
             await ETTask.CompletedTask;
