@@ -74,7 +74,7 @@ namespace ET
                 ///equiplist[i].EquipPlan; 第几套晶核
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && itemConfig.ItemSubType == 2000 + self.JingHeId)
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && equiplist[i].EquipIndex == self.JingHeId)
                 {
                     self.IconImg.SetActive(true);
                     string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);

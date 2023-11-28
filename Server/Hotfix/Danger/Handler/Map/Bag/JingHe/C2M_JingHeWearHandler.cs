@@ -8,6 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JingHeWearRequest request, M2C_JingHeWearResponse response, Action reply)
         {
+            int equipIndex = int.Parse(request.OperatePar);
             ItemLocType locType = request.OperateType == 1 ? ItemLocType.ItemLocBag : ItemLocType.SeasonJingHe;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             BagInfo useBagInfo = bagComponent.GetItemByLoc(locType, request.OperateBagID);
@@ -20,7 +21,6 @@ namespace ET
 
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-
             if (request.OperateType == 1)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
@@ -30,13 +30,21 @@ namespace ET
                     reply();
                     return;
                 }
+                if (bagComponent.IsEquipJingHe(useBagInfo.ItemID))
+                {
+                    response.Error = ErrorCode.ERR_EquipType;
+                    reply();
+                    return;
+                }
 
                 //穿戴 获取当前位置是否有装备
-                BagInfo beforeequip = bagComponent.GetJingHeByWeiZhi(itemConfig.ItemSubType);
+                BagInfo beforeequip = bagComponent.GetJingHeByWeiZhi(equipIndex);
                 if (beforeequip != null)
                 {
                     beforeequip.EquipPlan = 0;
+                    beforeequip.EquipIndex = 0;
                     useBagInfo.EquipPlan = bagComponent.SeasonJingHePlan;
+                    useBagInfo.EquipIndex = equipIndex;
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(beforeequip, ItemLocType.ItemLocBag, ItemLocType.SeasonJingHe);
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.SeasonJingHe, ItemLocType.ItemLocBag);
 
@@ -47,6 +55,7 @@ namespace ET
                 else
                 {
                     useBagInfo.EquipPlan = bagComponent.SeasonJingHePlan;
+                    useBagInfo.EquipIndex = equipIndex;
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.SeasonJingHe, ItemLocType.ItemLocBag);
                     unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
                 }

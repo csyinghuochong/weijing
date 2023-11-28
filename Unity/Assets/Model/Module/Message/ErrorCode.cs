@@ -98,6 +98,7 @@ namespace ET
         public const int ERR_GemNoError = 300309;                                   //道具使用失败
         public const int ERR_GemShiShiNumFull = 300310;                             //镶嵌史诗宝石达到上限
         public const int ERR_UnionChatLimit = 300311;
+        public const int ERR_EquipRepeat = 300312;                                    //装备类型不符
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满

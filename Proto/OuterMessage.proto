@@ -792,6 +792,7 @@ message BagInfo
 	repeated HideProList IncreaseProLists = 24; // 增幅属性
 	repeated int32 IncreaseSkillLists = 25; // 增幅技能
 	int EquipPlan = 26;
+	int EquipIndex = 27; 
 }
 
 message HideProList

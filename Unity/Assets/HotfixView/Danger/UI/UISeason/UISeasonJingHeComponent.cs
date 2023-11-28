@@ -127,7 +127,7 @@ namespace ET
             // 更新孔位信息
             self.JingHeId = jingHeId;
 
-            self.TakeOffBtn.SetActive(self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(jingHeId + 2000) != null);
+            self.TakeOffBtn.SetActive(self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(jingHeId) != null);
 
             foreach (UISeasonJingHeItemComponent uiSeasonJingHeItemComponent in self.UISeasonJingHeItemComponentList)
             {
@@ -215,8 +215,7 @@ namespace ET
                 for (int i = 0; i < bagInfos.Count; i++)
                 {
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                    if (bagInfos[i].IfJianDing == false && itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 &&
-                        itemConfig.ItemSubType == 2000 + self.JingHeId)
+                    if (bagInfos[i].IfJianDing == false && itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 )
                     {
                         UIItemComponent uI = null;
                         if (number < self.ItemList.Count)
@@ -306,7 +305,7 @@ namespace ET
         /// <returns></returns>
         public static async ETTask OnTakeOffBtn(this UISeasonJingHeComponent self)
         {
-            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(self.JingHeId + 2000);
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(self.JingHeId);
             if (bagInfo == null)
             {
                 return;
@@ -325,8 +324,7 @@ namespace ET
         public static async ETTask OnEquipBtn(this UISeasonJingHeComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-
-            if (self.BagInfo == null)
+            if (self.BagInfo == null || self.JingHeId == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("未选择道具！");
                 return;
@@ -335,7 +333,7 @@ namespace ET
             //装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType = 201  ItemSubType2001 +
             int page = 0;
 
-            await bagComponent.SendWearJingHe(self.BagInfo, 1, page.ToString());
+            await bagComponent.SendWearJingHe(self.BagInfo, 1, self.JingHeId.ToString());
             self.BagInfo = null;
             self.UpdateInfo(self.JingHeId).Coroutine();
         }

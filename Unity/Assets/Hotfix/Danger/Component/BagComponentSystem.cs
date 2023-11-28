@@ -880,13 +880,25 @@ namespace ET
             return bagInfos;
         }
 
+        public static bool IsEquipJingHe(this BagComponent self, int itemId)
+        {
+            List<BagInfo> bagInfos = self.GetCurJingHeList();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                if (bagInfos[i].ItemID == itemId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static BagInfo GetJingHeByWeiZhi(this BagComponent self, int subType)
         {
             List<BagInfo> bagInfos = self.GetCurJingHeList();
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemSubType == subType)
+                if (bagInfos[i].EquipIndex == subType)
                 {
                     return bagInfos[i];
                 }

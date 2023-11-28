@@ -85,6 +85,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_MakeTypeError, "制作类型不符!");
             ErrorHintList.Add(ErrorCode.ERR_ZhuaBuFail, "抓捕失败!");
             ErrorHintList.Add(ErrorCode.ERR_UnionChatLimit, "发消息太频繁 5秒1次");
+            ErrorHintList.Add(ErrorCode.ERR_EquipRepeat, "已经有相同类型的装备");
             
             ErrorHintList.Add(ErrorCode.ERR_CreateRoleName, "角色名非法!");
             ErrorHintList.Add(ErrorCode.ERR_RoleNameRepeat, "角色名重复!");

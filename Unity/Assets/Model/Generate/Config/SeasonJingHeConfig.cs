@@ -78,14 +78,11 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>对应装备子类型</summary>
-		[ProtoMember(2)]
-		public int EquopSubType { get; set; }
 		/// <summary>开启消耗</summary>
-		[ProtoMember(3)]
+		[ProtoMember(2)]
 		public string Cost { get; set; }
 		/// <summary>额外属性</summary>
-		[ProtoMember(4)]
+		[ProtoMember(3)]
 		public string AddProperty { get; set; }
 
 	}
