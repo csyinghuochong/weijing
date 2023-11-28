@@ -806,7 +806,9 @@ namespace ET
             { NumericType.Now_MageDamgeAddPro, "使用魔法攻击目标时额外造成的伤害" },
             { NumericType.Now_ShenNongPro, "使用药剂和技能为自身恢复生命值时,可以获得额外恢复的能力" },
             { NumericType.Now_ActDamgeSubPro, "受到物理伤害可以降低自身受到的伤害值" },
-            { NumericType.Now_HuiXue, "战斗中提升额外的生命恢复" }
+            { NumericType.Now_HuiXue, "战斗中提升额外的生命恢复" },
+            { NumericType.Now_HuShiAdf, "攻击中降低敌人魔法防御值固定值" },
+            { NumericType.Now_Luck, "当幸运达到10点时,你将刀刀发挥最高攻击!" }
         };
         
         
