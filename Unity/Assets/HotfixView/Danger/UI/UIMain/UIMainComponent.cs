@@ -624,8 +624,11 @@ namespace ET
 
         public static void OnUpdateUserDataExp(this UIMainComponent self, string updateType, long updateValue)
         {
-            FloatTipManager.Instance.ShowFloatTip(StringBuilderHelper.GetExpTip(updateValue));
-            self.UpdateShowRoleExp();
+            if (updateType != 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(StringBuilderHelper.GetExpTip(updateValue));
+                self.UpdateShowRoleExp();
+            }
         }
 
         public static void OnUpdateUserDataPiLao(this UIMainComponent self, string updateType, long updateValue)

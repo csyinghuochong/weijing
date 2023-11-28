@@ -192,7 +192,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 离开副本
+        /// 玩家离线， unit已经移除了
         /// </summary>
         /// <param name="self"></param>
         /// <param name="unitId"></param>
