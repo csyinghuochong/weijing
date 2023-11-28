@@ -533,7 +533,7 @@ namespace ET
         public static void OnChangeOccTwo(this TaskComponent self)
         {
             self.TriggerTaskEvent(TaskTargetType.ChangeOcc_8, 0, 1);
-            self.TriggerTaskCountryEvent(TaskCountryTargetType.ChangeOcc_8, chapterid, 1);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.ChangeOcc_8, 0, 1);
         }
 
         /// <summary>
