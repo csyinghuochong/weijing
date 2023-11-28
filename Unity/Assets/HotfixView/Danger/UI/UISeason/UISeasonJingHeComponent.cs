@@ -305,13 +305,17 @@ namespace ET
         /// <returns></returns>
         public static async ETTask OnTakeOffBtn(this UISeasonJingHeComponent self)
         {
+            if (self.JingHeId == 0)
+            {
+                return;
+            }
             BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(self.JingHeId);
             if (bagInfo == null)
             {
                 return;
             }
 
-            C2M_JingHeWearRequest request = new C2M_JingHeWearRequest() { OperateBagID = bagInfo.BagInfoID, OperateType = 2 };
+            C2M_JingHeWearRequest request = new C2M_JingHeWearRequest() { OperateBagID = bagInfo.BagInfoID, OperateType = 2, OperatePar= self.JingHeId.ToString() };
             M2C_JingHeWearResponse response = (M2C_JingHeWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (self.InstanceId == 0)
             {
