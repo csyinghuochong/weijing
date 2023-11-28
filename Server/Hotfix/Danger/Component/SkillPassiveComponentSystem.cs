@@ -496,10 +496,16 @@ namespace ET
             using ListComponent<SkillPassiveInfo> skillPassiveInfos = ListComponent<SkillPassiveInfo>.Create();
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
-                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == (int)skillPassiveTypeEnum)
+                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum != (int)skillPassiveTypeEnum)
                 {
-                    skillPassiveInfos.Add(self.SkillPassiveInfos[i]);
+                    continue;
                 }
+                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.AckNumber_16)
+                {
+                    self.SkillPassiveInfos[i].TriggerNumber++;
+                }
+
+                skillPassiveInfos.Add(self.SkillPassiveInfos[i]);
             }
             if (skillPassiveInfos.Count == 0)
             {
@@ -569,6 +575,13 @@ namespace ET
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:
                         trigger = true;
+                        break;
+                    case SkillPassiveTypeEnum.AckNumber_16:
+                        trigger = skillIfo.TriggerNumber >= skillIfo.SkillPro;
+                        if (trigger)
+                        {
+                            skillIfo.TriggerNumber = 0;
+                        }
                         break;
                 }
                 if (!trigger)

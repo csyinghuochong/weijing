@@ -10,7 +10,7 @@ namespace ET
         public int TriggerOnce;                 //是否触发一次
         public long TriggerInterval;           //触发间隔
         public long LastTriggerTime;            //上次触发时间
-
+        public int TriggerNumber;
 
         public SkillPassiveInfo(int skillPassiveTypeEnum, int skillId, float skillPro, int triggerOnce, double triggerTime)
         {
@@ -42,5 +42,6 @@ namespace ET
 
         public SkillPassiveInfo SingSkillIfo;
         public long SingTargetId = 0;
+
     }
 }

@@ -34,6 +34,9 @@ namespace ET
     //12: 自己或队友进入地图时触发
     //13: 触发眩晕效果时触发
     //14：站立不动触发
+    //15: 切换装备
+    //16: 普攻攻击次数触发
+    //17: 普攻+释放技能触发
 
 
     public static class SkillPassiveTypeEnum
@@ -54,6 +57,8 @@ namespace ET
         public const int Dizziness_13 = 13;
         public const int IdleStill_14 = 14;
         public const int EquipIndex_15 = 15;
+        public const int AckNumber_16 = 16;
+        public const int AllSkill_17 = 17;
     }
 
     //1：主动技能
