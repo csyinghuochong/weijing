@@ -122,6 +122,8 @@ namespace ET
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.MakeNumber_216, 0, 1);
                 unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.MakeNumber_12, 0 , 1);
                 unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MakeQulityNumber_29, itemConfig.ItemQuality, 1);
+
+                unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MakeNumber_12, 0, 1);
             }
 
             reply();

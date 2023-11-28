@@ -33,6 +33,7 @@ namespace ET
             };
 
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanPlantNumber_92, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanPlantNumber_92, 0, 1);
 
             jianYuanComponent.JianYuanPlantList_7.Add(jiaYuanPlant);
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);

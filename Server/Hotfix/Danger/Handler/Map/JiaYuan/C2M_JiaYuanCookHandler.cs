@@ -111,8 +111,9 @@ namespace ET
             response.ItemId = getItemid;
             DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanCooking_403, 0, 1);
-            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanCook_18, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanCook_1018, 0, 1);
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanCookNumber_91, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanCookNumber_91, 0, 1);
             reply();
             await ETTask.CompletedTask;
         }

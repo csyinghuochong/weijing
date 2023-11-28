@@ -112,6 +112,7 @@ namespace ET
             }
 
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.IncreaseNumber_46, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.IncreaseNumber_46, 0, 1);
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变

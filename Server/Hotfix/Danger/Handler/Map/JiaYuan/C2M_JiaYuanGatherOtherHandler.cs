@@ -74,6 +74,7 @@ namespace ET
                         unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPlant_401, 0, 1);
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanGatherPlant_93, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanGatherPlant_93, 0, 1);
                         jiaYuanPlan.GatherNumber += 1;
                         jiaYuanPlan.StealNumber += 1;
                         jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();

@@ -41,6 +41,7 @@ namespace ET
             MessageHelper.SendToClient(players[0], m2C_FubenSettlement);
 
             players[0].GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
+            players[0].GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
         }
 
         public static async ETTask UploadHurtValue(this TrialDungeonComponent self)

@@ -388,10 +388,12 @@ namespace ET
                                 if (itemConfig.ItemQuality == 4)
                                 {
                                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.TreasureMapNormal_26, 0, 1);
+                                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TreasureMapNormal_26, 0, 1);
                                 }
                                 if (itemConfig.ItemQuality == 5)
                                 {
                                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.TreasureMapHigh_27, 0, 1);
+                                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TreasureMapHigh_27, 0, 1);
                                 }
 
                                 break;
@@ -667,8 +669,11 @@ namespace ET
                         {
                             //道具鉴定，扣除道具
                             ItemConfig costitemconfig = ItemConfigCategory.Instance.Get(baginfoCost.ItemID);
+
                             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingQulity_42, costitemconfig.ItemQuality, 1);
-                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_17, 0, 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingQulity_42, costitemconfig.ItemQuality, 1);
+
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_1017, 0, 1);
                             qulitylv = baginfoCost.ItemPar;
                             qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
                             ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId, 1);
@@ -700,6 +705,7 @@ namespace ET
                             }
 
                             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingAttrNumber_43, useBagInfo.HideSkillLists.Count, 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingAttrNumber_43, useBagInfo.HideSkillLists.Count, 1);
 
                             string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
                             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
