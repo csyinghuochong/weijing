@@ -251,14 +251,10 @@ namespace ET
             {
                 // 已经完成
                 if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
-                    taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
+                    taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                    taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43)
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
-                }
-                else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43)
-                {
-                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                            $"{taskConfig.TargetValue[1]}/{taskConfig.TargetValue[1]}";
                 }
                 else
                 {
@@ -279,14 +275,8 @@ namespace ET
                     self.GetBtn.SetActive(false);
                     self.GiveBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                 }
-                else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43)
-                {
-                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                            $"{self.TaskPro.taskTargetNum_2}/{taskConfig.TargetValue[1]}";
-                    self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
-                    self.GiveBtn.SetActive(false);
-                }
-                else if (taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
+                else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                         taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
                 {
                     if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
                     {
