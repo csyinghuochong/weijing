@@ -41,7 +41,7 @@ namespace ET
             //吟唱进度
             float singingvalue = 1;
             //蓄力技能计算伤害
-            if (skillconfig.SkillType == 1 && skillconfig.PassiveSkillType == 2)
+            if (skillconfig.SkillType == 1 && SkillHelp.havePassiveSkillType(skillconfig.PassiveSkillType,2))
             {
                 singingvalue = skillHandler.SkillInfo.SingValue;
                 if (singingvalue < 0.3f) {

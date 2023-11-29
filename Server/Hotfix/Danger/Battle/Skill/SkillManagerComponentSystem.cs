@@ -550,7 +550,7 @@ namespace ET
             }
             else
             {
-                if (weaponConfig.SkillType == 1 && weaponConfig.PassiveSkillType == 1)
+                if (weaponConfig.SkillType == 1 && SkillHelp.havePassiveSkillType(weaponConfig.PassiveSkillType, 1))
                 {
                     return null;
                 }

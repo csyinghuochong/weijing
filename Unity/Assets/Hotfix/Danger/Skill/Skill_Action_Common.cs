@@ -10,7 +10,7 @@
             this.BaseOnInit(skillId, theUnitFrom);
             this.OnExecute();
 
-            if (theUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
+            if (theUnitFrom.MainHero && this.SkillConf.SkillType == 1 && SkillHelp.havePassiveSkillType(this.SkillConf.PassiveSkillType, 1))
             {
                 EventType.DataUpdate.Instance.DataType = DataType.SkillBeging;
                 EventType.DataUpdate.Instance.DataParamString = this.SkillConf.Id.ToString();
@@ -32,7 +32,7 @@
 
         public override void OnFinished()
         {
-            if (this.TheUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
+            if (this.TheUnitFrom.MainHero && this.SkillConf.SkillType == 1 && SkillHelp.havePassiveSkillType(this.SkillConf.PassiveSkillType, 1))
             {
                 EventType.DataUpdate.Instance.DataType = DataType.SkillFinish;
                 EventType.DataUpdate.Instance.DataParamString = this.SkillConf.Id.ToString();

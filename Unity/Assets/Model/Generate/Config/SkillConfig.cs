@@ -113,10 +113,10 @@ namespace ET
 		public int SkillType { get; set; }
 		/// <summary>被动技能触发类型</summary>
 		[ProtoMember(13)]
-		public int PassiveSkillType { get; set; }
+		public int[] PassiveSkillType { get; set; }
 		/// <summary>被动技能触发参数</summary>
 		[ProtoMember(14)]
-		public double PassiveSkillPro { get; set; }
+		public double[] PassiveSkillPro { get; set; }
 		/// <summary>被动技能触发一次</summary>
 		[ProtoMember(15)]
 		public int PassiveSkillTriggerOnce { get; set; }

@@ -4,18 +4,18 @@ namespace ET
 {
     public class SkillPassiveInfo
     {
-        public int SkillPassiveTypeEnum;
         public int SkillId;
-        public float SkillPro;                  //触发概率或者血量百分比
+        public List<int> SkillPassiveTypeEnum;
+        public List<float> SkillPro;                  //触发概率或者血量百分比
         public int TriggerOnce;                 //是否触发一次
         public long TriggerInterval;           //触发间隔
         public long LastTriggerTime;            //上次触发时间
         public int TriggerNumber;
 
-        public SkillPassiveInfo(int skillPassiveTypeEnum, int skillId, float skillPro, int triggerOnce, double triggerTime)
+        public SkillPassiveInfo(int skillId, List<int> skillPassiveTypeEnum, List<float> skillPro, int triggerOnce, double triggerTime)
         {
-            this.SkillPassiveTypeEnum = skillPassiveTypeEnum;
             this.SkillId = skillId;
+            this.SkillPassiveTypeEnum = skillPassiveTypeEnum;
             this.SkillPro = skillPro;
             this.TriggerOnce = triggerOnce;
             this.TriggerInterval = (long)(1000 * triggerTime);

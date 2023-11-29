@@ -137,7 +137,7 @@ namespace ET
             {
                 return;
             }
-            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            if (skillConfig.SkillFrontSingTime > 0f && SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 2))
             {
                 float sinValue = (float)((0.001f * passTime) / (float)skillConfig.SkillFrontSingTime);
                 sinValue = Math.Min(sinValue, 1f);
@@ -185,7 +185,7 @@ namespace ET
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.SendUpdateState(1, StateTypeEnum.Singing, $"{c2M_SkillCmd.SkillID}_0");
 
-            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            if (skillConfig.SkillFrontSingTime > 0f && SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 2))
             {
                 self.PlayerXuLiEffect();
 
@@ -224,7 +224,7 @@ namespace ET
         public static void ResetEffect(this SingingComponent self)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.c2M_SkillCmd.SkillID);
-            if (self.EffectInstanceId != 0 && skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            if (self.EffectInstanceId != 0 && skillConfig.SkillFrontSingTime > 0f && SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 2))
             {
                 //镜头回位
                 EventType.ChangeCameraMoveType.Instance.CameraType = 5;

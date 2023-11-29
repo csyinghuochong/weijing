@@ -108,7 +108,7 @@ namespace ET
             {
                 for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
                 {
-                    if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.XueLiang_2)
+                    if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains( SkillPassiveTypeEnum.XueLiang_2))
                     {
                         xueliangcheck = true;
                         break;
@@ -205,11 +205,12 @@ namespace ET
             self.AddPassiveSkillByType(skillConfig);
             self.CheckSkillTianFu(skillId, true);
         }
-
+        
         public static void CheckSkillTianFu(this SkillPassiveComponent self, int skillId, bool active)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            if (skillConfig.SkillType == 1 || skillConfig.PassiveSkillType != 11)
+          
+            if (skillConfig.SkillType == 1 || !SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 11))
             {
                 return;
             }
@@ -343,7 +344,7 @@ namespace ET
 
         public static void AddPassiveSkillByType(this SkillPassiveComponent self, SkillConfig skillConfig)
         {
-            if (skillConfig.SkillType == 1 || skillConfig.PassiveSkillType == 0)
+            if (skillConfig.SkillType == 1 || SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 0))
             {
                 return;
             }
@@ -355,8 +356,16 @@ namespace ET
                 }
             }
 
-            SkillPassiveInfo skillPassiveInfo = new SkillPassiveInfo(skillConfig.PassiveSkillType, skillConfig.Id,
-                (float)skillConfig.PassiveSkillPro, skillConfig.PassiveSkillTriggerOnce, skillConfig.SkillCD);
+            List<int> PassiveSkillType = new List<int>();
+            List<float> PassiveSkillPro = new List<float> {  };   
+            for (int i = 0; i < skillConfig.PassiveSkillType.Length; i++)
+            {
+                PassiveSkillType.Add(skillConfig.PassiveSkillType[i]);
+                PassiveSkillPro.Add((float)skillConfig.PassiveSkillPro[i]);  
+            }
+
+            SkillPassiveInfo skillPassiveInfo = new SkillPassiveInfo(skillConfig.Id, PassiveSkillType,
+               PassiveSkillPro, skillConfig.PassiveSkillTriggerOnce, skillConfig.SkillCD);
             self.SkillPassiveInfos.Add(skillPassiveInfo);
         }
 
@@ -472,7 +481,7 @@ namespace ET
         {
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
-                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.IdleStill_14)
+                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum .Contains( SkillPassiveTypeEnum.IdleStill_14) )
                 {
                     self.SkillPassiveInfos[i].LastTriggerTime = TimeHelper.ServerNow(); 
                 }
@@ -493,14 +502,17 @@ namespace ET
                 }
             }
 
+         
             using ListComponent<SkillPassiveInfo> skillPassiveInfos = ListComponent<SkillPassiveInfo>.Create();
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
-                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum != (int)skillPassiveTypeEnum)
+                if (!self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains(skillPassiveTypeEnum) )
                 {
                     continue;
+                    
                 }
-                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.AckNumber_16)
+
+                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains(SkillPassiveTypeEnum.AckNumber_16))
                 {
                     self.SkillPassiveInfos[i].TriggerNumber++;
                 }
@@ -511,6 +523,7 @@ namespace ET
             {
                 return;
             }
+
             long serverTime = TimeHelper.ServerNow();
             for (int s = 0; s < skillPassiveInfos.Count; s++)
             {
@@ -544,10 +557,11 @@ namespace ET
                     continue;
                 }
                 bool trigger = false;
+                float skillproValue = skillIfo.SkillPro[skillIfo.SkillPassiveTypeEnum.IndexOf(skillPassiveTypeEnum)];
                 switch (skillPassiveTypeEnum)
                 {
                     case SkillPassiveTypeEnum.AckGaiLv_1:
-                        trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
+                        trigger = skillproValue >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.XueLiang_2:
                         NumericComponent numCom = unit.GetComponent<NumericComponent>();
@@ -560,7 +574,7 @@ namespace ET
                         long nowHp = numCom.GetAsLong((int)NumericType.Now_Hp);
                         long maxHp = numCom.GetAsLong((int)NumericType.Now_MaxHp);
                         float hpPro = (float)nowHp / (float)maxHp;
-                        trigger = hpPro <= skillIfo.SkillPro;
+                        trigger = hpPro <= skillproValue;
                         break;
                     case SkillPassiveTypeEnum.BeHurt_3:
                     case SkillPassiveTypeEnum.Critical_4:
@@ -572,13 +586,13 @@ namespace ET
                     case SkillPassiveTypeEnum.IdleStill_14:
                     case SkillPassiveTypeEnum.EquipIndex_15:
                     case SkillPassiveTypeEnum.AllSkill_17:
-                        trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
+                        trigger = skillproValue >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:
                         trigger = true;
                         break;
                     case SkillPassiveTypeEnum.AckNumber_16:
-                        trigger = skillIfo.TriggerNumber >= skillIfo.SkillPro;
+                        trigger = skillIfo.TriggerNumber >= skillproValue;
                         if (trigger)
                         {
                             skillIfo.TriggerNumber = 0;

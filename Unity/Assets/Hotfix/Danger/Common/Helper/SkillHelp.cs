@@ -33,6 +33,22 @@ namespace ET
             return skillname.Equals(ChongJiSkill);
         }
 
+        public static bool havePassiveSkillType(int[] typelist, int passType)
+        {
+            if (typelist == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < typelist.Length; i++)
+            {
+                if (typelist[i] == passType)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 强化技能
         /// </summary>
