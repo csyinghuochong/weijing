@@ -146,6 +146,8 @@ namespace ET
                     }
                 }
 
+                // 滑动到底部
+                self.SeasonTaskScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
                 self.UpdateInfo(self.TaskPro.taskID, index - 1);
                 // 尾巴隐藏
                 if (self.UISeasonTaskItemList.Count > 0)
