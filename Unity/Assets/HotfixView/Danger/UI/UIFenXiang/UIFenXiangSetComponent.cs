@@ -182,7 +182,10 @@ namespace ET
             Log.ILog.Debug($"OnTikTokShare:");
             EventType.TikTokShare.Instance.ZoneScene = self.ZoneScene();
             EventType.TikTokShare.Instance.ShareHandler = self.OnTikTokShareHandler;
-            EventType.TikTokShare.Instance.ShareMessage = new List<string>() { "https://img.71acg.net/kbdev/opensj/20230109/15243214265" };
+            EventType.TikTokShare.Instance.ShareMessage = new List<string>() {
+                "https://img.71acg.net/kbdev/opensj/20230109/15243214265",
+                "https://l.tapdb.net/08MLKXV5?channel=rep-rep_d2ves97egb7"
+             };
             EventSystem.Instance.PublishClass(EventType.TikTokShare.Instance);
         }
     }
