@@ -328,9 +328,7 @@ namespace ET
 
         public static bool IsCompleted(this TaskComponent self, TaskPro taskPro, TaskConfig taskConfig)
         {
-            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10
-                || taskConfig.TargetType == (int)TaskTargetType.GivePet_25
-                || taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
+            if ( taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
             {
                 return taskPro.taskTargetNum_1 >= 1;
             }
