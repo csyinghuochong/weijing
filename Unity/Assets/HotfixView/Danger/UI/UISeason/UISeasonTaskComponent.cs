@@ -94,7 +94,7 @@ namespace ET
                 UICommonHelper.DestoryChild(self.SeasonTaskListNode);
 
                 int index = 0;
-                Vector3 lastPosition = new Vector3(156, -53, 0);
+                Vector3 lastPosition = new Vector3(-250, 0, 0);
                 int dre = 1;
                 foreach (TaskConfig taskConfig in TaskConfigCategory.Instance.GetAll().Values)
                 {
@@ -108,13 +108,11 @@ namespace ET
                         Transform itemTransform = go.transform;
                         if (index != 0)
                         {
-                            lastPosition.x = lastPosition.x + 175 * dre;
-                            lastPosition.y = lastPosition.y - 74;
+                            lastPosition.x = lastPosition.x + 250 * dre;
                         }
-
-                        itemTransform.GetComponent<RectTransform>().localPosition = lastPosition;
-
+                        
                         ReferenceCollector rc = itemTransform.GetComponent<ReferenceCollector>();
+                        rc.Get<GameObject>("Item").GetComponent<RectTransform>().localPosition = lastPosition;
 
                         int index1 = index;
                         rc.Get<GameObject>("SeasonIcon").GetComponent<Button>().onClick.RemoveAllListeners();
@@ -136,11 +134,11 @@ namespace ET
                         if (dre == 1)
                         {
                             rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().localPosition = new Vector3(87, -42, 0);
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().transform.Rotate(0, 0, 155);
+                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().transform.Rotate(0, 0, 150);
                         }
                         else
                         {
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().localPosition = new Vector3(-58, -42, 0);
+                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().localPosition = new Vector3(-124, -64, 0);
                             rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().transform.Rotate(0, 0, -150);
                         }
 
