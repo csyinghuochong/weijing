@@ -525,12 +525,15 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
+           
             for (int s = 0; s < skillPassiveInfos.Count; s++)
             {
                 SkillPassiveInfo skillIfo = skillPassiveInfos[s];
+
+                float skillproValue = skillIfo.SkillPro[skillIfo.SkillPassiveTypeEnum.IndexOf(skillPassiveTypeEnum)];
                 if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
                 {
-                    int weapontype = Convert.ToInt32(skillIfo.SkillPro);
+                    int weapontype = Convert.ToInt32(skillproValue);
                     int buffId = SkillConfigCategory.Instance.Get(skillIfo.SkillId).InitBuffID[0];
                     int weaponType = targetId == 0 ? ItemEquipType.Common : (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
                     if (weaponType != weapontype)
@@ -557,7 +560,7 @@ namespace ET
                     continue;
                 }
                 bool trigger = false;
-                float skillproValue = skillIfo.SkillPro[skillIfo.SkillPassiveTypeEnum.IndexOf(skillPassiveTypeEnum)];
+              
                 switch (skillPassiveTypeEnum)
                 {
                     case SkillPassiveTypeEnum.AckGaiLv_1:
