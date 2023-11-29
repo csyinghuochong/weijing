@@ -457,10 +457,10 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            if (itemConfig.ItemType != ItemTypeEnum.Equipment)
-            {
-                return false;
-            }
+            //if (itemConfig.ItemType != ItemTypeEnum.Equipment)
+            //{
+            //    return false;
+            //}
 
             for (int i = 0; i < taskConfig.Target.Length; i++)
             {
