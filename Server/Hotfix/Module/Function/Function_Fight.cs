@@ -750,16 +750,16 @@ namespace ET
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
 
                     //damgePro -= 0.5f;
-                    //玩家之间PK伤害降低,普通攻击降低20%,技能伤害降低50%
+                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低40%
                     //普通攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
-                        damgePro = damgePro * 0.8f;
+                        damgePro = damgePro * 0.6f;
                     }
                     //技能攻击
                     if (skillconfig.SkillActType == 1 &&  damgePro > 0)
                     {
-                        damgePro = damgePro * 0.5f;
+                        damgePro = damgePro * 0.4f;
                     }
 
                     bool jueXinSkill = false;
@@ -1000,8 +1000,8 @@ namespace ET
                 addPro = 0;
             }
 
-            if (addPro > 0.2f) {
-                addPro = 0.2f;
+            if (addPro > 0.5f) {
+                addPro = 0.5f;
             }
 
             return addPro;
