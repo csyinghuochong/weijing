@@ -282,6 +282,8 @@ namespace ET
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
                             $"{self.TaskPro.taskTargetNum_2}/{taskConfig.TargetValue[1]}";
+                    self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
+                    self.GiveBtn.SetActive(false);
                 }
                 else
                 {
