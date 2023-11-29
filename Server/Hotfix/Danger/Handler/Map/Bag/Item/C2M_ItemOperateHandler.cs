@@ -668,14 +668,15 @@ namespace ET
                         if (baginfoCost != null)
                         {
                             //道具鉴定，扣除道具
-                            ItemConfig costitemconfig = ItemConfigCategory.Instance.Get(baginfoCost.ItemID);
-
-                            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingQulity_42, costitemconfig.ItemQuality, 1);
-                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingQulity_42, costitemconfig.ItemQuality, 1);
-
-                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_1017, 0, 1);
                             qulitylv = baginfoCost.ItemPar;
                             qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
+                            ItemConfig costitemconfig = ItemConfigCategory.Instance.Get(baginfoCost.ItemID);
+
+                            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingQulity_42, int.Parse(qulitylv), 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingQulity_42, int.Parse(qulitylv), 1);
+
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_1017, 0, 1);
+                           
                             ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId, 1);
                             ifItem = true;
                         }
