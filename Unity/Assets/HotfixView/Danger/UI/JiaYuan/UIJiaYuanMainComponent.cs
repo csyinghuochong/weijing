@@ -452,35 +452,6 @@ namespace ET
                     return;
                 }
             }
-            
-            // 铲除枯萎的植物，重新拿下数据，有些刚刚收获最后一次
-            planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
-            for (int i = planlist.Count - 1; i >= 0; i--)
-            {
-                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
-                {
-                    continue;
-                }
-                NumericComponent numericComponent = planlist[i].GetComponent<NumericComponent>();
-                long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
-                int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
-                int cellIndex = numericComponent.GetAsInt(NumericType.GatherCellIndex);
-                
-                // 铲除枯萎的植物
-                int state = JiaYuanHelper.GetPlanStage(planlist[i].ConfigId, StartTime, GatherNumber);
-                if (state < 0 || state > 3)
-                {
-                    C2M_JiaYuanUprootRequest request =
-                            new C2M_JiaYuanUprootRequest() { CellIndex = cellIndex, UnitId = planlist[i].Id, OperateType = 1 };
-                    M2C_JiaYuanUprootResponse response =
-                            (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                }
-                
-                if (instanceid != self.InstanceId)
-                {
-                    return;
-                }
-            }
 
             List<Unit> pasturelist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Pasture);
             for (int i = pasturelist.Count - 1; i >= 0; i--)
