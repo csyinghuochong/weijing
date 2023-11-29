@@ -756,28 +756,6 @@ namespace ET
                     self.TriggerTaskCountryEvent(TaskCountryTargetType.KillBoss_1003, 0, 1);
                 }
 
-                if ((int)fubenDifficulty >= (int)FubenDifficulty.DiYu)  //地狱
-                {
-                    self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
-                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
-
-                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
-                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
-
-                    self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);
-                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillTianZhanMonsterNumber_121, 0, 1);
-
-                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterNumber_122, 0, 1);
-                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuMonsterNumber_122, 0, 1);
-                    if (isBoss)
-                    {
-                        self.TriggerTaskEvent(TaskTargetType.KillTianZhanBossNumber_131, 0, 1);
-                        self.TriggerTaskCountryEvent(TaskCountryTargetType.KillTianZhanBossNumber_131, 0, 1);
-
-                        self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
-                        self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuBossNumber_132, 0, 1);
-                    }
-                }
                 if ((int)fubenDifficulty >= (int)FubenDifficulty.TiaoZhan) //挑战
                 {
                     self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
@@ -791,6 +769,21 @@ namespace ET
                         self.TriggerTaskCountryEvent(TaskCountryTargetType.KillTianZhanBossNumber_131, 0, 1);
                     }
                 }
+
+                if ((int)fubenDifficulty == (int)FubenDifficulty.DiYu)  //地狱
+                {
+                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
+
+                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterNumber_122, 0, 1);
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuMonsterNumber_122, 0, 1);
+                    if (isBoss)
+                    {
+                        self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
+                        self.TriggerTaskCountryEvent(TaskCountryTargetType.KillDiYuBossNumber_132, 0, 1);
+                    }
+                }
+                
             }
         }
 
