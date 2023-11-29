@@ -252,7 +252,7 @@ namespace ET
 #endif
         }
 
-        public void TikTokShareImage(List<string> strings)
+        public void TikTokShareImage(string strings_1, string strings_2)
         {
             if (this.Platform != 5)
             {
@@ -260,7 +260,7 @@ namespace ET
             }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("TikTokShareImage", strings);
+			jo.Call("TikTokShareImage", strings_1, strings_2);
 #else
 #endif
         }
