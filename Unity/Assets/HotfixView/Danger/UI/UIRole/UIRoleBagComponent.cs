@@ -332,7 +332,7 @@ namespace ET
 
                 }
                 self.ItemUIlist[i].Image_UpTip.SetActive(userInfoComponent.UserInfo.Lv >= itemConfig.UseLv
-                    && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity);
+                    && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity && itemConfig.EquipType != 201);// 晶核不显示箭头
             }
         }
 
