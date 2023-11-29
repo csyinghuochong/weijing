@@ -547,6 +547,7 @@ namespace ET
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
             {
+                unit.GetComponent<PetComponent>().UpdatePetAttribute(fightId, false);
                 UnitFactory.CreatePet(unit, fightId);
             }
             int jinglingid  = unit.GetComponent<ChengJiuComponent>().JingLingId;
