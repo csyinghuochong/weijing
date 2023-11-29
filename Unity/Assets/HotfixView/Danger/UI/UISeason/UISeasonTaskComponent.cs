@@ -250,7 +250,8 @@ namespace ET
             if (taskId < self.TaskPro.taskID || (taskId == self.TaskPro.taskID && taskId == self.CompeletTaskId))
             {
                 // 已经完成
-                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
+                    taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
                 }
@@ -285,6 +286,21 @@ namespace ET
                     self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                     self.GiveBtn.SetActive(false);
                 }
+                else if (taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
+                {
+                    if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
+                        self.GetBtn.SetActive(false);
+                        self.GiveBtn.SetActive(false);
+                    }
+                    else
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "0/1";
+                        self.GetBtn.SetActive(true);
+                        self.GiveBtn.SetActive(false);
+                    }
+                }
                 else
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
@@ -292,6 +308,7 @@ namespace ET
                     self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                     self.GiveBtn.SetActive(false);
                 }
+
                 self.AcvityedImg.SetActive(self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited);
             }
 
