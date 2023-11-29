@@ -94,6 +94,13 @@ namespace ET
 
         public static void OnHour12Update(this RankSceneComponent self)
         {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (dateTime.Year == 2023 && dateTime.Month == 11 && dateTime.Day == 29)
+            {
+                self.DBRankInfo.rankingTrial.Clear();
+                Log.Console("self.DBRankInfo.rankingTrial.Clear");
+            }
+
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
         }
