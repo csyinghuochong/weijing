@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ namespace ET
         public BagComponent BagComponent;
         public UIItemComponent CheckedItem;
         public List<UIItemComponent> BagList = new List<UIItemComponent>();
+
+        public Action OnGiveAction;
     }
 
     public class UIGiveTaskComponentAwakeSystem: AwakeSystem<UIGiveTaskComponent>
@@ -41,7 +44,7 @@ namespace ET
             self.GiveBtn = rc.Get<GameObject>("GiveBtn");
             self.CloseBtn = rc.Get<GameObject>("CloseBtn");
 
-            self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask));
+            self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseBtn(); });
             self.GiveBtn.GetComponent<Button>().onClick.AddListener(() => self.OnGiveBtn().Coroutine());
 
             self.CheckedItem = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
@@ -57,6 +60,11 @@ namespace ET
             self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
         }
 
+        public static void OnCloseBtn(this UIGiveTaskComponent self)
+        {
+            UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
+        }
+        
         public static async ETTask OnBagListUpdate(this UIGiveTaskComponent self)
         {
             int number = 0;
@@ -110,6 +118,7 @@ namespace ET
                 if (errorCode == ErrorCode.ERR_Success)
                 {
                     FloatTipManager.Instance.ShowFloatTip("完成任务");
+                    self.OnGiveAction?.Invoke();
                     UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
                 }
             }

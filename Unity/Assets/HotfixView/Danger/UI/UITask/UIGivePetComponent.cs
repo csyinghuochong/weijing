@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,8 @@ namespace ET
         public PetComponent PetComponent;
         public RolePetInfo LastSelectItem;
         public List<UIPetListItemComponent> PetUIList = new List<UIPetListItemComponent>();
+
+        public Action OnGiveAction;
     }
 
     public class UIGivePetComponentAwakeSystem: AwakeSystem<UIGivePetComponent>
@@ -41,7 +44,7 @@ namespace ET
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.UIPetInfoShowComponent = self.AddChild<UIPetInfoShowComponent, GameObject>(self.UIPetInfoShow);
 
-            self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet));
+            self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseBtn(); });
             self.GiveBtn.GetComponent<Button>().onClick.AddListener(() => self.OnGiveBtn());
         }
     }
@@ -55,6 +58,11 @@ namespace ET
             self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
         }
 
+        public static void OnCloseBtn(this UIGivePetComponent self)
+        {
+            UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
+        }
+        
         public static void OnUpdateUI(this UIGivePetComponent self)
         {
             self.PetSkinId = 0;
@@ -227,6 +235,7 @@ namespace ET
                         if (errorCode == ErrorCode.ERR_Success)
                         {
                             FloatTipManager.Instance.ShowFloatTip("完成任务");
+                            self.OnGiveAction?.Invoke();
                             UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
                         }
                     },
