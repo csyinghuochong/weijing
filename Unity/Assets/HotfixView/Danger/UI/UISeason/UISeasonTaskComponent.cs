@@ -249,27 +249,38 @@ namespace ET
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
             if (taskId < self.TaskPro.taskID || (taskId == self.TaskPro.taskID && taskId == self.CompeletTaskId))
             {
-                self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                        string.Format("{0}/{1}", taskConfig.TargetValue[0], taskConfig.TargetValue[0]);
+                // 已经完成
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
+                }
+                else
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
+                            $"{taskConfig.TargetValue[0]}/{taskConfig.TargetValue[0]}";
+                }
+
                 self.AcvityedImg.SetActive(true);
                 self.GetBtn.SetActive(false);
                 self.GiveBtn.SetActive(false);
             }
             else
             {
-                self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                        string.Format("{0}/{1}", self.TaskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
-                self.AcvityedImg.SetActive(self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited);
+                // 进行中
                 if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
                 {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "0/1";
                     self.GetBtn.SetActive(false);
                     self.GiveBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                 }
                 else
                 {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
+                            $"{self.TaskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
                     self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                     self.GiveBtn.SetActive(false);
                 }
+                self.AcvityedImg.SetActive(self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited);
             }
 
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
