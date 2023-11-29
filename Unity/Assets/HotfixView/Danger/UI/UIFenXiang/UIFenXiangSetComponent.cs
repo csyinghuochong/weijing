@@ -172,7 +172,7 @@ namespace ET
             self.FenXiangByType(2);
         }
 
-        public static void OnTikTokShare(this UIFenXiangSetComponent self, int sharemode, bool sucess)
+        public static void OnTikTokShareHandler(this UIFenXiangSetComponent self, int sharemode, bool sucess)
         { 
             
         }
@@ -181,7 +181,7 @@ namespace ET
         {
             Log.ILog.Debug($"OnTikTokShare:");
             EventType.TikTokShare.Instance.ZoneScene = self.ZoneScene();
-            EventType.TikTokShare.Instance.ShareHandler = self.OnTikTokShare;
+            EventType.TikTokShare.Instance.ShareHandler = self.OnTikTokShareHandler;
             EventType.TikTokShare.Instance.ShareMessage = new List<string>() { "https://img.71acg.net/kbdev/opensj/20230109/15243214265" };
             EventSystem.Instance.PublishClass(EventType.TikTokShare.Instance);
         }
