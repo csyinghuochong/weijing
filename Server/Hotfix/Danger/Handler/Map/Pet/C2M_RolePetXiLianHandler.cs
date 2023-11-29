@@ -80,10 +80,13 @@ namespace ET
 				//学习技能书
 				case 122:
 					bool ifok = Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
-					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
+					if (ifok)
+					{
+                        unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PetUseSkillBook_36, 0, 1);
+                    }
 
-					unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.PetUseSkillBook_36, 0, 1 );
-                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PetUseSkillBook_36, 0, 1);
                     response.rolePetInfo = petInfo;
 					ifCost = ifok;
 					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCode.ERR_Pet_AddSkillSame;
