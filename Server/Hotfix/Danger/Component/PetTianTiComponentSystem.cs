@@ -50,6 +50,14 @@ namespace ET
                         Log.Debug($"宠物ID重复：{unit.Id}");
                         continue;
                     }
+
+                    D2G_GetComponent d2GGetUnit_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.EnemyId, Component = DBHelper.BagComponent });
+                    if (d2GGetUnit_2.Component == null)
+                    {
+                        return;
+                    }
+
+                    petComponent_enemy.UpdatePetAttributeWithBag(d2GGetUnit_2.Component as BagComponent, rolePetInfo, false);
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f);
                 }
