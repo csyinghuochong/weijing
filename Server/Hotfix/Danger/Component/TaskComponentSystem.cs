@@ -992,11 +992,11 @@ namespace ET
                     }
                     else if (targetType == TaskTargetType.TeamDungeonHurt_136)
                     {
-                        if(i == 0 && taskConfig.Target[i] != targetTypeId)
+                        if(t == 0 && taskConfig.Target[t] != targetTypeId)
                         {
                             continue;
                         }
-                        if(i == 1 && taskConfig.Target[i] > targetValue)
+                        if(t == 1 && taskConfig.Target[t] > targetValue)
                         {
                             continue;
                         }
