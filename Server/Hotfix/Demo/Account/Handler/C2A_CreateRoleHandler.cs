@@ -85,7 +85,8 @@ namespace ET
 						{
 							userInfo.Lv = 1;
 							userInfo.Gold = 0;
-							userInfo.Occ = request.CreateOcc;
+                            userInfo.SeasonLevel = 1;
+                            userInfo.Occ = request.CreateOcc;
 						}
 						D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
 						userInfoComponent.Dispose();
