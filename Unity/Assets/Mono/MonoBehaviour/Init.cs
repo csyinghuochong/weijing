@@ -1,7 +1,7 @@
 ﻿using cn.sharesdk.unity3d;
 using System;
 using System.Collections;
-
+using System.Collections.Generic;
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
@@ -15,7 +15,7 @@ using TapTap.Common;
 using TapTap.TapDB;
 using UnityEngine.Android;
 using cn.SMSSDK.Unity;
-using System.Collections.Generic;
+
 #endif
 
 namespace ET
