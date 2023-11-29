@@ -731,7 +731,210 @@ namespace ET
             return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
         }
 
-        public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, bool updateUnit = false)
+        public static void UpdatePetAttributeWithBag(this PetComponent self, BagComponent bagComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
+        {
+            rolePetInfo.PetPingFen = PetHelper.PetPingJia(rolePetInfo);
+            //获取宠物资质
+            float actPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Act);
+            float magePro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_MageAct);
+            float defPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
+            float adfPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
+            float hpPro = self.GetZiZhiAddPro(2, rolePetInfo.ZiZhi_Hp);
+
+            //属性加点对应属性 力量-攻击 智力-魔法 体质-血量 耐力就是物防和魔防
+            PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+
+            //获取加点属性
+            string[] attributeinfos = rolePetInfo.AddPropretyValue.Split('_');
+            int pro_LiLiang = int.Parse(attributeinfos[0]);          //力量
+            int pro_ZhiLi = int.Parse(attributeinfos[1]);            //智力
+            int pro_TiZhi = int.Parse(attributeinfos[2]);            //体制
+            int pro_NaiLi = int.Parse(attributeinfos[3]);            //耐力
+
+            int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + pro_LiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
+            int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + pro_ZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
+            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + pro_TiZhi * 100 + pro_NaiLi * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);      //给额外血宠的属性
+            int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + pro_NaiLi * 8) * defPro * rolePetInfo.ZiZhi_ChengZhang);
+            int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + pro_NaiLi * 8) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
+
+            float speed = petCof.Base_MoveSpeed;
+            //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+
+
+            //存储数据
+            rolePetInfo.Ks.Clear();
+            rolePetInfo.Vs.Clear();
+
+            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
+            rolePetInfo.Vs.Add((long)speed * 10000);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Speed);
+            rolePetInfo.Vs.Add((long)speed * 10000);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
+            rolePetInfo.Vs.Add(hp_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_MaxHp);
+            rolePetInfo.Vs.Add(hp_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_MaxAct);
+            rolePetInfo.Vs.Add(act_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Mage);
+            rolePetInfo.Vs.Add(mage_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_MaxDef);
+            rolePetInfo.Vs.Add(def_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_MaxAdf);
+            rolePetInfo.Vs.Add(adf_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
+            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Cri);
+            rolePetInfo.Vs.Add(0);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Res);
+            rolePetInfo.Vs.Add(0);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Hit);
+            rolePetInfo.Vs.Add(0);
+
+            rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
+            rolePetInfo.Vs.Add(0);
+
+            //宠物之核
+            Dictionary<int, long> attriDic = new Dictionary<int, long>();
+            for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
+            {
+                long baginfoId = rolePetInfo.PetHeXinList[i];
+                if (baginfoId == 0)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
+
+                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                {
+                    continue;
+                }
+
+                //100203;790
+                string attriStr = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemUsePar;
+                string[] attriList = attriStr.Split('@');
+                for (int a = 0; a < attriList.Length; a++)
+                {
+                    try
+                    {
+                        string[] attriItem = attriList[a].Split(';');
+                        int typeId = int.Parse(attriItem[0]);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
+                    }
+                }
+            }
+
+            //互斥技能处理
+            List<int> huchiList = new List<int>();
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
+            {
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[i]);
+                if (rolePetInfo.PetSkill.Contains(skillCof.HuChiID))
+                {
+                    huchiList.Add(rolePetInfo.PetSkill[i]);
+                }
+            }
+
+            //宠物技能
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
+            {
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[i]);
+                if (ComHelp.IfNull(skillCof.GameObjectParameter))
+                {
+                    continue;
+                }
+
+                //判定是否为附加属性
+                if (skillCof.SkillType != 5)
+                {
+                    continue;
+                }
+
+                //判断是否为互斥技能
+                if (huchiList.Contains(rolePetInfo.PetSkill[i]))
+                {
+                    continue;
+                }
+
+                string[] skillStrList = skillCof.GameObjectParameter.Split(';');
+                if (skillStrList.Length == 0)
+                {
+                    continue;
+                }
+
+                for (int y = 0; y < skillStrList.Length; y++)
+                {
+                    try
+                    {
+                        string[] attriItem = skillStrList[y].Split(',');
+                        if (attriItem.Length == 0)
+                        {
+                            continue;
+                        }
+                        int typeId = int.Parse(attriItem[0]);
+                        long typevalue = NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]);
+                        Function_Fight.AddUpdateProDicList(typeId, typevalue, attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"attri Eption：{rolePetInfo.PetSkill[i]} {ex.ToString()}");
+                    }
+                }
+            }
+
+            //神兽羁绊
+            if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+            {
+                int shenshouNumber = self.GetShenShouNumber();
+                List<PropertyValue> shenshoujiban = null;
+                ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
+                if (shenshoujiban != null)
+                {
+                    for (int i = 0; i < shenshoujiban.Count; i++)
+                    {
+                        Function_Fight.AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, attriDic);
+                    }
+                }
+            }
+
+            foreach (var item in attriDic)
+            {
+                int numericType = item.Key;
+                int nowValue = (int)numericType / 100;
+                int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
+                if (attriIndex == -1 || attriIndex >= rolePetInfo.Vs.Count)
+                {
+                    continue;
+                }
+                rolePetInfo.Vs[attriIndex] += item.Value;
+            }
+
+            int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
+            if (pingfenIndex != -1)
+            {
+                rolePetInfo.Ks.RemoveAt(pingfenIndex);
+                rolePetInfo.Vs.RemoveAt(pingfenIndex);
+            }
+            rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
+            rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
+        }
+
+        public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             rolePetInfo.PetPingFen = PetHelper.PetPingJia(rolePetInfo);
             //获取宠物资质

@@ -158,6 +158,12 @@ namespace ET
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.PetComponent });
                 if (d2GGetUnit.Component != null)
                 {
+                    D2G_GetComponent d2GGetUnit_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.BagComponent });
+                    if (d2GGetUnit_2.Component == null)
+                    {
+                        return;
+                    }
+
                     PetComponent petComponent_enemy = d2GGetUnit.Component as PetComponent;
                     List<long> petsenemy = petComponent_enemy.PetMingList;
                     for (int i = 0; i < 5; i++)
@@ -176,7 +182,7 @@ namespace ET
 
                         int position = petComponent_enemy.PetMingPosition.IndexOf(petinfoid);
                         position = position != -1 ? position %= 9 : i;
-                        petComponent_enemy.UpdatePetAttribute(rolePetInfo, false);
+                        petComponent_enemy.UpdatePetAttributeWithBag( d2GGetUnit_2.Component as BagComponent,  rolePetInfo, false);
                         Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                            CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[position], 180f);
                     }
