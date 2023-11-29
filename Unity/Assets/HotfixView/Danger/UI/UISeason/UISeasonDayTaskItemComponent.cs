@@ -33,6 +33,7 @@ namespace ET
         public static void OnUpdateData(this UISeasonDayTaskItemComponent self, TaskPro taskPro)
         {
             self.TaskPro = taskPro;
+            self.ClickBtn.GetComponent<Button>().onClick.RemoveAllListeners();
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.GetParent<UISeasonTaskComponent>().UpdateInfo(self.TaskPro); });
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
 

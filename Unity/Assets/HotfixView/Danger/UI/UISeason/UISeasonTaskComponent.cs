@@ -23,8 +23,8 @@ namespace ET
         public int TaskType;
         public int CompeletTaskId;
         public UIPageButtonComponent UIPageButtonComponent;
-        public List<GameObject> UISeasonTaskItemList = new List<GameObject>();
-        public List<UISeasonDayTaskItemComponent> UISeasonDayTaskComponentList = new List<UISeasonDayTaskItemComponent>();
+        public List<UISeasonTaskItemComponent> UISeasonTaskItemComponentList = new List<UISeasonTaskItemComponent>();
+        public List<UISeasonDayTaskItemComponent> UISeasonDayTaskItemComponentList = new List<UISeasonDayTaskItemComponent>();
     }
 
     public class UISeasonTaskComponentAwakeSystem: AwakeSystem<UISeasonTaskComponent>
@@ -90,39 +90,19 @@ namespace ET
                     self.TaskPro = new TaskPro() { taskID = self.CompeletTaskId };
                 }
 
-                self.UISeasonTaskItemList.Clear();
-                UICommonHelper.DestoryChild(self.SeasonTaskListNode);
-
-                int index = 0;
+                int count = 0;
                 Vector3 lastPosition = new Vector3(-250, 0, 0);
                 int dre = 1;
                 foreach (TaskConfig taskConfig in TaskConfigCategory.Instance.GetAll().Values)
                 {
                     if (taskConfig.TaskType == TaskTypeEnum.Season && taskConfig.Id <= self.TaskPro.taskID)
                     {
-                        GameObject go = GameObject.Instantiate(self.UISeasonTaskItem);
-                        self.UISeasonTaskItemList.Add(go);
-                        go.SetActive(true);
-                        UICommonHelper.SetParent(go, self.SeasonTaskListNode);
-
-                        Transform itemTransform = go.transform;
-                        if (index != 0)
+                        if (count != 0)
                         {
-                            lastPosition.x = lastPosition.x + 250 * dre;
+                            lastPosition.x += 250 * dre;
                         }
-                        
-                        ReferenceCollector rc = itemTransform.GetComponent<ReferenceCollector>();
-                        rc.Get<GameObject>("Item").GetComponent<RectTransform>().localPosition = lastPosition;
 
-                        int index1 = index;
-                        rc.Get<GameObject>("SeasonIcon").GetComponent<Button>().onClick.RemoveAllListeners();
-                        rc.Get<GameObject>("SeasonIcon").GetComponent<Button>().onClick.AddListener(() =>
-                        {
-                            self.UpdateInfo(taskConfig.Id, index1);
-                        });
-                        rc.Get<GameObject>("Text").GetComponent<Text>().text = taskConfig.TaskName;
-
-                        if (index / 2 % 2 == 0)
+                        if (count / 2 % 2 == 0)
                         {
                             dre = 1;
                         }
@@ -131,30 +111,43 @@ namespace ET
                             dre = -1;
                         }
 
-                        if (dre == 1)
+                        if (count >= self.UISeasonTaskItemComponentList.Count)
                         {
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().localPosition = new Vector3(87, -42, 0);
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().transform.Rotate(0, 0, 150);
-                        }
-                        else
-                        {
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().localPosition = new Vector3(-124, -64, 0);
-                            rc.Get<GameObject>("Img_line").GetComponent<RectTransform>().transform.Rotate(0, 0, -150);
+                            GameObject go = UnityEngine.Object.Instantiate(self.UISeasonTaskItem);
+                            UISeasonTaskItemComponent ui = self.AddChild<UISeasonTaskItemComponent, GameObject>(go);
+                            self.UISeasonTaskItemComponentList.Add(ui);
+                            go.SetActive(true);
+                            UICommonHelper.SetParent(go, self.SeasonTaskListNode);
+
+                            ui.Item.GetComponent<RectTransform>().localPosition = lastPosition;
+                            if (dre == 1)
+                            {
+                                ui.Img_line.GetComponent<RectTransform>().localPosition = new Vector3(87, -42, 0);
+                                ui.Img_line.GetComponent<RectTransform>().transform.Rotate(0, 0, 150);
+                            }
+                            else
+                            {
+                                ui.Img_line.GetComponent<RectTransform>().localPosition = new Vector3(-124, -64, 0);
+                                ui.Img_line.GetComponent<RectTransform>().transform.Rotate(0, 0, -150);
+                            }
                         }
 
-                        index++;
+                        self.UISeasonTaskItemComponentList[count].OnUpdateData(taskConfig.Id);
+
+                        count++;
                     }
+                }
+
+                self.UpdateInfo(self.TaskPro.taskID);
+
+                // 尾巴隐藏
+                if (self.UISeasonTaskItemComponentList.Count > 0)
+                {
+                    self.UISeasonTaskItemComponentList[self.UISeasonTaskItemComponentList.Count - 1].Img_line.SetActive(false);
                 }
 
                 // 滑动到底部
                 self.SeasonTaskScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
-                self.UpdateInfo(self.TaskPro.taskID, index - 1);
-                // 尾巴隐藏
-                if (self.UISeasonTaskItemList.Count > 0)
-                {
-                    ReferenceCollector rc = self.UISeasonTaskItemList[self.UISeasonTaskItemList.Count - 1].GetComponent<ReferenceCollector>();
-                    rc.Get<GameObject>("Img_line").SetActive(false);
-                }
             }
             else
             {
@@ -185,9 +178,9 @@ namespace ET
                     }
 
                     UISeasonDayTaskItemComponent ui_1 = null;
-                    if (number < self.UISeasonDayTaskComponentList.Count)
+                    if (number < self.UISeasonDayTaskItemComponentList.Count)
                     {
-                        ui_1 = self.UISeasonDayTaskComponentList[number];
+                        ui_1 = self.UISeasonDayTaskItemComponentList[number];
                         ui_1.GameObject.SetActive(true);
                     }
                     else
@@ -196,25 +189,30 @@ namespace ET
                         taskTypeItem.SetActive(true);
                         UICommonHelper.SetParent(taskTypeItem, self.SeasonDayTaskListNode);
                         ui_1 = self.AddChild<UISeasonDayTaskItemComponent, GameObject>(taskTypeItem);
-                        self.UISeasonDayTaskComponentList.Add(ui_1);
+                        self.UISeasonDayTaskItemComponentList.Add(ui_1);
                     }
 
                     ui_1.OnUpdateData(taskPros[i]);
                     number++;
                 }
 
-                for (int k = number; k < self.UISeasonDayTaskComponentList.Count; k++)
+                for (int k = number; k < self.UISeasonDayTaskItemComponentList.Count; k++)
                 {
-                    self.UISeasonDayTaskComponentList[k].GameObject.SetActive(false);
+                    self.UISeasonDayTaskItemComponentList[k].GameObject.SetActive(false);
                 }
 
-                if (self.UISeasonDayTaskComponentList.Count > 0)
+                if (self.UISeasonDayTaskItemComponentList.Count > 0)
                 {
-                    self.UpdateInfo(self.UISeasonDayTaskComponentList[0].TaskPro);
+                    self.UpdateInfo(self.UISeasonDayTaskItemComponentList[0].TaskPro);
                 }
             }
         }
 
+        /// <summary>
+        /// 赛季每日任务信息
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="taskPro"></param>
         public static void UpdateInfo(this UISeasonTaskComponent self, TaskPro taskPro)
         {
             self.TaskPro = taskPro;
@@ -235,7 +233,13 @@ namespace ET
             self.GetBtn.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
         }
 
-        public static void UpdateInfo(this UISeasonTaskComponent self, int taskId, int index)
+        /// <summary>
+        /// 赛季任务信息
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="taskId"></param>
+        /// <param name="index"></param>
+        public static void UpdateInfo(this UISeasonTaskComponent self, int taskId)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
@@ -265,9 +269,9 @@ namespace ET
                 UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             }
 
-            for (int i = 0; i < self.UISeasonTaskItemList.Count; i++)
+            for (int i = 0; i < self.UISeasonTaskItemComponentList.Count; i++)
             {
-                self.UISeasonTaskItemList[i].GetComponent<ReferenceCollector>().Get<GameObject>("ScelectImg").SetActive(i == index);
+                self.UISeasonTaskItemComponentList[i].Selected(taskId);
             }
         }
 
@@ -288,13 +292,17 @@ namespace ET
             if (self.TaskType == 0)
             {
                 await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskPro.taskID, 0);
+                self.OnClickPageButton(self.TaskType);
             }
             else
             {
-                await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
+                int error = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
+                if (error == ErrorCode.ERR_Success)
+                {
+                    self.AcvityedImg.SetActive(true);
+                    self.GetBtn.SetActive(false);
+                }
             }
-
-            self.OnClickPageButton(self.TaskType);
         }
     }
 }
