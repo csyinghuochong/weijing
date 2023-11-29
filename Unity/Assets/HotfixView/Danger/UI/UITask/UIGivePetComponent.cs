@@ -179,6 +179,7 @@ namespace ET
         {
             if (self.LastSelectItem == null)
             {
+                FloatTipManager.Instance.ShowFloatTip("未选择宠物！");
                 return;
             }
 
@@ -224,6 +225,12 @@ namespace ET
                 return;
             }
 
+            if (!TaskHelper.IsTaskGivePet(self.TaskId, self.LastSelectItem))
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
+                return;
+            }
+
             if (TaskHelper.IsTaskGivePet(self.TaskId, self.LastSelectItem))
             {
                 PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
@@ -240,10 +247,6 @@ namespace ET
                         }
                     },
                     null).Coroutine();
-            }
-            else
-            {
-                FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
             }
         }
     }
