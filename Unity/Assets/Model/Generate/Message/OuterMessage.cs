@@ -14389,4 +14389,29 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_TaskOnLoginResponse))]
+	[Message(OuterOpcode.C2M_TaskOnLoginRequest)]
+	[ProtoContract]
+	public partial class C2M_TaskOnLoginRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TaskOnLoginResponse)]
+	[ProtoContract]
+	public partial class M2C_TaskOnLoginResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

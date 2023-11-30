@@ -801,5 +801,7 @@ namespace ET
 		 public const ushort M2C_UpdateUserInfoMessage = 10798;
 		 public const ushort C2M_JingHeWearRequest = 10799;
 		 public const ushort M2C_JingHeWearResponse = 10800;
+		 public const ushort C2M_TaskOnLoginRequest = 10801;
+		 public const ushort M2C_TaskOnLoginResponse = 10802;
 	}
 }

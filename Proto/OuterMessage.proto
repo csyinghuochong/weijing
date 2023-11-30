@@ -6910,3 +6910,16 @@ message M2C_JingHeWearResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_TaskOnLoginResponse
+message C2M_TaskOnLoginRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_TaskOnLoginResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
