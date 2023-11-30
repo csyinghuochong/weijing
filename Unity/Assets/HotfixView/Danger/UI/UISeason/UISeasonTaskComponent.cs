@@ -275,7 +275,7 @@ namespace ET
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "0/1";
                     self.GetBtn.SetActive(false);
-                    self.GiveBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
+                    self.GiveBtn.SetActive(true);
                 }
                 else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
                          taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
@@ -298,11 +298,11 @@ namespace ET
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
                             $"{self.TaskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
-                    self.GetBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
+                    self.GetBtn.SetActive(true);
                     self.GiveBtn.SetActive(false);
                 }
 
-                self.AcvityedImg.SetActive(self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited);
+                self.AcvityedImg.SetActive(false);
             }
 
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
