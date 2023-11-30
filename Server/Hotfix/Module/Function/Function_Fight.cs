@@ -49,9 +49,14 @@ namespace ET
                 }
             }
 
-
+            //设置PK状态
             bool playerPKStatus = false;
             if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
+            {
+                playerPKStatus = true;
+            }
+
+            if (attackUnit.Type == UnitType.Monster && attackUnit.MasterId > 0 && defendUnit.Type == UnitType.Player)
             {
                 playerPKStatus = true;
             }
