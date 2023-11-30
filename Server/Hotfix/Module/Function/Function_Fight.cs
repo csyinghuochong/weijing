@@ -1,4 +1,4 @@
-﻿ using MongoDB.Driver.Linq;
+﻿using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace ET
     public class Function_Fight
     {
 
-        public M2C_UnitNumericListUpdate m2C_UnitNumericListUpdate = new M2C_UnitNumericListUpdate();   
+        public M2C_UnitNumericListUpdate m2C_UnitNumericListUpdate = new M2C_UnitNumericListUpdate();
 
         private static readonly object obj = new object();
         //实例化自身
@@ -41,10 +41,11 @@ namespace ET
             //吟唱进度
             float singingvalue = 1;
             //蓄力技能计算伤害
-            if (skillconfig.SkillType == 1 && SkillHelp.havePassiveSkillType(skillconfig.PassiveSkillType,2))
+            if (skillconfig.SkillType == 1 && SkillHelp.havePassiveSkillType(skillconfig.PassiveSkillType, 2))
             {
                 singingvalue = skillHandler.SkillInfo.SingValue;
-                if (singingvalue < 0.3f) {
+                if (singingvalue < 0.3f)
+                {
                     singingvalue = 0.3f;
                 }
             }
@@ -149,7 +150,7 @@ namespace ET
                     break;
             }
 
-            if(RandomHelper.RandFloat01() <= luckPro)
+            if (RandomHelper.RandFloat01() <= luckPro)
             {
                 attack_MinAct = attack_MaxAct;
             }
@@ -306,13 +307,15 @@ namespace ET
 
             //等级差命中
             float HitLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
-            if (HitLvPro <= 0) {
+            if (HitLvPro <= 0)
+            {
                 HitLvPro = 0;
             }
-            if (HitLvPro >= 0.1f) {
+            if (HitLvPro >= 0.1f)
+            {
                 HitLvPro = 0.1f;
             }
-            
+
             //等级差闪避
             float DodgeLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
             if (DodgeLvPro <= 0)
@@ -328,18 +331,22 @@ namespace ET
             float HitPro = initHitPro + HitLvPro + addHitPro + attackPet_hit - (addDodgePro + DodgeLvPro + defendPet_dodge);
 
             //pk命中
-            if (playerPKStatus) {
+            if (playerPKStatus)
+            {
                 HitPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerHitSubPro);
             }
 
             //最低命中
-            if (HitPro <= 0.5f) {
+            if (HitPro <= 0.5f)
+            {
                 HitPro = 0.5f;
             }
 
             //百发百中(只有玩家对怪物有效)
-            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster&&skillconfig.SkillActType == 0) {
-                if (attackUnit.GetComponent<SkillSetComponent>().GetBySkillID(68000009) != null) {
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster && skillconfig.SkillActType == 0)
+            {
+                if (attackUnit.GetComponent<SkillSetComponent>().GetBySkillID(68000009) != null)
+                {
                     HitPro = 1;
                 }
             }
@@ -387,7 +394,8 @@ namespace ET
                 //获取重击等级
                 int zhongjiLvValue = numericComponentAttack.GetAsInt(NumericType.Now_ZhongJiLv);
                 float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro) + LvProChange(zhongjiLvValue, attackUnitLv);
-                if (RandomHelper.RandFloat() <= zhongJiPro) {
+                if (RandomHelper.RandFloat() <= zhongJiPro)
+                {
                     defValue = 0;
                     actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);
                 }
@@ -402,7 +410,8 @@ namespace ET
 
                 //生命低于30%触发,防御提升X%
                 float hptoDef = numericComponentDefend.GetAsFloat(NumericType.Now_HpToDef);
-                if (hptoDef > 0) {
+                if (hptoDef > 0)
+                {
                     float nowDefHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
                     if (nowDefHpPro <= 0.3f)
                     {
@@ -413,17 +422,20 @@ namespace ET
                 long nowdef = defValue;
 
                 //伤害类型 物理/魔法
-                if (skillconfig.DamgeType == 2) {
+                if (skillconfig.DamgeType == 2)
+                {
                     nowdef = adfValue;
                 }
 
                 //技能加成
-                if (skillconfig.SkillActType == 1) {
+                if (skillconfig.SkillActType == 1)
+                {
                     actValue += attack_MageAct;
                 }
 
                 //宠物远程攻击用魔法
-                if (attackUnit.Type == UnitType.Pet && skillconfig.SkillActType == 1) {
+                if (attackUnit.Type == UnitType.Pet && skillconfig.SkillActType == 1)
+                {
                     actValue = attack_MageAct;
                 }
 
@@ -488,7 +500,8 @@ namespace ET
                         break;
                 }
 
-                if (weaponAddAct >= 1f) {
+                if (weaponAddAct >= 1f)
+                {
                     weaponAddAct = 1f;
                 }
 
@@ -518,7 +531,8 @@ namespace ET
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Player)
                 {
                     //战士降低受到怪物普攻20%的伤害
-                    if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Occ == 1) {
+                    if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Occ == 1)
+                    {
 
                         if (skillconfig.SkillActType == 0)
                         {
@@ -599,7 +613,8 @@ namespace ET
                     }
 
                     //物穿怪物加成
-                    if (defendUnit.Type == UnitType.Monster) {
+                    if (defendUnit.Type == UnitType.Monster)
+                    {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_HuShiActPro) * 0.5f;
                     }
 
@@ -635,7 +650,8 @@ namespace ET
 
                 //是否触发斩杀
                 float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
-                if (defHpPro <= 0.3f) {
+                if (defHpPro <= 0.3f)
+                {
                     damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro);
                 }
 
@@ -672,17 +688,20 @@ namespace ET
 
                 //血量转换加成  （每10%转化成一定攻击值）
                 float hpToDamgeAddPro2 = numericComponentAttack.GetAsFloat(NumericType.Now_HpToDamgeAddPro2);
-                if (hpToDamgeAddPro2 > 0) {
+                if (hpToDamgeAddPro2 > 0)
+                {
                     //血量降低转换普攻伤害
                     float acthpPro = (float)numericComponentAttack.GetAsInt(NumericType.Now_Hp) / (float)numericComponentAttack.GetAsInt(NumericType.Now_MaxHp);
                     int toValue = (int)((1f - acthpPro) * 10f);
-                    if (toValue >= 1 && toValue <= 10) {
+                    if (toValue >= 1 && toValue <= 10)
+                    {
                         damgePro += hpToDamgeAddPro2 * toValue;
                     }
                 }
 
                 //抗性
-                    switch (skillconfig.DamgeElementType) {
+                switch (skillconfig.DamgeElementType)
+                {
                     //光     神圣抗性
                     case 1:
                         damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Shine_Pro);
@@ -706,8 +725,10 @@ namespace ET
                 }
 
                 //种族抗性
-                if (ifMonsterBoss_Act) {
-                    switch (MonsterConfigCategory.Instance.Get(defendUnit.ConfigId).MonsterRace) {
+                if (ifMonsterBoss_Act)
+                {
+                    switch (MonsterConfigCategory.Instance.Get(defendUnit.ConfigId).MonsterRace)
+                    {
                         //通用
                         case 0:
                             break;
@@ -727,7 +748,8 @@ namespace ET
                 }
 
                 //种族伤害
-                if (ifMonsterBoss_Def) {
+                if (ifMonsterBoss_Def)
+                {
                     switch (MonsterConfigCategory.Instance.Get(attackUnit.ConfigId).MonsterRace)
                     {
                         //通用
@@ -749,7 +771,8 @@ namespace ET
                 }
 
                 //pk相关
-                if (playerPKStatus) {
+                if (playerPKStatus)
+                {
 
                     actDamgeValue -= (int)(actDamgeValue * 0.4f);
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
@@ -762,7 +785,7 @@ namespace ET
                         damgePro = damgePro * 0.6f;
                     }
                     //技能攻击
-                    if (skillconfig.SkillActType == 1 &&  damgePro > 0)
+                    if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
                         damgePro = damgePro * 0.4f;
                     }
@@ -772,7 +795,8 @@ namespace ET
                     {
                         jueXinSkill = true;
                     }
-                    else {
+                    else
+                    {
                         //获取觉醒ID
                         int juexingid = 0;
                         if (attackUnit.Type == UnitType.Player)
@@ -787,9 +811,10 @@ namespace ET
 
                         jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
                     }
-                        
+
                     //觉醒技能伤害减半
-                    if (jueXinSkill) {
+                    if (jueXinSkill)
+                    {
                         damgePro = damgePro / 2;
                     }
 
@@ -805,7 +830,10 @@ namespace ET
                     }
 
                     //根据双方战力调整系数
-                    damgePro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
+                    if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
+                    {
+                        damgePro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
+                    }
                 }
 
                 damgePro = damgePro < 0 ? 0 : damgePro;
@@ -861,7 +889,8 @@ namespace ET
                     }
 
                     //判断当前是否时暴击状态
-                    if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.CriStatus) == true) {
+                    if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.CriStatus) == true)
+                    {
                         CriPro = 1;
                         attackUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.CriStatus);
 
@@ -874,7 +903,7 @@ namespace ET
                         float criDamge = 1.7f + numericComponentAttack.GetAsFloat(NumericType.Now_CriDamgeAdd_Pro) + numericComponentDefend.GetAsFloat(NumericType.Now_CriHitDamgeAdd_Pro);
                         damge = (long)((float)damge * criDamge);
 
-                        
+
 
                         //Log.Debug("暴击了!");
 
@@ -954,7 +983,8 @@ namespace ET
                     }
                 }
                 //普通攻击反弹伤害
-                if (numericComponentDefend.GetAsFloat(NumericType.Now_ActReboundDamgePro) > 0 && skillconfig.DamgeType == 1) {
+                if (numericComponentDefend.GetAsFloat(NumericType.Now_ActReboundDamgePro) > 0 && skillconfig.DamgeType == 1)
+                {
                     int fantanValue = (int)((float)damge * numericComponentDefend.GetAsFloat(NumericType.Now_ActReboundDamgePro));
                     numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
                 }
@@ -975,7 +1005,7 @@ namespace ET
             {
                 //设置伤害为0,用于伤害飘字
                 long now_hp = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
-                numericComponentDefend.ApplyValue(NumericType.Now_Hp, now_hp,true, false);
+                numericComponentDefend.ApplyValue(NumericType.Now_Hp, now_hp, true, false);
 
                 //闪避触发被动技能
                 defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.ShanBi_5, attackUnit.Id);
@@ -984,28 +1014,34 @@ namespace ET
         }
 
         //暴击等级等属性转换成实际暴击率的方法
-        public static float LvProChange(long value, int lv) {
+        public static float LvProChange(long value, int lv)
+        {
             float proValue = (float)value / (float)(7500 + lv * 250);
-            if (proValue < 0) {
+            if (proValue < 0)
+            {
                 proValue = 0;
             }
-            if (proValue > 0.75f) {
+            if (proValue > 0.75f)
+            {
                 proValue = 0.75f;
             }
             return proValue;
         }
 
         //根据双方战力比调整攻击系数，攻击者打弱势有额外的攻击加成
-        public static float GetFightValueActProValue(int actFightValue, int defFightValue) {
+        public static float GetFightValueActProValue(int actFightValue, int defFightValue)
+        {
 
             float addPro = actFightValue / defFightValue;
 
             //范围限制
-            if (addPro < 0) {
+            if (addPro < 0)
+            {
                 addPro = 0;
             }
 
-            if (addPro > 0.5f) {
+            if (addPro > 0.5f)
+            {
                 addPro = 0.5f;
             }
 
@@ -1197,7 +1233,7 @@ namespace ET
             PointTiZhi += roleLv * 2;
             PointNaiLi += roleLv * 2;
             PointMinJie += roleLv * 2;
-            
+
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(userInfo.Occ);
             /*
             long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 90 ;
@@ -1249,14 +1285,15 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
 
                 //生肖装备没激活直接跳出来
-                if (itemCof.EquipType == 101 && ItemHelper.IfShengXiaoActive(itemCof.Id, equipList) == false) {
+                if (itemCof.EquipType == 101 && ItemHelper.IfShengXiaoActive(itemCof.Id, equipList) == false)
+                {
                     continue;
                 }
 
                 //赛季晶核装备
                 if (itemCof.EquipType == 201)
-                { 
-                    
+                {
+
                 }
 
                 bool ifAddHidePro = true;
@@ -1318,7 +1355,7 @@ namespace ET
                         AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
                     }
                 }
-                
+
                 // 存储增幅属性
                 if (userBagInfo.IncreaseProLists != null && userBagInfo.IncreaseProLists.Count > 0)
                 {
@@ -1350,7 +1387,7 @@ namespace ET
                         }
 
                         string[] addProList = GameObjectParameter.Split(";");
-                        for (int p = 0; p < addProList.Length; p++ )
+                        for (int p = 0; p < addProList.Length; p++)
                         {
                             string[] addPro = addProList[p].Split(",");
                             if (addPro.Length < 2)
@@ -1420,7 +1457,7 @@ namespace ET
 
 
             ///职业套装
-            equipSuitIDList.AddRange(EquipSuitConfigCategory.Instance.OccSuiList[userInfo.Occ] );
+            equipSuitIDList.AddRange(EquipSuitConfigCategory.Instance.OccSuiList[userInfo.Occ]);
 
             //装备套装属性
             for (int i = 0; i < equipSuitIDList.Count; i++)
@@ -1494,7 +1531,8 @@ namespace ET
                                 {
                                     addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
                                 }
-                                else {
+                                else
+                                {
                                     addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
                                 }
 
@@ -1548,7 +1586,7 @@ namespace ET
                 //极品属性
                 float addPro = 0;
 
-                if (equipList[i].HideSkillLists.Contains(68000104) || equipList[i].IncreaseSkillLists.Contains(3903)) 
+                if (equipList[i].HideSkillLists.Contains(68000104) || equipList[i].IncreaseSkillLists.Contains(3903))
                 {
                     addPro = 0.2f;
                 }
@@ -1580,8 +1618,10 @@ namespace ET
                     Dictionary<int, HideProListConfig> hideCof = new Dictionary<int, HideProListConfig>();
                     hideCof = HideProListConfigCategory.Instance.GetAll();
 
-                    foreach (HideProListConfig hideProConfig in hideCof.Values) {
-                        if (hideProConfig.PropertyType == equipList[i].HideSkillLists[z]) {
+                    foreach (HideProListConfig hideProConfig in hideCof.Values)
+                    {
+                        if (hideProConfig.PropertyType == equipList[i].HideSkillLists[z])
+                        {
                             skillFightValue += hideProConfig.AddFightValue;
                         }
                     }
@@ -1639,7 +1679,8 @@ namespace ET
 
                 string[] gemList = equipList[i].GemIDNew.Split('_');
 
-                for (int z = 0; z < gemList.Length; z++) {
+                for (int z = 0; z < gemList.Length; z++)
+                {
 
                     int gemID = int.Parse(gemList[z]);
                     if (gemID == 0)
@@ -1649,19 +1690,22 @@ namespace ET
 
                     //史诗宝石数量最多4个
                     ItemConfig itemGemCof = ItemConfigCategory.Instance.Get(gemID);
-                    if (itemGemCof.ItemSubType == 110) {
+                    if (itemGemCof.ItemSubType == 110)
+                    {
                         if (ShiShiGemID.Contains(itemGemCof.Id))
                         {
                             //重复宝石直接跳出
                             continue;
                         }
-                        else {
+                        else
+                        {
                             equipShiShiGemNum += 1;
                             ShiShiGemID.Add(itemGemCof.Id);
                         }
                     }
 
-                    if (equipShiShiGemNum > 4 && itemGemCof.ItemSubType == 110) {
+                    if (equipShiShiGemNum > 4 && itemGemCof.ItemSubType == 110)
+                    {
                         continue;
                     }
 
@@ -1804,12 +1848,14 @@ namespace ET
             {
                 string[] strList = unit.GetComponent<PetComponent>().PetSkinList[p].Value.Split('_');
 
-                for (int y = 0; y < strList.Length; y++) {
+                for (int y = 0; y < strList.Length; y++)
+                {
 
                     if (strList[y] != "" && strList[y] != null && strList[y] != "0")
                     {
                         PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
-                        if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null) {
+                        if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null)
+                        {
                             string[] AddPropreList = petSkinCof.PripertySet.Split(';');
 
                             for (int z = 0; z < AddPropreList.Length; z++)
@@ -2002,7 +2048,8 @@ namespace ET
             //复制属性  --- 以下方法不加入战力计算
             Dictionary<int, long> UpdateProDicListCopy = new Dictionary<int, long>();
             //UpdateProDicListCopy = ComHelp.DeepCopy_2(UpdateProDicList);
-            foreach (int key in UpdateProDicList.Keys) {
+            foreach (int key in UpdateProDicList.Keys)
+            {
                 UpdateProDicListCopy.Add(key, UpdateProDicList[key]);
             }
 
@@ -2021,7 +2068,7 @@ namespace ET
             }
 
             //神兽羁绊属性
-            int shenshouNumber =  unit.GetComponent<PetComponent>().GetShenShouNumber();
+            int shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();
             List<PropertyValue> shenshoujiban = null;
             ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
             if (shenshoujiban != null)
@@ -2074,7 +2121,7 @@ namespace ET
                         break;
                 }
             }
-            
+
 
 
             //缓存一级属性
@@ -2179,9 +2226,9 @@ namespace ET
             damgeProCostLv = (int)Constitution_value_add * 2;
             damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
-            
+
             // 移除鉴定技能后，因为在技能列表中不存在了，技能改变的属性不会触发通知客户端，所以在这重新触发下这些属性，通知一下客户端
-            List<int> jianDingPro = new List<int>() { 200503,200703,200603,200803,203603,100902, 105101, 105201, 105301, 105401, 105501 };
+            List<int> jianDingPro = new List<int>() { 200503, 200703, 200603, 200803, 203603, 100902, 105101, 105201, 105301, 105401, 105501 };
 
             for (int i = 0; i < jianDingPro.Count; i++)
             {
@@ -2238,7 +2285,7 @@ namespace ET
                 numericComponent_1.NumericDic.Add(key, var);
             }
             */
-            
+
             //更新属性,算战力
             foreach (int key in UpdateProDicList.Keys)
             {
@@ -2246,10 +2293,10 @@ namespace ET
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent_1.Set(key, setValue, false);
             }
-            
+
 
             //战力计算
-            long ShiLi_Act  = 0;
+            long ShiLi_Act = 0;
             float ShiLi_ActPro = 0f;
             long ShiLi_Def = 0;
             float ShiLi_DefPro = 0f;
@@ -2262,14 +2309,16 @@ namespace ET
             int chuanchengProAdd = 0;
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
-                if (equipList[i].InheritSkills.Count>=1) {
+                if (equipList[i].InheritSkills.Count >= 1)
+                {
                     chuanchengProAdd += 500;
                 }
             }
 
 
             //攻击部分
-            foreach (var Item in NumericHelp.ZhanLi_Act) {
+            foreach (var Item in NumericHelp.ZhanLi_Act)
+            {
                 ShiLi_Act += (int)((float)numericComponent_1.ReturnGetFightNumLong(Item.Key) * Item.Value);
             }
 
@@ -2369,7 +2418,8 @@ namespace ET
             //觉醒战力附加
             List<int> juexingSkillList = unit.GetComponent<SkillSetComponent>().GetJueSkillIds();
             int addJueXingZhanLi = 0;
-            if (juexingSkillList.Count >= 1) {
+            if (juexingSkillList.Count >= 1)
+            {
                 addJueXingZhanLi = Math.Min(juexingSkillList.Count, 3) * 300;
             }
             if (juexingSkillList.Count >= 4)
@@ -2394,16 +2444,18 @@ namespace ET
 
             //技能属性点附加战力
             int skillPointFight = (roleLv - userInfo.Sp);  //剩余属性点
-            
+
             skillPointFight = skillPointFight * 50;
-            if (skillPointFight < 0) {
+            if (skillPointFight < 0)
+            {
                 skillPointFight = 0;
             }
             //理论不会超过此值
-            if (skillPointFight >= 5000) {
+            if (skillPointFight >= 5000)
+            {
                 skillPointFight = 5000;
             }
-            
+
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
             int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 60 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd + skillPointFight;
 
