@@ -250,9 +250,11 @@ namespace ET
             if (taskId < self.TaskPro.taskID || (taskId == self.TaskPro.taskID && taskId == self.CompeletTaskId))
             {
                 // 已经完成
-                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 ||
+                    taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
                     taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
-                    taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43)
+                    taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                    taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
                 {
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
                 }
@@ -276,7 +278,8 @@ namespace ET
                     self.GiveBtn.SetActive(self.TaskPro.taskStatus != (int)TaskStatuEnum.Commited);
                 }
                 else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
-                         taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136)
+                         taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                         taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
                 {
                     if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
                     {
