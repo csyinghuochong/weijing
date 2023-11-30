@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonLordDetailComponent: Entity, IAwake,IDestroy
+    public class UISeasonLordDetailComponent: Entity, IAwake, IDestroy
     {
         public GameObject PositionText;
-        public GameObject RefreshTimeText;
+        public Text RefreshTimeText;
         public GameObject MonsterHeadImg;
         public GameObject UICommonItemBack;
         public GameObject UICommonItem;
@@ -21,7 +21,6 @@ namespace ET
         public BagInfo BagInfo;
         public UIItemComponent CheckedItem;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
-        public DateTime EndTime;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -32,7 +31,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.PositionText = rc.Get<GameObject>("PositionText");
-            self.RefreshTimeText = rc.Get<GameObject>("RefreshTimeText");
+            self.RefreshTimeText = rc.Get<GameObject>("RefreshTimeText").GetComponent<Text>();
             self.MonsterHeadImg = rc.Get<GameObject>("MonsterHeadImg");
             self.UICommonItemBack = rc.Get<GameObject>("UICommonItemBack");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
@@ -53,6 +52,7 @@ namespace ET
             self.UpdateTime().Coroutine();
         }
     }
+
     public class UISeasonLordDetailComponentDestroy: DestroySystem<UISeasonLordDetailComponent>
     {
         public override void Destroy(UISeasonLordDetailComponent self)
@@ -68,6 +68,7 @@ namespace ET
             self.AssetPath = null;
         }
     }
+
     public static class UISeasonLordDetailComponentSystem
     {
         public static async ETTask OnUseItemBtn(this UISeasonLordDetailComponent self)
@@ -75,6 +76,16 @@ namespace ET
             if (self.BagInfo == null)
             {
                 FloatTipManager.Instance.ShowFloatTip("未选择道具！");
+                return;
+            }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long now = TimeHelper.ServerNow();
+            long end = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+            if (end - now <= 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("赛季首领已经出现！");
                 return;
             }
 
@@ -105,12 +116,13 @@ namespace ET
 
             int bossId = SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
                 self.AssetPath.Add(path);
             }
+
             self.MonsterHeadImg.GetComponent<Image>().sprite = sp;
         }
 
@@ -137,7 +149,6 @@ namespace ET
                     uI.UpdateItem(null, ItemOperateEnum.None);
                 }
             }
-
 
             List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = 0; i < bagInfos.Count; i++)
@@ -192,18 +203,21 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
             while (!self.IsDisposed)
             {
-                self.EndTime = TimeInfo.Instance.ToDateTime(numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime));
-                DateTime nowTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
-                TimeSpan ts = self.EndTime - nowTime;
-                if (ts.TotalMinutes > 0)
+                long now = TimeHelper.ServerNow();
+                long end = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+                if (end - now > 0)
                 {
-                    self.RefreshTimeText.GetComponent<Text>().text = $"剩余时间:{ts.Days}:{ts.Hours}:{ts.Minutes}:{ts.Seconds}";
+                    DateTime nowTime = TimeInfo.Instance.ToDateTime(now);
+                    DateTime endTime = TimeInfo.Instance.ToDateTime(end);
+                    TimeSpan ts = endTime - nowTime;
+                    self.RefreshTimeText.text = $"剩余时间:{ts.Days}:{ts.Hours}:{ts.Minutes}:{ts.Seconds}";
                 }
                 else
                 {
-                    self.RefreshTimeText.GetComponent<Text>().text = "出现!!";
+                    self.RefreshTimeText.text = "出现!!";
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);

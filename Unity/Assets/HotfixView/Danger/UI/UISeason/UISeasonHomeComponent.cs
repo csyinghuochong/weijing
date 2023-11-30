@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISeasonHomeComponent: Entity, IAwake,IDestroy
+    public class UISeasonHomeComponent: Entity, IAwake, IDestroy
     {
         public GameObject SeasonText;
         public GameObject SeasonTimeText;
@@ -15,14 +15,13 @@ namespace ET
         public GameObject MonsterHeadImg;
         public GameObject MonsterNameText;
         public GameObject MonsterPositionText;
-        public GameObject MonsterRefreshTimeText;
+        public Text MonsterRefreshTimeText;
         public GameObject ShowBtn;
         public GameObject SeasonRewardText;
         public GameObject RewardsListNode;
         public GameObject GetBtn;
         public GameObject AcvityedImg;
 
-        public DateTime EndTime;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -40,7 +39,7 @@ namespace ET
             self.MonsterHeadImg = rc.Get<GameObject>("MonsterHeadImg");
             self.MonsterNameText = rc.Get<GameObject>("MonsterNameText");
             self.MonsterPositionText = rc.Get<GameObject>("MonsterPositionText");
-            self.MonsterRefreshTimeText = rc.Get<GameObject>("MonsterRefreshTimeText");
+            self.MonsterRefreshTimeText = rc.Get<GameObject>("MonsterRefreshTimeText").GetComponent<Text>();
             self.ShowBtn = rc.Get<GameObject>("ShowBtn");
             self.SeasonRewardText = rc.Get<GameObject>("SeasonRewardText");
             self.RewardsListNode = rc.Get<GameObject>("RewardsListNode");
@@ -57,6 +56,7 @@ namespace ET
             self.UpdateTime().Coroutine();
         }
     }
+
     public class UISeasonHomeComponentDestroy: DestroySystem<UISeasonHomeComponent>
     {
         public override void Destroy(UISeasonHomeComponent self)
@@ -72,6 +72,7 @@ namespace ET
             self.AssetPath = null;
         }
     }
+
     public static class UISeasonHomeComponentSystem
     {
         public static void UpdateInfo(this UISeasonHomeComponent self)
@@ -95,7 +96,7 @@ namespace ET
                     }
 
                     self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{userInfo.SeasonExp}/{seasonLevelConfig.UpExp}";
-                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f* userInfo.SeasonExp / seasonLevelConfig.UpExp;
+                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * userInfo.SeasonExp / seasonLevelConfig.UpExp;
                     break;
                 }
 
@@ -116,15 +117,15 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-
-            int bossId =  SeasonHelper.SeasonBossId;
+            int bossId = SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
                 self.AssetPath.Add(path);
             }
+
             self.MonsterHeadImg.GetComponent<Image>().sprite = sp;
 
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
@@ -152,16 +153,18 @@ namespace ET
 
             while (!self.IsDisposed)
             {
-                self.EndTime = TimeInfo.Instance.ToDateTime(numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime));
-                DateTime nowTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
-                TimeSpan ts = self.EndTime - nowTime;
-                if (ts.TotalMinutes > 0)
+                long now = TimeHelper.ServerNow();
+                long end = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
+                if (end - now > 0)
                 {
-                    self.MonsterRefreshTimeText.GetComponent<Text>().text = $"刷新时间:{ts.Days}天{ts.Hours}小时{ts.Minutes}分";
+                    DateTime nowTime = TimeInfo.Instance.ToDateTime(now);
+                    DateTime endTime = TimeInfo.Instance.ToDateTime(end);
+                    TimeSpan ts = endTime - nowTime;
+                    self.MonsterRefreshTimeText.text = $"刷新时间:{ts.Days}天{ts.Hours}小时{ts.Minutes}分";
                 }
                 else
                 {
-                    self.MonsterRefreshTimeText.GetComponent<Text>().text = "出现!!";
+                    self.MonsterRefreshTimeText.text = "出现!!";
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);
