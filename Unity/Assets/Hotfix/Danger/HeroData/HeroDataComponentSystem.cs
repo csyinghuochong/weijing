@@ -143,15 +143,19 @@ namespace ET
             }
 
             ///赛季临时数据[赛季开始]
-            if (SeasonHelper.IsOpenSeason() )
+            if (ComHelp.IsInnerNet())
             {
+                long serverTime = TimeHelper.ServerNow();
                 long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
-                if (seasonopenTime!=0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
+                if (seasonopenTime != 0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
                 {
-                    //清空赛季相关数据
+                    //清空赛季相关数据. 赛季任务 晶核
+                    numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0);
+
+                    Log.Console("清空赛季任务！");
                 }
 
-                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0)
+                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason())
                 {
                     UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                     numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));

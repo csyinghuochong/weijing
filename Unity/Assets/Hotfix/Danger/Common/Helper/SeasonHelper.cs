@@ -10,9 +10,16 @@ namespace ET
             if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
                || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
             {
-                return true;
+                 long serverTime = TimeHelper.ServerNow();
+                 return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;   
             }
             return false;
+        }
+#else
+        public static bool IsOpenSeason()
+        {
+            long serverTime = TimeHelper.ServerNow();
+            return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;   
         }
 #endif
 
