@@ -128,16 +128,24 @@ namespace ET
                 return;
             }
 
-            C2M_JiaYuanPlantRequest request =
-                    new C2M_JiaYuanPlantRequest();
+
+            long instanceid = self.InstanceId;
+            C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest();
             for (int i = 0; i < self.Seeds.Count; i++)
             {
                 request.CellIndex = self.Lands[i];
                 request.ItemId = self.Seeds[i];
-                M2C_JiaYuanPlantResponse response =
-                        (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            }
+                M2C_JiaYuanPlantResponse response = (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+            }
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             UIHelper.Remove(self.DomainScene(), UIType.UIJiaYuanOneKeyPlant);
         }
     }

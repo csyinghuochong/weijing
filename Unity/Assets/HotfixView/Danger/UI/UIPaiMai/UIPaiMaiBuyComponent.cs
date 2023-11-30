@@ -71,10 +71,10 @@ namespace ET
             self.Btn_Search.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn_Search(); });
 
             self.NextPageBtn = rc.Get<GameObject>("NextPageBtn");
-            self.NextPageBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnNextPageBtn(); });
+            self.NextPageBtn.GetComponent<Button>().onClick.AddListener(self.OnNextPageBtn);
 
             self.PrePageBtn = rc.Get<GameObject>("PrePageBtn");
-            self.PrePageBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnPrePageBtn(); });
+            self.PrePageBtn.GetComponent<Button>().onClick.AddListener(self.OnPrePageBtn);
         }
     }
 
