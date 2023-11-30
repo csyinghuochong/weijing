@@ -42,7 +42,7 @@ namespace ET
         /// <summary>
         /// 赛季BOSS
         /// </summary>
-        public static int SeasonBossId = 82000022;
+        public static int SeasonBossId = 90000051;
     }
 }
 
