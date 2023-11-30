@@ -144,6 +144,7 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType1Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
+                self.PaiMaiItemInfos_Consume.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 1;
@@ -154,6 +155,7 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType2Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
+                self.PaiMaiItemInfos_Material.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 2;
@@ -164,6 +166,7 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType3Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType3Name[key] });
+                self.PaiMaiItemInfos_Equipment.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 3;
@@ -174,6 +177,7 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType4Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType4Name[key] });
+                self.PaiMaiItemInfos_Gemstone.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 4;
@@ -321,8 +325,6 @@ namespace ET
 
                     return self.PaiMaiItemInfos_Consume[itemSubType][self.PageIndex];
 
-
-
                 case 2:
                     if (!self.PaiMaiItemInfos_Material.ContainsKey(itemSubType))
                     {
@@ -335,7 +337,6 @@ namespace ET
                     }
 
                     return self.PaiMaiItemInfos_Material[itemSubType][self.PageIndex];
-
 
                 case 3:
 
@@ -350,8 +351,6 @@ namespace ET
                     }
 
                     return self.PaiMaiItemInfos_Equipment[itemSubType][self.PageIndex];
-
-
 
                 case 4:
 
