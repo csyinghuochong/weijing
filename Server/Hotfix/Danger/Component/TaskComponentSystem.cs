@@ -1336,6 +1336,12 @@ namespace ET
         {
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
+                if (!TaskConfigCategory.Instance.Contain(self.RoleTaskList[i].taskID))
+                {
+                    self.RoleTaskList.RemoveAt(i);
+                    continue;
+                }
+
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.Weekly)
                 {

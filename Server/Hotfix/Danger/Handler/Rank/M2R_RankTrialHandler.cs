@@ -56,6 +56,7 @@ namespace ET
 
             int maxnumber = Math.Min(rankRunRace.Count, 100);
             rankSceneComponent.DBRankInfo.rankingTrial = rankRunRace.GetRange(0, maxnumber);
+            response.RankId = rankSceneComponent.GetTrialRank(request.RankingInfo.KeyId);
             reply();
             await ETTask.CompletedTask;
         }

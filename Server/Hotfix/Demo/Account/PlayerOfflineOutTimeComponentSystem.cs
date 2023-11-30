@@ -37,7 +37,8 @@ namespace ET
         {
             //public static long TIMEOUT_TIME = 60 * 1000;
             //掉线两分钟后踢下线
-            self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 55000, TimerType.PlayerOfflineOutTime, self);
+            long waitTime = self.DomainZone() == 5 ? TimeHelper.Minute * 5 : TimeHelper.Second * 55;
+            self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + waitTime, TimerType.PlayerOfflineOutTime, self);
         }
     }
 

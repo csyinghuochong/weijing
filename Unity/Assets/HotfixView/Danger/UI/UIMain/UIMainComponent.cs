@@ -639,6 +639,7 @@ namespace ET
         public static async ETTask UpdateTaskList(this UIMainComponent self)
         {
             //此处新加一个协议。 调用服务器的<TaskComponent>().OnLogin() 刷新任务
+            await TimerComponent.Instance.WaitFrameAsync();
             C2M_TaskOnLoginRequest request = new C2M_TaskOnLoginRequest();
             M2C_TaskOnLoginResponse response = (M2C_TaskOnLoginResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
             await NetHelper.RequestIniTask(self.ZoneScene());

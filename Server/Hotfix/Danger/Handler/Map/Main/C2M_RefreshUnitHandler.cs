@@ -14,7 +14,7 @@ namespace ET
             {
                 UnitHelper.GetUnitInfo(u.Unit, createUnits);
             }
-
+            createUnits.UpdateAll = 1;
             MessageHelper.SendToClient(unit, createUnits);
             await ETTask.CompletedTask;
         }
