@@ -3793,6 +3793,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
 	}
 
 	[ResponseType(nameof(A2M_PetMingPlayerInfoResponse))]

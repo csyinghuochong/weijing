@@ -1814,6 +1814,7 @@ message R2M_RankTrialResponse // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+	int32 RankId = 1;
 }
 
 //ResponseType A2M_PetMingPlayerInfoResponse
