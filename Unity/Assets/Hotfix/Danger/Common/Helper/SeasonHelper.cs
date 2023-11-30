@@ -22,10 +22,15 @@ namespace ET
         }
 
         /// <summary>
-        /// 赛季时间
+        /// 赛季开始时间
         /// </summary>
         public static long SeasonOpenTime = 1697990400000;
+
+        //赛季结束时间
         public static long SeasonCloseTime = 1705939200000;
+
+
+        public static long SeasonFruitTime = TimeHelper.Hour;
 
         /// <summary>
         /// 赛季BOSS

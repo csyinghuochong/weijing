@@ -32,9 +32,9 @@ namespace ET
 
                 itemNumber += bagInfo.ItemNum;
             }
-
+            
             bagComponent.OnCostItemData(request.BagInfoIDs, ItemLocType.ItemLocBag);
-            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * itemNumber * TimeHelper.Hour, 0 );
+            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * SeasonHelper.SeasonFruitTime, 0 );
 
             reply();
             await ETTask.CompletedTask;
