@@ -161,20 +161,20 @@ namespace ET
 
                         //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
-						if (session.DomainZone() == 0)
-						{
-							LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
-							response.Error = ErrorCode.ERR_SessionStateError;
-							reply();
-							return;
-						}
-						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; unitid: {request.UserID} player.Id {player.Id} player.InstanceId: {player.InstanceId} {session.DomainZone()}");
 						long unitId = unit.Id;
-
 						await EnterRankServer(unit);
                         await EnterMailServer(unit);
-                        player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
 
+                        if (session.DomainZone() == 0)
+                        {
+                            LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            response.Error = ErrorCode.ERR_SessionStateError;
+                            reply();
+                            return;
+                        }
+                        Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; unitid: {request.UserID} player.Id {player.Id} player.InstanceId: {player.InstanceId} {session.DomainZone()}");
+
+                        player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
 						player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
 						player.MailServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
 						player.RankServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
