@@ -84,33 +84,15 @@ namespace ET
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int seasonExp = userInfo.SeasonExp;
-            int maxLv = SeasonLevelConfigCategory.Instance.GetAll().Count;
-            for (int i = 1; i <= maxLv; i++)
+            SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel);
+
+            if (seasonExp > seasonLevelConfig.UpExp)
             {
-                SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(i);
-                if (i == maxLv)
-                {
-                    if (seasonExp > seasonLevelConfig.UpExp)
-                    {
-                        seasonExp = seasonLevelConfig.UpExp;
-                    }
-
-                    self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{userInfo.SeasonExp}/{seasonLevelConfig.UpExp}";
-                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * userInfo.SeasonExp / seasonLevelConfig.UpExp;
-                    break;
-                }
-
-                if (seasonExp >= seasonLevelConfig.UpExp)
-                {
-                    seasonExp -= seasonLevelConfig.UpExp;
-                }
-                else
-                {
-                    self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{userInfo.SeasonExp}/{seasonLevelConfig.UpExp}";
-                    self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * userInfo.SeasonExp / seasonLevelConfig.UpExp;
-                    break;
-                }
+                seasonExp = seasonLevelConfig.UpExp;
             }
+
+            self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{seasonExp}/{seasonLevelConfig.UpExp}";
+            self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * seasonExp / seasonLevelConfig.UpExp;
 
             self.SeasonLvText.GetComponent<Text>().text = userInfo.SeasonLevel.ToString();
 
@@ -132,10 +114,20 @@ namespace ET
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
             self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
 
-            UICommonHelper.ShowItemList(SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel).Reward, self.RewardsListNode, self, 0.9f);
-            if (numericComponent.GetAsInt(NumericType.SeasonReward) >= userInfo.SeasonLevel)
+            self.UpdateSeasonReward();
+        }
+
+        public static void UpdateSeasonReward(this UISeasonHomeComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+
+            int oldReward = numericComponent.GetAsInt(NumericType.SeasonReward);
+            int nowReward = oldReward + 1;
+            if (nowReward > SeasonLevelConfigCategory.Instance.GetAll().Count)
             {
-                // 已经领取
+                nowReward -= 1;
                 self.AcvityedImg.SetActive(true);
                 self.GetBtn.SetActive(false);
             }
@@ -144,6 +136,10 @@ namespace ET
                 self.AcvityedImg.SetActive(false);
                 self.GetBtn.SetActive(true);
             }
+
+            self.SeasonRewardText.GetComponent<Text>().text = $"{nowReward}级赛季奖励";
+            UICommonHelper.DestoryChild(self.RewardsListNode);
+            UICommonHelper.ShowItemList(SeasonLevelConfigCategory.Instance.Get(nowReward).Reward, self.RewardsListNode, self, 0.9f);
         }
 
         public static async ETTask UpdateTime(this UISeasonHomeComponent self)
@@ -177,23 +173,24 @@ namespace ET
 
         public static async ETTask OnGetBtn(this UISeasonHomeComponent self)
         {
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.SeasonReward) >= userInfo.SeasonLevel)
-            {
-                FloatTipManager.Instance.ShowFloatTip("已经领取！");
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
-                return;
-            }
-
-            C2M_SeasonLevelRewardRequest request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = userInfo.SeasonLevel };
-            M2C_SeasonLevelRewardResponse response =
-                    (M2C_SeasonLevelRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCode.ERR_Success)
+            int oldReward = numericComponent.GetAsInt(NumericType.SeasonReward);
+            int nowReward = oldReward + 1;
+            if (nowReward <= SeasonLevelConfigCategory.Instance.GetAll().Count)
             {
-                self.AcvityedImg.SetActive(true);
-                self.GetBtn.SetActive(false);
+                if (nowReward > userInfo.SeasonLevel)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("未到领取等级！");
+                    return;
+                }
+
+                C2M_SeasonLevelRewardRequest request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = nowReward };
+                M2C_SeasonLevelRewardResponse response =
+                        (M2C_SeasonLevelRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                self.UpdateSeasonReward();
             }
         }
     }
