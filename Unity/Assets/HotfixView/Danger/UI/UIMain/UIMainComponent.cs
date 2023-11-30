@@ -638,7 +638,7 @@ namespace ET
 
         public static async ETTask UpdateTaskList(this UIMainComponent self)
         {
-            //新加一个协议。 调用服务器的<TaskComponent>().OnLogin() 刷新任务
+            //此处新加一个协议。 调用服务器的<TaskComponent>().OnLogin() 刷新任务
 
             await NetHelper.RequestIniTask(self.ZoneScene());
             self.OnRecvTaskUpdate();
