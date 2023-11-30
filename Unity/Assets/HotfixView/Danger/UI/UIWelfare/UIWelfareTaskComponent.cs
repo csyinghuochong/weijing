@@ -89,7 +89,13 @@ namespace ET
                     self.UIWelfareTaskItemComponents.Add(uiWelfareTaskItemComponent);
                 }
 
-                uiWelfareTaskItemComponent.OnUpdateData(taskComponent.GetTaskById(tasks[i]), day);
+                TaskPro taskPro = taskComponent.GetTaskById(tasks[i]);
+                if (taskPro == null)
+                {
+                    return;
+                }
+
+                uiWelfareTaskItemComponent.OnUpdateData(taskPro, day);
                 number++;
 
                 if (roleComoleteTaskList.Contains(tasks[i]))
