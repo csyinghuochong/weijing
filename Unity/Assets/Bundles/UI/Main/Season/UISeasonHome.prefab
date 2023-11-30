@@ -398,7 +398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1.\u6BCF\u6B21\u51FB\u8D25\u4E0D\u4F4E\u4E8E\u81EA\u8EAB15\u7EA7\u7684\u9886\u4E3B\u602A\u7269\u83B7\u5F975\u70B9\u7ECF\u9A8C"
+  m_Text: "1.\u6BCF\u6B21\u51FB\u8D2540\u7EA7\u4EE5\u4E0A\u7684\u9886\u4E3B\u602A\u7269\u968F\u673A\u83B7\u5F971-5\u70B9\u7ECF\u9A8C"
 --- !u!1 &2089673096419331208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.38823533, g: 0.2784314, b: 0.16078432, a: 1}
+  m_Color: {r: 0.27128428, g: 0.3882353, b: 0.16078432, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2706,7 +2706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7159400482292433828
 RectTransform:
   m_ObjectHideFlags: 0

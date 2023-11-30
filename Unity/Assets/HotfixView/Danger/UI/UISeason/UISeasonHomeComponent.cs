@@ -160,7 +160,7 @@ namespace ET
                 }
                 else
                 {
-                    self.MonsterRefreshTimeText.text = "出现!!";
+                    self.MonsterRefreshTimeText.text = "赛季领主已刷新!!";
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);
