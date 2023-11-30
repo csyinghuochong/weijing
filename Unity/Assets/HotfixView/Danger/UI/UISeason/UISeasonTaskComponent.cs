@@ -307,8 +307,16 @@ namespace ET
             {
                 UICommonHelper.DestoryChild(self.RewardListNode);
                 List<RewardItem> rewardItems = new List<RewardItem>();
-                rewardItems.Add(new RewardItem() { ItemID = 1, ItemNum = taskConfig.TaskCoin });
-                rewardItems.Add(new RewardItem() { ItemID = 2, ItemNum = taskConfig.TaskExp });
+                if (taskConfig.TaskCoin != 0)
+                {
+                    rewardItems.Add(new RewardItem() { ItemID = 1, ItemNum = taskConfig.TaskCoin });
+                }
+
+                if (taskConfig.TaskExp != 0)
+                {
+                    rewardItems.Add(new RewardItem() { ItemID = 2, ItemNum = taskConfig.TaskExp });
+                }
+
                 rewardItems.AddRange(TaskHelper.GetTaskRewards(taskId));
                 UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             }
