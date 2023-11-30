@@ -15,6 +15,7 @@ namespace ET
                 int totalPoint = 0;
                 for (int i = 0; i < request.PointList.Count; i++)
                 {
+
                     totalPoint += request.PointList[i];
                 }
                 int remainPoint = (unit.GetComponent<UserInfoComponent>().UserInfo.Lv - 1) * 10 - totalPoint;

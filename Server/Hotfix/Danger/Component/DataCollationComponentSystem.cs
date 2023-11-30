@@ -28,10 +28,6 @@ namespace ET
 
         public static void OnSceondHurt(this DataCollationComponent self, long hurtValue)
         {
-            if (hurtValue < self.SceondHurt)
-            {
-                return;
-            }
             self.SceondHurt = hurtValue;
         }
 
