@@ -69,6 +69,10 @@ namespace ET
                 case SceneTypeEnum.TowerOfSeal:
                     UI uITowerOfSealMain = UIHelper.GetUI(args.Scene, UIType.UITowerOfSealMain);
                     uITowerOfSealMain.GetComponent<UITowerOfSealMainComponent>().StartBtn.SetActive(true);
+                    Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(args.Scene);
+                    myUnit.GetComponent<SkillManagerComponent>().ClearSkillAndCd();
+                    UI uiMain = UIHelper.GetUI(args.Scene, UIType.UIMain);
+                    uimain.GetComponent<UIMainComponent>().BeginEnterScene(sceneTypeEnum);
                     break;
                 default:
                     ui = await UIHelper.Create(args.Scene, UIType.UICellDungeonSettlement);
