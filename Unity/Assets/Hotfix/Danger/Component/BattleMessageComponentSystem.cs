@@ -34,6 +34,21 @@ namespace ET
             return TimeHelper.ClientNow() > self.RideForbidTime;    
         }
 
+        public static bool CanShout(this BattleMessageComponent self)
+        {
+            // 组队喊话设置频率，一分钟一次
+            long oldTime = self.ShoutInterval;
+            long nowTime = TimeHelper.ServerNow();
+            if (nowTime - oldTime >= 60000)
+            {
+                self.ShoutInterval = nowTime;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

@@ -137,31 +137,17 @@ namespace ET
                 return;
             }
 
-            // 组队喊话设置频率，一分钟一次
-            if (PlayerPrefs.HasKey("ShoutInterval"))
-            {
-                long oldTime = long.Parse(PlayerPrefs.GetString("ShoutInterval"));
-                long nowTime = TimeHelper.ServerNow();
-                if (nowTime - oldTime >= 60000)
-                {
-                    string text =
-                            $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}_{teamInfo.FubenType}_{teamInfo.PlayerList[0].PlayerLv}></link>";
-                    self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
-                    FloatTipManager.Instance.ShowFloatTip("已发送！");
-                    PlayerPrefs.SetString("ShoutInterval", nowTime.ToString());
-                }
-                else
-                {
-                    FloatTipManager.Instance.ShowFloatTip("喊话过于频繁！");
-                }
-            }
-            else
+            BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            if (battleMessageComponent.CanShout())
             {
                 string text =
                         $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}_{teamInfo.FubenType}_{teamInfo.PlayerList[0].PlayerLv}></link>";
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
                 FloatTipManager.Instance.ShowFloatTip("已发送！");
-                PlayerPrefs.SetString("ShoutInterval", TimeHelper.ServerNow().ToString());
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("喊话过于频繁！");
             }
         }
 

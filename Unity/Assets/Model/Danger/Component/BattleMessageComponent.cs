@@ -34,5 +34,8 @@ namespace ET
         public int LastDungeonId;
 
         public Dictionary<long, long> PetFightCD = new Dictionary<long, long>();
+
+        // 组队喊话频率
+        public long ShoutInterval;
     }
 }
