@@ -244,19 +244,23 @@ namespace ET
                 }
             }
 
-            string[] zhuanzhuskills = petConfig.RandomSkillID.Split(';');
-            for (int i = 0; i < zhuanzhuskills.Length; i++)
+
+            string randomSkillID = petConfig.RandomSkillID;
+            if (!ComHelp.IfNull(randomSkillID))
             {
-                if (ComHelp.IfNull(zhuanzhuskills[i]))
+                string[] randomSkillList = randomSkillID.Split(';');
+                for (int i = 0; i < randomSkillList.Length; i++)
                 {
-                    continue;
-                }
-                int zhuanzhuskill = int.Parse(zhuanzhuskills[i]);
-                if (!skills.Contains(zhuanzhuskill))
-                {
-                    skills.Add(zhuanzhuskill);
+                    string[] skillInfo = randomSkillList[i].Split(',');
+
+                    int zhuanzhuskill = int.Parse(skillInfo[0]);
+                    if (!skills.Contains(zhuanzhuskill))
+                    {
+                        skills.Add(zhuanzhuskill);
+                    }
                 }
             }
+
 
             for (int i = 0; i < skills.Count; i++)
             {
