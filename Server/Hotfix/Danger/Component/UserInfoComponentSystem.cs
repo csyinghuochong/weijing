@@ -383,6 +383,17 @@ namespace ET
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
                 expcoefficient *= bossDevelopment.ExpAdd;
             }
+
+            NumericComponent numericComponent = main.GetComponent<NumericComponent>();
+            if ( (sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0  )
+              || sceneType != SceneTypeEnum.LocalDungeon)
+            {
+                if (numericComponent.GetAsInt(NumericType.JueXingExp) < 5000)
+                {
+                    numericComponent.ApplyChange(null, NumericType.JueXingExp, 1, 0);
+                }
+            }
+
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
         }

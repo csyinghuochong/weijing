@@ -93,11 +93,6 @@ namespace ET
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, killNumber+1, false);
             }
-
-            if (userInfoComponent.UserInfo.PiLao > 0 && numericComponent.GetAsInt(NumericType.JueXingExp) < 5000)
-            {
-                numericComponent.ApplyChange(null, NumericType.JueXingExp, 1, 0);
-            }
             //int baoShiKillNumber = numericComponent.GetAsInt(NumericType.BaoShiKillNumber);
             //if (baoShiKillNumber >= 24)
             //{
