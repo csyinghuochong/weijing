@@ -133,6 +133,7 @@ namespace ET
 
             self.TakeOffBtn.SetActive(self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(jingHeId) != null);
 
+            UISeasonJingHeItemComponent nowItem = new UISeasonJingHeItemComponent();
             foreach (UISeasonJingHeItemComponent uiSeasonJingHeItemComponent in self.UISeasonJingHeItemComponentList)
             {
                 uiSeasonJingHeItemComponent.OnUpdateData();
@@ -140,6 +141,7 @@ namespace ET
                 uiSeasonJingHeItemComponent.OutLineImg.SetActive(false);
                 if (uiSeasonJingHeItemComponent.JingHeId == jingHeId)
                 {
+                    nowItem = uiSeasonJingHeItemComponent;
                     uiSeasonJingHeItemComponent.OutLineImg.SetActive(true);
                     self.JingHeImg.GetComponent<Image>().sprite = uiSeasonJingHeItemComponent.IconImg.activeSelf
                             ? uiSeasonJingHeItemComponent.IconImg.GetComponent<Image>().sprite : self.OldSprite;
@@ -194,8 +196,39 @@ namespace ET
             else // 解锁的孔位
             {
                 self.NameText.GetComponent<Text>().text = "赏金能力";
-                self.DesText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(seasonJingHeConfig.AddProperty);
+                string attribute = "";
+                if (nowItem.BagInfo != null)
+                {
+                    if (nowItem.BagInfo.XiLianHideProLists != null)
+                    {
+                        foreach (HideProList hideProList in nowItem.BagInfo.XiLianHideProLists)
+                        {
+                            if (hideProList.HideID == 0) continue;
+                            string proName = ItemViewHelp.GetAttributeName(hideProList.HideID);
+                            int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
+                            if (showType == 2)
+                            {
+                                attribute = $"当前附加 {proName}:" + (hideProList.HideValue / 100f).ToString("0.##") + "%" + "\n";
+                            }
+                            else
+                            {
+                                attribute = $"当前附加 {proName}:" + hideProList.HideValue + "\n";
+                            }
+                        }
+                    }
 
+                    if (nowItem.BagInfo.HideSkillLists != null)
+                    {
+                        for (int i = 0; i < nowItem.BagInfo.HideSkillLists.Count; i++)
+                        {
+                            int skillID = nowItem.BagInfo.HideSkillLists[i];
+                            SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
+                            attribute = "当前附加技能" + ":" + skillCof.SkillName + "\n";
+                        }
+                    }
+                }
+                self.DesText.GetComponent<Text>().text = attribute;
+                
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 int number = 0;
                 var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");

@@ -14,6 +14,7 @@ namespace ET
         public GameObject ClickBtn;
 
         public int JingHeId;
+        public BagInfo BagInfo;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -76,6 +77,7 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201 && equiplist[i].EquipIndex == self.JingHeId)
                 {
+                    self.BagInfo = equiplist[i];
                     self.IconImg.SetActive(true);
                     string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                     Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
