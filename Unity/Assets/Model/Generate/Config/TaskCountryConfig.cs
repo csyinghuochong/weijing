@@ -116,10 +116,10 @@ namespace ET
 		public int TargetType { get; set; }
 		/// <summary>目标ID</summary>
 		[ProtoMember(14)]
-		public int Target { get; set; }
+		public int[] Target { get; set; }
 		/// <summary>目标值1</summary>
 		[ProtoMember(15)]
-		public int TargetValue { get; set; }
+		public int[] TargetValue { get; set; }
 		/// <summary>任务描述</summary>
 		[ProtoMember(16)]
 		public string TaskDes { get; set; }
