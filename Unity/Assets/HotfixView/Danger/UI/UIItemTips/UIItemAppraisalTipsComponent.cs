@@ -389,14 +389,14 @@ namespace ET
                     {
                         float hidevaluemin = float.Parse(hidevalueinfo[1]);
                         float hidevalueman = float.Parse(hidevalueinfo[2]);
-                        attribute = $"当前附加 {proName}:" + (hidevaluemin * 100).ToString("0.##") + "~" + (hidevalueman * 100).ToString("0.##") +
+                        attribute = $"{proName}:" + (hidevaluemin * 100).ToString("0.##") + "~" + (hidevalueman * 100).ToString("0.##") +
                                 "%\n";
                     }
                     else
                     {
                         int hidevaluemin = int.Parse(hidevalueinfo[1]);
                         int hidevaluemax = int.Parse(hidevalueinfo[2]);
-                        attribute = $"当前附加 {proName}:" + hidevaluemin + "~" + hidevaluemax;
+                        attribute = $"{proName}:" + hidevaluemin + "~" + hidevaluemax;
                     }
                 }
                 // else if (addType == 2)
