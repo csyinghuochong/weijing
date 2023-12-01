@@ -846,6 +846,26 @@ namespace ET
                 }
             }
 
+            PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
+            if (!ComHelp.IfNull(petSkinConfig.PripertySet))
+            {
+                string[] attriList = petSkinConfig.PripertySet.Split('@');
+                for (int a = 0; a < attriList.Length; a++)
+                {
+                    try
+                    {
+                        string[] attriItem = attriList[a].Split(',');
+                        int typeId = int.Parse(attriItem[0]);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"attriStrexc Eption： {petSkinConfig.PripertySet} {ex.ToString()}");
+                    }
+                }
+            }
+
+
             //互斥技能处理
             List<int> huchiList = new List<int>();
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
