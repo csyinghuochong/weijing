@@ -705,11 +705,14 @@ namespace ET
                                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, useBagInfo.HideSkillLists[i], 1);
                             }
 
-                            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingAttrNumber_43, useBagInfo.HideSkillLists.Count, 1);
-                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingAttrNumber_43, useBagInfo.HideSkillLists.Count, 1);
-
                             string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
                             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                        }
+
+                        if (useBagInfo.HideProLists != null && useBagInfo.HideProLists.Count > 0)
+                        {
+                            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingAttrNumber_43, useBagInfo.HideProLists.Count, 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDingAttrNumber_43, useBagInfo.HideProLists.Count, 1);
                         }
 
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JianDingEqipNumber_212, int.Parse(qulitylv), 1);
