@@ -391,13 +391,18 @@ namespace ET
 
             //增加宠物随机技能
             string randomSkillID = petConfig.RandomSkillID;
-            if (randomSkillID != "" && randomSkillID != "0")
+            //80001010,01;80001014,0.1;80001015.1
+
+            if (!ComHelp.IfNull(randomSkillID))
             {
                 string[] randomSkillList = randomSkillID.Split(';');
                 for (int i = 0; i < randomSkillList.Length; i++)
                 {
-                    int skillID = int.Parse(randomSkillList[i]);
-                    if (RandomHelper.RandFloat() <= 0.2f)
+                    string[] skillInfo = randomSkillList[i].Split(",");
+
+                    int skillID = int.Parse(skillInfo[0]);
+
+                    if (RandomHelper.RandFloat() <= float.Parse(skillInfo[1]))
                     {
                         rolePetInfo.PetSkill.Add(skillID);
                     }
