@@ -92,6 +92,7 @@ namespace ET
             self.HurtTextPet = rc.Get<GameObject>("HurtTextPet").GetComponent<Text>();
             self.HurtTextPlayer = rc.Get<GameObject>("HurtTextPlayer").GetComponent<Text>();
             self.Lab_Deve = rc.Get<GameObject>("Lab_Deve").GetComponent<Text>();
+            self.Lab_Deve.gameObject.SetActive(true);
 
             self.HurtTextNode = rc.Get<GameObject>("HurtTextNode");
             self.SingNode = rc.Get<GameObject>("SingNode");
