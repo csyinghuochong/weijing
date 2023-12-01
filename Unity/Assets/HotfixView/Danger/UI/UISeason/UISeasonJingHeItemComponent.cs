@@ -70,6 +70,7 @@ namespace ET
             // bagComponent.SeasonJingHePlan
 
             self.IconImg.SetActive(false);
+            self.BagInfo = null;
             for (int i = 0; i < equiplist.Count; i++)
             {
                 ///equiplist[i].EquipPlan; 第几套晶核
