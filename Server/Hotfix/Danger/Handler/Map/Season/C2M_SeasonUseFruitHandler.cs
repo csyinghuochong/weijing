@@ -10,9 +10,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_SeasonUseFruitRequest request, M2C_SeasonUseFruitResponse response, Action reply)
         {
-
-            ///每个道具降低三小时冷却
-            int itemNumber = 0;
+            long reduceTime = 0;
             List<long> huishouList = request.BagInfoIDs;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
 
@@ -30,11 +28,11 @@ namespace ET
                     continue;
                 }
 
-                itemNumber += bagInfo.ItemNum;
+                reduceTime += long.Parse(itemConfig.ItemUsePar);
             }
             
             bagComponent.OnCostItemData(request.BagInfoIDs, ItemLocType.ItemLocBag);
-            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * SeasonHelper.SeasonFruitTime, 0 );
+            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * reduceTime, 0 );
 
             reply();
             await ETTask.CompletedTask;

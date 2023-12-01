@@ -97,6 +97,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
+                FloatTipManager.Instance.ShowFloatTip("使用成功！");
                 self.BagInfo = null;
                 self.UICommonItem.SetActive(false);
                 self.ItemNameText.GetComponent<Text>().text = string.Empty;
