@@ -41,7 +41,7 @@ namespace ET
                         {
                             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.BattleUseItem_214, 0, 1);
                             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.BattleUseItem_30, 0, 1);
-                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.BattleUseItem_30, 0, 1);
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.BattleUseItem_30, 0, 1);
                         }
                     }
                     if (juexingid == request.SkillID)

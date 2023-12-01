@@ -218,7 +218,7 @@ namespace ET
                     writeTaskID = writeTaskID_Next;
                     taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
 
-                    if (taskCountryConfig.TriggerType == 1 && playerLv < taskCountryConfig.TargetValue)
+                    if (taskCountryConfig.TriggerType == 1 && playerLv < taskCountryConfig.TargetValue[0])
                     {
                         //条件不满足
                         if (taskCountryConfig.NextTask == 0)

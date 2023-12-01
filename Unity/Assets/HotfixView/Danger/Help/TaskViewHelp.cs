@@ -16,7 +16,7 @@ namespace ET
             public TaskExcuteDelegate taskExcute;
             public TaskDescDelegate taskProgess;
         }
-        public Dictionary<TaskTargetType, TaskLogic> TaskTypeLogic = new Dictionary<TaskTargetType, TaskLogic>();
+        public Dictionary<int, TaskLogic> TaskTypeLogic = new Dictionary<int, TaskLogic>();
 
 
         protected override void InternalInit()
@@ -215,7 +215,7 @@ namespace ET
         {
             int taskId = taskPro.taskID;
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            TaskTargetType TargetType = (TaskTargetType)taskConfig.TargetType;
+            int TargetType = taskConfig.TargetType;
             return TaskTypeLogic[TargetType].taskProgess(taskPro, taskConfig);
         }
 
@@ -369,7 +369,7 @@ namespace ET
                     return true;
                 }
             }
-            TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(zoneScene, taskPro, taskConfig);
+            TaskViewHelp.Instance.TaskTypeLogic[target].taskExcute(zoneScene, taskPro, taskConfig);
             return true;
         }
 

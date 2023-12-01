@@ -111,7 +111,7 @@ namespace ET
 
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetTianTiReward}_{TimeHelper.ServerNow()}");
                 self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.PetTianDiWin_37, 0, 1 );
-                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PetTianDiWin_37, 0, 1);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetTianDiWin_37, 0, 1);
             }
             else
             {

@@ -288,7 +288,7 @@ namespace ET
                 int hurtvalue = hurtList[unititem.Id];
                 int hurtRate = (int)(hurtvalue * 100f / damageTotal);
                 unititem.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TeamDungeonHurt_136, self.TeamInfo.SceneId, hurtRate);
-                unititem.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TeamDungeonHurt_136, self.TeamInfo.SceneId, hurtRate);
+                unititem.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.TeamDungeonHurt_136, self.TeamInfo.SceneId, hurtRate);
 
                 unititem.GetComponent<TaskComponent>().OnPassTeamFuben();
                 unititem.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamFubenNumber_20, 0, 1);

@@ -136,7 +136,7 @@ namespace ET
                 numericComponent.GetAsInt(NumericType.TowerOfSealFinished));
 
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.TowerOfSeal_28, 0, 1);
-            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TowerOfSeal_28, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.TowerOfSeal_28, 0, 1);
 
             reply();
             await ETTask.CompletedTask;

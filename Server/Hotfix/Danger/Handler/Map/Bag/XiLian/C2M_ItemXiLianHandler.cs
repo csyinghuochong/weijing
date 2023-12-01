@@ -103,11 +103,11 @@ namespace ET
                     for (int attr = 0;  attr < itemXiLianResult.XiLianHideProLists.Count; attr++ )
                     {
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.XiLianAttriId_45, itemXiLianResult.XiLianHideProLists[0].HideID, 1);
-                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.XiLianAttriId_45, itemXiLianResult.XiLianHideProLists[0].HideID, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.XiLianAttriId_45, itemXiLianResult.XiLianHideProLists[0].HideID, 1);
                     }
 
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.XiLianSkillNumber_44, itemXiLianResult.HideSkillLists.Count, 1);
-                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.XiLianSkillNumber_44, itemXiLianResult.HideSkillLists.Count, 1);
+                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.XiLianSkillNumber_44, itemXiLianResult.HideSkillLists.Count, 1);
                 }
 
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);

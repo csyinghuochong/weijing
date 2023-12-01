@@ -545,7 +545,7 @@ namespace ET
                     self.UserInfo.JiaYuanLv += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanLv.ToString();
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanLevel_22, 0, self.UserInfo.JiaYuanLv - 10000);
-                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JiaYuanLevel_22, 0, self.UserInfo.JiaYuanLv - 10000);
+                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.JiaYuanLevel_22, 0, self.UserInfo.JiaYuanLv - 10000);
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanLevel_404, 0, self.UserInfo.JiaYuanLv - 10000);
                     break;
                 case UserDataType.FangRong:

@@ -84,7 +84,7 @@ namespace ET
 					{
                         unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
-                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PetUseSkillBook_36, 0, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                     }
 
                     response.rolePetInfo = petInfo;
@@ -106,7 +106,7 @@ namespace ET
 				unit.GetComponent<TaskComponent>().OnPetXiLian(petInfo);                    //激活任务
 
                 unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
-                unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
+                unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
             }
 
 			reply();

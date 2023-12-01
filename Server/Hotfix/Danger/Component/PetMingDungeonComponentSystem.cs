@@ -37,11 +37,11 @@ namespace ET
             self.MainUnit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.PetMineCDTime, TimeHelper.ServerNow() + cdTime, 0);
 
             self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MineBattleNumber_402, 0, 1);
-            self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MineBattleNumber_402, 0, 1);
+            self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.MineBattleNumber_402, 0, 1);
             if (result == CombatResultEnum.Win)
             {
                 self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.MineWinNumber_403, 0, 1);
-                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.MineWinNumber_403, 0, 1);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.MineWinNumber_403, 0, 1);
             }
 
             await ETTask.CompletedTask;

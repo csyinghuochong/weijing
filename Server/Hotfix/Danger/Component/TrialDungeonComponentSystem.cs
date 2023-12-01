@@ -41,7 +41,7 @@ namespace ET
             MessageHelper.SendToClient(players[0], m2C_FubenSettlement);
 
             players[0].GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
-            players[0].GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
+            players[0].GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
         }
 
         public static async ETTask UploadHurtValue(this TrialDungeonComponent self)
@@ -69,7 +69,7 @@ namespace ET
             if (Response.Error == ErrorCode.ERR_Success && Response.RankId != 0)
             {
                 players[0].GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.TrialRank_81, Response.RankId, 1);
-                players[0].GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialRank_81, Response.RankId, 1);
+                players[0].GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.TrialRank_81, Response.RankId, 1);
             }
             self.HurtValue = 0;
             await ETTask.CompletedTask;
