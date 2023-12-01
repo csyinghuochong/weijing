@@ -133,7 +133,7 @@ namespace ET
 
             self.TakeOffBtn.SetActive(self.ZoneScene().GetComponent<BagComponent>().GetJingHeByWeiZhi(jingHeId) != null);
 
-            UISeasonJingHeItemComponent nowItem = new UISeasonJingHeItemComponent();
+            UISeasonJingHeItemComponent nowItem = null;
             foreach (UISeasonJingHeItemComponent uiSeasonJingHeItemComponent in self.UISeasonJingHeItemComponentList)
             {
                 uiSeasonJingHeItemComponent.OnUpdateData();
@@ -197,7 +197,7 @@ namespace ET
             {
                 self.NameText.GetComponent<Text>().text = "赏金能力";
                 string attribute = "";
-                if (nowItem.BagInfo != null)
+                if (nowItem != null && nowItem.BagInfo != null)
                 {
                     if (nowItem.BagInfo.XiLianHideProLists != null)
                     {
