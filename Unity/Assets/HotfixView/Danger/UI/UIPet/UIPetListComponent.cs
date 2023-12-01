@@ -205,6 +205,7 @@ namespace ET
 
             ButtonHelp.AddListenerEx(self.Btn_FangSheng, self.OnBtn_FangSheng);
             ButtonHelp.AddListenerEx(self.ButtonUseSkin, () => { self.OnButtonUseSkin().Coroutine(); });
+            self.ButtonUseSkin.SetActive(false);
 
             self.InputFieldName = rc.Get<GameObject>("InputFieldName");
             self.InputFieldName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
