@@ -88,7 +88,8 @@ namespace ET
             self.UICommonItem.UpdateItem(new BagInfo() { ItemID = storeSellConfig.SellItemID }, ItemOperateEnum.None);
             self.UICommonItem.Label_ItemNum.SetActive(false);
             self.UICommonItem.HideItemName();
-            self.NameText.GetComponent<Text>().text = itemConfig.ItemName;
+            self.NameText.GetComponent<Text>().text =
+                    $"<color=\"#{ItemViewHelp.QualityReturnColorUI(itemConfig.ItemQuality)}\">{itemConfig.ItemName}</color>";
             self.ValueText.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
 
             ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(storeSellConfig.SellType);
