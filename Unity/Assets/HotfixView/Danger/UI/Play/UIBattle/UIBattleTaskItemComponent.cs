@@ -74,7 +74,7 @@ namespace ET
             self.TextTaskDesc.GetComponent<Text>().text = taskConfig.TaskDes;
 
             taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue[0] ? taskConfig.TargetValue[0] : taskPro.taskTargetNum_1;
-            self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " + string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue);
+            self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " + string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
 
             //更新图标
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TaskIcon, taskConfig.TaskIcon.ToString());

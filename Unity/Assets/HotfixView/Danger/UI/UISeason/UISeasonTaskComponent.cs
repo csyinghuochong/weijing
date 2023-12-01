@@ -223,7 +223,7 @@ namespace ET
 
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
             self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                    string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue);
+                    string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
 
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
             if (!ComHelp.IfNull(taskConfig.RewardItem))
