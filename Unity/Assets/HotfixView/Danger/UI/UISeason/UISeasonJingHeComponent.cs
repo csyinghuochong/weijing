@@ -195,7 +195,7 @@ namespace ET
             }
             else // 解锁的孔位
             {
-                self.NameText.GetComponent<Text>().text = "赏金能力";
+                self.NameText.GetComponent<Text>().text = "赛季晶核孔位";
                 string attribute = "";
                 if (nowItem != null && nowItem.BagInfo != null)
                 {
@@ -226,6 +226,8 @@ namespace ET
                             attribute = "当前附加技能" + ":" + skillCof.SkillName + "\n";
                         }
                     }
+
+                    self.NameText.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(nowItem.BagInfo.ItemID).ItemName;
                 }
                 self.DesText.GetComponent<Text>().text = attribute;
                 
