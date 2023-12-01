@@ -1339,6 +1339,38 @@ namespace ET
             return c;
         }
 
+        //根据品质返回一个Color
+        public static string QualityReturnColorUI(int ItenQuality)
+        {
+            string color = "FFFFFF";
+            switch (ItenQuality)
+            {
+                case 1:
+                    color = "686868";
+                    break;
+
+                case 2:
+                    color = "47930F";
+                    break;
+                case 3:
+                    color = "108793";
+                    break;
+
+                case 4:
+                    color = "9D298C";
+                    break;
+                case 5:
+                    color = "9C2933";
+                    break;
+                case 6:
+                    color = "9C2933";
+                    break;
+            }
+            return color;
+        }
+
+
+
         ///<summary>   
         /// 从字符串中提取所有数字   
         /// Returns：所有数字   

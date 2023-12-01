@@ -371,7 +371,7 @@ namespace ET
                 if (qua >= 5) {
                     qua = 5;
                 }
-                string colorValue = ComHelp.QualityReturnColorUI(qua);
+                string colorValue = ItemViewHelp.QualityReturnColorUI(qua);
                 self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"<color=#{colorValue}>当前品质:{baginfo.ItemPar}</color>";
                 //self.Lab_ItemJingHeQuality.AddComponent<Outline>();
                 // 属性显示itemConfig.ItemUsePar
