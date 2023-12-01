@@ -830,6 +830,16 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 清除所有技能和Cd
+        /// </summary>
+        /// <param name="self"></param>
+        public static void ClearSkillAndCd(this SkillManagerComponent self)
+        {
+            self.SkillCDs.Clear();
+            self.OnDispose();
+        }
+
         public static void Check(this SkillManagerComponent self)
         {
             int skillcnt = self.Skills.Count;

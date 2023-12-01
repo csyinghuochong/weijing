@@ -85,6 +85,16 @@ namespace ET
             return 0;
         }
 
+        /// <summary>
+        /// 清除所有技能和Cd
+        /// </summary>
+        /// <param name="self"></param>
+        public static void ClearSkillAndCd(this SkillManagerComponent self)
+        {
+            self.SkillCDs.Clear();
+            self.OnFinish();
+        }
+
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();

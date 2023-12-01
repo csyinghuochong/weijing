@@ -25,6 +25,8 @@ namespace ET
                 return;
             }
 
+            players[0].GetComponent<SkillManagerComponent>().ClearSkillAndCd();
+
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
 
