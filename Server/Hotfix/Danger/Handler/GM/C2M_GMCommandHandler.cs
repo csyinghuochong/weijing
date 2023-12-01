@@ -150,7 +150,7 @@ namespace ET
 							//MessageHelper.Broadcast(unit, createSpilings);
 						}
 						break;
-					case 4: //直接接取某个任务      4#81000002
+					case 4: //直接接取某个任务      4#81000036
                         unit.GetComponent<TaskComponent>().OnGMGetTask(int.Parse(commands[1]));
 						break;
 					case 5: //直接获得某个宠物      5#1001101
