@@ -197,17 +197,6 @@ namespace ET
 			return ErrorCore;
 		}
 
-		////超级金柳露洗炼
-		private void Pet_XiLianJinluliu(RolePetInfo petinfo)
-		{
-			Function_AI.GetInstance().Pet_Create(petinfo, 1);
-
-			//langStrHint = Game_PublicClassVar.Get_gameSettingLanguge.LoadLocalizationHint("hint_226");
-			//Game_PublicClassVar.Get_function_UI.GameGirdHint_Front(langStrHint);
-			//Game_PublicClassVar.Get_function_UI.GameGirdHint_Front("你的宠物被一股强大的能力赋予了！");
-			//消耗当前的道具,刷新对应的栏位显示
-		}
-
 		//成长提高
 		private bool Pet_AddRandomChengZhang(RolePetInfo petinfo)
 		{
