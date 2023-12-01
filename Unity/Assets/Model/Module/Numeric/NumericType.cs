@@ -874,6 +874,13 @@
         public const int Extra_Buff_CriHitDamgeAdd_Pro_Add = Now_CriHitDamgeAdd_Pro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_CriHitDamgeAdd_Pro_Mul = Now_CriHitDamgeAdd_Pro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_PoZhouAdd_Pro = 2068;          //当前破咒伤害
+        public const int Base_PoZhouAdd_Pro_Base = Now_PoZhouAdd_Pro * 100 + 1;              //属性累加
+        public const int Base_PoZhouAdd_Pro_Mul = Now_PoZhouAdd_Pro * 100 + 2;               //属性乘法
+        public const int Base_PoZhouAdd_Pro_Add = Now_PoZhouAdd_Pro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PoZhouAdd_Pro_Add = Now_PoZhouAdd_Pro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PoZhouAdd_Pro_Mul = Now_PoZhouAdd_Pro * 100 + 12;            //属性Buff附加乘法
+
         public const int Now_GongActAddPro = 2071;          //弓箭附加伤害
         public const int Base_GongActAddPro_Base = Now_GongActAddPro * 100 + 1;                  //属性累加
         public const int Base_GongActAddPro_Mul = Now_GongActAddPro * 100 + 2;                   //属性乘法

@@ -469,6 +469,9 @@ namespace ET
                         defPingfen = 200;
                     }
                     actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
+
+                    //判断对方是否有神佑技能
+                    //defendUnit.GetComponent<>
                 }
 
                 //计算战斗公式
