@@ -357,6 +357,12 @@ namespace ET
                 self.OnAddChests(sceneId, beKill.ConfigId);
             }
 
+            if (SeasonHelper.IsOpenSeason() && beKill.IsBoss() && monsterConfig.Lv >= 40)
+            {
+                int seasonExp = RandomHelper.RandomNumber(1, 6);
+                self.UpdateRoleData(UserDataType.SeasonExp, seasonExp.ToString());
+            }
+
             bool drop = true;
             if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
@@ -379,11 +385,6 @@ namespace ET
             }
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
-
-            if (SeasonHelper.IsOpenSeason() && Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 15)
-            {
-                self.UpdateRoleData(UserDataType.SeasonExp, "5");
-            }
         }
 
         public static void UpdateRoleDataBroadcast(this UserInfoComponent self, int Type, string value)
