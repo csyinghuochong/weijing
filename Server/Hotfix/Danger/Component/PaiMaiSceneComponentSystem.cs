@@ -146,6 +146,7 @@ namespace ET
                         ItemNumber = self.AuctionItemNum,
                     };
 
+                    Log.Warning($"OnAuctionOver[在线]:  {self.DomainZone()}  {self.AuctioUnitId}  {self.AuctionPlayer}");
 
                     M2P_PaiMaiAuctionOverResponse m2G_RechargeResponse = (M2P_PaiMaiAuctionOverResponse)await ActorLocationSenderComponent.Instance.Call(self.AuctioUnitId, p2M_PaiMaiAuctionOverRequest);
                     if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
@@ -160,9 +161,12 @@ namespace ET
                             self.AuctionJoinList.Remove(self.AuctioUnitId);
                         }
                     }
+
+                    Log.Warning($"OnAuctionOver[在线]:  {m2G_RechargeResponse.Error}  {getitem}");
                 }
                 else
                 {
+                    Log.Warning($"OnAuctionOver[离线]:  {self.DomainZone()}  {self.AuctioUnitId}  {self.AuctionPlayer}");
                     UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(self.DomainZone(), self.AuctioUnitId);
                     if (userInfoComponent.UserInfo.Gold >= self.AuctionPrice)
                     {
@@ -180,6 +184,8 @@ namespace ET
                             self.AuctionJoinList.Remove(self.AuctioUnitId);
                         }
                     }
+
+                    Log.Warning($"OnAuctionOver[离线]:   {getitem}");
                 }
 
                 if (getitem)

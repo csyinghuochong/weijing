@@ -36,7 +36,6 @@ namespace ET
         //赛季结束时间
         public static long SeasonCloseTime = 1705939200000;
 
-        
 
         /// <summary>
         /// 赛季BOSS
