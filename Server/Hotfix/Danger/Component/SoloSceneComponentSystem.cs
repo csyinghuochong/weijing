@@ -89,18 +89,32 @@ namespace ET
             }
         }
 
-        public static  void RecordSoloRank(this SoloSceneComponent self)
+        public static  async ETTask RecordSoloRank(this SoloSceneComponent self)
         {
             List<string> sololist = new List<string>(); 
             List<SoloPlayerResultInfo> soloPlayerList  = self.GetSoloResult();
+
+            long dbCacheId = DBHelper.GetDbCacheId( self.DomainZone() );
             for (int i = 0; i < soloPlayerList.Count; i++)
             {
                 long combat = 0;
                 self.PlayerCombatList.TryGetValue(soloPlayerList[i].UnitId, out combat);
 
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = soloPlayerList[i].UnitId, Component = DBHelper.UserInfoComponent });
+                if (d2GGetUnit.Component == null)
+                {
+                    continue;
+                }
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(soloPlayerList[i].Occ);
+                string occName = occupationConfig.OccupationName;
+                UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
 
-                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum}  职业:{occupationConfig.OccupationName}  战力:{combat}";
+                if (userInfoComponent.UserInfo.OccTwo > 0)
+                {
+                    occName = OccupationTwoConfigCategory.Instance.Get(userInfoComponent.UserInfo.OccTwo).OccupationName;
+                }
+
+                string soloInfo =   $"玩家: {soloPlayerList[i].Name}  击杀:{soloPlayerList[i].WinNum} 等级:{userInfoComponent.UserInfo.Lv} 职业:{occName}  战力:{combat}";
                 sololist.Add(soloInfo);
             }
 
@@ -114,7 +128,7 @@ namespace ET
 
             self.MatchList.Clear();
 
-            self.RecordSoloRank();
+            self.RecordSoloRank().Coroutine();
 
             Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
             List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
