@@ -666,7 +666,7 @@ namespace ET
                 skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * ((float)skillcdTime - reduceCD));
             }
 
-            if (skillConfig.IfPublicSkillCD == 0 )
+            if (zhudong && skillConfig.IfPublicSkillCD == 0)
             {
                 //添加技能公共CD
                 self.SkillPublicCDTime = TimeHelper.ServerNow() + 500;  //公共1秒CD  
