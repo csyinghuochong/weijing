@@ -955,7 +955,6 @@ namespace ET
             }
         }
 
-
         public static void TriggerTaskEvent(this TaskComponent self, TaskTargetType targetType, int targetTypeId, int targetValue)
         {
             bool updateTask = false;
@@ -1224,6 +1223,8 @@ namespace ET
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
+                self.RoleTaskList[0].taskID = 81000034;
+
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.Season)
                 {
