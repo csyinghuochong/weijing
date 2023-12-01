@@ -20,12 +20,25 @@ namespace ET
             else
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                List<KeyValuePairLong> all = rankComponent.DBRankInfo.rankingTrial;
-                List<KeyValuePairLong> list = all.GetRange(0, all.Count > ComHelp.RankNumber ? ComHelp.RankNumber : all.Count);
 
-                for (int i = 0; i < list.Count; i++)
+
+                List<KeyValuePairLong> ranklist = rankComponent.DBRankInfo.rankingTrial;
+                //List<KeyValuePairLong> list = all.GetRange(0, all.Count > ComHelp.RankNumber ? ComHelp.RankNumber : all.Count);
+
+
+                List<long> idlist = new List<long>();
+                List<long> idremove = new List<long> (); 
+
+                for (int i = 0; i < ranklist.Count; i++)
                 {
-                    D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = list[i].KeyId, Component = DBHelper.UserInfoComponent });
+                    if (idlist.Contains(ranklist[i].KeyId))
+                    {
+                        idremove.Add(ranklist[i].KeyId);
+                        continue;
+                    }
+
+                    idlist.Add(ranklist[i].KeyId);
+                    D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = ranklist[i].KeyId, Component = DBHelper.UserInfoComponent });
                     if (d2GGetUnit.Component == null)
                     {
                         continue;
@@ -33,16 +46,28 @@ namespace ET
                     UserInfoComponent userinfoComponent = (d2GGetUnit.Component as UserInfoComponent);
                     response.RankList.Add(new RankingTrialInfo()
                     { 
-                        UserId = list[i].KeyId,
-                        Hurt = list[i].Value,
-                        FubenId = (int)(list[i].Value2),
+                        UserId = ranklist[i].KeyId,
+                        Hurt = ranklist[i].Value,
+                        FubenId = (int)(ranklist[i].Value2),
                         PlayerLv = userinfoComponent.UserInfo.Lv,
                         PlayerName = userinfoComponent.UserInfo.Name,   
                         Occ = userinfoComponent.UserInfo.Occ,
                     });
                 }
                 rankComponent.RankingTrialLastTime = TimeHelper.ServerNow();
-                rankComponent.RankingTrials = response.RankList;    
+                rankComponent.RankingTrials = response.RankList;
+
+                for (int remove = 0; remove < idremove.Count; remove++)
+                {
+                    for (int i = ranklist.Count - 1; i >= 0; i--)
+                    {
+                        if (ranklist[i].KeyId == idremove[remove])
+                        {
+                            ranklist.RemoveAt(i);   
+                            break;
+                        }
+                    }
+                }
             }
 
             reply();
