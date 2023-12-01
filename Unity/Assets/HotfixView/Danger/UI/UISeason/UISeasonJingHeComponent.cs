@@ -6,6 +6,8 @@ namespace ET
 {
     public class UISeasonJingHeComponent: Entity, IAwake, IDestroy
     {
+        public GameObject JingHeImg;
+        public Sprite OldSprite;
         public GameObject TakeOffBtn;
         public GameObject Btn_TianFu_2;
         public GameObject Btn_TianFu_1;
@@ -32,6 +34,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.JingHeImg = rc.Get<GameObject>("JingHeImg");
+            self.OldSprite = self.JingHeImg.GetComponent<Image>().sprite;
             self.JingHeListNode = rc.Get<GameObject>("JingHeListNode");
             self.UISeasonJingHeItem = rc.Get<GameObject>("UISeasonJingHeItem");
             self.NameText = rc.Get<GameObject>("NameText");
@@ -137,6 +141,8 @@ namespace ET
                 if (uiSeasonJingHeItemComponent.JingHeId == jingHeId)
                 {
                     uiSeasonJingHeItemComponent.OutLineImg.SetActive(true);
+                    self.JingHeImg.GetComponent<Image>().sprite = uiSeasonJingHeItemComponent.IconImg.activeSelf
+                            ? uiSeasonJingHeItemComponent.IconImg.GetComponent<Image>().sprite : self.OldSprite;
                 }
             }
 
