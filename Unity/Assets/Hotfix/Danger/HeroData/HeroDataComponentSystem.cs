@@ -276,15 +276,23 @@ namespace ET
 
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             int resurrection = (int)monsterConfig.ReviveTime;
+            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (SeasonHelper.IsOpenSeason() && SeasonHelper.SeasonBossId == unit.ConfigId)
             {
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                {
+                    LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
+                    UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
+                    localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+                    localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + resurrection * 1000);
+                }
                 resurrection = 0;
             }
             if (resurrection == 0)
             {
                 return 0;
             }
-            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+         
             if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
             {
                 //unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);

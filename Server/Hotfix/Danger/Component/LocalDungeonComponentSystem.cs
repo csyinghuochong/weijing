@@ -40,12 +40,6 @@ namespace ET
 
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
-            if (SeasonHelper.IsOpenSeason() && unit.ConfigId == SeasonHelper.SeasonBossId)
-            {
-                self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
-                self.MainUnit.GetComponent<NumericComponent>().ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Hour );
-            }
-
             if (userInfoComponent == null || userInfoComponent.IsDisposed)
             {
                 return;
