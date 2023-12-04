@@ -1218,6 +1218,9 @@ namespace ET
             UserInfo userInfo = UnitInfoComponent.UserInfo;
             int roleLv = userInfo.Lv;
 
+            //赛季等级
+            int seasonLv = userInfo.SeasonLevel;
+
             //初始化属性
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
