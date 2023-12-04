@@ -17,6 +17,8 @@ namespace ET
                 return;
             }
 
+            ///移除之前的闪电链
+
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = args.M2C_ChainLightning.TargetID;
             playEffectBuffData.SkillId = args.M2C_ChainLightning.SkillID;                   //技能相关配置

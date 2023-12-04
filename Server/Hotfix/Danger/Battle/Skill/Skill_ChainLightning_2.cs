@@ -40,6 +40,7 @@
             }
             this.SkillTriggerLastTime = serverNow;
 
+
             ///根据范围内敌人数量计算伤害加成
             this.HurtAddPro = 0f;
 

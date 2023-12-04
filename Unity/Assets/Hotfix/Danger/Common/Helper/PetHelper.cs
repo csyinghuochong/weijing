@@ -5,6 +5,17 @@ namespace ET
     public static class PetHelper
     {
 
+        /// <summary>
+        /// 宠物当前是第一个皮肤为普通宠物 其他皮肤是变异宠物
+        /// </summary>
+        /// <param name="rolePetInfo"></param>
+        /// <returns></returns>
+        public static bool IsBianYI(RolePetInfo rolePetInfo)
+        {
+            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            return petConfig.Skin[0] != rolePetInfo.SkinId;
+        }
+
         public static void CheckPropretyPoint(RolePetInfo rolePetInfo)
         {
             int maxPoint = (rolePetInfo.PetLv - 1) * 5;

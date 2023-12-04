@@ -42,7 +42,9 @@ namespace ET
 					return;
 				}
 			}
-
+			
+			////没有对应子类型的新增一下。
+			////新增的道具都要添加子类型
 			switch (itemSubType)
 			{
 				//宠物洗练
