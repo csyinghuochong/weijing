@@ -110,6 +110,7 @@ namespace ET
                 int lvalue = int.Parse(self.JiaYuanProList_7[i].Value);
                 int maxvlue = 0;
                 promaxvalue.TryGetValue(numericType, out maxvlue);
+                int oldmaxvlue = maxvlue;
                 maxvlue = (int)(maxvlue * 0.8f);
                 
                 //超过80%会下降
@@ -120,7 +121,17 @@ namespace ET
                         lvalue = maxvlue;
                     }
                 }
-                
+
+                //超过100%会下降更多
+                if (lvalue >= oldmaxvlue)
+                {
+                    lvalue -= RandomHelper.NextInt(10, 20);
+                    if (lvalue < maxvlue)
+                    {
+                        lvalue = maxvlue;
+                    }
+                }
+
                 lvalue = Mathf.Max(lvalue, 0);
                 self.JiaYuanProList_7[i].Value = lvalue.ToString();
             }

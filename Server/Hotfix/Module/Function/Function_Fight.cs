@@ -474,8 +474,18 @@ namespace ET
                     actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
 
                     //判断对方是否有神佑技能
-                    int shenyouid = 64000004;
-                    bool haveshenyou = defendUnit.GetComponent<AIComponent>().HaveSkillId(shenyouid) || defendUnit.GetComponent<SkillPassiveComponent>().HaveSkillId(shenyouid);
+                    bool haveshenyou = defendUnit.GetComponent<AIComponent>().HaveSkillId(80001014) || defendUnit.GetComponent<SkillPassiveComponent>().HaveSkillId(80002014);
+                    if (haveshenyou) {
+                        //低级破咒
+                        if (attackUnit.GetComponent<AIComponent>().HaveSkillId(80001015)) {
+                            actValue = (long)((float)actValue * 1.1f);
+                        }
+                        else if (attackUnit.GetComponent<SkillPassiveComponent>().HaveSkillId(80002015))
+                        {
+                            //高级破咒
+                            actValue = (long)((float)actValue * 1.2f);
+                        }
+                    }
                     //defendUnit.GetComponent<>
                 }
 
