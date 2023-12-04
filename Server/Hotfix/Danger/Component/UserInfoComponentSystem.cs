@@ -357,7 +357,7 @@ namespace ET
                 self.OnAddChests(sceneId, beKill.ConfigId);
             }
 
-            if (SeasonHelper.IsOpenSeason() && beKill.IsBoss() && monsterConfig.Lv >= 40)
+            if (SeasonHelper.IsOpenSeason(self.UserInfo.Lv) && beKill.IsBoss() && monsterConfig.Lv >= 40)
             {
                 int seasonExp = RandomHelper.RandomNumber(1, 6);
                 self.UpdateRoleData(UserDataType.SeasonExp, seasonExp.ToString());
@@ -366,7 +366,7 @@ namespace ET
             bool drop = true;
             if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
-                drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || beKill.IsBoss() || showlieopen;
+                drop = self.UserInfo.PiLao > 0 || beKill.IsBoss() || showlieopen;
             }
             if (!drop)
             {

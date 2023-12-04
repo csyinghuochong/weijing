@@ -58,11 +58,8 @@ namespace ET
 			response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
 			response.FashionEquipList = bagComponent.FashionEquipList;
+            response.SeasonJingHePlan = bagComponent.SeasonJingHePlan;
 
-			if (SeasonHelper.IsOpenSeason())
-			{
-                response.SeasonJingHePlan = bagComponent.SeasonJingHePlan;
-            }
             reply();
 			await ETTask.CompletedTask;
 		}

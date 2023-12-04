@@ -68,4 +68,5 @@
 {"_t":"FuntionConfig","_id":1068,"Name":"UIWelfare","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1069,"Name":"UIFenXiang","ConditionType":[1],"ConditionParam":[3],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
 {"_t":"FuntionConfig","_id":1070,"Name":"UIWorldLv","ConditionType":[1],"ConditionParam":[10],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[0]},
+{"_t":"FuntionConfig","_id":1071,"Name":"UISeason","ConditionType":[1],"ConditionParam":[55],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 ]}

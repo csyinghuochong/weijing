@@ -155,9 +155,9 @@ namespace ET
                     Log.Console("清空赛季任务！");
                 }
 
-                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason())
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
                 {
-                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                     numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
                     numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Minute);
                     numericComponent.ApplyValue(NumericType.SeasonOpenTime, SeasonHelper.SeasonOpenTime);
@@ -277,15 +277,12 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             int resurrection = (int)monsterConfig.ReviveTime;
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-            if (SeasonHelper.IsOpenSeason() && SeasonHelper.SeasonBossId == unit.ConfigId)
+            if (SeasonHelper.SeasonBossId == unit.ConfigId && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-                {
-                    LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                    UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
-                    localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
-                    localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + resurrection * 1000);
-                }
+                LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
+                UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
+                localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+                localDungeon.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + resurrection * 1000);
                 resurrection = 0;
             }
             if (resurrection == 0)

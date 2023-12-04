@@ -818,6 +818,10 @@ namespace ET
                     self.RoleTaskList.RemoveAt(i);
                 }
             }
+
+            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetParent<UserInfoComponent>();
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+
             //触发一下搜集道具类型的任务
             for (int i = 0; i < self.RoleTaskList.Count; i++)
             {
@@ -830,20 +834,20 @@ namespace ET
                 }
                 if (taskConfig.TargetType == TaskTargetType.PlayerLv_4)
                 {
-                    int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    int roleLv = userInfoComponent.UserInfo.Lv;
                     self.TriggerTaskEvent(TaskTargetType.PlayerLv_4, taskConfig.Target[0], roleLv);
                     continue;
                 }
                 if (taskConfig.TargetType == TaskTargetType.JoinUnion_9)
                 {
-                    long unionid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+                    long unionid = numericComponent.GetAsLong(NumericType.UnionId_0);
                     self.TriggerTaskEvent(TaskTargetType.JoinUnion_9, taskConfig.Target[0], unionid > 0 ? 1 : 0);
                     self.TriggerTaskCountryEvent(TaskTargetType.JoinUnion_9, taskConfig.Target[0], unionid > 0 ? 1 : 0);
                     continue;
                 }
                 if (taskConfig.TargetType == TaskTargetType.CombatToValue_133)
                 {
-                    int combat = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Combat;
+                    int combat = userInfoComponent.UserInfo.Combat;
                     self.TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, combat);
                     self.TriggerTaskCountryEvent(TaskTargetType.CombatToValue_133, 0, combat);
                     continue;
@@ -851,7 +855,7 @@ namespace ET
                 if (taskConfig.TargetType == TaskTargetType.TrialTowerCeng_134)
                 {
                     //试炼副本
-                    int trialid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
+                    int trialid = numericComponent.GetAsInt(NumericType.TrialDungeonId);
                     if (trialid >= taskConfig.Target[0])
                     {
                         self.TriggerTaskEvent(TaskTargetType.TrialTowerCeng_134, taskConfig.Target[0], 1);
@@ -871,13 +875,13 @@ namespace ET
                 }
             }
 
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            
             if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0)
             {
                 self.UpdateDayTask(false);
             }
-
-            if (SeasonHelper.IsOpenSeason())
+           
+            if (SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
                 self.InitSeasonMainTask();
             }
@@ -1331,7 +1335,8 @@ namespace ET
                     continue;
                 }
             }
-            if (SeasonHelper.IsOpenSeason())
+            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetParent<UserInfoComponent>();
+            if (SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
                 List<int> taskCountryList = TaskHelper.GetSeasonTask();
                 for (int i = 0; i < taskCountryList.Count; i++)

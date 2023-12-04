@@ -5,8 +5,13 @@ namespace ET
     {
 
 #if NOT_UNITY
-        public static bool IsOpenSeason()
+        public static bool IsOpenSeason(int userLv)
         {
+            if (userLv < 55)
+            {
+                return false;
+            }
+
             if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
                || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
             {
@@ -16,8 +21,12 @@ namespace ET
             return false;
         }
 #else
-        public static bool IsOpenSeason()
+        public static bool IsOpenSeason(int userLv)
         {
+            if (userLv < 55)
+            {
+                return false;
+            }
             long serverTime = TimeHelper.ServerNow();
             return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;   
         }

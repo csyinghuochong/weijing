@@ -1176,7 +1176,7 @@ namespace ET
             //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行
 
             List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052, 1055, 1057, 1058, 1059,
-                                                     1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014 };
+                                                     1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014, 1071 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1350,6 +1350,9 @@ namespace ET
                         ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                     }
                     self.Button_Demon.SetActive(showButton);
+                    break;
+                case 1071:
+                    self.Button_Season.SetActive(showButton);
                     break;
                 default:
                     break;
