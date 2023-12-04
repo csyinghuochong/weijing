@@ -57,6 +57,11 @@ namespace ET
                     this.SetSkillState(SkillState.Finished);
                 }
             }
+            //防止不销毁
+            if (serverNow > this.SkillEndTime + TimeHelper.Minute)
+            {
+                this.SetSkillState(SkillState.Finished);
+            }
         }
 
 

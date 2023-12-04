@@ -182,13 +182,15 @@ public class UIYinSi : MonoBehaviour
             return;
         }
         this.AgreeNumber++;
-        if (this.AgreeNumber >= 3 || permissons == "1_1")
+        int needAgreeNumber = GameObject.Find("Global").GetComponent<Init>().Platform == 5 ? 4 : 3;
+        if (this.AgreeNumber >= needAgreeNumber || permissons == "1_1")
         {
             PlayerPrefs.SetString("UIYinSi_0111", "1");
             Log.ILog.Debug($"onRequestPermissionsResult: StartUpdate");
 
             GameObject.Find("Global").GetComponent<Init>().TikTokInit();
             GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
+            this.AgreeNumber = -1000;
         }
     }
 

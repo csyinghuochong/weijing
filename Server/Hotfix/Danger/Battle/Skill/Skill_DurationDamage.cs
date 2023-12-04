@@ -1,5 +1,9 @@
 ﻿namespace ET
 {
+
+    /// <summary>
+    /// 持续性伤害。 this.CheckChiXuHurt()已经实现了持续性伤害功能，
+    /// </summary>
     public class Skill_DurationDamage : SkillHandler
     {
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
