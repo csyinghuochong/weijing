@@ -28,6 +28,9 @@ namespace ET
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
             self.ICheckShape = new List<Shape>() { self.CreateCheckShape(self.SkillInfo.TargetAngle) };
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
+            self.SkillParValueHpUpAct.Clear();
+            self.ActTargetAddPro = 0f;
+            self.HurtAddPro = 0f;   
 
             //获取通用脚本参数
             if (ComHelp.IfNull(self.SkillConf.ComObjParameter) == false)

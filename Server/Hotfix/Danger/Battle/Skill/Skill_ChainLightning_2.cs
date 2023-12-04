@@ -2,7 +2,8 @@
 {
 
     //闪电链2
-    //选中范围释放类型技能。 Skill_ChainLightning2 GameObjectParameter 人数;伤害提升@人数;伤害提升
+    //选中范围释放类型技能。 Skill_ChainLightning2 GameObjectParameter 人数;伤害提升@人数;伤害提升  1;0.1@6;0.3
+    //根据人数计算出伤害提升系数 
     public class Skill_ChainLightning_2 : SkillHandler
     {
 
@@ -38,7 +39,10 @@
                 return;
             }
             this.SkillTriggerLastTime = serverNow;
-           
+
+            ///根据范围内敌人数量计算伤害加成
+            this.HurtAddPro = 0f;
+
             if (serverNow > this.SkillEndTime || this.HurtIds.Count >= 5)
             {
                 this.SetSkillState(SkillState.Finished);

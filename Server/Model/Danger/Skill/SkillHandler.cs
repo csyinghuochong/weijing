@@ -49,7 +49,12 @@ namespace ET
         public float ActTargetTemporaryAddPro;
 
         //自身增加/降低伤害
-        public float ActTargetAddPro;
+        public float ActTargetAddPro = 0f;
+
+        /// <summary>
+        /// 伤害增加系数
+        /// </summary>
+        public float HurtAddPro = 0f;
 
         /// <summary>
         /// 来自哪个Unit
