@@ -36,17 +36,21 @@ namespace ET
         };
 
 
+        /// <summary>
+        /// 每个格子对应的搜索顺序
+        /// </summary>
+
         public static readonly List<int>[] PetPositionAttack = new List<int>[]
         {
-            new List<int>(){ 1, 2, 3, 4, 5, 6, 7, 8, 9  },
-            new List<int>(){ 2, 3, 4, 5, 6, 7, 8, 9, 1  },
-            new List<int>(){ 3, 4, 5, 6, 7, 8, 9, 1, 2  },
-            new List<int>(){ 4, 5, 6, 7, 8, 9, 1, 2, 3  },
-            new List<int>(){ 5, 6, 7, 8, 9, 1, 2, 3, 4  },
-            new List<int>(){ 6, 7, 8, 9, 1, 2, 3, 4, 5  },
-            new List<int>(){ 7, 8, 9, 1, 2, 3, 4, 5, 6 },
-            new List<int>(){ 8, 9, 1, 2, 3, 4, 5, 6, 7},
-            new List<int>(){ 9, 1, 2, 3, 4, 5, 6, 7, 8 }
+            new List<int>(){  0, 1, 2, 3, 4, 5, 6, 7, 8   },
+            new List<int>(){ 1, 3, 4, 5, 6, 7, 8, 0, 1  },
+            new List<int>(){ 3, 4, 5, 6, 7, 8, 0, 1, 2  },
+            new List<int>(){ 4, 5, 6, 7, 8, 0, 1, 2, 3  },
+            new List<int>(){ 5, 6, 7, 8, 0, 1, 2, 3, 4  },
+            new List<int>(){ 6, 7, 8, 0, 1, 2, 3, 4, 5  },
+            new List<int>(){ 7, 8, 0, 1, 2, 3, 4, 5, 6 },
+            new List<int>(){ 8, 0, 1, 2, 3, 4, 5, 6, 7},
+            new List<int>(){ 0, 1, 2, 3, 4, 5, 6, 7, 8 }
         };
 
         //摄像机位置
