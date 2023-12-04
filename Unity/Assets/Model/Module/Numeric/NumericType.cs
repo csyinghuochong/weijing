@@ -115,7 +115,7 @@
         public const int WearWeaponFisrt = 3115;
         public const int SoloWinNum = 3116;
         public const int SoloFailNum = 3117;
-        public const int UnionPositon = 3118;
+        public const int UnitPositon = 3118;
         public const int SoloRankId = 3119;
         public const int StartAngle = 3120;
         public const int JiaYuanPurchaseRefresh = 3121;

@@ -258,7 +258,7 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreateTianTiPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion, float rotation)
+        public static Unit CreateTianTiPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion, float rotation, int cell)
         {
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
@@ -296,6 +296,7 @@ namespace ET
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
             numericComponent.Set(NumericType.MasterId, masterId);
+            numericComponent.Set(NumericType.UnitPositon, cell);
             long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
             numericComponent.NumericDic[NumericType.Now_Hp] = max_hp;
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);

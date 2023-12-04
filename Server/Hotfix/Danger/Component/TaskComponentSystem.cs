@@ -1335,7 +1335,7 @@ namespace ET
                     continue;
                 }
             }
-            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetParent<UserInfoComponent>();
+            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             if (SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
                 List<int> taskCountryList = TaskHelper.GetSeasonTask();

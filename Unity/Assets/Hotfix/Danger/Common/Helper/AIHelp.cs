@@ -35,6 +35,20 @@ namespace ET
             new Vector3(4.28f, 0f, 16.14f),
         };
 
+
+        public static readonly List<int>[] PetPositionAttack = new List<int>[]
+        {
+            new List<int>(){ 1, 2, 3, 4, 5, 6, 7, 8, 9  },
+            new List<int>(){ 2, 3, 4, 5, 6, 7, 8, 9, 1  },
+            new List<int>(){ 3, 4, 5, 6, 7, 8, 9, 1, 2  },
+            new List<int>(){ 4, 5, 6, 7, 8, 9, 1, 2, 3  },
+            new List<int>(){ 5, 6, 7, 8, 9, 1, 2, 3, 4  },
+            new List<int>(){ 6, 7, 8, 9, 1, 2, 3, 4, 5  },
+            new List<int>(){ 7, 8, 9, 1, 2, 3, 4, 5, 6 },
+            new List<int>(){ 8, 9, 1, 2, 3, 4, 5, 6, 7},
+            new List<int>(){ 9, 1, 2, 3, 4, 5, 6, 7, 8 }
+        };
+
         //摄像机位置
         public static readonly Vector3 FuBenCameraPosition = new Vector3(14, 22f, 0f);
         public static readonly Quaternion FuBenCameraRotation = Quaternion.Euler(60f, -90f, 0);
@@ -70,6 +84,48 @@ namespace ET
                 }
             }
             return nearest;
+        }
+
+        /// <summary>
+        /// 宠物副本，对位攻击。寻找对面的格子
+        /// </summary>
+        /// <param name="main"></param>
+        /// <returns></returns>
+        public static Unit GetNearestCell(Unit main)
+        {
+            int selfCell = main.GetComponent<NumericComponent>().GetAsInt(NumericType.UnitPositon);
+
+            ////对位攻击顺序
+            List<int> postionAttack = PetPositionAttack[selfCell];
+
+            Unit[] enemyUnit = new Unit[9];
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                int position = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnitPositon);
+                enemyUnit[position] = unit; 
+            }
+
+            for (int i = 0; i < postionAttack.Count; i++)
+            {
+                Unit enemy = enemyUnit[postionAttack[i]];
+                if (enemy != null)
+                {
+                    return enemy;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

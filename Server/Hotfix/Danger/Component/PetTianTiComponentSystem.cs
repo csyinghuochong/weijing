@@ -29,7 +29,7 @@ namespace ET
                     continue;
                 }
                 Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), unit.Id,
-                   unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i], 0f);
+                   unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i], 0f, i);
             }
 
             //先查找真实玩家。再查找
@@ -59,7 +59,8 @@ namespace ET
 
                     petComponent_enemy.UpdatePetAttributeWithBag(d2GGetUnit_2.Component as BagComponent, rolePetInfo, false);
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
-                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f);
+                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f, i);
+
                 }
             }
             else
@@ -72,7 +73,7 @@ namespace ET
                     petComponent.UpdatePetAttribute(petInfo, false);
                     petInfo.PlayerName = "机器人";
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
-                       CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k], 180f);
+                       CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k], 180f, k);
                 }
             }
         }
