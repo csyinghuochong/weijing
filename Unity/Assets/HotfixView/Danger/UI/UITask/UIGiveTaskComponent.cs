@@ -14,6 +14,9 @@ namespace ET
         public GameObject CloseBtn;
 
         public int TaskId;
+
+        public int TaskType = 1;   //1 taskconfig  2taskcountryconfig
+
         public BagInfo BagInfo;
         public BagComponent BagComponent;
         public UIItemComponent CheckedItem;
@@ -110,24 +113,49 @@ namespace ET
 
         public static async ETTask OnGiveBtn(this UIGiveTaskComponent self)
         {
-            if (TaskHelper.IsTaskGiveItem(self.TaskId, self.BagInfo))
+            if (self.TaskType == 1)
             {
-                TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
-                taskPro.taskStatus = (int)TaskStatuEnum.Completed;
-                int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.BagInfo.BagInfoID);
-                if (errorCode == ErrorCode.ERR_Success)
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskId);
+                if (TaskHelper.IsTaskGiveItem(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.BagInfo))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("完成任务");
-                    self.OnGiveAction?.Invoke();
-                    UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
+                    TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                    taskPro.taskStatus = (int)TaskStatuEnum.Completed;
+                    int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.BagInfo.BagInfoID);
+                    if (errorCode == ErrorCode.ERR_Success)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("完成任务");
+                        self.OnGiveAction?.Invoke();
+                        UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
+                    }
+                }
+                else
+                {
+                    FloatTipManager.Instance.ShowFloatTip("道具类型不符合任务要求");
+                    return;
                 }
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("道具类型不符合任务要求");
-                return;
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(self.TaskId);
+                if (TaskHelper.IsTaskGiveItem(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.BagInfo))
+                {
+                    TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                    taskPro.taskStatus = (int)TaskStatuEnum.Completed;
+                    int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.BagInfo.BagInfoID);
+                    if (errorCode == ErrorCode.ERR_Success)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("完成任务");
+                        self.OnGiveAction?.Invoke();
+                        UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
+                    }
+                }
+                else
+                {
+                    FloatTipManager.Instance.ShowFloatTip("道具类型不符合任务要求");
+                    return;
+                }
             }
-
+            
             await ETTask.CompletedTask;
         }
     }
