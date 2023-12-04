@@ -10,6 +10,7 @@ namespace ET
         public GameObject TaskDescText;
         public GameObject ProgressText;
         public GameObject ClickBtn;
+        public GameObject AcvityedImg;
 
         public TaskPro TaskPro;
     }
@@ -24,7 +25,10 @@ namespace ET
             self.TaskNameText = rc.Get<GameObject>("TaskNameText");
             self.TaskDescText = rc.Get<GameObject>("TaskDescText");
             self.ProgressText = rc.Get<GameObject>("ProgressText");
+            self.AcvityedImg = rc.Get<GameObject>("AcvityedImg");
             self.ClickBtn = rc.Get<GameObject>("ClickBtn");
+
+            self.AcvityedImg.SetActive(false);
         }
     }
 
@@ -56,6 +60,8 @@ namespace ET
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" +
                             $"{taskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
                 }
+
+                self.AcvityedImg.SetActive(true);
             }
             else
             {
@@ -82,6 +88,8 @@ namespace ET
                     self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" +
                             $"{self.TaskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
                 }
+
+                self.AcvityedImg.SetActive(false);
             }
         }
     }
