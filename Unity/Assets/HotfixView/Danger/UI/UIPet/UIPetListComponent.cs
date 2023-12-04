@@ -7,6 +7,7 @@ namespace ET
 
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
+        public GameObject PetHeXinSuitBtn;
         public GameObject JiBanBtn;
         public GameObject Text_ShouHu;
         public GameObject ImageShouHu;
@@ -136,6 +137,7 @@ namespace ET
             self.PropertyShowText = rc.Get<GameObject>("PropertyShowText");
             self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
             self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
+            self.PetHeXinSuitBtn = rc.Get<GameObject>("PetHeXinSuitBtn");
             self.JiBanBtn = rc.Get<GameObject>("JiBanBtn");
             self.JiBanBtn.SetActive(false);
 
@@ -148,6 +150,7 @@ namespace ET
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
 
+            ButtonHelp.AddListenerEx(self.PetHeXinSuitBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetHeXinSuit).Coroutine(); });
             ButtonHelp.AddListenerEx(self.JiBanBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIShenShouJiBan).Coroutine(); });
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
             ButtonHelp.AddListenerEx( self.ButtonRName, ()=> { self.OnButtonRName().Coroutine(); } );
@@ -673,6 +676,7 @@ namespace ET
                 self.PetHeXinItemList[i].transform.Find("Node_2").gameObject.SetActive(false);
             }
 
+            List<int> petheXinLv = new List<int>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             for (int i = 0; i < rolePetItem.PetHeXinList.Count; i++)
             {
@@ -695,7 +699,66 @@ namespace ET
                     self.AssetPath.Add(path);
                 }
                 ImageIcon.sprite = sp;
+                
+                petheXinLv.Add(itemConfig.UseLv);
             }
+            
+            
+            self.PetHeXinSuitBtn.SetActive(true);
+            int lv5number = 0;
+            int lv8number = 0;
+            int lv10number = 0;
+            Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+            for (int i = 0; i < petheXinLv.Count; i++)
+            {
+                if (petheXinLv[i] >= 5)
+                {
+                    lv5number++;
+                }
+                if (petheXinLv[i] >= 8)
+                {
+                    lv8number++;
+                }
+                if (petheXinLv[i] >= 10)
+                {
+                    lv10number++;
+                }
+            }
+
+            int index = 0;
+            if (lv10number >= 3)
+            {
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "高级核心";
+                self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
+                index = 2;
+            }
+            else if (lv8number >= 3)
+            {
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "中级核心";
+                self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
+                index = 1;
+            }
+            else if (lv5number >= 3)
+            {
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
+                self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
+                index = 0;
+            }
+            else
+            {
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
+                self.PetHeXinSuitBtn.GetComponent<Image>().material = mat;
+                index = 0;
+            }
+            
+            // 更换图标
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+            self.PetHeXinSuitBtn.GetComponent<Image>().sprite = sp1;
         }
 
         public static void UpdatePetSelected(this UIPetListComponent self, RolePetInfo rolePetItem)
