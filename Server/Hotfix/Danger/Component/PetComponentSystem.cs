@@ -812,7 +812,9 @@ namespace ET
             rolePetInfo.Vs.Add(0);
 
             //宠物之核
+            List<int> petheXinLv = new List<int>();
             Dictionary<int, long> attriDic = new Dictionary<int, long>();
+
             for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
             {
                 long baginfoId = rolePetInfo.PetHeXinList[i];
@@ -827,9 +829,12 @@ namespace ET
                 {
                     continue;
                 }
-
+               
                 //100203;790
-                string attriStr = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemUsePar;
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                petheXinLv.Add(itemConfig.UseLv);
+
+                string attriStr = itemConfig.ItemUsePar;
                 string[] attriList = attriStr.Split('@');
                 for (int a = 0; a < attriList.Length; a++)
                 {
@@ -842,6 +847,26 @@ namespace ET
                     catch (Exception ex)
                     {
                         Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
+                    }
+                }
+            }
+
+            //宠物之核套装属性
+            string petheXinPro = ConfigHelper.GetPetSuitProperty(petheXinLv);
+            if (!ComHelp.IfNull(petheXinPro))
+            {
+                string[] attriList = petheXinPro.Split(';');
+                for (int a = 0; a < attriList.Length; a++)
+                {
+                    try
+                    {
+                        string[] attriItem = attriList[a].Split(',');
+                        int typeId = int.Parse(attriItem[0]);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"petheXinPro Exption： {petheXinPro} {ex.ToString()}");
                     }
                 }
             }

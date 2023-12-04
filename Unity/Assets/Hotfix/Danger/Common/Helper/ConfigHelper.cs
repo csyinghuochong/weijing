@@ -919,5 +919,52 @@ namespace ET
             }
             return null;
         }
+
+        /// <summary>
+        /// 三个对应等级套装属性
+        /// </summary>
+
+        public static Dictionary<int, string> PetSuitProperty = new Dictionary<int, string>()
+        {
+                {  5, "2,300231;3,300232;4,300233" },
+                {  8, "2,300231;3,300232;4,300233" },
+                {  10, "2,300231;3,300232;4,300233" },
+        };
+
+        public static string GetPetSuitProperty(List<int> pethexinLv)
+        {
+            int lv5number = 0;
+            int lv8number = 0;
+            int lv10number = 0;
+            for (int i = 0; i < pethexinLv.Count; i++)
+            {
+                if (pethexinLv[i] >= 5)
+                {
+                    lv5number++;
+                }
+                if (pethexinLv[i] >= 8)
+                {
+                    lv8number++;
+                }
+                if (pethexinLv[i] >= 10)
+                {
+                    lv10number++;
+                }
+            }
+
+            if (lv10number >= 3)
+            {
+                return PetSuitProperty[10];
+            }
+            if (lv8number >= 3)
+            {
+                return PetSuitProperty[8];
+            }
+            if (lv5number >= 3)
+            {
+                return PetSuitProperty[5];
+            }
+            return null;
+        }
     }
 }
