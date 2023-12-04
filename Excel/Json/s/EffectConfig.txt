@@ -344,6 +344,8 @@
 {"_t":"EffectConfig","_id":91000307,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_ShanDianLian_2","SkillEffectDelayTime":0,"SkillParent":4,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":500,"PlayType":0},
 {"_t":"EffectConfig","_id":91000308,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_36","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":2000,"PlayType":0},
 {"_t":"EffectConfig","_id":91000309,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_18","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":3000,"PlayType":0},
-{"_t":"EffectConfig","_id":91000310,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChongFeng","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":2000,"PlayType":0},
+{"_t":"EffectConfig","_id":91000310,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChongFeng","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1200,"PlayType":0},
 {"_t":"EffectConfig","_id":91000311,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_FireWall_2","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":5000,"PlayType":0},
+{"_t":"EffectConfig","_id":91000312,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ZhanShi_BaseActJian_2b","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":500,"PlayType":0},
+{"_t":"EffectConfig","_id":91000313,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_QunLiao_4","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000,"PlayType":0},
 ]}
