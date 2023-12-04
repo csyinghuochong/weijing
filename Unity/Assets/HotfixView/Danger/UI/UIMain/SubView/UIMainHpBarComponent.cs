@@ -59,6 +59,8 @@ namespace ET
         public long PetHurt;
 
         public string DefaultString = "0";
+
+        public long MyUnitId = 0;
     }
 
 
@@ -141,6 +143,7 @@ namespace ET
             self.Lab_Owner.text = string.Empty;
             self.PetHurt = 0;
             self.PlayerHurt = 0;
+            self.MyUnitId = UnitHelper.GetMyUnitId(self.ZoneScene());
             self.UpdateHurtText();
             self.BossNode.SetActive(false);
         }
@@ -231,7 +234,7 @@ namespace ET
                 self.PlayerHurt += hurtvalue;
                 self.UpdateHurtText();
             }
-            else if (attack.Type == UnitType.Pet && attack.GetMasterId() == UnitHelper.GetMyUnitId(self.ZoneScene()))
+            else if (attack.GetMasterId() == self.MyUnitId)
             { 
                 self.PetHurt += hurtvalue;
                 self.UpdateHurtText();
