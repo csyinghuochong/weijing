@@ -1133,7 +1133,18 @@ namespace ET
             {
                 Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} ");
             }
-            self.TaskCountryList.Clear();
+
+            //赛季任务每周清空
+            for (int i = self.TaskCountryList.Count - 1;i >= 0; i--)
+            {
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.Season)
+                {
+                    continue;
+                }
+                self.TaskCountryList.RemoveAt(i);
+            }
+
             self.ReceiveHuoYueIds.Clear();
             List<int> taskCountryList = new List<int>();
             taskCountryList.AddRange(TaskHelper.GetTaskCountrys(unit));
@@ -1142,10 +1153,6 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             taskCountryList.AddRange(TaskHelper.GetMineTask());
 
-            if (SeasonHelper.IsOpenSeason())
-            {
-                taskCountryList.AddRange(TaskHelper.GetSeasonTask());
-            }
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
@@ -1311,6 +1318,25 @@ namespace ET
                 {
                     self.RoleComoleteTaskList.RemoveAt(i);
                     continue;
+                }
+            }
+
+            //赛季任务每周清空
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.Season)
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+            }
+            if (SeasonHelper.IsOpenSeason())
+            {
+                List<int> taskCountryList = TaskHelper.GetSeasonTask();
+                for (int i = 0; i < taskCountryList.Count; i++)
+                {
+                    self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
                 }
             }
         }
