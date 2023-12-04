@@ -356,27 +356,27 @@ namespace ET
         /// <param name="taskId"></param>
         /// <param name="petinfo"></param>
         /// <returns></returns>
-        public static bool IsTaskGivePet(int taskId, RolePetInfo petinfo)
+        public static bool IsTaskGivePet(int TargetType, int[] Target, int[] TargetValue, RolePetInfo petinfo)
         {
             if (petinfo == null)
             {
                 return false;
             }
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            if (taskConfig.TargetType != (int)TaskTargetType.GivePet_25)
+           
+            if (TargetType != (int)TaskTargetType.GivePet_25)
             {
                 return false;
             }
-            if (taskConfig.Target.Length != taskConfig.TargetValue.Length)
+            if (Target.Length != TargetValue.Length)
             {
                 return false;
             }
 
-            for (int i = 0; i < taskConfig.Target.Length; i++)
+            for (int i = 0; i < Target.Length; i++)
             {
                 bool value = false;
-                int targetType = taskConfig.Target[i];
-                int targetValue = taskConfig.TargetValue[i];
+                int targetType = Target[i];
+                int targetValue = TargetValue[i];
 
                 switch (targetType)
                 {
@@ -433,25 +433,24 @@ namespace ET
         //105401.装备鉴定属性耐力
         //105501.装备鉴定属性体质
 
-        public static bool IsTaskGiveItem(int taskId, BagInfo bagInfo)
+        public static bool IsTaskGiveItem(int TargetType, int[] Target, int[] TargetValue,  BagInfo bagInfo)
         {
             if (bagInfo == null)
             {
                 return false;
             }
 
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            if (taskConfig.TargetType != (int)TaskTargetType.GiveItem_10)
+            if (TargetType != (int)TaskTargetType.GiveItem_10)
             {
                 return false;
             }
 
-            if (taskConfig.Target == null || taskConfig.TargetValue == null)
+            if (Target == null || TargetValue == null)
             {
                 return false;
             }
 
-            if (taskConfig.Target.Length != taskConfig.TargetValue.Length)
+            if (Target.Length != TargetValue.Length)
             {
                 return false;
             }
@@ -462,11 +461,11 @@ namespace ET
             //    return false;
             //}
 
-            for (int i = 0; i < taskConfig.Target.Length; i++)
+            for (int i = 0; i < Target.Length; i++)
             {
                 bool value = false;
-                int targetType = taskConfig.Target[i];
-                int targetValue = taskConfig.TargetValue[i];
+                int targetType = Target[i];
+                int targetValue = TargetValue[i];
 
                 switch (targetType)
                 {

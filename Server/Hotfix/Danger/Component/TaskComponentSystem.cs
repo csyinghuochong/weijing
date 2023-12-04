@@ -390,6 +390,60 @@ namespace ET
             return null;
         }
         
+        public static int CheckGiveItemTask (this TaskComponent self, int TargetType, int[] Target, int[] TargetValue, long BagInfoID)
+        {
+            //收集道具的任务
+            
+            if (TargetType == (int)TaskTargetType.ItemID_Number_2)
+            {
+                BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+                int needid = Target[0];
+                int neednumber = TargetValue[0];
+                int curnumber = (int)bagComponent.GetItemNumber(needid);
+                if (curnumber < neednumber)
+                {
+                    self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, needid, 0);
+                    self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, needid, 0);
+                    return ErrorCode.ERR_ItemNotEnoughError;
+                }
+
+                bagComponent.OnCostItemData($"{needid};{neednumber}");
+            }
+            //给予任务
+            if (TargetType == (int)TaskTargetType.GiveItem_10)
+            {
+                BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, BagInfoID);
+                if (bagInfo == null)
+                {
+                    return ErrorCode.ERR_ItemNotExist;
+                }
+                if (!TaskHelper.IsTaskGiveItem(TargetType, Target, TargetValue, bagInfo))
+                {
+                    return ErrorCode.ERR_ItemNotEnoughError;
+                }
+
+                bagComponent.OnCostItemData(BagInfoID, 1);
+            }
+            //给予宠物
+            if (TargetType == (int)TaskTargetType.GivePet_25)
+            {
+                PetComponent petComponent = self.GetParent<Unit>().GetComponent<PetComponent>();
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(BagInfoID);
+                if (rolePetInfo == null)
+                {
+                    return ErrorCode.ERR_ItemNotExist;
+                }
+                if (!TaskHelper.IsTaskGivePet(TargetType, Target, TargetValue, rolePetInfo))
+                {
+                    return ErrorCode.ERR_ItemNotEnoughError;
+                }
+
+                petComponent.OnRolePetFenjie(BagInfoID);
+            }
+            return ErrorCode.ERR_Success; 
+        }
+
         //领取奖励
         public static int OnCommitTask(this TaskComponent self, C2M_TaskCommitRequest request)
         {
@@ -409,52 +463,10 @@ namespace ET
                 return ErrorCode.ERR_BagIsFull;
             }
 
-            //收集道具的任务
-            if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
+            int checkError = self.CheckGiveItemTask(taskConfig.TargetType, taskConfig.Target,taskConfig.TargetValue, request.BagInfoID);
+            if (checkError != ErrorCode.ERR_Success)
             {
-                int needid = taskConfig.Target[0];
-                int neednumber = taskConfig.TargetValue[0];
-                int curnumber = (int)bagComponent.GetItemNumber(needid);
-                if (curnumber < neednumber)
-                {
-                    self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, needid, 0);
-                    return ErrorCode.ERR_ItemNotEnoughError;
-                }
-
-                bagComponent.OnCostItemData($"{needid};{neednumber}");
-            }
-            //给予任务
-            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
-            {
-                long baginfoId = request.BagInfoID;
-                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, baginfoId);
-                if (bagInfo == null)
-                {
-                    return ErrorCode.ERR_ItemNotExist;
-                }
-                if (!TaskHelper.IsTaskGiveItem( taskid, bagInfo ))
-                {
-                    return ErrorCode.ERR_ItemNotEnoughError;
-                }
-
-                bagComponent.OnCostItemData(baginfoId, 1);
-            }
-            //给予宠物
-            if(taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
-            {
-                long petInfo = request.BagInfoID;
-                PetComponent petComponent = unit.GetComponent<PetComponent>();
-                RolePetInfo rolePetInfo = petComponent.GetPetInfo(petInfo);
-                if (rolePetInfo == null)
-                {
-                    return ErrorCode.ERR_ItemNotExist;
-                }
-                if (!TaskHelper.IsTaskGivePet(taskid, rolePetInfo))
-                {
-                    return ErrorCode.ERR_ItemNotEnoughError;
-                }
-
-                petComponent.OnRolePetFenjie(petInfo);  
+                return checkError;
             }
 
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)

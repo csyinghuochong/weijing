@@ -3330,6 +3330,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int TaskId { get; set; }
 
+		[ProtoMember(2)]
+		public long BagInfoID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_CommitTaskCountryResponse)]

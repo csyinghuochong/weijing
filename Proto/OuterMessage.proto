@@ -1577,6 +1577,7 @@ message C2M_CommitTaskCountryRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 TaskId = 1;
+	int64 BagInfoID = 2;
 }
 
 message M2C_CommitTaskCountryResponse    // IActorLocationResponse

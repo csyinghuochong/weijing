@@ -22,21 +22,35 @@ namespace ET
                 }
                 int errorCode = ErrorCode.ERR_Success;
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
+                TaskPro taskPro = null;
                 for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
                 {
-                    TaskPro taskPro = taskComponent.TaskCountryList[i];
-                    if (taskPro.taskID != request.TaskId)
+      
+                    if (taskComponent.TaskCountryList[i].taskID != request.TaskId)
                     {
                         continue;
                     }
-                    if (taskPro.taskStatus >= (int)TaskStatuEnum.Commited)
-                    {
-                        errorCode = ErrorCode.ERR_OperationOften;
-                        break;
-                    }
-                    taskPro.taskStatus = (int)TaskStatuEnum.Commited;
+
+                    taskPro = taskComponent.TaskCountryList[i];
                     break;
                 }
+
+                if (taskPro == null)
+                {
+                    response.Error = ErrorCode.ERR_TaskCommited;
+                    reply();
+                    return;
+                }
+
+                int checkError = unit.GetComponent<TaskComponent>().CheckGiveItemTask(taskCountryConfig.TargetType, taskCountryConfig.Target, taskCountryConfig.TargetValue, request.BagInfoID);
+                if (checkError != ErrorCode.ERR_Success)
+                {
+                    response.Error = checkError;
+                    reply();
+                    return;
+                }
+
+                taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                 if (errorCode != ErrorCode.ERR_Success)
                 {
                     response.Error = errorCode;
