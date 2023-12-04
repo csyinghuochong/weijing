@@ -302,6 +302,18 @@ namespace ET
             self.AddPassiveSkillByType(skillConfig);
         }
 
+        public static bool HaveSkillId(this SkillPassiveComponent self, int skillId)
+        {
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                if (self.SkillPassiveInfos[i].SkillId == skillId)
+                { 
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static void UpdatePetPassiveSkill(this SkillPassiveComponent self, RolePetInfo rolePetInfo)
         {
             self.SkillPassiveInfos.Clear();

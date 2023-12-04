@@ -280,6 +280,11 @@ namespace ET
             }
         }
 
+        public static bool HaveSkillId(this AIComponent self, int skillId)
+        {
+            return self.AISkillIDList.Contains(skillId);
+        }
+
         public static int GetActSkillId(this AIComponent self)
         {
             return self.AISkillIDList[RandomHelper.RandomNumber(0, self.AISkillIDList.Count)];

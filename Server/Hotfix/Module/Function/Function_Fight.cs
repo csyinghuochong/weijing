@@ -471,6 +471,8 @@ namespace ET
                     actValue = (int)(actValue * (1 + GetFightValueActProValue(attackPingfen, defPingfen)));
 
                     //判断对方是否有神佑技能
+                    int shenyouid = 64000004;
+                    bool haveshenyou = defendUnit.GetComponent<AIComponent>().HaveSkillId(shenyouid) || defendUnit.GetComponent<SkillPassiveComponent>().HaveSkillId(shenyouid);
                     //defendUnit.GetComponent<>
                 }
 
