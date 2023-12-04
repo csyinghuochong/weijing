@@ -266,7 +266,14 @@ namespace ET
                     return;
                 }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.SkillPro.SkillID);
-                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.SkillPro.SkillID, angle, targetId, distance).Coroutine();
+                if (itemConfig.ItemSubType == 101) // 药剂、鞭炮 走的使用技能的流程
+                {
+                    myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.SkillPro.SkillID, angle, targetId, distance).Coroutine();
+                }
+                else // 道具 走的使用道具的流程
+                {
+                    self.ZoneScene().GetComponent<BagComponent>().SendUseItem(bagInfo, null).Coroutine();
+                }
             }
 
             if (self.SkillPro.SkillSource == SkillSourceEnum.Buff)
@@ -441,16 +448,25 @@ namespace ET
             else
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(skillpro.SkillID);
-                int skillid = int.Parse(itemConfig.ItemUsePar);
-                if (!SkillConfigCategory.Instance.Contain(skillid))
+                if (itemConfig.ItemSubType == 101) // 药剂、鞭炮 走的使用技能的流程
                 {
-                    self.SkillPro = null;
-                    Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
-                    return;
+                    int skillid = int.Parse(itemConfig.ItemUsePar);
+                    if (!SkillConfigCategory.Instance.Contain(skillid))
+                    {
+                        self.SkillPro = null;
+                        Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
+                        return;
+                    }
+
+                    self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillid);
+                    self.SkillBaseConfig = self.SkillWuqiConfig;
+                }
+                else // 道具 走的使用道具的流程
+                {
+                    self.SkillWuqiConfig = new SkillConfig();
+                    self.SkillBaseConfig = self.SkillWuqiConfig;
                 }
 
-                self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillid);
-                self.SkillBaseConfig = self.SkillWuqiConfig;
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
