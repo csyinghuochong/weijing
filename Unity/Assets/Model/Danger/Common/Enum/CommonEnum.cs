@@ -45,7 +45,7 @@ namespace ET
         public int HideID;
         public long HideValue;
     }
-
+    
     public class BossDevelopment
     {
         public string Name;

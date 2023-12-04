@@ -150,7 +150,7 @@
         public const int PetPinFen = 3150;
         public const int TrialRankId = 3151;
         public const int SeasonTask = 3152;
-
+        public const int LeavlReward = 3153;                                     //记录上次领取奖励的等级
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

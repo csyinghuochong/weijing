@@ -471,10 +471,15 @@ namespace ET
                     self.OnUpdateHorse();
                     unit.GetComponent<BuffManagerComponent>()?.InitBuff();
                     unit.GetComponent<SkillManagerComponent>()?.InitSkill();
-
-                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                    
+                    StateComponent stateComponent = unit.GetComponent<StateComponent>();    
+                    if (stateComponent.StateTypeGet(StateTypeEnum.Stealth))
                     { 
                         self.EnterStealth(); 
+                    }
+                    if (stateComponent.StateTypeGet(StateTypeEnum.Hide))
+                    {
+                        self.EnterHide();
                     }
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
                     {
