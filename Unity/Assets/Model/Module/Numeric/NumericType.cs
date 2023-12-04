@@ -394,6 +394,13 @@
         public const int Extra__SkillUseMPAdd_Add = Max_SkillUseMPAdd * 100 + 11;              //属性Buff附加加法
         public const int Extra__SkillUseMPAdd_Mul = Max_SkillUseMPAdd * 100 + 12;              //属性Buff附加乘法
 
+        public const int Now_ActBossAddDamge = 1212;                                                 //当前BOSS普通攻击加成固定值
+        public const int Base_ActBossAddDamge_Base = Now_ActBossAddDamge * 100 + 1;                  //属性累加
+        public const int Base_ActBossAddDamge_Mul = Now_ActBossAddDamge * 100 + 2;                   //属性乘法
+        public const int Base_ActBossAddDamge_Add = Now_ActBossAddDamge * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ActBossAddDamge_Add = Now_ActBossAddDamge * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ActBossAddDamge_Mul = Now_ActBossAddDamge * 100 + 12;            //属性Buff附加乘法
+
 
         //宠物全体魔法攻击
         public const int Now_PetAllMageAct = 1300;         //宠物全体魔法攻击
@@ -434,7 +441,6 @@
         public const int Base_PetAllHp_Add = Now_PetAllHp * 100 + 3;                  //属性附加
         public const int Extra_Buff_PetAllHp_Add = Now_PetAllHp * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_PetAllHp_Mul = Now_PetAllHp * 100 + 12;           //属性Buff附加乘法
-
 
         //战力加成(一些特殊宝石或其他东西用的,单纯就是战力加成)
         public const int Now_FightValue = 1901;         //战斗力附加

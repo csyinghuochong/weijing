@@ -613,6 +613,7 @@ namespace ET
                     if (ifMonsterBoss_Act)
                     {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ActBossPro);
+                        damge += numericComponentAttack.GetAsInt(NumericType.Now_ActBossAddDamge);
                     }
 
                     if (ifMonsterBoss_Def)
