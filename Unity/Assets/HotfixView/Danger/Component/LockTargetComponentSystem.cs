@@ -191,7 +191,8 @@ namespace ET
                 {
                     continue;
                 }
-                if (units[i].GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                StateComponent stateComponent = units[i].GetComponent<StateComponent>();
+                if (stateComponent.StateTypeGet(StateTypeEnum.Stealth) || stateComponent.StateTypeGet(StateTypeEnum.Hide))
                 {
                     continue;
                 }

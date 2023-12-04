@@ -136,6 +136,24 @@ namespace ET
             //}
         }
 
+        public void EnterHide()
+        {
+            if (this.GameObject == null)
+            {
+                return;
+            }
+            this.GameObject.SetActive(false);
+        }
+
+        public void ExitHide()
+        {
+            if (this.GameObject == null)
+            {
+                return;
+            }
+            this.GameObject.SetActive(true);
+        }
+
         public void EnterStealth(float alpha)
         {
             if (this.GameObject == null)
@@ -223,9 +241,14 @@ namespace ET
                     this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = lierenxuetiao ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
                     this.Img_HpValue.transform.localPosition = lierenxuetiao ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
 
-                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                    StateComponent stateComponent = unit.GetComponent<StateComponent>();
+                    if (stateComponent.StateTypeGet(StateTypeEnum.Stealth))
                     {
                         this.EnterStealth(canAttack ? 0f : 0.3f);
+                    }
+                    if (stateComponent.StateTypeGet(StateTypeEnum.Hide))
+                    {
+                        this.EnterHide();
                     }
                     break;
                 case UnitType.Pet:

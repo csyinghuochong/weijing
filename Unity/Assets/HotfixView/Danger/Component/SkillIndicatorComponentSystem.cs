@@ -370,7 +370,8 @@ namespace ET
                             continue;
                         }
 
-                        if (u.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                        StateComponent stateComponent = u.GetComponent<StateComponent>();
+                        if (stateComponent.StateTypeGet(StateTypeEnum.Stealth) || stateComponent.StateTypeGet(StateTypeEnum.Hide))
                         {
                             continue;
                         }

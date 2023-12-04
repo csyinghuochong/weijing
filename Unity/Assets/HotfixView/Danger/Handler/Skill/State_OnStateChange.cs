@@ -63,7 +63,17 @@ namespace ET
             {
                 args.Unit.GetComponent<GameObjectComponent>().ExitStealth();
             }
-            
+
+            // 隐藏状态
+            if (message.StateType == StateTypeEnum.Hide && message.StateOperateType == 1)
+            {
+                args.Unit.GetComponent<GameObjectComponent>().EnterHide();
+            }
+            if (message.StateType == StateTypeEnum.Hide && message.StateOperateType == 2)
+            {
+                args.Unit.GetComponent<GameObjectComponent>().ExitHide();
+            }
+
             // 霸体红色描边
             if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 1)
             {

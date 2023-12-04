@@ -797,6 +797,26 @@ namespace ET
             }
         }
 
+        public static void EnterHide(this GameObjectComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+            self.GameObject.SetActive(false);
+            self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().EnterHide();
+        }
+
+        public static void ExitHide(this GameObjectComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+            self.GameObject.SetActive(true);
+            self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().ExitHide();
+        }
+
         /// <summary>
         /// 进入隐身
         /// </summary>

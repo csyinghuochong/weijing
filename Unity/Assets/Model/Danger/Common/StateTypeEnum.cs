@@ -112,5 +112,11 @@ namespace ET
         /// 无敌 （对怪物有效）
         /// </summary>
         public const long WuDiMonster = 1 << 21;
+
+        /// <summary>
+        /// 隐藏状态
+        /// </summary>
+
+        public const long Hide = 1 << 22;   
     }
 }
