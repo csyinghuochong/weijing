@@ -819,7 +819,7 @@ namespace ET
                 }
             }
 
-            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetParent<UserInfoComponent>();
+            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
 
             //触发一下搜集道具类型的任务
