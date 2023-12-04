@@ -153,7 +153,7 @@ namespace ET
 		/// <summary>是否触发公共CD</summary>
 		[ProtoMember(26)]
 		public int IfPublicSkillCD { get; set; }
-		/// <summary>是否触发冷却技能CD</summary>
+		/// <summary>是否触发冷却技能CD(废弃)</summary>
 		[ProtoMember(27)]
 		public int IfSkillCD { get; set; }
 		/// <summary>冷却CD</summary>
