@@ -926,9 +926,9 @@ namespace ET
 
         public static Dictionary<int, string> PetSuitProperty = new Dictionary<int, string>()
         {
-                {  5, "2,300231;3,300232;4,300233" },
-                {  8, "2,300231;3,300232;4,300233" },
-                {  10, "2,300231;3,300232;4,300233" },
+                {  5, "2,205003,0.05;203003,0.2;203103,0.2" },
+                {  8, "2,205003,0.1;203003,0.2;203103,0.25" },
+                {  10, "2,205003,0.15;203003,0.2;203103,0.3" },
         };
 
         public static string GetPetSuitProperty(List<int> pethexinLv)
