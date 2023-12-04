@@ -816,6 +816,7 @@ namespace ET
             {
                 alpha = 0f;
             }
+
              // 身体隐形
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             self.Material.SetFloat("_Alpha", alpha);
@@ -848,37 +849,7 @@ namespace ET
                 }
             }
 
-            // 血条隐形
-            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
-            foreach (Image image in hpImages)
-            {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
-
-            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
-
-            // 名称隐形
-            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
-            foreach (Image image in nameImages)
-            {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
-
-            //TextMeshProUGUI[] nameTextMeshPros =
-            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
-
+            unit.GetComponent<UIUnitHpComponent>().EnterStealth(alpha);
         }
 
         /// <summary>
@@ -892,7 +863,6 @@ namespace ET
             Log.ILog.Debug($"ExitStealth: {unit.Id}");
 
             //退出隐身
-            float alpha = 1f;
             self.Material.shader = GlobalHelp.Find(self.OldShader);
 
             // 脚底阴影恢复
@@ -922,36 +892,10 @@ namespace ET
                     }
                 }
             }
+
+
             // 血条恢复
-            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
-            foreach (Image image in hpImages)
-            {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
-
-            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
-
-            // 名称恢复
-            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
-            foreach (Image image in nameImages)
-            {
-                Color oldColor = image.color;
-                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
-
-            //TextMeshProUGUI[] nameTextMeshPros =
-            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
-            //{
-            //    Color oldColor = textMeshPro.color;
-            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            //}
+            unit.GetComponent<UIUnitHpComponent>().ExitStealth();
         }
 
 

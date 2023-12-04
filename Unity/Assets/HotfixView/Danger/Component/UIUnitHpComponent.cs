@@ -99,6 +99,81 @@ namespace ET
             this.GameObject.SetActive(show);
         }
 
+        public void ExitStealth()
+        {
+            if (this.GameObject == null)
+            {
+                return;
+            }
+
+            Image[] hpImages = this.GameObject.GetComponentsInChildren<Image>();
+            foreach (Image image in hpImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, 1f);
+            }
+
+            //TextMeshProUGUI[] hpTextMeshPros = this.GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
+
+            // 名称恢复
+            Image[] nameImages = this.UIPlayerHpText.GetComponentsInChildren<Image>();
+            foreach (Image image in nameImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, 1f);
+            }
+
+            //TextMeshProUGUI[] nameTextMeshPros = this.UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, 1f);
+            //}
+        }
+
+        public void EnterStealth(float alpha)
+        {
+            if (this.GameObject == null)
+            {
+                return;
+            }
+
+            // 血条隐形
+            Image[] hpImages = this.GameObject.GetComponentsInChildren<Image>();
+            foreach (Image image in hpImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            //TextMeshProUGUI[] hpTextMeshPros = this.GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
+
+            // 名称隐形
+            Image[] nameImages = this.UIPlayerHpText.GetComponentsInChildren<Image>();
+            foreach (Image image in nameImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            //TextMeshProUGUI[] nameTextMeshPros = this.UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
+        }
+
         public void OnLoadGameObject(GameObject gameObject, long formId)
         {
             if (this.IsDisposed)
@@ -147,6 +222,11 @@ namespace ET
                     bool lierenxuetiao = unit.MainHero && unit.ConfigId == 3;
                     this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = lierenxuetiao ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
                     this.Img_HpValue.transform.localPosition = lierenxuetiao ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
+
+                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                    {
+                        this.EnterStealth(canAttack ? 0f : 0.3f);
+                    }
                     break;
                 case UnitType.Pet:
                 case UnitType.JingLing:
