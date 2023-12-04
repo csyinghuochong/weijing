@@ -16,6 +16,8 @@ namespace ET
         public GameObject CloseBtn;
 
         public int TaskId;
+        public int TaskType = 1;
+
         public int PetSkinId;
         public UIPetInfoShowComponent UIPetInfoShowComponent;
         public PetComponent PetComponent;
@@ -225,28 +227,61 @@ namespace ET
                 return;
             }
 
-            if (!TaskHelper.IsTaskGivePet(self.TaskId, self.LastSelectItem))
+            if (self.TaskType == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
-                return;
-            }
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskId);
 
-            if (TaskHelper.IsTaskGivePet(self.TaskId, self.LastSelectItem))
-            {
-                PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
-                    async () =>
-                    {
-                        TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
-                        taskPro.taskStatus = (int)TaskStatuEnum.Completed; // 手动修改
-                        int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.LastSelectItem.Id);
-                        if (errorCode == ErrorCode.ERR_Success)
+                if (!TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
+                    return;
+                }
+
+                if (TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
+                {
+                    PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
+                        async () =>
                         {
-                            FloatTipManager.Instance.ShowFloatTip("完成任务");
-                            self.OnGiveAction?.Invoke();
-                            UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
-                        }
-                    },
-                    null).Coroutine();
+                            TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                            taskPro.taskStatus = (int)TaskStatuEnum.Completed; // 手动修改
+                            int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.LastSelectItem.Id);
+                            if (errorCode == ErrorCode.ERR_Success)
+                            {
+                                FloatTipManager.Instance.ShowFloatTip("完成任务");
+                                self.OnGiveAction?.Invoke();
+                                UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
+                            }
+                        },
+                        null).Coroutine();
+                }
+            }
+            else
+            {
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(self.TaskId);
+
+                if (!TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
+                    return;
+                }
+
+                if (TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
+                {
+                    PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
+                        async () =>
+                        {
+                            TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                            taskPro.taskStatus = (int)TaskStatuEnum.Completed; // 手动修改
+                            int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.LastSelectItem.Id);
+                            if (errorCode == ErrorCode.ERR_Success)
+                            {
+                                FloatTipManager.Instance.ShowFloatTip("完成任务");
+                                self.OnGiveAction?.Invoke();
+                                UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
+                            }
+                        },
+                        null).Coroutine();
+                }
             }
         }
     }
