@@ -177,6 +177,12 @@ namespace ET
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfos[i].ItemID );
+                
+                if (itemConfig.ItemSubType -1 != self.Position)
+                {
+                    continue;
+                }
+                
                 UIItemComponent uIItemComponent = null;
                 if (number < self.uIItems.Count)
                 {
