@@ -15,7 +15,7 @@ namespace ET
 
         public int TaskId;
 
-        public int TaskType = 1;   //1 taskconfig  2taskcountryconfig
+        public int TaskType = 1; //1 taskconfig  2taskcountryconfig
 
         public BagInfo BagInfo;
         public BagComponent BagComponent;
@@ -56,18 +56,27 @@ namespace ET
             self.OnBagListUpdate().Coroutine();
         }
 
-        public static  void InitTask(this UIGiveTaskComponent self, int TaskId)
+        public static void InitTask(this UIGiveTaskComponent self, int taskId, int taskType = 1)
         {
-            self.TaskId = TaskId;
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(TaskId);
-            self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskId = taskId;
+            self.TaskType = taskType;
+            if (taskType == 1)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
+                self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
+            }
+            else
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(taskId);
+                self.TaskDesText.GetComponent<Text>().text = taskCountryConfig.TaskDes;
+            }
         }
 
         public static void OnCloseBtn(this UIGiveTaskComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
         }
-        
+
         public static async ETTask OnBagListUpdate(this UIGiveTaskComponent self)
         {
             int number = 0;
@@ -139,7 +148,16 @@ namespace ET
                 TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(self.TaskId);
                 if (TaskHelper.IsTaskGiveItem(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.BagInfo))
                 {
-                    TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                    TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                    TaskPro taskPro = null;
+                    for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
+                    {
+                        if (taskComponent.TaskCountryList[i].taskID == self.TaskId)
+                        {
+                            taskPro = taskComponent.TaskCountryList[i];
+                            break;
+                        }
+                    }
                     taskPro.taskStatus = (int)TaskStatuEnum.Completed;
                     int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.BagInfo.BagInfoID);
                     if (errorCode == ErrorCode.ERR_Success)
@@ -155,7 +173,7 @@ namespace ET
                     return;
                 }
             }
-            
+
             await ETTask.CompletedTask;
         }
     }

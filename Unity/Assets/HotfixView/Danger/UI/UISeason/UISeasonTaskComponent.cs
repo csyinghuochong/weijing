@@ -69,7 +69,7 @@ namespace ET
         {
             if (page == 0)
             {
-                self.TaskType = 0;
+                self.TaskType = 1;
                 self.SeasonTaskScrollView.SetActive(true);
                 self.DayTaskScrollView.SetActive(false);
                 //赛季任务。  主任务面板要屏蔽赛季任务
@@ -171,7 +171,7 @@ namespace ET
             }
             else
             {
-                self.TaskType = 1;
+                self.TaskType = 2;
                 self.SeasonTaskScrollView.SetActive(false);
                 self.DayTaskScrollView.SetActive(true);
                 //赛季每日任务
@@ -189,12 +189,18 @@ namespace ET
                         return commitb - commita; //已经完成的在前
                 });
                 int number = 0;
+                TaskPro taskPro = null;
                 for (int i = 0; i < taskPros.Count; i++)
                 {
                     TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPros[i].taskID);
                     if (taskConfig.TaskType != TaskCountryType.Season)
                     {
                         continue;
+                    }
+
+                    if (taskPro == null && taskPros[i].taskStatus == (int)TaskStatuEnum.Completed)
+                    {
+                        taskPro = taskPros[i];
                     }
 
                     UISeasonDayTaskItemComponent ui_1 = null;
@@ -223,7 +229,7 @@ namespace ET
 
                 if (self.UISeasonDayTaskItemComponentList.Count > 0)
                 {
-                    self.UpdateInfo(self.UISeasonDayTaskItemComponentList[0].TaskPro);
+                    self.UpdateInfo(taskPro ?? self.UISeasonDayTaskItemComponentList[0].TaskPro);
                 }
             }
         }
@@ -239,8 +245,63 @@ namespace ET
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
 
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
-            self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
-                    string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            // 已经完成
+            if (taskPro.taskStatus == (int)TaskStatuEnum.Commited)
+            {
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 ||
+                    taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
+                    taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                    taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                    taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
+                }
+                else
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
+                            $"{taskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
+                }
+
+                self.AcvityedImg.SetActive(true);
+                self.GetBtn.SetActive(false);
+                self.GiveBtn.SetActive(false);
+            }
+            else
+            {
+                // 进行中
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "0/1";
+                    self.GetBtn.SetActive(false);
+                    self.GiveBtn.SetActive(true);
+                }
+                else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                         taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                         taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
+                {
+                    if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
+                        self.GetBtn.SetActive(false);
+                        self.GiveBtn.SetActive(false);
+                    }
+                    else
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "0/1";
+                        self.GetBtn.SetActive(true);
+                        self.GiveBtn.SetActive(false);
+                    }
+                }
+                else
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " +
+                            $"{self.TaskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
+                    self.GetBtn.SetActive(true);
+                    self.GiveBtn.SetActive(false);
+                }
+
+                self.AcvityedImg.SetActive(false);
+            }
 
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
             if (!ComHelp.IfNull(taskConfig.RewardItem))
@@ -248,10 +309,6 @@ namespace ET
                 UICommonHelper.DestoryChild(self.RewardListNode);
                 UICommonHelper.ShowItemList(taskConfig.RewardItem, self.RewardListNode, self, 0.8f, true);
             }
-
-            self.AcvityedImg.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
-            self.GetBtn.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
-            self.GiveBtn.SetActive(false);
         }
 
         /// <summary>
@@ -361,10 +418,10 @@ namespace ET
                 return;
             }
 
-            if (self.TaskType == 0)
+            if (self.TaskType == 1)
             {
                 await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskPro.taskID, 0);
-                self.OnClickPageButton(self.TaskType);
+                self.OnClickPageButton(0);
             }
             else
             {
@@ -379,25 +436,50 @@ namespace ET
 
         public static async ETTask OnGiveBtn(this UISeasonTaskComponent self)
         {
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
-            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+            if (self.TaskType == 0)
             {
-                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
-                ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskPro.taskID);
-                ui.GetComponent<UIGiveTaskComponent>().OnGiveAction = self.UpdateSeasonTask;
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
+                    ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskPro.taskID, 1);
+                    ui.GetComponent<UIGiveTaskComponent>().OnGiveAction = self.UpdateSeasonTask;
+                }
+                else if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGivePet);
+                    ui.GetComponent<UIGivePetComponent>().InitTask(self.TaskPro.taskID, 1);
+                    ui.GetComponent<UIGivePetComponent>().OnUpdateUI();
+                    ui.GetComponent<UIGivePetComponent>().OnGiveAction = self.UpdateSeasonTask;
+                }
             }
-            else if (taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+            else
             {
-                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGivePet);
-                ui.GetComponent<UIGivePetComponent>().InitTask(self.TaskPro.taskID);
-                ui.GetComponent<UIGivePetComponent>().OnUpdateUI();
-                ui.GetComponent<UIGivePetComponent>().OnGiveAction = self.UpdateSeasonTask;
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskPro.taskID);
+                if (taskCountryConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
+                    ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskPro.taskID, 2);
+                    ui.GetComponent<UIGiveTaskComponent>().OnGiveAction = self.UpdateSeasonDayTask;
+                }
+                else if (taskCountryConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGivePet);
+                    ui.GetComponent<UIGivePetComponent>().InitTask(self.TaskPro.taskID, 2);
+                    ui.GetComponent<UIGivePetComponent>().OnUpdateUI();
+                    ui.GetComponent<UIGivePetComponent>().OnGiveAction = self.UpdateSeasonDayTask;
+                }
             }
         }
 
         public static void UpdateSeasonTask(this UISeasonTaskComponent self)
         {
             self.OnClickPageButton(0);
+        }
+
+        public static void UpdateSeasonDayTask(this UISeasonTaskComponent self)
+        {
+            self.OnClickPageButton(1);
         }
     }
 }

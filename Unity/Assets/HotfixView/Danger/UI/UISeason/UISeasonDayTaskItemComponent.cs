@@ -40,8 +40,49 @@ namespace ET
             self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
             self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
 
-            taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue[0] ? taskConfig.TargetValue[0] : taskPro.taskTargetNum_1;
-            self.ProgressText.GetComponent<Text>().text = $"进度:{taskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
+            // 已经完成
+            if (taskPro.taskStatus == (int)TaskStatuEnum.Commited)
+            {
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 ||
+                    taskConfig.TargetType == (int)TaskTargetType.GivePet_25 ||
+                    taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                    taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                    taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" + "1/1";
+                }
+                else
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" +
+                            $"{taskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
+                }
+            }
+            else
+            {
+                // 进行中
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25)
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" + "0/1";
+                }
+                else if (taskConfig.TargetType == (int)TaskTargetType.JianDingAttrNumber_43 ||
+                         taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
+                         taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
+                {
+                    if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" + "1/1";
+                    }
+                    else
+                    {
+                        self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" + "0/1";
+                    }
+                }
+                else
+                {
+                    self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ":" +
+                            $"{self.TaskPro.taskTargetNum_1}/{taskConfig.TargetValue[0]}";
+                }
+            }
         }
     }
 }

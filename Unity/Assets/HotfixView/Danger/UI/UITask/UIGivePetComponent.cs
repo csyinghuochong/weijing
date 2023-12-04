@@ -16,7 +16,7 @@ namespace ET
         public GameObject CloseBtn;
 
         public int TaskId;
-        public int TaskType = 1;
+        public int TaskType = 0;
 
         public int PetSkinId;
         public UIPetInfoShowComponent UIPetInfoShowComponent;
@@ -53,18 +53,27 @@ namespace ET
 
     public static class UIGivePetComponentSystem
     {
-        public static void InitTask(this UIGivePetComponent self, int TaskId)
+        public static void InitTask(this UIGivePetComponent self, int taskId, int taskType = 1)
         {
-            self.TaskId = TaskId;
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(TaskId);
-            self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskType = taskType;
+            self.TaskId = taskId;
+            if (taskType == 1)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
+                self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
+            }
+            else
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(taskId);
+                self.TaskDesText.GetComponent<Text>().text = taskCountryConfig.TaskDes;
+            }
         }
 
         public static void OnCloseBtn(this UIGivePetComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
         }
-        
+
         public static void OnUpdateUI(this UIGivePetComponent self)
         {
             self.PetSkinId = 0;
@@ -73,7 +82,7 @@ namespace ET
             self.OnInitPetList();
         }
 
-        public static  void OnInitPetList(this UIGivePetComponent self)
+        public static void OnInitPetList(this UIGivePetComponent self)
         {
             List<RolePetInfo> rolePetInfos = self.PetComponent.RolePetInfos;
             List<RolePetInfo> showList = new List<RolePetInfo>();
@@ -270,9 +279,20 @@ namespace ET
                     PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
                         async () =>
                         {
-                            TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                            TaskPro taskPro = null;
+                            for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
+                            {
+                                if (taskComponent.TaskCountryList[i].taskID == self.TaskId)
+                                {
+                                    taskPro = taskComponent.TaskCountryList[i];
+                                    break;
+                                }
+                            }
+
                             taskPro.taskStatus = (int)TaskStatuEnum.Completed; // 手动修改
-                            int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.LastSelectItem.Id);
+                            int errorCode = await self.ZoneScene().GetComponent<TaskComponent>()
+                                    .SendCommitTaskCountry(self.TaskId, self.LastSelectItem.Id);
                             if (errorCode == ErrorCode.ERR_Success)
                             {
                                 FloatTipManager.Instance.ShowFloatTip("完成任务");
