@@ -47,6 +47,7 @@ namespace ET
 
         //攻击目标临时增加/降低伤害
         public float ActTargetTemporaryAddPro;
+
         //自身增加/降低伤害
         public float ActTargetAddPro;
 
