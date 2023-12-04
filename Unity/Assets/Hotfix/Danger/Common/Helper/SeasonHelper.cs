@@ -7,7 +7,8 @@ namespace ET
 #if NOT_UNITY
         public static bool IsOpenSeason(int userLv)
         {
-            if (userLv < 55)
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1071);
+            if (userLv < funtionConfig.ConditionParam[0])
             {
                 return false;
             }
