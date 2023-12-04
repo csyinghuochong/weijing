@@ -96,9 +96,11 @@ namespace ET
                 int count = 0;
                 Vector3 lastPosition = new Vector3(-250, 0, 0);
                 int dre = 1;
+                Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+                int index = 0;
                 foreach (TaskConfig taskConfig in TaskConfigCategory.Instance.GetAll().Values)
                 {
-                    if (taskConfig.TaskType == TaskTypeEnum.Season && taskConfig.Id <= self.TaskPro.taskID)
+                    if (taskConfig.TaskType == TaskTypeEnum.Season)
                     {
                         if (count != 0)
                         {
@@ -136,6 +138,17 @@ namespace ET
                         }
 
                         self.UISeasonTaskItemComponentList[count].OnUpdateData(taskConfig.Id);
+                        self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = null;
+                        if (taskConfig.Id > self.TaskPro.taskID)
+                        {
+                            self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
+                            self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = mat;
+                        }
+
+                        if (taskConfig.Id == self.TaskPro.taskID)
+                        {
+                            index = count;
+                        }
 
                         count++;
                     }
@@ -150,7 +163,11 @@ namespace ET
                 }
 
                 // 滑动到底部
-                self.SeasonTaskScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
+                // self.SeasonTaskScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
+                // 滑动到对应位置
+                Vector3 vector3 = self.SeasonTaskListNode.GetComponent<RectTransform>().localPosition;
+                vector3.y = index * 160;
+                self.SeasonTaskListNode.GetComponent<RectTransform>().localPosition = vector3;
             }
             else
             {
@@ -284,7 +301,7 @@ namespace ET
                     if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
                     {
                         self.ProgressText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前进度值") + ": " + "1/1";
-                        self.GetBtn.SetActive(false);
+                        self.GetBtn.SetActive(true);
                         self.GiveBtn.SetActive(false);
                     }
                     else
