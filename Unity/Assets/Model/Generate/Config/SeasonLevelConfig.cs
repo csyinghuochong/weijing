@@ -84,6 +84,9 @@ namespace ET
 		/// <summary>奖励</summary>
 		[ProtoMember(3)]
 		public string Reward { get; set; }
+		/// <summary>赛季属性</summary>
+		[ProtoMember(4)]
+		public string PripertySet { get; set; }
 
 	}
 }

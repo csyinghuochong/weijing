@@ -1218,9 +1218,6 @@ namespace ET
             UserInfo userInfo = UnitInfoComponent.UserInfo;
             int roleLv = userInfo.Lv;
 
-            //赛季等级
-            int seasonLv = userInfo.SeasonLevel;
-
             //初始化属性
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
@@ -1440,6 +1437,36 @@ namespace ET
                 else
                 {
                     Log.Debug($"无效的装备: {itemCof.Id}");
+                }
+            }
+
+            SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel);
+            if (!ComHelp.IfNull(seasonLevelConfig.PripertySet))
+            {
+                string[] addProList = seasonLevelConfig.PripertySet.Split("@");
+                for (int p = 0; p < addProList.Length; p++)
+                {
+                    string[] addPro = addProList[p].Split(";");
+                    if (addPro.Length < 2)
+                    {
+                        break;
+                    }
+                    int key = int.Parse(addPro[0]);
+                    try
+                    {
+                        if (NumericHelp.GetNumericValueType(key) == 1)
+                        {
+                            AddUpdateProDicList(key, long.Parse(addPro[1]), UpdateProDicList);
+                        }
+                        else
+                        {
+                            AddUpdateProDicList(key, (int)(float.Parse(addPro[1]) * 10000), UpdateProDicList);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"赛季属性配置错误：{ex.ToString()} {seasonLevelConfig.PripertySet}");
+                    }
                 }
             }
 
