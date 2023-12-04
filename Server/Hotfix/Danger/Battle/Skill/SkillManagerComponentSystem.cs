@@ -626,7 +626,8 @@ namespace ET
                 skillcdTime *= ( 1f - now_cdpro);
             }
 
-            if (unit.Type != UnitType.Player && unit.MasterId != 0 && skillConfig.SkillActType == 0)
+            //if (unit.Type != UnitType.Player && unit.MasterId != 0 && skillConfig.SkillActType == 0)
+            if (unit.Type != UnitType.Player && skillConfig.SkillActType == 0)
             {
                 //float attackSpped = 1f - numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
 
