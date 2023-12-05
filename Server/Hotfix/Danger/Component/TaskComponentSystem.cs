@@ -1189,6 +1189,11 @@ namespace ET
             numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
         }
 
+        public static void ClearSeasonData(this TaskComponent self)
+        {
+
+        }
+
         public static void InitSeasonMainTask(this TaskComponent self, bool notice)
         {
             bool have = false;

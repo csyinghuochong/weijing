@@ -159,6 +159,11 @@ namespace ET
             }
         }
 
+        public static void ClearSeasonData(this HeroDataComponent self)
+        { 
+            
+        }
+
         public static void CheckSeasonOpen(this HeroDataComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
