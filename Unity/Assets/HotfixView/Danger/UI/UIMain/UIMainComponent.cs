@@ -1731,13 +1731,16 @@ namespace ET
         public static async ETTask OnBtn_LvReward(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string[] items = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('@');
+            string[] item = items[0].Split(';');
             if (userInfoComponent.UserInfo.Lv < self.LevelRewardKey)
             {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
                 EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
                 EventType.ShowItemTips.Instance.bagInfo = new BagInfo()
                 {
-                    ItemID = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Key,
-                    ItemNum = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Value
+                    ItemID = int.Parse(item[0]),
+                    ItemNum = int.Parse(item[1])
                 };
                 EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
                 EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
@@ -1746,10 +1749,19 @@ namespace ET
             }
             else
             {
-                C2M_LeavlRewardRequest request = new C2M_LeavlRewardRequest() { LvKey = self.LevelRewardKey };
-                M2C_LeavlRewardResponse response =
-                        await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_LeavlRewardResponse;
-                self.UpdateLvReward();
+                if (items.Length > 1)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UILeavlReward);
+                    ui.GetComponent<UILeavlRewardComponent>().UpdateInfo(self.LevelRewardKey);
+                }
+                else
+                {
+                    // 一个道具直接领取
+                    C2M_LeavlRewardRequest request = new C2M_LeavlRewardRequest() { LvKey = self.LevelRewardKey };
+                    M2C_LeavlRewardResponse response =
+                            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_LeavlRewardResponse;
+                    self.UpdateLvReward();
+                }
             }
         }
 
@@ -1772,7 +1784,10 @@ namespace ET
             if (flag)
             {
                 self.LevelRewardKey = newLv;
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.LeavlRewardItem[newLv].Key);
+                string[] items = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('@');
+                string[] item = items[0].Split(';');
+                
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(item[0]));
                 ReferenceCollector rc = self.Btn_LvReward.GetComponent<ReferenceCollector>();
 
                 string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
@@ -1792,7 +1807,7 @@ namespace ET
                 }
                 rc.Get<GameObject>("Image_ItemQuality").GetComponent<Image>().sprite = sp1;
 
-                rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = ConfigHelper.LeavlRewardItem[newLv].Value.ToString();
+                rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
                 rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"{newLv}级领取";
                 self.Btn_LvReward.SetActive(true);
             }

@@ -14428,6 +14428,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int LvKey { get; set; }
 
+		[ProtoMember(2)]
+		public int Index { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_LeavlRewardResponse)]
