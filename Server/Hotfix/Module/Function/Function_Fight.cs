@@ -219,7 +219,9 @@ namespace ET
 
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
-            bool petfuben = false;
+
+            int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            bool petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
 
             //计算是否闪避
             int defendUnitLv = 0;
@@ -227,9 +229,7 @@ namespace ET
             {
                 //怪物
                 case UnitType.Monster:
-                    int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-                    petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
-
+                   
                     defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = monsterCof.Lv;
