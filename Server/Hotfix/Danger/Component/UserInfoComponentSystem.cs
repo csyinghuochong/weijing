@@ -569,7 +569,7 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PointRemain, int.Parse(value) * 10, 0);
                     unit.GetComponent<TaskComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
-                    unit.GetComponent<HeroDataComponent>().CheckSeasonOpen();
+                    unit.GetComponent<HeroDataComponent>().CheckSeasonOpen(true);
                     self.UpdateRoleData(UserDataType.Sp, value, notice);
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true,true );
                     break;

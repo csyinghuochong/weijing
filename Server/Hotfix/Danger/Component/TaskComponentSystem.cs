@@ -893,10 +893,6 @@ namespace ET
                 self.UpdateDayTask(false);
             }
            
-            if (SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
-            {
-                self.InitSeasonMainTask();
-            }
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
 
@@ -1193,7 +1189,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
         }
 
-        public static void InitSeasonMainTask(this TaskComponent self)
+        public static void InitSeasonMainTask(this TaskComponent self, bool notice)
         {
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
@@ -1218,6 +1214,13 @@ namespace ET
                     self.OnAcceptedTask(taskid);
                     break;   
                 }
+            }
+
+            if (notice) 
+            {
+                M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
+                m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
             }
         }
 
@@ -1337,6 +1340,11 @@ namespace ET
                 }
             }
 
+            self.UpdateSeasonWeekTask(false);
+        }
+
+        public static void UpdateSeasonWeekTask(this TaskComponent self, bool notice)
+        {
             //赛季任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {
@@ -1355,6 +1363,14 @@ namespace ET
                 {
                     self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
                 }
+            }
+
+            if (notice)
+            {
+                M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
+                m2C_TaskUpdate.UpdateMode = 2;
+                m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
             }
         }
 
