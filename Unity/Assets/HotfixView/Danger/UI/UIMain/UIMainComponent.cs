@@ -820,6 +820,8 @@ namespace ET
         public static void OnBagItemUpdate(this UIMainComponent self)
         {
             self.UIMainSkillComponent.OnBagItemUpdate();
+
+            ///检测是否有可以穿戴的装备
         }
 
         public static void OnEquipWear(this UIMainComponent self)
