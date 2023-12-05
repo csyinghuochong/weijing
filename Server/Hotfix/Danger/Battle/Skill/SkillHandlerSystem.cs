@@ -213,12 +213,10 @@ namespace ET
                 return;
             }
             self.DamgeChiXuLastTime = servernow;
-           
-            List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
+            List<Unit> entities = self.TheUnitFrom.GetParent<UnitComponent>().GetAll();
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Unit uu = entities[i];
-                
                 //检测目标是否在技能范围
                 if (!self.CheckShape(uu.Position))
                 {

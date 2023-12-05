@@ -105,7 +105,9 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.loginBtn, () => { self.OnLogin(); });
 				self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
 				self.registerBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnRegister(); });
-				self.Account = rc.Get<GameObject>("Account");
+                self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5);
+
+                self.Account = rc.Get<GameObject>("Account");
 				self.Password = rc.Get<GameObject>("Password");
 
 				self.ObjNoticeBtn = rc.Get<GameObject>("NoticeBtn");

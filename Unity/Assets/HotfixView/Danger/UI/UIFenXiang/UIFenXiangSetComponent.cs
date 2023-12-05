@@ -32,15 +32,17 @@ namespace ET
 
             if (GlobalHelp.GetPlatform() == 5)
             {
-                self.FenXiang_TikTok.SetActive(true);
+                self.FenXiang_TikTok.SetActive(false);
                 self.FenXiang_WeiXin.SetActive(false);
-                self.FenXiang_QQ.SetActive(false);
+                self.FenXiang_QQ.SetActive(true);
+                self.FenXiang_QQ.transform.localPosition = new Vector3(0f, 112f, 0f);
             }
             else
             {
                 self.FenXiang_TikTok.SetActive(false);
                 self.FenXiang_WeiXin.SetActive(true);
                 self.FenXiang_QQ.SetActive(true);
+                self.FenXiang_QQ.transform.localPosition = new Vector3(-257f, 112f, 0f);
             }
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Share").gameObject, self.OnQQZone);
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Friend").gameObject, self.OnQQShare);

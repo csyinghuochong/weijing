@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 
     //闪电链2
@@ -34,15 +36,59 @@
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-            if (serverNow - this.SkillTriggerLastTime < 500)
+            if (serverNow < this.SkillExcuteHurtTime)
             {
                 return;
             }
-            this.SkillTriggerLastTime = serverNow;
 
+            if (!this.IsExcuteHurt)
+            {
+                this.IsExcuteHurt = true;
 
-            ///根据范围内敌人数量计算伤害加成
-            this.HurtAddPro = 0f;
+                List<Unit> enemyList = new List<Unit>();
+                List<Unit> entities = this.TheUnitFrom.GetParent<UnitComponent>().GetAll();
+
+                for (int i = entities.Count - 1; i >= 0; i--)
+                {
+                    Unit uu = entities[i];
+
+                    //检测目标是否在技能范围
+                    if (!this.CheckShape(uu.Position))
+                    {
+                        continue;
+                    }
+
+                    if (!this.TheUnitFrom.IsCanAttackUnit(uu))
+                    {
+                        continue;
+                    }
+
+                    enemyList.Add(uu);
+                }
+
+                //1;0.1@6;0.3
+                int enemyNumber = enemyList.Count;
+                string[] gameparaminfo = this.SkillConf.GameObjectParameter.Split('@');
+                for (int i = gameparaminfo.Length - 1; i >= 0; i--)
+                {
+                    string[] hurtaddInfo = gameparaminfo[i].Split(';');
+                    if (int.Parse(hurtaddInfo[0]) >= enemyNumber)
+                    {
+                        this.HurtAddPro = float.Parse(hurtaddInfo[1]);
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < enemyList.Count; i++)
+                {
+                    this.OnCollisionUnit(enemyList[i]);
+                    this.BroadcastSkill(this.TheUnitFrom.Id, enemyList[i].Id, 0f, 0f, 0f);
+                }
+
+                ///根据范围内敌人数量计算伤害加成
+                this.HurtAddPro = 0f;
+
+            }
 
             if (serverNow > this.SkillEndTime || this.HurtIds.Count >= 5)
             {
