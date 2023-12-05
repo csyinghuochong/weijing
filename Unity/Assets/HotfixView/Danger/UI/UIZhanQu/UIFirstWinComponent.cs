@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIFirstWinComponent : Entity, IAwake, IDestroy
     {
+	    public GameObject Text_BossExp;
 		public Text Text_BossFreshTIme;
         public Text Text_BossDevpName;
         public GameObject ImageProgress;
@@ -65,6 +66,7 @@ namespace ET
 			self.ImageProgress = rc.Get<GameObject>("ImageProgress");
             self.Text_BossFreshTIme = rc.Get<GameObject>("Text_BossFreshTIme").GetComponent<Text>();
             self.Text_BossDevpName = rc.Get<GameObject>("Text_BossDevpName").GetComponent<Text>();
+            self.Text_BossExp = rc.Get<GameObject>("Text_BossExp");
 
             self.SkillDescriptionList.Add(self.SkillDescriptionItemText);
 			
@@ -339,6 +341,8 @@ namespace ET
                 self.Text_BossDevp.GetComponent<Text>().text = $"领主升级: {killNumber}/{bossDevelopmentNext.KillNumber}";
 				self.ImageProgress.GetComponent<Image>().fillAmount = killNumber * 1f / bossDevelopmentNext.KillNumber;
             }
+
+			self.Text_BossExp.GetComponent<Text>().text = $"怪物经验:{1f * bossDevelopment.ExpAdd * monsterConfig.Exp}";
             self.Text_BossDevpName.text = bossDevelopment.Name;
 			long cdTime = (long)(monsterConfig.ReviveTime * 1000 * bossDevelopment.ReviveTimeAdd);
 			self.Text_BossFreshTIme.text = "冷却时间:"+TimeHelper.ShowLeftTime(cdTime);
