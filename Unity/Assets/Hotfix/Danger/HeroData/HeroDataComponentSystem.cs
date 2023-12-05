@@ -155,13 +155,20 @@ namespace ET
                     Log.Console("清空赛季任务！");
                 }
 
-                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
-                {
-                    numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
-                    numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Minute);
-                    numericComponent.ApplyValue(NumericType.SeasonOpenTime, SeasonHelper.SeasonOpenTime);
-                }
+                self.CheckSeasonOpen();
+            }
+        }
+
+        public static void CheckSeasonOpen(this HeroDataComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
+            {
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Minute);
+                numericComponent.ApplyValue(NumericType.SeasonOpenTime, SeasonHelper.SeasonOpenTime);
             }
         }
 
