@@ -50,7 +50,7 @@
                 }
             }
             else
-            {
+            { 
                 lastTarget = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[this.HurtIds.Count - 1]);
                 if (lastTarget == null)
                 {
