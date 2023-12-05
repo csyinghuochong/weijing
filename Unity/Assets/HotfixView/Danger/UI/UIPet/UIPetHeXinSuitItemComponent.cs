@@ -59,12 +59,12 @@ namespace ET
 
                 if (showType == 2)
                 {
-                    float value = int.Parse(pro[1]) / 100f;
+                    float value = float.Parse(pro[1]) * 100;
                     str = proName + "+" + value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    str = proName + "+" + int.Parse(pro[1]);
+                    str = proName + "+" + float.Parse(pro[1]);
                 }
 
                 GameObject go = UnityEngine.Object.Instantiate(self.PropertyText);
