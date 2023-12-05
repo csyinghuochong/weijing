@@ -37,7 +37,6 @@ namespace ET
                 }
                 if (this.EffectState == BuffState.Finished)
                 {
-                    GameObject.Destroy(gameObject);
                     return;
                 }
                 int skillParentID = this.EffectConfig.SkillParent;
@@ -56,13 +55,13 @@ namespace ET
                         HeroTransformComponent heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            GameObject.Destroy(gameObject);
+                            this.EffectState = BuffState.Finished;
                             return;
                         }
                         Transform tParent = heroTransformComponent.GetTranform(this.EffectConfig.SkillParentPosition);
                         if (tParent == null)
                         {
-                            GameObject.Destroy(gameObject);
+                            this.EffectState = BuffState.Finished;
                             return;
                         }
 
@@ -101,7 +100,7 @@ namespace ET
                         heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            GameObject.Destroy(gameObject);
+                            this.EffectState = BuffState.Finished;
                             return;
                         }
                         chainLightningComponent.Start = heroTransformComponent.GetTranform(PosType.Center);
@@ -110,7 +109,7 @@ namespace ET
                             unitTarget = this.TheUnitBelongto.GetParent<UnitComponent>().Get(this.EffectData.TargetID);
                             if (unitTarget == null)
                             {
-                                GameObject.Destroy(gameObject);
+                                this.EffectState = BuffState.Finished;
                                 return;
                             }
                             chainLightningComponent.UsePosition = false;
