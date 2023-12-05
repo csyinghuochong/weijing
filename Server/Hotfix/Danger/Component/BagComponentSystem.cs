@@ -1012,6 +1012,13 @@ namespace ET
                                 useBagInfo.IfJianDing = true;
                             }
                         }
+
+                        //特殊处理不坚定
+                        if (useBagInfo.ItemID == 14100021 || useBagInfo.ItemID == 14100022 || useBagInfo.ItemID == 14100121 || useBagInfo.ItemID == 14100122 || useBagInfo.ItemID == 14100221 || useBagInfo.ItemID == 14060006)
+                        {
+                            useBagInfo.IfJianDing = false;
+                        }
+
                         int equipId = itemCof.ItemEquipID;
                         if (equipId != 0 && EquipConfigCategory.Instance.Get(equipId).AppraisalItem == 0)
                         {
