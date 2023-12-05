@@ -228,7 +228,7 @@ namespace ET
                 //怪物
                 case UnitType.Monster:
                     int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-                    petfuben = sceneType == SceneTypeEnum.PetDungeon;
+                    petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
 
                     defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
@@ -537,7 +537,7 @@ namespace ET
                     {
                         damge = (int)((float)damge * 0.1f);
                     }
-
+                    
                     //技能受到10%伤害
                     if (skillconfig.SkillActType == 1)
                     {
