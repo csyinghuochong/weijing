@@ -49,6 +49,22 @@ namespace ET
 			{
 				//宠物洗练
 				case 105:
+					// 宠之晶 增加额外效果,洗炼5%的概率使普通宠物发生变异,变异的宠物不能使用此道具
+					if (PetHelper.IsBianYI(petInfo))
+					{
+						response.Error = ErrorCode.ERR_Pet_NoUseItem;
+						reply();
+						return;
+					}
+
+					if (RandomHelper.RandomNumber(0, 101) <= 5)
+					{
+						if (petCof.Skin.Length >= 2)
+						{
+							petInfo.SkinId = petCof.Skin[RandomHelper.RandomNumber(1, petCof.Skin.Length)];
+						}
+					}
+
 					//重置资质系数
 					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2);
 					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
@@ -92,6 +108,35 @@ namespace ET
                     response.rolePetInfo = petInfo;
 					ifCost = ifok;
 					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCode.ERR_Pet_AddSkillSame;
+					break;
+				case 133:
+					// 超级宠之晶 只有变异宠物可以用,洗宠物属性,不会改变其皮肤,只改变技能和资质 
+					if (!PetHelper.IsBianYI(petInfo))
+					{
+						response.Error = ErrorCode.ERR_Pet_NoUseItem;
+						reply();
+						return;
+					}
+
+					//重置资质系数
+					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 2);
+					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
+					response.rolePetInfo = petInfo;
+					break;
+				case 134:
+					// 变异宠物果实 只有普通宠物可以用,使用后随机获得一个变异效果(随机一个皮肤不能是第一个),其他属性和技能不变
+					if (PetHelper.IsBianYI(petInfo))
+					{
+						response.Error = ErrorCode.ERR_Pet_NoUseItem;
+						reply();
+						return;
+					}
+
+					if (petCof.Skin.Length >= 2)
+					{
+						petInfo.SkinId = petCof.Skin[RandomHelper.RandomNumber(1, petCof.Skin.Length)];
+					}
+					response.rolePetInfo = petInfo;
 					break;
 				default:
 					break;

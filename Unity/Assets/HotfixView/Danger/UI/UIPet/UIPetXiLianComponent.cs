@@ -98,6 +98,25 @@ namespace ET
                 return;
             }
 
+            
+            if (itemConfig.ItemSubType == 105 || itemConfig.ItemSubType == 134)
+            {
+                if (PetHelper.IsBianYI(self.RolePetInfo))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("变异的宠物不能使用此道具！");
+                    return;
+                }
+            }
+
+            if (itemConfig.ItemSubType == 133)
+            {
+                if (!PetHelper.IsBianYI(self.RolePetInfo))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("只有变异宠物能使用此道具！");
+                    return;
+                }
+            }
+
             self.ZoneScene().GetComponent<PetComponent>().RequestXiLian(self.CostItemInfo.BagInfoID, self.RolePetInfo.Id).Coroutine();
         }
 
@@ -170,7 +189,7 @@ namespace ET
 
                 if (itemSubType != 105 && itemSubType != 108 && itemSubType != 109
                     && itemSubType != 117 && itemSubType != 118 && itemSubType != 119
-                    && itemSubType != 122)
+                    && itemSubType != 122 && itemSubType != 133 && itemSubType != 134)
                 {
                     continue;
                 }
