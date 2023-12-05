@@ -34,7 +34,17 @@ namespace ET
         {
             self.LvKey = lvKey;
 
-            string[] items = ConfigHelper.LeavlRewardItem[lvKey].Split('@');
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string[] occItems = ConfigHelper.LeavlRewardItem[lvKey].Split('&');
+            string[] items;
+            if (occItems.Length == 3)
+            {
+                items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+            }
+            else
+            {
+                items = occItems[0].Split('@');
+            }
 
             for (int i = 0; i < items.Length; i++)
             {

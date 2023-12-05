@@ -1733,7 +1733,16 @@ namespace ET
         public static async ETTask OnBtn_LvReward(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            string[] items = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('@');
+            string[] occItems = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('&');
+            string[] items;
+            if (occItems.Length == 3)
+            {
+                items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+            }
+            else
+            {
+                items = occItems[0].Split('@');
+            }
             string[] item = items[0].Split(';');
             if (userInfoComponent.UserInfo.Lv < self.LevelRewardKey)
             {
@@ -1786,9 +1795,21 @@ namespace ET
             if (flag)
             {
                 self.LevelRewardKey = newLv;
-                string[] items = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('@');
-                string[] item = items[0].Split(';');
+
+                string[] occItems = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('&');
+                string[] items;
+                if (occItems.Length == 3)
+                {
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+                }
+                else
+                {
+                    items = occItems[0].Split('@');
+                }
                 
+                string[] item = items[0].Split(';');
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(item[0]));
                 ReferenceCollector rc = self.Btn_LvReward.GetComponent<ReferenceCollector>();
 

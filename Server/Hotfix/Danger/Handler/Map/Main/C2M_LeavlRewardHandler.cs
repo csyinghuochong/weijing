@@ -30,7 +30,18 @@ namespace ET
                 return;
             }
 
-            string[] items = ConfigHelper.LeavlRewardItem[request.LvKey].Split('@');
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            string[] occItems = ConfigHelper.LeavlRewardItem[request.LvKey].Split('&');
+            string[] items;
+            if (occItems.Length == 3)
+            {
+                items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+            }
+            else
+            {
+                items = occItems[0].Split('@');
+            }
+
             if (items.Length < request.Index + 1 || request.Index < 0)
             {
                 response.Error = ErrorCode.ERR_ModifyData;
