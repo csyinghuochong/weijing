@@ -1012,7 +1012,7 @@ namespace ET
 
                 if (itemConfig.ItemType == ItemTypeEnum.Material)
                 {
-                    if (setvalues[3] == "1" && itemConfig.ItemQuality <= 2)
+                    if (setvalues[3] == "1" && ConfigHelper.OneSellMaterialList.Contains(bagInfos[i].ItemID))
                     {
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;

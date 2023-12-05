@@ -831,6 +831,15 @@ namespace ET
 
 
         /// <summary>
+        /// 一键出售材料
+        /// </summary>
+        public static List<int> OneSellMaterialList = new List<int>()
+        {
+            10021008,10021009
+        };
+
+
+        /// <summary>
         /// 神兽羁绊属性
         /// </summary>
         public static Dictionary<int, List<PropertyValue>> ShenShouJiBan = new Dictionary<int, List<PropertyValue>>()
