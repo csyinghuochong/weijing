@@ -221,6 +221,8 @@ namespace ET
             bool ifMonsterBoss_Def = false;
 
             int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+
+            //当前是否在宠物副本
             bool petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
 
             //计算是否闪避
