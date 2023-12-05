@@ -419,11 +419,16 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.IsCanBeAttack())
+                
+                float dd = PositionHelper.Distance2D(unit, uu);
+                if (dd > maxdis)
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(unit, uu);
+                if (!unit.IsCanAttackUnit(uu))
+                {
+                    continue;
+                }
                 if (dd < maxdis && dd < distance)
                 {
                     nearest = uu;
