@@ -92,6 +92,7 @@ namespace ET
         public const int PetMine = 81;                  //矿场
         public const int Season = 82;                   //赛季奖励
         public const int Welfare = 83;                  //福利
+        public const int LeavlReward = 84;              //等级奖励
 
         public const int Activity = 100;                //活动
 

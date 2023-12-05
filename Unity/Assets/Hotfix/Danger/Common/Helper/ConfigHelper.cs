@@ -966,5 +966,14 @@ namespace ET
             }
             return null;
         }
+
+        /// <summary>
+        /// 等级奖励,大于或等于可以领取奖励
+        /// </summary>
+        public static Dictionary<int, KeyValuePair<int, int>> LeavlRewardItem = new Dictionary<int, KeyValuePair<int, int>>()
+        {
+            { 3, new KeyValuePair<int, int>(10000152, 2) }, 
+            { 10, new KeyValuePair<int, int>(10000152, 2) }
+        };
     }
 }

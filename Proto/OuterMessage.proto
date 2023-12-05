@@ -6924,3 +6924,17 @@ message M2C_TaskOnLoginResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_LeavlRewardResponse
+message C2M_LeavlRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 LvKey = 1;
+}
+
+message M2C_LeavlRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

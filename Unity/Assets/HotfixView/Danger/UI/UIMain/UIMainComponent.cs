@@ -72,6 +72,7 @@ namespace ET
         public GameObject Btn_GM;
         public GameObject Btn_Task;
         public Text TextPing;
+        public GameObject Btn_LvReward;
         public GameObject MailHintTip;
         public GameObject UIStall;
         public GameObject Btn_Friend;
@@ -123,6 +124,7 @@ namespace ET
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
 
+        public List<string> AssetPath = new List<string>();
         public List<ActivityTimer> FunctionButtons = new List<ActivityTimer>();
         public UI UILevelGuideMini;
         public UI UIMailHintTip;
@@ -131,6 +133,7 @@ namespace ET
         public string TianQiEffectPath;
         public long TimerFunctiuon;
         public long TimerPing;
+        public int LevelRewardKey;
 
         public Unit MainUnit;
 
@@ -247,7 +250,9 @@ namespace ET
             self.Button_NewYear = rc.Get<GameObject>("Button_NewYear");
             ButtonHelp.AddListenerEx(self.Button_NewYear, self.OnButton_NewYear);
 
-          
+            self.Btn_LvReward = rc.Get<GameObject>("Btn_LvReward");
+            ButtonHelp.AddListenerEx(self.Btn_LvReward, () => { self.OnBtn_LvReward().Coroutine(); });
+            
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
@@ -454,6 +459,14 @@ namespace ET
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
                 self.TianQiEffectObj = null;
+            }
+
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
             }
 
             TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
@@ -1670,6 +1683,8 @@ namespace ET
 
             self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
             self.UGuaJiSet.SetActive(false);
+            
+            self.UpdateLvReward();
         }
 
         public static void OnOpenTask(this UIMainComponent self)
@@ -1694,6 +1709,68 @@ namespace ET
                            //弹出提示
                            FloatTipManager.Instance.ShowFloatTipDi("摊位已收起!");
                        }).Coroutine();
+        }
+
+        public static async ETTask OnBtn_LvReward(this UIMainComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Lv < self.LevelRewardKey)
+            {
+                EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+                EventType.ShowItemTips.Instance.bagInfo = new BagInfo()
+                {
+                    ItemID = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Key,
+                    ItemNum = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Value
+                };
+                EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+                EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+                EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+            }
+            else
+            {
+                C2M_LeavlRewardRequest request = new C2M_LeavlRewardRequest() { LvKey = self.LevelRewardKey };
+                M2C_LeavlRewardResponse response =
+                        await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_LeavlRewardResponse;
+                self.UpdateLvReward();
+            }
+        }
+
+        public static void UpdateLvReward(this UIMainComponent self)
+        {
+            NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            int oldLv = numericComponent.GetAsInt(NumericType.LeavlReward);
+
+            int newLv = int.MaxValue;
+            bool flag = false;
+            foreach (int key in ConfigHelper.LeavlRewardItem.Keys)
+            {
+                if (key > oldLv)
+                {
+                    newLv = Math.Min(key, newLv);
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.LeavlRewardItem[newLv].Key);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+
+                self.LevelRewardKey = newLv;
+                self.Btn_LvReward.GetComponent<Image>().sprite = sp;
+                self.Btn_LvReward.GetComponentInChildren<Text>().text = $"{newLv}级领取";
+                self.Btn_LvReward.SetActive(true);
+            }
+            else
+            {
+                self.Btn_LvReward.SetActive(false);
+            }
         }
 
         public static void OnMailHintTip(this UIMainComponent self)
