@@ -10,26 +10,33 @@ namespace ET
         //己方位置
         public static readonly List<Vector3> Formation_1 = new List<Vector3>()
         {
-            new Vector3(-1.88f, 0f, -15.33f),
-            new Vector3(-1.88f, 0f, -12.16f),
+            //前排
             new Vector3(-1.88f, 0f, -9.11f),
-            new Vector3(1.17f, 0f, -15.33f),
-            new Vector3(1.17f, 0f, -12.16f),
             new Vector3(1.17f, 0f, -9.11f),
-            new Vector3(4.28f, 0f, -15.33f),
-            new Vector3(4.28f, 0f, -12.16f),
             new Vector3(4.28f, 0f, -9.11f),
+            //中排
+            new Vector3(-1.88f, 0f, -12.16f),
+            new Vector3(1.17f, 0f, -12.16f),
+            new Vector3(4.28f, 0f, -12.16f),
+            //后排
+            new Vector3(-1.88f, 0f, -15.33f),
+            new Vector3(1.17f, 0f, -15.33f),
+            new Vector3(4.28f, 0f, -15.33f),
+
         };
 
         //对方位置
         public static readonly List<Vector3> Formation_2 = new List<Vector3>()
         {
+            //前排
             new Vector3(-1.88f, 0f, 9.87f),
             new Vector3(1.17f, 0f, 9.87f),
             new Vector3(4.28f, 0f, 9.87f),
+            //中排
             new Vector3(-1.88f, 0f, 13.09f),
             new Vector3(1.17f, 0f, 13.09f),
             new Vector3(4.28f, 0f, 13.09f),
+            //后排
             new Vector3(-1.88f, 0f,16.14f),
             new Vector3(1.17f, 0f, 16.14f),
             new Vector3(4.28f, 0f, 16.14f),
@@ -42,15 +49,16 @@ namespace ET
 
         public static readonly List<int>[] PetPositionAttack = new List<int>[]
         {
-            new List<int>(){  0, 1, 2, 3, 4, 5, 6, 7, 8   },
-            new List<int>(){ 1, 3, 4, 5, 6, 7, 8, 0, 1  },
-            new List<int>(){ 3, 4, 5, 6, 7, 8, 0, 1, 2  },
-            new List<int>(){ 4, 5, 6, 7, 8, 0, 1, 2, 3  },
-            new List<int>(){ 5, 6, 7, 8, 0, 1, 2, 3, 4  },
-            new List<int>(){ 6, 7, 8, 0, 1, 2, 3, 4, 5  },
-            new List<int>(){ 7, 8, 0, 1, 2, 3, 4, 5, 6 },
-            new List<int>(){ 8, 0, 1, 2, 3, 4, 5, 6, 7},
-            new List<int>(){ 0, 1, 2, 3, 4, 5, 6, 7, 8 }
+
+            new List<int>(){ 0, 3, 6, 1, 4, 7, 2, 5, 8 },
+            new List<int>(){ 1, 4, 7, 0, 3, 6, 2, 5, 8 },
+            new List<int>(){ 2, 5, 8, 1, 4, 7, 0, 3, 6 },
+            new List<int>(){ 0, 3, 6, 1, 4, 7, 2, 5, 8 },
+            new List<int>(){ 1, 4, 7, 0, 3, 6, 2, 5, 8 },
+            new List<int>(){ 2, 5, 8, 1, 4, 7, 0, 3, 6 },
+            new List<int>(){ 0, 3, 6, 1, 4, 7, 2, 5, 8 },
+            new List<int>(){ 1, 4, 7, 0, 3, 6, 2, 5, 8 },
+            new List<int>(){ 2, 5, 8, 1, 4, 7, 0, 3, 6 }
         };
 
         //摄像机位置

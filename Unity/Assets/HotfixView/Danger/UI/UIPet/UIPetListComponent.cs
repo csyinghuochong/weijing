@@ -737,33 +737,33 @@ namespace ET
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "高级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
-                index = 2;
+                index = 3;
                 self.PetHeXinSuit = 10;
             }
             else if (lv8number >= 3)
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "中级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
-                index = 1;
+                index = 2;
                 self.PetHeXinSuit = 8;
             }
             else if (lv5number >= 3)
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
-                index = 0;
+                index = 1;
                 self.PetHeXinSuit = 5;
             }
             else
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = mat;
-                index = 0;
+                index = 1;
                 self.PetHeXinSuit = 0;
             }
             
             // 更换图标
-            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
+            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"hexin{index}");
             Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
             if (!self.AssetPath.Contains(path1))
             {
