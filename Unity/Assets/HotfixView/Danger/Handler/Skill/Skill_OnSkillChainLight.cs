@@ -6,18 +6,17 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.SkillChainLight args = numerice as EventType.SkillChainLight;
-            Unit Unit = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().Get(args.M2C_ChainLightning.UnitId);
+            UnitComponent unitComponent = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>();
+            Unit Unit = unitComponent.Get(args.M2C_ChainLightning.UnitId);
             if (Unit == null)
             {
                 return;
             }
-            Unit target = Unit.GetParent<UnitComponent>().Get(args.M2C_ChainLightning.TargetID);
+            Unit target = unitComponent.Get(args.M2C_ChainLightning.TargetID);
             if (target == null)
             {
                 return;
             }
-
-            ///移除之前的闪电链
 
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = args.M2C_ChainLightning.TargetID;
