@@ -6930,6 +6930,7 @@ message C2M_LeavlRewardRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 LvKey = 1;
+	int32 Index = 2;
 }
 
 message M2C_LeavlRewardResponse // IActorLocationResponse
