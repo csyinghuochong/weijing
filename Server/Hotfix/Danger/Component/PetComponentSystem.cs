@@ -874,7 +874,7 @@ namespace ET
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             if (!ComHelp.IfNull(petSkinConfig.PripertySet))
             {
-                string[] attriList = petSkinConfig.PripertySet.Split('@');
+                string[] attriList = petSkinConfig.PripertySet.Split(';');
                 for (int a = 0; a < attriList.Length; a++)
                 {
                     try
@@ -885,7 +885,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Info($"attriStrexc Eption： {petSkinConfig.PripertySet} {ex.ToString()}");
+                        Log.Console($"attriStrexc Eption： {petSkinConfig.PripertySet} {ex.ToString()}");
                     }
                 }
             }

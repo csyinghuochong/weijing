@@ -57,7 +57,7 @@
                     this.SetSkillState(SkillState.Finished);
                     return;
                 }
-                target = AIHelp.GetNearestUnit(lastTarget, 5f, this.HurtIds, this.TheUnitFrom.Id);
+                target = AIHelp.GetNearestUnit(this.TheUnitFrom, lastTarget.Position, 5f, this.HurtIds);
                 if (target == null)
                 {
                     this.SetSkillState(SkillState.Finished);

@@ -407,25 +407,25 @@ namespace ET
             }
         }
       
-        public static Unit GetNearestUnit(Unit unit, float maxdis, List<long> ids, long mainId)
+        public static Unit GetNearestUnit(Unit unitForm, Vector3 position, float maxdis, List<long> hurtids)
         {
             Unit nearest = null;
             float distance = maxdis;
-            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            List<Unit> units = unitForm.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i];
-                if (uu.Id == unit.Id || uu.Id == mainId || ids.Contains(uu.Id))
+                if (uu.Id == unitForm.Id || hurtids.Contains(uu.Id))
                 {
                     continue;
                 }
                 
-                float dd = PositionHelper.Distance2D(unit, uu);
+                float dd = PositionHelper.Distance2D(position, uu.Position);
                 if (dd > maxdis)
                 {
                     continue;
                 }
-                if (!unit.IsCanAttackUnit(uu))
+                if (!unitForm.IsCanAttackUnit(uu))
                 {
                     continue;
                 }
