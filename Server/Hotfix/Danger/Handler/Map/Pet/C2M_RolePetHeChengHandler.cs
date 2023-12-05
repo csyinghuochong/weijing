@@ -293,7 +293,8 @@ namespace ET
 			unit.GetComponent<TaskComponent>().OnPetHeCheng(petinfo_update);
 			petComponent.CheckPetPingFen();
 			petComponent.CheckPetZiZhi();
-			response.DeletePetInfoId = petinfo_delete.Id;
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+            response.DeletePetInfoId = petinfo_delete.Id;
 			response.rolePetInfo = petinfo_update;
 			reply();
 			await ETTask.CompletedTask;
