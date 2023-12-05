@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 namespace ET
 {
     public static class SeasonHelper
@@ -35,7 +37,17 @@ namespace ET
 
         public static int GetFubenId(int lv)
         {
-            return 10001;
+            List<int> canEnterIds = new List<int>();
+            Dictionary<int, DungeonConfig> keyValuePairs = DungeonConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.EnterLv <= lv)
+                {
+                    canEnterIds.Add(item.Key);
+                }
+            }
+
+            return canEnterIds[RandomHelper.RandomNumber(0, canEnterIds.Count)];
         }
 
         /// <summary>
