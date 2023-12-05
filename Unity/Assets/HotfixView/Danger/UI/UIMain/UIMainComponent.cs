@@ -251,7 +251,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_NewYear, self.OnButton_NewYear);
 
             self.Btn_LvReward = rc.Get<GameObject>("Btn_LvReward");
-            ButtonHelp.AddListenerEx(self.Btn_LvReward, () => { self.OnBtn_LvReward().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_LvReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
+                () => { self.OnBtn_LvReward().Coroutine(); });
             
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
@@ -1754,17 +1755,29 @@ namespace ET
 
             if (flag)
             {
+                self.LevelRewardKey = newLv;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.LeavlRewardItem[newLv].Key);
+                ReferenceCollector rc = self.Btn_LvReward.GetComponent<ReferenceCollector>();
+
                 string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
+                rc.Get<GameObject>("Image_ItemIcon").GetComponent<Image>().sprite = sp;
 
-                self.LevelRewardKey = newLv;
-                self.Btn_LvReward.GetComponent<Image>().sprite = sp;
-                self.Btn_LvReward.GetComponentInChildren<Text>().text = $"{newLv}级领取";
+                string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
+                string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+                Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+                if (!self.AssetPath.Contains(path1))
+                {
+                    self.AssetPath.Add(path);
+                }
+                rc.Get<GameObject>("Image_ItemQuality").GetComponent<Image>().sprite = sp1;
+
+                rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = ConfigHelper.LeavlRewardItem[newLv].Value.ToString();
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"{newLv}级领取";
                 self.Btn_LvReward.SetActive(true);
             }
             else
