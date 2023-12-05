@@ -125,5 +125,7 @@ namespace ET
 
         //秒傷
         public long SceondHurt;
+
+        public string Account;
     }
 }

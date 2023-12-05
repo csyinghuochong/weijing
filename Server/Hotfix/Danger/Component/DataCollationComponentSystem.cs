@@ -122,6 +122,7 @@ namespace ET
 
             self.Name = userInfoComponent.UserInfo.Name;
             self.Level = userInfoComponent.UserInfo.Lv;
+            self.Account = userInfoComponent.Account;
 
             self.Occ = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).OccupationName;
 
