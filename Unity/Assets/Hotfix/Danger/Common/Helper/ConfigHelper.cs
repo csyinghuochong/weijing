@@ -835,9 +835,9 @@ namespace ET
         /// </summary>
         public static Dictionary<int, List<PropertyValue>> ShenShouJiBan = new Dictionary<int, List<PropertyValue>>()
         {
-            { 1, new List<PropertyValue>(){ new PropertyValue() { HideID = 201003,  HideValue = 500} } },
-            { 2, new List<PropertyValue>(){ new PropertyValue() { HideID = 200903, HideValue = 500 }/*, new PropertyValue() { HideID = 105201, HideValue = 0 }*/ } },
-            { 3, new List<PropertyValue>(){ new PropertyValue() { HideID = 200101, HideValue = 1000 } } },
+            { 1, new List<PropertyValue>(){ new PropertyValue() { HideID = 201003,  HideValue = 1000 } } },
+            { 2, new List<PropertyValue>(){ new PropertyValue() { HideID = 200903, HideValue = 1000 }/*, new PropertyValue() { HideID = 105201, HideValue = 0 }*/ } },
+            { 3, new List<PropertyValue>(){ new PropertyValue() { HideID = 200903, HideValue = 1500 } } },
         };
 
 
