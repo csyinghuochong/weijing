@@ -965,7 +965,7 @@ namespace ET
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
-            string[] setvalues = value.Split('@');  //绿色 蓝色 宝石
+            string[] setvalues = value.Split('@');  //绿色 蓝色 宝石 材料
             string[] set2Values = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2).Split('@'); // 低级、中级、高级
             
             for (int i = 0; i < bagInfos.Count; i++)
@@ -1005,6 +1005,15 @@ namespace ET
                         {
                             continue;
                         }
+                        baginfoids.Add(bagInfos[i].BagInfoID);
+                        continue;
+                    }
+                }
+
+                if (itemConfig.ItemType == ItemTypeEnum.Material)
+                {
+                    if (setvalues[3] == "1" && itemConfig.ItemQuality <= 2)
+                    {
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;
                     }

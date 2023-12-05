@@ -90,6 +90,7 @@ namespace ET
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
             self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
             self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
+            self.OneSellSet.transform.Find("Btn_Click_3").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(3); });
 
             self.ActTypeSet = rc.Get<GameObject>("ActTypeSet");
             self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("0"); });
@@ -252,7 +253,7 @@ namespace ET
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
             setvalues[index] = setvalues[index] == "1" ? "0" : "1";
-            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}";
+            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}@{setvalues[3]}";
 
             self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
             self.SaveSettings(GameSettingEnum.OneSellSet, value);
@@ -309,6 +310,7 @@ namespace ET
             self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
             self.OneSellSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues[1] == "1");
             self.OneSellSet.transform.Find("Image_Click_2").gameObject.SetActive(setvalues[2] == "1");
+            self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
 
             self.UpdateYaoGan();
             self.UpdateShadow();

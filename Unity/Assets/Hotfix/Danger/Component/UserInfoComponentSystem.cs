@@ -95,7 +95,7 @@ namespace ET
                 case GameSettingEnum.FenBianlLv:
                     return "1";
                 case GameSettingEnum.OneSellSet:
-                    return "1@0@0";
+                    return "1@0@0@0";
                 case GameSettingEnum.OneSellSet2:
                     return "0@0@0@0@0";
                 case GameSettingEnum.HighFps:
