@@ -143,6 +143,7 @@ namespace ET
                 return;
             }
             this.GameObject.SetActive(false);
+            this.UIPlayerHpText.SetActive(false);
         }
 
         public void ExitHide()
@@ -152,6 +153,7 @@ namespace ET
                 return;
             }
             this.GameObject.SetActive(true);
+            this.UIPlayerHpText.SetActive(true);
         }
 
         public void EnterStealth(float alpha)
