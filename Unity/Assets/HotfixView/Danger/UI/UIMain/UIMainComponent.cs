@@ -29,6 +29,7 @@ namespace ET
             try
             {
                 self.UpdatePing();
+                self.UpdateMessage();
             }
             catch (Exception e)
             {
@@ -72,6 +73,7 @@ namespace ET
         public GameObject Btn_GM;
         public GameObject Btn_Task;
         public Text TextPing;
+        public Text TextMessage;
         public GameObject Btn_LvReward;
         public GameObject MailHintTip;
         public GameObject UIStall;
@@ -274,6 +276,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
             self.TextPing = rc.Get<GameObject>("TextPing").GetComponent<Text>();
+            self.TextMessage = rc.Get<GameObject>("TextMessage").GetComponent<Text>();
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
@@ -575,7 +578,7 @@ namespace ET
                 return;
             }
             long ping = sessionComponent.Session.GetComponent<PingComponent>().Ping;
-            self.TextPing.text = $"延迟: {ping}";
+            self.TextPing.text = StringBuilderHelper.GetPing(ping); 
             if (ping <= 200)
             {
                 self.TextPing.color = Color.green;
@@ -589,15 +592,28 @@ namespace ET
             self.TextPing.color = Color.red;
         }
 
+        public static void UpdateMessage(this UIMainComponent self)
+        {
+             self.TextMessage.text = StringBuilderHelper.GetMessageCnt(OpcodeHelper.OneTotalNumber);
+             OpcodeHelper.OneTotalNumber = 0;
+        }
+
         public static void ShowPing(this UIMainComponent self)
         {
             if (self.Fps.activeSelf)
             {
-                return;
+                self.Fps.SetActive(false);
+                OpcodeHelper.ShowMessage = false;
+                TimerComponent.Instance?.Remove(ref self.TimerPing);
             }
-            self.Fps.SetActive(true);
-            TimerComponent.Instance?.Remove(ref self.TimerPing);
-            self.TimerPing = TimerComponent.Instance.NewRepeatedTimer(5000, TimerType.UIMainFPSTimer, self);
+            else
+            {
+                self.Fps.SetActive(true);
+                OpcodeHelper.ShowMessage = true;
+                OpcodeHelper.OneTotalNumber = 0;
+                TimerComponent.Instance?.Remove(ref self.TimerPing);
+                self.TimerPing = TimerComponent.Instance.NewRepeatedTimer(5000, TimerType.UIMainFPSTimer, self);
+            }
         }
 
         public static void OnBagItemAdd(this UIMainComponent self, string dataPaams)

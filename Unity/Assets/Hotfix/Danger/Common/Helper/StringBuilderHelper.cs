@@ -71,6 +71,22 @@ namespace ET
             return string.Empty;
         }
 
+        public static string GetPing(long ping)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append("延迟: ");
+            stringBuilder.Append(ping);
+            return stringBuilder.ToString();
+        }
+
+        public static string GetMessageCnt(long cnt)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append("数量: ");
+            stringBuilder.Append(cnt);
+            return stringBuilder.ToString();
+        }
+
         public static string GetExpTip(long exp)
         {
             stringBuilder.Clear();

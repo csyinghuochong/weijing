@@ -104,6 +104,11 @@ namespace ET
                 InnerMessageLength[opcode][0] += 1;
                 InnerMessageLength[opcode][1] += MongoHelper.ToBson(message).Length;
             }
+#else
+            if (ShowMessage)
+            {
+                OneTotalNumber++;
+            }
 #endif
         }
 
