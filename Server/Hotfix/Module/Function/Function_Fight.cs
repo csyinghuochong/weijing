@@ -51,7 +51,7 @@ namespace ET
             }
 
             //闪电链增加的伤害
-            //float chainLightningAddValue = 0f;
+            float chainLightningAddValue = skillHandler.HurtAddPro;
 
             //设置PK状态
             bool playerPKStatus = false;
