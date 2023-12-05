@@ -698,6 +698,10 @@ MonoBehaviour:
     gameObject: {fileID: 9007285617696284867}
   - key: NameText
     gameObject: {fileID: 1540138473637385755}
+  - key: WeiJiHuo
+    gameObject: {fileID: 3106396215620295243}
+  - key: JiHuo
+    gameObject: {fileID: 3027271773576386198}
 --- !u!1 &1948051121166513298
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,6 +80,7 @@ namespace ET
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
         public UIPageButtonComponent UIPageButton;
 
+        public int PetHeXinSuit;
         public int PetSkinId;
         public List<string> AssetPath = new List<string>();
     }
@@ -150,7 +151,7 @@ namespace ET
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
 
-            ButtonHelp.AddListenerEx(self.PetHeXinSuitBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetHeXinSuit).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.PetHeXinSuitBtn, () => { self.OnPetHeXinSuitBtn().Coroutine(); });
             ButtonHelp.AddListenerEx(self.JiBanBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIShenShouJiBan).Coroutine(); });
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
             ButtonHelp.AddListenerEx( self.ButtonRName, ()=> { self.OnButtonRName().Coroutine(); } );
@@ -270,6 +271,12 @@ namespace ET
             self.OnChangeNode(1);
         }
 
+        public static async ETTask OnPetHeXinSuitBtn(this UIPetListComponent self)
+        {
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPetHeXinSuit);
+            ui.GetComponent<UIPetHeXinSuitComponent>().UpdateInfo(self.PetHeXinSuit);
+        }
+        
         public static void OnButtonPetHeXinItem(this UIPetListComponent self, int position)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
@@ -731,24 +738,28 @@ namespace ET
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "高级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 2;
+                self.PetHeXinSuit = 10;
             }
             else if (lv8number >= 3)
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "中级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 1;
+                self.PetHeXinSuit = 8;
             }
             else if (lv5number >= 3)
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 0;
+                self.PetHeXinSuit = 5;
             }
             else
             {
                 self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = mat;
                 index = 0;
+                self.PetHeXinSuit = 0;
             }
             
             // 更换图标

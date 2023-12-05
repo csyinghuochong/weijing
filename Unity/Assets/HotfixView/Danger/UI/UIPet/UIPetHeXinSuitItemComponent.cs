@@ -11,6 +11,8 @@ namespace ET
         public GameObject RequirementText;
         public GameObject PropertyTextListNode;
         public GameObject PropertyText;
+        public GameObject JiHuo;
+        public GameObject WeiJiHuo;
     }
 
     public class UIPetHeXinSuitItemComponentAwakeSystem: AwakeSystem<UIPetHeXinSuitItemComponent, GameObject>
@@ -24,6 +26,8 @@ namespace ET
             self.RequirementText = rc.Get<GameObject>("RequirementText");
             self.PropertyTextListNode = rc.Get<GameObject>("PropertyTextListNode");
             self.PropertyText = rc.Get<GameObject>("PropertyText");
+            self.JiHuo = rc.Get<GameObject>("JiHuo");
+            self.WeiJiHuo = rc.Get<GameObject>("WeiJiHuo");
 
             self.PropertyText.SetActive(false);
         }
@@ -31,7 +35,7 @@ namespace ET
 
     public static class UIPetHeXinSuitItemComponentSystem
     {
-        public static void UpdateInfo(this UIPetHeXinSuitItemComponent self, int key)
+        public static void UpdateInfo(this UIPetHeXinSuitItemComponent self, int key, bool jiHuo)
         {
             switch (key)
             {
@@ -71,6 +75,17 @@ namespace ET
                 go.GetComponent<Text>().text = str;
                 go.SetActive(true);
                 UICommonHelper.SetParent(go, self.PropertyTextListNode);
+            }
+
+            if (jiHuo)
+            {
+                self.JiHuo.SetActive(true);
+                self.WeiJiHuo.SetActive(false);
+            }
+            else
+            {
+                self.JiHuo.SetActive(false);
+                self.WeiJiHuo.SetActive(true);
             }
         }
     }

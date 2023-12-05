@@ -24,20 +24,18 @@ namespace ET
             self.UIPetHeXinSuitItem.SetActive(false);
 
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetHeXinSuit); });
-
-            self.UpdateInfo();
         }
     }
 
     public static class UIPetHeXinSuitComponentSystem
     {
-        public static void UpdateInfo(this UIPetHeXinSuitComponent self)
+        public static void UpdateInfo(this UIPetHeXinSuitComponent self, int id)
         {
             foreach (KeyValuePair<int, string> valuePair in ConfigHelper.PetSuitProperty)
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.UIPetHeXinSuitItem);
                 UIPetHeXinSuitItemComponent uiPetHeXinSuitItemComponent = self.AddChild<UIPetHeXinSuitItemComponent, GameObject>(go);
-                uiPetHeXinSuitItemComponent.UpdateInfo(valuePair.Key);
+                uiPetHeXinSuitItemComponent.UpdateInfo(valuePair.Key, valuePair.Key == id);
                 go.SetActive(true);
                 UICommonHelper.SetParent(go, self.UIPetHeXinSuitItemListNode);
             }
