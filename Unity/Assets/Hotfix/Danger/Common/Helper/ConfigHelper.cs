@@ -983,10 +983,9 @@ namespace ET
         /// <summary>
         /// 等级奖励,大于或等于可以领取奖励.  一个道具直接领取，多个道具弹出选择界面
         /// </summary>
-        public static Dictionary<int, string> LeavlRewardItem = new Dictionary<int, string>()
+        public static Dictionary<int, KeyValuePair<int,int>> LeavlRewardItem = new Dictionary<int, KeyValuePair<int, int>>()
         {
-            { 3,  "10000152;1@10000153;1" }, 
-            { 10, "10000153;1" }
+            
         };
     }
 }
