@@ -24,12 +24,15 @@ namespace ET
 
                 //对方也同样标记
                 d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.FriendID, Component = DBHelper.DBFriendInfo });
-                DBFriendInfo dBFriendInfo_2 = d2GGetUnit.Component as DBFriendInfo;
-                if (!dBFriendInfo_2.FriendList.Contains(request.UserID))
+                if (d2GGetUnit.Component != null)
                 {
-                    dBFriendInfo_2.FriendList.Add(request.UserID);
+                    DBFriendInfo dBFriendInfo_2 = d2GGetUnit.Component as DBFriendInfo;
+                    if (!dBFriendInfo_2.FriendList.Contains(request.UserID))
+                    {
+                        dBFriendInfo_2.FriendList.Add(request.UserID);
+                    }
+                    D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.FriendID, EntityByte = MongoHelper.ToBson(dBFriendInfo_2), ComponentType = DBHelper.DBFriendInfo });
                 }
-                D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.FriendID, EntityByte = MongoHelper.ToBson(dBFriendInfo_2), ComponentType = DBHelper.DBFriendInfo });
             }
             
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, EntityByte = MongoHelper.ToBson(dBFriendInfo), ComponentType = DBHelper.DBFriendInfo });
