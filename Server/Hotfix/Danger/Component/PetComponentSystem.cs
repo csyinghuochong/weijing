@@ -949,20 +949,20 @@ namespace ET
                 }
             }
 
-            //神兽羁绊
-            if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
-            {
-                int shenshouNumber = self.GetShenShouNumber();
-                List<PropertyValue> shenshoujiban = null;
-                ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
-                if (shenshoujiban != null)
-                {
-                    for (int i = 0; i < shenshoujiban.Count; i++)
-                    {
-                        Function_Fight.AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, attriDic);
-                    }
-                }
-            }
+            //神兽的羁绊效果改成给人加属性,并且算战力
+            //if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+            //{
+            //    int shenshouNumber = self.GetShenShouNumber();
+            //    List<PropertyValue> shenshoujiban = null;
+            //    ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
+            //    if (shenshoujiban != null)
+            //    {
+            //        for (int i = 0; i < shenshoujiban.Count; i++)
+            //        {
+            //            Function_Fight.AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, attriDic);
+            //        }
+            //    }
+            //}
 
             foreach (var item in attriDic)
             {
