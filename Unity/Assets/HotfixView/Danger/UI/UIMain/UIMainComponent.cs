@@ -702,6 +702,7 @@ namespace ET
                     self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
                     self.UpdateLvReward();
+                    self.CheckCanEquip();
                     if (int.Parse(updateValue) > 30)
                     {
                         self.UpdateTaskList().Coroutine();
@@ -821,53 +822,59 @@ namespace ET
             attackComponent.AutoAttack = value == "1";
         }
 
-        public static async ETTask OnBagItemUpdate(this UIMainComponent self)
+        public static async ETTask CheckCanEquip(this UIMainComponent self)
+        {
+            //有bug 先注释
+            await ETTask.CompletedTask;
+            //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            //if (userInfoComponent.UserInfo.Lv > 25)
+            //{
+            //    return;
+            //}
+            //// 检测是否有可以穿戴的装备
+            //BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            //List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            //for (int i = bagInfos.Count - 1; i >= 0; i--)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+            //    if (itemConfig.ItemType == ItemTypeEnum.Equipment &&
+            //        (
+            //            itemConfig.EquipType == ItemEquipType.Common ||
+            //            itemConfig.EquipType == ItemEquipType.Sword ||
+            //            itemConfig.EquipType == ItemEquipType.Knife ||
+            //            itemConfig.EquipType == ItemEquipType.Wand ||
+            //            itemConfig.EquipType == ItemEquipType.Book ||
+            //            itemConfig.EquipType == ItemEquipType.Bow ||
+            //            itemConfig.EquipType == ItemEquipType.Bujia ||
+            //            itemConfig.EquipType == ItemEquipType.QingJia ||
+            //            itemConfig.EquipType == ItemEquipType.ZhongJia
+            //        ))
+            //    {
+            //        BagInfo equip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.EquipType);
+            //        if (equip == null)
+            //        {
+            //            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIGuideEquip);
+            //            if (ui != null)
+            //            {
+            //                // ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+            //            }
+            //            else
+            //            {
+            //                ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
+            //                ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+            //            }
+
+            //            break;
+            //        }
+            //    }
+            //}
+        }
+
+        public static  void OnBagItemUpdate(this UIMainComponent self)
         {
             self.UIMainSkillComponent.OnBagItemUpdate();
 
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.Lv > 25)
-            {
-                return;
-            }
-            
-            // 检测是否有可以穿戴的装备
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
-            for (int i = bagInfos.Count - 1; i >= 0; i--)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment &&
-                    (
-                        itemConfig.EquipType == ItemEquipType.Common ||
-                        itemConfig.EquipType == ItemEquipType.Sword ||
-                        itemConfig.EquipType == ItemEquipType.Knife ||
-                        itemConfig.EquipType == ItemEquipType.Wand ||
-                        itemConfig.EquipType == ItemEquipType.Book ||
-                        itemConfig.EquipType == ItemEquipType.Bow ||
-                        itemConfig.EquipType == ItemEquipType.Bujia ||
-                        itemConfig.EquipType == ItemEquipType.QingJia ||
-                        itemConfig.EquipType == ItemEquipType.ZhongJia
-                    ))
-                {
-                    BagInfo equip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.EquipType);
-                    if (equip == null)
-                    {
-                        UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIGuideEquip);
-                        if (ui != null)
-                        {
-                            // ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
-                        }
-                        else
-                        {
-                            ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
-                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
-                        }
-
-                        break;
-                    }
-                }
-            }
+            self.CheckCanEquip().Coroutine();
         }
 
         public static void OnEquipWear(this UIMainComponent self)
@@ -1068,7 +1075,7 @@ namespace ET
 
         public static void OnPetFightSet(this UIMainComponent self)
         {
-            self.UIRoleHead.OnPetFightSet();
+            self.UHead.OnPetFightSet();
         }
 
         public static void OnUpdateRoleName(this UIMainComponent self)

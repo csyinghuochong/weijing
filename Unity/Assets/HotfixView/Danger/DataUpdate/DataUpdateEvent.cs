@@ -426,7 +426,7 @@ namespace ET
                 }
                 if (component is UIMainComponent uIMainComponent)
                 {
-                    uIMainComponent.OnBagItemUpdate().Coroutine();
+                    uIMainComponent.OnBagItemUpdate();
                     continue;
                 }
                 if (component is UIPetComponent uIPetComponent)
