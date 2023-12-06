@@ -220,6 +220,10 @@ namespace ET
                     waittime = 1000;
                 }
             }
+            if (defendUnit.Type == UnitType.Pet)
+            {
+                waittime = 1000;
+            }
 
             switch (sceneTypeEnum)
             {
