@@ -134,11 +134,11 @@ namespace ET
 				{
 					return;
 				}
-			    await NetHelper.RequestUserInfo(self.ZoneScene());
-                if (instance != self.InstanceId)
-                {
-                    return;
-                }
+			    //await NetHelper.RequestUserInfo(self.ZoneScene());
+       //         if (instance != self.InstanceId)
+       //         {
+       //             return;
+       //         }
 
                 self.FirstWinInfos = response.FirstWinInfos;
                 //self.UpdateBossInfo(self.FirstWinId);
