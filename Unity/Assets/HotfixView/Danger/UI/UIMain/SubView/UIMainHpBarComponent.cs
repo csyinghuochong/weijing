@@ -142,7 +142,6 @@ namespace ET
 
         public static async ETTask OnImg_BossIcon(this UIMainHpBarComponent self)
         {
-            self.BossConfiId = 70001011;
             if (self.BossConfiId == 0)
             {
                 return;
@@ -162,7 +161,7 @@ namespace ET
                 return;
             }
             self.ZoneScene().GetComponent<BattleMessageComponent>().FirstWinBossId = self.BossConfiId;
-            uI.GetComponent<UIZhanQuComponent>().OnClickGoToFirstWin(self.BossConfiId);
+            uI.GetComponent<UIZhanQuComponent>().OnClickGoToFirstWin(self.BossConfiId).Coroutine();
         }
 
         public static void BeginEnterScene(this UIMainHpBarComponent self)

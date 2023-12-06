@@ -72,7 +72,8 @@ namespace ET
         public static async ETTask OnClickGoToFirstWin(this UIZhanQuComponent self, int bossId)
         {
             self.UIPageButton.OnSelectIndex((int)ZhanQuPageEnum.FirstWin, false);
-            await self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin);
+            UI ui=  await self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin);
+            ui.GetComponent<UIFirstWinComponent>().BossId = bossId;
         }
     }
 }
