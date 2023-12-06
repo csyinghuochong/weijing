@@ -425,13 +425,24 @@ namespace ET
             return null;
         }
 
+        //public static List<KeyValuePair> GetPetSkinCopy(this PetComponent self)
+        //{
+        //    List<KeyValuePair> keyValuePairs = new List<KeyValuePair>();
+        //    for (int i = 0; i < self.PetSkinList.Count; i++)
+        //    {
+        //        //keyValuePairs.Add(ComHelp.DeepCopy<KeyValuePair>(self.PetSkinList[i])) ;
+        //        keyValuePairs.Add(new KeyValuePair() { KeyId = self.PetSkinList[i].KeyId, Value = self.PetSkinList[i].Value });
+        //    }
+        //    return keyValuePairs;
+        //}
+
         public static List<KeyValuePair> GetPetSkinCopy(this PetComponent self)
         {
             List<KeyValuePair> keyValuePairs = new List<KeyValuePair>();
-            for (int i = 0; i < self.PetSkinList.Count; i++)
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
                 //keyValuePairs.Add(ComHelp.DeepCopy<KeyValuePair>(self.PetSkinList[i])) ;
-                keyValuePairs.Add(new KeyValuePair() { KeyId = self.PetSkinList[i].KeyId, Value = self.PetSkinList[i].Value });
+                keyValuePairs.Add(new KeyValuePair() { KeyId = self.RolePetInfos[i].ConfigId, Value = self.RolePetInfos[i].SkinId.ToString() });
             }
             return keyValuePairs;
         }

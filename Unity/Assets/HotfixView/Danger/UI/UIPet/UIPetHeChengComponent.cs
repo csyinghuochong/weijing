@@ -108,7 +108,7 @@ namespace ET
             {
                 return;
             }
-            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetHeCheng.rolePetInfo, oldPetSkin, false);
+            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetHeCheng.rolePetInfo, oldPetSkin);
             self.ZoneScene().GetComponent<PetComponent>().OnRecvHeCheng(m2C_RolePetHeCheng);
         }
 

@@ -19,7 +19,7 @@ namespace ET
                 return;
             }
             UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIPetChouKaGet);
-            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(args.RolePetInfo, args.OldPetSkin, false);
+            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(args.RolePetInfo, args.OldPetSkin);
         }
     }
 }

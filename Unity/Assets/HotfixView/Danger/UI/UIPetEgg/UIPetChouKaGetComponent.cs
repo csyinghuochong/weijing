@@ -110,7 +110,7 @@ namespace ET
             UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet );
         }
 
-        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false, RolePetInfo oldRolePetInfo = null)
+        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, RolePetInfo oldRolePetInfo = null)
         {
             try
             {

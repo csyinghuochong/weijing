@@ -510,7 +510,7 @@ namespace ET
                 UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
                 PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
                 List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
-                uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetUpStageg.NewPetInfo, oldPetSkin, false, oldpetInfo);
+                uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetUpStageg.NewPetInfo, oldPetSkin, oldpetInfo);
             }
         }
 

@@ -34,7 +34,7 @@ namespace ET
             self.UIPetInfo1 = rc.Get<GameObject>("UIPetInfo1");
          
             self.Btn_XiLian = rc.Get<GameObject>("Btn_XiLian");
-            self.Btn_XiLian.GetComponent<Button>().onClick.AddListener(() => { self.OnClickXiLian(); });
+            self.Btn_XiLian.GetComponent<Button>().onClick.AddListener(() => { self.OnClickXiLian().Coroutine(); });
 
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.UIPetInfoShowComponent = null;
@@ -71,7 +71,7 @@ namespace ET
             self.UIPetInfoShowComponent.OnInitData(self.RolePetInfo);
         }
 
-        public static void OnClickXiLian(this UIPetXiLianComponent self)
+        public static async ETTask OnClickXiLian(this UIPetXiLianComponent self)
         {
             if (self.RolePetInfo == null)
             {
@@ -117,7 +117,19 @@ namespace ET
                 }
             }
 
-            self.ZoneScene().GetComponent<PetComponent>().RequestXiLian(self.CostItemInfo.BagInfoID, self.RolePetInfo.Id).Coroutine();
+            long oldSkin = self.RolePetInfo.SkinId;
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            await petComponent.RequestXiLian(self.CostItemInfo.BagInfoID, self.RolePetInfo.Id);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            if (oldSkin != self.RolePetInfo.SkinId)
+            {
+                UI ui = await UIHelper.Create( self.ZoneScene(), UIType.UIPetChouKaGet );
+                List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
+                ui.GetComponent<UIPetChouKaGetComponent>().OnInitUI(petComponent.GetPetInfoByID(self.RolePetInfo.Id), oldPetSkin, null);
+            }
         }
 
         public static void OnXiLianUpdate(this UIPetXiLianComponent self)
