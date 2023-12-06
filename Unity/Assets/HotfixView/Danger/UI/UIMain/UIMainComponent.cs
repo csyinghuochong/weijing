@@ -75,6 +75,7 @@ namespace ET
         public Text TextPing;
         public Text TextMessage;
         public GameObject Btn_LvReward;
+        public GameObject Btn_KillMonsterReward;
         public GameObject MailHintTip;
         public GameObject UIStall;
         public GameObject Btn_Friend;
@@ -136,6 +137,7 @@ namespace ET
         public long TimerFunctiuon;
         public long TimerPing;
         public int LevelRewardKey;
+        public int KillMonsterRewardKey;
 
         public Unit MainUnit;
 
@@ -255,6 +257,10 @@ namespace ET
             self.Btn_LvReward = rc.Get<GameObject>("Btn_LvReward");
             ButtonHelp.AddListenerEx(self.Btn_LvReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
                 () => { self.OnBtn_LvReward().Coroutine(); });
+
+            self.Btn_KillMonsterReward = rc.Get<GameObject>("Btn_KillMonsterReward");
+            ButtonHelp.AddListenerEx(self.Btn_KillMonsterReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
+                () => { self.OnBtn_KillMonsterReward().Coroutine(); });
             
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
@@ -1699,6 +1705,7 @@ namespace ET
             self.UGuaJiSet.SetActive(false);
             
             self.UpdateLvReward();
+            self.UpdateKillMonsterReward();
         }
 
         public static void OnOpenTask(this UIMainComponent self)
@@ -1756,8 +1763,8 @@ namespace ET
             {
                 if (items.Length > 1)
                 {
-                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UILeavlReward);
-                    ui.GetComponent<UILeavlRewardComponent>().UpdateInfo(self.LevelRewardKey);
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISelectReward);
+                    ui.GetComponent<UISelectRewardComponent>().UpdateInfo(self.LevelRewardKey, 0);
                 }
                 else
                 {
@@ -1831,6 +1838,116 @@ namespace ET
             else
             {
                 self.Btn_LvReward.SetActive(false);
+            }
+        }
+
+        public static async ETTask OnBtn_KillMonsterReward(this UIMainComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            string[] occItems = ConfigHelper.KillMonsterReward[self.KillMonsterRewardKey].Split('&');
+            string[] items;
+            if (occItems.Length == 3)
+            {
+                items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+            }
+            else
+            {
+                items = occItems[0].Split('@');
+            }
+            string[] item = items[0].Split(';');
+            if (numericComponent.GetAsInt(NumericType.KillMonsterNumber) < self.KillMonsterRewardKey)
+            {
+                EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+                EventType.ShowItemTips.Instance.bagInfo = new BagInfo()
+                {
+                    ItemID = int.Parse(item[0]),
+                    ItemNum = int.Parse(item[1])
+                };
+                EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+                EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+                EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+            }
+            else
+            {
+                if (items.Length > 1)
+                {
+                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISelectReward);
+                    ui.GetComponent<UISelectRewardComponent>().UpdateInfo(self.KillMonsterRewardKey, 1);
+                }
+                else
+                {
+                    // 一个道具直接领取
+                    C2M_KillMonsterRewardRequest request = new C2M_KillMonsterRewardRequest() { Key = self.KillMonsterRewardKey };
+                    M2C_KillMonsterRewardResponse response =
+                            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_KillMonsterRewardResponse;
+                    self.UpdateKillMonsterReward();
+                }
+            }
+        }
+
+        public static void UpdateKillMonsterReward(this UIMainComponent self)
+        {
+            NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            int oldNum = numericComponent.GetAsInt(NumericType.KillMonsterReward);
+
+            int newNum = int.MaxValue;
+            bool flag = false;
+            foreach (int key in ConfigHelper.KillMonsterReward.Keys)
+            {
+                if (key > oldNum)
+                {
+                    newNum = Math.Min(key, newNum);
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                self.KillMonsterRewardKey = newNum;
+
+                string[] occItems = ConfigHelper.KillMonsterReward[self.KillMonsterRewardKey].Split('&');
+                string[] items;
+                if (occItems.Length == 3)
+                {
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
+                }
+                else
+                {
+                    items = occItems[0].Split('@');
+                }
+
+                string[] item = items[0].Split(';');
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(item[0]));
+                ReferenceCollector rc = self.Btn_KillMonsterReward.GetComponent<ReferenceCollector>();
+
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+                rc.Get<GameObject>("Image_ItemIcon").GetComponent<Image>().sprite = sp;
+
+                string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
+                string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
+                Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+                if (!self.AssetPath.Contains(path1))
+                {
+                    self.AssetPath.Add(path);
+                }
+                rc.Get<GameObject>("Image_ItemQuality").GetComponent<Image>().sprite = sp1;
+
+                rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}";
+                self.Btn_KillMonsterReward.SetActive(true);
+            }
+            else
+            {
+                self.Btn_KillMonsterReward.SetActive(false);
             }
         }
 

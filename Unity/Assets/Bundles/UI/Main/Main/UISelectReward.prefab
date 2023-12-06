@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 3792215924706486899}
   - component: {fileID: 6895605221005336596}
   m_Layer: 5
-  m_Name: UILeavlReward
+  m_Name: UISelectReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,6 +880,8 @@ MonoBehaviour:
     gameObject: {fileID: 4638219307914098899}
   - key: RewardItem
     gameObject: {fileID: 746716511320852992}
+  - key: TitleText
+    gameObject: {fileID: 4529901736634756782}
 --- !u!114 &6895605221005336596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,7 +1272,7 @@ GameObject:
   - component: {fileID: 4779188509928180720}
   - component: {fileID: 7156614168076831326}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

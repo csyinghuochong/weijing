@@ -1010,8 +1010,9 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> KillMonsterReward = new Dictionary<int, string>
         {
-            {  100, "10000140;1" },
-            {  200, "10000140;1" },
+            { 100, "10000140;1" }, 
+            { 200, "10000140;1" }, 
+            { 300, "14100021;1@14100022;1&14100121;1@14100122;1&14100221;1" }
         };
     }
 }

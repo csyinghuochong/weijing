@@ -14448,4 +14448,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_KillMonsterRewardResponse))]
+	[Message(OuterOpcode.C2M_KillMonsterRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_KillMonsterRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int Key { get; set; }
+
+		[ProtoMember(2)]
+		public int Index { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_KillMonsterRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_KillMonsterRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

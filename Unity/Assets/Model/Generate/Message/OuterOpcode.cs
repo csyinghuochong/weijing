@@ -805,5 +805,7 @@ namespace ET
 		 public const ushort M2C_TaskOnLoginResponse = 10802;
 		 public const ushort C2M_LeavlRewardRequest = 10803;
 		 public const ushort M2C_LeavlRewardResponse = 10804;
+		 public const ushort C2M_KillMonsterRewardRequest = 10805;
+		 public const ushort M2C_KillMonsterRewardResponse = 10806;
 	}
 }

@@ -6939,3 +6939,18 @@ message M2C_LeavlRewardResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_KillMonsterRewardResponse
+message C2M_KillMonsterRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 Key = 1;
+	int32 Index = 2;
+}
+
+message M2C_KillMonsterRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

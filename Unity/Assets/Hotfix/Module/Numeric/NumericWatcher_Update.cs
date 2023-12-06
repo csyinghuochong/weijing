@@ -172,6 +172,7 @@
         }
     }
 
+    [NumericWatcher((int)NumericType.KillMonsterNumber)]
     [NumericWatcher((int)NumericType.Now_AI)]
     [NumericWatcher((int)NumericType.Now_TurtleAI)]
     [NumericWatcher((int)NumericType.PetSkin)]
