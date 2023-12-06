@@ -869,6 +869,8 @@ message M2C_ChainLightning // IActorMessage
 	float PosX = 6;
 	float PosY = 7;
 	float PosZ = 8;
+	int32 Type = 9;
+	int64 InstanceId = 10;
 }
 
 message SkillInfo
