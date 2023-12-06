@@ -1837,6 +1837,12 @@ namespace ET
 		[ProtoMember(8)]
 		public float PosZ { get; set; }
 
+		[ProtoMember(9)]
+		public int Type { get; set; }
+
+		[ProtoMember(10)]
+		public long InstanceId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.SkillInfo)]
