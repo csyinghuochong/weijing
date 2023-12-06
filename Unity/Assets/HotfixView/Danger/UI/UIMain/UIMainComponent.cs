@@ -704,6 +704,7 @@ namespace ET
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
                     self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
+                    self.UpdateLvReward();
                     if (int.Parse(updateValue) > 30)
                     {
                         self.UpdateTaskList().Coroutine();
@@ -1841,9 +1842,9 @@ namespace ET
 
                 string[] occItems = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('&');
                 string[] items;
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 if (occItems.Length == 3)
                 {
-                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                     items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
                 }
                 else
@@ -1874,7 +1875,14 @@ namespace ET
                 rc.Get<GameObject>("Image_ItemQuality").GetComponent<Image>().sprite = sp1;
 
                 rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
-                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"{newLv}级领取";
+
+                string color = "FFFFFF";
+                if (userInfoComponent.UserInfo.Lv >= newLv)
+                {
+                    color = "C4FF00";
+                }
+                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = $"<color=#{color}>等级奖励</color>";
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"<color=#{color}>{newLv}级领取</color>";
                 self.Btn_LvReward.SetActive(true);
             }
             else
@@ -1982,9 +1990,16 @@ namespace ET
                     self.AssetPath.Add(path);
                 }
                 rc.Get<GameObject>("Image_ItemQuality").GetComponent<Image>().sprite = sp1;
-
                 rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
-                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}";
+                
+                string color = "FFFFFF";
+                if (numericComponent.GetAsInt(NumericType.KillMonsterNumber) >= newNum)
+                {
+                    color = "C4FF00";
+                }
+                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = $"<color=#{color}>击败怪物</color>";
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text =
+                        $"<color=#{color}>{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}</color>";
                 self.Btn_KillMonsterReward.SetActive(true);
             }
             else

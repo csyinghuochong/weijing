@@ -13585,6 +13585,8 @@ MonoBehaviour:
     gameObject: {fileID: 5298818047127881660}
   - key: LvText
     gameObject: {fileID: 8265370849687542393}
+  - key: LvText (1)
+    gameObject: {fileID: 306871937228803637}
 --- !u!1 &2843930047241578242
 GameObject:
   m_ObjectHideFlags: 0
@@ -41501,6 +41503,8 @@ MonoBehaviour:
     gameObject: {fileID: 8008285569815335549}
   - key: LvText
     gameObject: {fileID: 5120064641999351624}
+  - key: LvText (1)
+    gameObject: {fileID: 2489443104725684451}
 --- !u!1 &7151355752173620032
 GameObject:
   m_ObjectHideFlags: 0
