@@ -191,9 +191,7 @@ namespace ET
                 for (int i = 0; i < self.RolePetInfos.Count; i++)
                 {
                     RolePetInfo rolePetInfo = self.RolePetInfos[i];
-
-                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.SkinId);
-                    rolePetInfo.SkinId = petConfig.Skin[0];
+                    rolePetInfo.SkinId = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId).Skin[0];
                     skill8Number += (rolePetInfo.PetSkill.Count >= 8 ? 1 : 0);
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
