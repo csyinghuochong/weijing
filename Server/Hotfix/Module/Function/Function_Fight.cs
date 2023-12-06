@@ -623,7 +623,7 @@ namespace ET
 
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_ActDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_ActDamgeSubPro);
 
-                    if (ifMonsterBoss_Act)
+                    if (ifMonsterBoss_Act && petfuben ==  false)
                     {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ActBossPro);
                         damge += numericComponentAttack.GetAsInt(NumericType.Now_ActBossAddDamge);
@@ -653,9 +653,10 @@ namespace ET
 
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_MageDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_MageDamgeSubPro);
 
-                    if (ifMonsterBoss_Act)
+                    if (ifMonsterBoss_Act && petfuben == false)
                     {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_MageBossPro);
+                        damge += numericComponentAttack.GetAsInt(NumericType.Now_ActBossAddDamge);
                     }
 
                     if (ifMonsterBoss_Def)
