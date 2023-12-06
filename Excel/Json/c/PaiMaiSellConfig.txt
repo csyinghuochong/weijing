@@ -142,5 +142,5 @@
 {"_t":"PaiMaiSellConfig","_id":32000003,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10000140,"Price":[1,200000],"PriceMax":500000,"PriceMin":166700},
 {"_t":"PaiMaiSellConfig","_id":32000004,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010086,"Price":[1,350000],"PriceMax":850000,"PriceMin":283300},
 {"_t":"PaiMaiSellConfig","_id":32000005,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010098,"Price":[1,120000],"PriceMax":300000,"PriceMin":100000},
-{"_t":"PaiMaiSellConfig","_id":32000006,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010096,"Price":[1,550000],"PriceMax":1250000,"PriceMin":416700},
+{"_t":"PaiMaiSellConfig","_id":32000006,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010096,"Price":[1,550000],"PriceMax":1500000,"PriceMin":500000},
 ]}
