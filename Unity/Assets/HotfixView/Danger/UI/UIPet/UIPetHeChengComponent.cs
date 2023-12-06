@@ -28,7 +28,7 @@ namespace ET
             self.PetInfo1 = rc.Get<GameObject>("PetInfo1");
 
             self.Btn_HeCheng = rc.Get<GameObject>("Btn_HeCheng");
-            self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickHeCheng(); });
+            self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(self.OnClickHeCheng);
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -65,6 +65,12 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
                 return;
             }
+            if (PetHelper.IsShenShou(self.HeChengPet_Left.ConfigId)
+                || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽不能放生！");
+            }
+
             bool havepetHexin = false;
             for (int i = 0; i < self.HeChengPet_Left.PetHeXinList.Count; i++)
             {

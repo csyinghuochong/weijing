@@ -19,30 +19,30 @@ namespace ET
                     continue;
                 }
 
-                int taskIndex = 0;
+                int taskNumber = 0; //数量
 
                 if (taskCountryConfig.Id >= 600101 && taskCountryConfig.Id <= 600200)
                 {
-                    taskIndex = 5;
+                    taskNumber = 5;
                 }
                 if (taskCountryConfig.Id >= 600201 && taskCountryConfig.Id <= 600300)
                 {
-                    taskIndex = 3;
+                    taskNumber = 3;
                 }
                 if (taskCountryConfig.Id >= 600301 && taskCountryConfig.Id <= 600400)
                 {
-                    taskIndex = 2;
+                    taskNumber = 2;
                 }
-                if (taskIndex == 0)
+                if (taskNumber == 0)
                 {
                     continue;
                 }
 
-                if (!SeasonTaskList.ContainsKey(taskIndex))
+                if (!SeasonTaskList.ContainsKey(taskNumber))
                 {
-                    SeasonTaskList.Add(taskIndex, new List<int>());
+                    SeasonTaskList.Add(taskNumber, new List<int>());
                 }
-                SeasonTaskList[taskIndex].Add(taskCountryConfig.Id);
+                SeasonTaskList[taskNumber].Add(taskCountryConfig.Id);
             }
         }
     }
