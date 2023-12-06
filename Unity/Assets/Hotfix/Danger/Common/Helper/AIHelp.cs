@@ -429,7 +429,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (dd < maxdis && dd < distance)
+                if (dd < distance)
                 {
                     nearest = uu;
                     distance = dd;
