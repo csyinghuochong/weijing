@@ -532,7 +532,7 @@ namespace ET
                 }
 
                 //怪物打宠物降低 （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
-                if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false && petfuben == false)
+                if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
                     //普攻受到10%伤害
                     if (skillconfig.SkillActType == 0)
