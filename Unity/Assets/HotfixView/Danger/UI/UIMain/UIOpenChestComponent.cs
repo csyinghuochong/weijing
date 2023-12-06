@@ -23,7 +23,7 @@ namespace ET
             self.OpenBtn = rc.Get<GameObject>("OpenBtn");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
 
-            self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
+            self.OpenBtn.GetComponent<Button>().onClick.AddListener(self.OnOpenBtn);
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIOpenChest); });
         }
     }
@@ -40,7 +40,7 @@ namespace ET
             uI.UpdateItem(new BagInfo() { ItemID = monsterConfig.Parameter[0], ItemNum = monsterConfig.Parameter[1] }, ItemOperateEnum.None);
         }
 
-        public static async ETTask OnOpenBtn(this UIOpenChestComponent self)
+        public static  void OnOpenBtn(this UIOpenChestComponent self)
         {
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(self.Box);

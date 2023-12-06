@@ -244,7 +244,7 @@ namespace ET
                             case 103:
                                 int petId = int.Parse(itemConfig.ItemUsePar);
                                 int skinId = 0;
-                                if(string.IsNullOrEmpty(useBagInfo.ItemPar))
+                                if(!string.IsNullOrEmpty(useBagInfo.ItemPar))
                                 {
                                     skinId = int.Parse(useBagInfo.ItemPar);
                                 }

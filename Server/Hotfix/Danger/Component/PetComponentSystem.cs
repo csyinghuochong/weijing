@@ -417,11 +417,15 @@ namespace ET
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
             List<int> weight = new List<int>(petConfig.SkinPro);
-            int index = RandomHelper.RandomByWeight(weight);
-            skinId = petConfig.Skin[index];
-            self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
-            //self.OnUnlockSkin(petConfig.Id + ";" + petConfig.Skin[0].ToString());
 
+            if (skinId == 0)
+            {
+                int index = RandomHelper.RandomByWeight(weight);
+                skinId = petConfig.Skin[index];
+            }
+           
+            self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
+           
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
             newpet = self.PetXiLian(newpet, 1);
             self.UpdatePetAttribute(newpet, false);
@@ -810,6 +814,9 @@ namespace ET
 
             rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
             rolePetInfo.Vs.Add(0);
+
+            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
+            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
 
             //宠物之核
             List<int> petheXinLv = new List<int>();
