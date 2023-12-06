@@ -155,8 +155,10 @@ namespace ET
                 unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
                 unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
             }
+            unit.GetComponent<PetComponent>().CheckPetPingFen();
+            unit.GetComponent<PetComponent>().CheckPetZiZhi();
 
-			reply();
+            reply();
 			await ETTask.CompletedTask;
 		}
 

@@ -181,8 +181,35 @@ namespace ET
                     rolePetInfo.ShouHuPos = 5;
                 }
                 PetHelper.CheckPropretyPoint(rolePetInfo);
-                self.UpdatePetAttribute(rolePetInfo, false);
             }
+
+            if (self.UpdateMode == 0)
+            {
+                self.UpdateMode = 1;
+
+                int skill8Number = 0;
+                for (int i = 0; i < self.RolePetInfos.Count; i++)
+                {
+                    RolePetInfo rolePetInfo = self.RolePetInfos[i];
+
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.SkinId);
+                    rolePetInfo.SkinId = petConfig.Skin[0];
+                    skill8Number += (rolePetInfo.PetSkill.Count >= 8 ? 1 : 0);
+
+                    if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+                    {
+                        self.PetXiLian(rolePetInfo , 2);
+                    }
+                    self.UpdatePetAttribute(rolePetInfo, false);
+                }
+
+                skill8Number = Math.Min(5, skill8Number);
+                if (skill8Number > 0)
+                {
+                    self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData($"10010097_{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+                }
+            }
+
         }
 
         //获取新宠物
@@ -344,7 +371,6 @@ namespace ET
         /// <returns></returns>
         public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType) 
         {
-
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
            
@@ -356,9 +382,6 @@ namespace ET
             rolePetInfo.ZiZhi_Adf = RandomHelper.RandomNumber(petConfig.ZiZhi_Adf_Min, petConfig.ZiZhi_Adf_Max);
             rolePetInfo.ZiZhi_ActSpeed = RandomHelper.RandomNumber(petConfig.ZiZhi_ActSpeed_Min, petConfig.ZiZhi_ActSpeed_Max);
             rolePetInfo.ZiZhi_ChengZhang = self.RandomNumberFloatKeep2((float)petConfig.ZiZhi_ChengZhang_Min, (float)petConfig.ZiZhi_ChengZhang_Max);
-
-            self.CheckPetPingFen();
-            self.CheckPetZiZhi();
 
             //表示出生创建
             if (XiLianType == 1)    
@@ -430,6 +453,9 @@ namespace ET
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
             newpet = self.PetXiLian(newpet, 1);
             self.UpdatePetAttribute(newpet, false);
+            self.CheckPetPingFen();
+            self.CheckPetZiZhi();
+
             self.RolePetInfos.Add(newpet);
             M2C_RolePetUpdate m2C_RolePetUpdate = new M2C_RolePetUpdate();
             m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();

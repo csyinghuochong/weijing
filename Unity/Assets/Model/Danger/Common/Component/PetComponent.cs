@@ -20,5 +20,7 @@ namespace ET
         public List<KeyValuePair> PetSkinList = new List<KeyValuePair>() { };
 
         public List<PetMingRecord> PetMingRecordList = new List<PetMingRecord>();
+
+        public int UpdateMode = 0;   //1
     }
 }
