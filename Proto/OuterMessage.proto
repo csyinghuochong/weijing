@@ -4691,6 +4691,7 @@ message C2M_UnitInfoRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int64 UnitID = 1;
 }
 
 message M2C_UnitInfoResponse // IActorLocationResponse

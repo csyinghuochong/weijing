@@ -255,7 +255,7 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
-            if (Time.time - self.LastLoginTime < 4)
+            if (Time.time - self.LastLoginTime < 4f)
             {
                 return;
             }

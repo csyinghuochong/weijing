@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -10,14 +11,25 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_UnitInfoRequest request, M2C_UnitInfoResponse response, Action reply)
         {
-            foreach ((int key, long value) in unit.GetComponent<NumericComponent>().NumericDic)
+
+            Unit watchUnit = unit;
+            if (request.UnitID != 0)
             {
-                if (key >= (int)NumericType.Max)
+                watchUnit = unit.GetParent<UnitComponent>().Get( request.UnitID );
+            }
+
+            if (watchUnit != null)
+            {
+                Dictionary<int, long> numericlist = watchUnit.GetComponent<NumericComponent>().NumericDic;
+                foreach ((int key, long value) in numericlist )
                 {
-                    continue;
+                    if (key >= (int)NumericType.Max)
+                    {
+                        continue;
+                    }
+                    response.Ks.Add(key);
+                    response.Vs.Add(value);
                 }
-                response.Ks.Add(key);
-                response.Vs.Add(value);
             }
 
             reply();

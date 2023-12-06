@@ -376,7 +376,7 @@ namespace ET
                 UnitHelper.GetMyUnitId(self.ZoneScene()))
             {
                 UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UICommonProperty);
-                ui.GetComponent<UICommonPropertyComponent>().InitPropertyShow(unitmonster);
+                ui.GetComponent<UICommonPropertyComponent>().InitPropertyShow(unitmonster).Coroutine();
                 return;
             }
             if (unitmonster.Type == UnitType.Monster)

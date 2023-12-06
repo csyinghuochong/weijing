@@ -129,7 +129,7 @@ namespace ET
 
         public static async ETTask RequestUnitInfo(Scene zoneScene, bool relink = false)
         {
-            C2M_UnitInfoRequest request = new C2M_UnitInfoRequest() { };
+            C2M_UnitInfoRequest request = new C2M_UnitInfoRequest() { UnitID = UnitHelper.GetMyUnitId( zoneScene ) };
             M2C_UnitInfoResponse response = (M2C_UnitInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);

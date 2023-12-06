@@ -103,12 +103,26 @@ namespace ET
             }
         }
 
-        public static void InitPropertyShow(this UICommonPropertyComponent self, Unit unit)
+        public static async ETTask InitPropertyShow(this UICommonPropertyComponent self, Unit unit)
         {
-            self.ShowSkillList(unit);
+            C2M_UnitInfoRequest request = new C2M_UnitInfoRequest() { UnitID = unit.Id };
+            M2C_UnitInfoResponse response = (M2C_UnitInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            for (int i = 0; i < response.Ks.Count; ++i)
+            {
+                numericComponent.Set(response.Ks[i], response.Vs[i]);
+            }
 
+            self.ShowSkillList(unit);
             self.NameText.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(unit.ConfigId).MonsterName;
             self.LvText.GetComponent<Text>().text = $"当前等级：{numericComponent.GetAsInt(NumericType.Now_Lv).ToString()}";
 
