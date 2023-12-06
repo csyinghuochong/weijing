@@ -1394,11 +1394,6 @@ namespace ET
 
         public static void OnCheckFuntionButton(this UIMainComponent self)
         {
-            if (self.MainUnit.IsDisposed)
-            {
-                return;
-            }
-
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
 

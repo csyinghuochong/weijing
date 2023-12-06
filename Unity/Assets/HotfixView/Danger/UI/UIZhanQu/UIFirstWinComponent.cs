@@ -122,7 +122,12 @@ namespace ET
 			self.UIFirstWinReward.OnUpdateUISelf(self.FirstWinId);
 		}
 
-		public static async ETTask ReqestFirstWinInfo(this UIFirstWinComponent self)
+		public static  void OnClickGoToFirstWin(this UIFirstWinComponent self, int bossId)
+		{ 
+		
+		}
+
+        public static async ETTask ReqestFirstWinInfo(this UIFirstWinComponent self)
 		{
 			try
 			{

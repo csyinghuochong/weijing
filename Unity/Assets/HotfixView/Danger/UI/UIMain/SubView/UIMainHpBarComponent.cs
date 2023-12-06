@@ -43,6 +43,7 @@ namespace ET
         public GameObject BossNode;
         public Text Lab_Owner;
 
+        public int BossConfiId;
         public long LockBossId;
         public Vector3 Vector3 =  new Vector3(1, 1, 1);
         public RenderTexture RenderTexture;
@@ -90,6 +91,7 @@ namespace ET
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+            ButtonHelp.AddListenerEx(self.RawImage, () => { self.OnImg_BossIcon().Coroutine();  });
 
             self.HurtTextPet = rc.Get<GameObject>("HurtTextPet").GetComponent<Text>();
             self.HurtTextPlayer = rc.Get<GameObject>("HurtTextPlayer").GetComponent<Text>();
@@ -137,6 +139,23 @@ namespace ET
 
     public static class UIMainHpBarComponentSystem
     {
+
+        public static async ETTask OnImg_BossIcon(this UIMainHpBarComponent self)
+        {
+            if(self.BossConfiId == 0)
+            {
+                return;
+            }
+
+            long instanceid = self.InstanceId;
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIZhanQu );
+            if(instanceid != self.InstanceId)
+            {
+                return;
+            }
+            uI.GetComponent<UIZhanQuComponent>().OnClickGoToFirstWin(self.BossConfiId).Coroutine();
+        }
+
         public static void BeginEnterScene(this UIMainHpBarComponent self)
         {
             self.MonsterNode.SetActive(false);
@@ -378,6 +397,7 @@ namespace ET
             if (unit == null)
             {
                 self.LockBossId = 0;
+                self.BossConfiId = 0;
                 self.PetHurt = 0;
                 self.PlayerHurt = 0;
                 self.UpdateHurtText();
@@ -390,6 +410,7 @@ namespace ET
                 int configid = unit.ConfigId;
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configid);
                 self.LockBossId = unit.Id;
+                self.BossConfiId = unit.ConfigId;
                 self.BossNode.SetActive(true);
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
