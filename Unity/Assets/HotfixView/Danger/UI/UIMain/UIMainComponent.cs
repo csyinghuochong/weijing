@@ -702,7 +702,7 @@ namespace ET
                     self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
                     self.UpdateLvReward();
-                    self.CheckCanEquip();
+                    self.CheckCanEquip().Coroutine();
                     if (int.Parse(updateValue) > 30)
                     {
                         self.UpdateTaskList().Coroutine();
@@ -1075,7 +1075,7 @@ namespace ET
 
         public static void OnPetFightSet(this UIMainComponent self)
         {
-            self.UHead.OnPetFightSet();
+            self.OnPetFightSet();
         }
 
         public static void OnUpdateRoleName(this UIMainComponent self)
