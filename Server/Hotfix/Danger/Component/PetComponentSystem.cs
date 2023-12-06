@@ -206,7 +206,7 @@ namespace ET
                 skill8Number = Math.Min(5, skill8Number);
                 if (skill8Number > 0)
                 {
-                    self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData($"10010097_{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData($"10010097;{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
                 }
             }
 
