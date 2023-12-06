@@ -3,7 +3,7 @@ Shader "Custom/Outline"
 	//属性
 	Properties{
 		_MainTex("main tex",2D) = ""{}
-        _Factor("factor",Range(0,0.1)) = 0.5 //描边粗细因子
+        _Factor("factor",Range(0,0.1)) = 0.02 //描边粗细因子
         _OutLineColor("outline color",Color) = (1,0,0,1)//描边颜色
 		_Color ("Main Tint", Color) = (1,1,1,0.1)
 	}

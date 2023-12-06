@@ -608,6 +608,8 @@ namespace ET
                     unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     self.OnAddCollider(go);
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
+
+                    self.EnterBaTi();
                     break;
                 case UnitType.Npc:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
@@ -823,6 +825,8 @@ namespace ET
                 return;
             }
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+            self.Material.SetFloat("_Factor", 0.02f);
+            self.Material.SetColor("_OutLineColor", new Color(1f,0f,0f,1f));
         }
 
         public static void ExitBaTi(this GameObjectComponent self)
