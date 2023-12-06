@@ -8,6 +8,8 @@ namespace ET
 { 
     public class UIPetChouKaGetComponent : Entity, IAwake,IDestroy
     {
+
+        public GameObject BianYiDi;
         public GameObject ImageStarList;
         public GameObject PetSkillNode;
         public GameObject Text_PetName;
@@ -59,6 +61,8 @@ namespace ET
 
             GameObject UIPetSkinIcon = rc.Get<GameObject>("UIPetSkinIcon");
             self.PetSkinIconComponent = self.AddChild<UIPetSkinIconComponent, GameObject>(UIPetSkinIcon);
+
+            self.BianYiDi = rc.Get<GameObject>("BianYiDi");
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             ButtonHelp.AddListenerEx(self.Btn_Close, () => { self.OnBtn_Close(); });
@@ -143,6 +147,13 @@ namespace ET
                 self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
                 self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
 
+
+                PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
+                self.Text_PetName.GetComponent<Text>().text = petSkinConfig.Name;
+
+
+                self.BianYiDi.SetActive(rolePetInfo.SkinId != petConfig.Skin[0]);
+
                 self.UpdateSkillList(rolePetInfo, oldRolePetInfo);
                 self.UpdateAttribute(rolePetInfo, oldRolePetInfo);
 
@@ -201,10 +212,8 @@ namespace ET
                 }
             }
 
-            self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            
-          
+
             self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + "级";
             
 

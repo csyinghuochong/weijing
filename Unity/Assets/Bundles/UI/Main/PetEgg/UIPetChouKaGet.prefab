@@ -1448,6 +1448,8 @@ MonoBehaviour:
     gameObject: {fileID: 1757927965770686470}
   - key: Text_FightValue
     gameObject: {fileID: 6244297834321109147}
+  - key: BianYiDi
+    gameObject: {fileID: 3327061864468639371}
 --- !u!114 &9100462210937903962
 MonoBehaviour:
   m_ObjectHideFlags: 0
