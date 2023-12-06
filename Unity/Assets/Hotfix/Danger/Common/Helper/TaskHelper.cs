@@ -307,19 +307,29 @@ namespace ET
             return taskIds;
         }
 
+
+#if SERVER
+        /// <summary>
+        /// 赛季每周任务
+        /// </summary>
+        /// <returns></returns>
         public static List<int> GetSeasonTask()
         {
             List<int> taskIds = new List<int>();
-            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
-            foreach (var item in keyValuePairs)
+          
+            foreach((  int number , List<int> ids ) in TaskCountryConfigCategory.Instance.SeasonTaskList)
             {
-                if (item.Value.TaskType == TaskCountryType.Season)
+                int[] randomids = RandomHelper.GetRandoms( number, 0, ids.Count );
+                for ( int i = 0; i < randomids.Length; i++ )
                 {
-                    taskIds.Add(item.Key);
+                    taskIds.Add(ids[randomids[i]]);
                 }
+
             }
+
             return taskIds;
         }
+#endif
 
         public static List<RewardItem> GetTaskRewards(int taskid, TaskConfig taskConfig = null)
         {
