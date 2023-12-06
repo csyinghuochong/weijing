@@ -608,8 +608,6 @@ namespace ET
                     unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     self.OnAddCollider(go);
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
-
-                    self.EnterBaTi();
                     break;
                 case UnitType.Npc:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
@@ -824,7 +822,12 @@ namespace ET
             {
                 return;
             }
-            self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+            Shader shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+            if (shader == null)
+            {
+                return;
+            }
+            self.Material.shader = shader;
             self.Material.SetFloat("_Factor", 0.02f);
             self.Material.SetColor("_OutLineColor", new Color(1f,0f,0f,1f));
         }
@@ -854,8 +857,12 @@ namespace ET
         /// <param name="self"></param>
         public static void EnterStealth(this GameObjectComponent self)
         {
+            Shader shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+            if (shader == null)
+            {
+                return;
+            }
             Unit unit = self.GetParent<Unit>();
-            Log.ILog.Debug($"EnterStealth: {unit.Id}");
             float alpha = 1f;
             // 对自己半透明
             if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
@@ -867,9 +874,8 @@ namespace ET
             {
                 alpha = 0f;
             }
-
-             // 身体隐形
-            self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+            // 身体隐形
+            self.Material.shader = shader;
             self.Material.SetFloat("_Alpha", alpha);
 
             // 脚底阴影隐形
