@@ -816,6 +816,24 @@ namespace ET
             self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().EnterHide();
         }
 
+        public static void EnterBaTi(this GameObjectComponent self)
+        {
+            if (self.GameObject == null || self.Material == null)
+            {
+                return;
+            }
+            self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+        }
+
+        public static void ExitBaTi(this GameObjectComponent self)
+        {
+            if (self.GameObject == null || self.Material == null)
+            {
+                return;
+            }
+            self.Material.shader = GlobalHelp.Find(self.OldShader);
+        }
+
         public static void ExitHide(this GameObjectComponent self)
         {
             if (self.GameObject == null)

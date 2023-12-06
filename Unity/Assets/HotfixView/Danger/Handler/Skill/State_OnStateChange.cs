@@ -77,12 +77,11 @@ namespace ET
             // 霸体红色描边
             if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 1)
             {
-                args.Unit.GetComponent<GameObjectComponent>().Material.shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+                args.Unit.GetComponent<GameObjectComponent>().EnterBaTi();
             }
             if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 2)
             {
-                args.Unit.GetComponent<GameObjectComponent>().Material.shader =
-                        GlobalHelp.Find(args.Unit.GetComponent<GameObjectComponent>().OldShader);
+                args.Unit.GetComponent<GameObjectComponent>().ExitBaTi();   
             }
         }
     }
