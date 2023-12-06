@@ -242,8 +242,13 @@ namespace ET
                                 break;
                             //随机宠物蛋
                             case 103:
-                                int petId = DropHelper.GetRandomBoxItem_2(itemConfig.ItemUsePar);
-                                unit.GetComponent<PetComponent>().OnAddPet(petId);
+                                int petId = int.Parse(itemConfig.ItemUsePar);
+                                int skinId = 0;
+                                if(string.IsNullOrEmpty(useBagInfo.ItemPar))
+                                {
+                                    skinId = int.Parse(useBagInfo.ItemPar);
+                                }
+                                unit.GetComponent<PetComponent>().OnAddPet(petId, skinId);
                                 break;
                             //随机盒子
                             case 104:

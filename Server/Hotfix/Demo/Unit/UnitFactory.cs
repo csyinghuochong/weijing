@@ -85,6 +85,7 @@ namespace ET
             numericComponent.Set(NumericType.TeamId, master != null ? master.GetTeamId() : 0);
             numericComponent.Set(NumericType.AttackMode, master!=null ?  master.GetAttackMode() : 0);
             numericComponent.Set(NumericType.UnionId_0, master != null ? master.GetUnionId() : 0, false);
+            numericComponent.Set(NumericType.PetSkin, createMonsterInfo.SkinId, false);
             //出生点
             //numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
             //numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);

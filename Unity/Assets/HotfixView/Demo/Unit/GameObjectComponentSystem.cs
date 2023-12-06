@@ -140,7 +140,11 @@ namespace ET
                     }
                     else if (monsterCof.MonsterSonType == 58)
                     {
-                        path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
+                        //path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
+                        int itemid = monsterCof.AIParameter[1];
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+                        int petskinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetSkin);
+                        path = ABPathHelper.GetUnitPath("Pet/" + PetSkinConfigCategory.Instance.Get(petskinId).SkinID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
                     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -37,10 +38,17 @@ namespace ET
             if (RandomHelper.RandFloat01() <= gailv * 0.0001f)
             {
                 response.Message = String.Empty;
+                int skinId = zhupuUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetSkin);
 
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(zhupuUnit.ConfigId);
                 int getItemid = monsterConfig.Parameter[1];
                 unit.GetComponent<BagComponent>().OnAddItemData($"{getItemid};1",$"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+
+                List<BagInfo> bagInfolist = unit.GetComponent<BagComponent>().GetIdItemList(getItemid);
+                if (bagInfolist.Count > 0)
+                {
+                    bagInfolist[bagInfolist.Count - 1].ItemPar = skinId.ToString();
+                }
             }
             else
             {

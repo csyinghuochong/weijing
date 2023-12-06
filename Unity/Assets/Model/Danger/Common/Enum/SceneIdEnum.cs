@@ -14,6 +14,7 @@ namespace ET
         public long BornTime;        //出生的时间(毫秒)
         public long UnitId;
         public int AI;
+        public int SkinId;
     }
 
     public static class TeamFubenType

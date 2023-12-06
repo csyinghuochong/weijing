@@ -304,13 +304,29 @@ namespace ET
 				{
                     if (randomMonsterList[kk].KeyId == i && (int)randomMonsterList[kk].Value > 0 && position.Length >= 3)
 					{
-                        Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-                        UnitFactory.CreateMonster(scene, (int)randomMonsterList[kk].Value, vector3, new CreateMonsterInfo()
-                        {
-                            Camp = monsterConfig.MonsterCamp
-                        });
+						monsterid = (int)randomMonsterList[kk].Value;
+						monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
-						haveotherMonster = true;
+						int skinId = 0;
+                        if (monsterConfig.MonsterSonType == 58) //奇遇宠物
+                        {
+							int itemid = monsterConfig.AIParameter[1];
+							ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+							int petId = int.Parse(itemConfig.ItemUsePar);
+							PetConfig petConfig = PetConfigCategory.Instance.Get(petId );
+
+                            List<int> weight = new List<int>(petConfig.SkinPro);
+                            int index = RandomHelper.RandomByWeight(weight);
+                            skinId = petConfig.Skin[index];
+                        }
+                        Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+                        Unit unitmonster = UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
+                        {
+                            Camp = monsterConfig.MonsterCamp,
+							SkinId = skinId,	
+                        });
+                       
+                        haveotherMonster = true;
                     }
 				}
 				if (haveotherMonster)
