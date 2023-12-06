@@ -200,10 +200,7 @@ namespace ET
 
             self.Button_Season = rc.Get<GameObject>("Button_Season");
             self.Button_Season.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Season().Coroutine(); });
-            self.Button_Season.SetActive(false);
-
-            bool gm = GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account);
-            self.Button_Season.SetActive(gm);
+            self.Button_Season.SetActive(true);
 
             self.Button_Welfare = rc.Get<GameObject>("Button_Welfare");
             self.Button_Welfare.GetComponent<Button>().onClick.AddListener(self.OnButton_Welfare);
