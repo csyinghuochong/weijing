@@ -21,6 +21,6 @@ namespace ET
 
         public List<PetMingRecord> PetMingRecordList = new List<PetMingRecord>();
 
-        public int UpdateMode = 0;   //1
+        public int UpdateNumber = 0;   //1
     }
 }

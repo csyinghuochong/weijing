@@ -183,9 +183,9 @@ namespace ET
                 PetHelper.CheckPropretyPoint(rolePetInfo);
             }
 
-            if (self.UpdateMode == 0)
+            if (self.UpdateNumber == 0)
             {
-                self.UpdateMode = 1;
+                self.UpdateNumber = 1;
 
                 int skill8Number = 0;
                 for (int i = 0; i < self.RolePetInfos.Count; i++)
