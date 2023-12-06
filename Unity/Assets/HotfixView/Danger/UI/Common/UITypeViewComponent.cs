@@ -44,7 +44,7 @@ namespace ET
     public static class UITypeViewComponentSystem
     {
 
-        public static async ETTask OnInitUI(this UITypeViewComponent self)
+        public static async ETTask OnInitUI(this UITypeViewComponent self, int page = 0, int subPage = 0)
         {
             long instanceid = self.InstanceId;
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(self.TypeButtonAsset);
@@ -59,13 +59,13 @@ namespace ET
 
                 UITypeButtonComponent uIItemComponent = self.AddChild<UITypeButtonComponent, GameObject>(taskTypeItem);
                 uIItemComponent.TypeItemAsset = self.TypeButtonItemAsset;
-                uIItemComponent.OnUpdateData(self.TypeButtonInfos[i]);
+                uIItemComponent.OnUpdateData(self.TypeButtonInfos[i], subPage);
                 uIItemComponent.SetClickTypeHandler((int typeid) => { self.OnClickType(typeid); });
                 uIItemComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTypeItem(typeid, chapterId); });
 
                 self.TypeButtonComponents.Add(uIItemComponent);
             }
-            self.TypeButtonComponents[0].OnClickTypeButton();
+            self.TypeButtonComponents[page].OnClickTypeButton();
         }
 
         public static void OnClickType(this UITypeViewComponent self, int typeid)
@@ -99,6 +99,8 @@ namespace ET
         public float Spacing = 80f;
         public bool bSelected = false;
         public int TypeId;
+
+        public int SubPage = 0;
     }
 
 
@@ -179,12 +181,14 @@ namespace ET
             self.GameObject.transform.parent.gameObject.SetActive(true);
             if (TypeButtonItems.Count > 0)
             {
-                self.TypeItemUIList[0].OnClickButtoin();
+                self.TypeItemUIList[self.SubPage].OnClickButtoin();
+                self.SubPage = 0;
             }
         }
 
-        public static void OnUpdateData(this UITypeButtonComponent self, TypeButtonInfo typeinfo)
+        public static void OnUpdateData(this UITypeButtonComponent self, TypeButtonInfo typeinfo, int subPage = 0)
         {
+            self.SubPage = subPage;
             self.TypeId = typeinfo.TypeId;
             self.TypeButtonInfo = typeinfo;
 

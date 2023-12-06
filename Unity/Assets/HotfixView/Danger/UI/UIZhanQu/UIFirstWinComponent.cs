@@ -103,8 +103,7 @@ namespace ET
 			self.UITypeViewComponent.ClickTypeItemHandler = (int typeid, int subtypeid) => { self.OnClickTypeItem(typeid, subtypeid); };
 
 			self.UITypeViewComponent.TypeButtonInfos = self.InitTypeButtonInfos();
-			self.UITypeViewComponent.OnInitUI().Coroutine();
-		
+			
 			self.ReqestFirstWinInfo().Coroutine();
 		}
     }
@@ -120,11 +119,6 @@ namespace ET
 		public static void OnButton_FirstWinSelf(this UIFirstWinComponent self)
 		{
 			self.UIFirstWinReward.OnUpdateUISelf(self.FirstWinId);
-		}
-
-		public static  void OnClickGoToFirstWin(this UIFirstWinComponent self, int bossId)
-		{ 
-		
 		}
 
         public static async ETTask ReqestFirstWinInfo(this UIFirstWinComponent self)
@@ -145,9 +139,10 @@ namespace ET
                 }
 
                 self.FirstWinInfos = response.FirstWinInfos;
-				self.UpdateBossInfo(self.FirstWinId);
-			}
-			catch (Exception ex)
+                //self.UpdateBossInfo(self.FirstWinId);
+                self.UITypeViewComponent.OnInitUI().Coroutine();
+            }
+            catch (Exception ex)
 			{
 				Log.Error(ex.ToString());
 			}
@@ -198,6 +193,8 @@ namespace ET
 			}
 			return keyValuePairs;
 		}
+
+
 
 		public static void OnClickTypeItem(this UIFirstWinComponent self, int typeid, int firstwinId)
 		{

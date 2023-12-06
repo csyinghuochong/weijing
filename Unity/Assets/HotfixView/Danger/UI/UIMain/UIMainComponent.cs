@@ -330,7 +330,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_HuoDong, self.OnBtn_HuoDong);
 
             self.Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
-            ButtonHelp.AddListenerEx(self.Button_ZhanQu, self.OnButton_ZhanQu);
+            ButtonHelp.AddListenerEx(self.Button_ZhanQu, () => { self.OnButton_ZhanQu().Coroutine();  });
             //int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             //Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
 
@@ -2257,8 +2257,10 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIActivity).Coroutine();
         }
 
-        public static void OnButton_ZhanQu(this UIMainComponent self)
+        public static async ETTask OnButton_ZhanQu(this UIMainComponent self)
         {
+            await NetHelper.RequestZhanQuInfo(self.ZoneScene());
+
             UIHelper.Create(self.DomainScene(), UIType.UIZhanQu).Coroutine();
         }
 

@@ -94,7 +94,7 @@ namespace ET
                 long cdTime = 0;
                 PetFightTime.TryGetValue(petid, out cdTime);
 
-                if (TimeHelper.ClientNow() - cdTime < 180 * TimeHelper.Second)
+                if (TimeHelper.ClientNow() - cdTime < 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip("出战冷却中！");
                     return;

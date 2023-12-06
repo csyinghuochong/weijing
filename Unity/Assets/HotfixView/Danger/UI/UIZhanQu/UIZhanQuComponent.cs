@@ -56,37 +56,23 @@ namespace ET
 			});
 
 			self.UIPageButton = uIPageViewComponent;
-			uIPageViewComponent.ClickEnabled = false;
 			self.ActivityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
 
-			self.RequeatActivityInfo().Coroutine();
-		}
+            self.UIPageButton.OnSelectIndex(0);
+        }
 	}
 
 	public static class UIZhanQuComponentSystem
 	{
-		public static async ETTask RequeatActivityInfo(this UIZhanQuComponent self)
-		{
-			long instance = self.InstanceId;
-			await NetHelper.RequestZhanQuInfo(self.ZoneScene());
-			if (instance != self.InstanceId)
-			{
-				return;
-			}
-			self.UIPageButton.ClickEnabled = true;
-			self.UIPageButton.OnSelectIndex(0);
-		}
-
 		public static void OnClickPageButton(this UIZhanQuComponent self, int page)
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();
 		}
 
-        public static async ETTask OnClickGoToFirstWin(this UIZhanQuComponent self, int bossId)
+        public static void  OnClickGoToFirstWin(this UIZhanQuComponent self, int bossId)
         {
             self.UIPageButton.OnSelectIndex((int)ZhanQuPageEnum.FirstWin, false);
-            UI uI = await self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin);
-            uI.GetComponent<UIFirstWinComponent>().OnClickGoToFirstWin(bossId);
+            self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin).Coroutine();
         }
     }
 }
