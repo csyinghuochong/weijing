@@ -372,7 +372,7 @@ namespace ET
                     qua = 5;
                 }
                 string colorValue = ItemViewHelp.QualityReturnColorUI(qua);
-                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"<color=#{colorValue}>当前品质:{baginfo.ItemPar}</color>";
+                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"当前品质:{baginfo.ItemPar}";
                 //self.Lab_ItemJingHeQuality.AddComponent<Outline>();
                 // 属性显示itemConfig.ItemUsePar
                 string attribute = "";
