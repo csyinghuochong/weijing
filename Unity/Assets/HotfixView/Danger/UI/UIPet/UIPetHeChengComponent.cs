@@ -69,7 +69,7 @@ namespace ET
                 || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
             {
                 FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
-                //return;
+                return;
             }
 
             bool havepetHexin = false;
