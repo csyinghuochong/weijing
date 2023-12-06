@@ -129,25 +129,34 @@ namespace ET
                             {
                                 ui.Img_line.GetComponent<RectTransform>().localPosition = new Vector3(87, -42, 0);
                                 ui.Img_line.GetComponent<RectTransform>().transform.Rotate(0, 0, 150);
+                                ui.Img_lineDi.GetComponent<RectTransform>().localPosition = new Vector3(87, -42, 0);
+                                ui.Img_lineDi.GetComponent<RectTransform>().transform.Rotate(0, 0, 150);
                             }
                             else
                             {
                                 ui.Img_line.GetComponent<RectTransform>().localPosition = new Vector3(-124, -64, 0);
                                 ui.Img_line.GetComponent<RectTransform>().transform.Rotate(0, 0, -150);
+                                ui.Img_lineDi.GetComponent<RectTransform>().localPosition = new Vector3(-124, -64, 0);
+                                ui.Img_lineDi.GetComponent<RectTransform>().transform.Rotate(0, 0, -150);
                             }
                         }
 
                         self.UISeasonTaskItemComponentList[count].OnUpdateData(taskConfig.Id);
                         self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = null;
+                        self.UISeasonTaskItemComponentList[count].Img_line.SetActive(true);
+                        self.UISeasonTaskItemComponentList[count].Img_lineDi.SetActive(true);
+                        
                         if (taskConfig.Id > self.TaskPro.taskID)
                         {
                             self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
                             self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = mat;
+                            self.UISeasonTaskItemComponentList[count].Img_line.SetActive(false);
                         }
 
                         if (taskConfig.Id == self.TaskPro.taskID)
                         {
                             index = count;
+                            self.UISeasonTaskItemComponentList[count].Img_line.SetActive(false);
                         }
 
                         count++;
@@ -160,6 +169,7 @@ namespace ET
                 if (self.UISeasonTaskItemComponentList.Count > 0)
                 {
                     self.UISeasonTaskItemComponentList[self.UISeasonTaskItemComponentList.Count - 1].Img_line.SetActive(false);
+                    self.UISeasonTaskItemComponentList[self.UISeasonTaskItemComponentList.Count - 1].Img_lineDi.SetActive(false);
                 }
 
                 // 滑动到底部

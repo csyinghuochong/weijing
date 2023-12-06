@@ -9,6 +9,7 @@ namespace ET
 
         public GameObject Item;
         public GameObject Img_line;
+        public GameObject Img_lineDi;
         public GameObject Text;
         public GameObject SeasonIcon;
         public GameObject ScelectImg;
@@ -24,6 +25,7 @@ namespace ET
 
             self.Item = rc.Get<GameObject>("Item");
             self.Img_line = rc.Get<GameObject>("Img_line");
+            self.Img_lineDi = rc.Get<GameObject>("Img_lineDi");
             self.Text = rc.Get<GameObject>("Text");
             self.SeasonIcon = rc.Get<GameObject>("SeasonIcon");
             self.ScelectImg = rc.Get<GameObject>("ScelectImg");
