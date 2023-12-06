@@ -66,6 +66,9 @@ namespace ET
         };
 
 
+        /// <summary>
+        /// 家园开启宠物仓库的消耗
+        /// </summary>
         public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()
         {
             //第一个格子默认开启
