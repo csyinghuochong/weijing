@@ -1746,7 +1746,6 @@ namespace ET
             string[] item = items[0].Split(';');
             if (userInfoComponent.UserInfo.Lv < self.LevelRewardKey)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
                 EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
                 EventType.ShowItemTips.Instance.bagInfo = new BagInfo()
                 {
