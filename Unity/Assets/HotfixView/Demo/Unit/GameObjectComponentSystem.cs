@@ -141,7 +141,7 @@ namespace ET
                     else if (monsterCof.MonsterSonType == 58)
                     {
                         //path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
-                        int itemid = monsterCof.AIParameter[1];
+                        int itemid = monsterCof.Parameter[1];
                         ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
                         int petskinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetSkin);
                         path = ABPathHelper.GetUnitPath("Pet/" + PetSkinConfigCategory.Instance.Get(petskinId).SkinID);

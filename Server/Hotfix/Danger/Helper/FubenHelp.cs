@@ -310,7 +310,7 @@ namespace ET
 						int skinId = 0;
                         if (monsterConfig.MonsterSonType == 58) //奇遇宠物
                         {
-							int itemid = monsterConfig.AIParameter[1];
+							int itemid = monsterConfig.Parameter[1];
 							ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
 							int petId = int.Parse(itemConfig.ItemUsePar);
 							PetConfig petConfig = PetConfigCategory.Instance.Get(petId );
