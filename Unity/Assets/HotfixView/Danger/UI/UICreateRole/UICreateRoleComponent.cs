@@ -159,6 +159,7 @@ namespace ET
             string text_new = "";
             string text_old = self.InputCreateRoleName.GetComponent<InputField>().text;
             MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old, out text_new);
+            text_old = text_old.Replace("*", "");
             self.InputCreateRoleName.GetComponent<InputField>().text = text_old;
         }
 
