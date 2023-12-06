@@ -116,7 +116,7 @@ namespace ET
             if (itemneeds.Length > 2 && !bagComponent.CheckNeedItem(itemneeds))
             {
                 self.GetParent<UI>().GameObject.SetActive(false);
-                FloatTipManager.Instance.ShowFloatTip($"需要道具 {UICommonHelper.GetNeedItemDesc(itemneeds)}！");
+                FloatTipManager.Instance.ShowFloatTip($"道具不足，需要道具 {UICommonHelper.GetNeedItemDesc(itemneeds)}！");
                 return;
             }
 

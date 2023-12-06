@@ -268,7 +268,9 @@ namespace ET
                 return;
             }
 
-            uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(box);
+            // uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(box);
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIOpenChest);
+            ui.GetComponent<UIOpenChestComponent>().UpdateInfo(box);
         }
 
         public static bool CheckPlayer(this OperaComponent self)
