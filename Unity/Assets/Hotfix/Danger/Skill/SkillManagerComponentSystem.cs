@@ -425,7 +425,7 @@ namespace ET
             }
 
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            int errorCode = stateComponent.CanUseSkill(skillConfig);
+            int errorCode = stateComponent.CanUseSkill(skillConfig, true);
             if (errorCode!=ErrorCode.ERR_Success)
             {
                 stateComponent.CheckSilence();

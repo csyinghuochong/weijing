@@ -400,14 +400,14 @@ namespace ET
         /// <param name="skillcmd"></param>
         /// <param name="zhudong">被动触发</param>
         /// <returns></returns>
-        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool zhudong = true)
+        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool zhudong = true, bool checkDead = true)
         {
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
             m2C_Skill.Message = String.Empty;
 
             //判断技能是否可以释放
-            int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
+            int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong, checkDead);
             if (zhudong && errorCode != ErrorCode.ERR_Success)
             {
                 m2C_Skill.Error = errorCode;
@@ -717,7 +717,7 @@ namespace ET
         }
 
         //技能是否可以使用
-        public static int IsCanUseSkill(this SkillManagerComponent self, int nowSkillID, bool zhudong = true)
+        public static int IsCanUseSkill(this SkillManagerComponent self, int nowSkillID, bool zhudong = true, bool checkDead = true)
         {
             if (self.CheckChongJi(nowSkillID))
             { 
@@ -757,7 +757,7 @@ namespace ET
             if (unit.Type != UnitType.Player)
             {
                 //判断当前眩晕状态
-                int errorCode = stateComponent.CanUseSkill(skillConfig);
+                int errorCode = stateComponent.CanUseSkill(skillConfig, checkDead);
                 if (ErrorCode.ERR_Success!= errorCode)
                 {
                     return errorCode;

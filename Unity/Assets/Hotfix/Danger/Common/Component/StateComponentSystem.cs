@@ -56,7 +56,7 @@ namespace ET
             return TimeHelper.ClientNow() < self.NetWaitEndTime;
         }
 
-        public static int CanUseSkill(this StateComponent self, SkillConfig skillConfig)
+        public static int CanUseSkill(this StateComponent self, SkillConfig skillConfig, bool checkDead)
         {
             if (self.IsNetWaitEndTime())
             {
@@ -92,7 +92,7 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            if (checkDead && unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
                 return ErrorCode.ERR_CanNotSkillDead;
             }
