@@ -268,9 +268,16 @@ namespace ET
                 return;
             }
 
-            // uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(box);
-            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIOpenChest);
-            ui.GetComponent<UIOpenChestComponent>().UpdateInfo(box);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(box.ConfigId);
+            if(monsterConfig.Parameter!=null && monsterConfig.Parameter.Length > 0 && monsterConfig.Parameter[0] > 0)
+            {
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIOpenChest);
+                ui.GetComponent<UIOpenChestComponent>().UpdateInfo(box);
+            }
+            else
+            {
+                uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(box);
+            }
         }
 
         public static bool CheckPlayer(this OperaComponent self)
