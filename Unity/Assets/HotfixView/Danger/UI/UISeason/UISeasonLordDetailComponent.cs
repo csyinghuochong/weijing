@@ -214,7 +214,7 @@ namespace ET
                     DateTime nowTime = TimeInfo.Instance.ToDateTime(now);
                     DateTime endTime = TimeInfo.Instance.ToDateTime(end);
                     TimeSpan ts = endTime - nowTime;
-                    self.RefreshTimeText.text = $"剩余时间:{ts.Days}:{ts.Hours}:{ts.Minutes}:{ts.Seconds}";
+                    self.RefreshTimeText.text = $"剩余时间:{ts.Days}天{ts.Hours}时{ts.Minutes}分{ts.Seconds}秒";
                 }
                 else
                 {
