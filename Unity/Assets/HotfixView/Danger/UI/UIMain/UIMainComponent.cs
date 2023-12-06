@@ -823,11 +823,35 @@ namespace ET
             attackComponent.AutoAttack = value == "1";
         }
 
-        public static void OnBagItemUpdate(this UIMainComponent self)
+        public static async ETTask OnBagItemUpdate(this UIMainComponent self)
         {
             self.UIMainSkillComponent.OnBagItemUpdate();
 
-            ///检测是否有可以穿戴的装备
+            // 检测是否有可以穿戴的装备
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            for (int i = bagInfos.Count - 1; i >= 0; i--)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment)
+                {
+                    BagInfo equip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.EquipType);
+                    if (equip == null)
+                    {
+                        UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIGuideEquip);
+                        if (ui != null)
+                        {
+                            // ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+                        }
+                        else
+                        {
+                            ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
+                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+                        }
+                        break;
+                    }
+                }
+            }
         }
 
         public static void OnEquipWear(this UIMainComponent self)
