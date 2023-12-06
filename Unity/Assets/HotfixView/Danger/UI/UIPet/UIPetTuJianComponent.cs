@@ -322,7 +322,7 @@ namespace ET
                      self.UIPetSkinIconComponents.Add(uiPetSkinIconComponent);
                 }
                 // 刷新图标
-                uiPetSkinIconComponent.OnUpdateUI(petConfig.Skin[i], petComponent.HavePetSkin(petConfig.Id, petConfig.Skin[i]));
+                uiPetSkinIconComponent.OnUpdateUI(petConfig.Skin[i], i == 0);
             }
 
             // 隐藏不用的

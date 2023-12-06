@@ -703,7 +703,7 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.ScrollViewSkin);
                 UIPetSkinIconComponent uIPetSkinIcon = self.AddChild<UIPetSkinIconComponent, GameObject>(bagSpace);
-                uIPetSkinIcon.OnUpdateUI(petConfig.Skin[i], self.HavePetSkin(petConfig.Id, petConfig.Skin[i]));
+                uIPetSkinIcon.OnUpdateUI(petConfig.Skin[i], petConfig.Skin[i] == self.LastSelectItem.SkinId);
                 uIPetSkinIcon.SetClickHandler(self.OnSelectSkinHandler);
                 self.PetSkinList.Add(uIPetSkinIcon);
             }
