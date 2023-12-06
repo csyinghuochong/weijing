@@ -382,7 +382,7 @@ namespace ET
             unitInfoComponent.ZhaohuanIds.Clear();
         }
 
-        public static void PlayDeathSkill(this HeroDataComponent self)
+        public static void PlayDeathSkill(this HeroDataComponent self,Unit attack)
         {
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Monster)
@@ -400,6 +400,10 @@ namespace ET
                         SkillID = monsterConfig.DeathSkillId,
                     }, false);
                 }
+            }
+            if (unit.Type == UnitType.Pet)
+            {
+                unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attack.Id);
             }
         }
 

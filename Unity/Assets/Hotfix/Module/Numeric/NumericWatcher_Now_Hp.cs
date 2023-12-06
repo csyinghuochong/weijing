@@ -36,9 +36,9 @@
 
 
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(attack);
-				unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
                 unit.GetComponent<HeroDataComponent>().OnDead(attack);
-
+                unit.GetComponent<HeroDataComponent>().PlayDeathSkill(attack);
+               
                 //unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args.Attack);
                 //unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
                 //unit.GetComponent<HeroDataComponent>().OnDead(args.Attack);

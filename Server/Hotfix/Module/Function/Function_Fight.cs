@@ -1001,7 +1001,6 @@ namespace ET
                     else
                     {
                         //死亡
-                        defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
                     }
                 }
                 //普通攻击反弹伤害
@@ -1018,8 +1017,6 @@ namespace ET
                     //攻击方反弹即将死亡
                     if (numericComponentAttack.GetAsInt(NumericType.Now_Hp) <= 0)
                     {
-                        //死亡
-                        attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
                     }
                 }
             }
