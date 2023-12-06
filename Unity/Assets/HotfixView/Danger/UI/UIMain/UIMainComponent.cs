@@ -827,13 +827,30 @@ namespace ET
         {
             self.UIMainSkillComponent.OnBagItemUpdate();
 
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Lv > 25)
+            {
+                return;
+            }
+            
             // 检测是否有可以穿戴的装备
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = bagInfos.Count - 1; i >= 0; i--)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment)
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment &&
+                    (
+                        itemConfig.EquipType == ItemEquipType.Common ||
+                        itemConfig.EquipType == ItemEquipType.Sword ||
+                        itemConfig.EquipType == ItemEquipType.Knife ||
+                        itemConfig.EquipType == ItemEquipType.Wand ||
+                        itemConfig.EquipType == ItemEquipType.Book ||
+                        itemConfig.EquipType == ItemEquipType.Bow ||
+                        itemConfig.EquipType == ItemEquipType.Bujia ||
+                        itemConfig.EquipType == ItemEquipType.QingJia ||
+                        itemConfig.EquipType == ItemEquipType.ZhongJia
+                    ))
                 {
                     BagInfo equip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.EquipType);
                     if (equip == null)
@@ -848,6 +865,7 @@ namespace ET
                             ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
                             ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
                         }
+
                         break;
                     }
                 }
