@@ -203,6 +203,7 @@ namespace ET
             newpet.AddPropretyNum = 0;
             newpet.AddPropretyValue = ItemHelper.DefaultGem;
             newpet.ShouHuPos = RandomHelper.RandomNumber(1, 5);
+            newpet.PetName = PetSkinConfigCategory.Instance.Get(newpet.SkinId).Name;
             newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
         }
