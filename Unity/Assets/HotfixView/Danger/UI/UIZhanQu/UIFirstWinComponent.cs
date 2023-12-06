@@ -38,6 +38,8 @@ namespace ET
 		public int FirstWinId;
 		public long LastUpdateTime;
 
+		public int BossId;
+
 		public UIModelShowComponent UIModelShowComponent;
 
 		public int ChapterId;
@@ -140,7 +142,15 @@ namespace ET
 
                 self.FirstWinInfos = response.FirstWinInfos;
                 //self.UpdateBossInfo(self.FirstWinId);
-                self.UITypeViewComponent.OnInitUI().Coroutine();
+                KeyValuePairInt keyValuePairInt = FirstWinConfigCategory.Instance.GetBossChapter(self.BossId);
+                if (keyValuePairInt != null)
+                {
+                    self.UITypeViewComponent.OnInitUI(keyValuePairInt.KeyId - 1, (int)keyValuePairInt.Value).Coroutine();
+                }
+                else
+                {
+                    self.UITypeViewComponent.OnInitUI().Coroutine();
+                }
             }
             catch (Exception ex)
 			{
@@ -193,8 +203,6 @@ namespace ET
 			}
 			return keyValuePairs;
 		}
-
-
 
 		public static void OnClickTypeItem(this UIFirstWinComponent self, int typeid, int firstwinId)
 		{

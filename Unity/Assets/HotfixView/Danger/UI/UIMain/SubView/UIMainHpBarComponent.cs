@@ -142,18 +142,27 @@ namespace ET
 
         public static async ETTask OnImg_BossIcon(this UIMainHpBarComponent self)
         {
-            if(self.BossConfiId == 0)
+            self.BossConfiId = 70001011;
+            if (self.BossConfiId == 0)
             {
                 return;
             }
 
+            KeyValuePairInt keyValuePair = FirstWinConfigCategory.Instance.GetBossChapter(self.BossConfiId);
+            if(keyValuePair == null)
+            {
+                return;    
+            }
+
+            //70001011 野猪王
             long instanceid = self.InstanceId;
             UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIZhanQu );
             if(instanceid != self.InstanceId)
             {
                 return;
             }
-            uI.GetComponent<UIZhanQuComponent>().OnClickGoToFirstWin(self.BossConfiId).Coroutine();
+            self.ZoneScene().GetComponent<BattleMessageComponent>().FirstWinBossId = self.BossConfiId;
+            uI.GetComponent<UIZhanQuComponent>().OnClickGoToFirstWin(self.BossConfiId);
         }
 
         public static void BeginEnterScene(this UIMainHpBarComponent self)

@@ -37,5 +37,7 @@ namespace ET
 
         // 组队喊话频率
         public long ShoutInterval;
+
+        public int FirstWinBossId;
     }
 }

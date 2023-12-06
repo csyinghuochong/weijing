@@ -69,10 +69,10 @@ namespace ET
 			self.UIPageView.OnSelectIndex(page).Coroutine();
 		}
 
-        public static void  OnClickGoToFirstWin(this UIZhanQuComponent self, int bossId)
+        public static async ETTask OnClickGoToFirstWin(this UIZhanQuComponent self, int bossId)
         {
             self.UIPageButton.OnSelectIndex((int)ZhanQuPageEnum.FirstWin, false);
-            self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin).Coroutine();
+            await self.UIPageView.OnSelectIndex((int)ZhanQuPageEnum.FirstWin);
         }
     }
 }
