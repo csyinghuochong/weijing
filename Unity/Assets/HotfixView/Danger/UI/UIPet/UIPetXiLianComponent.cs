@@ -124,12 +124,17 @@ namespace ET
             {
                 return;
             }
-            if (oldSkin != self.RolePetInfo.SkinId)
+            if (oldSkin == self.RolePetInfo.SkinId)
             {
-                UI ui = await UIHelper.Create( self.ZoneScene(), UIType.UIPetChouKaGet );
-                List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
-                ui.GetComponent<UIPetChouKaGetComponent>().OnInitUI(petComponent.GetPetInfoByID(self.RolePetInfo.Id), oldPetSkin, null);
+                return;
             }
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPetChouKaGet);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
+            ui.GetComponent<UIPetChouKaGetComponent>().OnInitUI(petComponent.GetPetInfoByID(self.RolePetInfo.Id), oldPetSkin, null);
         }
 
         public static void OnXiLianUpdate(this UIPetXiLianComponent self)

@@ -830,6 +830,13 @@ namespace ET
                     self.RoleTaskList.RemoveAt(i);
                 }
             }
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                }
+            }
 
             UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
