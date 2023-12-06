@@ -427,14 +427,14 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 112)
             {
-                /*
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                if (ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId) <= 1)
+                long openserverTime = ServerHelper.GetOpenServerTime(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId);
+                if (TimeHelper.ServerNow() - openserverTime < TimeHelper.Hour * 4)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("开服第一天不能使用该道具!");
+                    FloatTipManager.Instance.ShowFloatTip("开区4小时后开启!");
                     return;
                 }
-                */
+                
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIItemExpBox);
                 uI.GetComponent<UIItemExpBoxComponent>().OnInitUI(self.BagInfo);
                 self.OnCloseTips();
