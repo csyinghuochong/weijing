@@ -363,6 +363,9 @@ namespace ET
                 self.UpdateRoleData(UserDataType.SeasonExp, seasonExp.ToString());
             }
 
+            NumericComponent numericComponent = main.GetComponent<NumericComponent>();
+            numericComponent.ApplyChange(null, NumericType.KillMonsterNumber, 1, 0);
+
             bool drop = true;
             if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
@@ -383,8 +386,7 @@ namespace ET
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
                 expcoefficient *= bossDevelopment.ExpAdd;
             }
-
-            NumericComponent numericComponent = main.GetComponent<NumericComponent>();
+          
             if ( (sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0  )
               || sceneType != SceneTypeEnum.LocalDungeon)
             {

@@ -1003,5 +1003,15 @@ namespace ET
             { 26, "10000140;1" },       //忘灵丹
             { 28, "10010088;5" }       //体力补充
         };
+
+
+        /// <summary>  
+        /// 击杀怪物奖励。     NumericType.KillMonsterNumber击杀怪物数量  NumericType.KillMonsterReward击杀怪物领取奖励记录
+        /// </summary>
+        public static Dictionary<int, string> KillMonsterReward = new Dictionary<int, string>
+        {
+            {  100, "10000140;1" },
+            {  200, "10000140;1" },
+        };
     }
 }
