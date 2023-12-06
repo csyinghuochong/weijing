@@ -9,19 +9,28 @@ namespace ET
 #if NOT_UNITY
         public static bool IsOpenSeason(int userLv)
         {
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1071);
-            if (userLv < funtionConfig.ConditionParam[0])
+            //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1071);
+            //if (userLv < funtionConfig.ConditionParam[0])
+            //{
+            //    return false;
+            //}
+            if (userLv < 55)
             {
                 return false;
             }
-
-            if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
-               || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
+            if (userLv < 55)
             {
-                 long serverTime = TimeHelper.ServerNow();
-                 return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;   
+                return false;
             }
-            return false;
+            long serverTime = TimeHelper.ServerNow();
+            return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;
+            //if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
+            //   || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
+            //{
+            //     long serverTime = TimeHelper.ServerNow();
+            //     return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;   
+            //}
+            //return false;
         }
 #else
         public static bool IsOpenSeason(int userLv)
@@ -57,7 +66,6 @@ namespace ET
 
         //赛季结束时间
         public static long SeasonCloseTime = 1705939200000;
-
 
         /// <summary>
         /// 赛季BOSS
