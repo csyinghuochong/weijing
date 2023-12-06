@@ -68,7 +68,7 @@ namespace ET
             if (PetHelper.IsShenShou(self.HeChengPet_Left.ConfigId)
                 || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能放生！");
+                FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
             }
 
             bool havepetHexin = false;
