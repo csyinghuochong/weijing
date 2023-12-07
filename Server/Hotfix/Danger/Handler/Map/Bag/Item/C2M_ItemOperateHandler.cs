@@ -414,6 +414,10 @@ namespace ET
                                 int baoshiadd = RandomHelper.RandomNumber(int.Parse(baoshipas[0]), int.Parse(baoshipas[1]) + 1);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.BaoShiDu, baoshiadd.ToString());
                                 break;
+                            case 132:
+                                long reduceTime = long.Parse(itemConfig.ItemUsePar);
+                                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SeasonBossRefreshTime, -1 * reduceTime, 0);
+                                break;
                         }
 
                         //扣除道具

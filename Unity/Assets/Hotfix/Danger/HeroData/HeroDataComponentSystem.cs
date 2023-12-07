@@ -142,21 +142,18 @@ namespace ET
                 Log.Console($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
             }
 
-            ///赛季临时数据[赛季开始]
-            if (ComHelp.IsInnerNet())
+            ///赛季数据[赛季开始]
+            long serverTime = TimeHelper.ServerNow();
+            long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
+            if (seasonopenTime != 0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
             {
-                long serverTime = TimeHelper.ServerNow();
-                long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
-                if (seasonopenTime != 0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
-                {
-                    //清空赛季相关数据. 赛季任务 晶核
-                    numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0);
+                //清空赛季相关数据. 赛季任务 晶核
+                numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0);
 
-                    Log.Console("清空赛季任务！");
-                }
-
-                self.CheckSeasonOpen(false);
+                Log.Console("清空赛季任务！");
             }
+
+            self.CheckSeasonOpen(false);
         }
 
         public static void ClearSeasonData(this HeroDataComponent self)

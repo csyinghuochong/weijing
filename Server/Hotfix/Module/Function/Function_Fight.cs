@@ -1894,40 +1894,40 @@ namespace ET
             }
 
             //宠物皮肤属性
-            for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
-            {
-                string[] strList = unit.GetComponent<PetComponent>().PetSkinList[p].Value.Split('_');
+            //for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
+            //{
+            //    string[] strList = unit.GetComponent<PetComponent>().PetSkinList[p].Value.Split('_');
 
-                for (int y = 0; y < strList.Length; y++)
-                {
+            //    for (int y = 0; y < strList.Length; y++)
+            //    {
 
-                    if (strList[y] != "" && strList[y] != null && strList[y] != "0")
-                    {
-                        PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
-                        if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null)
-                        {
-                            string[] AddPropreList = petSkinCof.PripertySet.Split(';');
+            //        if (strList[y] != "" && strList[y] != null && strList[y] != "0")
+            //        {
+            //            PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
+            //            if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null)
+            //            {
+            //                string[] AddPropreList = petSkinCof.PripertySet.Split(';');
 
-                            for (int z = 0; z < AddPropreList.Length; z++)
-                            {
-                                int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
-                                int type = NumericHelp.GetNumericValueType(addProType);
-                                int addProValue = 0;
-                                if (type == 1)
-                                {
-                                    addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
-                                }
-                                else
-                                {
-                                    addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
-                                }
+            //                for (int z = 0; z < AddPropreList.Length; z++)
+            //                {
+            //                    int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
+            //                    int type = NumericHelp.GetNumericValueType(addProType);
+            //                    int addProValue = 0;
+            //                    if (type == 1)
+            //                    {
+            //                        addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
+            //                    }
+            //                    else
+            //                    {
+            //                        addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
+            //                    }
 
-                                AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
-                            }
-                        }
-                    }
-                }
-            }
+            //                    AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
             //汇总属性
             long BaseHp = occBaseHp + equipHpSum + BaseHp_EquipSuit;
@@ -2119,14 +2119,18 @@ namespace ET
 
             //神兽羁绊属性
             int shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();
-            List<PropertyValue> shenshoujiban = null;
-            ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
-            if (shenshoujiban != null)
+            List<PropertyValue> shenshoujiban = new List<PropertyValue>();
+            foreach ((int petnumber, List<PropertyValue> prolist) in ConfigHelper.ShenShouJiBan)
             {
-                for (int i = 0; i < shenshoujiban.Count; i++)
+                if (shenshouNumber >= petnumber)
                 {
-                    AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicListCopy);
+                    shenshoujiban.AddRange(prolist);
                 }
+            }
+
+            for (int i = 0; i < shenshoujiban.Count; i++)
+            {
+                AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicListCopy);
             }
 
             //8类型不加战力的被动技能属性

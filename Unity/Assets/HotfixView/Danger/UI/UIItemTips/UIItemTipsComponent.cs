@@ -503,6 +503,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请前往宠物重塑界面使用！");
                 return;
             }
+            if (itemConfig.ItemSubType == 132)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请前往赛季界面使用");
+                return;
+            }
 
             long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
