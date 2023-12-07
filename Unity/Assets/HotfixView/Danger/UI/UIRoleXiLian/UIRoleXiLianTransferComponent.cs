@@ -195,6 +195,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (itemconf.EquipType == 201)
+                {
+                    continue;
+                }
 
                 if (itemconf.ItemQuality < 4) {
                     continue;
