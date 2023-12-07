@@ -37,7 +37,8 @@ namespace ET
                 }
                 case 3:
                 {
-                    EffectViewComponent effectViewComponent = start.GetComponent<EffectViewComponent>();
+                    Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(args.ZoneScene);
+                    EffectViewComponent effectViewComponent = myUnit.GetComponent<EffectViewComponent>();
                     if (effectViewComponent == null)
                     {
                         return;
@@ -56,11 +57,11 @@ namespace ET
                         playEffectBuffData.TargetAngle = 0; //技能角度
                         playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect; //特效类型
                         playEffectBuffData.InstanceId = args.M2C_ChainLightning.InstanceId;
-                        start.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
+                        myUnit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
                     }
                     else
                     {
-                        aEffectHandler.GetComponent<ChainLightningComponent>().Start = target.GetComponent<HeroTransformComponent>().GetTranform(PosType.Center);
+                        aEffectHandler.GetComponent<ChainLightningComponent>().Start = start.GetComponent<HeroTransformComponent>().GetTranform(PosType.Center);
                         aEffectHandler.GetComponent<ChainLightningComponent>().End = target.GetComponent<HeroTransformComponent>().GetTranform(PosType.Center);
                     }
 

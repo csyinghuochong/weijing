@@ -107,9 +107,10 @@ namespace ET
             //    FloatTipManager.Instance.ShowFloatTip("已达到钻石抽卡最大次数");
             //    return;
             //}
+            long instanceid = self.InstanceId;
             C2M_PetEggChouKaRequest m_ItemOperateWear = new C2M_PetEggChouKaRequest() { ChouKaType = choukaType };
             M2C_PetEggChouKaResponse r2c_roleEquip = (M2C_PetEggChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (r2c_roleEquip.Error != 0)
+            if (r2c_roleEquip.Error != 0 || instanceid != self.InstanceId)
             {
                 return;
             }

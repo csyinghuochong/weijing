@@ -84,13 +84,14 @@ namespace ET
 
         public static async ETTask RequestSelfPaiMaiList(this UIPaiMaiSellComponent self)
         {
+            long instanceid = self.InstanceId;
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
                 PaiMaiType = 0,
                 UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
-            if (self.IsDisposed)
+            if (self.IsDisposed || instanceid != self.InstanceId)
             {
                 return;
             }

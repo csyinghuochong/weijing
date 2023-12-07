@@ -83,14 +83,13 @@ namespace ET
             if (string.IsNullOrEmpty(self.UnitAssetsPath) && self.GameObject != null)
             {
                 UnityEngine.Object.Destroy(self.GameObject);
-                self.GameObject = null;
             }
             if (!string.IsNullOrEmpty(self.UnitAssetsPath))
             {
                 self.OnRevive();
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
-                self.GameObject = null;
             }
+            self.GameObject = null;
         }
 
         public static void LoadGameObject(this GameObjectComponent self)
@@ -334,7 +333,15 @@ namespace ET
                 self.GameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
             }
             unit.GetComponent<FsmComponent>()?.SetHorseState();
-            unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(go);
+            try
+            {
+                unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(go);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"OnShangMaError:  {ex.ToString()}");
+            }
+            
             self.ShowRoleDi(false);
         }
 

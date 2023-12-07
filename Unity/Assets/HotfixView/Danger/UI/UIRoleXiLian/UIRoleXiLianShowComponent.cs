@@ -134,7 +134,7 @@ namespace ET
 
 			//洗炼消耗
 			int[] itemCost = itemConfig.XiLianStone;
-			if (itemCost == null || itemCost.Length == 0)
+			if (itemCost == null || itemCost.Length < 2)
 			{
 				self.CostItem.SetActive(false);
 				return;

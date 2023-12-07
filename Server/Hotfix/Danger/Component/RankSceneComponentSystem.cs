@@ -528,6 +528,8 @@ namespace ET
             List<RankPetInfo> rankPetInfos = new List<RankPetInfo>();
             List<int> indexList = new List<int>();
 
+
+            //前四名只找1-4名
             if (rankNumber >= 1 && rankNumber <= 4)
             {
                 for (int i = 0; i < 4; i++)
@@ -543,11 +545,11 @@ namespace ET
                 while (indexList.Count < 3)
                 {
                     int index = 0;
-                    if (rankNumber == 0)
+                    if (rankNumber == 0)        //没上榜就找排行榜最后十名
                         index = RandomHelper.RandomNumber(self.DBRankInfo.rankingPets.Count - 10, self.DBRankInfo.rankingPets.Count);
-                    else if (rankNumber > 10)
+                    else if (rankNumber > 10)       //大于10名找比自己排行前十名的
                         index = RandomHelper.RandomNumber(rankNumber - 11, rankNumber - 1);
-                    else
+                    else                                 //小于10名找前十名
                         index = RandomHelper.RandomNumber(0, rankNumber - 1);
 
                     if (!indexList.Contains(index))

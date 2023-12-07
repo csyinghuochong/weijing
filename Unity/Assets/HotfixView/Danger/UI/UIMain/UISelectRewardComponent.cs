@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISelectRewardComponent: Entity, IAwake
+    public class UISelectRewardComponent : Entity, IAwake
     {
         public GameObject TitleText;
         public GameObject ItemListNode;
@@ -15,7 +15,7 @@ namespace ET
         public int Type; // 0等级领取 1击败领取
     }
 
-    public class UISelectRewardAwakeSystem: AwakeSystem<UISelectRewardComponent>
+    public class UISelectRewardAwakeSystem : AwakeSystem<UISelectRewardComponent>
     {
         public override void Awake(UISelectRewardComponent self)
         {
@@ -85,21 +85,31 @@ namespace ET
             switch (self.Type)
             {
                 case 0:
-                {
-                    C2M_LeavlRewardRequest request = new C2M_LeavlRewardRequest() { LvKey = self.Key, Index = index };
-                    M2C_LeavlRewardResponse response =
-                            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_LeavlRewardResponse;
-                    UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UpdateLvReward();
-                    break;
-                }
+                    {
+                        long instanceid = self.InstanceId;
+                        C2M_LeavlRewardRequest request = new C2M_LeavlRewardRequest() { LvKey = self.Key, Index = index };
+                        M2C_LeavlRewardResponse response =
+                                await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_LeavlRewardResponse;
+                        if (instanceid != self.InstanceId)
+                        {
+                            return;
+                        }
+                        UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UpdateLvReward();
+                        break;
+                    }
                 case 1:
-                {
-                    C2M_KillMonsterRewardRequest request = new C2M_KillMonsterRewardRequest() { Key = self.Key, Index = index };
-                    M2C_KillMonsterRewardResponse response =
-                            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_KillMonsterRewardResponse;
-                    UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UpdateKillMonsterReward();
-                    break;
-                }
+                    {
+                        long instanceid = self.InstanceId;
+                        C2M_KillMonsterRewardRequest request = new C2M_KillMonsterRewardRequest() { Key = self.Key, Index = index };
+                        M2C_KillMonsterRewardResponse response =
+                                await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_KillMonsterRewardResponse;
+                        if (instanceid != self.InstanceId)
+                        {
+                            return;
+                        }
+                        UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UpdateKillMonsterReward();
+                        break;
+                    }
             }
 
             UIHelper.Remove(self.ZoneScene(), UIType.UISelectReward);
