@@ -111,8 +111,16 @@ namespace ET
             self.MonsterHeadImg.GetComponent<Image>().sprite = sp;
 
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
-            DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
-            self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
+            if (fubenid == 0)
+            {
+                self.MonsterPositionText.GetComponent<Text>().text = "未刷新";
+            }
+            else
+            {
+                DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
+                self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
+            }
+           
 
             self.UpdateSeasonReward();
         }
