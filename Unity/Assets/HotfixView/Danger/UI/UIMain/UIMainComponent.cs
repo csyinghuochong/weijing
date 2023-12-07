@@ -825,49 +825,126 @@ namespace ET
         public static async ETTask CheckCanEquip(this UIMainComponent self)
         {
             //有bug 先注释
-            await ETTask.CompletedTask;
-            //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            //if (userInfoComponent.UserInfo.Lv > 25)
-            //{
-            //    return;
-            //}
-            //// 检测是否有可以穿戴的装备
-            //BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            //List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
-            //for (int i = bagInfos.Count - 1; i >= 0; i--)
-            //{
-            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-            //    if (itemConfig.ItemType == ItemTypeEnum.Equipment &&
-            //        (
-            //            itemConfig.EquipType == ItemEquipType.Common ||
-            //            itemConfig.EquipType == ItemEquipType.Sword ||
-            //            itemConfig.EquipType == ItemEquipType.Knife ||
-            //            itemConfig.EquipType == ItemEquipType.Wand ||
-            //            itemConfig.EquipType == ItemEquipType.Book ||
-            //            itemConfig.EquipType == ItemEquipType.Bow ||
-            //            itemConfig.EquipType == ItemEquipType.Bujia ||
-            //            itemConfig.EquipType == ItemEquipType.QingJia ||
-            //            itemConfig.EquipType == ItemEquipType.ZhongJia
-            //        ))
-            //    {
-            //        BagInfo equip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.EquipType);
-            //        if (equip == null)
-            //        {
-            //            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIGuideEquip);
-            //            if (ui != null)
-            //            {
-            //                // ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
-            //            }
-            //            else
-            //            {
-            //                ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
-            //                ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
-            //            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            UserInfo useInfo = userInfoComponent.UserInfo;
+            if (useInfo.Lv > 25)
+            {
+                return;
+            }
 
-            //            break;
-            //        }
-            //    }
-            //}
+            // 检测是否有可以穿戴的装备
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            for (int i = bagInfos.Count - 1; i >= 0; i--)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+
+                //判断等级
+                int roleLv = useInfo.Lv;
+                int equipLv = itemConfig.UseLv;
+
+                //简易
+                if (bagInfos[i].HideSkillLists.Contains(68000103))
+                {
+                    equipLv = equipLv - 5;
+                }
+
+                //无级别
+                if (bagInfos[i].HideSkillLists.Contains(68000106))
+                {
+                    equipLv = 1;
+                }
+
+                if (roleLv < equipLv)
+                {
+                    continue;
+                }
+
+                if (bagInfos[i].IfJianDing)
+                {
+                    continue;
+                }
+
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment)
+                {
+                    bool ifWear = false;
+                    if (itemConfig.EquipType == ItemEquipType.Common)
+                    {
+                        ifWear = true;
+                    }
+                    else if (itemConfig.EquipType >= 1 && itemConfig.EquipType <= 5)
+                    {
+                        if (useInfo.Occ == 1 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 2))
+                        {
+                            ifWear = true;
+                        }
+                        else if (useInfo.Occ == 2 && (itemConfig.EquipType == 3 || itemConfig.EquipType == 4))
+                        {
+                            ifWear = true;
+                        }
+                        else if (useInfo.Occ == 3 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 5))
+                        {
+                            ifWear = true;
+                        }
+                    }
+                    else if (itemConfig.EquipType >= 11 && itemConfig.EquipType <= 13)
+                    {
+                        if (useInfo.OccTwo > 0)
+                        {
+                            OccupationTwoConfig occtwoCof = OccupationTwoConfigCategory.Instance.Get(useInfo.OccTwo);
+                            if (occtwoCof.ArmorMastery == itemConfig.EquipType)
+                            {
+                                ifWear = true;
+                            }
+                        }
+                        else
+                        {
+                            ifWear = true;
+                        }
+                    }
+                    else
+                    {
+                        // 生肖、晶核这些不用
+                        ifWear = false;
+                    }
+
+                    if (ifWear == false)
+                    {
+                        continue;
+                    }
+                    
+                    int weizhi = itemConfig.ItemSubType;
+                    //获取之前的位置是否有装备
+                    BagInfo beforeequip = null;
+                    if (weizhi == (int)ItemSubTypeEnum.Shiping)
+                    {
+                        List<BagInfo> equipList = bagComponent.GetEquipListByWeizhi(weizhi);
+                        beforeequip = equipList.Count < 3? null : equipList[0];
+                    }
+                    else
+                    {
+                        beforeequip = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, weizhi);
+                    }
+
+                    if (beforeequip == null)
+                    {
+                        UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIGuideEquip);
+                        if (ui != null)
+                        {
+                            // ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+                        }
+                        else
+                        {
+                            ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
+                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            await ETTask.CompletedTask;
         }
 
         public static  void OnBagItemUpdate(this UIMainComponent self)
