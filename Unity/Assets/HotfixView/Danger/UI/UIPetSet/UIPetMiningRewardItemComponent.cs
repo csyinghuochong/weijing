@@ -60,7 +60,7 @@ namespace ET
             TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get( taskPro.taskID );
 
             self.Text_tip.GetComponent<Text>().text = taskCountryConfig.TaskDes;
-            self.Text_progress.GetComponent<Text>().text = $"{taskPro.taskTargetNum_1}/{taskCountryConfig.TargetValue}";
+            self.Text_progress.GetComponent<Text>().text = $"{taskPro.taskTargetNum_1}/{taskCountryConfig.TargetValue[0]}";
 
             self.ImageReceived.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
             self.ButtonReward.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);

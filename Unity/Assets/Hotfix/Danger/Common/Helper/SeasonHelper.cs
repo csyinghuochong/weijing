@@ -22,6 +22,10 @@ namespace ET
             Dictionary<int, DungeonConfig> keyValuePairs = DungeonConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
+                if (item.Key >= 100000)
+                {
+                    continue;
+                }
                 if (item.Value.EnterLv <= lv)
                 {
                     canEnterIds.Add(item.Key);

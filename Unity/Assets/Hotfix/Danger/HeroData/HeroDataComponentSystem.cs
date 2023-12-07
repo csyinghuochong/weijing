@@ -152,7 +152,7 @@ namespace ET
 
                 Log.Console("清空赛季任务！");
             }
-
+          
             self.CheckSeasonOpen(false);
         }
 
@@ -166,6 +166,12 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            if (numericComponent.GetAsInt(NumericType.SeasonBossFuben) >= 100000)
+            {
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+            }
+
             if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
                 Log.Console($"CheckSeasonOpen: {unit.Id}");
