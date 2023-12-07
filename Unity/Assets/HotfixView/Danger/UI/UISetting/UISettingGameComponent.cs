@@ -464,7 +464,6 @@ namespace ET
 
         public static async ETTask SendGameMemory(this UISettingGameComponent self)
         {
-#if UNITY_ANDROID
             if (GlobalHelp.GetBigVersion() < 17)
             {
                 return;
@@ -503,8 +502,6 @@ namespace ET
 
             C2Popularize_UploadRequest request = new C2Popularize_UploadRequest() { MemoryInfo = stringBuilder.ToString() };
             Popularize2C_UploadResponse response = (Popularize2C_UploadResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call( request );
-#endif
-
         }
 
         public static void OnNoShowOther(this UISettingGameComponent self)
