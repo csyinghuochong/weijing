@@ -252,7 +252,13 @@ namespace ET
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
+            if (setvalues.Length < 4)
+            {
+                value = "1@0@0@0";
+            }
+            setvalues = value.Split('@');
             setvalues[index] = setvalues[index] == "1" ? "0" : "1";
+
             value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}@{setvalues[3]}";
 
             self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
