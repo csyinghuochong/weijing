@@ -1360,6 +1360,12 @@ namespace ET
             //赛季任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {
+                if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+
                 TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
                 if (taskCountry.TaskType == TaskCountryType.Season)
                 {
