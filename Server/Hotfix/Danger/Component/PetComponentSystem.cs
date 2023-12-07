@@ -1021,7 +1021,6 @@ namespace ET
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
 
-
             int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
             if (pingfenIndex != -1)
             {

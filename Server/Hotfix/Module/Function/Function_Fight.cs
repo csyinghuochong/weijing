@@ -620,9 +620,7 @@ namespace ET
                 //物理伤害
                 if (skillconfig.DamgeType == 1)
                 {
-
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_ActDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_ActDamgeSubPro);
-
                     if (ifMonsterBoss_Act && petfuben ==  false)
                     {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ActBossPro);
