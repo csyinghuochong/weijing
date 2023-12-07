@@ -188,7 +188,7 @@ namespace ET
         public static void OnSelect(this UISeasonLordDetailComponent self, BagInfo bagInfo)
         {
             self.BagInfo = bagInfo;
-            self.CheckedItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.CheckedItem.UpdateItem(new BagInfo() { ItemID = bagInfo.ItemID, ItemNum = 1 }, ItemOperateEnum.None);
             self.UICommonItem.SetActive(true);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             self.ItemNameText.GetComponent<Text>().text = itemConfig.ItemName;
