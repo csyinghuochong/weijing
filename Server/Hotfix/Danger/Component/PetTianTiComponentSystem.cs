@@ -121,6 +121,8 @@ namespace ET
             if (rankid > 0)
             {
                 self.MainUnit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiRank_309, 0, rankid);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
+                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }

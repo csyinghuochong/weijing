@@ -186,6 +186,19 @@ namespace ET
             return PetConfigCategory.Instance.Get(configid).PetType == 2;
         }
 
+        public static bool HavePetHeXin(RolePetInfo rolePetInfo)
+        {
+            for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
+            {
+                if (rolePetInfo.PetHeXinList[i] > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         public static void CheckPetPosition(List<long> petTeamList, List<long> petMingPosition)
         {
             ///移除

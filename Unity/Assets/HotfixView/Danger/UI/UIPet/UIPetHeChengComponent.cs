@@ -71,6 +71,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
                 return;
             }
+            if (PetHelper.HavePetHeXin(self.HeChengPet_Left) || PetHelper.HavePetHeXin(self.HeChengPet_Right)  )
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先卸下宠物之核！");
+                return;
+            }
 
             bool havepetHexin = false;
             for (int i = 0; i < self.HeChengPet_Left.PetHeXinList.Count; i++)
