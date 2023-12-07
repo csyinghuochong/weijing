@@ -574,6 +574,12 @@ namespace ET
                 if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Pet)
                 {
                     damge = (int)((float)damge * 0.5f);
+                    
+                    //最低造成10%的伤害
+                    int baodiValue = (int)((float)actValue * 0.1f);
+                    if (damge < baodiValue) {
+                        damge = baodiValue;
+                    }
                 }
 
 
