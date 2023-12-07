@@ -6,7 +6,7 @@
 {"_t":"DungeonTransferConfig","_id":1006,"Name":"地下洞穴","MapID":10006,"EnterLv":12,"BornPos":[16800,2910,-6970],"Position":[20059,2951,-5494]},
 {"_t":"DungeonTransferConfig","_id":1007,"Name":"石墓一层","MapID":10007,"EnterLv":8,"BornPos":[14300,2910,-4400],"Position":[26595,2956,-7308]},
 {"_t":"DungeonTransferConfig","_id":1008,"Name":"石墓二层","MapID":10008,"EnterLv":1,"BornPos":[14400,2910,-4300],"Position":[25444,2957,-4368]},
-{"_t":"DungeonTransferConfig","_id":1009,"Name":"矿洞一层去绿林小镇","MapID":10001,"EnterLv":1,"BornPos":[7938,-55,-5266],"Position":[14793,2955,-7626]},
+{"_t":"DungeonTransferConfig","_id":1009,"Name":"矿洞一层去绿林小镇","MapID":10001,"EnterLv":1,"BornPos":[7738,-100,-5766],"Position":[14793,2955,-7626]},
 {"_t":"DungeonTransferConfig","_id":1010,"Name":"矿洞二层去矿洞一层","MapID":10002,"EnterLv":1,"BornPos":[15819,2914,3879],"Position":[16599,2957,-7899]},
 {"_t":"DungeonTransferConfig","_id":1011,"Name":"绿林深处去绿林郊外","MapID":10004,"EnterLv":1,"BornPos":[25700,2910,-3300],"Position":[13761,2957,-7344]},
 {"_t":"DungeonTransferConfig","_id":1012,"Name":"地下洞穴去石墓二层","MapID":10008,"EnterLv":1,"BornPos":[20300,2910,-4900],"Position":[16407,2957,-7531]},
