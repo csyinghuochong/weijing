@@ -810,34 +810,34 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
             rolePetInfo.Vs.Add(hp_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_MaxHp);
+            rolePetInfo.Ks.Add((int)NumericType.Base_MaxHp_Base);
             rolePetInfo.Vs.Add(hp_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_MaxAct);
+            rolePetInfo.Ks.Add((int)NumericType.Base_MaxAct_Base);
             rolePetInfo.Vs.Add(act_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Mage);
+            rolePetInfo.Ks.Add((int)NumericType.Base_Mage_Base);
             rolePetInfo.Vs.Add(mage_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_MaxDef);
+            rolePetInfo.Ks.Add((int)NumericType.Base_MaxDef_Base);
             rolePetInfo.Vs.Add(def_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_MaxAdf);
+            rolePetInfo.Ks.Add((int)NumericType.Base_MaxAdf_Base);
             rolePetInfo.Vs.Add(adf_Now);
 
             rolePetInfo.Ks.Add((int)NumericType.PetSkin);
             rolePetInfo.Vs.Add(rolePetInfo.SkinId);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Cri);
+            rolePetInfo.Ks.Add((int)NumericType.Base_Cri_Base);
             rolePetInfo.Vs.Add(0);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Res);
+            rolePetInfo.Ks.Add((int)NumericType.Base_Res_Base);
             rolePetInfo.Vs.Add(0);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Hit);
+            rolePetInfo.Ks.Add((int)NumericType.Base_Hit_Base);
             rolePetInfo.Vs.Add(0);
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
+            rolePetInfo.Ks.Add((int)NumericType.Base_Dodge_Base);
             rolePetInfo.Vs.Add(0);
 
             rolePetInfo.Ks.Add((int)NumericType.PetSkin);
