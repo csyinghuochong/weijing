@@ -562,7 +562,7 @@ namespace ET
                 return;
             }
             float dropAdd_Pro = 1;
-            if (bekill.IsBoss() && main != null)
+            if (bekill.IsBoss() && main != null && bekill.ConfigId != SeasonHelper.SeasonBossId)
             {
                 int fubenDifficulty = FubenDifficulty.None;
                 dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
@@ -620,7 +620,7 @@ namespace ET
             }
 
             //个人副本根据成长来
-            if (sceneType == SceneTypeEnum.LocalDungeon && bekill.IsBoss())
+            if (sceneType == SceneTypeEnum.LocalDungeon && bekill.IsBoss() && bekill.ConfigId != SeasonHelper.SeasonBossId)
             {
                 int killNumber =  main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(monsterCof.Id);
                 int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(scenid);
