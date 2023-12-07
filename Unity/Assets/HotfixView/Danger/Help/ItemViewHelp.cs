@@ -240,7 +240,7 @@ namespace ET
             { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = "物理闪避", Icon =  string.Empty }},
             { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon =  string.Empty }},
             { NumericType.Now_ActBossAddDamge, new NumericAttribute(){ Name = "对怪伤害", Icon =  string.Empty }},
-
+            { NumericType.Now_DropAdd_Pro, new NumericAttribute(){ Name = "爆率", Icon = string.Empty}}
         };
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
