@@ -350,4 +350,6 @@
 {"_t":"EffectConfig","_id":91000313,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_QunLiao_4","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000,"PlayType":0},
 {"_t":"EffectConfig","_id":91000314,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_QunLiao_5","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":500,"PlayType":0},
 {"_t":"EffectConfig","_id":91000315,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_ShanDianLian_2","SkillEffectDelayTime":0,"SkillParent":4,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":5000,"PlayType":0},
+{"_t":"EffectConfig","_id":91000316,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_XuanFengZhan","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1200,"PlayType":0},
+{"_t":"EffectConfig","_id":91000317,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_Fireball_4a","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":3000,"PlayType":0},
 ]}
