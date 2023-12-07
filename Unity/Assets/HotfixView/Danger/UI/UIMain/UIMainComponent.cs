@@ -612,6 +612,7 @@ namespace ET
             else
             {
                 self.Fps.SetActive(true);
+                self.TextMessage.text = string.Empty;
                 OpcodeHelper.ShowMessage = true;
                 OpcodeHelper.OneTotalNumber = 0;
                 TimerComponent.Instance?.Remove(ref self.TimerPing);
