@@ -99,7 +99,7 @@ namespace ET
             }
 
             
-            if (itemConfig.ItemSubType == 105 || itemConfig.ItemSubType == 134)
+            if (/*itemConfig.ItemSubType == 105 || */itemConfig.ItemSubType == 134)
             {
                 if (PetHelper.IsBianYI(self.RolePetInfo))
                 {
@@ -108,14 +108,14 @@ namespace ET
                 }
             }
 
-            if (itemConfig.ItemSubType == 133)
-            {
-                if (!PetHelper.IsBianYI(self.RolePetInfo))
-                {
-                    FloatTipManager.Instance.ShowFloatTip("只有变异宠物能使用此道具！");
-                    return;
-                }
-            }
+            //if (itemConfig.ItemSubType == 133)
+            //{
+            //    if (!PetHelper.IsBianYI(self.RolePetInfo))
+            //    {
+            //        FloatTipManager.Instance.ShowFloatTip("只有变异宠物能使用此道具！");
+            //        return;
+            //    }
+            //}
 
             long oldSkin = self.RolePetInfo.SkinId;
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();

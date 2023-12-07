@@ -50,14 +50,14 @@ namespace ET
 				//宠物洗练
 				case 105:
 					// 宠之晶 增加额外效果,洗炼5%的概率使普通宠物发生变异,变异的宠物不能使用此道具
-					if (PetHelper.IsBianYI(petInfo))
-					{
-						response.Error = ErrorCode.ERR_Pet_NoUseItem;
-						reply();
-						return;
-					}
+					//if (PetHelper.IsBianYI(petInfo))
+					//{
+					//	response.Error = ErrorCode.ERR_Pet_NoUseItem;
+					//	reply();
+					//	return;
+					//}
 
-					if (RandomHelper.RandomNumber(0, 101) <= 5)
+					if (!PetHelper.IsBianYI(petInfo) && RandomHelper.RandomNumber(0, 101) <= 5)
 					{
 						if (petCof.Skin.Length >= 2)
 						{
@@ -111,12 +111,12 @@ namespace ET
 					break;
 				case 133:
 					// 超级宠之晶 只有变异宠物可以用,洗宠物属性,不会改变其皮肤,只改变技能和资质 
-					if (!PetHelper.IsBianYI(petInfo))
-					{
-						response.Error = ErrorCode.ERR_Pet_NoUseItem;
-						reply();
-						return;
-					}
+					//if (!PetHelper.IsBianYI(petInfo))
+					//{
+					//	response.Error = ErrorCode.ERR_Pet_NoUseItem;
+					//	reply();
+					//	return;
+					//}
 
 					//重置资质系数
 					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 2);
