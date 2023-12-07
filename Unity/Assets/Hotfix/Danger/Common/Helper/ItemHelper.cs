@@ -96,6 +96,10 @@ namespace ET
                 float hidevaluemin = float.Parse(hidevalueinfo[1]);
                 float hidevalueman = float.Parse(hidevalueinfo[2]);
                 float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman);
+                if (qulity < 90) {
+                    hidevalue = hidevalue * (0.4f + qulity / 100 * 0.6f);
+                }
+
                 return new HideProList() { HideID = hideid, HideValue = (long)(hidevalue * 10000) };
             }
             else
@@ -103,6 +107,11 @@ namespace ET
                 int hidevaluemin = int.Parse(hidevalueinfo[1]);
                 int hidevaluemax = int.Parse(hidevalueinfo[2]);
                 int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax);
+                if (qulity < 90)
+                {
+                    hidevalue = (int)((float)hidevalue * (0.4f + qulity / 100 * 0.6f));
+                }
+
                 return new HideProList() { HideID = hideid, HideValue = hidevalue };
             }
         }

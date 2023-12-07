@@ -1287,9 +1287,6 @@ namespace ET
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
 
-            ///晶核列表
-            List<BagInfo> jingHeList = unit.GetComponent<BagComponent>().GetCurJingHeList();
-
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
                 BagInfo userBagInfo = equipList[i];
@@ -2099,6 +2096,21 @@ namespace ET
             foreach (int key in UpdateProDicList.Keys)
             {
                 UpdateProDicListCopy.Add(key, UpdateProDicList[key]);
+            }
+
+            ///晶核列表
+            List<BagInfo> jingHeList = unit.GetComponent<BagComponent>().GetCurJingHeList();
+            for (int i = 0; i < jingHeList.Count; i++)
+            {
+                //存储装备精炼数值
+                if (jingHeList[i].XiLianHideProLists != null)
+                {
+                    for (int y = 0; y < jingHeList[i].XiLianHideProLists.Count; y++)
+                    {
+                        HideProList hidePro = jingHeList[i].XiLianHideProLists[y];
+                        AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicListCopy);
+                    }
+                }
             }
 
             //家园守护
