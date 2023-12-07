@@ -268,14 +268,21 @@ namespace ET
             return null;
         }
 
+        public static Dictionary<int, int> MonsterToFuben = new Dictionary<int, int>();
         public static int GetFubenByMonster(int monsterId)
         {
+            if (MonsterToFuben.ContainsKey(monsterId))
+            {
+                return MonsterToFuben[monsterId];
+            }
+
             List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < dungeonConfigs.Count; i++)
             {
                 List<int> allmonster = SceneConfigHelper.GetLocalDungeonMonsters(dungeonConfigs[i].Id);
                 if (allmonster.Contains(monsterId))
                 {
+                    MonsterToFuben.Add(monsterId, dungeonConfigs[i].Id);
                     return dungeonConfigs[i].Id;
                 }
             }
