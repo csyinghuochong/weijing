@@ -196,7 +196,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo , 2);
+                        self.PetXiLian(rolePetInfo , 2, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -366,8 +366,9 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="rolePetInfo"></param>
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
+        /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType) 
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId) 
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -449,7 +450,7 @@ namespace ET
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
            
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
-            newpet = self.PetXiLian(newpet, 1);
+            newpet = self.PetXiLian(newpet, 1, 0); 
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();

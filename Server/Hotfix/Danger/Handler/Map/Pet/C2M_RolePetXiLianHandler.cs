@@ -66,7 +66,7 @@ namespace ET
 					}
 
 					//重置资质系数
-					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2);
+					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2, bagInfo.ItemID);
 					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
@@ -119,8 +119,8 @@ namespace ET
 					//}
 
 					//重置资质系数
-					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 2);
-					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
+					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 2, bagInfo.ItemID);
+                    unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
 				case 134:

@@ -69,7 +69,7 @@ namespace ET
                 for (int k = 0; k < petlist.Count; k++)
                 {
                     RolePetInfo petInfo = petComponent.GenerateNewPet(petlist[0], 0);
-                    petComponent.PetXiLian(petInfo, 1);
+                    petComponent.PetXiLian(petInfo, 1, 0);
                     petComponent.UpdatePetAttribute(petInfo, false);
                     petInfo.PlayerName = "机器人";
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
