@@ -14,25 +14,47 @@ namespace ET
             List<long> huishouList = request.BagInfoIDs;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
 
-            for (int i = 0; i < huishouList.Count; i++)
+            if (request.BagInfoIDs.Count <= 0)
             {
-                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
-                if (bagInfo == null)
-                {
-                    continue;
-                }
-
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfo.ItemID );
-                if (itemConfig.ItemType != ItemTypeEnum.Consume ||  itemConfig.ItemSubType != 132 )
-                {
-                    continue;
-                }
-
-                reduceTime += long.Parse(itemConfig.ItemUsePar);
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
             }
             
-            bagComponent.OnCostItemData(request.BagInfoIDs, ItemLocType.ItemLocBag);
-            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * reduceTime, 0 );
+            // for (int i = 0; i < huishouList.Count; i++)
+            // {
+            //     BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
+            //     if (bagInfo == null)
+            //     {
+            //         continue;
+            //     }
+            //
+            //     ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfo.ItemID );
+            //     if (itemConfig.ItemType != ItemTypeEnum.Consume ||  itemConfig.ItemSubType != 132 )
+            //     {
+            //         continue;
+            //     }
+            //
+            //     reduceTime += long.Parse(itemConfig.ItemUsePar);
+            // }
+
+            BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[0]);
+            if (bagInfo == null)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+            }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (itemConfig.ItemType != ItemTypeEnum.Consume || itemConfig.ItemSubType != 132)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+            }
+
+            reduceTime += long.Parse(itemConfig.ItemUsePar);
+
+            bagComponent.OnCostItemData(request.BagInfoIDs[0], 1);
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SeasonBossRefreshTime, -1 * reduceTime, 0);
 
             reply();
             await ETTask.CompletedTask;
