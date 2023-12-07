@@ -95,6 +95,7 @@ namespace ET
             this.TheUnitTarget = AIHelp.GetNearestUnit(this.TheUnitFrom, lastTarget.Position, (float)this.SkillConf.DamgeRange[0], this.HurtIds);
             if (this.TheUnitTarget == null)
             {
+                this.BroadcastSkill(lastTarget.Id, lastTarget.Id, 0f, 0f, 0f);
                 this.OnCollisionUnit(lastTarget);
                 this.SetSkillState(SkillState.Finished);
                 return;
