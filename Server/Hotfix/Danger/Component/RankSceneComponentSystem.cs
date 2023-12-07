@@ -529,10 +529,10 @@ namespace ET
             List<int> indexList = new List<int>();
 
 
-            //前四名只找1-4名
+            //前四名只找1-10名
             if (rankNumber >= 1 && rankNumber <= 4)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     if (i != (rankNumber - 1))
                     {
