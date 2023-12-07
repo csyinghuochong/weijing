@@ -996,17 +996,31 @@ namespace ET
             //    }
             //}
 
+            //foreach (var item in attriDic)
+            //{
+            //    int numericType = item.Key;
+            //    int nowValue = (int)numericType / 100;
+            //    int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
+            //    if (attriIndex == -1 || attriIndex >= rolePetInfo.Vs.Count)
+            //    {
+            //        continue;
+            //    }
+            //    rolePetInfo.Vs[attriIndex] += item.Value;
+            //}
+
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;
-                int nowValue = (int)numericType / 100;
-                int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
-                if (attriIndex == -1 || attriIndex >= rolePetInfo.Vs.Count)
+                int attriIndex = rolePetInfo.Ks.IndexOf(numericType);
+                if (attriIndex == -1 )
                 {
+                    rolePetInfo.Ks.Add(numericType);
+                    rolePetInfo.Vs.Add(item.Value);
                     continue;
                 }
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
+
 
             int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
             if (pingfenIndex != -1)
