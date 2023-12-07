@@ -158,6 +158,7 @@ namespace ET
                     Log.ILog.Debug($"M2C_RechargeResponse: {sendChatResponse.Message}");
                     EventType.TikTokPayRequest.Instance.ZoneScene = self.ZoneScene();
                     EventType.TikTokPayRequest.Instance.PayMessage = sendChatResponse.Message;
+                    EventType.TikTokPayRequest.Instance.RechargeNumber = self.ReChargeNumber;
                     EventSystem.Instance.PublishClass(EventType.TikTokPayRequest.Instance);
 #endif
                 }

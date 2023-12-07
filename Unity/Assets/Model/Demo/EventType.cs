@@ -771,7 +771,8 @@ namespace ET
         public class TikTokPayRequest : DisposeObject
         {
             public static readonly TikTokPayRequest Instance = new TikTokPayRequest();
-            public string PayMessage; 
+            public string PayMessage;
+            public int RechargeNumber;
             public Scene ZoneScene;
         }
 

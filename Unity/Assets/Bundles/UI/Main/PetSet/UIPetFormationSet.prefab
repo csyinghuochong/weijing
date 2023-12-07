@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 252703094612195719}
   - component: {fileID: 4259747105649358196}
   m_Layer: 5
-  m_Name: FormationSet6
+  m_Name: FormationSet8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 7085809997300334764}
   - component: {fileID: 7915528750247458497}
   m_Layer: 5
-  m_Name: FormationSet5
+  m_Name: FormationSet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 2959218742259050908}
   - component: {fileID: 553253455586506838}
   m_Layer: 5
-  m_Name: FormationSet8
+  m_Name: FormationSet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 1316695958129175578}
   - component: {fileID: 51210430515217687}
   m_Layer: 5
-  m_Name: FormationSet2
+  m_Name: FormationSet0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 5366996683114351056}
   - component: {fileID: 6400047976270490285}
   m_Layer: 5
-  m_Name: FormationSet1
+  m_Name: FormationSet3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -935,7 +935,7 @@ GameObject:
   - component: {fileID: 5816193850215939114}
   - component: {fileID: 5281025120223099744}
   m_Layer: 5
-  m_Name: FormationSet3
+  m_Name: FormationSet7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 8688128486157947723}
   - component: {fileID: 3095920885426997445}
   m_Layer: 5
-  m_Name: FormationSet7
+  m_Name: FormationSet5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1548,7 +1548,7 @@ GameObject:
   - component: {fileID: 8833688084936436066}
   - component: {fileID: 821157475331856202}
   m_Layer: 5
-  m_Name: FormationSet0
+  m_Name: FormationSet6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

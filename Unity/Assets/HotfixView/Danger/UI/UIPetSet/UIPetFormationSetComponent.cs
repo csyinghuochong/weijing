@@ -70,7 +70,7 @@ namespace ET
                 if (uIRolePetItemComponent == null)
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, transform.GetChild(i).gameObject);
+                    UICommonHelper.SetParent(go, transform.Find("FormationSet" + i).gameObject);
                     uIRolePetItemComponent = self.AddChild<UIPetFormationItemComponent, GameObject>(go);
                     self.FormationItemComponents[i] = uIRolePetItemComponent;
                 }
