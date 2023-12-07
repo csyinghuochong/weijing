@@ -11,9 +11,12 @@ namespace ET
     {
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
+            this.InstanceId = IdGenerater.Instance.GenerateInstanceId();
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
             this.NowPosition.y = theUnitFrom.Position.y + SkillHelp.GetCenterHigh(theUnitFrom.Type, theUnitFrom.ConfigId);
+            this.SkillTriggerInvelTime = 500; // 传递时间
+            this.SkillTriggerLastTime = TimeHelper.ServerNow();
         }
 
         public override void OnExecute()
@@ -79,13 +82,11 @@ namespace ET
             // {
             //     return;
             // }
-            
-            float passTime = (serverNow - this.SkillInfo.SkillBeginTime) * 0.001f;
-            if (passTime < this.SkillConf.SkillDelayTime)
+            if (serverNow - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
             {
                 return;
             }
-            this.SkillInfo.SkillBeginTime = serverNow;
+            this.SkillTriggerLastTime = serverNow;
 
             Unit lastTarget = null;
             lastTarget = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[^1]);
@@ -94,6 +95,7 @@ namespace ET
             this.TheUnitTarget = AIHelp.GetNearestUnit(this.TheUnitFrom, lastTarget.Position, (float)this.SkillConf.DamgeRange[0], this.HurtIds);
             if (this.TheUnitTarget == null)
             {
+                this.OnCollisionUnit(lastTarget);
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
