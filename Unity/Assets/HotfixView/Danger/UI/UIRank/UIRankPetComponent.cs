@@ -34,7 +34,7 @@ namespace ET
             self.Button_Refresh = rc.Get<GameObject>("Button_Refresh");
             self.Button_Refresh.GetComponent<Button>().onClick.AddListener(self.OnButton_Refresh);
             self.Button_Reward = rc.Get<GameObject>("Button_Reward");
-            self.Button_Reward.GetComponent<Button>().onClick.AddListener((self.OnButton_Reward);
+            self.Button_Reward.GetComponent<Button>().onClick.AddListener(self.OnButton_Reward);
             self.Button_Team = rc.Get<GameObject>("Button_Team");
             self.Button_Team.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Team().Coroutine(); });
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
