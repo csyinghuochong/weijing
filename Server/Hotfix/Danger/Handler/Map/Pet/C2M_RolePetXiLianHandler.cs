@@ -152,8 +152,11 @@ namespace ET
 				unit.GetComponent<ChengJiuComponent>().OnPetXiLian(petInfo);		//激活成就
 				unit.GetComponent<TaskComponent>().OnPetXiLian(petInfo);                    //激活任务
 
-                unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
-                unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetXiLian10010086_33, bagInfo.ItemID, 1);
+				if (itemSubType == 105 || itemSubType == 133)
+                {
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetXiLian10010086_33, 0, 1);
+                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetXiLian10010086_33, 0, 1);
+                }
             }
             unit.GetComponent<PetComponent>().CheckPetPingFen();
             unit.GetComponent<PetComponent>().CheckPetZiZhi();
