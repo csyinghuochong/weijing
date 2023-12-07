@@ -796,19 +796,18 @@ namespace ET
             float speed = petCof.Base_MoveSpeed;
             //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 
-
             //存储数据
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
 
-            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
-            rolePetInfo.Vs.Add((long)speed * 10000);
-
-            rolePetInfo.Ks.Add((int)NumericType.Now_Speed);
-            rolePetInfo.Vs.Add((long)speed * 10000);
-
             rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
             rolePetInfo.Vs.Add(hp_Now);
+
+            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
+            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
+
+            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
+            rolePetInfo.Vs.Add((long)speed * 10000);
 
             rolePetInfo.Ks.Add((int)NumericType.Base_MaxHp_Base);
             rolePetInfo.Vs.Add(hp_Now);
@@ -825,9 +824,6 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.Base_MaxAdf_Base);
             rolePetInfo.Vs.Add(adf_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
-            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
-
             rolePetInfo.Ks.Add((int)NumericType.Base_Cri_Base);
             rolePetInfo.Vs.Add(0);
 
@@ -839,9 +835,6 @@ namespace ET
 
             rolePetInfo.Ks.Add((int)NumericType.Base_Dodge_Base);
             rolePetInfo.Vs.Add(0);
-
-            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
-            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
 
             //宠物之核
             List<int> petheXinLv = new List<int>();
@@ -981,33 +974,6 @@ namespace ET
                 }
             }
 
-            //神兽的羁绊效果改成给人加属性,并且算战力
-            //if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
-            //{
-            //    int shenshouNumber = self.GetShenShouNumber();
-            //    List<PropertyValue> shenshoujiban = null;
-            //    ConfigHelper.ShenShouJiBan.TryGetValue(shenshouNumber, out shenshoujiban);
-            //    if (shenshoujiban != null)
-            //    {
-            //        for (int i = 0; i < shenshoujiban.Count; i++)
-            //        {
-            //            Function_Fight.AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, attriDic);
-            //        }
-            //    }
-            //}
-
-            //foreach (var item in attriDic)
-            //{
-            //    int numericType = item.Key;
-            //    int nowValue = (int)numericType / 100;
-            //    int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
-            //    if (attriIndex == -1 || attriIndex >= rolePetInfo.Vs.Count)
-            //    {
-            //        continue;
-            //    }
-            //    rolePetInfo.Vs[attriIndex] += item.Value;
-            //}
-
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;
@@ -1029,6 +995,8 @@ namespace ET
             }
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
             rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
+
+            PetHelper.UpdatePetNumeric( rolePetInfo );
         }
 
         public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit = false)

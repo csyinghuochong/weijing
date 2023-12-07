@@ -5,6 +5,68 @@ namespace ET
     public static class PetHelper
     {
 
+
+
+        public static void UpdatePetNumeric(RolePetInfo rolePetInfo)
+        {
+            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
+            {
+                Update(rolePetInfo, rolePetInfo.Ks[i]);
+            }
+        }
+
+        public static long GetByKey(RolePetInfo rolePetInfo, int key)
+        {
+            long value = 0;
+            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
+            {
+                if (rolePetInfo.Ks[i] == key)
+                { 
+                    return rolePetInfo.Vs[i];   
+                }
+            }
+            return value;
+        }
+
+        public static  float GetAsFloat(RolePetInfo rolePetInfo, int numericType)
+        {
+            return (float)GetByKey(rolePetInfo, numericType) / 10000;
+        }
+
+        public static void Update(RolePetInfo rolePetInfo, int numericType)
+        {
+            if (numericType < (int)NumericType.Max)
+            {
+                return;
+            }
+
+            int nowValue = (int)numericType / 100;
+
+            int add = nowValue * 100 + 1;
+            int mul = nowValue * 100 + 2;
+            int finalAdd = nowValue * 100 + 3;
+            int buffAdd = nowValue * 100 + 11;
+            int buffMul = nowValue * 100 + 12;
+            long old = GetByKey(rolePetInfo, nowValue);
+            long nowPropertyValue = (long)
+                (
+                (GetByKey(rolePetInfo, add) * (1 + GetAsFloat(rolePetInfo, mul)) + GetByKey(rolePetInfo, finalAdd)) * (1 + GetAsFloat(rolePetInfo, buffMul))
+
+                + GetByKey(rolePetInfo, buffAdd)
+                );
+
+            int keyIndex = rolePetInfo.Ks.IndexOf(nowValue);
+            if (keyIndex == -1)
+            {
+                rolePetInfo.Ks.Add(nowValue);
+                rolePetInfo.Vs.Add(nowPropertyValue);
+            }
+            else
+            {
+                rolePetInfo.Vs[keyIndex] = nowPropertyValue;
+            }
+        }
+
         /// <summary>
         /// 宠物当前是第一个皮肤为普通宠物 其他皮肤是变异宠物
         /// </summary>
