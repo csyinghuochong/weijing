@@ -365,7 +365,7 @@ namespace ET
             }
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            if (!petComponent.HavePetSkin(self.LastSelectItem.ConfigId, self.PetSkinId))
+            if (self.LastSelectItem.SkinId != self.PetSkinId)
             {
                 FloatTipManager.Instance.ShowFloatTip("该皮肤尚未激活！");
                 return;
@@ -1041,7 +1041,7 @@ namespace ET
                 self.SkinModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.SkinID.ToString(), true).Coroutine();
             }
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            self.SkinJiHuo.SetActive(petComponent.HavePetSkin( self.LastSelectItem.ConfigId, self.PetSkinId ));
+            self.SkinJiHuo.SetActive(self.LastSelectItem.SkinId == self.PetSkinId);
             self.SkinWeiJiHuo.SetActive(!self.SkinJiHuo.activeSelf);
 
             //显示激活属性
