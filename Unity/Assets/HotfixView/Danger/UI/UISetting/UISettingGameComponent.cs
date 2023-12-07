@@ -310,7 +310,11 @@ namespace ET
             self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
             self.OneSellSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues[1] == "1");
             self.OneSellSet.transform.Find("Image_Click_2").gameObject.SetActive(setvalues[2] == "1");
-            self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
+
+            if (setvalues.Length > 3)
+            {
+                self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
+            }
 
             self.UpdateYaoGan();
             self.UpdateShadow();
