@@ -148,7 +148,7 @@ namespace ET
                         
                         if (taskConfig.Id > self.TaskPro.taskID)
                         {
-                            self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
+                            // self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
                             self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = mat;
                             self.UISeasonTaskItemComponentList[count].Img_line.SetActive(false);
                         }
@@ -386,6 +386,12 @@ namespace ET
                     self.GiveBtn.SetActive(false);
                 }
 
+                if (taskId > self.TaskPro.taskID)
+                {
+                    self.GetBtn.SetActive(false);
+                    self.GiveBtn.SetActive(false);
+                }
+                
                 self.AcvityedImg.SetActive(false);
             }
 
