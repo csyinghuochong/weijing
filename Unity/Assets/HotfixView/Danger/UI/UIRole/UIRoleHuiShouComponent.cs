@@ -240,6 +240,13 @@ namespace ET
                     continue;
                 }
 
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allInfos[i].ItemID);
+                // 赛季晶核不用
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201)
+                {
+                    continue;
+                }
+
                 UIItemComponent uI_1 = null;
                 if (number < self.ItemUIlist.Count)
                 {
