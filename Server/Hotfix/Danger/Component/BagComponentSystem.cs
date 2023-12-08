@@ -324,6 +324,16 @@ namespace ET
             self.CheckValiedItem(self.Warehouse3);
             self.CheckValiedItem(self.Warehouse4);
 
+            for (int i =  self.EquipList.Count - 1; i >=0; i--)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
+                if (itemConfig.ItemType == ItemTypeEnum.Gemstone)
+                {
+                    Log.Console($"误穿宝石！！  {itemConfig.ItemName}");
+                    //self.EquipList.RemoveAt(i);
+                }
+            }
+
             bagList.AddRange(self.GemList);
             bagList.AddRange(self.BagItemList);
             bagList.AddRange(self.BagItemPetHeXin);

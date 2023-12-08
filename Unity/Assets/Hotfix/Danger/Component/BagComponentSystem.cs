@@ -138,6 +138,10 @@ namespace ET
                 HintHelp.GetInstance().ShowHint("已佩戴该装备！");
                 return;
             }
+            if (itemCof.ItemType == 4)
+            {
+                return;
+            }
 
             //猎人单独处理
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;

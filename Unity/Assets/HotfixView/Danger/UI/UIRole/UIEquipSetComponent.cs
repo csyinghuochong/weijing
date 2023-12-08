@@ -178,6 +178,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (itemConfig.ItemType == 4)
+                {
+                    continue;
+                }
 
                 if (itemConfig.ItemSubType < (int)ItemSubTypeEnum.Shiping)
                 {
