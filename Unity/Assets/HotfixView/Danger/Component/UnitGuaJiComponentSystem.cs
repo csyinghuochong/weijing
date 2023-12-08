@@ -307,7 +307,6 @@ namespace ET
             float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
             if (self.IfGuaJiAutoUseItem && nowHp / maxHp <= 0.6f)
             {
-
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 bool ifUse = false;
 
@@ -315,10 +314,11 @@ namespace ET
                 int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
                 if (self.ifBaseHpSkill(useSkillID))
                 {
-                    BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(useSkillID);
+                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
+                    int itemId = uiSkillGridComponent.SkillPro?.SkillID ?? 0;
+                    BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(itemId);
                     if (bagInfo != null)
                     {
-                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
                         uiSkillGridComponent.OnPointDown(null);
                         uiSkillGridComponent.PointerUp(null);
                         ifUse = true;
