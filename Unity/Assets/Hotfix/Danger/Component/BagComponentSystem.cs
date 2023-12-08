@@ -140,6 +140,7 @@ namespace ET
             }
             if (itemCof.ItemType == 4)
             {
+                HintHelp.GetInstance().ShowHint("请到装备界面穿戴宝石！");
                 return;
             }
 
