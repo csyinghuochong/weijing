@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -407,6 +408,32 @@ namespace ET
                 }
                 MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
             }
+
+            int[] addSkill = null; // skillBuffConfig.AddSkill;
+            if (addSkill != null && addSkill.Length >= 2 && self.GetBuffNumber(buffData.BuffId) >= addSkill[0])
+            {
+                C2M_SkillCmd cmd = new C2M_SkillCmd();
+                cmd.SkillID = addSkill[1];
+                cmd.TargetID = unit.Id;
+                cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                cmd.TargetDistance = 0f;
+                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+            }
+        }
+
+        public static int GetBuffNumber(this BuffManagerComponent self, int buffId)
+        {
+            int buffnumber = 0;
+            int bufflist = self.m_Buffs.Count;
+            
+            for (int i = bufflist - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].BuffData.BuffId == buffId)
+                {
+                    buffnumber++;
+                }
+            }
+            return buffnumber;
         }
 
         public static void Check(this BuffManagerComponent self)
