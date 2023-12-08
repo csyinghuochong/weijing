@@ -268,7 +268,7 @@ namespace ET
 
                 //12月7号 合区百年风华-盛世如愿 54 / 55[ip要改成一样]【起服配置要同步】
                 serverItems_1.Add(new ServerItem() { ServerId = 54, ServerIp = $"{ip}:20395", ServerName = "百年风华", ServerOpenTime = 1698985800000, New = 0, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20395", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 0, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20395", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 0, Show = 0 });
                 
                 serverItems_1.Add(new ServerItem() { ServerId = 56, ServerIp = $"{ip}:20455", ServerName = "精灵国度", ServerOpenTime = 1700195400000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 57, ServerIp = $"{ip}:20375", ServerName = "梦回华夏", ServerOpenTime = 1700800200000, New = 0, Show = 1 });
