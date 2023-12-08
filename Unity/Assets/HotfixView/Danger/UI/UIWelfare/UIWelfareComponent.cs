@@ -15,13 +15,13 @@ namespace ET
         Number
     }
 
-    public class UIWelfareComponent: Entity, IAwake
+    public class UIWelfareComponent: Entity, IAwake, IDestroy
     {
         public UIPageViewComponent UIPageView;
         public UIPageButtonComponent UIPageButton;
     }
 
-    public class UIWelfareComponentAwakesystem: AwakeSystem<UIWelfareComponent>
+    public class UIWelfareComponentAwake: AwakeSystem<UIWelfareComponent>
     {
         public override void Awake(UIWelfareComponent self)
         {
@@ -56,11 +56,43 @@ namespace ET
             uIPageViewComponent.SetClickHandler((page) => { self.OnClickPageButton(page); });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageViewComponent;
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.WelfareLogin, self.Reddot_WelfareLogin);
+            redPointComponent.RegisterReddot(ReddotType.WelfareTask, self.Reddot_WelfareTask);
+            redPointComponent.RegisterReddot(ReddotType.WelfareDraw, self.Reddot_WelfareDraw);
         }
     }
 
+    public class UIWelfareComponentDestroy : DestroySystem<UIWelfareComponent>
+    {
+        public override void Destroy(UIWelfareComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.WelfareLogin, self.Reddot_WelfareLogin);
+            redPointComponent.UnRegisterReddot(ReddotType.WelfareTask, self.Reddot_WelfareTask);
+            redPointComponent.UnRegisterReddot(ReddotType.WelfareDraw, self.Reddot_WelfareDraw);
+        }
+    }
+     
     public static class UIWelfareComponentSystem
     {
+
+        public static void Reddot_WelfareLogin(this UIWelfareComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot((int)WelfarePageEnum.Login, num > 0);
+        }
+
+        public static void Reddot_WelfareTask(this UIWelfareComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot((int)WelfarePageEnum.Task, num > 0);
+        }
+
+        public static void Reddot_WelfareDraw(this UIWelfareComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot((int)WelfarePageEnum.Draw, num > 0);
+        }
+
         public static void OnClickPageButton(this UIWelfareComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

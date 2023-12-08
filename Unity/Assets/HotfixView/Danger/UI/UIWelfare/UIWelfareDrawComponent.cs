@@ -127,6 +127,7 @@ namespace ET
                 {
                     return;
                 }
+                self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareDraw);
                 drawIndex = numericComponent.GetAsInt(NumericType.DrawIndex);
                 self.StartRotation(drawIndex - 1).Coroutine();
             }

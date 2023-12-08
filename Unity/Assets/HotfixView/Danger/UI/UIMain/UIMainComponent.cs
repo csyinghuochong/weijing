@@ -976,6 +976,8 @@ namespace ET
             self.UIMainTask.OnUpdateUI();
 
             self.UpdateNpcTaskUI();
+
+            self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareTask);
         }
 
         public static void UpdateNpcTaskUI(this UIMainComponent self)

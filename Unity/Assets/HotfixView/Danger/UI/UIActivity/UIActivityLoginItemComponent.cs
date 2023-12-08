@@ -90,6 +90,7 @@ namespace ET
             {
                 self.SetReceived(true);
             }
+            self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareLogin);
         }
 
         public static void OnUpdateUI(this UIActivityLoginItemComponent self, ActivityConfig activityConfig)

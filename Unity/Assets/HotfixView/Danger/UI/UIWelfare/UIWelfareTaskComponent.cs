@@ -205,6 +205,7 @@ namespace ET
             {
                 userInfoComponent.UserInfo.WelfareTaskRewards.Add(self.Day);
             }
+            self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareTask);
             self.UpdateInfo(self.Day);
         }
     }
