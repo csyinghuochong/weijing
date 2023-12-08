@@ -206,6 +206,7 @@ namespace ET
         GuaJiSell = 201,      //一键出售  
         GuaJiRang = 202,      //挂机范围
         GuaJiAutoUseItem = 203,     //自动使用药剂
+        GuaJiAutoUseSkill = 204, // 按照设置顺序自动使用技能
 
     }
 

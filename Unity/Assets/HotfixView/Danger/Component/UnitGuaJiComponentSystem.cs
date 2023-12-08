@@ -49,15 +49,34 @@ namespace ET
         {
 
             self.skillXuHaoList = new List<int>();
-            //获取对应ID
-            for (int i = 0; i <= 7; i++)
+            string[] skillIndexs = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseSkill)
+                    .Split('@');
+            if (skillIndexs.Length > 0)
             {
-                int skillid = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[i].GetSkillId();
-                if (skillid != 0)
+                foreach (string skill in skillIndexs)
                 {
-                    self.skillXuHaoList.Add(i);
+                    if (skill == "")
+                    {
+                        continue;
+                    }
+
+                    int index = int.Parse(skill);
+                    int skillid = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[index].GetSkillId();
+                    if (skillid != 0)
+                    {
+                        self.skillXuHaoList.Add(index);
+                    }
                 }
             }
+            // //获取对应ID
+            // for (int i = 0; i <= 7; i++)
+            // {
+            //     int skillid = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[i].GetSkillId();
+            //     if (skillid != 0)
+            //     {
+            //         self.skillXuHaoList.Add(i);
+            //     }
+            // }
         }
 
         //触发挂机目标
@@ -314,10 +333,30 @@ namespace ET
 
             if (self.FightStatus)
             {
-                int grid = self.skillXuHaoList[self.XuHaoNum];
                 UIMainSkillComponent uIMainSkillComponent = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent;
+                SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
 
-                int useSkillID = uIMainSkillComponent.UISkillGirdList[grid].GetSkillId();
+                int grid = -1;
+                int count = 0;
+                int useSkillID = 0;
+                while (count < self.skillXuHaoList.Count)
+                {
+                    grid = self.skillXuHaoList[self.XuHaoNum];
+                    useSkillID = uIMainSkillComponent.UISkillGirdList[grid].GetSkillId();
+                    if (skillManagerComponent.CanUseSkill(0, useSkillID) == 0)
+                    {
+                        break;
+                    }
+
+                    self.XuHaoNum++;
+                    if (self.XuHaoNum >= self.skillXuHaoList.Count)
+                    {
+                        self.XuHaoNum = 0;
+                    }
+                    useSkillID = 0;
+                    count++;
+                }
+
                 if (useSkillID != 0)
                 {
                     //Debug.Log("useSkillID = " + useSkillID);

@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISettingGuaJiComponent:Entity,IAwake
+    public class UISettingGuaJiComponent:Entity,IAwake,IDestroy
     {
-
+        public GameObject SkillIPositionSet;
+        public GameObject SkillIconItem;
+        public GameObject Btn_EditSkill;
         public GameObject Btn_StopGuaJi;
         public GameObject Btn_StartGuajI;
         public GameObject Image_Click_0;
@@ -19,6 +21,10 @@ namespace ET
         public GameObject Btn_GuaJiRange;
         public GameObject Click_GuaJiAutoUseItem;
         public GameObject Btn_GuaJiAutoUseItem;
+        
+        public List<string> AssetPath = new List<string>();
+        public List<int> SkillSet = new List<int>();
+        public List<GameObject> SkillSetIconRightList = new List<GameObject>();
     }
 
     public class UISettingGuaJiComponentAwake : AwakeSystem<UISettingGuaJiComponent>
@@ -26,6 +32,9 @@ namespace ET
         public override void Awake(UISettingGuaJiComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.SkillIPositionSet = rc.Get<GameObject>("SkillIPositionSet");
+            self.SkillIconItem = rc.Get<GameObject>("SkillIconItem");
+            self.Btn_EditSkill = rc.Get<GameObject>("Btn_EditSkill");
             self.Btn_StartGuajI = rc.Get<GameObject>("Btn_StartGuajI");
             self.Btn_StopGuaJi = rc.Get<GameObject>("Btn_StopGuaJi");
             self.Btn_Click_0 = rc.Get<GameObject>("Btn_Click_0");
@@ -35,7 +44,9 @@ namespace ET
             self.Click_GuaJiAutoUseItem = rc.Get<GameObject>("Click_GuaJiAutoUseItem");
             self.Btn_GuaJiAutoUseItem = rc.Get<GameObject>("Btn_GuaJiAutoUseItem");
 
+            self.SkillIconItem.SetActive(false);
             //给按钮添加监听事件
+            self.Btn_EditSkill.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EditSkill().Coroutine(); });
             self.Btn_StartGuajI.GetComponent<Button>().onClick.AddListener(()=> { self.OpenGuaJi(); } );
             self.Btn_StopGuaJi.GetComponent<Button>().onClick.AddListener(() => { self.StopGuaJi(); } );
 
@@ -49,9 +60,25 @@ namespace ET
             self.UpdateGuaJiSell();
             self.UpdateGuaJiRange();
             self.UpdateGuaJiAutoUseItem();
+            self.UpdataSkillSet();
         }
     }
+    
+    public class UISettingGuaJiComponentDestroy: DestroySystem<UISettingGuaJiComponent>
+    {
+        public override void Destroy(UISettingGuaJiComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
 
+            self.AssetPath = null;
+        }
+    }
 
     public static class UISettingGuaJiComponentSystem {
 
@@ -109,6 +136,80 @@ namespace ET
                 pair.Value = "0";
                 pair.Value2 = "0";
                 unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos.Add(pair);
+            }
+            
+            int childCount = self.SkillIPositionSet.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                GameObject go = UnityEngine.Object.Instantiate(self.SkillIconItem);
+                go.SetActive(false);
+                UICommonHelper.SetParent(go, self.SkillIPositionSet.transform.GetChild(i).gameObject);
+                self.SkillSetIconRightList.Add(go);
+            }
+        }
+
+        public static async ETTask OnBtn_EditSkill(this UISettingGuaJiComponent self)
+        {
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISettingSkill);
+            ui.GetComponent<UISettingSkillComponent>().CloseAction = self.UpdataSkillSet;
+        }
+
+        public static void UpdataSkillSet(this UISettingGuaJiComponent self)
+        {
+            self.SkillSet.Clear();
+            string[] skillIndexs = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseSkill)
+                    .Split('@');
+            if (skillIndexs.Length > 0)
+            {
+                foreach (string skill in skillIndexs)
+                {
+                    if (skill == "")
+                    {
+                        continue;
+                    }
+
+                    self.SkillSet.Add(int.Parse(skill));
+                }
+            }
+            
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            for (int i = 0; i < self.SkillSetIconRightList.Count; i++)
+            {
+                GameObject itemgo = self.SkillSetIconRightList[i];
+                GameObject addImage = itemgo.transform.parent.GetChild(0).gameObject;
+
+                itemgo.SetActive(false);
+                addImage.GetComponent<Image>().fillAmount = 1;
+
+                if (i >= self.SkillSet.Count)
+                {
+                    continue;
+                }
+
+                SkillPro skillPro = skillSetComponent.GetByPosition(self.SkillSet[i] + 1);
+
+                if (skillPro == null)
+                {
+                    addImage.GetComponent<Image>().fillAmount = 1;
+                    itemgo.SetActive(false);
+                    continue;
+                }
+
+                addImage.GetComponent<Image>().fillAmount = 0;
+                itemgo.SetActive(true);
+                if (skillPro.SkillSetType == SkillSetEnum.Skill)
+                {
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID,
+                        UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList));
+                    string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+
+                    itemgo.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;
+                }
             }
         }
 

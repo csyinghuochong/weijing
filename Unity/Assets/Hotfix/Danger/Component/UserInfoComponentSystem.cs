@@ -102,6 +102,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.AutoAttack:
                     return "1";
+                case GameSettingEnum.GuaJiAutoUseSkill:
+                    return "";
                 default:
                     return "0";
             }
