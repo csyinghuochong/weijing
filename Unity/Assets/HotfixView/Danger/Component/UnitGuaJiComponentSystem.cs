@@ -301,37 +301,60 @@ namespace ET
         //使用技能
         public async static ETTask UseSkill(this UnitGuaJiComponen self)
         {
-            //获取当前血量低于60%,使用药剂
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             float nowHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
             float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
-            if (self.IfGuaJiAutoUseItem && nowHp / maxHp <= 0.6f)
+            if (self.IfGuaJiAutoUseItem)
             {
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                bool ifUse = false;
 
-                //使用第8格
-                int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
-                if (self.ifBaseHpSkill(useSkillID))
+                if (nowHp / maxHp <= 0.3f) // 血量低于30%,俩个道具一起用
                 {
-                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
-                    int itemId = uiSkillGridComponent.SkillPro?.SkillID ?? 0;
-                    BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(itemId);
-                    if (bagInfo != null)
+                    //使用第8格
+                    int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
+                    if (self.ifBaseHpSkill(useSkillID))
                     {
+                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
                         uiSkillGridComponent.OnPointDown(null);
                         uiSkillGridComponent.PointerUp(null);
-                        ifUse = true;
+                    }
+
+                    //使用第9格
+                    useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
+                    if (self.ifBaseHpSkill(useSkillID))
+                    {
+                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9];
+                        uiSkillGridComponent.OnPointDown(null);
+                        uiSkillGridComponent.PointerUp(null);
                     }
                 }
-
-                //使用第9格
-                useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
-                if (ifUse == false && self.ifBaseHpSkill(useSkillID))
+                else if (nowHp / maxHp <= 0.6f) // 血量低于60%,使用第一个道具,如果道具用完，就用第二个
                 {
-                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9];
-                    uiSkillGridComponent.OnPointDown(null);
-                    uiSkillGridComponent.PointerUp(null);
+                    bool ifUse = false;
+
+                    //使用第8格
+                    int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
+                    if (self.ifBaseHpSkill(useSkillID))
+                    {
+                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
+                        int itemId = uiSkillGridComponent.SkillPro?.SkillID ?? 0;
+                        BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(itemId);
+                        if (bagInfo != null)
+                        {
+                            uiSkillGridComponent.OnPointDown(null);
+                            uiSkillGridComponent.PointerUp(null);
+                            ifUse = true;
+                        }
+                    }
+
+                    //使用第9格
+                    useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
+                    if (ifUse == false && self.ifBaseHpSkill(useSkillID))
+                    {
+                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9];
+                        uiSkillGridComponent.OnPointDown(null);
+                        uiSkillGridComponent.PointerUp(null);
+                    }
                 }
             }
 
