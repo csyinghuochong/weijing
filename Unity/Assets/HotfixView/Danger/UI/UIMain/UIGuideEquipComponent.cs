@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIGuideEquipComponent: Entity, IAwake
     {
+        public GameObject CloseBtn;
         public GameObject UICommonItem;
         public GameObject EquipBtn;
 
@@ -17,9 +18,11 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.CloseBtn = rc.Get<GameObject>("CloseBtn");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.EquipBtn = rc.Get<GameObject>("EquipBtn");
 
+            self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIGuideEquip); });
             self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn(); });
         }
     }
