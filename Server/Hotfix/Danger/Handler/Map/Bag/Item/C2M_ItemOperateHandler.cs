@@ -528,6 +528,13 @@ namespace ET
                     //判断等级
                     int roleLv = useInfo.Lv;
                     int equipLv = itemConfig.UseLv;
+                    //宝石
+                    if (itemConfig.ItemType == 4)
+                    {
+                        response.Error = ErrorCode.ERR_EquipLvLimit;
+                        reply();
+                        return;
+                    }
 
                     //简易
                     if (useBagInfo.HideSkillLists.Contains(68000103))
