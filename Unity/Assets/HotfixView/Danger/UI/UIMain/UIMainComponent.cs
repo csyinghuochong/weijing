@@ -920,7 +920,21 @@ namespace ET
                     if (weizhi == (int)ItemSubTypeEnum.Shiping)
                     {
                         List<BagInfo> equipList = bagComponent.GetEquipListByWeizhi(weizhi);
-                        beforeequip = equipList.Count < 3? null : equipList[0];
+                        if (equipList.Count < 3)
+                        {
+                            foreach (BagInfo bagInfo in equipList)
+                            {
+                                if (bagInfo.ItemID == bagInfos[i].ItemID)
+                                {
+                                    beforeequip = bagInfo;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            beforeequip = equipList[0];
+                        }
                     }
                     else
                     {
