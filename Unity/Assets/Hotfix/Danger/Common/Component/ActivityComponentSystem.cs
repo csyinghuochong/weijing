@@ -95,6 +95,34 @@ namespace ET
 #endif
 
 #if !SERVER
+        public static bool HaveLoginReward(this ActivityComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Lv < 10)
+            {
+                return false;
+            }
+
+            int unGetId = 0;
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 31)
+                {
+                    continue;
+                }
+                if (!self.ActivityReceiveIds.Contains(activityConfigs[i].Id))
+                {
+                    unGetId = activityConfigs[i].Id;
+                    break;
+                }
+            }
+            if (unGetId == 0)
+            {
+                return false;
+            }
+            return ComHelp.GetDayByTime(TimeHelper.ServerNow()) != ComHelp.GetDayByTime(self.LastLoginTime);
+        }
 
         public static void OnZeroClockUpdate(this ActivityComponent self)
         {
@@ -115,6 +143,11 @@ namespace ET
             {
                 C2M_ActivityReceiveRequest c2M_ItemHuiShouRequest = new C2M_ActivityReceiveRequest() { ActivityType = activityType, ActivityId = activityId };
                 M2C_ActivityReceiveResponse r2c_roleEquip = (M2C_ActivityReceiveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                if (activityType == 31)
+                {
+                    self.LastLoginTime = TimeHelper.ServerNow();
+
+                }
                 if (r2c_roleEquip.Error == ErrorCode.ERR_Success)
                 {
                     self.ActivityReceiveIds.Add(activityId);

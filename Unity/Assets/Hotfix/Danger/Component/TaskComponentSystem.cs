@@ -244,6 +244,26 @@ namespace ET
             return null;
         }
 
+        public static bool HaveWelfareReward(this TaskComponent self)
+        {
+            for (int i = 0; i < ConfigHelper.WelfareTaskList.Count; i++)
+            {
+                List<int> taskList = ConfigHelper.WelfareTaskList[i];
+                
+                for ( int task = 0; task < taskList.Count; task++ )
+                {
+                    TaskPro taskPro = self.GetTaskById(taskList[task]);
+
+                    if (taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static List<TaskPro> GetAllTrackList(this TaskComponent self)
         {
             List<TaskPro> taskPros = new List<TaskPro>();

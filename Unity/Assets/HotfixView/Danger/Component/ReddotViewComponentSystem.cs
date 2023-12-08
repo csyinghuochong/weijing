@@ -19,6 +19,7 @@ namespace ET
                 new ReddotData { key = ReddotType.RolePoint, children = new int[0] {  } },
                 new ReddotData { key = ReddotType.SkillUp, children = new int[0] {  } },
                 new ReddotData { key = ReddotType.PetSet, children = new int[1] { ReddotType.PetMine } },
+                new ReddotData { key = ReddotType.Welfare, children = new int[3] { ReddotType.WelfareLogin, ReddotType.WelfareTask, ReddotType.WelfareDraw } },
             };
 
             self.Init(reddot);

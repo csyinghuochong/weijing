@@ -83,33 +83,41 @@
 #if !NOT_UNITY
         public static void UpdateReddont(this ReddotComponent self, int reddotType)
         {
+            bool showReddot = false;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             switch (reddotType)
             {
+                case ReddotType.WelfareLogin:
+                    showReddot = self.ZoneScene().GetComponent<ActivityComponent>().HaveLoginReward();
+                    break;
+                case ReddotType.WelfareTask:
+                    showReddot = self.ZoneScene().GetComponent<TaskComponent>().HaveWelfareReward();
+                    break;
+                case ReddotType.WelfareDraw:
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
+                    long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
+                    showReddot = drawReward == 0 && haveHuoyue >= 60;
+                    break;
                 case ReddotType.RolePoint:
                     int pointRemain = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PointRemain);
-                    if (pointRemain > 0)
-                    {
-                        self.AddReddont(reddotType);
-                    }
-                    else
-                    {
-                        self.RemoveReddont(reddotType);
-                    }
+                    showReddot = pointRemain > 0;
                     break;
                 case ReddotType.SkillUp:
                     int skillpoint = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Sp;
-                    if (self.ZoneScene().GetComponent<SkillSetComponent>().GetCanUpSkill(skillpoint).Count > 0)
-                    {
-                        self.AddReddont(reddotType);
-                    }
-                    else
-                    {
-                        self.RemoveReddont(reddotType);
-                    }
+                    showReddot = self.ZoneScene().GetComponent<SkillSetComponent>().GetCanUpSkill(skillpoint).Count > 0;
                     break;
                 default:
-                    break;
+                    return;
+            }
+
+            if (showReddot)
+            {
+                self.AddReddont(reddotType);
+            }
+            else
+            {
+                self.RemoveReddont(reddotType);
             }
         }
 #endif

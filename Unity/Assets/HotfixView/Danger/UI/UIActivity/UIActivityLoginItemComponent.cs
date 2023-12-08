@@ -78,9 +78,8 @@ namespace ET
                 return;
             }
 
-            long time = TimeHelper.ServerNow();
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-            if (ComHelp.GetDayByTime(activityComponent.LastLoginTime) == ComHelp.GetDayByTime(time))
+            if (ComHelp.GetDayByTime(activityComponent.LastLoginTime) == ComHelp.GetDayByTime(TimeHelper.ServerNow()))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今天的奖励已领取"));
                 return;
@@ -89,7 +88,6 @@ namespace ET
             int errorCode = await activityComponent.GetActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);
             if (errorCode == ErrorCode.ERR_Success)
             {
-                activityComponent.LastLoginTime = time;
                 self.SetReceived(true);
             }
         }

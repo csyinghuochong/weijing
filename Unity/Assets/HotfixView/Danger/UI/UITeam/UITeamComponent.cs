@@ -14,7 +14,6 @@ namespace ET
         public List<UITeamItemComponent> TeamUIList = new List<UITeamItemComponent>();
     }
 
-
     public class UITeamComponentAwakeSystem : AwakeSystem<UITeamComponent>
     {
 

@@ -1577,8 +1577,8 @@ namespace ET
             redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
             redPointComponent.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
             redPointComponent.UnRegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
+            redPointComponent.UnRegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
         }
-
 
         public static void RegisterReddot(this UIMainComponent self)
         {
@@ -1589,6 +1589,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
             redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
             redPointComponent.RegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
+            redPointComponent.RegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
@@ -1608,8 +1609,12 @@ namespace ET
             {
                 reddotComponent.AddReddont(ReddotType.PetMine);
             }
+
             reddotComponent.UpdateReddont(ReddotType.RolePoint);
             reddotComponent.UpdateReddont(ReddotType.SkillUp);
+            reddotComponent.UpdateReddont(ReddotType.WelfareDraw);
+            reddotComponent.UpdateReddont(ReddotType.WelfareLogin);
+            reddotComponent.UpdateReddont(ReddotType.WelfareTask);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)
@@ -1627,6 +1632,11 @@ namespace ET
         public static void Reddot_Frined(this UIMainComponent self, int num)
         {
             self.Btn_Friend.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_Welfare(this UIMainComponent self, int num)
+        {
+            self.Button_Welfare.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Team(this UIMainComponent self, int num)

@@ -179,6 +179,11 @@ namespace ET
         /// </summary>
         public const int PetSet = 600;
         public const int PetMine = 601;
+
+        public const int Welfare = 700;
+        public const int WelfareLogin = 701;
+        public const int WelfareTask = 702;
+        public const int WelfareDraw = 703;
     }
 
     public enum GameSettingEnum
