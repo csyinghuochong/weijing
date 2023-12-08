@@ -54,9 +54,10 @@
 *4mongodb://localhost:27017/4"WJBeta52
 *5mongodb://localhost:27017/5"WJBeta53
 *6mongodb://localhost:27017/6"WJBeta54
-*7mongodb://localhost:27017/7"WJBeta55
+*7mongodb://localhost:27017/6"WJBeta55
 *8mongodb://localhost:27017/8"WJBeta56
 *9mongodb://localhost:27017/9"WJBeta57
 *:mongodb://localhost:27017/:"WJBeta58
+*;mongodb://localhost:27017/;"WJBeta59
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)

@@ -5,7 +5,7 @@ namespace ET
 {
     public static class ServerHelper
     {
-        public static bool UpdateServerList = true;
+        public static int UpdateServerList = 0;  //改成int
         public static List<ServerItem> ServerItems = new List<ServerItem>();   
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
@@ -185,12 +185,12 @@ namespace ET
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
-            if (ServerItems.Count > 0 && !UpdateServerList)
+            if (ServerItems.Count > 0 && UpdateServerList == 1)
             { 
                 return ServerItems;
             }
             //Log.Debug("UpdateServerList");
-            UpdateServerList = false;
+            UpdateServerList = 1;
             ServerItems.Clear();
 
             VersionMode versionMode = ComHelp.IsBanHaoZone(zone) ? VersionMode.BanHao : VersionMode.Beta;
@@ -266,9 +266,9 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 52, ServerIp = $"{ip}:20445", ServerName = "希望之树", ServerOpenTime = 1697799600000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 53, ServerIp = $"{ip}:20445", ServerName = "梦境之海", ServerOpenTime = 1698381000000, New = 0, Show = 0 });
 
-                //12月7号 合区百年风华-盛世如愿 54 / 55
+                //12月7号 合区百年风华-盛世如愿 54 / 55[ip要改成一样]【起服配置要同步】
                 serverItems_1.Add(new ServerItem() { ServerId = 54, ServerIp = $"{ip}:20395", ServerName = "百年风华", ServerOpenTime = 1698985800000, New = 0, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20435", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 0, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20395", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 0, Show = 1 });
                 
                 serverItems_1.Add(new ServerItem() { ServerId = 56, ServerIp = $"{ip}:20455", ServerName = "精灵国度", ServerOpenTime = 1700195400000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 57, ServerIp = $"{ip}:20375", ServerName = "梦回华夏", ServerOpenTime = 1700800200000, New = 0, Show = 1 });
