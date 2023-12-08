@@ -1620,6 +1620,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (itemCof.ItemEquipID == 0)
+                {
+                    continue;
+                }
 
                 EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
 

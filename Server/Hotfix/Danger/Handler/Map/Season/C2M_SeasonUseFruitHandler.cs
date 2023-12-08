@@ -42,6 +42,7 @@ namespace ET
             {
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
+                return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
