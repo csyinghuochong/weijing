@@ -701,7 +701,7 @@ namespace ET
                     default:
                         break;
                 }
-                if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
+                if (monsterConfig.MonsterType == MonsterTypeEnum.Boss && monsterConfig.Id!=SeasonHelper.SeasonBossId)
                 {
                     switch (fubenDifficulty)
                     {
