@@ -419,7 +419,7 @@ namespace ET
             {
                 return;
             }
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
             if (ids.Count > 0)
             {
                 self.RequestShiQu(ids).Coroutine();

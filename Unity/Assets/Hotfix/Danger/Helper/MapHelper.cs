@@ -149,7 +149,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(zoneScene), uu) < 3f)
+                if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(zoneScene), uu) < distance)
                 {
                     ids.Add(uu.GetComponent<DropComponent>().DropInfo);
                 }

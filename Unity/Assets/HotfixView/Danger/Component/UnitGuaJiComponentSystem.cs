@@ -197,7 +197,7 @@ namespace ET
             {
 
                 //每10秒执行一次
-                await TimerComponent.Instance.WaitAsync(3000);
+                await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
@@ -315,10 +315,14 @@ namespace ET
                 int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
                 if (self.ifBaseHpSkill(useSkillID))
                 {
-                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
-                    uiSkillGridComponent.OnPointDown(null);
-                    uiSkillGridComponent.PointerUp(null);
-                    ifUse = true;
+                    BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(useSkillID);
+                    if (bagInfo != null)
+                    {
+                        UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
+                        uiSkillGridComponent.OnPointDown(null);
+                        uiSkillGridComponent.PointerUp(null);
+                        ifUse = true;
+                    }
                 }
 
                 //使用第9格
