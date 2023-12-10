@@ -1064,9 +1064,9 @@ namespace ET
                 addPro = 0;
             }
 
-            if (addPro > 0.5f)
+            if (addPro > 0.3f)
             {
-                addPro = 0.5f;
+                addPro = 0.3f;
             }
 
             return addPro;
