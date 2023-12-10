@@ -95,21 +95,21 @@ namespace ET
             {
                 float hidevaluemin = float.Parse(hidevalueinfo[1]);
                 float hidevalueman = float.Parse(hidevalueinfo[2]);
-                float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman);
+                float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman - hidevaluemin);
                 if (qulity < 90) {
-                    hidevalue = hidevalue * (0.4f + qulity / 100 * 0.6f);
+                    hidevalue = hidevaluemin +  hidevalue * (0.4f + qulity / 100 * 0.6f);
                 }
-
+                //保底
                 return new HideProList() { HideID = hideid, HideValue = (long)(hidevalue * 10000) };
             }
             else
             {
                 int hidevaluemin = int.Parse(hidevalueinfo[1]);
                 int hidevaluemax = int.Parse(hidevalueinfo[2]);
-                int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax);
+                int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax - hidevaluemin);
                 if (qulity < 90)
                 {
-                    hidevalue = (int)((float)hidevalue * (0.4f + qulity / 100 * 0.6f));
+                    hidevalue = hidevaluemin + (int)((float)hidevalue * (0.4f + qulity / 100 * 0.6f));
                 }
 
                 return new HideProList() { HideID = hideid, HideValue = hidevalue };
