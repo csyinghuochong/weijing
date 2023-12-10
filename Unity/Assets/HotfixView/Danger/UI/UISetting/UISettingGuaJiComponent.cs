@@ -186,6 +186,11 @@ namespace ET
                     continue;
                 }
 
+                if (self.SkillSet[i] == -1)
+                {
+                    continue;
+                }
+                
                 SkillPro skillPro = skillSetComponent.GetByPosition(self.SkillSet[i] + 1);
 
                 if (skillPro == null)

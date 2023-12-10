@@ -61,6 +61,12 @@ namespace ET
                     }
 
                     int index = int.Parse(skill);
+                    
+                    if (index == -1)
+                    {
+                        continue;
+                    }
+                    
                     int skillid = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[index].GetSkillId();
                     if (skillid != 0)
                     {
