@@ -567,14 +567,16 @@ namespace ET
                             damge = (int)((float)damge * 0.1f);
                         }
                         */
+
+                        if ( attackUnit.MasterIsPlayer())
+                        {
+                            Log.Console("玩家召唤的怪物！");
+                        }
+
                     }
                 }
 
-                if (attackUnit.Type == UnitType.Monster && attackUnit.MasterIsPlayer())
-                {
-                    Log.Console("玩家召唤的怪物！");
-                }
-
+              
                 //宠物打宠物只造成50%的伤害
                 if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Pet)
                 {
