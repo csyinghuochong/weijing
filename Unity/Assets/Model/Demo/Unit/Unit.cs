@@ -16,6 +16,8 @@ namespace ET
 
 		public int UpdateUIType;
 
+        public long MasterId;
+
         public float UpdateUITime;
 
         private WrapVector3 position = new WrapVector3(); //坐标
