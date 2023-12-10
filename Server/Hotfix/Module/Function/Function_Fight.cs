@@ -560,20 +560,14 @@ namespace ET
                             damge = (int)((float)damge * 0.7f);
                         }
 
-                        //技能受到10%伤害
-                        /*
-                        if (skillconfig.SkillActType == 1)
-                        {
-                            damge = (int)((float)damge * 0.1f);
-                        }
-                        */
-
-                        if ( attackUnit.MasterIsPlayer())
-                        {
-                            Log.Console("玩家召唤的怪物！");
-                        }
-
                     }
+
+                    if (attackUnit.MasterIsPlayer())
+                    {
+                        //Log.Console("玩家召唤的怪物！");
+                        damge = (int)((float)damge * 0.4f);
+                    }
+
                 }
 
               
@@ -812,7 +806,7 @@ namespace ET
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
 
                     //damgePro -= 0.5f;
-                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低40%
+                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
                     //普通攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
