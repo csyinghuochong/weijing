@@ -157,6 +157,20 @@ namespace ET
             return teamid_1 == teamid_2 && teamid_1 != 0;
         }
 
+        public static bool MasterIsPlayer(this Unit self)
+        {
+            if (self.MasterId == 0)
+            {
+                return false;
+            }
+            Unit master = self.GetParent<UnitComponent>().Get(self.MasterId);
+            if (master == null)
+            {
+                return false;
+            }
+            return master.Type == UnitType.Player;
+        }
+
         public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
         {
             long masterId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
