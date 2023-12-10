@@ -809,12 +809,12 @@ namespace ET
                     //普通攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
-                        damgePro = damgePro * 0.6f;
+                        damgePro = damgePro * 0.4f;
                     }
                     //技能攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
-                        damgePro = damgePro * 0.4f;
+                        damgePro = damgePro * 0.3f;
                     }
 
                     bool jueXinSkill = false;
