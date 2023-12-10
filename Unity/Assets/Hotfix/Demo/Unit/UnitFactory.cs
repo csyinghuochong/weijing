@@ -61,8 +61,8 @@ namespace ET
 	        {
 		        numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i]);
 	        }
-	
-			if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.X.Count > 0)
+            unit.MasterId = numericComponent.GetAsLong(NumericType.MasterId);
+            if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.X.Count > 0)
 			{
 				using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 				{
@@ -88,7 +88,7 @@ namespace ET
                 int runraceMonster = numericComponent.GetAsInt(NumericType.TransformId);
                 unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(unit.ConfigId, runraceMonster);
             }
-
+			
             OnAfterCreateUnit(unit);
             return unit;
         }
