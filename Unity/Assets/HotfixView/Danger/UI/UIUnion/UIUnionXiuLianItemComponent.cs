@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,9 +28,9 @@ namespace ET
 
     public static class UIUnionXiuLianItemComponentSystem
     {
-        public static void OnUpdateUI(this UIUnionXiuLianItemComponent self, int postion)
+        public static void OnUpdateUI(this UIUnionXiuLianItemComponent self, int postion,int type)
         {
-            int numerType = UnionHelper.GetXiuLianId(postion);
+            int numerType = UnionHelper.GetXiuLianId(postion, type);
             
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
