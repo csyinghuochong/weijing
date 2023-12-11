@@ -154,6 +154,11 @@
         public const int KillMonsterNumber = 3154;                              //击杀怪物数量
         public const int KillMonsterReward = 3155;                              //击杀怪物奖励
 
+        public const int UnionPetXiuLian_0 = 3156;                              //该数值属于玩家，召唤宠物的时候会用来计算属性
+        public const int UnionPetXiuLian_1 = 3157;                              //UnionQiangHuaConfig需要重新配置
+        public const int UnionPetXiuLian_2 = 3158;
+        public const int UnionPetXiuLian_3 = 3159;
+
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
         public const int Base_MaxHp_Base = Now_MaxHp * 100 + 1;                  //属性累加
