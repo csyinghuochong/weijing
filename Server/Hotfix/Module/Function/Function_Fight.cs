@@ -1854,48 +1854,20 @@ namespace ET
             }
 
             //家族修炼属性
-            long xiuLian_0 = numericComponent.GetAsLong(NumericType.UnionXiuLian_0);
-            long xiuLian_1 = numericComponent.GetAsLong(NumericType.UnionXiuLian_1);
-            long xiuLian_2 = numericComponent.GetAsLong(NumericType.UnionXiuLian_2);
-            long xiuLian_3 = numericComponent.GetAsLong(NumericType.UnionXiuLian_3);
-            if (xiuLian_0 != 0)
+            int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionXiuLian_0);
+            int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionXiuLian_1);
+            int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionXiuLian_2);
+            int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionXiuLian_3);
+
+            List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
+            for (int i = 0; i < unionXiuLianids.Count; i++)
             {
-                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_0);
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
                 List<PropertyValue> jiazuProList = new List<PropertyValue>();
                 NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-                for (int i = 0; i < jiazuProList.Count; i++)
+                for (int pro = 0; pro < jiazuProList.Count; pro++)
                 {
-                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
-                }
-            }
-            if (xiuLian_1 != 0)
-            {
-                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_1);
-                List<PropertyValue> jiazuProList = new List<PropertyValue>();
-                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-                for (int i = 0; i < jiazuProList.Count; i++)
-                {
-                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
-                }
-            }
-            if (xiuLian_2 != 0)
-            {
-                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_2);
-                List<PropertyValue> jiazuProList = new List<PropertyValue>();
-                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-                for (int i = 0; i < jiazuProList.Count; i++)
-                {
-                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
-                }
-            }
-            if (xiuLian_3 != 0)
-            {
-                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_3);
-                List<PropertyValue> jiazuProList = new List<PropertyValue>();
-                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-                for (int i = 0; i < jiazuProList.Count; i++)
-                {
-                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
+                    AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, UpdateProDicList);
                 }
             }
 
