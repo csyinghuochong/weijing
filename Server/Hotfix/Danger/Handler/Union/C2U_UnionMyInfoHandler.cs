@@ -82,7 +82,7 @@ namespace ET
             {
                 int keijiId = dBUnionInfo.UnionInfo.UnionKeJiList[dBUnionInfo.UnionInfo.KeJiActitePos];
                 UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(keijiId);
-                long passTime = (dBUnionInfo.UnionInfo.KeJiActiteTime - timeNow) / 1000;
+                long passTime = (timeNow -  dBUnionInfo.UnionInfo.KeJiActiteTime ) / 1000;
                 Log.Console($"科技升级 {passTime} {unionKeJiConfig.NeedTime}");
                 if (unionKeJiConfig.NextID > 0 && passTime >= unionKeJiConfig.NeedTime)
                 {
