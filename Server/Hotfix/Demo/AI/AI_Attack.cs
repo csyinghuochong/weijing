@@ -29,7 +29,7 @@ namespace ET
             for (int i = 0; i < 100000; ++i)
             {
                 long rigidityEndTime = 0;
-                int skillId = aiComponent.GetActSkillId();
+                int skillId = 90020004; // aiComponent.GetActSkillId();
                 if (skillId == 0)
                 {
                     break;
