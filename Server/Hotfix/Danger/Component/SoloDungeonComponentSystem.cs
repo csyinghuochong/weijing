@@ -139,7 +139,23 @@ namespace ET
                 List<RewardItem> rewardListFail = new List<RewardItem>();
                 RewardItem rewardFail = new RewardItem();
                 rewardFail.ItemID = 1;
-                rewardFail.ItemNum = 5000;
+                rewardFail.ItemNum = 7500;
+
+                if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 30)
+                {
+                    rewardFail.ItemNum = 10000;
+                }
+
+                if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 40)
+                {
+                    rewardFail.ItemNum = 12500;
+                }
+
+                if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 50)
+                {
+                    rewardFail.ItemNum = 15000;
+                }
+
                 rewardListFail.Add(rewardFail);
                 MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = rewardListFail, SoloResult = 0 });
                 defendUnit.GetComponent<BagComponent>().OnAddItemData(rewardListFail, string.Empty, $"{ItemGetWay.SoloReward}_{TimeHelper.ServerNow()}");
