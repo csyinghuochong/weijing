@@ -187,10 +187,24 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit unit = units[i];
-                if (!main.IsCanAttackUnit(unit)  && !unit.IsJingLingMonster() )
+
+                if (self.IsGuaJi)
                 {
-                    continue;
+                    if (!main.IsCanAttackUnit(unit))
+                    {
+                        continue;
+                    }
                 }
+                else
+                {
+                    ///非挂机状态下可以选中精灵
+                    if (!main.IsCanAttackUnit(unit) && !unit.IsJingLingMonster())
+                    {
+                        continue;
+                    }
+                }
+                
+
                 StateComponent stateComponent = units[i].GetComponent<StateComponent>();
                 if (stateComponent.StateTypeGet(StateTypeEnum.Stealth) || stateComponent.StateTypeGet(StateTypeEnum.Hide))
                 {

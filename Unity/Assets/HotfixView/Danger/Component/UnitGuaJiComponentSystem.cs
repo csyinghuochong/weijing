@@ -22,7 +22,10 @@ namespace ET
 
             acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
             self.IfGuaJiAutoUseItem = acttype == "1";
-            
+
+            self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
+            self.LockTargetComponent.IsGuaJi = true;
+
             //触发挂机
             self.ActTarget();
 
@@ -38,7 +41,7 @@ namespace ET
     {
         public override void Destroy(UnitGuaJiComponen self)
         {
-            
+            self.LockTargetComponent.IsGuaJi = false;
         }
     }
 
