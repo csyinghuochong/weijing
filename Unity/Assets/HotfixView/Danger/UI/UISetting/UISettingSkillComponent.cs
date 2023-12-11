@@ -75,6 +75,18 @@ namespace ET
                 go.SetActive(false);
                 UICommonHelper.SetParent(go, self.SkillIPositionSetLeft.transform.GetChild(i).gameObject);
                 self.SkillSetIconLeftList.Add(go);
+                int i1 = i;
+                // itemgo.GetComponentInChildren<Button>().onClick.AddListener(() => { self.OnClick(i1); });
+                ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+                GameObject Img_Mask = rc.Get<GameObject>("Img_Mask");
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
+                    EventTriggerType.PointerDown);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnPointerUp(pdata, i1); },
+                    EventTriggerType.PointerUp);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnBeginDrag(pdata, Img_Mask); },
+                    EventTriggerType.BeginDrag);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnEndDrag(pdata, i1, 1); }, EventTriggerType.EndDrag);
             }
 
             int childCount1 = self.SkillIPositionSetRight.transform.childCount;
@@ -84,6 +96,13 @@ namespace ET
                 go.SetActive(false);
                 UICommonHelper.SetParent(go, self.SkillIPositionSetRight.transform.GetChild(i).gameObject);
                 self.SkillSetIconRightList.Add(go);
+                int i1 = i;
+                ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+                GameObject Img_Mask = rc.Get<GameObject>("Img_Mask");
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnBeginDrag(pdata, Img_Mask); },
+                    EventTriggerType.BeginDrag);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
+                ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnEndDrag(pdata, i1, 2); }, EventTriggerType.EndDrag);
             }
 
             self.SkillSet.Clear();
@@ -141,19 +160,6 @@ namespace ET
                     }
 
                     itemgo.transform.Find("Img_Mask/Img_SkillIcon").GetComponent<Image>().sprite = sp;
-
-                    int i1 = i;
-                    // itemgo.GetComponentInChildren<Button>().onClick.AddListener(() => { self.OnClick(i1); });
-                    ReferenceCollector rc = itemgo.GetComponent<ReferenceCollector>();
-                    GameObject Img_Mask = rc.Get<GameObject>("Img_Mask");
-                    ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
-                        EventTriggerType.PointerDown);
-                    ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnPointerUp(pdata, i1); },
-                        EventTriggerType.PointerUp);
-                    ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnBeginDrag(pdata, Img_Mask); },
-                        EventTriggerType.BeginDrag);
-                    ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
-                    ButtonHelp.AddEventTriggers(Img_Mask, (PointerEventData pdata) => { self.OnEndDrag(pdata, i1); }, EventTriggerType.EndDrag);
                 }
             }
         }
@@ -197,7 +203,7 @@ namespace ET
             self.Img_Mask.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
         }
 
-        public static void OnEndDrag(this UISettingSkillComponent self, PointerEventData pdata, int index1)
+        public static void OnEndDrag(this UISettingSkillComponent self, PointerEventData pdata, int index1, int type)
         {
             if (self.Img_Mask == null)
             {
@@ -223,7 +229,18 @@ namespace ET
                     continue;
                 }
 
-                self.SetSkill(index, index1);
+                if (type == 1)
+                {
+                    self.SetSkill(index, index1);
+                }
+                else
+                {
+                    // self.SetSkill(index, self.SkillSet[index1]);
+                    // 交换
+                    (self.SkillSet[index1], self.SkillSet[index]) = (self.SkillSet[index], self.SkillSet[index1]);
+                    self.UpdataSkillSetRight();
+                }
+
                 break;
             }
 
