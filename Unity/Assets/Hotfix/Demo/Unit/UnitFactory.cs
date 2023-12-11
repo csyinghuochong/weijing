@@ -105,8 +105,8 @@ namespace ET
 			{
 				numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i], false);
 			}
-
-			unit.AddComponent<ObjectWait>(true);
+            unit.MasterId = numericComponent.GetAsLong(NumericType.MasterId);
+            unit.AddComponent<ObjectWait>(true);
 			unit.AddComponent<HeroDataComponent>(true);
 			unit.AddComponent<StateComponent>(true);
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
