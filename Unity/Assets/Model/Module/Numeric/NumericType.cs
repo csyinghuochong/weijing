@@ -153,7 +153,6 @@
         public const int LeavlReward = 3153;                                     //记录上次领取奖励的等级
         public const int KillMonsterNumber = 3154;                              //击杀怪物数量
         public const int KillMonsterReward = 3155;                              //击杀怪物奖励
-
         public const int UnionPetXiuLian_0 = 3156;                              //该数值属于玩家，召唤宠物的时候会用来计算属性
         public const int UnionPetXiuLian_1 = 3157;                              //UnionQiangHuaConfig需要重新配置
         public const int UnionPetXiuLian_2 = 3158;
