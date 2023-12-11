@@ -96,8 +96,11 @@ namespace ET
 		/// <summary>升级消耗家族金币</summary>
 		[ProtoMember(7)]
 		public int CostUnionGold { get; set; }
-		/// <summary>强化属性</summary>
+		/// <summary>学习消耗道具</summary>
 		[ProtoMember(8)]
+		public string LearnCost { get; set; }
+		/// <summary>强化属性</summary>
+		[ProtoMember(9)]
 		public string EquipPropreAdd { get; set; }
 
 	}
