@@ -2029,6 +2029,40 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(U2M_UnionKeJiLearnResponse))]
+	[Message(InnerOpcode.M2U_UnionKeJiLearnRequest)]
+	[ProtoContract]
+	public partial class M2U_UnionKeJiLearnRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int KeJiId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.U2M_UnionKeJiLearnResponse)]
+	[ProtoContract]
+	public partial class U2M_UnionKeJiLearnResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //入会通知
 	[ResponseType(nameof(M2U_UnionApplyResponse))]
 	[Message(InnerOpcode.U2M_UnionApplyRequest)]

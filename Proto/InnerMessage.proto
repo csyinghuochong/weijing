@@ -962,6 +962,22 @@ message M2U_UnionKeJiQuickResponse // IActorResponse
 	string Message = 92;
 }
 
+//ResponseType U2M_UnionKeJiLearnResponse
+message M2U_UnionKeJiLearnRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1; 
+	int32 KeJiId = 2;
+}
+
+message U2M_UnionKeJiLearnResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //入会通知
 //ResponseType M2U_UnionApplyResponse
 message U2M_UnionApplyRequest // IActorRequest

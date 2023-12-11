@@ -188,7 +188,10 @@ namespace ET
                             {
                                 infoRequest.ActorId = player.UnitId;
                             }
-
+                            if (actorRequest is C2U_UnionKeJiQuickRequest infoRequest2)
+                            {
+                                infoRequest2.ActorId = player.UnitId;
+                            }
                             long unionServerID = player.UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
 						}

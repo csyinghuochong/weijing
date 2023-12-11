@@ -8024,6 +8024,41 @@ namespace ET
 
 	}
 
+//科技学习
+	[ResponseType(nameof(M2C_UnionKeJiLearnResponse))]
+	[Message(OuterOpcode.C2M_UnionKeJiLearnRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionKeJiLearnRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionKeJiLearnResponse)]
+	[ProtoContract]
+	public partial class M2C_UnionKeJiLearnResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> UnionKeJiList = new List<int>();
+
+	}
+
 	[Message(OuterOpcode.UnionInfo)]
 	[ProtoContract]
 	public partial class UnionInfo: Object

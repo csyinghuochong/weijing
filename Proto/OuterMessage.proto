@@ -3819,6 +3819,23 @@ message U2C_UnionKeJiQuickResponse // IUnionActorResponse
 	UnionInfo UnionInfo = 1; 
 }
 
+//科技学习
+//ResponseType M2C_UnionKeJiLearnResponse
+message C2M_UnionKeJiLearnRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Position = 2;
+}
+
+message M2C_UnionKeJiLearnResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int32 UnionKeJiList = 1;   //UserInfo.UnionKeJiList
+}
+
 message UnionInfo
 {
 	string UnionName = 1;
