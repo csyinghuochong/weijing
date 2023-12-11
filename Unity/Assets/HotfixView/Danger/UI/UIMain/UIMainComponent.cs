@@ -828,7 +828,7 @@ namespace ET
             //有bug 先注释
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             UserInfo useInfo = userInfoComponent.UserInfo;
-            if (useInfo.Lv > 25)
+            if (useInfo.Lv > 16)
             {
                 return;
             }
