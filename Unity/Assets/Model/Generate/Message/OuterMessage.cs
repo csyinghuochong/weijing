@@ -14506,4 +14506,134 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2C_StallListResponse))]
+	[Message(OuterOpcode.C2P_StallListRequest)]
+	[ProtoContract]
+	public partial class C2P_StallListRequest: Object, IPaiMaiListRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.P2C_StallListResponse)]
+	[ProtoContract]
+	public partial class P2C_StallListResponse: Object, IPaiMaiListResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_StallSellResponse))]
+	[Message(OuterOpcode.C2M_StallSellRequest)]
+	[ProtoContract]
+	public partial class C2M_StallSellRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_StallSellResponse)]
+	[ProtoContract]
+	public partial class M2C_StallSellResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_StallBuyResponse))]
+	[Message(OuterOpcode.C2M_StallBuyRequest)]
+	[ProtoContract]
+	public partial class C2M_StallBuyRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_StallBuyResponse)]
+	[ProtoContract]
+	public partial class M2C_StallBuyResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_StallXiaJiaResponse))]
+	[Message(OuterOpcode.C2M_StallXiaJiaRequest)]
+	[ProtoContract]
+	public partial class C2M_StallXiaJiaRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long PaiMaiItemInfoId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_StallXiaJiaResponse)]
+	[ProtoContract]
+	public partial class M2C_StallXiaJiaResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

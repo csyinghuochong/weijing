@@ -3983,4 +3983,106 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2M_StallSellResponse))]
+	[Message(InnerOpcode.M2P_StallSellRequest)]
+	[ProtoContract]
+	public partial class M2P_StallSellRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_StallSellResponse)]
+	[ProtoContract]
+	public partial class P2M_StallSellResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(P2M_StallBuyResponse))]
+	[Message(InnerOpcode.M2P_StallBuyRequest)]
+	[ProtoContract]
+	public partial class M2P_StallBuyRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_StallBuyResponse)]
+	[ProtoContract]
+	public partial class P2M_StallBuyResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(P2M_StallXiaJiaResponse))]
+	[Message(InnerOpcode.M2P_StallXiaJiaRequest)]
+	[ProtoContract]
+	public partial class M2P_StallXiaJiaRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long PaiMaiItemInfoId { get; set; }
+
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_StallXiaJiaResponse)]
+	[ProtoContract]
+	public partial class P2M_StallXiaJiaResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+	}
+
 }

@@ -807,5 +807,13 @@ namespace ET
 		 public const ushort M2C_LeavlRewardResponse = 10804;
 		 public const ushort C2M_KillMonsterRewardRequest = 10805;
 		 public const ushort M2C_KillMonsterRewardResponse = 10806;
+		 public const ushort C2P_StallListRequest = 10807;
+		 public const ushort P2C_StallListResponse = 10808;
+		 public const ushort C2M_StallSellRequest = 10809;
+		 public const ushort M2C_StallSellResponse = 10810;
+		 public const ushort C2M_StallBuyRequest = 10811;
+		 public const ushort M2C_StallBuyResponse = 10812;
+		 public const ushort C2M_StallXiaJiaRequest = 10813;
+		 public const ushort M2C_StallXiaJiaResponse = 10814;
 	}
 }

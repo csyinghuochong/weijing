@@ -103,6 +103,7 @@ namespace ET
 		public const string UIPaiMaiAuction = "Main/PaiMai/UIPaiMaiAuction";
 		public const string UIPaiMaiStallBuy = "Main/PaiMai/UIPaiMaiStallBuy";
 		public const string UIPaiMaiSellPrice = "Main/PaiMai/UIPaiMaiSellPrice";
+		public const string UIStallSellPrice = "Main/PaiMai/UIStallSellPrice";
 		public const string UIEnergy = "Main/Energy/UIEnergy";
 		public const string UIHorseNotice = "Main/HorseNotice/UIHorseNotice";
 		public const string UIGM = "Main/GM/UIGM";

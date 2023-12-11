@@ -166,8 +166,8 @@ namespace ET
 
         public static async ETTask OnBtn_Buy(this UIPaiMaiStallBuyComponent self)
         {
-            C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
-            M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            C2M_StallBuyRequest c2MStallBuyRequest = new C2M_StallBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
+            M2C_StallBuyResponse m2CStallBuyResponse = (M2C_StallBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2MStallBuyRequest);
 
             UI uI = UIHelper.GetUI( self.DomainScene(), UIType.UIPaiMaiStall );
             uI.GetComponent<UIPaiMaiStallComponent>().RequestStallInfo().Coroutine();

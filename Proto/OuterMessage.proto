@@ -6964,3 +6964,66 @@ message M2C_KillMonsterRewardResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType P2C_StallListResponse
+message C2P_StallListRequest // IPaiMaiListRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UserId = 1;
+}
+
+message P2C_StallListResponse // IPaiMaiListResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated PaiMaiItemInfo PaiMaiItemInfos = 1;
+}
+
+//ResponseType M2C_StallSellResponse
+message C2M_StallSellRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	PaiMaiItemInfo PaiMaiItemInfo = 1;
+}
+
+message M2C_StallSellResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	PaiMaiItemInfo PaiMaiItemInfo = 1;
+}
+
+//ResponseType M2C_StallBuyResponse
+message C2M_StallBuyRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	
+	PaiMaiItemInfo PaiMaiItemInfo = 1;
+}
+
+message M2C_StallBuyResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_StallXiaJiaResponse
+message C2M_StallXiaJiaRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 PaiMaiItemInfoId = 1;
+}
+
+message M2C_StallXiaJiaResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

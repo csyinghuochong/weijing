@@ -11,6 +11,9 @@ namespace ET
 
         public List<PaiMaiShopItemInfo> PaiMaiShopItemInfos = new List<PaiMaiShopItemInfo>();
 
+        // 摆摊数据
+        public List<PaiMaiItemInfo> StallItemInfos = new List<PaiMaiItemInfo>();
+        
         //-----------拍卖行缓存----------
         /*
         //消耗品

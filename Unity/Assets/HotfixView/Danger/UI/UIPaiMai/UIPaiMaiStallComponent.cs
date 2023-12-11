@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPaiMaiStallComponent : Entity, IAwake
+    public class UIPaiMaiStallComponent: Entity, IAwake
     {
         public GameObject Btn_ChangeName;
         public GameObject ImageButton;
@@ -21,12 +21,10 @@ namespace ET
         public long UserId;
     }
 
-
-    public class UIPaiMaiStallComponentAwakeSystem : AwakeSystem<UIPaiMaiStallComponent>
+    public class UIPaiMaiStallComponentAwakeSystem: AwakeSystem<UIPaiMaiStallComponent>
     {
         public override void Awake(UIPaiMaiStallComponent self)
         {
-
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
@@ -51,7 +49,6 @@ namespace ET
         }
     }
 
-
     public static class UIPaiMaiStallComponentSystem
     {
         public static void CheckSensitiveWords(this UIPaiMaiStallComponent self)
@@ -72,19 +69,16 @@ namespace ET
                 return;
             }
 
-            C2M_StallOperationRequest c2M_StallOperationRequest = new C2M_StallOperationRequest()
-            {
-                StallType = 2,
-                Value = name
-            };
-            M2C_StallOperationResponse m2C_PaiMaiBuyResponse = (M2C_StallOperationResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_StallOperationRequest);
+            C2M_StallOperationRequest c2M_StallOperationRequest = new C2M_StallOperationRequest() { StallType = 2, Value = name };
+            M2C_StallOperationResponse m2C_PaiMaiBuyResponse =
+                    (M2C_StallOperationResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_StallOperationRequest);
             self.Lab_Name.GetComponent<InputField>().text = name;
         }
 
-        public static  void OnUpdateUI(this UIPaiMaiStallComponent self, Unit unit)
+        public static void OnUpdateUI(this UIPaiMaiStallComponent self, Unit unit)
         {
             self.UserId = unit.Id;
-         
+
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             bool ifSelf = selfId == self.UserId;
             self.Btn_BuyItem.SetActive(!ifSelf);
@@ -97,19 +91,16 @@ namespace ET
             {
                 self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().UnitName + "的摊位";
             }
+
             self.RequestStallInfo().Coroutine();
         }
 
         public static async ETTask RequestStallInfo(this UIPaiMaiStallComponent self)
         {
-
             long instanceId = self.InstanceId;
-            C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
-            {
-                PaiMaiType = 0,
-                UserId = self.UserId
-            };
-            P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            C2P_StallListRequest c2M_PaiMaiBuyRequest = new C2P_StallListRequest() { UserId = self.UserId };
+            P2C_StallListResponse m2C_PaiMaiBuyResponse =
+                    (P2C_StallListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             if (self.InstanceId != instanceId)
             {
                 return;
@@ -135,40 +126,43 @@ namespace ET
                 {
                     GameObject go = GameObject.Instantiate(self.UIPaiMaiStallItem);
                     go.SetActive(true);
-                    UICommonHelper.SetParent(go, self.ItemListNode) ;
+                    UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
-                    uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + i, go);
+                    uI = self.AddChild<UI, string, GameObject>("BagItemUILIist_" + i, go);
                     UIPaiMaiStallItemComponent uIItemComponent = uI.AddComponent<UIPaiMaiStallItemComponent>();
                     uIItemComponent.SetClickHandler((PaiMaiItemInfo bagInfo) => { self.OnSelectStallItem(bagInfo); });
                     self.StallItemUILIist.Add(uI);
                 }
+
                 uI.GetComponent<UIPaiMaiStallItemComponent>().OnUpdateUI(paiMaiItemInfo).Coroutine();
                 number++;
             }
+
             for (int i = number; i < self.StallItemUILIist.Count; i++)
             {
                 self.StallItemUILIist[i].GameObject.SetActive(false);
             }
         }
 
-        public static void OnSelectStallItem(this UIPaiMaiStallComponent self , PaiMaiItemInfo bagInfo)
+        public static void OnSelectStallItem(this UIPaiMaiStallComponent self, PaiMaiItemInfo bagInfo)
         {
-            for (int i = 0;  i < self.StallItemUILIist.Count; i++)
+            for (int i = 0; i < self.StallItemUILIist.Count; i++)
             {
                 self.StallItemUILIist[i].GetComponent<UIPaiMaiStallItemComponent>().SetSelected(bagInfo.Id);
             }
+
             self.PaiMaiItemInfo = bagInfo;
         }
 
         public static async ETTask OnBtn_BuyItem(this UIPaiMaiStallComponent self)
         {
-            UI uI = await UIHelper.Create(  self.DomainScene(), UIType.UIPaiMaiStallBuy );
-            uI.GetComponent<UIPaiMaiStallBuyComponent>().OnUpdateUI( self.PaiMaiItemInfo );
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiStallBuy);
+            uI.GetComponent<UIPaiMaiStallBuyComponent>().OnUpdateUI(self.PaiMaiItemInfo);
         }
 
         public static void OnButtonClose(this UIPaiMaiStallComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall );
+            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall);
         }
 
         //收回摊位
@@ -178,6 +172,5 @@ namespace ET
             UI mainUI = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
             mainUI.GetComponent<UIMainComponent>().OnButtonStallCancel();
         }
-
     }
 }

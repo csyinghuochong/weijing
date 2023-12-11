@@ -11,6 +11,7 @@ namespace ET
         PaiMaiBuy = 1,
         PaiMaiSell = 2,
         PaiMaiDuiHuan =3,
+        StallSell = 4,
         Number,
     }
 
@@ -40,11 +41,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)PaiMaiPageEnum.PaiMaiBuy] = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuy");
             pageViewComponent.UISubViewPath[(int)PaiMaiPageEnum.PaiMaiSell] = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiSell");
             pageViewComponent.UISubViewPath[(int)PaiMaiPageEnum.PaiMaiDuiHuan] = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiDuiHuan");
+            pageViewComponent.UISubViewPath[(int)PaiMaiPageEnum.StallSell] = ABPathHelper.GetUGUIPath("Main/PaiMai/UIStallSell");
 
             pageViewComponent.UISubViewType[(int)PaiMaiPageEnum.PaiMaiShop] = typeof(UIPaiMaiShopComponent);
             pageViewComponent.UISubViewType[(int)PaiMaiPageEnum.PaiMaiBuy] = typeof(UIPaiMaiBuyComponent);
             pageViewComponent.UISubViewType[(int)PaiMaiPageEnum.PaiMaiSell] = typeof(UIPaiMaiSellComponent);
             pageViewComponent.UISubViewType[(int)PaiMaiPageEnum.PaiMaiDuiHuan] = typeof(UIPaiMaiDuiHuanComponet);
+            pageViewComponent.UISubViewType[(int)PaiMaiPageEnum.StallSell] = typeof(UIStallSellComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

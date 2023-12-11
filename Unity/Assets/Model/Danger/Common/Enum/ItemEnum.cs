@@ -94,6 +94,7 @@ namespace ET
         public const int Welfare = 83;                  //福利
         public const int LeavlReward = 84;              //等级奖励
         public const int KillMonsterReward = 85;        //击败怪物奖励
+        public const int StallBuy = 86;                 //摆摊购买
 
         public const int Activity = 100;                //活动
 

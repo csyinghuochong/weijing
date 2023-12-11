@@ -223,5 +223,11 @@ namespace ET
 		 public const ushort M2A_PetMingLoginResponse = 20220;
 		 public const ushort A2M_PetMingRecordRequest = 20221;
 		 public const ushort M2A_PetMingRecordResponse = 20222;
+		 public const ushort M2P_StallSellRequest = 20223;
+		 public const ushort P2M_StallSellResponse = 20224;
+		 public const ushort M2P_StallBuyRequest = 20225;
+		 public const ushort P2M_StallBuyResponse = 20226;
+		 public const ushort M2P_StallXiaJiaRequest = 20227;
+		 public const ushort P2M_StallXiaJiaResponse = 20228;
 	}
 }
