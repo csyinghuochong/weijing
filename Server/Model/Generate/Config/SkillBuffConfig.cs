@@ -168,6 +168,9 @@ namespace ET
 		/// <summary>移动触发</summary>
 		[ProtoMember(32)]
 		public int MoveAction { get; set; }
+		/// <summary>叠加层数触发技能</summary>
+		[ProtoMember(33)]
+		public int[] AddSkill { get; set; }
 
 	}
 }
