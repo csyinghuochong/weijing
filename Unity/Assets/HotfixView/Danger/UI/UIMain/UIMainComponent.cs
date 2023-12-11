@@ -2236,10 +2236,13 @@ namespace ET
         {
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
 
-            C2U_UnionKeJiActiteRequest request = new C2U_UnionKeJiActiteRequest() { Position = 0 };
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            C2U_UnionKeJiActiteRequest request = new C2U_UnionKeJiActiteRequest() { UnionId = unit.GetUnionId(), Position = 0 };
             U2C_UnionKeJiActiteResponse response = (U2C_UnionKeJiActiteResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-
+            if(response.UnionInfo!=null && response.UnionInfo.KeJiActiteTime > 0)
+            {
+                Log.ILog.Debug($"当前正在研究的科技: {response.UnionInfo.KeJiActitePos}  {response.UnionInfo.UnionKeJiList[response.UnionInfo.KeJiActitePos]}");
+            }
 
             await ETTask.CompletedTask;
         }

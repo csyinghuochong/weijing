@@ -17,22 +17,15 @@ namespace ET
 
             if (dBUnionInfo.UnionInfo.KeJiActiteTime != 0)
             {
+                response.UnionInfo = dBUnionInfo.UnionInfo;
                 response.Error = ErrorCode.ERR_Union_HavActive;
-                reply();
-                return;
-            }
-
-            U2M_UnionKeJiQuickRequest r2M_RechargeRequest = new U2M_UnionKeJiQuickRequest() {  };
-            M2U_UnionKeJiQuickResponse m2G_RechargeResponse = (M2U_UnionKeJiQuickResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, r2M_RechargeRequest);
-            if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
-            {
-                response.Error = m2G_RechargeResponse.Error;
                 reply();
                 return;
             }
 
             dBUnionInfo.UnionInfo.KeJiActitePos = request.Position;
             dBUnionInfo.UnionInfo.KeJiActiteTime = TimeHelper.ServerNow();
+            response.UnionInfo = dBUnionInfo.UnionInfo;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
