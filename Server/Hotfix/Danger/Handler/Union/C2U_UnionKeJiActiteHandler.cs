@@ -15,6 +15,15 @@ namespace ET
                 return;
             }
 
+            int keijiId = dBUnionInfo.UnionInfo.UnionKeJiList[request.Position];
+            UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(keijiId);
+            if (unionKeJiConfig.NextID == 0)
+            {
+                response.Error = ErrorCode.ERR_Union_NotActive;
+                reply();
+                return;
+            }
+
             if (dBUnionInfo.UnionInfo.KeJiActiteTime != 0)
             {
                 response.UnionInfo = dBUnionInfo.UnionInfo;
