@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_UnionXiuLianRequest request, M2C_UnionXiuLianResponse response, Action reply)
         {
-            int numerType = UnionHelper.GetXiuLianId(request.Position);
+            int numerType = UnionHelper.GetXiuLianId(request.Position, request.Type);
             if (numerType == 0)
             {
                 reply();
@@ -18,7 +18,13 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int xiulianid = numericComponent.GetAsInt(numerType);
 
-            if (xiulianid >= UnionQiangHuaConfigCategory.Instance.GetMaxId(request.Position))
+            int position = request.Position;
+            if (request.Type == 1)
+            {
+                position += 4;
+            }
+
+            if (xiulianid >= UnionQiangHuaConfigCategory.Instance.GetMaxId(position))
             {
                 response.Error = ErrorCode.ERR_UnionXiuLianMax;
                 reply();

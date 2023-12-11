@@ -77,6 +77,14 @@ namespace ET
                 numericComponent.Set(NumericType.UnionXiuLian_2, keyValuePairs[2][0].Id);
                 numericComponent.Set(NumericType.UnionXiuLian_3, keyValuePairs[3][0].Id);
             }
+            if (numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0) == 0)
+            {
+                Dictionary<int, List<UnionQiangHuaConfig>> keyValuePairs = UnionQiangHuaConfigCategory.Instance.UnionQiangHuaList;
+                numericComponent.Set(NumericType.UnionPetXiuLian_0, keyValuePairs[4][0].Id);
+                numericComponent.Set(NumericType.UnionPetXiuLian_1, keyValuePairs[5][0].Id);
+                numericComponent.Set(NumericType.UnionPetXiuLian_2, keyValuePairs[6][0].Id);
+                numericComponent.Set(NumericType.UnionPetXiuLian_3, keyValuePairs[7][0].Id);
+            }
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);

@@ -78,26 +78,55 @@ namespace ET
         }
 
 
-        public static int GetXiuLianId(int postion)
+        public static int GetXiuLianId(int postion ,int type)
         {
             int numerType = 0;
-            switch (postion)
+            switch (type)
             {
+                // 角色修炼
                 case 0:
-                    numerType = NumericType.UnionXiuLian_0;
+                    switch (postion)
+                    {
+                        case 0:
+                            numerType = NumericType.UnionXiuLian_0;
+                            break;
+                        case 1:
+                            numerType = NumericType.UnionXiuLian_1;
+                            break;
+                        case 2:
+                            numerType = NumericType.UnionXiuLian_2;
+                            break;
+                        case 3:
+                            numerType = NumericType.UnionXiuLian_3;
+                            break;
+                        default:
+                            break;
+                    }
+
                     break;
+                // 宠物修炼
                 case 1:
-                    numerType = NumericType.UnionXiuLian_1;
-                    break;
-                case 2:
-                    numerType = NumericType.UnionXiuLian_2;
-                    break;
-                case 3:
-                    numerType = NumericType.UnionXiuLian_3;
-                    break;
-                default:
+                    switch (postion)
+                    {
+                        case 0:
+                            numerType = NumericType.UnionPetXiuLian_0;
+                            break;
+                        case 1:
+                            numerType = NumericType.UnionPetXiuLian_1;
+                            break;
+                        case 2:
+                            numerType = NumericType.UnionPetXiuLian_2;
+                            break;
+                        case 3:
+                            numerType = NumericType.UnionPetXiuLian_3;
+                            break;
+                        default:
+                            break;
+                    }
+
                     break;
             }
+
             return numerType;
         }
     }

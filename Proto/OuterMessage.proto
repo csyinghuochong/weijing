@@ -3750,6 +3750,7 @@ message C2M_UnionXiuLianRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 Position = 1;
+	int32 Type = 2;
 }
 
 message M2C_UnionXiuLianResponse // IActorLocationResponse
