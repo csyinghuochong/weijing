@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIUnionListItemComponent : Entity, IAwake<GameObject>
     {
+
+        public GameObject Text_Level;
         public GameObject ButtonApply;
         public GameObject Text_Request;
         public GameObject Text_Number;
@@ -27,6 +29,7 @@ namespace ET
             self.ButtonApply = rc.Get<GameObject>("ButtonApply");
             ButtonHelp.AddListenerEx( self.ButtonApply, () => { self.OnButtonApply().Coroutine(); } );
 
+            self.Text_Level = rc.Get<GameObject>("Text_Level");
             self.Text_Request = rc.Get<GameObject>("Text_Request");
             self.Text_Number = rc.Get<GameObject>("Text_Number");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
@@ -76,6 +79,7 @@ namespace ET
             self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/{peopleMax}";
             self.Text_Name.GetComponent<Text>().text = unionListItem.UnionName;
             self.Text_Leader.GetComponent<Text>().text = unionListItem.UnionLeader;
+            self.Text_Level.GetComponent<Text>().text = unionListItem.UnionLevel.ToString();
         }
     }
 }
