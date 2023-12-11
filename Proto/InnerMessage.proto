@@ -947,6 +947,21 @@ message M2U_UnionKickOutResponse // IActorResponse
 	string Message = 92;
 }
 
+//加速完成
+//ResponseType M2U_UnionKeJiQuickResponse
+message U2M_UnionKeJiQuickRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2U_UnionKeJiQuickResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //入会通知
 //ResponseType M2U_UnionApplyResponse
 message U2M_UnionApplyRequest // IActorRequest

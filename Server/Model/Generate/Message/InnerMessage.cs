@@ -2000,6 +2000,35 @@ namespace ET
 
 	}
 
+//加速完成
+	[ResponseType(nameof(M2U_UnionKeJiQuickResponse))]
+	[Message(InnerOpcode.U2M_UnionKeJiQuickRequest)]
+	[ProtoContract]
+	public partial class U2M_UnionKeJiQuickRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2U_UnionKeJiQuickResponse)]
+	[ProtoContract]
+	public partial class M2U_UnionKeJiQuickResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //入会通知
 	[ResponseType(nameof(M2U_UnionApplyResponse))]
 	[Message(InnerOpcode.U2M_UnionApplyRequest)]

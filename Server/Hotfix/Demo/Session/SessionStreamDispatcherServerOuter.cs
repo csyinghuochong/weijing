@@ -184,7 +184,12 @@ namespace ET
 						}
 						else if (actorRequest is IUnionActorRequest iUnionActorRequest)
 						{
-							long unionServerID = player.UnionServerID;
+                            if (actorRequest is C2U_UnionKeJiActiteRequest infoRequest)
+                            {
+                                infoRequest.ActorId = player.UnitId;
+                            }
+
+                            long unionServerID = player.UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
 						}
 						else if (actorRequest is ISoloActorRequest iSoloActorRequest)
