@@ -2235,9 +2235,12 @@ namespace ET
         public static async ETTask OnButton_Season(this UIMainComponent self) 
         {
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
-            
 
-            
+            C2U_UnionKeJiActiteRequest request = new C2U_UnionKeJiActiteRequest() { Position = 0 };
+            U2C_UnionKeJiActiteResponse response = (U2C_UnionKeJiActiteResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+
+
             await ETTask.CompletedTask;
         }
 

@@ -31,14 +31,18 @@ namespace ET
             }
 
             ////需要向游戏服发送协议扣除钻石
-            long passTime = (dBUnionInfo.UnionInfo.KeJiActiteTime - TimeHelper.ServerNow()) / 1000;
-            if (passTime >= UnionKeJiConfigCategory.Instance.Get(keijiId + 1).NeedTime)
+            U2M_UnionKeJiQuickRequest r2M_RechargeRequest = new U2M_UnionKeJiQuickRequest() { };
+            M2U_UnionKeJiQuickResponse m2G_RechargeResponse = (M2U_UnionKeJiQuickResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, r2M_RechargeRequest);
+            if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
             {
-                dBUnionInfo.UnionInfo.UnionKeJiList[dBUnionInfo.UnionInfo.KeJiActitePos] = keijiId + 1;
-                dBUnionInfo.UnionInfo.KeJiActitePos = -1;
-                dBUnionInfo.UnionInfo.KeJiActiteTime = 0;
+                response.Error = m2G_RechargeResponse.Error;
+                reply();
+                return;
             }
 
+            dBUnionInfo.UnionInfo.UnionKeJiList[dBUnionInfo.UnionInfo.KeJiActitePos] = keijiId + 1;
+            dBUnionInfo.UnionInfo.KeJiActitePos = -1;
+            dBUnionInfo.UnionInfo.KeJiActiteTime = 0;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
