@@ -1288,7 +1288,7 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (PetHelper.GetBagPetNum(self.RolePetInfos) >= ComHelp.GetPetMaxNumber(unit, userLv))
+            if (PetHelper.GetBagPetNum(self.RolePetInfos) >= PetHelper.GetPetMaxNumber(unit, userLv))
             {
                 return true;
             }

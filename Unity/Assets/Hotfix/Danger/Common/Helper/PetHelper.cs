@@ -5,6 +5,22 @@ namespace ET
     public static class PetHelper
     {
 
+        public static int GetPetMaxNumber(Unit unit, int level)
+        {
+            int petNumber = 1;
+            string[] petInfos = GlobalValueConfigCategory.Instance.Get(34).Value.Split('@');
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            for (int i = 0; i < petInfos.Length; i++)
+            {
+                string[] numberInfos = petInfos[i].Split(';');
+                petNumber = int.Parse(numberInfos[1]);
+                if (level <= int.Parse(numberInfos[0]))
+                {
+                    return petNumber + numericComponent.GetAsInt(NumericType.PetExtendNumber);
+                }
+            }
+            return petNumber + numericComponent.GetAsInt(NumericType.PetExtendNumber);
+        }
 
 
         public static void UpdatePetNumeric(RolePetInfo rolePetInfo)

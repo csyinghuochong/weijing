@@ -107,7 +107,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= maxNum)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");

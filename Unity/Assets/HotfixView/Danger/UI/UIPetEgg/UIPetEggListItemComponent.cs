@@ -114,7 +114,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             if (maxNum <= PetHelper.GetCangKuPetNum(petComponent.RolePetInfos))
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
@@ -156,7 +156,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (maxNum <=PetHelper.GetBagPetNum(petComponent.RolePetInfos))
             {

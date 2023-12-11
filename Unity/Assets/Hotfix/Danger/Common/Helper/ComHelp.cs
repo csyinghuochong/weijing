@@ -54,23 +54,6 @@ namespace ET
             return 120;
         }
 
-
-        public static int GetPetMaxNumber(Unit unit, int level)
-        {
-            int petNumber = 1;
-            string[] petInfos = GlobalValueConfigCategory.Instance.Get(34).Value.Split('@');
-            for (int i = 0; i < petInfos.Length; i++)
-            {
-                string[] numberInfos = petInfos[i].Split(';');
-                petNumber = int.Parse(numberInfos[1]);
-                if (level <= int.Parse(numberInfos[0]))
-                {
-                    return petNumber + unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExtendNumber);
-                }
-            }
-            return petNumber + unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExtendNumber);
-        }
-
         public static int MainCityID()
         {
             return GlobalValueConfigCategory.Instance.Get(47).Value2;

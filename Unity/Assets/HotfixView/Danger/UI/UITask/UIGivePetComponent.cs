@@ -138,7 +138,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             self.PetNumText.GetComponent<Text>().text = $"携带宠物数量:{PetHelper.GetBagPetNum(rolePetInfos)}/{maxNum}";
         }
 
@@ -147,7 +147,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int curNumber = PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos);
-            if (curNumber < ComHelp.GetPetMaxNumber(unit, level))
+            if (curNumber < PetHelper.GetPetMaxNumber(unit, level))
             {
                 return 0;
             }
