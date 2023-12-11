@@ -3803,6 +3803,7 @@ message DonationRecord
 	int Gold = 3;
 	string Name = 4;
 	int32 Occ = 5;
+	int Diamond = 6;
 }
 
 message UnionApplyItem
@@ -5895,6 +5896,7 @@ message C2M_UnionDonationRequest // IActorLocationRequest
 	int64 ActorId = 93;
 
 	int64 Price = 1;
+	int32 Type = 2;
 }
 
 message M2C_UnionDonationResponse // IActorLocationResponse

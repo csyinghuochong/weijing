@@ -61,8 +61,7 @@ namespace ET
                     case 2:  //获取等级
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
                         break;
-                        //捐献
-                    case 3:
+                    case 3:  //金币捐献
                         dBUnionInfo.UnionInfo.Level = Math.Max(dBUnionInfo.UnionInfo.Level, 1);
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
                         unionConfig = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
@@ -80,6 +79,28 @@ namespace ET
                         dBUnionInfo.UnionInfo.DonationRecords.Add( new DonationRecord()
                         { 
                             Gold = unionConfig.DonateGold,
+                            Time = TimeHelper.ServerNow(),
+                            UnitId = request.UnitId
+                        });
+                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        break;
+                    case 4: //钻石捐献
+                        dBUnionInfo.UnionInfo.Level = Math.Max(dBUnionInfo.UnionInfo.Level, 1);
+                        response.Par = dBUnionInfo.UnionInfo.Level.ToString();
+                        long selfDiamond = long.Parse(request.Par);
+                        if (selfDiamond < 250)
+                        {
+                            response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                            reply();
+                            return;
+                        }
+                        if (dBUnionInfo.UnionInfo.DonationRecords.Count >= 100)
+                        {
+                            dBUnionInfo.UnionInfo.DonationRecords.RemoveAt(0);
+                        }
+                        dBUnionInfo.UnionInfo.DonationRecords.Add( new DonationRecord()
+                        { 
+                            Diamond = 250,
                             Time = TimeHelper.ServerNow(),
                             UnitId = request.UnitId
                         });

@@ -29,7 +29,16 @@ namespace ET
         public static void OnInitUI(this UIUnionDonationRecordItemComponent self, DonationRecord donationRecord)
         {
             DateTime dateTime = TimeInfo.Instance.ToDateTime(donationRecord.Time);
-            self.TextContent.GetComponent<Text>().text = $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Gold}</color>";
+            if (donationRecord.Gold > 0)
+            {
+                self.TextContent.GetComponent<Text>().text =
+                        $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Gold}</color>金币";
+            }
+            else
+            {
+                self.TextContent.GetComponent<Text>().text =
+                        $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Diamond}</color>钻石";
+            }
 
             UICommonHelper.ShowOccIcon(self.HeadIcon, donationRecord.Occ);
         }

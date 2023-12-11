@@ -157,6 +157,7 @@
         public const int UnionPetXiuLian_1 = 3157;                              //UnionQiangHuaConfig需要重新配置
         public const int UnionPetXiuLian_2 = 3158;
         public const int UnionPetXiuLian_3 = 3159;
+        public const int UnionDiamondDonationNumber = 3160;                     //家族钻石捐献
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -8003,6 +8003,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int Occ { get; set; }
 
+		[ProtoMember(6)]
+		public int Diamond { get; set; }
+
 	}
 
 	[Message(OuterOpcode.UnionApplyItem)]
@@ -12332,6 +12335,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public long Price { get; set; }
+
+		[ProtoMember(2)]
+		public int Type { get; set; }
 
 	}
 
