@@ -339,6 +339,8 @@ message UserInfo
 	repeated int32  WelfareInvestList = 51; //投资
 
 	repeated int32 RechargeReward = 52;
+
+	repeated int32 UnionKeJiList = 53;  //没升级的不需要记录
 }
 
 message KeyValuePair
