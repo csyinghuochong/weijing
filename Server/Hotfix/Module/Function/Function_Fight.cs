@@ -392,11 +392,15 @@ namespace ET
 
             if (ifHit)
             {
-                //判定是否触发重击
+                //获取属性
                 long actValue = attack_Act;
+                //宠物普攻是魔法类型得用魔法值
+                if (attackUnit.Type == UnitType.Pet && skillconfig.DamgeType == 2) {
+                        actValue = attack_MageAct;
+                }
                 long defValue = defend_def;
                 long adfValue = defend_adf;
-                //获取重击等级
+                //获取重击等级  判定是否触发重击
                 int zhongjiLvValue = numericComponentAttack.GetAsInt(NumericType.Now_ZhongJiLv);
                 float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro) + LvProChange(zhongjiLvValue, attackUnitLv);
                 if (RandomHelper.RandFloat() <= zhongJiPro)
