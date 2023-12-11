@@ -141,7 +141,9 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_Union_Same_Name, "已经存在同名的家族");
             ErrorHintList.Add(ErrorCode.ERR_Union_PeopleMax, "家族成员人数已达上限");
             ErrorHintList.Add(ErrorCode.ERR_PlayerHaveUnion, "玩家已经有家族了");
-
+            ErrorHintList.Add(ErrorCode.ERR_Union_HavActive, "只能同时研究一个科技");
+            ErrorHintList.Add(ErrorCode.ERR_Union_NotActive, "当前没有正在研究的科技");
+            
             ErrorHintList.Add(ErrorCode.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyFinish, "活动已经结束");
             ErrorHintList.Add(ErrorCode.ERR_MysteryItem_Max, "此道具每日购买次数已达上限");

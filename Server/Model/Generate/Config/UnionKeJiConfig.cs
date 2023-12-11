@@ -90,11 +90,14 @@ namespace ET
 		/// <summary>需要家族等级</summary>
 		[ProtoMember(5)]
 		public int NeedUnionLv { get; set; }
-		/// <summary>升级消耗家族金币</summary>
+		/// <summary>升级需要时间（单位:s）</summary>
 		[ProtoMember(6)]
+		public int NeedTime { get; set; }
+		/// <summary>升级消耗家族金币</summary>
+		[ProtoMember(7)]
 		public int CostUnionGold { get; set; }
 		/// <summary>强化属性</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string EquipPropreAdd { get; set; }
 
 	}

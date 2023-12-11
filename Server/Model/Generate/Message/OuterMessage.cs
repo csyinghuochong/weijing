@@ -7948,6 +7948,82 @@ namespace ET
 
 	}
 
+//科技升级
+	[ResponseType(nameof(U2C_UnionKeJiActiteResponse))]
+	[Message(OuterOpcode.C2U_UnionKeJiActiteRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionKeJiActiteRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionKeJiActiteResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionKeJiActiteResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public UnionInfo UnionInfo { get; set; }
+
+	}
+
+//加速完成
+	[ResponseType(nameof(U2C_UnionKeJiQuickResponse))]
+	[Message(OuterOpcode.C2U_UnionKeJiQuickRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionKeJiQuickRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionKeJiQuickResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionKeJiQuickResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public UnionInfo UnionInfo { get; set; }
+
+	}
+
 	[Message(OuterOpcode.UnionInfo)]
 	[ProtoContract]
 	public partial class UnionInfo: Object
@@ -7993,6 +8069,12 @@ namespace ET
 
 		[ProtoMember(14)]
 		public List<int> UnionKeJiList = new List<int>();
+
+		[ProtoMember(15)]
+		public int KeJiActitePos { get; set; }
+
+		[ProtoMember(16)]
+		public long KeJiActiteTime { get; set; }
 
 	}
 

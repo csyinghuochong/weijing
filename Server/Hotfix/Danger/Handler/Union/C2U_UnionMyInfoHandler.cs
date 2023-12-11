@@ -60,6 +60,8 @@ namespace ET
                 }
             }
 
+            long timeNow = TimeHelper.ServerNow();
+
             if (dBUnionInfo.UnionInfo.Level == 0)
             {
                 dBUnionInfo.UnionInfo.Level = 1;
@@ -75,8 +77,20 @@ namespace ET
                 }
             }
 
+            //检测是否有科技可以升级
+            if (dBUnionInfo.UnionInfo.KeJiActiteTime > 0)
+            {
+                int keijiId = dBUnionInfo.UnionInfo.UnionKeJiList[dBUnionInfo.UnionInfo.KeJiActitePos];
+                long passTime = (dBUnionInfo.UnionInfo.KeJiActiteTime - timeNow) / 1000;
+                if (UnionKeJiConfigCategory.Instance.Contain(keijiId + 1 ) && passTime >= UnionKeJiConfigCategory.Instance.Get(keijiId + 1).NeedTime)
+                {
+                    dBUnionInfo.UnionInfo.UnionKeJiList[dBUnionInfo.UnionInfo.KeJiActitePos] = keijiId + 1;
+                    dBUnionInfo.UnionInfo.KeJiActitePos = -1;
+                    dBUnionInfo.UnionInfo.KeJiActiteTime = 0;
+                }
+            }
+
             ///判断族长离线时间
-            long timeNow = TimeHelper.ServerNow();
             D2G_GetComponent d2GSave_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.NumericComponent });
             NumericComponent numericComponent = d2GSave_2.Component as NumericComponent;
 

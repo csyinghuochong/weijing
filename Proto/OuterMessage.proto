@@ -3783,6 +3783,42 @@ message U2C_UnionJingXuanResponse // IUnionActorResponse
 	int64 JingXuanEndTime = 13;
 }
 
+//科技升级
+//ResponseType U2C_UnionKeJiActiteResponse
+message C2U_UnionKeJiActiteRequest // IUnionActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	int32 Position = 2;
+}
+
+message U2C_UnionKeJiActiteResponse // IUnionActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	UnionInfo UnionInfo = 1; 
+}
+
+//加速完成
+//ResponseType U2C_UnionKeJiQuickResponse
+message C2U_UnionKeJiQuickRequest // IUnionActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	int32 Position = 2;
+}
+
+message U2C_UnionKeJiQuickResponse // IUnionActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	UnionInfo UnionInfo = 1; 
+}
+
 message UnionInfo
 {
 	string UnionName = 1;
@@ -3799,6 +3835,8 @@ message UnionInfo
 	repeated int64 JingXuanList = 12;
 	int64 JingXuanEndTime = 13;
 	repeated int32 UnionKeJiList = 14;
+	int32 KeJiActitePos = 15;			//当前升级的科技， 当前只能升级一个
+	int64 KeJiActiteTime = 16;			//当前升级时间
 }
 
 message DonationRecord
