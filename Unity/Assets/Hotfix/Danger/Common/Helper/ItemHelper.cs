@@ -236,6 +236,7 @@ namespace ET
             { 31, UserDataType.SeasonExp },
             { 32, UserDataType.SeasonCoin },
             { 34, UserDataType.InvestMent },
+            { 35, UserDataType.UnionGold },
         };
 
         public static int GetItemToUserDataType(int itemid)

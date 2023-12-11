@@ -553,6 +553,10 @@ namespace ET
                     self.UserInfo.SeasonLevel += int.Parse(value);
                     saveValue = self.UserInfo.SeasonLevel.ToString();
                     break;
+                case UserDataType.UnionGold:
+                    self.UserInfo.UnionGold += int.Parse(value);
+                    saveValue = self.UserInfo.UnionGold.ToString();
+                    break;
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanLv.ToString();

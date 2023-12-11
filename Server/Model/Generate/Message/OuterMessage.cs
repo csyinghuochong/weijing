@@ -664,6 +664,9 @@ namespace ET
 		[ProtoMember(53)]
 		public List<int> UnionKeJiList = new List<int>();
 
+		[ProtoMember(54)]
+		public long UnionGold { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
