@@ -65,6 +65,16 @@ namespace ET
                 dBUnionInfo.UnionInfo.Level = 1;
             }
 
+            if (dBUnionInfo.UnionInfo.UnionKeJiList.Count < UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count)
+            {
+                int curNumber = dBUnionInfo.UnionInfo.UnionKeJiList.Count;
+                int maxNumber = UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count;
+                for (int keji = curNumber; keji < maxNumber; keji++)
+                {
+                    dBUnionInfo.UnionInfo.UnionKeJiList.Add(UnionKeJiConfigCategory.Instance.GetFristId(keji));
+                }
+            }
+
             ///判断族长离线时间
             long timeNow = TimeHelper.ServerNow();
             D2G_GetComponent d2GSave_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.NumericComponent });

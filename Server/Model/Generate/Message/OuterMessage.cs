@@ -7991,6 +7991,9 @@ namespace ET
 		[ProtoMember(13)]
 		public long JingXuanEndTime { get; set; }
 
+		[ProtoMember(14)]
+		public List<int> UnionKeJiList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.DonationRecord)]

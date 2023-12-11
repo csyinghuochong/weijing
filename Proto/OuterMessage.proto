@@ -3672,7 +3672,6 @@ message U2C_UnionOperatateResponse // IUnionActorResponse
 	string Message = 92;
 }
 
-
 //公会踢人
 //ResponseType U2C_UnionKickOutResponse
 message C2U_UnionKickOutRequest // IUnionActorRequest
@@ -3799,6 +3798,7 @@ message UnionInfo
 	repeated DonationRecord DonationRecords = 11;
 	repeated int64 JingXuanList = 12;
 	int64 JingXuanEndTime = 13;
+	repeated int32 UnionKeJiList = 14;
 }
 
 message DonationRecord
