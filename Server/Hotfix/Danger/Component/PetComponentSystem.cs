@@ -904,6 +904,23 @@ namespace ET
                 }
             }
 
+            //家族修炼属性
+            //int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionXiuLian_0);
+            //int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionXiuLian_1);
+            //int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionXiuLian_2);
+            //int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionXiuLian_3);
+            //List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
+            //for (int i = 0; i < unionXiuLianids.Count; i++)
+            //{
+            //    UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
+            //    List<PropertyValue> jiazuProList = new List<PropertyValue>();
+            //    NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+            //    for (int pro = 0; pro < jiazuProList.Count; pro++)
+            //    {
+            //        Function_Fight.AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, attriDic);
+            //    }
+            //}
+
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             if (!ComHelp.IfNull(petSkinConfig.PripertySet))
             {
