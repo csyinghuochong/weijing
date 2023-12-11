@@ -661,6 +661,9 @@ namespace ET
 		[ProtoMember(52)]
 		public List<int> RechargeReward = new List<int>();
 
+		[ProtoMember(53)]
+		public List<int> UnionKeJiList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

@@ -137,6 +137,16 @@ namespace ET
             //    self.UserInfo.UnionName = "清风醉花亭";
             //    numericComponent.ApplyValue(NumericType.UnionId_0, 2091902218525016328, false);
             //}
+
+            if (self.UserInfo.UnionKeJiList.Count < UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count)
+            {
+                int curNumber = self.UserInfo.UnionKeJiList.Count;
+                int maxNumber = UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count;
+                for (int keji = curNumber; keji < maxNumber; keji++)
+                {
+                    self.UserInfo.UnionKeJiList.Add(UnionKeJiConfigCategory.Instance.GetFristId( keji ) );
+                }
+            }
         }
 
         public static void OnOffLine(this UserInfoComponent self)
