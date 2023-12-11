@@ -409,7 +409,7 @@ namespace ET
                 MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
             }
 
-            int[] addSkill = null; // skillBuffConfig.AddSkill;
+            int[] addSkill =  skillBuffConfig.AddSkill;
             if (addSkill != null && addSkill.Length >= 2 && self.GetBuffNumber(buffData.BuffId) >= addSkill[0])
             {
                 C2M_SkillCmd cmd = new C2M_SkillCmd();
