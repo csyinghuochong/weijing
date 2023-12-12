@@ -71,6 +71,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_BagIsFull, "背包已满!");
             ErrorHintList.Add(ErrorCode.ERR_ItemNotEnoughError, "道具不足!");
             ErrorHintList.Add(ErrorCode.Error_AngleNotEnough, "怒气不足!");
+            ErrorHintList.Add(ErrorCode.Error_PickWaitSelect, "等待其他玩家确认!");
             ErrorHintList.Add(ErrorCode.ERR_ItemDropProtect, "掉落保护中!");
             ErrorHintList.Add(ErrorCode.ERR_ItemBelongOther, "该道具归属其他玩家!");
             ErrorHintList.Add(ErrorCode.ERR_NoPayValueError, "赞助额度不足!");
