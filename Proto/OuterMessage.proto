@@ -1518,6 +1518,7 @@ message Actor_PickItemResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	repeated long RemoveIds = 1; //不存在的掉落
 }
 
 //ResponseType Actor_ItemInitResponse

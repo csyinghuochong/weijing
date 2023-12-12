@@ -122,6 +122,11 @@ namespace ET
                 bool teshuItem = itemConfig.ItemQuality >= 4 && itemConfig.ItemType == 2 && itemConfig.ItemSubType == 1;
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
+
+                if (teamDungeonComponent.IsInTeamDrop(unitDrop.Id))
+                {
+                    errorCode = ErrorCode.Error_PickWaitSelect;
+                }
                 if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4  && !teshuItem
                     && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
@@ -216,6 +221,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)
         {
+            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落
             for (int i = request.ItemIds.Count - 1; i >= 0; i--) 
             {
@@ -224,7 +230,6 @@ namespace ET
                     continue;
                 }
                 bool have = false;
-                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                 for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
                 {
                     if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID

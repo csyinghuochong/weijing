@@ -134,6 +134,18 @@ namespace ET
             }
         }
 
+        public static bool IsInTeamDrop(this TeamDungeonComponent self, long dropId)
+        {
+            for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
+            {
+                if (self.TeamDropItems[i].DropInfo.UnitId == dropId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self, Unit unit, DropInfo dropInfo)
         {
             for (int i = self.TeamDropItems.Count - 1; i >=  0; i--)
