@@ -3212,6 +3212,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public List<long> RemoveIds = new List<long>();
+
 	}
 
 	[ResponseType(nameof(Actor_ItemInitResponse))]
@@ -8110,6 +8113,9 @@ namespace ET
 
 		[ProtoMember(17)]
 		public long UnionGold { get; set; }
+
+		[ProtoMember(18)]
+		public List<string> ActiveRecord = new List<string>();
 
 	}
 

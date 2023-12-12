@@ -473,6 +473,12 @@ namespace ET
             {
                 self.UserInfo.DiamondGetWay.Add(getWay);
             }
+
+            if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)
+            {
+                self.SendUnionOperate(getWay, Type, gold).Coroutine();
+            }
+
             self.UpdateRoleData(Type, value, notice);
         }
 
@@ -497,17 +503,18 @@ namespace ET
             self.UpdateRoleData(Type, value, notice);
         }
 
-        public static async ETTask SendUnionExp(this UserInfoComponent self, int operateType, int addexp)
+        public static async ETTask SendUnionOperate(this UserInfoComponent self, int getWay, int dataType,  long dataValue)
         {
             Unit unit = self.GetParent<Unit>();
-            long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+            long unionid = unit.GetUnionId();
             if (unionid == 0)
             {
                 return;
             }
+            string playerName = self.UserInfo.Name;
             long serverod = DBHelper.GetUnionServerId(self.DomainZone() );
             U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            serverod, new M2U_UnionOperationRequest() { OperateType = operateType, UnionId = unionid, Par = addexp.ToString() });
+                            serverod, new M2U_UnionOperationRequest() { OperateType = 1, UnionId = unionid, Par = $"{playerName}_{getWay}_{dataType}_{dataValue}" });
         }
 
         //需要通知客户端
@@ -518,13 +525,13 @@ namespace ET
             long longValue = 0;
             switch (Type)
             {
-                case UserDataType.UnionExp:
-                    int addexp = int.Parse(value);
-                    self.SendUnionExp(1, addexp).Coroutine();
-                    return;
-                case UserDataType.UnionGold:
-                    self.SendUnionExp(5, int.Parse(value)).Coroutine();
-                    return;
+                //case UserDataType.UnionExp:
+                //    int addexp = int.Parse(value);
+                //    self.SendUnionOperate(1, addexp).Coroutine();
+                //    return;
+                //case UserDataType.UnionGold:
+                //    self.SendUnionOperate(5, int.Parse(value)).Coroutine();
+                //    return;
                 case UserDataType.JiaYuanExp:
                     self.UserInfo.JiaYuanExp += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanExp.ToString();
@@ -533,7 +540,7 @@ namespace ET
                     self.UserInfo.JiaYuanFund += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanFund.ToString();
                     break;
-                case UserDataType.UnionZiJin:
+                case UserDataType.UnionFund:
                     self.UserInfo.UnionZiJin += int.Parse(value);
                     saveValue = self.UserInfo.UnionZiJin.ToString();
                     break;

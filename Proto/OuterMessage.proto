@@ -3854,6 +3854,7 @@ message UnionInfo
 	int32 KeJiActitePos = 15;			//当前升级的科技， 当前只能升级一个
 	int64 KeJiActiteTime = 16;			//当前升级时间
 	int64 UnionGold = 17;               //家族金币
+	repeated string ActiveRecord = 18;	//记录 $"{playerName}_{getWay}_{dataType}_{dataValue}
 }
 
 message DonationRecord

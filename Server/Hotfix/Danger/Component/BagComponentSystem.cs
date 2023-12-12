@@ -398,7 +398,7 @@ namespace ET
                 case UserDataType.JiaYuanFund:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
                     break;
-                case UserDataType.UnionZiJin:
+                case UserDataType.UnionFund:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin;
                     break;
                 case UserDataType.SeasonCoin:

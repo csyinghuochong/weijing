@@ -230,7 +230,7 @@ namespace ET
             { 13, UserDataType.JiaYuanFund},
             { 14, UserDataType.JiaYuanExp},
             { 15, UserDataType.BaoShiDu },
-            { 16, UserDataType.UnionZiJin },
+            { 16, UserDataType.UnionFund },
             { 17, UserDataType.UnionExp },
             { 18, UserDataType.JueXingExp },
             { 31, UserDataType.SeasonExp },

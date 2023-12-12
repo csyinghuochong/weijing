@@ -24,7 +24,7 @@ namespace ET
         public const int JiaYuanFund = 13;           //家园资金
         public const int JiaYuanExp = 14;            //家园经验
         public const int BaoShiDu = 15;
-        public const int UnionZiJin = 16;            //家族贡献
+        public const int UnionFund = 16;            //家族贡献
         public const int UnionExp = 17;              //家族经验
         public const int JueXingExp = 18;
 

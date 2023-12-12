@@ -692,7 +692,7 @@ namespace ET
                 case UserDataType.JiaYuanFund:
                     number = userInfo.JiaYuanFund;
                     break;
-                case UserDataType.UnionZiJin:
+                case UserDataType.UnionFund:
                     number = userInfo.UnionZiJin;
                     break;
                 case UserDataType.SeasonCoin:
