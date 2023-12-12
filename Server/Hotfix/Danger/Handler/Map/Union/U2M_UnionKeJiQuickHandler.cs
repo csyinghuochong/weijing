@@ -13,7 +13,7 @@ namespace ET
                 reply();
                 return;
             }
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(  UserDataType.Diamond, "200", true, ItemGetWay.UnionXiuLian );
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(  UserDataType.Diamond, "-200", true, ItemGetWay.UnionXiuLian );
 
             reply();
             await ETTask.CompletedTask;

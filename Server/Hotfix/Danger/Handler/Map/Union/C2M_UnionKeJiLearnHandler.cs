@@ -13,6 +13,7 @@ namespace ET
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(kejiid);
             if (unionKeJiConfig.NextID == 0)
             {
+                response.UnionKeJiList = userInfoComponent.UserInfo.UnionKeJiList;
                 response.Error = ErrorCode.ERR_UnionXiuLianMax;
                 reply();
                 return;
@@ -21,6 +22,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.CheckCostItem( unionKeJiConfig.LearnCost ))
             {
+                response.UnionKeJiList = userInfoComponent.UserInfo.UnionKeJiList;
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
@@ -29,11 +31,13 @@ namespace ET
             long dbCacheId = DBHelper.GetUnionServerId(unit.DomainZone());
             U2M_UnionKeJiLearnResponse d2GGetUnit = (U2M_UnionKeJiLearnResponse)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2U_UnionKeJiLearnRequest()
             {
-               KeJiId = unionKeJiConfig.NextID
+                UnionId = unit.GetUnionId(),    
+                KeJiId = unionKeJiConfig.NextID
             });
 
-            if(d2GGetUnit.Error != ErrorCode.ERR_Success) 
+            if(d2GGetUnit.Error != ErrorCode.ERR_Success)
             {
+                response.UnionKeJiList = userInfoComponent.UserInfo.UnionKeJiList;
                 response.Error = d2GGetUnit.Error;
                 reply();
                 return;

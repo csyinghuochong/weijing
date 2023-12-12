@@ -1875,6 +1875,18 @@ namespace ET
                 }
             }
 
+            List<int> unionKejiIds = userInfo.UnionKeJiList;
+            for (int i = 0; i < unionKejiIds.Count; i++)
+            {
+                UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(unionKejiIds[i]);
+                List<PropertyValue> jiazuProList = new List<PropertyValue>();
+                NumericHelp.GetProList(unionKeJiConfig.EquipPropreAdd, jiazuProList);
+                for (int pro = 0; pro < jiazuProList.Count; pro++)
+                {
+                    AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, UpdateProDicList);
+                }
+            }
+
             //宠物皮肤属性
             //for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
             //{
