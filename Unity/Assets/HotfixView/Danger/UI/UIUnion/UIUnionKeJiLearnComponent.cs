@@ -145,7 +145,7 @@ namespace ET
             unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(unionKeJiConfig.NextID);
             if (unionKeJiConfig.NeedUnionLv > self.UnionMyInfo.Level)
             {
-                FloatTipManager.Instance.ShowFloatTip("家族等级不够不足！");
+                FloatTipManager.Instance.ShowFloatTip("家族等级不足！");
                 return;
             }
 
