@@ -96,11 +96,14 @@ namespace ET
 		/// <summary>消耗家族贡献</summary>
 		[ProtoMember(7)]
 		public int CostGold { get; set; }
-		/// <summary>强化属性</summary>
+		/// <summary>消耗道具</summary>
 		[ProtoMember(8)]
+		public string CostItem { get; set; }
+		/// <summary>强化属性</summary>
+		[ProtoMember(9)]
 		public string EquipPropreAdd { get; set; }
 		/// <summary>失败附加成功概率</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public double AdditionPro { get; set; }
 
 	}

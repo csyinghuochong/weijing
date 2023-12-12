@@ -34,11 +34,15 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long unionid = numericComponent.GetAsLong(NumericType.UnionId_0);
+            long instanceId = self.InstanceId;
             C2U_UnionRecordRequest request = new C2U_UnionRecordRequest() { UnionId = unionid };
             U2C_UnionRecordResponse response = (U2C_UnionRecordResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            
             for (int i = 0; i < response.DonationRecords.Count; i++)
             {
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
                 GameObject gameObject = GameObject.Instantiate(self.UIUnionDonationRecordItem);
                 gameObject.SetActive(true);
                 UICommonHelper.SetParent(gameObject, self.BuildingList);

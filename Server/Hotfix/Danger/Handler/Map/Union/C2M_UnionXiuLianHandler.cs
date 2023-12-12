@@ -38,6 +38,13 @@ namespace ET
                 reply();
                 return;
             }
+            
+            if (!unit.GetComponent<BagComponent>().OnCostItemData(unionQiangHuaConfig.CostItem))
+            {
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
 
             unit.GetComponent<NumericComponent>().ApplyValue( numerType, xiulianid+1);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.UnionZiJin,(unionQiangHuaConfig.CostGold * -1).ToString(), true, ItemGetWay.UnionXiuLian);

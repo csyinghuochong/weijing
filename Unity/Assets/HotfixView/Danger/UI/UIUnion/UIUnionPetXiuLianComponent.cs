@@ -123,6 +123,13 @@ namespace ET
                 return;
             }
 
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (!bagComponent.CheckNeedItem(unionQiangHuaConfig.CostItem))
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                return;
+            }
+            
             C2M_UnionXiuLianRequest request = new C2M_UnionXiuLianRequest() { Position = self.Position, Type = 1 };
             M2C_UnionXiuLianResponse response =
                     (M2C_UnionXiuLianResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
