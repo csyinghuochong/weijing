@@ -189,9 +189,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线，请重新连接!"));
                 return;
             }
-
+            long instanceid = self.InstanceId;
             A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(self.DomainScene(), self.Occ, createName);
-            if (g2cCreateRole == null || g2cCreateRole.Error != 0)
+            if (g2cCreateRole == null || g2cCreateRole.Error != 0 || instanceid != self.InstanceId)
             {
                 return;
             }
