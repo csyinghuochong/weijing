@@ -773,7 +773,7 @@ namespace ET
             return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
         }
 
-        public static void UpdatePetAttributeWithBag(this PetComponent self, BagComponent bagComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
+        public static void UpdatePetAttributeWithBag(this PetComponent self, BagComponent bagComponent, NumericComponent numericComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             rolePetInfo.PetPingFen = PetHelper.PetPingJia(rolePetInfo);
             //获取宠物资质
@@ -905,21 +905,24 @@ namespace ET
             }
 
             //家族修炼属性
-            //int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionXiuLian_0);
-            //int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionXiuLian_1);
-            //int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionXiuLian_2);
-            //int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionXiuLian_3);
-            //List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
-            //for (int i = 0; i < unionXiuLianids.Count; i++)
-            //{
-            //    UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
-            //    List<PropertyValue> jiazuProList = new List<PropertyValue>();
-            //    NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-            //    for (int pro = 0; pro < jiazuProList.Count; pro++)
-            //    {
-            //        Function_Fight.AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, attriDic);
-            //    }
-            //}
+            if (numericComponent != null)
+            {
+                int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
+                int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_1);
+                int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_2);
+                int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_3);
+                List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
+                for (int i = 0; i < unionXiuLianids.Count; i++)
+                {
+                    UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
+                    List<PropertyValue> jiazuProList = new List<PropertyValue>();
+                    NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                    for (int pro = 0; pro < jiazuProList.Count; pro++)
+                    {
+                        Function_Fight.AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, attriDic);
+                    }
+                }
+            }
 
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             if (!ComHelp.IfNull(petSkinConfig.PripertySet))
@@ -1027,7 +1030,8 @@ namespace ET
         public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
-            self.UpdatePetAttributeWithBag( bagComponent, rolePetInfo, updateUnit );
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            self.UpdatePetAttributeWithBag( bagComponent, numericComponent, rolePetInfo, updateUnit );
 
             //如果是出战的宠物。再广播一下属性
             if (updateUnit == false)

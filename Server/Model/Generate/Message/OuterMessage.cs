@@ -8111,6 +8111,9 @@ namespace ET
 		[ProtoMember(16)]
 		public long KeJiActiteTime { get; set; }
 
+		[ProtoMember(17)]
+		public long UnionGold { get; set; }
+
 	}
 
 	[Message(OuterOpcode.DonationRecord)]

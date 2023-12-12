@@ -182,7 +182,7 @@ namespace ET
 
                         int position = petComponent_enemy.PetMingPosition.IndexOf(petinfoid);
                         position = position != -1 ? position %= 9 : i;
-                        petComponent_enemy.UpdatePetAttributeWithBag( d2GGetUnit_2.Component as BagComponent,  rolePetInfo, false);
+                        petComponent_enemy.UpdatePetAttributeWithBag( d2GGetUnit_2.Component as BagComponent, null, rolePetInfo, false);
                         Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                            CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[position], 180f,position);
                     }
