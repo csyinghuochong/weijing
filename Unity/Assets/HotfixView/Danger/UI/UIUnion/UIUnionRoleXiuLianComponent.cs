@@ -7,6 +7,7 @@ namespace ET
 
     public class UIUnionRoleXiuLianComponent : Entity, IAwake
     {
+        public GameObject CostItemListNode;
         public GameObject XiuLianName;
         public GameObject XiuLianImageIcon;
         public GameObject Button_Donation;
@@ -24,6 +25,7 @@ namespace ET
             self.Position = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.CostItemListNode = rc.Get<GameObject>("CostItemListNode");
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Donation().Coroutine(); });
 
@@ -91,6 +93,11 @@ namespace ET
             //self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(nextunionQiangHuaConfig.EquipPropreAdd);
             self.Pro_1.transform.parent.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = $"消耗:{unionQiangHuaConfig.CostGold}点家族贡献";
+            if (!ComHelp.IfNull(unionQiangHuaConfig.CostItem))
+            {
+                UICommonHelper.DestoryChild(self.CostItemListNode);
+                UICommonHelper.ShowItemList(unionQiangHuaConfig.CostItem, self.CostItemListNode, self, 0.8f, true);
+            }
         }
 
         public static async ETTask OnButton_Donation(this UIUnionRoleXiuLianComponent self)
