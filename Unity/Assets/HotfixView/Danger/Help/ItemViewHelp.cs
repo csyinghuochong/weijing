@@ -241,6 +241,12 @@ namespace ET
             { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon =  string.Empty }},
             { NumericType.Now_ActBossAddDamge, new NumericAttribute(){ Name = "对怪伤害", Icon =  string.Empty }},
             { NumericType.Now_DropAdd_Pro, new NumericAttribute(){ Name = "游戏爆率", Icon = string.Empty}},
+            
+            { NumericType.Now_PetAllMageAct, new NumericAttribute(){Name = "宠物全体魔法攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllAct, new NumericAttribute(){Name = "宠物全体攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllDef, new NumericAttribute(){Name = "宠物全体防御",Icon = string.Empty}},
+            { NumericType.Now_PetAllAdf, new NumericAttribute(){Name = "宠物全体魔防",Icon = string.Empty}},
+            { NumericType.Now_PetAllHp, new NumericAttribute(){Name = "宠物全体血量",Icon = string.Empty}},
         };
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
