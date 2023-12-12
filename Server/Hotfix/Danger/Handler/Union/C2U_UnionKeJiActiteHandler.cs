@@ -23,6 +23,12 @@ namespace ET
                 reply();
                 return;
             }
+            if(dBUnionInfo.UnionInfo.UnionGold < unionKeJiConfig.CostUnionGold)
+            {
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
+                reply();
+                return;
+            }
 
             if (dBUnionInfo.UnionInfo.KeJiActiteTime != 0)
             {
@@ -31,7 +37,7 @@ namespace ET
                 reply();
                 return;
             }
-
+            dBUnionInfo.UnionInfo.UnionGold -= unionKeJiConfig.CostUnionGold;
             dBUnionInfo.UnionInfo.KeJiActitePos = request.Position;
             dBUnionInfo.UnionInfo.KeJiActiteTime = TimeHelper.ServerNow();
             response.UnionInfo = dBUnionInfo.UnionInfo;

@@ -11,6 +11,7 @@ namespace ET
         {
             if (request.UnionName.Length > 7 || !StringHelper.IsSpecialChar(request.UnionName))
             {
+                response.Error = ErrorCode.ERR_Union_Same_Name;
                 reply();
                 return;
             }
