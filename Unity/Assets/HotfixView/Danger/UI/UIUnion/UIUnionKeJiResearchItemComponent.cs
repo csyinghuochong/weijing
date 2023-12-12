@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +40,8 @@ namespace ET
             self.Position = position;
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(configId);
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName;
+            Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0,match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
         }
 

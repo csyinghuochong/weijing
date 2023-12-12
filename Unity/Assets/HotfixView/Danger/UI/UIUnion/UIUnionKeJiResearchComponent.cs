@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using ILRuntime.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -104,10 +105,12 @@ namespace ET
 
             self.NeedTime = unionKeJiConfig.NeedTime;
 
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName;
+            Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
             self.NeedUnionLvText.GetComponent<Text>().text = $"需要家族等级达到{unionKeJiConfig.NeedUnionLv}级";
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
+            self.UIItemComponent.Label_ItemNum.SetActive(false);
             self.CostUnionGoldText.GetComponent<Text>().text = $"消耗家族金币：{unionKeJiConfig.CostUnionGold}";
             self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:f2}小时";
         }
