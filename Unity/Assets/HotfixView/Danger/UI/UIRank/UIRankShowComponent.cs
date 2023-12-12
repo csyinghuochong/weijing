@@ -12,6 +12,7 @@ namespace ET
         public GameObject UISet;
 
         public GameObject UIRankShowItem;
+        public UIPageButtonComponent UIPageButton;
     }
 
 
@@ -25,6 +26,15 @@ namespace ET
             self.UISet = rc.Get<GameObject>("UISet");
             self.UIRankShowItem = rc.Get<GameObject>("UIRankShowItem");
             self.UIRankShowItem.SetActive(false);
+            
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton = uIPageViewComponent;
 
             self.OnUpdateUI().Coroutine();
         }
@@ -32,13 +42,17 @@ namespace ET
 
     public static class UIRankShowComponentSystem
     {
+        public static void OnClickPageButton(this UIRankShowComponent self,  int page)
+        {
+            self.OnUpdateUI(page).Coroutine();
+        }
 
         public static void OpenShow(this UIRankShowComponent self)
         {
             self.UISet.SetActive(true);
         }
 
-        public static async ETTask OnUpdateUI(this UIRankShowComponent self)
+        public static async ETTask OnUpdateUI(this UIRankShowComponent self,int type = 0)
         {
             long instanceid = self.InstanceId;
             C2R_RankListRequest c2M_RankListRequest = new C2R_RankListRequest();
@@ -50,6 +64,8 @@ namespace ET
 
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             int myRank = -1;
+            int rank = 1;
+            UICommonHelper.DestoryChild(self.RankListNode);
             for (int i = 0; i < r2C_Response.RankList.Count; i++)
             {
                 if (i % 5 == 0)
@@ -61,16 +77,23 @@ namespace ET
                     return;
                 }
 
-                GameObject skillItem = GameObject.Instantiate(self.UIRankShowItem);
-                skillItem.SetActive(true);
-                UICommonHelper.SetParent(skillItem, self.RankListNode);
-                UIRankShowItemComponent uIItemComponent = self.AddChild<UIRankShowItemComponent, GameObject>(skillItem);
-                uIItemComponent.OnInitData(i + 1, r2C_Response.RankList[i]);
+                if (type != 0 && r2C_Response.RankList[i].Occ != type)
+                {
+                    continue;
+                }
+
+                GameObject uirankShowItem = UnityEngine.Object.Instantiate(self.UIRankShowItem);
+                uirankShowItem.SetActive(true);
+                UICommonHelper.SetParent(uirankShowItem, self.RankListNode);
+                UIRankShowItemComponent uIItemComponent = self.AddChild<UIRankShowItemComponent, GameObject>(uirankShowItem);
+                uIItemComponent.OnInitData(rank, r2C_Response.RankList[i]);
 
                 if (selfId == r2C_Response.RankList[i].UserId)
                 {
-                    myRank = i + 1;
+                    myRank = rank;
                 }
+
+                rank++;
             }
 
             if (myRank == -1)
