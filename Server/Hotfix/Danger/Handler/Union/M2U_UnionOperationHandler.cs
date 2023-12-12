@@ -18,7 +18,7 @@ namespace ET
                     reply();
                     return;
                 }
-
+               
                 switch (request.OperateType)
                 {
                     case 1:
