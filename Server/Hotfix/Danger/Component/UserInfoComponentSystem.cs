@@ -497,7 +497,7 @@ namespace ET
             self.UpdateRoleData(Type, value, notice);
         }
 
-        public static async ETTask SendUnionExp(this UserInfoComponent self, int addexp)
+        public static async ETTask SendUnionExp(this UserInfoComponent self, int operateType, int addexp)
         {
             Unit unit = self.GetParent<Unit>();
             long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
@@ -507,7 +507,7 @@ namespace ET
             }
             long serverod = DBHelper.GetUnionServerId(self.DomainZone() );
             U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            serverod, new M2U_UnionOperationRequest() { OperateType = 1, UnionId = unionid, Par = addexp.ToString() });
+                            serverod, new M2U_UnionOperationRequest() { OperateType = operateType, UnionId = unionid, Par = addexp.ToString() });
         }
 
         //需要通知客户端
@@ -520,8 +520,11 @@ namespace ET
             {
                 case UserDataType.UnionExp:
                     int addexp = int.Parse(value);
-                    self.SendUnionExp(addexp).Coroutine();
-                    break;
+                    self.SendUnionExp(1, addexp).Coroutine();
+                    return;
+                case UserDataType.UnionGold:
+                    self.SendUnionExp(5, int.Parse(value)).Coroutine();
+                    return;
                 case UserDataType.JiaYuanExp:
                     self.UserInfo.JiaYuanExp += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanExp.ToString();
@@ -552,10 +555,6 @@ namespace ET
                 case UserDataType.SeasonLevel:
                     self.UserInfo.SeasonLevel += int.Parse(value);
                     saveValue = self.UserInfo.SeasonLevel.ToString();
-                    break;
-                case UserDataType.UnionGold:
-                    self.UserInfo.UnionGold += int.Parse(value);
-                    saveValue = self.UserInfo.UnionGold.ToString();
                     break;
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);

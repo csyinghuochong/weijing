@@ -106,6 +106,10 @@ namespace ET
                         });
                         DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
+                    case 5: //增加金币
+                        dBUnionInfo.UnionInfo.UnionGold += int.Parse(request.Par);
+                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        break;
                     default:
                         break;
                 }

@@ -52,9 +52,6 @@ namespace ET
                 case (int)UserDataType.SeasonExp:
                     userInfo.SeasonExp = int.Parse(message.UpdateTypeValue);
                     break;
-                case UserDataType.UnionGold:
-                    userInfo.UnionGold = int.Parse(message.UpdateTypeValue);
-                    break;
                 case (int)UserDataType.SeasonCoin:
                     userInfo.SeasonCoin = int.Parse(message.UpdateTypeValue);
                     break;

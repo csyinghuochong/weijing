@@ -341,8 +341,6 @@ message UserInfo
 	repeated int32 RechargeReward = 52;
 
 	repeated int32 UnionKeJiList = 53;  //当前的能力id,客户端根据这个显示即可
-
-	int64 UnionGold = 54;    //家族金币
 }
 
 message KeyValuePair
