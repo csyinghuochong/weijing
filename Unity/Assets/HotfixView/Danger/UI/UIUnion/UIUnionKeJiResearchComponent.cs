@@ -49,6 +49,7 @@ namespace ET
             self.StartBtn = rc.Get<GameObject>("StartBtn");
             self.UnderwayText = rc.Get<GameObject>("UnderwayText");
 
+            self.ProgressBarImg.fillAmount = 0;
             self.UnderwayText.SetActive(false);
             self.UIUnionKeJiResearchItem.SetActive(false);
             self.UIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
@@ -103,7 +104,8 @@ namespace ET
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[position]);
 
-            self.NeedTime = unionKeJiConfig.NeedTime;
+            self.NeedTime = self.UnionMyInfo.KeJiActitePos == -1? 0
+                    : UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.UnionMyInfo.KeJiActitePos]).NeedTime;
 
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
@@ -121,7 +123,7 @@ namespace ET
             {
                 if (self.NeedTime == 0)
                 {
-                    self.ProgressBarImg.fillAmount = 1;
+                    self.ProgressBarImg.fillAmount = 0;
                     self.UnderwayText.SetActive(false);
                 }
                 else
@@ -135,7 +137,7 @@ namespace ET
                     }
                     else
                     {
-                        self.ProgressBarImg.fillAmount = 1;
+                        self.ProgressBarImg.fillAmount = 0;
                         self.UnderwayText.SetActive(false);
                     }
                 }
