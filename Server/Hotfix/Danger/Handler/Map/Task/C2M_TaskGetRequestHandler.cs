@@ -32,13 +32,13 @@ namespace ET
                 int dailyTask = numericComponent.GetAsInt(NumericType.DailyTaskID);
                 if (dailyTask == 0)
                 {
-                    LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
+                    LogHelper.LogDebug($"{unit.Id}  dailyTask == 0");
                     response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
                 numericComponent.ApplyChange(null, NumericType.DailyTaskNumber, 1, 0);
-                response.TaskPro = taskComponent.OnGetLoopTask(dailyTask);
+                response.TaskPro = taskComponent.OnGetDailyTask(dailyTask);
             }
             else if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
@@ -60,17 +60,17 @@ namespace ET
                 }
 
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                int taskLoopId = numericComponent.GetAsInt(NumericType.UnionTaskId);
-                if (taskLoopId == 0)
+                int unionTaskId = numericComponent.GetAsInt(NumericType.UnionTaskId);
+                if (unionTaskId == 0)
                 {
-                    LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
+                    LogHelper.LogDebug($"{unit.Id}  unionTaskId == 0");
                     response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
 
                 numericComponent.ApplyChange(null, NumericType.UnionTaskNumber,1, 0);
-                response.TaskPro = taskComponent.OnGetLoopTask(taskLoopId);
+                response.TaskPro = taskComponent.OnGetDailyTask(unionTaskId);
             }
             else
             {

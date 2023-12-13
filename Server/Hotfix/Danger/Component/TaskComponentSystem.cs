@@ -143,7 +143,7 @@ namespace ET
             return taskPro;
         }
 
-        public static TaskPro OnGetLoopTask(this TaskComponent self, int taskId)
+        public static TaskPro OnGetDailyTask(this TaskComponent self, int taskId)
         {
             TaskPro taskPro = self.CreateTask(taskId);
             self.RoleTaskList.Add(taskPro);

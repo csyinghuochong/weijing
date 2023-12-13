@@ -102,9 +102,6 @@
 
         public const int MainHeroMove = 37;
 
-        //接取任务
-        public const int TaskLoopGet = 38;
-
         public const int SkillBeging = 39;
 
         public const int SkillFinish = 40;

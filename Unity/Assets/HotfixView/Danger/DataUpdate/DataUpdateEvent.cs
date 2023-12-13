@@ -23,7 +23,6 @@ namespace ET
                 { DataType.HuiShouSelect, OnHuiShouSelect },
                 { DataType.TaskTrace, OnRecvTaskTrace },
                 { DataType.TaskGet, OnGetTask },
-                { DataType.TaskLoopGet, OnTaskLoopGet },
                 { DataType.TaskGiveUp, OnTaskGiveUp },
                 { DataType.TaskComplete, OnCompleteTask },
                 { DataType.TaskUpdate, OnUpdateTask },
@@ -637,25 +636,6 @@ namespace ET
                     continue;
                 }
             }
-        }
-
-        public void OnTaskLoopGet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
-        {
-            TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
-            FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + taskCof.TaskName);
-
-            List<Entity> entities = dataUpdateComponentDic.Values.ToList();
-            for (int i = entities.Count - 1; i >= 0; i--)
-            {
-                Entity component = entities[i];
-                if (component is UIMainComponent uimainComponent)
-                {
-                    uimainComponent.OnRecvTaskUpdate();
-                    uimainComponent.OnRecvTaskTrace();
-                    continue;
-                }
-            }
-            return;
         }
 
        //任务接取
