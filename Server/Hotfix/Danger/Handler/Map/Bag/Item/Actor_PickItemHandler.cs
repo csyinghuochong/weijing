@@ -98,7 +98,7 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        errorCode = ErrorCode.ERR_NetWorkError;
+                        errorCode = ErrorCode.ERR_ItemNotExist;
                         continue; 
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
