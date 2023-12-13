@@ -486,10 +486,8 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(true, versionMode)).AddressList;
-                //string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
-                string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
+                string address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
