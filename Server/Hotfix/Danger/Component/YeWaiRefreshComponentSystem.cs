@@ -538,16 +538,24 @@ namespace ET
             int monsterNumber = UnitHelper.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {
-                if (monsterConfig.MonsterSonType != 55 &&  monsterConfig.MonsterSonType != 56
+                if (monsterConfig.MonsterSonType != 55 && monsterConfig.MonsterSonType != 56
                     && monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
                 {
                     return;
                 }
             }
-            else
+            else if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
                 if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
                 {
+                    return;
+                }
+            }
+            else 
+            {
+                if (monsterNumber >= 1000)
+                {
+                    Log.Console($"monsterNumber >= 1000:  {mapComponent.SceneId}");
                     return;
                 }
             }

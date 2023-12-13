@@ -123,7 +123,7 @@ namespace ET
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
 
-                if (teamDungeonComponent.IsInTeamDrop(unitDrop.Id))
+                if (drops[i].DropType != 1 && teamDungeonComponent.IsInTeamDrop(unitDrop.Id))
                 {
                     errorCode = ErrorCode.Error_PickWaitSelect;
                 }
