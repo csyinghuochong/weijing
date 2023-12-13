@@ -152,6 +152,11 @@ namespace ET
             }
             
             RolePetInfo oldPetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetUpId);
+            if (PetHelper.IsShenShou(oldPetUpInfo.ConfigId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽不能进化");
+                return;
+            }
 
             C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = self.PetUpId,PetInfoXianJiId = self.PetXianjiId };
             M2C_RolePetUpStage m2C_RolePetUpStageg = (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
