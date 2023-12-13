@@ -30,8 +30,21 @@ namespace ET
             //执行buff
             if (!this.IsTrigger && this.PassTime >= this.DelayTime)
             {
-                this.IsTrigger = true;
-                this.buffSetProperty(heroCom);
+                ///移动才触发
+                if (this.mBuffConfig.MoveAction == 1)
+                {
+                    MoveComponent moveComponent = this.TheUnitBelongto.GetComponent<MoveComponent>();
+                    if (moveComponent != null && !moveComponent.IsArrived())
+                    {
+                        this.IsTrigger = true;
+                        this.buffSetProperty(heroCom);
+                    }
+                }
+                else
+                {
+                    this.IsTrigger = true;
+                    this.buffSetProperty(heroCom);
+                }
             }
 
             //buff是否为循环触发的
@@ -55,16 +68,6 @@ namespace ET
 
         private void buffSetProperty(NumericComponent heroCom)
         {
-            ///移动才触发
-            if (this.mBuffConfig.MoveAction == 1)
-            {
-                MoveComponent moveComponent = this.TheUnitBelongto.GetComponent<MoveComponent>();
-                if (moveComponent!=null && moveComponent.IsArrived())
-                {
-                    return;
-                }
-            }
-
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
             switch (this.mBuffConfig.BuffType)
             {

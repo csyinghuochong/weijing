@@ -25,6 +25,11 @@ namespace ET
         {
             try
             {
+                if (this.EffectState == BuffState.Finished)
+                {
+                    GameObject.DestroyImmediate(gameObject);
+                    return;
+                }
                 this.EffectObj = gameObject;
                 this.EffectObj.name = this.EffectConfig.EffectName;
                 if (this.EffectData.InstanceId == 0 || instanceId != this.InstanceId || gameObject == null)
