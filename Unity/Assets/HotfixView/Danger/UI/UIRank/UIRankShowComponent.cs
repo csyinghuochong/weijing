@@ -10,9 +10,10 @@ namespace ET
         public GameObject Text_MyRank;
         public GameObject RankListNode;
         public GameObject UISet;
+        public GameObject BtnItemTypeSet;
 
         public GameObject UIRankShowItem;
-        public UIPageButtonComponent UIPageButton;
+        public int Page;
     }
 
 
@@ -27,24 +28,49 @@ namespace ET
             self.UIRankShowItem = rc.Get<GameObject>("UIRankShowItem");
             self.UIRankShowItem.SetActive(false);
             
-            //单选组件
-            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
-            UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
-            UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
-            uIPageViewComponent.SetClickHandler((int page) => {
-                self.OnClickPageButton(page);
-            });
-            self.UIPageButton = uIPageViewComponent;
+            
+            self.BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+            {
+                Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                int i1 = i;
+                transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => { self.OnClickPageButton(i1 + 1); });
+            }
 
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage1"), 1);
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage2"), 2);
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage3"), 3);
+            
             self.OnUpdateUI().Coroutine();
         }
     }
 
     public static class UIRankShowComponentSystem
     {
-        public static void OnClickPageButton(this UIRankShowComponent self,  int page)
+        public static void OnClickPageButton(this UIRankShowComponent self, int page)
         {
-            self.OnUpdateUI(page).Coroutine();
+            if (self.Page == page)
+            {
+                self.Page = 0;
+                for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+                {
+                    Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                    transform.Find("XuanZhong").gameObject.SetActive(false);
+                    transform.Find("WeiXuanZhong").gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                self.Page = page;
+                for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+                {
+                    Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                    transform.Find("XuanZhong").gameObject.SetActive(page - 1 == i);
+                    transform.Find("WeiXuanZhong").gameObject.SetActive(page - 1 != i);
+                }
+            }
+
+            self.OnUpdateUI(self.Page).Coroutine();
         }
 
         public static void OpenShow(this UIRankShowComponent self)
