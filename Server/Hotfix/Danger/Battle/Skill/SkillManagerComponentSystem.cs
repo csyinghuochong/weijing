@@ -856,7 +856,8 @@ namespace ET
                 if (i >= self.Skills.Count)
                 {
                     Unit unit = self.GetParent<Unit>();
-                    Log.Debug($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    Log.Console($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    Log.Warning($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
 
