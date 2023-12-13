@@ -173,6 +173,8 @@ MonoBehaviour:
     gameObject: {fileID: 2417420518213635316}
   - key: SubViewNode
     gameObject: {fileID: 7112158080897560270}
+  - key: Btn_2
+    gameObject: {fileID: 870469532481313251}
 --- !u!114 &7627925095940043116
 MonoBehaviour:
   m_ObjectHideFlags: 0

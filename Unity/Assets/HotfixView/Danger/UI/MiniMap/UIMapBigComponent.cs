@@ -416,6 +416,12 @@ namespace ET
                         }
                     }
 
+                    if (npcList[i] == 20000106 && !GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
+                    {
+                        continue;
+                    }
+
+
                     NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
                     Vector3 npcPos = Vector3.zero;
 

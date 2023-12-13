@@ -17,6 +17,7 @@ namespace ET
 
     public class UIPaiMaiComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_5;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -52,6 +53,9 @@ namespace ET
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI ui = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", self.FunctionSetBtn);
+
+            self.Btn_5 = rc.Get<GameObject>("Btn_5");
+            self.Btn_5.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
