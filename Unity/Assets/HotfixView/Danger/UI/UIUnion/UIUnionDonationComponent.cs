@@ -83,7 +83,7 @@ namespace ET
                 return;
             }
 
-            if (TimeHelper.ServerNow() - self.LastDonationTime < 1000)
+            if (TimeHelper.ServerNow() - self.LastDonationTime < 500)
             {
                 return;
             }
@@ -110,7 +110,7 @@ namespace ET
                 return;
             }
             
-            if (TimeHelper.ServerNow() - self.LastDonationTime < 1000)
+            if (TimeHelper.ServerNow() - self.LastDonationTime < 500)
             {
                 return;
             }
