@@ -36,6 +36,45 @@ namespace ET
                             thisProcessRobotScenes.Add(robotSceneConfig);
                         }
 
+                        if (options.Num == -1)
+                        {
+                            Log.Debug("真实玩家");
+                            string playerinfolist = "18319670288_3&18407228910_3";
+                            string[] playerlist = playerinfolist.Split('&');
+                            for (int i = 0; i < playerlist.Length; ++i)
+                            {
+                                try
+                                {
+                                    string[] playerinfo = playerlist[i].Split('_');
+
+                                    int index = i % thisProcessRobotScenes.Count;
+                                    StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
+                                    Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
+                                    RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
+                                    int robotZone = robotManagerComponent.ZoneIndex++;
+                                    Log.Console($"create robot11 {robotZone}");
+
+                                    Scene robot = await robotManagerComponent.NewRobot_2(options.Zone, robotZone, options.RobotId, playerinfo[0], playerinfo[1]);
+                                    if (robot == null)
+                                    {
+                                        continue;
+                                    }
+                                    BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                                    if (behaviourComponent == null)
+                                    {
+                                        continue;
+                                    }
+                                    behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                                    await TimerComponent.Instance.WaitAsync(500);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Error(ex.ToString());
+                                }
+                            }
+                            return;
+                        }
+
                         RobotConfig robotConfig = RobotConfigCategory.Instance.Get(options.RobotId);
                         if (robotConfig.Behaviour == 4)   //世界boss机器人
                         {
