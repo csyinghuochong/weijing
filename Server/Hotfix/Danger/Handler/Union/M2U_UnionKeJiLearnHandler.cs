@@ -16,6 +16,13 @@ namespace ET
                 return;
             }
 
+            if (request.KeJiId > dBUnionInfo.UnionInfo.UnionKeJiList[request.Position])
+            {
+                response.Error = ErrorCode.ERR_LevelIsNot;
+                reply();
+                return;
+            }
+
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(request.KeJiId);
             if (unionKeJiConfig.NeedUnionLv > dBUnionInfo.UnionInfo.Level)
             {

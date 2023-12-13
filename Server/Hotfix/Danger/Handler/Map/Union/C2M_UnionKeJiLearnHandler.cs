@@ -32,7 +32,8 @@ namespace ET
             U2M_UnionKeJiLearnResponse d2GGetUnit = (U2M_UnionKeJiLearnResponse)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2U_UnionKeJiLearnRequest()
             {
                 UnionId = unit.GetUnionId(),    
-                KeJiId = unionKeJiConfig.NextID
+                KeJiId = unionKeJiConfig.NextID,
+                Position = request.Position,    
             });
 
             if(d2GGetUnit.Error != ErrorCode.ERR_Success)

@@ -2046,6 +2046,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int KeJiId { get; set; }
 
+		[ProtoMember(3)]
+		public int Position { get; set; }
+
 	}
 
 	[Message(InnerOpcode.U2M_UnionKeJiLearnResponse)]

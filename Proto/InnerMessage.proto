@@ -969,6 +969,7 @@ message M2U_UnionKeJiLearnRequest // IActorRequest
 	int64 ActorId = 93;
 	int64 UnionId = 1; 
 	int32 KeJiId = 2;
+	int32 Position = 3;
 }
 
 message U2M_UnionKeJiLearnResponse // IActorResponse
