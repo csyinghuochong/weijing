@@ -16,13 +16,14 @@ namespace ET
         public const int None = 0;
         public const int Main = 1;              //主线任务
         public const int Branch = 2;            //支线任务
-        public const int EveryDay = 3;          //赏金任务
+        public const int Daily = 3;          //赏金任务
         public const int Trial = 4;             //试炼任务
         public const int Weekly = 5;            //每周任务
         public const int Treasure = 6;          //挖宝任务
         public const int Union = 7;             //家族任务
         public const int Season = 8;            //赛季主线任务
         public const int Welfare = 9;           //福利任务
+        public const int Ring = 10;             //跑环任务
     }
 
     public static class TaskCountryType

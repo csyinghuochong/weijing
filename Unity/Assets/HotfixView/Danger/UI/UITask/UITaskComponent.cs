@@ -109,7 +109,7 @@ namespace ET
 			string path = ABPathHelper.GetUGUIPath("Main/Task/UITaskType");
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-			List<int> ids = new List<int>() { (int)TaskTypeEnum.Main, (int)TaskTypeEnum.Branch, (int)TaskTypeEnum.EveryDay };
+			List<int> ids = new List<int>() { (int)TaskTypeEnum.Main, (int)TaskTypeEnum.Branch, (int)TaskTypeEnum.Daily };
 			for (int i = 0; i < ids.Count; i++)
 			{
 				GameObject taskTypeItem = GameObject.Instantiate(bundleObj);

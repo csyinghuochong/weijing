@@ -466,6 +466,12 @@ namespace ET
                 {
                     addTaskids.Add(dailyTaskId);
                 }
+
+                int ringTaskId = numericComponent.GetAsInt(NumericType.RingTaskId);
+                if (ringTaskId > 0 && taskComponent.GetTaskById(ringTaskId) == null)
+                {
+                    addTaskids.Add(ringTaskId);
+                }
             }
             if (npcId == 20000102)   //家族任务
             {

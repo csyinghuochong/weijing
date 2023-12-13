@@ -132,6 +132,33 @@ namespace ET
         }
 
         /// <summary>
+        /// 跑环任务
+        /// </summary>
+        /// <param name="roleLv"></param>
+        /// <returns></returns>
+        public static List<int> GetRingTask(int roleLv)
+        {
+            List<int> randomIds = new List<int>();
+
+            List<int> allTaskIds = new List<int>();
+            Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskTypeEnum.Ring
+                    && roleLv >= item.Value.TaskLv
+                    && roleLv <= item.Value.TaskMaxLv)
+                {
+                    allTaskIds.Add(item.Key);
+                }
+            }
+
+            int randomNumber = allTaskIds.Count > 100 ? 100 : allTaskIds.Count;    
+           
+            RandomHelper.GetRandListByCount(allTaskIds, randomIds, randomNumber);
+            return randomIds;
+        }
+
+        /// <summary>
         /// 赏金任务
         /// </summary>
         /// <param name="roleLv"></param>
@@ -142,7 +169,7 @@ namespace ET
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TaskType == TaskTypeEnum.EveryDay
+                if (item.Value.TaskType == TaskTypeEnum.Daily
                     && roleLv >= item.Value.TaskLv
                     && roleLv <= item.Value.TaskMaxLv)
                 {

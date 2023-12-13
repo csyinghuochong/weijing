@@ -85,10 +85,11 @@ namespace ET
             {
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Weekly));
             }
-            if (self.TaskTypeEnum == TaskTypeEnum.EveryDay)
+            if (self.TaskTypeEnum == TaskTypeEnum.Daily)
             {
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Treasure));
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Union));
+                taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Ring));
             }
             for (int i = 0; i < taskPros.Count; i++)
             {
@@ -184,7 +185,7 @@ namespace ET
                 case (int)TaskTypeEnum.Branch:
                     self.TaskTypeName.GetComponent<Text>().text = "支线任务";
                     break;
-                case (int)TaskTypeEnum.EveryDay:
+                case (int)TaskTypeEnum.Daily:
                     self.TaskTypeName.GetComponent<Text>().text = "每日任务";
                     break;
             }

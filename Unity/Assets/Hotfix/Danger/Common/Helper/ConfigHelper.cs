@@ -1020,5 +1020,15 @@ namespace ET
 
             //{ 300, "14100021;1@14100022;1&14100121;1@14100122;1&14100221;1" }
         };
+
+        /// <summary>
+        /// 跑环任务奖励
+        /// </summary>
+        public static Dictionary<int, int> RingTaskDrop = new Dictionary<int, int>()
+        {
+            { 10, 50030004},   //完成10环对应奖励
+            { 20, 50030004},
+            { 30, 50030004},
+        };
     }
 }
