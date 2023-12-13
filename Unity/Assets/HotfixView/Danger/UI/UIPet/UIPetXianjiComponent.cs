@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -136,6 +137,13 @@ namespace ET
                 return;
             }
 
+            RolePetInfo xianjiPetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetXianjiId);
+            if (xianjiPetUpInfo.PetHeXinList.Any(l => l != 0))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请拆下祭品宠物身上的核心");
+                return;
+            }
+            
             RolePetInfo oldPetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetUpId);
 
             C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = self.PetUpId,PetInfoXianJiId = self.PetXianjiId };
