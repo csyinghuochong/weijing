@@ -853,6 +853,12 @@ namespace ET
                     //Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
+                if (i >= self.Skills.Count)
+                {
+                    Unit unit = self.GetParent<Unit>();
+                    Log.Debug($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    break;
+                }
 
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
