@@ -429,6 +429,7 @@ namespace ET
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
             unit.GetComponent<BuffManagerComponent>()?.OnDead();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (unit.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();
@@ -436,6 +437,12 @@ namespace ET
                 {
                     unit.GetParent<UnitComponent>().Remove(rolePetInfo.Id);
                     unit.GetComponent<PetComponent>().OnPetDead(rolePetInfo.Id);
+                }
+
+                int now_horse = numericComponent.GetAsInt(NumericType.HorseRide);
+                if (now_horse > 0)
+                {
+                    numericComponent.ApplyValue(NumericType.HorseRide, 0);
                 }
             }
             //玩家死亡，怪物技能清空
@@ -460,7 +467,7 @@ namespace ET
                  && sceneTypeEnum != (int)SceneTypeEnum.PetDungeon
                  && sceneTypeEnum != (int)SceneTypeEnum.PetMing)
                 {
-                    long manster = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+                    long manster = numericComponent.GetAsLong(NumericType.MasterId);
                     Unit unit_manster = unit.GetParent<UnitComponent>().Get(manster);
                     //修改宠物出战状态
                     unit_manster.GetComponent<PetComponent>().OnPetDead(unit.Id);
@@ -476,7 +483,7 @@ namespace ET
                 }
             }
             int waitRevive = self.OnWaitRevive();
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
+            numericComponent.ApplyValue(NumericType.Now_Dead, 1);
 
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
