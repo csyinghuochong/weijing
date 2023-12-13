@@ -7,10 +7,10 @@ namespace ET
     [ActorMessageHandler]
     public class Actor_PickItemHandler : AMActorLocationRpcHandler<Unit, Actor_PickItemRequest, Actor_PickItemResponse>
     {
-        private int OnFubenPick(Unit unit, Actor_PickItemRequest request, int sceneTypeEnum)
+        private int OnFubenPick(Unit unit, Actor_PickItemRequest request, int sceneTypeEnum, List<long> removeIds)
         {
             List<DropInfo> drops = request.ItemIds;
-            List<long> removeIds = new List<long>();
+           
             long serverTime = TimeHelper.ServerNow();
             int errorCode = ErrorCode.ERR_Success;
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
@@ -77,7 +77,7 @@ namespace ET
             return errorCode;
         }
 
-        private int OnTeamPick(Unit unit, Actor_PickItemRequest request)
+        private int OnTeamPick(Unit unit, Actor_PickItemRequest request, int sceneTypeEnum, List<long> removeIds)
         {
             long debugId = 1231456;
             if (unit.Id == debugId)
@@ -253,14 +253,15 @@ namespace ET
                 return;
             }
 
+            List<long> removeIds = new List<long>();
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
-                response.Error = OnTeamPick(unit, request);
+                response.Error = OnTeamPick(unit, request, sceneTypeEnum, removeIds);
             }
             else
             {
-                response.Error = OnFubenPick(unit, request, sceneTypeEnum);
+                response.Error = OnFubenPick(unit, request, sceneTypeEnum, removeIds);
             }
 
             reply();
