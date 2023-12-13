@@ -13,8 +13,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyValue( NumericType.PetMineCDTime, 0 );
 
             ///红点
-            unit.GetComponent<ReddotComponent>().AddReddont(601);
-            //unit.GetComponent<ReddotComponent>().AddReddont(ReddotType.PetMine);
+            unit.GetComponent<ReddotComponent>().AddReddont(ReddotType.PetMine);
 
             reply();
             await ETTask.CompletedTask;

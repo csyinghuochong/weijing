@@ -89,7 +89,7 @@ namespace ET
 
                     D2G_GetComponent d2GGet_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = oldUnitid, Component = DBHelper.ReddotComponent });
                     ReddotComponent redComponent = d2GGet_2.Component as ReddotComponent;
-                    redComponent.AddReddont(601);
+                    redComponent.AddReddont((int)ReddotType.PetMine);
                     D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = oldUnitid, EntityByte = MongoHelper.ToBson(redComponent), ComponentType = DBHelper.ReddotComponent });
 
                     D2G_GetComponent d2GGet_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = oldUnitid, Component = DBHelper.NumericComponent });

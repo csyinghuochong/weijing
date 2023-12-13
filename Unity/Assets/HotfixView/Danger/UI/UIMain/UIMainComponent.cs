@@ -1732,6 +1732,21 @@ namespace ET
             }
         }
 
+        public static async ETTask CheckMailReddot(this UIMainComponent self)
+        {
+            if (!self.MailHintTip.activeSelf)
+            {
+                return;
+            }
+
+            C2E_GetAllMailRequest c2E_GetAllMailRequest = new C2E_GetAllMailRequest() { ActorId = self.MainUnit.Id };
+            E2C_GetAllMailResponse sendChatResponse = (E2C_GetAllMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
+            if(sendChatResponse.MailInfos.Count == 0)
+            {
+                self.MailHintTip.SetActive(false);
+            }
+        }
+
         /// <summary>
         /// 场景加载完成
         /// </summary>
@@ -1857,6 +1872,8 @@ namespace ET
             
             self.UpdateLvReward();
             self.UpdateKillMonsterReward();
+
+            self.CheckMailReddot().Coroutine();
         }
 
         public static void OnOpenTask(this UIMainComponent self)
