@@ -812,10 +812,11 @@ namespace ET
                     //damgePro -= 0.5f;
                     //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
                     //普通攻击
-                    if (skillconfig.SkillActType == 1 && damgePro > 0)
+                    if (skillconfig.SkillActType == 0 && damgePro > 0)
                     {
                         damgePro = damgePro * 0.4f;
                     }
+
                     //技能攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
