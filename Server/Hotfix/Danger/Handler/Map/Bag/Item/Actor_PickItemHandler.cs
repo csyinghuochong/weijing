@@ -130,7 +130,7 @@ namespace ET
                 if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4  && !teshuItem
                     && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
-                    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);   //这个地方通知客户端弹窗需求还是放弃
+                    teamDungeonComponent.AddTeamDropItem( drops[i]);   //这个地方通知客户端弹窗需求还是放弃
                     continue;
                 }
 
@@ -157,7 +157,7 @@ namespace ET
                     //已经分配过的
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
-                        owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
+                        owner = unit.GetParent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
 
                         string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
@@ -190,7 +190,7 @@ namespace ET
                         }
                         
                         teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
-                        owner = unit.DomainScene().GetComponent<UnitComponent>().Get(maxPlayerId);
+                        owner = unit.GetParent<UnitComponent>().Get(maxPlayerId);
                         string pick_name = teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{pick_name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
@@ -211,7 +211,7 @@ namespace ET
                 }
                 if (drops[i].DropType != 1)
                 {
-                    unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
+                    unit.GetParent<UnitComponent>().Remove(unitDrop.Id);
                 }
                 MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }

@@ -146,7 +146,7 @@ namespace ET
             return false;
         }
 
-        public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self, Unit unit, DropInfo dropInfo)
+        public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self,  DropInfo dropInfo)
         {
             for (int i = self.TeamDropItems.Count - 1; i >=  0; i--)
             {
@@ -170,7 +170,7 @@ namespace ET
             teamPickMessage.DropItems.Clear();
             teamPickMessage.DropItems.Add(dropInfo);
 
-            List<Unit> players = UnitHelper.GetUnitList(unit.DomainScene(),UnitType.Player);
+            List<Unit> players = UnitHelper.GetUnitList(self.DomainScene(),UnitType.Player);
             MessageHelper.SendToClient(players, teamPickMessage);
             return teamDropItem;
         }
