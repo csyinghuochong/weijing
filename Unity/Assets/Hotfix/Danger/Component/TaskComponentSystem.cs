@@ -331,7 +331,7 @@ namespace ET
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
-                if (taskCountryConfig.TargetType == (int)TaskTargetType.TaskLoop_1014 )
+                if (taskCountryConfig.TargetType == (int)TaskTargetType.DailyTask_1014 )
                 {
                     return self.TaskCountryList[i].taskStatus < (int)TaskStatuEnum.Commited;
                 }

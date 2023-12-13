@@ -21,7 +21,7 @@ namespace ET
                 }
 
                 //获取当前任务是否已达上限
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LoopTaskNumber) >= GlobalValueConfigCategory.Instance.Get(58).Value2)
+                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) >= GlobalValueConfigCategory.Instance.Get(58).Value2)
                 {
                     response.Error = ErrorCode.ERR_ShangJinNumFull;
                     reply();
@@ -29,16 +29,16 @@ namespace ET
                 }
 
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                int taskLoopId = numericComponent.GetAsInt(NumericType.LoopTaskID);
-                if (taskLoopId == 0)
+                int dailyTask = numericComponent.GetAsInt(NumericType.DailyTaskID);
+                if (dailyTask == 0)
                 {
                     LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
                     response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
-                numericComponent.ApplyChange(null, NumericType.LoopTaskNumber, 1, 0);
-                response.TaskPro = taskComponent.OnGetLoopTask(taskLoopId);
+                numericComponent.ApplyChange(null, NumericType.DailyTaskNumber, 1, 0);
+                response.TaskPro = taskComponent.OnGetLoopTask(dailyTask);
             }
             else if (taskConfig.TaskType == TaskTypeEnum.Union)
             {

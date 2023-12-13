@@ -64,7 +64,7 @@
         public const int RechargeBuChang = 3060;                                 //充值补偿
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
-        public const int LoopTaskNumber = 3063;                                 //赏金任务完成数量                          
+        public const int DailyTaskNumber = 3063;                                 //赏金任务完成数量                          
         public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;
@@ -81,7 +81,7 @@
         public const int TitleID = 3081;                                              //称号
         public const int ArenaNumber = 3082;                                           //角斗场次数
         public const int PetTianTiRankID = 3083;                                          //宠物天梯排名
-        public const int LoopTaskID = 3084;                                         //赏金任务ID
+        public const int DailyTaskID = 3084;                                         //赏金任务ID
         public const int BossBelongID = 3085;                                       //归属ID
         public const int LocalDungeonTime = 3086;                                    //剧情副本次数
         public const int TreasureTask = 3087;

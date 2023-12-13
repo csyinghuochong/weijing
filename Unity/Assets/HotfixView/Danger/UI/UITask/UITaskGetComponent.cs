@@ -461,18 +461,18 @@ namespace ET
                     }
                 }
 
-                int taskLoopid = numericComponent.GetAsInt(NumericType.LoopTaskID);
-                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null)
+                int dailyTaskId = numericComponent.GetAsInt(NumericType.DailyTaskID);
+                if (dailyTaskId > 0 && taskComponent.GetTaskById(dailyTaskId) == null)
                 {
-                    addTaskids.Add(taskLoopid);
+                    addTaskids.Add(dailyTaskId);
                 }
             }
             if (npcId == 20000102)   //家族任务
             {
-                int taskLoopid = numericComponent.GetAsInt(NumericType.UnionTaskId);
-                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null )
+                int unionTaskId = numericComponent.GetAsInt(NumericType.UnionTaskId);
+                if (unionTaskId > 0 && taskComponent.GetTaskById(unionTaskId) == null )
                 {
-                    addTaskids.Add(taskLoopid);
+                    addTaskids.Add(unionTaskId);
                 }
             }
             return addTaskids;

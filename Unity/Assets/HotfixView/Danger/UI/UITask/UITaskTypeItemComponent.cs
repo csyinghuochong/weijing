@@ -66,7 +66,7 @@ namespace ET
             int taskType = TaskConfigCategory.Instance.Get(taskPro.taskID).TaskType;
             if (taskType == 3)
             {
-                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LoopTaskNumber);
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber);
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
             }
             if (taskType == 7)

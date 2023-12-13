@@ -225,7 +225,7 @@ namespace ET
         public const int ItemHuiShou_1011 = 1011;
         public const int TrialFuben_1012 = 1012;
         public const int Tower_1013 = 1013;
-        public const int TaskLoop_1014 = 1014;
+        public const int DailyTask_1014 = 1014;
         public const int PaiMaiSell_1015 = 1015;
         public const int ChouKa_1016 = 1016;
         public const int JianDing_1017 = 1017;

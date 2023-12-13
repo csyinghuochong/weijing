@@ -136,7 +136,7 @@ namespace ET
         /// </summary>
         /// <param name="roleLv"></param>
         /// <returns></returns>
-        public static int GetLoopTaskId(int roleLv)
+        public static int GetDailyTaskId(int roleLv)
         {
             List<int> allTaskIds = new List<int>();
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();

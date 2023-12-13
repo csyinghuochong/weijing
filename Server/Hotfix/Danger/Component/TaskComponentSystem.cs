@@ -511,8 +511,8 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
-                numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
-                self.TriggerTaskCountryEvent(TaskTargetType.TaskLoop_1014, 0, 1);
+                numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetDailyTaskId(roleLv));
+                self.TriggerTaskCountryEvent(TaskTargetType.DailyTask_1014, 0, 1);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
@@ -812,7 +812,7 @@ namespace ET
 
             if (rolelv == 10)
             {
-                self.CheckLoopTask();
+                self.CheckDailyTask();
             }
         }
 
@@ -895,7 +895,7 @@ namespace ET
             }
 
             
-            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0)
+            if (numericComponent.GetAsInt(NumericType.DailyTaskID) == 0)
             {
                 self.UpdateDayTask(false);
             }
@@ -1181,19 +1181,19 @@ namespace ET
             Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()}  {self.TaskCountryList.Count}");
         }
 
-        public static void CheckLoopTask(this TaskComponent self)
+        public static void CheckDailyTask(this TaskComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.LoopTaskID) != 0)
+            if (numericComponent.GetAsInt(NumericType.DailyTaskID) != 0)
             {
                 return;
             }
-            if (numericComponent.GetAsInt(NumericType.LoopTaskNumber) >= 10)
+            if (numericComponent.GetAsInt(NumericType.DailyTaskNumber) >= 10)
             {
                 return;
             }
             int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
+            numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetDailyTaskId(roleLv));
         }
 
         public static void ClearSeasonData(this TaskComponent self)
@@ -1287,11 +1287,11 @@ namespace ET
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            numericComponent.ApplyValue(NumericType.LoopTaskNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.DailyTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.UnionTaskNumber, 0, notice);
-            numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv), notice);
+            numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetDailyTaskId(roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetUnionTaskId(roleLv), notice);
-            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.LoopTaskID)}");
+            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.DailyTaskID)}");
         }
 
         public static TaskPro GetTreasureMonster(this TaskComponent self, int fubenid)

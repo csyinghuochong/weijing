@@ -11,12 +11,7 @@ namespace ET
         {
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             taskComponent.OnRecvGiveUpTask(request.TaskId);
-            //TaskConfig taskConfig = TaskConfigCategory.Instance.Get(request.TaskId);
-            //if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
-            //{
-            //    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            //    numericComponent.Set(NumericType.TaskLoopGiveId, request.TaskId);
-            //}
+           
             reply();
             await ETTask.CompletedTask;
         }
