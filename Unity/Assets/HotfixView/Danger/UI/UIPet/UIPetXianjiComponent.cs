@@ -138,6 +138,13 @@ namespace ET
             }
 
             RolePetInfo xianjiPetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetXianjiId);
+
+            if (PetHelper.IsShenShou(xianjiPetUpInfo.ConfigId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽不能作为祭品宠物");
+                return;
+            }
+
             if (xianjiPetUpInfo.PetHeXinList.Any(l => l != 0))
             {
                 FloatTipManager.Instance.ShowFloatTip("请拆下祭品宠物身上的核心");
