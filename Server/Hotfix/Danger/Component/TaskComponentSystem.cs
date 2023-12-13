@@ -1325,7 +1325,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetDailyTaskId(roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetUnionTaskId(roleLv), notice);
 
-            if(ComHelp.IsInnerNet())
+            if(ComHelp.IsInnerNet() && self.RingTaskList.Count > 0)
             {
                 numericComponent.ApplyValue(NumericType.RingTaskId, self.RingTaskList[0], notice);
             }
