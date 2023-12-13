@@ -25,7 +25,7 @@ namespace ET
 
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject UnionRecordsBtn;
         public Text TextJingXuanEndTime;
         public GameObject ButtonJingXuan;
         public GameObject Text_Exp;
@@ -60,6 +60,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UnionRecordsBtn = rc.Get<GameObject>("UnionRecordsBtn");
+            ButtonHelp.AddListenerEx(self.UnionRecordsBtn, () => { self.UnionRecordsBtn().Coroutine(); });
             self.Text_Button_1 = rc.Get<GameObject>("Text_Button_1");
             ButtonHelp.AddListenerEx(self.Text_Button_1, () => { self.OnShowModify(true);  });
             self.ButtonModify = rc.Get<GameObject>("ButtonModify");
@@ -134,6 +136,12 @@ namespace ET
             UIHelper.Remove( self.ZoneScene(), UIType.UIFriend );
         }
 
+        public static async ETTask UnionRecordsBtn(this UIUnionMyComponent self)
+        {
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIUnionRecords);
+            ui.GetComponent<UIUnionRecordsComponent>().UpdateInfo(self.UnionInfo);
+        }
+        
         public static void OnShowModify(this UIUnionMyComponent self, bool val)
         {
             self.InputFieldPurpose.SetActive(val);

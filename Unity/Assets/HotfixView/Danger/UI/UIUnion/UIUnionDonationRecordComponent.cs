@@ -43,7 +43,7 @@ namespace ET
                 {
                     return;
                 }
-                GameObject gameObject = GameObject.Instantiate(self.UIUnionDonationRecordItem);
+                GameObject gameObject = UnityEngine.Object.Instantiate(self.UIUnionDonationRecordItem);
                 gameObject.SetActive(true);
                 UICommonHelper.SetParent(gameObject, self.BuildingList);
                 UIUnionDonationRecordItemComponent recodeItemComponent = self.AddChild<UIUnionDonationRecordItemComponent, GameObject>(gameObject);
