@@ -418,6 +418,17 @@ namespace ET
                                 long reduceTime = long.Parse(itemConfig.ItemUsePar);
                                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SeasonBossRefreshTime, -1 * reduceTime, 0);
                                 break;
+                            case 133:
+                            case 134:
+                                break;
+                            case 135:
+                                C2M_SkillCmd cmd = new C2M_SkillCmd();
+                                cmd.SkillID = int.Parse(itemConfig.ItemUsePar);
+                                cmd.TargetID = unit.Id;
+                                cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                                cmd.TargetDistance = 0f;
+                                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+                                break;
                         }
 
                         //扣除道具
