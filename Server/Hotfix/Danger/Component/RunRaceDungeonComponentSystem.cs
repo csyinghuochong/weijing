@@ -131,7 +131,7 @@ namespace ET
             {
                 Unit unit = unitlist[i];    
                 int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, runracemonster);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceTransform, runracemonster);
                 Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, true);
 
                 M2C_RunRaceBattleInfo m2C_RunRaceBattle = new M2C_RunRaceBattleInfo() { NextTransforTime = self.NextTransforTime };

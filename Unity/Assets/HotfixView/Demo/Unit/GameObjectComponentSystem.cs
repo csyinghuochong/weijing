@@ -110,8 +110,9 @@ namespace ET
                     var path = string.Empty;
 
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    int runmonsterId = numericComponent.GetAsInt(NumericType.TransformId);
-                    self.OnRunRaceMonster(runmonsterId, false);
+                    int runmonsterId = numericComponent.GetAsInt(NumericType.RunRaceTransform);
+                    int cardtransform = numericComponent.GetAsInt(NumericType.CardTransform);
+                    self.OnRunRaceMonster(runmonsterId, cardtransform, false);
                     //if (runmonsterId > 0)
                     //{
                     //    self.OnRunRaceMonster( runmonsterId, false );  
@@ -284,7 +285,8 @@ namespace ET
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.TransformId) > 0)
+            if (numericComponent.GetAsInt(NumericType.RunRaceTransform) > 0
+                || numericComponent.GetAsInt(NumericType.CardTransform) > 0)
             {
                 return;
             }
@@ -368,7 +370,8 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.TransformId) > 0)
+            if (numericComponent.GetAsInt(NumericType.RunRaceTransform) > 0
+                || numericComponent.GetAsInt(NumericType.CardTransform) > 0)
             {
                 return;
             }
@@ -454,7 +457,6 @@ namespace ET
             switch (unit.Type)
             {
                 case UnitType.Player:
-                
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
                     go.transform.localPosition = unit.Position;
                     go.transform.rotation = unit.Rotation;
@@ -468,7 +470,8 @@ namespace ET
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    if (numericComponent.GetAsInt(NumericType.TransformId) == 0)
+                    if (numericComponent.GetAsInt(NumericType.RunRaceTransform) == 0
+                        && numericComponent.GetAsInt(NumericType.CardTransform) == 0)
                     {
                         unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
                         self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
@@ -1007,7 +1010,7 @@ namespace ET
             self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);
         }
 
-        public static void OnRunRaceMonster(this GameObjectComponent self, int monsterId, bool remove)
+        public static void OnRunRaceMonster(this GameObjectComponent self, int runraceid, int cardmonsterid,  bool remove)
         {
             self.RecoverGameObject();
             self.Material = null;
@@ -1023,9 +1026,10 @@ namespace ET
                 unit.RemoveComponent<UIUnitHpComponent>();
             }
 
-            if (monsterId > 0)
+            if (runraceid > 0 || cardmonsterid > 0)
             {
-                MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterId);
+                int monsterid = runraceid > 0 ? runraceid : cardmonsterid;  
+                MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterid);
                 string path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
                 GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                 self.UnitAssetsPath = path;
@@ -1039,7 +1043,7 @@ namespace ET
             if (unit.MainHero)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(runraceid, cardmonsterid);
             }
             self.BianShenEffect = unit.MainHero && remove;
         }

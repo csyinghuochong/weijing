@@ -35,8 +35,9 @@ namespace ET
             NumericType.GatherLastTime,
             NumericType.UnionRaceWin,
             NumericType.Now_TurtleAI,
-            NumericType.TransformId,
             NumericType.BattleCamp,
+            NumericType.RunRaceTransform,
+            NumericType.CardTransform,
         };
 
         //1 整数  2 浮点数

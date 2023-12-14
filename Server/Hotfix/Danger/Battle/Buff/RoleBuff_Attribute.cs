@@ -123,9 +123,9 @@ namespace ET
                         }
                         heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, nowdamgeType);
                     }
-                    else if (NowBuffParameterType == 3129)
+                    else if (NowBuffParameterType == 3164)
                     {
-                        heroCom.ApplyChange(TheUnitFrom, NumericType.TransformId, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.CardTransform, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
                     }
                     else if (NowBuffParameterType == 3134)
                     {
@@ -230,7 +230,7 @@ namespace ET
                     {
                         //血量不进行移除
                     }
-                    else if (NowBuffParameterType == 3129)
+                    else if (NowBuffParameterType == 3164)
                     {
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyValue(NowBuffParameterType, 0);
                     }

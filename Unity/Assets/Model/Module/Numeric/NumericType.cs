@@ -126,7 +126,7 @@
         public const int HappyCellIndex = 3126;                                           //格子位置，
         public const int HappyMoveTime = 3127;                                          //上次免费移动的时间
         public const int Now_TurtleAI = 3128;
-        public const int TransformId = 3129;                                     //奔跑大赛变身怪物id
+        public const int RunRaceTransform = 3129;                                     //奔跑大赛变身怪物id
         public const int RunRaceRankId = 3130;                                      //奔跑大赛排名
         public const int DemonRankId = 3131;                                        //恶魔活动排名
         public const int LastDungeonId = 3132;
@@ -161,6 +161,7 @@
         public const int RingTaskNumber = 3161;
         public const int RingTaskId = 3162;
         public const int SeasonTowerId = 3163;
+        public const int CardTransform = 3164;                                     //怪物卡片变身
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

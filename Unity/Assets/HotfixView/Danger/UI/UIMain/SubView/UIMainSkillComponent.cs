@@ -210,16 +210,11 @@ namespace ET
             self.Button_Switch_0.GetComponent<Image>().sprite = sp;
         }
 
-        public static void OnTransform(this UIMainSkillComponent self, int monsterId)
+        public static void OnTransform(this UIMainSkillComponent self, int runraceid, int cardmonsterid)
         {
             //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
             //Normal / Transforms
-            if (monsterId == 0)
-            {
-                self.Normal.SetActive(true);
-                self.Transforms.SetActive(false);
-            }
-            else
+            if (runraceid > 0)
             {
                 if (self.UISkillBianSheng == null)
                 {
@@ -229,7 +224,7 @@ namespace ET
                     uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
                     self.UISkillBianSheng = uiSkillGridComponent;
                 }
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(runraceid);
                 if (monsterConfig.SkillID != null && monsterConfig.SkillID.Length > 0)
                 {
                     SkillPro skillPro = new SkillPro();
@@ -240,6 +235,11 @@ namespace ET
 
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
+            }
+            else
+            {
+                self.Normal.SetActive(true);
+                self.Transforms.SetActive(false);
             }
         }
 

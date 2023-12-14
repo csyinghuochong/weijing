@@ -33,13 +33,17 @@
                     Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
                     UIUnitHpComponentSystem.UpdateBattleCamp(unitmain, args.Unit.Id);
                     break;
-                case NumericType.TransformId:
-                    int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
-                    args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
+                case NumericType.RunRaceTransform:
+                    int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceTransform);
+                    args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster,0, true);
                     if (args.Unit.MainHero)
                     {
                         args.Unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(args.Unit.ConfigId, runraceMonster);    
                     }
+                    break;
+                case NumericType.CardTransform:
+                    int cardMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CardTransform);
+                    args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(0, cardMonster, true);
                     break;
                 case NumericType.HappyCellIndex:
                     if (args.Unit.MainHero)

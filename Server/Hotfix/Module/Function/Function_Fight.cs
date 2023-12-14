@@ -1157,9 +1157,6 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
             numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
@@ -1179,9 +1176,6 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
             numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
@@ -1197,9 +1191,6 @@ namespace ET
         public void UnitUpdateProperty_DemonGhost(Unit unit, bool notice)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-
-            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
             numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
@@ -1217,9 +1208,8 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
+            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceTransform);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
             numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);

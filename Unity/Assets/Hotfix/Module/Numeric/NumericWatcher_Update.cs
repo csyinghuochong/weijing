@@ -205,7 +205,8 @@
 	[NumericWatcher((int)NumericType.WearWeaponFisrt)]
     [NumericWatcher((int)NumericType.JueXingAnger)]
     [NumericWatcher((int)NumericType.HappyCellIndex)]
-    [NumericWatcher((int)NumericType.TransformId)]
+    [NumericWatcher((int)NumericType.CardTransform)]
+    [NumericWatcher((int)NumericType.RunRaceTransform)]
     [NumericWatcher((int)NumericType.BattleCamp)]
     [NumericWatcher((int)NumericType.SkillUseMP)]
     public class NumericWatcher_Update : INumericWatcher

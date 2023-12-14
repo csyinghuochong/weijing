@@ -55,8 +55,9 @@ namespace ET
 				unit.AddComponent<AttackRecordComponent>();
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
-                numericComponent.Set(NumericType.TransformId, 0, false);
-              
+                numericComponent.Set(NumericType.RunRaceTransform, 0, false);
+                numericComponent.Set(NumericType.CardTransform, 0, false);
+
                 unit.Type = UnitType.Player;
                 unit.SceneType = request.SceneType;
 				unit.ConfigId = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
@@ -285,7 +286,7 @@ namespace ET
 
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
 						int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
-						numericComponent.Set(NumericType.TransformId, runracemonster, false);
+						numericComponent.Set(NumericType.RunRaceTransform, runracemonster, false);
 						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
 
 						// 通知客户端创建My Unit

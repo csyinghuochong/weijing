@@ -89,7 +89,7 @@ namespace ET
             }
             if (mainHero)
             {
-                int runraceMonster = numericComponent.GetAsInt(NumericType.TransformId);
+                int runraceMonster = numericComponent.GetAsInt(NumericType.RunRaceTransform);
                 unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(unit.ConfigId, runraceMonster);
             }
 			

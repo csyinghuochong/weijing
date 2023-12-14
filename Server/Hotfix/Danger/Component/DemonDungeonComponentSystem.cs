@@ -37,7 +37,7 @@ namespace ET
                 Log.Console($"生成恶魔: {destlist[i].Id}");
 
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2);
-                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000017);
+                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceTransform, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
 
@@ -116,7 +116,7 @@ namespace ET
         {
             //90000017大恶魔   90000018小恶魔   90000019幽灵
 
-            int monsterId = defend.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
+            int monsterId = defend.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceTransform);
 
             //1被恶魔打败的玩家会变成小恶魔,
             if (defend.Type == UnitType.Player && monsterId == 0)
@@ -126,7 +126,7 @@ namespace ET
                 defend.GetComponent<HeroDataComponent>().OnRevive();
 
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2 );
-                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
+                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceTransform, 90000018);
                 defend.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.DemonName, attackName, true);
                 defend.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.DemonName, attackName);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
@@ -139,7 +139,7 @@ namespace ET
             {
                 defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
-                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000019);
+                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceTransform, 90000019);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonGhost(defend, true);
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
@@ -157,7 +157,7 @@ namespace ET
                 List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
                 for (int i = 0; i < sourcelist.Count; i++)
                 {
-                    int transformId = sourcelist[i].GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
+                    int transformId = sourcelist[i].GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceTransform);
                     if (transformId == 0)
                     {
                         playerNumber++;
