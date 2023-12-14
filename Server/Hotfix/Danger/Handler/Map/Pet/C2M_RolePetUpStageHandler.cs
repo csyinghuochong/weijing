@@ -12,16 +12,20 @@ namespace ET
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
 
-            if (request.PetInfoXianJiId <= 0) {
+            if (rolePetInfo ==null || request.PetInfoXianJiId <= 0) 
+            {
                 response.Error = ErrorCode.ERR_Pet_UpStage;
                 reply();
+                return;
             }
 
             //神兽不能进化
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            if (petCof.PetType == 2) {
+            if (petCof.PetType == 2)
+            {
                 response.Error = ErrorCode.ERR_Pet_UpStage;
                 reply();
+                return;
             }
 
             RolePetInfo rolePetInfoXianJi = petComponent.GetPetInfo(request.PetInfoXianJiId);
@@ -29,9 +33,11 @@ namespace ET
             //判断当前宠物是否是进阶中的状态
             if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
             {
-                if (rolePetInfo.UpStageStatus == 2) {
+                if (rolePetInfo.UpStageStatus == 2)
+                {
                     response.Error = ErrorCode.ERR_Pet_UpStage;
                     reply();
+                    return; 
                 }
 
                 //判断当前宠物是否有献祭
