@@ -81,6 +81,18 @@ namespace ET
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.TrialDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
+                    case SceneTypeEnum.SeasonTower:
+                        fubenid = IdGenerater.Instance.GenerateId();
+                        fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+                        fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "SeasonTower" + fubenid.ToString(), SceneType.Fuben);
+                        fubnescene.AddComponent<SeasonTowerComponent>();
+                        mapComponent = fubnescene.GetComponent<MapComponent>();
+                        mapComponent.SetMapInfo((int)SceneTypeEnum.SeasonTower, request.SceneId, int.Parse(request.paramInfo));
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
+                        TransferHelper.BeforeTransfer(unit);
+                        await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.SeasonTower, request.SceneId, FubenDifficulty.None, request.paramInfo);
+                        TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+                        break;
                     case SceneTypeEnum.TowerOfSeal:
                         int finished = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished);
                         // 服务端再判断是否已经通关塔顶
