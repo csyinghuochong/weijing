@@ -841,6 +841,22 @@ namespace ET
             self.OnDispose();
         }
 
+        public static void CheckEndSkill(this SkillManagerComponent self, int endSkillId)
+        {
+            if (endSkillId == 0)
+            {
+                return;
+            }
+
+            Unit unit = self.GetParent<Unit>();
+            C2M_SkillCmd cmd = new C2M_SkillCmd();
+            cmd.SkillID = endSkillId;
+            cmd.TargetID = unit.Id;
+            cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+            cmd.TargetDistance = 0f;
+            self.OnUseSkill(cmd, false);
+        }
+
         public static void Check(this SkillManagerComponent self)
         {
             int skillcnt = self.Skills.Count;
@@ -865,6 +881,7 @@ namespace ET
                 {
                     SkillHandler skillHandler = self.Skills[i];
                     ObjectPool.Instance.Recycle(skillHandler);
+                    self.CheckEndSkill(skillHandler.SkillConf.EndSkillId);
                     skillHandler.OnFinished();
                     self.Skills.RemoveAt(i);
                     continue;
