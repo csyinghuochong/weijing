@@ -849,7 +849,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: ILRuntime;SUBSTANCE_PLUGIN_ENABLED
     4: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO
-    7: NET452;DISABLE_ILRUNTIME_DEBUG
+    7: NET452;DISABLE_ILRUNTIME_DEBUG;TapTap1
     13: NET452;ILRuntime
   additionalCompilerArguments: {}
   platformArchitecture:
