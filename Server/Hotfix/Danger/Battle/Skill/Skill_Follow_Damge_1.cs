@@ -15,6 +15,7 @@
         public override void OnExecute()
         {
             this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
+            this.BulletUnit.AddComponent<DeathTimeComponent, long>((long)(this.SkillConf.SkillLiveTime * 1000 + TimeHelper.Minute));
 
             this.GetTheUnitTarget();
             this.OnUpdate();
