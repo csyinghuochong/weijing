@@ -515,10 +515,6 @@ namespace ET
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
             int roleLv = userInfoComponent.UserInfo.Lv;
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
-            if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
-            {
-                bagComponent.OnCostItemData($"{taskConfig.Target[0]};{taskConfig.TargetValue[0]}");
-            }
             if (taskConfig.TaskType == TaskTypeEnum.Daily)
             {
                 numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetDailyTaskId(roleLv));
