@@ -2253,41 +2253,12 @@ namespace ET
         {
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
 
-            //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            //long unionId = unit.GetUnionId();
-            //if (unionId == 0)
-            //{
-            //    return;
-            //}
-
-            ////家族信息
-            //C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest() {  UnionId = unionId  };
-            //U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            //Log.ILog.Debug($"家族金币: {respose.UnionMyInfo.UnionGold}");
-            //Log.ILog.Debug($"家族科技: {respose.UnionMyInfo.UnionKeJiList[0]}");
-
-            //if (respose.UnionMyInfo.KeJiActiteTime == 0)
-            //{
-            //    Log.ILog.Debug($"研究第一个位置的科技");
-            //    C2U_UnionKeJiActiteRequest request_2 = new C2U_UnionKeJiActiteRequest() { UnionId = unionId, Position = 0 };
-            //    U2C_UnionKeJiActiteResponse response_2 = (U2C_UnionKeJiActiteResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_2);
-
-            //    return;
-            //}
-
-            //Log.ILog.Debug($"当前正在研究的科技: {respose.UnionMyInfo.KeJiActitePos}  {respose.UnionMyInfo.UnionKeJiList[respose.UnionMyInfo.KeJiActitePos]}");
-
-            //Log.ILog.Debug("加速该科技");
-            //C2U_UnionKeJiQuickRequest request_3 = new C2U_UnionKeJiQuickRequest() { UnionId = unionId, Position = 0 };
-            //U2C_UnionKeJiQuickResponse response_3 = (U2C_UnionKeJiQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_3);
-
-            /////研究科技 和 加速科技在第一个切页。只有官员可见可操作。  非官员隐藏第一个切页
-            ////自己学习科技
-            //C2M_UnionKeJiLearnRequest request_4 = new C2M_UnionKeJiLearnRequest() { Position = 0 };
-            //M2C_UnionKeJiLearnResponse response_4 = (M2C_UnionKeJiLearnResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_4);
-            //self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UnionKeJiList = response_4.UnionKeJiList;
-
+            //NumericType.SeasonTowerId 当前通关的塔ID
+            //int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.SeasonTower);
+            //EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.SeasonTower, sceneId, 0, "0").Coroutine();
+            //C2R_RankSeasonTowerRequest request_1 = new C2R_RankSeasonTowerRequest();
+            //R2C_RankSeasonTowerResponse response_1 = (R2C_RankSeasonTowerResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_1);
+            //根据排行榜返回的数据找出自己的挑战时间，没有则为0
             await ETTask.CompletedTask;
         }
 
