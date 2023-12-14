@@ -839,7 +839,7 @@
 {"_t":"TowerConfig","_id":206099,"Name":"封印之塔99层","MapType":20,"CengNum":1,"MonsterSet":"1;0,0,3;74006008;1","NextTime":0,"DropShow":""},
 {"_t":"TowerConfig","_id":206100,"Name":"封印之塔100层","MapType":20,"CengNum":1,"MonsterSet":"1;0,0,3;74006008;1@1;0,0,0;74000015;1","NextTime":0,"DropShow":""},
 {"_t":"TowerConfig","_id":250001,"Name":"赛季之塔1层","MapType":25,"CengNum":1,"MonsterSet":"1;0,0,3;74002001;1","NextTime":0,"DropShow":""},
-{"_t":"TowerConfig","_id":250002,"Name":"赛季之塔2层","MapType":25,"CengNum":1,"MonsterSet":"1;0,0,3;74002002;1","NextTime":0,"DropShow":""},
-{"_t":"TowerConfig","_id":250003,"Name":"赛季之塔3层","MapType":25,"CengNum":1,"MonsterSet":"1;0,0,3;74002001;1","NextTime":0,"DropShow":""},
-{"_t":"TowerConfig","_id":250004,"Name":"赛季之塔4层","MapType":25,"CengNum":1,"MonsterSet":"1;0,0,3;74002002;1","NextTime":0,"DropShow":""},
+{"_t":"TowerConfig","_id":250002,"Name":"赛季之塔2层","MapType":25,"CengNum":2,"MonsterSet":"1;0,0,3;74002002;1","NextTime":0,"DropShow":""},
+{"_t":"TowerConfig","_id":250003,"Name":"赛季之塔3层","MapType":25,"CengNum":3,"MonsterSet":"1;0,0,3;74002001;1","NextTime":0,"DropShow":""},
+{"_t":"TowerConfig","_id":250004,"Name":"赛季之塔4层","MapType":25,"CengNum":4,"MonsterSet":"1;0,0,3;74002002;1","NextTime":0,"DropShow":""},
 ]}
