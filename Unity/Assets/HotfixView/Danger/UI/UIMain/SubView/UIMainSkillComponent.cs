@@ -115,8 +115,8 @@ namespace ET
             self.UISkillJueXing.SkillCancelHandler = self.ShowCancelButton;
             self.UISkillJueXing.GameObject.SetActive(false);
 
-              //普通攻击
-              OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
+            //普通攻击
+            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
             self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack);
            
             //翻滚技能
@@ -224,7 +224,7 @@ namespace ET
                 if (self.UISkillBianSheng == null)
                 {
                     ReferenceCollector rc = self.Transforms.GetComponent<ReferenceCollector>();
-                    GameObject go = rc.Get<GameObject>("UI_BianShenSkill_item_0");
+                    GameObject go = rc.Get<GameObject>("UI_MainRoseSkill_item_0");
                     UISkillGridComponent uiSkillGridComponent = self.AddChild<UISkillGridComponent, GameObject>(go);
                     uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
                     self.UISkillBianSheng = uiSkillGridComponent;

@@ -11661,12 +11661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: UI_BianShenSkill_item_0
-    gameObject: {fileID: 8713363748222466741}
   - key: UI_MainRoseSkill_item_1
     gameObject: {fileID: 7530938366665275520}
   - key: UI_MainRoseSkill_item_2
     gameObject: {fileID: 7862498107613622945}
+  - key: UI_MainRoseSkill_item_0
+    gameObject: {fileID: 8713363748222466741}
 --- !u!1 &2424392170838276210
 GameObject:
   m_ObjectHideFlags: 0
