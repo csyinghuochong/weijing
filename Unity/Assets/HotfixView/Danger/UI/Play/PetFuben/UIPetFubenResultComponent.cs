@@ -65,7 +65,7 @@ namespace ET
                 self.Button_next.SetActive(false);
             }
 
-            if (sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.SeasonTower)
+            if (sceneType == SceneTypeEnum.PetDungeon)
             {
                 self.Button_continue.SetActive(true);
             }
@@ -121,7 +121,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("已通关！");
                     return;
                 }
-                EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.SeasonTower, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
+                EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.SeasonTower, BattleHelper.GetSceneIdByType(SceneTypeEnum.SeasonTower), 0, sonsceneid.ToString()).Coroutine();
             }
 
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetFubenResult);
