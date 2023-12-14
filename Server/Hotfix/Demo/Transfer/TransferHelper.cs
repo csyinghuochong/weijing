@@ -82,6 +82,21 @@ namespace ET
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case SceneTypeEnum.SeasonTower:
+                        //计算赛季之塔下一关
+                        int seasonTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId);
+                        if (seasonTowerid == 0)
+                        {
+                            request.paramInfo = TowerHelper.GetFirstTowerIdByScene(SceneTypeEnum.SeasonTower).ToString();
+                        }
+                        else
+                        {
+                            if (!TowerConfigCategory.Instance.Contain(seasonTowerid + 1))
+                            {
+                                return ErrorCode.ERR_TowerOfSealReachTop;
+                            }
+                            request.paramInfo = (seasonTowerid + 1).ToString();
+                        }
+                       
                         fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                         fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "SeasonTower" + fubenid.ToString(), SceneType.Fuben);

@@ -37,6 +37,8 @@ namespace ET
                 Value = userTime,
                 Value2 = mapComponent.SonSceneId
             };
+
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, mapComponent.SonSceneId);
             long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
             M2R_RankSeasonTowerRequest reuqest = new M2R_RankSeasonTowerRequest() {  RankingInfo = rankingInfo };
             R2M_RankSeasonTowerResponse Response = (R2M_RankSeasonTowerResponse)await ActorMessageSenderComponent.Instance.Call

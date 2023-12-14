@@ -160,6 +160,7 @@
         public const int UnionDiamondDonationNumber = 3160;                     //家族钻石捐献
         public const int RingTaskNumber = 3161;
         public const int RingTaskId = 3162;
+        public const int SeasonTowerId = 3163;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
