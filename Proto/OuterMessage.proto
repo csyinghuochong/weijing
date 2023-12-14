@@ -7084,3 +7084,28 @@ message M2C_StallXiaJiaResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message RankSeasonTowerInfo
+{
+	int64 UserId = 1;
+	string PlayerName = 2;
+	int32 Occ = 3;
+	int32 PlayerLv = 4;
+	int32 FubenId = 5;		//显示时候需要转换层数
+	int64 TotalTime = 6;		//总通关时间
+}
+
+//ResponseType R2C_RankSeasonTowerResponse
+message C2R_RankSeasonTowerRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message R2C_RankSeasonTowerResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankSeasonTowerInfo RankList = 1;		//排行榜列表
+}

@@ -74,6 +74,9 @@ namespace ET
                     UI uiMain = UIHelper.GetUI(args.Scene, UIType.UIMain);
                     uimain.GetComponent<UIMainComponent>().BeginEnterScene(sceneTypeEnum);
                     break;
+                case SceneTypeEnum.SeasonTower:
+                    FloatTipManager.Instance.ShowFloatTip("赛季之塔结算！");
+                    break;
                 default:
                     ui = await UIHelper.Create(args.Scene, UIType.UICellDungeonSettlement);
                     ui.GetComponent<UICellDungeonSettlementComponent>().OnUpdateUI(args.m2C_FubenSettlement).Coroutine();

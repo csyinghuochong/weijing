@@ -12,9 +12,11 @@ namespace ET
 
         public DBServerInfo DBServerInfo = new DBServerInfo();
 
-
         public long RankingTrialLastTime = 0;
-        public List<RankingTrialInfo> RankingTrials = new List<RankingTrialInfo>();   
+        public List<RankingTrialInfo> RankingTrials = new List<RankingTrialInfo>();
+
+        public long RankSeasonTowerLastTime = 0;
+        public List<RankSeasonTowerInfo> RankSeasonTowers = new List<RankSeasonTowerInfo>();
 
         public int UpdateCombat = 0;
     }

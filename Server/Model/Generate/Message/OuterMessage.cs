@@ -14759,4 +14759,59 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.RankSeasonTowerInfo)]
+	[ProtoContract]
+	public partial class RankSeasonTowerInfo: Object
+	{
+		[ProtoMember(1)]
+		public long UserId { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public int Occ { get; set; }
+
+		[ProtoMember(4)]
+		public int PlayerLv { get; set; }
+
+		[ProtoMember(5)]
+		public int FubenId { get; set; }
+
+		[ProtoMember(6)]
+		public long TotalTime { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2C_RankSeasonTowerResponse))]
+	[Message(OuterOpcode.C2R_RankSeasonTowerRequest)]
+	[ProtoContract]
+	public partial class C2R_RankSeasonTowerRequest: Object, IRankActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_RankSeasonTowerResponse)]
+	[ProtoContract]
+	public partial class R2C_RankSeasonTowerResponse: Object, IRankActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RankSeasonTowerInfo> RankList = new List<RankSeasonTowerInfo>();
+
+	}
+
 }

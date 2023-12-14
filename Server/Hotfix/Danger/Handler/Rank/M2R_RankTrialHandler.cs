@@ -9,7 +9,6 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2R_RankTrialRequest request, R2M_RankTrialResponse response, Action reply)
         {
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
-            DBRankInfo dBRankInfo = rankSceneComponent.DBRankInfo;
             List<KeyValuePairLong> rankRunRace = rankSceneComponent.DBRankInfo.rankingTrial;
 
             bool have = false;

@@ -821,5 +821,8 @@ namespace ET
 		 public const ushort M2C_StallBuyResponse = 10818;
 		 public const ushort C2M_StallXiaJiaRequest = 10819;
 		 public const ushort M2C_StallXiaJiaResponse = 10820;
+		 public const ushort RankSeasonTowerInfo = 10821;
+		 public const ushort C2R_RankSeasonTowerRequest = 10822;
+		 public const ushort R2C_RankSeasonTowerResponse = 10823;
 	}
 }

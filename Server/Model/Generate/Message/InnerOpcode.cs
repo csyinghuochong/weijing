@@ -233,5 +233,7 @@ namespace ET
 		 public const ushort P2M_StallBuyResponse = 20230;
 		 public const ushort M2P_StallXiaJiaRequest = 20231;
 		 public const ushort P2M_StallXiaJiaResponse = 20232;
+		 public const ushort M2R_RankSeasonTowerRequest = 20233;
+		 public const ushort R2M_RankSeasonTowerResponse = 20234;
 	}
 }

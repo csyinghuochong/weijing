@@ -16,5 +16,6 @@ namespace ET
         public List<RankingInfo> rankRunRace = new List<RankingInfo>();     //奔跑大赛
         public List<RankingInfo> rankingDemon = new List<RankingInfo>();     //恶魔活动
         public List<KeyValuePairLong> rankingTrial = new List<KeyValuePairLong>();   //试炼副本伤害排行
+        public List<KeyValuePairLong> rankSeasonTower = new List<KeyValuePairLong>();   //试炼副本伤害排行  id/层数/时间
     }
 }

@@ -1983,3 +1983,20 @@ message P2M_StallXiaJiaResponse // IActorResponse
     string Message = 92;
     PaiMaiItemInfo PaiMaiItemInfo = 2;
 }
+
+//赛季副本
+//ResponseType R2M_RankSeasonTowerResponse
+message M2R_RankSeasonTowerRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    KeyValuePairLong RankingInfo = 2;
+}
+
+message R2M_RankSeasonTowerResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+	int32 RankId = 1;
+}
