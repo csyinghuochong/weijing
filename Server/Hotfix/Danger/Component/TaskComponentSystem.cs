@@ -1395,6 +1395,9 @@ namespace ET
 
         public static void UpdateSeasonWeekTask(this TaskComponent self, bool notice)
         {
+            Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, 0, notice);
+
             //赛季任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {

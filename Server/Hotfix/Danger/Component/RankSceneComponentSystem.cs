@@ -113,6 +113,8 @@ namespace ET
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
             self.SendTrialReward().Coroutine();
+            self.SendSeasonTowerReward().Coroutine();   
+
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
             self.DBRankInfo.rankRunRace.Clear();
@@ -843,6 +845,62 @@ namespace ET
             self.DBRankInfo.rankingTrial.Clear();
         }
 
+        public static async ETTask SendSeasonTowerReward(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (dateTime.DayOfWeek != DayOfWeek.Sunday)
+            {
+                return;
+            }
+            Log.Debug($"发放赛季之塔排行榜奖励： {zone}");
+            long serverTime = TimeHelper.ServerNow();
+            List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankSeasonTower;
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 7);
+                if (rankRewardConfig == null)
+                {
+                    continue;
+                }
+                MailInfo mailInfo = new MailInfo();
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得赛季之塔第{i + 1}名奖励";
+                mailInfo.Title = "赛季之塔奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                if (i <= 10)
+                {
+                    Log.Warning($"赛季之塔奖励: {self.DomainZone()} {rankingInfos[i].KeyId}");
+                }
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].UserId,
+                          MailInfo = mailInfo
+                      });
+            }
+
+
+            self.DBRankInfo.rankSeasonTower.Clear();
+            await ETTask.CompletedTask;
+        }
+
         /// <summary>
         /// 发送战力排行奖励
         /// </summary>
@@ -851,7 +909,7 @@ namespace ET
         public static async ETTask SendCombatReward(this RankSceneComponent self)
         {
             int zone = self.DomainZone();
-            await TimerComponent.Instance.WaitAsync(zone * 500);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
             DateTime dateTime = TimeHelper.DateTimeNow();
             if (!RankHelper.HaveReward(1, (int)dateTime.DayOfWeek))
             {
