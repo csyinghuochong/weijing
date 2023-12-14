@@ -55,17 +55,22 @@ namespace ET
             self.Img_Star_3.gameObject.SetActive(message.StarInfos[2] == 1);
 
             int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-            if (sceneType == SceneTypeEnum.PetDungeon && message.BattleResult == CombatResultEnum.Win)
+            if ((sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.SeasonTower)
+                && message.BattleResult == CombatResultEnum.Win)
             {
                 self.Button_next.SetActive(true);
             }
-
-            self.Button_next.SetActive(message.BattleResult != CombatResultEnum.Fail);
-            self.Button_continue.SetActive(true);
-
-            if (sceneType == SceneTypeEnum.PetTianTi || sceneType == SceneTypeEnum.PetMing)
+            else
             {
                 self.Button_next.SetActive(false);
+            }
+
+            if (sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.SeasonTower)
+            {
+                self.Button_continue.SetActive(true);
+            }
+            else 
+            {
                 self.Button_continue.SetActive(false);
             }
 
@@ -80,26 +85,44 @@ namespace ET
 
         public static void OnButton_continue(this UIPetFubenResultComponent self)
         {
-            int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId;
-            if (!PetFubenConfigCategory.Instance.Contain(sonsceneid))
+            int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            if (sceneType == SceneTypeEnum.PetDungeon)
             {
-                FloatTipManager.Instance.ShowFloatTip("已通关！");
-                return;
-            }
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
+                int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId;
+                if (!PetFubenConfigCategory.Instance.Contain(sonsceneid))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("已通关！");
+                    return;
+                }
+                EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
 
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetFubenResult);
+                UIHelper.Remove(self.ZoneScene(), UIType.UIPetFubenResult);
+            }
         }
 
         public static void OnButton_next(this UIPetFubenResultComponent self)
         {
-            int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId + 1;
-            if (!PetFubenConfigCategory.Instance.Contain(sonsceneid))
+            int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            if (sceneType == SceneTypeEnum.PetDungeon)
             {
-                FloatTipManager.Instance.ShowFloatTip("已通关！");
-                return;
+                int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId + 1;
+                if (!PetFubenConfigCategory.Instance.Contain(sonsceneid))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("已通关！");
+                    return;
+                }
+                EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
             }
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
+            if(sceneType == SceneTypeEnum.SeasonTower)
+            {
+                int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId + 1;
+                if (!TowerConfigCategory.Instance.Contain(sonsceneid))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("已通关！");
+                    return;
+                }
+                EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.SeasonTower, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
+            }
 
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetFubenResult);
         }

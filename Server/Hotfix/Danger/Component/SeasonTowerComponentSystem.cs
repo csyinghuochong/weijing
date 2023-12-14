@@ -14,6 +14,7 @@ namespace ET
             {
                 M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
                 m2C_FubenSettlement.BattleResult = CombatResultEnum.Fail;
+                m2C_FubenSettlement.StarInfos = new List<int> { 0,0,0 };
                 MessageHelper.SendToClient(players[0], m2C_FubenSettlement);
                 return;
             }
@@ -21,6 +22,7 @@ namespace ET
             {
                 M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
                 m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
+                m2C_FubenSettlement.StarInfos = new List<int> { 1, 1, 1 };
                 MessageHelper.SendToClient(players[0], m2C_FubenSettlement);
 
                 self.UploadHurtValue(players[0]).Coroutine();

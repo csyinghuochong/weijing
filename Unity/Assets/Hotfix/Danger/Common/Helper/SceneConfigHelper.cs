@@ -23,7 +23,8 @@ namespace ET
             if (oldScene == newScene
                         && oldScene != SceneTypeEnum.LocalDungeon
                         && oldScene != SceneTypeEnum.JiaYuan
-                        && oldScene != SceneTypeEnum.PetDungeon)
+                        && oldScene != SceneTypeEnum.PetDungeon
+                        && oldScene != SceneTypeEnum.SeasonTower)
             {
                 return false;
             };
