@@ -270,6 +270,9 @@ namespace ET
 		/// <summary>是否显示技能指示器字段</summary>
 		[ProtoMember(65)]
 		public int IfShowSkillZhiShi { get; set; }
+		/// <summary>结束时技能</summary>
+		[ProtoMember(66)]
+		public int EndSkillId { get; set; }
 
 	}
 }
