@@ -9514,7 +9514,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(G2C_ExitGameGate))]
+	[ResponseType(nameof(G2C_LoginRobotResponse))]
 	[Message(OuterOpcode.C2G_LoginRobotRequest)]
 	[ProtoContract]
 	public partial class C2G_LoginRobotRequest: Object, IRequest

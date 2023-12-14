@@ -4536,7 +4536,8 @@ message C2M_TeamPickRequest    // IActorLocationMessage
 	int32 Need = 2;      //1需求 2丢弃
 }
 
-//ResponseType G2C_ExitGameGate
+
+//ResponseType G2C_LoginRobotResponse
 message C2G_LoginRobotRequest // IRequest
 {
 	int32 RpcId = 90;
