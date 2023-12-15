@@ -63,7 +63,7 @@ namespace ET
                         return;
                     }
 
-                    petComponent_enemy.UpdatePetAttributeWithData(d2GGetUnit_2.Component as BagComponent, d2GGetUnit_3 as NumericComponent, rolePetInfo, false);
+                    petComponent_enemy.UpdatePetAttributeWithData(d2GGetUnit_2.Component as BagComponent, d2GGetUnit_3.Component as NumericComponent, rolePetInfo, false);
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f, i);
 
