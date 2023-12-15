@@ -111,6 +111,9 @@ namespace ET
                 case ItemLocType.SeasonJingHe:
                     ItemTypeList = self.SeasonJingHe;
                     break;
+                case ItemLocType.PetLocEquip:
+                    ItemTypeList = self.PetEquipList;
+                    break;
             }
             return ItemTypeList;
         }

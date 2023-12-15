@@ -185,6 +185,7 @@ namespace ET
         ChouKaWarehouse = 15, // 抽卡仓库
         ItemLocEquip_2 = 16,    //第二套装备
         SeasonJingHe = 17,      //赛季晶核
+        PetLocEquip = 18,       //宠物装备
 
         ItemLocMax,
     }

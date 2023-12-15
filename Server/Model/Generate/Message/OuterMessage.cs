@@ -4435,6 +4435,9 @@ namespace ET
 		[ProtoMember(40)]
 		public bool IsProtect { get; set; }
 
+		[ProtoMember(41)]
+		public List<long> PetEquipList = new List<long>();
+
 	}
 
 	[ResponseType(nameof(M2C_SkillInitResponse))]
@@ -14811,6 +14814,44 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<RankSeasonTowerInfo> RankList = new List<RankSeasonTowerInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_RoleEquipResponse))]
+//宠物装备
+	[Message(OuterOpcode.C2M_RoleEquipRequest)]
+	[ProtoContract]
+	public partial class C2M_RoleEquipRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long PetInfoId { get; set; }
+
+		[ProtoMember(2)]
+		public long BagInfoId { get; set; }
+
+		[ProtoMember(4)]
+		public int OperateType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_RoleEquipResponse)]
+	[ProtoContract]
+	public partial class M2C_RoleEquipResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public RolePetInfo RolePetInfo { get; set; }
 
 	}
 

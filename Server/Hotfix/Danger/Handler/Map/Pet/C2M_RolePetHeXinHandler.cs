@@ -21,6 +21,7 @@ namespace ET
                 RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
                 if (rolePetInfo == null)
                 {
+                    response.Error = ErrorCode.ERR_Pet_NoExist;
                     reply();
                     return;
                 }
@@ -47,7 +48,6 @@ namespace ET
                         return;
                     }
 
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                     //新的装备给宠物
                     bagComponent.OnChangeItemLoc(bagInfo, ItemLocType.ItemPetHeXinEquip, ItemLocType.ItemPetHeXinBag);
                     m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);

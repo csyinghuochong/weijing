@@ -824,5 +824,7 @@ namespace ET
 		 public const ushort RankSeasonTowerInfo = 10821;
 		 public const ushort C2R_RankSeasonTowerRequest = 10822;
 		 public const ushort R2C_RankSeasonTowerResponse = 10823;
+		 public const ushort C2M_RoleEquipRequest = 10824;
+		 public const ushort M2C_RoleEquipResponse = 10825;
 	}
 }

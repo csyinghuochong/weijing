@@ -32,7 +32,7 @@ namespace ET
             self.LayerText.GetComponent<Text>().text = string.Empty;
             self.UISeasonTowerRankItem.SetActive(false);
             self.RewardShowBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnRewardShowBtn().Coroutine(); });
-            self.EnterBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEnterBtn().Coroutine(); });
+            self.EnterBtn.GetComponent<Button>().onClick.AddListener(self.OnEnterBtn);
 
             self.UpdateInfo().Coroutine();
         }
@@ -46,7 +46,7 @@ namespace ET
             uiHelp.GetComponent<UISeasonTowerRewardComponent>().OnInitUI(7);
         }
 
-        public static async ETTask OnEnterBtn(this UISeasonTowerComponent self)
+        public static  void OnEnterBtn(this UISeasonTowerComponent self)
         {
             int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.SeasonTower);
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.SeasonTower, sceneId, 0, "0").Coroutine();
