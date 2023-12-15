@@ -936,6 +936,10 @@ namespace ET
                 List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
                 for (int i = 0; i < unionXiuLianids.Count; i++)
                 {
+                    if (unionXiuLianids[i] == 0)
+                    {
+                        continue;
+                    }
                     UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
                     List<PropertyValue> jiazuProList = new List<PropertyValue>();
                     NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
