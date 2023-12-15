@@ -50,12 +50,11 @@ namespace ET
                     self.ApplyPlayerInfos.RemoveAt(i);
                 }
             }
-            self.UpdatePlayerList().Coroutine();
+            self.UpdatePlayerList();
         }
 
-        public static async ETTask UpdatePlayerList(this UIUnionApplyListComponent self)
+        public static void  UpdatePlayerList(this UIUnionApplyListComponent self)
         {
-            await ETTask.CompletedTask;
             List<Entity> childs = self.Children.Values.ToList();
             for (int i = 0; i < self.ApplyPlayerInfos.Count; i++)
             {
@@ -85,14 +84,16 @@ namespace ET
             {
                 UnionId = unionId
             };
+
+            long instanceid = self.InstanceId;
             U2C_UnionApplyListResponse r2c_roleEquip = (U2C_UnionApplyListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success || instanceid != self.InstanceId)
             {
                 return;
             }
             
             self.ApplyPlayerInfos = r2c_roleEquip.UnionPlayerList;
-            self.UpdatePlayerList().Coroutine();
+            self.UpdatePlayerList();
         }
     }
 }
