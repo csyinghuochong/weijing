@@ -12,19 +12,20 @@ namespace ET
             try
             {
                 ItemLocType itemLocType = ItemLocType.ItemLocBag;
-                BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
+                BagComponent bagComponent = unit.GetComponent<BagComponent>();
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
 
                 if (bagInfo == null)
                 {
-                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, request.OperateBagID);
+                    bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocEquip, request.OperateBagID);
                     itemLocType = ItemLocType.ItemLocEquip;
                 }
                 if (bagInfo == null)
                 {
-                    bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID); 
+                    bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID); 
                     itemLocType = ItemLocType.ItemLocEquip_2;
                 }
-
+                
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
                 if (itemConfig.EquipType == 101)
@@ -54,7 +55,7 @@ namespace ET
                     ifZuanShi = true;
                 }
 
-                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);
+                bool sucess = bagComponent.OnCostItemData(rewardItems);
                 if (!sucess)
                 {
                     reply();
