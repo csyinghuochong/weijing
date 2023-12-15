@@ -156,7 +156,7 @@ namespace ET
                     }
                     else
                     {
-                        path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
+                        path = StringBuilderHelper.GetMonsterUnitPath(monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
                     }

@@ -64,11 +64,22 @@ namespace ET
 
         public static string UIDropUIPath = "Assets/Bundles/UI/Blood/UIDropItem.prefab";
 
+        public static string MonsterUnitPath = "Assets/Bundles/Unit/Monster/";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()
         {
             return string.Empty;
+        }
+
+        public static string GetMonsterUnitPath(int modelID)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append(MonsterUnitPath);
+            stringBuilder.Append(modelID);
+            stringBuilder.Append(UnitPrefab);
+            return stringBuilder.ToString();
         }
 
         public static string GetPing(long ping)
