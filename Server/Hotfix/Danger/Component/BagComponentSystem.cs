@@ -357,6 +357,7 @@ namespace ET
             bagList.AddRange(self.ChouKaWarehouse);
             bagList.AddRange(self.EquipList_2);
             bagList.AddRange(self.SeasonJingHe);
+            bagList.AddRange(self.PetEquipList);
             return bagList;
         }
 
