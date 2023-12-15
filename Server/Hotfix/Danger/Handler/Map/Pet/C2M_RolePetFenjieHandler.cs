@@ -37,9 +37,6 @@ namespace ET
 				unit.GetComponent<BagComponent>().OnAddItemData($"{petCof.ReleaseReward[0]};{petCof.ReleaseReward[1]}", $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
 			}
 
-			//移除宠物之核
-			unit.GetComponent<BagComponent>().OnCostItemData(rolePetInfo.PetHeXinList, ItemLocType.ItemPetHeXinEquip);
-
 			unit.GetComponent<PetComponent>().OnRolePetFenjie(request.PetInfoId);
 
 			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0, -1);

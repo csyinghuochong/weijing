@@ -1111,10 +1111,16 @@ namespace ET
 
         public static void RemovePet(this PetComponent self, long petId)
         {
+            Unit unit = self.GetParent<Unit>();
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
             for (int i = self.RolePetInfos.Count - 1; i>= 0; i--)
             {
                 if (self.RolePetInfos[i].Id == petId)
                 {
+                    //移除宠物之核
+                    bagComponent.OnCostItemData(self.RolePetInfos[i].PetHeXinList, ItemLocType.ItemPetHeXinEquip);
+                    bagComponent.OnCostItemData(self.RolePetInfos[i].PetEquipList, ItemLocType.PetLocEquip);
+
                     self.RolePetInfos.RemoveAt(i);
                     break;
                 }
