@@ -7,6 +7,8 @@ namespace ET
 
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject EquipSet;
         public GameObject PetHeXinSuitBtn;
         public GameObject JiBanBtn;
         public GameObject Text_ShouHu;
@@ -156,12 +158,15 @@ namespace ET
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
             ButtonHelp.AddListenerEx( self.ButtonRName, ()=> { self.OnButtonRName().Coroutine(); } );
             self.ButtonAddPoint = rc.Get<GameObject>("ButtonAddPoint");
-            ButtonHelp.AddListenerEx(self.ButtonAddPoint, () => { self.OnButtonAddPoint(); });
+            ButtonHelp.AddListenerEx(self.ButtonAddPoint, self.OnButtonAddPoint);
 
             self.ButtonCloseAddPoint = rc.Get<GameObject>("ButtonCloseAddPoint");
-            ButtonHelp.AddListenerEx(self.ButtonCloseAddPoint, () => { self.OnButtonCloseAddPoint(); });
+            ButtonHelp.AddListenerEx(self.ButtonCloseAddPoint, self.OnButtonCloseAddPoint);
 
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
+
+            self.EquipSet = rc.Get<GameObject>("EquipSet");
+            self.EquipSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) );
 
             GameObject gameObject = rc.Get<GameObject>("PetAddPoint");
             self.PetAddPointComponent = self.AddChild<UIPetAddPointComponent, GameObject>(gameObject);
