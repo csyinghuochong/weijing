@@ -97,7 +97,8 @@ namespace ET
                     }
                     else
                     {
-                        textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
+                        textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
+                        //textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
                     }
                     float preferredHeight = self.Lab_ChatText.preferredHeight;
                     if (preferredHeight > 40f)
