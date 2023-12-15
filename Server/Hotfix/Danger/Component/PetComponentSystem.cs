@@ -777,7 +777,7 @@ namespace ET
             return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
         }
 
-        public static void UpdatePetAttributeWithBag(this PetComponent self, BagComponent bagComponent, NumericComponent numericComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
+        public static void UpdatePetAttributeWithData(this PetComponent self, BagComponent bagComponent, NumericComponent numericComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             rolePetInfo.PetPingFen = PetHelper.PetPingJia(rolePetInfo);
             //获取宠物资质
@@ -886,6 +886,24 @@ namespace ET
                         Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
                     }
                 }
+            }
+
+            //宠物装备
+            for (int i = 0; i < rolePetInfo.PetEquipList.Count; i++)
+            {
+                long baginfoId = rolePetInfo.PetEquipList[i];
+                if (baginfoId == 0)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.PetLocEquip, baginfoId);
+                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                {
+                    continue;
+                }
+
+                ///宠物装备属性
             }
 
             //宠物之核套装属性
@@ -1035,7 +1053,7 @@ namespace ET
         {
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            self.UpdatePetAttributeWithBag( bagComponent, numericComponent, rolePetInfo, updateUnit );
+            self.UpdatePetAttributeWithData( bagComponent, numericComponent, rolePetInfo, updateUnit );
 
             //如果是出战的宠物。再广播一下属性
             if (updateUnit == false)
