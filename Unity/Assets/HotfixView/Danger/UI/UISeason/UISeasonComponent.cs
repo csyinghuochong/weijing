@@ -16,6 +16,7 @@ namespace ET
 
     public class UISeasonComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Tower;
         public GameObject ImageButton;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -49,7 +50,10 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChengJiu(); });
+            self.ImageButton.GetComponent<Button>().onClick.AddListener(self.OnCloseChengJiu);
+
+            self.Btn_Tower = rc.Get<GameObject>("Btn_Tower");
+            self.Btn_Tower.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");

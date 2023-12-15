@@ -66,7 +66,8 @@ namespace ET
                 && sceneType != SceneTypeEnum.Arena
                 && sceneType != SceneTypeEnum.Happy
                 && sceneType != SceneTypeEnum.RunRace
-                && sceneType != SceneTypeEnum.Demon;
+                && sceneType != SceneTypeEnum.Demon
+                && sceneType != SceneTypeEnum.SeasonTower;
         }
 
         public static bool ShowLeftButton(int sceneType)
