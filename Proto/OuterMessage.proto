@@ -7111,7 +7111,7 @@ message R2C_RankSeasonTowerResponse // IRankActorResponse
 	repeated RankSeasonTowerInfo RankList = 1;		//排行榜列表
 }
 
-//ResponseType M2C_RoleEquipResponse
+//ResponseType M2C_PetEquipResponse
 //宠物装备
 message C2M_PetEquipRequest // IActorLocationRequest
 {

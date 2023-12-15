@@ -168,6 +168,22 @@ namespace ET
             await zoneScene.GetComponent<PetComponent>().RequestAllPets();
         }
 
+        public static async ETTask<int> ReqeustPetEquip(Scene zoneScene, long bagInfoId, long petInfoId, int operateType)
+        {
+            PetComponent petComponent = zoneScene.GetComponent<PetComponent>(); 
+            C2M_PetEquipRequest c2M_PetEquipRequest = new C2M_PetEquipRequest() { BagInfoId = bagInfoId, PetInfoId = petInfoId, OperateType = operateType };
+            M2C_PetEquipResponse m2C_PetEquipResponse = (M2C_PetEquipResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_PetEquipRequest);
+            if (m2C_PetEquipResponse.Error == ErrorCode.ERR_Success)
+            {
+                petComponent.OnRolePetUpdate(m2C_PetEquipResponse.RolePetInfo);
+                Log.Debug($"宠物装备数量1： {m2C_PetEquipResponse.RolePetInfo.PetEquipList.Count}");
+
+                Log.Debug($"宠物装备数量2： {zoneScene.GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.PetLocEquip).Count}");
+            }
+  
+            return m2C_PetEquipResponse.Error;
+        }
+
         //1出战 0休息
         public static async ETTask RequestPetFight(Scene zoneScene, long petId, int fight)
         {

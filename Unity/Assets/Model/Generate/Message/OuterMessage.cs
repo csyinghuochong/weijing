@@ -14817,7 +14817,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_RoleEquipResponse))]
+	[ResponseType(nameof(M2C_PetEquipResponse))]
 //宠物装备
 	[Message(OuterOpcode.C2M_PetEquipRequest)]
 	[ProtoContract]

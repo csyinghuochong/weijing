@@ -2253,12 +2253,27 @@ namespace ET
         {
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
 
-            //NumericType.SeasonTowerId 当前通关的塔ID
-            //int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.SeasonTower);
-            //EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.SeasonTower, sceneId, 0, "0").Coroutine();
-            //C2R_RankSeasonTowerRequest request_1 = new C2R_RankSeasonTowerRequest();
-            //R2C_RankSeasonTowerResponse response_1 = (R2C_RankSeasonTowerResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_1);
-            //根据排行榜返回的数据找出自己的挑战时间，没有则为0
+            ////宠物穿戴装备
+            //PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            //long petInfoId = petComponent.RolePetInfos[0].Id;
+
+            //long bagInfoId = 0;
+            //List<BagInfo> itemlist = self.ZoneScene().GetComponent<BagComponent>().GetBagList();
+            //for (int i = 0; i < itemlist.Count; i++)
+            //{
+            //    if (ItemConfigCategory.Instance.Get(itemlist[i].ItemID).EquipType == 301)
+            //    {
+            //        bagInfoId = itemlist[i].BagInfoID;
+            //        break;
+            //    }
+            //}
+
+            ////宠物穿戴装备
+            //await NetHelper.ReqeustPetEquip(self.ZoneScene(), bagInfoId, petInfoId, 1);
+            //await TimerComponent.Instance.WaitAsync(2000);
+            ////宠物卸载装备
+            //await NetHelper.ReqeustPetEquip(self.ZoneScene(), bagInfoId, petInfoId, 2);
+
             await ETTask.CompletedTask;
         }
 
