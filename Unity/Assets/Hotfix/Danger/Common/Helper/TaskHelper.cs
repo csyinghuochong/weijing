@@ -82,8 +82,10 @@ namespace ET
             if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-                npcList = new List<int>(sceneConfig.NpcList);
-
+                if (sceneConfig.NpcList != null)
+                {
+                    npcList = new List<int>(sceneConfig.NpcList);
+                }
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
