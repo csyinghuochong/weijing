@@ -5,9 +5,9 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class C2M_RoleEquipHandler : AMActorLocationRpcHandler<Unit, C2M_RoleEquipRequest, M2C_RoleEquipResponse>
+    public class C2M_PetEquipHandler : AMActorLocationRpcHandler<Unit, C2M_PetEquipRequest, M2C_PetEquipResponse>
     {
-        protected override async ETTask Run(Unit unit, C2M_RoleEquipRequest request, M2C_RoleEquipResponse response, Action reply)
+        protected override async ETTask Run(Unit unit, C2M_PetEquipRequest request, M2C_PetEquipResponse response, Action reply)
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             BagComponent bagComponent = unit.GetComponent<BagComponent>();

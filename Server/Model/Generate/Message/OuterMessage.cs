@@ -14819,9 +14819,9 @@ namespace ET
 
 	[ResponseType(nameof(M2C_RoleEquipResponse))]
 //宠物装备
-	[Message(OuterOpcode.C2M_RoleEquipRequest)]
+	[Message(OuterOpcode.C2M_PetEquipRequest)]
 	[ProtoContract]
-	public partial class C2M_RoleEquipRequest: Object, IActorLocationRequest
+	public partial class C2M_PetEquipRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -14837,9 +14837,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_RoleEquipResponse)]
+	[Message(OuterOpcode.M2C_PetEquipResponse)]
 	[ProtoContract]
-	public partial class M2C_RoleEquipResponse: Object, IActorLocationResponse
+	public partial class M2C_PetEquipResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

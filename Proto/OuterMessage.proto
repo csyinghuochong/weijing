@@ -7113,7 +7113,7 @@ message R2C_RankSeasonTowerResponse // IRankActorResponse
 
 //ResponseType M2C_RoleEquipResponse
 //宠物装备
-message C2M_RoleEquipRequest // IActorLocationRequest
+message C2M_PetEquipRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 PetInfoId = 1;
@@ -7121,7 +7121,7 @@ message C2M_RoleEquipRequest // IActorLocationRequest
 	int32 OperateType = 4;   //1装备 2卸下
 }
 
-message M2C_RoleEquipResponse // IActorLocationResponse
+message M2C_PetEquipResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;		

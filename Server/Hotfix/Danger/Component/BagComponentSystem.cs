@@ -1233,7 +1233,6 @@ namespace ET
             return self.OnCostItemData(costItems);
         }
 
-
         //删除背包道具道具[支持同时添加多个]
         public static bool OnCostItemData(this BagComponent self, List<long> costItems, ItemLocType itemLocType = ItemLocType.ItemLocBag)
         {
