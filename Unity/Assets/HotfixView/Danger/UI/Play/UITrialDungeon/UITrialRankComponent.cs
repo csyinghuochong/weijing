@@ -8,6 +8,7 @@ namespace ET
 {
     public class UITrialRankComponent : Entity, IAwake
     {
+        public GameObject BtnItemTypeSet;
         public GameObject Button_Reward;
         public GameObject Text_MyRank;
         public GameObject RankListNode;
@@ -15,6 +16,8 @@ namespace ET
         public GameObject CloseButton;
         public GameObject UITrialRankItem;
         public GameObject Text_RewardTime;
+
+        public int Page;
     }
 
     public class UITrialRankComponentAwake : AwakeSystem<UITrialRankComponent>
@@ -33,6 +36,18 @@ namespace ET
             self.Button_Reward = rc.Get<GameObject>("Button_Reward");
             ButtonHelp.AddListenerEx(self.Button_Reward, () => { self.Button_Reward().Coroutine(); });
 
+            self.BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+            {
+                Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                int i1 = i;
+                transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => { self.OnClickPageButton(i1 + 1); });
+            }
+
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage1"), 1);
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage2"), 2);
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage3"), 3);
+            
             self.ShowRewardTime().Coroutine();
             self.OnUpdateUI().Coroutine();
         }
@@ -40,6 +55,32 @@ namespace ET
 
     public static class UITrialRankComponentSystem
     {
+        
+        public static void OnClickPageButton(this UITrialRankComponent self, int page)
+        {
+            if (self.Page == page)
+            {
+                self.Page = 0;
+                for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+                {
+                    Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                    transform.Find("XuanZhong").gameObject.SetActive(false);
+                    transform.Find("WeiXuanZhong").gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                self.Page = page;
+                for (int i = 0; i < self.BtnItemTypeSet.transform.childCount; i++)
+                {
+                    Transform transform = self.BtnItemTypeSet.transform.GetChild(i);
+                    transform.Find("XuanZhong").gameObject.SetActive(page - 1 == i);
+                    transform.Find("WeiXuanZhong").gameObject.SetActive(page - 1 != i);
+                }
+            }
+
+            self.OnUpdateUI(self.Page).Coroutine();
+        }
 
         public static async ETTask ShowRewardTime(this UITrialRankComponent self)
         {
@@ -93,7 +134,7 @@ namespace ET
             self.UISet.SetActive(true);
         }
 
-        public static async ETTask OnUpdateUI(this UITrialRankComponent self)
+        public static async ETTask OnUpdateUI(this UITrialRankComponent self,int type = 0)
         {
             long instanceid = self.InstanceId;
             C2R_RankTrialListRequest c2M_RankListRequest = new C2R_RankTrialListRequest();
@@ -105,6 +146,8 @@ namespace ET
 
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             int myRank = -1;
+            int rank = 1;
+            UICommonHelper.DestoryChild(self.RankListNode);
             for (int i = 0; i < r2C_Response.RankList.Count; i++)
             {
                 if (i % 5 == 0)
@@ -115,17 +158,21 @@ namespace ET
                 {
                     return;
                 }
-
+                if (type != 0 && r2C_Response.RankList[i].Occ != type)
+                {
+                    continue;
+                }
                 GameObject skillItem = GameObject.Instantiate(self.UITrialRankItem);
                 skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, self.RankListNode);
                 UITrialRankShowItemComponent uIItemComponent = self.AddChild<UITrialRankShowItemComponent, GameObject>(skillItem);
-                uIItemComponent.OnInitData(i + 1, r2C_Response.RankList[i]);
+                uIItemComponent.OnInitData(rank, r2C_Response.RankList[i]);
 
                 if (selfId == r2C_Response.RankList[i].UserId)
                 {
-                    myRank = i + 1;
+                    myRank = rank;
                 }
+                rank++;
             }
 
             if (myRank == -1)
