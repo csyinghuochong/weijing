@@ -254,6 +254,11 @@ namespace ET
             {
                 self.UISkillJueXing.RemoveSkillInfoShow();
             }
+
+            if (show_old && !show_new)
+            {
+                self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            }
         }
 
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
