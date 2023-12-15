@@ -99,6 +99,9 @@ namespace ET
 		/// <summary>升级全员奖励</summary>
 		[ProtoMember(8)]
 		public string UpAllReward { get; set; }
+		/// <summary>捐献增加家族金币</summary>
+		[ProtoMember(9)]
+		public int[] AddUnionGold { get; set; }
 
 	}
 }

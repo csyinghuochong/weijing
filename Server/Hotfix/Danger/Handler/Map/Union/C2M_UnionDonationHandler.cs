@@ -42,14 +42,15 @@ namespace ET
                     int unionID = int.Parse(responseUnionEnter.Par);
                     UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
                     unit.GetComponent<NumericComponent>().ApplyChange(unit, NumericType.UnionDonationNumber, 1, 0);
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.Gold, (unionCof.DonateGold * -1).ToString(), true, ItemGetWay.Donation);
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (unionCof.DonateGold * -1).ToString(), true, ItemGetWay.Donation);
                     int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1] + 1);
                     int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
+                    int randUnionGold = RandomHelper.RandomNumber(unionCof.AddUnionGold[0], unionCof.AddUnionGold[1] + 1);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionGold, randUnionGold.ToString(), true, ItemGetWay.Donation);
                 }
                 else if (request.Type == 1) // 钻石捐献
                 {
@@ -65,7 +66,6 @@ namespace ET
                         DBHelper.GetUnionServerId(unit.DomainZone()),
                         new M2U_UnionOperationRequest() { OperateType = 4, UnitId = unit.Id, UnionId = unionid, Par = selfDiamond.ToString() });
 
-
                     if (responseUnionEnter.Error != ErrorCode.ERR_Success)
                     {
                         response.Error = responseUnionEnter.Error;
@@ -77,16 +77,19 @@ namespace ET
                     UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
                     unit.GetComponent<NumericComponent>().ApplyChange(unit, NumericType.UnionDiamondDonationNumber, 1, 0);
                     // 花费250钻石，暂时写死，M2U_UnionOperationRequest也是
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.Diamond, (250 * -1).ToString(), true, ItemGetWay.Donation);
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (250 * -1).ToString(), true, ItemGetWay.Donation);
                     int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1] + 1);
                     int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
-                    unit.GetComponent<UserInfoComponent>()
-                            .UpdateRoleMoneySub(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
+                    int randUnionGold = RandomHelper.RandomNumber(unionCof.AddUnionGold[0], unionCof.AddUnionGold[1] + 1);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionGold, randUnionGold.ToString(), true, ItemGetWay.Donation);
                 }
             }
+
+
 
             reply();
             await ETTask.CompletedTask;
