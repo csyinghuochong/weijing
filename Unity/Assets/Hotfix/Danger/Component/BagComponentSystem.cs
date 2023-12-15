@@ -708,6 +708,11 @@ namespace ET
         //检测
         public static bool CheckNeedItem(this BagComponent self, string needitems)
         {
+            if (string.IsNullOrEmpty(needitems))
+            {
+                return true;
+            }
+
             string[] needList = needitems.Split('@');
 
             List<RewardItem> costItems = new List<RewardItem>();

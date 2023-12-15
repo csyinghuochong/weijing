@@ -121,7 +121,6 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请先提升家族等级！");
                 return;
             }
-
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(unionQiangHuaConfig.CostItem))
             {
