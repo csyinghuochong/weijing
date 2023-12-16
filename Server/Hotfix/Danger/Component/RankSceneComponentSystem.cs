@@ -891,11 +891,10 @@ namespace ET
                 E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
                       (mailServerId, new M2E_EMailSendRequest()
                       {
-                          Id = rankingInfos[i].UserId,
+                          Id = rankingInfos[i].KeyId,
                           MailInfo = mailInfo
                       });
             }
-
 
             self.DBRankInfo.rankSeasonTower.Clear();
             await ETTask.CompletedTask;
