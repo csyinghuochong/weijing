@@ -836,20 +836,30 @@ namespace ET
             List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = bagInfos.Count - 1; i >= 0; i--)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (bagInfos.Count <= i)
+                {
+                    continue;
+                }
+                BagInfo baginfo1 = bagInfos[i];
+                if (baginfo1 == null)
+                {
+                    continue;
+                }
+                
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(baginfo1.ItemID);
 
                 //判断等级
                 int roleLv = useInfo.Lv;
                 int equipLv = itemConfig.UseLv;
 
                 //简易
-                if (bagInfos[i].HideSkillLists.Contains(68000103))
+                if (baginfo1.HideSkillLists.Contains(68000103))
                 {
                     equipLv = equipLv - 5;
                 }
 
                 //无级别
-                if (bagInfos[i].HideSkillLists.Contains(68000106))
+                if (baginfo1.HideSkillLists.Contains(68000106))
                 {
                     equipLv = 1;
                 }
@@ -859,7 +869,7 @@ namespace ET
                     continue;
                 }
 
-                if (bagInfos[i].IfJianDing)
+                if (baginfo1.IfJianDing)
                 {
                     continue;
                 }
@@ -922,7 +932,7 @@ namespace ET
                         {
                             foreach (BagInfo bagInfo in equipList)
                             {
-                                if (bagInfo.ItemID == bagInfos[i].ItemID)
+                                if (bagInfo.ItemID == baginfo1.ItemID)
                                 {
                                     beforeequip = bagInfo;
                                     break;
@@ -949,7 +959,7 @@ namespace ET
                         else
                         {
                             ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
-                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(bagInfos[i]);
+                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(baginfo1);
                         }
 
                         break;
