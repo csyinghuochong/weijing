@@ -61,6 +61,36 @@ namespace ET
 
             List<ServerItem> allserverList = PlayerComponent.AllServerList;
 
+
+            //去掉先锋区
+            //for (int i = allserverList.Count - 1; i >= 0; i--)
+            //{
+            //    bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
+            //    if (!xianfenzone)
+            //    {
+            //        continue;
+            //    }
+            //    if (!newmyServer.Contains(allserverList[i].ServerId))
+            //    {
+            //       allserverList.RemoveAt(i);
+            //    }
+            //}
+
+            string lastAccount = string.Empty;
+            string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
+            if (!string.IsNullOrEmpty(lastloginType))
+            {
+                lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(lastloginType));
+            }
+            bool gmaccount = GMHelp.GmAccount.Contains(lastAccount);
+            for (int i = allserverList.Count - 1; i >= 0; i--)
+            {
+                if (allserverList[i].ServerId == 3 && !gmaccount)
+                {
+                    allserverList.RemoveAt(i);
+                }
+            }
+
             List<int> myserverids = new List<int>();
             int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
             myserver = ServerHelper.GetNewServerId( myserver);
@@ -86,20 +116,6 @@ namespace ET
                     newmyServer.Add(allserverList[i].ServerId);
                 }
             }
-
-            //去掉先锋区
-            //for (int i = allserverList.Count - 1; i >= 0; i--)
-            //{
-            //    bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
-            //    if (!xianfenzone)
-            //    {
-            //        continue;
-            //    }
-            //    if (!newmyServer.Contains(allserverList[i].ServerId))
-            //    {
-            //       allserverList.RemoveAt(i);
-            //    }
-            //}
 
             switch (page)
             {
