@@ -85,7 +85,7 @@ namespace ET
                               UserID = request.ChatInfo.ParamId
                           });
 
-                    //发给好友
+                    //发给好友()
                     if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                     {
                         MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_SyncChatInfo);
@@ -93,6 +93,7 @@ namespace ET
                     else
                     {
                         //存入到离线消息
+
                     }
 
                     //发给自己

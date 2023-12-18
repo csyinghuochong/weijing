@@ -37,7 +37,7 @@ namespace ET
             
             self.TextYinSi = rc.Get<GameObject>("TextYinSi");
             self.TextYinSi.SetActive(false);
-            UILoginHelper.ShowTextList(self.TextYinSi);
+            UILoginHelper.ShowTextList(self.TextYinSi, GlobalHelp.GetPlatform());
           
             self.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
             self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });

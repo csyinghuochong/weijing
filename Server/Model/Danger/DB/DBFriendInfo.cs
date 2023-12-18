@@ -22,5 +22,10 @@ namespace ET
         /// 黑名单
         /// </summary>
         public List<long> Blacklist = new List<long>();
+
+        /// <summary>
+        /// 好友私聊
+        /// </summary>
+        public List<ChatInfo> FriendChats = new List<ChatInfo>();   
     }
 }

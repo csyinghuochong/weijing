@@ -9,12 +9,13 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, C2F_FriendApplyRequest request, F2C_FriendApplyResponse response, Action reply)
         {
-            long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
+            long dbCacheId = DBHelper.GetDbCacheId( scene.DomainZone() );
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserID, Component = DBHelper.DBFriendInfo });
             DBFriendInfo dBFriendInfo = d2GGetUnit.Component as DBFriendInfo;
 
             if (dBFriendInfo == null)
             {
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
