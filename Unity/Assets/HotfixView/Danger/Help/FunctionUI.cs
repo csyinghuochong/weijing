@@ -700,6 +700,17 @@ namespace ET
             return weizhi;
         }
 
+        public static int GetItemSubtypeByWeizhi_Pet(int weizhi)
+        {
+            return weizhi switch
+            {
+                0 => 1,
+                1 => 2,
+                2 => 3,
+                _ => weizhi
+            };
+        }
+
         //传入道具ID显示道具图标
         public  void ItemShowIcon(GameObject itemShowPar,ET.UI parUI,BagInfo bagInfo,ItemOperateEnum itemOperateEnum, bool ifShowName = true,float size = 1)
         {

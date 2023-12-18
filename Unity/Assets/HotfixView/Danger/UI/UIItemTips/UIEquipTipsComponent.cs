@@ -907,6 +907,20 @@ namespace ET
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
                     self.Obj_SaveStoreHouse.SetActive(false);
                     break;
+                case ItemOperateEnum.PetEquipBag:
+                    self.Obj_BagOpenSet.SetActive(true);
+                    self.Btn_Use.GetComponent<Button>().onClick.RemoveAllListeners();
+                    self.Btn_Use.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        UIHelper.GetUI(self.ZoneScene(), UIType.UIPet)?.GetComponent<UIPetComponent>().RequestPetEquipSelect().Coroutine();
+                        //播放音效
+                        UIHelper.PlayUIMusic("10005");
+                        self.OnCloseTips();
+                    });
+                    self.Obj_RoseEquipOpenSet.SetActive(false);
+                    self.Obj_Btn_StoreHouseSet.SetActive(false);
+                    self.Obj_SaveStoreHouse.SetActive(false);
+                    break;
                 case ItemOperateEnum.Bag:
                     self.Obj_BagOpenSet.SetActive(true);
                     self.Obj_RoseEquipOpenSet.SetActive(false);

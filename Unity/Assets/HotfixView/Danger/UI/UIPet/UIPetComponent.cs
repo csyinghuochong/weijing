@@ -156,6 +156,30 @@ namespace ET
             return await self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().PetHeXinSetComponent.OnButtonEquipHeXin();
         }
 
+        public static async ETTask<int> RequestPetEquipSelect(this UIPetComponent self)
+        {
+            return await self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().PetEquipSetComponent.OnButtonEquipHeXin();
+        }
+
+        public static BagInfo GetEquipBySubType(this UIPetComponent self,int subType)
+        {
+            // self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList;
+            foreach (UIEquipSetItemComponent component in self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList)
+            {
+                if (component.BagInfo == null)
+                {
+                    continue;
+                }
+
+                if (ItemConfigCategory.Instance.Get(component.BagInfo.ItemID).ItemSubType == subType)
+                {
+                    return component.BagInfo;
+                }
+            }
+
+            return null;
+        }
+        
         public static void  OnClickPageButton(this UIPetComponent self, int page)
         {
              self.UIPageView.OnSelectIndex(page).Coroutine();
@@ -171,6 +195,12 @@ namespace ET
         {
             UI uI = self.UIPageView.UISubViewList[(int)PetPageEnum.PetList];
             uI.GetComponent<UIPetListComponent>().OnEquipPetHeXin();
+        }
+
+        public static void OnEquipPetEquip(this UIPetComponent self)
+        {
+            UI uI = self.UIPageView.UISubViewList[(int)PetPageEnum.PetList];
+            uI.GetComponent<UIPetListComponent>().OnEquipPetEquip();
         }
     }
 }

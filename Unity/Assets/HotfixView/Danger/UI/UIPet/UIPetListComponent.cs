@@ -77,10 +77,12 @@ namespace ET
         public RolePetInfo LastSelectItem;
         public UIPetAddPointComponent PetAddPointComponent;
         public UIPetHeXinSetComponent PetHeXinSetComponent;
+        public UIPetEquipSetComponent PetEquipSetComponent;
         public List<UIPetListItemComponent> PetUIList = new List<UIPetListItemComponent>();
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
         public UIPageButtonComponent UIPageButton;
+        public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
 
         public int PetHeXinSuit;
         public int PetSkinId;
@@ -167,7 +169,18 @@ namespace ET
 
             self.EquipSet = rc.Get<GameObject>("EquipSet");
             self.EquipSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) );
-
+            for (int i = 0; i <= 2; i++)
+            {
+                GameObject go = self.EquipSet.transform.Find("Equip_" + i).gameObject;
+                UIEquipSetItemComponent uiitem = self.AddChild<UIEquipSetItemComponent, GameObject>(go);
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.RemoveAllListeners();
+                int i1 = i;
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(2); });
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonPetEquipItem(i1);});
+                uiitem.InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
+                self.EquipList.Add(uiitem);
+            }
+            
             GameObject gameObject = rc.Get<GameObject>("PetAddPoint");
             self.PetAddPointComponent = self.AddChild<UIPetAddPointComponent, GameObject>(gameObject);
             self.PetAddPointComponent.GameObject.SetActive(false);
@@ -175,6 +188,7 @@ namespace ET
             GameObject PetHeXinSet = rc.Get<GameObject>("PetHeXinSet");
             self.PetHeXinSetComponent = self.AddChild<UIPetHeXinSetComponent, GameObject>(PetHeXinSet);
             self.PetHeXinSetComponent.GameObject.SetActive(false);
+            self.PetEquipSetComponent = self.AddChild<UIPetEquipSetComponent, GameObject>(PetHeXinSet);
             self.ButtonCloseHexin = rc.Get<GameObject>("ButtonCloseHexin");
             self.ButtonCloseHexin.GetComponent<Button>().onClick.AddListener(() =>{
                 self.OnChangeNode(1);
@@ -293,6 +307,16 @@ namespace ET
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
+        }
+
+        public static void OnButtonPetEquipItem(this UIPetListComponent self, int position)
+        {
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemLocBag);
+            List<BagInfo> eqipInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.PetLocEquip);
+
+            self.PetEquipSetComponent.OnUpdateUI(self.LastSelectItem, position);
+            self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
+            self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
         }
 
         public static void OnClickPageButton(this UIPetListComponent self, int page)
@@ -719,8 +743,19 @@ namespace ET
                 
                 petheXinLv.Add(itemConfig.UseLv);
             }
-            
-            
+
+            for (int i = 0; i < self.EquipList.Count; i++)
+            {
+                self.EquipList[i].InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
+            }
+
+            for (int i = 0; i < rolePetItem.PetEquipList.Count; i++)
+            {
+                BagInfo bagInfo = bagComponent.GetBagInfo(rolePetItem.PetEquipList[i]);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                self.EquipList[itemConfig.ItemSubType - 3001].UpdateData(bagInfo, 1, ItemOperateEnum.None, null);
+            }
+
             self.PetHeXinSuitBtn.SetActive(true);
             int lv5number = 0;
             int lv8number = 0;
@@ -1088,6 +1123,18 @@ namespace ET
             self.PetHeXinSetComponent.SelectItemHandlder(null);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
+        }
+        
+        public static void OnEquipPetEquip(this UIPetListComponent self)
+        {
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemLocBag);
+            List<BagInfo> eqipInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.PetLocEquip);
+            self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
+            self.UpdatePetHeXin(self.LastSelectItem);
+            self.UpdateAttribute(self.LastSelectItem);
+            self.PetEquipSetComponent.SelectItemHandlder(null);
+            self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
+            self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
         }
 
         public static void OnUpdatePetInfo(this UIPetListComponent self, RolePetInfo rolePetInfo)

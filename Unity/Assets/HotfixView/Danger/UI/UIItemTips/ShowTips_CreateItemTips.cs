@@ -49,10 +49,21 @@ namespace ET
 
             if (itemConfig.ItemType == (int)ItemTypeEnum.Equipment)
             {
-                BagInfo haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.ItemSubType);
+                BagInfo haveEquip = null;
+                if (itemConfig.EquipType == 301)
+                {
+                    UI uI1 = UIHelper.GetUI(args.ZoneScene, UIType.UIPet);
+                    haveEquip = uI1.GetComponent<UIPetComponent>().GetEquipBySubType(itemConfig.ItemSubType);
+                }
+                else
+                {
+                    haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.ItemSubType);
+                }
+
+
 
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIEquipDuiBiTips);
-                if (haveEquip != null &&( args.itemOperateEnum == ItemOperateEnum.Bag || args.itemOperateEnum == ItemOperateEnum.PaiMaiBuy))
+                if (haveEquip != null &&( args.itemOperateEnum == ItemOperateEnum.Bag || args.itemOperateEnum == ItemOperateEnum.PaiMaiBuy || args.itemOperateEnum == ItemOperateEnum.PetEquipBag))
                 {
                     uI.GetComponent<UIEquipDuiBiTipsComponent>().OnUpdateDuiBiUI(haveEquip, args, itemWidth, args.itemOperateEnum).Coroutine();
                 }
