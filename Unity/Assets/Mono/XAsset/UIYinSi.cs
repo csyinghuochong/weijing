@@ -28,13 +28,14 @@ public class UIYinSi : MonoBehaviour
     public int AgreeNumber = 0;
 
 
-    public string GetYingSiText()
+    public string GetYingSiText(int platform)
     {
         try
         {
             WebClient MyWebClient = new WebClient();
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-            Byte[] pageData = MyWebClient.DownloadData("http://verification.weijinggame.com/weijing/yinsi1.txt"); //从指定网站下载数据
+            string dataurl = platform == 5 ? "http://verification.weijinggame.com/weijing/yinsi3.txt" : "http://verification.weijinggame.com/weijing/yinsi1.txt";
+            Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
             string pageHtml = Encoding.UTF8.GetString(pageData);
             return pageHtml;
         }
@@ -48,7 +49,8 @@ public class UIYinSi : MonoBehaviour
 
     public void ShowTextList(GameObject textItem)
     {
-        string pageHtml = GetYingSiText();
+        int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
+        string pageHtml = GetYingSiText(platform);
 
         string tempstr = string.Empty;
         string leftValue = pageHtml;
