@@ -94,6 +94,11 @@ namespace ET
                 othertoself = true;
             }
 
+            if (othertoself)
+            {
+                self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
+            }
+
             if (!self.ChatMsgList.ContainsKey(friendId))
             {
                 self.ChatMsgList.Add(friendId, new List<ChatInfo>());
@@ -102,11 +107,15 @@ namespace ET
             {
                 self.FriendChatId.Add(chatInfo.UserId);
             }
-            self.ChatMsgList[friendId].Add(chatInfo);
-            if (othertoself)
+            List<ChatInfo> chatInfoList = self.ChatMsgList[friendId];
+            for (int i = 0; i < chatInfoList.Count; i++)
             {
-                self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
+                if (chatInfoList[i].Time > 0 && chatInfoList[i].Time == chatInfo.Time)
+                {
+                    return;
+                }
             }
+            chatInfoList.Add(chatInfo);
         }
 
         public static void OnRecvChat(this FriendComponent self, ChatInfo chatInfo)

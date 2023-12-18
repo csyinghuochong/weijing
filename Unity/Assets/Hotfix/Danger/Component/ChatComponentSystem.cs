@@ -118,7 +118,6 @@ namespace ET
                 }
             }
 
-            chatInfo.Time = TimeHelper.ClientNow();
             self.LastChatInfo = chatInfo;
             List<ChatInfo> chatInfos = self.ChatTypeList[chatInfo.ChannelId];
             if (chatInfos.Count >= 20)
