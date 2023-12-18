@@ -107,6 +107,15 @@ namespace ET
                 GameObject go = UnityEngine.Object.Instantiate(self.UIUnionKeJiResearchItem);
                 ui = self.AddChild<UIUnionKeJiResearchItemComponent, GameObject>(go);
                 ui.ClickAction = self.UpdateInfo;
+                UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[i]);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, unionKeJiConfig.Icon);
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+
+                ui.IconImg.GetComponent<Image>().sprite = sp;
                 ui.UpdateInfo(i, self.UnionMyInfo.UnionKeJiList[i]);
                 self.UIUnionKeJiResearchItemComponentList.Add(ui);
                 UICommonHelper.SetParent(go, self.UIUnionKeJiResearchItemListNode);
@@ -124,18 +133,14 @@ namespace ET
             for (int i = 0; i < self.UIUnionKeJiResearchItemComponentList.Count; i++)
             {
                 UIUnionKeJiResearchItemComponent researchItemComponent = self.UIUnionKeJiResearchItemComponentList[i];
-                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_474");
-                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                if (!self.AssetPath.Contains(path))
-                {
-                    self.AssetPath.Add(path);
-                }
-
-                researchItemComponent.IconImg.GetComponent<Image>().sprite = sp;
                 researchItemComponent.UpdateInfo(i, self.UnionMyInfo.UnionKeJiList[i]);
 
                 GameObject highlightImg = researchItemComponent.HighlightImg;
                 highlightImg.SetActive(researchItemComponent.Position == position);
+                if (researchItemComponent.Position == position)
+                {
+                    self.HeadImg.GetComponent<Image>().sprite = researchItemComponent.IconImg.GetComponent<Image>().sprite;
+                }
             }
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[position]);

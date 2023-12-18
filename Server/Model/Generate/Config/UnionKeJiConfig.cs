@@ -81,26 +81,29 @@ namespace ET
 		/// <summary>装备名称</summary>
 		[ProtoMember(2)]
 		public string EquipSpaceName { get; set; }
-		/// <summary>下一级强化</summary>
+		/// <summary>图标</summary>
 		[ProtoMember(3)]
+		public string Icon { get; set; }
+		/// <summary>下一级强化</summary>
+		[ProtoMember(4)]
 		public int NextID { get; set; }
 		/// <summary>等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int QiangHuaLv { get; set; }
 		/// <summary>需要家族等级</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int NeedUnionLv { get; set; }
 		/// <summary>升级需要时间（单位:s）</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int NeedTime { get; set; }
 		/// <summary>升级消耗家族金币</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int CostUnionGold { get; set; }
 		/// <summary>学习消耗道具</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string LearnCost { get; set; }
 		/// <summary>强化属性</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public string EquipPropreAdd { get; set; }
 
 	}
