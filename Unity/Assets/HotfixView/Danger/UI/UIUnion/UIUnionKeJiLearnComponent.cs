@@ -93,7 +93,7 @@ namespace ET
                 GameObject go = UnityEngine.Object.Instantiate(self.UIUnionKeJiLearnItem);
                 ui = self.AddChild<UIUnionKeJiLearnItemComponent, GameObject>(go);
                 ui.ClickAction = self.UpdateInfo;
-                ui.UpdateInfo(i, self.UserInfo.UnionKeJiList[i]);
+                ui.UpdateInfo(i, self.UserInfo.UnionKeJiList[i], self.UnionMyInfo.UnionKeJiList[i]);
                 self.UIUnionKeJiLearnItemComponentList.Add(ui);
                 UICommonHelper.SetParent(go, self.UIUnionKeJiLearnItemListNode);
                 go.SetActive(true);
@@ -117,7 +117,7 @@ namespace ET
                 }
 
                 learnItemComponent.IconImg.GetComponent<Image>().sprite = sp;
-                learnItemComponent.UpdateInfo(i, self.UserInfo.UnionKeJiList[i]);
+                learnItemComponent.UpdateInfo(i, self.UserInfo.UnionKeJiList[i], self.UnionMyInfo.UnionKeJiList[i]);
 
                 GameObject highlightImg = learnItemComponent.HighlightImg;
                 highlightImg.SetActive(learnItemComponent.Position == position);
@@ -178,10 +178,9 @@ namespace ET
                 return;
             }
 
-            unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(unionKeJiConfig.NextID);
-            if (unionKeJiConfig.NeedUnionLv > self.UnionMyInfo.Level)
+            if (unionKeJiConfig.NextID > self.UnionMyInfo.UnionKeJiList[self.Position])
             {
-                FloatTipManager.Instance.ShowFloatTip("家族等级不足！");
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
                 return;
             }
 

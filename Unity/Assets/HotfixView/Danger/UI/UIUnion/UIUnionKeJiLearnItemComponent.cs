@@ -37,15 +37,15 @@ namespace ET
 
     public static class UIUnionKeJiLearnItemComponentSystem
     {
-        public static void UpdateInfo(this UIUnionKeJiLearnItemComponent self, int position, int configId)
+        public static void UpdateInfo(this UIUnionKeJiLearnItemComponent self, int position, int configId, int maxConfigId)
         {
             self.Position = position;
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(configId);
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0,match.Index);
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text =
-                    $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}/{UnionKeJiConfigCategory.Instance.UnionQiangHuaList[position].Count}";
+                    $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}/{UnionKeJiConfigCategory.Instance.Get(maxConfigId).QiangHuaLv}";
         }
 
         public static void OnClickBtn(this UIUnionKeJiLearnItemComponent self)
