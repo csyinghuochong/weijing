@@ -150,7 +150,12 @@ namespace ET
             //    FloatTipManager.Instance.ShowFloatTip("当前没有可以领取的奖励");
             //    return;
             //}
-            
+            if (!PetFubenRewardConfigCategory.Instance.Contain(self.ShowReward))
+            {
+                return;
+            }
+
+
             UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UICountryTips);
             Vector2 localPoint;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
@@ -254,9 +259,18 @@ namespace ET
             {
                 rewardid = canrewardId;
             }
-            self.ShowReward = rewardid;
-            PetFubenRewardConfig petFubenRewardConfig = PetFubenRewardConfigCategory.Instance.Get(rewardid);
-            self.TextStar.GetComponent<Text>().text = $"{petComponent.GetTotalStar()}/{petFubenRewardConfig.NeedStar}";
+
+            if (!PetFubenRewardConfigCategory.Instance.Contain(rewardid))
+            {
+                self.ShowReward = 0;
+                self.TextStar.GetComponent<Text>().text = string.Empty;
+            }
+            else
+            {
+                self.ShowReward = rewardid;
+                PetFubenRewardConfig petFubenRewardConfig = PetFubenRewardConfigCategory.Instance.Get(rewardid);
+                self.TextStar.GetComponent<Text>().text = $"{petComponent.GetTotalStar()}/{petFubenRewardConfig.NeedStar}";
+            }
         }
     }
 }
