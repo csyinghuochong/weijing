@@ -93,7 +93,13 @@ namespace ET
                     else
                     {
                         //存入到离线消息
-
+                        long dbCacheId = DBHelper.GetDbCacheId(chatInfoUnit.DomainZone());
+                        DBFriendInfo dBFriendInfo = await DBHelper.GetComponentCache<DBFriendInfo>(chatInfoUnit.DomainZone(), request.ChatInfo.ParamId);
+                        if (dBFriendInfo != null && dBFriendInfo.FriendChats.Count < 10)
+                        {
+                            dBFriendInfo.FriendChats.Add(request.ChatInfo);
+                            DBHelper.SaveComponent(chatInfoUnit.DomainZone(), request.ChatInfo.ParamId, dBFriendInfo).Coroutine();
+                        }
                     }
 
                     //发给自己

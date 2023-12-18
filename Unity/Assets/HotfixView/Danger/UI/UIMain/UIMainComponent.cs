@@ -1615,12 +1615,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
             redPointComponent.RegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
 
-            FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
-            if (friendComponent.ApplyList.Count > 0)
-            {
-                reddotComponent.AddReddont(ReddotType.FriendApply);
-            }
             if (reddotComponent.GetReddot(ReddotType.UnionApply) > 0)
             {
                 reddotComponent.AddReddont(ReddotType.UnionApply);
@@ -1639,6 +1634,8 @@ namespace ET
             reddotComponent.UpdateReddont(ReddotType.WelfareDraw);
             reddotComponent.UpdateReddont(ReddotType.WelfareLogin);
             reddotComponent.UpdateReddont(ReddotType.WelfareTask);
+            reddotComponent.UpdateReddont(ReddotType.FriendApply);
+            reddotComponent.UpdateReddont(ReddotType.FriendChat);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)

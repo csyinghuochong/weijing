@@ -148,14 +148,14 @@ namespace ET
 
         public static async ETTask RequestFriendInfo(Scene zoneScene)
         {
-            UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
             FriendComponent friendComponent = zoneScene.GetComponent<FriendComponent>();
-            C2F_FriendInfoRequest c2M_ItemHuiShouRequest = new C2F_FriendInfoRequest() { UserID = userInfoComponent.UserInfo.UserId };
+            C2F_FriendInfoRequest c2M_ItemHuiShouRequest = new C2F_FriendInfoRequest() { UserID = UnitHelper.GetMyUnitId(zoneScene) };
             F2C_FriendInfoResponse F2C_FriendInfoResponse = (F2C_FriendInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
 
             friendComponent.FriendList = F2C_FriendInfoResponse.FriendList;
             friendComponent.ApplyList = F2C_FriendInfoResponse.ApplyList;
             friendComponent.Blacklist = F2C_FriendInfoResponse.Blacklist;
+            friendComponent.InitFrindChat(F2C_FriendInfoResponse.FriendChats);
         }
 
         public static async ETTask RequestChengJiuData(Scene zoneScene)

@@ -2,7 +2,7 @@
 {
 
     [MessageHandler]
-    public class M2C_ChatUpdateInfoHandler : AMHandler<M2C_SyncChatInfo>
+    public class M2C_SyncChatInfoHandler : AMHandler<M2C_SyncChatInfo>
     {
 
         protected override  void Run(Session session, M2C_SyncChatInfo message)

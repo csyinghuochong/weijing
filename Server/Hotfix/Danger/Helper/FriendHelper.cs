@@ -30,7 +30,7 @@ namespace ET
                 {
                     UserId = friendId,
                     PlayerLevel = userInfoComponent.UserInfo.Lv,
-                    OnLineTime = g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game ? 1 : 0,
+                    OnLineTime = g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0  ? 1 : 0,
                     PlayerName = userInfoComponent.UserInfo.Name,
                     Occ = userInfoComponent.UserInfo.Occ
                 });

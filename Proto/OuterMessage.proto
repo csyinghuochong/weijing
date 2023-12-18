@@ -3338,6 +3338,7 @@ message F2C_FriendInfoResponse // IFriendActorResponse
 	repeated FriendInfo FriendList = 2;
 	repeated FriendInfo ApplyList = 3;
 	repeated FriendInfo Blacklist = 4;
+	repeated ChatInfo FriendChats = 5;
 }
 
 //好友申请
@@ -7127,4 +7128,21 @@ message M2C_PetEquipResponse // IActorLocationResponse
 	string Message = 91;		
 	int32 Error = 92;
 	RolePetInfo RolePetInfo = 1;
+}
+
+//好友列表
+//ResponseType F2C_FriendChatRead
+message C2F_FriendChatRead // IFriendActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UserID = 1;
+	int64 FriendID = 2;
+}
+
+message F2C_FriendChatRead // IFriendActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

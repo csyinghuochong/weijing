@@ -50,10 +50,10 @@ namespace ET
         public static void OnUpdateUI(this UIFriendChatComponent self, FriendInfo friendInfo)
         {
             self.FriendInfo = friendInfo;
-            self.OnFriendChat().Coroutine();
+            self.OnFriendChat();
         }
 
-        public static async ETTask OnFriendChat(this UIFriendChatComponent self)
+        public static  void OnFriendChat(this UIFriendChatComponent self)
         {
             long friendId = self.FriendInfo.UserId;
             List<ChatInfo> chatInfos = null;
@@ -68,7 +68,6 @@ namespace ET
                 return;
             }
 
-            await ETTask.CompletedTask;
             for (int i = 0; i < chatInfos.Count; i++)
             {
                 UIFriendChatItemComponent ui_2 = null;

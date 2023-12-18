@@ -186,6 +186,7 @@ namespace ET
             await NetHelper.RequestUserInfo(zoneScene, true);
             await NetHelper.RequestUnitInfo(zoneScene, true);
             await NetHelper.RequestAllPets(zoneScene);
+            await NetHelper.RequestFriendInfo(zoneScene);
 
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());

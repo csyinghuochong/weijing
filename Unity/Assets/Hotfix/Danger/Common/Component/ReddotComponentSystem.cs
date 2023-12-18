@@ -107,6 +107,14 @@
                     int skillpoint = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Sp;
                     showReddot = self.ZoneScene().GetComponent<SkillSetComponent>().GetCanUpSkill(skillpoint).Count > 0;
                     break;
+                case ReddotType.FriendChat:
+                    FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
+                    showReddot = friendComponent.FriendChatId.Count > 0;
+                    break;
+                case ReddotType.FriendApply:
+                    friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
+                    showReddot = friendComponent.ApplyList.Count > 0;   
+                    break;
                 default:
                     return;
             }

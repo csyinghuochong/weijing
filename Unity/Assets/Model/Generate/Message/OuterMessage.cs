@@ -7032,6 +7032,9 @@ namespace ET
 		[ProtoMember(4)]
 		public List<FriendInfo> Blacklist = new List<FriendInfo>();
 
+		[ProtoMember(5)]
+		public List<ChatInfo> FriendChats = new List<ChatInfo>();
+
 	}
 
 //好友申请
@@ -14852,6 +14855,41 @@ namespace ET
 
 		[ProtoMember(1)]
 		public RolePetInfo RolePetInfo { get; set; }
+
+	}
+
+//好友列表
+	[ResponseType(nameof(F2C_FriendChatRead))]
+	[Message(OuterOpcode.C2F_FriendChatRead)]
+	[ProtoContract]
+	public partial class C2F_FriendChatRead: Object, IFriendActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+		[ProtoMember(2)]
+		public long FriendID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.F2C_FriendChatRead)]
+	[ProtoContract]
+	public partial class F2C_FriendChatRead: Object, IFriendActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

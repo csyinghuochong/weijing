@@ -71,17 +71,25 @@ namespace ET
             self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendApply);
         }
 
-        public static void OnRecvChat(this FriendComponent self, ChatInfo chatInfo)
+        public static void InitFrindChat(this FriendComponent self, List<ChatInfo> chatlist)
+        {
+            for (int i = 0; i < chatlist.Count; i++)
+            {
+                self.SetChatData(chatlist[i]);
+            }
+        }
+
+        public static void SetChatData(this FriendComponent self, ChatInfo chatInfo)
         {
             long friendId = 0;
-            long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
-            if (chatInfo.UserId == userId)
+            long myUserId = UnitHelper.GetMyUnitId(self.ZoneScene());
+            if (chatInfo.UserId == myUserId)
             {
-                friendId = chatInfo.ParamId;
+                friendId = chatInfo.ParamId;   //我对别人的私聊
             }
             else
             {
-                friendId = chatInfo.UserId;
+                friendId = chatInfo.UserId;    //别人对我的私聊
             }
 
             if (!self.ChatMsgList.ContainsKey(friendId))
@@ -93,6 +101,11 @@ namespace ET
                 self.FriendChatId.Add(chatInfo.UserId);
             }
             self.ChatMsgList[friendId].Add(chatInfo);
+        }
+
+        public static void OnRecvChat(this FriendComponent self, ChatInfo chatInfo)
+        {
+            self.SetChatData(chatInfo);
             HintHelp.GetInstance().DataUpdate(DataType.FriendChat);
             self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
         }

@@ -69,14 +69,14 @@ namespace ET
             if (!self.ChatView.activeSelf)
                 return;
 
-            self.UIFriendChatComponent.OnFriendChat().Coroutine();
+            self.UIFriendChatComponent.OnFriendChat();
         }
         public static void CloseChat(this UIFriendListComponent self)
         {
             self.ChatView.SetActive(false);
         }
 
-        public static void ClickChatHandler(this UIFriendListComponent self, FriendInfo friendInfo)
+        public static async void ClickChatHandler(this UIFriendListComponent self, FriendInfo friendInfo)
         {
             self.ChatView.SetActive(true);
   
@@ -84,13 +84,19 @@ namespace ET
             self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = "与" + friendInfo.PlayerName + "私聊中...";
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
-            friendComponent.FriendChatId.Remove(friendInfo.UserId);
-
+            if (friendComponent.FriendChatId.Contains(friendInfo.UserId))
+            {
+                friendComponent.FriendChatId.Remove(friendInfo.UserId);
+            }
+            
             if (friendComponent.FriendChatId.Count == 0)
             {
                 ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
                 redPointComponent.RemoveReddont(ReddotType.FriendChat);
             }
+
+            C2F_FriendChatRead c2F_FriendChatRead = new C2F_FriendChatRead() { UserID = UnitHelper.GetMyUnitId(self.ZoneScene()), FriendID = friendInfo.UserId };
+            F2C_FriendChatRead f2C_FriendChat = (F2C_FriendChatRead)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2F_FriendChatRead);
         }
 
         public static void OnDeleteHandler(this UIFriendListComponent self)

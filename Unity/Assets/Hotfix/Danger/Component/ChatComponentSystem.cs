@@ -40,8 +40,8 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             C2C_SendChatRequest c2S_SendChatRequest = new C2C_SendChatRequest() {  };
             c2S_SendChatRequest.ChatInfo = new ChatInfo();
-            c2S_SendChatRequest.ChatInfo.PlayerLevel = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            c2S_SendChatRequest.ChatInfo.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            c2S_SendChatRequest.ChatInfo.PlayerLevel = userInfo.Lv;
+            c2S_SendChatRequest.ChatInfo.Occ = userInfo.Occ;
             switch (channelEnum)
             {
                 case ChannelEnum.Word:

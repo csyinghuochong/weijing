@@ -826,5 +826,7 @@ namespace ET
 		 public const ushort R2C_RankSeasonTowerResponse = 10823;
 		 public const ushort C2M_PetEquipRequest = 10824;
 		 public const ushort M2C_PetEquipResponse = 10825;
+		 public const ushort C2F_FriendChatRead = 10826;
+		 public const ushort F2C_FriendChatRead = 10827;
 	}
 }
