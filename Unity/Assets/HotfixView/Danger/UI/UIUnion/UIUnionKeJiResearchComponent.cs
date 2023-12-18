@@ -114,7 +114,7 @@ namespace ET
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
             self.CostUnionGoldText.GetComponent<Text>().text = $"消耗家族金币：{unionKeJiConfig.CostUnionGold}";
-            self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:f2}小时";
+            self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:0.##}小时";
         }
 
         public static async ETTask UpdataProgressBar(this UIUnionKeJiResearchComponent self)
