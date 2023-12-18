@@ -164,7 +164,7 @@ namespace ET
         public static BagInfo GetEquipBySubType(this UIPetComponent self,int subType)
         {
             // self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList;
-            foreach (UIEquipSetItemComponent component in self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList)
+            foreach (UIPetEquipSetItemComponent component in self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList)
             {
                 if (component.BagInfo == null)
                 {

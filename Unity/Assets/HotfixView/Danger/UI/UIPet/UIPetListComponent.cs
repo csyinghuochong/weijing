@@ -82,7 +82,7 @@ namespace ET
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
         public UIPageButtonComponent UIPageButton;
-        public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
+        public List<UIPetEquipSetItemComponent> EquipList = new List<UIPetEquipSetItemComponent>();
 
         public int PetHeXinSuit;
         public int PetSkinId;
@@ -172,7 +172,7 @@ namespace ET
             for (int i = 0; i <= 2; i++)
             {
                 GameObject go = self.EquipSet.transform.Find("Equip_" + i).gameObject;
-                UIEquipSetItemComponent uiitem = self.AddChild<UIEquipSetItemComponent, GameObject>(go);
+                UIPetEquipSetItemComponent uiitem = self.AddChild<UIPetEquipSetItemComponent, GameObject>(go);
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.RemoveAllListeners();
                 int i1 = i;
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(2); });
@@ -455,6 +455,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("神兽不能放生");
                 return;
             }
+
+            if (PetHelper.HavePetHeXin(self.LastSelectItem))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先卸下宠物之核！");
+                return;
+            }
+
             //if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
             //{
             //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
@@ -753,7 +760,7 @@ namespace ET
             {
                 BagInfo bagInfo = bagComponent.GetBagInfo(rolePetItem.PetEquipList[i]);
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                self.EquipList[itemConfig.ItemSubType - 3001].UpdateData(bagInfo, 1, ItemOperateEnum.None, null);
+                self.EquipList[itemConfig.ItemSubType - 3001].UpdateData(bagInfo, ItemOperateEnum.None, null);
             }
 
             self.PetHeXinSuitBtn.SetActive(true);
