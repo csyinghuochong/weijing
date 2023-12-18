@@ -207,7 +207,7 @@ namespace ET
 
             if (self.UnionMyInfo.UnionGold < unionKeJiConfig.CostUnionGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("家园金币不足！");
+                FloatTipManager.Instance.ShowFloatTip("家族金币不足！");
                 return;
             }
 
