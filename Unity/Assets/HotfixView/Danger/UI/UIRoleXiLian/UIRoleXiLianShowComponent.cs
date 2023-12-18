@@ -297,7 +297,7 @@ namespace ET
 				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 				List<RewardItem> costItems = new List<RewardItem>();
 				int[] itemCost = itemConfig.XiLianStone;
-				if (itemCost != null && itemCost.Length > 0)
+				if (itemCost != null && itemCost.Length >= 2)
 				{
 					costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] * times });
 				}
