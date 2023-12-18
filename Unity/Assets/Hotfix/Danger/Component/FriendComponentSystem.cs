@@ -83,6 +83,7 @@ namespace ET
         {
             long friendId = 0;
             long myUserId = UnitHelper.GetMyUnitId(self.ZoneScene());
+            bool othertoself = false;
             if (chatInfo.UserId == myUserId)
             {
                 friendId = chatInfo.ParamId;   //我对别人的私聊
@@ -90,6 +91,7 @@ namespace ET
             else
             {
                 friendId = chatInfo.UserId;    //别人对我的私聊
+                othertoself = true;
             }
 
             if (!self.ChatMsgList.ContainsKey(friendId))
@@ -101,13 +103,16 @@ namespace ET
                 self.FriendChatId.Add(chatInfo.UserId);
             }
             self.ChatMsgList[friendId].Add(chatInfo);
+            if (othertoself)
+            {
+                self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
+            }
         }
 
         public static void OnRecvChat(this FriendComponent self, ChatInfo chatInfo)
         {
             self.SetChatData(chatInfo);
             HintHelp.GetInstance().DataUpdate(DataType.FriendChat);
-            self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
         }
 
         public static void OnFriendDelelte(this FriendComponent self, long friendId)
