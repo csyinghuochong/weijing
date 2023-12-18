@@ -437,7 +437,7 @@ namespace ET
 
                 if (NumericHelp.GetNumericValueType(numericType) == 2)
                 {
-                    float fvalue = float.Parse(attributeInfo[1]);
+                    float fvalue = float.Parse(attributeInfo[1]) * 100;
                     string svalue = fvalue.ToString("0.#####");
                     attributeStr = attributeStr + $"{ItemViewHelp.GetAttributeName(numericType)}+{svalue}% ";
                 }
