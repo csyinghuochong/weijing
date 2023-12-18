@@ -12,6 +12,7 @@ namespace ET
         public GameObject LvText;
         public GameObject HighlightImg;
         public GameObject ClickBtn;
+        public GameObject IconImg;
 
         public int Position;
         public Action<int> ClickAction;
@@ -28,6 +29,7 @@ namespace ET
             self.LvText = rc.Get<GameObject>("LvText");
             self.HighlightImg = rc.Get<GameObject>("HighlightImg");
             self.ClickBtn = rc.Get<GameObject>("ClickBtn");
+            self.IconImg = rc.Get<GameObject>("IconImg");
 
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn(); });
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionKeJiResearchComponent: Entity, IAwake
+    public class UIUnionKeJiResearchComponent: Entity, IAwake, IDestroy
     {
         public GameObject UIUnionKeJiResearchItemListNode;
         public GameObject UIUnionKeJiResearchItem;
@@ -21,12 +21,14 @@ namespace ET
         public GameObject NeedTimeText;
         public GameObject StartBtn;
         public GameObject UnderwayText;
+        public GameObject HeadImg;
 
         public long NeedTime;
         public int Position;
         public UnionInfo UnionMyInfo;
         public UIItemComponent UIItemComponent;
         public List<UIUnionKeJiResearchItemComponent> UIUnionKeJiResearchItemComponentList = new List<UIUnionKeJiResearchItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIUnionKeJiResearchComponentAwakeSystem: AwakeSystem<UIUnionKeJiResearchComponent>
@@ -48,6 +50,7 @@ namespace ET
             self.NeedTimeText = rc.Get<GameObject>("NeedTimeText");
             self.StartBtn = rc.Get<GameObject>("StartBtn");
             self.UnderwayText = rc.Get<GameObject>("UnderwayText");
+            self.HeadImg = rc.Get<GameObject>("HeadImg");
 
             self.ProgressBarImg.fillAmount = 0;
             self.UnderwayText.SetActive(false);
@@ -56,7 +59,32 @@ namespace ET
             self.QuickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnQuickBtn().Coroutine(); });
             self.StartBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnStartBtn().Coroutine(); });
 
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_476");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+
+            self.HeadImg.GetComponent<Image>().sprite = sp;
+
             self.InitItemList().Coroutine();
+        }
+    }
+
+    public class UIUnionKeJiResearchComponentDestroy: DestroySystem<UIUnionKeJiResearchComponent>
+    {
+        public override void Destroy(UIUnionKeJiResearchComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
         }
     }
 
@@ -96,6 +124,14 @@ namespace ET
             for (int i = 0; i < self.UIUnionKeJiResearchItemComponentList.Count; i++)
             {
                 UIUnionKeJiResearchItemComponent researchItemComponent = self.UIUnionKeJiResearchItemComponentList[i];
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_474");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+
+                researchItemComponent.IconImg.GetComponent<Image>().sprite = sp;
                 researchItemComponent.UpdateInfo(i, self.UnionMyInfo.UnionKeJiList[i]);
 
                 GameObject highlightImg = researchItemComponent.HighlightImg;

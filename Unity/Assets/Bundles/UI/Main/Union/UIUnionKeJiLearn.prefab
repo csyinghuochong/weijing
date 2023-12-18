@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 5631102057017636735}
   - component: {fileID: 4520226695273830362}
   m_Layer: 0
-  m_Name: Image
+  m_Name: IconImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55b5622b7352ebf40803fe1053eca002, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -233,6 +233,8 @@ MonoBehaviour:
     gameObject: {fileID: 5727510100883125361}
   - key: UIUnionKeJiLearnItemListNode
     gameObject: {fileID: 3554552161708687795}
+  - key: HeadImg
+    gameObject: {fileID: 7405551021196716091}
 --- !u!114 &2902092038585626599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,6 +2144,8 @@ MonoBehaviour:
     gameObject: {fileID: 1859492376043736399}
   - key: NameText
     gameObject: {fileID: 7385887905680183341}
+  - key: IconImg
+    gameObject: {fileID: 160990665462229292}
 --- !u!1 &6009112975746751132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,7 +2927,7 @@ GameObject:
   - component: {fileID: 4849489670525884482}
   - component: {fileID: 1602227404568793070}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HeadImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2976,7 +2980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e2a05bdb8e5296d438666acacc867b07, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

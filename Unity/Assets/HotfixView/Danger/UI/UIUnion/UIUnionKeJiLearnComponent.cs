@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionKeJiLearnComponent: Entity, IAwake
+    public class UIUnionKeJiLearnComponent: Entity, IAwake, IDestroy
     {
         public GameObject UIUnionKeJiLearnItemListNode;
         public GameObject UIUnionKeJiLearnItem;
@@ -14,12 +14,14 @@ namespace ET
         public GameObject LearnCostListNode;
         public GameObject UICommonItem;
         public GameObject StartBtn;
+        public GameObject HeadImg;
 
         public int Position;
         public UnionInfo UnionMyInfo;
         public UserInfo UserInfo;
         public List<UIItemComponent> UIItemComponentList = new List<UIItemComponent>();
         public List<UIUnionKeJiLearnItemComponent> UIUnionKeJiLearnItemComponentList = new List<UIUnionKeJiLearnItemComponent>();
+        public List<string> AssetPath = new List<string>();
     }
 
     public class UIUnionKeJiLearnComponentAwakeSystem: AwakeSystem<UIUnionKeJiLearnComponent>
@@ -35,12 +37,38 @@ namespace ET
             self.LearnCostListNode = rc.Get<GameObject>("LearnCostListNode");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.StartBtn = rc.Get<GameObject>("StartBtn");
+            self.HeadImg = rc.Get<GameObject>("HeadImg");
 
             self.UIUnionKeJiLearnItem.SetActive(false);
             self.UICommonItem.SetActive(false);
             self.StartBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnStartBtn().Coroutine(); });
 
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_476");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+
+            self.HeadImg.GetComponent<Image>().sprite = sp;
+
             self.InitItemList().Coroutine();
+        }
+    }
+
+    public class UIUnionKeJiLearnComponentDestroy: DestroySystem<UIUnionKeJiLearnComponent>
+    {
+        public override void Destroy(UIUnionKeJiLearnComponent self)
+        {
+            for (int i = 0; i < self.AssetPath.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(self.AssetPath[i]))
+                {
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
+                }
+            }
+
+            self.AssetPath = null;
         }
     }
 
@@ -81,6 +109,14 @@ namespace ET
             for (int i = 0; i < self.UIUnionKeJiLearnItemComponentList.Count; i++)
             {
                 UIUnionKeJiLearnItemComponent learnItemComponent = self.UIUnionKeJiLearnItemComponentList[i];
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_464");
+                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                if (!self.AssetPath.Contains(path))
+                {
+                    self.AssetPath.Add(path);
+                }
+
+                learnItemComponent.IconImg.GetComponent<Image>().sprite = sp;
                 learnItemComponent.UpdateInfo(i, self.UserInfo.UnionKeJiList[i]);
 
                 GameObject highlightImg = learnItemComponent.HighlightImg;
@@ -90,7 +126,7 @@ namespace ET
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UserInfo.UnionKeJiList[position]);
 
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0,match.Index);
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
