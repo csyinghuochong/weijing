@@ -45,7 +45,7 @@ namespace ET
             self.mSkillBuffConf = null;
             self.TheUnitBelongto = null;
             self.EffectData.InstanceId = 0;
-            self.BuffState = BuffState.Waiting;
+            //self.BuffState = BuffState.Waiting;
         }
 
         //播放特效

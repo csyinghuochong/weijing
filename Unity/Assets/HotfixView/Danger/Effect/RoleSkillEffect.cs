@@ -220,7 +220,7 @@ namespace ET
         public override void OnFinished()
         {
             GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
-            this.EffectState = BuffState.Waiting;
+            //this.EffectState = BuffState.Waiting;
             this.EffectData.InstanceId = 0;
             this.TheUnitBelongto = null; 
             this.EffectObj = null;
