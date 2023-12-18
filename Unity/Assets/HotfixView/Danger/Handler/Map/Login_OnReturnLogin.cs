@@ -68,7 +68,7 @@ namespace ET
             }
             else if (args.ErrorCode == ErrorCode.ERR_PackageFrequent)
             {
-                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "数据异常", "请重新登录", () => {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "消息异常", "请重新登录", () => {
                     RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }
