@@ -50,6 +50,7 @@ namespace ET
             { 1002,     new List<string>(){"Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },
             { 2001,     new List<string>(){"Hero_pifeng" } },
+            //{ 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
             { 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
             { 2003,     new List<string>(){"Hero_fashi", "fashi_fashi2" } },
             { 1001,     new List<string>(){"Hero_toufa" } },
