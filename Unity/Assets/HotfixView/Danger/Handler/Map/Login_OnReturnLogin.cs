@@ -66,9 +66,9 @@ namespace ET
                     RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }
-            else if (args.ErrorCode == ErrorCode.ERR_ModifyData)
+            else if (args.ErrorCode == ErrorCode.ERR_PackageFrequent)
             {
-                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "修改数据", "修改数据", () => {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "数据异常", "请重新登录", () => {
                     RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }

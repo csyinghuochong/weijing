@@ -34,7 +34,7 @@ namespace ET
                 if (lastNumber > 500)
                 {
                     Log.Warning($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}");
-                    session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_ModifyData });
+                    session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_PackageFrequent });
                     session.Disconnect().Coroutine();
 					return;
                 }

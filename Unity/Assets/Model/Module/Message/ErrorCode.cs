@@ -76,6 +76,7 @@ namespace ET
         public const int Pre_Condition_Error = 200123;                              //前置条件不足
         public const int ERR_RequestExitFuben = 200124;
         public const int ERR_KickOutPlayer = 200125;                                //长时间不操作被踢下线
+        public const int ERR_PackageFrequent = 200126;                                //发送太频繁
 
         //300001-400001 服务器提示性错误码
         //角色
