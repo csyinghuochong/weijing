@@ -265,7 +265,6 @@ namespace ET
                     triggerPro = taskCountryConfig.TriggerPro;
                     writeTaskID_Next = taskCountryConfig.NextTask;
 
-
                     if (writeTaskID_Next == 0)
                     {
                         taskRandValue = -1;

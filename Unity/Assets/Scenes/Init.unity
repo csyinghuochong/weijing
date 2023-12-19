@@ -1043,9 +1043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 1
+  Development: 0
   EditorMode: 1
-  OueNetMode: 0
+  OueNetMode: 1
   BigVersion: 17
   BigVersionIOS: 17
   Updater: {fileID: 2018631435}
@@ -5407,7 +5407,7 @@ GameObject:
   - component: {fileID: 7731104071170401692}
   - component: {fileID: 8764606458514136119}
   m_Layer: 5
-  m_Name: Image2
+  m_Name: ImageAgeTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
