@@ -106,8 +106,9 @@ namespace ET
                 {
                     Unit unit = self.GetParent<Unit>();
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int userlv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     numericComponent.ApplyValue(NumericType.RingTaskNumber, 0, true);
-                    numericComponent.ApplyValue(NumericType.RingTaskId, self.RingTaskList[0], true);
+                    numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, userlv), true);
                 }
                 self.RoleTaskList.RemoveAt(i);
                 break;
@@ -531,11 +532,11 @@ namespace ET
                     DropHelper.DropIDToDropItem_2(dropId, droplist);
                     unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
                 }
-                if (ringTaskNumber >= self.RingTaskList.Count)
+                if (ringTaskNumber >= 100)
                 {
                     ringTaskNumber = 0;
                 }
-                numericComponent.ApplyValue(NumericType.RingTaskId, self.RingTaskList[ringTaskNumber]);
+                numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
                 numericComponent.ApplyValue(NumericType.RingTaskNumber, ringTaskNumber);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
@@ -1313,17 +1314,17 @@ namespace ET
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            self.RingTaskList = TaskHelper.GetTaskListByType(TaskTypeEnum.Ring, roleLv, 100);
-
+           
             numericComponent.ApplyValue(NumericType.DailyTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.UnionTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.RingTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), notice);
 
-            if(ComHelp.IsInnerNet() && self.RingTaskList.Count > 0)
+            if(ComHelp.IsInnerNet())
             {
-                numericComponent.ApplyValue(NumericType.RingTaskId, self.RingTaskList[0], notice);
+                int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
+                numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);
             }
             Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.DailyTaskID)}");
         }
