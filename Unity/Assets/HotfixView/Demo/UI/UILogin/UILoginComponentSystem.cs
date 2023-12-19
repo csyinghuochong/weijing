@@ -91,21 +91,24 @@ namespace ET
 				self.YiJianDengLu = rc.Get<GameObject>("YiJianDengLu");
 				self.YiJianDengLu.SetActive(false);
 				//切换替他登录方式 });
-				ButtonHelp.AddListenerEx(self.ButtonOtherLogin, () => { self.OnButtonOtherLogin(); });
-				ButtonHelp.AddListenerEx(self.ButtonYiJianLogin, () => { self.OnButtonYiJianLogin(); });
+				ButtonHelp.AddListenerEx(self.ButtonOtherLogin, self.OnButtonOtherLogin);
+				ButtonHelp.AddListenerEx(self.ButtonYiJianLogin, self.OnButtonYiJianLogin);
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
 
                 self.RealNameButton = rc.Get<GameObject>("RealNameButton");
-				self.RealNameButton.GetComponent<Button>().onClick.AddListener(() => { self.OnRealNameButton(); });
+				self.RealNameButton.GetComponent<Button>().onClick.AddListener(self.OnRealNameButton);
 
 				self.loginBtn = rc.Get<GameObject>("LoginBtn");
 				//self.loginBtn.GetComponent<Button>().onClick.AddListener();
 				ButtonHelp.AddListenerEx(self.loginBtn, () => { self.OnLogin(); });
 				self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
-				self.registerBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnRegister(); });
+				self.registerBtn.GetComponent<Button>().onClick.AddListener(self.OnRegister);
                 self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5);
+
+				self.buttonAgeTip = rc.Get<GameObject>("buttonAgeTip");
+				self.buttonAgeTip.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ShowAgeTip();  } );
 
                 self.Account = rc.Get<GameObject>("Account");
 				self.Password = rc.Get<GameObject>("Password");
@@ -912,9 +915,14 @@ namespace ET
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (TimeHelper.ServerNow() + 10 * 60 * 1000).ToString());
 			}
-		}	
+		}
 
-		public static void OnRegister(this UILoginComponent self)
+		public static void OnButton_ShowAgeTip(this UILoginComponent self)
+		{
+			Log.ILog.Debug("适龄提示！");
+		}
+
+        public static void OnRegister(this UILoginComponent self)
 		{
 			Log.ILog.Debug("OnButtonOtherLogin");
 

@@ -2115,7 +2115,7 @@ GameObject:
   - component: {fileID: 945339828}
   - component: {fileID: 945339827}
   m_Layer: 5
-  m_Name: TextAgeTipClose
+  m_Name: UIAgeTipClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2322,7 +2322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968811466}
   m_Layer: 5
-  m_Name: TextAgeTip
+  m_Name: UIAgeTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4119,7 +4119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonAgeTip: {fileID: 4331397755777303471}
-  TextAgeTip: {fileID: 968811465}
+  UIAgeTip: {fileID: 968811465}
   buttonStart: {fileID: 392207963}
   progressBar: {fileID: 953339568}
   progressText: {fileID: 6684602634836922777}

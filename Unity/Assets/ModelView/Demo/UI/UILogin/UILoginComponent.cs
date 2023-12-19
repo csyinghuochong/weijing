@@ -6,7 +6,10 @@ namespace ET
 {
     public class UILoginComponent: Entity, IAwake
 	{
-		public GameObject DeleteAccountBtn;
+
+		public GameObject buttonAgeTip;
+
+        public GameObject DeleteAccountBtn;
 		public GameObject TextYanzheng;
 		public GameObject AccountText;
 

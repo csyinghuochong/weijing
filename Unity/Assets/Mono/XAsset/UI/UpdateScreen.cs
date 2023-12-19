@@ -33,7 +33,7 @@ namespace libx
     public class UpdateScreen : MonoBehaviour, IUpdater
     {
         public Button buttonAgeTip;
-        public GameObject TextAgeTip;
+        public GameObject UIAgeTip;
 
         public Button buttonStart;
         public Slider progressBar;
@@ -54,8 +54,8 @@ namespace libx
 
                 buttonAgeTip.GetComponent<Button>().onClick.AddListener(OnButton_ShowAgeTip);
 
-                TextAgeTip.transform.Find("TextAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
-                TextAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
+                UIAgeTip.transform.Find("UIAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
+                UIAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
             }
             catch(Exception e)
             {
@@ -80,12 +80,12 @@ namespace libx
 
         public void OnButton_ShowAgeTip()
         {
-            TextAgeTip.SetActive(true);
+            UIAgeTip.SetActive(true);
         }
 
         public void OnButton_CloseAgeTip()
         {
-            TextAgeTip.SetActive(false);
+            UIAgeTip.SetActive(false);
         }
 
 
