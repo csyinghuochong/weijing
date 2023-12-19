@@ -306,14 +306,25 @@ namespace ET
             self.Text_Level.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Level}";
             if (UnionConfigCategory.Instance.Contain(r2c_roleEquip.UnionMyInfo.Level))
             {
-                self.Text_Exp.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Exp}/{UnionConfigCategory.Instance.Get(r2c_roleEquip.UnionMyInfo.Level).Exp}"; 
+                UnionConfig unionConfig = UnionConfigCategory.Instance.Get(r2c_roleEquip.UnionMyInfo.Level);
+                self.Text_Exp.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Exp}/{unionConfig.Exp}";
+                if (r2c_roleEquip.UnionMyInfo.UnionGold <= unionConfig.UnionGoldLimit)
+                {
+                    self.Text_UnionGold.GetComponent<Text>().text =
+                            $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.####}万/{unionConfig.UnionGoldLimit / 10000f:0.####}万";
+                }
+                else
+                {
+                    self.Text_UnionGold.GetComponent<Text>().text =
+                            $"{unionConfig.UnionGoldLimit / 10000f:0.####}万/{unionConfig.UnionGoldLimit / 10000f:0.####}万";
+                }
             }
             else
             {
                 self.Text_Exp.GetComponent<Text>().text = String.Empty;
+                self.Text_UnionGold.GetComponent<Text>().text = string.Empty;
             }
-
-            self.Text_UnionGold.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.####}万";
+            
             self.UpdateMyUnion(self.UnionInfo).Coroutine();
         }
 
