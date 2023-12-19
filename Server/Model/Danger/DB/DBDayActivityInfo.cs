@@ -39,10 +39,11 @@ namespace ET
 		//核心矿
 		public List<KeyValuePairInt> PetMingHexinList = new List<KeyValuePairInt> { };
 
-		/// <summary>
-		/// 竞猜数字->竞猜玩家列表
-		/// </summary>
-		public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
+        /// <summary>
+        /// 竞猜数字->竞猜玩家列表
+        /// </summary>
+        //[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        //public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
     }
 
 }

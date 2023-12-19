@@ -57,7 +57,7 @@ namespace ET
             self.ProgressBarImg.fillAmount = 0;
             self.UIUnionKeJiResearchItem.SetActive(false);
             self.UIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
-            self.QuickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnQuickBtn().Coroutine(); });
+            self.QuickBtn.GetComponent<Button>().onClick.AddListener(self.OnQuickBtn);
             self.StartBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnStartBtn().Coroutine(); });
 
             self.InitItemList().Coroutine();
@@ -211,7 +211,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnQuickBtn(this UIUnionKeJiResearchComponent self)
+        public static void  OnQuickBtn(this UIUnionKeJiResearchComponent self)
         {
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.Position]);
             if (self.UnionMyInfo.KeJiActiteTime == 0)

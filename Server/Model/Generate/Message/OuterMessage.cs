@@ -8988,7 +8988,7 @@ namespace ET
 		[ProtoMember(6)]
 		public bool ShouLieOpen { get; set; }
 
-		[ProtoMember(0)]
+		[ProtoMember(7)]
 		public int ChouKaDropId { get; set; }
 
 	}
@@ -14904,7 +14904,7 @@ namespace ET
 		[ProtoMember(3)]
 		public List<int> ChouKaNumberReward = new List<int>();
 
-		[ProtoMember(0)]
+		[ProtoMember(4)]
 		public int ChouKaDropId { get; set; }
 
 	}
