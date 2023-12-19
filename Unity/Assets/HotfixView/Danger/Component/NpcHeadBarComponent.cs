@@ -204,11 +204,29 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             List<TaskPro> taskProCompleted = taskComponent.GetCompltedTaskByNpc(self.NpcId);
             List<int> canGets = taskComponent.GetOpenTaskIds(self.NpcId);
+            canGets.AddRange(self.GetAddtionTaskId(self.NpcId));
 
              self.ShowNpcEffect( 0, ABPathHelper.GetEffetPath("UIEffect/Effect_GetTask"), canGets.Count > 0 && taskProCompleted.Count == 0);
              self.ShowNpcEffect( 1, ABPathHelper.GetEffetPath("UIEffect/Effect_ComTask"), taskProCompleted.Count > 0);
         }
 
+        public static List<int> GetAddtionTaskId(this NpcHeadBarComponent self, int npcId)
+        {
+            List<int> addTaskids = new List<int>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            if (npcId == 20000102)   //家族任务
+            {
+                int unionTaskId = numericComponent.GetAsInt(NumericType.UnionTaskId);
+                if (unionTaskId > 0 && taskComponent.GetTaskById(unionTaskId) == null )
+                {
+                    addTaskids.Add(unionTaskId);
+                }
+            }
+            return addTaskids;
+        }
+        
         public static void ShowNpcEffect(this NpcHeadBarComponent self, int type,  string path, bool show)
         {
             GameObject go = self.EffectComTask[type];
