@@ -14896,7 +14896,10 @@ namespace ET
 		public List<int> GuessIds = new List<int>();
 
 		[ProtoMember(2)]
-		public List<int> ConsumeReceiveIds = new List<int>();
+		public List<int> ConsumeDiamondReward = new List<int>();
+
+		[ProtoMember(3)]
+		public List<int> ChouKaNumberReward = new List<int>();
 
 	}
 
@@ -14917,6 +14920,40 @@ namespace ET
 	[Message(OuterOpcode.M2C_ActivityChouKaResponse)]
 	[ProtoContract]
 	public partial class M2C_ActivityChouKaResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ActivityRewardResponse))]
+	[Message(OuterOpcode.C2M_ActivityRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_ActivityRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int ActivityType { get; set; }
+
+		[ProtoMember(2)]
+		public int RewardId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ActivityRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_ActivityRewardResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

@@ -95,6 +95,9 @@ namespace ET
         public const int LeavlReward = 84;              //等级奖励
         public const int KillMonsterReward = 85;        //击败怪物奖励
         public const int StallBuy = 86;                 //摆摊购买
+        public const int ActivityChouKa = 87;                 //摆摊购买
+        public const int ActivityConsume = 88;         //消耗钻石
+        public const int ActivityHongBao = 89;          //红包
 
         public const int Activity = 100;                //活动
 

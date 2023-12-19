@@ -163,7 +163,8 @@
         public const int SeasonTowerId = 3163;
         public const int CardTransform = 3164;                                     //怪物卡片变身
         public const int V1ChouKaNumber = 3165;
-        public const int V1HongBaoNumber = 3166;                              //剩余红包数量
+        public const int V1HongBaoNumber = 3166;                              //剩余红包数量, 活动期间累加不清空
+        public const int DailyCostDiamond = 3167;                               //今日消耗钻石
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

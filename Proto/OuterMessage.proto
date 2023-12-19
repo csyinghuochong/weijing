@@ -7144,7 +7144,8 @@ message F2C_FriendChatRead // IFriendActorResponse
 message ActivityV1Info
 {
 	repeated int32 GuessIds = 1;			//竞猜的数值
-	repeated int32 ConsumeReceiveIds = 2;	//消耗钻石领取记录
+	repeated int32 ConsumeDiamondReward = 2;	//消耗钻石领取记录
+	repeated int32 ChouKaNumberReward = 3;		//抽卡次数奖励记录
 }
 
 //v1活动.抽奖
@@ -7156,6 +7157,22 @@ message C2M_ActivityChouKaRequest // IActorLocationRequest
 }
 
 message M2C_ActivityChouKaResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_ActivityRewardResponse
+message C2M_ActivityRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ActivityType = 1;	 //ActivityConfigHelper.ActivityV1_ChouKa /.ActivityV1_Consume
+	int32 RewardId = 2;
+}
+
+message M2C_ActivityRewardResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

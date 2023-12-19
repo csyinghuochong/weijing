@@ -830,5 +830,7 @@ namespace ET
 		 public const ushort ActivityV1Info = 10827;
 		 public const ushort C2M_ActivityChouKaRequest = 10828;
 		 public const ushort M2C_ActivityChouKaResponse = 10829;
+		 public const ushort C2M_ActivityRewardRequest = 10830;
+		 public const ushort M2C_ActivityRewardResponse = 10831;
 	}
 }

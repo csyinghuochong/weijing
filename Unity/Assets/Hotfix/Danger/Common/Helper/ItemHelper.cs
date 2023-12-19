@@ -960,7 +960,13 @@ namespace ET
                 { ItemGetWay.PetMine, "宠物矿场" },
                 { ItemGetWay.Season, "赛季奖励" },
                 { ItemGetWay.Welfare, "福利奖励" },
-
+                { ItemGetWay.LeavlReward, "等级奖励" },
+                { ItemGetWay.KillMonsterReward, "击败怪物奖励" },
+                { ItemGetWay.StallBuy, "摆摊购买" },
+                { ItemGetWay.ActivityChouKa, "抽卡" },
+                { ItemGetWay.ActivityConsume, "消耗钻石" },
+                { ItemGetWay.ActivityHongBao, "充值红包" },
+                
                 { ItemGetWay.Activity, "活动" },
         };
 

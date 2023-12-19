@@ -8,14 +8,22 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ActivityChouKaRequest request, M2C_ActivityChouKaResponse response, Action reply)
         {
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            if (bagComponent.GetLeftSpace() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
+            if (!bagComponent.CheckCostItem(ActivityConfigHelper.ChouKaCostItem))
+            {
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
 
             unit.GetComponent<NumericComponent>().ApplyChange( null,NumericType.V1ChouKaNumber, 1, 0 );
+
             reply();
             await ETTask.CompletedTask;
         }
