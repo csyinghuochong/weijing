@@ -18,11 +18,11 @@ namespace ET
 
         public Dictionary<int, List<KeyValuePair<long, long>>> TurtleSupportList = new Dictionary<int, List<KeyValuePair<long, long>>>();
 
-        public long Timer;
-
         public List<PetMingPlayerInfo> PetMingList = new List<PetMingPlayerInfo>();
         public long PetMingLastTime = 0;
 
         public int CheckIndex = 0;
+
+        public long Timer;
     }
 }

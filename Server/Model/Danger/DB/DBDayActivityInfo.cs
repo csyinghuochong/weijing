@@ -37,7 +37,12 @@ namespace ET
         public Dictionary<long, long> PetMingChanChu = new Dictionary<long, long>();
 
 		//核心矿
-		public List<KeyValuePairInt> PetMingHexinList = new List<KeyValuePairInt> { };	
+		public List<KeyValuePairInt> PetMingHexinList = new List<KeyValuePairInt> { };
+
+		/// <summary>
+		/// 竞猜数字->竞猜玩家列表
+		/// </summary>
+		public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
     }
 
 }

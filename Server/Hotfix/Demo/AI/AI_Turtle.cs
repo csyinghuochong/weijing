@@ -86,14 +86,12 @@ namespace ET
             int lastState = 0;
             Unit unit = aiComponent.GetParent<Unit>();
 
-            Log.Console($"AI_Turtle:Execute ");
             int round = 0;
             while (true)
             {
                 if (Vector3.Distance(unit.Position, aiComponent.TargetPoint[0]) < 0.5f)
                 {
                     //小龟到达终点，给支持玩家发送奖励
-                    Log.Console($"AI_Turtle:move: {unit.Id}  到达终点");
                     unit.Stop(0);
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 3);
                     TurtleReport( aiComponent ).Coroutine();
@@ -109,13 +107,11 @@ namespace ET
                     int state = RandomHelper.RandFloat01() >= moverate ? 1 : 2; //1移动 2停止
                     if (state == 1 || lastState == 0)
                     {
-                        Log.Console($"AI_Turtle:move: {unit.Id}   {state}   {lastState}");
                         unit.FindPathMoveToAsync(aiComponent.TargetPoint[0], cancellationToken, true).Coroutine();
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 1);
                     }
                     else
                     {
-                        Log.Console($"AI_Turtle:stop: {unit.Id}   {state}   {lastState}");
                         unit.Stop(0);
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 2);
                     }

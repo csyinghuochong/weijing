@@ -4276,6 +4276,7 @@ message ServerInfo
 	RankingInfo RankingInfo = 4;
 	int32 TianQi = 5;
 	bool ShouLieOpen = 6;
+	int32  ChouKaDropId = 0;   //每天随机
 }
 
 //ResponseType R2C_WorldLvResponse
@@ -7146,6 +7147,7 @@ message ActivityV1Info
 	repeated int32 GuessIds = 1;			//竞猜的数值
 	repeated int32 ConsumeDiamondReward = 2;	//消耗钻石领取记录
 	repeated int32 ChouKaNumberReward = 3;		//抽卡次数奖励记录
+	int32  ChouKaDropId = 0;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
 }
 
 //v1活动.抽奖

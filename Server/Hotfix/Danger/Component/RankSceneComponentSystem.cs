@@ -113,7 +113,8 @@ namespace ET
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
             self.SendTrialReward().Coroutine();
-            self.SendSeasonTowerReward().Coroutine();   
+            self.SendSeasonTowerReward().Coroutine();
+            self.BroadcastWorldLv().Coroutine();
 
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
@@ -179,6 +180,8 @@ namespace ET
                 self.DBServerInfo.ServerInfo.ExChangeGold = duihuan_nowGold;
                 Log.Info("更新货币兑换值:" + self.DBServerInfo.ServerInfo.ExChangeGold);
             }
+
+            self.DBServerInfo.ServerInfo.ChouKaDropId = ActivityConfigHelper.ChouKaDropId[RandomHelper.RandomNumber(0, ActivityConfigHelper.ChouKaDropId.Count)];
         }
 
         public static async ETTask InitDBRankInfo(this RankSceneComponent self)

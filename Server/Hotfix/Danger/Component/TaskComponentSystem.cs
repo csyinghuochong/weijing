@@ -844,6 +844,9 @@ namespace ET
         //登录
         public static void OnLogin(this TaskComponent self)
         {
+            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+
             if (self.TaskCountryList.Count == 0)
             {
                 Log.Debug($"活跃任务为空: {self.DomainZone()} {self.GetParent<Unit>().Id}");
@@ -862,9 +865,12 @@ namespace ET
                     self.TaskCountryList.RemoveAt(i);
                 }
             }
-
-            UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int ringTaskid = numericComponent.GetAsInt(NumericType.RingTaskId);
+            if (ringTaskid > 0 && !TaskConfigCategory.Instance.Contain(ringTaskid))
+            {
+                ringTaskid = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, userInfoComponent.UserInfo.Lv);
+                numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskid, false);
+            }
 
             //触发一下搜集道具类型的任务
             for (int i = 0; i < self.RoleTaskList.Count; i++)

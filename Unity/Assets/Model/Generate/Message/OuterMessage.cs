@@ -8988,6 +8988,9 @@ namespace ET
 		[ProtoMember(6)]
 		public bool ShouLieOpen { get; set; }
 
+		[ProtoMember(0)]
+		public int ChouKaDropId { get; set; }
+
 	}
 
 	[ResponseType(nameof(R2C_WorldLvResponse))]
@@ -14900,6 +14903,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public List<int> ChouKaNumberReward = new List<int>();
+
+		[ProtoMember(0)]
+		public int ChouKaDropId { get; set; }
 
 	}
 
