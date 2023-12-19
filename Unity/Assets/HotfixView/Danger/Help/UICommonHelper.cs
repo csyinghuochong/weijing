@@ -58,7 +58,15 @@ namespace ET
             go.GetComponent<Image>().sprite = sp;
         }
 
-        public static  void ShowWeapon(GameObject hero, int occ, int equipIndex,  int weaponId)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="occ"></param>
+        /// <param name="equipIndex"></param>
+        /// <param name="weaponId"></param>
+        /// <param name="rimLight">边缘光</param>
+        public static  void ShowWeapon(GameObject hero, int occ, int equipIndex,  int weaponId, bool rimLight)
         {
             if (hero == null)
             {

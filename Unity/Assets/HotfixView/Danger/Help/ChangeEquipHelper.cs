@@ -318,7 +318,7 @@ namespace ET
                 }
                 return;
             }
-            UICommonHelper.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid);
+            UICommonHelper.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid, false);
         }
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
