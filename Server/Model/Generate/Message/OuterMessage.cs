@@ -1093,6 +1093,9 @@ namespace ET
 		[ProtoMember(5)]
 		public bool Relink { get; set; }
 
+		[ProtoMember(6)]
+		public int age_type { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_LoginAccount)]

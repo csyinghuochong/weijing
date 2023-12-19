@@ -4,8 +4,13 @@ namespace ET
 {
     public static class IDCardHelper
     {
-        public static int GetBirthdayAgeSex(string identityCard)
+        public static int GetBirthdayAgeSex(string identityCard, int age_type)
         {
+            if (age_type > 0)
+            {
+                return age_type;
+            }
+
             if (string.IsNullOrEmpty(identityCard))
             {
                 return 0;

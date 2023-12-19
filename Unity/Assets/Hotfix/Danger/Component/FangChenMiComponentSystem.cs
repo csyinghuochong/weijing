@@ -63,7 +63,7 @@ namespace ET
         public static int GetPlayerAge(this FangChenMiComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            return IDCardHelper.GetBirthdayAgeSex(accountInfoComponent.PlayerInfo.IdCardNo);
+            return IDCardHelper.GetBirthdayAgeSex(accountInfoComponent.PlayerInfo.IdCardNo, accountInfoComponent.Age_Type);
         }
 
         public static int GetMouthTotal(this FangChenMiComponent self)
@@ -87,7 +87,6 @@ namespace ET
 
         public static int CanRechage(this FangChenMiComponent self, int number)
         {
-            
             int age = self.GetPlayerAge();
             if (age < 8)
             {
@@ -109,12 +108,10 @@ namespace ET
                 if (number > 100)
                 {
                     return ErrorCode.ERR_FangChengMi_Tip5;
-                    //return ErrorCore.ERR_FangChengMi_Tip3;
                 }
                 if (number + self.GetMouthTotal() > 400)
                 {
                     return ErrorCode.ERR_FangChengMi_Tip5;
-                    //return ErrorCore.ERR_FangChengMi_Tip3;
                 }
             }
             return ErrorCode.ERR_Success;

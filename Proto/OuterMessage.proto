@@ -538,6 +538,7 @@ message C2A_LoginAccount // IRequest
 	string Token = 3;
 	string ThirdLogin = 4;
 	bool Relink = 5;
+	int32 age_type = 6;
 }
 
 message A2C_LoginAccount // IResponse

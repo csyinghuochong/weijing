@@ -27,9 +27,19 @@ namespace ET
                 newAccount.Account = request.AccountName;
                 newAccount.Password = request.Password;
                 newAccount.PlayerInfo = new PlayerInfo();
-                Log.Info($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
 
-                Log.Debug($"Save<DBCenterAccountInfo>222: { scene.DomainZone()}");
+                //抖音账户直接实名
+                if (request.LoginType == LoginTypeEnum.TikTok && request.age_type > 0)
+                {
+                    DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
+                    int year = dateTime.Year - request.age_type;
+                    newAccount.PlayerInfo.Name = "抖音用户";
+                    newAccount.PlayerInfo.RealName = 1;
+                    newAccount.PlayerInfo.IdCardNo = string.Empty;
+                }
+
+                Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
+                Log.Warning($"Save<DBCenterAccountInfo>222: { scene.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);
                 newAccount.Dispose();
                 response.AccountId = newAccount.Id;

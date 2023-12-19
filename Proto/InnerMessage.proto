@@ -178,6 +178,9 @@ message A2Center_RegisterAccount // IActorRequest
     int64 ActorId = 93;
     string AccountName = 1;
     string Password = 2;
+	int32 LoginType = 3;
+	int32 age_type = 4;
+}
 }
 
 message Center2A_RegisterAccount // IActorResponse

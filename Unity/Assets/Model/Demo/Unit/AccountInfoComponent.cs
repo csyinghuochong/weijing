@@ -13,6 +13,8 @@ namespace ET
 
 		public PlayerInfo PlayerInfo;
 
+		public int Age_Type = 0;	
+
 		public long AccountId = 0;
 
 		public string Token;

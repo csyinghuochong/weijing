@@ -388,6 +388,12 @@ namespace ET
 		[ProtoMember(2)]
 		public string Password { get; set; }
 
+		[ProtoMember(3)]
+		public int LoginType { get; set; }
+
+		[ProtoMember(4)]
+		public int age_type { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Center2A_RegisterAccount)]

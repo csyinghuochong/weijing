@@ -5,9 +5,9 @@ namespace ET
 {
     public class C2A_LoginAccountHandler : AMRpcHandler<C2A_LoginAccount, A2C_LoginAccount>
     {
-        public int CanLogin(string identityCard, bool isHoliday)
+        public int CanLogin(string identityCard, bool isHoliday, int age_type)
         {
-            int age = IDCardHelper.GetBirthdayAgeSex(identityCard);
+            int age = IDCardHelper.GetBirthdayAgeSex(identityCard, age_type);
             if (age >= 18)
             {
                 return ErrorCode.ERR_Success;
@@ -252,7 +252,7 @@ namespace ET
                         //}
                         //防沉迷相关
                         string idCardNo = centerPlayerInfo.IdCardNo;
-                        int canLogin = CanLogin(idCardNo, IsHoliday);
+                        int canLogin = CanLogin(idCardNo, IsHoliday, request.age_type);
                         if (canLogin != ErrorCode.ERR_Success)
                         {
                             response.Error = canLogin;
