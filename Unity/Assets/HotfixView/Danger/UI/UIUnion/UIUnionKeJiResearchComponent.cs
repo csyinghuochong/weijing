@@ -59,15 +59,6 @@ namespace ET
             self.QuickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnQuickBtn().Coroutine(); });
             self.StartBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnStartBtn().Coroutine(); });
 
-            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_476");
-            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            if (!self.AssetPath.Contains(path))
-            {
-                self.AssetPath.Add(path);
-            }
-
-            self.HeadImg.GetComponent<Image>().sprite = sp;
-
             self.InitItemList().Coroutine();
         }
     }
