@@ -32,6 +32,9 @@ namespace libx
 {
     public class UpdateScreen : MonoBehaviour, IUpdater
     {
+        public Button buttonAgeTip;
+        public GameObject TextAgeTip;
+
         public Button buttonStart;
         public Slider progressBar;
         public Text progressText;
@@ -48,6 +51,11 @@ namespace libx
                 //int versioncode = Versions.LoadVersion(Application.persistentDataPath + '/' + Versions.Filename);
                 //versioncode = versioncode == -1 ? 1 : versioncode;
                 version.text = $"资源版本号: {Application.version}";
+
+                buttonAgeTip.GetComponent<Button>().onClick.AddListener(OnButton_ShowAgeTip);
+
+                TextAgeTip.transform.Find("TextAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
+                TextAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
             }
             catch(Exception e)
             {
@@ -69,6 +77,17 @@ namespace libx
         //        updater.StartUpdate();
         //    }
         //}
+
+        public void OnButton_ShowAgeTip()
+        {
+            TextAgeTip.SetActive(true);
+        }
+
+        public void OnButton_CloseAgeTip()
+        {
+            TextAgeTip.SetActive(false);
+        }
+
 
         public void OnStart()
         {
