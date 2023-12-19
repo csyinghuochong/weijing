@@ -402,7 +402,7 @@ namespace ET
                 case UserDataType.JiaYuanFund:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
                     break;
-                case UserDataType.UnionFund:
+                case UserDataType.UnionContri:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin;
                     break;
                 case UserDataType.SeasonCoin:

@@ -540,7 +540,7 @@ namespace ET
                     self.UserInfo.JiaYuanFund += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanFund.ToString();
                     break;
-                case UserDataType.UnionFund:
+                case UserDataType.UnionContri:
                     self.UserInfo.UnionZiJin += int.Parse(value);
                     saveValue = self.UserInfo.UnionZiJin.ToString();
                     break;

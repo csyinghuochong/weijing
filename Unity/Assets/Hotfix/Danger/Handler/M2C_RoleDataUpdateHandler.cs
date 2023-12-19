@@ -103,7 +103,7 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanFund).ToString();
                     userInfo.JiaYuanFund = long.Parse(message.UpdateTypeValue);
                     break;
-                case (int)UserDataType.UnionFund:
+                case (int)UserDataType.UnionContri:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.UnionZiJin).ToString();
                     userInfo.UnionZiJin = long.Parse(message.UpdateTypeValue);
                     break;

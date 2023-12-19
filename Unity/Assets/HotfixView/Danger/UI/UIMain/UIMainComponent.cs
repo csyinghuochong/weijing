@@ -714,7 +714,7 @@ namespace ET
                     self.UIRoleHead.UpdateShowRoleHuoLi();
                     break;
 
-                case UserDataType.UnionFund:
+                case UserDataType.UnionContri:
                     if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
                     {
                         return;

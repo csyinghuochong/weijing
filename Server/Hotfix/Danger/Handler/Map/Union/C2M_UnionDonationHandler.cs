@@ -48,7 +48,7 @@ namespace ET
                     int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1] + 1);
                     int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
                     int randUnionGold = RandomHelper.RandomNumber(unionCof.AddUnionGold[0], unionCof.AddUnionGold[1] + 1);
-                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionContri, randNumGongXian.ToString(), true, ItemGetWay.Donation);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionGold, randUnionGold.ToString(), true, ItemGetWay.Donation);
                 }
@@ -83,7 +83,7 @@ namespace ET
                     int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1] + 1);
                     int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
                     int randUnionGold = RandomHelper.RandomNumber(unionCof.AddUnionGold[0], unionCof.AddUnionGold[1] + 1);
-                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionFund, randNumGongXian.ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionContri, randNumGongXian.ToString(), true, ItemGetWay.Donation);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.UnionGold, randUnionGold.ToString(), true, ItemGetWay.Donation);
                 }
