@@ -161,6 +161,12 @@ namespace ET
                 return;
             }
 
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.UnionZiJin < unionQiangHuaConfig.CostGold)
+            {
+                FloatTipManager.Instance.ShowFloatTip("家族贡献不足！");
+                return;
+            }
+
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(unionQiangHuaConfig.CostItem))
             {
