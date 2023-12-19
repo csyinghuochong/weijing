@@ -21,7 +21,7 @@ namespace ET
         public GameObject CostUnionGoldText;
         public GameObject NeedTimeText;
         public GameObject StartBtn;
-        public GameObject UnderwayText;
+        public Text UnderwayText;
         public GameObject HeadImg;
 
         public long NeedTime;
@@ -51,11 +51,10 @@ namespace ET
             self.CostUnionGoldText = rc.Get<GameObject>("CostUnionGoldText");
             self.NeedTimeText = rc.Get<GameObject>("NeedTimeText");
             self.StartBtn = rc.Get<GameObject>("StartBtn");
-            self.UnderwayText = rc.Get<GameObject>("UnderwayText");
+            self.UnderwayText = rc.Get<GameObject>("UnderwayText").GetComponent<Text>();
             self.HeadImg = rc.Get<GameObject>("HeadImg");
 
             self.ProgressBarImg.fillAmount = 0;
-            self.UnderwayText.SetActive(false);
             self.UIUnionKeJiResearchItem.SetActive(false);
             self.UIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
             self.QuickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnQuickBtn().Coroutine(); });
@@ -138,8 +137,25 @@ namespace ET
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[position]);
 
-            self.NeedTime = self.UnionMyInfo.KeJiActitePos == -1? 0
-                    : UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.UnionMyInfo.KeJiActitePos]).NeedTime;
+            if (self.UnionMyInfo.KeJiActitePos != -1)
+            {
+                self.NeedTime = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.UnionMyInfo.KeJiActitePos]).NeedTime;
+                for (int i = 0; i < self.UIUnionKeJiResearchItemComponentList.Count; i++)
+                {
+                    UIUnionKeJiResearchItemComponent researchItemComponent = self.UIUnionKeJiResearchItemComponentList[i];
+                    if (researchItemComponent.Position != self.UnionMyInfo.KeJiActitePos)
+                    {
+                        continue;
+                    }
+
+                    researchItemComponent.LvText.GetComponent<Text>().text = "研究中";
+                    break;
+                }
+            }
+            else
+            {
+                self.NeedTime = 0;
+            }
 
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
@@ -160,7 +176,7 @@ namespace ET
                 if (self.NeedTime == 0)
                 {
                     self.ProgressBarImg.fillAmount = 0;
-                    self.UnderwayText.SetActive(false);
+                    self.UnderwayText.text = string.Empty;
                 }
                 else
                 {
@@ -169,12 +185,13 @@ namespace ET
                     if (passTime < self.NeedTime)
                     {
                         self.ProgressBarImg.fillAmount = passTime * 1f / self.NeedTime;
-                        self.UnderwayText.SetActive(true);
+                        long leftTime = self.NeedTime - passTime;
+                        self.UnderwayText.GetComponent<Text>().text = $"{leftTime / 3600}时{leftTime % 3600 / 60}分{leftTime % 3600 % 60}秒";
                     }
                     else
                     {
                         self.ProgressBarImg.fillAmount = 0;
-                        self.UnderwayText.SetActive(false);
+                        self.UnderwayText.text = string.Empty;
                     }
                 }
 

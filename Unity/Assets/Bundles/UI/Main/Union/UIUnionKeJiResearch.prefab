@@ -901,7 +901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u79D1\u6280\u7814\u7A76\u4E2D"
+  m_Text: 
 --- !u!1 &2342149545834139600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,10 +1347,10 @@ RectTransform:
   m_Father: {fileID: 6458393011164703281}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 446.5, y: -135}
-  m_SizeDelta: {x: 230, y: 250}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278364413015856413
 MonoBehaviour:
