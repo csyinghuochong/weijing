@@ -225,19 +225,22 @@ namespace ET
                 return;
             }
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = unit.GetUnionId();
-            C2U_UnionKeJiQuickRequest request = new C2U_UnionKeJiQuickRequest() { UnionId = unionId, Position = self.Position };
-            U2C_UnionKeJiQuickResponse response =
-                    (U2C_UnionKeJiQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            if (response.Error != ErrorCode.ERR_Success)
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "加速科技", $"是否花费200钻石加速科技", async () =>
             {
-                return;
-            }
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                long unionId = unit.GetUnionId();
+                C2U_UnionKeJiQuickRequest request = new C2U_UnionKeJiQuickRequest() { UnionId = unionId, Position = self.Position };
+                U2C_UnionKeJiQuickResponse response =
+                        (U2C_UnionKeJiQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.UnionMyInfo = response.UnionInfo;
-            self.UpdateInfo(self.Position);
+                if (response.Error != ErrorCode.ERR_Success)
+                {
+                    return;
+                }
+
+                self.UnionMyInfo = response.UnionInfo;
+                self.UpdateInfo(self.Position);
+            }, () => { }).Coroutine();
         }
 
         public static async ETTask OnStartBtn(this UIUnionKeJiResearchComponent self)
