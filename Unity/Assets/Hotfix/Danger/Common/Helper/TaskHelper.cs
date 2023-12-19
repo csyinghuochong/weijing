@@ -138,7 +138,7 @@ namespace ET
         /// </summary>
         /// <param name="roleLv"></param>
         /// <returns></returns>
-        public static List<int> GetRingTask(int roleLv)
+        public static List<int> GetTaskListByType(int taskType, int roleLv, int taskNum)
         {
             List<int> randomIds = new List<int>();
 
@@ -146,7 +146,7 @@ namespace ET
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TaskType == TaskTypeEnum.Ring
+                if (item.Value.TaskType == taskType
                     && roleLv >= item.Value.TaskLv
                     && roleLv <= item.Value.TaskMaxLv)
                 {
@@ -154,72 +154,32 @@ namespace ET
                 }
             }
 
-            int randomNumber = allTaskIds.Count > 100 ? 100 : allTaskIds.Count;    
-           
+            int randomNumber = allTaskIds.Count > taskNum ? taskNum : allTaskIds.Count;    
             RandomHelper.GetRandListByCount(allTaskIds, randomIds, randomNumber);
             return randomIds;
         }
 
-        /// <summary>
-        /// 赏金任务
-        /// </summary>
-        /// <param name="roleLv"></param>
-        /// <returns></returns>
-        public static int GetDailyTaskId(int roleLv)
+        public static int GetTaskIdByType(int taskType, int roleLv)
         {
             List<int> allTaskIds = new List<int>();
+            List<int> allWeights = new List<int>(); 
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TaskType == TaskTypeEnum.Daily
+                if (item.Value.TaskType == taskType
                     && roleLv >= item.Value.TaskLv
                     && roleLv <= item.Value.TaskMaxLv)
                 {
                     allTaskIds.Add(item.Key);
+                    allWeights.Add(item.Value.Weight);
                 }
             }
             if (allTaskIds.Count == 0)
             {
                 return 0;
             }
-            return allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
-        }
-
-        //家族任务
-        public static int GetUnionTaskId(int roleLv)
-        {
-            List<int> allTaskIds = new List<int>();
-            Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
-            foreach (var item in keyValuePairs)
-            {
-                if (item.Value.TaskType == TaskTypeEnum.Union
-                    && roleLv >= item.Value.TaskLv
-                    && roleLv <= item.Value.TaskMaxLv)
-                {
-                    allTaskIds.Add(item.Key);
-                }
-            }
-            if (allTaskIds.Count == 0)
-            {
-                return 0;
-            }
-            return allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
-        }
-
-        public static int GetWeeklyTaskId()
-        {
-            List<int> taskids = new List<int>();
-            Dictionary<int, TaskConfig> taskConfigs = TaskConfigCategory.Instance.GetAll();
-            foreach (var item in taskConfigs)
-            {
-                int id = item.Key;
-                TaskConfig TaskConfig = item.Value;
-                if (TaskConfig.TaskType == TaskTypeEnum.Weekly)
-                {
-                    taskids.Add(id);
-                }
-            }
-            return taskids[RandomHelper.RandomNumber(0, taskids.Count)];
+            int index = RandomHelper.RandomByWeight(allWeights);
+            return allTaskIds[index];
         }
 
         /// <summary>

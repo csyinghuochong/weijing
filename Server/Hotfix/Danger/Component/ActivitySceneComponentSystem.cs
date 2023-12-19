@@ -203,7 +203,7 @@ namespace ET
             LogHelper.LogDebug($"InitDayActivity: {zone}  {openServerDay}");
             if (self.DBDayActivityInfo.WeeklyTask == 0)
             {
-                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetWeeklyTaskId();
+                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, 1);
             }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
 
@@ -386,7 +386,7 @@ namespace ET
             }
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {
-                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetWeeklyTaskId();
+                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, 1);
             }
             if (self.DomainZone() == 3)
             {
