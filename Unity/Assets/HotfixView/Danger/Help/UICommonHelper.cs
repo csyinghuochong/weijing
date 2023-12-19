@@ -124,6 +124,29 @@ namespace ET
             go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
+            if (rimLight)
+            {
+                foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+
+                foreach (SkinnedMeshRenderer meshRenderer in go.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+            }
+
             LayerHelp.ChangeLayerAll(weaponParent, LayerEnum.RenderTexture);
         }
 

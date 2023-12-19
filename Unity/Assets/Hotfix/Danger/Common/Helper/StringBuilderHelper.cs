@@ -15,6 +15,7 @@ namespace ET
         public static string RoleBoneSet = "RoleBoneSet";
         public static string Skill_Halo_2 = "Skill_Halo_2";
         public static string Skill_ComTargetMove_RangDamge_2 = "Skill_ComTargetMove_RangDamge_2";
+        public static string RimLight = "Custom/RimLight";
 
         public static List<string> NoEffectSkills = new List<string>()
         {
