@@ -135,6 +135,9 @@ namespace ET
 		/// <summary>任务经验和金币是否跟随等级成长</summary>
 		[ProtoMember(20)]
 		public int Development { get; set; }
+		/// <summary>权重</summary>
+		[ProtoMember(21)]
+		public int Weight { get; set; }
 
 	}
 }
