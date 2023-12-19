@@ -67,7 +67,12 @@ namespace ET
                         }
                         else if (valuePararm[2] == "35") //UserDataType.UnionGold
                         {
+                            unionConfig = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
                             dBUnionInfo.UnionInfo.UnionGold += int.Parse(valuePararm[3]);
+                            if (dBUnionInfo.UnionInfo.UnionGold > unionConfig.UnionGoldLimit)
+                            {
+                                dBUnionInfo.UnionInfo.UnionGold = unionConfig.UnionGoldLimit;
+                            }
                         }
                         else
                         {
