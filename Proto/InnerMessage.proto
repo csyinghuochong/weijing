@@ -1987,3 +1987,19 @@ message R2M_RankSeasonTowerResponse // IActorResponse
     string Message = 92;
 	int32 RankId = 1;
 }
+
+//ResponseType A2M_ActivityGuessResponse
+message M2A_ActivityGuessRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+	int64 UnitId = 1;
+	int32 GuessId = 2;
+}
+
+message A2M_ActivityGuessResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

@@ -7145,9 +7145,11 @@ message F2C_FriendChatRead // IFriendActorResponse
 message ActivityV1Info
 {
 	repeated int32 GuessIds = 1;			//竞猜的数值
-	repeated int32 ConsumeDiamondReward = 2;	//消耗钻石领取记录
-	repeated int32 ChouKaNumberReward = 3;		//抽卡次数奖励记录
-	int32  ChouKaDropId = 4;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
+	repeated int64 GuessLastTime = 2;		
+	repeated int32 ConsumeDiamondReward = 3;	//消耗钻石领取记录
+	repeated int32 ChouKaNumberReward = 4;		//抽卡次数奖励记录
+	int32  ChouKaDropId = 5;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
+	
 }
 
 //v1活动.抽奖
@@ -7175,6 +7177,21 @@ message C2M_ActivityRewardRequest // IActorLocationRequest
 }
 
 message M2C_ActivityRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_ActivityGuessResponse
+message C2M_ActivityGuessRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 GuessId = 1;
+}
+
+message M2C_ActivityGuessResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

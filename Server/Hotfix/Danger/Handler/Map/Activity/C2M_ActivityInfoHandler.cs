@@ -27,8 +27,12 @@ namespace ET
             response.QuTokenRecvive = activityComponent.QuTokenRecvive;
             response.LastLoginTime = activityComponent.LastLoginTime;
             response.DayTeHui = activityComponent.DayTeHui;
-            response.ActivityV1Info = activityComponent.ActivityV1Info;
-            response.ActivityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
+
+            ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
+            activityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
+
+            //自己的竞猜数字
+            activityV1Info.GuessIds.Clear();
             reply();
             await ETTask.CompletedTask;
         }

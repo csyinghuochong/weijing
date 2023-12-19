@@ -221,6 +221,7 @@ namespace ET
             activityComponent.QuTokenRecvive = r2c_roleEquip.QuTokenRecvive;
             activityComponent.LastLoginTime = r2c_roleEquip.LastLoginTime;
             activityComponent.DayTeHui = r2c_roleEquip.DayTeHui;
+            activityComponent.ActivityV1Info = r2c_roleEquip.ActivityV1Info;
         }
 
         public static async ETTask RequestZhanQuInfo(Scene zoneScene)

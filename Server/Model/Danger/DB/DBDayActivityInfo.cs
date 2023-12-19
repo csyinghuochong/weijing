@@ -42,8 +42,8 @@ namespace ET
         /// <summary>
         /// 竞猜数字->竞猜玩家列表
         /// </summary>
-        //[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
-        //public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
     }
 
 }
