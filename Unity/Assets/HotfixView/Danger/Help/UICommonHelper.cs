@@ -124,6 +124,7 @@ namespace ET
             go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
+            //rimLight = true;
             if (rimLight)
             {
                 foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
