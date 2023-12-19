@@ -51,7 +51,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DailyCostDiamond) < request.RewardId)
+                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond) < request.RewardId)
                     {
                         response.Error = ErrorCode.Pre_Condition_Error;
                         reply();
@@ -63,7 +63,9 @@ namespace ET
                     break;
                 case ActivityConfigHelper.ActivityV1_HongBao:
                     int hongbaoNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1HongBaoNumber);
-                    if (hongbaoNumber <= 0)
+                    long v1rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1RechageNumber);
+                    int totalHongBa0 = (int)(v1rechargeNumber / 98);
+                    if (hongbaoNumber >= totalHongBa0)
                     {
                         response.Error = ErrorCode.ERR_AlreadyReceived;
                         reply();
@@ -78,7 +80,7 @@ namespace ET
                         return;
                     }
                     unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_9}_{TimeHelper.ServerNow()}");
-                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1HongBaoNumber, -1, 0);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1HongBaoNumber, 1, 0);
                     break;
                 default:
                     break;

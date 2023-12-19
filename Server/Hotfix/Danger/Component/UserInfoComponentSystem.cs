@@ -617,7 +617,7 @@ namespace ET
                     if (addDiamond < 0)
                     {
                         unit.GetComponent<ChengJiuComponent>().OnCostDiamond(addDiamond);
-                        unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.DailyCostDiamond, addDiamond * - 1, 0);
+                        unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1DayCostDiamond, addDiamond * - 1, 0);
                     }
                     break;
                 case UserDataType.Occ:

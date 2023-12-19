@@ -253,8 +253,10 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.PetMineReset, 0, notice);
 
-            numericComponent.ApplyValue(NumericType.DailyCostDiamond, 0, notice);
-
+            numericComponent.ApplyValue(NumericType.V1DayCostDiamond, 0, notice);
+            numericComponent.ApplyValue(NumericType.V1ChouKaNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.V1RechageNumber, 0, notice);
+            
             int lirun =  (int)(numericComponent.GetAsInt(NumericType.InvestTotal) * 0.25f);
             numericComponent.ApplyValue(NumericType.InvestTotal, numericComponent.GetAsInt(NumericType.InvestTotal) + lirun, notice);
         }
