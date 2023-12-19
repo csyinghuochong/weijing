@@ -10,37 +10,39 @@ namespace ET
     public static class ActivityConfigHelper
     {
         /// <summary>
-        /// 抽奖奖励
+        /// 抽奖奖励，每个区每天随机一个掉落ID
         /// </summary>
-        public static int ChouKaDropId = 0;
+        public static List<int> ChouKaDropId = new List<int> { 601901001 };
 
         /// <summary>
         /// 抽奖消耗道具
         /// </summary>
-        public static string ChouKaCost = "1;0";
+        public static string ChouKaCostItem = "1;0";
 
         /// <summary>
         /// 抽奖次数奖励
         /// </summary>
         public static Dictionary<int, string> ChouKaNumberReward = new Dictionary<int, string>()
         {
-            {  3, "1;0" }
+            {  3,   "1;0" },
+            {  10,  "1;0" },
         };
         
         ///可供竞猜的数量。（数量6对应对个字）
         public static int GuessNumber = 6;
 
         /// <summary>
-        /// 第一个字免费， 一个钻石多猜一个字
+        /// 第一个字免费， 第二个字开始消耗道具.  
         /// </summary>
-        public static int GuessCostDiamond = 100;   
+        public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";   
 
         /// <summary>
         /// 消费钻石奖励
         /// </summary>
         public static Dictionary<int, string> ConsumeDiamondReward = new Dictionary<int, string>()
         {
-            {  100, "1;0" }
+            {  100, "1;0" },
+            {  200, "1;0" }
         };
 
         /// <summary>
