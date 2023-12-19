@@ -14,12 +14,25 @@ namespace ET
                 return;
             }
 
+
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            if (!userInfoComponent.UserInfo.TowerRewardIds.Contains(request.RewardId))
+            if (userInfoComponent.UserInfo.TowerRewardIds.Contains(request.RewardId))
+            {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
+                reply();
+                return;
+            }
+
+            TowerConfig towerRewardConfig = TowerConfigCategory.Instance.Get(request.RewardId);
+            if (unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.DropShow, $"{ItemGetWay.RandomTowerReward}_{TimeHelper.ServerNow()}"))
             {
                 userInfoComponent.UserInfo.TowerRewardIds.Add(request.RewardId);
-                TowerConfig towerRewardConfig = TowerConfigCategory.Instance.Get(request.RewardId);
-                unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.DropShow,$"{ItemGetWay.RandomTowerReward}_{TimeHelper.ServerNow()}");
+            }
+            else
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
+                reply();
+                return;
             }
 
             reply();

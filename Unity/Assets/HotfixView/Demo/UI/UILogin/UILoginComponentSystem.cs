@@ -296,7 +296,7 @@ namespace ET
         public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
 		{
 			await ETTask.CompletedTask;
-            bool useClient = true;
+            bool useClient = false;
 			if (useClient)
 			{
 				long serverNow = TimeHelper.ServerNow() / 1000;
@@ -329,8 +329,6 @@ namespace ET
 					Log.ILog.Debug($"抖音登录失败");
 				}
 			}
-
-
 #if !UNITY_EDITOR
                 try
                 {
@@ -352,7 +350,6 @@ namespace ET
                 {
                     Log.Error(ex.ToString());
                 }
-
 #endif
         }
 
