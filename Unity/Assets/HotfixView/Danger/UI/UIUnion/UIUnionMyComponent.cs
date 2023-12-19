@@ -25,6 +25,7 @@ namespace ET
 
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_UnionGold;
         public GameObject UnionRecordsBtn;
         public Text TextJingXuanEndTime;
         public GameObject ButtonJingXuan;
@@ -60,6 +61,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_UnionGold = rc.Get<GameObject>("Text_UnionGold");
             self.UnionRecordsBtn = rc.Get<GameObject>("UnionRecordsBtn");
             ButtonHelp.AddListenerEx(self.UnionRecordsBtn, () => { self.UnionRecordsBtn().Coroutine(); });
             self.Text_Button_1 = rc.Get<GameObject>("Text_Button_1");
@@ -310,7 +312,8 @@ namespace ET
             {
                 self.Text_Exp.GetComponent<Text>().text = String.Empty;
             }
-           
+
+            self.Text_UnionGold.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.####}万";
             self.UpdateMyUnion(self.UnionInfo).Coroutine();
         }
 
