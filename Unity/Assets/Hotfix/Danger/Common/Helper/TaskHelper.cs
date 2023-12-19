@@ -179,6 +179,10 @@ namespace ET
                 return 0;
             }
             int index = RandomHelper.RandomByWeight(allWeights);
+            if (index == -1)
+            {
+                index = RandomHelper.RandomNumber(0, allTaskIds.Count);
+            }
             return allTaskIds[index];
         }
 

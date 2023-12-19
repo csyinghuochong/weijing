@@ -15,7 +15,6 @@ namespace ET
             unit.GetComponent<MoveComponent>().SyncPosition();
             unit.GetComponent<SkillPassiveComponent>().OnPlayerMove();
             unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);
-
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy
              || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi
