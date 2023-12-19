@@ -87,7 +87,7 @@ namespace ET
 		/// <summary>人员上限</summary>
 		[ProtoMember(4)]
 		public int PeopleNum { get; set; }
-		/// <summary>捐献金币</summary>
+		/// <summary>捐献消耗金币</summary>
 		[ProtoMember(5)]
 		public int DonateGold { get; set; }
 		/// <summary>捐献增加经验</summary>
@@ -102,6 +102,9 @@ namespace ET
 		/// <summary>捐献增加家族金币</summary>
 		[ProtoMember(9)]
 		public int[] AddUnionGold { get; set; }
+		/// <summary>家族金币上限</summary>
+		[ProtoMember(10)]
+		public int UnionGoldLimit { get; set; }
 
 	}
 }
