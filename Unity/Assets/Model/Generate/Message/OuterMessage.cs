@@ -6234,6 +6234,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<int> DayTeHui = new List<int>();
 
+		[ProtoMember(8)]
+		public ActivityV1Info ActivityV1Info { get; set; }
+
 	}
 
 //战区活动
@@ -14881,6 +14884,19 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+//第一版的活动
+	[Message(OuterOpcode.ActivityV1Info)]
+	[ProtoContract]
+	public partial class ActivityV1Info: Object
+	{
+		[ProtoMember(1)]
+		public List<int> GuessIds = new List<int>();
+
+		[ProtoMember(2)]
+		public List<int> ConsumeReceiveIds = new List<int>();
 
 	}
 

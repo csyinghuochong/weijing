@@ -27,7 +27,7 @@ namespace ET
             response.QuTokenRecvive = activityComponent.QuTokenRecvive;
             response.LastLoginTime = activityComponent.LastLoginTime;
             response.DayTeHui = activityComponent.DayTeHui;
-
+            response.ActivityV1Info = activityComponent.ActivityV1Info; 
             reply();
             await ETTask.CompletedTask;
         }

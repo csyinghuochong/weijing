@@ -26,6 +26,8 @@ namespace ET
 
         public List<int> ZhanQuReceiveIds = new List<int>();
 
+        public ActivityV1Info ActivityV1Info = new ActivityV1Info();
+
 #if !SERVER
         public List<ZhanQuReceiveNumber> ZhanQuReceiveNumbers = new List<ZhanQuReceiveNumber>();
 #endif

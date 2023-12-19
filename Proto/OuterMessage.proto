@@ -2947,11 +2947,10 @@ message M2C_ActivityInfoResponse // IActorLocationResponse
 	repeated int32 ReceiveIds = 1;
 	int64 LastSignTime = 3;
 	int32 TotalSignNumber = 4;
-
 	repeated TokenRecvive QuTokenRecvive = 5;
-
 	int64 LastLoginTime = 6;
 	repeated int32 DayTeHui = 7;
+	ActivityV1Info ActivityV1Info = 8;
 }
 
 //战区活动
@@ -7140,4 +7139,11 @@ message F2C_FriendChatRead // IFriendActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//第一版的活动
+message ActivityV1Info
+{
+	repeated int32 GuessIds = 1;			//竞猜的数值
+	repeated int32 ConsumeReceiveIds = 2;	//消耗钻石领取记录
 }

@@ -827,5 +827,6 @@ namespace ET
 		 public const ushort M2C_PetEquipResponse = 10824;
 		 public const ushort C2F_FriendChatRead = 10825;
 		 public const ushort F2C_FriendChatRead = 10826;
+		 public const ushort ActivityV1Info = 10827;
 	}
 }
