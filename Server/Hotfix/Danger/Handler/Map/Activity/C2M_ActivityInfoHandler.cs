@@ -30,9 +30,10 @@ namespace ET
 
             ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
             activityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
-
             //自己的竞猜数字
             activityV1Info.GuessIds.Clear();
+
+            response.ActivityV1Info = activityV1Info;
             reply();
             await ETTask.CompletedTask;
         }
