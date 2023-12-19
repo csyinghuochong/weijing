@@ -9,6 +9,7 @@ namespace ET
 {
     public class UIUnionPetXiuLianComponent: Entity, IAwake
     {
+        public GameObject UICommonItem;
         public GameObject CostItemListNode;
         public GameObject XiuLianName;
         public GameObject XiuLianImageIcon;
@@ -16,6 +17,7 @@ namespace ET
         public GameObject Pro_1;
         public GameObject Pro_0;
 
+        public List<UIItemComponent> UIItemComponentList = new List<UIItemComponent>();
         public List<UIUnionXiuLianItemComponent> UIUnionXiuLianItemList = new List<UIUnionXiuLianItemComponent>();
         public int Position;
     }
@@ -27,6 +29,8 @@ namespace ET
             self.Position = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UICommonItem = rc.Get<GameObject>("UICommonItem");
+            self.UICommonItem.SetActive(false);
             self.CostItemListNode = rc.Get<GameObject>("CostItemListNode");
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Donation().Coroutine(); });
@@ -95,14 +99,41 @@ namespace ET
             self.Pro_1.SetActive(true);
             int nextxiulianid = numericComponent.GetAsInt(numerType) + 1;
             UnionQiangHuaConfig nextunionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(nextxiulianid);
-            //self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text =
                     ItemViewHelp.GetAttributeDesc(nextunionQiangHuaConfig.EquipPropreAdd);
-            self.Pro_1.transform.parent.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = $"消耗:{unionQiangHuaConfig.CostGold}点家族贡献";
-            if (!ComHelp.IfNull(unionQiangHuaConfig.CostItem))
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            string[] items1 = new[] { $"16;{unionQiangHuaConfig.CostGold}" };
+            string[] items2 = unionQiangHuaConfig.CostItem.Split('@');
+            string[] items = items1.Concat(items2).ToArray();
+            int num = 0;
+            foreach (string item in items)
             {
-                UICommonHelper.DestoryChild(self.CostItemListNode);
-                UICommonHelper.ShowItemList(unionQiangHuaConfig.CostItem, self.CostItemListNode, self, 0.8f, true);
+                string[] str = item.Split(';');
+                int itemConfigId = int.Parse(str[0]);
+                int itemNum = int.Parse(str[1]);
+                long havedNum = bagComponent.GetItemNumber(itemConfigId);
+                if (num >= self.UIItemComponentList.Count)
+                {
+                    GameObject go = UnityEngine.Object.Instantiate(self.UICommonItem);
+                    UIItemComponent uiItemComponent = self.AddChild<UIItemComponent, GameObject>(go);
+                    UICommonHelper.SetParent(go, self.CostItemListNode);
+                    go.SetActive(true);
+                    self.UIItemComponentList.Add(uiItemComponent);
+                }
+
+                UIItemComponent itemComponent = self.UIItemComponentList[num];
+                itemComponent.GameObject.SetActive(true);
+                itemComponent.UpdateItem(new BagInfo() { ItemID = itemConfigId }, ItemOperateEnum.None);
+                itemComponent.Label_ItemNum.GetComponent<Text>().text = $"{itemNum}/{havedNum}";
+                itemComponent.Label_ItemNum.GetComponent<Text>().color =
+                        havedNum >= itemNum? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
+                num++;
+            }
+
+            for (int i = num; i < self.UIItemComponentList.Count; i++)
+            {
+                self.UIItemComponentList[i].GameObject.SetActive(false);
             }
         }
 
@@ -136,7 +167,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
             }
-            
+
             C2M_UnionXiuLianRequest request = new C2M_UnionXiuLianRequest() { Position = self.Position, Type = 1 };
             M2C_UnionXiuLianResponse response =
                     (M2C_UnionXiuLianResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
