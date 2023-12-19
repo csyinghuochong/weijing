@@ -107,8 +107,15 @@ namespace ET
 				self.registerBtn.GetComponent<Button>().onClick.AddListener(self.OnRegister);
                 self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5);
 
-				self.buttonAgeTip = rc.Get<GameObject>("buttonAgeTip");
-				self.buttonAgeTip.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ShowAgeTip();  } );
+
+                self.UIAgeTip = rc.Get<GameObject>("UIAgeTip");
+				self.UIAgeTip.SetActive(false);
+
+                self.buttonAgeTip = rc.Get<GameObject>("buttonAgeTip");
+				self.buttonAgeTip.GetComponent<Button>().onClick.AddListener(self.OnButton_ShowAgeTip);
+
+                self.UIAgeTip.transform.Find("UIAgeTipClose").GetComponent<Button>().onClick.AddListener(self.OnButton_CloseAgeTip);
+                self.UIAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(self.OnButton_CloseAgeTip);
 
                 self.Account = rc.Get<GameObject>("Account");
 				self.Password = rc.Get<GameObject>("Password");
@@ -919,7 +926,12 @@ namespace ET
 
 		public static void OnButton_ShowAgeTip(this UILoginComponent self)
 		{
-			Log.ILog.Debug("适龄提示！");
+            self.UIAgeTip.SetActive(true);
+        }
+
+		public static void OnButton_CloseAgeTip(this UILoginComponent self)
+		{
+			self.UIAgeTip.SetActive(false);
 		}
 
         public static void OnRegister(this UILoginComponent self)

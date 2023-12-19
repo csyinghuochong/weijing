@@ -8,6 +8,7 @@ namespace ET
 	{
 
 		public GameObject buttonAgeTip;
+		public GameObject UIAgeTip;
 
         public GameObject DeleteAccountBtn;
 		public GameObject TextYanzheng;
