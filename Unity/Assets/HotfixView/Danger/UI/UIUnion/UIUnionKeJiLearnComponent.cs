@@ -127,7 +127,15 @@ namespace ET
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
 
-            self.AttributeText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionKeJiConfig.EquipPropreAdd);
+            if (unionKeJiConfig.QiangHuaLv == 0)
+            {
+                UnionKeJiConfig unionKeJiConfig1 = UnionKeJiConfigCategory.Instance.Get(unionKeJiConfig.NextID);
+                self.AttributeText.GetComponent<Text>().text = "下一级：" + ItemViewHelp.GetAttributeDesc(unionKeJiConfig1.EquipPropreAdd);
+            }
+            else
+            {
+                self.AttributeText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionKeJiConfig.EquipPropreAdd);
+            }
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             string[] items = unionKeJiConfig.LearnCost.Split('@');
             int num = 0;
