@@ -2230,7 +2230,7 @@ namespace ET
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
             await ETTask.CompletedTask;
-            Log.ILog.Debug("Button_ActivityV1");
+            
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)

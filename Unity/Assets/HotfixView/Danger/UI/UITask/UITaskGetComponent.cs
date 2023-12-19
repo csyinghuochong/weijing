@@ -466,12 +466,6 @@ namespace ET
                 {
                     addTaskids.Add(dailyTaskId);
                 }
-
-                int ringTaskId = numericComponent.GetAsInt(NumericType.RingTaskId);
-                if (ringTaskId > 0 && taskComponent.GetTaskById(ringTaskId) == null)
-                {
-                    addTaskids.Add(ringTaskId);
-                }
             }
             if (npcId == 20000102)   //家族任务
             {
@@ -479,6 +473,12 @@ namespace ET
                 if (unionTaskId > 0 && taskComponent.GetTaskById(unionTaskId) == null )
                 {
                     addTaskids.Add(unionTaskId);
+                }
+
+                int ringTaskId = numericComponent.GetAsInt(NumericType.RingTaskId);
+                if (ringTaskId > 0 && taskComponent.GetTaskById(ringTaskId) == null)
+                {
+                    addTaskids.Add(ringTaskId);
                 }
             }
             return addTaskids;

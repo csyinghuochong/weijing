@@ -2910,7 +2910,6 @@ message A2C_MysteryListResponse // IActivityActorResponse
 	repeated MysteryItemInfo MysteryItemInfos = 1;
 }
 
-
 //领取奖励
 //ResponseType M2C_ActivityReceiveResponse
 message C2M_ActivityReceiveRequest // IActorLocationRequest
@@ -7146,4 +7145,19 @@ message ActivityV1Info
 {
 	repeated int32 GuessIds = 1;			//竞猜的数值
 	repeated int32 ConsumeReceiveIds = 2;	//消耗钻石领取记录
+}
+
+//v1活动.抽奖
+//ResponseType M2C_ActivityChouKaResponse
+message C2M_ActivityChouKaRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_ActivityChouKaResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

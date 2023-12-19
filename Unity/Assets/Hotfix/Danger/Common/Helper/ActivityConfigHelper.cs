@@ -15,6 +15,11 @@ namespace ET
         public static int ChouKaDropId = 0;
 
         /// <summary>
+        /// 抽奖消耗道具
+        /// </summary>
+        public static string ChouKaCost = "1;0";
+
+        /// <summary>
         /// 抽奖次数奖励
         /// </summary>
         public static Dictionary<int, string> ChouKaNumberReward = new Dictionary<int, string>()

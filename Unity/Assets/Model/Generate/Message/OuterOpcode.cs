@@ -828,5 +828,7 @@ namespace ET
 		 public const ushort C2F_FriendChatRead = 10825;
 		 public const ushort F2C_FriendChatRead = 10826;
 		 public const ushort ActivityV1Info = 10827;
+		 public const ushort C2M_ActivityChouKaRequest = 10828;
+		 public const ushort M2C_ActivityChouKaResponse = 10829;
 	}
 }

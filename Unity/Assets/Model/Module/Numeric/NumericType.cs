@@ -162,8 +162,8 @@
         public const int RingTaskId = 3162;
         public const int SeasonTowerId = 3163;
         public const int CardTransform = 3164;                                     //怪物卡片变身
-        public const int ActivityChouKaNumber = 3165;
-        public const int ActivityHongBaoNumber = 3166;                              //剩余红包数量
+        public const int V1ChouKaNumber = 3165;
+        public const int V1HongBaoNumber = 3166;                              //剩余红包数量
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
