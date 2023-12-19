@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIUnionKeJiLearnComponent: Entity, IAwake, IDestroy
     {
+        public GameObject AttributeText;
         public GameObject UIUnionKeJiLearnItemListNode;
         public GameObject UIUnionKeJiLearnItem;
         public GameObject NameText;
@@ -30,6 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.AttributeText = rc.Get<GameObject>("AttributeText");
             self.UIUnionKeJiLearnItemListNode = rc.Get<GameObject>("UIUnionKeJiLearnItemListNode");
             self.UIUnionKeJiLearnItem = rc.Get<GameObject>("UIUnionKeJiLearnItem");
             self.NameText = rc.Get<GameObject>("NameText");
@@ -125,6 +127,7 @@ namespace ET
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
 
+            self.AttributeText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionKeJiConfig.EquipPropreAdd);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             string[] items = unionKeJiConfig.LearnCost.Split('@');
             int num = 0;

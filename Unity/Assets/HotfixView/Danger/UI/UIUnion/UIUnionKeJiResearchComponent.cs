@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIUnionKeJiResearchComponent: Entity, IAwake, IDestroy
     {
+        public GameObject AttributeText;
         public GameObject UIUnionKeJiResearchItemListNode;
         public GameObject UIUnionKeJiResearchItem;
         public Image ProgressBarImg;
@@ -37,6 +38,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.AttributeText = rc.Get<GameObject>("AttributeText");
             self.UIUnionKeJiResearchItemListNode = rc.Get<GameObject>("UIUnionKeJiResearchItemListNode");
             self.UIUnionKeJiResearchItem = rc.Get<GameObject>("UIUnionKeJiResearchItem");
             self.ProgressBarImg = rc.Get<GameObject>("ProgressBarImg").GetComponent<Image>();
@@ -143,9 +145,9 @@ namespace ET
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
             self.NeedUnionLvText.GetComponent<Text>().text = $"需要家族等级达到{unionKeJiConfig.NeedUnionLv}级";
+            self.AttributeText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionKeJiConfig.EquipPropreAdd);
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
             self.CostUnionGoldText.GetComponent<Text>().text =
                     $"消耗家族金币：{unionKeJiConfig.CostUnionGold / 10000f:0.####}万/{self.UnionMyInfo.UnionGold / 10000f:0.####}万";
             self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:0.##}小时";

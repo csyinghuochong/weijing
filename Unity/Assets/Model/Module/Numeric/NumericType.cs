@@ -1020,8 +1020,34 @@
         public const int AOIPct = AOI * 10 + 3;
         public const int AOIFinalAdd = AOI * 10 + 4;
         public const int AOIFinalPct = AOI * 10 + 5;
+        
+        public const int Now_MonsterActIncreaseDamgeSubPro = 2230;          //怪攻增伤
+        public const int Base_MonsterActIncreaseDamgeSubPro_Base = Now_MonsterActIncreaseDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_MonsterActIncreaseDamgeSubPro_Mul = Now_MonsterActIncreaseDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_MonsterActIncreaseDamgeSubPro_Add = Now_MonsterActIncreaseDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_MonsterActIncreaseDamgeSubPro_Add = Now_MonsterActIncreaseDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_MonsterActIncreaseDamgeSubPro_Mul = Now_MonsterActIncreaseDamgeSubPro * 100 + 12;    
 
+        public const int Now_MonsterMageIncreaseDamgeSubPro = 2231;          //怪技增伤
+        public const int Base_MonsterMageIncreaseDamgeSubPro_Base = Now_MonsterMageIncreaseDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_MonsterMageIncreaseDamgeSubPro_Mul = Now_MonsterMageIncreaseDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_MonsterMageIncreaseDamgeSubPro_Add = Now_MonsterMageIncreaseDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_MonsterMageIncreaseDamgeSubPro_Add = Now_MonsterMageIncreaseDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_MonsterMageIncreaseDamgeSubPro_Mul = Now_MonsterMageIncreaseDamgeSubPro * 100 + 12; 
 
+        public const int Now_MonsterActReduceDamgeSubPro = 2232;          //怪攻减伤
+        public const int Base_MonsterActReduceDamgeSubPro_Base = Now_MonsterActReduceDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_MonsterActReduceDamgeSubPro_Mul = Now_MonsterActReduceDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_MonsterActReduceDamgeSubPro_Add = Now_MonsterActReduceDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_MonsterActReduceDamgeSubPro_Add = Now_MonsterActReduceDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_MonsterActReduceDamgeSubPro_Mul = Now_MonsterActReduceDamgeSubPro * 100 + 12;    
+        
+        public const int Now_MonsterMageReduceDamgeSubPro = 2233;          //怪技减伤
+        public const int Base_MonsterMageReduceDamgeSubPro_Base = Now_MonsterMageReduceDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_MonsterMageReduceDamgeSubPro_Mul = Now_MonsterMageReduceDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_MonsterMageReduceDamgeSubPro_Add = Now_MonsterMageReduceDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_MonsterMageReduceDamgeSubPro_Add = Now_MonsterMageReduceDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_MonsterMageReduceDamgeSubPro_Mul = Now_MonsterMageReduceDamgeSubPro * 100 + 12; 
 
         //宠物全体暴击
         public const int Now_PetAllCri = 2301;         //宠物全体暴击
