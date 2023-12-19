@@ -4889,12 +4889,6 @@ message A2C_ActivityInfoResponse // IActivityActorResponse
 	string ActivityContent = 1;
 }
 
-message ActivityInfo
-{
-	int32 WeeklyTask = 1;
-	string ActivityContent = 2;
-}
-
 //激活称号
 //ResponseType M2C_TitleUseResponse
 message C2M_TitleUseRequest    // IActorLocationRequest

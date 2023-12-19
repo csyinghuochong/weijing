@@ -21,7 +21,7 @@ namespace ET
         {
             {  3, "1;0" }
         };
-
+        
         ///可供竞猜的数量。（数量6对应对个字）
         public static int GuessNumber = 6;
 

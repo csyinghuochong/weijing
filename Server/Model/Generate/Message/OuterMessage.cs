@@ -10233,18 +10233,6 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.ActivityInfo)]
-	[ProtoContract]
-	public partial class ActivityInfo: Object
-	{
-		[ProtoMember(1)]
-		public int WeeklyTask { get; set; }
-
-		[ProtoMember(2)]
-		public string ActivityContent { get; set; }
-
-	}
-
 //激活称号
 	[ResponseType(nameof(M2C_TitleUseResponse))]
 	[Message(OuterOpcode.C2M_TitleUseRequest)]
