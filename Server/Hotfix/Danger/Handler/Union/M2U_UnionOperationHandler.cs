@@ -117,8 +117,9 @@ namespace ET
                     case 4: //钻石捐献
                         dBUnionInfo.UnionInfo.Level = Math.Max(dBUnionInfo.UnionInfo.Level, 1);
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
+                        unionConfig = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
                         long selfDiamond = long.Parse(request.Par);
-                        if (selfDiamond < 250)
+                        if (selfDiamond < unionConfig.DonateDiamond)
                         {
                             response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                             reply();
@@ -130,7 +131,7 @@ namespace ET
                         }
                         dBUnionInfo.UnionInfo.DonationRecords.Add( new DonationRecord()
                         { 
-                            Diamond = 250,
+                            Diamond = unionConfig.DonateDiamond,
                             Time = TimeHelper.ServerNow(),
                             UnitId = request.UnitId
                         });

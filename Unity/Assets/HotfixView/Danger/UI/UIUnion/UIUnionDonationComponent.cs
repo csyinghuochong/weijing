@@ -65,7 +65,7 @@ namespace ET
 
             self.UnionLevel = respose.UnionMyInfo.Level;
             self.Text_Tip_3.GetComponent<Text>().text = "消耗:" + unionCof.DonateGold + "金币";
-            self.Text_Tip_5.GetComponent<Text>().text = "消耗:" + 250 + "钻石";
+            self.Text_Tip_5.GetComponent<Text>().text = "消耗:" + unionCof.DonateDiamond + "钻石";
         }
 
         public static void OnButton_Record(this UIUnionDonationComponent self)
@@ -77,7 +77,7 @@ namespace ET
         {
             UnionConfig unionConfig = UnionConfigCategory.Instance.Get(self.UnionLevel);
             long selfDiamond = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond;
-            if (selfDiamond < 250)
+            if (selfDiamond < unionConfig.DonateDiamond)
             {
                 FloatTipManager.Instance.ShowFloatTip("钻石数量不足！");
                 return;

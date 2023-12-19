@@ -79,7 +79,7 @@ namespace ET
                     // 花费250钻石，暂时写死，M2U_UnionOperationRequest也是
                     UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
-                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (250 * -1).ToString(), true, ItemGetWay.Donation);
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (unionCof.DonateDiamond * -1).ToString(), true, ItemGetWay.Donation);
                     int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1] + 1);
                     int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
                     int randUnionGold = RandomHelper.RandomNumber(unionCof.AddUnionGold[0], unionCof.AddUnionGold[1] + 1);

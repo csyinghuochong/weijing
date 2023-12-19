@@ -90,20 +90,23 @@ namespace ET
 		/// <summary>捐献消耗金币</summary>
 		[ProtoMember(5)]
 		public int DonateGold { get; set; }
-		/// <summary>捐献增加经验</summary>
+		/// <summary>捐献消耗钻石</summary>
 		[ProtoMember(6)]
+		public int DonateDiamond { get; set; }
+		/// <summary>捐献增加经验</summary>
+		[ProtoMember(7)]
 		public int[] DonateExp { get; set; }
 		/// <summary>捐献增加贡献值</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int[] DonateReward { get; set; }
 		/// <summary>升级全员奖励</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string UpAllReward { get; set; }
 		/// <summary>捐献增加家族金币</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int[] AddUnionGold { get; set; }
 		/// <summary>家族金币上限</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int UnionGoldLimit { get; set; }
 
 	}
