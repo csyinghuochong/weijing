@@ -41,6 +41,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
         public GameObject Button_Welfare;
@@ -361,6 +362,10 @@ namespace ET
 
             self.Button_RechargeReward = rc.Get<GameObject>("Button_RechargeReward");
             self.Button_RechargeReward.GetComponent<Button>().onClick.AddListener(self.OnButton_RechargeReward);
+
+            self.Button_ActivityV1 = rc.Get<GameObject>("Button_ActivityV1");
+            self.Button_ActivityV1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
@@ -2220,6 +2225,12 @@ namespace ET
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
+        }
+
+        public static async ETTask Button_ActivityV1(this UIMainComponent self)
+        {
+            await ETTask.CompletedTask;
+            Log.ILog.Debug("Button_ActivityV1");
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)
