@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Btn_ChouKaNumReward;
+        public GameObject Text_TotalNumber;
         public GameObject Text_DiamondNumber;
         public GameObject Text_CostNumber;
         public GameObject ItemImageIcon;
@@ -21,16 +23,20 @@ namespace ET
         public override void Awake(UIPetEggChouKaComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            
+
+            self.Btn_ChouKaNumReward = rc.Get<GameObject>("Btn_ChouKaNumReward");
+            self.Text_TotalNumber = rc.Get<GameObject>("Text_TotalNumber");
             self.Text_DiamondNumber = rc.Get<GameObject>("Text_DiamondNumber");
             self.Text_CostNumber = rc.Get<GameObject>("Text_CostNumber");
             self.ItemImageIcon = rc.Get<GameObject>("ItemImageIcon");
 
+            self.Btn_ChouKaNumReward.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ChouKaNumReward(); });
             self.Btn_ChouKaTen = rc.Get<GameObject>("Btn_ChouKaTen");
             ButtonHelp.AddListenerEx(self.Btn_ChouKaTen, () => { self.OnBtn_ChouKa(10).Coroutine(); });
             self.Btn_ChouKa = rc.Get<GameObject>("Btn_ChouKa");
             ButtonHelp.AddListenerEx(self.Btn_ChouKa, () => { self.OnBtn_ChouKa(1).Coroutine(); });
             self.UpdateMoney();
+            self.OnUpdateTotalTime();
             //self.UpdateChouKaTime();
         }
 
@@ -51,6 +57,19 @@ namespace ET
     }
     public static class UIPetEggChouKaComponentSystem
     {
+        public static void OnBtn_ChouKaNumReward(this UIPetEggChouKaComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetEggChouKaReward).Coroutine();
+        }
+
+        public static void OnUpdateTotalTime(this UIPetEggChouKaComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int totalTimes = numericComponent.GetAsInt(NumericType.PetExploreNumber);
+            self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
+        }
+
         public static void UpdateMoney(this UIPetEggChouKaComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -115,6 +134,7 @@ namespace ET
                 return;
             }
             self.UpdateMoney();
+            self.OnUpdateTotalTime();
 
             UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
             ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(r2c_roleEquip.ReardList);
