@@ -19,7 +19,7 @@
         public const int MainCity_X = 3014;
         public const int MainCity_Y = 3015;
         public const int MainCity_Z = 3016;
-        public const int PetChouKa = 3017;                                         //今日宠物探索次数
+        public const int PetChouKa = 3017;                                         //今日宠物抽奖
         public const int YueKaAward = 3018;                                       //领取时间戳
         public const int Born_X = 3019;
         public const int Born_Y = 3020;
@@ -166,6 +166,7 @@
         public const int V1HongBaoNumber = 3166;                                //已经抽卡的红包数量，总数量根据
         public const int V1DayCostDiamond = 3167;                               //今日消耗钻石
         public const int V1RechageNumber = 3168;
+        public const int PetExploreNumber = 3169;                               //宠物探宝次数
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -9,6 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PetEggChouKaRequest request, M2C_PetEggChouKaResponse response, Action reply)
         {
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < request.ChouKaType)
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
+                reply();
+                return;
+            }
+
             int dropId = 0;
             if (request.ChouKaType == 1)
             {
@@ -21,15 +28,12 @@ namespace ET
                     reply();
                     return;
                 }
+
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 1, 0);
             }
             else if (request.ChouKaType == 10)
             {
-                //int choukaTim = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_ChouKa);
-                //if (choukaTim >= 20)
-                //{
-                //    reply();
-                //    return;
-                //}
+                
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[1]);
@@ -40,7 +44,7 @@ namespace ET
                     return;
                 }
                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.PetChouKa);
-                //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Pet_ChouKa, 1, 0);
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
             }
 
             List<RewardItem> rewardItems = new List<RewardItem>();
@@ -48,12 +52,7 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}"))
-            {
-                response.Error = ErrorCode.ERR_BagIsFull;
-                reply();
-                return;
-            }
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}");
             response.ReardList = rewardItems;
             reply();
             await ETTask.CompletedTask;
