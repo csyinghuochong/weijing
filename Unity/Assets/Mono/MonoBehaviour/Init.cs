@@ -129,15 +129,6 @@ namespace ET
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
             Log.ILog.Debug("unity111  Awake");
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
-		jo.Call("CallNative", "weijing" );
-		jo.Call("WechatInit", WXAppID);
-#elif UNITY_IPHONE && !UNITY_EDITOR
-		 CheckIphoneYueyu( string.Empty ); 
-#endif
-
             //////平台Id定义 不得更改
 #if TapTap1
             Log.ILog.Debug("unity111  TapTap1=true");
@@ -162,6 +153,21 @@ namespace ET
 #if UNITY_IPHONE || UNITY_IOS
 			this.Platform = 20001;
 #endif
+
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+
+		if(this.Platform!=5)
+		{
+			jo.Call("CallNative", "weijing" );
+			jo.Call("WechatInit", WXAppID);
+		}
+#elif UNITY_IPHONE && !UNITY_EDITOR
+		 CheckIphoneYueyu( string.Empty ); 
+#endif
+
 
             GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
