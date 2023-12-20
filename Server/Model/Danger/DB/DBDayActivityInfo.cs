@@ -44,6 +44,12 @@ namespace ET
         /// </summary>
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
+
+        /// <summary>
+        /// 竞猜数字->中奖的玩家
+        /// </summary>
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<int, List<long>> GuessRewardList = new Dictionary<int, List<long>>();
     }
 
 }

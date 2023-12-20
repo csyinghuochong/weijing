@@ -2245,6 +2245,7 @@ namespace ET
 
             Log.ILog.Debug($"今日抽卡掉落ID: {response_1.ActivityV1Info.ChouKaDropId}");   //DropHelper.DropIDToShowItem() 展示今日奖品
             Log.ILog.Debug($"今日已竞猜数字: {response_1.ActivityV1Info.GuessIds.Count}");  //数字012345 对应元旦新年快乐
+            Log.ILog.Debug($"今日竞猜中奖纪录: {response_1.ActivityV1Info.LastGuessRewatd.Count}");
             Log.ILog.Debug($"今日已领取抽卡次数奖励: {response_1.ActivityV1Info.ChouKaNumberReward.Count}");
             Log.ILog.Debug($"今日已领取消费次数奖励: {response_1.ActivityV1Info.ConsumeDiamondReward.Count}");
             

@@ -398,16 +398,23 @@ namespace ET
             if (hour == 0 || hour == 14 || hour == 18 || hour == 21)
             {
                 int guessIndex = RandomHelper.RandomNumber(0, ActivityConfigHelper.GuessNumber);
-                List<long> playerIds = new List<long>();
+                List<long> playerIds = null; 
                 self.DBDayActivityInfo.GuessPlayerList.TryGetValue(guessIndex, out playerIds);
-                if (playerIds!=null)
+                if (playerIds==null)
                 {
-                    for (int i = 0; i < playerIds.Count; i++)
-                    {
-                        Log.Console($"发放竞猜奖励: {self.DomainZone()}  {playerIds[i]}");
-                    }
+                    playerIds = new List<long>();
                 }
 
+                for (int i = 0; i < playerIds.Count; i++)
+                {
+                    Log.Console($"发放竞猜奖励: {self.DomainZone()}  {playerIds[i]}");
+                }
+
+                if (hour == 0)
+                {
+                    self.DBDayActivityInfo.GuessRewardList.Clear();
+                }
+                self.DBDayActivityInfo.GuessRewardList.Add(hour, playerIds);
                 self.DBDayActivityInfo.GuessPlayerList.Clear();
             }
         }
