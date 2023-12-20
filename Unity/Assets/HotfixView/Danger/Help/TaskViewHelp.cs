@@ -369,10 +369,23 @@ namespace ET
                     return true;
                 }
             }
+
+            if (taskConfig.TargetType == TaskTargetType.GiveItem_10 && taskConfig.CompleteNpcID == 0)
+            {
+                OpenUIGiveTask(zoneScene, taskPro).Coroutine();
+            }
+
             TaskViewHelp.Instance.TaskTypeLogic[target].taskExcute(zoneScene, taskPro, taskConfig);
             return true;
         }
 
+
+        private async ETTask OpenUIGiveTask(Scene zoneScene, TaskPro taskPro)
+        {
+            UI ui = await UIHelper.Create(zoneScene, UIType.UIGiveTask);
+            ui.GetComponent<UIGiveTaskComponent>().InitTask(taskPro.taskID, 1);
+        }
+        
         public int GetSceneByNpc(int npcId)
         {
             if (npcId == 0)

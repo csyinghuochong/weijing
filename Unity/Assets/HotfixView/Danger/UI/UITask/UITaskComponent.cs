@@ -315,6 +315,11 @@ namespace ET
 				FloatTipManager.Instance.ShowFloatTip("主线任务不能放弃");
 				return;
 			}
+			if (taskConfig.TaskType == TaskTypeEnum.Ring)
+			{
+				FloatTipManager.Instance.ShowFloatTip("跑环任务不能放弃");
+				return;
+			}
 			self.ZoneScene().GetComponent<TaskComponent>().SendGiveUpTask(self.TaskPro.taskID).Coroutine();
 		}
 
