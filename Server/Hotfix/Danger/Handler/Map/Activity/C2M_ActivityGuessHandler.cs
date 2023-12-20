@@ -15,7 +15,14 @@ namespace ET
                 reply();
                 return;
             }
-            
+            string costItem = ActivityConfigHelper.GetGuessCostItem(activityV1Info.GuessIds.Count);
+            if (!unit.GetComponent<BagComponent>().CheckCostItem(costItem))
+            {
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
+
             A2M_ActivityGuessResponse r_GameStatusResponse = (A2M_ActivityGuessResponse)await ActorMessageSenderComponent.Instance.Call
                    (activitySceneid, new M2A_ActivityGuessRequest()
                    {
@@ -28,8 +35,8 @@ namespace ET
                 reply();
                 return;
             }
-
             activityV1Info.GuessIds.Add(request.GuessId);
+            unit.GetComponent<BagComponent>().OnCostItemData(costItem);
             reply();
             await ETTask.CompletedTask;
         }
