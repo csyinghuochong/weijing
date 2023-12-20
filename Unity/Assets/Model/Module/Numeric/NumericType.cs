@@ -167,6 +167,7 @@
         public const int V1DayCostDiamond = 3167;                               //今日消耗钻石
         public const int V1RechageNumber = 3168;
         public const int PetExploreNumber = 3169;                               //宠物探宝次数
+        public const int PetExploreLuckly = 3170;                               //
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

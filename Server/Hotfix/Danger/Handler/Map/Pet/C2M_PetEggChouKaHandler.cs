@@ -17,6 +17,7 @@ namespace ET
             }
 
             int dropId = 0;
+            int exlporeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
             if (request.ChouKaType == 1)
             {
                 string needItems = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0];
@@ -47,12 +48,21 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
             }
 
-            List<RewardItem> rewardItems = new List<RewardItem>();
+            int oldValue = exlporeNumber / 10;
+            int newValue = (exlporeNumber + request.ChouKaType ) / 10;
+
+            if (newValue > oldValue)
+            {
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, RandomHelper.RandomNumber(1,6), 0);
+            }
+            int exploreLuck = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
+
+            List <RewardItem> rewardItems = new List<RewardItem>();
             for (int i = 0; i < request.ChouKaType; i++)
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}_{exploreLuck}");
             response.ReardList = rewardItems;
             reply();
             await ETTask.CompletedTask;
