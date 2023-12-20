@@ -32,7 +32,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.PassFubenID_7, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassFubenID });
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
             TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetJoinUnion });
-            TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = this.ExcuteMoveTo, taskProgess = GetGiveItem });
+            TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = this.ExcuteGiveItem_10, taskProgess = GetGiveItem });
 
             TaskTypeLogic.Add(TaskTargetType.PetNumber1_11, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber1_11 });
             TaskTypeLogic.Add(TaskTargetType.MakeNumber_12, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = MakeNumber_12 });
@@ -161,6 +161,19 @@ namespace ET
                 return false;
             }
             FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+            return true;
+        }
+
+        public bool ExcuteGiveItem_10(Scene zoneScene, TaskPro taskPro, TaskConfig taskConfig)
+        {
+            if (taskConfig.CompleteNpcID == 0)
+            {
+                OpenUIGiveTask(zoneScene, taskPro).Coroutine();
+            }
+            else
+            {
+                ExcuteMoveTo(zoneScene, taskPro, taskConfig)  ;
+            }
             return true;
         }
 
@@ -368,11 +381,6 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
                     return true;
                 }
-            }
-
-            if (taskConfig.TargetType == TaskTargetType.GiveItem_10 && taskConfig.CompleteNpcID == 0)
-            {
-                OpenUIGiveTask(zoneScene, taskPro).Coroutine();
             }
 
             TaskViewHelp.Instance.TaskTypeLogic[target].taskExcute(zoneScene, taskPro, taskConfig);
