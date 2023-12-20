@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionMysteryItemComponent: Entity, IAwake<GameObject>,IDestroy
+    public class UIUnionMysteryItem_AComponent: Entity, IAwake<GameObject>,IDestroy
     {
         public GameObject UIItemNode;
         public GameObject Text_Number;
@@ -18,9 +18,9 @@ namespace ET
         public List<string> AssetPath = new List<string>();
     }
 
-    public class UIUnionMysteryItemComponentAwakeSystem: AwakeSystem<UIUnionMysteryItemComponent, GameObject>
+    public class UIUnionMysteryItem_AComponentAwakeSystem: AwakeSystem<UIUnionMysteryItem_AComponent, GameObject>
     {
-        public override void Awake(UIUnionMysteryItemComponent self, GameObject gameObject)
+        public override void Awake(UIUnionMysteryItem_AComponent self, GameObject gameObject)
         {
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -41,9 +41,9 @@ namespace ET
             self.UICommonItem.Label_ItemName.SetActive(true);
         }
     }
-    public class UIUnionMysteryItemComponentDestroy: DestroySystem<UIUnionMysteryItemComponent>
+    public class UIUnionMysteryItem_AComponentDestroy: DestroySystem<UIUnionMysteryItem_AComponent>
     {
-        public override void Destroy(UIUnionMysteryItemComponent self)
+        public override void Destroy(UIUnionMysteryItem_AComponent self)
         {
             for (int i = 0; i < self.AssetPath.Count; i++)
             {
@@ -56,9 +56,9 @@ namespace ET
             self.AssetPath = null;
         }
     }
-    public static class UIUnionMysteryItemComponentSystem
+    public static class UIUnionMysteryItem_AComponentSystem
     {
-        public static async ETTask OnButtonBuy(this UIUnionMysteryItemComponent self)
+        public static async ETTask OnButtonBuy(this UIUnionMysteryItem_AComponent self)
         {
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
             if (leftSpace < 1)
@@ -92,11 +92,10 @@ namespace ET
             M2C_UnionMysteryBuyResponse response =
                     await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_UnionMysteryBuyResponse;
 
-            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIUnionMystery);
-            uI.GetComponent<UIUnionMysteryComponent>().RequestMystery().Coroutine();
+            self.GetParent<UIUnionMystery_AComponent>()?.RequestMystery().Coroutine();
         }
 
-        public static void OnUpdateUI(this UIUnionMysteryItemComponent self, MysteryItemInfo mysteryItemInfo)
+        public static void OnUpdateUI(this UIUnionMysteryItem_AComponent self, MysteryItemInfo mysteryItemInfo)
         {
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
             self.MysteryItemInfo = mysteryItemInfo;

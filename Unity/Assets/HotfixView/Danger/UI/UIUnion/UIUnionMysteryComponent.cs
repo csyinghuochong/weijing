@@ -1,109 +1,73 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionMysteryComponent: Entity, IAwake
+    public enum UnionMysteryEnum: int
     {
-        public GameObject cellContainer1;
-        public GameObject closeButton;
-        public GameObject RawImage;
-
-        public UserInfoComponent UserInfoComponent;
-        public UIModelShowComponent uIModelShowComponent;
-        public List<UIUnionMysteryItemComponent> SellList = new List<UIUnionMysteryItemComponent>();
+        UnionMystery_A = 0,
+        UnionMystery_B = 1,
+        Number
     }
 
-    public class UIUnionMysteryComponentAwakeSystem: AwakeSystem<UIUnionMysteryComponent>
+    public class UIUnionMysteryComponent: Entity, IAwake, IDestroy
+    {
+        public UI UIPageButton;
+        public UIPageViewComponent UIPageView;
+        public GameObject FunctionSetBtn;
+
+        public GameObject closeButton;
+    }
+
+    public class UIUnionMysteryComponentAwake: AwakeSystem<UIUnionMysteryComponent>
     {
         public override void Awake(UIUnionMysteryComponent self)
         {
-            self.Awake();
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            GameObject pageView = rc.Get<GameObject>("SubViewNode");
+            UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
+            UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
+            pageViewComponent.UISubViewList = new UI[(int)UnionMysteryEnum.Number];
+            pageViewComponent.UISubViewPath = new string[(int)UnionMysteryEnum.Number];
+            pageViewComponent.UISubViewType = new Type[(int)UnionMysteryEnum.Number];
+
+            pageViewComponent.UISubViewPath[(int)UnionMysteryEnum.UnionMystery_A] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMystery_A");
+            pageViewComponent.UISubViewType[(int)UnionMysteryEnum.UnionMystery_A] = typeof (UIUnionMystery_AComponent);
+
+            pageViewComponent.UISubViewPath[(int)UnionMysteryEnum.UnionMystery_B] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMystery_B");
+            pageViewComponent.UISubViewType[(int)UnionMysteryEnum.UnionMystery_B] = typeof (UIUnionMystery_BComponent);
+
+            self.UIPageView = pageViewComponent;
+
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
+            UI uiPage = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
+            uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButton = uiPage;
+
+            //IOS适配
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
+
+            self.closeButton = rc.Get<GameObject>("closeButton");
+            self.closeButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseStore(); });
         }
     }
 
     public static class UIUnionMysteryComponentSystem
     {
-        public static void Awake(this UIUnionMysteryComponent self)
+        public static void OnClickPageButton(this UIUnionMysteryComponent self, int page)
         {
-            self.SellList.Clear();
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
-            self.closeButton = rc.Get<GameObject>("closeButton");
-            self.closeButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseStore(); });
-
-            self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
-            self.RawImage = rc.Get<GameObject>("RawImage");
-            self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-
-            self.InitModelShowView().Coroutine();
-            self.RequestMystery().Coroutine();
-        }
-
-        public static async ETTask InitModelShowView(this UIUnionMysteryComponent self)
-        {
-            //模型展示界面
-            var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
-            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(gameObject, self.RawImage);
-            UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
-            self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
-
-            //配置摄像机位置[0,115,257]
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 257f);
-            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId);
-            self.uIModelShowComponent.ShowOtherModel("Npc/" + npcConfig.Asset.ToString()).Coroutine();
+            self.UIPageView.OnSelectIndex(page).Coroutine();
         }
 
         public static void OnCloseStore(this UIUnionMysteryComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIMystery);
-        }
-
-        public static async ETTask UpdateMysteryItem(this UIUnionMysteryComponent self, List<MysteryItemInfo> mysteryItemInfos)
-        {
-            string path_1 = ABPathHelper.GetUGUIPath("Main/Mystery/UIMysteryItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_1);
-
-            int number = 0;
-            for (int i = 0; i < mysteryItemInfos.Count; i++)
-            {
-
-                UIUnionMysteryItemComponent ui_1 = null;
-                if (number < self.SellList.Count)
-                {
-                    ui_1 = self.SellList[number];
-                    ui_1.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject storeItem = GameObject.Instantiate(bundleObj);
-                    UICommonHelper.SetParent(storeItem, self.cellContainer1);
-
-                    ui_1 = self.AddChild<UIUnionMysteryItemComponent, GameObject>(storeItem);
-                    self.SellList.Add(ui_1);
-                }
-
-                ui_1.OnUpdateUI(mysteryItemInfos[i]);
-                number++;
-            }
-
-            for (int i = number; i < self.SellList.Count; i++)
-            {
-                self.SellList[i].GameObject.SetActive(false);
-            }
-        }
-
-        public static async ETTask RequestMystery(this UIUnionMysteryComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
-            C2U_UnionMysteryListRequest request = new C2U_UnionMysteryListRequest() { UnionId = unionId };
-            U2C_UnionMysteryListResponse response =
-                    await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as U2C_UnionMysteryListResponse;
-            self.UpdateMysteryItem(response.MysteryItemInfos).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIUnionMystery);
         }
     }
 }

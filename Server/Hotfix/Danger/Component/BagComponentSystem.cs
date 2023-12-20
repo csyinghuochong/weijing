@@ -1346,6 +1346,12 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.SeasonCoin, itemNum.ToString());
                     continue;
                 }
+                if (itemID == (int)UserDataType.UnionContri)
+                {
+                    itemNum = -1 * itemNum;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionContri, itemNum.ToString());
+                    continue;
+                }
                 //if (!DllHelper.CheckItem)
                 //{
                 //    continue;

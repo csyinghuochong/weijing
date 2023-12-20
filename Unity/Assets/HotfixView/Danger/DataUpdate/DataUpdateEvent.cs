@@ -470,6 +470,11 @@ namespace ET
                 {
                     uiChouKaWarehouseComponent.OnUpdateUI();
                 }
+
+                if (component is UIUnionMystery_BComponent uiUnionMysteryBComponent)
+                {
+                    uiUnionMysteryBComponent.UpdateItemNum();
+                }
             }
         }
 
