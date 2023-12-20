@@ -45,7 +45,9 @@ namespace ET
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(configId);
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
-            self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
+            self.LvText.GetComponent<Text>().text = unionKeJiConfig.QiangHuaLv == 0? "未研究" : $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
+
+            UICommonHelper.SetImageGray(self.IconImg, unionKeJiConfig.QiangHuaLv == 0);
         }
 
         public static void OnClickBtn(this UIUnionKeJiResearchItemComponent self)
