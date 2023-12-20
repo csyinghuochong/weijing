@@ -23,7 +23,7 @@ namespace ET
 
 
             response.GuessIds = guessIds;
-            response.LastGuessRewatd = lastGuessRewatd;   
+            response.LastGuessReward = lastGuessRewatd;   
             reply();
             await ETTask.CompletedTask;
         }

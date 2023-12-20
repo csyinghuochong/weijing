@@ -2019,5 +2019,5 @@ message A2M_ActivitySelfGuessIds // IActorResponse
     int32 Error = 91;
     string Message = 92;
     repeated int32 GuessIds = 1;
-	repeated int32 LastGuessRewatd = 2;   //竞猜中奖纪录
+	repeated int32 LastGuessReward = 2;   //竞猜中奖纪录
 }

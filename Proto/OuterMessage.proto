@@ -7148,7 +7148,7 @@ message F2C_FriendChatRead // IFriendActorResponse
 message ActivityV1Info
 {
 	repeated int32 GuessIds = 1;			//竞猜的数值	
-	repeated int32 LastGuessRewatd = 2;		//每日清空，中奖的时间段(0 ，14，18， 21)
+	repeated int32 LastGuessReward = 2;		//每日清空，中奖的时间段(0 ，14，18， 21)
 	repeated int32 ConsumeDiamondReward = 3;	//消耗钻石领取记录
 	repeated int32 ChouKaNumberReward = 4;		//抽卡次数奖励记录
 	int32  ChouKaDropId = 5;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
