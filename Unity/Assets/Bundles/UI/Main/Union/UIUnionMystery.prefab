@@ -1853,6 +1853,8 @@ MonoBehaviour:
     gameObject: {fileID: 4097999062799983125}
   - key: FunctionSetBtn
     gameObject: {fileID: 2479334005893576186}
+  - key: Btn_ShopB
+    gameObject: {fileID: 4704902840545639301}
 --- !u!1 &7189809467087358672
 GameObject:
   m_ObjectHideFlags: 0
