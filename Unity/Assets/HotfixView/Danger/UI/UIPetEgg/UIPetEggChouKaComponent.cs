@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Text_PetExploreLuckly;
         public GameObject Btn_ChouKaNumReward;
         public GameObject Text_TotalNumber;
         public GameObject Text_DiamondNumber;
@@ -24,6 +25,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_PetExploreLuckly = rc.Get<GameObject>("Text_PetExploreLuckly");
             self.Btn_ChouKaNumReward = rc.Get<GameObject>("Btn_ChouKaNumReward");
             self.Text_TotalNumber = rc.Get<GameObject>("Text_TotalNumber");
             self.Text_DiamondNumber = rc.Get<GameObject>("Text_DiamondNumber");
@@ -36,7 +38,7 @@ namespace ET
             self.Btn_ChouKa = rc.Get<GameObject>("Btn_ChouKa");
             ButtonHelp.AddListenerEx(self.Btn_ChouKa, () => { self.OnBtn_ChouKa(1).Coroutine(); });
             self.UpdateMoney();
-            self.OnUpdateTotalTime();
+            self.OnUpdateInfo();
             //self.UpdateChouKaTime();
         }
 
@@ -62,12 +64,14 @@ namespace ET
             UIHelper.Create(self.ZoneScene(), UIType.UIPetEggChouKaReward).Coroutine();
         }
 
-        public static void OnUpdateTotalTime(this UIPetEggChouKaComponent self)
+        public static void OnUpdateInfo(this UIPetEggChouKaComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int totalTimes = numericComponent.GetAsInt(NumericType.PetExploreNumber);
             self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
+
+            self.Text_PetExploreLuckly.GetComponent<Text>().text = $"运气值：{numericComponent.GetAsInt(NumericType.PetExploreLuckly)}";
         }
 
         public static void UpdateMoney(this UIPetEggChouKaComponent self)
@@ -134,7 +138,7 @@ namespace ET
                 return;
             }
             self.UpdateMoney();
-            self.OnUpdateTotalTime();
+            self.OnUpdateInfo();
 
             UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
             ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(r2c_roleEquip.ReardList);
