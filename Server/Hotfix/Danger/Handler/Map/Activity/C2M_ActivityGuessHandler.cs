@@ -9,7 +9,7 @@ namespace ET
         {
             long activitySceneid = DBHelper.GetActivityServerId(unit.DomainZone());
             ActivityV1Info activityV1Info = unit.GetComponent<ActivityComponent>().ActivityV1Info;
-            if (!activityV1Info.GuessIds.Contains(request.GuessId))
+            if (activityV1Info.GuessIds.Contains(request.GuessId))
             {
                 response.Error = ErrorCode.ERR_Already_Guess;
                 reply();
@@ -22,7 +22,7 @@ namespace ET
                        UnitId = unit.Id,
                        GuessId = request.GuessId,   
                    });
-            if (!activityV1Info.GuessIds.Contains(request.GuessId))
+            if (activityV1Info.GuessIds.Contains(request.GuessId))
             {
                 response.Error = ErrorCode.ERR_Already_Guess;
                 reply();
