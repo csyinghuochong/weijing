@@ -88,7 +88,7 @@ namespace ET
             UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             string[] diamond = reward[1].Split(';')[1].Split(',');
             self.TextZuanshi.GetComponent<Text>().text = $"{diamond[0]}-{diamond[1]}";
-            self.TextNeedTimes.GetComponent<Text>().text = $"抽卡次数达到{key}次";
+            self.TextNeedTimes.GetComponent<Text>().text = $"探索次数达到{key}次";
 
             self.UpdateButton();
         }
