@@ -71,7 +71,7 @@ namespace ET
             int totalTimes = numericComponent.GetAsInt(NumericType.PetExploreNumber);
             self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
 
-            self.Text_PetExploreLuckly.GetComponent<Text>().text = $"运气值：{numericComponent.GetAsInt(NumericType.PetExploreLuckly)}";
+            self.Text_PetExploreLuckly.GetComponent<Text>().text = $"{numericComponent.GetAsInt(NumericType.PetExploreLuckly)}";
         }
 
         public static void UpdateMoney(this UIPetEggChouKaComponent self)
