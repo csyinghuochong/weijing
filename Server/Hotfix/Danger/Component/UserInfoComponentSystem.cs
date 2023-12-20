@@ -1096,6 +1096,7 @@ namespace ET
             self.UserInfo.DayItemUse.Clear();
             self.UserInfo.DayMonsters.Clear();
             self.UserInfo.DayJingLing.Clear();
+            self.UserInfo.PetExploreRewardIds.Clear();  
         }
 
     }

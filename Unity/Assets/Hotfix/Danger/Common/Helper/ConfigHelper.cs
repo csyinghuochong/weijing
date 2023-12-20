@@ -1032,5 +1032,16 @@ namespace ET
             { 80, 61500001},
             { 100, 61500111},
         };
+
+
+        /// <summary>
+        /// 宠物探宝奖励
+        /// </summary>
+        public static Dictionary<int, string> PetExploreReward = new Dictionary<int, string>()
+        {
+            {  30, "10000143;1@3;100,1000" },          //钻石特殊处理, 也可以定位其他格式
+            {  60, "10000143;1@3;200,1000" }           //钻石特殊处理
+        };
+
     }
 }

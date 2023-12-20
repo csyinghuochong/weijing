@@ -664,6 +664,9 @@ namespace ET
 		[ProtoMember(53)]
 		public List<int> UnionKeJiList = new List<int>();
 
+		[ProtoMember(54)]
+		public List<int> PetExploreRewardIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -15003,6 +15006,34 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PetExploreReward))]
+	[Message(OuterOpcode.C2M_PetExploreReward)]
+	[ProtoContract]
+	public partial class C2M_PetExploreReward: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int RewardId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetExploreReward)]
+	[ProtoContract]
+	public partial class M2C_PetExploreReward: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 
