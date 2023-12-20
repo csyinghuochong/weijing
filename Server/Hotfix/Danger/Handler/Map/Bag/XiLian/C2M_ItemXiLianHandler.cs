@@ -42,7 +42,7 @@ namespace ET
 
                 if (request.Times == 1)
                 {
-                    if (costItems != null && costItems.Length > 0)
+                    if (costItems != null && costItems.Length > 1)
                     {
                         //普通洗炼
                         rewardItems.Add(new RewardItem() { ItemID = costItems[0], ItemNum = costItems[1] * request.Times });
