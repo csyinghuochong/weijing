@@ -19,7 +19,7 @@ namespace ET
                     guessIds.Add( guessindex ); 
                 }
             }
-
+            response.GuessIds = guessIds;
             reply();
             await ETTask.CompletedTask;
         }
