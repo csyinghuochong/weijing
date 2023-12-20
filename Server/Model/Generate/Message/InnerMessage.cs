@@ -4229,6 +4229,9 @@ namespace ET
 		[ProtoMember(1)]
 		public List<int> GuessIds = new List<int>();
 
+		[ProtoMember(2)]
+		public List<int> LastGuessRewatd = new List<int>();
+
 	}
 
 }

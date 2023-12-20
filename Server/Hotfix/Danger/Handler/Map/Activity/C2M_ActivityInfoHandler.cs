@@ -39,6 +39,7 @@ namespace ET
                         UnitId = unit.Id,   
                    });
             activityV1Info.GuessIds = r_GameStatusResponse.GuessIds;
+            activityV1Info.LastGuessRewatd = r_GameStatusResponse.LastGuessRewatd;  
             response.ActivityV1Info = activityV1Info;
 
             reply();
