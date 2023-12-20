@@ -174,7 +174,7 @@ namespace ET
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
             self.CostUnionGoldText.GetComponent<Text>().text =
-                    $"消耗家族金币：{unionKeJiConfig.CostUnionGold / 10000f:0.####}万/{self.UnionMyInfo.UnionGold / 10000f:0.####}万";
+                    $"消耗家族金币：{unionKeJiConfig.CostUnionGold / 10000f:0.#}万/{self.UnionMyInfo.UnionGold / 10000f:0.#}万";
             self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:0.##}小时";
         }
 

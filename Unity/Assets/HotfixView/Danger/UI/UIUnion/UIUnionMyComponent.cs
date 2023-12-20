@@ -311,12 +311,12 @@ namespace ET
                 if (r2c_roleEquip.UnionMyInfo.UnionGold <= unionConfig.UnionGoldLimit)
                 {
                     self.Text_UnionGold.GetComponent<Text>().text =
-                            $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.####}万/{unionConfig.UnionGoldLimit / 10000f:0.####}万";
+                            $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.#}万/{unionConfig.UnionGoldLimit / 10000f:0.#}万";
                 }
                 else
                 {
                     self.Text_UnionGold.GetComponent<Text>().text =
-                            $"{unionConfig.UnionGoldLimit / 10000f:0.####}万/{unionConfig.UnionGoldLimit / 10000f:0.####}万";
+                            $"{unionConfig.UnionGoldLimit / 10000f:0.#}万/{unionConfig.UnionGoldLimit / 10000f:0.#}万";
                 }
             }
             else
