@@ -17,6 +17,7 @@ namespace ET
 
     public class UIFenXiangComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Type4;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -57,6 +58,11 @@ namespace ET
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
+            self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
+            if (GlobalHelp.GetPlatform() == 5)
+            {
+                self.Btn_Type4.SetActive(false);
+            }
 
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             UIPageButtonComponent uIPageButtonComponent = uiPageButton.AddComponent<UIPageButtonComponent>();
