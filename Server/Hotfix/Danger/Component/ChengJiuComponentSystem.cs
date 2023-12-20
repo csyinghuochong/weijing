@@ -43,6 +43,15 @@ namespace ET
 
         public static void OnLogin(this ChengJiuComponent self)
         {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsLong(NumericType.RechargeNumber) < 500 && self.JingLingList.Contains(10003))
+            {
+                Log.Console($"充值小于500有精灵龟: {self.Id}");
+                self.JingLingList.Remove(10003);
+                self.JingLingId = 0;
+                self.JingLingUnitId = 0;
+            }
+
             if (self.RandomDrop == 1)
             {
                 return;
