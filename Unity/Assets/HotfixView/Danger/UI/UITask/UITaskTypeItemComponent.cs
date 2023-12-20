@@ -74,6 +74,11 @@ namespace ET
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/10环)";
             }
+            if (taskType == 10)
+            {
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber);
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/100环)";
+            }
 
             self.Ima_Ongoing.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Completed);
             self.Ima_CompleteTask.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Completed);
