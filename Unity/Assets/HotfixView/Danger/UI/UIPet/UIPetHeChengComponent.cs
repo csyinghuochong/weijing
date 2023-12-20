@@ -60,6 +60,11 @@ namespace ET
 
         public static  void OnClickHeCheng(this UIPetHeChengComponent self)
         {
+            if (self.ZoneScene().GetComponent<PetComponent>().RolePetInfos.Count < 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("最少有3个宠物才可以开启合成！");
+                return;
+            }
             if (self.HeChengPet_Left == null || self.HeChengPet_Right == null)
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
