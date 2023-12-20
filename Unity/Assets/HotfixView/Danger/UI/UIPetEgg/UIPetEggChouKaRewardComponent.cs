@@ -36,7 +36,7 @@ namespace ET
         public static void OnInitUI(this UIPetEggChouKaRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.TextTitle.GetComponent<Text>().text = $"今日探宝次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa)}";
+            self.TextTitle.GetComponent<Text>().text = $"今日探索次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber)}";
 
             foreach (KeyValuePair<int, string> keyValuePair in ConfigHelper.PetExploreReward)
             {
