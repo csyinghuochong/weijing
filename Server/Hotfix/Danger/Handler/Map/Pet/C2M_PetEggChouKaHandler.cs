@@ -53,10 +53,9 @@ namespace ET
 
             if (newValue > oldValue)
             {
-                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, RandomHelper.RandomNumber(1,6), 0);
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, RandomHelper.RandomNumber(5,16), 0);
             }
             int exploreLuck = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
-
             List <RewardItem> rewardItems = new List<RewardItem>();
             for (int i = 0; i < request.ChouKaType; i++)
             {

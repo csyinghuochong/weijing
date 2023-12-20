@@ -196,7 +196,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo , 2, 0);
+                        self.PetXiLian(rolePetInfo , 2, 0, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -368,7 +368,7 @@ namespace ET
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId) 
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId, int lucky) 
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -445,6 +445,7 @@ namespace ET
         //第一次获得宠物的时候调用
         public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0)
         {
+            Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
             List<int> weight = new List<int>(petConfig.SkinPro);
 
@@ -455,9 +456,18 @@ namespace ET
             }
            
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
-           
+
+            int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
+
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
-            newpet = self.PetXiLian(newpet, 1, 0); 
+
+            newpet = self.PetXiLian(newpet, 1, 0, petluckly);
+
+            if (petluckly >= 100)
+            {
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, petluckly - 100, 0);
+            }
+
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
@@ -467,8 +477,8 @@ namespace ET
             m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
             m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
 
-            self.GetParent<Unit>().GetComponent<ChengJiuComponent>().OnGetPet(newpet);
-            self.GetParent<Unit>().GetComponent<TaskComponent>().OnGetPet(newpet);
+            unit.GetComponent<ChengJiuComponent>().OnGetPet(newpet);
+            unit.GetComponent<TaskComponent>().OnGetPet(newpet);
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
 
             //如果有皮肤的话更新一次角色属性
