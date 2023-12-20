@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -23,6 +24,17 @@ namespace ET
             }
 
             unit.GetComponent<NumericComponent>().ApplyChange( null,NumericType.V1ChouKaNumber, 1, 0 );
+
+            int dropId = ActivityConfigHelper.ChouKaDropId[0];
+            ServerInfoComponent serverInfoComponent = unit.DomainScene().GetComponent<ServerInfoComponent>();
+            if (serverInfoComponent != null)
+            {
+                dropId = serverInfoComponent.ServerInfo.ChouKaDropId;
+            }
+
+            List<RewardItem> rewardItems = new List<RewardItem>();  
+            DropHelper.DropIDToDropItem_2(dropId, rewardItems);
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;

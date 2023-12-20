@@ -235,5 +235,7 @@ namespace ET
 		 public const ushort R2M_RankSeasonTowerResponse = 20232;
 		 public const ushort M2A_ActivityGuessRequest = 20233;
 		 public const ushort A2M_ActivityGuessResponse = 20234;
+		 public const ushort M2A_ActivitySelfGuessIds = 20235;
+		 public const ushort A2M_ActivitySelfGuessIds = 20236;
 	}
 }

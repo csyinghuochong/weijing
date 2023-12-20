@@ -2004,3 +2004,19 @@ message A2M_ActivityGuessResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+//ResponseType A2M_ActivitySelfGuessIds
+message M2A_ActivitySelfGuessIds // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+	int64 UnitId = 1;
+}
+
+message A2M_ActivitySelfGuessIds // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    repeated int32 GuessIds = 1;
+}

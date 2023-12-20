@@ -30,10 +30,17 @@ namespace ET
 
             ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
             activityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
-            //自己的竞猜数字
             activityV1Info.GuessIds.Clear();
 
+            long activitySceneid = DBHelper.GetActivityServerId(  unit.DomainZone() );
+            A2M_ActivitySelfGuessIds r_GameStatusResponse = (A2M_ActivitySelfGuessIds)await ActorMessageSenderComponent.Instance.Call
+                   (activitySceneid, new M2A_ActivitySelfGuessIds()
+                   {
+                        UnitId = unit.Id,   
+                   });
+            activityV1Info.GuessIds = r_GameStatusResponse.GuessIds;
             response.ActivityV1Info = activityV1Info;
+
             reply();
             await ETTask.CompletedTask;
         }

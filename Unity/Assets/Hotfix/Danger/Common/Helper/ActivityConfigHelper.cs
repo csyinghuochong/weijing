@@ -49,7 +49,22 @@ namespace ET
         /// <summary>
         /// 第一个字免费， 第二个字开始消耗道具.  
         /// </summary>
-        public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";   
+        public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";
+
+        public static string GetGuessCostItem(int index)
+        {
+            if (index == 0)
+            {
+                return string.Empty;
+            }
+            string[] costitem = GuessCostItem.Split(',');
+
+            if (index >= costitem.Length)
+            {
+                return costitem[costitem.Length - 1];
+            }
+            return costitem[index]; 
+        }
 
         /// <summary>
         /// 消费钻石奖励

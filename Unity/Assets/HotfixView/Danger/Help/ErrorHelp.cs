@@ -35,6 +35,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_HouBiNotEnough, "货币不足!");
             ErrorHintList.Add(ErrorCode.ERR_ItemBing, "此道具为绑定道具!");
             ErrorHintList.Add(ErrorCode.ERR_EquipChuanChengFail, "装备传承失败!");
+            ErrorHintList.Add(ErrorCode.ERR_AlreadyLearn, "已经学习了该技能!");
             ErrorHintList.Add(ErrorCode.ERR_UseSkillInCD1, "技能冷却中...");
             ErrorHintList.Add(ErrorCode.ERR_UseSkillInCD2, "技能公共冷却中!");
             ErrorHintList.Add(ErrorCode.ERR_UseSkillInCD3, "主动技能冷却中!");
@@ -145,7 +146,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_PlayerHaveUnion, "玩家已经有家族了");
             ErrorHintList.Add(ErrorCode.ERR_Union_HavActive, "只能同时研究一个科技");
             ErrorHintList.Add(ErrorCode.ERR_Union_NotActive, "当前没有正在研究的科技");
-            
+            ErrorHintList.Add(ErrorCode.ERR_Already_Guess, "已经竞猜该数字");
+
             ErrorHintList.Add(ErrorCode.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyFinish, "活动已经结束");
             ErrorHintList.Add(ErrorCode.ERR_MysteryItem_Max, "此道具每日购买次数已达上限");

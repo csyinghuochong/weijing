@@ -223,6 +223,7 @@ namespace ET
         public const int ERR_PlayerHaveUnion = 301010;
         public const int ERR_Union_HavActive = 301011;
         public const int ERR_Union_NotActive = 301012;
+        public const int ERR_Already_Guess = 301013;
 
         //赏金任务
         public const int ERR_ShangJinNumFull = 301101;                              //赏金任务完成上限
