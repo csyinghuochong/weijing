@@ -14904,9 +14904,6 @@ namespace ET
 		[ProtoMember(1)]
 		public List<int> GuessIds = new List<int>();
 
-		[ProtoMember(2)]
-		public List<long> GuessLastTime = new List<long>();
-
 		[ProtoMember(3)]
 		public List<int> ConsumeDiamondReward = new List<int>();
 

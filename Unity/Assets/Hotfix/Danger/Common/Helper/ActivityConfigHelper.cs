@@ -39,6 +39,7 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> ChouKaNumberReward = new Dictionary<int, string>()
         {
+            {  1,   "1;0" },
             {  3,   "1;0" },
             {  10,  "1;0" },
         };
@@ -51,6 +52,11 @@ namespace ET
         /// </summary>
         public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";
 
+        /// <summary>
+        /// 开启消耗
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static string GetGuessCostItem(int index)
         {
             if (index == 0)
@@ -58,12 +64,11 @@ namespace ET
                 return string.Empty;
             }
             string[] costitem = GuessCostItem.Split(',');
-
-            if (index >= costitem.Length)
+            if (index > costitem.Length)
             {
                 return costitem[costitem.Length - 1];
             }
-            return costitem[index]; 
+            return costitem[index - 1]; 
         }
 
         /// <summary>

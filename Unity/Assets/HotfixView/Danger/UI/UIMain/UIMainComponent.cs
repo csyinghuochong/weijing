@@ -2230,7 +2230,40 @@ namespace ET
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
             await ETTask.CompletedTask;
+            //UI命名规则
+            //UIActivityV1  UIActivityV1ChouKa  UIActivityV1Guess    UIActivityV1Consume UIActivityV1HongBao  UIActivityV1Shop
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
+            NumericComponent numericComponent= unit.GetComponent<NumericComponent>();
+
+            Log.ILog.Debug($"今日消耗钻石:{numericComponent.GetAsInt(NumericType.V1DayCostDiamond)}");
+            Log.ILog.Debug($"今日充值数量:{numericComponent.GetAsInt(NumericType.V1RechageNumber)}");     //充值数量/98=总共可以领取的红包数量
+            Log.ILog.Debug($"今日领取红包:{numericComponent.GetAsInt(NumericType.V1HongBaoNumber)}");     
+
+            C2M_ActivityInfoRequest request_1 = new C2M_ActivityInfoRequest();
+            M2C_ActivityInfoResponse response_1 = (M2C_ActivityInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_1);
+
+            Log.ILog.Debug($"今日抽卡掉落ID: {response_1.ActivityV1Info.ChouKaDropId}");   //DropHelper.DropIDToShowItem() 展示今日奖品
+            Log.ILog.Debug($"今日已竞猜数字: {response_1.ActivityV1Info.GuessIds.Count}");  //数字012345 对应元旦新年快乐
+            Log.ILog.Debug($"今日已领取抽卡次数奖励: {response_1.ActivityV1Info.ChouKaNumberReward.Count}");
+            Log.ILog.Debug($"今日已领取消费次数奖励: {response_1.ActivityV1Info.ConsumeDiamondReward.Count}");
             
+            //开始抽奖
+            C2M_ActivityChouKaRequest request_2 = new C2M_ActivityChouKaRequest() { };
+            M2C_ActivityChouKaResponse response_2 = (M2C_ActivityChouKaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_2);
+
+            //今日抽卡次数奖励
+            C2M_ActivityRewardRequest request_3 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_ChouKa, RewardId = 1 };
+            M2C_ActivityRewardResponse response_3 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_3);
+            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Add(1);
+            Log.Debug("已领取抽卡奖励：" + self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Count);
+
+            //竞猜。 第二个数字要需要需要道具ActivityConfigHelper.GuessCostItem
+            C2M_ActivityGuessRequest request_4 = new C2M_ActivityGuessRequest() { GuessId = 0 };
+            M2C_ActivityGuessResponse response_4 = (M2C_ActivityGuessResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_4);
+            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.GuessIds.Add(0);
+            Log.Debug("已竞猜数字：" + self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.GuessIds.Count);
+            //新年商店参考战场商店。StoreSellConfig  C2M_StoreBuyRequest
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)
