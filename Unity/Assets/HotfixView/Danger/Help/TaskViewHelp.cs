@@ -497,7 +497,7 @@ namespace ET
 
         public string GetGiveItem(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("给予一件道具 {0}/{1}");
+            string progress = GameSettingLanguge.LoadLocalization("给予符合要求的道具 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }
