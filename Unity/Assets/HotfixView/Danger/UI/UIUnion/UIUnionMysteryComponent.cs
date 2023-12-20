@@ -14,6 +14,7 @@ namespace ET
     public class UIUnionMysteryComponent: Entity, IAwake, IDestroy
     {
         public UI UIPageButton;
+        public GameObject Btn_ShopB;
         public UIPageViewComponent UIPageView;
         public GameObject FunctionSetBtn;
 

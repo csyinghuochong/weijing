@@ -120,18 +120,28 @@ namespace ET
             {
                 return ErrorCode.ERR_NotFindAccount;
             }
-            /*
-            //判断邮件是否已满
-            if (dBMainInfo.MailInfoList.Count > 99) {
-                return ErrorCode.ERR_MailFull;
-            }
-            */
-            //存储邮件
-            if (dBMainInfo.MailInfoList.Count > 100)
+
+            List<MailInfo> mailinfolist = dBMainInfo.MailInfoList;
+            for (int i = mailinfolist.Count - 1; i >= 0; i--)
             {
-                dBMainInfo.MailInfoList.RemoveAt(0);
+                if (mailinfolist[i].ItemList.Count != 1)
+                {
+                    continue;
+                }
+                if (mailinfolist[i].ItemList[0].ItemID == 10032003)
+                {
+                    mailinfolist.RemoveAt(i);
+                    continue;
+                }
             }
-            dBMainInfo.MailInfoList.Add(mailInfo);
+
+            //存储邮件
+            if (mailinfolist.Count > 100)
+            {
+                mailinfolist.RemoveAt(0);
+            }
+            mailinfolist.Add(mailInfo);
+
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
             return d2GSave.Error;
         }
