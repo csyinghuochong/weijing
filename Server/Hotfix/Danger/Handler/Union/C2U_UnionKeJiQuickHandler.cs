@@ -31,8 +31,10 @@ namespace ET
                 return;
             }
 
+            int cost = UnionHelper.CalcuNeedeForAccele(dBUnionInfo.UnionInfo.KeJiActiteTime, unionKeJiConfig.NeedTime);
+            
             ////需要向游戏服发送协议扣除钻石
-            U2M_UnionKeJiQuickRequest r2M_RechargeRequest = new U2M_UnionKeJiQuickRequest() { };
+            U2M_UnionKeJiQuickRequest r2M_RechargeRequest = new U2M_UnionKeJiQuickRequest() { Cost = cost };
             M2U_UnionKeJiQuickResponse m2G_RechargeResponse = (M2U_UnionKeJiQuickResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, r2M_RechargeRequest);
             if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
             {

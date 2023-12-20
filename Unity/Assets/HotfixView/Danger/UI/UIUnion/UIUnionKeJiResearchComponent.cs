@@ -170,6 +170,7 @@ namespace ET
             {
                 self.AttributeText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionKeJiConfig.EquipPropreAdd);
             }
+
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
             self.CostUnionGoldText.GetComponent<Text>().text =
@@ -211,7 +212,7 @@ namespace ET
             }
         }
 
-        public static void  OnQuickBtn(this UIUnionKeJiResearchComponent self)
+        public static void OnQuickBtn(this UIUnionKeJiResearchComponent self)
         {
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.Position]);
             if (self.UnionMyInfo.KeJiActiteTime == 0)
@@ -233,22 +234,23 @@ namespace ET
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "加速科技", $"是否花费200钻石加速科技", async () =>
-            {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                long unionId = unit.GetUnionId();
-                C2U_UnionKeJiQuickRequest request = new C2U_UnionKeJiQuickRequest() { UnionId = unionId, Position = self.Position };
-                U2C_UnionKeJiQuickResponse response =
-                        (U2C_UnionKeJiQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-                if (response.Error != ErrorCode.ERR_Success)
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "加速科技",
+                $"是否花费{UnionHelper.CalcuNeedeForAccele(self.UnionMyInfo.KeJiActiteTime, unionKeJiConfig.NeedTime)}钻石加速科技", async () =>
                 {
-                    return;
-                }
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    long unionId = unit.GetUnionId();
+                    C2U_UnionKeJiQuickRequest request = new C2U_UnionKeJiQuickRequest() { UnionId = unionId, Position = self.Position };
+                    U2C_UnionKeJiQuickResponse response =
+                            (U2C_UnionKeJiQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-                self.UnionMyInfo = response.UnionInfo;
-                self.UpdateInfo(self.Position);
-            }, () => { }).Coroutine();
+                    if (response.Error != ErrorCode.ERR_Success)
+                    {
+                        return;
+                    }
+
+                    self.UnionMyInfo = response.UnionInfo;
+                    self.UpdateInfo(self.Position);
+                }, () => { }).Coroutine();
         }
 
         public static async ETTask OnStartBtn(this UIUnionKeJiResearchComponent self)

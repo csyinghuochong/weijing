@@ -956,6 +956,7 @@ message U2M_UnionKeJiQuickRequest // IActorRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int32 Cost = 1;
 }
 
 message M2U_UnionKeJiQuickResponse // IActorResponse

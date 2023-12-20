@@ -2018,6 +2018,9 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(1)]
+		public int Cost { get; set; }
+
 	}
 
 	[Message(InnerOpcode.M2U_UnionKeJiQuickResponse)]
