@@ -208,6 +208,14 @@ namespace ET
 
             C2M_TeamDungeonBoxRewardRequest actor_GetFubenRewardRequest = new C2M_TeamDungeonBoxRewardRequest() { BoxIndex = index, RewardItem = rewardItem };
             M2C_TeamDungeonBoxRewardResponse r2c_Reward = (M2C_TeamDungeonBoxRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_GetFubenRewardRequest);
+            if (self.InstanceId == 0)
+            {
+                return;
+            }
+            if (r2c_Reward.Mail == 1)
+            {
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "副本奖励", "由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收", null, null).Coroutine();
+            }
         }
 
         public static void OnUpdateUI(this UITeamDungeonSettlementComponent self, M2C_TeamDungeonSettlement m2C_FubenSettlement)

@@ -3248,6 +3248,7 @@ message M2C_TeamDungeonBoxRewardResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	int32 Mail = 1;
 }
 
 message M2C_TeamDungeonBoxRewardResult // IActorMessage

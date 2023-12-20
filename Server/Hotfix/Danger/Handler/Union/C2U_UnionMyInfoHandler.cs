@@ -67,6 +67,8 @@ namespace ET
                 dBUnionInfo.UnionInfo.Level = 1;
             }
 
+            dBUnionInfo.MysteryFreshTime = 0;
+
             if (dBUnionInfo.UnionInfo.UnionKeJiList.Count < UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count)
             {
                 int curNumber = dBUnionInfo.UnionInfo.UnionKeJiList.Count;

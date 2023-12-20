@@ -33,19 +33,29 @@ namespace ET
                 return;
             }
 
+            LogHelper.LogDebug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");
+            teamDungeonComponent.BoxReward.Add(request.BoxIndex);
+
             ////背包已经直接发邮件，response加一个状态。 客户端弹窗提示“由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收”
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCode.ERR_BagIsFull;
-                reply();
-                return;
-            }
-            teamDungeonComponent.BoxReward.Add(request.BoxIndex);
+                response.Mail = 1;
+                List<BagInfo> bagInfos = new List<BagInfo>();
+                bagInfos.Add(new BagInfo(){ ItemID = request.RewardItem.ItemID, ItemNum = request.RewardItem.ItemNum } );
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Context = "副本奖励";
+                mailInfo.Title = "副本奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                mailInfo.ItemList.AddRange(bagInfos);
 
-            LogHelper.LogDebug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");
-            List<RewardItem> rewardItems = new List<RewardItem>();
-            rewardItems.Add(request.RewardItem);
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                MailHelp.SendUserMail( unit.DomainZone(), unit.Id, mailInfo).Coroutine();
+            }
+            else
+            {
+                List<RewardItem> rewardItems = new List<RewardItem>() { request.RewardItem };
+                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+            }
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             M2C_TeamDungeonBoxRewardResult m2C_HorseNoticeInfo = new M2C_TeamDungeonBoxRewardResult()

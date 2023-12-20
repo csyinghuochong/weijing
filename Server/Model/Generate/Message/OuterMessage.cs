@@ -6845,6 +6845,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public int Mail { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_TeamDungeonBoxRewardResult)]
