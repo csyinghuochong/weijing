@@ -469,7 +469,7 @@ namespace ET
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1);
+            newpet = self.PetXiLian(newpet, 1, 0);
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
