@@ -394,6 +394,22 @@ namespace ET
                 ///long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 ///MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot });
             }
+
+            if (hour == 0 || hour == 14 || hour == 18 || hour == 21)
+            {
+                int guessIndex = RandomHelper.RandomNumber(0, ActivityConfigHelper.GuessNumber);
+                List<long> playerIds = new List<long>();
+                self.DBDayActivityInfo.GuessPlayerList.TryGetValue(guessIndex, out playerIds);
+                if (playerIds!=null)
+                {
+                    for (int i = 0; i < playerIds.Count; i++)
+                    {
+                        Log.Console($"发放竞猜奖励: {self.DomainZone()}  {playerIds[i]}");
+                    }
+                }
+
+                self.DBDayActivityInfo.GuessPlayerList.Clear();
+            }
         }
     }
 }
