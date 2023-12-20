@@ -1026,7 +1026,7 @@ namespace ET
         /// </summary>
         public static Dictionary<int, int> RingTaskDrop = new Dictionary<int, int>()
         {
-            { 20, 61500001},   //完成10环对应奖励
+            { 20, 61500001},   //完成每20环对应奖励
             { 40, 61500001},
             { 60, 61500001},
             { 80, 61500001},
