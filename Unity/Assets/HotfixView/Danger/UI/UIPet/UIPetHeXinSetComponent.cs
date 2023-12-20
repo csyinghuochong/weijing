@@ -179,14 +179,29 @@ namespace ET
             int number = 0;
             self.uIItems.Clear();
             UICommonHelper.DestoryChild(self.PetHeXinListNode);
+            List<BagInfo> petHeXins = new List<BagInfo>();
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfos[i].ItemID );
-                
-                if (itemConfig.ItemSubType -1 != self.Position)
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+
+                if (itemConfig.ItemSubType - 1 != self.Position)
                 {
                     continue;
                 }
+
+                petHeXins.Add(bagInfos[i]);
+            }
+
+            petHeXins.Sort((bagInfo1, bagInfo2) =>
+            {
+                ItemConfig itemConfig1 = ItemConfigCategory.Instance.Get(bagInfo1.ItemID);
+                ItemConfig itemConfig2 = ItemConfigCategory.Instance.Get(bagInfo2.ItemID);
+                return itemConfig2.UseLv - itemConfig1.UseLv;
+            });
+            
+            for (int i = 0; i < petHeXins.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get( petHeXins[i].ItemID );
                 
                 UIItemComponent uIItemComponent = null;
                 if (number < self.uIItems.Count)
@@ -196,14 +211,14 @@ namespace ET
                 }
                 else
                 {
-                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                    GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(gameObject, self.PetHeXinListNode);
                     gameObject.transform.localScale = Vector3.one;
                     uIItemComponent = self.AddChild<UIItemComponent, GameObject>(gameObject);
                     uIItemComponent.HideItemName();
                     self.uIItems.Add(uIItemComponent);
                 }
-                uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.PetHeXinBag);
+                uIItemComponent.UpdateItem(petHeXins[i], ItemOperateEnum.PetHeXinBag);
                 uIItemComponent.SetClickHandler(self.SelectItemHandlder);
                 uIItemComponent.Label_ItemNum.GetComponent<Text>().text = $"{itemConfig.UseLv}级";
                 number++;
