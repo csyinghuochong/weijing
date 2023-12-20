@@ -148,7 +148,7 @@ namespace ET
 
         public static void UpdateItemNum(this UIUnionMystery_BComponent self)
         {
-            long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(16);
+            long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000163);
             // 货币拥有数量显示
             self.Obj_Lab_BuyPrice.GetComponent<Text>().text = itemNum.ToString();
         }
