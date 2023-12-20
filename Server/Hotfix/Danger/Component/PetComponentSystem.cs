@@ -196,7 +196,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo , 2, 0, 0);
+                        self.PetXiLian(rolePetInfo , 2, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -368,7 +368,7 @@ namespace ET
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId, int lucky) 
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId) 
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -376,7 +376,8 @@ namespace ET
             int addValue = 0;
 
             //超级宠之晶
-            if (itemId == 10010096) {
+            if (itemId == 10010096)
+            {
                 addValue = 50;
             }
 
@@ -396,6 +397,15 @@ namespace ET
                 int maxStart = petConfig.InitStartNum[1];
                 rolePetInfo.Star = RandomHelper.RandomNumber(minStart, maxStart);
             }
+
+            int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
+
+            if (XiLianType == 1 && petluckly >= 100)
+            {
+                Log.Console("幸运值！！！！！");
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, petluckly - 100, 0);
+            }
+
 
             string[] skilll = petConfig.BaseSkillID.Split(';');
             rolePetInfo.PetSkill = new List<int>();
@@ -457,17 +467,9 @@ namespace ET
            
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
 
-            int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
-
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1, 0, petluckly);
-
-            if (petluckly >= 100)
-            {
-                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, petluckly - 100, 0);
-            }
-
+            newpet = self.PetXiLian(newpet, 1);
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
