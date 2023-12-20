@@ -117,6 +117,8 @@ namespace ET
             {
                 return;
             }
+
+            UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend)?.GetComponent<UIFriendComponent>().UIPageButtonComponent.OnSelectIndex(4);
         }
 
     }
