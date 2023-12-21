@@ -13,13 +13,16 @@ namespace ET
 
         private async ETTask RunAnsyc(EventType.RolePetAdd args)
         {
-            UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIPetChouKaGet);
-            if (uiBattleMain != null)
+            if (args.ZoneScene.GetComponent<BattleMessageComponent>().ShowPetChouKaGet)
             {
-                return;
+                args.ZoneScene.GetComponent<BattleMessageComponent>().RolePetAdds.Add(args);
             }
-            UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIPetChouKaGet);
-            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(args.RolePetInfo, args.OldPetSkin);
+            else
+            {
+                args.ZoneScene.GetComponent<BattleMessageComponent>().ShowPetChouKaGet = true;
+                UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIPetChouKaGet);
+                uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(args.RolePetInfo, args.OldPetSkin);
+            }
         }
     }
 }

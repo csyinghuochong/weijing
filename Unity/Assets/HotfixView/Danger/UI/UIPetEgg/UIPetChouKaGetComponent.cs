@@ -109,7 +109,10 @@ namespace ET
 
         public static void OnBtn_Close(this UIPetChouKaGetComponent self)
         {
-            UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet );
+            Scene zoneScene = self.ZoneScene();
+            UIHelper.Remove(zoneScene, UIType.UIPetChouKaGet );
+            zoneScene.GetComponent<BattleMessageComponent>().ShowPetChouKaGet = false;
+            zoneScene.GetComponent<BattleMessageComponent>().ShowRolePetAdd();
         }
 
         public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, RolePetInfo oldRolePetInfo = null)

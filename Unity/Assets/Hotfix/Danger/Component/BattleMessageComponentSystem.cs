@@ -12,6 +12,16 @@ namespace ET
             }
         }
 
+        public static void ShowRolePetAdd(this BattleMessageComponent self)
+        {
+            if (self.RolePetAdds.Count == 0)
+            {
+                return;
+            }
+            EventSystem.Instance.PublishClass(self.RolePetAdds[0]);
+            self.RolePetAdds.RemoveAt(0);
+        }
+
         public static void SetRideTargetUnit(this BattleMessageComponent self, long targetid)
         {
             self.RideTargetUnit = targetid;

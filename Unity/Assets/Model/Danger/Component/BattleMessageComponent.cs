@@ -39,5 +39,8 @@ namespace ET
         public long ShoutInterval;
 
         public int FirstWinBossId;
+
+        public bool ShowPetChouKaGet = false;
+        public List<EventType.RolePetAdd> RolePetAdds = new List<EventType.RolePetAdd>();
     }
 }
