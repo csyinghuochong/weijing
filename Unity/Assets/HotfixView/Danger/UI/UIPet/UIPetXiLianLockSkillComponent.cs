@@ -133,10 +133,12 @@ namespace ET
                     break;
                 }
             }
-
+            HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
             UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet).GetComponent<UIPetComponent>().UIPageView
                     .UISubViewList[(int)PetPageEnum.PetXiLian];
-            ui.GetComponent<UIPetXiLianComponent>().OnUpdateUI();
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(response.rolePetInfo.Id);
+            ui.GetComponent<UIPetXiLianComponent>().OnXiLianSelect(rolePetInfo);
+            
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetXiLianLockSkill);
         }
 
