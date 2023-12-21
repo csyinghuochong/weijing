@@ -69,7 +69,7 @@ namespace ET
                 if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
-                    //unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     removeIds.Add(uid);
                     continue;
                 }

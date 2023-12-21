@@ -474,7 +474,7 @@ namespace ET
                 {
                     cmd.SkillID = skillIfo.SkillId;
                 }
-                cmd.SkillID = 90011947;
+                //cmd.SkillID = 90011947;
                 cmd.TargetID = targetIdList[i];
                 skillManagerComponent.OnUseSkill(cmd, false);
             }
