@@ -33,7 +33,7 @@ namespace ET
 
         public void UpdatePullPlayer()
         {
-            List<Unit> players = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(2f * this.SkillConf.DamgeRange[0]));
+            List<Unit> players = AIHelp.GetEnemyUnit(this.TheUnitFrom, UnitType.Player, this.NowPosition, (float)(2f * this.SkillConf.DamgeRange[0]));
             for (int i = players.Count - 1; i >= 0; i--)
             {
                 Unit unit = players[i];
@@ -53,6 +53,7 @@ namespace ET
                 unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
                 unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
                 players[i].Stop(0);
+                players[i].FindPathMoveToAsync(this.NowPosition, null, false).Coroutine();
             }
 
             List<long> removeIds = new List<long>();
@@ -68,7 +69,7 @@ namespace ET
                 if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
-                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                    //unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     removeIds.Add(uid);
                     continue;
                 }
@@ -100,12 +101,11 @@ namespace ET
                 buffData_2.SkillId = this.SkillConf.Id;
                 buffData_2.BuffId = 99002001;
                 unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
-
-                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
                 aIComponent.TargetPoint.Clear();
                 aIComponent.TargetPoint.Add(this.NowPosition);
                 monsters[i].Stop(0);
                 aIComponent.AIConfigId = 9;   //牵引AI
+                //unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
             }
 
             List<long> removeIds = new List<long>();
@@ -157,25 +157,35 @@ namespace ET
             }
         }
 
-        public void FinishPullMonster()
+        public void FinishPullUnits()
         {
-            for (int i = 0; i < this.HurtIds.Count; i++)
+            foreach( (long unitid, long htime) in this.LastHurtTimes)
             {
-                Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[i]);
+                Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(unitid);
                 if (unit == null)
                 {
                     continue;
                 }
-                AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                if (aIComponent == null)
+
+                if (unit.Type == UnitType.Monster)
                 {
-                    continue;
+                    AIComponent aIComponent = unit.GetComponent<AIComponent>();
+                    if (aIComponent == null)
+                    {
+                        continue;
+                    }
+                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                    aIComponent.TargetPoint.Clear();
                 }
-                unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
-                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
-                aIComponent.TargetPoint.Clear();
+                else
+                {
+                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                }
             }
             this.HurtIds.Clear();
+            this.LastHurtTimes.Clear();
         }
 
         public override void OnUpdate()
@@ -214,7 +224,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            this.FinishPullMonster();
+            this.FinishPullUnits();
             this.Clear();
         }
     }

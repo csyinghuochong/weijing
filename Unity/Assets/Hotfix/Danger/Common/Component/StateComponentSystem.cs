@@ -69,7 +69,7 @@ namespace ET
                     return ErrorCode.ERR_CanNotUseSkill_Dizziness;
                 }
             }
-            if (self.StateTypeGet(StateTypeEnum.JiTui))
+            if (self.StateTypeGet(StateTypeEnum.JiTui) || self.StateTypeGet(StateTypeEnum.BePulled))
             {
                 return ErrorCode.ERR_CanNotUseSkill_JiTui;
             }
@@ -105,7 +105,7 @@ namespace ET
 
         public static int CanMove(this StateComponent self)
         {
-            if (self.StateTypeGet(StateTypeEnum.NoMove))
+            if (self.StateTypeGet(StateTypeEnum.NoMove) || self.StateTypeGet(StateTypeEnum.BePulled))
             {
                 return ErrorCode.ERR_CanNotMove_1;
             }
