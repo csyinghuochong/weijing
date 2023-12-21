@@ -93,7 +93,8 @@ namespace ET
             }
 
             self.ActivityV1Info.LastGuessReward.Clear();
-
+            self.ActivityV1Info.ChouKaNumberReward.Clear(); 
+            self.ActivityV1Info.ConsumeDiamondReward.Clear();   
         }
 #endif
 
