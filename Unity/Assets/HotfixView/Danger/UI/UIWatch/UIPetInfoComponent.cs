@@ -485,7 +485,7 @@ namespace ET
                     ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
                     self.PetSkillUIList.Add(ui_item);
                 }
-                ui_item.OnUpdateUI(skills[i], ABAtlasTypes.PetSkillIcon);
+                ui_item.OnUpdateUI(skills[i], ABAtlasTypes.PetSkillIcon,rolePetInfo.LockSkill.Contains(skills[i]));
             }
 
             for (int i = skills.Count; i < self.PetSkillUIList.Count; i++)

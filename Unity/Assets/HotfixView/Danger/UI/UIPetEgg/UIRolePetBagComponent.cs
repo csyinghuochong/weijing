@@ -260,7 +260,7 @@ namespace ET
                     self.UICommonSkillItemComponents.Add(ui_item);
                 }
 
-                ui_item.OnUpdateUI(skills[i], ABAtlasTypes.PetSkillIcon);
+                ui_item.OnUpdateUI(skills[i], ABAtlasTypes.PetSkillIcon,rolePetInfo.LockSkill.Contains(skills[i]));
             }
 
             for (int i = skills.Count; i < self.UICommonSkillItemComponents.Count; i++)
