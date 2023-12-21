@@ -39,7 +39,7 @@ namespace ET
             self.TextSkillName = rc.Get<GameObject>("TextSkillName");
             self.NewSkillHint = rc.Get<GameObject>("NewSkillHint");
 
-            self.Image_Lock.SetActive(false);
+            self.Image_Lock?.SetActive(false);
             self.BorderImg.SetActive(false);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
@@ -87,7 +87,7 @@ namespace ET
             self.addTip = addtip;
 
             self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
-            self.Image_Lock.SetActive(lockSkill);
+            self.Image_Lock?.SetActive(lockSkill);
         }
 
         public static async ETTask BeginDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
