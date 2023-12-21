@@ -150,6 +150,12 @@ namespace ET
                 Log.Console($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
             }
 
+            if (numericComponent.UpdateNumber < 1)
+            {
+                numericComponent.UpdateNumber = 1;
+                numericComponent.ApplyValue(NumericType.PetExploreLuckly, 100, false);
+            }
+
             ///赛季数据[赛季开始]
             long serverTime = TimeHelper.ServerNow();
             long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);

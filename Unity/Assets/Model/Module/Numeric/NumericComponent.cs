@@ -44,11 +44,14 @@ namespace ET
 		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
 		public Dictionary<int, long> NumericDic = new Dictionary<int, long>();
 
-		//重置所有属性
-		public void ResetProperty()
+		public int UpdateNumber = 0;  //1PetExploreLuckly
+
+        //重置所有属性
+        public void ResetProperty()
 		{
-			long max = (int)NumericType.Max;
-			foreach (int key in this.NumericDic.Keys)
+			long max = (int)NumericType.Max; 
+
+            foreach (int key in this.NumericDic.Keys)
 			{
 
 				//这个范围内的属性为特殊属性不进行重置
