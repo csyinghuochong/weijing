@@ -261,6 +261,12 @@ namespace ET
 			{
 				self.RewardUIList[i].GameObject.SetActive(false);
 			}
+
+			self.Button_Going.transform.GetComponentInChildren<Text>().text = "前往任务";
+			if (self.TaskConfig.TargetType == TaskTargetType.GiveItem_10)
+			{
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交装备";
+			}
 		}
 
 		public static void OnRecvTaskUpdate(this UITaskComponent self)
