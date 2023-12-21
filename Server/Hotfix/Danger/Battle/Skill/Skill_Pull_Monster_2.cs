@@ -105,7 +105,7 @@ namespace ET
                 aIComponent.TargetPoint.Add(this.NowPosition);
                 monsters[i].Stop(0);
                 aIComponent.AIConfigId = 9;   //牵引AI
-                //unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
             }
 
             List<long> removeIds = new List<long>();
