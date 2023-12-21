@@ -44,6 +44,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_UseSkillInCD6, "公共技能冷却中!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_1, "当前状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_Rigidity, "僵直状态无法释放技能!");
+            ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill, "当前状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_NetWait, "消息未返回无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_Dizziness, "眩晕状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_JiTui, "击退状态无法释放技能!");

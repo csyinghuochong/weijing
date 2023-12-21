@@ -58,6 +58,10 @@ namespace ET
 
         public static int CanUseSkill(this StateComponent self, SkillConfig skillConfig, bool checkDead)
         {
+            if (self.StateTypeGet(StateTypeEnum.BePulled))
+            {
+                return ErrorCode.ERR_CanNotMove_1;
+            }
             if (self.IsNetWaitEndTime())
             {
                 return ErrorCode.ERR_CanNotUseSkill_NetWait;
@@ -105,7 +109,11 @@ namespace ET
 
         public static int CanMove(this StateComponent self)
         {
-            if (self.StateTypeGet(StateTypeEnum.NoMove) || self.StateTypeGet(StateTypeEnum.BePulled))
+            if (self.StateTypeGet(StateTypeEnum.BePulled))
+            {
+                return ErrorCode.ERR_CanNotMove_1;
+            }
+            if (self.StateTypeGet(StateTypeEnum.NoMove))
             {
                 return ErrorCode.ERR_CanNotMove_1;
             }
