@@ -2259,7 +2259,7 @@ namespace ET
             self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Add(1);
             Log.Debug("已领取抽卡奖励：" + self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Count);
 
-            //竞猜。 第二个数字要需要需要道具ActivityConfigHelper.GuessCostItem
+            //竞猜。 第二个数字要需要需要道具ActivityConfigHelper.GuessCostItem  竞猜奖励ActivityConfigHelper.GuessRewardList
             C2M_ActivityGuessRequest request_4 = new C2M_ActivityGuessRequest() { GuessId = 0 };
             M2C_ActivityGuessResponse response_4 = (M2C_ActivityGuessResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_4);
             self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.GuessIds.Add(0);

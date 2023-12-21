@@ -52,6 +52,18 @@ namespace ET
         /// </summary>
         public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";
 
+
+        /// <summary>
+        /// 竞猜时间点奖励
+        /// </summary>
+        public static Dictionary<int, string> GuessRewardList = new Dictionary<int, string>()
+        {
+             { 0, "1;0"},
+             { 14, "1;0"},
+             { 18, "1;0"},
+             { 21, "1;0"},
+        };
+
         /// <summary>
         /// 开启消耗
         /// </summary>
