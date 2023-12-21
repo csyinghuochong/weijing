@@ -27,10 +27,7 @@ namespace ET
 			{
 				selfpet = true;
             }
-			if (unitInfo.UnitType == UnitType.Npc && unitInfo.ConfigId == 20000106 && !GMHelp.GmAccount.Contains(currentScene.ZoneScene().GetComponent<AccountInfoComponent>().Account))
-			{
-                return null;
-            }
+			
 
             if (mainScene  && (SettingHelper.NoShowOther|| UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
                 && !mainHero && !selfpet)

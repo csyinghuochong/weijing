@@ -50,7 +50,7 @@ namespace ET
             self.Btn_RolePetHeXin.GetComponent<Button>().onClick.AddListener(self.OnBtn_RolePetHeXin);
 
             self.PetLucky = rc.Get<GameObject>("PetLucky");
-            self.PetLucky.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) ) ;
+            self.PetLucky.SetActive( true) ;
 
             self.UpdateMoney();
             self.OnUpdateInfo();

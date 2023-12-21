@@ -1340,7 +1340,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), notice);
 
-            if(ComHelp.IsInnerNet() && numericComponent.GetAsInt(NumericType.RingTaskId) == 0)
+            if( numericComponent.GetAsInt(NumericType.RingTaskId) == 0)
             {
                 int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
                 numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);

@@ -58,7 +58,7 @@ namespace ET
             self.closeButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseStore(); });
 
             self.Btn_ShopB = rc.Get<GameObject>("Btn_ShopB");
-            self.Btn_ShopB.SetActive(GMHelp.GmAccount.Contains(  self.ZoneScene().GetComponent<AccountInfoComponent>().Account )) ;
+            self.Btn_ShopB.SetActive(true) ;
         }
     }
 
