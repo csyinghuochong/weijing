@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIItemTipsComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Lab_FuLingDes;
+        public GameObject Lab_FuLing;
         public GameObject Btn_Split;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
@@ -52,6 +54,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Lab_FuLingDes = rc.Get<GameObject>("Lab_FuLingDes");
+            self.Lab_FuLing = rc.Get<GameObject>("Lab_FuLing");
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQulityBg");
             self.TextBtn_Use = rc.Get<GameObject>("TextBtn_Use");
@@ -508,6 +512,14 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请前往赛季界面使用");
                 return;
             }
+            if (itemConfig.ItemSubType == 137)
+            {
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPetEggFuLing);
+                ui.GetComponent<UIPetEggFuLingComponent>().UpdateItemList(self.BagInfo).Coroutine();
+                UIHelper.PlayUIMusic("10010");
+                self.OnCloseTips();
+                return;
+            }
 
             long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
@@ -646,6 +658,8 @@ namespace ET
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
             self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
             self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
+            self.Lab_FuLing.SetActive(false);
+            self.Lab_FuLingDes.SetActive(false);
            
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)
@@ -728,7 +742,16 @@ namespace ET
                 self.Btn_Use.SetActive(true);
                 self.Btn_Split.SetActive(true);
             }
-            
+
+            // 宠物蛋附灵
+            if (itemType == 1 && itemSubType == 102 && self.BagInfo.FuLing == 1)
+            {
+                self.Lab_FuLing.SetActive(true);
+                // self.Lab_FuLing.GetComponent<Text>().color = new Color(175f / 255f, 1, 6f / 255f);
+                self.Lab_FuLingDes.SetActive(true);
+                // self.Lab_FuLingDes.GetComponent<Text>().color = new Color(175f / 255f, 1, 6f / 255f);
+            }
+
             //判定道具为宝石时显示使用变为镶嵌字样
             if (itemType == 4)
             {

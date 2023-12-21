@@ -450,6 +450,7 @@ namespace ET
                                 long chongwudanId = long.Parse(request.OperatePar);
                                 BagInfo chongwudan = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, chongwudanId);
                                 chongwudan.FuLing = 1;
+                                m2c_bagUpdate.BagInfoUpdate.Add(chongwudan);
                                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                                 break;
