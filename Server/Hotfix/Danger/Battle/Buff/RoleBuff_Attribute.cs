@@ -158,6 +158,8 @@ namespace ET
                     //buff來源者再次釋放技能
                     if (!this.TheUnitFrom.IsDisposed)
                     {
+                        Log.Console($"buff触发技能:  {this.mBuffConfig.buffParameterType}");
+
                         C2M_SkillCmd cmd = new C2M_SkillCmd();
                         cmd.SkillID = this.mBuffConfig.buffParameterType;
                         cmd.TargetID = this.TheUnitBelongto.Id;
