@@ -8,7 +8,7 @@ namespace ET
 {
     public class UICommonSkillItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
-
+        public GameObject Image_Lock;
         public GameObject ImageIcon;
         public GameObject ImageKuang;
         public GameObject GameObject;
@@ -31,6 +31,7 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Image_Lock = rc.Get<GameObject>("Image_Lock");
             self.BorderImg = rc.Get<GameObject>("BorderImg");
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.ImageKuang = rc.Get<GameObject>("ImageKuang");
@@ -38,6 +39,7 @@ namespace ET
             self.TextSkillName = rc.Get<GameObject>("TextSkillName");
             self.NewSkillHint = rc.Get<GameObject>("NewSkillHint");
 
+            self.Image_Lock.SetActive(false);
             self.BorderImg.SetActive(false);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
@@ -60,7 +62,7 @@ namespace ET
     public static class UICommonSkillItemComponentSystem
     {
 
-        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, string SkillAtlas = ABAtlasTypes.RoleSkillIcon, string addtip = "")
+        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, string SkillAtlas = ABAtlasTypes.RoleSkillIcon, bool lockSkill = false, string addtip = "")
         {
             self.SkillId = skillId;
             if (!SkillConfigCategory.Instance.Contain(skillId))
@@ -85,6 +87,7 @@ namespace ET
             self.addTip = addtip;
 
             self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
+            self.Image_Lock.SetActive(lockSkill);
         }
 
         public static async ETTask BeginDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
