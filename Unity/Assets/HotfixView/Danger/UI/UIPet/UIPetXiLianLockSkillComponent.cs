@@ -124,9 +124,19 @@ namespace ET
                 return;
             }
 
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            for (int i = 0; i < petComponent.RolePetInfos.Count; i++)
+            {
+                if (petComponent.RolePetInfos[i].Id == response.rolePetInfo.Id)
+                {
+                    petComponent.RolePetInfos[i] = response.rolePetInfo;
+                    break;
+                }
+            }
+
             UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet).GetComponent<UIPetComponent>().UIPageView
                     .UISubViewList[(int)PetPageEnum.PetXiLian];
-            ui.GetComponent<UIPetXiLianComponent>().UpdateConsume().Coroutine();
+            ui.GetComponent<UIPetXiLianComponent>().OnUpdateUI();
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetXiLianLockSkill);
         }
 
