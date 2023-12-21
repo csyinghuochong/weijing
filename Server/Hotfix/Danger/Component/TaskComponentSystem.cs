@@ -510,7 +510,7 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Daily)
             {
                 int dailyTaskNumber = numericComponent.GetAsInt(NumericType.DailyTaskNumber) + 1;
-                if (dailyTaskNumber <= GlobalValueConfigCategory.Instance.Get(58).Value2)
+                if (dailyTaskNumber < GlobalValueConfigCategory.Instance.Get(58).Value2)
                 {
                     numericComponent.ApplyValue(null, NumericType.DailyTaskNumber, dailyTaskNumber, 0);
                     numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv));
@@ -533,7 +533,7 @@ namespace ET
                     DropHelper.DropIDToDropItem_2(dropId, droplist);
                     unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
                 }
-                if (ringTaskNumber <= 100)
+                if (ringTaskNumber < 100)
                 {
                     numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
                     numericComponent.ApplyValue(NumericType.RingTaskNumber, ringTaskNumber);
@@ -546,7 +546,7 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
                 int unionTaskNumber = numericComponent.GetAsInt(NumericType.UnionTaskNumber) + 1;
-                if (unionTaskNumber <=  GlobalValueConfigCategory.Instance.Get(108).Value2)
+                if (unionTaskNumber <  GlobalValueConfigCategory.Instance.Get(108).Value2)
                 {
                     numericComponent.ApplyValue(null, NumericType.UnionTaskNumber, unionTaskNumber, 0);
                     numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv));
