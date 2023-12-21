@@ -395,7 +395,7 @@ namespace ET
                 ///MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot });
             }
 
-            if (hour == 0 || hour == 14 || hour == 18 || hour == 21)
+            if (ActivityConfigHelper.GuessRewardList.ContainsKey(hour))
             {
                 int guessIndex = RandomHelper.RandomNumber(0, ActivityConfigHelper.GuessNumber);
                 List<long> playerIds = null; 
