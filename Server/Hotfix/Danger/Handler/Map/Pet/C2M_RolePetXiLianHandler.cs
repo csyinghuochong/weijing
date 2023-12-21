@@ -139,8 +139,7 @@ namespace ET
 					{
 						petInfo.SkinId = petCof.Skin[RandomHelper.RandomNumber(1, petCof.Skin.Length)];
 					}
-                    petInfo.LockSkill.Clear();
-                    response.rolePetInfo = petInfo;
+					response.rolePetInfo = petInfo;
 					break;
 				case 136:
 					if (petInfo.PetSkill.Count < 2)

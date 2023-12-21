@@ -257,7 +257,6 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 46, ServerIp = $"{ip}:20415", ServerName = "执子之手", ServerOpenTime = 1694170800000, New = 0, Show = 0 });
                 serverItems_1.Add(new ServerItem() { ServerId = 47, ServerIp = $"{ip}:20415", ServerName = "与子偕老", ServerOpenTime = 1694752200000, New = 0, Show = 0 });
 
-                //12月15号合区  流云若梦-金戈铁马  48 50
                 serverItems_1.Add(new ServerItem() { ServerId = 48, ServerIp = $"{ip}:20365", ServerName = "流云若梦", ServerOpenTime = 1695380400000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 49, ServerIp = $"{ip}:20365", ServerName = "欢度国庆", ServerOpenTime = 1695961800000, New = 0, Show = 0 });
                 serverItems_1.Add(new ServerItem() { ServerId = 50, ServerIp = $"{ip}:20365", ServerName = "金戈铁马", ServerOpenTime = 1696566600000, New = 0, Show = 0 });
@@ -273,9 +272,10 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 57, ServerIp = $"{ip}:20375", ServerName = "梦回华夏", ServerOpenTime = 1700800200000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 58, ServerIp = $"{ip}:20475", ServerName = "璀璨之境", ServerOpenTime = 1701405000000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 59, ServerIp = $"{ip}:20485", ServerName = "遗忘森林", ServerOpenTime = 1702009800000, New = 0, Show = 1 });
-
-                //12月15新区 希望之光 60
                 serverItems_1.Add(new ServerItem() { ServerId = 60, ServerIp = $"{ip}:20405", ServerName = "希望之光", ServerOpenTime = 1702614600000, New = 0, Show = 1 });
+
+                //12.22 19:00
+                serverItems_1.Add(new ServerItem() { ServerId = 61, ServerIp = $"{ip}:20435", ServerName = "斗战胜佛", ServerOpenTime = 1703242800000, New = 0, Show = 1 });
             }
 
             return serverItems_1;

@@ -147,6 +147,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请清理一下宠物之核背包！");
                 return;
             }
+            if (self.ZoneScene().GetComponent<PetComponent>().RolePetBag.Count >= 40)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
+                return;
+            }
 
             string needItems = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0];
             if (choukaType == 1 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(needItems))
