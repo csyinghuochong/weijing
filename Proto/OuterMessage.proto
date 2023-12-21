@@ -2026,7 +2026,9 @@ message C2M_RolePetXiLian // IActorLocationRequest
 	int64 PetInfoId = 1;
 	int64 BagInfoID = 2;
 	int32 CostItemNum = 3;
+	string ParamInfo = 4;
 }
+
 message M2C_RolePetXiLian  // IActorLocationResponse
 {
 	int32 RpcId = 90;
@@ -2094,6 +2096,7 @@ message RolePetInfo
 	int32 ShouHuPos = 39;				//0-3
 	bool IsProtect = 40;					///装备锁 宠物锁 功能 npc打开
 	repeated int64 PetEquipList = 41;	//宠物装备
+	repeated int32 LockSkill = 42;      //只能锁定一个技能
 }
 
 //ResponseType M2C_SkillInitResponse

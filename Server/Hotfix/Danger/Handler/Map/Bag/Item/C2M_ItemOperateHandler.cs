@@ -428,6 +428,8 @@ namespace ET
                                 cmd.TargetDistance = 0f;
                                 unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
                                 break;
+                            case 136:
+                                break;
                         }
 
                         //扣除道具

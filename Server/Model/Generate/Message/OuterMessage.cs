@@ -4268,6 +4268,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int CostItemNum { get; set; }
 
+		[ProtoMember(4)]
+		public string ParamInfo { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_RolePetXiLian)]
@@ -4443,6 +4446,9 @@ namespace ET
 
 		[ProtoMember(41)]
 		public List<long> PetEquipList = new List<long>();
+
+		[ProtoMember(42)]
+		public List<int> LockSkill = new List<int>();
 
 	}
 

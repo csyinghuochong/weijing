@@ -138,6 +138,13 @@ namespace ET
 					}
 					response.rolePetInfo = petInfo;
 					break;
+				case 136:
+					int lockSkill = int.Parse(request.ParamInfo);
+                    //只锁定一个技能， 用list方便以后做扩展。 锁定的技能在122这个Pet_AddSkill不会被顶掉
+                    petInfo.LockSkill.Clear();
+					petInfo.LockSkill.Add(lockSkill);	
+                    response.rolePetInfo = petInfo;
+                    break;
 				default:
 					break;
 			}
@@ -201,7 +208,16 @@ namespace ET
                 if (!delStatus)
 				{
 					int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
-					petinfo.PetSkill.RemoveAt(tihuanNum);
+					int removeSkill = petinfo.PetSkill[tihuanNum];
+
+					if (petinfo.LockSkill.Contains(removeSkill))
+                    {
+                        petinfo.PetSkill.RemoveAt(petinfo.PetSkill.Count - 1);
+                    }
+					else
+					{
+                        petinfo.PetSkill.RemoveAt(tihuanNum);
+                    }
 				}
 			}
 
