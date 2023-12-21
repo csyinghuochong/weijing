@@ -124,6 +124,9 @@ namespace ET
                 return;
             }
 
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet).GetComponent<UIPetComponent>().UIPageView
+                    .UISubViewList[(int)PetPageEnum.PetXiLian];
+            ui.GetComponent<UIPetXiLianComponent>().UpdateConsume().Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetXiLianLockSkill);
         }
 
