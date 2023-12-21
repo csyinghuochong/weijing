@@ -249,7 +249,7 @@ namespace ET
                                 break;
                             //宠物蛋
                             case 102:
-                                unit.GetComponent<PetComponent>().OnAddPet(int.Parse(itemConfig.ItemUsePar));
+                                unit.GetComponent<PetComponent>().OnAddPet(int.Parse(itemConfig.ItemUsePar), 0, useBagInfo.FuLing);
                                 break;
                             //随机宠物蛋
                             case 103:
@@ -259,7 +259,7 @@ namespace ET
                                 {
                                     skinId = int.Parse(useBagInfo.ItemPar);
                                 }
-                                unit.GetComponent<PetComponent>().OnAddPet(petId, skinId);
+                                unit.GetComponent<PetComponent>().OnAddPet(petId, skinId, useBagInfo.FuLing);
                                 break;
                             //随机盒子
                             case 104:

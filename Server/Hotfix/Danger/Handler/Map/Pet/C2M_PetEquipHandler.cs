@@ -76,7 +76,7 @@ namespace ET
                 m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
                 rolePetInfo.PetEquipList.Add(request.BagInfoId);
             }
-            petComponent.UpdatePetAttribute(rolePetInfo);
+            petComponent.UpdatePetAttribute(rolePetInfo, false);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
             response.RolePetInfo = rolePetInfo;
 

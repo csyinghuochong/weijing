@@ -196,7 +196,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo , 2, 0);
+                        self.PetXiLian(rolePetInfo ,2, 0, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -368,7 +368,7 @@ namespace ET
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId) 
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId, int fuling)
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -405,7 +405,10 @@ namespace ET
                 Log.Console("幸运值！！！！！");
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreLuckly, petluckly - 100, 0);
             }
-
+            if(XiLianType == 1 && fuling == 1)
+            {
+                Log.Console("已附灵！！！！！");
+            }
 
             string[] skilll = petConfig.BaseSkillID.Split(';');
             rolePetInfo.PetSkill = new List<int>();
@@ -453,6 +456,14 @@ namespace ET
         }
 
         //第一次获得宠物的时候调用
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="petId"></param>
+        /// <param name="skinId"></param>
+        /// <param name="fuling">0未附灵 1已附灵</param>
+        /// <returns></returns>
         public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0, int fuling = 0)
         {
             Unit unit = self.GetParent<Unit>();
@@ -469,8 +480,8 @@ namespace ET
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1, 0);
-            self.UpdatePetAttribute(newpet, false);
+            newpet = self.PetXiLian(newpet, 1, 0, fuling);  
+            self.UpdatePetAttribute(newpet, false);  
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
 
@@ -1065,7 +1076,7 @@ namespace ET
             PetHelper.UpdatePetNumeric( rolePetInfo );
         }
 
-        public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit = false)
+        public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit)
         {
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
