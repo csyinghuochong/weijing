@@ -1753,6 +1753,7 @@ message M2C_RolePetList // IActorLocationResponse
 	repeated int32 PetCangKuOpen = 10;
 	repeated int64 PetMingList = 11;
 	repeated int64 PetMingPosition = 12;
+	repeated RolePetInfo RolePetBag = 13;
 }
 
 message PetFubenInfo

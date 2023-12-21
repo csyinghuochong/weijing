@@ -3704,6 +3704,9 @@ namespace ET
 		[ProtoMember(12)]
 		public List<long> PetMingPosition = new List<long>();
 
+		[ProtoMember(13)]
+		public List<RolePetInfo> RolePetBag = new List<RolePetInfo>();
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]

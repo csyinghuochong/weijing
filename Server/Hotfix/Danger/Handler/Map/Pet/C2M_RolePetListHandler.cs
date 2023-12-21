@@ -22,6 +22,8 @@ namespace ET
             response.PetCangKuOpen = petComponent.PetCangKuOpen;
 			response.PetMingList = petComponent.PetMingList;
 			response.PetMingPosition = petComponent.PetMingPosition;
+			response.RolePetBag = petComponent.RolePetBag;
+
             reply();
 			await ETTask.CompletedTask;
 		}
