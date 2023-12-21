@@ -381,6 +381,14 @@ namespace ET
                 addValue = 50;
             }
 
+            bool fulingStatus = false;
+            if (XiLianType == 1 && fuling == 1)
+            {
+                //Log.Console("已附灵！！！！！");
+                addValue = 75;
+                fulingStatus = true;
+            }
+
             rolePetInfo.PetPingFen = int.Parse(petConfig.Base_PingFen);
             rolePetInfo.ZiZhi_Hp = RandomHelper.RandomNumber(petConfig.ZiZhi_Hp_Min, petConfig.ZiZhi_Hp_Max + addValue);
             rolePetInfo.ZiZhi_Act = RandomHelper.RandomNumber(petConfig.ZiZhi_Act_Min, petConfig.ZiZhi_Act_Max + addValue);
@@ -403,17 +411,11 @@ namespace ET
             //运气值100 百分变异
             if (XiLianType == 1 && petluckly >= 100 && petConfig.Skin.Length >= 2)
             {
-                Log.Console("幸运值100！！！！！");
-
+                //Log.Console("幸运值100！！！！！");
                 int skinId = petConfig.Skin[RandomHelper.RandomNumber(1, petConfig.Skin.Length)];
                 rolePetInfo.SkinId = skinId;
                 rolePetInfo.PetName = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId).Name;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetExploreLuckly, 0);
-            }
-
-            if (XiLianType == 1 && fuling == 1)
-            {
-                Log.Console("已附灵！！！！！");
             }
 
             rolePetInfo.Luckly = 0;   //1为运气加倍 
@@ -442,6 +444,10 @@ namespace ET
 
             //增加宠物随机技能
             string randomSkillID = petConfig.RandomSkillID;
+            float randomAddPro = 1;
+            if (fulingStatus) {
+                randomAddPro = 2.5f;
+            }
             //80001010,01;80001014,0.1;80001015.1
 
             if (!ComHelp.IfNull(randomSkillID))
@@ -453,7 +459,7 @@ namespace ET
 
                     int skillID = int.Parse(skillInfo[0]);
 
-                    if (RandomHelper.RandFloat() <= float.Parse(skillInfo[1]))
+                    if (RandomHelper.RandFloat() <= float.Parse(skillInfo[1]) * randomAddPro)
                     {
                         rolePetInfo.PetSkill.Add(skillID);
                     }
