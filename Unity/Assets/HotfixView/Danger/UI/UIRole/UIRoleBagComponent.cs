@@ -317,6 +317,13 @@ namespace ET
                                 continue;
                             }
                             break;
+                        //猎人
+                        case 3:
+                            if (itemConfig.EquipType < 10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 5)
+                            {
+                                continue;
+                            }
+                            break;
                     }
 
 
