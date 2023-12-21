@@ -410,6 +410,8 @@ namespace ET
                 Log.Console("已附灵！！！！！");
             }
 
+            rolePetInfo.Luckly = 0;   //1为运气加倍 
+
             string[] skilll = petConfig.BaseSkillID.Split(';');
             rolePetInfo.PetSkill = new List<int>();
             for (int i = 0; i < skilll.Length; i++)

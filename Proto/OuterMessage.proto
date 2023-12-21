@@ -2100,6 +2100,7 @@ message RolePetInfo
 	bool IsProtect = 40;					///装备锁 宠物锁 功能 npc打开
 	repeated int64 PetEquipList = 41;	//宠物装备
 	repeated int32 LockSkill = 42;      //只能锁定一个技能
+	int32 Luckly = 43;
 }
 
 //ResponseType M2C_SkillInitResponse

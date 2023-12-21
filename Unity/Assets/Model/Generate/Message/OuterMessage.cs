@@ -4459,6 +4459,9 @@ namespace ET
 		[ProtoMember(42)]
 		public List<int> LockSkill = new List<int>();
 
+		[ProtoMember(43)]
+		public int Luckly { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_SkillInitResponse))]
