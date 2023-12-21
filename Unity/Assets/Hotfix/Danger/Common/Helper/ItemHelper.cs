@@ -966,6 +966,7 @@ namespace ET
                 { ItemGetWay.ActivityChouKa, "抽卡" },
                 { ItemGetWay.ActivityConsume, "消耗钻石" },
                 { ItemGetWay.ActivityHongBao, "充值红包" },
+                { ItemGetWay.PetExplore, "宠物探索" },
                 
                 { ItemGetWay.Activity, "活动" },
         };

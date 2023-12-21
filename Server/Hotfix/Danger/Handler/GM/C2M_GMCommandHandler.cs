@@ -154,7 +154,7 @@ namespace ET
                         unit.GetComponent<TaskComponent>().OnGMGetTask(int.Parse(commands[1]));
 						break;
 					case 5: //直接获得某个宠物      5#1001101
-						unit.GetComponent<PetComponent>().OnAddPet(int.Parse(commands[1]));
+						unit.GetComponent<PetComponent>().OnAddPet(ItemGetWay.GM, int.Parse(commands[1]));
 						break;
 					case 6:
 						int newLevel = int.Parse(commands[1]);

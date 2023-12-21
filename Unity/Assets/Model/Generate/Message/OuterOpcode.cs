@@ -836,5 +836,8 @@ namespace ET
 		 public const ushort M2C_ActivityGuessResponse = 10833;
 		 public const ushort C2M_PetExploreReward = 10834;
 		 public const ushort M2C_PetExploreReward = 10835;
+		 public const ushort M2C_RolePetBagUpdate = 10836;
+		 public const ushort C2M_PetTakeOutBag = 10837;
+		 public const ushort M2C_PetTakeOutBag = 10838;
 	}
 }

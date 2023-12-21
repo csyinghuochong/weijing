@@ -460,11 +460,12 @@ namespace ET
         /// 
         /// </summary>
         /// <param name="self"></param>
+        /// <param name="getWay">-1</param>
         /// <param name="petId"></param>
         /// <param name="skinId"></param>
-        /// <param name="fuling">0未附灵 1已附灵</param>
+        /// <param name="fuling"></param>
         /// <returns></returns>
-        public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0, int fuling = 0)
+        public static RolePetInfo OnAddPet(this PetComponent self, int getWay, int petId, int skinId = 0, int fuling = 0)
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
@@ -475,25 +476,35 @@ namespace ET
                 int index = RandomHelper.RandomByWeight(weight);
                 skinId = petConfig.Skin[index];
             }
-           
+
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1, 0, fuling);  
-            self.UpdatePetAttribute(newpet, false);  
+            newpet = self.PetXiLian(newpet, 1, 0, fuling);
+            self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
 
-            self.RolePetInfos.Add(newpet);
-            M2C_RolePetUpdate m2C_RolePetUpdate = new M2C_RolePetUpdate();
-            m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
-            m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
-
             unit.GetComponent<ChengJiuComponent>().OnGetPet(newpet);
             unit.GetComponent<TaskComponent>().OnGetPet(newpet);
-            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
 
+            if (ItemGetWay.PetExplore == getWay)
+            {
+                self.RolePetBag.Add(newpet);
+                M2C_RolePetBagUpdate m2C_RolePetBag = new M2C_RolePetBagUpdate();
+                m2C_RolePetBag.RolePetBag = self.RolePetBag;    
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetBag);
+            }
+            else
+            {
+                self.RolePetInfos.Add(newpet);
+                M2C_RolePetUpdate m2C_RolePetUpdate = new M2C_RolePetUpdate();
+                m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
+                m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
+            }
+            
             //如果有皮肤的话更新一次角色属性
             Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
             return newpet;
@@ -1174,7 +1185,24 @@ namespace ET
                     return self.RolePetInfos[i];
                 }
             }
+            return petInfo;
+        }
 
+        /// <summary>
+        /// Get可以取缓存数据，不用读缓存数据库
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static RolePetInfo GetPetInfoByBag(this PetComponent self, long PetId)
+        {
+            RolePetInfo petInfo = null;
+            for (int i = 0; i < self.RolePetBag.Count; i++)
+            {
+                if (self.RolePetBag[i].Id == PetId)
+                {
+                    return self.RolePetBag[i];
+                }
+            }
             return petInfo;
         }
 
@@ -1196,6 +1224,42 @@ namespace ET
             }
             return petId;
         }
+
+        public static void TakeOutBag(this PetComponent self, long petId)
+        {
+            RolePetInfo rolePetInfo = self.GetPetInfoByBag(petId);
+            if (rolePetInfo == null)
+            {
+                return;
+            }
+
+            self.RemovePetBag(petId);
+
+            self.RolePetInfos.Add(rolePetInfo);
+            M2C_RolePetUpdate m2C_RolePetUpdate = new M2C_RolePetUpdate();
+            m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
+            m2C_RolePetUpdate.PetInfoAdd.Add(rolePetInfo);
+            m2C_RolePetUpdate.GetWay = 2;
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
+        }
+
+        public static void RemovePetBag(this PetComponent self, long petId)
+        {
+            for (int i = self.RolePetBag.Count - 1; i >= 0; i--)
+            {
+                if (self.RolePetBag[i].Id == petId)
+                {
+                    self.RolePetBag.RemoveAt(i);
+                    break;
+                }
+            }
+
+            M2C_RolePetBagUpdate m2C_RolePetBag = new M2C_RolePetBagUpdate();
+            m2C_RolePetBag.RolePetBag = self.RolePetBag;
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetBag);
+        }
+
+
 
         public static void OnRolePetFenjie(this PetComponent self, long petId)
         {

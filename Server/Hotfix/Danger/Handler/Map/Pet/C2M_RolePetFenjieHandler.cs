@@ -16,7 +16,16 @@ namespace ET
 				return;
 			}
 
+
+			int petType = 1;
 			RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
+
+			if (rolePetInfo == null)
+			{
+				petType = 2;
+                rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfoByBag(request.PetInfoId);
+            }
+
 			if (rolePetInfo == null)
 			{
 				response.Error = ErrorCode.ERR_Pet_NoExist;
@@ -30,15 +39,23 @@ namespace ET
                 return;
             }
 
-                //获取宠物碎片
-                PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            //获取宠物碎片
+            PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length == 2)
 			{
 				unit.GetComponent<BagComponent>().OnAddItemData($"{petCof.ReleaseReward[0]};{petCof.ReleaseReward[1]}", $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
 			}
 
-			unit.GetComponent<PetComponent>().OnRolePetFenjie(request.PetInfoId);
+			if (petType == 1)
+			{
+                unit.GetComponent<PetComponent>().OnRolePetFenjie(request.PetInfoId);
+            }
+			else
+			{
+                unit.GetComponent<PetComponent>().RemovePetBag(request.PetInfoId);
+            }
 
+			
 			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0, -1);
 
 			if (unit.GetParent<UnitComponent>().Get(rolePetInfo.Id) != null)

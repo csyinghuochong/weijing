@@ -26,7 +26,7 @@ namespace ET
                 reply();
                 return;
             }
-            response.RolePetInfo = petComponent.OnAddPet(int.Parse(configInfo[1]));
+            response.RolePetInfo = petComponent.OnAddPet(ItemGetWay.PetEggDuiHuan, int.Parse(configInfo[1]));
             unit.GetComponent<DataCollationComponent>().OnPetDuiHuan();
             reply();
             await ETTask.CompletedTask;

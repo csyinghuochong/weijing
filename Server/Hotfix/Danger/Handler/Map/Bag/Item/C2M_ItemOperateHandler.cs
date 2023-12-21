@@ -245,21 +245,24 @@ namespace ET
                                 break;
                             //使用技能
                             case 101:
-
                                 break;
                             //宠物蛋
                             case 102:
-                                unit.GetComponent<PetComponent>().OnAddPet(int.Parse(itemConfig.ItemUsePar), 0, useBagInfo.FuLing);
+                                string[] getway = useBagInfo.GetWay.Split('_');
+
+                                unit.GetComponent<PetComponent>().OnAddPet(int.Parse(getway[0]), int.Parse(itemConfig.ItemUsePar), 0, useBagInfo.FuLing);
                                 break;
                             //随机宠物蛋
                             case 103:
+                                getway = useBagInfo.GetWay.Split('_');
+
                                 int petId = int.Parse(itemConfig.ItemUsePar);
                                 int skinId = 0;
                                 if(!string.IsNullOrEmpty(useBagInfo.ItemPar))
                                 {
                                     skinId = int.Parse(useBagInfo.ItemPar);
                                 }
-                                unit.GetComponent<PetComponent>().OnAddPet(petId, skinId, useBagInfo.FuLing);
+                                unit.GetComponent<PetComponent>().OnAddPet(int.Parse(getway[0]), petId, skinId, useBagInfo.FuLing);
                                 break;
                             //随机盒子
                             case 104:

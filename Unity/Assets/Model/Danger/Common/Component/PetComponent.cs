@@ -21,6 +21,9 @@ namespace ET
 
         public List<PetMingRecord> PetMingRecordList = new List<PetMingRecord>();
 
+        //背包宠物
+        public List<RolePetInfo> RolePetBag = new List<RolePetInfo>();
+
         public int UpdateNumber = 0;   //1处理神兽技能
     }
 }

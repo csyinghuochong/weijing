@@ -1768,6 +1768,7 @@ message M2C_RolePetUpdate // IActorMessage
 	repeated RolePetInfo PetInfoAdd = 1;
 	repeated RolePetInfo PetInfoUpdate = 2;
 	repeated RolePetInfo PetInfoDelete = 3;
+	int32 GetWay = 4;  //1新增 2从背包取出
 }
 
 //ResponseType M2C_RolePetFormationSet
@@ -7212,6 +7213,26 @@ message C2M_PetExploreReward // IActorLocationRequest
 }
 
 message M2C_PetExploreReward // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}
+
+//宠物更新
+message M2C_RolePetBagUpdate // IActorMessage
+{
+	repeated RolePetInfo RolePetBag = 1;
+}
+
+//ResponseType M2C_PetTakeOutBag
+message C2M_PetTakeOutBag // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 PetInfoId = 1;
+}
+
+message M2C_PetTakeOutBag // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;		

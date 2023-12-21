@@ -72,7 +72,7 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}_{exploreLuck}");
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetExplore}_{TimeHelper.ServerNow()}_{exploreLuck}");
             response.ReardList = rewardItems;
             reply();
             await ETTask.CompletedTask;

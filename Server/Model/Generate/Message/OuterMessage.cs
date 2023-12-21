@@ -3735,6 +3735,9 @@ namespace ET
 		[ProtoMember(3)]
 		public List<RolePetInfo> PetInfoDelete = new List<RolePetInfo>();
 
+		[ProtoMember(4)]
+		public int GetWay { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_RolePetFormationSet))]
@@ -15037,6 +15040,44 @@ namespace ET
 	[Message(OuterOpcode.M2C_PetExploreReward)]
 	[ProtoContract]
 	public partial class M2C_PetExploreReward: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+//宠物更新
+	[Message(OuterOpcode.M2C_RolePetBagUpdate)]
+	[ProtoContract]
+	public partial class M2C_RolePetBagUpdate: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<RolePetInfo> RolePetBag = new List<RolePetInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_PetTakeOutBag))]
+	[Message(OuterOpcode.C2M_PetTakeOutBag)]
+	[ProtoContract]
+	public partial class C2M_PetTakeOutBag: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long PetInfoId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetTakeOutBag)]
+	[ProtoContract]
+	public partial class M2C_PetTakeOutBag: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
