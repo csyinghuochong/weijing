@@ -9,6 +9,7 @@ namespace ET
     public class UIPetChouKaGetComponent : Entity, IAwake,IDestroy
     {
 
+        public GameObject Luckly;
         public GameObject BianYiDi;
         public GameObject ImageStarList;
         public GameObject PetSkillNode;
@@ -47,6 +48,7 @@ namespace ET
             self.Text_Quality = rc.Get<GameObject>("Text_Quality");
             self.UIPetSkinIcon = rc.Get<GameObject>("UIPetSkinIcon");
             self.Text_FightValue = rc.Get<GameObject>("Text_FightValue");
+            self.Luckly = rc.Get<GameObject>("Luckly");
 
             self.NewSkinName = rc.Get<GameObject>("NewSkinName");
             self.PiFuJiHuo = rc.Get<GameObject>("PiFuJiHuo");
@@ -153,6 +155,7 @@ namespace ET
 
 
                 self.BianYiDi.SetActive(rolePetInfo.SkinId != petConfig.Skin[0]);
+                self.Luckly.SetActive(rolePetInfo.Luckly == 1);
 
                 self.UpdateSkillList(rolePetInfo, oldRolePetInfo);
                 self.UpdateAttribute(rolePetInfo, oldRolePetInfo);
