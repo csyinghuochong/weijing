@@ -8,9 +8,12 @@ namespace ET
     {
         protected override void Run(Session session, M2C_RolePetBagUpdate message)
         {
-            session.ZoneScene().GetComponent<PetComponent>().RolePetBag = message.RolePetBag;   
+            session.ZoneScene().GetComponent<PetComponent>().RolePetBag = message.RolePetBag;
 
             //抛出事件。 刷新UI
+            EventType.RolePetAdd.Instance.ZoneScene = session.ZoneScene();
+            EventType.RolePetAdd.Instance.RolePetInfo = message.RolePetBag[message.RolePetBag.Count - 1];
+            EventSystem.Instance.PublishClass(EventType.RolePetAdd.Instance);
         }
     }
 }

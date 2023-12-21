@@ -101,11 +101,11 @@ namespace ET
                 buffData_2.SkillId = this.SkillConf.Id;
                 buffData_2.BuffId = 99002001;
                 unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
                 aIComponent.TargetPoint.Clear();
                 aIComponent.TargetPoint.Add(this.NowPosition);
                 monsters[i].Stop(0);
                 aIComponent.AIConfigId = 9;   //牵引AI
-                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
             }
 
             List<long> removeIds = new List<long>();

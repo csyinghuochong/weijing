@@ -249,13 +249,11 @@ namespace ET
                             //宠物蛋
                             case 102:
                                 string[] getway = useBagInfo.GetWay.Split('_');
-
                                 unit.GetComponent<PetComponent>().OnAddPet(int.Parse(getway[0]), int.Parse(itemConfig.ItemUsePar), 0, useBagInfo.FuLing);
                                 break;
                             //随机宠物蛋
                             case 103:
                                 getway = useBagInfo.GetWay.Split('_');
-
                                 int petId = int.Parse(itemConfig.ItemUsePar);
                                 int skinId = 0;
                                 if(!string.IsNullOrEmpty(useBagInfo.ItemPar))
