@@ -453,7 +453,7 @@ namespace ET
         }
 
         //第一次获得宠物的时候调用
-        public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0)
+        public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0, int fuling = 0)
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);

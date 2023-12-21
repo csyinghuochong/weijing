@@ -796,8 +796,9 @@ message BagInfo
 	bool IsProtect = 23;						///装备锁 宠物锁 功能 npc打开
 	repeated HideProList IncreaseProLists = 24; // 增幅属性
 	repeated int32 IncreaseSkillLists = 25; // 增幅技能
-	int EquipPlan = 26;
-	int EquipIndex = 27; 
+	int32 EquipPlan = 26;
+	int32 EquipIndex = 27; 
+	int32 FuLing = 28;    //0未附灵 1附灵
 }
 
 message HideProList

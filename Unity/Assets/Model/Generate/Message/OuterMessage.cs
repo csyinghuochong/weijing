@@ -1680,6 +1680,9 @@ namespace ET
 		[ProtoMember(27)]
 		public int EquipIndex { get; set; }
 
+		[ProtoMember(28)]
+		public int FuLing { get; set; }
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
