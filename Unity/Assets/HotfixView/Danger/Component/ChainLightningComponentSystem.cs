@@ -52,7 +52,7 @@ namespace ET
         public static void OnUpdate(this ChainLightningComponent self)
         {
             //判断是否暂停，未暂停则进入分支
-            if (self.Start == null)
+            if (self.Start == null || self._lineRender == null)
             {
                 return;
             }
