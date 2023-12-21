@@ -353,6 +353,32 @@ namespace ET
             return unitIdList;
         }
 
+        public static List<Unit> GetEnemyUnit(Unit main, int unitType, Vector3 pos, float maxdis)
+        {
+            List<Unit> nearest = new List<Unit>();
+
+            List<Unit> allunits = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                Unit unit = allunits[i];
+                if (unit.Type != unitType)
+                {
+                    continue;
+                }
+
+                if (Vector3.Distance(pos, unit.Position) > maxdis)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+                nearest.Add(unit);
+            }
+            return nearest;
+        }
+
         public static List<Unit> GetEnemyMonsters(Unit main, Vector3 pos, float maxdis)
         {
             List<Unit> nearest = new List<Unit>();
