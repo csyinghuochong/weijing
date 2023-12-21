@@ -8,6 +8,7 @@ namespace ET
     {
 
         public GameObject PetLucky;
+        public GameObject Btn_RolePetBag;
         public GameObject PetEggLucklyExplainBtn;
         public GameObject Text_PetExploreLuckly;
         public GameObject Btn_ChouKaNumReward;
@@ -28,6 +29,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Btn_RolePetBag = rc.Get<GameObject>("Btn_RolePetBag");
             self.PetEggLucklyExplainBtn = rc.Get<GameObject>("PetEggLucklyExplainBtn");
             self.Text_PetExploreLuckly = rc.Get<GameObject>("Text_PetExploreLuckly");
             self.Btn_ChouKaNumReward = rc.Get<GameObject>("Btn_ChouKaNumReward");
@@ -36,6 +38,7 @@ namespace ET
             self.Text_CostNumber = rc.Get<GameObject>("Text_CostNumber");
             self.ItemImageIcon = rc.Get<GameObject>("ItemImageIcon");
 
+            self.Btn_RolePetBag.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RolePetBag(); });
             self.PetEggLucklyExplainBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnPetEggLucklyExplainBtn(); });
             self.Btn_ChouKaNumReward.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ChouKaNumReward(); });
             self.Btn_ChouKaTen = rc.Get<GameObject>("Btn_ChouKaTen");
@@ -68,6 +71,10 @@ namespace ET
     }
     public static class UIPetEggChouKaComponentSystem
     {
+        public static void OnBtn_RolePetBag(this UIPetEggChouKaComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIRolePetBag).Coroutine();
+        }
         public static void OnPetEggLucklyExplainBtn(this UIPetEggChouKaComponent self)
         {
             UIHelper.Create(self.ZoneScene(),UIType.UIPetEggLucklyExplain).Coroutine();

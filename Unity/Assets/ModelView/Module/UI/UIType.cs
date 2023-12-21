@@ -48,6 +48,7 @@ namespace ET
         public const string UIPetCangKu = "Main/Pet/UIPetCangKu";
         public const string UIPetXianji = "Main/Pet/UIPetXianji";
 		public const string UIPetChouKaGet = "Main/PetEgg/UIPetChouKaGet";
+		public const string UIRolePetBag = "Main/PetEgg/UIRolePetBag";
 		public const string UIPetEggFuLing = "Main/PetEgg/UIPetEggFuLing";
 		public const string UIPetEggLucklyExplain = "Main/PetEgg/UIPetEggLucklyExplain";
 		public const string UIPetSelect = "Main/Pet/UIPetSelect";

@@ -106,13 +106,19 @@ namespace ET
                 return;
             }
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
-            if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= maxNum)
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            if (petComponent.RolePetBag.Count >= 40)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
+                FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
                 return;
             }
+            // Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            // int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
+            // if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= maxNum)
+            // {
+            //     FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
+            //     return;
+            // }
             /*
             int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
             if (choukaType == 2 && leftTime<=0)

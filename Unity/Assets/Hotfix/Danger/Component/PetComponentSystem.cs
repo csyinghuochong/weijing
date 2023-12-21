@@ -24,6 +24,7 @@ namespace ET
             self.PetCangKuOpen = m2C_RolePetList.PetCangKuOpen;
             self.PetMingList = m2C_RolePetList.PetMingList;
             self.PetMingPosition = m2C_RolePetList.PetMingPosition;
+            self.RolePetBag = m2C_RolePetList.RolePetBag;
         }
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)
