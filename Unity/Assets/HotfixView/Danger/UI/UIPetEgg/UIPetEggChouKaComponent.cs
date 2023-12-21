@@ -87,7 +87,18 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
             int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
-            self.Text_DiamondNumber.GetComponent<Text>().text = needDimanond.ToString();
+            int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
+            string[] set = GlobalValueConfigCategory.Instance.Get(107).Value.Split(';');
+            float discount;
+            if (exlporeNumber < int.Parse(set[0]))
+            {
+                discount = 1;
+            }
+            else
+            {
+                discount = float.Parse(set[1]);
+            }
+            self.Text_DiamondNumber.GetComponent<Text>().text = ((int)(needDimanond * discount)).ToString();
 
             string[] itemInfo = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0].Split(';');
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
@@ -125,7 +136,17 @@ namespace ET
 
             int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (choukaType == 10 && userInfo.Diamond < needDimanond)
+            int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
+            float discount;
+            if (exlporeNumber < 300)
+            {
+                discount = 1;
+            }
+            else
+            {
+                discount = 0.8f;
+            }
+            if (choukaType == 10 && userInfo.Diamond < (int)(needDimanond * discount))
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;

@@ -18,6 +18,17 @@ namespace ET
 
             int dropId = 0;
             int exlporeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
+            string[] set = GlobalValueConfigCategory.Instance.Get(107).Value.Split(';');
+            float discount;
+            if (exlporeNumber < int.Parse(set[0])) // 超过300次打8折
+            {
+                discount = 1;
+            }
+            else
+            {
+                discount = float.Parse(set[1]);
+            }
+
             if (request.ChouKaType == 1)
             {
                 string needItems = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0];
@@ -38,13 +49,13 @@ namespace ET
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[1]);
-                if (userInfo.Diamond < needDimanond)
+                if (userInfo.Diamond < (int)(needDimanond * discount))
                 {
                     response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                     reply();
                     return;
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.PetChouKa);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * (int)(needDimanond * discount)).ToString(), true,ItemGetWay.PetChouKa);
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
             }
 
