@@ -209,6 +209,7 @@
     [NumericWatcher((int)NumericType.RunRaceTransform)]
     [NumericWatcher((int)NumericType.BattleCamp)]
     [NumericWatcher((int)NumericType.SkillUseMP)]
+    [NumericWatcher((int)NumericType.PetExploreLuckly)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

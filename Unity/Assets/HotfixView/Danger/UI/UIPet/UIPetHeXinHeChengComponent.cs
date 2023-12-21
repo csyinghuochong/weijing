@@ -70,7 +70,7 @@ namespace ET
             }
             self.OnUpdateUI().Coroutine();
             UI uIpet = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);
-            uIpet.GetComponent<UIPetComponent>().OnEquipPetHeXin();
+            uIpet?.GetComponent<UIPetComponent>().OnEquipPetHeXin();
         }
 
         public static async ETTask OnUpdateUI(this UIPetHeXinHeChengComponent self)

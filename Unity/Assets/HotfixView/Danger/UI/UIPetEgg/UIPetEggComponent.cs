@@ -70,6 +70,12 @@ namespace ET
             self.UIPageView.UISubViewList[(int)PetEggEnum.PetEggList].GetComponent<UIPetEggListComponent>().UpdatePetEggUI();
         }
 
+        public static void OnUpdateLuckly(this UIPetEggComponent self)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)PetEggEnum.PetEggChouKa];
+            ui?.GetComponent<UIPetEggChouKaComponent>().OnUpdateInfo();
+        }
+
         public static void UpdateChouKaTime(this UIPetEggComponent self)
         {
             UI ui = self.UIPageView.UISubViewList[(int)PetEggEnum.PetChouKa];

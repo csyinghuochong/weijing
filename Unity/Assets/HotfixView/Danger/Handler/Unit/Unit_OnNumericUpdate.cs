@@ -16,6 +16,10 @@
                     UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                     uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
                     break;
+                case NumericType.PetExploreLuckly:
+                    uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
+                    uI?.GetComponent<UIPetEggComponent>().OnUpdateLuckly();
+                    break;
                 case NumericType.WearWeaponFisrt:
                     UIHelper.Create(args.Unit.ZoneScene(), UIType.UIWearWeapon).Coroutine();
                     break;

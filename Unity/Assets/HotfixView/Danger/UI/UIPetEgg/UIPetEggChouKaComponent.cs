@@ -131,7 +131,7 @@ namespace ET
 
         public static  void OnBtn_RolePetHeXin(this UIPetEggChouKaComponent self)
         {
-            UIHelper.Create( self.ZoneScene(), UIType.UIPetHeXinBag ).Coroutine();
+            UIHelper.Create( self.ZoneScene(), UIType.UIPetHeXinHeCheng ).Coroutine();
         }
 
         public static async ETTask OnBtn_ChouKa(this UIPetEggChouKaComponent self, int choukaType)
