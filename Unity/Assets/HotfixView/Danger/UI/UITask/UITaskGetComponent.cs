@@ -535,6 +535,11 @@ namespace ET
                 {
                     taskids.Add(taskPros[i].taskID);
                 }
+                else if(taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 && taskConfig.TaskType == TaskTypeEnum.Ring) 
+                {
+                    // 家族给予任务可以CompleteNpcID==0，找家族任务NPC提交
+                    taskids.Add(taskPros[i].taskID);
+                }
             }
 
             //当前没有接取任务
