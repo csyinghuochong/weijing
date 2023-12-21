@@ -133,9 +133,7 @@ namespace ET
                     break;
                 }
             }
-            HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
-            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet).GetComponent<UIPetComponent>().UIPageView
-                    .UISubViewList[(int)PetPageEnum.PetXiLian];
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet).GetComponent<UIPetComponent>().UIPageView.UISubViewList[(int)PetPageEnum.PetXiLian];
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(response.rolePetInfo.Id);
             ui.GetComponent<UIPetXiLianComponent>().OnXiLianSelect(rolePetInfo);
             
