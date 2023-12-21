@@ -509,7 +509,17 @@ namespace ET
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TaskType == TaskTypeEnum.Daily)
             {
-                numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv));
+                int dailyTaskNumber = numericComponent.GetAsInt(NumericType.DailyTaskNumber) + 1;
+                if (dailyTaskNumber <= GlobalValueConfigCategory.Instance.Get(58).Value2)
+                {
+                    numericComponent.ApplyValue(null, NumericType.DailyTaskNumber, dailyTaskNumber, 0);
+                    numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv));
+                }
+                else
+                {
+                    numericComponent.ApplyValue(NumericType.DailyTaskID, 0);
+                }
+                
                 self.TriggerTaskCountryEvent(TaskTargetType.DailyTask_1014, 0, 1);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Ring)
@@ -535,8 +545,17 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
-                int unionTaskNumber = numericComponent.GetAsInt(NumericType.UnionTaskNumber);
-                numericComponent.ApplyValue(NumericType.UnionTaskId, unionTaskNumber < 10 ? TaskHelper.GetTaskIdByType (TaskTypeEnum.Union, roleLv) : 0);
+                int unionTaskNumber = numericComponent.GetAsInt(NumericType.UnionTaskNumber) + 1;
+                if (unionTaskNumber <=  GlobalValueConfigCategory.Instance.Get(108).Value2)
+                {
+                    numericComponent.ApplyValue(null, NumericType.UnionTaskNumber, unionTaskNumber, 0);
+                    numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv));
+                }
+                else
+                {           
+                    numericComponent.ApplyValue(NumericType.UnionTaskId, 0);
+                }
+                
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {

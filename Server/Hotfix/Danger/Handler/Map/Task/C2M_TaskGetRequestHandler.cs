@@ -21,7 +21,7 @@ namespace ET
                 }
 
                 //获取当前任务是否已达上限
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) >= GlobalValueConfigCategory.Instance.Get(58).Value2)
+                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) >=  GlobalValueConfigCategory.Instance.Get(58).Value2)
                 {
                     response.Error = ErrorCode.ERR_ShangJinNumFull;
                     reply();
@@ -37,7 +37,6 @@ namespace ET
                     reply();
                     return;
                 }
-                numericComponent.ApplyChange(null, NumericType.DailyTaskNumber, 1, 0);
                 response.TaskPro = taskComponent.OnGetDailyTask(dailyTask);
             }
             else if (taskConfig.TaskType == TaskTypeEnum.Union)
@@ -52,7 +51,7 @@ namespace ET
 
                 //获取当前任务是否已达上限
                 int uniontask = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
-                if (uniontask >= 10)
+                if (uniontask >= GlobalValueConfigCategory.Instance.Get(108).Value2)
                 {
                     response.Error = ErrorCode.ERR_TaskLimited;
                     reply();
@@ -68,8 +67,6 @@ namespace ET
                     reply();
                     return;
                 }
-
-                numericComponent.ApplyChange(null, NumericType.UnionTaskNumber,1, 0);
                 response.TaskPro = taskComponent.OnGetDailyTask(unionTaskId);
             }
             else

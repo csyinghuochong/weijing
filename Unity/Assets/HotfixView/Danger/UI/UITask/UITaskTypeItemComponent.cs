@@ -66,17 +66,17 @@ namespace ET
             int taskType = TaskConfigCategory.Instance.Get(taskPro.taskID).TaskType;
             if (taskType == 3)
             {
-                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber);
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) + 1;
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
             }
             if (taskType == 7)
             {
-                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
-                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/10环)";
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber) + 1;
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(108).Value + "环)";
             }
             if (taskType == 10)
             {
-                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber);
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber) + 1;
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/100环)";
             }
 
