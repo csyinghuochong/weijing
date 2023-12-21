@@ -82,7 +82,7 @@ namespace ET
             }
 
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
-            self.Label_ItemName.GetComponent<Text>().text = petConfig.PetName;
+            self.Label_ItemName.GetComponent<Text>().text = rolePetInfo.PetName;
         }
     }
 }

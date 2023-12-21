@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIRolePetBagComponent: Entity, IAwake
     {
+        public Text TextNumber;
         public GameObject TakeOutBagBtn;
         public GameObject FenjieBtn;
         public GameObject PetSkillListNode;
@@ -38,6 +39,8 @@ namespace ET
             self.PetZiZhiItemList[3] = rc.Get<GameObject>("PetZiZhiItem4");
             self.PetZiZhiItemList[4] = rc.Get<GameObject>("PetZiZhiItem5");
             self.PetZiZhiItemList[5] = rc.Get<GameObject>("PetZiZhiItem6");
+
+            self.TextNumber = rc.Get<GameObject>("TextNumber").GetComponent<Text>();
             self.UIRolePetBagItem.SetActive(false);
             foreach (GameObject go in self.PetZiZhiItemList)
             {
@@ -150,6 +153,9 @@ namespace ET
 
                 self.UIRolePetBagItemComponents[0].OnImage_ItemButton();
             }
+
+
+            self.TextNumber.text = $"宠物数量： {rolePetInfos.Count}/40";
         }
 
         public static void OnClickPetHandler(this UIRolePetBagComponent self, RolePetInfo rolePetInfo)
