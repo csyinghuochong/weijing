@@ -35,7 +35,7 @@ namespace ET
         public const int RankNumber = 30;
         public const int CampRankNumber = 50;
         public const int PetRankNumber = 100;
-        public const int PetHeXinMax = 120;
+        public const int PetHeXinMax = 200;
 
         //熔炼获得道具
         public const int MeltingItemId = 1;
