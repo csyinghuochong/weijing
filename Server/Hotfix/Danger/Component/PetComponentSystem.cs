@@ -399,12 +399,19 @@ namespace ET
             }
 
             int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
-            if (XiLianType == 1 && petluckly >= 100)
+
+            //运气值100 百分变异
+            if (XiLianType == 1 && petluckly >= 100 && petConfig.Skin.Length >= 2)
             {
-                Log.Console("幸运值！！！！！");
-                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.PetExploreLuckly, 0);
+                Log.Console("幸运值100！！！！！");
+
+                int skinId = petConfig.Skin[RandomHelper.RandomNumber(1, petConfig.Skin.Length)];
+                rolePetInfo.SkinId = skinId;
+                rolePetInfo.PetName = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId).Name;
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetExploreLuckly, 0);
             }
-            if(XiLianType == 1 && fuling == 1)
+
+            if (XiLianType == 1 && fuling == 1)
             {
                 Log.Console("已附灵！！！！！");
             }
@@ -477,13 +484,6 @@ namespace ET
                 int index = RandomHelper.RandomByWeight(weight);
                 skinId = petConfig.Skin[index];
             }
-
-            //运气值100 百分变异
-            int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
-            if (petluckly >= 100 && petConfig.Skin.Length >= 2)
-            {
-                skinId = petConfig.Skin[RandomHelper.RandomNumber(1, petConfig.Skin.Length)];
-            }   
 
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
 
