@@ -340,6 +340,8 @@ MonoBehaviour:
     gameObject: {fileID: 843003155766341666}
   - key: PetZiZhiItem6
     gameObject: {fileID: 7553574640451937680}
+  - key: Img_PeteroQualityadd
+    gameObject: {fileID: 4950616350443422308}
 --- !u!1 &443043637987357580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +2247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 1
   moveDistance: -1000
-  delayTime: 0
+  isLoop: 0
   MoveToTime: 0
 --- !u!1 &5379494288038186909
 GameObject:

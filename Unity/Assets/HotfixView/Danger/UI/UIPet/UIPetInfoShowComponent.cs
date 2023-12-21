@@ -10,6 +10,7 @@ namespace ET
         public int Weizhi; //-1左 1 右边
         public PetOperationType BagOperationType;
 
+        public GameObject Img_PeteroQualityadd;
         public GameObject Text_PetLevel;
         public GameObject Img_PetHeroIon;
         public GameObject Img_PeteroQuality;
@@ -37,6 +38,7 @@ namespace ET
             self.PetSkillUIList = new List<UICommonSkillItemComponent>();
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Img_PeteroQualityadd = rc.Get<GameObject>("Img_PeteroQualityadd");
             self.Text_PetLevel = rc.Get<GameObject>("Text_PetLevel");
             self.Img_PetHeroIon = rc.Get<GameObject>("Img_PetHeroIon");
 
@@ -193,6 +195,7 @@ namespace ET
         {
             //self.ImageStarList.SetActive(havepet && !GlobalHelp.IsBanHaoMode);
             self.Img_PetHeroIon.SetActive(havepet);
+            self.Img_PeteroQualityadd.SetActive(!havepet);
             self.Text_PetLevel.SetActive(havepet);
             self.Text_PetExp.SetActive(havepet);
             self.ImageExpValue.SetActive(havepet);
