@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject Btn_RolePetHeXin;
         public GameObject PetLucky;
         public GameObject Btn_RolePetBag;
         public GameObject PetEggLucklyExplainBtn;
@@ -45,6 +45,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_ChouKaTen, () => { self.OnBtn_ChouKa(10).Coroutine(); });
             self.Btn_ChouKa = rc.Get<GameObject>("Btn_ChouKa");
             ButtonHelp.AddListenerEx(self.Btn_ChouKa, () => { self.OnBtn_ChouKa(1).Coroutine(); });
+
+            self.Btn_RolePetHeXin = rc.Get<GameObject>("Btn_RolePetHeXin");
+            self.Btn_RolePetHeXin.GetComponent<Button>().onClick.AddListener(self.OnBtn_RolePetHeXin);
 
             self.PetLucky = rc.Get<GameObject>("PetLucky");
             self.PetLucky.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) ) ;
@@ -124,6 +127,11 @@ namespace ET
             long haveNumber = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo[0]));
             self.Text_CostNumber.GetComponent<Text>().text = haveNumber + "/" + itemInfo[1];
             self.Text_CostNumber.GetComponent<Text>().color = (haveNumber >= int.Parse(itemInfo[1])) ? Color.white : Color.red;
+        }
+
+        public static  void OnBtn_RolePetHeXin(this UIPetEggChouKaComponent self)
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIPetHeXinBag ).Coroutine();
         }
 
         public static async ETTask OnBtn_ChouKa(this UIPetEggChouKaComponent self, int choukaType)
