@@ -68,7 +68,8 @@ namespace ET
 					//重置资质系数
 					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2, bagInfo.ItemID, 0);
                     unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
-					response.rolePetInfo = petInfo;
+                    petInfo.LockSkill.Clear();
+                    response.rolePetInfo = petInfo;
 					break;
 				//增加经验
 				case 108:
