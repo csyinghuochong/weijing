@@ -15066,6 +15066,9 @@ namespace ET
 		[ProtoMember(1)]
 		public List<RolePetInfo> RolePetBag = new List<RolePetInfo>();
 
+		[ProtoMember(2)]
+		public int UpdateMode { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_PetTakeOutBag))]

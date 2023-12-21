@@ -7225,6 +7225,7 @@ message M2C_PetExploreReward // IActorLocationResponse
 message M2C_RolePetBagUpdate // IActorMessage
 {
 	repeated RolePetInfo RolePetBag = 1;
+	int32 UpdateMode = 2;  //1新增  2删除
 }
 
 //ResponseType M2C_PetTakeOutBag

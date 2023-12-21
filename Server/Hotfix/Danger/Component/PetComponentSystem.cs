@@ -507,7 +507,8 @@ namespace ET
             {
                 self.RolePetBag.Add(newpet);
                 M2C_RolePetBagUpdate m2C_RolePetBag = new M2C_RolePetBagUpdate();
-                m2C_RolePetBag.RolePetBag = self.RolePetBag;    
+                m2C_RolePetBag.RolePetBag = self.RolePetBag;
+                m2C_RolePetBag.UpdateMode = 1;
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetBag);
             }
             else
@@ -1270,6 +1271,7 @@ namespace ET
 
             M2C_RolePetBagUpdate m2C_RolePetBag = new M2C_RolePetBagUpdate();
             m2C_RolePetBag.RolePetBag = self.RolePetBag;
+            m2C_RolePetBag.UpdateMode = 2;
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetBag);
         }
 
