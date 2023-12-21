@@ -105,7 +105,7 @@ namespace ET
 
         public static int CanMove(this StateComponent self)
         {
-            if (self.StateTypeGet(StateTypeEnum.NoMove))
+            if (self.StateTypeGet(StateTypeEnum.NoMove) || self.StateTypeGet(StateTypeEnum.BePulled))
             {
                 return ErrorCode.ERR_CanNotMove_1;
             }
