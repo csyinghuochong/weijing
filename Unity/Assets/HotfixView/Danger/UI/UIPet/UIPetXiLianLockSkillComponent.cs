@@ -96,7 +96,7 @@ namespace ET
             self.SkillId = skillId;
             foreach (UICommonSkillItemComponent component in self.PetSkillUIList)
             {
-                component.BorderImg.SetActive(component.SkillId == self.SkillId);
+                component.BorderImg?.SetActive(component.SkillId == self.SkillId);
             }
         }
 

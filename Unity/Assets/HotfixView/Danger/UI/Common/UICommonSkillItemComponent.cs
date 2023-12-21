@@ -40,7 +40,7 @@ namespace ET
             self.NewSkillHint = rc.Get<GameObject>("NewSkillHint");
 
             self.Image_Lock?.SetActive(false);
-            self.BorderImg.SetActive(false);
+            self.BorderImg?.SetActive(false);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
         }
