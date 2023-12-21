@@ -287,7 +287,8 @@ namespace ET
 			petinfo_update.PetSkill = savePetSkillID;
 			PetConfig petconf = PetConfigCategory.Instance.Get(petID);
 			petinfo_update.PetName = petconf.PetName;
-			petComponent.OnResetPoint(petinfo_update);
+            petinfo_update.LockSkill.Clear();
+            petComponent.OnResetPoint(petinfo_update);
 			petComponent.RemovePet(petinfo_delete.Id);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
 			unit.GetComponent<TaskComponent>().OnPetHeCheng(petinfo_update);

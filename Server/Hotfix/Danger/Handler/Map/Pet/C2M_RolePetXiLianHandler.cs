@@ -83,12 +83,14 @@ namespace ET
 					break;
 				case 117:	//洗点
 					unit.GetComponent<PetComponent>().OnResetPoint(petInfo);
-					response.rolePetInfo = petInfo;
+                    petInfo.LockSkill.Clear();
+                    response.rolePetInfo = petInfo;
 					break;
 				case 118: //资质
 					unit.GetComponent<PetComponent>().UpdatePetZiZhi(petInfo, bagInfo.ItemID);
 					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
-					response.rolePetInfo = petInfo;
+                    petInfo.LockSkill.Clear();
+                    response.rolePetInfo = petInfo;
 					break;
 				case 119: //成长
 					unit.GetComponent<PetComponent>().UpdatePetChengZhang(petInfo, bagInfo.ItemID);
@@ -104,7 +106,7 @@ namespace ET
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                         unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                     }
-
+					petInfo.LockSkill.Clear();
                     response.rolePetInfo = petInfo;
 					ifCost = ifok;
 					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCode.ERR_Pet_AddSkillSame;
@@ -136,7 +138,8 @@ namespace ET
 					{
 						petInfo.SkinId = petCof.Skin[RandomHelper.RandomNumber(1, petCof.Skin.Length)];
 					}
-					response.rolePetInfo = petInfo;
+                    petInfo.LockSkill.Clear();
+                    response.rolePetInfo = petInfo;
 					break;
 				case 136:
 					if (petInfo.PetSkill.Count < 2)
