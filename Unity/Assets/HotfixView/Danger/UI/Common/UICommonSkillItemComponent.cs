@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,10 +15,11 @@ namespace ET
         //public GameObject Text_XiLianName;
         public GameObject TextSkillName;
         public GameObject NewSkillHint;
+        public GameObject BorderImg;
         public string SkillAtlas;
         public int SkillId;
         public string addTip;
-        
+        public Action<int> SelectAction;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -29,12 +31,14 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.BorderImg = rc.Get<GameObject>("BorderImg");
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.ImageKuang = rc.Get<GameObject>("ImageKuang");
             //self.Text_XiLianName = rc.Get<GameObject>("Text_XiLianName");
             self.TextSkillName = rc.Get<GameObject>("TextSkillName");
             self.NewSkillHint = rc.Get<GameObject>("NewSkillHint");
 
+            self.BorderImg.SetActive(false);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
         }
@@ -97,6 +101,7 @@ namespace ET
         public static void EndDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
+            self.SelectAction?.Invoke(self.SkillId);
         }
     }
 

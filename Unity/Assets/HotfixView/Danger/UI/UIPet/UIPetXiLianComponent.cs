@@ -85,6 +85,19 @@ namespace ET
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.CostItemInfo.ItemID);
+
+            if (itemConfig.ItemSubType == 136)
+            {
+                UI ui1 = await UIHelper.Create(self.ZoneScene(), UIType.UIPetXiLianLockSkill);
+                ui1.GetComponent<UIPetXiLianLockSkillComponent>().UpdateSkillList(self.RolePetInfo, self.CostItemInfo).Coroutine();
+                return;
+            }
+            
+            if (itemConfig.ItemSubType == 137)
+            {
+                return;
+            }
+
             if ((itemConfig.ItemSubType == 108 || itemConfig.ItemSubType == 109) && self.RolePetInfo.PetLv >= userInfo.Lv + 5)
             {
                 FloatTipManager.Instance.ShowFloatTip("宠物等级不能高于玩家5级！");
@@ -206,7 +219,8 @@ namespace ET
 
                 if (itemSubType != 105 && itemSubType != 108 && itemSubType != 109
                     && itemSubType != 117 && itemSubType != 118 && itemSubType != 119
-                    && itemSubType != 122 && itemSubType != 133 && itemSubType != 134)
+                    && itemSubType != 122 && itemSubType != 133 && itemSubType != 134
+                    && itemSubType != 136 && itemSubType != 137)
                 {
                     continue;
                 }
