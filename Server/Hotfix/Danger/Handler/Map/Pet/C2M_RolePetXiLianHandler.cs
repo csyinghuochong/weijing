@@ -97,7 +97,7 @@ namespace ET
 					break;
 				//学习技能书
 				case 122:
-					bool ifok = Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
+					bool ifok = Pet_AddSkill(unit, petInfo, int.Parse(itemConfig.ItemUsePar));
 					if (ifok)
 					{
                         unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
@@ -139,6 +139,13 @@ namespace ET
 					response.rolePetInfo = petInfo;
 					break;
 				case 136:
+					if (petInfo.PetSkill.Count < 2)
+					{
+                        response.Error = ErrorCode.ERR_Pet_CanNotLock;
+                        reply();
+                        return;
+                    }
+
 					int lockSkill = int.Parse(request.ParamInfo);
                     //只锁定一个技能， 用list方便以后做扩展。 锁定的技能在122这个Pet_AddSkill不会被顶掉
                     petInfo.LockSkill.Clear();
@@ -173,7 +180,7 @@ namespace ET
 		}
 
 		//宠物打技能书
-		private bool Pet_AddSkill(RolePetInfo petinfo, int addSkillID)
+		private bool Pet_AddSkill( Unit unit, RolePetInfo petinfo, int addSkillID)
 		{
 			//判断当前技能是否有重复的
 			if (petinfo.PetSkill.Contains(addSkillID))
@@ -207,17 +214,26 @@ namespace ET
                 //随机获取替换的技能ID序号
                 if (!delStatus)
 				{
-					int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
-					int removeSkill = petinfo.PetSkill[tihuanNum];
+					//int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
+                    //petinfo.PetSkill.RemoveAt(tihuanNum);
 
-					if (petinfo.LockSkill.Contains(removeSkill))
-                    {
-                        petinfo.PetSkill.RemoveAt(petinfo.PetSkill.Count - 1);
+					ListComponent<int> canRemoveSkil = ListComponent<int>.Create();
+					for (int i = 0; i < petinfo.PetSkill.Count; i++)
+					{
+						if (!petinfo.LockSkill.Contains(petinfo.PetSkill[i]))
+						{
+                            canRemoveSkil.Add(petinfo.PetSkill[i]);
+                        }
+					}
+					if (canRemoveSkil.Count > 0)
+					{
+                        int tihuanNum = RandomHelper.RandomNumber(0, canRemoveSkil.Count);
+						petinfo.PetSkill.Remove(canRemoveSkil[tihuanNum]);
                     }
 					else
 					{
-                        petinfo.PetSkill.RemoveAt(tihuanNum);
-                    }
+						Log.Error($"技能全锁定： {unit.Id} {petinfo.Id}");
+					}
 				}
 			}
 
