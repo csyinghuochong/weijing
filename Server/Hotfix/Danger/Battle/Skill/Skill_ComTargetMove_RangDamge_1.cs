@@ -12,7 +12,7 @@ namespace ET
             this.BaseOnInit(skillId, theUnitFrom);
 
             //60; 5; 0.3; 3
-            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
+            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');//0;1;0.3;2  90011941
             if (paraminfos.Length >= 4)
             {
                 this.SkillTriggerLastTime = 0;

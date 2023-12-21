@@ -134,8 +134,7 @@ namespace ET
 						float posZ = float.Parse(commands[3]);
 						int monsterId = int.Parse(commands[4]);
 						int number = int.Parse(commands[5]);
-						
-						for (int c = 0; c < number; c++)
+                        for (int c = 0; c < number; c++)
 						{
 							await TimerComponent.Instance.WaitAsync(1);
 							Vector3 vector3 = new Vector3(posX + RandomHelper.RandomNumberFloat(-2, 2), posY, RandomHelper.RandomNumberFloat(-2, 2));
