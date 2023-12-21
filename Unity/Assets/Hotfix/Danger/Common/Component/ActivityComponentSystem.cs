@@ -91,6 +91,9 @@ namespace ET
                     }
                 }
             }
+
+            self.ActivityV1Info.LastGuessReward.Clear();
+
         }
 #endif
 
