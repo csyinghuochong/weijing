@@ -152,6 +152,18 @@ namespace ET
                             bagIsFull = true;
                         }
                     }
+                    if (itemConfig.ItemSubType == 137)
+                    {
+                        //检测要附灵的宠物蛋是否存在
+                        long chongwudanId = long.Parse(request.OperatePar);      
+                        BagInfo chongwudan = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, chongwudanId);
+                        if (chongwudan == null)
+                        {
+                            response.Error = ErrorCode.ERR_ItemNotExist;
+                            reply();
+                            return;
+                        }
+                    }
 
                     if (bagIsFull)
                     {
@@ -429,6 +441,14 @@ namespace ET
                                 unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
                                 break;
                             case 136:
+                                break;
+                            case 137:
+                                //宠物蛋附灵
+                                long chongwudanId = long.Parse(request.OperatePar);
+                                BagInfo chongwudan = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, chongwudanId);
+                                chongwudan.FuLing = 1;
+                                m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
+
                                 break;
                         }
 
