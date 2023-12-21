@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
+
+        public GameObject PetLucky;
         public GameObject PetEggLucklyExplainBtn;
         public GameObject Text_PetExploreLuckly;
         public GameObject Btn_ChouKaNumReward;
@@ -40,6 +42,10 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_ChouKaTen, () => { self.OnBtn_ChouKa(10).Coroutine(); });
             self.Btn_ChouKa = rc.Get<GameObject>("Btn_ChouKa");
             ButtonHelp.AddListenerEx(self.Btn_ChouKa, () => { self.OnBtn_ChouKa(1).Coroutine(); });
+
+            self.PetLucky = rc.Get<GameObject>("PetLucky");
+            self.PetLucky.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) ) ;
+
             self.UpdateMoney();
             self.OnUpdateInfo();
             //self.UpdateChouKaTime();

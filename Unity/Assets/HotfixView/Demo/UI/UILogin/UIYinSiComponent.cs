@@ -80,7 +80,8 @@ namespace ET
                 return;
             }
             self.AgreeNumber++;
-            if (self.AgreeNumber >= 3 || permissons == "1_1")
+            int needAgreeNumber = GameObject.Find("Global").GetComponent<Init>().Platform == 5 ? 2 : 3;
+            if (self.AgreeNumber >= needAgreeNumber || permissons == "1_1")
             {
                 UIHelper.Remove( self.ZoneScene(), UIType.UIYinSi );
             }
