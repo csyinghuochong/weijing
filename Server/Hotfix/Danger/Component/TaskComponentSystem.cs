@@ -943,7 +943,18 @@ namespace ET
             {
                 self.UpdateDayTask(false);
             }
-           
+            if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0)
+            {
+                int roleLv = userInfoComponent.UserInfo.Lv;
+                int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
+                numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, false);
+            }
+            if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0)
+            {
+                int roleLv = userInfoComponent.UserInfo.Lv;
+                numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), false);
+            }
+
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
 
@@ -1340,11 +1351,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), notice);
 
-            if( numericComponent.GetAsInt(NumericType.RingTaskId) == 0)
-            {
-                int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
-                numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);
-            }
+            int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
+            numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);
             Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.DailyTaskID)}");
         }
 

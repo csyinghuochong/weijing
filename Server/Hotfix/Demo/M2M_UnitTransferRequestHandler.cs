@@ -392,6 +392,7 @@ namespace ET
                             Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 							scene.GetComponent<SeasonTowerComponent>().GenerateFuben(int.Parse(request.ParamInfo));
                         }
+						
                         TransferHelper.AfterTransfer(unit);
                         break;
                     case SceneTypeEnum.TowerOfSeal:
