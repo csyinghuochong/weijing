@@ -353,6 +353,14 @@ namespace ET
             string fubenname = "副本";
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
+                if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union) &&
+                    taskConfig.TargetType != TaskTargetType.GiveItem_10 &&
+                    taskConfig.TargetType != TaskTargetType.GivePet_25)
+                {
+                    zoneScene.GetComponent<TaskComponent>().SendCommitTask(taskPro.taskID, 0).Coroutine();
+                    return true;
+                }
+
                 if (!TaskHelper.HaveNpc(zoneScene, npcid))
                 {
                     int fubenId = TaskViewHelp.Instance.GetFubenByNpc(npcid);

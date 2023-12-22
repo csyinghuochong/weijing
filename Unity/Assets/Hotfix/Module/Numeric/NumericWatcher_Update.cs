@@ -210,6 +210,8 @@
     [NumericWatcher((int)NumericType.BattleCamp)]
     [NumericWatcher((int)NumericType.SkillUseMP)]
     [NumericWatcher((int)NumericType.PetExploreLuckly)]
+    [NumericWatcher((int)NumericType.UnionTaskId)]
+    [NumericWatcher((int)NumericType.RingTaskId)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

@@ -271,6 +271,12 @@ namespace ET
 			{
 				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交宠物";
 			}
+
+			if ((self.TaskConfig.TaskType == TaskTypeEnum.Ring || self.TaskConfig.TaskType == TaskTypeEnum.Union) &&
+			    self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+			{
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = "完成任务";
+			}
 		}
 
 		public static void OnRecvTaskUpdate(this UITaskComponent self)

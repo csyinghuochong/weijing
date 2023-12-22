@@ -205,6 +205,20 @@
                     uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                     uI?.GetComponent<UIMainComponent>().UpdateKillMonsterReward();
                     break;
+                case NumericType.RingTaskId:
+                    int newvalue1 = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskId);
+                    if (newvalue1 != 0)
+                    {
+                        NetHelper.SendGetTask(args.Unit.ZoneScene(),newvalue1).Coroutine();
+                    }
+                    break;
+                case NumericType.UnionTaskId:
+                    int newvalue2 = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskId);
+                    if (newvalue2 != 0)
+                    {
+                        NetHelper.SendGetTask(args.Unit.ZoneScene(),newvalue2).Coroutine();
+                    }
+                    break;
             }
         }
 
