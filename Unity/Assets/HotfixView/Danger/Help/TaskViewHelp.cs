@@ -411,6 +411,7 @@ namespace ET
         {
             UI ui = await UIHelper.Create(zoneScene, UIType.UIGivePet);
             ui.GetComponent<UIGivePetComponent>().InitTask(taskPro.taskID, 1);
+            ui.GetComponent<UIGivePetComponent>().OnUpdateUI();
         }
         
         public int GetSceneByNpc(int npcId)
