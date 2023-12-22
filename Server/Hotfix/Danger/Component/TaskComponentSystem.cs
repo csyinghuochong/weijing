@@ -941,8 +941,8 @@ namespace ET
             
             if (numericComponent.GetAsInt(NumericType.DailyTaskID) == 0)
             {
-                self.UpdateDayTask(false);
-                //self.CheckDailyTask(false);
+                //self.UpdateDayTask(false);
+                self.CheckDailyTask(false);
             }
             if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 )
             {
