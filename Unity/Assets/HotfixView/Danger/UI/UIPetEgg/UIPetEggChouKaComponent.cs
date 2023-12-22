@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
+        public GameObject RewardItemListNode;
         public GameObject Btn_PetEggLucklyExplain;
         public GameObject Btn_RolePetHeXin;
         public GameObject PetLucky;
@@ -30,6 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
             self.Btn_PetEggLucklyExplain = rc.Get<GameObject>("Btn_PetEggLucklyExplain");
             self.Btn_RolePetBag = rc.Get<GameObject>("Btn_RolePetBag");
             self.PetEggLucklyExplainBtn = rc.Get<GameObject>("PetEggLucklyExplainBtn");
@@ -57,6 +59,7 @@ namespace ET
 
             self.UpdateMoney();
             self.OnUpdateInfo();
+            self.UpdateReward();
             //self.UpdateChouKaTime();
         }
 
@@ -77,6 +80,11 @@ namespace ET
     }
     public static class UIPetEggChouKaComponentSystem
     {
+        public static void UpdateReward(this UIPetEggChouKaComponent self)
+        {
+            UICommonHelper.ShowItemList(ConfigHelper.PetChouKaRewardItemShow, self.RewardItemListNode, self, 0.8f);
+        }
+        
         public static void OnBtn_RolePetBag(this UIPetEggChouKaComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIRolePetBag).Coroutine();

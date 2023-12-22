@@ -1046,5 +1046,9 @@ namespace ET
             { 300, "10000136;1$3;500,2500" },
         };
 
+        /// <summary>
+        /// 宠物抽奖掉落展示
+        /// </summary>
+        public static string PetChouKaRewardItemShow = "10000136;1@10000136;1@10000136;1";
     }
 }
