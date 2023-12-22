@@ -1773,7 +1773,16 @@ namespace ET
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.ShrinkBtn.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
-            self.LeftBottomBtns.SetActive(self.LeftBottomBtns.activeSelf && sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom);
+            if (value=="1")
+            {
+                self.LeftBottomBtns.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            }
+            else
+            {
+                 self.LeftBottomBtns.SetActive(self.LeftBottomBtns.activeSelf && sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
+            }
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {

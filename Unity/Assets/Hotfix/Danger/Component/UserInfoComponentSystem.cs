@@ -104,6 +104,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.GuaJiAutoUseSkill:
                     return "";
+                case GameSettingEnum.HideLeftBottom:
+                    return "1";
                 default:
                     return "0";
             }
