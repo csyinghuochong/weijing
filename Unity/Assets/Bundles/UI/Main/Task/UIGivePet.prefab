@@ -1949,8 +1949,6 @@ MonoBehaviour:
     gameObject: {fileID: 1363520629595751348}
   - key: PetZiZhiItem6
     gameObject: {fileID: 8182319466198980102}
-  - key: Img_PeteroQualityadd
-    gameObject: {fileID: 6767467104392147442}
 --- !u!1 &2126416146865470526
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,7 +4087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -444, y: 338}
+  m_AnchoredPosition: {x: -284.9, y: 348}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1125229047190290245
