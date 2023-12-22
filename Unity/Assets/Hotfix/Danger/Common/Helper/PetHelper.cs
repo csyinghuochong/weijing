@@ -5,6 +5,19 @@ namespace ET
     public static class PetHelper
     {
 
+        /// <summary>
+        /// 合宠预览
+        /// </summary>
+        /// <param name="rolePetA"></param>
+        /// <param name="rolePetB"></param>
+        /// <returns></returns>
+        public static RolePetInfo GetNewHeChengPet(RolePetInfo rolePetA , RolePetInfo rolePetB)
+        {
+
+            RolePetInfo rolePetInfo = new RolePetInfo();    
+            return rolePetA;
+        }
+
         public static int GetPetMaxNumber(Unit unit, int level)
         {
             int petNumber = 1;
