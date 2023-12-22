@@ -102,7 +102,24 @@ namespace ET
                 WriteLogList(KillInfoList, filePath);
                 KillInfoList.Clear();
             }
+        }
 
+        public static void PetMingBattleInfo(int zone, string loginfo)
+        {
+            ServerItem serverItem = ServerHelper.GetGetServerItem(false, zone);
+            if (serverItem == null)
+            {
+                return;
+            }
+
+            string log = $"{TimeHelper.DateTimeNow().ToString()}: {serverItem.ServerName} {loginfo}";
+            KillInfoList.Add(log);
+            if (KillInfoList.Count >= 10)
+            {
+                string filePath = "../Logs/WJ_KillPlayer.txt";
+                WriteLogList(KillInfoList, filePath);
+                KillInfoList.Clear();
+            }
         }
 
         public static string NoticeLastContent = string.Empty;

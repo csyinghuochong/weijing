@@ -9,6 +9,13 @@ namespace ET
         {
             if (self.CombatResultEnum == CombatResultEnum.Win && self.MainUnit != null)
             {
+                string logInfo = string.Empty;
+                string unitName = self.MainUnit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(self.MineType);
+                logInfo = $"玩家 {unitName} 队伍{self.TeamId + 1} 占领了第{self.Position+1} {mineBattleConfig.Name}";
+
+                LogHelper.PetMingBattleInfo(self.DomainZone(), logInfo);
+
                 long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());
                 A2M_PetMingBattleWinResponse r_GameStatusResponse = (A2M_PetMingBattleWinResponse)await ActorMessageSenderComponent.Instance.Call
                     (chargeServerId, new M2A_PetMingBattleWinRequest()
@@ -151,10 +158,12 @@ namespace ET
             }
             else
             {
-
                 long enemyId = r_GameStatusResponse.PetMingPlayerInfo.UnitId;
                 int teamid = r_GameStatusResponse.PetMingPlayerInfo.TeamId;
                 long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+
+                self.EnemyId = enemyId;
+
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.PetComponent });
                 if (d2GGetUnit.Component != null)
                 {

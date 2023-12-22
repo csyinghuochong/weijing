@@ -15,5 +15,7 @@
         public long Timer;
 
         public int CombatResultEnum;
+
+        public long EnemyId;
     }
 }
