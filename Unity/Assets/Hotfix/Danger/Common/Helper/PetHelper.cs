@@ -11,7 +11,7 @@ namespace ET
         /// <param name="rolePetA"></param>
         /// <param name="rolePetB"></param>
         /// <returns></returns>
-        public static RolePetInfo GetNewHeChengPet(RolePetInfo rolePetA , RolePetInfo rolePetB)
+        public static RolePetInfo GetPetHeChengPreview(RolePetInfo rolePetA , RolePetInfo rolePetB)
         {
 
             RolePetInfo rolePetInfo = new RolePetInfo();    
