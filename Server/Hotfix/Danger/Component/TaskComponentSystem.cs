@@ -1367,13 +1367,12 @@ namespace ET
            
             numericComponent.ApplyValue(NumericType.DailyTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.UnionTaskNumber, 0, notice);
-            numericComponent.ApplyValue(NumericType.RingTaskNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv), notice);
             numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), notice);
 
-            int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
-            numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);
-            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.DailyTaskID)}");
+            //int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
+            //numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, notice);
+            //Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.DailyTaskID)}");
         }
 
         public static TaskPro GetTreasureMonster(this TaskComponent self, int fubenid)
