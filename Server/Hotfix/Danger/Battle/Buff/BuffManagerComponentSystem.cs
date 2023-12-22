@@ -410,28 +410,29 @@ namespace ET
             }
 
             int[] addSkill =  skillBuffConfig.AddSkill;
-            if (addSkill != null && addSkill.Length >= 2 && self.GetBuffNumber(buffData.BuffId) >= addSkill[0])
+            if (addSkill != null && addSkill.Length >= 2 && from!= null && self.GetBuffSourceNumber(from.Id, buffData.BuffId) >= addSkill[0])
             {
                 C2M_SkillCmd cmd = new C2M_SkillCmd();
                 cmd.SkillID = addSkill[1];
                 cmd.TargetID = unit.Id;
                 cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                 cmd.TargetDistance = 0f;
-                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+                from.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
             }
         }
 
-        public static int GetBuffNumber(this BuffManagerComponent self, int buffId)
+        public static int GetBuffSourceNumber(this BuffManagerComponent self, long formId,  int buffId)
         {
             int buffnumber = 0;
             int bufflist = self.m_Buffs.Count;
-            
+          
             for (int i = bufflist - 1; i >= 0; i--)
             {
-                if (self.m_Buffs[i].BuffData.BuffId == buffId)
+                if (self.m_Buffs[i].BuffData.BuffId != buffId)
                 {
-                    buffnumber++;
+                    continue;
                 }
+                buffnumber++;
             }
             return buffnumber;
         }

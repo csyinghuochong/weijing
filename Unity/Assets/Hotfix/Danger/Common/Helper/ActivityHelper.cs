@@ -146,6 +146,10 @@ namespace ET
             return activityId;
         }
 
+        public static List<string> GetWelfareChouKaReward(List<BagInfo> bagInfos)
+        {
+            return new List<string>() { };
+        }
 
     }
 }
