@@ -1245,6 +1245,7 @@ namespace ET
             {
                 return;
             }
+
             int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
             numericComponent.ApplyValue(NumericType.DailyTaskID, TaskHelper.GetTaskIdByType(TaskTypeEnum.Daily, roleLv), notice);
         }
@@ -1268,6 +1269,7 @@ namespace ET
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 && numericComponent.GetAsInt(NumericType.UnionTaskNumber) < GlobalValueConfigCategory.Instance.Get(108).Value2)
             {
+
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
                 numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Union, roleLv), false);
             }
@@ -1362,6 +1364,7 @@ namespace ET
 
         public static void UpdateDayTask(this TaskComponent self, bool notice)
         {
+
             //清空每日任务
             Unit unit = self.GetParent<Unit>();
             System.DateTime dateTime = TimeHelper.DateTimeNow();
@@ -1422,6 +1425,7 @@ namespace ET
 
         public static void ResetWeeklyTask(this TaskComponent self)
         {
+            Log.Console($"TaskComponent.ResetWeeklyTask");
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 if (!TaskConfigCategory.Instance.Contain(self.RoleTaskList[i].taskID))
@@ -1526,6 +1530,8 @@ namespace ET
         /// <param name="self"></param>
         public static void OnZeroClockUpdate(this TaskComponent self, bool notice)
         {
+            Log.Console($"TaskComponent.OnZeroClockUpdate");
+
             self.OnLineTime = 0;
             Unit unit = self.GetParent<Unit>();
             self.UpdateCountryList(notice);
