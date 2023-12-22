@@ -422,9 +422,9 @@ namespace ET
                     }, false);
                 }
             }
-            if (unit.Type == UnitType.Pet)
+            //if (unit.Type == UnitType.Pet || unit.Type == UnitType.Pet)
             {
-                unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attack.Id);
+                unit.GetComponent<SkillPassiveComponent>()?.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attack.Id);
             }
         }
 
