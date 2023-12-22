@@ -164,6 +164,17 @@ namespace ET
                             return;
                         }
                     }
+                    if (itemConfig.ItemSubType == 138)
+                    {
+                        // int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                        if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamDungeonTimes) <= 0)
+                        {
+                            response.Error = ErrorCode.ERR_TeamDungeonTimesMax;
+                            reply();
+                            return;
+                        }
+                    }
+                    
 
                     if (bagIsFull)
                     {
@@ -449,6 +460,10 @@ namespace ET
                                 BagInfo chongwudan = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, chongwudanId);
                                 chongwudan.FuLing = 1;
                                 m2c_bagUpdate.BagInfoUpdate.Add(chongwudan);
+                                break;
+                            case 138:
+                                // 增加副本次数
+                                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);
                                 break;
                         }
 

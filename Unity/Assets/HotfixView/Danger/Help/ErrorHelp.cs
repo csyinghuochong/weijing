@@ -83,6 +83,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_Occ_Hint_2, "请不要重复进行转职噢");
             ErrorHintList.Add(ErrorCode.ERR_NotRealName, "请先实名认证");
             ErrorHintList.Add(ErrorCode.ERR_RealNameFail, "实名认证失败!");
+            ErrorHintList.Add(ErrorCode.ERR_TeamDungeonTimesMax, "副本参与次数已经最大");
             ErrorHintList.Add(ErrorCode.ERR_WordChat, "世界频道发消息 1分钟1次");
             ErrorHintList.Add(ErrorCode.ERR_InMakeCD, "制作冷却中!");
             ErrorHintList.Add(ErrorCode.ERR_MakeTypeError, "制作类型不符!");
