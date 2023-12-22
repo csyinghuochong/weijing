@@ -48,7 +48,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.JiaYuanLevel_22, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = JiaYuanLevel_22 });
             TaskTypeLogic.Add(TaskTargetType.PetHeCheng_23, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetHeCheng_23 });
             TaskTypeLogic.Add(TaskTargetType.PetNumber2_24, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = PetNumber2_24 });
-            TaskTypeLogic.Add(TaskTargetType.GivePet_25, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = GivePet_25 });
+            TaskTypeLogic.Add(TaskTargetType.GivePet_25, new TaskLogic() { taskExcute = this.ExcuteGivePet_25, taskProgess = GivePet_25 });
             TaskTypeLogic.Add(TaskTargetType.TreasureMapNormal_26, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TreasureMapNormal_26 });
             TaskTypeLogic.Add(TaskTargetType.TreasureMapHigh_27, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TreasureMapHigh_27 });
             TaskTypeLogic.Add(TaskTargetType.TowerOfSeal_28, new TaskLogic() { taskExcute = this.ExcuteDoNothing, taskProgess = TowerOfSeal_28 });
@@ -169,6 +169,19 @@ namespace ET
             if (taskConfig.CompleteNpcID == 0)
             {
                 OpenUIGiveTask(zoneScene, taskPro).Coroutine();
+            }
+            else
+            {
+                ExcuteMoveTo(zoneScene, taskPro, taskConfig)  ;
+            }
+            return true;
+        }
+        
+        public bool ExcuteGivePet_25(Scene zoneScene, TaskPro taskPro, TaskConfig taskConfig)
+        {
+            if (taskConfig.CompleteNpcID == 0)
+            {
+                OpenUIGivePet(zoneScene, taskPro).Coroutine();
             }
             else
             {
@@ -392,6 +405,12 @@ namespace ET
         {
             UI ui = await UIHelper.Create(zoneScene, UIType.UIGiveTask);
             ui.GetComponent<UIGiveTaskComponent>().InitTask(taskPro.taskID, 1);
+        }
+        
+        private async ETTask OpenUIGivePet(Scene zoneScene, TaskPro taskPro)
+        {
+            UI ui = await UIHelper.Create(zoneScene, UIType.UIGivePet);
+            ui.GetComponent<UIGivePetComponent>().InitTask(taskPro.taskID, 1);
         }
         
         public int GetSceneByNpc(int npcId)

@@ -267,6 +267,10 @@ namespace ET
 			{
 				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交装备";
 			}
+			else if(self.TaskConfig.TargetType == TaskTargetType.GivePet_25)
+			{
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交宠物";
+			}
 		}
 
 		public static void OnRecvTaskUpdate(this UITaskComponent self)

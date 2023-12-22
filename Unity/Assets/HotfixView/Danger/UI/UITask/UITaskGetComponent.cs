@@ -535,7 +535,8 @@ namespace ET
                 {
                     taskids.Add(taskPros[i].taskID);
                 }
-                else if(taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 && taskConfig.TaskType == TaskTypeEnum.Ring && self.NpcID == 20000102) 
+                else if ((taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 || taskConfig.TargetType == (int)TaskTargetType.GivePet_25) &&
+                         taskConfig.TaskType == TaskTypeEnum.Ring && self.NpcID == 20000102)
                 {
                     // 家族给予任务可以CompleteNpcID==0，找家族任务NPC提交
                     taskids.Add(taskPros[i].taskID);
