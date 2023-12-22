@@ -205,6 +205,20 @@ namespace ET
             }
         }
 
+        public static void BuffRemoveByUnit(this BuffManagerComponent self, long unitId, int buffId)
+        {
+            //判断玩家身上是否有相同的buff,如果有就注销此Buff
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].mBuffConfig.Id == buffId && self.m_Buffs[i].TheUnitFrom.Id == unitId)
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
+        }
+
         public static void BuffRemoveBySkillid(this BuffManagerComponent self, int skillid)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
@@ -418,6 +432,8 @@ namespace ET
                 cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                 cmd.TargetDistance = 0f;
                 from.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+
+                self.BuffRemoveByUnit(from.Id, buffData.BuffId);
             }
         }
 

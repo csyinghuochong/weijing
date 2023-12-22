@@ -152,8 +152,10 @@ namespace ET
         /// </summary>
         /// <param name="bagInfos">已拥有的道具列表</param>
         /// <returns>返回可以抽奖的道具</returns>
+        /// NumericType.WelfareChouKaNumber 
         public static List<string> GetWelfareChouKaReward(List<BagInfo> bagInfos)
         {
+            
             return new List<string>() { "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1" };
         }
 
