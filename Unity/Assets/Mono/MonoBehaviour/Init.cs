@@ -168,6 +168,7 @@ namespace ET
 		 CheckIphoneYueyu( string.Empty ); 
 #endif
 
+			BuglyInit.PlatForm = this.Platform;
 
             GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
@@ -177,7 +178,6 @@ namespace ET
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
-
         }
 
 		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
@@ -353,6 +353,11 @@ namespace ET
 
         public void OpenBuglyAgent(string userId)
 		{
+			if (this.Platform == 5)
+			{
+				return;
+			}
+
 #if UNITY_ANDROID
 			Log.ILog.Info("OpenBuglyAgent: " + userId);
 			// 开启SDK的日志打印，发布版本请务必关闭

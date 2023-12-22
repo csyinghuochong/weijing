@@ -22,6 +22,8 @@ public class BuglyInit : MonoBehaviour
     /// <example>A real App ID looks like this: 90000xxxx</example>
     public const string BuglyAppID = "c2db2635df";//"8c0fe97172";
 
+    public static int PlatForm = 0;
+
 	void Awake ()
 	{
 		// Enable the debug log print
@@ -52,6 +54,8 @@ public class BuglyInit : MonoBehaviour
         // Please do not do hard work in this handler 
     static Dictionary<string, string> MyLogCallbackExtrasHandler ()
     {
+
+        UnityEngine.Debug.LogWarning("MyLogCallbackExtrasHandler");
         // TODO Test log, please do not copy it
         BuglyAgent.PrintLog (LogSeverity.Log, "extra handler");
         
@@ -62,7 +66,7 @@ public class BuglyInit : MonoBehaviour
         extras.Add ("deviceName", SystemInfo.deviceName);
         extras.Add ("deviceType", SystemInfo.deviceType.ToString ());
         
-        extras.Add ("deviceUId", SystemInfo.deviceUniqueIdentifier);
+        extras.Add ("deviceUId", BuglyInit.PlatForm == 5 ? string.Empty: SystemInfo.deviceUniqueIdentifier);
         extras.Add ("gDId", string.Format ("{0}", SystemInfo.graphicsDeviceID));
         extras.Add ("gDName", SystemInfo.graphicsDeviceName);
         extras.Add ("gDVdr", SystemInfo.graphicsDeviceVendor);
