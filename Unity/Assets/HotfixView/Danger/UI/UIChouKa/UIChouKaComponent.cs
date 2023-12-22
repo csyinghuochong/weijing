@@ -24,6 +24,7 @@ namespace ET
 
     public class UIChouKaComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_ChouKaProbExplain;
         public GameObject Btn_Warehouse;
         public GameObject Text_TotalNumber;
         public GameObject Text_MianFeiTime_2;
@@ -56,6 +57,7 @@ namespace ET
             self.DropShowList = new List<UI>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Btn_ChouKaProbExplain = rc.Get<GameObject>("Btn_ChouKaProbExplain");
             self.Text_TotalNumber = rc.Get<GameObject>("Text_TotalNumber");
             self.Text_MianFeiTime_2 = rc.Get<GameObject>("Text_MianFeiTime_2");
             self.Text_MianFeiTime_1 = rc.Get<GameObject>("Text_MianFeiTime_1");
@@ -63,7 +65,11 @@ namespace ET
             self.Text_Chapter = rc.Get<GameObject>("Text_Chapter");
             self.TextTenCost = rc.Get<GameObject>("TextTenCost");
             self.TextOneCost = rc.Get<GameObject>("TextOneCost");
-            
+
+            self.Btn_ChouKaProbExplain.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UIHelper.Create(self.ZoneScene(), UIType.UIChouKaProbExplain).Coroutine();
+            });
             self.Btn_Warehouse = rc.Get<GameObject>("Btn_Warehouse");
             self.Btn_Warehouse.GetComponent<Button>().onClick.AddListener((() => self.OnBtn_Warehouse()));
             
