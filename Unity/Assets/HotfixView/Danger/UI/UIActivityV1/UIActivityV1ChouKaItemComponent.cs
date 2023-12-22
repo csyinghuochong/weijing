@@ -44,7 +44,7 @@ namespace ET
                 return;
             }
 
-            if (self.GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key))
+            if (self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key))
             {
                 FloatTipManager.Instance.ShowFloatTip("已经领取");
                 return;

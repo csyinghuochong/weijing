@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIActivityV1ChouKaComponent: Entity, IAwake
     {
+        public GameObject NumText;
         public GameObject UIActivityV1ChouKaListNode;
         public GameObject UIActivityV1ChouKaItem;
         public GameObject RewardItemListNode;
@@ -22,6 +23,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.NumText = rc.Get<GameObject>("NumText");
             self.UIActivityV1ChouKaListNode = rc.Get<GameObject>("UIActivityV1ChouKaListNode");
             self.UIActivityV1ChouKaItem = rc.Get<GameObject>("UIActivityV1ChouKaItem");
             self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
@@ -60,6 +62,8 @@ namespace ET
             {
                 return;
             }
+
+            self.UpdateInfo();
         }
 
         public static void InitInfo(this UIActivityV1ChouKaComponent self)
@@ -72,21 +76,22 @@ namespace ET
                 UICommonHelper.SetParent(go, self.UIActivityV1ChouKaListNode);
                 go.SetActive(true);
             }
-
-            List<int> rewardShowItems = new List<int> { 601901001, 601901002, 601901003 };
-            for (int i = 0; i < rewardShowItems.Count; i++)
+            
+            string[] items = ActivityConfigHelper.ChouKaRewardPool.Split('@');
+            for (int i = 0; i < items.Length; i++)
             {
-                if (!ItemConfigCategory.Instance.Contain(rewardShowItems[i]))
+                string[] item = items[i].Split(';');
+                if (!ItemConfigCategory.Instance.Contain(int.Parse(item[0])))
                 {
                     continue;
                 }
 
                 var path = ABPathHelper.GetUGUIPath("Main/Role/UITreasureItem");
                 var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                GameObject itemSpace = UnityEngine.Object.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, self.RewardItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardShowItems[i], ItemNum = 0 }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(item[0]), ItemNum = int.Parse(item[1]) }, ItemOperateEnum.None);
                 //uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
@@ -94,6 +99,13 @@ namespace ET
             }
 
             UICommonHelper.ShowItemList(ActivityConfigHelper.ChouKaCostItem, self.CostItemListNode, self, 0.8f);
+            self.UpdateInfo();
+        }
+
+        public static void UpdateInfo(this UIActivityV1ChouKaComponent self)
+        {
+            self.NumText.GetComponent<Text>().text =
+                    $"抽奖次数：{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber)}";
         }
     }
 }
