@@ -226,7 +226,7 @@ namespace ET
             {
                 int functionId = self.ActivityTimerList[0].FunctionId;
                 bool todayopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
-                Log.Console($"OnCheckFuntionButton: {functionId} {self.ActivityTimerList[0].FunctionType}");
+                Log.Warning($"OnCheckFuntionButton: {functionId} {self.ActivityTimerList[0].FunctionType}");
 
                 long sceneserverid = 0;
 
@@ -289,7 +289,7 @@ namespace ET
         public static  void InitFunctionButton(this ActivitySceneComponent self)
         {
             self.ActivityTimerList.Clear();
-            Log.Console("InitFunctionButton");
+            Log.Warning("InitFunctionButton");
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
@@ -301,7 +301,7 @@ namespace ET
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
-                Log.Console($"InitFunctionButton: {functonIds[i]} {functionopne}");
+                //Log.Console($"InitFunctionButton: {functonIds[i]} {functionopne}");
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;

@@ -27,7 +27,6 @@ namespace ET
         public static void OnZeroClockUpdate(this BattleSceneComponent self)
         {
             LogHelper.LogWarning("Battle:  OnZeroClockUpdate", true);
-            Log.Console("Battle:  OnZeroClockUpdate");
         }
 
         public static void  OnBattleOpen(this BattleSceneComponent self)

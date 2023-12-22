@@ -991,11 +991,11 @@ namespace ET
 
                 for (int t = 0; t < taskConfig.Target.Length; t++)
                 {
-                    if (t == 0)
+                    if (t == 0 && taskConfig.TargetValue.Length > 0)
                     {
                         taskPro.taskTargetNum_1 = taskConfig.TargetValue[0];
                     }
-                    if (t == 1)
+                    if (t == 1 && taskConfig.TargetValue.Length > 1)
                     {
                         taskPro.taskTargetNum_2 = taskConfig.TargetValue[1];
                     }
@@ -1254,6 +1254,8 @@ namespace ET
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 && numericComponent.GetAsInt(NumericType.RingTaskNumber) < 100)
             {
+                //self.ClearTypeTask(TaskTypeEnum.Ring);
+
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
                 int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
                 numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, false);
@@ -1341,6 +1343,23 @@ namespace ET
             }
         }
 
+        public static void ClearTypeTask(this TaskComponent self, int taskType)
+        {
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == taskType)
+                {
+                    if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
+                    {
+                        self.RoleComoleteTaskList.Remove(taskConfig.Id);
+                    }
+                    self.RoleTaskList.RemoveAt(i);
+                    continue;
+                }
+            }
+        }
+
         public static void UpdateDayTask(this TaskComponent self, bool notice)
         {
             //清空每日任务
@@ -1350,8 +1369,7 @@ namespace ET
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.Daily
-                    || taskConfig.TaskType == TaskTypeEnum.Union
-                    || taskConfig.TaskType == TaskTypeEnum.Ring)
+                    || taskConfig.TaskType == TaskTypeEnum.Union)
                 {
                     if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
                     {
@@ -1413,7 +1431,8 @@ namespace ET
                 }
 
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
-                if (taskConfig.TaskType == TaskTypeEnum.Weekly)
+                if (taskConfig.TaskType == TaskTypeEnum.Weekly
+                    || taskConfig.TaskType == TaskTypeEnum.Ring)
                 {
                     if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
                     {
@@ -1434,9 +1453,10 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
+            int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
-            numericComponent.ApplyValue(NumericType.RingTaskId, 0, false);
             numericComponent.ApplyValue(NumericType.RingTaskNumber, 0, false);
+            numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv), false);
 
             self.UpdateSeasonWeekTask(false);
         }

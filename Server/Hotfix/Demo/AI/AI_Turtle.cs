@@ -129,7 +129,6 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.Console("AI_Turtle被打断！！" );
                     return;
                 }
             }
