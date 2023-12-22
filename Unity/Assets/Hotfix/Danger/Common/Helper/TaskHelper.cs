@@ -530,15 +530,16 @@ namespace ET
 
         public static long GetJianDingValue(BagInfo bagInfo, int type)
         {
+            long value = 0;
             for (int i = 0; i < bagInfo.HideProLists.Count; i++)
             {
                 if (type == bagInfo.HideProLists[i].HideID)
                 {
-                    return bagInfo.HideProLists[i].HideValue;
+                    value += bagInfo.HideProLists[i].HideValue;
                 }
             }
 
-            return 0;
+            return value;
         }
     }
 }
