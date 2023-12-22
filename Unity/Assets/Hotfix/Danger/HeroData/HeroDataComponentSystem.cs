@@ -495,7 +495,6 @@ namespace ET
             }
             int waitRevive = self.OnWaitRevive();
             numericComponent.ApplyValue(NumericType.Now_Dead, 1);
-
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
                 WaitRevive = waitRevive,
