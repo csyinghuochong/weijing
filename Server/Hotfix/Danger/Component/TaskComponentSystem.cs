@@ -1241,7 +1241,7 @@ namespace ET
             {
                 return;
             }
-            if (numericComponent.GetAsInt(NumericType.DailyTaskNumber) >= 10)
+            if (numericComponent.GetAsInt(NumericType.DailyTaskNumber) >= 2)
             {
                 return;
             }
@@ -1253,7 +1253,7 @@ namespace ET
         public static void CheckRingTask(this TaskComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 && numericComponent.GetAsInt(NumericType.RingTaskNumber) < 100)
+            if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 && numericComponent.GetAsInt(NumericType.RingTaskNumber) < 2)
             {
                 //self.ClearTypeTask(TaskTypeEnum.Ring);
 
@@ -1261,13 +1261,12 @@ namespace ET
                 int ringTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv);
                 numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskId, false);
             }
-          
         }
 
         public static void CheckUnionTask(this TaskComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 && numericComponent.GetAsInt(NumericType.UnionTaskNumber) < GlobalValueConfigCategory.Instance.Get(108).Value2)
+            if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 && numericComponent.GetAsInt(NumericType.UnionTaskNumber) < 2)
             {
 
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
