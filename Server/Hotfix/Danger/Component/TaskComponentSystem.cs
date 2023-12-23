@@ -518,6 +518,7 @@ namespace ET
                 else
                 {
                     numericComponent.ApplyValue(NumericType.DailyTaskID, 0);
+                    numericComponent.ApplyValue(null, NumericType.DailyTaskNumber, dailyTaskNumber, 0);
                 }
                 
                 self.TriggerTaskCountryEvent(TaskTargetType.DailyTask_1014, 0, 1);
@@ -541,6 +542,7 @@ namespace ET
                 else
                 {
                     numericComponent.ApplyValue(NumericType.RingTaskId, 0);
+                    numericComponent.ApplyValue(NumericType.RingTaskNumber, ringTaskNumber);
                 }
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
@@ -554,6 +556,7 @@ namespace ET
                 else
                 {           
                     numericComponent.ApplyValue(NumericType.UnionTaskId, 0);
+                    numericComponent.ApplyValue(null, NumericType.UnionTaskNumber, unionTaskNumber, 0);
                 }
                 
             }
