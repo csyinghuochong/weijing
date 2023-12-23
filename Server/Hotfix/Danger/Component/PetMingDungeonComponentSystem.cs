@@ -162,7 +162,7 @@ namespace ET
                 int teamid = r_GameStatusResponse.PetMingPlayerInfo.TeamId;
                 long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
 
-                self.EnemyId = enemyId;
+                //self.EnemyId = enemyId;
 
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = enemyId, Component = DBHelper.PetComponent });
                 if (d2GGetUnit.Component != null)
