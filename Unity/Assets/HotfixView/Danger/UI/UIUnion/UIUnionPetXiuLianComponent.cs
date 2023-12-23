@@ -161,7 +161,7 @@ namespace ET
                 return;
             }
 
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.UnionZiJin < unionQiangHuaConfig.CostGold)
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin < unionQiangHuaConfig.CostGold)
             {
                 FloatTipManager.Instance.ShowFloatTip("家族贡献不足！");
                 return;
