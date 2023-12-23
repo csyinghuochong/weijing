@@ -32,7 +32,7 @@ namespace ET
 
         public static void OnButton_AddQQ(this UIQQAddSetComponent self)
         {
-            Application.OpenURL("https://l.tapdb.net/jYTd08hD?channel=rep-rep_6t3lta8ujdb_h5url65");
+            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=lO16qovjL3YUFcBxPedlJUQDTwbsiUGg&authKey=fQK6IldA%2FhZiZ6Ow2zIWOwb33MvxOD7FHU2WzxBdbOmJ622V8oHvReMCybgXreeC&noverify=0&group_code=690868439");
         }
     }
 }
