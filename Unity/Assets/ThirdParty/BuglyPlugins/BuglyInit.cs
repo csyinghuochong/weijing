@@ -83,7 +83,7 @@ public class BuglyInit : MonoBehaviour
         extras.Add("deviceModel", SystemInfo.deviceModel);
         extras.Add("deviceName", SystemInfo.deviceName);
         extras.Add("deviceType", SystemInfo.deviceType.ToString());
-        extras.Add("deviceUId", BuglyInit.PlatForm == 5 ? string.Empty : SystemInfo.deviceUniqueIdentifier);
+        extras.Add("deviceUId",  SystemInfo.deviceUniqueIdentifier);
         extras.Add("gDId", string.Format("{0}", SystemInfo.graphicsDeviceID));
         extras.Add ("gDVdrID", string.Format ("{0}", SystemInfo.graphicsDeviceVendorID));
         extras.Add("gDName", SystemInfo.graphicsDeviceName);
