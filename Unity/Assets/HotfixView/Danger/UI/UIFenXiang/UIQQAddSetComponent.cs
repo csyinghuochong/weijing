@@ -22,6 +22,8 @@ namespace ET
    
             self.Button_AddQQ = rc.Get<GameObject>("Button_AddQQ");
             ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OnButton_AddQQ(); });
+
+            self.Button_AddQQ.SetActive(GlobalHelp.GetPlatform() != 5);
         }
     }
 
