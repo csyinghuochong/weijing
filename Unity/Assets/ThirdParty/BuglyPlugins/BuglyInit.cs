@@ -54,29 +54,45 @@ public class BuglyInit : MonoBehaviour
         // Please do not do hard work in this handler 
     static Dictionary<string, string> MyLogCallbackExtrasHandler ()
     {
-
         UnityEngine.Debug.LogWarning("MyLogCallbackExtrasHandler");
         // TODO Test log, please do not copy it
         BuglyAgent.PrintLog (LogSeverity.Log, "extra handler");
-        
+
+#if TikTok5
         // TODO Sample code, please do not copy it
         Dictionary<string, string> extras = new Dictionary<string, string> ();
         extras.Add ("ScreenSolution", string.Format ("{0}x{1}", Screen.width, Screen.height));
-        extras.Add ("deviceModel", SystemInfo.deviceModel);
-        extras.Add ("deviceName", SystemInfo.deviceName);
-        extras.Add ("deviceType", SystemInfo.deviceType.ToString ());
-        
-        extras.Add ("deviceUId", BuglyInit.PlatForm == 5 ? string.Empty: SystemInfo.deviceUniqueIdentifier);
-        extras.Add ("gDId", string.Format ("{0}", SystemInfo.graphicsDeviceID));
-        extras.Add ("gDName", SystemInfo.graphicsDeviceName);
-        extras.Add ("gDVdr", SystemInfo.graphicsDeviceVendor);
-        extras.Add ("gDVer", SystemInfo.graphicsDeviceVersion);
-        extras.Add ("gDVdrID", string.Format ("{0}", SystemInfo.graphicsDeviceVendorID));
-        
-        extras.Add ("graphicsMemorySize", string.Format ("{0}", SystemInfo.graphicsMemorySize));
-        extras.Add ("systemMemorySize", string.Format ("{0}", SystemInfo.systemMemorySize));
+        extras.Add ("deviceModel", string.Empty);
+        extras.Add ("deviceName", string.Empty);
+        extras.Add ("deviceType", string.Empty.ToString ());
+        extras.Add ("deviceUId", string.Empty);
+        extras.Add ("gDId", string.Format ("{0}",string.Empty));
+        extras.Add("gDVdrID", string.Format("{0}", string.Empty));
+
+        extras.Add ("gDName", string.Empty);
+        extras.Add ("gDVdr", string.Empty);
+        extras.Add ("gDVer", string.Empty);
+       
+        extras.Add ("graphicsMemorySize", string.Format ("{0}", string.Empty));
+        extras.Add ("systemMemorySize", string.Format ("{0}", string.Empty));
         extras.Add ("UnityVersion", Application.unityVersion);
-        
+#else
+        // TODO Sample code, please do not copy it
+        Dictionary<string, string> extras = new Dictionary<string, string>();
+        extras.Add("ScreenSolution", string.Format("{0}x{1}", Screen.width, Screen.height));
+        extras.Add("deviceModel", SystemInfo.deviceModel);
+        extras.Add("deviceName", SystemInfo.deviceName);
+        extras.Add("deviceType", SystemInfo.deviceType.ToString());
+        extras.Add("deviceUId", BuglyInit.PlatForm == 5 ? string.Empty : SystemInfo.deviceUniqueIdentifier);
+        extras.Add("gDId", string.Format("{0}", SystemInfo.graphicsDeviceID));
+        extras.Add ("gDVdrID", string.Format ("{0}", SystemInfo.graphicsDeviceVendorID));
+        extras.Add("gDName", SystemInfo.graphicsDeviceName);
+        extras.Add("gDVdr", SystemInfo.graphicsDeviceVendor);
+        extras.Add("gDVer", SystemInfo.graphicsDeviceVersion);
+        extras.Add("graphicsMemorySize", string.Format("{0}", SystemInfo.graphicsMemorySize));
+        extras.Add("systemMemorySize", string.Format("{0}", SystemInfo.systemMemorySize));
+        extras.Add("UnityVersion", Application.unityVersion);
+#endif
         BuglyAgent.PrintLog (LogSeverity.LogInfo, "Package extra data");
         return extras;
     }

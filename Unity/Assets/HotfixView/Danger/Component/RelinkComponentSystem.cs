@@ -251,7 +251,11 @@ namespace ET
                 return ErrorCode.ERR_NetWorkError ;
             }
 
+#if TikTok5
+            string deviveInfo = $"tiktok";
+#else
             string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
+#endif
             code = await LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, true, GlobalHelp.GetPlatform());
             return code;
         }
