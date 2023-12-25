@@ -267,29 +267,32 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ShenNongPro, "额外恢复", "", 2));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuiXue, "战斗恢复", "", 1));
 
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillDodgePro, "技能闪避", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_PuGongAddPro, "普攻加成", "", 2));
+            
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossPro, "魔攻领主加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主物攻减免", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossSubPro, "领主魔攻减免", "", 2));
+
             //抗性属性
             /*
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_MageBossPro, "魔攻领主加成", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主物攻减免", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_MageBossSubPro, "领主魔攻减免", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Beast_Pro, "野兽抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Hum_Pro, "人物抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Demon_Pro, "恶魔抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Beast_Pro, "野兽伤害", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Hum_Pro, "人物伤害", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Demon_Pro, "恶魔伤害", "", 2));
 
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Beast_Pro, "野兽抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Hum_Pro, "人物抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Demon_Pro, "恶魔抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Beast_Pro, "野兽伤害", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Hum_Pro, "人物伤害", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Damge_Demon_Pro, "恶魔伤害", "", 2));
-
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Shine_Pro, "神圣抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Shadow_Pro, "暗影抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistIcece_Ice_Pro, "冰霜抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistFirece_Fire_Pro, "火焰抗性", "", 2));
-			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistThunderce_Thunder_Pro, "闪电抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Shine_Pro, "神圣抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_Resistance_Shadow_Pro, "暗影抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistIcece_Ice_Pro, "冰霜抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistFirece_Fire_Pro, "火焰抗性", "", 2));
+            self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistThunderce_Thunder_Pro, "闪电抗性", "", 2));
             */
         }
 
-		public static ShowPropertyList AddShowProperList(int numericType, string name, string iconID, int type)
+        public static ShowPropertyList AddShowProperList(int numericType, string name, string iconID, int type)
 		{
 			ShowPropertyList showList = new ShowPropertyList();
 			showList.numericType = numericType;
