@@ -7,3 +7,27 @@ http://weijinghot.weijinggame.com/weijing1/DLCBeta/iOS/
 unity 隐私协议解决办法
 
 https://codeleading.com/article/16716398489/
+https://blog.csdn.net/final5788/article/details/127229381
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.unity3d.player"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <activity android:name="com.unity3d.player.PrivacyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+			<meta-data android:name="useLocalHtml" android:value="false" />
+			<meta-data android:name="privacyUrl" android:value="https://blog.csdn.net/final5788" />
+        </activity>
+		<activity android:name="com.unity3d.player.UnityPlayerActivity"
+                  android:theme="@style/UnityThemeSelector">
+			<meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+		</activity>
+    </application>
+	<uses-permission android:name="android.permission.INTERNET"/>
+</manifest>
