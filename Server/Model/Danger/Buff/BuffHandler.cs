@@ -41,11 +41,7 @@ namespace ET
         /// </summary>
         public Unit TheUnitBelongto;
 
-        //当前buff参数
-        public int BaseBuffType;
-
         public bool IsTrigger;
-
         public long DelayTime;
         public long BeginTime;
         public long PassTime;
@@ -53,22 +49,11 @@ namespace ET
         public Vector3 StartPosition;
         public Vector3 TargetPosition;
 
-        public float DamageRange;
-        public float Angle;
-        public float StartAngle;
-        public float Radius;
-
         public long InterValTime;
+        public long InterValTimeBegin;
 
-        public long InterValTimeSumBegin;
-        public long InterValTimeSum;
+        public float NowBuffValue;
 
-        public int NowBuffParameterType;
-        public int NowBuffParameterValueType;
-        public double NowBuffParameterValue;
-        public double NowBuffValue;
-
-        public List<long> HurtIds = new List<long>();
         /// <summary>
         /// 初始化buff数据
         /// </summary>

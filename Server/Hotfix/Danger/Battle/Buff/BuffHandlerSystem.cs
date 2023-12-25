@@ -21,10 +21,9 @@ namespace ET
             self.DelayTime = self.mBuffConfig.BuffDelayTime;
             self.BuffEndTime = CheckBuffTime(theUnitBelongto, self.mBuffConfig) + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
-            //初始化Buff类型
-            self.BaseBuffType = self.mBuffConfig.BuffType;
             self.InterValTime = self.mBuffConfig.BuffLoopTime * 1000;
-            self.InterValTimeSum = 0;
+            self.InterValTimeBegin = TimeHelper.ServerNow();
+            self.NowBuffValue = 0f;
         }
 
         /// <summary>

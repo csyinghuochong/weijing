@@ -13,7 +13,7 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.OnBaseBuffInit(buffData,  theUnitFrom, theUnitBelongto);
-            this.InterValTimeSumBegin = TimeHelper.ServerNow();
+
             this.OnUpdate();
         }
 
@@ -26,7 +26,21 @@ namespace ET
                 this.BuffState = BuffState.Finished;
                 return;
             }
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
+
+            long serverTime = TimeHelper.ServerNow();
+            this.PassTime = serverTime - this.BeginTime;
+
+            //buff是否为循环触发的
+            if (this.InterValTime > 0)
+            {
+                long InterValTimePass = serverTime - this.InterValTimeBegin;
+                if (InterValTimePass >= this.InterValTime)
+                {
+                    this.InterValTimeBegin = serverTime;
+                    this.IsTrigger = false;
+                }
+            }
+
             //执行buff
             if (!this.IsTrigger && this.PassTime >= this.DelayTime)
             {
@@ -36,30 +50,17 @@ namespace ET
                     MoveComponent moveComponent = this.TheUnitBelongto.GetComponent<MoveComponent>();
                     if (moveComponent != null && !moveComponent.IsArrived())
                     {
-                        this.IsTrigger = true;
                         this.buffSetProperty(heroCom);
                     }
                 }
                 else
                 {
-                    this.IsTrigger = true;
                     this.buffSetProperty(heroCom);
                 }
             }
 
-            //buff是否为循环触发的
-            if (this.InterValTime > 0 )
-            {
-                this.InterValTimeSum = TimeHelper.ServerNow() - this.InterValTimeSumBegin;
-                if (this.InterValTimeSum >= this.InterValTime) 
-                {
-                    this.InterValTimeSumBegin  = TimeHelper.ServerNow();
-                    this.IsTrigger = false;
-                }
-            }
-
             //buff执行结束
-            if (TimeHelper.ServerNow() >= this.BuffEndTime)
+            if (serverTime >= this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
             }
@@ -69,16 +70,17 @@ namespace ET
         private void buffSetProperty(NumericComponent heroCom)
         {
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
+
+            this.IsTrigger = true;
             switch (this.mBuffConfig.BuffType)
             {
                 //属性类buff
                 case 1:
-                    NowBuffParameterType = this.mBuffConfig.buffParameterType;
-                    NowBuffParameterValue = this.mBuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
-                    NowBuffParameterValueType = this.mBuffConfig.buffParameterValueType;
+                    int  NowBuffParameterType = this.mBuffConfig.buffParameterType;
+                    float NowBuffParameterValue = (float)this.mBuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
+                    int NowBuffParameterValueType = this.mBuffConfig.buffParameterValueType;
                     
                     int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
-                    NowBuffValue = 0;
                     //乘法算法
                     if (NowBuffParameterValueType != 0)
                     {
@@ -97,31 +99,31 @@ namespace ET
                         //取整数
                         if (ValueType == 1)
                         {
-                            NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType) * NowBuffParameterValue;
+                            this.NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType) * NowBuffParameterValue;
                         }
 
                         //取浮点数
                         if (ValueType == 2)
                         {
-                            NowBuffValue = heroCom.GetAsFloat(NowBuffParameterValueType) * NowBuffParameterValue;
+                            this.NowBuffValue = heroCom.GetAsFloat(NowBuffParameterValueType) * NowBuffParameterValue;
                         }
                     }
                     else
                     {
                         //加法算法
-                        NowBuffValue = NowBuffParameterValue;
+                        this.NowBuffValue = NowBuffParameterValue;
                     }
 
                     if (NowBuffParameterType == 3001)
                     {
                         //神农属性额外处理
-                        NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro) + heroCom.GetAsFloat(NumericType.Now_ShenNongProNoFight));
+                        this.NowBuffValue = this.NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro) + heroCom.GetAsFloat(NumericType.Now_ShenNongProNoFight));
                         int nowdamgeType = 2;
-                        if (NowBuffValue < 0)
+                        if (this.NowBuffValue < 0)
                         {
                             nowdamgeType = 0;
                         }
-                        heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, nowdamgeType);
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)this.NowBuffValue, 0, true, nowdamgeType);
                     }
                     else if (NowBuffParameterType == 3164)
                     {
@@ -129,20 +131,20 @@ namespace ET
                     }
                     else if (NowBuffParameterType == 3134)
                     {
-                        heroCom.ApplyChange(TheUnitFrom, NumericType.SkillUseMP, (long)NowBuffValue, 0, true, 0);
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.SkillUseMP, (long)this.NowBuffValue, 0, true, 0);
                     }
                     else
                     {
                         //整数
                         if (ValueType == 0)
                         {
-                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue);
+                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)this.NowBuffValue);
                         }
 
                         //浮点数
                         if (ValueType == 1)
                         {
-                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Float(NowBuffParameterType, (float)NowBuffValue);
+                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Float(NowBuffParameterType, (float)this.NowBuffValue);
                         }
                     }
                     break;
@@ -226,6 +228,7 @@ namespace ET
             {
                 case 1:
                     //Log.Debug("执行buff移除属性...");
+                    int NowBuffParameterType = this.mBuffConfig.buffParameterType;
                     if (NowBuffParameterType == 3001)
                     {
                         //血量不进行移除
@@ -245,25 +248,24 @@ namespace ET
                         //整数
                         if (ValueType == 0)
                         {
-                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue * -1);
+                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)this.NowBuffValue * -1);
                         }
 
                         //浮点数
                         if (ValueType == 1)
                         {
-                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Float(NowBuffParameterType, (float)NowBuffValue * -1);
+                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Float(NowBuffParameterType, (float)this.NowBuffValue * -1);
                         }
                     }
                     break;
 
                 case 2:
+                    NowBuffParameterType = this.mBuffConfig.buffParameterType;
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(1<<NowBuffParameterType);
                     break;
-
                 case 4:
                     this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().RemoveRolePassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
-
                 default:
                     break;
             }

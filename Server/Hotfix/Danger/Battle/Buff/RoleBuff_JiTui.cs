@@ -42,9 +42,7 @@ namespace ET
 
         public override void OnUpdate()
         {
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            float leftTime = this.mBuffConfig.BuffTime - this.PassTime;
-            if (leftTime <= 0)
+            if (TimeHelper.ServerNow() >= this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
             }
