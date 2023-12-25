@@ -16,6 +16,7 @@ namespace ET
 
     public class UIPetEggComponent : Entity, IAwake
     {
+        public GameObject Btn_Type_5;
         public UIPageViewComponent UIPageView;
         public GameObject FunctionSetBtn;
     }
@@ -46,6 +47,9 @@ namespace ET
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggChouKa] = typeof(UIPetEggChouKaComponent);
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetHeXinChouKa] = typeof(UIPetHeXinChouKaComponent);
             self.UIPageView = pageViewComponent;
+
+            self.Btn_Type_5 = rc.Get<GameObject>("Btn_Type_5");
+            self.Btn_Type_5.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             //IOS适配
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
