@@ -76,7 +76,7 @@ namespace ET
                 UICommonHelper.SetParent(go, self.UIActivityV1ChouKaListNode);
                 go.SetActive(true);
             }
-            
+
             string[] items = ActivityConfigHelper.ChouKaRewardPool.Split('@');
             for (int i = 0; i < items.Length; i++)
             {
