@@ -96,6 +96,11 @@ namespace ET
             {  100, "1;0" },
             {  200, "1;0" }
         };
+        
+        /// <summary>
+        /// 红包奖池
+        /// </summary>
+        public static string HongBaoRewardPool = "1;100@2;100@3;100@4;100@5;10@601901001;10";
 
         /// <summary>
         /// 红包奖励
