@@ -70,6 +70,7 @@ namespace ET
 
             self.TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
 
+            DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
 
@@ -82,6 +83,7 @@ namespace ET
 	{
 		public override void Destroy(UITaskComponent self)
 		{
+			DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
 		}
@@ -342,7 +344,8 @@ namespace ET
 		public static void  OnExcuteTask(this UITaskComponent self)
 		{
 			bool value = TaskViewHelp.Instance.ExcuteTask(self.ZoneScene(), self.TaskPro);
-			if (value)
+			TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
+			if (value && taskConfig.TaskType != TaskTypeEnum.Ring && taskConfig.TaskType != TaskTypeEnum.Union)
 			{
 				self.OnCloseTask();
 			}

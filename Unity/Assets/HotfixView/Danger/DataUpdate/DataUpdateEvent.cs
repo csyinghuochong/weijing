@@ -665,6 +665,10 @@ namespace ET
                     uimainComponent.OnRecvTaskTrace();
                     continue;
                 }
+                if (component is UITaskComponent uiTaskComponent)
+                {
+                    uiTaskComponent.OnClickTaskType((int)TaskTypeEnum.Daily);
+                }
             }
             return;
         }
