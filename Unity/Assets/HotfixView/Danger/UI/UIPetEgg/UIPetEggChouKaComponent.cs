@@ -174,7 +174,7 @@ namespace ET
             int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
-            string[] set = GlobalValueConfigCategory.Instance.Get(111).Value.Split(';');
+            string[] set = GlobalValueConfigCategory.Instance.Get(107).Value.Split(';');
             float discount;
             if (exlporeNumber < int.Parse(set[0])) // 超过300次打8折
             {

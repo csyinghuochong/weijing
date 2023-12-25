@@ -78,14 +78,14 @@ namespace ET
 
         public static void OnBtn_ChouKaNumReward(this UIPetHeXinChouKaComponent self)
         {
-            UIHelper.Create(self.ZoneScene(), UIType.UIPetEggChouKaReward).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetHeXinChouKaReward).Coroutine();
         }
 
         public static void OnUpdateInfo(this UIPetHeXinChouKaComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int totalTimes = numericComponent.GetAsInt(NumericType.PetExploreNumber);
+            int totalTimes = numericComponent.GetAsInt(NumericType.PetHeXinExploreNumber);
             self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
         }
 
@@ -93,10 +93,10 @@ namespace ET
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
-            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0]);
+            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0]);
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
-                    .GetAsInt(NumericType.PetExploreNumber);
-            string[] set = GlobalValueConfigCategory.Instance.Get(111).Value.Split(';');
+                    .GetAsInt(NumericType.PetHeXinExploreNumber);
+            string[] set = GlobalValueConfigCategory.Instance.Get(112).Value.Split(';');
             float discount;
             if (exlporeNumber < int.Parse(set[0]))
             {
@@ -109,7 +109,7 @@ namespace ET
 
             self.Text_DiamondNumber.GetComponent<Text>().text = ((int)(needDimanond * discount)).ToString();
 
-            string[] itemInfo = GlobalValueConfigCategory.Instance.Get(109).Value.Split('@')[0].Split(';');
+            string[] itemInfo = GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0].Split(';');
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -143,18 +143,18 @@ namespace ET
                 return;
             }
 
-            string needItems = GlobalValueConfigCategory.Instance.Get(109).Value.Split('@')[0];
+            string needItems = GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0];
             if (choukaType == 1 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(needItems))
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
                 return;
             }
 
-            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0]);
+            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0]);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
                     .GetAsInt(NumericType.PetExploreNumber);
-            string[] set = GlobalValueConfigCategory.Instance.Get(107).Value.Split(';');
+            string[] set = GlobalValueConfigCategory.Instance.Get(112).Value.Split(';');
             float discount;
             if (exlporeNumber < int.Parse(set[0])) // 超过300次打8折
             {
@@ -172,9 +172,9 @@ namespace ET
             }
 
             long instanceid = self.InstanceId;
-            C2M_PetEggChouKaRequest m_ItemOperateWear = new C2M_PetEggChouKaRequest() { ChouKaType = choukaType };
-            M2C_PetEggChouKaResponse r2c_roleEquip =
-                    (M2C_PetEggChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            C2M_PetHeXinChouKaRequest m_ItemOperateWear = new C2M_PetHeXinChouKaRequest() { ChouKaType = choukaType };
+            M2C_PetHeXinChouKaResponse r2c_roleEquip =
+                    (M2C_PetHeXinChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
             if (r2c_roleEquip.Error != 0 || instanceid != self.InstanceId)
             {
                 return;

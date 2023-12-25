@@ -841,5 +841,7 @@ namespace ET
 		 public const ushort M2C_PetTakeOutBag = 10838;
 		 public const ushort C2M_PetHeXinChouKaRequest = 10839;
 		 public const ushort M2C_PetHeXinChouKaResponse = 10840;
+		 public const ushort C2M_PetHeXinExploreReward = 10841;
+		 public const ushort M2C_PetHeXinExploreReward = 10842;
 	}
 }

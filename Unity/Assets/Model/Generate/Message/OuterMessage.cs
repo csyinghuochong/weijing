@@ -667,6 +667,9 @@ namespace ET
 		[ProtoMember(54)]
 		public List<int> PetExploreRewardIds = new List<int>();
 
+		[ProtoMember(55)]
+		public List<int> PetHeXinExploreRewardIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -15127,6 +15130,34 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<RewardItem> ReardList = new List<RewardItem>();
+
+	}
+
+	[ResponseType(nameof(M2C_PetHeXinExploreReward))]
+	[Message(OuterOpcode.C2M_PetHeXinExploreReward)]
+	[ProtoContract]
+	public partial class C2M_PetHeXinExploreReward: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int RewardId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetHeXinExploreReward)]
+	[ProtoContract]
+	public partial class M2C_PetHeXinExploreReward: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

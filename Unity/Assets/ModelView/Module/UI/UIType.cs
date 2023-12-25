@@ -152,6 +152,7 @@ namespace ET
 		public const string UIXiuLian = "Main/XiuLian/UIXiuLian";
 		public const string UIPetEgg = "Main/PetEgg/UIPetEgg";
 		public const string UIPetEggChouKaReward = "Main/PetEgg/UIPetEggChouKaReward";
+		public const string UIPetHeXinChouKaReward = "Main/PetEgg/UIPetHeXinChouKaReward";
 		public const string UIPetFubenResult = "PetFuben/UIPetFubenResult";
 		public const string UIPetMain = "Main/PetSet/UIPetMain";
 		public const string UIPetMiningTeam = "Main/PetSet/UIPetMiningTeam";

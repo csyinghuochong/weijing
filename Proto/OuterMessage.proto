@@ -343,6 +343,8 @@ message UserInfo
 	repeated int32 UnionKeJiList = 53;  //当前的能力id,客户端根据这个显示即可
 
 	repeated int32 PetExploreRewardIds = 54;
+
+	repeated int32 PetHeXinExploreRewardIds = 55;
 }
 
 message KeyValuePair
@@ -7256,4 +7258,18 @@ message M2C_PetHeXinChouKaResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated RewardItem ReardList = 1;		//奖励列表
+}
+
+//ResponseType M2C_PetHeXinExploreReward 
+message C2M_PetHeXinExploreReward // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 RewardId = 1;   //PetExploreReward.ley
+}
+
+message M2C_PetHeXinExploreReward // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
 }
