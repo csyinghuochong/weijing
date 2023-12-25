@@ -53,9 +53,9 @@
         public const int CangKuNumber = 3049;
         public const int MaoXianExp = 3050;
         public const int YueKaEndTime = 3051;
-        public const int MakeType = 3052;
+        public const int MakeType_1 = 3052;                                       //第一套生活技能
         public const int ExpToGoldTimes = 3053;
-        public const int MakeShuLianDu = 3054;
+        public const int MakeShuLianDu_1 = 3054;                                    //第一套生活技能熟练度
         public const int RechargeNumber = 3055;
         public const int ItemXiLianDu = 3056;                                    //洗练家等级
         public const int BossInCombat = 3057;                                    //进入战斗
@@ -172,6 +172,8 @@
         public const int WeeklyTaskNumber = 3172;
         public const int WeeklyTaskId = 3173;
         public const int PetHeXinExploreNumber = 3174;                               //宠物核心探宝次数
+        public const int MakeType_2 = 3175;                                         //第二套生活技能
+        public const int MakeShuLianDu_2 = 3176;                                    //第二套生活技能熟练度
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

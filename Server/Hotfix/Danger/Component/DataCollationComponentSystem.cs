@@ -157,10 +157,10 @@ namespace ET
 
             self.Vitality = userInfoComponent.UserInfo.Vitality;
 
-            int makeType = numericComponent.GetAsInt( NumericType.MakeType );
+            int makeType = numericComponent.GetAsInt( NumericType.MakeType_1 );
             self.MakeSkill = MakeHelper.GetMakeTypeName( makeType );
 
-            self.MakeShuLiandu = numericComponent.GetAsInt( NumericType.MakeShuLianDu );
+            self.MakeShuLiandu = numericComponent.GetAsInt( NumericType.MakeShuLianDu_1 );
 
             self.PetFubenId = petComponent.GetPassMaxFubenId();
 

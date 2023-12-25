@@ -28,7 +28,8 @@ namespace ET
                 }
 
                 //判断学习是否已经满足熟练度要求
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu) < equipMakeConfig.NeedProficiencyValue) {
+                int shulianduNumeric = request.Plan == 1 ? NumericType.MakeShuLianDu_1 : NumericType.MakeShuLianDu_2;
+                if (unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric) < equipMakeConfig.NeedProficiencyValue) {
                     response.Error = ErrorCode.ERR_ShuLianDuNotEnough;
                     reply();
                     return;

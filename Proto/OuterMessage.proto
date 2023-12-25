@@ -1242,6 +1242,7 @@ message C2M_ItemMeltingRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	repeated int64 OperateBagID = 2;		
 	int32 MakeType = 3;
+	int32 Plan = 4;
 }
 
 message M2C_ItemMeltingResponse // IActorLocationResponse
@@ -2325,6 +2326,7 @@ message C2M_MakeEquipRequest // IActorLocationRequest
 	int64 ActorId = 93;
 	int32 MakeId = 1;
 	int64 BagInfoID = 2;
+	int32 Plan = 3;
 }
 
 message M2C_MakeEquipResponse // IActorLocationResponse
@@ -2342,6 +2344,7 @@ message C2M_MakeLearnRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 MakeId = 1;
+	int32 Plan = 2;
 }
 
 message M2C_MakeLearnResponse // IActorLocationResponse
@@ -4329,6 +4332,7 @@ message C2M_MakeSelectRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 MakeType = 1;
+	int32 Plan = 2;			//1第一套方案 2第二套方案
 }
 
 message M2C_MakeSelectResponse // IActorLocationResponse

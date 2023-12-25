@@ -255,9 +255,9 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
-        public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId)
+        public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId, int plan)
         {
-            C2M_MakeEquipRequest request = new C2M_MakeEquipRequest() { BagInfoID = baginfoId, MakeId = makeId };
+            C2M_MakeEquipRequest request = new C2M_MakeEquipRequest() { BagInfoID = baginfoId, MakeId = makeId , Plan = plan};
             M2C_MakeEquipResponse response = (M2C_MakeEquipResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             if (response.ItemId == 0)
             {

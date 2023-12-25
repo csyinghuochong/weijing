@@ -1,8 +1,51 @@
+using System.Collections.Generic;
 
 namespace ET
 {
     public static class UserInfoComponentSystemEx
     {
+
+        public static List<int> GetMakeListByType(this UserInfoComponent self, int makeType)
+        {
+            List<int> makeIds =  new List<int> { };
+            if (makeType == 0)
+            { 
+                return makeIds;
+            }
+            for(int i = 0; i < self.UserInfo.MakeList.Count; i++)
+            {
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.UserInfo.MakeList[i]);
+                if (equipMakeConfig.ProficiencyType == makeType)
+                {
+                    makeIds.Add(self.UserInfo.MakeList[i]);
+                }
+            }
+            return makeIds; 
+        }
+
+        public static void ClearMakeListByType(this UserInfoComponent self, int makeType)
+        {
+            if (makeType == 0)
+            {
+                return;
+            }
+            for (int i = self.UserInfo.MakeList.Count - 1; i >= 0; i--)
+            {
+                int makeId = self.UserInfo.MakeList[i];
+                if (makeId == 0)
+                {
+                    self.UserInfo.MakeList.RemoveAt(i);
+                    continue;
+                }
+
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeId);
+                if (equipMakeConfig.ProficiencyType == makeType)
+                {
+                    self.UserInfo.MakeList.RemoveAt(i); 
+                }
+            }
+        }
+
         public static int GetMonsterKillNumber(this UserInfoComponent self, int monsterId)
         {
             for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)

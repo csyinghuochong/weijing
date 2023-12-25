@@ -2645,6 +2645,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int MakeType { get; set; }
 
+		[ProtoMember(4)]
+		public int Plan { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_ItemMeltingResponse)]
@@ -4919,6 +4922,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long BagInfoID { get; set; }
 
+		[ProtoMember(3)]
+		public int Plan { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_MakeEquipResponse)]
@@ -4955,6 +4961,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int MakeId { get; set; }
+
+		[ProtoMember(2)]
+		public int Plan { get; set; }
 
 	}
 
@@ -9098,6 +9107,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int MakeType { get; set; }
+
+		[ProtoMember(2)]
+		public int Plan { get; set; }
 
 	}
 

@@ -1105,7 +1105,7 @@ namespace ET
                     //鉴定符
                     if (itemCof.ItemSubType == 121)
                     {
-                        int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+                        int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
                     //食物

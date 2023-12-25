@@ -401,11 +401,13 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 16)   //锻造精灵
             {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
                 int makeNew = int.Parse(itemConfig.ItemUsePar);
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeNew);
-                if (makeType != equipMakeConfig.ProficiencyType)
+
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                int makeType_1 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
+                int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
+                if (makeType_1 != equipMakeConfig.ProficiencyType && makeType_2 != equipMakeConfig.ProficiencyType)
                 {
                     ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_MakeTypeError);
                     return;

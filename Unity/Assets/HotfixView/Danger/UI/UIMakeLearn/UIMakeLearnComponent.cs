@@ -33,11 +33,12 @@ namespace ET
         public GameObject Obj_Lab_LearnItemCost;
         public GameObject LabNeedShuLian;
 
-        public int MakeId;
         public List<UIMakeLearnItemComponent> LearnUIList = new List<UIMakeLearnItemComponent>();
         public List<UIItemComponent> CostUIList = new List<UIItemComponent>();
         public UserInfoComponent userInfoComponent;
         public int MakeType;
+        public int MakeId;
+        public int Plan = 1;
         
         public List<string> AssetPath = new List<string>();
     }
@@ -95,13 +96,8 @@ namespace ET
             });
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                self.OnImageButton();
-            });
-
-            self.CheckMakeType();
-            self.UpdateShuLianDu();
+            self.ImageButton.GetComponent<Button>().onClick.AddListener(self.OnImageButton);
+            self.OnBtn_Plan(1);
         }
     }
     public class UIMakeLearnComponentDestroy: DestroySystem<UIMakeLearnComponent>
@@ -122,11 +118,19 @@ namespace ET
     public static class UIMakeLearnComponentSystem
     {
 
+        public static void OnBtn_Plan(this UIMakeLearnComponent self, int plan)
+        {
+            self.Plan = plan;
+
+            self.CheckMakeType();
+            self.UpdateShuLianDu();
+        }
+
         public static void UpdateShuLianDu(this UIMakeLearnComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxValue = ComHelp.MaxShuLianDu();
-            int curValue = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+            int curValue = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
 
             self.Lab_ShuLianDu.GetComponent<Text>().text = $"{curValue}/{maxValue}";
             self.Img_ShuLianPro.GetComponent<Image>().fillAmount = curValue * 1f / maxValue;
@@ -135,7 +139,7 @@ namespace ET
         public static void On_Button_Select(this UIMakeLearnComponent self, int makeId)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
             if (makeType != 0)
             {
                 int cost = GlobalValueConfigCategory.Instance.Get(46).Value2;
@@ -151,29 +155,56 @@ namespace ET
 
         public static async ETTask RequestMakeSelect(this UIMakeLearnComponent self, int makeId)
         {
-            C2M_MakeSelectRequest request = new C2M_MakeSelectRequest() { MakeType = makeId };
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int makeType_1 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
+            int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
+            if (makeType_1 == makeId || makeType_2 == makeId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("该生活技能已学习！");
+                return;
+            }
+            C2M_MakeSelectRequest request = new C2M_MakeSelectRequest() { MakeType = makeId , Plan = self.Plan };
             M2C_MakeSelectResponse response = (M2C_MakeSelectResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList = response.MakeList;
             self.CheckMakeType();
         }
 
+        //0:图纸制造（需要消耗图纸）
+        //1.锻造类型
+        //2.裁缝类型
+        //3.炼金类型
+        //4.宝石类型
+        //5.神器类型
+        //6.附魔类型
+        //8.家园类型
         public static void CheckMakeType(this UIMakeLearnComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+            int makeType_1 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
+            int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
+           
             int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
-            self.MakeType = makeType;
+            self.MakeType = showValue;
+            self.Plan = -1;
+            if (makeType_1 == showValue)
+            {
+                self.Plan = 1;
+            }
+            if (makeType_2 == showValue)
+            {
+                self.Plan = 2;
+            }
 
-            self.Right.SetActive(makeType == showValue);
-            self.Left.SetActive(makeType == showValue);
-            self.Select.SetActive(makeType != showValue);
+            self.Right.SetActive(self.Plan != -1);
+            self.Left.SetActive(self.Plan != -1);
+            self.Select.SetActive(self.Plan == -1);
             self.Select_1.SetActive(showValue == 1);
             self.Select_2.SetActive(showValue == 2);
             self.Select_3.SetActive(showValue == 3);
             self.Select_6.SetActive(showValue == 6);
 
-            self.InitData(makeType);
+            self.InitData(self.MakeType);
         }
 
         public static void OnImageButton(this UIMakeLearnComponent self)
@@ -183,6 +214,10 @@ namespace ET
 
         public static  void InitData(this UIMakeLearnComponent self, int makeType)
         {
+            for (int i = 0; i < self.LearnUIList.Count; i++)
+            {
+                self.LearnUIList[i].GameObject.SetActive(false);
+            }
             if (self.MakeType != makeType)
             {
                 return;
@@ -286,9 +321,9 @@ namespace ET
 
             //显示需要熟练度
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int nowShuLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+            int nowShuLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
             self.LabNeedShuLian.GetComponent<Text>().text = $"{nowShuLianDu}/{equipMakeConfig.NeedProficiencyValue}";
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu) < equipMakeConfig.NeedProficiencyValue)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1) < equipMakeConfig.NeedProficiencyValue)
             {
                 //不满足显示红色,满足显示绿色
                 self.LabNeedShuLian.GetComponent<Text>().text += "(熟练度不足)";
@@ -346,7 +381,7 @@ namespace ET
                 return;
             }
 
-            C2M_MakeLearnRequest m_Learn = new C2M_MakeLearnRequest() { MakeId = self.MakeId };
+            C2M_MakeLearnRequest m_Learn = new C2M_MakeLearnRequest() { MakeId = self.MakeId, Plan = self.Plan };
             M2C_MakeLearnResponse r2c_roleEquip = (M2C_MakeLearnResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_Learn);
             if (r2c_roleEquip.Error == 0)
             {

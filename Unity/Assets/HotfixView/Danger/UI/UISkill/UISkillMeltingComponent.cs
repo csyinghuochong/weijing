@@ -20,6 +20,7 @@ namespace ET
         public BagComponent BagComponent;
 
         public bool IsHoldDown = false;
+        public int Plan = 1;
     }
 
 
@@ -48,11 +49,6 @@ namespace ET
 
             self.UIGetItem = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UIGetItem"));
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
-
-            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = XiLianHelper.ReturnMeltingItem(makeType) }, ItemOperateEnum.None);
-            self.UIGetItem.Label_ItemNum.SetActive(false);
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -74,6 +70,17 @@ namespace ET
 
     public static class UISkillMeltingComponentSystem
     {
+
+        public static void SetPlan(this UISkillMeltingComponent self, int plan)
+        {
+            self.Plan = plan;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(plan == 1 ? NumericType.MakeType_1: NumericType.MakeType_2);
+
+            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = XiLianHelper.ReturnMeltingItem(makeType) }, ItemOperateEnum.None);
+            self.UIGetItem.Label_ItemNum.SetActive(false);
+        }
+
         public static void OnUpdateUI(this UISkillMeltingComponent self)
         {
             self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
@@ -145,7 +152,7 @@ namespace ET
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int makeId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+            int makeId = unit.GetComponent<NumericComponent>().GetAsInt(self.Plan == 1 ? NumericType.MakeType_1 : NumericType.MakeType_2);
             C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() { OperateBagID = huishouList, MakeType = makeId };
             M2C_ItemMeltingResponse response = (M2C_ItemMeltingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
 

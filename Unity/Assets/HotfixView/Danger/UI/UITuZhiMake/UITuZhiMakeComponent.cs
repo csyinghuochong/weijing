@@ -138,7 +138,7 @@ namespace ET
 
         public static async ETTask RequestEquipMake(this UITuZhiMakeComponent self)
         {
-            await NetHelper.RequestEquipMake(self.ZoneScene(), self.BagInfo.BagInfoID, self.MakeId);
+            await NetHelper.RequestEquipMake(self.ZoneScene(), self.BagInfo.BagInfoID, self.MakeId, 1);
             self.OnBagItemUpdate().Coroutine();
             //关闭制造界面
             self.OnCloseMake();

@@ -130,7 +130,7 @@ namespace ET
                 return;
             }
 
-            await NetHelper.RequestEquipMake(self.ZoneScene(), 0, self.MakeId);
+            await NetHelper.RequestEquipMake(self.ZoneScene(), 0, self.MakeId, 1);
             self.OnCostItemUpdate().Coroutine();
         }
 
