@@ -94,6 +94,69 @@ namespace ET
             buffHandler.BuffState = BuffState.Finished;
             ObjectPool.Instance.Recycle(buffHandler);
             buffHandler.OnFinished();
+
+            self.AddBuffRecord( 0, buffHandler.BuffData.BuffId);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="operate">1新增 0移除</param>
+        /// <param name="buffHandler"></param>
+        public static void AddBuffRecord(this BuffManagerComponent self, int operate, int buffId)
+        { 
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type!= UnitType.Player)
+            {
+                return;
+            }
+            if (self.m_BuffRecord.Count >= 100)
+            {
+                self.m_BuffRecord.RemoveAt(0);
+            }
+
+            long speed = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
+            self.m_BuffRecord.Add( new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed } );
+
+            if (operate == 0 && speed >= 10000)
+            { 
+                bool haveSpeedBuff = false;
+                for (int i = 0; i < self.m_Buffs.Count; i++)
+                {
+                    SkillBuffConfig skillBuffConfig = self.m_Buffs[i].mBuffConfig;
+                    if (skillBuffConfig.BuffType == 1 &&( skillBuffConfig.buffParameterType == 100911 || skillBuffConfig.buffParameterType == 100912) )
+                    {
+                        haveSpeedBuff = true; 
+                        break;
+                    }
+                }
+                if (!haveSpeedBuff)
+                {
+                    for (int i = 0; i < self.m_BuffRecord.Count; i++)
+                    {
+                        if (self.m_BuffRecord[i].KeyId == 1)
+                        {
+                            haveSpeedBuff = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!haveSpeedBuff)
+                {
+                    string strLog = $"玩家{unit.Id}速度异常: ";
+                    for (int i = 0; i < self.m_BuffRecord.Count; i++)
+                    {
+                        KeyValuePairLong keyValuePair = self.m_BuffRecord[i];
+                        string operateType = keyValuePair.Value == 1 ? "增加" : "移除";
+                        strLog += $"{operateType}:{keyValuePair.KeyId}  速度:{keyValuePair.Value2}  ";
+                    }
+                    
+                    self.m_BuffRecord.Clear();
+                    Log.Warning(strLog);
+                }
+            }
         }
 
         //移除状态的所有buff 
@@ -155,6 +218,7 @@ namespace ET
                 buffHandler.OnFinished();
                 ObjectPool.Instance.Recycle(buffHandler);
                 self.m_Buffs.RemoveAt(i);
+                self.AddBuffRecord(0, buffHandler.BuffData.BuffId); ;
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
@@ -374,6 +438,7 @@ namespace ET
                     ObjectPool.Instance.Recycle(buffHandler);
                     buffHandler.OnFinished();
                     self.m_Buffs.RemoveAt(i);
+                    self.AddBuffRecord(0, buffHandler.BuffData.BuffId);
                 }
             }
 
@@ -397,6 +462,8 @@ namespace ET
                 buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
                 self.AddTimer();
+
+                self.AddBuffRecord(1, buffHandler.BuffData.BuffId);
             }
             //发送改变属性的相关消息
             //buffData.BuffConfig==null 是子弹之类的buff不广播
@@ -472,6 +539,7 @@ namespace ET
                     ObjectPool.Instance.Recycle(buffHandler);
                     buffHandler.OnFinished();
                     self.m_Buffs.RemoveAt(i);
+                    self.AddBuffRecord(0, buffHandler.BuffData.BuffId);
                     continue;
                 }
             }
@@ -756,8 +824,6 @@ namespace ET
                 buffData_2.BuffId = 99003013;
                 self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
             }
-
-
         }
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)

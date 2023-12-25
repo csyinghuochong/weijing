@@ -49,6 +49,7 @@ namespace ET
             this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
             this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
             this.NowPosition = this.TheUnitFrom.Position;
+            this.TheUnitFrom.GetComponent<BuffManagerComponent>().AddBuffRecord(1, 1);
         }
 
         //public async ETTask MoveToAsync()
@@ -115,6 +116,7 @@ namespace ET
             NumericComponent numericComponent = this.TheUnitFrom.GetComponent<NumericComponent>();
             float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
+            this.TheUnitFrom.GetComponent<BuffManagerComponent>().AddBuffRecord(0, 1);
             this.Clear();
         }
     }
