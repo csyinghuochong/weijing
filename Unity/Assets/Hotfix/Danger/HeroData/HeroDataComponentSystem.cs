@@ -263,6 +263,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.V1ChouKaNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.V1RechageNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.PetExploreNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.PetHeXinExploreNumber, 0, notice);
             
             int lirun =  (int)(numericComponent.GetAsInt(NumericType.InvestTotal) * 0.25f);
             numericComponent.ApplyValue(NumericType.InvestTotal, numericComponent.GetAsInt(NumericType.InvestTotal) + lirun, notice);

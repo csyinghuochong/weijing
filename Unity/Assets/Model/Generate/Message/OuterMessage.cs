@@ -15099,4 +15099,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PetHeXinChouKaResponse))]
+	[Message(OuterOpcode.C2M_PetHeXinChouKaRequest)]
+	[ProtoContract]
+	public partial class C2M_PetHeXinChouKaRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int ChouKaType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetHeXinChouKaResponse)]
+	[ProtoContract]
+	public partial class M2C_PetHeXinChouKaResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<RewardItem> ReardList = new List<RewardItem>();
+
+	}
+
 }

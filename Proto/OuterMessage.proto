@@ -7241,3 +7241,19 @@ message M2C_PetTakeOutBag // IActorLocationResponse
 	string Message = 91;		
 	int32 Error = 92;
 }
+
+//ResponseType M2C_PetHeXinChouKaResponse
+message C2M_PetHeXinChouKaRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 ChouKaType = 1;
+
+}
+
+message M2C_PetHeXinChouKaResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated RewardItem ReardList = 1;		//奖励列表
+}

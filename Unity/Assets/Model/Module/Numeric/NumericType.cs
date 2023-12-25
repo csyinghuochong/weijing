@@ -171,6 +171,7 @@
         public const int WelfareChouKaNumber = 3171;                            //萌新抽卡次数  可以根据充值金额/50计算剩余次数
         public const int WeeklyTaskNumber = 3172;
         public const int WeeklyTaskId = 3173;
+        public const int PetHeXinExploreNumber = 3174;                               //宠物核心探宝次数
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
