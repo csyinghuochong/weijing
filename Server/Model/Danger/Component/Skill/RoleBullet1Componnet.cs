@@ -10,7 +10,6 @@ namespace ET
         public long DelayTime;
         public float DamageRange;
         public long Masterid;
-        public List<long> HurtIds = new List<long>();
         public SkillHandler SkillHandler;
         public BuffState BuffState;
         public long Timer;
