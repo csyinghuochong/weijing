@@ -483,7 +483,8 @@ namespace ET
               && taskConfig.TaskType != TaskTypeEnum.Union
               && taskConfig.TaskType != TaskTypeEnum.Treasure
               && taskConfig.TaskType != TaskTypeEnum.Season
-              && taskConfig.TaskType != TaskTypeEnum.Ring)
+              && taskConfig.TaskType != TaskTypeEnum.Ring
+              && taskConfig.TaskType != TaskTypeEnum.Weekly)
             {
                 if (!self.RoleComoleteTaskList.Contains(taskid))
                 {
@@ -536,7 +537,7 @@ namespace ET
                 }
                 if (weekTaskNumber < GlobalValueConfigCategory.Instance.Get(109).Value2)
                 {
-                    numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
+                    numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv));
                     numericComponent.ApplyValue(NumericType.WeeklyTaskNumber, weekTaskNumber);
                 }
                 else
@@ -903,12 +904,6 @@ namespace ET
                     self.TaskCountryList.RemoveAt(i);
                 }
             }
-            int ringTaskid = numericComponent.GetAsInt(NumericType.RingTaskId);
-            if (ringTaskid > 0 && !TaskConfigCategory.Instance.Contain(ringTaskid))
-            {
-                ringTaskid = TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, userInfoComponent.UserInfo.Lv);
-                numericComponent.ApplyValue(NumericType.RingTaskId, ringTaskid, false);
-            }
 
             //触发一下搜集道具类型的任务
             for (int i = 0; i < self.RoleTaskList.Count; i++)
@@ -976,6 +971,10 @@ namespace ET
             if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 )
             {
                 self.CheckUnionTask();
+            }
+            if (numericComponent.GetAsInt(NumericType.WeeklyTaskId) == 0)
+            {
+                self.CheckWeeklyTask();
             }
 
             self.UpdateTargetTask(false);
@@ -1266,7 +1265,7 @@ namespace ET
             {
                 return;
             }
-            if (numericComponent.GetAsInt(NumericType.DailyTaskNumber) >= 2)
+            if (numericComponent.GetAsInt(NumericType.DailyTaskNumber) >= 1)
             {
                 return;
             }
@@ -1278,7 +1277,7 @@ namespace ET
         public static void CheckRingTask(this TaskComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 && numericComponent.GetAsInt(NumericType.RingTaskNumber) < 2)
+            if (numericComponent.GetAsInt(NumericType.RingTaskId) == 0 && numericComponent.GetAsInt(NumericType.RingTaskNumber) < 1)
             {
                 //self.ClearTypeTask(TaskTypeEnum.Ring);
 
@@ -1288,10 +1287,22 @@ namespace ET
             }
         }
 
+        public static void CheckWeeklyTask(this TaskComponent self)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.WeeklyTaskId) == 0 && numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) < 1)
+            {
+                //self.ClearTypeTask(TaskTypeEnum.Ring);
+                int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                int weekTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv);
+                numericComponent.ApplyValue(NumericType.WeeklyTaskId, weekTaskId, false);
+            }
+        }
+
         public static void CheckUnionTask(this TaskComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 && numericComponent.GetAsInt(NumericType.UnionTaskNumber) < 2)
+            if (numericComponent.GetAsInt(NumericType.UnionTaskId) == 0 && numericComponent.GetAsInt(NumericType.UnionTaskNumber) < 1)
             {
 
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -1438,7 +1449,7 @@ namespace ET
             return null;
         }
 
-        public static void CheckWeeklyTask(this TaskComponent self)
+        public static void CheckWeeklyUpdate(this TaskComponent self)
         {
             System.DateTime dateTime = TimeHelper.DateTimeNow();
             if( dateTime.DayOfWeek == System.DayOfWeek.Sunday)
@@ -1532,7 +1543,7 @@ namespace ET
             }
         }
 
-        public static void CheckWeeklyTask(this TaskComponent self, long lastTime, long curTime)
+        public static void CheckWeeklyUpdate(this TaskComponent self, long lastTime, long curTime)
         {
             //判断条件。 超过一周或者过了周末
             float passday = ((curTime - lastTime) * 1f / TimeHelper.OneDay);

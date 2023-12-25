@@ -380,10 +380,6 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = 0 });
             }
-            if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
-            {
-                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, 1);
-            }
             if (self.DomainZone() == 3)
             {
                 Log.Warning("刷新机器人！！");

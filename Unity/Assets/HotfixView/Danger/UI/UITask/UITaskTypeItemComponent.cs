@@ -69,6 +69,11 @@ namespace ET
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) + 1;
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
             }
+            if (taskType == 5)
+            {
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.WeeklyTaskNumber) + 1;
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/10环)";
+            }
             if (taskType == 7)
             {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber) + 1;
@@ -79,7 +84,7 @@ namespace ET
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber) + 1;
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/100环)";
             }
-
+          
             self.Ima_Ongoing.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Completed);
             self.Ima_CompleteTask.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Completed);
         }

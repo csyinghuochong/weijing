@@ -8,8 +8,6 @@ namespace ET
     {
         public int NpcID;
         public int TaskId;
-        public int WeekTaskId = 0;
-
         //NpcID
         public GameObject ButtonMystery;
         public GameObject ButtonGiveTask;
@@ -184,7 +182,8 @@ namespace ET
                     }
                     break;
                 case 3://循环任务 周任务 支线任务 藏宝图任务
-                    self.RequestWeeklyTask().Coroutine();
+                    bool update = self.UpdataTask();
+                    self.ScrollView1.SetActive(update);
                     break;
                 case 4: //魔能老人
                     int costItemID = 12000006;
@@ -297,42 +296,6 @@ namespace ET
             M2C_PetFragmentDuiHuan m2C_PetDui = (M2C_PetFragmentDuiHuan)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetDui);
         }
 
-        public static async ETTask RequestWeeklyTask(this UITaskGetComponent self)
-        {
-            long instanceId = self.InstanceId;
-            C2A_ActivityInfoRequest  request = new C2A_ActivityInfoRequest() { ActivityType = 1 };
-            A2C_ActivityInfoResponse response = (A2C_ActivityInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
-            if (response.Error != ErrorCode.ERR_Success)
-            {
-                return;   
-            }
-            self.WeekTaskId = int.Parse(response.ActivityContent);
-
-            bool update = self.UpdataTask();
-            self.ScrollView1.SetActive(update);
-            //if (response.ActivityContent == "0")
-            //{
-            //    return;
-            //}
-            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            //if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
-            //{
-            //    return;
-            //}
-            //self.UIWeeklyTask.SetActive(true);
-            //TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            //List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
-            //TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;
-            //self.ButtonWeeklyCommit.SetActive(taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
-            //self.ButtonWeeklyGet.SetActive(taskPro == null);
-            //self.TaskId = int.Parse(response.ActivityContent);
-            //self.UIWeeklyTaskItem.SetActive(true);
-            //self.UIWeeklyTaskItem.transform.Find("TextFubenName").GetComponent<Text>().text = TaskConfigCategory.Instance.Get(self.TaskId).TaskName;
-        }
 
         public static  void OnClickBuChangItem(this UITaskGetComponent self, long userid)
         {
@@ -451,14 +414,10 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (npcId == 20000024)   //任务使者：赛利
             {
-                int weeklyTask = self.WeekTaskId;
-                if (weeklyTask > 0)
+                int weeklyTask = numericComponent.GetAsInt(NumericType.WeeklyTaskId);
+                if (weeklyTask > 0 && taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly).Count == 0)
                 {
-                    if (!taskComponent.RoleComoleteTaskList.Contains(weeklyTask) 
-                     && taskComponent.GetTaskById(weeklyTask) == null)
-                    {
-                        addTaskids.Add(weeklyTask);
-                    }
+                    addTaskids.Add(weeklyTask);
                 }
 
                 int dailyTaskId = numericComponent.GetAsInt(NumericType.DailyTaskID);

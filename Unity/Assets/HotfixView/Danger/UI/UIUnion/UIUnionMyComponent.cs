@@ -325,7 +325,7 @@ namespace ET
                 self.Text_UnionGold.GetComponent<Text>().text = string.Empty;
             }
             
-            self.UpdateMyUnion(self.UnionInfo).Coroutine();
+            self.UpdateMyUnion(self.UnionInfo);
         }
 
         public static void OnUnionJingXuanTimer(this UIUnionMyComponent self)
@@ -339,7 +339,7 @@ namespace ET
             self.TextJingXuanEndTime.text = TimeHelper.ShowLeftTime(lastTime);
         }
 
-        public static async ETTask UpdateMyUnion(this UIUnionMyComponent self, UnionInfo unionInfo)
+        public static  void UpdateMyUnion(this UIUnionMyComponent self, UnionInfo unionInfo)
         {
             //客户端获取家族等级
             //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -357,7 +357,6 @@ namespace ET
             //{
             //    return;
             //}
-            await ETTask.CompletedTask;
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)unionInfo.Level);

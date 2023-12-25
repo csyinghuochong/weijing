@@ -83,13 +83,14 @@ namespace ET
             taskPros = TaskComponent.GetTaskTypeList(self.TaskTypeEnum);
             if (self.TaskTypeEnum == TaskTypeEnum.Branch)
             {
-                taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Weekly));
+                
             }
             if (self.TaskTypeEnum == TaskTypeEnum.Daily)
             {
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Treasure));
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Union));
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Ring));
+                taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Weekly));
             }
             for (int i = 0; i < taskPros.Count; i++)
             {

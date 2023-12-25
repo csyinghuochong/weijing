@@ -182,7 +182,7 @@ namespace ET
                         self.RecoverPiLao(tiliTimes * 30, false);
                     }
                     self.OnZeroClockUpdate(false);
-                    unit.GetComponent<TaskComponent>().CheckWeeklyTask(lastLoginTime, currentTime);
+                    unit.GetComponent<TaskComponent>().CheckWeeklyUpdate(lastLoginTime, currentTime);
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
                     unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(false);
