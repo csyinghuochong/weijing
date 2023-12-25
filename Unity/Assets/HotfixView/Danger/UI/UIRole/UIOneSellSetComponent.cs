@@ -60,7 +60,7 @@ namespace ET
         public static void OnBtn_OneSell(this UIOneSellSetComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            bagComponent.RequestOneSell(ItemLocType.ItemLocBag).Coroutine();
+            bagComponent.RequestOneSell2(ItemLocType.ItemLocBag).Coroutine();
         }
 
         public static void SaveSettings(this UIOneSellSetComponent self, GameSettingEnum gameSettingEnum, string value)

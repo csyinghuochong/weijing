@@ -967,6 +967,50 @@ namespace ET
             return null;
         }
 
+        /// <summary>
+        /// 一键出售增幅
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="itemLocType"></param>
+        public static async ETTask RequestOneSell2(this BagComponent self, ItemLocType itemLocType)
+        {
+            List<long> baginfoids = new List<long>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(itemLocType);
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string[] set2Values = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2).Split('@'); // 低级、中级、高级
+            
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                //锁定装备不能一键出售
+                if (bagInfos[i].IsProtect) {
+                    continue;
+                }
+                
+                // 一键出售 低级、中级、高级、超级、神级
+                for (int j = 0; j < 5; j++)
+                {
+                    if (set2Values[j] == "1")
+                    {
+                        if (ConfigHelper.OneSellList[j].Contains(bagInfos[i].ItemID))
+                        {
+                            baginfoids.Add(bagInfos[i].BagInfoID);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            C2M_ItemOneSellRequest request = new C2M_ItemOneSellRequest() { BagInfoIds = baginfoids , OperateType = (int)itemLocType};
+            M2C_ItemOneSellResponse response = (M2C_ItemOneSellResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+        
+        /// <summary>
+        /// 一键出售道具
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="itemLocType"></param>
         public static async ETTask RequestOneSell(this BagComponent self , ItemLocType itemLocType)
         {
             List<long> baginfoids = new List<long>();
@@ -976,7 +1020,6 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');  //绿色 蓝色 宝石 材料
-            string[] set2Values = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2).Split('@'); // 低级、中级、高级
             
             for (int i = 0; i < bagInfos.Count; i++)
             {
@@ -1026,19 +1069,6 @@ namespace ET
                     {
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;
-                    }
-                }
-                
-                // 一键出售 低级、中级、高级、超级、神级
-                for (int j = 0; j < 5; j++)
-                {
-                    if (set2Values[j] == "1")
-                    {
-                        if (ConfigHelper.OneSellList[j].Contains(bagInfos[i].ItemID))
-                        {
-                            baginfoids.Add(bagInfos[i].BagInfoID);
-                            break;
-                        }
                     }
                 }
             }
