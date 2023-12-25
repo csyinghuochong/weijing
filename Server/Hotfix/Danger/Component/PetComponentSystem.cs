@@ -1077,6 +1077,8 @@ namespace ET
                 }
             }
 
+
+
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;

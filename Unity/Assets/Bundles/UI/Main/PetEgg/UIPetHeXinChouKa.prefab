@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4190222287883041031
 RectTransform:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4019281760871393017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29844,7 +29844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5491382525912580046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -59693,7 +59693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -125, y: 94}
-  m_SizeDelta: {x: 256, y: 256}
+  m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5322099740297552162
 CanvasRenderer:
@@ -59723,7 +59723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ea232856e30eee46ad05f9b793d3656, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 231f9710a2044dd49901d5cb6c730122, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -60310,7 +60310,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f1baa7ff2fc19b4596e1a85f499d5fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71717b7d2d46a2942945d3c7ee046ff1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -75288,7 +75288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u63D0\u793A\uFF1A\u53EF\u4EE5\u5728\u6B64\u5904\u63A2\u7D22\uFF0C\u53EF\u83B7\u5F97\u5BA0\u7269\u4E4B\u6838\u548C\u7A00\u6709\u7684\u5BA0\u7269\u86CB\u9053\u5177"
+  m_Text: "\u63D0\u793A\uFF1A\u53EF\u4EE5\u5728\u6B64\u5904\u63A2\u7D22\uFF0C\u53EF\u83B7\u5F97\u5BA0\u7269\u4E4B\u6838\u76F8\u5173\u9053\u5177\u3002"
 --- !u!114 &1478269751455329188
 MonoBehaviour:
   m_ObjectHideFlags: 0

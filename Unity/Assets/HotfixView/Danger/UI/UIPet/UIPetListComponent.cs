@@ -919,6 +919,13 @@ namespace ET
             long petAllDef = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllDef);
             long petAllHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllHp);
 
+            //self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAct, 0);
+
+            petAllAct += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAct) * (1+ unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllActPro)));
+            petAllMageact += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_Mage) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllMageActPro)));
+            petAllDef += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllDefPro)));
+            petAllAdf += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllAdfPro)));
+
             float petAllCri = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllCri);
             float petAllHit = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllHit);
             float petAllDodge = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllDodge);
