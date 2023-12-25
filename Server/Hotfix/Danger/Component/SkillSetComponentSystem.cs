@@ -786,10 +786,28 @@ namespace ET
 		{
             for (int k = self.SkillList.Count - 1; k >= 0; k--)
             {
-                if (!SkillConfigCategory.Instance.Contain(self.SkillList[k].SkillID))
-                {
-                    self.SkillList.RemoveAt(k);
-                }
+	            switch (self.SkillList[k].SkillSetType)
+	            {
+		            case SkillSetEnum.None:
+		            case SkillSetEnum.Skill:
+		            {
+			            if (!SkillConfigCategory.Instance.Contain(self.SkillList[k].SkillID))
+			            {
+				            self.SkillList.RemoveAt(k);
+			            }
+
+			            break;
+		            }
+		            case SkillSetEnum.Item:
+		            {
+			            if (!ItemConfigCategory.Instance.Contain(self.SkillList[k].SkillID))
+			            {
+				            self.SkillList.RemoveAt(k);
+			            }
+
+			            break;
+		            }
+	            }
             }
 
             if (occ == 3)
