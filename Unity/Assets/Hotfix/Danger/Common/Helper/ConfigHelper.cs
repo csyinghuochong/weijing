@@ -1033,6 +1033,13 @@ namespace ET
             { 100, 61500111},
         };
 
+        /// <summary>
+        /// 周任务奖励
+        /// </summary>
+        public static Dictionary<int, int> WeekTaskDrop = new Dictionary<int, int>()
+        {
+            { 10, 61500001},   //完成每20环对应奖励
+        };
 
         /// <summary>
         /// 宠物探宝奖励

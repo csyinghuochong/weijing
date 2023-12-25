@@ -30,7 +30,7 @@
 {"_t":"GlobalValueConfig","_id":30,"Value":"200","Value2":0},
 {"_t":"GlobalValueConfig","_id":31,"Value":"500","Value2":0},
 {"_t":"GlobalValueConfig","_id":33,"Value":"1;1000","Value2":0},
-{"_t":"GlobalValueConfig","_id":34,"Value":"1;5@25;6@35;7@45;8","Value2":0},
+{"_t":"GlobalValueConfig","_id":34,"Value":"1;5@25;6@35;7@45;8@55;9@65;10","Value2":0},
 {"_t":"GlobalValueConfig","_id":35,"Value":"86400","Value2":0},
 {"_t":"GlobalValueConfig","_id":36,"Value":"259200","Value2":0},
 {"_t":"GlobalValueConfig","_id":37,"Value":"3000","Value2":0},

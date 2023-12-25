@@ -201,10 +201,6 @@ namespace ET
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
             LogHelper.LogDebug($"InitDayActivity: {zone}  {openServerDay}");
-            if (self.DBDayActivityInfo.WeeklyTask == 0)
-            {
-                self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, 1);
-            }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
 
             if (self.DBDayActivityInfo.PetMingHexinList.Count == 0)

@@ -523,6 +523,28 @@ namespace ET
                 
                 self.TriggerTaskCountryEvent(TaskTargetType.DailyTask_1014, 0, 1);
             }
+            if (taskConfig.TaskType == TaskTypeEnum.Weekly)
+            {
+                int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
+                int dropId = 0;
+                ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
+                if (dropId > 0)
+                {
+                    List<RewardItem> droplist = new List<RewardItem>();
+                    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+                }
+                if (weekTaskNumber < GlobalValueConfigCategory.Instance.Get(109).Value2)
+                {
+                    numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
+                    numericComponent.ApplyValue(NumericType.WeeklyTaskNumber, weekTaskNumber);
+                }
+                else
+                {
+                    numericComponent.ApplyValue(NumericType.WeeklyTaskId, 0);
+                    numericComponent.ApplyValue(NumericType.WeeklyTaskNumber, weekTaskNumber);
+                }
+            }
             if (taskConfig.TaskType == TaskTypeEnum.Ring)
             {
                 int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
@@ -1463,6 +1485,9 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
             numericComponent.ApplyValue(NumericType.RingTaskNumber, 0, false);
             numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv), false);
+
+            numericComponent.ApplyValue(NumericType.WeeklyTaskNumber, 0, false);
+            numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv), false);
 
             self.UpdateSeasonWeekTask(false);
         }

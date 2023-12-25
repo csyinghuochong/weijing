@@ -11,9 +11,6 @@ namespace ET
             DBDayActivityInfo dBDayActivityInfo = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo;
             switch (request.ActivityType)
             {
-                case 1:  //周任务
-                    response.ActivityContent = dBDayActivityInfo.WeeklyTask.ToString();
-                    break;
                 default:
                     break;
             }

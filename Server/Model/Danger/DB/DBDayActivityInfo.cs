@@ -11,10 +11,6 @@ namespace ET
 	{
 		public int LastHour;
 		
-		/// <summary>
-		/// 周任务
-		/// </summary>
-		public int WeeklyTask;
 
 		/// <summary>
 		/// 小龟历史胜利次数
