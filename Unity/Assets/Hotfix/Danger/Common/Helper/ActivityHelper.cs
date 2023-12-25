@@ -147,16 +147,67 @@ namespace ET
         }
 
 
+
+        public static List<string> WelfareChouKaList = new List<string>()
+        {
+            "15305001;1@10024002;1",
+            "15305001;1@15305002;1",
+            "15305001;1",
+            "10045105;1",
+            "15305001;1@10024002;1",
+            "15305001;1@15305002;1",
+            "15305001;1",
+            "10045105;1",
+        };
+
         /// <summary>
-        /// 
+        /// 每个格子对应一个列表。 如果是装备该格子会有多个道具，非装备该格子只有一个道具
         /// </summary>
-        /// <param name="bagInfos">已拥有的道具列表</param>
+        /// <param name="bagInfos">已拥有的道具列表(穿戴+背包+仓库)</param>
         /// <returns>返回可以抽奖的道具</returns>
         /// NumericType.WelfareChouKaNumber 
         public static List<string> GetWelfareChouKaReward(List<BagInfo> bagInfos)
         {
-            
-            return new List<string>() { "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1", "10024004;1" };
+            List<string> rewardList = new   List<string>();
+
+            List<int> haveItems = new List<int>();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType ==3 && !haveItems.Contains(bagInfos[i].ItemID))
+                {
+                    haveItems.Add(bagInfos[i].ItemID);
+                }
+            }
+
+            ///如果是材料。就用第一个道具。
+            ///如果是装备，就用自身不拥有的第一个道具
+            for (int i = 0; i < WelfareChouKaList.Count; i++)
+            {
+                string[] rewardItem = WelfareChouKaList[i].Split('@');
+
+                if (rewardItem.Length == 1)
+                {
+                    rewardList.Add(rewardItem[0]);
+                }
+                else
+                {
+                    for (int reward = 0; reward < rewardItem.Length; reward++)
+                    {
+                        int itemId = int.Parse(rewardItem[reward].Split(';')[0]);
+                        if (!haveItems.Contains(itemId))
+                        {
+                            rewardList.Add(rewardItem[reward]);
+                        }
+                    }
+                    if (rewardList.Count <= i)
+                    {
+                        rewardList.Add(rewardItem[0]);
+                    }
+                }
+            }
+
+            return  rewardList;
         }
 
     }
