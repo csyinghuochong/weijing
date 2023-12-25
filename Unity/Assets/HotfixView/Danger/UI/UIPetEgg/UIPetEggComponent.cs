@@ -9,6 +9,7 @@ namespace ET
         PetChouKa = 1,
         PetEggDuiHuan = 2,
         PetEggChouKa = 3,
+        PetHeXinChouKa = 4,
 
         Num,
     }
@@ -37,11 +38,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)PetEggEnum.PetChouKa] = ABPathHelper.GetUGUIPath("Main/PetEgg/UIPetChouKa");
             pageViewComponent.UISubViewPath[(int)PetEggEnum.PetEggDuiHuan] = ABPathHelper.GetUGUIPath("Main/PetEgg/UIPetEggDuiHuan");
             pageViewComponent.UISubViewPath[(int)PetEggEnum.PetEggChouKa] = ABPathHelper.GetUGUIPath("Main/PetEgg/UIPetEggChouKa");
+            pageViewComponent.UISubViewPath[(int)PetEggEnum.PetHeXinChouKa] = ABPathHelper.GetUGUIPath("Main/PetEgg/UIPetHeXinChouKa");
 
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggList] = typeof(UIPetEggListComponent);
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetChouKa] = typeof(UIPetChouKaComponent);
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggDuiHuan] = typeof(UIPetEggDuiHuanComponent);
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggChouKa] = typeof(UIPetEggChouKaComponent);
+            pageViewComponent.UISubViewType[(int)PetEggEnum.PetHeXinChouKa] = typeof(UIPetHeXinChouKaComponent);
             self.UIPageView = pageViewComponent;
 
             //IOS适配
