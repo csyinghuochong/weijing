@@ -277,6 +277,7 @@ namespace ET
                     attackUnitLv = petCof.PetLv;
 
                     //增加宠物属性
+                    ///从主人身上取
                     attack_MaxAct += numericComponentAttack.GetAsLong(NumericType.Now_PetAllAct);
                     attack_MageAct += numericComponentAttack.GetAsLong(NumericType.Now_PetAllMageAct);
                     attackPet_hit += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllHit);
@@ -1853,11 +1854,31 @@ namespace ET
             int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionXiuLian_1);
             int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionXiuLian_2);
             int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionXiuLian_3);
-
             List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
             for (int i = 0; i < unionXiuLianids.Count; i++)
             {
                 UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
+                List<PropertyValue> jiazuProList = new List<PropertyValue>();
+                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                for (int pro = 0; pro < jiazuProList.Count; pro++)
+                {
+                    AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, UpdateProDicList);
+                }
+            }
+
+            //宠物修炼属性。 玩家数值
+            int pet_xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
+            int pet_xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_1);
+            int pet_xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_2);
+            int pet_xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_3);
+            List<int> petUnionXiuLianids = new List<int>() { pet_xiuLian_0, pet_xiuLian_1, pet_xiuLian_2, pet_xiuLian_3 };
+            for (int i = 0; i < petUnionXiuLianids.Count; i++)
+            {
+                if (petUnionXiuLianids[i] == 0)
+                {
+                    continue;
+                }
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(petUnionXiuLianids[i]);
                 List<PropertyValue> jiazuProList = new List<PropertyValue>();
                 NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
                 for (int pro = 0; pro < jiazuProList.Count; pro++)

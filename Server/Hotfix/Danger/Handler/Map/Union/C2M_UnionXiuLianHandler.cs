@@ -51,6 +51,11 @@ namespace ET
 
             //刷新角色属性
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit,true,true);
+            PetComponent petComponent = unit.GetComponent<PetComponent>();  
+            for (int i = petComponent.RolePetInfos.Count - 1; i >= 0; i--)
+            {
+                petComponent.UpdatePetAttribute(petComponent.RolePetInfos[i], false);
+            }
 
             reply();
             await ETTask.CompletedTask;

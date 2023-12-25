@@ -975,7 +975,7 @@ namespace ET
                 }
             }
 
-            //家族修炼属性
+            //宠物修炼属性。 宠物数值
             if (numericComponent != null)
             {
                 int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
