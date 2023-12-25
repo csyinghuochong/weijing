@@ -24,7 +24,7 @@ namespace ET
 
             unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
             unit.GetComponent<UserInfoComponent>().UserInfo.MakeList = MakeHelper.GetInitMakeList(request.MakeType);
-            unit.GetComponent<NumericComponent>().ApplyValue(  NumericType.MakeType, request.MakeType);
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.MakeType, request.MakeType);
             unit.GetComponent<NumericComponent>().ApplyValue( NumericType.MakeShuLianDu, 0);
             unit.GetComponent<ChengJiuComponent>().OnSkillShuLianDu(0);
             response.MakeList = MakeHelper.GetInitMakeList(request.MakeType);

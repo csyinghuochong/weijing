@@ -127,5 +127,7 @@ namespace ET
         public long SceondHurt;
 
         public string Account;
+
+        public int PetHeCheng;
     }
 }

@@ -27,13 +27,17 @@ namespace ET
                 reply();
                 return;
             }
-            //错误码
-            //判定是否出战
-            //if (PetStatus_1 == 1 || PetStatus_2 == 2)
-            //{
-            //	response.Error = 1;
-            //}
-            //改变第一个宠物的数据	
+			//错误码
+			//判定是否出战
+			//if (PetStatus_1 == 1 || PetStatus_2 == 2)
+			//{
+			//	response.Error = 1;
+			//}
+			//改变第一个宠物的数据	
+
+			//宠物合成次数
+			int petHeChengNumber = unit.GetComponent<DataCollationComponent>().PetHeCheng;
+
             int petLv_1 = petinfo_1.PetLv;
 			int petLv_2 = petinfo_2.PetLv;
 		
@@ -292,7 +296,9 @@ namespace ET
 			petComponent.RemovePet(petinfo_delete.Id);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
 			unit.GetComponent<TaskComponent>().OnPetHeCheng(petinfo_update);
-			petComponent.CheckPetPingFen();
+			unit.GetComponent<DataCollationComponent>().PetHeCheng++;
+
+            petComponent.CheckPetPingFen();
 			petComponent.CheckPetZiZhi();
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
             response.DeletePetInfoId = petinfo_delete.Id;
