@@ -92,6 +92,16 @@ namespace ET
             F2R_WorldLvUpdateResponse response = (F2R_WorldLvUpdateResponse)await ActorMessageSenderComponent.Instance.Call(fubenCenterId, request);
         }
 
+        public static void ClearRankingTrial(this RankSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (dateTime.Year == 2023 && dateTime.Month == 12 && dateTime.Day == 30)
+            {
+                self.DBRankInfo.rankingTrial.Clear();
+                Log.Console("self.DBRankInfo.rankingTrial.Clear");
+            }
+        }
+
         public static void OnHour12Update(this RankSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();

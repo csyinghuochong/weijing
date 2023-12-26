@@ -77,6 +77,10 @@ namespace ET
                     {
                         scene.GetComponent<RankSceneComponent>().OnHour12Update();
                     }
+                    if (hour == 14)
+                    {
+                        scene.GetComponent<RankSceneComponent>().ClearRankingTrial();
+                    }
                     if (request.FunctionId == 1052 && request.FunctionType == 1)
                     {
                         //Log.Console("OnShowLieBegin");
