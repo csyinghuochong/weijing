@@ -179,7 +179,7 @@ namespace ET
             long haveNumber10 = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo10[0]));
             if (choukaType == 10 && haveNumber10 < (int)(int.Parse(itemInfo10[1]) * discount))
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
                 return;
             }
 
