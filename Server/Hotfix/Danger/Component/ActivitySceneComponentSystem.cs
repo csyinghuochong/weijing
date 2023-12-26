@@ -399,7 +399,7 @@ namespace ET
 
                 for (int i = 0; i < playerIds.Count; i++)
                 {
-                    Log.Console($"发放竞猜奖励: {self.DomainZone()}  {playerIds[i]}");
+                    Log.Console($"发放竞猜奖励: {self.DomainZone()}  {guessIndex} {playerIds[i]}");
                 }
 
                 if (hour == 0)

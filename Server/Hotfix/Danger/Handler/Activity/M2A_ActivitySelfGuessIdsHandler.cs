@@ -11,13 +11,22 @@ namespace ET
         {
             List<int> guessIds = new List<int>();
             List<int> lastGuessRewatd = new List<int>();
-            Dictionary<int, List<long>> guessplayers = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.GuessPlayerList;
+            DBDayActivityInfo dBDayActivityInfo = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo;
+            Dictionary<int, List<long>> guessplayers = dBDayActivityInfo.GuessPlayerList;
+            Dictionary<int, List<long>> guessRewards = dBDayActivityInfo.GuessRewardList;
 
             foreach ( ( int guessindex, List<long> players  ) in guessplayers)
             {
                 if (players.Contains(request.UnitId))
                 {
-                    guessIds.Add( guessindex ); 
+                    guessIds.Add( guessindex );  //当前竞猜id(0,1,2,3,4,5)
+                }
+            }
+            foreach ((int guessindex, List<long> players) in guessRewards)
+            {
+                if (players.Contains(request.UnitId))
+                {
+                    lastGuessRewatd.Add(guessindex);  //竞猜历史获奖时间断(0, 14, 18 , 21)
                 }
             }
 
