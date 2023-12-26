@@ -145,6 +145,7 @@ namespace ET
 				if (GlobalHelp.GetPlatform() == 6)
 				{
 					self.YinSiToggle2.GetComponent<Toggle>().isOn = false;
+                    self.ZhuCe.transform.Find("Btn_iPhone").gameObject.SetActive(false);	
                 }
 
                 self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
