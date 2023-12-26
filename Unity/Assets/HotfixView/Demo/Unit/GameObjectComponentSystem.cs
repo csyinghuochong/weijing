@@ -851,6 +851,8 @@ namespace ET
             self.Material.shader = GlobalHelp.Find(self.OldShader);
         }
 
+
+
         public static void ExitHide(this GameObjectComponent self)
         {
             if (self.GameObject == null)

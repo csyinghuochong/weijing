@@ -116,6 +116,11 @@ namespace ET
                     TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 6, 1);
 #endif
                 }
+
+                if (unit.Type == UnitType.Monster)
+                {
+                    OnMonsterDead(unit).Coroutine();
+                }
             }
             catch (Exception e)
             {
@@ -151,6 +156,27 @@ namespace ET
             {
                 UI uI = await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
                 uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
+            }
+        }
+
+        private async ETTask OnMonsterDead(Unit unit)
+        {
+            long instanceId = unit.InstanceId;
+            await TimerComponent.Instance.WaitAsync(1000);
+            if (instanceId != unit.InstanceId)
+            {
+                return;
+            }
+
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+            if (monsterConfig.DeathSkillId != 0)
+            {
+                SkillConfig skillConfigCategory = SkillConfigCategory.Instance.Get(monsterConfig.DeathSkillId);
+                long waitType = 1000 + (long)(skillConfigCategory.SkillDelayTime * 1000) + skillConfigCategory.SkillLiveTime;
+                if (waitType >= 5000)
+                {
+                    unit.GetComponent<GameObjectComponent>().EnterHide();
+                }
             }
         }
 
