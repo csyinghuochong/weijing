@@ -669,6 +669,10 @@ namespace ET
                     self.UserInfo.DemonName = value;
                     saveValue = self.UserInfo.DemonName;
                     break;
+                case UserDataType.StallName:
+                    self.UserInfo.StallName = value;
+                    saveValue = self.UserInfo.StallName;
+                    break;
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();

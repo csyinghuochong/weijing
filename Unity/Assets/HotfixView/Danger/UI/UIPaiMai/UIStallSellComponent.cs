@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIStallSellComponent: Entity, IAwake
     {
+        public GameObject Btn_ChangeName;
+        public GameObject Lab_Name;
         public GameObject SellTypeButton;
         public GameObject Btn_Stall;
         public GameObject Lab_ShengYuTime;
@@ -42,6 +44,10 @@ namespace ET
             self.BagInfo = null;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Btn_ChangeName = rc.Get<GameObject>("Btn_ChangeName");
+            ButtonHelp.AddListenerEx(self.Btn_ChangeName, () => { self.OnBtn_ChangeName().Coroutine(); });
+            self.Lab_Name = rc.Get<GameObject>("Lab_Name");
+            self.Lab_Name.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
             self.Lab_ShengYuTime = rc.Get<GameObject>("Lab_ShengYuTime");
             self.Text_SellTime = rc.Get<GameObject>("Text_SellTime");
 
@@ -69,12 +75,43 @@ namespace ET
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             self.UIPageButton = uIPageButtonComponent;
 
+            string name = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.StallName;
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "商品摊位";
+            }
+
+            self.Lab_Name.GetComponent<InputField>().text = name;
             self.RequestSelfPaiMaiList().Coroutine();
         }
     }
 
     public static class UIStallSellComponentSystem
     {
+        public static void CheckSensitiveWords(this UIStallSellComponent self)
+        {
+            string text_new = "";
+            string text_old = self.Lab_Name.GetComponent<InputField>().text;
+            MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old, out text_new);
+            self.Lab_Name.GetComponent<InputField>().text = text_old;
+        }
+        
+        public static async ETTask OnBtn_ChangeName(this UIStallSellComponent self)
+        {
+            string name = self.Lab_Name.GetComponent<InputField>().text;
+            bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(name);
+            if (mask)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                return;
+            }
+
+            C2M_StallOperationRequest c2M_StallOperationRequest = new C2M_StallOperationRequest() { StallType = 2, Value = name };
+            M2C_StallOperationResponse m2C_PaiMaiBuyResponse =
+                    (M2C_StallOperationResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_StallOperationRequest);
+            self.Lab_Name.GetComponent<InputField>().text = name;
+        }
+        
         public static async ETTask RequestSelfPaiMaiList(this UIStallSellComponent self)
         {
             long instanceid = self.InstanceId;

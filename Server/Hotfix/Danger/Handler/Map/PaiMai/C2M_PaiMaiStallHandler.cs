@@ -14,25 +14,30 @@ namespace ET
             }
             if (request.StallType == 1) //摆摊
             {
-                string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+                if (string.IsNullOrEmpty(userInfo.StallName))
+                {
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "商品摊位");
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "商品摊位");
+                }
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, request.StallType);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
                 m2C_BroadcastRoleData.UnitId = unit.Id;
                 m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
-                m2C_BroadcastRoleData.UpdateTypeValue = name;
+                m2C_BroadcastRoleData.UpdateTypeValue = userInfo.StallName;
                 MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
-                unit.GetComponent<UnitInfoComponent>().StallName = name;
+                unit.GetComponent<UnitInfoComponent>().StallName = userInfo.StallName;
             }
             if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value))
             {
                 unit.GetComponent<UnitInfoComponent>().StallName = request.Value;
-
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, request.Value);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.Value);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
                 m2C_BroadcastRoleData.UnitId = unit.Id;
                 m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
                 m2C_BroadcastRoleData.UpdateTypeValue = request.Value;
                 MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
-                unit.GetComponent<UnitInfoComponent>().StallName = request.Value;
             }
 
             reply();

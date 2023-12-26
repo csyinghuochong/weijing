@@ -345,6 +345,8 @@ message UserInfo
 	repeated int32 PetExploreRewardIds = 54;
 
 	repeated int32 PetHeXinExploreRewardIds = 55;
+
+	string StallName = 56;
 }
 
 message KeyValuePair

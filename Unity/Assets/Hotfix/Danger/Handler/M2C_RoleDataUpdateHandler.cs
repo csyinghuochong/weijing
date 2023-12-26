@@ -88,6 +88,9 @@ namespace ET
                 case (int)UserDataType.DemonName:
                     userInfo.DemonName = message.UpdateTypeValue;
                     break;
+                case (int)UserDataType.StallName:
+                    userInfo.StallName = message.UpdateTypeValue;
+                    break; 
                 case (int)UserDataType.Combat:
                     userInfo.Combat = int.Parse(message.UpdateTypeValue);
                     break;

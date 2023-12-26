@@ -670,6 +670,9 @@ namespace ET
 		[ProtoMember(55)]
 		public List<int> PetHeXinExploreRewardIds = new List<int>();
 
+		[ProtoMember(56)]
+		public string StallName { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
