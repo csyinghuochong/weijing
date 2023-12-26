@@ -32,7 +32,7 @@ namespace ET
     }
 
 
-    public class UINpcTaskComponentAwakeSystem : AwakeSystem<UITaskGetComponent>
+    public class UITaskGetComponentAwake : AwakeSystem<UITaskGetComponent>
     {
         public override void Awake(UITaskGetComponent self)
         {
@@ -92,7 +92,7 @@ namespace ET
         }
     }
 
-    public class UINpcTaskComponentDestroySystem : DestroySystem<UITaskGetComponent>
+    public class UITaskGetComponentDestroy : DestroySystem<UITaskGetComponent>
     {
         public override void Destroy(UITaskGetComponent self)
         {
@@ -101,7 +101,7 @@ namespace ET
         }
     }
 
-    public static class UINpcTaskComponentSystem
+    public static class UITaskGetComponentSystem
     {
         public static  void OnTaskGet(this UITaskGetComponent self)
         {
@@ -621,13 +621,13 @@ namespace ET
             long instanceid = self.InstanceId;
             Scene zoneScene = self.ZoneScene();
             int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId, 0);
-            if (errorCode == ErrorCode.ERR_Success)
-            {
-                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
-            }
             if (instanceid != self.InstanceId)
             {
                 return;
+            }
+            if (errorCode == ErrorCode.ERR_Success)
+            {
+                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
             }
             self.OnTaskGet();
         }
