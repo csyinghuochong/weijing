@@ -59,7 +59,7 @@ namespace ET
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
             self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
-            if (GlobalHelp.GetPlatform() == 5)
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
             {
                 self.Btn_Type4.SetActive(false);
             }

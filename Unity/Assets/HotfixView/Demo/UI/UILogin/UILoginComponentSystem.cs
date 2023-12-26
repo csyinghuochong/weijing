@@ -142,6 +142,10 @@ namespace ET
 				self.TextButton_2_1 = rc.Get<GameObject>("TextButton_2_1");
 				self.YinSiToggle2 = rc.Get<GameObject>("YinSiToggle2");
 				self.TextYinSi = rc.Get<GameObject>("TextYinSi");
+				if (GlobalHelp.GetPlatform() == 6)
+				{
+					self.YinSiToggle2.GetComponent<Toggle>().isOn = false;
+                }
 
                 self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
 				self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
@@ -496,7 +500,12 @@ namespace ET
 
 		public static void OnButtonOtherLogin(this UILoginComponent self)
 		{
-			self.ThirdLoginBg.SetActive(true);
+            if (!self.YinSiToggle2.GetComponent<Toggle>().isOn)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
+                return;
+            }
+            self.ThirdLoginBg.SetActive(true);
 			self.YiJianDengLu.SetActive(false);
 			self.ZhuCe.SetActive(true);
 			self.HideNode.SetActive(false);
@@ -530,6 +539,11 @@ namespace ET
 
         public static void OnButtonYiJianLogin(this UILoginComponent self)
         {
+            if (!self.YinSiToggle2.GetComponent<Toggle>().isOn)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
+                return;
+            }
             string phoneNum = self.TextPhoneNumber.GetComponent<Text>().text;
             if (string.IsNullOrEmpty(phoneNum))
             {

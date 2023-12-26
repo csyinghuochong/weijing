@@ -90,7 +90,7 @@ namespace ET
             self.NoMoving.GetComponent<Button>().onClick.AddListener(self.OnBtn_NoMoving);
 
             self.HideNode = rc.Get<GameObject>("HideNode");
-            self.HideNode.SetActive( GlobalHelp.GetPlatform() != 5 );
+            self.HideNode.SetActive( GlobalHelp.GetPlatform() != 5 && GlobalHelp.GetPlatform() != 6);
 
             self.OneSellSet = rc.Get<GameObject>("OneSellSet");
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });

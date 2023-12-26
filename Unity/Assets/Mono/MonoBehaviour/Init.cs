@@ -129,12 +129,13 @@ namespace ET
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
             Log.ILog.Debug("unity111  Awake");
 
-            //////平台Id定义 不得更改
+            ///平台Id定义 不得更改
+            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  ios20001
 #if TapTap1
             Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
 #elif QQ2
-			Log.ILog.Debug("unity111  QQ2=true");
+            Log.ILog.Debug("unity111  QQ2=true");
 			this.Platform = 2;
 #elif Platform3
 			Log.ILog.Debug("unity111  Platform3=true");
@@ -142,9 +143,12 @@ namespace ET
 #elif Platform4
 			Log.ILog.Debug("unity111  Platform4=true");
 			this.Platform = 4;
-#elif TikTok5
+#elif TikTok5				//抖音
 			Log.ILog.Debug("unity111  TikTok5=true");
 			this.Platform = 5;
+#elif TikTokMuBao6			//抖音母包
+			Log.ILog.Debug("unity111  TikTokMuBao6=true");
+			this.Platform = 6;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif
@@ -168,7 +172,7 @@ namespace ET
 		 CheckIphoneYueyu( string.Empty ); 
 #endif
 
-			BuglyInit.PlatForm = this.Platform;
+            BuglyInit.PlatForm = this.Platform;
 
             GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
