@@ -498,7 +498,8 @@ namespace ET
                 cmd.TargetID = unit.Id;
                 cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                 cmd.TargetDistance = 0f;
-                from.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+                from.GetComponent<StateComponent>().SetRigidityEndTime(0);
+                from.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, false);
 
                 self.BuffRemoveByUnit(from.Id, buffData.BuffId);
             }
