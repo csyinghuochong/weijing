@@ -383,7 +383,8 @@ namespace ET
             }
 
             //显示上架数量
-            self.Text_SellTime.GetComponent<Text>().text = "已上架:" + self.PaiMaiItemInfos.Count + "/20";
+            int maxNum = GlobalValueConfigCategory.Instance.Get(50).Value2;
+            self.Text_SellTime.GetComponent<Text>().text = "已上架:"  + $"{self.PaiMaiItemInfos.Count}/{maxNum}";
         }
 
         public static async ETTask OnPointerDown(this UIStallSellComponent self, BagInfo binfo, PointerEventData pdata)
