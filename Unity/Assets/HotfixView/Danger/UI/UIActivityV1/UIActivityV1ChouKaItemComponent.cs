@@ -9,6 +9,7 @@ namespace ET
         public GameObject ClickBtn;
         public GameObject NumText;
         public GameObject RewardListNode;
+        public GameObject ReceivedImg;
 
         public int Key;
     }
@@ -23,6 +24,7 @@ namespace ET
             self.ClickBtn = rc.Get<GameObject>("ClickBtn");
             self.NumText = rc.Get<GameObject>("NumText");
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
+            self.ReceivedImg = rc.Get<GameObject>("ReceivedImg");
 
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn().Coroutine(); });
         }
@@ -35,6 +37,8 @@ namespace ET
             self.Key = key;
             self.NumText.GetComponent<Text>().text = $"今日抽奖次数x{key}";
             UICommonHelper.ShowItemList(ActivityConfigHelper.ChouKaNumberReward[key], self.RewardListNode, self, 0.8f);
+
+            self.ReceivedImg.SetActive(self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key));
         }
 
         public static async ETTask OnClickBtn(this UIActivityV1ChouKaItemComponent self)
@@ -59,6 +63,8 @@ namespace ET
             {
                 return;
             }
+
+            self.ReceivedImg.SetActive(true);
         }
     }
 }

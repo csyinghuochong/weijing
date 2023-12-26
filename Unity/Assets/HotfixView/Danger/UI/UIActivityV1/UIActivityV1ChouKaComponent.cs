@@ -77,11 +77,11 @@ namespace ET
                 go.SetActive(true);
             }
 
-            string[] items = ActivityConfigHelper.ChouKaRewardPool.Split('@');
-            for (int i = 0; i < items.Length; i++)
+            List<RewardItem> rewardItems =
+                    DropHelper.DropIDToShowItem(self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaDropId);
+            for (int i = 0; i < rewardItems.Count; i++)
             {
-                string[] item = items[i].Split(';');
-                if (!ItemConfigCategory.Instance.Contain(int.Parse(item[0])))
+                if (!ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID))
                 {
                     continue;
                 }
@@ -91,7 +91,7 @@ namespace ET
                 GameObject itemSpace = UnityEngine.Object.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, self.RewardItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(item[0]), ItemNum = int.Parse(item[1]) }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 //uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
