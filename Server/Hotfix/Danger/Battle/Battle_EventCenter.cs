@@ -211,18 +211,19 @@ namespace ET
                 }
             }
 
-            long waittime = defendUnit.IsChest() ? 1000 : 100;
+            long waittime = defendUnit.IsChest() ? 2000 : 100;
             if (defendUnit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                 if (monsterConfig.DeathSkillId != 0)
                 {
-                    waittime = 1000;
+                    SkillConfig skillConfigCategory = SkillConfigCategory.Instance.Get(monsterConfig.DeathSkillId);
+                    waittime = 2000 + (long)(skillConfigCategory.SkillDelayTime * 1000) + skillConfigCategory.SkillLiveTime * 1000;
                 }
             }
             if (defendUnit.Type == UnitType.Pet)
             {
-                waittime = 1000;
+                waittime = 2000;
             }
 
             switch (sceneTypeEnum)

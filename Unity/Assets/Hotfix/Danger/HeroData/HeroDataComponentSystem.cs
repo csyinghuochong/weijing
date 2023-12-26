@@ -409,7 +409,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Monster)
             {
-                if (unit.ConfigId == 72009045)
+                if (unit.ConfigId == 90000202)   //90030005
                 {
                     Log.Console("PlayDeathSkill: 72009045");
                 }

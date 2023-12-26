@@ -188,7 +188,6 @@ namespace ET
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case (int)SceneTypeEnum.PetMing:
-
                         long cdTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime);
                         if (cdTime > TimeHelper.ServerNow())
                         {

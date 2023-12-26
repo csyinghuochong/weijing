@@ -51,7 +51,12 @@ namespace ET
                     unit.GetComponent<GameObjectComponent>().GameObject.SetActive(false);   //隐藏宝箱
                     unit.AddComponent<EffectViewComponent>();
                     int monsterid = unit.ConfigId;
-                    if (monsterid == 80000101 || monsterid == 80000201 || monsterid == 80000301 || monsterid == 80000401 || monsterid == 80000501 || monsterid == 80002003 || monsterid == 80002004 || monsterid == 80003001 || monsterid == 80003002) {
+                    if (monsterid == 80000101 || monsterid == 80000201 
+                        || monsterid == 80000301 || monsterid == 80000401
+                        || monsterid == 80000501 || monsterid == 80002003 
+                        || monsterid == 80002004 || monsterid == 80003001 
+                        || monsterid == 80003002)
+                    {
                         FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000108);
                     }
                 }

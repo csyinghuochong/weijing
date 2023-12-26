@@ -184,7 +184,7 @@ public class UIYinSi : MonoBehaviour
             return;
         }
         this.AgreeNumber++;
-        int needAgreeNumber =  GameObject.Find("Global").GetComponent<Init>().Platform == 5 ? 2 : 3;
+        int needAgreeNumber = 2;
         if (this.AgreeNumber >= needAgreeNumber || permissons == "1_1")
         {
             PlayerPrefs.SetString("UIYinSi_0111", "1");
