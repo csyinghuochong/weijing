@@ -703,12 +703,23 @@ namespace ET
             //显示玩家名称
             if (stallType == 0)
             {
+                if (self.Img_ChengHao.GetComponent<Image>().sprite != null)
+                {
+                    self.Img_ChengHao.SetActive(true);
+                }
+                self.Lal_Name.SetActive(true);
                 self.Lal_Name.GetComponent<Text>().text = infoComponent.UnitName;
+                self.Lal_JiaZuName.SetActive(true);
+                self.Lal_ShopName.SetActive(false);
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }
             else
             {
+                self.Img_ChengHao.SetActive(false);
+                self.Lal_Name.SetActive(false);
+                self.Lal_JiaZuName.SetActive(false);
+                self.Lal_ShopName.SetActive(true);
                 self.Lal_ShopName.GetComponent<Text>().text = $"{infoComponent.StallName}的摊位";
                 self.ShopShowSet.SetActive(true);
                 self.PlayerNameSet.SetActive(false);
