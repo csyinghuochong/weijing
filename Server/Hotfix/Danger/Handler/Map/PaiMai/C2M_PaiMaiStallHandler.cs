@@ -32,7 +32,7 @@ namespace ET
             {
                 unit.GetComponent<UnitInfoComponent>().StallName = request.Value;
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, request.Value);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.Value);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.StallName, request.Value);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
                 m2C_BroadcastRoleData.UnitId = unit.Id;
                 m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
