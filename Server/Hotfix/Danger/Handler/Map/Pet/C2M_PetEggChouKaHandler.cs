@@ -41,7 +41,7 @@ namespace ET
                     return;
                 }
 
-                //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 1, 0);
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 1, 0);
             }
             else if (request.ChouKaType == 10)
             {
