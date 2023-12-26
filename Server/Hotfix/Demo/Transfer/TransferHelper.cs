@@ -96,7 +96,7 @@ namespace ET
                             }
                             request.paramInfo = (seasonTowerid + 1).ToString();
                         }
-                       
+
                         fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                         fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "SeasonTower" + fubenid.ToString(), SceneType.Fuben);
@@ -188,6 +188,13 @@ namespace ET
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case (int)SceneTypeEnum.PetMing:
+
+                        long cdTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime);
+                        if (cdTime > TimeHelper.ServerNow())
+                        {
+                            return ErrorCode.ERR_InMakeCD;
+                        }
+
                         string[] praminfos = request.paramInfo.Split('_');
                         fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();

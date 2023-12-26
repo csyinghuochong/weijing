@@ -129,7 +129,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_TaskCanNotGet, "未达到领取条件");
             ErrorHintList.Add(ErrorCode.ERR_TaskNoComplete, "前先完成此类任务");
             ErrorHintList.Add(ErrorCode.ERR_TowerOfSealReachTop, "已通关");
-
+            ErrorHintList.Add(ErrorCode.ERR_Challenge_CD, "挑战CD中");
+            
             ErrorHintList.Add(ErrorCode.ERR_Pet_Hint_1, "宠物星级出错");
             ErrorHintList.Add(ErrorCode.ERR_Pet_UpStar, "宠物星级失败");
             ErrorHintList.Add(ErrorCode.ERR_Pet_UpStage, "宠物进化失败");
