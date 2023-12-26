@@ -341,11 +341,7 @@ namespace ET
 
 		public static void OnRecvTaskUpdate(this UITaskComponent self)
 		{
-			if (self.TaskPro == null)
-			{
-				return;
-			}
-			self.UpdateTaskInfo(self.TaskComponent.GetTaskById(self.TaskPro.taskID));
+			self.UpdateTaskInfo(self.TaskComponent.GetTaskById(self.TaskId));
 		}
 
 		public static void OnTrackTask(this UITaskComponent self, bool track)
