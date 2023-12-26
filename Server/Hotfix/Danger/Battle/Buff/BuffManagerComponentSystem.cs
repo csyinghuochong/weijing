@@ -704,26 +704,6 @@ namespace ET
 
         public static void InitDonationBuff(this BuffManagerComponent self)
         {
-            //移除之前的buff
-            //self.BuffRemove(99003011);
-            //self.BuffRemove(99003012);
-            //self.BuffRemove(99003013);
-            //self.BuffRemove(99003021);
-            //self.BuffRemove(99003022);
-            //self.BuffRemove(99003023);
-            //self.BuffRemove(99003031);
-            //self.BuffRemove(99003032);
-            //self.BuffRemove(99003033);
-            //self.BuffRemove(99003041);
-            //self.BuffRemove(99003042);
-            //self.BuffRemove(99003043);
-            //self.BuffRemove(99003051);
-            //self.BuffRemove(99003052);
-            //self.BuffRemove(99003053);
-            //self.BuffRemove(99003061);
-            //self.BuffRemove(99003062);
-            //self.BuffRemove(99003063);
-            //self.BuffRemove(99003064);
             self.BuffRemoveList(SkillHelp.DonationBuff);
 
             int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
