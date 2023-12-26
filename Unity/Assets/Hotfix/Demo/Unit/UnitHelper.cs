@@ -121,6 +121,28 @@ namespace ET
             return rechargeNum;
         }
 
+        public static List<Unit> GetUnitListByDis(Scene scene, Vector3 pos, int unitType, float maxdis)
+        {
+            List<Unit> list = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                Unit unit = allunits[i];
+                if (unit.Type != unitType)
+                {
+                    continue;
+                }
+
+                if (Vector3.Distance(pos, unit.Position) > maxdis)
+                {
+                    continue;
+                }
+                list.Add(unit);
+            }
+            return list;
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             //using var list = ListComponent<Unit>.Create();

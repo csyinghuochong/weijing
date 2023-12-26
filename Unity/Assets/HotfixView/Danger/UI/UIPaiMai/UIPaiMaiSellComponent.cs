@@ -113,39 +113,7 @@ namespace ET
 
         public static void OnBtn_Stall(this UIPaiMaiSellComponent self)
         {
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
-            {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-                Vector3 vector3 = unit.Position;
-                int x = Mathf.FloorToInt(vector3.x * 100);
-                int z = Mathf.FloorToInt(vector3.z * 100);
-                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-                int[] stallarea = sceneConfig.StallArea;
-                if (Mathf.Abs(x -stallarea[0]) < stallarea[3] && Mathf.Abs(z - stallarea[2]) < stallarea[3])
-                {
-                    NetHelper.PaiMaiStallRequest(self.DomainScene(), 1).Coroutine();
-                    UIHelper.Remove(self.DomainScene(), UIType.UIPaiMai);
-                }
-                else
-                {
-                    FloatTipManager.Instance.ShowFloatTip("请前往摆摊区域!");
-                    PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "摆摊提示", "是否前往摆摊区域进行摆摊?", () => { self.OnRun(); }).Coroutine();
-                }
-            }
-            else
-            {
-                //弹出提示
-                FloatTipManager.Instance.ShowFloatTip("请前往主城摆摊!");
-            }
-        }
-
-        public static void  OnRun(this UIPaiMaiSellComponent self)
-        {
-            // ETTask.CompletedTask;
-            //FloatTipManager.Instance.ShowFloatTip("请前往主城摆摊222!");
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            unit.MoveToAsync2(new Vector3(46.28f,-3.61f,7.35f), true).Coroutine();
+            
         }
 
         public static async ETTask OnBtn_XiaJia(this UIPaiMaiSellComponent self)
