@@ -2238,6 +2238,7 @@ namespace ET
 
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
+            await NetHelper.RequestActivityInfo(self.ZoneScene());
             await UIHelper.Create(self.ZoneScene(), UIType.UIActivityV1);
             //UI命名规则
             //UIActivityV1  UIActivityV1ChouKa  UIActivityV1Guess    UIActivityV1Consume UIActivityV1HongBao  UIActivityV1Shop

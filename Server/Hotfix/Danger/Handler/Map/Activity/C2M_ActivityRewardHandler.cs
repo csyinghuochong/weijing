@@ -22,6 +22,13 @@ namespace ET
             switch (request.ActivityType)
             {
                 case ActivityConfigHelper.ActivityV1_ChouKa:
+                    if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber) < request.RewardId)
+                    {
+                        response.Error = ErrorCode.Pre_Condition_Error;
+                        reply();
+                        return;
+                    }
+
                     if (!ActivityConfigHelper.ChouKaNumberReward.ContainsKey(request.RewardId))
                     {
                         response.Error = ErrorCode.ERR_ModifyData;

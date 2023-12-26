@@ -75,7 +75,7 @@ namespace ET
                 "10030016"
             };
             self.NewYearItems.Clear();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < ActivityConfigHelper.GuessNumber; i++)
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.NewYearItem);
                 string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, YearItemPath[i]);
@@ -142,7 +142,7 @@ namespace ET
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
 
             // 刷新上方选中的竞猜数字
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < ActivityConfigHelper.GuessNumber; i++)
             {
                 ReferenceCollector rc1 = self.NewYearItems[i].GetComponent<ReferenceCollector>();
                 rc1.Get<GameObject>("OutLineImg").SetActive(activityV1Info.GuessIds.Contains(i));

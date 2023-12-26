@@ -34,7 +34,8 @@ namespace ET
 
             List<RewardItem> rewardItems = new List<RewardItem>();  
             DropHelper.DropIDToDropItem_2(dropId, rewardItems);
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
+            bagComponent.OnCostItemData(ActivityConfigHelper.ChouKaCostItem);
+            bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;

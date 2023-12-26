@@ -55,7 +55,7 @@ namespace ET
         /// <summary>
         /// 第一个字免费， 第二个字开始消耗道具.  
         /// </summary>
-        public static string GuessCostItem = "1;0@1;0@1;0@1;0@1;0@1;0";
+        public static string GuessCostItem = "1;100@1;200@1;300@1;400@1;500@1;600";
 
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> ConsumeDiamondReward = new Dictionary<int, string>()
         {
-            {  100, "1;0" },
-            {  200, "1;0" }
+            {  100, "1;1000" },
+            {  200, "1;1000" }
         };
         
         /// <summary>
