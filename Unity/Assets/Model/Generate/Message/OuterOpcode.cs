@@ -843,5 +843,9 @@ namespace ET
 		 public const ushort M2C_PetHeXinChouKaResponse = 10840;
 		 public const ushort C2M_PetHeXinExploreReward = 10841;
 		 public const ushort M2C_PetHeXinExploreReward = 10842;
+		 public const ushort C2M_WelfareDraw2Request = 10843;
+		 public const ushort M2C_WelfareDraw2Response = 10844;
+		 public const ushort C2M_WelfareDraw2RewardRequest = 10845;
+		 public const ushort M2C_WelfareDraw2RewardResponse = 10846;
 	}
 }

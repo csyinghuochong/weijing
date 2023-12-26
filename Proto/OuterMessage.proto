@@ -7277,3 +7277,31 @@ message M2C_PetHeXinExploreReward // IActorLocationResponse
 	string Message = 91;		
 	int32 Error = 92;
 }
+
+//ResponseType M2C_WelfareDraw2Response
+message C2M_WelfareDraw2Request // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+}
+
+message M2C_WelfareDraw2Response // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_WelfareDraw2RewardResponse
+message C2M_WelfareDraw2RewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+}
+
+message M2C_WelfareDraw2RewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

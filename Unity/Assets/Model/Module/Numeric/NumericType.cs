@@ -174,6 +174,7 @@
         public const int PetHeXinExploreNumber = 3174;                               //宠物核心探宝次数
         public const int MakeType_2 = 3175;                                         //第二套生活技能
         public const int MakeShuLianDu_2 = 3176;                                    //第二套生活技能熟练度
+        public const int DrawIndex2 = 3144;                                         // 减1
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

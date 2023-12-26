@@ -185,7 +185,7 @@ namespace ET
                 await TimerComponent.Instance.WaitAsync(250);
                 if (self.IsDisposed)
                 {
-                    break;
+                    return;
                 }
             }
 
