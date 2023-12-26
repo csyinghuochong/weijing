@@ -44,18 +44,18 @@ namespace ET
             }
             else if (request.ChouKaType == 10)
             {
-                UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-                int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0]);
+                string[] itemInfo10 = GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0].Split(';');
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[1]);
-                if (userInfo.Diamond < (int)(needDimanond * discount))
+                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(new List<RewardItem>()
                 {
-                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                    new RewardItem() { ItemID = int.Parse(itemInfo10[0]), ItemNum = (int)(int.Parse(itemInfo10[1]) * discount) }
+                });
+                if (!sucess)
+                {
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
-
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * (int)(needDimanond * discount)).ToString(),
-                    true, ItemGetWay.PetChouKa);
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetHeXinExploreNumber, 10, 0);
             }
 

@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIPetHeXinChouKaComponent: Entity, IAwake, IDestroy
     {
+        public GameObject ItemImageIcon10;
         public GameObject RewardItemListNode;
         public GameObject Btn_PetEggLucklyExplain;
         public GameObject Btn_RolePetHeXin;
@@ -26,6 +27,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.ItemImageIcon10 = rc.Get<GameObject>("ItemImageIcon10");
             self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
             self.Btn_PetEggLucklyExplain = rc.Get<GameObject>("Btn_PetEggLucklyExplain");
             self.Btn_ChouKaNumReward = rc.Get<GameObject>("Btn_ChouKaNumReward");
@@ -93,7 +95,15 @@ namespace ET
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
-            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0]);
+            string[] itemInfo10 = GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0].Split(';');
+            string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo10[0])).Icon);
+            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
+            if (!self.AssetPath.Contains(path1))
+            {
+                self.AssetPath.Add(path1);
+            }
+
+            self.ItemImageIcon10.GetComponent<Image>().sprite = sp1;
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
                     .GetAsInt(NumericType.PetHeXinExploreNumber);
             string[] set = GlobalValueConfigCategory.Instance.Get(112).Value.Split(';');
@@ -107,10 +117,12 @@ namespace ET
                 discount = float.Parse(set[1]);
             }
 
-            self.Text_DiamondNumber.GetComponent<Text>().text = ((int)(needDimanond * discount)).ToString();
+            long haveNumber10 = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo10[0]));
+            self.Text_DiamondNumber.GetComponent<Text>().text = $"{haveNumber10}/{(int)(int.Parse(itemInfo10[1]) * discount)}";
+            self.Text_DiamondNumber.GetComponent<Text>().color = haveNumber10 >= (int)(int.Parse(itemInfo10[1]) * discount)? Color.white : Color.red;
 
-            string[] itemInfo = GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0].Split(';');
-            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
+            string[] itemInfo1 = GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0].Split(';');
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo1[0])).Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
@@ -118,9 +130,9 @@ namespace ET
             }
 
             self.ItemImageIcon.GetComponent<Image>().sprite = sp;
-            long haveNumber = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo[0]));
-            self.Text_CostNumber.GetComponent<Text>().text = haveNumber + "/" + itemInfo[1];
-            self.Text_CostNumber.GetComponent<Text>().color = (haveNumber >= int.Parse(itemInfo[1]))? Color.white : Color.red;
+            long haveNumber1 = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo1[0]));
+            self.Text_CostNumber.GetComponent<Text>().text = haveNumber1 + "/" + itemInfo1[1];
+            self.Text_CostNumber.GetComponent<Text>().color = (haveNumber1 >= int.Parse(itemInfo1[1]))? Color.white : Color.red;
         }
 
         public static void OnBtn_RolePetHeXin(this UIPetHeXinChouKaComponent self)
@@ -150,13 +162,13 @@ namespace ET
                 return;
             }
 
-            int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0]);
+            string[] itemInfo10 = GlobalValueConfigCategory.Instance.Get(111).Value.Split('@')[0].Split(';');
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
                     .GetAsInt(NumericType.PetExploreNumber);
             string[] set = GlobalValueConfigCategory.Instance.Get(112).Value.Split(';');
             float discount;
-            if (exlporeNumber < int.Parse(set[0])) // 超过300次打8折
+            if (exlporeNumber < int.Parse(set[0]))
             {
                 discount = 1;
             }
@@ -164,8 +176,8 @@ namespace ET
             {
                 discount = float.Parse(set[1]);
             }
-
-            if (choukaType == 10 && userInfo.Diamond < (int)(needDimanond * discount))
+            long haveNumber10 = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(int.Parse(itemInfo10[0]));
+            if (choukaType == 10 && haveNumber10 < (int)(int.Parse(itemInfo10[1]) * discount))
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;

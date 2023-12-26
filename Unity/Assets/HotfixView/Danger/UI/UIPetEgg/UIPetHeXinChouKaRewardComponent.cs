@@ -38,7 +38,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.TextTitle.GetComponent<Text>().text = $"今日探索次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetHeXinExploreNumber)}";
 
-            foreach (KeyValuePair<int, string> keyValuePair in ConfigHelper.PetExploreReward)
+            foreach (KeyValuePair<int, string> keyValuePair in ConfigHelper.PetHeXinExploreReward)
             {
                 GameObject gameObject = UnityEngine.Object.Instantiate(self.UIChouKaRewardItem);
                 gameObject.SetActive(true);
