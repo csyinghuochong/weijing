@@ -119,7 +119,7 @@ namespace ET
             long speed = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
             self.m_BuffRecord.Add( new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed } );
 
-            if (operate == 0 && speed >= 10000)
+            if (operate == 0 && speed >= 100000)
             { 
                 bool haveSpeedBuff = false;
                 for (int i = 0; i < self.m_Buffs.Count; i++)

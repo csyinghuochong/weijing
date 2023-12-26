@@ -1568,8 +1568,6 @@ namespace ET
         /// <param name="self"></param>
         public static void OnZeroClockUpdate(this TaskComponent self, bool notice)
         {
-            Log.Console($"TaskComponent.OnZeroClockUpdate");
-
             self.OnLineTime = 0;
             Unit unit = self.GetParent<Unit>();
             self.UpdateCountryList(notice);
