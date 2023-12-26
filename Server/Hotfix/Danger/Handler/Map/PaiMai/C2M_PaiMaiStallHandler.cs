@@ -17,8 +17,8 @@ namespace ET
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 if (string.IsNullOrEmpty(userInfo.StallName))
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "商品摊位");
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "商品摊位");
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, "商品摊位");
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.StallName, "商品摊位");
                 }
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, request.StallType);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
