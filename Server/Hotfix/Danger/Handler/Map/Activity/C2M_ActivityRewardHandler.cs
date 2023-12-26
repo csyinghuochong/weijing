@@ -79,7 +79,7 @@ namespace ET
                         return;
                     }
                     List<RewardItem> rewardItems = new List<RewardItem>();  
-                    DropHelper.DropIDToDropItem(ActivityConfigHelper.HongBaoDropId, rewardItems);
+                    DropHelper.DropIDToDropItem_2(ActivityConfigHelper.HongBaoDropId, rewardItems);
                     if (bagComponent.GetLeftSpace() < rewardItems.Count)
                     {
                         response.Error = ErrorCode.ERR_BagIsFull;

@@ -105,6 +105,6 @@ namespace ET
         /// <summary>
         /// 红包奖励
         /// </summary>
-        public static int HongBaoDropId = 0;
+        public static int HongBaoDropId = 601901001;
     }
 }

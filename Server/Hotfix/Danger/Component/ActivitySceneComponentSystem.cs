@@ -84,8 +84,6 @@ namespace ET
 
             self.SaveDB();
             self.CheckPetMine();
-
-            self.TeamUpdateHandler().Coroutine();   
         }
 
         public static void InitPetMineExtend(this ActivitySceneComponent self)
