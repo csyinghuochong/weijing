@@ -238,33 +238,55 @@ namespace ET
 			if (taskType == 5)
 			{
 				nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.WeeklyTaskNumber) + 1;
-			}
+
+                if (nowNum != 0)
+                {
+                    if (ConfigHelper.WeekTaskDrop.Keys.Contains(nowNum))
+                    {
+                        List<RewardItem> droplist = new List<RewardItem>();
+                        DropHelper.DropIDToDropItem_2(ConfigHelper.WeekTaskDrop[nowNum], droplist);
+
+                        if (droplist.Count > 0)
+                        {
+                            for (int i = 0; i < droplist.Count; i++)
+                            {
+                                Array.Resize(ref rewarditems, rewarditems.Length + 1);
+                                rewarditems[rewarditems.Length - 1] = droplist[i].ItemID.ToString();
+
+                                Array.Resize(ref rewardItemNums, rewardItemNums.Length + 1);
+                                rewardItemNums[rewardItemNums.Length - 1] = droplist[i].ItemNum.ToString();
+                            }
+                        }
+                    }
+                }
+            }
 			if (taskType == 10)
 			{
 				nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber) + 1;
-			}
+
+                if (nowNum != 0)
+                {
+                    if (ConfigHelper.RingTaskDrop.Keys.Contains(nowNum))
+                    {
+                        List<RewardItem> droplist = new List<RewardItem>();
+                        DropHelper.DropIDToDropItem_2(ConfigHelper.RingTaskDrop[nowNum], droplist);
+
+                        if (droplist.Count > 0)
+                        {
+                            for (int i = 0; i < droplist.Count; i++)
+                            {
+                                Array.Resize(ref rewarditems, rewarditems.Length + 1);
+                                rewarditems[rewarditems.Length - 1] = droplist[i].ItemID.ToString();
+
+                                Array.Resize(ref rewardItemNums, rewardItemNums.Length + 1);
+                                rewardItemNums[rewardItemNums.Length - 1] = droplist[i].ItemNum.ToString();
+                            }
+                        }
+                    }
+                }
+            }
 			
-			if (nowNum != 0)
-			{
-				if (ConfigHelper.RingTaskDrop.Keys.Contains(nowNum))
-				{
-					List<RewardItem> droplist = new List<RewardItem>();
-					DropHelper.DropIDToDropItem_2(ConfigHelper.RingTaskDrop[nowNum], droplist);
-
-					if (droplist.Count > 0)
-					{
-						for (int i = 0; i < droplist.Count; i++)
-						{
-							Array.Resize(ref rewarditems, rewarditems.Length + 1);
-							rewarditems[rewarditems.Length - 1] = droplist[i].ItemID.ToString();
-
-							Array.Resize(ref rewardItemNums, rewardItemNums.Length + 1);
-							rewardItemNums[rewardItemNums.Length - 1] = droplist[i].ItemNum.ToString();
-						}
-					}
-				}
-			}
-
+			
 			for (int i = 0; i < rewarditems.Length; i++)
 			{
 				UIItemComponent ui_1;
