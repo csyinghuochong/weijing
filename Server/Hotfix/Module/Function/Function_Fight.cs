@@ -247,8 +247,8 @@ namespace ET
                     defendUnitLv = petCof.PetLv;
                     defend_def += numericComponentDefend.GetAsLong(NumericType.Now_PetAllDef);
                     defend_adf += numericComponentDefend.GetAsLong(NumericType.Now_PetAllAdf);
-                    defend_def += defend_def * numericComponentDefend.GetAsLong(NumericType.Now_PetAllDefPro);
-                    defend_adf += defend_adf * numericComponentDefend.GetAsLong(NumericType.Now_PetAllAdfPro);
+                    defend_def += (int)(defend_def * numericComponentDefend.GetAsFloat(NumericType.Now_PetAllDefPro));
+                    defend_adf += (int)(defend_adf * numericComponentDefend.GetAsFloat(NumericType.Now_PetAllAdfPro));
                     defendPet_dodge += numericComponentDefend.GetAsFloat(NumericType.Now_PetAllDodge);
                     break;
                 //玩家
@@ -285,8 +285,8 @@ namespace ET
                     attackPet_hit += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllHit);
                     attackPet_cri += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllCri);
 
-                    attack_MaxAct += attack_MaxAct * numericComponentAttack.GetAsLong(NumericType.Now_PetAllActPro);
-                    attack_MageAct += attack_MageAct * numericComponentAttack.GetAsLong(NumericType.Now_PetAllMageActPro);
+                    attack_MaxAct += (int)(attack_MaxAct * numericComponentAttack.GetAsFloat(NumericType.Now_PetAllActPro));
+                    attack_MageAct += (int)(attack_MageAct * numericComponentAttack.GetAsFloat(NumericType.Now_PetAllMageActPro));
 
                     //宠物没有最低攻击
                     attack_MinAct = attack_MaxAct;
