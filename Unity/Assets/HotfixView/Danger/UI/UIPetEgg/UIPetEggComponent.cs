@@ -49,7 +49,7 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.Btn_Type_5 = rc.Get<GameObject>("Btn_Type_5");
-            self.Btn_Type_5.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Btn_Type_5.SetActive(true );
 
             //IOS适配
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

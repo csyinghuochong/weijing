@@ -406,7 +406,15 @@ namespace ET
                 {
                     self.DBDayActivityInfo.GuessRewardList.Clear();
                 }
-                self.DBDayActivityInfo.GuessRewardList.Add(hour, playerIds);
+                if (self.DBDayActivityInfo.GuessRewardList.ContainsKey(hour))
+                {
+                    self.DBDayActivityInfo.GuessRewardList[hour] =  playerIds;
+                }
+                else
+                {
+                    self.DBDayActivityInfo.GuessRewardList.Add(hour, playerIds);
+                }
+               
                 self.DBDayActivityInfo.GuessPlayerList.Clear();
             }
         }
