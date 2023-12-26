@@ -727,7 +727,7 @@
         public const int Base_SkillDodgePro_Mul = Now_SkillDodgePro * 100 + 2;                     //属性乘法
         public const int Base_SkillDodgePro_Add = Now_SkillDodgePro * 100 + 3;                     //属性附加
         public const int Extra_Buff_SkillDodgePro_Add = Now_SkillDodgePro * 100 + 11;              //属性Buff附加加法
-        public const int Extra_Buff_SkillDodgePro_Mul = Now_SkillDodgePro * 100 + 12;              //属性Buff附加乘法
+        public const int Extra_Buff_SkillDodgePro_Mul = Now_SkillDodgePro * 100 + 12;              //属性Buff附加乘法hon
 
         public const int Now_ShenNongPro = 2043;          //神农
         public const int Base_ShenNongPro_Base = Now_ShenNongPro * 100 + 1;                    //属性累加
