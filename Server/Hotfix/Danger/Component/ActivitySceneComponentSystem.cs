@@ -397,9 +397,25 @@ namespace ET
                     playerIds = new List<long>();
                 }
 
+                List<BagInfo> itemList = new List<BagInfo>();
+                string[] rewardItem = ActivityConfigHelper.GuessRewardList[hour].Split('@');
+                for (int i = 0; i < rewardItem.Length; i++)
+                {
+                    string[] itemInfo = rewardItem[i].Split(';');
+                    itemList.Add( new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) } );
+                }
+
                 for (int i = 0; i < playerIds.Count; i++)
                 {
                     Log.Console($"发放竞猜奖励: {self.DomainZone()}  {guessIndex} {playerIds[i]}");
+
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Title = "竞猜奖励";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                    mailInfo.ItemList.AddRange(itemList);
+                    MailHelp.SendUserMail(self.DomainZone(), playerIds[i], mailInfo).Coroutine();
                 }
 
                 if (hour == 0)

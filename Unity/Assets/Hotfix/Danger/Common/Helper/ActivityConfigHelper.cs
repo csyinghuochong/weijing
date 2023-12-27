@@ -80,7 +80,7 @@ namespace ET
             {
                 return string.Empty;
             }
-            string[] costitem = GuessCostItem.Split(',');
+            string[] costitem = GuessCostItem.Split('@');
             if (index > costitem.Length)
             {
                 return costitem[costitem.Length - 1];
