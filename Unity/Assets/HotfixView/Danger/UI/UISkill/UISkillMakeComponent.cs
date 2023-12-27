@@ -96,7 +96,7 @@ namespace ET
             self.Btn_Melt = rc.Get<GameObject>("Btn_Melt");
 
             self.TitleSet = rc.Get<GameObject>("TitleSet");
-            self.TitleSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) ); ;
+            self.TitleSet.SetActive(true);
 
             self.Btn_TianFu_1 = rc.Get<GameObject>("Btn_TianFu_1");
             self.Btn_TianFu_2 = rc.Get<GameObject>("Btn_TianFu_2");
