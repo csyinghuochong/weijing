@@ -81,7 +81,7 @@ namespace ET
             }
           
             dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);
-            if (dis < 0.5f || targetUnit == null)
+            if (dis < 0.5f || passTime > 20f)
             {
                 this.SetSkillState(SkillState.Finished);
             }
