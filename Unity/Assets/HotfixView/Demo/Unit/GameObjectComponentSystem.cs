@@ -832,14 +832,23 @@ namespace ET
             {
                 return;
             }
-            Shader shader = GlobalHelp.Find(StringBuilderHelper.Outline);
-            if (shader == null)
+            if (self.Material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
             {
-                return;
+                self.Material.SetFloat("_Factor", 0.02f);
+                self.Material.SetColor("_OutLineColor", new Color(1f, 0f, 0f, 1f));
             }
-            self.Material.shader = shader;
-            self.Material.SetFloat("_Factor", 0.02f);
-            self.Material.SetColor("_OutLineColor", new Color(1f,0f,0f,1f));
+            else
+            {
+                Shader shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+                if (shader == null)
+                {
+                    return;
+                }
+
+                self.Material.shader = shader;
+                self.Material.SetFloat("_Factor", 0.02f);
+                self.Material.SetColor("_OutLineColor", new Color(1f, 0f, 0f, 1f));
+            }
         }
 
         public static void ExitBaTi(this GameObjectComponent self)
@@ -849,6 +858,11 @@ namespace ET
                 return;
             }
             self.Material.shader = GlobalHelp.Find(self.OldShader);
+            if (self.Material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
+            {
+                self.Material.SetFloat("_Factor", 0);
+                self.Material.SetColor("_OutLineColor", new Color(0f, 0f, 0f, 1f));
+            }
         }
 
 
