@@ -5,6 +5,7 @@
     {
         protected override async ETTask Run(Unit unit, R2M_RankUpdateMessage message)
         {
+            Log.Console($"R2M_RankUpdateMessage； {message.RankId} {message.OccRankId}");
             switch (message.RankType)
             {
                 case 1:

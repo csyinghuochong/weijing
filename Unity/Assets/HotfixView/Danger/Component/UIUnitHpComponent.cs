@@ -356,13 +356,11 @@ namespace ET
             Unit unit = this.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             UnitInfoComponent infoComponent = unit.GetComponent<UnitInfoComponent>();
-
-            int occRankId = numericComponent.GetAsInt(NumericType.OccCombatRankID);
             int firstUnionName = numericComponent.GetAsInt(NumericType.FirstUnionName);
 
             string unionname = string.Empty;
             //判断自身是否有家族进行显示
-            if (infoComponent.UnionName.Length > 0)
+            if (firstUnionName == 1 && infoComponent.UnionName.Length > 0)
             {
                 string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? StringBuilderHelper.族长 : StringBuilderHelper.成员;
                 unionname = infoComponent.UnionName + text1;
@@ -372,10 +370,17 @@ namespace ET
                     unionname += "(争霸)";
                 }
             }
-            //if (string.IsNullOrEmpty(unionname) && occRankId == 1)
-            //{
-            //    unionname = "天下第一法师";
-            //}
+            if (string.IsNullOrEmpty(unionname) )
+            {
+                int rankId = numericComponent.GetAsInt(NumericType.CombatRankID);
+                int occRankId = numericComponent.GetAsInt(NumericType.OccCombatRankID);
+                int occ = this.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                unionname = ConfigHelper.GetRankChengHao(rankId, occRankId, occ);
+            }
+            if (string.IsNullOrEmpty(unionname) )
+            {
+                unionname = infoComponent.UnionName;
+            }
 
             this.Lal_JiaZuName.GetComponent<Text>().text = unionname;
             Vector3 vector3_pos = unionname.Length > 0 ? new Vector3(0f, 100f, 0f) : new Vector3(0f, 75f, 0f);

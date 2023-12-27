@@ -328,7 +328,7 @@ namespace ET
 
             for (int i = 0; i < updateRankList.Count; i++)
             {
-                self.UpdateRankNo1(updateRankList[i], rankingInfo.Occ).Coroutine();
+                self.UpdateRankNo1(updateRankList[i], rankingInfo.Occ);
             }
         }
 
@@ -394,7 +394,7 @@ namespace ET
         /// <summary>
         /// 通知排行榜第一刷新
         /// </summary>
-        public static async ETTask UpdateRankNo1(this RankSceneComponent self, long userId, int occ)
+        public static void  UpdateRankNo1(this RankSceneComponent self, long userId, int occ)
         {
             int zone = self.DomainZone();
             if (DBHelper.GetOpenServerDay(zone) < 3)
@@ -408,19 +408,20 @@ namespace ET
             }
 
             //通知玩家
-            long gateServerId = DBHelper.GetGateServerId(zone);
-            G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-               (gateServerId, new T2G_GateUnitInfoRequest()
-               {
-                   UserID = userId
-               });
-            if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+            //long gateServerId = DBHelper.GetGateServerId(zone);
+            //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+            //   (gateServerId, new T2G_GateUnitInfoRequest()
+            //   {
+            //       UserID = userId
+            //   });
+            //if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
             {
                 R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
                 r2M_RankUpdateMessage.RankType = 1;
                 r2M_RankUpdateMessage.RankId = rankId;
                 r2M_RankUpdateMessage.OccRankId = self.GetOccCombatRank(userId, occ);
-                MessageHelper.SendToLocationActor(g2M_UpdateUnitResponse.UnitId, r2M_RankUpdateMessage);
+                //MessageHelper.SendToLocationActor(g2M_UpdateUnitResponse.UnitId, r2M_RankUpdateMessage);
+                MessageHelper.SendToLocationActor(userId, r2M_RankUpdateMessage);
             }
         }
 

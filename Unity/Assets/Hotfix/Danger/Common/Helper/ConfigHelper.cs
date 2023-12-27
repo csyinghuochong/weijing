@@ -1088,6 +1088,35 @@ namespace ET
         /// </summary>
         public static List<int> CombatRankBuff = new List<int>() { 99003011, 99003012, 99003013 };
 
+        public static List<string> RankChengHao = new List<string>() { "全区第一", "全区第二", "全区第三" };
         public static List<string> OccRankChengHao = new List<string>() { "天下第一战士", "天下第一法师", "天下第一猎人" };
+
+        /// <summary>
+        /// 第一个权重大优先显示全区称号
+        /// </summary>
+        public static List<int> ChengHaoWeight = new List<int>() { 100, 0 };
+
+        public static string GetRankChengHao(int rankId, int occRankId, int occ)
+        {
+            int weight_0 = ChengHaoWeight[0];
+            int weight_1 = ChengHaoWeight[1];
+            if (weight_0 >= weight_1 &&  rankId >= 1 && rankId <= 3)
+            {
+                return RankChengHao[rankId - 1];
+            }
+            if (weight_0 < weight_1 && occRankId == 1)
+            {
+                return OccRankChengHao[occ - 1];
+            }
+            if (rankId >= 1 && rankId <= 3)
+            {
+                return RankChengHao[rankId - 1];
+            }
+            if ( occRankId == 1)
+            {
+                return OccRankChengHao[occ - 1];
+            }
+            return string.Empty;
+        }
     }
 }

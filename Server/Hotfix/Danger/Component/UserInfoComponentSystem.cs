@@ -726,12 +726,17 @@ namespace ET
             {
                 return;
             }
-            long serverTime = TimeHelper.ServerNow();
-            if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 1)
+
+            if (ComHelp.IsInnerNet())
             {
-                return;
+                long serverTime = TimeHelper.ServerNow();
+                if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 5)
+                {
+                    return;
+                }
+                self.UpdateRankTime = serverTime;
             }
-            self.UpdateRankTime = serverTime;
+
             Log.Console($"UpdateRankInfoUpdateRankInfo");
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();

@@ -58,7 +58,11 @@ namespace ET
      public class UserInfoComponent : Entity, IAwake
 #endif
     {
-        /// <summary>
+      
+        public string Account;
+        public UserInfo UserInfo = new UserInfo();
+#if SERVER
+          /// <summary>
         /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
         /// </summary>
         public long LastLoginTime;
@@ -77,9 +81,6 @@ namespace ET
         public string RemoteAddress;
         public string DeviceName;
         public string UserName;
-        public string Account;
-        public UserInfo UserInfo = new UserInfo();
-#if SERVER
 
         /// <summary>
         /// 狩猎击杀野怪数量
