@@ -608,7 +608,7 @@ namespace ET
             //self.BuffRemove(99001031);
             //self.BuffRemove(99001032);
             //self.BuffRemove(99001011);
-            self.BuffRemoveList(SkillHelp.BaoShiBuff);
+            self.BuffRemoveList(ConfigHelper.BaoShiBuff);
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.BaoShiDu >= 80)
@@ -704,7 +704,7 @@ namespace ET
 
         public static void InitDonationBuff(this BuffManagerComponent self)
         {
-            self.BuffRemoveList(SkillHelp.DonationBuff);
+            self.BuffRemoveList(ConfigHelper.DonationBuff);
 
             int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
             if (rankid == 0)

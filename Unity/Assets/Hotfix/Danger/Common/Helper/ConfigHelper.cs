@@ -1075,5 +1075,19 @@ namespace ET
         /// 宠物之核抽奖掉落展示
         /// </summary>
         public static string PetHeXinChouKaRewardItemShow = "10060205;1@10060305;1@10060405;1@10060505;1@10060605;1@10060705;1";
+
+
+        public static List<int> BaoShiBuff = new List<int>() { 99001042, 99001031, 99001032, 99001011 };
+        public static List<int> DonationBuff = new List<int>() { 99003011 , 99003012, 99003013, 99003021, 99003022, 99003023,
+                                                                99003031, 99003032, 99003033,99003041,  99003042, 99003043,
+                                                                99003051, 99003052,99003053,99003061,99003062,99003063, 99003064};
+
+
+        /// <summary>
+        /// 职业排行榜前三名buff 
+        /// </summary>
+        public static List<int> CombatRankBuff = new List<int>() { 99003011, 99003012, 99003013 };
+
+
     }
 }
