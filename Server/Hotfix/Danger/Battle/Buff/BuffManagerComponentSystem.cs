@@ -130,6 +130,11 @@ namespace ET
                         haveSpeedBuff = true; 
                         break;
                     }
+                    if (skillBuffConfig.BuffScript.Equals("RoleBuff_JiTui"))
+                    {
+                        haveSpeedBuff = true;
+                        break;
+                    }
                 }
                 if (!haveSpeedBuff)
                 {
