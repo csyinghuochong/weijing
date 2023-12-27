@@ -33,11 +33,11 @@ namespace ET
                 return;
             }
             
-            Unit TheUnitBelongto = TheUnitFrom.GetParent<UnitComponent>().Get(SkillInfo.TargetID);
-            if (TheUnitBelongto != null)
+            Unit targetUnit = TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
+            if (targetUnit != null)
             {
-                this.TargetPosition = TheUnitBelongto.Position;
-                this.TargetPosition.y = TheUnitBelongto.Position.y + SkillHelp.GetCenterHigh(TheUnitBelongto.Type, TheUnitBelongto.ConfigId);
+                this.TargetPosition = targetUnit.Position;
+                this.TargetPosition.y = targetUnit.Position.y + SkillHelp.GetCenterHigh(targetUnit.Type, targetUnit.ConfigId);
             }
 
             Vector3 dir = (this.TargetPosition - this.NowPosition).normalized;
@@ -81,7 +81,7 @@ namespace ET
             }
           
             dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);
-            if (dis < 0.5f)
+            if (dis < 0.5f || targetUnit == null)
             {
                 this.SetSkillState(SkillState.Finished);
             }

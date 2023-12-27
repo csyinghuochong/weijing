@@ -68,35 +68,6 @@ namespace ET
                     UnitFactory.CreateNpcByPosition(self.DomainScene(), shenminId, unit.Position);
                 }
             }
-
-            bool showlieopen = ActivityHelper.IsShowLieOpen();
-            NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
-            int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
-
-            if (killNumber >= 4)
-            {
-                numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
-                userInfoComponent.UpdateRoleData(UserDataType.PiLao, showlieopen ? "0" : "-1", true);
-
-                if (userInfoComponent.UserInfo.PiLao > 0)
-                {
-                    numericComponent.ApplyChange(null, NumericType.CostTiLi, 1, 0);
-                }
-            }
-            else
-            {
-                numericComponent.ApplyValue(NumericType.TiLiKillNumber, killNumber+1, false);
-            }
-            //int baoShiKillNumber = numericComponent.GetAsInt(NumericType.BaoShiKillNumber);
-            //if (baoShiKillNumber >= 24)
-            //{
-            //    numericComponent.ApplyValue(NumericType.BaoShiKillNumber, 0, false);
-            //    userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
-            //}
-            //else
-            //{
-            //    numericComponent.ApplyValue(NumericType.BaoShiKillNumber, baoShiKillNumber + 1, false);
-            //}
         }
 
         public static void OnCleanBossCD(this LocalDungeonComponent self)

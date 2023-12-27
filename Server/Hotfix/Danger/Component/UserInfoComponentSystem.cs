@@ -376,38 +376,51 @@ namespace ET
             NumericComponent numericComponent = main.GetComponent<NumericComponent>();
             numericComponent.ApplyChange(null, NumericType.KillMonsterNumber, 1, 0);
 
+            int tiliKillNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
+            if (sceneType == SceneTypeEnum.LocalDungeon && !showlieopen && self.UserInfo.PiLao > 0)
+            {
+                if (tiliKillNumber >= 4)
+                {
+                    numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
+                   
+                    numericComponent.ApplyChange(null, NumericType.CostTiLi, 1, 0);
+                    self.UpdateRoleData(UserDataType.PiLao, "-1", true);
+                }
+                else
+                {
+                    numericComponent.ApplyChange(null, NumericType.TiLiKillNumber,  1, 0);
+                }
+            }
+
             bool drop = true;
             if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
                 drop = self.UserInfo.PiLao > 0 || beKill.IsBoss() || showlieopen;
             }
-            if (!drop)
+            if (drop)
             {
-                return;
-            }
-
-            MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
-            float expcoefficient = 1f;
-
-            if (sceneType == SceneTypeEnum.LocalDungeon && beKill.IsBoss())
-            {
-                int killNumber = main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(mCof.Id);
-                int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(sceneId);
-                BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
-                expcoefficient *= bossDevelopment.ExpAdd;
-            }
-          
-            if ( (sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0  )
-              || sceneType != SceneTypeEnum.LocalDungeon)
-            {
-                if (numericComponent.GetAsInt(NumericType.JueXingExp) < 5000)
+                MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
+                float expcoefficient = 1f;
+                if (sceneType == SceneTypeEnum.LocalDungeon && beKill.IsBoss())
                 {
-                    numericComponent.ApplyChange(null, NumericType.JueXingExp, 1, 0);
+                    int killNumber = main.GetComponent<UserInfoComponent>().GetMonsterKillNumber(mCof.Id);
+                    int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(sceneId);
+                    BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
+                    expcoefficient *= bossDevelopment.ExpAdd;
                 }
-            }
 
-            int addexp = (int)(expcoefficient * mCof.Exp);
-            self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
+                if ((sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0)
+                  || sceneType != SceneTypeEnum.LocalDungeon)
+                {
+                    if (numericComponent.GetAsInt(NumericType.JueXingExp) < 5000)
+                    {
+                        numericComponent.ApplyChange(null, NumericType.JueXingExp, 1, 0);
+                    }
+                }
+
+                int addexp = (int)(expcoefficient * mCof.Exp);
+                self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
+            }
         }
 
         public static void UpdateRoleDataBroadcast(this UserInfoComponent self, int Type, string value)
