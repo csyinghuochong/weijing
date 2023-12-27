@@ -15232,4 +15232,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_SkillMakePlan2OpenResponse))]
+	[Message(OuterOpcode.C2M_SkillMakePlan2OpenRequest)]
+	[ProtoContract]
+	public partial class C2M_SkillMakePlan2OpenRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SkillMakePlan2OpenResponse)]
+	[ProtoContract]
+	public partial class M2C_SkillMakePlan2OpenResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

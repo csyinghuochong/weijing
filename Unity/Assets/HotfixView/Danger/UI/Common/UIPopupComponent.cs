@@ -71,14 +71,22 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), self.UIType);
         }
 
-        public static void InitData(this UIPopupComponent self, string title, string content, Action okhandle, Action cancelHandle)
+        public static void InitData(this UIPopupComponent self, string title, string content, Action okhandle, Action cancelHandle, string okButtonText, string cancelButtonText)
         {
             if (!string.IsNullOrEmpty(title))
             {
                 self.titleText.GetComponent<Text>().text = title;
             }
-            self.contentText.GetComponent<Text>().text = content;
+            if (!string.IsNullOrEmpty(okButtonText))
+            {
+                self.confirButton.transform.Find("Text").GetComponent<Text>().text = okButtonText;
+            }
+            if (!string.IsNullOrEmpty(cancelButtonText))
+            {
+                self.cancelButton.transform.Find("Text").GetComponent<Text>().text = cancelButtonText;
+            }
 
+            self.contentText.GetComponent<Text>().text = content;
             self.confirHandler = okhandle;
             self.cancelHandler = cancelHandle;
         }

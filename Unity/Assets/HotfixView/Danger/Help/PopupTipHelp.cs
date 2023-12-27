@@ -22,7 +22,17 @@ namespace ET
             UI uipopup = await UIHelper.Create(scene, UIType.UIPopupview);
             if (uipopup != null)
             {
-                uipopup.GetComponent<UIPopupComponent>().InitData(title, content, okhandle, cancelHandle);
+                uipopup.GetComponent<UIPopupComponent>().InitData(title, content, okhandle, cancelHandle, string.Empty, string.Empty);
+            }
+            return uipopup;
+        }
+
+        public static async ETTask<UI> OpenPopupTipWithButtonText(Scene scene, string title, string content, Action okhandle, Action cancelHandle = null, string okbuttonText = "", string cancelButtonText = "")
+        {
+            UI uipopup = await UIHelper.Create(scene, UIType.UIPopupview);
+            if (uipopup != null)
+            {
+                uipopup.GetComponent<UIPopupComponent>().InitData(title, content, okhandle, cancelHandle, okbuttonText, cancelButtonText);
             }
             return uipopup;
         }
@@ -40,7 +50,7 @@ namespace ET
             await UIHelper.Create(scene, UIType.UIPopupview);
             UI uipopup = scene.GetComponent<UIComponent>().Get(UIType.UIPopupview);
             UIPopupComponent uIPopupComponent = uipopup.GetComponent<UIPopupComponent>();
-            uIPopupComponent.InitData(title, content, okhandle, null);
+            uIPopupComponent.InitData(title, content, okhandle, null, string.Empty, string.Empty); ;
 
             uIPopupComponent.closeButton.SetActive(false);
             uIPopupComponent.cancelButton.SetActive(false);
@@ -65,7 +75,7 @@ namespace ET
             await UIHelper.Create(scene, UIType.UI_CommonHint_2);
             UI uipopup = scene.GetComponent<UIComponent>().Get(UIType.UI_CommonHint_2);
             UIPopupComponent uIPopupComponent = uipopup.GetComponent<UIPopupComponent>();
-            uIPopupComponent.InitData(title, content, okhandle, null);
+            uIPopupComponent.InitData(title, content, okhandle, null, string.Empty, string.Empty);
             uIPopupComponent.UIType = UIType.UI_CommonHint_2;
 
             uIPopupComponent.closeButton.SetActive(false);

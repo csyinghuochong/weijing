@@ -43,8 +43,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 17;      //18抖音sdk能力
-		public int BigVersionIOS = 17;   //18抖音sdk能力
+		public int BigVersion = 17;      //17部分包含抖音sdk能力 18热更缓存
+		public int BigVersionIOS = 17;   //17部分包含抖音sdk能力 18热更缓存
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -100,10 +100,9 @@ namespace ET
 
         private void Awake()
 		{
-            //#if ENABLE_IL2CPP
-            //			this.CodeMode = CodeMode.ILRuntime;
-            //#endif
-           
+			//#if ENABLE_IL2CPP
+			//			this.CodeMode = CodeMode.ILRuntime;
+			//#endif
             System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 			{
 				Log.Error(e.ExceptionObject.ToString());
@@ -127,7 +126,9 @@ namespace ET
 			CodeLoader.Instance.CodeMode = this.CodeMode;
 			Options.Instance.Develop = OueNetMode ? 0 : 1;
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
+
             Log.ILog.Debug("unity111  Awake");
+            Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
 
             ///平台Id定义 不得更改
             ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  ios20001

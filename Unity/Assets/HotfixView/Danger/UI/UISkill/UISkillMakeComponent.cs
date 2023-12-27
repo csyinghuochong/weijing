@@ -62,7 +62,7 @@ namespace ET
         public int MakeId;
         public long Timer;
 
-        public int Plan = 1;
+        public int Plan = -1;
     }
 
 
@@ -245,20 +245,58 @@ namespace ET
 
         public static void OnBtn_Plan(this UISkillMakeComponent self, int plan)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            int needRecharge = GlobalValueConfigCategory.Instance.Get(113).Value2;
-            if (plan == 2 && rechargeNumber < needRecharge)
+            if (self.Plan == plan)
             {
-                FloatTipManager.Instance.ShowFloatTip($"充值额度达到 {needRecharge} 开启");
                 return;
             }
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            int needRecharge = GlobalValueConfigCategory.Instance.Get(113).Value2;
+            int skillmakePlan_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillMakePlan2);
+            if (plan == 2 && skillmakePlan_2 == 0)
+            {
+                string tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个技能栏位，您目前的金额为{rechargeNumber}元";
+                PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启生活技能", tip, () =>
+                {
+                    if (rechargeNumber < needRecharge)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("充值额度不足！");
+                    }
+                    else
+                    {
+                        self.OnUpdate_Plan(plan);
+                        self.UpdateSkillMakePlan2().Coroutine();
+                    }
+                   
+                }, ()=>
+                {
+                    UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine();
+                }, "开启", "前往充值").Coroutine();
+                return;
+            }
+
+            self.OnUpdate_Plan(plan);
+        }
+
+        public static async ETTask UpdateSkillMakePlan2(this UISkillMakeComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillMakePlan2) == 1)
+            {
+                return;
+            }
+            C2M_SkillOperation c2M_SkillOperation = new C2M_SkillOperation() { OperationType = 3 };
+            M2C_SkillOperation m2C_SkillOperation = (M2C_SkillOperation)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillOperation);
+        }
+
+        public static void OnUpdate_Plan(this UISkillMakeComponent self, int plan)
+        {
             self.Plan = plan;
             self.MakeId = 0;
             self.Btn_TianFu_1.transform.Find("Image").gameObject.SetActive(plan == 1);
             self.Btn_TianFu_2.transform.Find("Image").gameObject.SetActive(plan == 2);
-            self.MeltingComponent.SetPlan( plan );
+            self.MeltingComponent.SetPlan(plan);
 
             self.OnUpdateMakeType();
             self.UpdateShuLianDu();
