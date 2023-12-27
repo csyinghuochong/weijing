@@ -63,10 +63,10 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> GuessRewardList = new Dictionary<int, string>()
         {
-             { 0, "1;0"},
-             { 14, "1;0"},
-             { 18, "1;0"},
-             { 21, "1;0"},
+             { 0, "1;100"},
+             { 14, "1;200"},
+             { 18, "1;300"},
+             { 21, "1;400"},
         };
 
         /// <summary>
