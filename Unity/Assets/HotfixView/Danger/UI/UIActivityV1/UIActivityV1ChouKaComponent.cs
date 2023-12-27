@@ -93,7 +93,7 @@ namespace ET
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 //uIItemComponent.Label_ItemName.SetActive(false);
-                uIItemComponent.Label_ItemNum.SetActive(false);
+                // uIItemComponent.Label_ItemNum.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
                 self.UIItemComponents.Add(uIItemComponent);
             }

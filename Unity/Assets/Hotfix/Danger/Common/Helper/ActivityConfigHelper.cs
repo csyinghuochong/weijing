@@ -22,12 +22,6 @@ namespace ET
         /// </summary>
         public static List<int> ActivityV1OpenList = new List<int>() { 
             ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume,ActivityV1_HongBao, ActivityV1_Shop };  
-
-
-        /// <summary>
-        /// 抽奖奖池
-        /// </summary>
-        public static string ChouKaRewardPool = "1;100@2;100@3;100@4;100@5;10@601901001;10";
         
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
@@ -97,11 +91,6 @@ namespace ET
             {  200, "1;1000" }
         };
         
-        /// <summary>
-        /// 红包奖池
-        /// </summary>
-        public static string HongBaoRewardPool = "1;100@2;100@3;100@4;100@5;10@601901001;10";
-
         /// <summary>
         /// 红包奖励
         /// </summary>
