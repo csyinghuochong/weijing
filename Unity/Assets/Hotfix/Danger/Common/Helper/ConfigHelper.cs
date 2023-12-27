@@ -1088,8 +1088,8 @@ namespace ET
         /// </summary>
         public static List<int> CombatRankBuff = new List<int>() { 99003011, 99003012, 99003013 };
 
-        public static List<string> RankChengHao = new List<string>() { "全区第一", "全区第二", "全区第三" };
-        public static List<string> OccRankChengHao = new List<string>() { "天下第一战士", "天下第一法师", "天下第一猎人" };
+        public static List<string> RankChengHao = new List<string>() { "天下第一勇士", "天下第二勇士", "天下第三勇士" };
+        public static List<string> OccRankChengHao = new List<string>() { "全区第一战士", "全区第一法师", "全区第一猎人" };
 
         /// <summary>
         /// 第一个权重大优先显示全区称号
