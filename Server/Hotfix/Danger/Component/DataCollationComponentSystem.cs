@@ -118,7 +118,7 @@ namespace ET
             {
                 self.Platform = string.Empty;
             }
-            if (self.Platform.Contains(platformName))
+            if (!string.IsNullOrEmpty(self.Platform) && self.Platform.Contains(platformName))
             {
                 return;
             }

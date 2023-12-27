@@ -1083,38 +1083,56 @@ namespace ET
                                                                 99003051, 99003052,99003053,99003061,99003062,99003063, 99003064};
 
 
+        
+
+        public static List<string> RankChengHao = new List<string>() { "天下第一勇士", "天下第二勇士", "天下第三勇士" };
+        public static List<string> OccRankChengHao = new List<string>() { 
+            "全区第一战士", "全区第二战士", "全区第三战士",
+            "全区第一法师","全区第二法师","全区第三法师",
+            "全区第一猎人","全区第二猎人","全区第三猎人" };
+
         /// <summary>
         /// 职业排行榜第一名buff 
         /// </summary>
-        public static List<int> CombatRankBuff = new List<int>() { 99003011, 99003012, 99003013 };
+        public static List<int> CombatRankBuff = new List<int>() {
+            99003011, 99003012, 99003013,
+            99003011, 99003012, 99003013,
+            99003011, 99003012, 99003013 };
 
-        public static List<string> RankChengHao = new List<string>() { "天下第一勇士", "天下第二勇士", "天下第三勇士" };
-        public static List<string> OccRankChengHao = new List<string>() { "全区第一战士", "全区第一法师", "全区第一猎人" };
 
         /// <summary>
         /// 第一个权重大优先显示全区称号
         /// </summary>
         public static List<int> ChengHaoWeight = new List<int>() { 100, 0 };
 
+        public static int GetRankBuff(int rankId, int occRankId, int occ)
+        {
+            if (occRankId >= 1 && occRankId <= 3)
+            {
+                return CombatRankBuff[(occ - 1) * 3 + occRankId - 1];
+            }
+            return 0;
+        }
+
         public static string GetRankChengHao(int rankId, int occRankId, int occ)
         {
-            int weight_0 = ChengHaoWeight[0];
-            int weight_1 = ChengHaoWeight[1];
-            if (weight_0 >= weight_1 &&  rankId >= 1 && rankId <= 3)
+            //int weight_0 = ChengHaoWeight[0];
+            //int weight_1 = ChengHaoWeight[1];
+            //if (weight_0 >= weight_1 &&  rankId >= 1 && rankId <= 3)
+            //{
+            //    return RankChengHao[rankId - 1];
+            //}
+            //if (weight_0 < weight_1 && occRankId == 1)
+            //{
+            //    return OccRankChengHao[occ - 1];
+            //}
+            //if (rankId >= 1 && rankId <= 3)
+            //{
+            //    return RankChengHao[rankId - 1];
+            //}
+            if ( occRankId >= 1 && occRankId <= 3)
             {
-                return RankChengHao[rankId - 1];
-            }
-            if (weight_0 < weight_1 && occRankId == 1)
-            {
-                return OccRankChengHao[occ - 1];
-            }
-            if (rankId >= 1 && rankId <= 3)
-            {
-                return RankChengHao[rankId - 1];
-            }
-            if ( occRankId == 1)
-            {
-                return OccRankChengHao[occ - 1];
+                return OccRankChengHao[ (occ - 1) * 3 + occRankId - 1 ];
             }
             return string.Empty;
         }

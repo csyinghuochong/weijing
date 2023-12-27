@@ -616,19 +616,18 @@ namespace ET
                 return;
             }
 
-           
             self.BuffRemoveList(ConfigHelper.CombatRankBuff);
-            int rankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.OccCombatRankID);
+            int rankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CombatRankID);
+            int occRankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.OccCombatRankID);
             //Log.Console($"战力排行buff: {rankId}");
-            if (rankId != 1)
+            if (rankId >= 1 && rankId <= 3)
             {
-                return;
+                int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = ConfigHelper.GetRankBuff(rankId, occRankId, occ);
+                self.BuffFactory(buffData_2, unit, null);
             }
-            int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-            BuffData buffData_2 = new BuffData();
-            buffData_2.SkillId = 67000278;
-            buffData_2.BuffId = ConfigHelper.CombatRankBuff[occ - 1];
-            self.BuffFactory(buffData_2, unit, null);
         }
 
         public static void InitBaoShiBuff(this BuffManagerComponent self)
