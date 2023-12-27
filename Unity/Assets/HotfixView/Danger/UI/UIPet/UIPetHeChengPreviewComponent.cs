@@ -107,16 +107,21 @@ namespace ET
             UIRolePetBagItemComponent itemBComponent = self.AddChild<UIRolePetBagItemComponent, GameObject>(self.PetItemB);
             itemBComponent.OnInitUI(rolePetB);
             List<int> petBbaseSkillId = new List<int>();
-            petConfig = PetConfigCategory.Instance.Get(rolePetA.ConfigId);
+            petConfig = PetConfigCategory.Instance.Get(rolePetB.ConfigId);
             string[] baseBSkillID = petConfig.BaseSkillID.Split(';');
             for (int i = 0; i < baseBSkillID.Length; i++)
             {
-                petAbaseSkillId.Add(int.Parse(baseBSkillID[i]));
+                petBbaseSkillId.Add(int.Parse(baseBSkillID[i]));
             }
 
             self.UpdateSkill(self.PetBSkillListNode, petBbaseSkillId);
-            
+
             // 概率消失技能
+            List<int> allSkillId = new List<int>(rolePetA.PetSkill);
+            allSkillId.AddRange(rolePetB.PetSkill);
+            allSkillId.RemoveAll(item => petAbaseSkillId.Contains(item));
+            allSkillId.RemoveAll(item => petBbaseSkillId.Contains(item));
+            self.UpdateSkill(self.PetSkillListNode, allSkillId);
         }
 
         public static void UpdateSkill(this UIPetHeChengPreviewComponent self, GameObject root, List<int> skillId)
