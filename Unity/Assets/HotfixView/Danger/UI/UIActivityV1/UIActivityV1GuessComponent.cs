@@ -177,14 +177,7 @@ namespace ET
 
                     // 显示开奖的图片------------
 
-                    if (activityV1Info.LastGuessReward.Contains(key))
-                    {
-                        rc.Get<GameObject>("GuessText").GetComponent<Text>().text = "中奖";
-                    }
-                    else
-                    {
-                        rc.Get<GameObject>("GuessText").GetComponent<Text>().text = "未中";
-                    }
+                    rc.Get<GameObject>("GuessText").GetComponent<Text>().text = activityV1Info.LastGuessReward.Contains(key)? "中奖" : "未中";
 
                     index++;
                 }
