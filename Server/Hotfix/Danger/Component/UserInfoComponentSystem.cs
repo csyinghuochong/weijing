@@ -689,11 +689,8 @@ namespace ET
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
-                    if (notice)
-                    {
-                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211, 0, self.UserInfo.Combat);
-                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, self.UserInfo.Combat);
-                    }
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211, 0, self.UserInfo.Combat);
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, self.UserInfo.Combat);
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
@@ -729,6 +726,13 @@ namespace ET
             {
                 return;
             }
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 1)
+            {
+                return;
+            }
+            self.UpdateRankTime = serverTime;
+            Log.Console($"UpdateRankInfoUpdateRankInfo");
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -748,6 +752,7 @@ namespace ET
                 return;
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CombatRankID, Response.RankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.OccCombatRankID, Response.OccRankId);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetTianTiRankID, Response.PetRankId);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SoloRankId, Response.SoloRankId);
         }

@@ -1286,6 +1286,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int SoloRankId { get; set; }
 
+		[ProtoMember(4)]
+		public int OccRankId { get; set; }
+
 	}
 
 	[ResponseType(nameof(R2M_RankShowLieResponse))]
@@ -2857,10 +2860,13 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public int RankId { get; set; }
+		public int RankType { get; set; }
 
 		[ProtoMember(2)]
-		public int RankType { get; set; }
+		public int RankId { get; set; }
+
+		[ProtoMember(3)]
+		public int OccRankId { get; set; }
 
 	}
 
@@ -2877,6 +2883,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public int Occ { get; set; }
 
 	}
 
@@ -2904,6 +2913,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int TrialRankId { get; set; }
+
+		[ProtoMember(5)]
+		public int OccRankId { get; set; }
 
 	}
 

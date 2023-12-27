@@ -600,6 +600,7 @@ message R2M_RankUpdateResponse // IActorResponse
     int32 RankId = 1; //战力排行
     int32 PetRankId = 2;
 	int32 SoloRankId = 3;
+	int32 OccRankId = 4; //战力职业排行
 }
 
 //ResponseType R2M_RankShowLieResponse
@@ -1362,8 +1363,9 @@ message R2M_RankUpdateMessage // IActorLocationMessage
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int32 RankId = 1;   
-	int32 RankType = 2;   //1 战力 2天梯 3捐献
+	int32 RankType = 1;   //1 战力 2天梯 3捐献
+	int32 RankId = 2;   
+	int32 OccRankId = 3;   //目前只有战力有职业排行
 }
 
 //ResponseType Rank2G_EnterRank
@@ -1372,6 +1374,7 @@ message G2Rank_EnterRank //IActorRequest
 	int32 RpcId = 90;
 	string Name = 1;
 	int64 UnitId = 2;
+	int32 Occ = 3;
 }
 
 message Rank2G_EnterRank //IActorResponse
@@ -1383,6 +1386,7 @@ message Rank2G_EnterRank //IActorResponse
 	int32 PetRankId = 2;   
 	int32 SoloRankId = 3;
 	int32 TrialRankId = 4;
+	int32 OccRankId = 5;
 }
 
 //ResponseType Union2G_EnterUnion

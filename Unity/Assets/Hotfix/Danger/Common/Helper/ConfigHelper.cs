@@ -1084,10 +1084,10 @@ namespace ET
 
 
         /// <summary>
-        /// 职业排行榜前三名buff 
+        /// 职业排行榜第一名buff 
         /// </summary>
         public static List<int> CombatRankBuff = new List<int>() { 99003011, 99003012, 99003013 };
 
-
+        public static List<string> OccRankChengHao = new List<string>() { "天下第一战士", "天下第一法师", "天下第一猎人" };
     }
 }

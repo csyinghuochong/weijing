@@ -47,6 +47,7 @@ namespace ET
 
         public const int InvestMent = 34;                       //投资资金
         public const int UnionGold = 35;                        //家族金币
+        public const int FirstUnionName = 36;                  //
 
         public const int Max = 100;
     }
@@ -86,6 +87,8 @@ namespace ET
         public int ShouLieKill;
 
         public long ShouLieSendTime;
+
+        public long UpdateRankTime;
 
         [BsonIgnore]
         public readonly M2C_RoleDataBroadcast m2C_RoleDataBroadcast  = new M2C_RoleDataBroadcast();

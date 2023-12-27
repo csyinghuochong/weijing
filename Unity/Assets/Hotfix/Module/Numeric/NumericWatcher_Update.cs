@@ -58,7 +58,7 @@
     }
 
     [NumericWatcher((int)NumericType.CombatRankID)]
-	public class NumericWatcher_RankID : INumericWatcher
+	public class NumericWatcher_CombatRankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
@@ -96,7 +96,25 @@
 		}
 	}
 
-	[NumericWatcher((int)NumericType.RaceDonationRankID)]
+    [NumericWatcher((int)NumericType.OccCombatRankID)]
+    public class NumericWatcher_OccCombatRankID : INumericWatcher
+    {
+        public void Run(EventType.NumericChangeEvent args)
+        {
+            Unit unit = args.Defend;
+#if SERVER
+			unit.GetComponent<BuffManagerComponent>().InitCombatRankBuff();
+#else
+			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
+			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+        }
+    }
+
+
+    [NumericWatcher((int)NumericType.RaceDonationRankID)]
 	public class NumericWatcher_DonationRankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
@@ -212,6 +230,7 @@
     [NumericWatcher((int)NumericType.PetExploreLuckly)]
     [NumericWatcher((int)NumericType.UnionTaskId)]
     [NumericWatcher((int)NumericType.RingTaskId)]
+    [NumericWatcher((int)NumericType.FirstUnionName)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

@@ -207,13 +207,13 @@ namespace ET
         AutoAttack = 16,         //自动攻击
         OneSellSet2 = 17,    // 一键出售 低级、中级、。。。
         HideLeftBottom = 18, //进入野外和个人副本 组队副本 左下角的功能图标自动隐藏 回到主城自动显示
+        FirstUnionName = 19,         //优先显示家族称号
       
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
         GuaJiRang = 202,      //挂机范围
         GuaJiAutoUseItem = 203,     //自动使用药剂
         GuaJiAutoUseSkill = 204, // 按照设置顺序自动使用技能
-
     }
 
     //1：普通

@@ -351,11 +351,42 @@ namespace ET
             }
         }
 
+        public void OnUpdateUnionName()
+        {
+            Unit unit = this.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            UnitInfoComponent infoComponent = unit.GetComponent<UnitInfoComponent>();
+
+            int occRankId = numericComponent.GetAsInt(NumericType.OccCombatRankID);
+            int firstUnionName = numericComponent.GetAsInt(NumericType.FirstUnionName);
+
+            string unionname = string.Empty;
+            //判断自身是否有家族进行显示
+            if (infoComponent.UnionName.Length > 0)
+            {
+                string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? StringBuilderHelper.族长 : StringBuilderHelper.成员;
+                unionname = infoComponent.UnionName + text1;
+
+                if (numericComponent.GetAsInt(NumericType.UnionRaceWin) == 1 && !string.IsNullOrEmpty(unionname))
+                {
+                    unionname += "(争霸)";
+                }
+            }
+            //if (string.IsNullOrEmpty(unionname) && occRankId == 1)
+            //{
+            //    unionname = "天下第一法师";
+            //}
+
+            this.Lal_JiaZuName.GetComponent<Text>().text = unionname;
+            Vector3 vector3_pos = unionname.Length > 0 ? new Vector3(0f, 100f, 0f) : new Vector3(0f, 75f, 0f);
+            this.Img_ChengHao.transform.localPosition = vector3_pos;
+        }
+
         //更新显示
         public void UpdateShow()
         {
             Unit unit = this.GetParent<Unit>();
-            UnitInfoComponent infoComponent = this.Parent.GetComponent<UnitInfoComponent>();
+            UnitInfoComponent infoComponent = unit.GetComponent<UnitInfoComponent>();
             //显示玩家名称
             if (unit.Type == UnitType.Player)
             {
@@ -370,28 +401,7 @@ namespace ET
 
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                 this.UpdateDemonName(infoComponent.DemonName);
-
-                string unionname = string.Empty;
-                Vector3 vector3_pos = Vector3.zero;
-                //判断自身是否有家族进行显示
-                if (infoComponent.UnionName.Length > 0)
-                {
-                    string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? StringBuilderHelper.族长 : StringBuilderHelper.成员;
-                    unionname = infoComponent.UnionName + text1;
-                    vector3_pos = new Vector3(0f, 100f, 0f);
-                }
-                else
-                {
-                    unionname = String.Empty;
-                    vector3_pos = new Vector3(0f, 75f, 0f);
-                }
-                if (numericComponent.GetAsInt(NumericType.UnionRaceWin) == 1 && !string.IsNullOrEmpty(unionname))
-                {
-                    unionname += "(争霸)";
-                }
-
-                this.Lal_JiaZuName.GetComponent<Text>().text = unionname;
-                this.Img_ChengHao.transform.localPosition = vector3_pos;
+                this.OnUpdateUnionName();
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)
@@ -698,7 +708,6 @@ namespace ET
         public static void OnUnitStallUpdate(this UIUnitHpComponent self, int stallType)
         {
             UnitInfoComponent infoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-
 
             //显示玩家名称
             if (stallType == 0)

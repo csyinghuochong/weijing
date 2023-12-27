@@ -150,19 +150,18 @@ namespace ET
                         await DBHelper.AddDataComponent<DataCollationComponent>(unit, request.UserID, DBHelper.DataCollationComponent);
 
                         unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
-						unit.AddComponent<MailComponent>();
-						unit.AddComponent<StateComponent>();
-						unit.AddComponent<HeroDataComponent>();
-						unit.AddComponent<DBSaveComponent>();
-						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
-						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
-						unit.GetComponent<DataCollationComponent>().Platform = PlatformHelper.GetPlatformName(request.Platform);
+                        unit.AddComponent<MailComponent>();
+                        unit.AddComponent<StateComponent>();
+                        unit.AddComponent<HeroDataComponent>();
+                        unit.AddComponent<DBSaveComponent>();
+                        unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
+                        unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
+                        unit.GetComponent<DataCollationComponent>().Platform = PlatformHelper.GetPlatformName(request.Platform);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
-
-                        //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
-						long unitId = unit.Id;
-						await EnterRankServer(unit);
+
+                        long unitId = unit.Id;
+                        await EnterRankServer(unit);
                         await EnterMailServer(unit);
                         player.ChatInfoInstanceId = await EnterWorldChatServer(unit);   //登录聊天服
 
@@ -173,6 +172,7 @@ namespace ET
                             reply();
                             return;
                         }
+
                         Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; unitid: {request.UserID} player.Id {player.Id} player.InstanceId: {player.InstanceId} {session.DomainZone()}");
                         player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
 						player.MailServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -249,12 +249,14 @@ namespace ET
 			Rank2G_EnterRank chat2G_EnterChat = (Rank2G_EnterRank)await MessageHelper.CallActor(rankServerId, new G2Rank_EnterRank()
 			{
 				UnitId = unit.Id,
+				Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ
 			});
 
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			long unionid = unit.GetUnionId();
 			numericComponent.ApplyValue(NumericType.CombatRankID, chat2G_EnterChat.RankId, false,false);
-			numericComponent.ApplyValue(NumericType.PetTianTiRankID, chat2G_EnterChat.PetRankId, false, false);
+            numericComponent.ApplyValue(NumericType.OccCombatRankID, chat2G_EnterChat.OccRankId, false, false);
+            numericComponent.ApplyValue(NumericType.PetTianTiRankID, chat2G_EnterChat.PetRankId, false, false);
             numericComponent.ApplyValue(NumericType.SoloRankId, chat2G_EnterChat.SoloRankId, false, false);
             numericComponent.ApplyValue(NumericType.TrialRankId, chat2G_EnterChat.TrialRankId, false, false);
 

@@ -38,6 +38,9 @@ namespace ET
             NumericType.BattleCamp,
             NumericType.RunRaceTransform,
             NumericType.CardTransform,
+            NumericType.CombatRankID,
+            NumericType.FirstUnionName,
+            NumericType.OccCombatRankID,
         };
 
         //1 整数  2 浮点数

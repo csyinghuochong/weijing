@@ -10,6 +10,7 @@ namespace ET
         {
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
             response.RankId = rankSceneComponent.GetCombatRank(request.UnitId);
+            response.RankId = rankSceneComponent.GetOccCombatRank(request.UnitId, request.Occ);
             response.PetRankId = rankSceneComponent.GetPetRank(request.UnitId);
             response.TrialRankId = rankSceneComponent.GetTrialRank(request.UnitId); 
 

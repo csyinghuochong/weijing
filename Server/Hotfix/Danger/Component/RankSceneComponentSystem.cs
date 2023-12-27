@@ -268,7 +268,76 @@ namespace ET
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBServerInfo), ComponentType = DBHelper.DBServerInfo });
         }
 
+        /// <summary>
+        /// 通知所有排名变化的玩家
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="rankingInfo"></param>
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)
+        {
+          
+            int oldRankIndex = -1;
+            Dictionary<long, int> oldRankList = new Dictionary<long, int>();
+            for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
+            {
+                RankingInfo rankingInfoTemp = self.DBRankInfo.rankingInfos[i];
+                if (oldRankList.ContainsKey(rankingInfoTemp.UserId))
+                {
+                    Log.Error($"oldRankList.ContainsKey(rankingInfoTemp.UserId): {rankingInfoTemp.UserId}");
+                }
+                else
+                {
+                    oldRankList.Add(rankingInfoTemp.UserId, i);
+                }
+
+                if (rankingInfoTemp.UserId == rankingInfo.UserId)
+                {
+                    oldRankIndex = i;
+                }
+            }
+
+            if (oldRankIndex == -1)
+            {
+                self.DBRankInfo.rankingInfos.Add(rankingInfo);
+            }
+            else
+            {
+                self.DBRankInfo.rankingInfos[oldRankIndex] = rankingInfo;   
+            }
+
+            self.DBRankInfo.rankingInfos.Sort(delegate (RankingInfo a, RankingInfo b)
+            {
+                return (int)b.Combat - (int)a.Combat;
+            });
+
+            if (self.DBRankInfo.rankingInfos.Count > 500)
+            {
+                self.DBRankInfo.rankingInfos.RemoveAt(self.DBRankInfo.rankingInfos.Count - 1);   
+            }
+
+
+            List<long> updateRankList = new List<long>();
+            for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
+            {
+                RankingInfo rankingInfoTemp = self.DBRankInfo.rankingInfos[i];
+                if(!oldRankList.ContainsKey(rankingInfoTemp.UserId) || oldRankList[rankingInfoTemp.UserId] != i)
+                {
+                    updateRankList.Add(rankingInfoTemp.UserId);
+                }
+            }
+
+            for (int i = 0; i < updateRankList.Count; i++)
+            {
+                self.UpdateRankNo1(updateRankList[i], rankingInfo.Occ).Coroutine();
+            }
+        }
+
+        /// <summary>
+        /// 第一名有变化则通知
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="rankingInfo"></param>
+        public static void UpdateRankList_Old(this RankSceneComponent self, RankingInfo rankingInfo)
         {
             bool have = false;
 
@@ -317,15 +386,15 @@ namespace ET
             }
             else
             {
-                self.UpdateRankNo1(oldNo1).Coroutine();
-                self.UpdateRankNo1(newNo1).Coroutine();
+                //self.UpdateRankNo1(oldNo1).Coroutine();
+                //self.UpdateRankNo1(newNo1).Coroutine();
             }
         }
 
         /// <summary>
         /// 通知排行榜第一刷新
         /// </summary>
-        public static async ETTask UpdateRankNo1(this RankSceneComponent self, long userId)
+        public static async ETTask UpdateRankNo1(this RankSceneComponent self, long userId, int occ)
         {
             int zone = self.DomainZone();
             if (DBHelper.GetOpenServerDay(zone) < 3)
@@ -350,6 +419,7 @@ namespace ET
                 R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
                 r2M_RankUpdateMessage.RankType = 1;
                 r2M_RankUpdateMessage.RankId = rankId;
+                r2M_RankUpdateMessage.OccRankId = self.GetOccCombatRank(userId, occ);
                 MessageHelper.SendToLocationActor(g2M_UpdateUnitResponse.UnitId, r2M_RankUpdateMessage);
             }
         }
@@ -404,6 +474,25 @@ namespace ET
                 }
             }
             return 0;
+        }
+
+        public static int GetOccCombatRank(this RankSceneComponent self, long usrerId, int occ)
+        {
+            int ocRank = 0;
+            for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
+            {
+                RankingInfo rankingInfo = self.DBRankInfo.rankingInfos[i];
+                if (rankingInfo.Occ == occ)
+                {
+                    ocRank++;
+                }
+
+                if (rankingInfo.UserId == usrerId)
+                {
+                    return ocRank;
+                }
+            }
+            return ocRank;
         }
 
         public static void UpdateCampRankList(this RankSceneComponent self, int campId, RankingInfo rankingInfo)
@@ -481,7 +570,6 @@ namespace ET
             self.UpdateWorldLevel(rankingInfo);
             self.UpdateRankList(rankingInfo);
             self.UpdateCampRankList(campId, rankingInfo);
-            //response.RankList.AddRange(rankComponent.DBRankInfo.rankingInfos.GetRange(0, 50)); 
         }
 
         public static void UpdateRankPetList(this RankSceneComponent self)

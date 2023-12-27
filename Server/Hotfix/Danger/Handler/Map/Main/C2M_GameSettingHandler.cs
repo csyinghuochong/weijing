@@ -29,8 +29,13 @@ namespace ET
                         }
 					}
 				}
-				
-				for (int k = 0; k < userInfo.GameSettingInfos.Count; k++)
+				if (request.GameSettingInfos[i].KeyId == (int)GameSettingEnum.FirstUnionName)
+				{
+					//1显示家族称号 2其他称号
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.FirstUnionName, int.Parse(request.GameSettingInfos[i].Value));
+                }
+
+                for (int k = 0; k < userInfo.GameSettingInfos.Count; k++)
 				{
 					if (userInfo.GameSettingInfos[k].KeyId == request.GameSettingInfos[i].KeyId)
 					{

@@ -33,6 +33,10 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.OccCombatRankID:
+                case NumericType.FirstUnionName:
+                    args.Unit.GetComponent<UIUnitHpComponent>()?.OnUpdateUnionName();
+                    break;
                 case NumericType.BattleCamp:
                     Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
                     UIUnitHpComponentSystem.UpdateBattleCamp(unitmain, args.Unit.Id);

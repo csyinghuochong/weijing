@@ -9,6 +9,8 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+
+        public GameObject FirstUnionName;
         public GameObject HideNode;
         public GameObject HideLeftBottom;
         public GameObject NoMoving;
@@ -68,23 +70,27 @@ namespace ET
             self.Image_Click = rc.Get<GameObject>("Image_Click");
             self.Btn_Click = rc.Get<GameObject>("Btn_Click");
             self.LastLoginTime = rc.Get<GameObject>("LastLoginTime");
-            self.Btn_Click.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Click(); });
+            self.Btn_Click.GetComponent<Button>().onClick.AddListener(self.OnBtn_Click);
 
             self.ButtonSkillSet = rc.Get<GameObject>("ButtonSkillSet");
-            self.ButtonSkillSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonSkillSet(); });
+            self.ButtonSkillSet.GetComponent<Button>().onClick.AddListener(self.OnButtonSkillSet);
 
             self.Image_YinYing = rc.Get<GameObject>("Image_YinYing");
             self.Btn_YinYing = rc.Get<GameObject>("Btn_YinYing");
-            self.Btn_YinYing.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Shadow(); });
+            self.Btn_YinYing.GetComponent<Button>().onClick.AddListener(self.OnBtn_Shadow);
 
             self.RandomHorese = rc.Get<GameObject>("RandomHorese");
-            self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RandomHorese(); });
+            self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RandomHorese);
+
+            self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
+            self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
+
 
             self.HideLeftBottom = rc.Get<GameObject>("HideLeftBottom");
-            self.HideLeftBottom.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_HideLeftBottom(); });
+            self.HideLeftBottom.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_HideLeftBottom);
             
             self.AutoAttack = rc.Get<GameObject>("AutoAttack");
-            self.AutoAttack.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AutoAttack(); });
+            self.AutoAttack.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_AutoAttack);
 
             self.NoMoving = rc.Get<GameObject>("NoMoving");
             self.NoMoving.GetComponent<Button>().onClick.AddListener(self.OnBtn_NoMoving);
@@ -278,6 +284,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
         }
 
+        public static void OnBtn_FirstUnionName(this UISettingGameComponent self)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FirstUnionName);
+            self.FirstUnionName.transform.Find("Image_Click").gameObject.SetActive(value == "0");
+            self.SaveSettings(GameSettingEnum.FirstUnionName, value == "0" ? "1" : "0");
+        }
+
         public static void OnBtn_NoMoving(this UISettingGameComponent self)
         {
             SettingHelper.ShowNoMoving = !SettingHelper.ShowNoMoving;
@@ -320,6 +333,7 @@ namespace ET
             self.Image_Click.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Click) == "1");
 
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
+            self.FirstUnionName.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FirstUnionName) == "1");
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
