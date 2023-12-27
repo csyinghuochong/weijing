@@ -404,7 +404,7 @@ namespace ET
                     string[] itemInfo = rewardItem[i].Split(';');
                     itemList.Add( new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) } );
                 }
-
+                long mailServerId = DBHelper.GetMailServerId(self.DomainZone());
                 for (int i = 0; i < playerIds.Count; i++)
                 {
                     Log.Console($"发放竞猜奖励: {self.DomainZone()}  {guessIndex} {playerIds[i]}");
@@ -413,9 +413,15 @@ namespace ET
                     mailInfo.Status = 0;
                     mailInfo.Title = "竞猜奖励";
                     mailInfo.MailId = IdGenerater.Instance.GenerateId();
-
                     mailInfo.ItemList.AddRange(itemList);
-                    MailHelp.SendUserMail(self.DomainZone(), playerIds[i], mailInfo).Coroutine();
+
+                    E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                                       (mailServerId, new M2E_EMailSendRequest()
+                                       {
+                                           Id = playerIds[i],
+                                           MailInfo = mailInfo,
+                                           GetWay = ItemGetWay.Activity,
+                                       });
                 }
 
                 if (hour == 0)
