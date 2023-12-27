@@ -70,9 +70,9 @@ namespace ET
                 "10030011",
                 "10030012",
                 "10030013",
+                "10030016",
                 "10030014",
                 "10030015",
-                "10030016"
             };
             self.NewYearItems.Clear();
             for (int i = 0; i < ActivityConfigHelper.GuessNumber; i++)
@@ -114,12 +114,30 @@ namespace ET
                 return;
             }
 
-            C2M_ActivityGuessRequest request = new C2M_ActivityGuessRequest() { GuessId = index };
-            M2C_ActivityGuessResponse response =
-                    (M2C_ActivityGuessResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            activityV1Info.GuessIds.Add(index);
+            if (string.IsNullOrEmpty(costItem))
+            {
+                C2M_ActivityGuessRequest request = new C2M_ActivityGuessRequest() { GuessId = index };
+                M2C_ActivityGuessResponse response =
+                        (M2C_ActivityGuessResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                activityV1Info.GuessIds.Add(index);
 
-            self.UpdateInfo();
+                self.UpdateInfo();
+            }
+            else
+            {
+                string[] item = costItem.Split(';');
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "竞猜",
+                    $"是否是否花费{item[1]}{ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName}开启新选项？",
+                    async () =>
+                    {
+                        C2M_ActivityGuessRequest request = new C2M_ActivityGuessRequest() { GuessId = index };
+                        M2C_ActivityGuessResponse response =
+                                (M2C_ActivityGuessResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                        activityV1Info.GuessIds.Add(index);
+
+                        self.UpdateInfo();
+                    }, null).Coroutine();
+            }
         }
 
         public static void InitGuess(this UIActivityV1GuessComponent self)
