@@ -156,7 +156,7 @@ namespace ET
                         unit.AddComponent<DBSaveComponent>();
                         unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
                         unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
-                        unit.GetComponent<DataCollationComponent>().Platform = PlatformHelper.GetPlatformName(request.Platform);
+						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 

@@ -111,6 +111,20 @@ namespace ET
             return str;
         }
 
+        public static void UpdatePlatName(this DataCollationComponent self, int platform)
+        {
+            string platformName = PlatformHelper.GetPlatformName(platform);
+            if (!self.Platform.Contains('_'))
+            {
+                self.Platform = string.Empty;
+            }
+            if (self.Platform.Contains(platformName))
+            {
+                return;
+            }
+            self.Platform += $"{platformName}: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}_";
+        }
+
         public static void UpdateData(this DataCollationComponent self)
         {
             Unit unit = self.GetParent<Unit>();
