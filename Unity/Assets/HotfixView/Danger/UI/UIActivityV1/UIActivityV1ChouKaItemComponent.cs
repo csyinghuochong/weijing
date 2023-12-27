@@ -54,6 +54,13 @@ namespace ET
                 return;
             }
 
+            if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber) <
+                self.Key)
+            {
+               FloatTipManager.Instance.ShowFloatTip("前置条件不足");
+                return;
+            }
+
             C2M_ActivityRewardRequest request =
                     new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_ChouKa, RewardId = self.Key };
             M2C_ActivityRewardResponse response =

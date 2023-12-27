@@ -9,6 +9,7 @@ namespace ET
         public GameObject PetInfo2;
         public GameObject PetInfo1;
         public GameObject Btn_HeCheng;
+        public GameObject Btn_Preview;
 
         public RolePetInfo HeChengPet_Left;
         public RolePetInfo HeChengPet_Right;
@@ -29,6 +30,8 @@ namespace ET
 
             self.Btn_HeCheng = rc.Get<GameObject>("Btn_HeCheng");
             self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(self.OnClickHeCheng);
+            self.Btn_Preview = rc.Get<GameObject>("Btn_Preview");
+            self.Btn_Preview.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Preview().Coroutine(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -108,6 +111,23 @@ namespace ET
                 }).Coroutine();
         }
 
+        public static async ETTask OnBtn_Preview(this UIPetHeChengComponent self)
+        {
+            if (self.HeChengPet_Left == null || self.HeChengPet_Right == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
+                return;
+            }
+            if (PetHelper.IsShenShou(self.HeChengPet_Left.ConfigId)
+                || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
+                return;
+            }
+            
+            
+        }
+        
         public static async ETTask ReqestHeCheng(this UIPetHeChengComponent self)
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
@@ -119,6 +139,9 @@ namespace ET
                 return;
             }
 
+            self.HeChengPet_Left = null;
+            self.HeChengPet_Right = null;
+            
             long instanceId = self.InstanceId;
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
             if (instanceId != self.InstanceId)
