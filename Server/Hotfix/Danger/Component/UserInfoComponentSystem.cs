@@ -737,7 +737,7 @@ namespace ET
                 self.UpdateRankTime = serverTime;
             }
 
-            Log.Console($"UpdateRankInfoUpdateRankInfo");
+            //Log.Console($"UpdateRankInfoUpdateRankInfo");
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();

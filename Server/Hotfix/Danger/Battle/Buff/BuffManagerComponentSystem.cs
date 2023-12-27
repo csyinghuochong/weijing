@@ -614,7 +614,7 @@ namespace ET
            
             self.BuffRemoveList(ConfigHelper.CombatRankBuff);
             int rankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.OccCombatRankID);
-            Log.Console($"战力排行buff: {rankId}");
+            //Log.Console($"战力排行buff: {rankId}");
             if (rankId != 1)
             {
                 return;
