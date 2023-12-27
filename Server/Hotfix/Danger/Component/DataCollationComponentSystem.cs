@@ -114,7 +114,7 @@ namespace ET
         public static void UpdatePlatName(this DataCollationComponent self, int platform)
         {
             string platformName = PlatformHelper.GetPlatformName(platform);
-            if (!self.Platform.Contains('_'))
+            if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
             {
                 self.Platform = string.Empty;
             }
