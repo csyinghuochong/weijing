@@ -78,34 +78,52 @@ namespace ET
 
 			//设定每个技能的留下的概率
 			float skillpro = 0.4f;
+			int sumValue = petSkillList_1.Count + petSkillList_2.Count;
+
+			//根据技能数量决定合成概率
+			if (sumValue < 8)
+			{
+				skillpro = 0.5f;
+			}
+
+			if (sumValue < 6)
+			{
+				skillpro = 0.6f;
+			}
+
+			if (sumValue < 4)
+			{
+				skillpro = 0.7f;
+			}
 
 			//前期优化合成技能概率
-			if (petHeChengNumber <= 1)
+			float addPro = 0;
+
+			if (petHeChengNumber <= 10)
 			{
-				int sumValue = petSkillList_1.Count + petSkillList_2.Count;
 				if (sumValue <= 6)
 				{
-					skillpro = 0.7f;
+					addPro = 0.05f;
 				}
 			}
 
 			if (petHeChengNumber <= 5)
 			{
-				int sumValue = petSkillList_1.Count + petSkillList_2.Count;
 				if (sumValue <= 6)
 				{
-					skillpro = 0.6f;
+					addPro = 0.1f;
 				}
 			}
 
-			if (petHeChengNumber <= 10)
+			if (petHeChengNumber <= 1)
 			{
-				int sumValue = petSkillList_1.Count + petSkillList_2.Count;
 				if (sumValue <= 6)
 				{
-					skillpro = 0.5f;
+					addPro = 0.15f;
 				}
 			}
+
+			skillpro = skillpro + addPro;
 
 			List<int> savePetSkillID = new List<int>();
 			List<int> deletPetSkillID = new List<int>();
@@ -141,10 +159,9 @@ namespace ET
 					}
 				}
 
-				//50次内如果合成技能较少额外多补1个技能
-				if (petHeChengNumber <= 50)
-				{
-					int sumValue = petSkillList_1.Count + petSkillList_2.Count;
+				//500次内如果合成技能较少额外多补1个技能
+				//if (petHeChengNumber <= 500)
+				//{
 					if (sumValue <= 12) {
 						if (savePetSkillID.Count < (int)((float)sumValue / 2f)) {
 							//额外补一个技能
@@ -155,7 +172,7 @@ namespace ET
 							}
 						}
 					}
-				}
+				//}
 			}
 			catch (Exception ex)
 			{

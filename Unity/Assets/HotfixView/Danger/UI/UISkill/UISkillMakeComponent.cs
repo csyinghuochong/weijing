@@ -256,8 +256,8 @@ namespace ET
             int skillmakePlan_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillMakePlan2);
             if (plan == 2 && skillmakePlan_2 == 0)
             {
-                string tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个技能栏位，您目前的金额为{rechargeNumber}元";
-                PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启生活技能", tip, () =>
+                string tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，您目前的金额为{rechargeNumber}元";
+                PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启栏位", tip, () =>
                 {
                     if (rechargeNumber < needRecharge)
                     {

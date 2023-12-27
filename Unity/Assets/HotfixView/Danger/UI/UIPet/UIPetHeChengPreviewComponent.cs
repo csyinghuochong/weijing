@@ -45,17 +45,17 @@ namespace ET
             RolePetInfo newRolePetInfo = PetHelper.GetPetHeChengPreview(rolePetA, rolePetB);
             PetConfig petConfig = PetConfigCategory.Instance.Get(newRolePetInfo.ConfigId);
             self.PetZiZhiItemList[0].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{newRolePetInfo.ZiZhi_Hp}/{petConfig.ZiZhi_Hp_Max}";
+                    $"{newRolePetInfo.ZiZhi_Hp}-{petConfig.ZiZhi_Hp_Max}";
             self.PetZiZhiItemList[1].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{newRolePetInfo.ZiZhi_Act}/{petConfig.ZiZhi_Act_Max}";
+                    $"{newRolePetInfo.ZiZhi_Act}-{petConfig.ZiZhi_Act_Max}";
             self.PetZiZhiItemList[2].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{newRolePetInfo.ZiZhi_Def}/{petConfig.ZiZhi_Def_Max}";
+                    $"{newRolePetInfo.ZiZhi_Def}-{petConfig.ZiZhi_Def_Max}";
             self.PetZiZhiItemList[3].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{newRolePetInfo.ZiZhi_Adf}/{petConfig.ZiZhi_Adf_Max}";
+                    $"{newRolePetInfo.ZiZhi_Adf}-{petConfig.ZiZhi_Adf_Max}";
             self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{newRolePetInfo.ZiZhi_MageAct}/{petConfig.ZiZhi_MageAct_Max}";
+                    $"{newRolePetInfo.ZiZhi_MageAct}-{petConfig.ZiZhi_MageAct_Max}";
             self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{UICommonHelper.ShowFloatValue(newRolePetInfo.ZiZhi_ChengZhang)}/{UICommonHelper.ShowFloatValue((float)petConfig.ZiZhi_ChengZhang_Max)}";
+                    $"{UICommonHelper.ShowFloatValue(newRolePetInfo.ZiZhi_ChengZhang)}-{UICommonHelper.ShowFloatValue((float)petConfig.ZiZhi_ChengZhang_Max)}";
 
             Sprite sprite16 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_16.png");
             Sprite sprite17 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_17.png");
