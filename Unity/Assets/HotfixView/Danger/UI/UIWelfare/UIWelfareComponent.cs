@@ -18,6 +18,7 @@ namespace ET
 
     public class UIWelfareComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Btn_4;
         public UIPageViewComponent UIPageView;
         public UIPageButtonComponent UIPageButton;
     }
@@ -49,8 +50,11 @@ namespace ET
 
             self.UIPageView = pageViewComponent;
 
-            //单选组件
-            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
+            self.Btn_4 = rc.Get<GameObject>("Btn_4");
+            self.Btn_4.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
+           //单选组件
+           GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPage = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
             //IOS适配
             IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));

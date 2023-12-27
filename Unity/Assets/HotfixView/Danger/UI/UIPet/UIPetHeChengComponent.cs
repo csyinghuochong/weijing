@@ -32,6 +32,7 @@ namespace ET
             self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(self.OnClickHeCheng);
             self.Btn_Preview = rc.Get<GameObject>("Btn_Preview");
             self.Btn_Preview.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Preview().Coroutine(); });
+            self.Btn_Preview.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
