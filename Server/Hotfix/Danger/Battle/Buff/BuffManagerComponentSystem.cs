@@ -620,7 +620,7 @@ namespace ET
             int rankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CombatRankID);
             int occRankId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.OccCombatRankID);
             //Log.Console($"战力排行buff: {rankId}");
-            if (rankId >= 1 && rankId <= 3)
+            if (occRankId >= 1 && occRankId <= 3)
             {
                 int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                 BuffData buffData_2 = new BuffData();
