@@ -152,6 +152,12 @@ namespace ET
                         string operateType = keyValuePair.Value == 1 ? "增加" : "移除";
                         strLog += $"{operateType}:{keyValuePair.KeyId}  速度:{keyValuePair.Value2}  ";
                     }
+
+                    strLog += "当前buff： ";
+                    for (int i = 0; i < self.m_Buffs.Count; i++)
+                    {
+                        strLog += $"{self.m_Buffs[i].mBuffConfig.Id}  ";
+                    }
                     
                     self.m_BuffRecord.Clear();
                     Log.Warning(strLog);

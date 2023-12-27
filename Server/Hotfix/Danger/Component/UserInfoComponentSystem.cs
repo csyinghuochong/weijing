@@ -727,7 +727,7 @@ namespace ET
                 return;
             }
 
-            if (ComHelp.IsInnerNet())
+            if (!ComHelp.IsInnerNet())
             {
                 long serverTime = TimeHelper.ServerNow();
                 if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 5)
