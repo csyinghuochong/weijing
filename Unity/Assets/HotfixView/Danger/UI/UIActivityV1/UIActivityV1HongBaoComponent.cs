@@ -68,7 +68,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int hongbaoNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1HongBaoNumber);
             long v1rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1RechageNumber);
-            self.HongBaoNumText.GetComponent<Text>().text = (v1rechargeNumber / 98 - hongbaoNumber).ToString();
+            self.HongBaoNumText.GetComponent<Text>().text = v1rechargeNumber / 98 - hongbaoNumber >= 0? (v1rechargeNumber / 98 - hongbaoNumber).ToString() : "0";
         }
 
         public static async ETTask OnOpenBtn(this UIActivityV1HongBaoComponent self)
