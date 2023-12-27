@@ -124,8 +124,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
                 return;
             }
-            
-            
+
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPetHeChengPreview);
+            ui.GetComponent<UIPetHeChengPreviewComponent>().UpdateInfo(self.HeChengPet_Left, self.HeChengPet_Right);
         }
         
         public static async ETTask ReqestHeCheng(this UIPetHeChengComponent self)
