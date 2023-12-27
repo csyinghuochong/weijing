@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -89,10 +90,47 @@ namespace ET
             self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
                     Mathf.Clamp((float)newRolePetInfo.ZiZhi_ChengZhang / (float)petConfig.ZiZhi_ChengZhang_Max, 0f, 1f);
 
+            // 宠物A
             UIRolePetBagItemComponent itemAComponent = self.AddChild<UIRolePetBagItemComponent, GameObject>(self.PetItemA);
             itemAComponent.OnInitUI(rolePetA);
+            List<int> petAbaseSkillId = new List<int>();
+            petConfig = PetConfigCategory.Instance.Get(rolePetA.ConfigId);
+            string[] baseASkillID = petConfig.BaseSkillID.Split(';');
+            for (int i = 0; i < baseASkillID.Length; i++)
+            {
+                petAbaseSkillId.Add(int.Parse(baseASkillID[i]));
+            }
+
+            self.UpdateSkill(self.PetASkillListNode, petAbaseSkillId);
+
+            // 宠物B
             UIRolePetBagItemComponent itemBComponent = self.AddChild<UIRolePetBagItemComponent, GameObject>(self.PetItemB);
             itemBComponent.OnInitUI(rolePetB);
+            List<int> petBbaseSkillId = new List<int>();
+            petConfig = PetConfigCategory.Instance.Get(rolePetA.ConfigId);
+            string[] baseBSkillID = petConfig.BaseSkillID.Split(';');
+            for (int i = 0; i < baseBSkillID.Length; i++)
+            {
+                petAbaseSkillId.Add(int.Parse(baseBSkillID[i]));
+            }
+
+            self.UpdateSkill(self.PetBSkillListNode, petBbaseSkillId);
+            
+            // 概率消失技能
+        }
+
+        public static void UpdateSkill(this UIPetHeChengPreviewComponent self, GameObject root, List<int> skillId)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < skillId.Count; i++)
+            {
+                UICommonSkillItemComponent ui_item = null;
+                GameObject go = UnityEngine.Object.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, root);
+                ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(go);
+                ui_item.OnUpdateUI(skillId[i], ABAtlasTypes.PetSkillIcon);
+            }
         }
     }
 }
