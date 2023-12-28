@@ -78,8 +78,8 @@ namespace ET
             }
 
             userInfo.SingleRechargeRewardIds.Remove(self.Key);
-            // self.ReceiveBtn.SetActive(false);
-            // self.ReceivedImg.SetActive(true);
+            self.ReceiveBtn.SetActive(false);
+            self.ReceivedImg.SetActive(true);
         }
     }
 }
