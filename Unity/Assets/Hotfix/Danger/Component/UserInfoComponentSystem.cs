@@ -106,6 +106,8 @@ namespace ET
                     return "";
                 case GameSettingEnum.HideLeftBottom:
                     return "0";
+                case GameSettingEnum.SkillAttackPlayerFirst:
+                    return "0";
                 default:
                     return "0";
             }

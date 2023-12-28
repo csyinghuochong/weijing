@@ -180,7 +180,11 @@ namespace ET
                     return self.LastLockId;
                 }
             }
-
+            
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            bool skillAttackPlayerFirst = false;
+            skillAttackPlayerFirst = userInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst) == "1";
+            
             float distance = 10f;
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
@@ -213,14 +217,11 @@ namespace ET
                 float dd = PositionHelper.Distance2D(main, unit);
                 if (dd < distance)
                 {
-                    UnitLockRanges.Add(new UnitLockRange() { Id = unit.Id, Range = (int)(dd * 100) });
+                    UnitLockRanges.Add(new UnitLockRange() { Id = unit.Id, Range = (int)(dd * 100), Type = unit.Type });
                 }
             }
 
-            UnitLockRanges.Sort(delegate (UnitLockRange a, UnitLockRange b)
-            {
-                return a.Range - b.Range;
-            });
+            UnitLockRanges.Sort((a, b) => a.Range - b.Range);
 
             if (UnitLockRanges.Count == 0)
             {
@@ -230,28 +231,60 @@ namespace ET
             }
             else
             {
-                //锁定最近目标
-                if (self.AttackTarget == 0) 
+                bool attackedPlayer = false; // 是否锁定了玩家
+                if (skillAttackPlayerFirst)
                 {
-                    self.LastLockIndex = 0;
-                    self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
-                }
-                else
-                {
-                    self.LastLockIndex++;
-                    if (self.LastLockIndex >= UnitLockRanges.Count)
+                    if (self.AttackTarget == 0)
                     {
                         self.LastLockIndex = 0;
                     }
-                    if (self.LastLockId != 0 && UnitLockRanges[self.LastLockIndex].Id == self.LastLockId)
+                    else
                     {
                         self.LastLockIndex++;
                     }
-                    if (self.LastLockIndex >= UnitLockRanges.Count)
+
+                    for (int i = self.LastLockIndex; i < UnitLockRanges.Count; i++)
+                    {
+                        if (UnitLockRanges[i].Type != UnitType.Player)
+                        {
+                            continue;
+                        }
+
+                        attackedPlayer = true;
+                        self.LastLockIndex = i;
+                        self.LastLockId = UnitLockRanges[i].Id;
+                        break;
+                    }
+                }
+
+                if (!attackedPlayer)
+                {
+                    //锁定最近目标
+                    if (self.AttackTarget == 0)
                     {
                         self.LastLockIndex = 0;
+                        self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
                     }
-                    self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
+                    else
+                    {
+                        self.LastLockIndex++;
+                        if (self.LastLockIndex >= UnitLockRanges.Count)
+                        {
+                            self.LastLockIndex = 0;
+                        }
+
+                        if (self.LastLockId != 0 && UnitLockRanges[self.LastLockIndex].Id == self.LastLockId)
+                        {
+                            self.LastLockIndex++;
+                        }
+
+                        if (self.LastLockIndex >= UnitLockRanges.Count)
+                        {
+                            self.LastLockIndex = 0;
+                        }
+
+                        self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
+                    }
                 }
             }
             self.LockTargetUnitId(self.LastLockId);

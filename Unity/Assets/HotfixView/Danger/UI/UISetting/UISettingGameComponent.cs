@@ -9,7 +9,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
-
+        public GameObject SkillAttackPlayerFirst;
         public GameObject FirstUnionName;
         public GameObject HideNode;
         public GameObject HideLeftBottom;
@@ -85,6 +85,8 @@ namespace ET
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
 
+            self.SkillAttackPlayerFirst = rc.Get<GameObject>("SkillAttackPlayerFirst");
+            self.SkillAttackPlayerFirst.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnSkillAttackPlayerFirst);
 
             self.HideLeftBottom = rc.Get<GameObject>("HideLeftBottom");
             self.HideLeftBottom.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_HideLeftBottom);
@@ -291,6 +293,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.FirstUnionName, value == "0" ? "1" : "0");
         }
 
+        public static void OnSkillAttackPlayerFirst(this UISettingGameComponent self)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst);
+            self.SkillAttackPlayerFirst.transform.Find("Image_Click").gameObject.SetActive(value == "0");
+            self.SaveSettings(GameSettingEnum.SkillAttackPlayerFirst, value == "0" ? "1" : "0");
+        }
+        
         public static void OnBtn_NoMoving(this UISettingGameComponent self)
         {
             SettingHelper.ShowNoMoving = !SettingHelper.ShowNoMoving;
@@ -334,6 +343,7 @@ namespace ET
 
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
             self.FirstUnionName.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FirstUnionName) == "1");
+            self.SkillAttackPlayerFirst.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst) == "1");
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");

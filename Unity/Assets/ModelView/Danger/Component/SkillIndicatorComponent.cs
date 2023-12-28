@@ -8,6 +8,7 @@ namespace ET
     {
         public long Id;
         public int Range;
+        public int Type;
     }
 
     public class SkillIndicatorItem

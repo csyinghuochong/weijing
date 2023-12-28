@@ -208,6 +208,7 @@ namespace ET
         OneSellSet2 = 17,    // 一键出售 低级、中级、。。。
         HideLeftBottom = 18, //进入野外和个人副本 组队副本 左下角的功能图标自动隐藏 回到主城自动显示
         FirstUnionName = 19,         //优先显示家族称号
+        SkillAttackPlayerFirst = 20, //技能优先攻击玩家
       
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
