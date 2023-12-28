@@ -130,7 +130,9 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxValue = ComHelp.MaxShuLianDu();
-            int curValue = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
+
+            int shulianduNumeric = self.Plan == 1 ? NumericType.MakeShuLianDu_1 : NumericType.MakeShuLianDu_2;
+            int curValue = unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric);
 
             self.Lab_ShuLianDu.GetComponent<Text>().text = $"{curValue}/{maxValue}";
             self.Img_ShuLianPro.GetComponent<Image>().fillAmount = curValue * 1f / maxValue;
@@ -321,9 +323,10 @@ namespace ET
 
             //显示需要熟练度
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int nowShuLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
+            int shulianduNumeric = self.Plan == 1 ? NumericType.MakeShuLianDu_1 : NumericType.MakeShuLianDu_2;
+            int nowShuLianDu = unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric);
             self.LabNeedShuLian.GetComponent<Text>().text = $"{nowShuLianDu}/{equipMakeConfig.NeedProficiencyValue}";
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1) < equipMakeConfig.NeedProficiencyValue)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric) < equipMakeConfig.NeedProficiencyValue)
             {
                 //不满足显示红色,满足显示绿色
                 self.LabNeedShuLian.GetComponent<Text>().text += "(熟练度不足)";

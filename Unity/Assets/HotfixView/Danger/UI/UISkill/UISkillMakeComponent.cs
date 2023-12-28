@@ -162,7 +162,8 @@ namespace ET
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "学习技能", "可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!", () =>
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int makeId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
+                int makeTypenumreic = self.Plan == 1 ? NumericType.MakeType_1 : NumericType.MakeType_2;
+                int makeId = unit.GetComponent<NumericComponent>().GetAsInt(makeTypenumreic);
                 int npcId = 0;
                 switch (makeId)
                 {
