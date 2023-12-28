@@ -28,7 +28,7 @@ namespace ET
                 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
-                if (itemConfig.EquipType == 101)
+                if (itemConfig.EquipType == 101 || itemConfig.EquipType == 201)
                 {
                     response.Error = ErrorCode.ERR_ItemUseError;
                     reply();
