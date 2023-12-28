@@ -87,7 +87,7 @@ namespace ET
                 return;
             }
 
-            userInfo.SingleRechargeIds = response.RewardIds;
+            userInfo.SingleRewardIds = response.RewardIds;
             ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
             redPointComponent.UpdateReddont(ReddotType.SingleRecharge);
 
