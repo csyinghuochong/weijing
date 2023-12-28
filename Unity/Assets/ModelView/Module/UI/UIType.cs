@@ -83,6 +83,7 @@ namespace ET
         public const string UISettingFrame = "Main/Setting/UISettingFrame";
         public const string UISettingSkill = "Main/Setting/UISettingSkill";
         public const string UIWarehouse = "Main/Role/UIWarehouse";
+        public const string UIWarehouseAccount = "Main/Role/UIWarehouseAccount";
 		public const string UIMail = "Main/Mail/UIMail";
 		public const string UIQueue = "Login/UIQueue";
 		public const string UIRealName = "Main/RealName/UIRealName";

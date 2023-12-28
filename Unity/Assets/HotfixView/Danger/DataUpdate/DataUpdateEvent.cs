@@ -116,7 +116,7 @@ namespace ET
                     uiComponent.OnBuyBagCell();
                     continue;
                 }
-                if (component is UIWarehouseComponent uiwareComponent)
+                if (component is UIWarehouseRoleComponent uiwareComponent)
                 {
                     uiwareComponent.OnBuyBagCell(DataParams);
                     continue;
@@ -418,7 +418,7 @@ namespace ET
                     uiequipComponent.UpdateBagUI();
                     continue;
                 }
-                if (component is UIWarehouseComponent uihourseComponent)
+                if (component is UIWarehouseRoleComponent uihourseComponent)
                 {
                     uihourseComponent.UpdateBagUI();
                     continue;
