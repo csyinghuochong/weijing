@@ -77,6 +77,7 @@ namespace ET
         public const int ERR_RequestExitFuben = 200124;
         public const int ERR_KickOutPlayer = 200125;                                //长时间不操作被踢下线
         public const int ERR_PackageFrequent = 200126;                                //发送太频繁
+        public const int ERR_AlreadyHave = 200127;
 
         //300001-400001 服务器提示性错误码
         //角色

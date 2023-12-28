@@ -27,6 +27,7 @@ namespace ET
                 }
                 if (ComHelp.IsInnerNet())
                 {
+                    RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "内测服");
                     reply();
                     return;
                 }

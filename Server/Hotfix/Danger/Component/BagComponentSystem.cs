@@ -215,59 +215,7 @@ namespace ET
             //通知客户端背包道具发生改变
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
 
-            ItemTypeList.Sort(delegate (BagInfo a, BagInfo b)
-            {
-                int itemIda = a.ItemID;
-                int itemIdb = b.ItemID;
-                int isBinginga = a.isBinging ? 1 : 0;
-                int isBingingb = b.isBinging ? 1 : 0;
-                ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(itemIda);
-                ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
-                int quliatya = itemConfig_a.ItemQuality;
-                int quliatyb = itemConfig_b.ItemQuality;
-                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
-                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
-                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0;
-                int dungeonidb = (itemConfig_b.ItemSubType == 113 || itemConfig_b.ItemSubType == 127) ? int.Parse(b.ItemPar.Split('@')[0]) : 0;
-                //bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
-
-                if (isBinginga == isBingingb)
-                {
-                    if (quliatya == quliatyb)
-                    {
-                        if (jianDingLva == jianDingLvb)
-                        {
-                            if (dungeonida == dungeonidb)
-                            {
-                                if (itemIda == itemIdb)
-                                {
-                                    return b.ItemNum - a.ItemNum;
-                                }
-                                else
-                                {
-                                    return itemIda - itemIdb;
-                                }
-                            }
-                            else
-                            {
-                                return dungeonidb - dungeonida;
-                            }
-                        }
-                        else
-                        {
-                            return jianDingLvb - jianDingLva;
-                        }
-                    }
-                    else
-                    {
-                        return quliatyb - quliatya;
-                    }
-                }
-                else
-                {
-                    return isBinginga - isBingingb;
-                }
-            });
+            ItemHelper.ItemLitSort(ItemTypeList);
         }
 
         public static void CheckValiedItem(this BagComponent self, List<BagInfo> bagInfos)

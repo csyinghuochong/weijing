@@ -15232,10 +15232,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_SkillMakePlan2OpenResponse))]
-	[Message(OuterOpcode.C2M_SkillMakePlan2OpenRequest)]
+	[ResponseType(nameof(E2C_AccountWarehousInfoResponse))]
+	[Message(OuterOpcode.C2E_AccountWarehousInfoRequest)]
 	[ProtoContract]
-	public partial class C2M_SkillMakePlan2OpenRequest: Object, IActorLocationRequest
+	public partial class C2E_AccountWarehousInfoRequest: Object, IMailActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -15243,11 +15243,14 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(1)]
+		public long AccInfoID { get; set; }
+
 	}
 
-	[Message(OuterOpcode.M2C_SkillMakePlan2OpenResponse)]
+	[Message(OuterOpcode.E2C_AccountWarehousInfoResponse)]
 	[ProtoContract]
-	public partial class M2C_SkillMakePlan2OpenResponse: Object, IActorLocationResponse
+	public partial class E2C_AccountWarehousInfoResponse: Object, IMailActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -15257,6 +15260,46 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<BagInfo> BagInfos = new List<BagInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_AccountWarehousOperateResponse))]
+	[Message(OuterOpcode.C2M_AccountWarehousOperateRequest)]
+	[ProtoContract]
+	public partial class C2M_AccountWarehousOperateRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public int OperatateType { get; set; }
+
+		[ProtoMember(3)]
+		public long OperateBagID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_AccountWarehousOperateResponse)]
+	[ProtoContract]
+	public partial class M2C_AccountWarehousOperateResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public BagInfo BagInfo { get; set; }
 
 	}
 

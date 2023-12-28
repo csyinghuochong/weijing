@@ -847,7 +847,9 @@ namespace ET
 		 public const ushort M2C_WelfareDraw2Response = 10844;
 		 public const ushort C2M_WelfareDraw2RewardRequest = 10845;
 		 public const ushort M2C_WelfareDraw2RewardResponse = 10846;
-		 public const ushort C2M_SkillMakePlan2OpenRequest = 10847;
-		 public const ushort M2C_SkillMakePlan2OpenResponse = 10848;
+		 public const ushort C2E_AccountWarehousInfoRequest = 10847;
+		 public const ushort E2C_AccountWarehousInfoResponse = 10848;
+		 public const ushort C2M_AccountWarehousOperateRequest = 10849;
+		 public const ushort M2C_AccountWarehousOperateResponse = 10850;
 	}
 }

@@ -874,6 +874,63 @@ namespace ET
             return getname; 
         }
 
+        public static void ItemLitSort(List<BagInfo> ItemTypeList)
+        {
+            ItemTypeList.Sort(delegate (BagInfo a, BagInfo b)
+            {
+                int itemIda = a.ItemID;
+                int itemIdb = b.ItemID;
+                int isBinginga = a.isBinging ? 1 : 0;
+                int isBingingb = b.isBinging ? 1 : 0;
+                ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(itemIda);
+                ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
+                int quliatya = itemConfig_a.ItemQuality;
+                int quliatyb = itemConfig_b.ItemQuality;
+                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
+                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
+                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0;
+                int dungeonidb = (itemConfig_b.ItemSubType == 113 || itemConfig_b.ItemSubType == 127) ? int.Parse(b.ItemPar.Split('@')[0]) : 0;
+                //bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
+
+                if (isBinginga == isBingingb)
+                {
+                    if (quliatya == quliatyb)
+                    {
+                        if (jianDingLva == jianDingLvb)
+                        {
+                            if (dungeonida == dungeonidb)
+                            {
+                                if (itemIda == itemIdb)
+                                {
+                                    return b.ItemNum - a.ItemNum;
+                                }
+                                else
+                                {
+                                    return itemIda - itemIdb;
+                                }
+                            }
+                            else
+                            {
+                                return dungeonidb - dungeonida;
+                            }
+                        }
+                        else
+                        {
+                            return jianDingLvb - jianDingLva;
+                        }
+                    }
+                    else
+                    {
+                        return quliatyb - quliatya;
+                    }
+                }
+                else
+                {
+                    return isBinginga - isBingingb;
+                }
+            });
+        }
+
         //以下途径获取的道具为非绑定道具,其他途径为绑定道具
         public static Dictionary<int, string> ItemGetWayNameList = new Dictionary<int, string>
         {

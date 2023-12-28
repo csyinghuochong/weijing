@@ -7255,7 +7255,6 @@ message C2M_PetHeXinChouKaRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 ChouKaType = 1;
-
 }
 
 message M2C_PetHeXinChouKaResponse // IActorLocationResponse
@@ -7306,4 +7305,37 @@ message M2C_WelfareDraw2RewardResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType E2C_AccountWarehousInfoResponse
+message C2E_AccountWarehousInfoRequest // IMailActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 AccInfoID = 1;
+}
+
+message E2C_AccountWarehousInfoResponse // IMailActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated BagInfo BagInfos = 1;
+}
+
+//ResponseType M2C_AccountWarehousOperateResponse
+message C2M_AccountWarehousOperateRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 OperatateType = 2;    //1放入仓库  2取出仓库 3整理仓库 
+	int64 OperateBagID = 3;
+}
+
+message M2C_AccountWarehousOperateResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	BagInfo BagInfo = 2;
 }

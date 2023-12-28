@@ -21,6 +21,7 @@ namespace ET
             { 
                 return; 
             }
+
             int number = ConfigHelper.GetDiamondNumber(rechargeNumber);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, number.ToString(), notice, ItemGetWay.Recharge);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
