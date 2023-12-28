@@ -15,7 +15,7 @@ namespace ET
 		Number,
 	}
 
-	public class UIActivityComponent : Entity, IAwake
+	public class UIActivityComponent : Entity, IAwake, IDestroy
 	{
 		public GameObject Btn_Type_5;
 		public UIPageViewComponent UIPageView;
@@ -69,15 +69,33 @@ namespace ET
 			self.UIPageButton = uIPageViewComponent;
 			uIPageViewComponent.ClickEnabled = false;
 			self.ActivityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-			self.RequeatActivityInfo().Coroutine();
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.SingleRecharge, self.Reddot_SingleRecharge);
+
+            self.RequeatActivityInfo().Coroutine();
 		}
 	}
+
+	public class UIActivityComponentDestroy : DestroySystem<UIActivityComponent>
+	{
+        public override void Destroy(UIActivityComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.SingleRecharge, self.Reddot_SingleRecharge);
+        }
+    }
 
 	public static class UIActivityComponentSystem
 	{
 
-		//点击回调
-		public static void OnClickPageButton(this UIActivityComponent self, int page)
+        public static void Reddot_SingleRecharge(this UIActivityComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot((int)ActivityPageEnum.SingleRecharge, num > 0);
+        }
+
+        //点击回调
+        public static void OnClickPageButton(this UIActivityComponent self, int page)
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();
 		}

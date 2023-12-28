@@ -62,9 +62,14 @@ namespace ET
             }
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (!userInfo.SingleRechargeRewardIds.Contains(self.Key))
+            if (!userInfo.SingleRechargeIds.Contains(self.Key))
             {
                 FloatTipManager.Instance.ShowFloatTip("未达条件");
+                return;
+            }
+            if (userInfo.SingleRewardIds.Contains(self.Key))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经领取");
                 return;
             }
 
@@ -77,7 +82,11 @@ namespace ET
                 return;
             }
 
-            userInfo.SingleRechargeRewardIds.Remove(self.Key);
+            userInfo.SingleRechargeIds = response.RewardIds;
+            ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
+            redPointComponent.UpdateReddont(ReddotType.SingleRecharge);
+
+
             self.ReceiveBtn.SetActive(false);
             self.ReceivedImg.SetActive(true);
         }

@@ -12,7 +12,7 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (request.RewardId == 0)
             {
-                response.RewardIds = userInfo.SingleRechargeRewardIds;
+                response.RewardIds = userInfo.SingleRechargeIds;
                 reply();
                 return;
             }
@@ -20,6 +20,20 @@ namespace ET
             if (!ConfigHelper.SingleRechargeReward.ContainsKey(request.RewardId))
             {
                 response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
+            if (!userInfo.SingleRechargeIds.Contains(request.RewardId))
+            {
+                response.Error = ErrorCode.Pre_Condition_Error;
+                reply();
+                return;
+            }
+
+            if (userInfo.SingleRewardIds.Contains(request.RewardId))
+            {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
@@ -33,17 +47,11 @@ namespace ET
                 return;
             }
 
-            if (!userInfo.SingleRechargeRewardIds.Contains(request.RewardId))
-            {
-                response.Error = ErrorCode.Pre_Condition_Error;
-                reply();
-                return;
-            }
-
-            userInfo.SingleRechargeRewardIds.Remove(request.RewardId);
+            userInfo.SingleRewardIds.Add(request.RewardId);
             unit.GetComponent<BagComponent>().OnAddItemData(ConfigHelper.SingleRechargeReward[request.RewardId],
                 $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
 
+            response.RewardIds = userInfo.SingleRewardIds;
             reply();
             await ETTask.CompletedTask;
         }

@@ -13,7 +13,14 @@
                 case NumericType.RechargeNumber:
                     int rechargeNumber = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
                     int addNumer = rechargeNumber - (int)args.OldValue;
-                    UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+
+                    UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
+                    if (!userInfoComponent.UserInfo.SingleRechargeIds.Contains(addNumer))
+                    {
+                        userInfoComponent.UserInfo.SingleRechargeIds.Add(addNumer);
+                        args.Unit.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.SingleRecharge);
+                    }
+                    UI uI = UIHelper.GetUI(zoneScene, UIType.UIMain);
                     uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
                     break;
                 case NumericType.PetExploreLuckly:

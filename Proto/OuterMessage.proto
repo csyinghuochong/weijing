@@ -348,7 +348,8 @@ message UserInfo
 
 	string StallName = 56;
 
-	repeated int32 SingleRechargeRewardIds = 57;
+	repeated int32 SingleRechargeIds = 57;
+	repeated int32 SingleRewardIds = 58;
 }
 
 message KeyValuePair

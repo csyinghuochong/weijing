@@ -20,19 +20,16 @@ namespace ET
 
             self.UIActivitySingleRechargeItem.SetActive(false);
 
-            self.GetInfo().Coroutine();
+          
+            self.GetInfo();
         }
     }
 
     public static class UIActivitySingleRechargeComponentSystem
     {
-        public static async ETTask GetInfo(this UIActivitySingleRechargeComponent self)
-        {
-            C2M_SingleRechargeRewardRequest request = new C2M_SingleRechargeRewardRequest() { RewardId = 0 };
-            M2C_SingleRechargeRewardResponse response =
-                    (M2C_SingleRechargeRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.SingleRechargeRewardIds = response.RewardIds;
+        public static  void GetInfo(this UIActivitySingleRechargeComponent self)
+        {
             self.InitInfo();
         }
 

@@ -184,6 +184,10 @@ namespace ET
         public const int WelfareLogin = 701;
         public const int WelfareTask = 702;
         public const int WelfareDraw = 703;
+
+        //活动
+        public const int Activity = 800;
+        public const int SingleRecharge = 801;
     }
 
     public enum GameSettingEnum

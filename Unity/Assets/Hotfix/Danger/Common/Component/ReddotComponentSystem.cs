@@ -87,6 +87,10 @@
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             switch (reddotType)
             {
+                case ReddotType.SingleRecharge:
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    showReddot = userInfoComponent.UserInfo.SingleRechargeIds.Count> userInfoComponent.UserInfo.SingleRewardIds.Count;
+                    break;
                 case ReddotType.WelfareLogin:
                     showReddot = self.ZoneScene().GetComponent<ActivityComponent>().HaveLoginReward();
                     break;

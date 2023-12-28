@@ -1622,6 +1622,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
             redPointComponent.RegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
             redPointComponent.RegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
+            redPointComponent.RegisterReddot(ReddotType.Activity, self.Reddot_Activity);
 
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
             if (reddotComponent.GetReddot(ReddotType.UnionApply) > 0)
@@ -1644,6 +1645,7 @@ namespace ET
             reddotComponent.UpdateReddont(ReddotType.WelfareTask);
             reddotComponent.UpdateReddont(ReddotType.FriendApply);
             reddotComponent.UpdateReddont(ReddotType.FriendChat);
+            reddotComponent.UpdateReddont(ReddotType.SingleRecharge);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)
@@ -1666,6 +1668,11 @@ namespace ET
         public static void Reddot_Welfare(this UIMainComponent self, int num)
         {
             self.Button_Welfare.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_Activity(this UIMainComponent self, int num)
+        { 
+           self.Btn_HuoDong.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Team(this UIMainComponent self, int num)

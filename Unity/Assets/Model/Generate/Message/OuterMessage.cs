@@ -674,7 +674,10 @@ namespace ET
 		public string StallName { get; set; }
 
 		[ProtoMember(57)]
-		public List<int> SingleRechargeRewardIds = new List<int>();
+		public List<int> SingleRechargeIds = new List<int>();
+
+		[ProtoMember(58)]
+		public List<int> SingleRewardIds = new List<int>();
 
 	}
 
