@@ -16,6 +16,13 @@ namespace ET
     public static class ItemViewHelp
     {
 
+        public static void AccountCangkuPutIn(Scene zoneScene, BagInfo bagInfo)
+        {
+            UI ui = UIHelper.GetUI(zoneScene, UIType.UIWarehouse);
+            ui.GetComponent<UIWarehouseComponent>().UIPageView.UISubViewList[(int)(WarehouseEnum.WarehouseAccount)].GetComponent<UIWarehouseAccountComponent>().BagInfoPutIn = bagInfo;
+            NetHelper.RequestAccountWarehousOperate(zoneScene, 1, bagInfo.BagInfoID).Coroutine();
+        }
+
         public static string GetFumpProDesc(List<HideProList> hideProLists)
         {
             string fumopro = "";

@@ -58,6 +58,7 @@ namespace ET
                 { DataType.BuyBagCell, OnBuyBagCell },
                 { DataType.BeforeMove, OnBeforeMove },
                 { DataType.UpdateSing, OnUpdateSing },
+                { DataType.AccountWarehous, OnAccountWarehous },
                 { DataType.ChouKaWarehouseAddItem, OnChouKaWarehouseAddItem}
             };
         }
@@ -102,6 +103,18 @@ namespace ET
                 if (component is UIJiaYuanMainComponent uiwareComponent)
                 {
                     uiwareComponent.OnSelectCancel();
+                    continue;
+                }
+            }
+        }
+
+        public void OnAccountWarehous(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIWarehouseAccountComponent uiwareComponent)
+                {
+                    uiwareComponent.OnAccountWarehous(DataParams, upateValue);
                     continue;
                 }
             }

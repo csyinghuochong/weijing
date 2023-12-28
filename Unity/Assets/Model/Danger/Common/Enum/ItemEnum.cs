@@ -261,7 +261,9 @@ namespace ET
         PetHeXinBag = 20,
         JianYuanBag = 21,     
         PaiMaiBuy = 22,
-        PetEquipBag = 23
+        PetEquipBag = 23,
+        AccountBag = 24,             //账号仓库
+        AccountCangku = 25,
     }
 
 }

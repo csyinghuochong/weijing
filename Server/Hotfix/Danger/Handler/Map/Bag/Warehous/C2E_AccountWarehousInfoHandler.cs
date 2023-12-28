@@ -14,7 +14,7 @@ namespace ET
                 DBAccountWarehouse dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountWarehouse>(scene.DomainZone(), request.AccInfoID);
                 if (dBAccountWarehouse == null)
                 {
-                    await DBHelper.AddDataComponent<DBMailInfo>(scene.DomainZone(), request.AccInfoID, DBHelper.DBAccountWarehouse);
+                    await DBHelper.AddDataComponent<DBAccountWarehouse>(scene.DomainZone(), request.AccInfoID, DBHelper.DBAccountWarehouse);
                 }
                 else
                 {

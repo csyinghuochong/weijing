@@ -60,8 +60,6 @@ namespace ET
                     haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.ItemSubType);
                 }
 
-
-
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIEquipDuiBiTips);
                 if (haveEquip != null &&( args.itemOperateEnum == ItemOperateEnum.Bag || args.itemOperateEnum == ItemOperateEnum.PaiMaiBuy || args.itemOperateEnum == ItemOperateEnum.PetEquipBag))
                 {

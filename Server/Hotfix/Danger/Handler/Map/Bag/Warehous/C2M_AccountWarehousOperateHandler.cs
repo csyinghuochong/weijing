@@ -46,7 +46,7 @@ namespace ET
                             return;
                         }
                         dBAccountWarehouse.BagInfoList.Add(bagInfo);
-                        bagComponent.OnCostItemData(bagInfo.BagInfoID, 1);
+                        bagComponent.OnCostItemData(bagInfo.BagInfoID, bagInfo.ItemNum);
                         break;
                     case 2:
                         if (bagComponent.GetLeftSpace() < 1)

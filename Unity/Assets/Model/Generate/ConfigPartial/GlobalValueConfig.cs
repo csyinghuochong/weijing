@@ -11,6 +11,7 @@ namespace ET
 
         public int StoreCapacity = 0;
         public int StoreMaxCell = 0;
+        public int AccountBagMax = 0;
 
         public Dictionary<int, int> ZhuaPuItem = new Dictionary<int, int>();
 
@@ -20,6 +21,7 @@ namespace ET
             BagMaxCell = this.Get(84).Value2 + BagMaxCapacity;
             StoreCapacity = this.Get(4).Value2;
             StoreMaxCell = StoreCapacity + this.Get(85).Value2;
+            AccountBagMax = this.Get(115).Value2;
 
             string[] zhuabuItems = this.Get(82).Value.Split('@');
             for (int i = 0; i < zhuabuItems.Length; i++)

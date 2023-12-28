@@ -38,7 +38,7 @@ namespace ET
         public GameObject Imagebg;
         public GameObject Lab_ItemMake;
 
-        public ItemOperateEnum EquipTipsType;               //操作类型
+        public ItemOperateEnum ItemOpetateType;               //操作类型
         public BagInfo BagInfo;
         public BagComponent BagComponent;
 
@@ -142,7 +142,14 @@ namespace ET
         //放入背包
         public static void OnBtn_PutBag(this UIItemAppraisalTipsComponent self)
         {
-            self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            if (self.ItemOpetateType == ItemOperateEnum.AccountCangku)
+            {
+                NetHelper.RequestAccountWarehousOperate(self.ZoneScene(), 2, self.BagInfo.BagInfoID).Coroutine();
+            }
+            else
+            {
+                self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            }
 
             self.OnCloseTips();
         }
@@ -150,7 +157,14 @@ namespace ET
         //放入仓库
         public static void OnBtn_PutStoreHouse(this UIItemAppraisalTipsComponent self)
         {
-            self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
+            if (self.ItemOpetateType == ItemOperateEnum.AccountBag)
+            {
+                ItemViewHelp.AccountCangkuPutIn(self.ZoneScene(), self.BagInfo);
+            }
+            else
+            {
+                self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
+            }
 
             self.OnCloseTips();
         }
@@ -485,12 +499,14 @@ namespace ET
                     break;
                 //仓库查看属性
                 case ItemOperateEnum.Cangku:
+                case ItemOperateEnum.AccountCangku:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Btn_TakeStoreHouse.SetActive(true);
                     //self.Obj_Btn_StoreHouseSet.SetActive(true);
                     //ItemBottomTextNum = 0;
                     break;
                 case ItemOperateEnum.CangkuBag:
+                case ItemOperateEnum.AccountBag:
                     self.Obj_BagOpenSet.SetActive(true);
                     self.Obj_SaveStoreHouse.SetActive(true);
                     self.Btn_Sell.SetActive(false);

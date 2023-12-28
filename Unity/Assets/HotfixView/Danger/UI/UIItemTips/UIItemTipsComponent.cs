@@ -32,7 +32,7 @@ namespace ET
 
         public GameObject Imagebg;
 
-        public ItemOperateEnum EquipTipsType;               //操作类型
+        public ItemOperateEnum ItemOpetateType;               //操作类型
         public BagInfo BagInfo;
 
         //按钮相关
@@ -152,15 +152,14 @@ namespace ET
         //放入仓库
         public static void OnBtn_StoreHouse(this UIItemTipsComponent self)
         {
-            self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
-
-            self.OnCloseTips();
-        }
-
-        //放入仓库
-        public static void OnBtn_PutStoreHouse(this UIItemTipsComponent self)
-        {
-            self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
+            if (self.ItemOpetateType == ItemOperateEnum.AccountBag)
+            {
+                ItemViewHelp.AccountCangkuPutIn( self.ZoneScene(), self.BagInfo );
+            }
+            else
+            {
+                self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
+            }
 
             self.OnCloseTips();
         }
@@ -168,7 +167,14 @@ namespace ET
         //放入背包
         public static void OnBtn_PutBag(this UIItemTipsComponent self)
         {
-            self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            if (self.ItemOpetateType == ItemOperateEnum.AccountCangku)
+            {
+                NetHelper.RequestAccountWarehousOperate(self.ZoneScene(), 2, self.BagInfo.BagInfoID).Coroutine();
+            }
+            else
+            {
+                self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            }
 
             self.OnCloseTips();
         }

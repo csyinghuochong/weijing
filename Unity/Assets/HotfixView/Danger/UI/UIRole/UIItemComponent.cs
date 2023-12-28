@@ -206,7 +206,6 @@ namespace ET
         //更新显示
         public static void UpdateItem(this UIItemComponent self, BagInfo bagInfo, ItemOperateEnum itemOperateEnum )
         {
-
             self.Baginfo = bagInfo;
             self.ItemOperateEnum = itemOperateEnum;
             if (bagInfo != null)

@@ -73,7 +73,7 @@ namespace ET
         public GameObject Obj_ZhuanJingStatusDes;
         public GameObject Obj_ZhuanJingStatusImg;
 
-        public ItemOperateEnum EquipTipsType;                    
+        public ItemOperateEnum ItemOpetateType;                    
         public int EquipQiangHuaID;                 
         public GameObject itemTips_1;
         public GameObject showEquipObj;
@@ -239,23 +239,28 @@ namespace ET
         //放入仓库
         public static void OnBtn_PutStoreHouse(this UIEquipTipsComponent self)
         {
-            self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
-
-            self.OnCloseTips();
-        }
-
-        //放入仓库
-        public static void OnBtn_StoreHouse(this UIEquipTipsComponent self)
-        {
-            self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
-
+            if (self.ItemOpetateType == ItemOperateEnum.AccountBag)
+            {
+                ItemViewHelp.AccountCangkuPutIn(self.ZoneScene(), self.BagInfo);
+            }
+            else
+            {
+                self.BagComponent.SendPutStoreHouse(self.BagInfo).Coroutine();
+            }
             self.OnCloseTips();
         }
 
         //放入背包
         public static void OnBtn_PutBag(this UIEquipTipsComponent self)
         {
-            self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            if (self.ItemOpetateType == ItemOperateEnum.AccountCangku)
+            {
+                NetHelper.RequestAccountWarehousOperate(self.ZoneScene(), 2, self.BagInfo.BagInfoID).Coroutine();
+            }
+            else
+            {
+                self.BagComponent.SendPutBag(self.BagInfo).Coroutine();
+            }
 
             self.OnCloseTips();
         }
@@ -900,7 +905,7 @@ namespace ET
             self.Obj_SaveStoreHouse.SetActive(false);
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
-            switch (self.EquipTipsType)
+            switch (self.ItemOpetateType)
             {
                 case ItemOperateEnum.None:
                 case ItemOperateEnum.PaiMaiSell:
@@ -969,11 +974,13 @@ namespace ET
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
                     break;
                 case ItemOperateEnum.Cangku:
+                case ItemOperateEnum.AccountCangku:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_StoreHouseSet.SetActive(true);
                     break;
                 case ItemOperateEnum.CangkuBag:
+                case ItemOperateEnum.AccountBag:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_HuiShouCancle.SetActive(false);
@@ -1022,7 +1029,7 @@ namespace ET
         {
             //初始化值
             self.BagInfo = baginfo;
-            self.EquipTipsType = equipTipsType;
+            self.ItemOpetateType = equipTipsType;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
             if(itemconf.ItemEquipID == 0)
             {

@@ -51,6 +51,7 @@ namespace ET
             self.NoLockList.Add(rc.Get<GameObject>("NoLock_4"));
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -241,6 +242,11 @@ namespace ET
             }
         }
 
+        public static void OnUpdateUI(this UIWarehouseRoleComponent self)
+        {
+            self.UpdateBagList();
+        }
+
         /// <summary>
         /// 刷新背包
         /// </summary>
@@ -270,11 +276,6 @@ namespace ET
 
             self.UpdateWareHouse();
             self.UpdateBagList();
-        }
-
-        public static void OnCloseWarehouse(this UIWarehouseRoleComponent self)
-        {
-            UIHelper.Remove(self.DomainScene(), UIType.UIWarehouse);
         }
     }
 }

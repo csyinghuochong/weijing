@@ -6,6 +6,17 @@ namespace ET
     public static class NetHelper
     {
 
+        public static async ETTask<int> RequestAccountWarehousOperate(Scene zoneScene, int operateType, long operateId)
+        { 
+            C2M_AccountWarehousOperateRequest request = new C2M_AccountWarehousOperateRequest() { OperatateType = operateType, OperateBagID = operateId };
+            M2C_AccountWarehousOperateResponse response = (M2C_AccountWarehousOperateResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                HintHelp.GetInstance().DataUpdate(DataType.AccountWarehous, operateType.ToString(), operateId);
+            }
+            return response.Error;
+        }
+
         public static async ETTask<int> RequestPetMingReset(Scene zoneScene)
         {
             try

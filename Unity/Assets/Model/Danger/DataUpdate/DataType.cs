@@ -127,5 +127,7 @@
         public const int UpdateUserBuffSkill = 48;
 
         public const int OnSkillUse = 49;
+
+        public const int AccountWarehous = 50;
     }
 }
