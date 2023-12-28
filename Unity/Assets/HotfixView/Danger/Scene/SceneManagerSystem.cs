@@ -66,7 +66,7 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.MainCityScene:
                     AccountInfoComponent accountInfoComponent = scene.GetComponent<AccountInfoComponent>();
-                    string scenepath = accountInfoComponent.Account == "18319670288" ? "101_test" : chapterId.ToString();
+                    string scenepath = accountInfoComponent.Account == "test01" ? "101_test" : chapterId.ToString();
                     paramss = scenepath;
                     //paramss = chapterId.ToString();
                     break;
