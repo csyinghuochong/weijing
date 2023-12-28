@@ -13,7 +13,12 @@ namespace ET
 
             session.ZoneScene().GetComponent<PetComponent>().OnRecvRolePetUpdate(message);
 
-            if (message.PetInfoAdd.Count > 0)
+            if (message.GetWay == 2 && message.PetInfoAdd.Count > 0)
+            {
+                PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(message.PetInfoAdd[0].SkinId);   
+                HintHelp.GetInstance().ShowHint($"获得{petSkinConfig.Name}宠物!");
+            }
+            if (message.GetWay == 0 && message.PetInfoAdd.Count > 0)
             {
                 EventType.RolePetAdd.Instance.ZoneScene = session.ZoneScene();
                 EventType.RolePetAdd.Instance.OldPetSkin = oldPetSkin;
