@@ -414,6 +414,7 @@ namespace ET
 			                    .GenerateFuben(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealArrived),
 				                    unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished));
 
+                        TransferHelper.AfterTransfer(unit);
                         break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
