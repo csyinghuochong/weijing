@@ -2239,6 +2239,7 @@ namespace ET
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
         }
 
+
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
             await NetHelper.RequestActivityInfo(self.ZoneScene());
