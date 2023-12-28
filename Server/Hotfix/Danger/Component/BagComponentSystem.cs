@@ -1058,15 +1058,14 @@ namespace ET
                             xilianType = 2;
                         }
 
-                        //装备洗炼
+                       
                         ItemXiLianResult itemXiLian = new ItemXiLianResult();
-                        if (itemCof.EquipType != 101 && itemCof.EquipType != 201)
+                        if (itemCof.EquipType < 101) //装备洗炼
                         {
                             itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
                         }
-                        else
+                        else if(itemCof.EquipType == 101)//生肖洗炼
                         {
-                            //生肖洗炼
                             itemXiLian = XiLianHelper.XiLianShengXiao(useBagInfo);
                         }
 
