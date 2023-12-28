@@ -6,21 +6,20 @@ namespace ET
 {
     public static class PetHelper
     {
-
         /// <summary>
         /// 合宠预览
         /// </summary>
         /// <param name="rolePetA"></param>
         /// <param name="rolePetB"></param>
         /// <returns></returns>
-        public static RolePetInfo GetPetHeChengPreview(RolePetInfo rolePetA , RolePetInfo rolePetB)
+        public static RolePetInfo GetPetHeChengPreview(RolePetInfo rolePetA, RolePetInfo rolePetB)
         {
-            RolePetInfo rolePetInfo = new RolePetInfo();    
-            
+            RolePetInfo rolePetInfo = new RolePetInfo();
+
             float number = RandomHelper.RandFloat();
             //合成形象,50%概率
             rolePetInfo.ConfigId = number <= 0.5f? rolePetA.ConfigId : rolePetB.ConfigId;
-            
+
             //资质
             int zizhiNow_Hp_1 = rolePetA.ZiZhi_Hp;
             int zizhiNow_Act_1 = rolePetA.ZiZhi_Act;
@@ -37,7 +36,7 @@ namespace ET
             int zizhiNow_Adf_2 = rolePetB.ZiZhi_Adf;
             int zizhiNow_ActSpeed_2 = rolePetB.ZiZhi_ActSpeed;
             float zizhiNow_ChengZhang_2 = rolePetB.ZiZhi_ChengZhang;
-            
+
             int zizhiNow_Hp = (int)Pet_HeCheng_ZiZhi(zizhiNow_Hp_1, zizhiNow_Hp_2, 3000);
             int zizhiNow_Act = (int)Pet_HeCheng_ZiZhi(zizhiNow_Act_1, zizhiNow_Act_2, 1600);
             int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1600);
@@ -55,8 +54,48 @@ namespace ET
             rolePetInfo.ZiZhi_Adf = zizhiNow_Adf;
             rolePetInfo.ZiZhi_ActSpeed = zizhiNow_ActSpeed;
             rolePetInfo.ZiZhi_ChengZhang = zizhiNow_ChengZhang;
-            
+
             return rolePetInfo;
+        }
+
+        public static (RolePetInfo, RolePetInfo) GetPetHeChengZiZhiPreview(RolePetInfo rolePetA, RolePetInfo rolePetB)
+        {
+            RolePetInfo rolePetInfoMin = new RolePetInfo();
+            RolePetInfo rolePetInfoMax = new RolePetInfo();
+
+            int zizhiNow_Hp_1 = rolePetA.ZiZhi_Hp;
+            int zizhiNow_Act_1 = rolePetA.ZiZhi_Act;
+            int zizhiNow_MageAct_1 = rolePetA.ZiZhi_MageAct;
+            int zizhiNow_Def_1 = rolePetA.ZiZhi_Def;
+            int zizhiNow_Adf_1 = rolePetA.ZiZhi_Adf;
+            int zizhiNow_ActSpeed_1 = rolePetA.ZiZhi_ActSpeed;
+            float zizhiNow_ChengZhang_1 = rolePetA.ZiZhi_ChengZhang;
+
+            int zizhiNow_Hp_2 = rolePetB.ZiZhi_Hp;
+            int zizhiNow_Act_2 = rolePetB.ZiZhi_Act;
+            int zizhiNow_MageAct_2 = rolePetB.ZiZhi_MageAct;
+            int zizhiNow_Def_2 = rolePetB.ZiZhi_Def;
+            int zizhiNow_Adf_2 = rolePetB.ZiZhi_Adf;
+            int zizhiNow_ActSpeed_2 = rolePetB.ZiZhi_ActSpeed;
+            float zizhiNow_ChengZhang_2 = rolePetB.ZiZhi_ChengZhang;
+
+            rolePetInfoMin.ZiZhi_Hp = Mathf.Min(zizhiNow_Hp_1, zizhiNow_Hp_2);
+            rolePetInfoMin.ZiZhi_Act = Mathf.Min(zizhiNow_Act_1, zizhiNow_Act_2);
+            rolePetInfoMin.ZiZhi_MageAct = Mathf.Min(zizhiNow_MageAct_1, zizhiNow_MageAct_2);
+            rolePetInfoMin.ZiZhi_Def = Mathf.Min(zizhiNow_Def_1, zizhiNow_Def_2);
+            rolePetInfoMin.ZiZhi_Adf = Mathf.Min(zizhiNow_Adf_1, zizhiNow_Adf_2);
+            rolePetInfoMin.ZiZhi_ActSpeed = Mathf.Min(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2);
+            rolePetInfoMin.ZiZhi_ChengZhang = Mathf.Min(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2);
+
+            rolePetInfoMax.ZiZhi_Hp = Mathf.Max(zizhiNow_Hp_1, zizhiNow_Hp_2);
+            rolePetInfoMax.ZiZhi_Act = Mathf.Max(zizhiNow_Act_1, zizhiNow_Act_2);
+            rolePetInfoMax.ZiZhi_MageAct = Mathf.Max(zizhiNow_MageAct_1, zizhiNow_MageAct_2);
+            rolePetInfoMax.ZiZhi_Def = Mathf.Max(zizhiNow_Def_1, zizhiNow_Def_2);
+            rolePetInfoMax.ZiZhi_Adf = Mathf.Max(zizhiNow_Adf_1, zizhiNow_Adf_2);
+            rolePetInfoMax.ZiZhi_ActSpeed = Mathf.Max(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2);
+            rolePetInfoMax.ZiZhi_ChengZhang = Mathf.Max(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2);
+
+            return (rolePetInfoMin, rolePetInfoMax);
         }
 
         public static float Pet_HeCheng_ZiZhi(float zizhiValue_1, float zizhiValue_2, float maxZiZhi = 99999, string ziZhiType = "0")
@@ -94,9 +133,9 @@ namespace ET
                     return petNumber + numericComponent.GetAsInt(NumericType.PetExtendNumber);
                 }
             }
+
             return petNumber + numericComponent.GetAsInt(NumericType.PetExtendNumber);
         }
-
 
         public static void UpdatePetNumeric(RolePetInfo rolePetInfo)
         {
@@ -112,14 +151,15 @@ namespace ET
             for (int i = 0; i < rolePetInfo.Ks.Count; i++)
             {
                 if (rolePetInfo.Ks[i] == key)
-                { 
-                    return rolePetInfo.Vs[i];   
+                {
+                    return rolePetInfo.Vs[i];
                 }
             }
+
             return value;
         }
 
-        public static  float GetAsFloat(RolePetInfo rolePetInfo, int numericType)
+        public static float GetAsFloat(RolePetInfo rolePetInfo, int numericType)
         {
             return (float)GetByKey(rolePetInfo, numericType) / 10000;
         }
@@ -140,11 +180,11 @@ namespace ET
             int buffMul = nowValue * 100 + 12;
             long old = GetByKey(rolePetInfo, nowValue);
             long nowPropertyValue = (long)
-                (
-                (GetByKey(rolePetInfo, add) * (1 + GetAsFloat(rolePetInfo, mul)) + GetByKey(rolePetInfo, finalAdd)) * (1 + GetAsFloat(rolePetInfo, buffMul))
-
+            (
+                (GetByKey(rolePetInfo, add) * (1 + GetAsFloat(rolePetInfo, mul)) + GetByKey(rolePetInfo, finalAdd)) *
+                (1 + GetAsFloat(rolePetInfo, buffMul))
                 + GetByKey(rolePetInfo, buffAdd)
-                );
+            );
 
             int keyIndex = rolePetInfo.Ks.IndexOf(nowValue);
             if (keyIndex == -1)
@@ -190,15 +230,14 @@ namespace ET
             }
         }
 
-
         public static List<int> GetAllShenShou()
-        { 
+        {
             List<int> shenshous = new List<int>();
             foreach (var item in PetConfigCategory.Instance.GetAll())
             {
                 if (item.Value.PetType == 2)
                 {
-                    shenshous.Add( item.Key );
+                    shenshous.Add(item.Key);
                 }
             }
 
@@ -222,6 +261,7 @@ namespace ET
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -237,11 +277,12 @@ namespace ET
             for (int i = 0; i < rolePetInfos.Count; i++)
             {
                 int index = allshenshous.IndexOf(rolePetInfos[i].ConfigId);
-                if (index!= -1)
-                { 
+                if (index != -1)
+                {
                     allshenshous.RemoveAt(index);
                 }
             }
+
             return allshenshous.Count == 0;
         }
 
@@ -257,28 +298,29 @@ namespace ET
             {
                 if (rolePetInfos[i].PetStatus == 3)
                 {
-                    number++;   
+                    number++;
                 }
             }
+
             return number;
         }
 
         public static int GetCangKuOpenLv(int num)
         {
-            foreach(var item in JiaYuanConfigCategory.Instance.GetAll())
+            foreach (var item in JiaYuanConfigCategory.Instance.GetAll())
             {
                 if (item.Value.PetNum >= num)
                 {
                     return item.Key;
                 }
             }
+
             return -1;
         }
 
         //宠物评分
         public static int PetPingJia(RolePetInfo petinfo)
         {
-
             int fightValue = 0;
             float fightValueFloat = 0f;
 
@@ -309,19 +351,14 @@ namespace ET
             //宠物技能评分
             for (int i = 0; i < petinfo.PetSkill.Count; i++)
             {
-
                 if (petinfo.PetSkill[i] >= 80001001 && petinfo.PetSkill[i] < 80001999)
                 {
-
                     fightValueFloat += 0.05f;
-
                 }
 
                 if (petinfo.PetSkill[i] >= 80002001 && petinfo.PetSkill[i] < 80002999)
                 {
-
                     fightValueFloat += 0.15f;
-
                 }
             }
 
@@ -330,9 +367,7 @@ namespace ET
             //fightValue += (int)(petinfo.ZiZhi_ChengZhang * 3000);
 
             return fightValue;
-
         }
-
 
         public static bool IsShenShou(int configid)
         {
@@ -348,9 +383,9 @@ namespace ET
                     return true;
                 }
             }
+
             return false;
         }
-
 
         public static void CheckPetPosition(List<long> petTeamList, List<long> petMingPosition)
         {
@@ -397,7 +432,7 @@ namespace ET
                         continue;
                     }
 
-                    if ( (pp / 9) != teamid)
+                    if ((pp / 9) != teamid)
                     {
                         petMingPosition[pp] = 0;
                     }
@@ -412,6 +447,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 for (int pp = teamid * 9; pp < teamid * 9 + 9; pp++)
                 {
                     if (petMingPosition[pp] == 0)
