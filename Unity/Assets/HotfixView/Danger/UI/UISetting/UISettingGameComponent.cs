@@ -298,6 +298,7 @@ namespace ET
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst);
             self.SkillAttackPlayerFirst.transform.Find("Image_Click").gameObject.SetActive(value == "0");
             self.SaveSettings(GameSettingEnum.SkillAttackPlayerFirst, value == "0" ? "1" : "0");
+            self.ZoneScene().GetComponent<LockTargetComponent>().SkillAttackPlayerFirst = int.Parse(value == "0"? "1" : "0");
         }
         
         public static void OnBtn_NoMoving(this UISettingGameComponent self)

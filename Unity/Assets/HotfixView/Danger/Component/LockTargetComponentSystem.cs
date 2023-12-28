@@ -181,10 +181,6 @@ namespace ET
                 }
             }
             
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            bool skillAttackPlayerFirst = false;
-            skillAttackPlayerFirst = userInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst) == "1";
-            
             float distance = 10f;
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
@@ -232,7 +228,7 @@ namespace ET
             else
             {
                 bool attackedPlayer = false; // 是否锁定了玩家
-                if (skillAttackPlayerFirst)
+                if (self.SkillAttackPlayerFirst == 1)
                 {
                     if (self.AttackTarget == 0)
                     {

@@ -9,6 +9,7 @@ namespace ET
         public int LastLockIndex = -1;
         public long LastLockId = 0;
         public int AttackTarget;
+        public int SkillAttackPlayerFirst;
 
         public bool IsGuaJi;
     }

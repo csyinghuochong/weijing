@@ -1339,6 +1339,9 @@ namespace ET
             string attackmode = userInfoComponent.GetGameSettingValue(GameSettingEnum.AttackTarget);
             self.ZoneScene().GetComponent<LockTargetComponent>().AttackTarget = int.Parse(attackmode);
 
+            self.ZoneScene().GetComponent<LockTargetComponent>().SkillAttackPlayerFirst =
+                    int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst));
+
             self.CheckRechargeRewardButton();
         }
 
