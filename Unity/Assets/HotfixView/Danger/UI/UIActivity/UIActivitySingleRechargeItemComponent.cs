@@ -10,7 +10,7 @@ namespace ET
         public GameObject RewardListNode;
         public GameObject ReceiveBtn;
         public GameObject ReceivedImg;
-
+        public GameObject Reddot;
         public int Key;
     }
 
@@ -25,6 +25,7 @@ namespace ET
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
             self.ReceivedImg = rc.Get<GameObject>("ReceivedImg");
+            self.Reddot = rc.Get<GameObject>("Reddot");
 
             self.ReceivedImg.SetActive(false);
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
@@ -35,8 +36,12 @@ namespace ET
     {
         public static void OnUpdateData(this UIActivitySingleRechargeItemComponent self, int key)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+
             self.Key = key;
             self.ConsumeNumText.GetComponent<Text>().text = $"单笔充值{key}元";
+            self.Reddot.SetActive( userInfoComponent.UserInfo.SingleRechargeIds.Contains(key) && !userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
+
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 0.8f);
 
@@ -86,7 +91,7 @@ namespace ET
             ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
             redPointComponent.UpdateReddont(ReddotType.SingleRecharge);
 
-
+            self.Reddot.SetActive(false);
             self.ReceiveBtn.SetActive(false);
             self.ReceivedImg.SetActive(true);
         }
