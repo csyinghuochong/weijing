@@ -204,7 +204,7 @@ namespace ET
                 return;
             }
 
-            C2M_MakeSelectRequest  request  = new C2M_MakeSelectRequest() { MakeType = makeId, Plan = self.Plan };
+            C2M_MakeSelectRequest  request  = new C2M_MakeSelectRequest() { MakeType = makeId, Plan = self.Plan == -1 ? 1 : self.Plan };
             M2C_MakeSelectResponse response = (M2C_MakeSelectResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList = response.MakeList;
