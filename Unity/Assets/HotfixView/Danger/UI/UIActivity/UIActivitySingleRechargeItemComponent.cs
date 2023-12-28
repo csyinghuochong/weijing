@@ -42,7 +42,7 @@ namespace ET
             self.ConsumeNumText.GetComponent<Text>().text = $"单笔充值{key}元";
             self.Reddot.SetActive( userInfoComponent.UserInfo.SingleRechargeIds.Contains(key) && !userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             self.ReceivedImg.SetActive(userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
-
+            self.ReceiveBtn.SetActive(!userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 0.8f);
 

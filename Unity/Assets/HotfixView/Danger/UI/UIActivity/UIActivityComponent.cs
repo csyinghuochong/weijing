@@ -81,8 +81,8 @@ namespace ET
 	{
         public override void Destroy(UIActivityComponent self)
         {
-            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
-            redPointComponent.UnRegisterReddot(ReddotType.SingleRecharge, self.Reddot_SingleRecharge);
+            ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
+            redPointComponent?.UnRegisterReddot(ReddotType.SingleRecharge, self.Reddot_SingleRecharge);
         }
     }
 
