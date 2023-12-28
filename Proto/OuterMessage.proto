@@ -347,6 +347,8 @@ message UserInfo
 	repeated int32 PetHeXinExploreRewardIds = 55;
 
 	string StallName = 56;
+
+	repeated int32 SingleRechargeRewardIds = 57;
 }
 
 message KeyValuePair
@@ -7338,4 +7340,20 @@ message M2C_AccountWarehousOperateResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	BagInfo BagInfo = 2;
+}
+
+//ResponseType M2C_SingleRechargeRewardResponse
+message C2M_SingleRechargeRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RewardId = 1;
+}
+
+message M2C_SingleRechargeRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int32 RewardIds = 1;
 }

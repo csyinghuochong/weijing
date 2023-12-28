@@ -673,6 +673,9 @@ namespace ET
 		[ProtoMember(56)]
 		public string StallName { get; set; }
 
+		[ProtoMember(57)]
+		public List<int> SingleRechargeRewardIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -15300,6 +15303,40 @@ namespace ET
 
 		[ProtoMember(2)]
 		public BagInfo BagInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_SingleRechargeRewardResponse))]
+	[Message(OuterOpcode.C2M_SingleRechargeRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_SingleRechargeRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int RewardId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SingleRechargeRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_SingleRechargeRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> RewardIds = new List<int>();
 
 	}
 

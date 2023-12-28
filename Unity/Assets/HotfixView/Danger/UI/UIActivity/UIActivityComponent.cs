@@ -10,12 +10,14 @@ namespace ET
 		MaoXian = 1,
 		Token = 2,
 		TeHui = 3,
+		SingleRecharge = 4,
 
 		Number,
 	}
 
 	public class UIActivityComponent : Entity, IAwake
 	{
+		public GameObject Btn_Type_5;
 		public UIPageViewComponent UIPageView;
 		public UIPageButtonComponent UIPageButton;
 
@@ -44,12 +46,17 @@ namespace ET
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.MaoXian] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityMaoXian");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.Token] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityToken");
 			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.TeHui] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityTeHui");
+			pageViewComponent.UISubViewPath[(int)ActivityPageEnum.SingleRecharge] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivitySingleRecharge");
 
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.YueKa] = typeof(UIActivityYueKaComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.MaoXian] = typeof(UIActivityMaoXianComponent);
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.Token] = typeof(UIActivityTokenComponent );
 			pageViewComponent.UISubViewType[(int)ActivityPageEnum.TeHui] = typeof(UIActivityTeHuiComponent);
+			pageViewComponent.UISubViewType[(int)ActivityPageEnum.SingleRecharge] = typeof (UIActivitySingleRechargeComponent);
 			self.UIPageView = pageViewComponent;
+			
+			self.Btn_Type_5 = rc.Get<GameObject>("Btn_Type_5");
+			self.Btn_Type_5.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
 			//单选组件
 			GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");

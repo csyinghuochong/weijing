@@ -1136,5 +1136,17 @@ namespace ET
             }
             return string.Empty;
         }
+
+
+        /// <summary>
+        /// 单笔充值奖励
+        /// </summary>
+        public static Dictionary<int, string> SingleRechargeReward = new Dictionary<int, string>()
+        {
+            { 6, "10020001;1@1;6000" },
+            { 30, "10020001;1@1;30000" }, 
+            { 50, "10020001;1@1;500000" }, 
+            { 98, "10020001;1@1;980000" },
+        };
     }
 }

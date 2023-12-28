@@ -851,5 +851,7 @@ namespace ET
 		 public const ushort E2C_AccountWarehousInfoResponse = 10848;
 		 public const ushort C2M_AccountWarehousOperateRequest = 10849;
 		 public const ushort M2C_AccountWarehousOperateResponse = 10850;
+		 public const ushort C2M_SingleRechargeRewardRequest = 10851;
+		 public const ushort M2C_SingleRechargeRewardResponse = 10852;
 	}
 }

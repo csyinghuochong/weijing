@@ -22,6 +22,23 @@ namespace ET
                 return; 
             }
 
+            // 单笔充值奖励记录
+            int singleRecharge = 0;
+            foreach (int key in ConfigHelper.SingleRechargeReward.Keys)
+            {
+                if (rechargeNumber >= key && rechargeNumber > singleRecharge)
+                {
+                    singleRecharge = key;
+                }
+            }
+            if (singleRecharge != 0)
+            {
+                if (!unit.GetComponent<UserInfoComponent>().UserInfo.SingleRechargeRewardIds.Contains(singleRecharge))
+                {
+                    unit.GetComponent<UserInfoComponent>().UserInfo.SingleRechargeRewardIds.Add(singleRecharge);
+                }
+            }
+
             int number = ConfigHelper.GetDiamondNumber(rechargeNumber);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, number.ToString(), notice, ItemGetWay.Recharge);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
