@@ -209,7 +209,7 @@ namespace ET
 					}
 
 					ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
-					if (itemConfig.EquipType == 101)
+					if (itemConfig.EquipType == 101 && itemConfig.EquipType == 201)
 					{
 						continue;
 					}
