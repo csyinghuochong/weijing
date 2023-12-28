@@ -13,7 +13,7 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {
                 long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
-                DBAccountWarehouse dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountWarehouse>(unit.DomainZone(), accountId);
+                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountInfo>(unit.DomainZone(), accountId);
                 if (dBAccountWarehouse == null)
                 {
                     response.Error = ErrorCode.ERR_NetWorkError;

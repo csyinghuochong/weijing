@@ -35,7 +35,6 @@ namespace ET
         public const string DBUnionManager = "DBUnionManager";
         public const string DBServerMailInfo = "DBServerMailInfo";
         public const string DBPopularizeInfo = "DBPopularizeInfo";
-        public const string DBAccountWarehouse = "DBAccountWarehouse";
         public const string DBDayActivityInfo = "DBDayActivityInfo";
         public const string DBCenterSerialInfo = "DBCenterSerialInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";

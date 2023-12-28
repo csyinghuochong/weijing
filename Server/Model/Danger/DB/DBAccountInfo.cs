@@ -21,6 +21,21 @@ namespace ET
 
 		public int AccountType; //账号类型     0正常  1白名单  2黑名单
 
-		public long CreateTime;	//创建时间
-	}
+		public long CreateTime; //创建时间
+
+
+        public List<BagInfo> BagInfoList = new List<BagInfo>();
+
+        public int HaveItemById(long bagInfoId)
+        {
+            for (int i = 0; i < BagInfoList.Count; i++)
+            {
+                if (BagInfoList[i].BagInfoID == bagInfoId)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 }

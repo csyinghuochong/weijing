@@ -11,16 +11,8 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccInfoID))
             {
-                DBAccountWarehouse dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountWarehouse>(scene.DomainZone(), request.AccInfoID);
-                if (dBAccountWarehouse == null)
-                {
-                    await DBHelper.AddDataComponent<DBAccountWarehouse>(scene.DomainZone(), request.AccInfoID, DBHelper.DBAccountWarehouse);
-                }
-                else
-                {
-                    response.BagInfos = dBAccountWarehouse.BagInfoList;
-                }
-
+                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountInfo>(scene.DomainZone(), request.AccInfoID);
+                response.BagInfos = dBAccountWarehouse.BagInfoList;
                 reply();
             }
             await ETTask.CompletedTask;
