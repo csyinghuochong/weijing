@@ -5,7 +5,7 @@
 {"_t":"ZuoQiShowConfig","_id":10005,"Name":"绝影","Quality":4,"Icon":"10005","ModelID":"10005","TuoWeiEffectID":"0","Des":"暴击概率+2%","AddProperty":"200103,0.02","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001002,"NameShowUp":0},
 {"_t":"ZuoQiShowConfig","_id":10006,"Name":"麋鹿之春","Quality":4,"Icon":"10006","ModelID":"10006","TuoWeiEffectID":"0","Des":"暴击概率+2%","AddProperty":"200103,0.02","GetDes":"通过游戏内的坐骑马绳兑换获得","MoveBuffID":99001002,"NameShowUp":0},
 {"_t":"ZuoQiShowConfig","_id":10007,"Name":"守护牦牛","Quality":4,"Icon":"10007","ModelID":"10007","TuoWeiEffectID":"0","Des":"重击概率+3%","AddProperty":"202103,0.03","GetDes":"通过游戏内的令牌系统获得","MoveBuffID":99001002,"NameShowUp":0},
-{"_t":"ZuoQiShowConfig","_id":10008,"Name":"熔炎之龙","Quality":5,"Icon":"10008","ModelID":"10008","TuoWeiEffectID":"0","Des":"攻击提升3%","AddProperty":"100402,0.03","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001003,"NameShowUp":10},
+{"_t":"ZuoQiShowConfig","_id":10008,"Name":"熔炎之龙","Quality":5,"Icon":"10008","ModelID":"10008","TuoWeiEffectID":"0","Des":"攻击提升5%且对怪伤害提升10%","AddProperty":"100402,0.05@203003;0.1@203103;0.1","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001003,"NameShowUp":10},
 {"_t":"ZuoQiShowConfig","_id":10009,"Name":"竞技之猩","Quality":4,"Icon":"10009","ModelID":"10009","TuoWeiEffectID":"0","Des":"攻击提升1%","AddProperty":"100402,0.01","GetDes":"通过游戏内的竞技场第一获得","MoveBuffID":99001002,"NameShowUp":0},
-{"_t":"ZuoQiShowConfig","_id":10010,"Name":"幽灵虚空龙","Quality":5,"Icon":"10010","ModelID":"10010","TuoWeiEffectID":"0","Des":"造成伤害提升5%","AddProperty":"100402,0.03","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001004,"NameShowUp":20},
+{"_t":"ZuoQiShowConfig","_id":10010,"Name":"幽灵虚空龙","Quality":5,"Icon":"10010","ModelID":"10010","TuoWeiEffectID":"0","Des":"造成伤害提升5%且对怪伤害提升10%","AddProperty":"100402,0.05@203003;0.1@203103;0.1","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001004,"NameShowUp":20},
 ]}
