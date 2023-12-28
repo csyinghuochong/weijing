@@ -407,40 +407,6 @@ $ö+8"LocalDungeon*LocalDungeon2
 $÷+8"LocalDungeon*LocalDungeon3
 $ø+8"LocalDungeon*LocalDungeon4
 ù+8	"Happy*Happy
-Å,9"Account*Account0—Ÿ
-Æ,9"Realm*Realm0˜Ÿ
-Ç,9"Gate*Gate10™Ÿ
-È,9"Queue*Queue0šŸ
-É,9"DBCache*DBCache
-Ê,9
-"Chat*Chat
-Ë,9
-"EMail*EMail
-Ì,9
-"Activity*Activity
-Í,9
-"Rank*Rank
-Î,9
-"PaiMai*PaiMai
-Ï,9	"Team*Team
-Ğ,9
-"Friend*Friend
-Ñ,9	"Union*Union
-!Ò,9	"FubenCenter*FubenCenter
-Ó,9	"Battle*Battle
-Ô,9"Map*Map101
-Õ,9	"Arena*Arena
-Ö,9	"JiaYuan*JiaYuan
-×,9
-"
-Popularize*
-Popularize
-Ø,9	"Solo*Solo
-$Ù,9"LocalDungeon*LocalDungeon1
-$Ú,9"LocalDungeon*LocalDungeon2
-$Û,9"LocalDungeon*LocalDungeon3
-$Ü,9"LocalDungeon*LocalDungeon4
-İ,9	"Happy*Happy
 ©-:"Account*Account0ûŸ
 ª-:"Realm*Realm0üŸ
 «-:"Gate*Gate10ıŸ
@@ -577,6 +543,40 @@ $ê/="LocalDungeon*LocalDungeon2
 $ë/="LocalDungeon*LocalDungeon3
 $ì/="LocalDungeon*LocalDungeon4
 í/=	"Happy*Happy
+¹0>"Account*Account0—Ÿ
+º0>"Realm*Realm0˜Ÿ
+»0>"Gate*Gate10™Ÿ
+¼0>"Queue*Queue0šŸ
+½0>"DBCache*DBCache
+¾0>
+"Chat*Chat
+¿0>
+"EMail*EMail
+À0>
+"Activity*Activity
+Á0>
+"Rank*Rank
+Â0>
+"PaiMai*PaiMai
+Ã0>	"Team*Team
+Ä0>
+"Friend*Friend
+Å0>	"Union*Union
+!Æ0>	"FubenCenter*FubenCenter
+Ç0>	"Battle*Battle
+È0>"Map*Map101
+É0>	"Arena*Arena
+Ê0>	"JiaYuan*JiaYuan
+Ë0>
+"
+Popularize*
+Popularize
+Ì0>	"Solo*Solo
+$Í0>"LocalDungeon*LocalDungeon1
+$Î0>"LocalDungeon*LocalDungeon2
+$Ï0>"LocalDungeon*LocalDungeon3
+$Ğ0>"LocalDungeon*LocalDungeon4
+Ñ0>	"Happy*Happy
 éÊ"Center*Center
 #êÊ"LoginCenter*LoginCenter
 ëÊ"Location*Location
