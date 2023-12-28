@@ -9,6 +9,8 @@ namespace ET
 
     public class UIRolePropertyComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Btn_LuckExplain;
+        public GameObject Lab_LuckValue;
         public GameObject ScrollView1;
         public GameObject ScrollView2;
         public GameObject ImageBaoShiDu;
@@ -69,6 +71,8 @@ namespace ET
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(10);
             self.MaxPiLao = int.Parse(globalValueConfig.Value);
 
+            self.Btn_LuckExplain = rc.Get<GameObject>("Btn_LuckExplain");
+            self.Lab_LuckValue = rc.Get<GameObject>("Lab_LuckValue");
             self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
             self.ScrollView2 = rc.Get<GameObject>("ScrollView2");
             self.Text_BaoShiDu = rc.Get<GameObject>("Text_BaoShiDu");
@@ -94,6 +98,10 @@ namespace ET
                 self.UIRoleAddPointComponent.OnInitUI();
             });
 
+            self.Btn_LuckExplain.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UIHelper.Create(self.ZoneScene(), UIType.UIProLucklyExplain).Coroutine();
+            });
             self.RoleAddPoint = rc.Get<GameObject>("RoleAddPoint");
             self.UIRoleAddPointComponent = self.AddChild<UIRoleAddPointComponent, GameObject>(self.RoleAddPoint);
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
@@ -232,7 +240,7 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Dodge, "闪避概率", "", 2));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeAddPro, "伤害加成", "", 2));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeSubPro, "伤害减免", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
+            // self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
             
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, "暴击等级", "", 1));
@@ -556,7 +564,8 @@ namespace ET
                     }
                 }
             }
-
+            self.Lab_LuckValue.GetComponent<Text>().text = $"{numericComponent.GetAsLong(NumericType.Now_Luck)}/10";
+            
             self.NowShowType = type;
 
             //显示战斗力

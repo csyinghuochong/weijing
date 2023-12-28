@@ -20,6 +20,7 @@ namespace ET
 		public const string UIOpenChest = "Main/Main/UIOpenChest";
 		public const string UIGuideEquip = "Main/Main/UIGuideEquip";
 		public const string UIRole = "Main/Role/UIRole";
+		public const string UIProLucklyExplain = "Main/Role/UIProLucklyExplain";
 		public const string UIOneSellSet = "Main/Role/UIOneSellSet";
 		public const string UIZhuaPu = "Main/Main/UIZhuaPu";
 		public const string UIRoleZodiac = "Main/Role/UIRoleZodiac";
