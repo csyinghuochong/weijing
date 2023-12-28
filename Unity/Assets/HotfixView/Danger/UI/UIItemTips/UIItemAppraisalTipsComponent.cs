@@ -409,9 +409,6 @@ namespace ET
                 // }
 
                 self.Lab_ItemJingHeProperty.GetComponent<Text>().text = attribute;
-
-                ////未鉴定不显示属性
-                self.Lab_ItemJingHeProperty.GetComponent<Text>().text = string.Empty;
             }
 
             self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? "开启封印" : "鉴定";
