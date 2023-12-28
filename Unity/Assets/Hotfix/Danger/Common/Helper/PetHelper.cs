@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -13,9 +15,69 @@ namespace ET
         /// <returns></returns>
         public static RolePetInfo GetPetHeChengPreview(RolePetInfo rolePetA , RolePetInfo rolePetB)
         {
-
             RolePetInfo rolePetInfo = new RolePetInfo();    
-            return rolePetA;
+            
+            float number = RandomHelper.RandFloat();
+            //合成形象,50%概率
+            rolePetInfo.ConfigId = number <= 0.5f? rolePetA.ConfigId : rolePetB.ConfigId;
+            
+            //资质
+            int zizhiNow_Hp_1 = rolePetA.ZiZhi_Hp;
+            int zizhiNow_Act_1 = rolePetA.ZiZhi_Act;
+            int zizhiNow_MageAct_1 = rolePetA.ZiZhi_MageAct;
+            int zizhiNow_Def_1 = rolePetA.ZiZhi_Def;
+            int zizhiNow_Adf_1 = rolePetA.ZiZhi_Adf;
+            int zizhiNow_ActSpeed_1 = rolePetA.ZiZhi_ActSpeed;
+            float zizhiNow_ChengZhang_1 = rolePetA.ZiZhi_ChengZhang;
+
+            int zizhiNow_Hp_2 = rolePetB.ZiZhi_Hp;
+            int zizhiNow_Act_2 = rolePetB.ZiZhi_Act;
+            int zizhiNow_MageAct_2 = rolePetB.ZiZhi_MageAct;
+            int zizhiNow_Def_2 = rolePetB.ZiZhi_Def;
+            int zizhiNow_Adf_2 = rolePetB.ZiZhi_Adf;
+            int zizhiNow_ActSpeed_2 = rolePetB.ZiZhi_ActSpeed;
+            float zizhiNow_ChengZhang_2 = rolePetB.ZiZhi_ChengZhang;
+            
+            int zizhiNow_Hp = (int)Pet_HeCheng_ZiZhi(zizhiNow_Hp_1, zizhiNow_Hp_2, 3000);
+            int zizhiNow_Act = (int)Pet_HeCheng_ZiZhi(zizhiNow_Act_1, zizhiNow_Act_2, 1600);
+            int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1600);
+            int zizhiNow_Def = (int)Pet_HeCheng_ZiZhi(zizhiNow_Def_1, zizhiNow_Def_2, 1600);
+            int zizhiNow_Adf = (int)Pet_HeCheng_ZiZhi(zizhiNow_Adf_1, zizhiNow_Adf_2, 1600);
+            int zizhiNow_ActSpeed = (int)Pet_HeCheng_ZiZhi(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2, 3000);
+            float zizhiNow_ChengZhang = Pet_HeCheng_ZiZhi(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2, 1.3f);
+            //目前攻速不做调整,强制为3000
+            zizhiNow_ActSpeed = 3000;
+
+            rolePetInfo.ZiZhi_Hp = zizhiNow_Hp;
+            rolePetInfo.ZiZhi_Act = zizhiNow_Act;
+            rolePetInfo.ZiZhi_MageAct = zizhiNow_MageAct;
+            rolePetInfo.ZiZhi_Def = zizhiNow_Def;
+            rolePetInfo.ZiZhi_Adf = zizhiNow_Adf;
+            rolePetInfo.ZiZhi_ActSpeed = zizhiNow_ActSpeed;
+            rolePetInfo.ZiZhi_ChengZhang = zizhiNow_ChengZhang;
+            
+            return rolePetInfo;
+        }
+
+        public static float Pet_HeCheng_ZiZhi(float zizhiValue_1, float zizhiValue_2, float maxZiZhi = 99999, string ziZhiType = "0")
+        {
+            float ZiZhimin = Mathf.Min(zizhiValue_1, zizhiValue_2);
+            float ZiZhimax = Mathf.Max(zizhiValue_1, zizhiValue_2);
+
+            ZiZhimin = ZiZhimin * 0.95f;
+            ZiZhimax = ZiZhimax * 1.05f;
+
+            float chaValuie = ZiZhimax - ZiZhimin;
+
+            float zhizhiValue = ZiZhimin + chaValuie * RandomHelper.RandFloat01();
+
+            //限制最高资质
+            if (zhizhiValue > maxZiZhi)
+            {
+                zhizhiValue = maxZiZhi;
+            }
+
+            return (float)Math.Round(zhizhiValue, 2);
         }
 
         public static int GetPetMaxNumber(Unit unit, int level)
