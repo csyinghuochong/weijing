@@ -255,6 +255,7 @@ namespace ET
         public static void InitData(this UIItemAppraisalTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler=null)
         {
             self.BagInfo = baginfo;
+            self.ItemOpetateType = equipTipsType;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
 
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
