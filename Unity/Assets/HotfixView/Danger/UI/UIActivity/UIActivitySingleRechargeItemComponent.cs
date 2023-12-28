@@ -44,7 +44,7 @@ namespace ET
             self.ReceivedImg.SetActive(userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             self.ReceiveBtn.SetActive(!userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 0.8f);
+            UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 1f);
 
             // UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             // if (userInfo.SingleRechargeRewardIds.Contains(self.Key))
