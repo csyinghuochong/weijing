@@ -28,7 +28,7 @@ namespace ET
                     case 1:
                         if (dBAccountWarehouse.BagInfoList.Count >= GlobalValueConfigCategory.Instance.AccountBagMax)
                         {
-                            response.Error = ErrorCode.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_WarehouseIsFull;
                             reply();
                             return;
                         }
