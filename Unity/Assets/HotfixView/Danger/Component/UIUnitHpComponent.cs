@@ -374,7 +374,7 @@ namespace ET
             {
                 int rankId = numericComponent.GetAsInt(NumericType.CombatRankID);
                 int occRankId = numericComponent.GetAsInt(NumericType.OccCombatRankID);
-                int occ = this.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                int occ = unit.ConfigId;
                 unionname = ConfigHelper.GetRankChengHao(rankId, occRankId, occ);
             }
             if (string.IsNullOrEmpty(unionname) )
