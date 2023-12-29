@@ -79,21 +79,21 @@ namespace ET
             int zizhiNow_ActSpeed_2 = rolePetB.ZiZhi_ActSpeed;
             float zizhiNow_ChengZhang_2 = rolePetB.ZiZhi_ChengZhang;
 
-            rolePetInfoMin.ZiZhi_Hp = (int)(Mathf.Min(zizhiNow_Hp_1, zizhiNow_Hp_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_Act = (int)(Mathf.Min(zizhiNow_Act_1, zizhiNow_Act_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_MageAct = (int)(Mathf.Min(zizhiNow_MageAct_1, zizhiNow_MageAct_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_Def = (int)(Mathf.Min(zizhiNow_Def_1, zizhiNow_Def_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_Adf = (int)(Mathf.Min(zizhiNow_Adf_1, zizhiNow_Adf_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_ActSpeed = (int)(Mathf.Min(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2) * 0.95f);
-            rolePetInfoMin.ZiZhi_ChengZhang = (int)(Mathf.Min(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2) * 0.95f);
+            rolePetInfoMin.ZiZhi_Hp = Mathf.Min((int)(Mathf.Min(zizhiNow_Hp_1, zizhiNow_Hp_2) * 0.95f),3200);
+            rolePetInfoMin.ZiZhi_Act = Mathf.Min((int)(Mathf.Min(zizhiNow_Act_1, zizhiNow_Act_2) * 0.95f), 1600);
+            rolePetInfoMin.ZiZhi_MageAct = Mathf.Min((int)(Mathf.Min(zizhiNow_MageAct_1, zizhiNow_MageAct_2) * 0.95f), 1600);
+            rolePetInfoMin.ZiZhi_Def = Mathf.Min((int)(Mathf.Min(zizhiNow_Def_1, zizhiNow_Def_2) * 0.95f), 1600);
+            rolePetInfoMin.ZiZhi_Adf = Mathf.Min((int)(Mathf.Min(zizhiNow_Adf_1, zizhiNow_Adf_2) * 0.95f), 1600);
+            rolePetInfoMin.ZiZhi_ActSpeed = Mathf.Min((int)(Mathf.Min(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2) * 0.95f), 1600);
+            rolePetInfoMin.ZiZhi_ChengZhang = (float)(Mathf.Min(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2) * 0.95f);
 
-            rolePetInfoMax.ZiZhi_Hp = (int)(Mathf.Max(zizhiNow_Hp_1, zizhiNow_Hp_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_Act = (int)(Mathf.Max(zizhiNow_Act_1, zizhiNow_Act_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_MageAct = (int)(Mathf.Max(zizhiNow_MageAct_1, zizhiNow_MageAct_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_Def = (int)(Mathf.Max(zizhiNow_Def_1, zizhiNow_Def_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_Adf = (int)(Mathf.Max(zizhiNow_Adf_1, zizhiNow_Adf_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_ActSpeed = (int)(Mathf.Max(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2) * 1.05f);
-            rolePetInfoMax.ZiZhi_ChengZhang = (int)(Mathf.Max(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2) * 1.05f);
+            rolePetInfoMax.ZiZhi_Hp = Mathf.Min((int)(Mathf.Max(zizhiNow_Hp_1, zizhiNow_Hp_2) * 1.05f), 3200);
+            rolePetInfoMax.ZiZhi_Act = Mathf.Min((int)(Mathf.Max(zizhiNow_Act_1, zizhiNow_Act_2) * 1.05f), 1600);
+            rolePetInfoMax.ZiZhi_MageAct = Mathf.Min((int)(Mathf.Max(zizhiNow_MageAct_1, zizhiNow_MageAct_2) * 1.05f), 1600);
+            rolePetInfoMax.ZiZhi_Def = Mathf.Min((int)(Mathf.Max(zizhiNow_Def_1, zizhiNow_Def_2) * 1.05f), 1600);
+            rolePetInfoMax.ZiZhi_Adf = Mathf.Min((int)(Mathf.Max(zizhiNow_Adf_1, zizhiNow_Adf_2) * 1.05f), 1600);
+            rolePetInfoMax.ZiZhi_ActSpeed = Mathf.Min((int)(Mathf.Max(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2) * 1.05f), 1600);
+            rolePetInfoMax.ZiZhi_ChengZhang = (float)(Mathf.Max(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2) * 1.05f);
 
             return (rolePetInfoMin, rolePetInfoMax);
         }
