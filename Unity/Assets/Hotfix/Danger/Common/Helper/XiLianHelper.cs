@@ -150,7 +150,9 @@ namespace ET
         /// </summary>
         /// <param name="bagInfo"></param>
         /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能   2 (不显示广播消息)
-        public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv)
+        /// diamondXilian(0道具1钻石)
+        /// /洗炼装备属性传入一个参数，这个参数表示他是用道具洗炼还是钻石洗炼 传入第二个参数 当前钻石的洗炼次数（用来做一些保底属性处理）
+        public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv, int diamondXilian, int diamondNumber)
         {
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);

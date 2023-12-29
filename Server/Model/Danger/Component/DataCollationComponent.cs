@@ -100,6 +100,9 @@ namespace ET
         //洗练次数
         public int XiLianTimes;
 
+        //钻石洗练次数
+        public int DiamondXiLianTimes;
+
         //上次封印之塔层数（不是最高, 上一次即可）
         public int LastSealTowerId;
 

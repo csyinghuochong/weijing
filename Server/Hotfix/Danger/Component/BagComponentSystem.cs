@@ -1010,7 +1010,7 @@ namespace ET
                         ItemXiLianResult itemXiLian = new ItemXiLianResult();
                         if (itemCof.EquipType < 101) //装备洗炼
                         {
-                            itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
+                            itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel, 0,0);
                         }
                         else if(itemCof.EquipType == 101)//生肖洗炼
                         {

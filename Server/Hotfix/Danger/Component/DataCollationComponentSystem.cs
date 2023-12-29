@@ -24,6 +24,11 @@ namespace ET
         public static void OnXiLian(this DataCollationComponent self, int times)
         {
             self.XiLianTimes += times;
+
+            if (times > 1)
+            {
+                self.DiamondXiLianTimes += times;
+            }
         }
 
         public static void OnSceondHurt(this DataCollationComponent self, long hurtValue)
