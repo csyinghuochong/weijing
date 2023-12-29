@@ -37,8 +37,14 @@ namespace ET
             }
 
             //获取列表,对应的缓存进行清空
-            ItemConfig itemCof = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
+            if (!ItemConfigCategory.Instance.Contain(request.PaiMaiItemInfo.BagInfo.ItemID))
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
 
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
             switch (itemCof.ItemType) {
 
                 //消耗品
