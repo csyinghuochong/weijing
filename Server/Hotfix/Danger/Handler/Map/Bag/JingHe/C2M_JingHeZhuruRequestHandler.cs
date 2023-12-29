@@ -48,10 +48,10 @@ namespace ET
             int addqulity = RandomHelper.RandomNumber(valuerange[0], valuerange[1] + 1);
             oldqulity += addqulity;
             //做个限制
-            //if (oldqulity > 100)
-            //{
-            //    oldqulity = 100;
-            //}
+            if (oldqulity > 100)
+            {
+                oldqulity = 100;
+            }
 
             bagInfoJinHe.ItemPar = oldqulity.ToString();
             m2c_bagUpdate.BagInfoUpdate.Add(bagInfoJinHe);
