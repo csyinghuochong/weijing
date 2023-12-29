@@ -49,7 +49,12 @@ namespace ET
                     {
                         continue;
                     }
-                    string[] attributeInfo = attributeInfoList[a].Split(',');
+                    string[] attributeInfo = attributeInfoList[a].Split(';');
+                    if (attributeInfo.Length < 2)
+                    {
+                        continue;
+                    }
+
                     int numericType = int.Parse(attributeInfo[0]);
 
                     if (NumericHelp.GetNumericValueType(numericType) == 2)
