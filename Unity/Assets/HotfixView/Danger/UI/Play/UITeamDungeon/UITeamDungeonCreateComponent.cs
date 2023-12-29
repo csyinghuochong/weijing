@@ -205,6 +205,36 @@ namespace ET
                 dungeonType = TeamFubenType.ShenYuan;
             }
 
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.FubenId);
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (dungeonType == TeamFubenType.XieZhu && sceneConfig.EnterLv <= userInfo.Lv - 10)
+            {
+                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int times = unit.GetTeamDungeonTimes();
+
+                int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                int times_2 = unit.GetTeamDungeonXieZhu();
+
+                if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
+                {
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"帮助副本次数已尽，开启副本会消耗正常次数", async () =>
+                    {
+                        int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
+                        if (errorCode != ErrorCode.ERR_Success)
+                        {
+                            ErrorHelp.Instance.ErrorHint(errorCode);
+                            return;
+                        }
+
+                        UI ui = UIHelper.GetUI(self.DomainScene(), UIType.UITeamDungeon);
+                        ui.GetComponent<UITeamDungeonComponent>().UIPageButtonComponent_1.OnSelectIndex(1);
+                        UIHelper.Remove(self.DomainScene(), UIType.UITeamDungeonCreate);
+                    }, null).Coroutine();
+                    return;
+                }
+            }
+
             int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
             if (errorCode != ErrorCode.ERR_Success)
             {

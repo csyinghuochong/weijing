@@ -153,6 +153,33 @@ namespace ET
 
         public static async ETTask OnButton_Enter(this UITeamDungeonMyComponent self)
         {
+            TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (teamInfo.FubenType == TeamFubenType.XieZhu && sceneConfig.EnterLv <= userInfo.Lv - 10)
+            {
+                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int times = unit.GetTeamDungeonTimes();
+
+                int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                int times_2 = unit.GetTeamDungeonXieZhu();
+
+                if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
+                {
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"帮助副本次数已尽，继续则消耗正常次数", async () =>
+                    {
+                        TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
+                        int errorCode = await teamComponent.RequestTeamDungeonOpen();
+                        if (errorCode != ErrorCode.ERR_Success)
+                        {
+                            ErrorHelp.Instance.ErrorHint(errorCode);
+                        }
+                    }, null).Coroutine();
+                    return;
+                }
+            }
+
             TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
             int errorCode = await teamComponent.RequestTeamDungeonOpen();
             if (errorCode != ErrorCode.ERR_Success)
