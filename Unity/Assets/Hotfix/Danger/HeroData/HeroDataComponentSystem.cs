@@ -162,11 +162,16 @@ namespace ET
             if (seasonopenTime != 0 && seasonopenTime != SeasonHelper.SeasonOpenTime)
             {
                 //清空赛季相关数据. 赛季任务 晶核
-                numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0);
+                numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0, false);
 
                 Log.Console("清空赛季任务！");
             }
-          
+
+            if (numericComponent.GetAsInt(NumericType.SkillMakePlan2) == 0)
+            {
+                numericComponent.ApplyValue(NumericType.MakeType_2, 0, false);
+            }
+
             self.CheckSeasonOpen(false);
         }
 
