@@ -46,15 +46,16 @@
 
 			if (attack != null && !attack.IsDisposed && (args.OldValue > args.NewValue))
 			{
-				Unit player = null;
+				Unit player = attack;
                
                 if (attack.MasterId > 0 &&( attack.Type == UnitType.Pet || attack.Type == UnitType.Monster))
 				{
-                    attack = attack.GetParent<UnitComponent>().Get(attack.MasterId);
+                    player = attack.GetParent<UnitComponent>().Get(attack.MasterId);
 				}
-                if (attack!= null &&  attack.Type == UnitType.Player)
+
+                if (player != null && player.Type != UnitType.Player)
                 {
-                    player = attack;
+                    player = null;
                 }
 
                 if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)   //个人副本接受到的伤害
@@ -63,8 +64,6 @@
 				}
 				if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon && player != null)  //组队副本输出伤害
 				{
-					//NumericComponent numericComponent = player.GetComponent<NumericComponent>();
-					//numericComponent.ApplyChange(null, NumericType.Now_Damage, (args.OldValue - args.NewValue), 0);
 					DomainScene.GetComponent<TeamDungeonComponent>()?.OnUpdateDamage(player, unit, args.OldValue - args.NewValue);
 				}
 				if (sceneTypeEnum == (int)SceneTypeEnum.MiJing && player != null)  //秘境伤害
@@ -73,7 +72,7 @@
 				}
                 if (sceneTypeEnum == (int)SceneTypeEnum.TrialDungeon && player != null)  //试炼副本伤害
                 {
-                    DomainScene.GetComponent<TrialDungeonComponent>()?.OnUpdateDamage(player, unit, args.OldValue - args.NewValue);
+                    DomainScene.GetComponent<TrialDungeonComponent>()?.OnUpdateDamage(player, attack, unit, args.OldValue - args.NewValue, args.SkillId);
                 }
             }
 #else

@@ -75,14 +75,37 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static void OnUpdateDamage(this TrialDungeonComponent self, Unit attack, Unit defend, long damage)
+        public static void OnUpdateDamage(this TrialDungeonComponent self,Unit player, Unit attack, Unit defend, long damage, int skillid)
         {
             if (defend.Type != UnitType.Monster)
             {
                 return;
             }
-
             self.HurtValue += damage;
+
+            if(player.Id == 2010003137213038592)
+            {
+                string skillName = string.Empty;
+                if (skillid != 0)
+                {
+                    skillName = SkillConfigCategory.Instance.Get(skillid).SkillName; ;
+                }
+                
+                if (attack.Type == UnitType.Player)
+                {
+                    LogHelper.TrialBattleInfo(44, $"南宫灵蓝 使用{skillName} 造成了{damage}伤害");
+                }
+                if (attack.Type == UnitType.Pet)
+                {
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(attack.ConfigId);
+                    LogHelper.TrialBattleInfo(44, $"南宫灵蓝 宠物{petConfig.PetName} 使用{skillName} 造成了{damage}伤害");
+                }
+                if (attack.Type == UnitType.Monster)
+                {
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(attack.ConfigId);
+                    LogHelper.TrialBattleInfo(44, $"南宫灵蓝 召唤怪{monsterConfig.MonsterName} 使用{skillName} 造成了{damage}伤害");
+                }
+            }
         }
 
 
