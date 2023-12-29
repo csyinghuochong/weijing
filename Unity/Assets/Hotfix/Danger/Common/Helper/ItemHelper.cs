@@ -94,11 +94,13 @@ namespace ET
             if (showType == 2)
             {
                 float hidevaluemin = float.Parse(hidevalueinfo[1]);
-                float hidevalueman = float.Parse(hidevalueinfo[2]);
-                float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman - hidevaluemin);
-                if (qulity < 90) {
-                    hidevalue = hidevaluemin +  hidevalue * (0.4f + qulity / 100 * 0.6f);
-                }
+                float hidevaluemax = float.Parse(hidevalueinfo[2]);
+                (hidevaluemin, hidevaluemax) = ItemHelper.GetJingHeHideProRange(hidevaluemin, hidevaluemax, qulity);
+                float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevaluemax);
+                // float hidevalue = RandomHelper.RandomNumberFloat(hidevaluemin, hidevalueman - hidevaluemin);
+                // if (qulity < 90) {
+                //     hidevalue = hidevaluemin +  hidevalue * (0.4f + qulity / 100 * 0.6f);
+                // }
                 //保底
                 return new HideProList() { HideID = hideid, HideValue = (long)(hidevalue * 10000) };
             }
@@ -106,16 +108,70 @@ namespace ET
             {
                 int hidevaluemin = int.Parse(hidevalueinfo[1]);
                 int hidevaluemax = int.Parse(hidevalueinfo[2]);
-                int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax - hidevaluemin);
-                if (qulity < 90)
-                {
-                    hidevalue = hidevaluemin + (int)((float)hidevalue * (0.4f + qulity / 100 * 0.6f));
-                }
+                (hidevaluemin, hidevaluemax) = ItemHelper.GetJingHeHideProRange(hidevaluemin, hidevaluemax, qulity);
+                int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax);
+                // int hidevalue = RandomHelper.RandomNumber(hidevaluemin, hidevaluemax - hidevaluemin);
+                // if (qulity < 90)
+                // {
+                //     hidevalue = hidevaluemin + (int)((float)hidevalue * (0.4f + qulity / 100 * 0.6f));
+                // }
 
                 return new HideProList() { HideID = hideid, HideValue = hidevalue };
             }
         }
 #endif
+
+        public static (float, float) GetJingHeHideProRange(float min, float max, int qulity)
+        {
+            float med = min + (max - min) * qulity / 100f;
+            float activatedMinValue = 0;
+            float activatedMaxValue = 0;
+            if (med - 0.005f < min)
+            {
+                activatedMinValue = min;
+            }
+            else
+            {
+                activatedMinValue = med - 0.005f;
+            }
+
+            if (med + 0.005f > max)
+            {
+                activatedMaxValue = max;
+            }
+            else
+            {
+                activatedMaxValue = med + 0.005f;
+            }
+
+            return (activatedMinValue, activatedMaxValue);
+        }
+
+        public static (int, int) GetJingHeHideProRange(int min, int max, int qulity)
+        {
+            int med = min + (int)((max - min) * qulity / 100f);
+            int activatedMinValue = 0;
+            int activatedMaxValue = 0;
+            if (med - 10 < min)
+            {
+                activatedMinValue = min;
+            }
+            else
+            {
+                activatedMinValue = med - 10;
+            }
+
+            if (med + 10 > max)
+            {
+                activatedMaxValue = max;
+            }
+            else
+            {
+                activatedMaxValue = med + 10;
+            }
+
+            return (activatedMinValue, activatedMaxValue);
+        }
 
         /// <summary>
         /// 套装属性

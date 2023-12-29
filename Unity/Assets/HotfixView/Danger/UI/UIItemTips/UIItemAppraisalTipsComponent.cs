@@ -403,14 +403,17 @@ namespace ET
                     if (showType == 2)
                     {
                         float hidevaluemin = float.Parse(hidevalueinfo[1]);
-                        float hidevalueman = float.Parse(hidevalueinfo[2]);
-                        attribute = $"{proName}:" + (hidevaluemin * 100).ToString("0.##") + "~" + (hidevalueman * 100).ToString("0.##") +
+                        float hidevaluemax = float.Parse(hidevalueinfo[2]);
+
+                        (hidevaluemin, hidevaluemax) = ItemHelper.GetJingHeHideProRange(hidevaluemin, hidevaluemax, nowQua);
+                        attribute = $"{proName}:" + (hidevaluemin * 100).ToString("0.##") + "~" + (hidevaluemax * 100).ToString("0.##") +
                                 "%\n";
                     }
                     else
                     {
                         int hidevaluemin = int.Parse(hidevalueinfo[1]);
                         int hidevaluemax = int.Parse(hidevalueinfo[2]);
+                        (hidevaluemin, hidevaluemax) = ItemHelper.GetJingHeHideProRange(hidevaluemin, hidevaluemax, nowQua);
                         attribute = $"{proName}:" + hidevaluemin + "~" + hidevaluemax;
                     }
                 }
