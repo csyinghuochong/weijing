@@ -6,58 +6,6 @@ namespace ET
 {
     public static class PetHelper
     {
-        /// <summary>
-        /// 合宠预览
-        /// </summary>
-        /// <param name="rolePetA"></param>
-        /// <param name="rolePetB"></param>
-        /// <returns></returns>
-        public static RolePetInfo GetPetHeChengPreview(RolePetInfo rolePetA, RolePetInfo rolePetB)
-        {
-            RolePetInfo rolePetInfo = new RolePetInfo();
-
-            float number = RandomHelper.RandFloat();
-            //合成形象,50%概率
-            rolePetInfo.ConfigId = number <= 0.5f? rolePetA.ConfigId : rolePetB.ConfigId;
-
-            //资质
-            int zizhiNow_Hp_1 = rolePetA.ZiZhi_Hp;
-            int zizhiNow_Act_1 = rolePetA.ZiZhi_Act;
-            int zizhiNow_MageAct_1 = rolePetA.ZiZhi_MageAct;
-            int zizhiNow_Def_1 = rolePetA.ZiZhi_Def;
-            int zizhiNow_Adf_1 = rolePetA.ZiZhi_Adf;
-            int zizhiNow_ActSpeed_1 = rolePetA.ZiZhi_ActSpeed;
-            float zizhiNow_ChengZhang_1 = rolePetA.ZiZhi_ChengZhang;
-
-            int zizhiNow_Hp_2 = rolePetB.ZiZhi_Hp;
-            int zizhiNow_Act_2 = rolePetB.ZiZhi_Act;
-            int zizhiNow_MageAct_2 = rolePetB.ZiZhi_MageAct;
-            int zizhiNow_Def_2 = rolePetB.ZiZhi_Def;
-            int zizhiNow_Adf_2 = rolePetB.ZiZhi_Adf;
-            int zizhiNow_ActSpeed_2 = rolePetB.ZiZhi_ActSpeed;
-            float zizhiNow_ChengZhang_2 = rolePetB.ZiZhi_ChengZhang;
-
-            int zizhiNow_Hp = (int)Pet_HeCheng_ZiZhi(zizhiNow_Hp_1, zizhiNow_Hp_2, 3000);
-            int zizhiNow_Act = (int)Pet_HeCheng_ZiZhi(zizhiNow_Act_1, zizhiNow_Act_2, 1600);
-            int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1600);
-            int zizhiNow_Def = (int)Pet_HeCheng_ZiZhi(zizhiNow_Def_1, zizhiNow_Def_2, 1600);
-            int zizhiNow_Adf = (int)Pet_HeCheng_ZiZhi(zizhiNow_Adf_1, zizhiNow_Adf_2, 1600);
-            int zizhiNow_ActSpeed = (int)Pet_HeCheng_ZiZhi(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2, 3000);
-            float zizhiNow_ChengZhang = Pet_HeCheng_ZiZhi(zizhiNow_ChengZhang_1, zizhiNow_ChengZhang_2, 1.3f);
-            //目前攻速不做调整,强制为3000
-            zizhiNow_ActSpeed = 3000;
-
-            rolePetInfo.ZiZhi_Hp = zizhiNow_Hp;
-            rolePetInfo.ZiZhi_Act = zizhiNow_Act;
-            rolePetInfo.ZiZhi_MageAct = zizhiNow_MageAct;
-            rolePetInfo.ZiZhi_Def = zizhiNow_Def;
-            rolePetInfo.ZiZhi_Adf = zizhiNow_Adf;
-            rolePetInfo.ZiZhi_ActSpeed = zizhiNow_ActSpeed;
-            rolePetInfo.ZiZhi_ChengZhang = zizhiNow_ChengZhang;
-
-            return rolePetInfo;
-        }
-
         public static (RolePetInfo, RolePetInfo) GetPetHeChengZiZhiPreview(RolePetInfo rolePetA, RolePetInfo rolePetB)
         {
             RolePetInfo rolePetInfoMin = new RolePetInfo();
