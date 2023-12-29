@@ -145,7 +145,7 @@ namespace ET
                         self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Image>().material = null;
                         self.UISeasonTaskItemComponentList[count].Img_line.SetActive(true);
                         self.UISeasonTaskItemComponentList[count].Img_lineDi.SetActive(true);
-                        
+
                         if (taskConfig.Id > self.TaskPro.taskID)
                         {
                             // self.UISeasonTaskItemComponentList[count].SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -391,7 +391,7 @@ namespace ET
                     self.GetBtn.SetActive(false);
                     self.GiveBtn.SetActive(false);
                 }
-                
+
                 self.AcvityedImg.SetActive(false);
             }
 
@@ -452,7 +452,7 @@ namespace ET
 
         public static async ETTask OnGiveBtn(this UISeasonTaskComponent self)
         {
-            if (self.TaskType == 0)
+            if (self.TaskType == 1)
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
                 if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
