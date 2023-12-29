@@ -10,6 +10,7 @@ namespace ET
         public GameObject PetInfo1;
         public GameObject Btn_HeCheng;
         public GameObject Btn_Preview;
+        public GameObject Btn_HeChengExplain;
 
         public RolePetInfo HeChengPet_Left;
         public RolePetInfo HeChengPet_Right;
@@ -27,7 +28,12 @@ namespace ET
 
             self.PetInfo2 = rc.Get<GameObject>("PetInfo2");
             self.PetInfo1 = rc.Get<GameObject>("PetInfo1");
+            self.Btn_HeChengExplain = rc.Get<GameObject>("Btn_HeChengExplain");
 
+            self.Btn_HeChengExplain.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UIHelper.Create(self.ZoneScene(), UIType.UIPetHeChengExplain).Coroutine();
+            });
             self.Btn_HeCheng = rc.Get<GameObject>("Btn_HeCheng");
             self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(self.OnClickHeCheng);
             self.Btn_Preview = rc.Get<GameObject>("Btn_Preview");
