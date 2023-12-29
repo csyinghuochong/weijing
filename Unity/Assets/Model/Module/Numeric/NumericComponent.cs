@@ -252,7 +252,7 @@ namespace ET
             NumericDic[numericType] = value;
 
 			//血量特殊处理
-            if (old == value && numericType != NumericType.Now_Hp)
+            if (old == value && numericType != NumericType.Now_Hp && numericType != NumericType.RingTaskId && numericType != NumericType.UnionTaskId)
             {
                 return;
             }
