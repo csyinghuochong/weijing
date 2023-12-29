@@ -120,7 +120,7 @@ namespace ET
                 int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));
                 if (ifZuanShi)
                 {
-                    addXilian = (int)(addXilian * 1.2f);
+                    addXilian = (int)(addXilian * 2f);
                 }
                 else 
                 {

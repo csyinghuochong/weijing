@@ -330,7 +330,8 @@ namespace ET
                     {
                         HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hintProListID);
 
-                        if (hideProListConfig.NeedXiLianLv > xilianLv)
+                        //钻石没有等级限制
+                        if (hideProListConfig.NeedXiLianLv > xilianLv && diamondXilian == 0)
                         {
                             break;
                         }
