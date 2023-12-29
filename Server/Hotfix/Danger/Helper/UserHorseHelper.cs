@@ -49,7 +49,7 @@ namespace ET
                     {
                         continue;
                     }
-                    string[] attributeInfo = attributeInfoList[a].Split(';');
+                    string[] attributeInfo = attributeInfoList[a].Split(',');
                     if (attributeInfo.Length < 2)
                     {
                         continue;
