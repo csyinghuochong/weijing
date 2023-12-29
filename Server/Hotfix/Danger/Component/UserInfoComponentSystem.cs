@@ -727,15 +727,15 @@ namespace ET
                 return;
             }
 
-            if (!ComHelp.IsInnerNet())
-            {
-                long serverTime = TimeHelper.ServerNow();
-                if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 5)
-                {
-                    return;
-                }
-                self.UpdateRankTime = serverTime;
-            }
+            //if (!ComHelp.IsInnerNet())
+            //{
+            //    long serverTime = TimeHelper.ServerNow();
+            //    if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 5)
+            //    {
+            //        return;
+            //    }
+            //    self.UpdateRankTime = serverTime;
+            //}
 
             //Log.Console($"UpdateRankInfoUpdateRankInfo");
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
