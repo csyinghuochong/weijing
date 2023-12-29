@@ -35,7 +35,7 @@ namespace ET
         public static void OnInitUI(this UIRoleXiLianNumRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.TextTitle.GetComponent<Text>().text = $"今日洗练次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber)}";
+            self.TextTitle.GetComponent<Text>().text = $"今日洗练次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber)}";
 
             foreach (KeyValuePair<int, string> keyValuePair in ConfigHelper.ItemXiLianNumReward)
             {
