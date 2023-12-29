@@ -100,6 +100,7 @@ namespace ET
         public const int ActivityHongBao = 89;          //红包
         public const int PetExplore = 90;               //宠物探索
         public const int SingleRecharge = 91;           //单笔充值奖励
+        public const int ItemXiLian = 92;               //道具洗练
 
         public const int Activity = 100;                //活动
 

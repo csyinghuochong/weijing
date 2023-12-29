@@ -222,6 +222,8 @@ namespace ET
             self.UserInfo.DayMonsters.Clear();
             self.UserInfo.DayJingLing.Clear();
             self.UserInfo.PetExploreRewardIds.Clear();
+            self.UserInfo.PetHeXinExploreRewardIds.Clear();
+            self.UserInfo.ItemXiLianNumRewardIds.Clear();
         }
 
         /// <summary>

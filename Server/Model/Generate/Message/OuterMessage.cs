@@ -679,6 +679,9 @@ namespace ET
 		[ProtoMember(58)]
 		public List<int> SingleRewardIds = new List<int>();
 
+		[ProtoMember(59)]
+		public List<int> ItemXiLianNumRewardIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -15340,6 +15343,34 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<int> RewardIds = new List<int>();
+
+	}
+
+	[ResponseType(nameof(M2C_ItemXiLianNumReward))]
+	[Message(OuterOpcode.C2M_ItemXiLianNumReward)]
+	[ProtoContract]
+	public partial class C2M_ItemXiLianNumReward: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int RewardId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemXiLianNumReward)]
+	[ProtoContract]
+	public partial class M2C_ItemXiLianNumReward: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

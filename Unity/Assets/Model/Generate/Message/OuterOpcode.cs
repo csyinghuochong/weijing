@@ -853,5 +853,7 @@ namespace ET
 		 public const ushort M2C_AccountWarehousOperateResponse = 10850;
 		 public const ushort C2M_SingleRechargeRewardRequest = 10851;
 		 public const ushort M2C_SingleRechargeRewardResponse = 10852;
+		 public const ushort C2M_ItemXiLianNumReward = 10853;
+		 public const ushort M2C_ItemXiLianNumReward = 10854;
 	}
 }

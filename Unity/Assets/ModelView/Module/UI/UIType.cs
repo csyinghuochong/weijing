@@ -148,6 +148,8 @@ namespace ET
 		public const string UIShouJi = "Main/ShouJi/UIShouJi";
 		public const string UIShouJiSelect = "Main/ShouJi/UIShouJiSelect";
 		public const string UIRoleXiLian = "Main/RoleXiLian/UIRoleXiLian";
+		public const string UIRoleXiLianNumReward = "Main/RoleXiLian/UIRoleXiLianNumReward";
+		public const string UIRoleXiLianExplain = "Main/RoleXiLian/UIRoleXiLianExplain";
 		public const string UIRoleXiLianTen = "Main/RoleXiLian/UIRoleXiLianTen";
 		public const string UIEquipmentIncrease = "Main/EquipmentIncrease/UIEquipmentIncrease";
 		public const string UILingDi = "Main/LingDi/UILingDi";

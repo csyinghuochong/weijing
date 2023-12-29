@@ -51,7 +51,27 @@ namespace ET
                 else
                 {
                     //钻石洗炼
-                    rewardItems.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = GlobalValueConfigCategory.Instance.Get(73).Value2 });
+                    UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+                    int itemXiLianNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber);
+                    string[] set = GlobalValueConfigCategory.Instance.Get(116).Value.Split(';');
+                    float discount;
+                    if (itemXiLianNumber < int.Parse(set[0]))
+                    {
+                        discount = 1;
+                    }
+                    else
+                    {
+                        discount = float.Parse(set[1]);
+                    }
+                    int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(73).Value.Split('@')[0]);
+                    needDimanond = (int)(needDimanond * discount);
+                    if (userInfo.Diamond < needDimanond)
+                    {
+                        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                        reply();
+                        return;
+                    }
+                    rewardItems.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = needDimanond });
                     ifZuanShi = true;
                 }
 
@@ -67,6 +87,11 @@ namespace ET
                 for (int i = 0; i < request.Times; i++)
                 {
                     response.ItemXiLianResults.Add( XiLianHelper.XiLianItem(unit, bagInfo, 1, xilianLevel, ifZuanShi ? 1: 0, diamondXiLianTimes) );     //精炼属性不进行重置
+                }
+
+                if (ifZuanShi)
+                {
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ItemXiLianNumber, request.Times, 0);
                 }
 
                 if (request.Times == 1 && (itemLocType == ItemLocType.ItemLocEquip || itemLocType == ItemLocType.ItemLocEquip_2))

@@ -178,6 +178,7 @@
         public const int OccCombatRankID = 3178;
         public const int FirstUnionName = 3179;                                         //优先家族称号
         public const int SkillMakePlan2 = 3180;                                         //
+        public const int ItemXiLianNumber = 3181;                                   //道具洗练次数次数
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

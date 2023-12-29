@@ -349,7 +349,10 @@ message UserInfo
 	string StallName = 56;
 
 	repeated int32 SingleRechargeIds = 57;
+
 	repeated int32 SingleRewardIds = 58;
+
+	repeated int32 ItemXiLianNumRewardIds = 59;
 }
 
 message KeyValuePair
@@ -7357,4 +7360,18 @@ message M2C_SingleRechargeRewardResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated int32 RewardIds = 1;
+}
+
+//ResponseType M2C_ItemXiLianNumReward 
+message C2M_ItemXiLianNumReward // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 RewardId = 1;   //PetExploreReward.ley
+}
+
+message M2C_ItemXiLianNumReward // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
 }

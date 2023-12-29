@@ -6,6 +6,9 @@ namespace ET
 {
 	public class UIRoleXiLianShowComponent : Entity, IAwake
 	{
+		public GameObject Text_TotalNumber;
+		public GameObject Btn_XiLianNumReward;
+		public GameObject Btn_XiLianExplain;
 		public GameObject EquipSet;
 		public GameObject ScrollViewEquip;
 		public GameObject NeedDiamond;
@@ -52,6 +55,22 @@ namespace ET
 			self.XiLianTen = rc.Get<GameObject>("XiLianTen");
 			ButtonHelp.AddListenerEx(self.XiLianTen, () => { self.OnXiLianButton(5).Coroutine(); });
 
+			self.Text_TotalNumber = rc.Get<GameObject>("Text_TotalNumber");
+			self.Btn_XiLianNumReward = rc.Get<GameObject>("Btn_XiLianNumReward");
+			self.Btn_XiLianExplain = rc.Get<GameObject>("Btn_XiLianExplain");
+			self.Btn_XiLianNumReward.GetComponent<Button>().onClick.AddListener(() =>
+			{
+				UIHelper.Create(self.ZoneScene(), UIType.UIRoleXiLianNumReward).Coroutine();
+			});
+			self.Btn_XiLianExplain.GetComponent<Button>().onClick.AddListener(() =>
+			{
+				UIHelper.Create(self.ZoneScene(), UIType.UIRoleXiLianExplain).Coroutine();
+			});
+			self.Text_TotalNumber.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+			self.Btn_XiLianNumReward.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+			self.Btn_XiLianExplain.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+			
+			
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
 			self.XiLianEffect = rc.Get<GameObject>("XiLianEffect");
 			self.Text_CostName = rc.Get<GameObject>("Text_CostName");
@@ -248,6 +267,25 @@ namespace ET
 					self.EquipUIList[0].OnClickUIItem();
 				}
 			}
+			int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(73).Value.Split('@')[0]);
+			int itemXiLianNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber);
+			string[] set = GlobalValueConfigCategory.Instance.Get(116).Value.Split(';');
+			float discount;
+			if (itemXiLianNumber < int.Parse(set[0]))
+			{
+				discount = 1;
+			}
+			else
+			{
+				discount = float.Parse(set[1]);
+			}
+
+			needDimanond = (int)(needDimanond * discount);
+			self.NeedDiamond.GetComponent<Text>().text = needDimanond.ToString();
+
+			int totalTimes = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
+					.GetAsInt(NumericType.ItemXiLianNumber);
+			self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
 		}
 
 		public static void OnSelectItem(this UIRoleXiLianShowComponent self, BagInfo bagInfo)
@@ -310,10 +348,21 @@ namespace ET
 			}
 			if (times > 1)
 			{
-				int needDiamond = GlobalValueConfigCategory.Instance.Get(73).Value2;
-				if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < needDiamond)
+				int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(73).Value.Split('@')[0]);
+				int itemXiLianNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber);
+				string[] set = GlobalValueConfigCategory.Instance.Get(116).Value.Split(';');
+				float discount;
+				if (itemXiLianNumber < int.Parse(set[0]))
 				{
-					FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+					discount = 1;
+				}
+				else
+				{
+					discount = float.Parse(set[1]);
+				}
+				if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < (int)(needDimanond * discount))
+				{
+					ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
 					return;
 				}
 			}
