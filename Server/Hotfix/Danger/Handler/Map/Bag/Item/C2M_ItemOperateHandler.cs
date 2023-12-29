@@ -404,6 +404,7 @@ namespace ET
                                 {
                                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, hourseId);
                                 }
+                                Function_Fight.GetInstance().UnitUpdateProperty_Base( unit, true, true );
                                 break;
                             case 126: //集字
                                 break;
