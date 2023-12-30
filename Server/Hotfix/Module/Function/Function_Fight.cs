@@ -1015,11 +1015,13 @@ namespace ET
                     if (RandomHelper.RandFloat01() < numericComponentDefend.GetAsFloat(NumericType.Now_FuHuoPro))
                     {
                         //复活存在30%的血量
+                        defendUnit.GetComponent<BuffManagerComponent>().UpdateFuHuoStatus();
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 0.3f), 0);
                     }
                     else if (RandomHelper.RandFloat01() < numericComponentDefend.GetAsFloat(NumericType.Now_ShenYouPro))
                     {
                         //神佑存在100%的血量
+                        defendUnit.GetComponent<BuffManagerComponent>().UpdateFuHuoStatus();
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 1f), 0);
                     }
                     else

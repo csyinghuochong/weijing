@@ -17,9 +17,14 @@ namespace ET
                 return;
             }
 
+            if (args.DamgeType == 101) //复活特效
+            {
+                FunctionEffect.GetInstance().PlaySelfEffect(unitDefend, 30000004);
+                return;
+            }
+
             Scene zoneScene = unitDefend.ZoneScene();
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-
             long myunitid = UnitHelper.GetMyUnitId(zoneScene);
 
             bool mainattack = unitAttack != null && unitAttack.MainHero;

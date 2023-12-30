@@ -317,6 +317,16 @@ namespace ET
             }
         }
 
+        public static void UpdateFuHuoStatus(this BuffManagerComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
+            m2C_UnitBuffStatus.UnitID = unit.Id;
+            m2C_UnitBuffStatus.FlyType = 101;
+            m2C_UnitBuffStatus.BuffID = 0;
+            MessageHelper.Broadcast(unit, m2C_UnitBuffStatus);
+        }
+
         public static void BuffFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler, bool notice = true)
         {
             Unit unit =self.GetParent<Unit>();
