@@ -159,8 +159,7 @@ namespace ET
                     uIMainBuffItemComponent.EndTime = 0;
                 }
             }
-            self.OnUpdate()
-                ;
+            self.OnUpdate() ;
         }
     }
 

@@ -146,6 +146,20 @@ namespace ET
 
         #region 获取BuffSystem
 
+        public static int GetBuffNumber(this BuffManagerComponent self, int buffId)
+        {
+            int number = 0;
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].BuffData.BuffId == buffId)
+                {
+                    number ++;
+                }
+            }
+            return number;
+        }
+
         /// <summary>
         /// 通过标识ID获得Buff
         /// </summary>

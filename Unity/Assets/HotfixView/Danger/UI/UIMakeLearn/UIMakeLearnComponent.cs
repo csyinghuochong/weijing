@@ -24,14 +24,13 @@ namespace ET
         public GameObject TextTMP_Name;
         public GameObject TextTMP_CostCoin;
         public GameObject ButtonLearn;
-        public GameObject Image_ItemIcon;
-        public GameObject Image_ItemQuality;
         public GameObject CostListNode;
         public GameObject LearnListNode;
         public GameObject UIMakeLearnItem;
-        public GameObject Obj_Lab_LearnItemName;
         public GameObject Obj_Lab_LearnItemCost;
         public GameObject LabNeedShuLian;
+
+        public UIItemComponent UILearn = null;
 
         public List<UIMakeLearnItemComponent> LearnUIList = new List<UIMakeLearnItemComponent>();
         public List<UIItemComponent> CostUIList = new List<UIItemComponent>();
@@ -78,13 +77,14 @@ namespace ET
 
             self.ButtonLearn = rc.Get<GameObject>("ButtonLearn");
          
-            self.Image_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
-            self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
+            GameObject UILearn = rc.Get<GameObject>("UILearn");
+            self.UILearn = self.AddComponent<UIItemComponent, GameObject>(UILearn);
+           
+
             self.CostListNode = rc.Get<GameObject>("CostListNode");
             self.LearnListNode = rc.Get<GameObject>("LearnListNode");
             self.UIMakeLearnItem = rc.Get<GameObject>("UIMakeLearnItem");
             self.UIMakeLearnItem.SetActive(false);
-            self.Obj_Lab_LearnItemName = rc.Get<GameObject>("Lab_LearnItemName");
             self.Obj_Lab_LearnItemCost = rc.Get<GameObject>("Lab_LearnItemCost");
             self.LabNeedShuLian = rc.Get<GameObject>("LabNeedShuLian");
 
@@ -301,25 +301,8 @@ namespace ET
             //self.TextTMP_Name.GetComponent<TextMeshProUGUI>().text = itemConfig.ItemName;
             //self.TextTMP_Name.GetComponent<TextMeshProUGUI>().color = FunctionUI.GetInstance().QualityReturnColor(itemConfig.ItemQuality);
 
-            self.Obj_Lab_LearnItemName.GetComponent<Text>().text = itemConfig.ItemName;
-            self.Obj_Lab_LearnItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemConfig.ItemQuality);
-
-            string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
-            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
-            if (!self.AssetPath.Contains(path2))
-            {
-                self.AssetPath.Add(path2);
-            }
-            self.Image_ItemIcon.GetComponent<Image>().sprite = sp2;
-
-            string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
-            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);
-            Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
-            if (!self.AssetPath.Contains(path1))
-            {
-                self.AssetPath.Add(path1);
-            }
-            self.Image_ItemQuality.GetComponent<Image>().sprite = sp1;
+            self.UILearn.UpdateItem( new BagInfo() { ItemID = itemConfig.Id, ItemNum = 1 } , ItemOperateEnum.None);
+            self.UILearn.Label_ItemNum.SetActive(false);
 
             //显示需要熟练度
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
