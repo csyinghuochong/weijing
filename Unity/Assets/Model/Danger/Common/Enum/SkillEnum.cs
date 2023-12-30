@@ -197,6 +197,8 @@ namespace ET
 
         //相关配置表
         public int SkillId;
+        public int BuffId;
+
         public int EffectId;
 
         public Vector3 EffectPosition;

@@ -72,7 +72,7 @@ namespace ET
                 }
             }
             if (self.MainBuffUIList.Count == 0)
-            { 
+            {
                 TimerComponent.Instance.Remove(ref self.Timer);
             }
         }
@@ -110,30 +110,61 @@ namespace ET
             }
         }
 
-        public static void OnAddBuff(this UIMainBuffComponent self,  ABuffHandler buffHandler)
+        public static void OnAddBuff(this UIMainBuffComponent self, ABuffHandler buffHandler)
         {
             if (self.MainBuffUIList.Count >= 8 || buffHandler.mSkillBuffConf.IfShowIconTips == 0)
             {
                 return;
             }
-           
-            UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
-            if (ui_buff == null)
+
+            if (!self.AddSameBuff(buffHandler))
             {
-                ui_buff = self.AddChild<UIMainBuffItemComponent, GameObject>(GameObject.Instantiate(self.UIMainBuffItem));
+                UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null;
+                if (ui_buff == null)
+                {
+                    ui_buff = self.AddChild<UIMainBuffItemComponent, GameObject>(GameObject.Instantiate(self.UIMainBuffItem));
+                }
+                else
+                {
+                    self.CacheUIList.RemoveAt(0);
+                }
+                self.MainBuffUIList.Add(ui_buff);
+                ui_buff.GameObject.SetActive(true);
+                ui_buff.OnAddBuff(buffHandler);
+                UICommonHelper.SetParent(ui_buff.GameObject, self.GameObject);
             }
-            else
-            {
-                self.CacheUIList.RemoveAt(0);    
-            }
-            self.MainBuffUIList.Add(ui_buff);
-            ui_buff.GameObject.SetActive(true);
-            ui_buff.OnAddBuff( buffHandler);
-            UICommonHelper.SetParent(ui_buff.GameObject, self.GameObject);
+
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.MainBuffTimer, self);
             }
+        }
+
+        public static bool AddSameBuff(this UIMainBuffComponent self, ABuffHandler buffHandler)
+        {
+            for (int i = 0; i < self.MainBuffUIList.Count; i++)
+            {
+                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
+                if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId)
+                {
+                    uIMainBuffItemComponent.AddSameBuff(buffHandler);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool HaveSameBuff(this UIMainBuffComponent self, int buffID)
+        {
+            for (int i = 0; i < self.MainBuffUIList.Count; i++)
+            {
+                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
+                if (uIMainBuffItemComponent.BuffID == buffID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static void OnResetBuff(this UIMainBuffComponent self, int buffID)
@@ -153,11 +184,7 @@ namespace ET
             for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
-                if (uIMainBuffItemComponent.BuffID == buffID)
-                {
-                    uIMainBuffItemComponent.BuffID = 0;
-                    uIMainBuffItemComponent.EndTime = 0;
-                }
+                uIMainBuffItemComponent.OnRemoveBuff(buffID);
             }
             self.OnUpdate() ;
         }

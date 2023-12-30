@@ -8,7 +8,7 @@ namespace ET
 {
     public class UIMainBuffItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
-        public GameObject TextNumber;
+        public Text TextNumber;
         public GameObject TextLeftTime;
         public GameObject TextBuffName;
         public GameObject Img_BuffCD;
@@ -22,7 +22,9 @@ namespace ET
         public string showTimeStr;
         public string BuffIcon;
         public string aBAtlasTypes;
-        
+
+        public int BuffNumber = 0;
+
         public List<string> AssetPath = new List<string>();
     }
 
@@ -37,6 +39,8 @@ namespace ET
             self.Img_BuffCD = rc.Get<GameObject>("Img_BuffCD");
             self.ImgBufflIcon = rc.Get<GameObject>("ImgBufflIcon");
             self.TextLeftTime = rc.Get<GameObject>("TextLeftTime");
+            self.TextNumber = rc.Get<GameObject>("TextNumber").GetComponent<Text>();
+            self.TextNumber.gameObject.SetActive(true); 
 
             ButtonHelp.AddEventTriggers(self.ImgBufflIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImgBufflIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
@@ -104,7 +108,25 @@ namespace ET
 
         public static void OnResetBuff(this UIMainBuffItemComponent self)
         {
-            self.EndTime = TimeHelper.ClientNow() + self.BuffTime;
+            self.EndTime = TimeHelper.ServerNow() + self.BuffTime; 
+        }
+
+        public static void AddSameBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
+        {
+            self.BuffNumber++;
+            self.EndTime = buffHandler.BuffEndTime;
+            self.TextNumber.text = self.BuffNumber > 1 ? self.BuffNumber.ToString() : string.Empty;
+        }
+
+        public static void OnRemoveBuff(this UIMainBuffItemComponent self, int  buffId)
+        {
+            self.BuffNumber--;
+            if (self.BuffNumber == 0)
+            {
+                self.BuffID = 0;
+                self.EndTime = 0;
+            }
+            self.TextNumber.text = self.BuffNumber > 1 ? self.BuffNumber.ToString() : string.Empty;
         }
 
         public static void OnAddBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
@@ -112,11 +134,11 @@ namespace ET
             long endTime = buffHandler.BuffData.BuffEndTime;
             SkillBuffConfig skillBuffConfig = buffHandler.mSkillBuffConf;
             self.BuffTime = skillBuffConfig.BuffTime;
-            self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.BuffName;
+            self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.BuffName; 
             self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
             self.BuffID = skillBuffConfig.Id;
-
+            self.BuffNumber = 1;
             string bufficon = skillBuffConfig.BuffIcon;
             //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,
             //释放者是怪物,那么就显示怪物的头像Icon,最后还是没找到显示默认图标b001

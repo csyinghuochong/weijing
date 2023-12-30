@@ -63,7 +63,10 @@ namespace ET
             {
                 if (self.Effects[i].EffectData.EffectTypeEnum == effectTypeEnum)
                 {
-                    self.Effects[i].EffectState = BuffState.Finished;
+                    AEffectHandler aEffectHandler = self.Effects[i];
+                    aEffectHandler.OnFinished();
+                    aEffectHandler.Dispose();
+                    self.Effects.RemoveAt(i);
                 }
             }
         }
@@ -110,6 +113,8 @@ namespace ET
                 aEffectHandler.UpdateEffectPosition(self.GetParent<Unit>().Position, -1);
             }
         }
+
+
 
         public static void OnUpdate(this EffectViewComponent self)
         {
@@ -159,6 +164,28 @@ namespace ET
             }
         }
 
+        public static void RemoveSameBuffEffect(this EffectViewComponent self, EffectData effectData)
+        {
+            if (effectData.EffectTypeEnum != EffectTypeEnum.BuffEffect)
+            {
+                return;
+            }
+            for (int i = self.Effects.Count - 1; i >= 0; i--)
+            {
+                if (self.Effects[i].EffectData.EffectTypeEnum != EffectTypeEnum.BuffEffect)
+                {
+                    continue;
+                }
+                if (self.Effects[i].EffectData.BuffId == effectData.BuffId)
+                {
+                    AEffectHandler aEffectHandler = self.Effects[i];
+                    aEffectHandler.OnFinished();
+                    aEffectHandler.Dispose();
+                    self.Effects.RemoveAt(i);
+                }
+            }
+        }
+
         public static AEffectHandler EffectFactory(this EffectViewComponent self, EffectData effectData)
         {
             Unit unit = self.GetParent<Unit>();
@@ -174,24 +201,18 @@ namespace ET
                     return null;
                 }
             }
+
+            self.RemoveSameBuffEffect(effectData);
+
             AEffectHandler resultEffect = self.AddChild<RoleSkillEffect>(true);
             resultEffect.OnInit(effectData, unit);
-            self.AddEffect(resultEffect);       //给buff目标添加buff管理器
-            return resultEffect;
-        }
-
-        /// <summary>
-        /// 添加effect到真实链表，禁止外部调用
-        /// </summary>
-        /// <param name="aBuff"></param>
-        public static void AddEffect(this EffectViewComponent self, AEffectHandler aBuff)
-        {
-            self.Effects.Add(aBuff);
+            self.Effects.Add(resultEffect);
 
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.Effectimer, self);
             }
+            return resultEffect;
         }
     }
 }
