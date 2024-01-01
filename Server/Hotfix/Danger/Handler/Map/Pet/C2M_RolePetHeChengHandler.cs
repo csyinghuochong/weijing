@@ -154,7 +154,7 @@ namespace ET
 						}
 						else
 						{
-							deletPetSkillID.Add(petSkillList_1[i]);
+							deletPetSkillID.Add(petSkillList_2[i]);
 						}
 					}
 				}
