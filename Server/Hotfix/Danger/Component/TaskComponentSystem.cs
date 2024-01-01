@@ -1452,15 +1452,15 @@ namespace ET
         public static void CheckWeeklyUpdate(this TaskComponent self)
         {
             System.DateTime dateTime = TimeHelper.DateTimeNow();
-            if( dateTime.DayOfWeek == System.DayOfWeek.Sunday)
+            if( dateTime.DayOfWeek == System.DayOfWeek.Monday)
             {
+                Log.Console($"ResetWeeklyTask: passday:{self.Id} {dateTime.DayOfWeek == System.DayOfWeek.Monday}");
                 self.ResetWeeklyTask();
             }
         }
 
         public static void ResetWeeklyTask(this TaskComponent self)
         {
-            Log.Console($"TaskComponent.ResetWeeklyTask");
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 if (!TaskConfigCategory.Instance.Contain(self.RoleTaskList[i].taskID))
@@ -1549,14 +1549,17 @@ namespace ET
             float passday = ((curTime - lastTime) * 1f / TimeHelper.OneDay);
             if (passday >= 7)
             {
+                Log.Console($"ResetWeeklyTask: passday:{self.Id} {passday}");
                 self.ResetWeeklyTask();
             }
             else
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastTime);
                 DateTime curdateTime = TimeInfo.Instance.ToDateTime(curTime);
-                if (curdateTime.DayOfWeek < lastdateTime.DayOfWeek)
+                if ((curdateTime.DayOfWeek < lastdateTime.DayOfWeek && curdateTime.DayOfWeek!= 0)
+                 || (curdateTime.DayOfWeek > lastdateTime.DayOfWeek && lastdateTime.DayOfWeek == 0))
                 {
+                    Log.Console($"ResetWeeklyTask:{self.Id} {curdateTime.DayOfWeek} {lastdateTime.DayOfWeek}");
                     self.ResetWeeklyTask();
                 }
             }
