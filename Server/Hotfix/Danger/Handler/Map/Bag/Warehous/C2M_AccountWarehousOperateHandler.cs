@@ -39,6 +39,14 @@ namespace ET
                             reply();
                             return;
                         }
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                        if (itemConfig.ItemType!=3 || itemConfig.EquipType > 100)
+                        {
+                            response.Error = ErrorCode.ERR_ItemNotExist;
+                            reply();
+                            return;
+                        }
+                            
                         if (dBAccountWarehouse.HaveItemById(bagInfo.BagInfoID) != -1)
                         {
                             response.Error = ErrorCode.ERR_AlreadyHave;
