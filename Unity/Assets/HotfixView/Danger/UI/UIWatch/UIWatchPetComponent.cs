@@ -562,11 +562,23 @@ namespace ET
 
         public static long GetAsLong(this UIWatchPetComponent self, int numericType)
         {
+            F2C_WatchPlayerResponse playerInfo = self.GetWatchPlayerInfo();
+            if (playerInfo.Ks.Contains(numericType))
+            {
+                return playerInfo.Vs[playerInfo.Ks.IndexOf(numericType)];
+            }
+
             return 0;
         }
 
         public static float GetAsFloat(this UIWatchPetComponent self, int numericType)
         {
+            F2C_WatchPlayerResponse playerInfo = self.GetWatchPlayerInfo();
+            if (playerInfo.Ks.Contains(numericType))
+            {
+                return (float)playerInfo.Vs[playerInfo.Ks.IndexOf(numericType)] / 10000;
+            }
+
             return 0f;
         }
 
@@ -578,6 +590,15 @@ namespace ET
             long petAllDef = self.GetAsLong(NumericType.Now_PetAllDef);
             long petAllHp = self.GetAsLong(NumericType.Now_PetAllHp);
 
+            petAllAct += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAct) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllActPro)));
+            petAllMageact += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_Mage) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllMageActPro)));
+            petAllDef += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllDefPro)));
+            petAllAdf += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllAdfPro)));
+            
             float petAllCri = self.GetAsFloat(NumericType.Now_PetAllCri);
             float petAllHit = self.GetAsFloat(NumericType.Now_PetAllHit);
             float petAllDodge = self.GetAsFloat(NumericType.Now_PetAllDodge);
