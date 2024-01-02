@@ -154,7 +154,7 @@ namespace ET
         {
             if (self.ItemOpetateType == ItemOperateEnum.AccountBag)
             {
-                ItemViewHelp.AccountCangkuPutIn( self.ZoneScene(), self.BagInfo );
+                //ItemViewHelp.AccountCangkuPutIn( self.ZoneScene(), self.BagInfo );
             }
             else
             {

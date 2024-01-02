@@ -18,9 +18,17 @@ namespace ET
 
         public static void AccountCangkuPutIn(Scene zoneScene, BagInfo bagInfo)
         {
-            UI ui = UIHelper.GetUI(zoneScene, UIType.UIWarehouse);
-            ui.GetComponent<UIWarehouseComponent>().UIPageView.UISubViewList[(int)(WarehouseEnum.WarehouseAccount)].GetComponent<UIWarehouseAccountComponent>().BagInfoPutIn = bagInfo;
-            NetHelper.RequestAccountWarehousOperate(zoneScene, 1, bagInfo.BagInfoID).Coroutine();
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (itemConfig.ItemType == 3 && itemConfig.EquipType < 100 && !bagInfo.isBinging)
+            {
+                UI ui = UIHelper.GetUI(zoneScene, UIType.UIWarehouse);
+                ui.GetComponent<UIWarehouseComponent>().UIPageView.UISubViewList[(int)(WarehouseEnum.WarehouseAccount)].GetComponent<UIWarehouseAccountComponent>().BagInfoPutIn = bagInfo;
+                NetHelper.RequestAccountWarehousOperate(zoneScene, 1, bagInfo.BagInfoID).Coroutine();
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("只能存放非绑定的角色装备！");
+            }
         }
 
         public static string GetFumpProDesc(List<HideProList> hideProLists)
