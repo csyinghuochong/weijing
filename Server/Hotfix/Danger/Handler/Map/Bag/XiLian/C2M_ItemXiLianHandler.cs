@@ -54,14 +54,14 @@ namespace ET
                     UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                     int itemXiLianNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber);
                     string[] set = GlobalValueConfigCategory.Instance.Get(116).Value.Split(';');
-                    float discount;
+                    double discount;
                     if (itemXiLianNumber < int.Parse(set[0]))
                     {
                         discount = 1;
                     }
                     else
                     {
-                        discount = float.Parse(set[1]);
+                        discount = double.Parse(set[1]);
                     }
                     int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(73).Value.Split('@')[0]);
                     needDimanond = (int)(needDimanond * discount);

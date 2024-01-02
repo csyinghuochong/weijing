@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -270,14 +271,14 @@ namespace ET
 			int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(73).Value.Split('@')[0]);
 			int itemXiLianNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber);
 			string[] set = GlobalValueConfigCategory.Instance.Get(116).Value.Split(';');
-			float discount;
+			double discount;
 			if (itemXiLianNumber < int.Parse(set[0]))
 			{
 				discount = 1;
 			}
 			else
 			{
-				discount = float.Parse(set[1]);
+				discount = double.Parse(set[1]);
 			}
 
 			needDimanond = (int)(needDimanond * discount);
