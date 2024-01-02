@@ -155,7 +155,10 @@ namespace ET
             int numerType = UnionHelper.GetXiuLianId(self.Position, 1);
             int xiulianid = unit.GetComponent<NumericComponent>().GetAsInt(numerType);
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
-            if (unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
+
+            bool unionLevelMax = !UnionConfigCategory.Instance.Contain(unitonlevel + 1);
+
+            if (!unionLevelMax &&  unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先提升家族等级！");
                 return;
