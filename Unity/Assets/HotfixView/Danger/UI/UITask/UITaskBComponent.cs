@@ -16,7 +16,7 @@ namespace ET
         public GameObject GiveBtn;
         public GameObject AcvityedImg;
 
-        public TaskPro TaskPro; // 进行中的赛季任务 或 选中的每日任务
+        public TaskPro TaskPro;
         public int CompeletTaskId;
         public UIPageButtonComponent UIPageButtonComponent;
         public List<UITaskBItemComponent> UITaskBItemComponentList = new List<UITaskBItemComponent>();
