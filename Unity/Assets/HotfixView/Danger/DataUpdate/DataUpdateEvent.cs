@@ -643,9 +643,9 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UITaskComponent uitaskComponent)
+                if (component is UITaskAComponent uitaskAComponent)
                 {
-                    uitaskComponent.OnTaskGiveUp();
+                    uitaskAComponent.OnTaskGiveUp();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)
@@ -678,9 +678,9 @@ namespace ET
                     uimainComponent.OnRecvTaskTrace();
                     continue;
                 }
-                if (component is UITaskComponent uiTaskComponent)
+                if (component is UITaskAComponent uiTaskAComponent)
                 {
-                    uiTaskComponent.OnClickTaskType((int)TaskTypeEnum.Daily);
+                    uiTaskAComponent.OnClickTaskType((int)TaskTypeEnum.Daily);
                 }
             }
             return;
@@ -691,9 +691,9 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UITaskComponent uitaskComponent)
+                if (component is UITaskAComponent uitaskAComponent)
                 {
-                    uitaskComponent.OnRecvTaskUpdate();
+                    uitaskAComponent.OnRecvTaskUpdate();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)
@@ -711,9 +711,9 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UITaskComponent uitaskComponent)
+                if (component is UITaskAComponent uitaskAComponent)
                 {
-                    uitaskComponent.OnRecvTaskUpdate();
+                    uitaskAComponent.OnRecvTaskUpdate();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)

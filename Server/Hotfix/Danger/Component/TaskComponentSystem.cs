@@ -483,6 +483,7 @@ namespace ET
               && taskConfig.TaskType != TaskTypeEnum.Union
               && taskConfig.TaskType != TaskTypeEnum.Treasure
               && taskConfig.TaskType != TaskTypeEnum.Season
+              && taskConfig.TargetType != TaskTypeEnum.System
               && taskConfig.TaskType != TaskTypeEnum.Ring
               && taskConfig.TaskType != TaskTypeEnum.Weekly)
             {
@@ -592,6 +593,18 @@ namespace ET
             {
                 numericComponent.ApplyValue(NumericType.SeasonTask, taskid);
                 if (TaskConfigCategory.Instance.Contain(taskid + 1) && TaskConfigCategory.Instance.Get(taskid + 1).TaskType == TaskTypeEnum.Season)
+                {
+                    self.OnAcceptedTask(taskid + 1);
+
+                    M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
+                    m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
+                    MessageHelper.SendToClient(unit, m2C_TaskUpdate);
+                }
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.System)
+            {
+                numericComponent.ApplyValue(NumericType.SystemTask, taskid);
+                if (TaskConfigCategory.Instance.Contain(taskid + 1) && TaskConfigCategory.Instance.Get(taskid + 1).TaskType == TaskTypeEnum.System)
                 {
                     self.OnAcceptedTask(taskid + 1);
 
@@ -976,6 +989,10 @@ namespace ET
             {
                 self.CheckWeeklyTask();
             }
+            if (numericComponent.GetAsInt(NumericType.SystemTask) == 0)
+            {
+                self.CheckSystemTask();
+            }
 
             self.UpdateTargetTask(false);
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
@@ -1297,6 +1314,48 @@ namespace ET
                 int weekTaskId = TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv);
                 numericComponent.ApplyValue(NumericType.WeeklyTaskId, weekTaskId, false);
             }
+        }
+
+        public static void CheckSystemTask(this TaskComponent self)
+        {
+            if (!GMHelp.GmAccount.Contains(self.GetParent<Unit>().GetComponent<UserInfoComponent>().Account))
+            {
+                return;
+            }
+
+            bool have = false;
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType != TaskTypeEnum.System)
+                {
+                    continue;
+                }
+
+                have = true;
+                break;
+            }
+
+            if (have)
+            {
+                return;
+            }
+
+            int curTakskid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.SystemTask);
+            foreach ((int taskid, TaskConfig taskcofnig) in TaskConfigCategory.Instance.GetAll())
+            {
+                if (taskcofnig.TaskType != TaskTypeEnum.System || taskid <= curTakskid)
+                {
+                    continue;
+                }
+
+                self.OnAcceptedTask(taskid);
+                break;
+            }
+
+            M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
+            m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
 
         public static void CheckUnionTask(this TaskComponent self)

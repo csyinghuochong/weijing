@@ -24,6 +24,7 @@ namespace ET
         public const int Season = 8;            //赛季主线任务
         public const int Welfare = 9;           //福利任务
         public const int Ring = 10;             //跑环任务
+        public const int System = 11;           //系统任务
     }
 
     public static class TaskCountryType
