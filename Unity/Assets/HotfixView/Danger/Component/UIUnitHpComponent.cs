@@ -61,6 +61,7 @@ namespace ET
         public string HeadBarPath;
         public Vector2 LastPositon;
         public GameObject Lal_ShopName;
+        public GameObject Lal_ShopName2;
         public GameObject ShopShowSet;
         public GameObject PlayerNameSet;
         public GameObject Lal_JiaZuName;
@@ -229,6 +230,7 @@ namespace ET
                     this.Img_ChengHao.SetActive(true);
                     this.PlayerNameSet.SetActive(true);
                     this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
+                    this.Lal_ShopName2 = rc.Get<GameObject>("Lal_ShopName2");
                     this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
                     this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue").GetComponent<Image>();
                     this.Img_AngleValue.gameObject.SetActive(false);
@@ -617,6 +619,7 @@ namespace ET
         public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
         {
             self.Lal_ShopName.GetComponent<Text>().text = stallName;
+            self.Lal_ShopName2.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name + "的摊位";
         }
 
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
@@ -725,6 +728,7 @@ namespace ET
                 self.Lal_Name.GetComponent<Text>().text = infoComponent.UnitName;
                 self.Lal_JiaZuName.SetActive(true);
                 self.Lal_ShopName.SetActive(false);
+                self.Lal_ShopName2.SetActive(false);
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }
@@ -734,7 +738,7 @@ namespace ET
                 self.Lal_Name.SetActive(false);
                 self.Lal_JiaZuName.SetActive(false);
                 self.Lal_ShopName.SetActive(true);
-                self.Lal_ShopName.GetComponent<Text>().text = $"{infoComponent.StallName}的摊位";
+                self.Lal_ShopName2.SetActive(true);
                 self.ShopShowSet.SetActive(true);
                 self.PlayerNameSet.SetActive(false);
             }
