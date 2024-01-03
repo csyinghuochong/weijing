@@ -1929,7 +1929,7 @@ namespace ET
 
         public static void OnButtonStallCancel(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?/n 支持下线,摊位可以离线显示6小时!",
                        () =>
                        {
                            NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();

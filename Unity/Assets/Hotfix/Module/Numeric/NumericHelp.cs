@@ -347,7 +347,11 @@ namespace ET
         /// <returns></returns>
         public static int GetMaxHuoLi(this Unit self, int skillNumber)
         {
-            return GlobalValueConfigCategory.Instance.Get(72).Value2 + 0;
+            //开启双职业活力恢复增强
+            if (skillNumber >= 2) {
+                return (int)(GlobalValueConfigCategory.Instance.Get(72).Value2 * 1.5f);
+            }
+            return GlobalValueConfigCategory.Instance.Get(72).Value2;
         }
 
         public static long GetAttributeValue(RolePetInfo rolePetInfo, int numericType)
