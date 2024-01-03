@@ -133,6 +133,8 @@ namespace ET
             // 消耗卷轴
             bagComponent.OnCostItemData(reelBagInfo.BagInfoID, 1);
 
+            Log.Warning($"增幅消耗: {unit.Id}  {reelBagInfo.ItemID}");
+
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate.Add(equipmentBagInfo);
