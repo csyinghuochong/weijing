@@ -96,21 +96,32 @@ namespace ET
                     break;
                 case (int)SkillTargetType.SelfRandom:                   //自身中心点随机
                     string[] randomInfos = skillConfig.GameObjectParameter.Split(';');
-                    int randomSkillId = int.Parse(randomInfos[0]);
-                    int randomNumber = int.Parse(randomInfos[1]);
-                    int randomRange = int.Parse(randomInfos[2]);
-                    int skillNumber = RandomHelper.RandomNumber(1, randomNumber);
-                    for (int i = 0; i < skillNumber; i++)
+                    int randomSkillId = 0;
+                    int randomNumber = 0;
+                    int randomRange = 0;
+                    int skillNumber = 0;
+                    if (randomInfos.Length < 3)
                     {
-                        skillInfo = new SkillInfo();
-                        skillInfo.WeaponSkillID = randomSkillId;
-                        skillInfo.TargetID = skillcmd.TargetID;
-                        skillInfo.PosX = unit.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
-                        skillInfo.PosY = unit.Position.y;
-                        skillInfo.PosZ = unit.Position.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
-                        skillInfo.TargetID = skillcmd.TargetID;
-                        skillInfo.TargetAngle = skillcmd.TargetAngle;
-                        skillInfos.Add(skillInfo);
+                        Log.Console($"技能配置错误: {skillConfig.Id}");
+                    }
+                    else
+                    {
+                         randomSkillId = int.Parse(randomInfos[0]);
+                         randomNumber = int.Parse(randomInfos[1]);
+                         randomRange = int.Parse(randomInfos[2]);
+                         skillNumber = RandomHelper.RandomNumber(1, randomNumber);
+                        for (int i = 0; i < skillNumber; i++)
+                        {
+                            skillInfo = new SkillInfo();
+                            skillInfo.WeaponSkillID = randomSkillId;
+                            skillInfo.TargetID = skillcmd.TargetID;
+                            skillInfo.PosX = unit.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                            skillInfo.PosY = unit.Position.y;
+                            skillInfo.PosZ = unit.Position.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                            skillInfo.TargetID = skillcmd.TargetID;
+                            skillInfo.TargetAngle = skillcmd.TargetAngle;
+                            skillInfos.Add(skillInfo);
+                        }
                     }
                     break;
                 case (int)SkillTargetType.TargetRandom:                 //目标中心点随机

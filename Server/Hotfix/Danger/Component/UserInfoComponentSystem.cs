@@ -303,11 +303,13 @@ namespace ET
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            int updatevalue = unit.GetMaxHuoLi(self.UserInfo.MakeList.Count) - self.UserInfo.Vitality;
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int skillNumber = 1 + numericComponent.GetAsInt(NumericType.MakeType_2) > 0 ? 1 : 0;
+            int updatevalue = unit.GetMaxHuoLi(skillNumber) - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
             //updatevalue = ComHelp.GetMaxBaoShiDu() - self.UserInfo.BaoShiDu;
             //self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
+            numericComponent.ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
             self.TodayOnLine = 0;
@@ -710,7 +712,9 @@ namespace ET
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, self.UserInfo.Combat);
                     break;
                 case UserDataType.Vitality:
-                    maxValue = unit.GetMaxHuoLi(self.UserInfo.MakeList.Count);
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int skillNumber = 1 + numericComponent.GetAsInt(NumericType.MakeType_2) > 0 ? 1 : 0;
+                    maxValue = unit.GetMaxHuoLi(skillNumber);
                     addValue = long.Parse(value);
                     newValue = self.UserInfo.Vitality + (int)addValue;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);

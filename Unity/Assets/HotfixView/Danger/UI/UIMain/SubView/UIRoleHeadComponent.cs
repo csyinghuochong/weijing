@@ -169,8 +169,11 @@ namespace ET
         public static void UpdateShowRoleHuoLi(this UIRoleHeadComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int skillNumber = 1 + numericComponent.GetAsInt(NumericType.MakeType_2) > 0 ? 1 : 0;
+            int maxPiLao = unit.GetMaxHuoLi(skillNumber);
+
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            int maxPiLao = unit.GetMaxHuoLi(userInfoComponent.UserInfo.MakeList.Count);
             self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("活力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
             self.Img_RoleHuoLi.GetComponent<Image>().fillAmount = 1f* self.UserInfoComponent.UserInfo.Vitality / maxPiLao;
         }
