@@ -27,6 +27,8 @@ namespace ET
                 m2C_BroadcastRoleData.UpdateTypeValue = userInfo.StallName;
                 MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
                 unit.GetComponent<UnitInfoComponent>().StallName = userInfo.StallName;
+
+                TransferHelper.RemovePetAndJingLing(unit );
             }
             if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value))
             {

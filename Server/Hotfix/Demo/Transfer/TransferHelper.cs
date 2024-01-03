@@ -599,8 +599,13 @@ namespace ET
             unit.RemoveComponent<MailBoxComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
-
             unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
+
+            RemovePetAndJingLing(unit);
+        }
+
+        public static void RemovePetAndJingLing(Unit unit)
+        {
             UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
@@ -608,7 +613,7 @@ namespace ET
                 unitComponent.Remove(fightId.Id);
             }
             long jinglingUnitId = unit.GetComponent<ChengJiuComponent>().JingLingUnitId;
-            if (jinglingUnitId != 0 && unitComponent.Get(jinglingUnitId)!=null)
+            if (jinglingUnitId != 0 && unitComponent.Get(jinglingUnitId) != null)
             {
                 unitComponent.Remove(jinglingUnitId);
             }
