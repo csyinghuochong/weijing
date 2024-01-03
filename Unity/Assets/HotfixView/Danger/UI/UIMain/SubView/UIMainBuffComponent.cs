@@ -147,7 +147,7 @@ namespace ET
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId && uIMainBuffItemComponent.UnitId == buffHandler.TheUnitBelongto.Id)
                 {
-                    uIMainBuffItemComponent.UpdateBuffNumber(buffHandler);
+                    uIMainBuffItemComponent.UpdateBuffNumber(buffHandler, 0);
                     return true;
                 }
             }
@@ -184,7 +184,10 @@ namespace ET
             for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
-                uIMainBuffItemComponent.UpdateBuffNumber(buffHandler);
+                if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId)
+                {
+                    uIMainBuffItemComponent.UpdateBuffNumber(buffHandler, -1);
+                }
             }
             self.OnUpdate() ;
         }

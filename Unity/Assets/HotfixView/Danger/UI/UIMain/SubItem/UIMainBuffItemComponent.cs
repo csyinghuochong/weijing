@@ -111,16 +111,19 @@ namespace ET
             self.EndTime = TimeHelper.ServerNow() + self.BuffTime; 
         }
 
-        public static void UpdateBuffNumber(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
+        public static void UpdateBuffNumber(this UIMainBuffItemComponent self, ABuffHandler buffHandler, int number)
         {
-            int BuffNumber = self.BuffManagerComponent.GetBuffNumber(buffHandler.BuffData.BuffId);
-            self.EndTime = buffHandler.BuffEndTime;
-            self.TextNumber.text = BuffNumber > 1 ? BuffNumber.ToString() : string.Empty;
+            int BuffNumber = self.BuffManagerComponent.GetBuffNumber(buffHandler.BuffData.BuffId) + number;
             if (BuffNumber == 0)
             {
                 self.BuffID = 0;
                 self.EndTime = 0;
             }
+            else
+            {
+                self.EndTime = buffHandler.BuffEndTime;
+            }
+            self.TextNumber.text = BuffNumber > 1 ? BuffNumber.ToString() : string.Empty;
         }
 
         public static void OnAddBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
