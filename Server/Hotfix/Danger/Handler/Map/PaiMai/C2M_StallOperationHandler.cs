@@ -4,7 +4,7 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class C2M_PaiMaiStallHandler : AMActorLocationRpcHandler<Unit, C2M_StallOperationRequest, M2C_StallOperationResponse>
+    public class C2M_StallOperationHandler : AMActorLocationRpcHandler<Unit, C2M_StallOperationRequest, M2C_StallOperationResponse>
     {
         protected override async ETTask Run(Unit unit, C2M_StallOperationRequest request, M2C_StallOperationResponse response, Action reply)
         {
@@ -30,7 +30,7 @@ namespace ET
 
                 TransferHelper.RemovePetAndJingLing(unit );
             }
-            if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value))
+            if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value)) //修改名字
             {
                 unit.GetComponent<UnitInfoComponent>().StallName = request.Value;
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, request.Value);
