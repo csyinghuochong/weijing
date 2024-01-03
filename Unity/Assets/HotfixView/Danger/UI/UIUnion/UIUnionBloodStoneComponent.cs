@@ -77,7 +77,15 @@ namespace ET
 
             self.NameLText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
             self.NameRText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
-            self.PropertyText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(publicQiangHuaConfig.EquipPropreAdd);
+            if (publicQiangHuaConfig.QiangHuaLv != 0)
+            {
+                self.PropertyText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(publicQiangHuaConfig.EquipPropreAdd);
+            }
+            else
+            {
+                self.PropertyText.GetComponent<Text>().text = "下一级:\n" +
+                        ItemViewHelp.GetAttributeDesc(PublicQiangHuaConfigCategory.Instance.Get(publicQiangHuaConfig.NextID).EquipPropreAdd);
+            }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             string[] items1 = new[] { $"1;{publicQiangHuaConfig.CostGold}" };
