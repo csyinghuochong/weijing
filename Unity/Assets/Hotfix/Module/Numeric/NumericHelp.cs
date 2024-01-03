@@ -339,9 +339,15 @@ namespace ET
             return int.Parse(GlobalValueConfigCategory.Instance.Get(self.IsYueKaStates() ? 26 : 10).Value);
         }
 
-        public static int GetMaxHuoLi(this Unit self)
+        /// <summary>
+        /// 活力上限。 零点恢复活力
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillNumber"></param>
+        /// <returns></returns>
+        public static int GetMaxHuoLi(this Unit self, int skillNumber)
         {
-            return GlobalValueConfigCategory.Instance.Get(72).Value2;
+            return GlobalValueConfigCategory.Instance.Get(72).Value2 + 0;
         }
 
         public static long GetAttributeValue(RolePetInfo rolePetInfo, int numericType)

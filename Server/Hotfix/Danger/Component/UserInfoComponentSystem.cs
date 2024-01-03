@@ -283,10 +283,12 @@ namespace ET
             self.LastLoginTime = TimeHelper.ServerNow();
         }
 
+
+
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
+            int updatevalue = unit.GetMaxHuoLi(self.UserInfo.MakeList.Count) - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
             //updatevalue = ComHelp.GetMaxBaoShiDu() - self.UserInfo.BaoShiDu;
             //self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
@@ -693,7 +695,7 @@ namespace ET
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, self.UserInfo.Combat);
                     break;
                 case UserDataType.Vitality:
-                    maxValue = unit.GetMaxHuoLi();
+                    maxValue = unit.GetMaxHuoLi(self.UserInfo.MakeList.Count);
                     addValue = long.Parse(value);
                     newValue = self.UserInfo.Vitality + (int)addValue;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);
