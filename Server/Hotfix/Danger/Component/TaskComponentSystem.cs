@@ -480,12 +480,12 @@ namespace ET
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (taskConfig.TaskType != TaskTypeEnum.Daily
-              && taskConfig.TaskType != TaskTypeEnum.Union
+              && taskConfig.TaskType != TaskTypeEnum.Weekly
               && taskConfig.TaskType != TaskTypeEnum.Treasure
+              && taskConfig.TaskType != TaskTypeEnum.Union
               && taskConfig.TaskType != TaskTypeEnum.Season
-              && taskConfig.TargetType != TaskTypeEnum.System
               && taskConfig.TaskType != TaskTypeEnum.Ring
-              && taskConfig.TaskType != TaskTypeEnum.Weekly)
+              && taskConfig.TargetType != TaskTypeEnum.System )
             {
                 if (!self.RoleComoleteTaskList.Contains(taskid))
                 {
