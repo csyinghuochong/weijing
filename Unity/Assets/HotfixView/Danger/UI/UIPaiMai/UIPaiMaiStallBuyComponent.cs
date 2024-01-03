@@ -144,12 +144,11 @@ namespace ET
 
         public static void OnUpdateUI(this UIPaiMaiStallBuyComponent self, PaiMaiItemInfo paiMaiItemInfo )
         {
-            self.PaiMaiItemInfo = paiMaiItemInfo;
-            if (self.UIItemComponent == null)
+            if (self.UIItemComponent == null || paiMaiItemInfo == null)
             {
                 return;
             }
-
+            self.PaiMaiItemInfo = paiMaiItemInfo;
             self.SellNum = paiMaiItemInfo.BagInfo.ItemNum;
             self.Text_Number.GetComponent<Text>().text = paiMaiItemInfo.BagInfo.ItemNum.ToString();
 
