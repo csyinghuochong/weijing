@@ -25,7 +25,7 @@ namespace ET
         {
             try
             {
-                if (this.EffectState == BuffState.Finished)
+                if (this.EffectState != BuffState.Running)
                 {
                     GameObject.DestroyImmediate(gameObject);
                     return;
@@ -44,6 +44,7 @@ namespace ET
                 {
                     return;
                 }
+
                 int skillParentID = this.EffectConfig.SkillParent;
                 //显示特效大小。
                 //if (this.EffectData.SkillId != 0)
@@ -220,7 +221,7 @@ namespace ET
         public override void OnFinished()
         {
             GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
-            //this.EffectState = BuffState.Waiting;
+            this.EffectState = BuffState.Finished;
             this.EffectData.InstanceId = 0;
             this.TheUnitBelongto = null; 
             this.EffectObj = null;
