@@ -179,7 +179,7 @@ namespace ET
                     {
                         int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, 24) + self.GetTiLiTimes(0, dateTime.Hour);
                         tiliTimes = Math.Min(tiliTimes, 4);
-                        self.RecoverPiLao(tiliTimes * 30, false);
+                        self.RecoverPiLao(tiliTimes * 30 + self.GetAddPiLao(self.UserInfo.MakeList.Count), false);
                     }
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().CheckWeeklyUpdate(lastLoginTime, currentTime);
@@ -252,13 +252,28 @@ namespace ET
         }
 
         /// <summary>
+        /// 体力
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillNumber"></param>
+        /// <returns></returns>
+        public static int GetAddPiLao(this UserInfoComponent self, int skillNumber)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// 0 6 12 20点各刷新30点体力
         /// </summary>
         /// <param name="self"></param>
         /// <param name="notice"></param>
         public static void OnHourUpdate(this UserInfoComponent self, int hour, bool notice)
         {
-            if (hour == 0 || hour == 12)
+            if (hour == 0 )
+            {
+                self.RecoverPiLao(30 + self.GetAddPiLao(self.UserInfo.MakeList.Count), notice);
+            }
+            if (hour == 12)
             {
                 self.RecoverPiLao(30, notice);
             }
