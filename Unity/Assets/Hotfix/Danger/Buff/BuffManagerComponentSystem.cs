@@ -64,8 +64,8 @@ namespace ET
                 if (skillHandler.BuffState == BuffState.Finished)
                 {
                     self.m_Buffs.RemoveAt(i);
-                    skillHandler.Clear();
                     skillHandler.OnFinished();
+                    skillHandler.Clear();
                     ObjectPool.Instance.Recycle(skillHandler);
                     continue;
                 }
