@@ -462,6 +462,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long MyId { get; set; }
 
+		[ProtoMember(2)]
+		public int IsPopUp { get; set; }
+
 	}
 
 	[Message(OuterOpcode.MoveInfo)]

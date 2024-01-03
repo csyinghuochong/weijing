@@ -217,6 +217,7 @@ namespace ET
             else
             {
                 zoneScene.GetComponent<AccountInfoComponent>().MyId = g2CEnterGame.MyId;
+                zoneScene.GetComponent<AccountInfoComponent>().IsPopUp = g2CEnterGame.IsPopUp;
                 // 等待场景切换完成[创建了主Unit]
                 await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_SceneChangeFinish>();
 

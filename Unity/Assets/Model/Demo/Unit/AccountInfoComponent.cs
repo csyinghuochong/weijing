@@ -38,5 +38,7 @@ namespace ET
 		public string NoticeText = string.Empty;
 
 		public int SerialErrorTime = 0;
+
+		public int IsPopUp = 0;
 	}
 }

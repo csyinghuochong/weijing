@@ -382,6 +382,8 @@ namespace ET
 
             self.InitFunctionButton();
 
+            self.CheckPopUP();
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
             if (userInfo.Lv == 1 || guideid > 0)
@@ -1355,6 +1357,15 @@ namespace ET
             if (value == 1)
             {
                 self.Button_HongBao.SetActive(false);
+            }
+        }
+
+        public static void CheckPopUP(this UIMainComponent self)
+        {
+            int ispopup = self.ZoneScene().GetComponent<AccountInfoComponent>().IsPopUp;
+            if (ispopup == 1)
+            {
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "您的帐号目前存在一定问题，可以在QQ群里直接联系客服，也可直接添加QQ:136087482 (备注写角色名称) 处理，如3天内不在主动联系，我们会自动将帐号处理！", null).Coroutine();
             }
         }
 
