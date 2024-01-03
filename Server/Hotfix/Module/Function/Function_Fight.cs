@@ -1880,6 +1880,16 @@ namespace ET
                 }
             }
 
+            //血石
+            int bloodstone = numericComponent.GetAsInt(NumericType.Bloodstone);
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(bloodstone);
+            List<PropertyValue> publicqianghuaProList = new List<PropertyValue>();
+            NumericHelp.GetProList(publicQiangHuaConfig.EquipPropreAdd, publicqianghuaProList);
+            for (int pro = 0; pro < publicqianghuaProList.Count; pro++)
+            {
+                AddUpdateProDicList(publicqianghuaProList[pro].HideID, publicqianghuaProList[pro].HideValue, UpdateProDicList);
+            }
+
             //宠物修炼属性。 玩家数值
             int pet_xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
             int pet_xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_1);

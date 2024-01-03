@@ -85,6 +85,10 @@ namespace ET
                 numericComponent.Set(NumericType.UnionPetXiuLian_2, keyValuePairs[6][0].Id);
                 numericComponent.Set(NumericType.UnionPetXiuLian_3, keyValuePairs[7][0].Id);
             }
+            if (numericComponent.GetAsInt(NumericType.Bloodstone) == 0)
+            {
+                numericComponent.Set(NumericType.Bloodstone, 10100);
+            }
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
