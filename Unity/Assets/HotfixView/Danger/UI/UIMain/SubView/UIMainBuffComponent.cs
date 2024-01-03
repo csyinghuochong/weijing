@@ -87,10 +87,10 @@ namespace ET
                     self.OnAddBuff(aBuffHandler);
                     break;
                 case 2:
-                    self.OnRemoveBuff(aBuffHandler.mSkillBuffConf.Id);
+                    self.OnRemoveBuff(aBuffHandler);
                     break;
                 case 3:
-                    self.OnResetBuff(aBuffHandler.mSkillBuffConf.Id);
+                    self.OnResetBuff(aBuffHandler);
                     break;
             }
         }
@@ -145,9 +145,9 @@ namespace ET
             for (int i = 0; i < self.MainBuffUIList.Count; i++)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
-                if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId)
+                if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId && uIMainBuffItemComponent.UnitId == buffHandler.TheUnitBelongto.Id)
                 {
-                    uIMainBuffItemComponent.AddSameBuff(buffHandler);
+                    uIMainBuffItemComponent.UpdateBuffNumber(buffHandler);
                     return true;
                 }
             }
@@ -167,24 +167,24 @@ namespace ET
             return false;
         }
 
-        public static void OnResetBuff(this UIMainBuffComponent self, int buffID)
+        public static void OnResetBuff(this UIMainBuffComponent self, ABuffHandler buffHandler)
         {
             for (int i = 0; i < self.MainBuffUIList.Count; i++)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
-                if (uIMainBuffItemComponent.BuffID == buffID)
+                if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId)
                 {
                     uIMainBuffItemComponent.OnResetBuff();
                 }
             }
         }
 
-        public static void OnRemoveBuff(this UIMainBuffComponent self, int buffID)
+        public static void OnRemoveBuff(this UIMainBuffComponent self, ABuffHandler buffHandler)
         {
             for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
-                uIMainBuffItemComponent.OnRemoveBuff(buffID);
+                uIMainBuffItemComponent.UpdateBuffNumber(buffHandler);
             }
             self.OnUpdate() ;
         }

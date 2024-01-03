@@ -46,9 +46,9 @@ namespace ET
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
                 ABuffHandler skillHandler = self.m_Buffs[i];
+                self.m_Buffs.RemoveAt(i);
                 skillHandler.OnFinished();
                 skillHandler.Clear();
-                self.m_Buffs.RemoveAt(i);
                 ObjectPool.Instance.Recycle(skillHandler);
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
@@ -63,9 +63,9 @@ namespace ET
                 skillHandler.OnUpdate();
                 if (skillHandler.BuffState == BuffState.Finished)
                 {
-                    skillHandler.OnFinished();
-                    skillHandler.Clear();
                     self.m_Buffs.RemoveAt(i);
+                    skillHandler.Clear();
+                    skillHandler.OnFinished();
                     ObjectPool.Instance.Recycle(skillHandler);
                     continue;
                 }
@@ -134,9 +134,9 @@ namespace ET
                 }
                 if (aBuffHandler.mSkillBuffConf.Id == buffId)
                 {
+                    self.m_Buffs.RemoveAt(i);
                     aBuffHandler.OnFinished();
                     aBuffHandler.Clear();
-                    self.m_Buffs.RemoveAt(i);
                     ObjectPool.Instance.Recycle(aBuffHandler);
                 }
             }

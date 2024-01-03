@@ -23,8 +23,8 @@ namespace ET
         public string BuffIcon;
         public string aBAtlasTypes;
 
-        public int BuffNumber = 0;
-
+        public long UnitId;
+        public BuffManagerComponent BuffManagerComponent;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -111,22 +111,16 @@ namespace ET
             self.EndTime = TimeHelper.ServerNow() + self.BuffTime; 
         }
 
-        public static void AddSameBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
+        public static void UpdateBuffNumber(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
         {
-            self.BuffNumber++;
+            int BuffNumber = self.BuffManagerComponent.GetBuffNumber(buffHandler.BuffData.BuffId);
             self.EndTime = buffHandler.BuffEndTime;
-            self.TextNumber.text = self.BuffNumber > 1 ? self.BuffNumber.ToString() : string.Empty;
-        }
-
-        public static void OnRemoveBuff(this UIMainBuffItemComponent self, int  buffId)
-        {
-            self.BuffNumber--;
-            if (self.BuffNumber == 0)
+            self.TextNumber.text = BuffNumber > 1 ? BuffNumber.ToString() : string.Empty;
+            if (BuffNumber == 0)
             {
                 self.BuffID = 0;
                 self.EndTime = 0;
             }
-            self.TextNumber.text = self.BuffNumber > 1 ? self.BuffNumber.ToString() : string.Empty;
         }
 
         public static void OnAddBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
@@ -138,7 +132,9 @@ namespace ET
             self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
             self.BuffID = skillBuffConfig.Id;
-            self.BuffNumber = 1;
+            self.UnitId = buffHandler.TheUnitBelongto.Id;
+            self.TextNumber.text = string.Empty;
+            self.BuffManagerComponent = buffHandler.TheUnitBelongto.GetComponent<BuffManagerComponent>();
             string bufficon = skillBuffConfig.BuffIcon;
             //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,
             //释放者是怪物,那么就显示怪物的头像Icon,最后还是没找到显示默认图标b001
