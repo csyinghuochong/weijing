@@ -180,6 +180,7 @@
         public const int SkillMakePlan2 = 3180;                                         //
         public const int ItemXiLianNumber = 3181;                                   //道具洗练次数次数
         public const int SystemTask = 3182;                                         //系统任务
+        public const int Bloodstone = 3183;                                         //血石
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
