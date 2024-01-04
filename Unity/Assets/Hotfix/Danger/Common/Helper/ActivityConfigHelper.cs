@@ -169,6 +169,7 @@ namespace ET
 
         public static int GetChouKa2RewardIndex(string rewardList, List<int> rewardIds)
         {
+
             return 1;
         }
 
