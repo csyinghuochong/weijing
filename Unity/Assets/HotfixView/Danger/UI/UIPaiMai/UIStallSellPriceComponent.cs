@@ -142,6 +142,10 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能上架！");
                 return;
             }
+            if (self.SellNum == 0)
+            {
+                return;
+            }
 
             PaiMaiItemInfo paiMaiItemInfo = new PaiMaiItemInfo();
             paiMaiItemInfo.BagInfo = ComHelp.DeepCopy<BagInfo>(self.BagInfo);
