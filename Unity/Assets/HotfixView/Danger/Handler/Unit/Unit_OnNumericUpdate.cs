@@ -36,7 +36,7 @@
                     if (args.Unit.MainHero)
                     {
                         uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                        uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType > 0);
+                        uI.GetComponent<UIMainComponent>().ShowUIStall(stallType);
                     }
                     break;
                 case NumericType.OccCombatRankID:

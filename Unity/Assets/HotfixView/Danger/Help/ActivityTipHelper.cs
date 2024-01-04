@@ -5,6 +5,13 @@
 
         public static void OnActiviyTip(Scene ZoneScene, int function)
         {
+            Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(ZoneScene);
+            long stallId = unitmain.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall);
+            if (stallId > 0)
+            {
+                return;
+            }
+
             switch (function)
             {
                 case 1031:

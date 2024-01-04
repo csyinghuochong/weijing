@@ -2419,9 +2419,14 @@ namespace ET
             self.UpdateShowRoleExp();
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsLong((int)NumericType.Now_Stall)  > 0);
+            self.ShowUIStall(unit.GetComponent<NumericComponent>().GetAsLong((int)NumericType.Now_Stall));
 
             self.OnTianQiChange(self.ZoneScene().GetComponent<AccountInfoComponent>().TianQiValue);
+        }
+
+        public static void ShowUIStall(this UIMainComponent self, long stallId)
+        {
+            self.UIStall.SetActive(stallId > 0);
         }
 
         //角色经验更新

@@ -308,11 +308,11 @@ namespace ET
             this.GameObject.SetActive(SettingHelper.ShowBlood);
 
             //初始化当前血条
-            UpdateBlood();
+            this.UpdateBlood();
             //更新显示
-            UpdateShow();
+            this.UpdateShow();
 
-            ShowJueXingAnger();
+            this.ShowJueXingAnger();
 
             this.UpdateSkillUseMP();
 
@@ -321,13 +321,10 @@ namespace ET
             {
                 this.EnterStealth(canAttack ? 0f : 0.3f);
             }
-            if (unit.Type == UnitType.Player)
+            if (stateComponent.StateTypeGet(StateTypeEnum.Hide)
+                     || unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall) > 0)
             {
-                if (stateComponent.StateTypeGet(StateTypeEnum.Hide)
-                    || unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall) > 0)
-                {
-                    this.EnterHide();
-                }
+                this.EnterHide();
             }
         }
 
