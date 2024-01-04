@@ -41,11 +41,36 @@ namespace ET
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
 
+        public void AddGuessPlayerList(Dictionary<int, List<long>> guessPlayerList)
+        {
+            foreach (var item in guessPlayerList)
+            {
+                if (item.Value.Count > 0 && GuessPlayerList[item.Key].Contains(item.Value[0]))
+                {
+                    continue;
+                }
+
+                GuessPlayerList[item.Key].AddRange(item.Value);
+            }
+        }
+
         /// <summary>
         /// 竞猜数字->中奖的玩家
         /// </summary>
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, List<long>> GuessRewardList = new Dictionary<int, List<long>>();
+        public void AddGuessRewardList(Dictionary<int, List<long>> guessRewardList)
+        {
+            foreach (var item in guessRewardList)
+            {
+                if (item.Value.Count > 0 && GuessRewardList[item.Key].Contains(item.Value[0]))
+                {
+                    continue;
+                }
+
+                GuessRewardList[item.Key].AddRange(item.Value);
+            }
+        }
 
         /// <summary>
         /// 喂食玩家列表
