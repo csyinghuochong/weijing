@@ -2009,21 +2009,22 @@ message A2M_ActivityGuessResponse // IActorResponse
     string Message = 92;
 }
 
-//ResponseType A2M_ActivitySelfGuessIds
-message M2A_ActivitySelfGuessIds // IActorRequest
+//ResponseType A2M_ActivitySelfInfo
+message M2A_ActivitySelfInfo // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
 	int64 UnitId = 1;
 }
 
-message A2M_ActivitySelfGuessIds // IActorResponse
+message A2M_ActivitySelfInfo // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
     repeated int32 GuessIds = 1;
 	repeated int32 LastGuessReward = 2;   //竞猜中奖纪录
+	int32 BaoShiDu = 3;  
 }
 
 //喂食物

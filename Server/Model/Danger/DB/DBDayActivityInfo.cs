@@ -46,6 +46,16 @@ namespace ET
         /// </summary>
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, List<long>> GuessRewardList = new Dictionary<int, List<long>>();
+
+        /// <summary>
+        /// 喂食玩家列表
+        /// </summary>
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<long, int> FeedPlayerList = new Dictionary<long, int>();
+
+        public int FeedRewardKey = 0;
+
+        public int BaoShiDu = 0;
     }
 
 }

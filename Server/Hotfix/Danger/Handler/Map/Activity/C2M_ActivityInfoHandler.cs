@@ -33,13 +33,14 @@ namespace ET
             activityV1Info.GuessIds.Clear();
 
             long activitySceneid = DBHelper.GetActivityServerId(  unit.DomainZone() );
-            A2M_ActivitySelfGuessIds r_GameStatusResponse = (A2M_ActivitySelfGuessIds)await ActorMessageSenderComponent.Instance.Call
-                   (activitySceneid, new M2A_ActivitySelfGuessIds()
+            A2M_ActivitySelfInfo r_GameStatusResponse = (A2M_ActivitySelfInfo)await ActorMessageSenderComponent.Instance.Call
+                   (activitySceneid, new M2A_ActivitySelfInfo()
                    {
                         UnitId = unit.Id,   
                    });
             activityV1Info.GuessIds = r_GameStatusResponse.GuessIds;
-            activityV1Info.LastGuessReward = r_GameStatusResponse.LastGuessReward;  
+            activityV1Info.LastGuessReward = r_GameStatusResponse.LastGuessReward;
+            activityV1Info.BaoShiDu = r_GameStatusResponse.BaoShiDu;
             response.ActivityV1Info = activityV1Info;
 
             reply();

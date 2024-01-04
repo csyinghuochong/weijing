@@ -5,9 +5,9 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class M2A_ActivitySelfGuessIdsHandler : AMActorRpcHandler<Scene, M2A_ActivitySelfGuessIds, A2M_ActivitySelfGuessIds>
+    public class M2A_ActivitySelfInfoHandler : AMActorRpcHandler<Scene, M2A_ActivitySelfInfo, A2M_ActivitySelfInfo>
     {
-        protected override async ETTask Run(Scene scene, M2A_ActivitySelfGuessIds request, A2M_ActivitySelfGuessIds response, Action reply)
+        protected override async ETTask Run(Scene scene, M2A_ActivitySelfInfo request, A2M_ActivitySelfInfo response, Action reply)
         {
             List<int> guessIds = new List<int>();
             List<int> lastGuessRewatd = new List<int>();

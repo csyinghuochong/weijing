@@ -4209,10 +4209,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(A2M_ActivitySelfGuessIds))]
-	[Message(InnerOpcode.M2A_ActivitySelfGuessIds)]
+	[ResponseType(nameof(A2M_ActivitySelfInfo))]
+	[Message(InnerOpcode.M2A_ActivitySelfInfo)]
 	[ProtoContract]
-	public partial class M2A_ActivitySelfGuessIds: Object, IActorRequest
+	public partial class M2A_ActivitySelfInfo: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -4225,9 +4225,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.A2M_ActivitySelfGuessIds)]
+	[Message(InnerOpcode.A2M_ActivitySelfInfo)]
 	[ProtoContract]
-	public partial class A2M_ActivitySelfGuessIds: Object, IActorResponse
+	public partial class A2M_ActivitySelfInfo: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -4243,6 +4243,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public List<int> LastGuessReward = new List<int>();
+
+		[ProtoMember(3)]
+		public int BaoShiDu { get; set; }
 
 	}
 
