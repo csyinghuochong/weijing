@@ -773,11 +773,20 @@ namespace ET
                             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
                         }
 
+                        long totalValue = 0;
                         if (useBagInfo.HideProLists != null && useBagInfo.HideProLists.Count > 0)
                         {
                             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingAttrNumber_43, useBagInfo.HideProLists.Count, 1);
                             unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.JianDingAttrNumber_43, useBagInfo.HideProLists.Count, 1);
+
+                            for (int pro = 0; pro < useBagInfo.HideProLists.Count; pro++)
+                            {
+                                totalValue += useBagInfo.HideProLists[pro].HideValue;
+                            }
                         }
+
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JianDingValue_140, (int)totalValue, 1);
+                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.JianDingValue_140, (int)totalValue, 1);
 
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JianDingEqipNumber_212, int.Parse(qulitylv), 1);
                     }

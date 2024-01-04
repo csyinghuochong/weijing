@@ -221,6 +221,39 @@ namespace ET
             }
         }
 
+        public static async ETTask CheckFriend(this TeamDungeonComponent self, Dictionary<long,int> hurts)
+        {
+            List<Unit> players = UnitHelper.GetUnitList( self.DomainScene(), UnitType.Player );
+            for (int i = 0; i < players.Count; i++)
+            {
+                Unit unit = players[i]; 
+                if (unit.IsRobot())
+                {
+                    continue;
+                }
+
+                DBFriendInfo dBFriendInfo = await DBHelper.GetComponentCache<DBFriendInfo>(self.DomainZone(), unit.Id);
+                if (dBFriendInfo == null)
+                {
+                    continue;
+                }
+                bool haveFriend = false;
+                for (  int friend = 0;  friend < dBFriendInfo.FriendList.Count; i++  )
+                {
+                    if (hurts.ContainsKey(dBFriendInfo.FriendList[i]))
+                    {
+                        haveFriend = true;
+                    }
+                }
+                if (haveFriend)
+                {
+                    unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
+                    unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
+                }
+            }
+            await ETTask.CompletedTask;
+        }
+
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)
         {
             if (unit.Type != UnitType.Monster)
@@ -286,6 +319,9 @@ namespace ET
                     hurtList.Add(teamPlayerInfo.UserID, teamPlayerInfo.Damage);
                 }
             }
+
+
+            self.CheckFriend(hurtList).Coroutine();
 
             //TeamDungeonHurt_136
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();

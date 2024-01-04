@@ -2303,8 +2303,8 @@ namespace ET
             //C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_DuiHuanWord, RewardId = 0 };
             //M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
 
-            C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_LiBao, RewardId = 1 };
-            M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
+            C2M_ActivityFeedRequest reuqest_1 = new C2M_ActivityFeedRequest() {  ItemID = 10030013 };
+            M2C_ActivityFeedResponse response_1 = (M2C_ActivityFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)

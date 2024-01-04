@@ -875,6 +875,9 @@ namespace ET
                     {
                         self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
                         self.TriggerTaskCountryEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
+
+                        self.TriggerTaskEvent(TaskTargetType.KillDiYuBoss_141, monsterConfig.Lv, 1);
+                        self.TriggerTaskCountryEvent(TaskTargetType.KillDiYuBoss_141, monsterConfig.Lv, 1);
                     }
                 }
                 
@@ -1016,6 +1019,13 @@ namespace ET
         {
             self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
             self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+            if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.ItemQuality >= 5)
+            {
+                self.TriggerTaskEvent(TaskTargetType.GetOrangeEquip_139, itemConfig.UseLv, 1);
+                self.TriggerTaskCountryEvent(TaskTargetType.GetOrangeEquip_139, itemConfig.UseLv, 1);
+            }
         }
 
         public static void CompletCurrentTask(this TaskComponent self)
@@ -1119,7 +1129,10 @@ namespace ET
                  || targetType == TaskTargetType.FuMoQulity_41
                  || targetType == TaskTargetType.JianDingQulity_42
                  || targetType == TaskTargetType.JianDingAttrNumber_43
-                 || targetType == TaskTargetType.XiLianSkillNumber_44)
+                 || targetType == TaskTargetType.XiLianSkillNumber_44
+                 || targetType == TaskTargetType.GetOrangeEquip_139
+                 || targetType == TaskTargetType.JianDingValue_140
+                 || targetType == TaskTargetType.KillDiYuBoss_141)
                 {
                     if (Target[t] <= targetTypeId)
                     {
