@@ -199,11 +199,15 @@ namespace ET
             }
         }
 
-        public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skillId)
+        public static void AddPassiveSkill(this SkillPassiveComponent self, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             self.AddPassiveSkillByType(skillConfig);
-            self.CheckSkillTianFu(skillId, true);
+
+            if (self.GetParent<Unit>().Type == UnitType.Player)
+            {
+                self.CheckSkillTianFu(skillId, true);
+            }
         }
         
         public static void CheckSkillTianFu(this SkillPassiveComponent self, int skillId, bool active)
@@ -218,7 +222,7 @@ namespace ET
             self.GetParent<Unit>().GetComponent<SkillSetComponent>().AddiontTianFu(tianfuid, active);
         }
 
-        public static void RemoveRolePassiveSkill(this SkillPassiveComponent self, int skillId)
+        public static void RemovePassiveSkill(this SkillPassiveComponent self, int skillId)
         {
             for (int i = self.SkillPassiveInfos.Count - 1; i >= 0; i--)
             {
@@ -229,7 +233,11 @@ namespace ET
                 self.SkillPassiveInfos.RemoveAt(i);
                 break;
             }
-            self.CheckSkillTianFu(skillId, false);
+
+            if (self.GetParent<Unit>().Type == UnitType.Player)
+            {
+                self.CheckSkillTianFu(skillId, false);
+            }
         }
 
         /// <summary>

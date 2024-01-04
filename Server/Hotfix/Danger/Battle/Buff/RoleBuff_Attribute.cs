@@ -178,7 +178,7 @@ namespace ET
                     }
                     break;
                 case 4:
-                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(this.mBuffConfig.buffParameterType);
+                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().AddPassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
                 case 5:  //驱散
                     //(buffParameterValue2  ) 需要提前解析要移除的buffid。拓展SkillBuffConfig 放在ConfigPartial
@@ -258,13 +258,12 @@ namespace ET
                         }
                     }
                     break;
-
                 case 2:
                     NowBuffParameterType = this.mBuffConfig.buffParameterType;
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(1<<NowBuffParameterType);
                     break;
                 case 4:
-                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().RemoveRolePassiveSkill(this.mBuffConfig.buffParameterType);
+                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().RemovePassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
                 default:
                     break;

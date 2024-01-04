@@ -675,7 +675,7 @@ namespace ET
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
-                unit.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
+                unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId);
 			}
 			for (int i = 0; i < itemSkills.Count; i++)
 			{
@@ -717,7 +717,7 @@ namespace ET
 				{
 					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)
 					{
-                        skillPassiveComponent.RemoveRolePassiveSkill(skillId);
+                        skillPassiveComponent.RemovePassiveSkill(skillId);
 						self.SkillList.RemoveAt(k);
 						break;
 					}
