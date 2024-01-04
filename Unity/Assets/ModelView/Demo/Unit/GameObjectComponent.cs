@@ -8,7 +8,6 @@ namespace ET
         public GameObject GameObject;
         public string HorseAssetsPath;
         public GameObject ObjectHorse;
-        public GameObject ObjectMove;
         public Material Material;
         public long DelayShow;
 

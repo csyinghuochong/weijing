@@ -819,12 +819,15 @@ namespace ET
 
         public static void EnterHide(this GameObjectComponent self)
         {
-            if (self.GameObject == null)
+            if (self.GameObject != null)
             {
-                return;
+                self.GameObject.SetActive(false);
             }
-            self.GameObject.SetActive(false);
-            self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().EnterHide();
+            if (self.ObjectHorse != null)
+            {
+                self.ObjectHorse.SetActive(false);
+            }
+            self.GetParent<Unit>().GetComponent<UIUnitHpComponent>()?.EnterHide();
         }
 
         public static void EnterBaTi(this GameObjectComponent self)
@@ -867,14 +870,16 @@ namespace ET
         }
 
 
-
         public static void ExitHide(this GameObjectComponent self)
         {
-            if (self.GameObject == null)
+            if (self.GameObject != null)
             {
-                return;
+                self.GameObject.SetActive(true);
             }
-            self.GameObject.SetActive(true);
+            if (self.ObjectHorse != null)
+            {
+                self.ObjectHorse.SetActive(true);
+            }
             self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().ExitHide();
         }
 

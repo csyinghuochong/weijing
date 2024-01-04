@@ -25,6 +25,7 @@ namespace ET
                 TransferHelper.RemovePetAndJingLing(unit );
                 long stallId = UnitFactory.CreateStall( unit.DomainScene(), unit ).Id;
 
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, stallId);
             }
             if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value)) //修改名字
