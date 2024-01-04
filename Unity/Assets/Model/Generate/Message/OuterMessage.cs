@@ -14970,6 +14970,12 @@ namespace ET
 		[ProtoMember(8)]
 		public int BaoShiDu { get; set; }
 
+		[ProtoMember(9)]
+		public string ChouKa2ItemList { get; set; }
+
+		[ProtoMember(10)]
+		public List<int> ChouKa2RewardIds = new List<int>();
+
 	}
 
 //v1活动.抽奖

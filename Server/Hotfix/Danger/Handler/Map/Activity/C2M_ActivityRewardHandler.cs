@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -90,10 +91,61 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1HongBaoNumber, 1, 0);
                     break;
                 case ActivityConfigHelper.ActivityV1_DuiHuanWord:
-                   
+                    if (bagComponent.GetLeftSpace() < 1)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+                    if (request.RewardId > 0 && ActivityConfigHelper.DuiHuanWordReward.ContainsKey(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+                    List<RewardItem> costItemList = new List<RewardItem>();
+                    string rewardItem = string.Empty;
+                    if (request.RewardId == 0)
+                    {
+                        List<int> allword = ActivityConfigHelper.DuiHuanWordReward.Keys.ToList();
+                        for (int i = 0; i < allword.Count; i++)
+                        {
+                            costItemList.Add( new RewardItem() { ItemID = allword[i], ItemNum = 1 } );
+                        }
+                        rewardItem = ActivityConfigHelper.GroupsWordReward;
+                    }
+                    else
+                    {
+                        costItemList.Add( new RewardItem() { ItemID = request.RewardId, ItemNum = 1 } );
+                        rewardItem = ActivityConfigHelper.DuiHuanWordReward[request.RewardId];
+                    }
+                    if (!bagComponent.OnCostItemData(costItemList))
+                    {
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
+                    }
+                    bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case ActivityConfigHelper.ActivityV1_ChouKa2:
-
+                    if (bagComponent.GetLeftSpace() < 1)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+                    if (bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem) < 1)
+                    {
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
+                    }
+                    int rewardIndex = ActivityConfigHelper.GetRewardIndex(activityComponent.ActivityV1Info.ChouKa2ItemList, activityComponent.ActivityV1Info.ChouKa2RewardIds);
+                    activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
+                    string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split(';');
+                    rewardItem = rewardList[rewardIndex];
+                    bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case ActivityConfigHelper.ActivityV1_LiBao:
                     activityComponent.ActivityV1Info.LiBaoBuyIds.Add(request.RewardId);

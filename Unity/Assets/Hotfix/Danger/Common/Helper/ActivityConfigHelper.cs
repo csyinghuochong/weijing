@@ -119,6 +119,11 @@ namespace ET
 
 
         /// <summary>
+        /// 抽卡消耗道具
+        /// </summary>
+        public static int Chou2CostItem = 10030013;
+
+        /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
         /// </summary>
         public static Dictionary<int, List<int>> Chou2ItemList = new Dictionary<int, List<int>>()
@@ -127,6 +132,11 @@ namespace ET
             {  2, new List<int>(){ 10030013, 10030013, 10030013 } },
             {  3, new List<int>(){ 10030013, 10030013, 10030013 } },
         };
+
+        public static int GetRewardIndex(string rewardList, List<int> rewardIds)
+        {
+            return 1;
+        }
 
         /// <summary>
         /// 在野外击败怪物时会掉落元宵和饺子, 喂食道具会获得奖励哦
