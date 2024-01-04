@@ -7173,11 +7173,11 @@ message ActivityV1Info
 	repeated int32 ConsumeDiamondReward = 3;	//消耗钻石领取记录
 	repeated int32 ChouKaNumberReward = 4;		//抽卡次数奖励记录
 	int32  ChouKaDropId = 5;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
-	repeated int32 LiBaoAllIds = 6;		//每日礼包
+	repeated int32 LiBaoAllIds = 6;		//所有每日礼包
 	repeated int32 LiBaoBuyIds = 7;		//已购买每日礼包
 	int32 BaoShiDu = 8;					//饱食度
-	string ChouKa2ItemList = 9;				//抽卡2所有奖励列表
-	repeated int32 ChouKa2RewardIds = 10;	//抽卡2已抽取奖励
+	string ChouKa2ItemList = 9;				//抽卡2所有奖励列表 ;切分
+	repeated int32 ChouKa2RewardIds = 10;	//抽卡2已抽取奖励   达到一半可以刷新奖励
 }
 
 //v1活动.抽奖
