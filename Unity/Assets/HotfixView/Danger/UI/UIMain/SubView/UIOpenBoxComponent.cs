@@ -164,8 +164,8 @@ namespace ET
                     }
                 }
 
-                Actor_PickBoxRequest actor_PickBoxRequest = new Actor_PickBoxRequest() { UnitId = self.BoxUnitId };
-                Actor_PickBoxResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_PickBoxResponse;
+                Actor_OpenBoxRequest actor_PickBoxRequest = new Actor_OpenBoxRequest() { UnitId = self.BoxUnitId };
+                await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest);
             }
         }
     }

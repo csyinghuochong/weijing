@@ -199,7 +199,6 @@ namespace ET
             string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(8).Value.Split(';');
             for (int i = 0; i < dayTaskID.Length; i++)
             {
-
                 //获取任务概率
                 float taskRandValue = RandomHelper.RandFloat01();
                 int writeTaskID = int.Parse(dayTaskID[i]);
@@ -299,7 +298,19 @@ namespace ET
             return taskIds;
         }
 
-
+        public static List<int> GetActivityV1Task()
+        {
+            List<int> taskIds = new List<int>();
+            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskCountryType.ActivityV1)
+                {
+                    taskIds.Add(item.Key);
+                }
+            }
+            return taskIds;
+        }
 #if SERVER
         /// <summary>
         /// 赛季每周任务

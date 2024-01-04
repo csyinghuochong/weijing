@@ -89,10 +89,19 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_9}_{TimeHelper.ServerNow()}");
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1HongBaoNumber, 1, 0);
                     break;
+                case ActivityConfigHelper.ActivityV1_DuiHuanWord:
+                   
+                    break;
+                case ActivityConfigHelper.ActivityV1_ChouKa2:
+
+                    break;
+                case ActivityConfigHelper.ActivityV1_LiBao:
+                    activityComponent.ActivityV1Info.LiBaoBuyIds.Add(request.RewardId);
+                    break;
                 default:
                     break;
             }
-
+            response.ActivityV1Info = activityComponent.ActivityV1Info;
             reply();
             await ETTask.CompletedTask;
         }

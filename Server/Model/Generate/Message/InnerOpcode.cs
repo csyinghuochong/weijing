@@ -237,5 +237,7 @@ namespace ET
 		 public const ushort A2M_ActivityGuessResponse = 20234;
 		 public const ushort M2A_ActivitySelfGuessIds = 20235;
 		 public const ushort A2M_ActivitySelfGuessIds = 20236;
+		 public const ushort M2A_ActivityFeedRequest = 20237;
+		 public const ushort A2M_ActivityFeedResponse = 20238;
 	}
 }

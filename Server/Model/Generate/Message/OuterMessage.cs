@@ -6024,10 +6024,10 @@ namespace ET
 	}
 
 //开启宝箱
-	[ResponseType(nameof(Actor_PickBoxResponse))]
-	[Message(OuterOpcode.Actor_PickBoxRequest)]
+	[ResponseType(nameof(Actor_OpenBoxResponse))]
+	[Message(OuterOpcode.Actor_OpenBoxRequest)]
 	[ProtoContract]
-	public partial class Actor_PickBoxRequest: Object, IActorLocationRequest
+	public partial class Actor_OpenBoxRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6040,9 +6040,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.Actor_PickBoxResponse)]
+	[Message(OuterOpcode.Actor_OpenBoxResponse)]
 	[ProtoContract]
-	public partial class Actor_PickBoxResponse: Object, IActorLocationResponse
+	public partial class Actor_OpenBoxResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -14961,6 +14961,15 @@ namespace ET
 		[ProtoMember(5)]
 		public int ChouKaDropId { get; set; }
 
+		[ProtoMember(6)]
+		public List<int> LiBaoAllIds = new List<int>();
+
+		[ProtoMember(7)]
+		public List<int> LiBaoBuyIds = new List<int>();
+
+		[ProtoMember(8)]
+		public int BaoShiDu { get; set; }
+
 	}
 
 //v1活动.抽奖
@@ -15024,6 +15033,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public ActivityV1Info ActivityV1Info { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_ActivityGuessResponse))]
@@ -15054,6 +15066,73 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+//刷新奖励
+	[ResponseType(nameof(M2C_ChouKa2RefreshResponse))]
+	[Message(OuterOpcode.C2M_ChouKa2RefreshRequest)]
+	[ProtoContract]
+	public partial class C2M_ChouKa2RefreshRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ChouKa2RefreshResponse)]
+	[ProtoContract]
+	public partial class M2C_ChouKa2RefreshResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public ActivityV1Info ActivityV1Info { get; set; }
+
+	}
+
+//喂食物
+	[ResponseType(nameof(M2C_ActivityFeedResponse))]
+	[Message(OuterOpcode.C2M_ActivityFeedRequest)]
+	[ProtoContract]
+	public partial class C2M_ActivityFeedRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int ItemID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ActivityFeedResponse)]
+	[ProtoContract]
+	public partial class M2C_ActivityFeedResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public ActivityV1Info ActivityV1Info { get; set; }
 
 	}
 

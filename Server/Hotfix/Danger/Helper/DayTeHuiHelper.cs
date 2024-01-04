@@ -6,7 +6,7 @@ namespace ET
     public static class DayTeHuiHelper
     {
 
-        public static List<int> GetDayTeHuiList(int level)
+        public static List<int> GetDayTeHuiList(int activityType, int level)
         { 
             List<int> sour = new List<int>();
             List<int> dest = new List<int>();
@@ -14,7 +14,7 @@ namespace ET
             Dictionary<int, ActivityConfig> keyValuePairs = ActivityConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.ActivityType != 2)
+                if (item.Value.ActivityType != activityType)
                 {
                     continue;
                 }

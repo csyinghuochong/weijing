@@ -2025,3 +2025,20 @@ message A2M_ActivitySelfGuessIds // IActorResponse
     repeated int32 GuessIds = 1;
 	repeated int32 LastGuessReward = 2;   //竞猜中奖纪录
 }
+
+//喂食物
+//ResponseType A2M_ActivityFeedResponse
+message M2A_ActivityFeedRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitID = 1;
+}
+
+message A2M_ActivityFeedResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 BaoShiDu = 1;
+}

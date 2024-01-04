@@ -1265,7 +1265,8 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             taskCountryList.AddRange(TaskHelper.GetMineTask());
-
+            taskCountryList.AddRange(TaskHelper.GetActivityV1Task());
+            
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });

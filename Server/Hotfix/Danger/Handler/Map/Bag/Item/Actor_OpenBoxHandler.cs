@@ -4,10 +4,10 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class Actor_PickBoxHandler : AMActorLocationRpcHandler<Unit, Actor_PickBoxRequest, Actor_PickBoxResponse>
+    public class Actor_OpenBoxHandler : AMActorLocationRpcHandler<Unit, Actor_OpenBoxRequest, Actor_OpenBoxResponse>
     {
 
-        protected override async ETTask Run(Unit unit, Actor_PickBoxRequest request, Actor_PickBoxResponse response, Action reply)
+        protected override async ETTask Run(Unit unit, Actor_OpenBoxRequest request, Actor_OpenBoxResponse response, Action reply)
         {
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (boxUnit == null)
@@ -57,6 +57,9 @@ namespace ET
             }
 
             boxUnit.GetComponent<HeroDataComponent>().OnDead(unit);
+
+            unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.OpenBox_137, 0, 1);
+            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.OpenBox_137, 0, 1);
 
             response.Error = ErrorCode.ERR_Success;
 

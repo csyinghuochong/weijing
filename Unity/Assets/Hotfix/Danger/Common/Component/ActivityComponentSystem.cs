@@ -61,13 +61,17 @@ namespace ET
         {
             if (self.DayTeHui.Count == 0)
             {
-                self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(level);
+                self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(2, level);
+            }
+            if (self.ActivityV1Info.LiBaoAllIds.Count == 0)
+            {
+                self.ActivityV1Info.LiBaoAllIds = ActivityConfigHelper.GetLiBaoList( );
             }
         }
 
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
-            self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(level);
+            self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(2, level);
             
             //重置每日特惠 和 新春活动
             for (int i = self.ActivityReceiveIds.Count -1; i >= 0; i--)
@@ -92,6 +96,8 @@ namespace ET
                 }
             }
 
+            self.ActivityV1Info.LiBaoAllIds = ActivityConfigHelper.GetLiBaoList();
+            self.ActivityV1Info.LiBaoBuyIds.Clear();
             self.ActivityV1Info.LastGuessReward.Clear();
             self.ActivityV1Info.ChouKaNumberReward.Clear(); 
             self.ActivityV1Info.ConsumeDiamondReward.Clear();   

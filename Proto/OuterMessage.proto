@@ -2850,15 +2850,15 @@ message M2C_EnergyInfoResponse // IActorLocationResponse
 }
 
 //开启宝箱
-//ResponseType Actor_PickBoxResponse
-message Actor_PickBoxRequest // IActorLocationRequest
+//ResponseType Actor_OpenBoxResponse
+message Actor_OpenBoxRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int64 UnitId = 1;
 }
 
-message Actor_PickBoxResponse // IActorLocationResponse
+message Actor_OpenBoxResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
@@ -7173,6 +7173,11 @@ message ActivityV1Info
 	repeated int32 ConsumeDiamondReward = 3;	//消耗钻石领取记录
 	repeated int32 ChouKaNumberReward = 4;		//抽卡次数奖励记录
 	int32  ChouKaDropId = 5;   //当天掉落Id. 客户端显示奖励DropHelper.DropIDToShowItem()需要确认一下是否这个函数
+	repeated int32 LiBaoAllIds = 6;		//每日礼包
+	repeated int32 LiBaoBuyIds = 7;		//已购买每日礼包
+	int32 BaoShiDu = 8;					//饱食度
+	string ChouKa2ItemList = 9;				//抽卡2所有奖励列表
+	repeated int32 ChouKa2RewardIds = 10;	//抽卡2已抽取奖励
 }
 
 //v1活动.抽奖
@@ -7196,7 +7201,7 @@ message C2M_ActivityRewardRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 ActivityType = 1;	 //ActivityConfigHelper.ActivityV1_ChouKa /.ActivityV1_Consume
-	int32 RewardId = 2;
+	int32 RewardId = 2;  //ActivityConfigHelper.ActivityV1_DuiHuanWord >0为具体的字  0为整套兑换
 }
 
 message M2C_ActivityRewardResponse // IActorLocationResponse
@@ -7204,6 +7209,7 @@ message M2C_ActivityRewardResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	ActivityV1Info ActivityV1Info = 1;
 }
 
 //ResponseType M2C_ActivityGuessResponse
@@ -7219,6 +7225,39 @@ message M2C_ActivityGuessResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//刷新奖励
+//ResponseType M2C_ChouKa2RefreshResponse
+message C2M_ChouKa2RefreshRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_ChouKa2RefreshResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	ActivityV1Info ActivityV1Info = 1; 
+}
+
+//喂食物
+//ResponseType M2C_ActivityFeedResponse
+message C2M_ActivityFeedRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ItemID = 1;
+}
+
+message M2C_ActivityFeedResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	ActivityV1Info ActivityV1Info = 1; 
 }
 
 //ResponseType M2C_PetExploreReward 
