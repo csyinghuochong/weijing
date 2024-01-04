@@ -2282,7 +2282,7 @@ namespace ET
             //Log.ILog.Debug($"今日竞猜中奖纪录: {response_1.ActivityV1Info.LastGuessReward.Count}");
             //Log.ILog.Debug($"今日已领取抽卡次数奖励: {response_1.ActivityV1Info.ChouKaNumberReward.Count}");
             //Log.ILog.Debug($"今日已领取消费次数奖励: {response_1.ActivityV1Info.ConsumeDiamondReward.Count}");
-            
+
             ////开始抽奖
             //C2M_ActivityChouKaRequest request_2 = new C2M_ActivityChouKaRequest() { };
             //M2C_ActivityChouKaResponse response_2 = (M2C_ActivityChouKaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_2);
@@ -2299,6 +2299,9 @@ namespace ET
             //self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.GuessIds.Add(0);
             //Log.Debug("已竞猜数字：" + self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.GuessIds.Count);
             //新年商店参考战场商店。StoreSellConfig  C2M_StoreBuyRequest
+
+            C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_DuiHuanWord, RewardId = 10030013 };
+            M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)

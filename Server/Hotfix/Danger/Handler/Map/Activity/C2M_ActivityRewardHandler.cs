@@ -97,9 +97,9 @@ namespace ET
                         reply();
                         return;
                     }
-                    if (request.RewardId > 0 && ActivityConfigHelper.DuiHuanWordReward.ContainsKey(request.RewardId))
+                    if (request.RewardId > 0 && !ActivityConfigHelper.DuiHuanWordReward.ContainsKey(request.RewardId))
                     {
-                        response.Error = ErrorCode.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }
