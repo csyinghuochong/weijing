@@ -126,6 +126,17 @@ namespace ET
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            if (numericComponent.GetAsLong(NumericType.Now_Stall) > 0)
+            {
+                long stallId = numericComponent.GetAsLong(NumericType.Now_Stall);
+                Unit unitstall = unit.GetParent<UnitComponent>().Get(stallId);
+                if (unitstall != null)
+                {
+                    unitstall.AddComponent<DeathTimeComponent, long>(TimeHelper.Hour * 6);
+                }
+            }
+
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().OnOffLine();
             unit.GetComponent<DataCollationComponent>().UpdateData();

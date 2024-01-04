@@ -10,34 +10,31 @@ namespace ET
         {
             if (request.StallType == 0) //收摊
             {
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, request.StallType);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, 0);
+
+                TransferHelper.RemoveStall(unit );
             }
             if (request.StallType == 1) //摆摊
             {
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 if (string.IsNullOrEmpty(userInfo.StallName))
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, "商品摊位");
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.StallName, "商品摊位");
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, $"{userInfo.Name}的摊位");
                 }
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, request.StallType);
-                M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
-                m2C_BroadcastRoleData.UnitId = unit.Id;
-                m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
-                m2C_BroadcastRoleData.UpdateTypeValue = userInfo.StallName;
-                MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
-                unit.GetComponent<UnitInfoComponent>().StallName = userInfo.StallName;
-
+       
                 TransferHelper.RemovePetAndJingLing(unit );
+                long stallId = UnitFactory.CreateStall( unit.DomainScene(), unit ).Id;
+
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Stall, stallId);
             }
             if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value)) //修改名字
             {
-                unit.GetComponent<UnitInfoComponent>().StallName = request.Value;
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.StallName, request.Value);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.StallName, request.Value);
+
+                long stallId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
-                m2C_BroadcastRoleData.UnitId = unit.Id;
-                m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
+                m2C_BroadcastRoleData.UnitId = stallId;
+                m2C_BroadcastRoleData.UpdateType = UserDataType.Name;
                 m2C_BroadcastRoleData.UpdateTypeValue = request.Value;
                 MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
             }

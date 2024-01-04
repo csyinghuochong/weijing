@@ -410,7 +410,6 @@ message UnitInfo
 
 	string UnitName = 21;		//自身名字
 	string MasterName = 22;		//主人名字
-	string StallName = 23;
 	string UnionName = 24;
 	string DemonName = 25;          //
 

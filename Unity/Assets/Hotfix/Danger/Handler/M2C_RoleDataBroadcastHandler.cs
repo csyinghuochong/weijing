@@ -21,9 +21,6 @@
                 case (int)UserDataType.Lv:
                     //int.Parse(message.UpdateTypeValue);
                     break;
-                case (int)UserDataType.StallName:
-                    unit.GetComponent<UnitInfoComponent>().StallName = message.UpdateTypeValue;
-                    break;
                 case (int)UserDataType.UnionName:
                     unit.GetComponent<UnitInfoComponent>().UnionName = message.UpdateTypeValue;
                     break;

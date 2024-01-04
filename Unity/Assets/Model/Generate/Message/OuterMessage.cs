@@ -811,9 +811,6 @@ namespace ET
 		[ProtoMember(22)]
 		public string MasterName { get; set; }
 
-		[ProtoMember(23)]
-		public string StallName { get; set; }
-
 		[ProtoMember(24)]
 		public string UnionName { get; set; }
 

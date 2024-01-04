@@ -78,7 +78,6 @@ namespace ET
                     unitInfo.UnitName = userInfoComponent.UserInfo.Name;
                     unitInfo.ConfigId = userInfoComponent.UserInfo.Occ;
                     unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName) ? string.Empty : userInfoComponent.UserInfo.UnionName;
-                    unitInfo.StallName = unitInfoComponent.StallName;
                     unitInfo.DemonName = unitInfoComponent.DemonName;
                     unitInfo.FashionEquipList = unit.GetComponent<BagComponent>().FashionEquipList;
                     break;
@@ -96,6 +95,9 @@ namespace ET
                     unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
                 case UnitType.Bullet:
+                    unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
+                    break;
+                case UnitType.Stall:
                     unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
                 case UnitType.Npc:
@@ -144,6 +146,7 @@ namespace ET
                 case UnitType.Pet:
                 case UnitType.Bullet:
                 case UnitType.Npc:
+                case UnitType.Stall:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:

@@ -32,12 +32,11 @@
                     break;
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
-                    args.Unit.GetComponent<UIUnitHpComponent>().OnUnitStallUpdate(stallType);
                     args.Unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stallType);
                     if (args.Unit.MainHero)
                     {
                         uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                        uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
+                        uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType > 0);
                     }
                     break;
                 case NumericType.OccCombatRankID:

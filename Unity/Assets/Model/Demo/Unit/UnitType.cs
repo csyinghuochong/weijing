@@ -12,5 +12,6 @@
         public const int Pasture = 8;               //动物
         public const int Plant = 9;                 //植物
         public const int Bullet = 10;                //弹道
+        public const int Stall = 11;                    //摆摊
     }
 }

@@ -7,7 +7,6 @@ namespace ET
         {
             self.MainHero = false;
             self.ConfigId = configId;
-            self.UpdateUIType = 0;
             self.UpdateUITime = 0;
         }
     }

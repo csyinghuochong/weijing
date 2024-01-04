@@ -1924,12 +1924,15 @@ namespace ET
         public static async ETTask OnButtonStallOpen(this UIMainComponent self)
         {
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiStall);
-            uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()));
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit stall = unit.GetParent<UnitComponent>().Get(unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall));
+            uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(stall);
         }
 
         public static void OnButtonStallCancel(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?/n 支持下线,摊位可以离线显示6小时!",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?\n 支持下线,摊位可以离线显示6小时!",
                        () =>
                        {
                            NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();
@@ -2416,9 +2419,8 @@ namespace ET
             self.UpdateShowRoleExp();
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsInt((int)NumericType.Now_Stall) == 1);
+            self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsLong((int)NumericType.Now_Stall)  > 0);
 
-           
             self.OnTianQiChange(self.ZoneScene().GetComponent<AccountInfoComponent>().TianQiValue);
         }
 

@@ -308,18 +308,15 @@ namespace ET
                 return;
             }
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+            if (unit.Type == UnitType.Stall)
+            {
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiStall);
+                uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(unit);
+            }
             if (unit.Type == UnitType.Player)
             {
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall) == 1)
-                {
-                    UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiStall);
-                    uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(unit);
-                }
-                else
-                {
-                    UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-                    uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id).Coroutine();
-                }
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
+                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id).Coroutine();
             }
         }
 

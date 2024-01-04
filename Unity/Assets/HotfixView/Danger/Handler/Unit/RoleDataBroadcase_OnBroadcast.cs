@@ -16,9 +16,6 @@ namespace ET
                 case UserDataType.Lv:
                     args.Unit.GetComponent<UIUnitHpComponent>().UpdateShow();
                     break;
-                case UserDataType.StallName:
-                    args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateStallName(args.UserDataValue);
-                    break;
                 case UserDataType.DemonName:
                     args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateDemonName(args.UserDataValue);
                     break;

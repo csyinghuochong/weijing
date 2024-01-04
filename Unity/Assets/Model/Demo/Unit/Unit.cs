@@ -14,8 +14,6 @@ namespace ET
 
         public bool WaitLoad;
 
-		public int UpdateUIType;
-
         public long MasterId;
 
         public float UpdateUITime;

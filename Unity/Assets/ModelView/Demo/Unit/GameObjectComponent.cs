@@ -9,7 +9,6 @@ namespace ET
         public string HorseAssetsPath;
         public GameObject ObjectHorse;
         public GameObject ObjectMove;
-        public GameObject BaiTan;
         public Material Material;
         public long DelayShow;
 

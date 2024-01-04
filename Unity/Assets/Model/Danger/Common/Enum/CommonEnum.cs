@@ -141,15 +141,6 @@ namespace ET
         public const int TikTok = 5;
     }
 
-    public static class HeadBarType
-    {
-        public const int TransferUI = 1;
-        public const int NpcHeadBarUI = 2;
-        public const int DropUI = 3;
-        public const int HeroHeadBar = 4;
-        public const int SceneItemUI = 5;
-    }
-
     public static class ReddotType
     {
         public const int Friend = 100;

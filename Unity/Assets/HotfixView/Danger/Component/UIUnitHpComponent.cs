@@ -60,9 +60,7 @@ namespace ET
         public Transform UIPosition;
         public string HeadBarPath;
         public Vector2 LastPositon;
-        public GameObject Lal_ShopName;
-        public GameObject Lal_ShopName2;
-        public GameObject ShopShowSet;
+        public GameObject Lal_AddtionName;
         public GameObject PlayerNameSet;
         public GameObject Lal_JiaZuName;
         public UIXuLieZhenComponent UIXuLieZhenComponent;
@@ -90,6 +88,9 @@ namespace ET
                 case UnitType.Pet:
                 case UnitType.JingLing:
                     this.HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIUnitHp");
+                    break;
+                case UnitType.Stall:
+                    this.HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIStallIem");
                     break;
             }
             GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);
@@ -229,9 +230,7 @@ namespace ET
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.Img_ChengHao.SetActive(true);
                     this.PlayerNameSet.SetActive(true);
-                    this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
-                    this.Lal_ShopName2 = rc.Get<GameObject>("Lal_ShopName2");
-                    this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
+                    this.Lal_AddtionName = rc.Get<GameObject>("Lal_AddtionName");
                     this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue").GetComponent<Image>();
                     this.Img_AngleValue.gameObject.SetActive(false);
                     this.Img_AngleValueDi = rc.Get<GameObject>("Img_AngleValueDi");
@@ -245,15 +244,6 @@ namespace ET
                     this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = lierenxuetiao ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
                     this.Img_HpValue.transform.localPosition = lierenxuetiao ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
 
-                    StateComponent stateComponent = unit.GetComponent<StateComponent>();
-                    if (stateComponent.StateTypeGet(StateTypeEnum.Stealth))
-                    {
-                        this.EnterStealth(canAttack ? 0f : 0.3f);
-                    }
-                    if (stateComponent.StateTypeGet(StateTypeEnum.Hide))
-                    {
-                        this.EnterHide();
-                    }
                     break;
                 case UnitType.Pet:
                 case UnitType.JingLing:
@@ -325,6 +315,20 @@ namespace ET
             ShowJueXingAnger();
 
             this.UpdateSkillUseMP();
+
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            if (stateComponent.StateTypeGet(StateTypeEnum.Stealth))
+            {
+                this.EnterStealth(canAttack ? 0f : 0.3f);
+            }
+            if (unit.Type == UnitType.Player)
+            {
+                if (stateComponent.StateTypeGet(StateTypeEnum.Hide)
+                    || unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall) > 0)
+                {
+                    this.EnterHide();
+                }
+            }
         }
 
         public void OnUpdateHorse(  )
@@ -406,7 +410,6 @@ namespace ET
                 }
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
 
-                this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                 this.UpdateDemonName(infoComponent.DemonName);
                 this.OnUpdateUnionName();
             }
@@ -462,6 +465,11 @@ namespace ET
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<Text>().text = $"{unitInfoComponent.MasterName }的精灵";
+            }
+            if (this.GetParent<Unit>().Type == UnitType.Stall)
+            {
+                UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
+                this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
             }
         }
 
@@ -616,21 +624,16 @@ namespace ET
 
     public static class UIUnitHpComponentSystem
     {
-        public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
-        {
-            self.Lal_ShopName.GetComponent<Text>().text = stallName;
-            self.Lal_ShopName2.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name + "的摊位";
-        }
-
+       
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
         {
             if (string.IsNullOrEmpty(stallName))
             {
-                self.Lal_ShopName.GetComponent<Text>().text = string.Empty;
+                self.Lal_AddtionName.GetComponent<Text>().text = string.Empty;
             }
             else
             {
-                self.Lal_ShopName.GetComponent<Text>().text = $"{stallName}的小跟班";
+                self.Lal_AddtionName.GetComponent<Text>().text = $"{stallName}的小跟班";
             }
         }
 
@@ -710,37 +713,6 @@ namespace ET
                     Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     uIUnitHpComponent.Img_HpValue.GetComponent<Image>().sprite = sp;
                 }
-            }
-        }
-
-        public static void OnUnitStallUpdate(this UIUnitHpComponent self, int stallType)
-        {
-            UnitInfoComponent infoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-
-            //显示玩家名称
-            if (stallType == 0)
-            {
-                if (self.Img_ChengHao.GetComponent<Image>().sprite != null)
-                {
-                    self.Img_ChengHao.SetActive(true);
-                }
-                self.Lal_Name.SetActive(true);
-                self.Lal_Name.GetComponent<Text>().text = infoComponent.UnitName;
-                self.Lal_JiaZuName.SetActive(true);
-                self.Lal_ShopName.SetActive(false);
-                self.Lal_ShopName2.SetActive(false);
-                self.ShopShowSet.SetActive(false);
-                self.PlayerNameSet.SetActive(true);
-            }
-            else
-            {
-                self.Img_ChengHao.SetActive(false);
-                self.Lal_Name.SetActive(false);
-                self.Lal_JiaZuName.SetActive(false);
-                self.Lal_ShopName.SetActive(true);
-                self.Lal_ShopName2.SetActive(true);
-                self.ShopShowSet.SetActive(true);
-                self.PlayerNameSet.SetActive(false);
             }
         }
     }

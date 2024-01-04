@@ -49,7 +49,6 @@ namespace ET
             unit.AddComponent<MoveComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.UnitName = unitInfo.UnitName;
-            unitInfoComponent.StallName = unitInfo.StallName;
             unitInfoComponent.MasterName = unitInfo.MasterName;
             unitInfoComponent.UnionName = unitInfo.UnionName;
             unitInfoComponent.FashionEquipList = unitInfo.FashionEquipList;

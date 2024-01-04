@@ -604,6 +604,18 @@ namespace ET
             RemovePetAndJingLing(unit);
         }
 
+        public static void RemoveStall(Unit unit)
+        {
+            List<Unit> stallList = UnitHelper.GetUnitList( unit.DomainScene(), UnitType.Stall );
+            for (int i = stallList.Count - 1; i>= 0; i--)
+            {
+                if (stallList[i].MasterId == unit.Id)
+                {
+                    unit.GetParent<UnitComponent>().Remove(stallList[i].Id);
+                }
+            }
+        }
+
         public static void RemovePetAndJingLing(Unit unit)
         {
             UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();

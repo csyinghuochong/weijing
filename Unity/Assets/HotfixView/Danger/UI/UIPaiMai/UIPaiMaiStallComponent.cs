@@ -77,19 +77,20 @@ namespace ET
 
         public static void OnUpdateUI(this UIPaiMaiStallComponent self, Unit unit)
         {
-            self.UserId = unit.Id;
+            self.UserId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
 
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             bool ifSelf = selfId == self.UserId;
             self.Btn_BuyItem.SetActive(!ifSelf);
             self.Btn_ShouTan.SetActive(ifSelf);
-            if (!string.IsNullOrEmpty(unit.GetComponent<UnitInfoComponent>().StallName))
+            self.Btn_ChangeName.SetActive(ifSelf);
+            if (!string.IsNullOrEmpty(unit.GetComponent<UnitInfoComponent>().UnitName))
             {
-                self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().StallName;
+                self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().UnitName;
             }
             else
             {
-                self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().UnitName + "的摊位";
+                self.Lab_Name.GetComponent<InputField>().text = "商品摊位";
             }
 
             self.RequestStallInfo().Coroutine();

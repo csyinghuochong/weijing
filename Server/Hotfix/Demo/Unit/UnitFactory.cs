@@ -223,6 +223,25 @@ namespace ET
             return unit;
         }
 
+        public static Unit CreateStall(Scene scene, Unit master)
+        {
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            unit.AddComponent<StateComponent>();            //添加状态组件
+            unit.AddComponent<HeroDataComponent>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            unitInfoComponent.UnitName = master.GetComponent<UserInfoComponent>().UserInfo.StallName;
+            unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
+            unit.MasterId = master.Id;
+            unit.Type = UnitType.Stall;
+            unit.Position = master.Position;
+            //unit.AddComponent<DeathTimeComponent, long>(TimeHelper.Hour * 6);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            return unit;
+        }
+
         public static Unit CreateTempFollower(Unit master, int monster)
         {
             Scene scene = master.DomainScene();

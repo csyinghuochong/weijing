@@ -445,7 +445,9 @@ namespace ET
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
-						break;
+						TransferHelper.RemoveStall(unit);
+
+                        break;
 				}
 
 				unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);

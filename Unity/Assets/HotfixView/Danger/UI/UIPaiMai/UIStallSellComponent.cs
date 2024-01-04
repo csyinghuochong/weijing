@@ -162,7 +162,10 @@ namespace ET
             int z = Mathf.FloorToInt(vector3.z * 100);
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
             int[] stallarea = sceneConfig.StallArea;
-            if (Mathf.Abs(x - stallarea[0]) > stallarea[3] || Mathf.Abs(z - stallarea[2]) > stallarea[3])
+
+            float distance = stallarea[3] > 100 ? stallarea[3] : 300;
+
+            if (Mathf.Abs(x - stallarea[0]) > distance || Mathf.Abs(z - stallarea[2]) > distance)
             {
                 PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "摆摊提示", "是否前往摆摊区域进行摆摊?", () => { self.OnRun(); }).Coroutine();
                 return;
