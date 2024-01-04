@@ -417,7 +417,7 @@ namespace ET
                         value = petinfo.ZiZhi_Adf >= targetValue;
                         break;
                     case 8:
-                        value = petinfo.ZiZhi_ChengZhang >= targetValue;
+                        value = (100 * petinfo.ZiZhi_ChengZhang) >= targetValue;
                         break;
                     default:
                         break;
