@@ -668,7 +668,7 @@ namespace ET
                         index = RandomHelper.RandomNumber(rankNumber - 11, rankNumber - 1);
                     else // 4<rankNumber<=10 ,前面取俩个，后面取一个
                     {
-                        if (indexList.Count <= 2)
+                        if (indexList.Count < 2)
                         {
                             index = RandomHelper.RandomNumber(0, rankNumber - 1);
                         }
