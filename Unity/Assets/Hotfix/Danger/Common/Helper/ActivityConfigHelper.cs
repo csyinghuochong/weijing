@@ -164,11 +164,11 @@ namespace ET
         /// <summary>
         /// 每日礼包
         /// </summary>
-        public static Dictionary<int, string> LiBaoList = new Dictionary<int, string>()
+        public static Dictionary<int, KeyValuePair> LiBaoList = new Dictionary<int, KeyValuePair>()
         {
-            { 1, "10030013;1@10030013;1"},
-            { 2, "10030013;1@10030013;1"},
-            { 3, "10030013;1@10030013;1"},
+            { 1,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" } }, //Value消耗钻石Value2道具
+            { 2,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" }},
+            { 3,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" }},
         };
 
         public static List<int> GetLiBaoList()
