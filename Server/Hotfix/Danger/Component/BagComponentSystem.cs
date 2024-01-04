@@ -225,7 +225,7 @@ namespace ET
             int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
             for (int i = bagInfos.Count - 1; i >= 0; i--)
             {
-                if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
+                if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID) || bagInfos[i].ItemNum <= 0)
                 {
                     bagInfos.RemoveAt(i);
                     continue;
