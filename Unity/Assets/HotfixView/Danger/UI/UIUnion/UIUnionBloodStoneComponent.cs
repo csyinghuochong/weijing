@@ -72,6 +72,9 @@ namespace ET
                 self.AssetPath.Add(path);
             }
 
+            UICommonHelper.SetImageGray(self.IconLImg, publicQiangHuaConfig.QiangHuaLv == 0);
+            UICommonHelper.SetImageGray(self.IconRImg, publicQiangHuaConfig.QiangHuaLv == 0);
+
             self.IconLImg.GetComponent<Image>().sprite = sp;
             self.IconRImg.GetComponent<Image>().sprite = sp;
 
