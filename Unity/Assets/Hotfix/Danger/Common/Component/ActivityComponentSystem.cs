@@ -67,6 +67,10 @@ namespace ET
             {
                 self.ActivityV1Info.LiBaoAllIds = ActivityConfigHelper.GetLiBaoList( );
             }
+            if (string.IsNullOrEmpty(self.ActivityV1Info.ChouKa2ItemList))
+            {
+                self.ActivityV1Info.ChouKa2ItemList = ActivityConfigHelper.GetChouKa2RewardList();
+            }
         }
 
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)

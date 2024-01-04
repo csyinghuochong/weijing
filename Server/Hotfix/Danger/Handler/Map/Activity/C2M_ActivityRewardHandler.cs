@@ -141,7 +141,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    int rewardIndex = ActivityConfigHelper.GetRewardIndex(activityComponent.ActivityV1Info.ChouKa2ItemList, activityComponent.ActivityV1Info.ChouKa2RewardIds);
+                    int rewardIndex = ActivityConfigHelper.GetChouKa2RewardIndex(activityComponent.ActivityV1Info.ChouKa2ItemList, activityComponent.ActivityV1Info.ChouKa2RewardIds);
                     activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split(';');
                     rewardItem = rewardList[rewardIndex];

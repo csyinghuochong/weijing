@@ -126,14 +126,19 @@ namespace ET
         /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
         /// </summary>
-        public static Dictionary<int, List<int>> Chou2ItemList = new Dictionary<int, List<int>>()
+        public static Dictionary<int, List<string>> ChouKa2ItemList = new Dictionary<int, List<string>>()
         {
-            {  1, new List<int>(){ 10030013, 10030013, 10030013 } },
-            {  2, new List<int>(){ 10030013, 10030013, 10030013 } },
-            {  3, new List<int>(){ 10030013, 10030013, 10030013 } },
+            {  1, new List<string>(){ "10030013;1", "10030013;1",  "10030013;1",  "10030013;1",  "10030013;1"} },
+            {  2, new List<string>(){ "10030013;1", "10030013;1", "10030013;1", "10030013;1", "10030013;1" } },
+            {  3, new List<string>(){ "10030013;1", "10030013;1", "10030013;1", "10030013;1", "10030013;1"  } },
         };
 
-        public static int GetRewardIndex(string rewardList, List<int> rewardIds)
+        public static string GetChouKa2RewardList()
+        {
+            return "10030013;1@10030013;1";
+        }
+
+        public static int GetChouKa2RewardIndex(string rewardList, List<int> rewardIds)
         {
             return 1;
         }
