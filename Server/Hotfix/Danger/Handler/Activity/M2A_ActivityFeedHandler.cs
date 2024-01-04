@@ -16,6 +16,8 @@ namespace ET
             activitySceneComponent.DBDayActivityInfo.FeedPlayerList[request.UnitID]++;
             activitySceneComponent.DBDayActivityInfo.BaoShiDu++;
 
+            ///发送饱食度奖励
+
             response.BaoShiDu = activitySceneComponent.DBDayActivityInfo.BaoShiDu;
             reply();
             await ETTask.CompletedTask;
