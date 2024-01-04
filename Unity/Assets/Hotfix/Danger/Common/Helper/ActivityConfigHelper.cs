@@ -119,7 +119,7 @@ namespace ET
 
 
         /// <summary>
-        /// 抽卡消耗道具
+        /// 抽卡消耗道具(幸运卷轴)
         /// </summary>
         public static int Chou2CostItem = 10030013;
 
@@ -133,9 +133,38 @@ namespace ET
             {  3, new List<string>(){ "10030013;1", "10030013;1", "10030013;1", "10030013;1", "10030013;1"  } },
         };
 
+        public static List<string> GetRewardListByType(int id, int number)
+        {
+            List<string> randomList = new List<string>();   
+            List<string> rewardList = ChouKa2ItemList[id];
+            int[] randomIds = RandomHelper.GetRandoms(number, 0, rewardList.Count);
+            for (int i = 0; i < randomIds.Length; i++)
+            {
+                randomList.Add(rewardList[randomIds[i]]);
+            }
+            return randomList;
+        }
+
         public static string GetChouKa2RewardList()
         {
-            return "10030013;1@10030013;1";
+            string rewardList = string.Empty;
+            List<string> allrewardList = new List<string>();
+
+            ////每一档取不同的数量
+            allrewardList.AddRange(GetRewardListByType(1, 2) );
+            allrewardList.AddRange(GetRewardListByType(2, 4));
+            allrewardList.AddRange(GetRewardListByType(3, 2));
+
+            for (int i = 0; i < allrewardList.Count; i++)
+            {
+                rewardList += $"{allrewardList[i]}";
+                if (i == allrewardList.Count - 1)
+                {
+                    break;
+                }
+                rewardList += "@";
+            }
+            return rewardList;
         }
 
         public static int GetChouKa2RewardIndex(string rewardList, List<int> rewardIds)

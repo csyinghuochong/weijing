@@ -75,7 +75,7 @@ namespace ET
         }
 
         //对话之类的任务由客户端触发完成
-        public static void  OnTaskNotice(this TaskComponent self, C2M_TaskNoticeRequest request)
+        public static void OnTaskNotice(this TaskComponent self, C2M_TaskNoticeRequest request)
         {
             int taskid = request.TaskId;
             for (int i = 0; i < self.RoleTaskList.Count; i++)
@@ -113,26 +113,26 @@ namespace ET
         /// <param name="request"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static TaskPro OnAcceptedTask(this TaskComponent self, int taskId)
+        public static (TaskPro, int) OnAcceptedTask(this TaskComponent self, int taskId)
         {
             if (taskId == 0)
             {
-                return null;
+                return (null, ErrorCode.ERR_TaskCanNotGet);
             }
             Unit unit = self.GetParent<Unit>();
             bool canget = FunctionHelp.CheckTaskOn(unit, TaskConfigCategory.Instance.Get(taskId));
             if (!canget)
             {
                 Log.Debug($"CanNotGetTask: {unit.DomainZone()} {unit.Id} {taskId}");
-                return null;
+                return (null, ErrorCode.ERR_TaskCanNotGet);
             }
             if (self.IsHaveTask(taskId))
             {
-                return null;
+                return(null, ErrorCode.ERR_TaskNoComplete);
             }
             TaskPro taskPro = self.CreateTask(taskId);
             self.RoleTaskList.Add(taskPro);
-            return taskPro;
+            return (taskPro, ErrorCode.ERR_Success);
         }
 
         public static TaskPro OnGetDailyTask(this TaskComponent self, int taskId)
