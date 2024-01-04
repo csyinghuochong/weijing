@@ -142,13 +142,16 @@ namespace ET
                         return;
                     }
                     int rewardIndex = ActivityConfigHelper.GetChouKa2RewardIndex(activityComponent.ActivityV1Info.ChouKa2ItemList, activityComponent.ActivityV1Info.ChouKa2RewardIds);
-                    activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
+                    if (!activityComponent.ActivityV1Info.ChouKa2RewardIds.Contains(rewardIndex))
+                    {
+                        activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
+                    }
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split('@');
                     rewardItem = rewardList[rewardIndex];
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case ActivityConfigHelper.ActivityV1_LiBao:
-                    if (bagComponent.GetLeftSpace() < 1)
+                    if (bagComponent.GetLeftSpace() < 6)
                     {
                         response.Error = ErrorCode.ERR_BagIsFull;
                         reply();

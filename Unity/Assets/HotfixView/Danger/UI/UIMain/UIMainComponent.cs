@@ -2303,7 +2303,7 @@ namespace ET
             //C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_DuiHuanWord, RewardId = 0 };
             //M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
 
-            C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_ChouKa2, RewardId = 0 };
+            C2M_ActivityRewardRequest reuqest_1 = new C2M_ActivityRewardRequest() { ActivityType = ActivityConfigHelper.ActivityV1_LiBao, RewardId = 1 };
             M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
         }
 
