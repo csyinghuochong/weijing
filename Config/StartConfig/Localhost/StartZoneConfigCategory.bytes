@@ -43,10 +43,10 @@
 *)mongodb://localhost:27017/("WJBeta41
 **mongodb://localhost:27017/("WJBeta42
 *+mongodb://localhost:27017/("WJBeta43
-*,mongodb://localhost:27017/,"WJBeta44
-*-mongodb://localhost:27017/,"WJBeta45
-*.mongodb://localhost:27017/,"WJBeta46
-*/mongodb://localhost:27017/,"WJBeta47
+*,mongodb://localhost:27017/("WJBeta44
+*-mongodb://localhost:27017/("WJBeta45
+*.mongodb://localhost:27017/("WJBeta46
+*/mongodb://localhost:27017/("WJBeta47
 *0mongodb://localhost:27017/0"WJBeta48
 *1mongodb://localhost:27017/0"WJBeta49
 *2mongodb://localhost:27017/0"WJBeta50
@@ -58,9 +58,10 @@
 *8mongodb://localhost:27017/8"WJBeta56
 *9mongodb://localhost:27017/8"WJBeta57
 *:mongodb://localhost:27017/:"WJBeta58
-*;mongodb://localhost:27017/;"WJBeta59
+*;mongodb://localhost:27017/:"WJBeta59
 *<mongodb://localhost:27017/<"WJBeta60
 *=mongodb://localhost:27017/="WJBeta61
 *>mongodb://localhost:27017/>"WJBeta62
+*?mongodb://localhost:27017/?"WJBeta63
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
