@@ -211,17 +211,14 @@ namespace ET
         public const int ShenYuanNumber_135 = 135;              //135: 挑战深渊模式的副本X次
         public const int TeamDungeonHurt_136 = 136;              //组队副本伤害比较 
         public const int OpenBox_137 = 137;                 //开启地图的宝箱1次
-        //与好友组队挑战1次副本
-        //获得1个橙色装备
-        //需要1件鉴定属性总计达到15点的装备
-        //获得1个20级以上的橙色装备
-        //击败5次20级以上地狱级的的领主
-        //上交一个具有隐藏技能的装备
+        public const int FriendPassFuben_138 = 138;         //与好友组队挑战1次副本
+        public const int GetOrangeEquip_139 = 139;              //获得1个多少级+橙色装备
+        public const int JianDingValue_140 = 140;           //需要1件鉴定属性总计达到15点的装备
+        public const int KillDiYuBoss_141 = 141;            //击败5次20级以上地狱级的的领主
 
         public const int MineHaveNumber_401 = 401;
         public const int MineBattleNumber_402 = 402;
         public const int MineWinNumber_403 = 403;
-
 
         public const int Login_1001 = 1001;
         public const int KillMonster_1002 = 1002;

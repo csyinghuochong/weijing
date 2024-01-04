@@ -441,6 +441,7 @@ namespace ET
         //4:具体道具ID
         //5:道具鉴定条目数
         //6:护甲类型  
+        //7:隐藏技能
         //105101.装备鉴定属性力量
         //105201.装备鉴定属性敏捷
         //105301.装备鉴定属性智力
@@ -500,6 +501,9 @@ namespace ET
                         break;
                     case 6:
                         value = itemConfig.EquipType == targetValue;
+                        break;
+                    case 7:
+                        value = bagInfo.HideSkillLists.Count >= targetValue;
                         break;
                     case 105101:
                     case 105201:
