@@ -21,6 +21,13 @@ namespace ET
                     return ErrorCode.ERR_RequestExitFuben;
                 }
 
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+                if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Stall) > 0)
+                {
+                    HintHelp.GetInstance().ShowHint("请先退出摆摊！");
+                    return ErrorCode.ERR_RequestExitFuben;
+                }
+
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
                 if (SceneConfigHelper.UseSceneConfig(newsceneType) && sceneId > 0)
                 {
