@@ -894,6 +894,7 @@ namespace ET
             {
                 self.CheckDailyTask(true);
             }
+            self.CheckWeeklyTask();
         }
 
         //登录

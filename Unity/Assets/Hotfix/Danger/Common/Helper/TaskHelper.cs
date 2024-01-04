@@ -166,6 +166,11 @@ namespace ET
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
+                if (item.Value.TriggerType == 1 && item.Value.TriggerValue > roleLv)
+                {
+                    continue;
+                }
+
                 if (item.Value.TaskType == taskType
                     && roleLv >= item.Value.TaskLv
                     && roleLv <= item.Value.TaskMaxLv)
