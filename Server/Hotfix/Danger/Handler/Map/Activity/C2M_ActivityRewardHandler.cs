@@ -148,6 +148,32 @@ namespace ET
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case ActivityConfigHelper.ActivityV1_LiBao:
+                    if (bagComponent.GetLeftSpace() < 1)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+                    if (!activityComponent.ActivityV1Info.LiBaoAllIds.Contains(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                    if (activityComponent.ActivityV1Info.LiBaoBuyIds.Contains(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    KeyValuePair keyValuePair = ActivityConfigHelper.LiBaoList[request.RewardId];
+                    if (!bagComponent.OnCostItemData(keyValuePair.Value))
+                    {
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
+                    }
+                    bagComponent.OnAddItemData(keyValuePair.Value2, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.LiBaoBuyIds.Add(request.RewardId);
                     break;
                 default:
