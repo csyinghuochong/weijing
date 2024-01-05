@@ -15,6 +15,7 @@ namespace ET
         ActivityV1ChouKa2 = 6,
         ActivityV1Task = 7,
         ActivityV1LiBao = 8,
+        ActivityV1Feed = 9,
         Number,
     }
 
@@ -32,22 +33,6 @@ namespace ET
         public override void Awake(UIActivityV1Component self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
-            Vector2 startPosition = new Vector2(-20, -38);
-            for (int i = 1; i <= 5; i++)
-            {
-                GameObject go = rc.Get<GameObject>($"Btn_{i}");
-                if (ActivityConfigHelper.ActivityV1OpenList.Contains(i))
-                {
-                    go.SetActive(true);
-                    go.GetComponent<RectTransform>().localPosition = startPosition;
-                    startPosition.y -= 150;
-                }
-                else
-                {
-                    go.SetActive(false);
-                }
-            }
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
@@ -74,6 +59,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Task");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1LiBao] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1LiBao");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Feed] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Feed");
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -84,6 +71,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa2] = typeof (UIActivityV1ChouKa2Component);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Task] = typeof (UIActivityV1TaskComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1LiBao] = typeof (UIActivityV1LiBaoComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Feed] = typeof (UIActivityV1FeedComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -94,7 +82,26 @@ namespace ET
 
             UIPageButtonComponent uIPageButtonComponent = ui.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
-            uIPageButtonComponent.OnSelectIndex(0);
+
+            int start = 0;
+            for (int i = 1; i <= (int)ActivityV1PageEnum.Number; i++)
+            {
+                GameObject go = rc.Get<GameObject>($"Btn_{i}");
+                if (ActivityConfigHelper.ActivityV1OpenList.Contains(i))
+                {
+                    go.SetActive(true);
+                    if (start == 0)
+                    {
+                        start = i;
+                    }
+                }
+                else
+                {
+                    go.SetActive(false);
+                }
+            }
+
+            uIPageButtonComponent.OnSelectIndex(start - 1);
             self.UIPageButton = uIPageButtonComponent;
         }
     }

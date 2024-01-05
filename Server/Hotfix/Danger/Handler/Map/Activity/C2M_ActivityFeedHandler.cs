@@ -29,7 +29,7 @@ namespace ET
                 reply();
                 return;
             }
-            bagComponent.OnCostItemData($"{costItemId}_1");
+            bagComponent.OnCostItemData($"{costItemId};1");
             bagComponent.OnAddItemData(ActivityConfigHelper.FeedItemReward[costItemId], $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
             long activitySceneid = DBHelper.GetActivityServerId(unit.DomainZone());
             A2M_ActivityFeedResponse r_GameStatusResponse = (A2M_ActivityFeedResponse)await ActorMessageSenderComponent.Instance.Call
