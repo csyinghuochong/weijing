@@ -191,6 +191,20 @@ namespace ET
             return allTaskIds[index];
         }
 
+        public static List<int> GetActivityV1Task()
+        {
+            List<int> taskIds = new List<int>();
+            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskCountryType.ActivityV1)
+                {
+                    taskIds.Add(item.Key);
+                }
+            }
+            return taskIds;
+        }
+
         /// <summary>
         /// 活跃任务
         /// </summary>
@@ -302,20 +316,6 @@ namespace ET
             }
             return taskIds;
         }
-
-        public static List<int> GetActivityV1Task()
-        {
-            List<int> taskIds = new List<int>();
-            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
-            foreach (var item in keyValuePairs)
-            {
-                if (item.Value.TaskType == TaskCountryType.ActivityV1)
-                {
-                    taskIds.Add(item.Key);
-                }
-            }
-            return taskIds;
-        }
 #if SERVER
         /// <summary>
         /// 赛季每周任务
@@ -332,7 +332,6 @@ namespace ET
                 {
                     taskIds.Add(ids[randomids[i]]);
                 }
-
             }
 
             return taskIds;
