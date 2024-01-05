@@ -7,7 +7,7 @@
     {
         protected override void  Run(Session session, M2C_RoleDataBroadcast message)
         {
-            Unit unit = session.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(message.UnitId);
+            Unit unit = session.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>().Get(message.UnitId);
             if (unit == null)
             {
                 return;
