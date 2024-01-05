@@ -410,11 +410,16 @@ namespace ET
                     return ErrorCode.Pre_Condition_Error;
                 }
 
+                long instanceId = self.InstanceId;
                 C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid, BagInfoID = banginfoId };
                 M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
                 if (self.IsDisposed || m2C_CommitTaskResponse.Error != ErrorCode.ERR_Success)
                 {
                     return m2C_CommitTaskResponse.Error;
+                }
+                if (instanceId != self.InstanceId)
+                {
+                    return ErrorCode.ERR_NetWorkError;
                 }
                 
                 for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
