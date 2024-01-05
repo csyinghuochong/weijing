@@ -485,15 +485,15 @@ namespace ET
               && taskConfig.TaskType != TaskTypeEnum.Union
               && taskConfig.TaskType != TaskTypeEnum.Season
               && taskConfig.TaskType != TaskTypeEnum.Ring
-              && taskConfig.TargetType != TaskTypeEnum.System )
+              && taskConfig.TaskType != TaskTypeEnum.System )
             {
                 if (!self.RoleComoleteTaskList.Contains(taskid))
                 {
                     self.RoleComoleteTaskList.Add(taskid);
                 }
             }
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             float coffiexp = 1f;
             float cofficoin = 1f;
             if (taskConfig.Development == 1)

@@ -76,7 +76,7 @@ namespace ET
                 rc.Get<GameObject>("IconImg").GetComponent<Image>().sprite = sp;
                 rc.Get<GameObject>("OutLineImg").SetActive(false);
                 rc.Get<GameObject>("IconImg").GetComponent<Button>().onClick
-                        .AddListener(() => { self.OnActivityV1DuiHuanWordItem(i).Coroutine(); });
+                        .AddListener(() => { self.OnActivityV1DuiHuanWordItem(i); });
                 UICommonHelper.SetParent(go, self.UIActivityV1DuiHuanWordItemListNode);
                 self.UIActivityV1DuiHuanWordItems.Add(go);
                 go.SetActive(true);
@@ -99,7 +99,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnActivityV1DuiHuanWordItem(this UIActivityV1DuiHuanWordComponent self, int key)
+        public static void  OnActivityV1DuiHuanWordItem(this UIActivityV1DuiHuanWordComponent self, int key)
         {
             self.YearItemId = key;
             List<int> allword = ActivityConfigHelper.DuiHuanWordReward.Keys.ToList();
