@@ -40,13 +40,13 @@ namespace ET
                             return;
                         }
                         ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                        if (itemConfig.ItemType!=3 || itemConfig.EquipType > 100)
+                        if (itemConfig.ItemType != 3 || itemConfig.EquipType > 100)
                         {
                             response.Error = ErrorCode.ERR_ItemNotExist;
                             reply();
                             return;
                         }
-                            
+
                         if (dBAccountWarehouse.HaveItemById(bagInfo.BagInfoID) != -1)
                         {
                             response.Error = ErrorCode.ERR_AlreadyHave;
@@ -54,7 +54,7 @@ namespace ET
                             return;
                         }
                         dBAccountWarehouse.BagInfoList.Add(bagInfo);
-                        bagComponent.OnCostItemData(bagInfo.BagInfoID, bagInfo.ItemNum);
+                        bagComponent.OnCostItemData(new List<long>(){ bagInfo.BagInfoID }, ItemLocType.ItemLocBag);
                         break;
                     case 2:
                         if (bagComponent.GetLeftSpace() < 1)
