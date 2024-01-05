@@ -14,7 +14,7 @@ namespace ET
                 activitySceneComponent.DBDayActivityInfo.FeedPlayerList.Add( request.UnitID, 0 );
             }
             activitySceneComponent.DBDayActivityInfo.FeedPlayerList[request.UnitID]++;
-            int baoshidu = activitySceneComponent.DBDayActivityInfo.BaoShiDu++;
+            int baoshidu = ++activitySceneComponent.DBDayActivityInfo.BaoShiDu;
 
             if (ActivityConfigHelper.Feed1RewardList.ContainsKey(baoshidu) 
                 && baoshidu > activitySceneComponent.DBDayActivityInfo.FeedRewardKey )
