@@ -238,9 +238,9 @@ namespace ET
                     continue;
                 }
                 bool haveFriend = false;
-                for (  int friend = 0;  friend < dBFriendInfo.FriendList.Count; i++  )
+                for (  int friend = 0;  friend < dBFriendInfo.FriendList.Count; friend++  )
                 {
-                    if (hurts.ContainsKey(dBFriendInfo.FriendList[i]))
+                    if (hurts.ContainsKey(dBFriendInfo.FriendList[friend]))
                     {
                         haveFriend = true;
                     }
