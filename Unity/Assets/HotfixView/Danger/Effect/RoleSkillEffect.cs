@@ -27,7 +27,10 @@ namespace ET
             {
                 if (this.EffectState != BuffState.Running)
                 {
-                    GameObject.DestroyImmediate(gameObject);
+                    if (gameObject != null)
+                    {
+                        GameObject.DestroyImmediate(gameObject);
+                    }
                     return;
                 }
                 this.EffectObj = gameObject;

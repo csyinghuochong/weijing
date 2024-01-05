@@ -75,13 +75,13 @@ namespace ET
     {
         public override void Destroy(UIWelfareComponent self)
         {
-            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
-            redPointComponent.UnRegisterReddot(ReddotType.WelfareLogin, self.Reddot_WelfareLogin);
-            redPointComponent.UnRegisterReddot(ReddotType.WelfareTask, self.Reddot_WelfareTask);
-            redPointComponent.UnRegisterReddot(ReddotType.WelfareDraw, self.Reddot_WelfareDraw);
+            ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
+            redPointComponent?.UnRegisterReddot(ReddotType.WelfareLogin, self.Reddot_WelfareLogin);
+            redPointComponent?.UnRegisterReddot(ReddotType.WelfareTask, self.Reddot_WelfareTask);
+            redPointComponent?.UnRegisterReddot(ReddotType.WelfareDraw, self.Reddot_WelfareDraw);
         }
     }
-     
+
     public static class UIWelfareComponentSystem
     {
 
