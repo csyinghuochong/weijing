@@ -188,7 +188,7 @@ namespace ET
 
         public static Dictionary<int, string> Feed1RewardList = new Dictionary<int, string>()
         {
-            { 1000, "10010045;1"},
+            { 10, "10010045;1"},
             { 2000, "10010045;1"},
         };
 

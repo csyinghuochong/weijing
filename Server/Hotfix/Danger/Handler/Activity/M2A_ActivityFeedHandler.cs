@@ -14,11 +14,43 @@ namespace ET
                 activitySceneComponent.DBDayActivityInfo.FeedPlayerList.Add( request.UnitID, 0 );
             }
             activitySceneComponent.DBDayActivityInfo.FeedPlayerList[request.UnitID]++;
-            activitySceneComponent.DBDayActivityInfo.BaoShiDu++;
+            int baoshidu = activitySceneComponent.DBDayActivityInfo.BaoShiDu++;
 
-            ///发送饱食度奖励
+            if (ActivityConfigHelper.Feed1RewardList.ContainsKey(baoshidu) 
+                && baoshidu > activitySceneComponent.DBDayActivityInfo.FeedRewardKey )
+            {
+                ///发送饱食度奖励
+                activitySceneComponent.DBDayActivityInfo.FeedRewardKey = baoshidu;
 
-            response.BaoShiDu = activitySceneComponent.DBDayActivityInfo.BaoShiDu;
+                long mailServerId = DBHelper.GetMailServerId(scene.DomainZone());
+
+                List<BagInfo> itemList = new List<BagInfo>();
+                string[] rewardItem = ActivityConfigHelper.Feed1RewardList[baoshidu].Split('@');
+                for (int i = 0; i < rewardItem.Length; i++)
+                {
+                    string[] itemInfo = rewardItem[i].Split(';');
+                    itemList.Add(new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) });
+                }
+
+                foreach (( long unitid, int feednumber ) in activitySceneComponent.DBDayActivityInfo.FeedPlayerList)
+                {
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Title = "喂食奖励";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                    mailInfo.ItemList.AddRange(itemList);
+
+                    E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                                       (mailServerId, new M2E_EMailSendRequest()
+                                       {
+                                           Id = unitid,
+                                           MailInfo = mailInfo,
+                                           GetWay = ItemGetWay.Activity,
+                                       });
+                }
+            }
+            
+            response.BaoShiDu = baoshidu;
             reply();
             await ETTask.CompletedTask;
         }
