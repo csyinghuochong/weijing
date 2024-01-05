@@ -676,7 +676,8 @@ namespace ET
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
                 unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId);
-			}
+                self.CheckSkillTianFu(skillId, true);
+            }
 			for (int i = 0; i < itemSkills.Count; i++)
 			{
 				//int key = itemSkills[i];	
@@ -694,7 +695,19 @@ namespace ET
             self.UpdateSkillSet();
 		}
 
-		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills, long baginfoid)
+        public static void CheckSkillTianFu(this SkillSetComponent self, int skillId, bool active)
+        {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+
+            if (skillConfig.SkillType == 1 || !SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 11))
+            {
+                return;
+            }
+            int tianfuid = int.Parse(skillConfig.ComObjParameter);
+            self.AddiontTianFu(tianfuid, active);
+        }
+
+        public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills, long baginfoid)
 		{
 			
             Unit unit = self.GetParent<Unit>();
@@ -718,7 +731,8 @@ namespace ET
 					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)
 					{
                         skillPassiveComponent.RemovePassiveSkill(skillId);
-						self.SkillList.RemoveAt(k);
+                        self.CheckSkillTianFu(skillId, false);
+                        self.SkillList.RemoveAt(k);
 						break;
 					}
 				}
