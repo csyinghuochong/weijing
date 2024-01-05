@@ -170,8 +170,20 @@ namespace ET
 
         public static int GetChouKa2RewardIndex(string rewardList, List<int> rewardIds)
         {
-
-            return 1;
+            List<int> leftIds = new List<int>();  
+            int allnumber = rewardList.Split('@').Length;
+            for (int i = 0; i < allnumber; i++)
+            {
+                if (!rewardIds.Contains(i))
+                {
+                    leftIds.Add(i);
+                }
+            }
+            if (leftIds.Count == 0)
+            {
+                return -1;
+            }
+            return leftIds[ RandomHelper.RandomNumber(0, leftIds.Count) ];
         }
 
         /// <summary>

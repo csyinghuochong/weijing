@@ -146,9 +146,12 @@ namespace ET
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split('@');
                     rewardItem = rewardList[rewardIndex];
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-
-
                     //全部抽完则自动刷新
+                    if (activityComponent.ActivityV1Info.ChouKa2RewardIds.Count >= rewardList.Length )
+                    {
+                        activityComponent.ActivityV1Info.ChouKa2RewardIds.Clear();
+                        activityComponent.ActivityV1Info.ChouKa2ItemList = ActivityConfigHelper.GetChouKa2RewardList();
+                    }
                     break;
                 case ActivityConfigHelper.ActivityV1_LiBao:
                     if (bagComponent.GetLeftSpace() < 6)
