@@ -1426,15 +1426,15 @@ namespace ET
 
         public static void UpdateTargetTask(this TaskComponent self, bool notice)
         {
-            int openDay = self.GetParent<Unit>().GetComponent<UserInfoComponent>().GetCrateDay();
-            if (openDay == 0 || openDay > ConfigHelper.WelfareTaskList.Count)
+            int createDay = self.GetParent<Unit>().GetComponent<UserInfoComponent>().GetCrateDay();
+            if (createDay == 0 || createDay > ConfigHelper.WelfareTaskList.Count)
             {
                 return;
             }
 
             //所有任务
             List<int> taskids = new List<int>();
-            for (int i = 0; i < openDay; i++)
+            for (int i = 0; i < createDay; i++)
             {
                 taskids.AddRange(ConfigHelper.WelfareTaskList[i]);
             }
