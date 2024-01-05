@@ -85,9 +85,14 @@ namespace ET
 
         public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
         {
+            long instanceId = self.InstanceId;
             C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
             M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse =
                     (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
 
             //隐藏显示
 
