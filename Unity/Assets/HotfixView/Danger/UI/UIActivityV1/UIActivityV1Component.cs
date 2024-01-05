@@ -13,6 +13,8 @@ namespace ET
         ActivityV1Shop = 4,
         ActivityV1DuiHuanWord = 5,
         ActivityV1ChouKa2 = 6,
+        ActivityV1Task = 7,
+        ActivityV1LiBao = 8,
         Number,
     }
 
@@ -68,6 +70,10 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1DuiHuanWord");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1ChouKa2] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1ChouKa2");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Task] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Task");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1LiBao] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1LiBao");
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -76,6 +82,8 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Shop] = typeof (UIActivityV1ShopComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1DuiHuanWord] = typeof (UIActivityV1DuiHuanWordComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa2] = typeof (UIActivityV1ChouKa2Component);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Task] = typeof (UIActivityV1TaskComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1LiBao] = typeof (UIActivityV1LiBaoComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
