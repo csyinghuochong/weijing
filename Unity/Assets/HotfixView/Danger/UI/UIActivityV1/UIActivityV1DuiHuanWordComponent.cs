@@ -88,7 +88,6 @@ namespace ET
 
         public static void UpdateInfo(this UIActivityV1DuiHuanWordComponent self)
         {
-            // self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<int> allword = ActivityConfigHelper.DuiHuanWordReward.Keys.ToList();
             for (int i = 0; i < allword.Count; i++)
@@ -130,6 +129,13 @@ namespace ET
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+
+            if (bagComponent.GetLeftSpace() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                return;
+            }
+
             int havedNum = (int)bagComponent.GetItemNumber(self.YearItemId);
             if (havedNum <= 0)
             {
