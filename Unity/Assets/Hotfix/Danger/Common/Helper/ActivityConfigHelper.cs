@@ -26,7 +26,8 @@ namespace ET
         /// UI切页也据此显示
         /// </summary>
         public static List<int> ActivityV1OpenList = new List<int>() { 
-            ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume,ActivityV1_HongBao, ActivityV1_Shop };  
+            ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume,ActivityV1_HongBao, ActivityV1_Shop,
+            ActivityV1_DuiHuanWord, ActivityV1_ChouKa2, ActivityV1_Task,ActivityV1_LiBao, ActivityV1_Feed };  
         
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
