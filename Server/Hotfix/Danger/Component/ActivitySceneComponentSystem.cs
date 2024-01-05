@@ -84,6 +84,8 @@ namespace ET
 
             self.SaveDB();
             self.CheckPetMine();
+
+            //self.TeamUpdateHandler().Coroutine();
         }
 
         public static void InitPetMineExtend(this ActivitySceneComponent self)
@@ -174,11 +176,11 @@ namespace ET
         { 
             DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (dateTime.Year == 2023 && dateTime.Month == 12 && dateTime.Day == 26 && dateTime.Hour == 14 && dateTime.Minute == 35)
+            if (dateTime.Year == 2024 && dateTime.Month == 1 && dateTime.Day == 5 && dateTime.Hour == 15 && dateTime.Minute == 19)
             {
                 Log.Console($"更新试炼排行: {self.DomainZone()}");
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { Hour = 14, OpenDay = 1 });
+                         (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { Hour = 16, OpenDay = 1 });
             }
             await ETTask.CompletedTask;
         }
