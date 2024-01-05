@@ -406,7 +406,7 @@ namespace ET
                     tilteid = unit.MainHero ? tilteid : 0;
                 }
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
-
+                this.Lal_Name.GetComponent<Text>().text = infoComponent.UnitName;
                 this.UpdateDemonName(infoComponent.DemonName);
                 this.OnUpdateUnionName();
             }
