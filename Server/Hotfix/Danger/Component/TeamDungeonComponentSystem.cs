@@ -78,7 +78,8 @@ namespace ET
                 return;
             }
             long serverTime = TimeHelper.ServerNow();
-            int playerCount = UnitHelper.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
+            List<Unit> allunits = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            int playerCount = allunits.Count;
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
@@ -94,13 +95,22 @@ namespace ET
                     continue;
                 }
                 teamDropItem.EndTime = -1;
+                if (playerCount == 0)
+                {
+                    self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);   
+                    continue;
+                }
 
-                int maxNumber = 0;
                 //全部放弃则默认分配
                 if (giveIds.Count >= playerCount || needIds.Count == 0)
                 {
-                    needIds.AddRange(giveIds);
+                    for (int allunit = 0; allunit < allunits.Count; allunit++)
+                    {
+                        needIds.Add(allunits[allunit].Id);
+                    }
                 }
+                
+                int maxNumber = 0;
                 List<int> randomNumbers = new List<int>();
                 for (int p = 0; p < needIds.Count; p++)
                 {
@@ -111,7 +121,7 @@ namespace ET
                     }
                 }
                 int onwerIndex = randomNumbers.IndexOf(maxNumber);
-                long unitid = needIds.Count == 0 ? 0 : teamDropItem.NeedPlayers[onwerIndex];
+                long unitid =  teamDropItem.NeedPlayers[onwerIndex];
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
                 if (unit != null)
                 {
@@ -125,11 +135,15 @@ namespace ET
                         self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                         continue;
                     }
-                }
 
-                if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId) && unitid  > 0)
+                    if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
+                    {
+                        self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unitid);
+                    }
+                }
+                else
                 {
-                    self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unitid);
+                    self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                 }
             }
         }
