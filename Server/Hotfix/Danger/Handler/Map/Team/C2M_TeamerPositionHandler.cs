@@ -10,29 +10,38 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TeamerPositionRequest request, M2C_TeamerPositionResponse response, Action reply)
         {
+            int sceneType = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
 
             for (int i = 0; i < units.Count; i++)
             {
-                if (units[i].Type != UnitType.Player)
+               
+                if (sceneType == SceneTypeEnum.TeamDungeon && units[i].Id!=unit.Id && units[i].Type == UnitType.Player)
                 {
-                    continue;
+                    response.UnitList.Add(new UnitInfo()
+                    {
+                        UnitType = units[i].Type,
+                        UnitId = units[i].Id,
+                        ConfigId = units[i].ConfigId,
+                        UnitName = units[i].GetComponent<UserInfoComponent>().UserInfo.Name,
+                        X = units[i].Position.x,
+                        Y = units[i].Position.y,
+                        Z = units[i].Position.z,
+                    });
                 }
-                if (units[i].Id == unit.Id)
+               
+                if (sceneType == SceneTypeEnum.LocalDungeon &&  units[i].ConfigId == SeasonHelper.SeasonBossId)
                 {
-                    continue;
+                    response.UnitList.Add(new UnitInfo()
+                    {
+                        UnitType = units[i].Type,
+                        UnitId = units[i].Id,
+                        ConfigId = units[i].ConfigId,
+                        X = units[i].Position.x,
+                        Y = units[i].Position.y,
+                        Z = units[i].Position.z,
+                    });
                 }
-
-                response.UnitList.Add(new UnitInfo()
-                {
-                    UnitType = units[i].Type,
-                    UnitId = units[i].Id,
-                    ConfigId = units[i].ConfigId,
-                    UnitName = units[i].GetComponent<UserInfoComponent>().UserInfo.Name,
-                    X = units[i].Position.x,
-                    Y = units[i].Position.y,
-                    Z = units[i].Position.z,
-                });
             }
 
             reply();

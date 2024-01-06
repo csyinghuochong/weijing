@@ -230,6 +230,31 @@ namespace ET
             }    
         }
 
+        public static async ETTask RequestLocalBossPosition(this UIMapBigComponent self)
+        {
+            long instanceid = self.InstanceId;
+            C2M_TeamerPositionRequest request = new C2M_TeamerPositionRequest();
+            M2C_TeamerPositionResponse response = (M2C_TeamerPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            if (response.UnitList.Count == 0)
+            {
+                return;
+            }
+            UnitInfo unitInfo = response.UnitList[0];
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
+            Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
+            Vector3 npcPos = self.GetWordToUIPositon(vector3);
+            GameObject gameObject = GameObject.Instantiate(self.bossIcon);
+            gameObject.SetActive(true);
+            gameObject.transform.SetParent(self.bossIcon.transform.parent);
+            gameObject.transform.localScale = Vector3.one;
+            gameObject.transform.localPosition = npcPos;
+            gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+        }
+
         public static async ETTask RequestTeamerPosition(this UIMapBigComponent self)
         {
             long instanceid = self.InstanceId;
@@ -387,6 +412,7 @@ namespace ET
                 self.MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName;
                 self.ShowChuansong();
                 self.ShowLocalBossList();
+                self.RequestLocalBossPosition().Coroutine();
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
