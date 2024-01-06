@@ -62,6 +62,8 @@ namespace ET
         public bool MyJiaYuan;
         public int JiaYuanLv;
         public List<string> AssetPath = new List<string>();
+
+        public float GatherRange = 3f;
     }
 
 
@@ -315,11 +317,11 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(3f);
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(self.GatherRange);
                 return;
             }
 
@@ -329,7 +331,7 @@ namespace ET
             List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
             for (int i = planlist.Count - 1; i >= 0; i--)
             {
-                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
+                if (PositionHelper.Distance2D(unit, planlist[i]) > self.GatherRange)
                 {
                     continue;
                 }
@@ -355,7 +357,7 @@ namespace ET
             planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
             for (int i = planlist.Count - 1; i >= 0; i--)
             {
-                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
+                if (PositionHelper.Distance2D(unit, planlist[i]) > self.GatherRange)
                 {
                     continue;
                 }
@@ -384,7 +386,7 @@ namespace ET
             List<Unit> pasturelist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Pasture);
             for (int i = pasturelist.Count - 1; i >= 0; i--)
             {
-                if (PositionHelper.Distance2D(unit, pasturelist[i]) > 5f)
+                if (PositionHelper.Distance2D(unit, pasturelist[i]) > self.GatherRange)
                 {
                     continue;
                 }
@@ -416,11 +418,11 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(3f);
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(self.GatherRange);
                 return;
             }
 
@@ -431,7 +433,7 @@ namespace ET
             List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
             for (int i = planlist.Count - 1; i >= 0; i--)
             {
-                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
+                if (PositionHelper.Distance2D(unit, planlist[i]) > self.GatherRange)
                 {
                     continue;
                 }
@@ -456,7 +458,7 @@ namespace ET
             List<Unit> pasturelist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Pasture);
             for (int i = pasturelist.Count - 1; i >= 0; i--)
             {
-                if (PositionHelper.Distance2D(unit, pasturelist[i]) > 5f)
+                if (PositionHelper.Distance2D(unit, pasturelist[i]) > self.GatherRange)
                 {
                     continue;
                 }
