@@ -118,7 +118,7 @@ namespace ET
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
                     bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                    Log.Debug($"TeamDungeonComponent.DropInfo： {unit.Id}  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
+                    Log.Debug($"TeamDungeonComponent.DropInfo：{ret}  {unit.Id} {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum}");
                     if (ret)
                     {
                         FubenHelp.SendTeamPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
