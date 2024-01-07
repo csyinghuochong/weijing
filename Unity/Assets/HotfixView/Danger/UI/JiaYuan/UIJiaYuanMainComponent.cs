@@ -63,7 +63,7 @@ namespace ET
         public int JiaYuanLv;
         public List<string> AssetPath = new List<string>();
 
-        public float GatherRange = 3f;
+        public float GatherRange = 6f;
     }
 
 

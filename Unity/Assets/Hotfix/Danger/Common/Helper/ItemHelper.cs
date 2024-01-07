@@ -12,8 +12,6 @@ namespace ET
         public static List<int> GemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
         public static List<int> GemWeight = new List<int>() { 50, 25, 15, 10, 0 };
 
-
-
         /// <summary>
         /// 晶核增加品质
         /// </summary>
@@ -21,6 +19,7 @@ namespace ET
         /// <returns>返回一个本次预计增加品质范围(客户端显示用， 服务器随机取值)</returns>
         public static List<int> GetJingHeAddQulity(List<int> qulitylv)
         {
+            //int addValue = (int)(qulitylv / 10f);
             int min = 10;
             int max = 20;
             return new List<int>() { min, max };
