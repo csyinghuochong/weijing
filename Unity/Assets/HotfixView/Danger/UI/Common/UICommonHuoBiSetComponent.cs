@@ -40,16 +40,13 @@ namespace ET
 
             self.ImageZuanShiIcon = rc.Get<GameObject>("ImageZuanShiIcon");
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "3");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
             {
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "3");
-                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                if (!self.AssetPath.Contains(path))
-                {
-                    self.AssetPath.Add(path);
-                }
-                self.ImageZuanShiIcon.GetComponent<Image>().sprite = sp;
+                self.AssetPath.Add(path);
             }
+            self.ImageZuanShiIcon.GetComponent<Image>().sprite = sp;
 
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
             ButtonHelp.AddListenerEx(self.Btn_AddZuanShi, self.OnBtn_AddZuanShi);

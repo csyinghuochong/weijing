@@ -85,16 +85,13 @@ namespace ET
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
             self.PlanIcon = rc.Get<GameObject>("PlanIcon");
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "444");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
             {
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "444");
-                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                if (!self.AssetPath.Contains(path))
-                {
-                    self.AssetPath.Add(path);
-                }
-                self.PlanIcon.GetComponent<Image>().sprite = sp;
+                self.AssetPath.Add(path);
             }
+            self.PlanIcon.GetComponent<Image>().sprite = sp;
 
             self.ButtonWarehouse = rc.Get<GameObject>("ButtonWarehouse");
             self.ButtonWarehouse.GetComponent<Button>().onClick.AddListener(() => 
