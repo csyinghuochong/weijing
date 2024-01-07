@@ -88,7 +88,7 @@ namespace ET
             {
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = equipMakeConfig.MakeItemID, ItemNum = equipMakeConfig.MakeEquipNum });
-                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, unit.GetComponent<UserInfoComponent>().UserInfo.Name, $"{ItemGetWay.SkillMake}_{TimeHelper.ServerNow()}");       //传入制造装备和制造玩家的ID
+                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, unit.GetComponent<UserInfoComponent>().UserInfo.Name, $"{ItemGetWay.SkillMake}_{request.Plan}_{TimeHelper.ServerNow()}");       //传入制造装备和制造玩家的ID
                 unit.GetComponent<TaskComponent>().OnMakeItem();
                 response.ItemId = equipMakeConfig.MakeItemID;
             }
@@ -96,7 +96,7 @@ namespace ET
             {
                 response.ItemId = 0;
             }
-
+            
             //制作的过程中有一定概率可以领悟当前等级可以学习的配方
             int makeType = unit.GetComponent<NumericComponent>().GetAsInt(request.Plan == 1 ?  NumericType.MakeType_1 : NumericType.MakeType_2);
             int newMakeId = MakeHelper.GetNewMakeID(makeType, request.MakeId,

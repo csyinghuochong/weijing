@@ -752,7 +752,8 @@ namespace ET
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
-            int getType = int.Parse(getWay.Split('_')[0]);
+            string[] getWayInfo = getWay.Split('_');
+            int getType = int.Parse(getWayInfo[0]);
             Unit unit = self.GetParent<Unit>();
             if (unit.IsRobot() && getType == ItemGetWay.PickItem)
             {
@@ -1056,7 +1057,17 @@ namespace ET
                     //鉴定符
                     if (itemCof.ItemSubType == 121)
                     {
-                        int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu_1);
+                        int makePlan = 1;
+                        if (getWayInfo.Length >= 3)
+                        {
+                            makePlan = int.Parse(getWayInfo[1]);
+                        }
+                        if (makePlan != 1 && makePlan != 2)
+                        {
+                            makePlan = 1;
+                        }
+                        int shulianduNumeric = makePlan == 1 ? NumericType.MakeShuLianDu_1 : NumericType.MakeShuLianDu_2;
+                        int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
                     //食物
