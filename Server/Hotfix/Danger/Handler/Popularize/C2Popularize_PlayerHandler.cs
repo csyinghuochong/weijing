@@ -30,7 +30,7 @@ namespace ET
                 reply();
                 return;
             }
-            if (newzone > ServerHelper.ServerItems.Count + PopularizeHelper.PopularizeZone)
+            if (newzone > ServerHelper.ServerItems.Count + 10)
             {
                 Log.Warning($"C2Popularize_PlayerRequest: {request.PopularizeId}");
                 reply();
