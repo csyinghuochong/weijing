@@ -1333,11 +1333,6 @@ namespace ET
 
         public static void CheckSystemTask(this TaskComponent self)
         {
-            if (!GMHelp.GmAccount.Contains(self.GetParent<Unit>().GetComponent<UserInfoComponent>().Account))
-            {
-                return;
-            }
-
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
