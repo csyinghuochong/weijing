@@ -97,6 +97,7 @@ namespace ET
                 teamDropItem.EndTime = -1;
                 if (playerCount == 0)
                 {
+                    Log.Warning($"TeamDungeonComponent.DropInfo：playerCount == 0");
                     self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);   
                     continue;
                 }
@@ -128,7 +129,7 @@ namespace ET
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
                     bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                    Log.Debug($"TeamDungeonComponent.DropInfo：{ret}  {unit.Id} {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum}");
+                    Log.Warning($"TeamDungeonComponent.DropInfo：{ret}  {unit.Id} {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum}");
                     if (ret)
                     {
                         FubenHelp.SendTeamPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
@@ -143,6 +144,7 @@ namespace ET
                 }
                 else
                 {
+                    Log.Warning($"TeamDungeonComponent.DropInfo：unit == null");
                     self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                 }
             }
