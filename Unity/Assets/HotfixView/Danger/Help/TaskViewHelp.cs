@@ -131,6 +131,8 @@ namespace ET
                 {
                     return true;
                 }
+
+                fubenId = mapComponent.SceneId;
             }
             int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
             string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
