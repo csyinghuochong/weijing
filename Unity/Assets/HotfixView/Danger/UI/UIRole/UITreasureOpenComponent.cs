@@ -263,8 +263,19 @@ namespace ET
                 return;
             }
             
-            self.OnStartTurn().Coroutine();
-            self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
+            if (self.BagInfo.ItemID == 10010039)
+            {
+                self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
+                self.ShotTip();
+                self.OnButtonClose();
+                return;
+            }
+
+            if (self.BagInfo.ItemID == 10010040)
+            {
+                self.OnStartTurn().Coroutine();
+                self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
+            }
         }
     }
 }
