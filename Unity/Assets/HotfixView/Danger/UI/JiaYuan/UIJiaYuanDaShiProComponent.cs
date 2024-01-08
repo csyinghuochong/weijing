@@ -156,6 +156,11 @@ namespace ET
 
         public static void OnSelectItem(this UIJiaYuanDaShiProComponent self, BagInfo bagInfo)
         {
+            foreach (UIItemComponent uiItemComponent in self.ItemList)
+            {
+                uiItemComponent.Image_XuanZhong.SetActive(uiItemComponent.Baginfo.BagInfoID == bagInfo.BagInfoID);
+            }
+
             self.UIItemCost.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.UIItemCost.Label_ItemNum.GetComponent<Text>().text = "1";
             self.UIItemCost.Label_ItemName.SetActive(true);
