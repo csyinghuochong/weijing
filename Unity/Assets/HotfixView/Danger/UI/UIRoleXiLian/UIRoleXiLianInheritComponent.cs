@@ -7,6 +7,8 @@ namespace ET
 {
 	public class UIRoleXiLianInheritComponent : Entity, IAwake
 	{
+		public GameObject ProgressBarImg;
+		public GameObject InheritTimesText;
 		public GameObject Obj_EquipPropertyText;
 		public GameObject EquipBaseSetList;
 		public GameObject UIXiLianItemNode;
@@ -36,6 +38,8 @@ namespace ET
 			self.XiLianButton = rc.Get<GameObject>("XiLianButton");
 			ButtonHelp.AddListenerEx(self.XiLianButton, () => { self.OnXiLianButton(1).Coroutine(); });
 
+			self.ProgressBarImg = rc.Get<GameObject>("ProgressBarImg");
+			self.InheritTimesText = rc.Get<GameObject>("InheritTimesText");
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
 			self.Text_CostName = rc.Get<GameObject>("Text_CostName");
 			self.CostItem = rc.Get<GameObject>("CostItem");
@@ -107,6 +111,10 @@ namespace ET
 			{
 				self.Text_CostValue.GetComponent<Text>().color = Color.green;
 			}
+
+			int maxTimes = GlobalValueConfigCategory.Instance.Get(117).Value2;
+			self.ProgressBarImg.GetComponent<Image>().fillAmount = bagInfo.InheritTimes * 1f / maxTimes;
+			self.InheritTimesText.GetComponent<Text>().text = $"{bagInfo.InheritTimes}/{maxTimes}次";
 		}
 
 		public static void OnXiLianReturn(this UIRoleXiLianInheritComponent self)
@@ -125,7 +133,7 @@ namespace ET
 
 			for (int i = 0; i < equipInfos.Count; i++)
 			{
-				if (equipInfos[i].IfJianDing || equipInfos[i].InheritTimes != 0)
+				if (equipInfos[i].IfJianDing)
 				{
 					continue;
 				}
@@ -219,9 +227,11 @@ namespace ET
 			{
 				return;
 			}
-			if (bagInfo.InheritTimes >= 1)
+
+			int maxInheritTimes = GlobalValueConfigCategory.Instance.Get(117).Value2;
+			if (bagInfo.InheritTimes >= maxInheritTimes)
 			{
-				FloatTipManager.Instance.ShowFloatTip("只能传承一次！");
+				FloatTipManager.Instance.ShowFloatTip("该装备不可再进行传承鉴定！");
 				return;
 			}
 
@@ -244,10 +254,10 @@ namespace ET
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
 			// 二次确认框
-			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n传承装备只有1次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?", ()=>
+			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n传承装备只有{maxInheritTimes}次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?", ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
-			}, null).Coroutine();
+			}, () => { self.OnXiLianReturn();}).Coroutine();
 			
 			//self.RequestInheritSelect().Coroutine();
 
