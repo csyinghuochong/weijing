@@ -313,6 +313,8 @@ namespace ET
             bagList.AddRange(self.EquipList_2);
             bagList.AddRange(self.SeasonJingHe);
             bagList.AddRange(self.PetEquipList);
+            bagList.AddRange(self.GemWareHouse1);
+
             return bagList;
         }
 
@@ -369,20 +371,6 @@ namespace ET
             return number;
         }
 
-        public static bool IsBagFull(this BagComponent self)
-        {
-            return self.GetLeftSpace() <= 0;
-        }
-
-        public static int GetLeftSpace(this BagComponent self)
-        {
-            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
-        }
-
-        public static int GetTotalSpace(this BagComponent self)
-        {
-            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
-        }
 
         //根据ID获取对应的背包数据
         public static BagInfo GetItemByLoc(this BagComponent self, ItemLocType itemLocType, long bagId)
@@ -400,6 +388,21 @@ namespace ET
             return null;
         }
 
+        public static bool IsBagFull(this BagComponent self)
+        {
+            return self.GetLeftSpace() <= 0;
+        }
+
+        public static int GetLeftSpace(this BagComponent self)
+        {
+            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
+        }
+
+        public static int GetTotalSpace(this BagComponent self)
+        {
+            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+        }
+
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
         {
             List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
@@ -414,7 +417,12 @@ namespace ET
 
         public static int GetStoreTotalCell(this BagComponent self, int hourseId)
         {
-            return GlobalValueConfigCategory.Instance.StoreCapacity + self.WarehouseAddedCell[hourseId - 5];
+            int storeCapacity = GlobalValueConfigCategory.Instance.StoreCapacity;
+            if (hourseId == (int)ItemLocType.GemWareHouse1)
+            {
+                storeCapacity = GlobalValueConfigCategory.Instance.GemStoreCapacity;
+            }
+            return storeCapacity + self.WarehouseAddedCell[hourseId - 5];
         }
 
         /// <summary>
@@ -750,6 +758,48 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
         }
 
+        /// <summary>
+        /// 暂时只有宝石仓库用到
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="itemId"></param>
+        /// <param name="itemNumber"></param>
+        /// <param name="itemLocType"></param>
+        /// <returns></returns>
+        public static bool CheckCanAddItem(this BagComponent self, int itemId , int itemNumber, ItemLocType itemLocType)
+        {
+            if (itemLocType == ItemLocType.GemWareHouse1)
+            {
+                if (self.IsHourseFullByLoc((int)itemLocType))
+                {
+                    List<BagInfo> bagInfoList = self.GetItemByLoc(itemLocType);
+                    for (int i = 0; i <bagInfoList.Count; i++)
+                    {
+                        if (bagInfoList[i].ItemID!= itemId)
+                        {
+                            continue;
+                        }
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+                        if (bagInfoList[i].ItemNum + itemNumber <= itemConfig.ItemPileSum)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+                else 
+                {
+
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //添加背包道具道具[支持同时添加多个]
         public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems_init, string makeUserID, string getWay, bool notice = true, bool gm = false, ItemLocType UseLocType = ItemLocType.ItemLocBag)
         {
@@ -897,6 +947,20 @@ namespace ET
                     maxPileSum = itemCof.ItemPileSum;
                     itemLockType = ItemLocType.ItemPetHeXinBag;
                     itemlist = self.GetItemByLoc(itemLockType);
+                }
+                else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone)
+                {
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    if (numericComponent.GetAsInt(NumericType.RechargeNumber) >= 298 && self.CheckCanAddItem(itemID, leftNum, ItemLocType.GemWareHouse1))
+                    {
+                        itemLockType = ItemLocType.GemWareHouse1;
+                        itemlist = self.GetItemByLoc(itemLockType);
+                    }
+                    else
+                    {
+                        itemLockType = UseLocType;
+                        itemlist = self.GetItemByLoc(itemLockType);
+                    }
                 }
                 else
                 {

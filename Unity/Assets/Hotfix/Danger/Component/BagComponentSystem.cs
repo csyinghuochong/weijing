@@ -69,6 +69,7 @@ namespace ET
             {
                 return;
             }
+
             self.CheckSameId();
         }
 
@@ -104,6 +105,7 @@ namespace ET
             {
                 return;
             }
+
             self.CheckSameId();
         }
 

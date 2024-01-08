@@ -436,6 +436,11 @@ namespace ET
                     uihourseComponent.UpdateBagUI();
                     continue;
                 }
+                if (component is UIWarehouseGemComponent uihoursegemComponent)
+                {
+                    uihoursegemComponent.UpdateBagUI();
+                    continue;
+                }
                 if (component is UIMainComponent uIMainComponent)
                 {
                     uIMainComponent.OnBagItemUpdate();

@@ -114,4 +114,5 @@
 {"_t":"GlobalValueConfig","_id":115,"Value":"120","Value2":120},
 {"_t":"GlobalValueConfig","_id":116,"Value":"300;0.9","Value2":0},
 {"_t":"GlobalValueConfig","_id":117,"Value":"3","Value2":3},
+{"_t":"GlobalValueConfig","_id":118,"Value":"50","Value2":50},
 ]}

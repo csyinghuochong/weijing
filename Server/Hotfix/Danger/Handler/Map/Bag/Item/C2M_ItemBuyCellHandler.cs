@@ -46,6 +46,10 @@ namespace ET
                 List<RewardItem> rewardItems = new List<RewardItem>() { rewardItem };
                 bagComponent.OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}", true, false, (ItemLocType)request.OperateType);
             }
+            else if (request.OperateType == (int)ItemLocType.GemWareHouse1)
+            {
+                Log.Console("还没有购买格子的需求！");
+            }
             else
             {
                 if (bagComponent.GetStoreTotalCell(request.OperateType) >= GlobalValueConfigCategory.Instance.StoreMaxCell)
@@ -58,7 +62,7 @@ namespace ET
                 int storeindex = request.OperateType - 5;
                 int addcell = bagComponent.WarehouseAddedCell[storeindex];
                 BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
-                if(!bagComponent.OnCostItemData(buyCellCost.Cost))
+                if (!bagComponent.OnCostItemData(buyCellCost.Cost))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
@@ -75,7 +79,7 @@ namespace ET
                     ItemNum = int.Parse(iteminfo[1]),
                 };
                 List<RewardItem> rewardItems = new List<RewardItem>() { rewardItem };
-                bagComponent.OnAddItemData(rewardItems, String.Empty,  $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}",true, false, (ItemLocType)request.OperateType);
+                bagComponent.OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}", true, false, (ItemLocType)request.OperateType);
             }
 
             response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;

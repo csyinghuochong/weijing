@@ -32,6 +32,9 @@ namespace ET
         public int StoreCapacity = 0;
         public int StoreMaxCell = 0;
 
+        public int GemStoreCapacity = 0;
+        public int GemStoreMaxCell = 0;
+
         public int OnLineLimit = 0;
 
         public int AccountBagMax = 0;
@@ -53,6 +56,8 @@ namespace ET
             StoreMaxCell = StoreCapacity + this.Get(85).Value2;
             OnLineLimit = int.Parse(this.Get(25).Value);
             AccountBagMax = this.Get(115).Value2;
+            GemStoreCapacity = this.Get(118).Value2; 
+            GemStoreMaxCell = this.Get(118).Value2; 
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

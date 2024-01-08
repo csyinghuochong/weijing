@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 22441214}
-  - component: {fileID: 7620729633413773266}
   - component: {fileID: 3122888181883201266}
   m_Layer: 5
   m_Name: UIWarehouseAccount
@@ -42,22 +41,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7620729633413773266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UILayer: 20
-  UIType: 0
-  HideMainUI: 1
-  ShowHuoBi: 1
 --- !u!114 &3122888181883201266
 MonoBehaviour:
   m_ObjectHideFlags: 0

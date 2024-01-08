@@ -266,6 +266,8 @@ namespace ET
         PetEquipBag = 23,
         AccountBag = 24,             //账号仓库
         AccountCangku = 25,
+        GemBag = 26,                //宝石仓库背包
+        GemCangku = 27,             //宝石仓库
     }
 
 }

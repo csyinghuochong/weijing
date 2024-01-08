@@ -55,6 +55,19 @@ namespace ET
                                 continue;
                             }
                             break;
+                        case 5:
+                            // 充值>=6<30元 10011003
+                            //充值额度某个区间段
+                            string[] needrecharge = request.Title.Split('_');
+                            int min_value = int.Parse(needrecharge[0]);
+                            int max_value = int.Parse(needrecharge[1]);
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < min_value
+                                || numericInfoList[0].GetAsLong(NumericType.RechargeNumber) >= max_value)
+                            {
+                                continue;
+                            }
+
+                            break;
                         case 3: //20级以上 补
                             if (userinfoComponents[0].UserInfo.Lv < int.Parse(request.Title))
                             {

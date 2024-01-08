@@ -81,17 +81,17 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
-            ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
+            ButtonHelp.AddListenerEx(self.Imagebg, self.OnCloseTips);
             ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell().Coroutine(); });
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
             ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
            
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
-            ButtonHelp.AddListenerEx(self.Btn_StoreHouse, () => { self.OnBtn_StoreHouse(); });
+            ButtonHelp.AddListenerEx(self.Btn_StoreHouse, self.OnBtn_StoreHouse);
             self.Btn_StoreHouse.SetActive(false);
 
             self.Btn_PutBag = rc.Get<GameObject>("Btn_PutBag");
-            self.Btn_PutBag.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
+            self.Btn_PutBag.GetComponent<Button>().onClick.AddListener(self.OnBtn_PutBag);
             self.Btn_PutBag.SetActive(false);
 
             ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShouCancle, () => { self.OnBtn_HuiShouCancle(); });
@@ -152,6 +152,13 @@ namespace ET
         //放入仓库
         public static void OnBtn_StoreHouse(this UIItemTipsComponent self)
         {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            if (self.ItemOpetateType == ItemOperateEnum.GemBag && itemConfig.ItemType!= ItemTypeEnum.Gemstone)
+            {
+                FloatTipManager.Instance.ShowFloatTip("只能放入宝石！");
+                return;
+            }
+
             if (self.ItemOpetateType == ItemOperateEnum.AccountBag)
             {
                 //ItemViewHelp.AccountCangkuPutIn( self.ZoneScene(), self.BagInfo );
@@ -702,6 +709,13 @@ namespace ET
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Btn_PutBag.SetActive(true);
                     //ItemBottomTextNum = 0;
+                    break;
+                case ItemOperateEnum.GemCangku:
+                    self.Obj_BagOpenSet.SetActive(false);
+                    self.Btn_PutBag.SetActive(true);
+                    break;
+                case ItemOperateEnum.GemBag:
+                    self.Btn_StoreHouse.SetActive(true);
                     break;
                 case ItemOperateEnum.CangkuBag:
                     self.Btn_StoreHouse.SetActive(true);

@@ -8,13 +8,14 @@ namespace ET
     {
         WarehouseRole = 0,
         WarehouseAccount = 1,
+        WarehouseGem = 2,
 
         Num,
     }
 
     public class UIWarehouseComponent: Entity, IAwake
     {
-        public GameObject Btn_Type_2;
+        public GameObject Btn_Type_3;
         public UIPageViewComponent UIPageView;
         public GameObject FunctionSetBtn;
     }
@@ -34,13 +35,15 @@ namespace ET
 
             pageViewComponent.UISubViewPath[(int)WarehouseEnum.WarehouseRole] = ABPathHelper.GetUGUIPath("Main/Role/UIWarehouseRole");
             pageViewComponent.UISubViewPath[(int)WarehouseEnum.WarehouseAccount] = ABPathHelper.GetUGUIPath("Main/Role/UIWarehouseAccount");
-
+            pageViewComponent.UISubViewPath[(int)WarehouseEnum.WarehouseGem] = ABPathHelper.GetUGUIPath("Main/Role/UIWarehouseGem");
+            
             pageViewComponent.UISubViewType[(int)WarehouseEnum.WarehouseRole] = typeof (UIWarehouseRoleComponent);
             pageViewComponent.UISubViewType[(int)WarehouseEnum.WarehouseAccount] = typeof (UIWarehouseAccountComponent);
+            pageViewComponent.UISubViewType[(int)WarehouseEnum.WarehouseGem] = typeof(UIWarehouseGemComponent);
             self.UIPageView = pageViewComponent;
 
-            self.Btn_Type_2 = rc.Get<GameObject>("Btn_Type_2");
-            self.Btn_Type_2.SetActive(true);
+            self.Btn_Type_3 = rc.Get<GameObject>("Btn_Type_3");
+            self.Btn_Type_3.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
 
             //IOS适配
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -49,6 +52,7 @@ namespace ET
             GameObject FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI PageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", FunctionSetBtn);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
+            uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageButtonComponent.OnSelectIndex(0);
         }
@@ -56,6 +60,22 @@ namespace ET
 
     public static class UIWarehouseComponentSystem
     {
+        public static bool CheckPageButton_1(this UIWarehouseComponent self, int page)
+        {
+            if (page != (int)WarehouseEnum.WarehouseGem)
+            {
+                return true;
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.RechargeNumber) < 298)
+            {
+                FloatTipManager.Instance.ShowFloatTip("充值金额298开启");
+                return false;
+            }
+            return true;
+        }
+
         public static void OnClickPageButton(this UIWarehouseComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

@@ -169,8 +169,7 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateWareHouse(this UIWarehouseGemComponent self)
         {
-            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)ItemLocType.GemWareHouse1);
-
+            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
             for (int i = 0; i < self.HouseList.Count; i++)
             {
                 if (i < bagInfos.Count)
@@ -184,6 +183,11 @@ namespace ET
             }
         }
 
+        public static void UpdateBagUI(this UIWarehouseGemComponent self)
+        {
+            self.UpdateWareHouse();
+            self.UpdateBagList();
+        }
 
         public static void OnUpdateUI(this UIWarehouseGemComponent self)
         {
