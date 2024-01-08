@@ -78,7 +78,7 @@ namespace ET
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
             //IOS适配
-            IPHoneHelper.SetPosition(rc.Get<GameObject>("ScrollView"), new Vector2(300f, 316f));
+            IPHoneHelper.SetPosition(rc.Get<GameObject>("ScrollView"), new Vector2(300f, -30f));
 
             UIPageButtonComponent uIPageButtonComponent = ui.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
