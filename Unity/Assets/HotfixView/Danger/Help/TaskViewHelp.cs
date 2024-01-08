@@ -353,7 +353,8 @@ namespace ET
             string fubenname = "副本";
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
-                if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union) &&
+                if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union ||
+                        taskConfig.TaskType == TaskTypeEnum.System) &&
                     taskConfig.TargetType != TaskTargetType.GiveItem_10 &&
                     taskConfig.TargetType != TaskTargetType.GivePet_25)
                 {
