@@ -1016,6 +1016,13 @@ namespace ET
         }
 
         //收集道具
+        public static void OnGetItemForWarehouse(this TaskComponent self, int itemId)
+        {
+            self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
+            self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
+        }
+
+        //收集道具
         public static void OnGetItem(this TaskComponent self, int itemId)
         {
             self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);

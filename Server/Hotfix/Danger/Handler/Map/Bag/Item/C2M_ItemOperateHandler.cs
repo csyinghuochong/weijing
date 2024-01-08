@@ -851,7 +851,7 @@ namespace ET
                     }
 
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, (ItemLocType)hourseId);
-
+                    unit.GetComponent<TaskComponent>().OnGetItemForWarehouse(useBagInfo.ItemID);
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                 }
 
