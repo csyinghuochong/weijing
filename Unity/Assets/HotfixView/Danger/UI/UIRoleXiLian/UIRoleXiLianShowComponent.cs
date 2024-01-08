@@ -68,8 +68,8 @@ namespace ET
 				UIHelper.Create(self.ZoneScene(), UIType.UIRoleXiLianExplain).Coroutine();
 			});
 			//self.Text_TotalNumber.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-			self.Btn_XiLianNumReward.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-			self.Btn_XiLianExplain.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+			// self.Btn_XiLianNumReward.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+			// self.Btn_XiLianExplain.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 			
 			
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
