@@ -39,6 +39,12 @@ namespace ET
                             reply();
                             return;
                         }
+                        if (bagInfo.isBinging || ItemHelper.GetGemIdList(bagInfo).Count > 0)
+                        {
+                            response.Error = ErrorCode.ERR_ItemUseError;
+                            reply();
+                            return;
+                        }
                         ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                         if (itemConfig.ItemType != 3 || itemConfig.EquipType > 100)
                         {
