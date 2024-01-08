@@ -52,6 +52,17 @@ namespace ET
                     continue;
                 }
 
+                if (!TaskConfigCategory.Instance.Contain(taskPros[i].taskID))
+                {
+                    continue;
+                }
+
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.System)
+                {
+                    continue;
+                }
+
                 UIMainTaskItemComponent ui_1 = null;
                 if (number < self.TrackTaskList.Count)
                 {
