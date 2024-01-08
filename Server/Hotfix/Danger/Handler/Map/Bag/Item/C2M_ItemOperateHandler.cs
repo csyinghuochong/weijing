@@ -216,8 +216,21 @@ namespace ET
                                 break;
                             //随机宝箱
                             case 6:
-                                DropHelper.DropIDToDropItem_2(int.Parse(itemConfig.ItemUsePar), droplist);
-                                unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ItemBox_6}_{TimeHelper.ServerNow()}_{itemConfig.Id}");
+                                int dropId = 0;
+                                try
+                                {
+                                    dropId = int.Parse(itemConfig.ItemUsePar);
+                                }
+                                catch (Exception ex)
+                                { 
+                                    Log.Error(ex.ToString() + $"{itemConfig.Id}   dropId ==0");
+
+                                }
+                                if (dropId > 0)
+                                {
+                                    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                                    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ItemBox_6}_{TimeHelper.ServerNow()}_{itemConfig.Id}");
+                                }
                                 break;
                             //兑换：
                             case 8:
