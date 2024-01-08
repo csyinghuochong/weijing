@@ -90,7 +90,7 @@ namespace ET
 		/// <summary>模型ID</summary>
 		[ProtoMember(5)]
 		public string ModelID { get; set; }
-		/// <summary>拖尾特效ID</summary>
+		/// <summary>拖尾特效名称</summary>
 		[ProtoMember(6)]
 		public string TuoWeiEffectID { get; set; }
 		/// <summary>描述</summary>
