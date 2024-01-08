@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-            if (bagInfo.InheritTimes >= 1)
+            if (bagInfo.InheritTimes >= GlobalValueConfigCategory.Instance.Get(117).Value2)
             {
                 response.Error = ErrorCode.ERR_TimesIsNot;
                 reply();
