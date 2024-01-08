@@ -17,7 +17,7 @@ namespace ET
         public List<int> WarehouseAddedCell = new List<int>();
 
         /// <summary>
-        /// ItemLocType.ItemLocBag 开始
+        /// ItemLocType.ItemLocBag 开始(WarehouseAddedCell对齐ItemLocType 数据转移还没做)
         /// </summary>
         public List<int> WarehouseAddedCellNew = new List<int>();
 
