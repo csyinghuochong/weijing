@@ -145,6 +145,7 @@ namespace ET
                     activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split('@');
                     rewardItem = rewardList[rewardIndex];
+                    bagComponent.OnCostItemData($"{ActivityConfigHelper.Chou2CostItem};1");
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     //全部抽完则自动刷新
                     if (activityComponent.ActivityV1Info.ChouKa2RewardIds.Count >= rewardList.Length )
