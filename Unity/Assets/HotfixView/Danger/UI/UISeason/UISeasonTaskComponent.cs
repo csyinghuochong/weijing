@@ -67,6 +67,7 @@ namespace ET
     {
         public static void OnClickPageButton(this UISeasonTaskComponent self, int page)
         {
+            self.TaskPro = null;
             if (page == 0)
             {
                 self.TaskType = 1;
@@ -444,8 +445,9 @@ namespace ET
                 int error = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
                 if (error == ErrorCode.ERR_Success)
                 {
-                    self.AcvityedImg.SetActive(true);
-                    self.GetBtn.SetActive(false);
+                    self.OnClickPageButton(1);
+                    // self.AcvityedImg.SetActive(true);
+                    // self.GetBtn.SetActive(false);
                 }
             }
         }
