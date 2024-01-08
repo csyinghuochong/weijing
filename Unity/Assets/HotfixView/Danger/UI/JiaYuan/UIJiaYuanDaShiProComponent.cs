@@ -179,6 +179,18 @@ namespace ET
                 return;
             }
 
+            int index = 0;
+            for (int i = 0; i < self.ItemList.Count; i++)
+            {
+                if (self.ItemList[i].Baginfo.BagInfoID != self.UIItemCost.Baginfo.BagInfoID)
+                {
+                    continue;
+                }
+
+                index = i;
+                break;
+            }
+
             List<long> ids = new List<long>() { bagInfo.BagInfoID };
             C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
             M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
@@ -209,6 +221,15 @@ namespace ET
             self.OnUpdateUI();
 
             self.Label_Tips.GetComponent<Text>().text = "";
+            
+            if (self.ItemList[index].GameObject.activeSelf)
+            {
+                self.OnSelectItem(self.ItemList[index].Baginfo);
+            }
+            else if (index > 0 && self.ItemList[index - 1].GameObject.activeSelf)
+            {
+                self.OnSelectItem(self.ItemList[index - 1].Baginfo);
+            }
         }
     }
 }
