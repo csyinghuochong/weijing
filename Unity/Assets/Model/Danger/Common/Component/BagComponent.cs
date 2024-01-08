@@ -5,21 +5,20 @@ namespace ET
 {
     public class BagComponent : Entity, IAwake, ITransfer, IUnitCache
     {
-        public int BagAddedCell = 0;
 
         public List<int> QiangHuaLevel = new List<int>();
 
         public List<int> QiangHuaFails = new List<int>();
 
         /// <summary>
-        /// ItemLocType.ItemWareHouse1 开始
+        /// 背包购买格子数量
         /// </summary>
-        public List<int> WarehouseAddedCell = new List<int>();
+        public int BagAddedCell = 0;
 
         /// <summary>
-        /// ItemLocType.ItemLocBag 开始(WarehouseAddedCell对齐ItemLocType 数据转移还没做)
+        /// ItemLocType.ItemWareHouse1 之后的所有仓库（购买格子数量）
         /// </summary>
-        public List<int> WarehouseAddedCellNew = new List<int>();
+        public List<int> WarehouseAddedCell = new List<int>();
 
         /// <summary>
         /// 激活的时装
@@ -53,6 +52,7 @@ namespace ET
         public List<BagInfo> EquipList_2 = new List<BagInfo>();
         public List<BagInfo> SeasonJingHe = new List<BagInfo>();
         public List<BagInfo> PetEquipList = new List<BagInfo>();
+        public List<BagInfo> GemWareHouse1 = new List<BagInfo>();   
 
         [BsonIgnore]
         public int FuMoItemId = 0;

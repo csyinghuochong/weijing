@@ -114,6 +114,9 @@ namespace ET
                 case ItemLocType.PetLocEquip:
                     ItemTypeList = self.PetEquipList;
                     break;
+                case ItemLocType.GemWareHouse1:
+                    ItemTypeList = self.GemWareHouse1;
+                    break;
             }
             return ItemTypeList;
         }

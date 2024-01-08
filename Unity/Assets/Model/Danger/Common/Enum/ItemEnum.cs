@@ -192,6 +192,7 @@ namespace ET
         ItemLocEquip_2 = 16,    //第二套装备
         SeasonJingHe = 17,      //赛季晶核
         PetLocEquip = 18,       //宠物装备
+        GemWareHouse1 = 19,     //宝石仓库
 
         ItemLocMax,
     }
