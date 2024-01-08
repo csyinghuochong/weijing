@@ -43,8 +43,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 17;      //17部分包含抖音sdk能力 18热更缓存
-		public int BigVersionIOS = 17;   //17部分包含抖音sdk能力 18热更缓存
+		public int BigVersion = 17;      //17部分包含抖音sdk能力 18渠道包
+		public int BigVersionIOS = 17;   //17部分包含抖音sdk能力 18渠道包
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -131,7 +131,7 @@ namespace ET
             Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
 
             ///平台Id定义 不得更改
-            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  ios20001
+            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) QuDao100渠道母包(100以上为渠道包) ios20001
 #if TapTap1
             Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
@@ -144,12 +144,15 @@ namespace ET
 #elif Platform4
 			Log.ILog.Debug("unity111  Platform4=true");
 			this.Platform = 4;
-#elif TikTok5				//抖音
+#elif TikTok5             //抖音                   
 			Log.ILog.Debug("unity111  TikTok5=true");
 			this.Platform = 5;
-#elif TikTokMuBao6			//抖音母包
+#elif TikTokMuBao6            //抖音母包                
 			Log.ILog.Debug("unity111  TikTokMuBao6=true");
 			this.Platform = 6;
+#elif QuDao
+			Log.ILog.Debug("unity111  TikTokMuBao6=true");
+			this.Platform = 100;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif

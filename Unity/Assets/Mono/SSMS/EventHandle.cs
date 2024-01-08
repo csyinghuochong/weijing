@@ -4,12 +4,16 @@ using UnityEngine.UI;
 using quicksdk;
 using System;
 
+
+/// <summary>
+/// 避免冲突 都+100
+/// </summary>
 public enum ChannelIdEnum
 { 
-	XiaoMi = 15,
-	ViVo = 17,
-	OPPO = 23,
-	HuaWei = 24,
+	XiaoMi = 100 + 15,
+	ViVo = 100 + 17,
+	OPPO = 100 + 23,
+	HuaWei = 100 + 24,
 }
 
 public class EventHandle : QuickSDKListener
@@ -30,10 +34,10 @@ public class EventHandle : QuickSDKListener
 
 	public static int onChannelType()
 	{
-#if MuBao
-		return QuickSDK.getInstance().channelType();
+#if QuDao
+		return QuickSDK.getInstance().channelType() + 100;
 #else
-		return 0;
+        return -1;
 #endif
 	}
 

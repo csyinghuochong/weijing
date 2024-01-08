@@ -109,6 +109,10 @@ namespace ET
             {
                 return 0;
             }
+            if (GetBigVersion() > 18)
+            {
+                
+            }
             return GameObject.Find("Global").GetComponent<Init>().Platform;
 #endif
         }
