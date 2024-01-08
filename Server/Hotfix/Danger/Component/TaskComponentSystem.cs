@@ -293,6 +293,7 @@ namespace ET
             }
             if (taskConfig.TaskType != TaskTypeEnum.Season
                 && taskConfig.TaskType != TaskTypeEnum.Welfare
+                && taskConfig.TaskType != TaskTypeEnum.System
                 && self.GetTrackTaskList().Count < 3)
             {
                 taskPro.TrackStatus = 1;
@@ -908,10 +909,17 @@ namespace ET
                 Log.Debug($"活跃任务为空: {self.DomainZone()} {self.GetParent<Unit>().Id}");
             }
             for (int i = self.RoleTaskList.Count - 1; i >=0; i--)
-            { 
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.System)
+                {
+                    self.RoleTaskList[i].TrackStatus = 0;
+                }
+
                 if (!TaskConfigCategory.Instance.Contain(self.RoleTaskList[i].taskID))
                 {
                     self.RoleTaskList.RemoveAt(i);
+                    continue;
                 }
             }
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
