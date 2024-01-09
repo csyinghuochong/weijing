@@ -18,6 +18,7 @@ namespace ET
         public GameObject Btn_Type_3;
         public UIPageViewComponent UIPageView;
         public GameObject FunctionSetBtn;
+        public UIPageButtonComponent UIPageButtonComponent;
     }
 
     public class UIWarehouseComponentAwakeSystem: AwakeSystem<UIWarehouseComponent>
@@ -55,11 +56,25 @@ namespace ET
             uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageButtonComponent.OnSelectIndex(0);
+            self.UIPageButtonComponent = uIPageButtonComponent;
         }
     }
 
     public static class UIWarehouseComponentSystem
     {
+
+        public static async ETTask UpdateSkillMakePlan2(this UIWarehouseComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.GemWarehouseOpen) == 1)
+            {
+                return;
+            }
+            C2M_SkillOperation c2M_SkillOperation = new C2M_SkillOperation() { OperationType = 4 };
+            M2C_SkillOperation m2C_SkillOperation = (M2C_SkillOperation)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillOperation);
+            self.UIPageButtonComponent.OnSelectIndex(2);
+        }
+
         public static bool CheckPageButton_1(this UIWarehouseComponent self, int page)
         {
             if (page != (int)WarehouseEnum.WarehouseGem)
@@ -67,13 +82,41 @@ namespace ET
                 return true;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.RechargeNumber) < 298)
+            int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            int gemOpen = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.GemWarehouseOpen);
+            int needRecharge = 298;
+            if (gemOpen == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("充值金额298开启");
-                return false;
+                return true;
             }
-            return true;
+
+            string tip = string.Empty;
+            if (rechargeNumber < needRecharge)
+            {
+                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，请点击开启";
+            }
+            else
+            {
+                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启";
+            }
+
+            PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启栏位", tip, () =>
+            {
+                if (rechargeNumber < needRecharge)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("充值额度不足！");
+                }
+                else
+                {
+                    self.UpdateSkillMakePlan2().Coroutine();
+                }
+
+            }, () =>
+            {
+                UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine();
+            }, "开启", "前往充值").Coroutine();
+            
+            return false;
         }
 
         public static void OnClickPageButton(this UIWarehouseComponent self, int page)

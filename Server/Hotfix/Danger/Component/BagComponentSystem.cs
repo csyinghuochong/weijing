@@ -951,7 +951,7 @@ namespace ET
                 else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone)
                 {
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    if (numericComponent.GetAsInt(NumericType.RechargeNumber) >= 298 && self.CheckCanAddItem(itemID, leftNum, ItemLocType.GemWareHouse1))
+                    if (numericComponent.GetAsInt(NumericType.GemWarehouseOpen) >=1 && self.CheckCanAddItem(itemID, leftNum, ItemLocType.GemWareHouse1))
                     {
                         itemLockType = ItemLocType.GemWareHouse1;
                         itemlist = self.GetItemByLoc(itemLockType);

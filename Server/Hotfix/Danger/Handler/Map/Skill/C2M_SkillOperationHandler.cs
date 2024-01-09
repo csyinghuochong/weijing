@@ -47,6 +47,9 @@ namespace ET
                 case 3:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillMakePlan2, 1);
                     break;
+                case 4:
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.GemWarehouseOpen, 1);
+                    break;
 			}
 
 			reply();
