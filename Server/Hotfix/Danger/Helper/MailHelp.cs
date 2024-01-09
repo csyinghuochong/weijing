@@ -35,6 +35,60 @@ namespace ET
             MessageHelper.SendToLocationActor( userID, mail2M_SendServer);
         }
 
+        public static bool CheckSendMail(int MailType, string Title, NumericComponent numericComponent, UserInfoComponent userInfoComponent, BagComponent bagComponent)
+        {
+            if (numericComponent == null || userInfoComponent == null || bagComponent == null)
+            {
+                return false;
+            }
+
+            switch (MailType)
+            {
+                case 2: // 充值>=6元 10011003
+                    if (numericComponent.GetAsLong(NumericType.RechargeNumber) < int.Parse(Title))
+                    {
+                        return false;
+                    }
+                    break;
+                case 5:
+                    // 充值>=6<30元 10011003
+                    //充值额度某个区间段
+                    string[] needrecharge = Title.Split('_');
+                    int min_value = int.Parse(needrecharge[0]);
+                    int max_value = int.Parse(needrecharge[1]);
+                    if (numericComponent.GetAsLong(NumericType.RechargeNumber) < min_value
+                        || numericComponent.GetAsLong(NumericType.RechargeNumber) >= max_value)
+                    {
+                        return false;
+                    }
+                    break;
+                case 3: //20级以上 补
+                    if (userInfoComponent.UserInfo.Lv < int.Parse(Title))
+                    {
+                        return false;
+                    }
+                    break;
+                case 4: //开启第二个仓库并且格子没有开完的
+                    if (numericComponent.GetAsInt(NumericType.CangKuNumber) < 2)
+                    {
+                        return false;
+                    }
+                    if (bagComponent.WarehouseAddedCell.Count < 4)
+                    {
+                        return false;
+                    }
+                    if (bagComponent.WarehouseAddedCell[1] >= 10)
+                    {
+                        return false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            Log.Console($"CheckSendMail.true : {MailType} {Title}");
+            return true;
+        }
+
         public static async ETTask ServerMailItem(int zone, long userID, ServerMailItem serverMailItem)
         {
             //判断条件
@@ -68,38 +122,11 @@ namespace ET
             }
             bagComponent = d2GGetUnit3.Component as BagComponent;
 
-            switch (serverMailItem.MailType)
+            bool cansendMail = MailHelp.CheckSendMail(serverMailItem.MailType, serverMailItem.ParasmNew, numericComponent, userInfoComponent, bagComponent);
+            if (cansendMail == false)
             {
-                case 2: // 充值>=6元 10011003
-                    if (numericComponent.GetAsLong(NumericType.RechargeNumber) < serverMailItem.Parasm)
-                    {
-                        return;
-                    }
-                    break;
-                case 3: //20级以上 补
-                    if (userInfoComponent.UserInfo.Lv < serverMailItem.Parasm)
-                    {
-                        return;
-                    }
-                    break;
-                case 4: //开启第二个仓库并且格子没有开完的
-                    if (numericComponent.GetAsInt(NumericType.CangKuNumber) < 2)
-                    {
-                        return;
-                    }
-                    if (bagComponent.WarehouseAddedCell.Count < 4)
-                    {
-                        return;
-                    }
-                    if (bagComponent.WarehouseAddedCell[1] >= 10)
-                    {
-                        return;
-                    }
-                    break;
-                default:
-                    break;
+                return;
             }
-
 
             MailInfo mailInfo = new MailInfo();
             mailInfo.Status = 0;

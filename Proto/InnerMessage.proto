@@ -1202,7 +1202,6 @@ message M2E_GMEMailSendRequest // IActorRequest
     string Title = 3; 
     string UserName = 4;
     int MailType = 5;
-	int Param = 6;
 }
 
 message E2M_GMEMailSendResponse // IActorResponse
@@ -1619,12 +1618,12 @@ message LocalDungeon2M_EnterResponse // IActorResponse
 
 message ServerMailItem
 {
-
-	int32 MailType = 1;		 //1全服邮件     2充值邮件   3等级邮件   4开启格子
-	int32 Parasm = 2;		//0               充值金额    等级       开启第二个仓库并且格子没有开完的 
+	int32 MailType = 1;		 //1全服邮件     2充值邮件   3等级邮件   4开启格子   5充值区间
+	string ParasmNew = 2;		//(Title == mailInfo[5])//0  充值金额    等级   开启第二个仓库并且格子没有开完的 
 	repeated BagInfo ItemList = 3;
 	int64  EndTime = 4;
 	int32 ServerMailIId = 5;
+	int32 Parasm = 6;   //(作废)
 }
 
 //ResponseType Chat2Mail_GetUnitList

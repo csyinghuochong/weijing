@@ -63,8 +63,11 @@ namespace ET
                 {
                     continue;
                 }
-
-                MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
+                if (!string.IsNullOrEmpty(ServerItem.ParasmNew))
+                {
+                    MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
+                }
+                
                 curmailid = id;
             }
             return curmailid;

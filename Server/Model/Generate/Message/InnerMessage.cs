@@ -2537,9 +2537,6 @@ namespace ET
 		[ProtoMember(5)]
 		public int MailType { get; set; }
 
-		[ProtoMember(6)]
-		public int Param { get; set; }
-
 	}
 
 	[Message(InnerOpcode.E2M_GMEMailSendResponse)]
@@ -3409,7 +3406,7 @@ namespace ET
 		public int MailType { get; set; }
 
 		[ProtoMember(2)]
-		public int Parasm { get; set; }
+		public string ParasmNew { get; set; }
 
 		[ProtoMember(3)]
 		public List<BagInfo> ItemList = new List<BagInfo>();
@@ -3419,6 +3416,9 @@ namespace ET
 
 		[ProtoMember(5)]
 		public int ServerMailIId { get; set; }
+
+		[ProtoMember(6)]
+		public int Parasm { get; set; }
 
 	}
 

@@ -7,7 +7,7 @@ namespace ET
     public static class DllHelper
     {
 
-        public static string Admin = string.Empty;
+        public static string Admin = "admin";
 
         public static bool CheckItem = false;
 

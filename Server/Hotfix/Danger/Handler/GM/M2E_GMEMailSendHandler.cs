@@ -47,55 +47,16 @@ namespace ET
                         continue;
                     }
 
-                    switch (request.MailType)
+                    List<BagComponent> bagInfoList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
+                    if (bagInfoList.Count == 0)
                     {
-                        case 2: // 充值>=6元 10011003
-                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < int.Parse(request.Title))
-                            {
-                                continue;
-                            }
-                            break;
-                        case 5:
-                            // 充值>=6<30元 10011003
-                            //充值额度某个区间段
-                            string[] needrecharge = request.Title.Split('_');
-                            int min_value = int.Parse(needrecharge[0]);
-                            int max_value = int.Parse(needrecharge[1]);
-                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < min_value
-                                || numericInfoList[0].GetAsLong(NumericType.RechargeNumber) >= max_value)
-                            {
-                                continue;
-                            }
+                        continue;
+                    }
 
-                            break;
-                        case 3: //20级以上 补
-                            if (userinfoComponents[0].UserInfo.Lv < int.Parse(request.Title))
-                            {
-                                continue;
-                            }
-                            break;
-                        case 4: //开启第二个仓库并且格子没有开完的
-                            if (numericInfoList[0].GetAsInt(NumericType.CangKuNumber) < 2)
-                            {
-                                continue;
-                            }
-
-                            List<BagComponent> bagInfoList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
-                            if (bagInfoList.Count == 0)
-                            {
-                                continue;
-                            }
-                            if (bagInfoList[0].WarehouseAddedCell.Count < 4)
-                            {
-                                continue;
-                            }
-                            if (bagInfoList[0].WarehouseAddedCell[1] >= 10)
-                            {
-                                continue;
-                            }
-                            break;
-                        default:
-                            break;
+                    bool cansendMail = MailHelp.CheckSendMail(request.MailType, request.Title, numericInfoList[0], userinfoComponents[0], bagInfoList[0]);
+                    if (cansendMail == false)
+                    {
+                        continue;
                     }
 
                     MailInfo mailInfo = new MailInfo();
