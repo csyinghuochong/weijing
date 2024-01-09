@@ -780,7 +780,6 @@ namespace ET
             GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phone, code);
 		}
 
-
 		public static void OnButtonGetCode(this UILoginComponent self)
 		{
 			string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
