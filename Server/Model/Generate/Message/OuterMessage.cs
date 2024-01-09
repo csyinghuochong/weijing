@@ -15487,4 +15487,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Chat2C_GetChatResponse))]
+	[Message(OuterOpcode.C2Chat_GetChatRequest)]
+	[ProtoContract]
+	public partial class C2Chat_GetChatRequest: Object, IChatActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Chat2C_GetChatResponse)]
+	[ProtoContract]
+	public partial class Chat2C_GetChatResponse: Object, IChatActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<ChatInfo> ChatInfos = new List<ChatInfo>();
+
+	}
+
 }

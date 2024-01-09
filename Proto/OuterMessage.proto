@@ -7428,3 +7428,18 @@ message M2C_BloodstoneQiangHuaResponse // IActorLocationResponse
 	int32 Error = 92;
 	int32 Level = 1;
 }
+
+//ResponseType Chat2C_GetChatResponse
+message C2Chat_GetChatRequest // IChatActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message Chat2C_GetChatResponse // IChatActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+    repeated ChatInfo ChatInfos = 1;
+}

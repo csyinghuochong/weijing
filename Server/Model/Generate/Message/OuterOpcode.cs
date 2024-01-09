@@ -861,5 +861,7 @@ namespace ET
 		 public const ushort M2C_ItemXiLianNumReward = 10858;
 		 public const ushort C2M_BloodstoneQiangHuaRequest = 10859;
 		 public const ushort M2C_BloodstoneQiangHuaResponse = 10860;
+		 public const ushort C2Chat_GetChatRequest = 10861;
+		 public const ushort Chat2C_GetChatResponse = 10862;
 	}
 }

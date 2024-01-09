@@ -384,6 +384,8 @@ namespace ET
 
             self.CheckPopUP();
 
+            self.RequestChatList().Coroutine();
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
             if (userInfo.Lv == 1 || guideid > 0)
@@ -489,6 +491,18 @@ namespace ET
 
     public static class UIMainComponentSystem
     {
+
+        public static async ETTask RequestChatList(this UIMainComponent self)
+        {
+            C2Chat_GetChatRequest request = new C2Chat_GetChatRequest();
+            Chat2C_GetChatResponse response = (Chat2C_GetChatResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            ChatComponent chatComponent = self.ZoneScene().GetComponent<ChatComponent>();
+            for (int i = 0; i < response.ChatInfos.Count; i++)
+            {
+                chatComponent.OnRecvChat(response.ChatInfos[i]);
+            }
+        }
 
         public static void CheckRechargeRewardButton(this UIMainComponent self)
         {

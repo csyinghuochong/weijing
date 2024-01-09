@@ -29,15 +29,17 @@ namespace ET
             {
                 case (int)ChannelEnum.PaiMai:
                 case (int)ChannelEnum.Word:
-
-
                     ChatSceneComponent chatInfoUnitsComponent = chatInfoUnit.DomainScene().GetComponent<ChatSceneComponent>();
                     foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
                     }
+                    chatInfoUnitsComponent.WordChatInfos.Add(request.ChatInfo);
+                    if (chatInfoUnitsComponent.WordChatInfos.Count>10)
+                    {
+                        chatInfoUnitsComponent.WordChatInfos.RemoveAt(chatInfoUnitsComponent.WordChatInfos.Count - 1);
+                    }
                     break;
-
                 case (int)ChannelEnum.Team:
                     long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(chatInfoUnit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
                     T2C_GetTeamInfoResponse g_SendChatRequest1 = (T2C_GetTeamInfoResponse)await ActorMessageSenderComponent.Instance.Call
