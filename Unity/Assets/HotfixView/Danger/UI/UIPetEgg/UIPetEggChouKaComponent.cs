@@ -158,7 +158,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请清理一下宠物之核背包！");
                 return;
             }
-            if (self.ZoneScene().GetComponent<PetComponent>().RolePetBag.Count >= 40)
+            if (self.ZoneScene().GetComponent<PetComponent>().RolePetBag.Count >= GlobalValueConfigCategory.Instance.Get(119).Value2)
             {
                 FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
                 return;

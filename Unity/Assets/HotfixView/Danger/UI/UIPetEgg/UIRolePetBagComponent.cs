@@ -154,7 +154,7 @@ namespace ET
                 self.UIRolePetBagItemComponents[0].OnImage_ItemButton();
             }
 
-            self.TextNumber.text = $"宠物数量： {rolePetInfos.Count}/40";
+            self.TextNumber.text = $"宠物数量： {rolePetInfos.Count}/{GlobalValueConfigCategory.Instance.Get(119).Value2}";
         }
 
         public static void OnClickPetHandler(this UIRolePetBagComponent self, RolePetInfo rolePetInfo)

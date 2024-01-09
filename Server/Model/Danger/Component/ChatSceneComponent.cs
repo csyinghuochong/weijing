@@ -22,5 +22,8 @@ namespace ET
 
         //全服玩家GateSessionActorId
         public Dictionary<long, ChatInfoUnit> ChatInfoUnitsDict = new Dictionary<long, ChatInfoUnit>();
+
+        //世界列表记录
+        public List<ChatInfo> WordChatInfos = new List<ChatInfo> ();    
     }
 }

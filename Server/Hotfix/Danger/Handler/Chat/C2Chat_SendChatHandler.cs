@@ -29,6 +29,8 @@ namespace ET
             {
                 case (int)ChannelEnum.PaiMai:
                 case (int)ChannelEnum.Word:
+
+
                     ChatSceneComponent chatInfoUnitsComponent = chatInfoUnit.DomainScene().GetComponent<ChatSceneComponent>();
                     foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                     {
