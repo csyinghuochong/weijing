@@ -2633,6 +2633,7 @@ message C2M_PaiMaiBuyRequest // IActorLocationRequest
 	int64 ActorId = 93;
 	
 	PaiMaiItemInfo PaiMaiItemInfo = 1;
+	int32 BuyNum = 2;
 }
 
 message M2C_PaiMaiBuyResponse // IActorLocationResponse

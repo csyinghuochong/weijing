@@ -37,7 +37,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.PDListBtn, () => { self.OnOpenPDList().Coroutine(); });
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
-            self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy(); });
+            self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy().Coroutine(); });
 
             self.Text_Owner = rc.Get<GameObject>("Text_Owner");
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
@@ -112,7 +112,7 @@ namespace ET
             }
         }
 
-        public static void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
+        public static async ETTask OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
             // 橙色装备不能购买
@@ -121,21 +121,49 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能购买！");
                 return;
             }
-            
-            if (self.PaiMaiItemInfo.BagInfo.ItemNum >= 10)
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetLeftSpace() < 1)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", $"你购买的道具数量为{self.PaiMaiItemInfo.BagInfo.ItemNum}，是否购买？",
-                    () => { self.RequestBuy().Coroutine(); }, null).Coroutine();
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                return;
             }
-            else if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
+
+            if (self.PaiMaiItemInfo.BagInfo.ItemNum > 1)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具",
-                    $"你购买的道具需要花费{self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum}金币，是否购买？", () => { self.RequestBuy().Coroutine(); },
-                    null).Coroutine();
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiBuyTip);
+                ui.GetComponent<UIPaiMaiBuyTipComponent>()?.InitInfo(self.PaiMaiItemInfo, (int buyNum) =>
+                {
+                    if (buyNum < self.PaiMaiItemInfo.BagInfo.ItemNum)
+                    {
+                        self.PaiMaiItemInfo.BagInfo.ItemNum -= buyNum;
+                        self.OnUpdateItem(self.PaiMaiItemInfo);
+                    }
+                    else
+                    {
+                        if (self.GameObject != null)
+                        {
+                            self.GameObject.SetActive(false);
+                        }
+
+                        ItemConfig itemConfig1 = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
+                        self.GetParent<UIPaiMaiBuyComponent>().RemoveItem(itemConfig1.ItemType, self.PaiMaiItemInfo);
+                    }
+                });
             }
             else
             {
-                self.RequestBuy().Coroutine();
+                if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
+                {
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具",
+                        $"你购买的道具需要花费{self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum}金币，是否购买？",
+                        () => { self.RequestBuy().Coroutine(); },
+                        null).Coroutine();
+                }
+                else
+                {
+                    self.RequestBuy().Coroutine();
+                }
             }
         }
 

@@ -27,9 +27,16 @@ namespace ET
                 reply();
                 return;
             }
-
-            needGold = (long)paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
-            if (request.ActorId < needGold)
+            
+            if (request.BuyNum < 0 || request.BuyNum > paiMaiItemInfo.BagInfo.ItemNum)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            
+            needGold = (long)paiMaiItemInfo.Price * request.BuyNum;
+            if (request.Gold < needGold)
             {
                 response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
@@ -74,8 +81,36 @@ namespace ET
 
             }
 
-            response.PaiMaiItemInfo = paiMaiItemInfo;
-            paiMaiItemInfos.Remove(paiMaiItemInfo);
+            BagInfo bagInfo = paiMaiItemInfo.BagInfo;
+            if (request.BuyNum == bagInfo.ItemNum)
+            {
+                response.PaiMaiItemInfo = paiMaiItemInfo;
+                paiMaiItemInfos.Remove(paiMaiItemInfo);
+            }
+            else
+            {
+                bagInfo.ItemNum -= request.BuyNum;
+                PaiMaiItemInfo paiMaiItemInfo2 = new PaiMaiItemInfo();
+                
+                BagInfo useBagInfo = new BagInfo();
+                useBagInfo.ItemID = bagInfo.ItemID;
+                useBagInfo.ItemNum = request.BuyNum;
+                useBagInfo.Loc = itemCof.ItemType == (int)ItemTypeEnum.PetHeXin ? (int)ItemLocType.ItemPetHeXinBag : (int)ItemLocType.ItemLocBag;
+                useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
+                useBagInfo.GemHole = ItemHelper.DefaultGem;
+                useBagInfo.GemIDNew = ItemHelper.DefaultGem;
+                useBagInfo.GetWay = bagInfo.GetWay;
+                useBagInfo.isBinging = bagInfo.isBinging;
+                
+                paiMaiItemInfo2.Id = IdGenerater.Instance.GenerateId();
+                paiMaiItemInfo2.BagInfo = useBagInfo;
+                paiMaiItemInfo2.UserId = paiMaiItemInfo.UserId;
+                paiMaiItemInfo2.Price = paiMaiItemInfo.Price;
+                paiMaiItemInfo2.PlayerName = paiMaiItemInfo.PlayerName;
+                paiMaiItemInfo2.SellTime = paiMaiItemInfo.SellTime;
+                
+                response.PaiMaiItemInfo = paiMaiItemInfo2;
+            }
             reply();
             await ETTask.CompletedTask;
         }

@@ -5561,6 +5561,9 @@ namespace ET
 		[ProtoMember(1)]
 		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
 
+		[ProtoMember(2)]
+		public int BuyNum { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PaiMaiBuyResponse)]

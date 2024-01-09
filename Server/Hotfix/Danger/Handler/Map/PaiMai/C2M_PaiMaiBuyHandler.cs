@@ -34,7 +34,23 @@ namespace ET
                 return;
             }
 
-            long needGold = (long)paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+            int buyNum = 0;
+            if (request.BuyNum < 0 || request.BuyNum > paiMaiItemInfo.BagInfo.ItemNum)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            else if (request.BuyNum == 0)
+            {
+                buyNum = paiMaiItemInfo.BagInfo.ItemNum;
+            }
+            else
+            {
+                buyNum = request.BuyNum;
+            }
+
+            long needGold = (long)paiMaiItemInfo.Price * buyNum;
             if (paiMaiItemInfo.BagInfo.ItemNum < 0 || needGold < 0)
             {
                 response.Error = ErrorCode.ERR_GoldNotEnoughError;
@@ -57,7 +73,8 @@ namespace ET
                     (paimaiServerId, new M2P_PaiMaiBuyRequest()
                     {
                         PaiMaiItemInfo = request.PaiMaiItemInfo,
-                       ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
+                        Gold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold,
+                        BuyNum = buyNum
                     });
                 if (r_GameStatusResponse.Error != ErrorCode.ERR_Success)
                 {

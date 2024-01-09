@@ -640,6 +640,8 @@ message M2P_PaiMaiBuyRequest // IActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     PaiMaiItemInfo PaiMaiItemInfo = 1;
+	int64 Gold = 2;
+	int32 BuyNum = 3;
 }
 
 message P2M_PaiMaiBuyResponse // IActorResponse
