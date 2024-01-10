@@ -1149,11 +1149,12 @@ namespace ET
             //显示隐藏技能
             if (baginfo.HideSkillLists != null)
             {
+                string skillTip = itemconf.EquipType == 301 ? "套装效果，附加技能：" : "隐藏技能：";
                 for (int i = 0; i < baginfo.HideSkillLists.Count; i++)
                 {
                     int skillID = baginfo.HideSkillLists[i];
                     SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                    string proStr = GameSettingLanguge.LoadLocalization("隐藏技能") + ":" + skillCof.SkillName;
+                    string proStr = GameSettingLanguge.LoadLocalization(skillTip) + skillCof.SkillName;
                     ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                     properShowNum += 1;
                 }

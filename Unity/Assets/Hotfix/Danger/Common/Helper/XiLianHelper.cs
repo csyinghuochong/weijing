@@ -855,6 +855,12 @@ namespace ET
                 }
             }
 
+            ///内网测试宠物装备默认给个技能，洗练 不出来
+            if (ComHelp.IsInnerNet() && itemConfig.EquipType == 301  && HideSkillList.Count == 0)
+            {
+                HideSkillList.Add(68000104);
+            }
+
             ItemXiLianResult itemXiLianResult = new ItemXiLianResult();
             itemXiLianResult.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
             itemXiLianResult.HideSkillLists = HideSkillList;         //隐藏技能

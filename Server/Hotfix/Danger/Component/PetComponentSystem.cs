@@ -1126,9 +1126,15 @@ namespace ET
             PetHelper.UpdatePetNumeric( rolePetInfo );
         }
 
-        public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, int skillId)
-        { 
-            
+        public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, BagInfo bagInfo)
+        {
+            for (int i = rolePetInfom.PetSkill.Count - 1; i >= 0; i--)
+            {
+                if (bagInfo.IncreaseSkillLists.Contains(rolePetInfom.PetSkill[i]))
+                {
+                    rolePetInfom.PetSkill.RemoveAt(i);
+                }
+            }
         }
 
         public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit)
