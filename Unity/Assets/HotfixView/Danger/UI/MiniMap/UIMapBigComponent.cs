@@ -180,14 +180,9 @@ namespace ET
                 {
                     continue;
                 }
-                DungeonTransferConfig npcConfig = DungeonTransferConfigCategory.Instance.Get(transfers[i]);
-                Vector3 npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
-
-                GameObject gameObject = UnityEngine.Object.Instantiate(self.chuansong, self.chuansong.transform.parent, true);
-                gameObject.SetActive(true);
-                gameObject.transform.localScale = Vector3.one;
-                gameObject.transform.localPosition = npcPos;
-                gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
+                DungeonTransferConfig dungeonTransferConfig = DungeonTransferConfigCategory.Instance.Get(transfers[i]);
+                self.InstantiateIcon(self.chuansong,
+                    new Vector3(dungeonTransferConfig.Position[0] * 0.01f, dungeonTransferConfig.Position[2] * 0.01f, 0), dungeonTransferConfig.Name);
             }
         }
 
@@ -209,26 +204,32 @@ namespace ET
             for (int i = 0; i < response.PetList.Count; i++)
             {
                 UnitInfo unitInfo = response.PetList[i];
-                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
-                Vector3 npcPos = self.GetWordToUIPositon(vector3);
-
-                GameObject gameObject = GameObject.Instantiate(unitInfo.UnitType == UnitType.Pet ? self.jiayuanPet : self.jiayuanRubsh);
-                gameObject.SetActive(true);
-                gameObject.transform.SetParent(self.jiayuanPet.transform.parent);
-                gameObject.transform.localScale = Vector3.one;
-                gameObject.transform.localPosition = npcPos;
-
+                string name = string.Empty;
                 if (unitInfo.UnitType == UnitType.Pet)
                 {
                     PetConfig petConfig = PetConfigCategory.Instance.Get(unitInfo.ConfigId);
-                    gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.PetName;
+                    name = petConfig.PetName;
                 }
+
                 if (unitInfo.UnitType == UnitType.Monster)
                 {
                     MonsterConfig petConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
-                    gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.MonsterName;
+                    name = petConfig.MonsterName;
                 }
-            }    
+
+                self.InstantiateIcon(unitInfo.UnitType == UnitType.Pet? self.jiayuanPet : self.jiayuanRubsh, new Vector3(unitInfo.X, unitInfo.Z, 0),
+                    name);
+            }
+        }
+
+        public static void InstantiateIcon(this UIMapBigComponent self, GameObject go, Vector3 position, string name)
+        {
+            position = self.GetWordToUIPositon(position);
+            GameObject gameObject = UnityEngine.Object.Instantiate(go, go.transform.parent, true);
+            gameObject.SetActive(true);
+            gameObject.transform.localScale = Vector3.one;
+            gameObject.transform.localPosition = position;
+            gameObject.transform.Find("Text").GetComponent<Text>().text = name;
         }
 
         public static async ETTask RequestLocalUnitPosition(this UIMapBigComponent self)
@@ -247,32 +248,21 @@ namespace ET
 
             foreach (UnitInfo unitInfo in response.UnitList)
             {
-                GameObject gameObject = null;
+                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
+
                 // 赛季boss
                 if (unitInfo.ConfigId == SeasonHelper.SeasonBossId)
                 {
-                    gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
+                    self.InstantiateIcon(self.bossIcon, vector3, monsterConfig.MonsterName);
                 }
 
                 // 野生精灵
                 int sonType = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId).MonsterSonType;
                 if (unitInfo.UnitType == UnitType.Monster && (sonType == 58 || sonType == 59))
                 {
-                    gameObject = UnityEngine.Object.Instantiate(self.jinglingIcon, self.jinglingIcon.transform.parent, true);
+                    self.InstantiateIcon(self.jinglingIcon, vector3, monsterConfig.MonsterName);
                 }
-
-                if (gameObject == null)
-                {
-                    continue;
-                }
-
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
-                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
-                Vector3 npcPos = self.GetWordToUIPositon(vector3);
-                gameObject.SetActive(true);
-                gameObject.transform.localScale = Vector3.one;
-                gameObject.transform.localPosition = npcPos;
-                gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
             }
         }
 
@@ -356,13 +346,7 @@ namespace ET
                 return monsterPosition.NextID; ;
             }
             Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
-            Vector3 npcPos = self.GetWordToUIPositon(vector3);
-
-            GameObject gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
-            gameObject.SetActive(true);
-            gameObject.transform.localScale = Vector3.one;
-            gameObject.transform.localPosition = npcPos;
-            gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+            self.InstantiateIcon(self.bossIcon,vector3,monsterConfig.MonsterName);
 
             self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
 
@@ -396,13 +380,7 @@ namespace ET
                         continue;
                     }
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
-                    Vector3 npcPos = self.GetWordToUIPositon(vector3);
-
-                    GameObject gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
-                    gameObject.SetActive(true);
-                    gameObject.transform.localScale = Vector3.one;
-                    gameObject.transform.localPosition = npcPos;
-                    gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.InstantiateIcon(self.bossIcon, vector3, monsterConfig.MonsterName);
 
                     self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
                 }
@@ -461,15 +439,9 @@ namespace ET
                     }
 
                     NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
-                    Vector3 npcPos = Vector3.zero;
 
-                    npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
-
-                    GameObject gameObject = UnityEngine.Object.Instantiate(self.NpcPostion, self.NpcPostion.transform.parent, true);
-                    gameObject.SetActive(true);
-                    gameObject.transform.localScale = Vector3.one;
-                    gameObject.transform.localPosition = npcPos;
-                    gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
+                    self.InstantiateIcon(self.NpcPostion, new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0),
+                        npcConfig.Name);
 
                     GameObject npcGo = UnityEngine.Object.Instantiate(self.UIMapBigNpcItem);
                     npcGo.SetActive(true);
