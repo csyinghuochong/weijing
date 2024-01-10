@@ -178,7 +178,7 @@ namespace ET
         //点击回调
         public static void OnClickPageButton(this UIRoleBagComponent self, int page)
         {
-            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagMaxCapacity)
+            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagInitCapacity)
             {
                 return;
             }
@@ -194,7 +194,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
             int opencell = bagComponent.GetBagTotalCell();
-            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            int maxCount = bagComponent.GetBagShowCell();
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 30)

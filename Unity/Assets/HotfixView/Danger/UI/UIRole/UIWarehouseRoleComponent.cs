@@ -211,11 +211,13 @@ namespace ET
         public static void UpdateWareHouse(this UIWarehouseRoleComponent self)
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
-            int openell = self.BagComponent.WarehouseAddedCell[curindex + 5] + GlobalValueConfigCategory.Instance.HourseInitCapacity;
-            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
+            int openell = self.BagComponent.GetHouseTotalCell(curindex + 5);
+            int allNumber = self.BagComponent.GetHouseShowCell(curindex + 5);
+            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)(curindex + 5));
 
-            for (int i = 0; i < self.HouseList.Count; i++)
+            for (int i = 0; i < allNumber; i++)
             {
+                self.HouseList[i].GameObject.SetActive(true);
                 if (i < bagInfos.Count)
                 {
                     self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.Cangku);
@@ -238,6 +240,10 @@ namespace ET
                     int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);
                     self.HouseList[i].UpdateItem(new BagInfo() { ItemID = itemid, ItemNum = itemnum }, ItemOperateEnum.None);
                 }
+            }
+            for (int i = allNumber; i < self.HouseList.Count; i++)
+            {
+                self.HouseList[i].GameObject.SetActive(false);
             }
         }
 

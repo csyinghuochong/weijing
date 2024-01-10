@@ -400,7 +400,7 @@ namespace ET
 
         public static int GetBagTotalCell(this BagComponent self)
         {
-            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
+            return self.WarehouseAddedCell[0] + self.AdditionalCellNum[0] + + GlobalValueConfigCategory.Instance.BagInitCapacity;
         }
 
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
@@ -422,7 +422,7 @@ namespace ET
             {
                 storeCapacity = GlobalValueConfigCategory.Instance.GemStoreInitCapacity;
             }
-            return storeCapacity + self.WarehouseAddedCell[hourseId];
+            return storeCapacity + self.WarehouseAddedCell[hourseId] + self.AdditionalCellNum[hourseId];
         }
 
         /// <summary>
@@ -598,6 +598,10 @@ namespace ET
             for (int i = self.WarehouseAddedCell.Count; i < (int)ItemLocType.ItemLocMax; i++)
             {
                 self.WarehouseAddedCell.Add(0);
+            }
+            for (int i = self.AdditionalCellNum.Count; i < (int)ItemLocType.ItemLocMax; i++)
+            {
+                self.AdditionalCellNum.Add(0);
             }
 
 

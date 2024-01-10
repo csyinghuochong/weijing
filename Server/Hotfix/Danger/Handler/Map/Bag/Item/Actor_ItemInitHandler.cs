@@ -59,7 +59,7 @@ namespace ET
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
 			response.FashionEquipList = bagComponent.FashionEquipList;
             response.SeasonJingHePlan = bagComponent.SeasonJingHePlan;
-
+			response.AdditionalCellNum = bagComponent.AdditionalCellNum;	
             reply();
 			await ETTask.CompletedTask;
 		}

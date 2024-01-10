@@ -837,14 +837,24 @@ namespace ET
             return self.GetBagTotalCell() - self.GetBagList().Count;
         }
 
-        public static int GetBagOpenCell(this BagComponent self)
-        {
-            return self.WarehouseAddedCell[0] + self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity ;
-        }
-
         public static int GetBagTotalCell(this BagComponent self)
         {
-            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
+            return self.WarehouseAddedCell[0] + self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
+        }
+
+        public static int GetBagShowCell(this BagComponent self)
+        {
+            return self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity + GlobalValueConfigCategory.Instance.Get(84).Value2;
+        }
+
+        public static int GetHouseTotalCell(this BagComponent self, int houseId)
+        {
+            return self.WarehouseAddedCell[houseId] + self.AdditionalCellNum[houseId] + GlobalValueConfigCategory.Instance.HourseInitCapacity;
+        }
+
+        public static int GetHouseShowCell(this BagComponent self, int houseId)
+        {
+            return self.AdditionalCellNum[houseId] + GlobalValueConfigCategory.Instance.HourseInitCapacity + GlobalValueConfigCategory.Instance.Get(85).Value2;
         }
 
         public static int GetPetHeXinLeftSpace(this BagComponent self)

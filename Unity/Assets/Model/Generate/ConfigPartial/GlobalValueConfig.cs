@@ -7,7 +7,7 @@ namespace ET
     public partial class GlobalValueConfigCategory
     {
         public int BagInitCapacity = 0;
-        public int BagMaxCapacity = 0;
+        //public int BagMaxCapacity = 0;
 
         public int HourseInitCapacity = 0;
         public int HourseMaxCapacity = 0;
@@ -21,7 +21,7 @@ namespace ET
         public override void AfterEndInit()
         {
             BagInitCapacity = this.Get(3).Value2;
-            BagMaxCapacity = this.Get(84).Value2 + BagInitCapacity + 10;
+            //BagMaxCapacity = this.Get(84).Value2 + BagInitCapacity + 10;
             HourseInitCapacity = this.Get(4).Value2;
             HourseMaxCapacity = this.Get(85).Value2 + HourseInitCapacity + 10;
             AccountBagMax = this.Get(115).Value2;
