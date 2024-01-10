@@ -137,7 +137,7 @@ namespace ET
                 return;
             }
 
-            int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace();
+            int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell();
             if (leftSpace < 1)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);

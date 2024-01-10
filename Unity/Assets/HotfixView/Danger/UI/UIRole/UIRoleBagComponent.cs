@@ -193,7 +193,7 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
-            int opencell = bagComponent.GetTotalSpace();
+            int opencell = bagComponent.GetTotalCell();
             int maxCount = GlobalValueConfigCategory.Instance.BagMaxCell;
             for (int i = 0; i < maxCount; i++)
             {
@@ -226,7 +226,7 @@ namespace ET
         {
             //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.BagAddedCell];
+            BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.WarehouseAddedCell[0]];
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
                 $"是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?", () =>
@@ -369,7 +369,7 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(itemTypeEnum);
-            int openell = bagComponent.GetTotalSpace();
+            int openell = bagComponent.GetTotalCell();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
@@ -382,7 +382,7 @@ namespace ET
                 else
                 {
                     self.ItemUIlist[i].UpdateUnLock(false);
-                    int addcell = bagComponent.BagAddedCell + (i - openell);
+                    int addcell = bagComponent.WarehouseAddedCell[0] + (i - openell);
                     BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[addcell];
                     int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
                     int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);

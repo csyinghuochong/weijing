@@ -414,7 +414,7 @@ namespace ET
 
         public static void OnShiquItem(this UIMainSkillComponent self, float distance)
         {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() <= 0)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <= 0)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;

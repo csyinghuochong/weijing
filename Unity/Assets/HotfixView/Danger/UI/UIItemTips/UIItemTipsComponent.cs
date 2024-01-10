@@ -471,7 +471,7 @@ namespace ET
 
             if (itemConfig.ItemSubType == 113 || itemConfig.ItemSubType == 127)
             {
-                if (self.BagComponent.GetBagLeftSpace() < 1)
+                if (self.BagComponent.GetBagLeftCell() < 1)
                 {
                     FloatTipManager.Instance.ShowFloatTip("背包格子不够！");
                     return;

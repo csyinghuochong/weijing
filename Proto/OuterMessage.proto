@@ -1551,7 +1551,7 @@ message Actor_ItemInitResponse  // IActorLocationResponse
 	repeated BagInfo BagInfos = 1;
 	repeated int32 QiangHuaLevel = 2;
 	repeated int32 QiangHuaFails = 3;
-	int32 BagAddedCell = 4;
+	//int32 BagAddedCell = 4;
 	repeated int32 WarehouseAddedCell = 5;
 	repeated int32 FashionActiveIds = 6;
 	repeated int32 FashionEquipList = 7;
@@ -5089,7 +5089,7 @@ message M2C_ItemBuyCellResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 
-	int32 BagAddedCell = 1;
+	//int32 BagAddedCell = 1;
 	repeated int32 WarehouseAddedCell = 2;
 	string GetItem = 3;
 }

@@ -148,7 +148,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int bagcellNumber = self.BagComponent.GetTotalSpace();
+            int bagcellNumber = self.BagComponent.GetTotalCell();
 
             for (int i = 0; i < bagcellNumber; i++)
             {

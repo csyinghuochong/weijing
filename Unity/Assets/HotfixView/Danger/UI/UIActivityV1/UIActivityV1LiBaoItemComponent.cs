@@ -52,7 +52,7 @@ namespace ET
 
         public static async ETTask OnReceiveBtn(this UIActivityV1LiBaoItemComponent self)
         {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() < 6)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 6)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足");
                 return;

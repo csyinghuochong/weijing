@@ -25,7 +25,7 @@ namespace ET
                     reply();
                     return;
                 }
-                BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.BagAddedCell];
+                BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.WarehouseAddedCell[0]];
                 if (!bagComponent.OnCostItemData(buyCellCost.Cost))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
@@ -36,7 +36,7 @@ namespace ET
 
                 string[] iteminfo = buyCellCost.Get.Split(';');
                 response.GetItem = buyCellCost.Get;
-                bagComponent.BagAddedCell += 1;
+                bagComponent.WarehouseAddedCell[0] += 1;
 
                 RewardItem rewardItem = new RewardItem()
                 {
@@ -52,16 +52,24 @@ namespace ET
             }
             else
             {
+                int storeindex = request.OperateType;
+                if (storeindex < 5 || storeindex > 9)
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
+
                 if (bagComponent.GetHourseTotalCell(request.OperateType) >= GlobalValueConfigCategory.Instance.StoreMaxCell)
                 {
                     response.Error = ErrorCode.ERR_AleardyMaxCell;
                     reply();
                     return;
                 }
-
-                int storeindex = request.OperateType - 5;
+                
                 int addcell = bagComponent.WarehouseAddedCell[storeindex];
-                BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
+                BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[(storeindex - 5) * 10 + addcell];
                 if (!bagComponent.OnCostItemData(buyCellCost.Cost))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
@@ -83,7 +91,7 @@ namespace ET
             }
 
             response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
-            response.BagAddedCell = bagComponent.BagAddedCell;
+            //response.BagAddedCell = bagComponent.BagAddedCell;
             reply();
             await ETTask.CompletedTask;
         }

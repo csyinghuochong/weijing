@@ -84,7 +84,7 @@ namespace ET
         public static async ETTask OnBtn_Buy(this UIPaiMaiBuyTipComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetBagLeftSpace() < 1)
+            if (bagComponent.GetBagLeftCell() < 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足");
                 return;

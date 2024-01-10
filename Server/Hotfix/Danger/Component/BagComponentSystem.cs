@@ -395,12 +395,12 @@ namespace ET
 
         public static int GetBagLeftCell(this BagComponent self)
         {
-            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
+            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
         }
 
         public static int GetBagTotalCell(this BagComponent self)
         {
-            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity;
         }
 
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
@@ -422,7 +422,7 @@ namespace ET
             {
                 storeCapacity = GlobalValueConfigCategory.Instance.GemStoreCapacity;
             }
-            return storeCapacity + self.WarehouseAddedCell[hourseId - 5];
+            return storeCapacity + self.WarehouseAddedCell[hourseId];
         }
 
         /// <summary>
@@ -571,15 +571,35 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
-            int warehourseNumber = (int)ItemLocType.ItemLocMax - 5;
-            /////////第五个位置开始是仓库
-            if (self.WarehouseAddedCell.Count < warehourseNumber)  // 11)
+
+            ///old
+            //int warehourseNumber = (int)ItemLocType.ItemLocMax - 5;
+            //if (self.WarehouseAddedCell.Count < warehourseNumber)  // 11)
+            //{
+            //    for (int i = self.WarehouseAddedCell.Count; i < warehourseNumber; i++)
+            //    {
+            //        self.WarehouseAddedCell.Add(0);
+            //    }
+            //}
+
+            //new 20240110
+            if (self.BagAddedCell >= 0)
             {
-                for (int i = self.WarehouseAddedCell.Count; i < warehourseNumber; i++)
+                //if (self.WarehouseAddedCell.Count > 0 && self.WarehouseAddedCell.Count < (int)ItemLocType.ItemLocMax - 5)
+                if (self.WarehouseAddedCell.Count > 0 )
                 {
-                    self.WarehouseAddedCell.Add(0);
+                    List<int> bagaddCell = new List<int>() { self.BagAddedCell, 0,0,0,0 };
+                    self.WarehouseAddedCell.InsertRange(0, bagaddCell);
                 }
+
+                self.BagAddedCell = -1;  //该字段废弃掉
             }
+
+            for (int i = self.WarehouseAddedCell.Count; i < (int)ItemLocType.ItemLocMax; i++)
+            {
+                self.WarehouseAddedCell.Add(0);
+            }
+
 
             if (self.QiangHuaLevel.Count == 0)
             {

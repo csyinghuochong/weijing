@@ -54,7 +54,7 @@ namespace ET
 			response.BagInfos = bagInfos;
 			response.QiangHuaLevel = bagComponent.QiangHuaLevel;
 			response.QiangHuaFails = bagComponent.QiangHuaFails;
-			response.BagAddedCell = bagComponent.BagAddedCell;
+			//response.BagAddedCell = bagComponent.BagAddedCell;
 			response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
 			response.FashionEquipList = bagComponent.FashionEquipList;

@@ -58,7 +58,7 @@ namespace ET
 
         public static async ETTask OnButtonMake(this UIJiaYuanCookingComponent self)
         {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() < 1)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
                 return;
@@ -125,7 +125,7 @@ namespace ET
                 }
             }
 
-            for (int i = 0; i < bagComponent.GetTotalSpace(); i++)
+            for (int i = 0; i < bagComponent.GetTotalCell(); i++)
             {
                 UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)

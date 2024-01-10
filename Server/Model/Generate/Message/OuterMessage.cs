@@ -3279,9 +3279,7 @@ namespace ET
 		[ProtoMember(3)]
 		public List<int> QiangHuaFails = new List<int>();
 
-		[ProtoMember(4)]
-		public int BagAddedCell { get; set; }
-
+//int32 BagAddedCell = 4;
 		[ProtoMember(5)]
 		public List<int> WarehouseAddedCell = new List<int>();
 
@@ -10653,9 +10651,7 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
-		[ProtoMember(1)]
-		public int BagAddedCell { get; set; }
-
+//int32 BagAddedCell = 1;
 		[ProtoMember(2)]
 		public List<int> WarehouseAddedCell = new List<int>();
 

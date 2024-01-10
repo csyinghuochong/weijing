@@ -34,7 +34,7 @@ namespace ET
                 }
                 needcell += Mathf.CeilToInt(bagInfo.ItemNum * 1f/ itemConfig.ItemPileSum);
             }
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() < needcell)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
             {
                 HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
                 return ErrorCode.ERR_BagIsFull;

@@ -66,7 +66,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
             }
-            if (bagComponent.GetBagLeftSpace() <= 1)
+            if (bagComponent.GetBagLeftCell() <= 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
                 return;

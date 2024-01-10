@@ -53,7 +53,7 @@ namespace ET
             }
             self.QiangHuaLevel = r2C_Bag.QiangHuaLevel;
             self.QiangHuaFails = r2C_Bag.QiangHuaFails;
-            self.BagAddedCell = r2C_Bag.BagAddedCell;
+            //self.BagAddedCell = r2C_Bag.BagAddedCell;
             self.WarehouseAddedCell = r2C_Bag.WarehouseAddedCell;
             self.FashionActiveIds = r2C_Bag.FashionActiveIds;
             self.FashionEquipList = r2C_Bag.FashionEquipList;
@@ -234,7 +234,7 @@ namespace ET
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(sellId);
 
             int costType = storeSellConfig.SellType;
-            if (self.GetBagLeftSpace() == 0)
+            if (self.GetBagLeftCell() == 0)
             {
                 HintHelp.GetInstance().ShowHint("背包已满");
                 return;
@@ -266,9 +266,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                self.BagAddedCell = response.BagAddedCell;
                 self.WarehouseAddedCell = response.WarehouseAddedCell;
-
                 HintHelp.GetInstance().DataUpdate(DataType.BuyBagCell, response.GetItem);
             }
         }
@@ -830,17 +828,17 @@ namespace ET
                     cellNumber += (itemNum % ItemPileSum > 0 ? 1 : 0);
                 }
             }
-            return self.GetBagLeftSpace() >= cellNumber;
+            return self.GetBagLeftCell() >= cellNumber;
         }
 
-        public static int GetBagLeftSpace(this BagComponent self)
+        public static int GetBagLeftCell(this BagComponent self)
         {
-            return self.BagAddedCell +  GlobalValueConfigCategory.Instance.BagMaxCapacity - self.GetBagList().Count;
+            return self.GetTotalCell() - self.GetBagList().Count;
         }
 
-        public static int GetTotalSpace(this BagComponent self)
+        public static int GetTotalCell(this BagComponent self)
         {
-            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity;
         }
 
         public static int GetPetHeXinLeftSpace(this BagComponent self)

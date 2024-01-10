@@ -61,7 +61,7 @@ namespace ET
             }
 
             string[] rewarditemlist = ConfigHelper.SingleRechargeReward[self.Key].Split('@');
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() < rewarditemlist.Length)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < rewarditemlist.Length)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足");
                 return;

@@ -143,7 +143,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int bagcellNumber = self.BagComponent.GetTotalSpace();
+            int bagcellNumber = self.BagComponent.GetTotalCell();
 
             for (int i = 0; i < bagcellNumber; i++)
             {
@@ -211,8 +211,7 @@ namespace ET
         public static void UpdateWareHouse(this UIWarehouseRoleComponent self)
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
-
-            int openell = self.BagComponent.WarehouseAddedCell[curindex] + GlobalValueConfigCategory.Instance.StoreCapacity;
+            int openell = self.BagComponent.WarehouseAddedCell[curindex + 5] + GlobalValueConfigCategory.Instance.StoreCapacity;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
 
             for (int i = 0; i < self.HouseList.Count; i++)
@@ -233,7 +232,7 @@ namespace ET
                 else
                 {
                     self.HouseList[i].UpdateUnLock(false);
-                    int addcell = self.BagComponent.WarehouseAddedCell[curindex] + (i - openell);
+                    int addcell = self.BagComponent.WarehouseAddedCell[curindex + 5] + (i - openell);
                     BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
                     int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
                     int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);

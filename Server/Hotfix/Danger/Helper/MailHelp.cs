@@ -73,11 +73,11 @@ namespace ET
                     {
                         return false;
                     }
-                    if (bagComponent.WarehouseAddedCell.Count < 4)
+                    if (bagComponent.WarehouseAddedCell.Count < 10)
                     {
                         return false;
                     }
-                    if (bagComponent.WarehouseAddedCell[1] >= 10)
+                    if (bagComponent.WarehouseAddedCell[6] >= 10)
                     {
                         return false;
                     }

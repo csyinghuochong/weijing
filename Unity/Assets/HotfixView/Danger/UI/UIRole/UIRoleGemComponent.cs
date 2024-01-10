@@ -137,7 +137,7 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
-            int opencell = bagComponent.GetTotalSpace();
+            int opencell = bagComponent.GetTotalCell();
            // int maxCount = GlobalValueConfigCategory.Instance.BagMaxCell;
             for (int i = 0; i < opencell; i++)
             {
@@ -172,7 +172,7 @@ namespace ET
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
                 $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
                 {
-                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
+                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell((int)ItemLocType.GemWareHouse1).Coroutine();
                 }, null).Coroutine();
             return;
         }
@@ -180,7 +180,7 @@ namespace ET
         public static void OnBuyBagCell(this UIRoleGemComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int opencell = bagComponent.GetTotalSpace();
+            int opencell = bagComponent.GetTotalCell();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 self.ItemUIlist[i].UpdateUnLock(i < opencell);

@@ -11,11 +11,6 @@ namespace ET
         public List<int> QiangHuaFails = new List<int>();
 
         /// <summary>
-        /// 背包购买格子数量
-        /// </summary>
-        public int BagAddedCell = 0;
-
-        /// <summary>
         /// ItemLocType.ItemWareHouse1 之后的所有仓库（购买格子数量）
         /// </summary>
         public List<int> WarehouseAddedCell = new List<int>();
@@ -72,6 +67,11 @@ namespace ET
 
         [BsonIgnore]
         public List<int> InheritSkills = new List<int>() { };
+
+        /// <summary>
+        /// 背包购买格子数量
+        /// </summary>
+        public int BagAddedCell = 0;
 #else
 
         public List<BagInfo>[] AllItemList;

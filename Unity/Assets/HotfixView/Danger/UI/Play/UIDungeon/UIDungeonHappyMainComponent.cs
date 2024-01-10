@@ -157,7 +157,7 @@ namespace ET
 
         public static void OnButtonPick(this UIDungeonHappyMainComponent self)
         {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() <= 0)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <= 0)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;

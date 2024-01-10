@@ -165,7 +165,7 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             ///初始化背包格子
-            int bagcellNumber = self.BagComponent.GetTotalSpace();
+            int bagcellNumber = self.BagComponent.GetTotalCell();
             for (int i = 0; i < bagcellNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);

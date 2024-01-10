@@ -48,7 +48,7 @@ namespace ET
                 return;
             }
 
-            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() <
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <
                 ConfigHelper.PetHeXinExploreReward[self.RewardKey].Split('@').Length - 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
