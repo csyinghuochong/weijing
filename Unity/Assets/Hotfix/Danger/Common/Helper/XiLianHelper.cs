@@ -144,6 +144,265 @@ namespace ET
         }
 
 
+        public static List<HideProList> GetItemFumoPro(int itemid)
+        {
+            List<HideProList> hideProLists = new List<HideProList>();
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string itemParams = itemConfig.ItemUsePar;
+            string[] itemparams = itemParams.Split('@');
+            for (int i = 1; i < itemparams.Length; i++)
+            {
+                string[] proInfos = itemparams[i].Split(';');
+                int hideId = int.Parse(proInfos[0]);
+                int hideValue_1 = 0;
+                int hideValue_2 = 0;
+                if (1 == NumericHelp.GetNumericValueType(hideId))
+                {
+                    hideValue_1 = int.Parse(proInfos[1]);
+                    hideValue_2 = int.Parse(proInfos[2]);
+                }
+                else
+                {
+                    hideValue_1 = (int)(10000 * float.Parse(proInfos[1]));
+                    hideValue_2 = (int)(10000 * float.Parse(proInfos[2]));
+                }
+                hideProLists.Add(new HideProList() { HideID = hideId, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
+            }
+            return hideProLists;
+        }
+
+        /// <summary>
+        /// 从HideProListConfig配置表中读取属性加成数据 , 1属性 2技能
+        /// </summary>
+        /// <param name="ItemconfigId"></param>
+        /// <returns>属性</returns>
+        public static List<HideProList> GetHidePro(int itemConfigId)
+        {
+            // 1@2312312;1231231231;213412342
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
+            string[] itemparams = itemConfig.ItemUsePar.Split(';');
+            List<HideProList> hideProLists = new List<HideProList>();
+            for (int j = 0; j + 1 < itemparams.Length; j += 2)
+            {
+                string[] hideProConfigIDs = itemparams[j + 1].Split('@');
+                if (itemparams[j] == "1")
+                {
+                    for (int i = 0; i < hideProConfigIDs.Length; i++)
+                    {
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(hideProConfigIDs[i]));
+                        int hideValue_1 = 0;
+                        int hideValue_2 = 0;
+
+                        // 整形
+                        if (hideProListConfig.HideProValueType == 1)
+                        {
+                            hideValue_1 = int.Parse(hideProListConfig.PropertyValueMin);
+                            hideValue_2 = int.Parse(hideProListConfig.PropertyValueMax);
+                        }
+                        // 浮点型
+                        else
+                        {
+                            hideValue_1 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMin));
+                            hideValue_2 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMax));
+                        }
+
+                        hideProLists.Add(new HideProList()
+                        {
+                            HideID = hideProListConfig.Id,
+                            HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2)
+                        });
+                    }
+                }
+            }
+
+            return hideProLists;
+        }
+
+        /// <summary>
+        /// 从HideProListConfig配置表中读取技能id
+        /// </summary>
+        /// <param name="itemCongfigId"></param>
+        /// <returns></returns>
+        public static List<int> GetHideSkill(int itemConfigId)
+        {
+            // 2@2341223;235213412;2134126
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
+            string[] itemparams = itemConfig.ItemUsePar.Split(';');
+            List<int> skillListConfig = new List<int>();
+            for (int j = 0; j + 1 < itemparams.Length; j += 2)
+            {
+                if (itemparams[j] == "2")
+                {
+                    string[] hideProConfigIDs = itemparams[j + 1].Split('@');
+                    for (int i = 0; i < hideProConfigIDs.Length; i++)
+                    {
+                        skillListConfig.Add(int.Parse(hideProConfigIDs[i]));
+                    }
+                }
+            }
+            return skillListConfig;
+        }
+
+        //获得装备洗炼隐藏属性
+        public static List<HideProList> GetEquipXiLianHidePro(int equipID)
+        {
+            //获取最大值
+            EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipID);
+            List<HideProList> hideList = new List<HideProList>();
+            float randomFloat = RandomHelper.RandFloat();
+
+            //装备概率才会出现隐藏属性
+            /*
+            if (randomFloat <= 0.9f)
+            {
+                return null;
+            }
+            */
+
+            //--------------随机基础属性--------------
+            List<int> baseHideProList = new List<int>();
+            baseHideProList.Add(NumericType.Base_MaxHp_Base);
+            baseHideProList.Add(NumericType.Base_MaxAct_Base);
+            baseHideProList.Add(NumericType.Base_MaxDef_Base);
+            baseHideProList.Add(NumericType.Base_MaxAdf_Base);
+
+            for (int i = 0; i < baseHideProList.Count; i++)
+            {
+                if (RandomHelper.RandFloat() <= equipCof.HideShowPro)
+                {
+                    //随机洗炼值
+                    int randomValueInt = RandomHelper.RandomNumber(1, equipCof.HideMax);
+                    //赋值属性
+                    HideProList hideProList = new HideProList();
+                    hideProList.HideID = (int)baseHideProList[i];
+                    hideProList.HideValue = randomValueInt;
+                    hideList.Add(hideProList);
+                }
+            }
+
+
+            //---------------随机特殊属性---------------
+            int nextID = 0;
+            int hintProListID = 1001;
+            //获取隐藏条最大目数
+            int hintJiPinMaxNum = 3;
+            int hintJiPinMaxNumSum = 0;
+
+            int whileNumber = 0;
+            do
+            {
+                whileNumber++;
+                if (whileNumber >= 100)
+                {
+                    Log.Error("whileNumber >= 100");
+                    break;
+                }
+
+                //获取单条触发概率
+                HideProListConfig hintProListCof = HideProListConfigCategory.Instance.Get(hintProListID);
+                //判定当条属性位置是否激活
+                //string[] equipSpaceList = hintProListCof.EquipSpace;
+                bool equipStatus = false;
+                if (hintProListCof.EquipSpace[0] != 0)
+                {
+                    for (int i = 0; i < hintProListCof.EquipSpace.Length; i++)
+                    {
+                        if (itemCof.ItemSubType == hintProListCof.EquipSpace[i])
+                        {
+                            equipStatus = true;
+                        }
+                    }
+                }
+
+                if (!equipStatus)
+                {
+                    break;
+                }
+
+                //触发隐藏属性
+                hintProListCof.TriggerPro = 1;  //测试
+                if (RandomHelper.RandFloat() < hintProListCof.TriggerPro)
+                {
+                    //读取隐藏属性类型和对应随机值
+                    int hintProType = hintProListCof.PropertyType;
+                    float propertyValueMin = float.Parse(hintProListCof.PropertyValueMin);
+                    float propertyValueMax = float.Parse(hintProListCof.PropertyValueMax);
+                    int hintProValueType = hintProListCof.HideProValueType;
+
+                    //判定是随着等级变动
+                    int ifEquipLvUp = hintProListCof.IfEquipLvUp;
+                    if (ifEquipLvUp == 1)
+                    {
+
+                        //获取等级
+                        int itemlv = itemCof.UseLv;
+                        if (itemlv < 10)
+                        {
+                            itemlv = 10;
+                        }
+                        int itemNum = (int)(itemlv / 10);
+                        itemNum = itemNum - 1;
+                        if (itemNum < 1)
+                        {
+                            itemNum = 1;
+                        }
+
+                        //获取属性
+                        propertyValueMax = propertyValueMax + propertyValueMax / 2 * itemNum;
+
+                    }
+
+                    //隐藏属性值得类型
+                    float hintProVlaue = 0;
+                    if (hintProValueType == 1)
+                    {
+                        //表示整数
+                        hintProVlaue = ComHelp.ReturnEquipRamdomValue((int)(propertyValueMin), (int)(propertyValueMax));
+                        if (hintProVlaue <= 0)
+                        {
+                            hintProVlaue = propertyValueMin;
+                        }
+                    }
+                    else
+                    {
+                        //表示浮点数
+                        hintProVlaue = ComHelp.ReturnEquipRamdomValue_float(propertyValueMin, propertyValueMax);
+                        if (hintProVlaue <= 0)
+                        {
+                            hintProVlaue = propertyValueMin;
+                        }
+
+                        hintProVlaue = hintProVlaue * 10000;
+                    }
+
+                    //存储本次洗炼属性
+                    HideProList hideProList = new HideProList();
+                    hideProList.HideID = hintProListCof.Id;
+                    hideProList.HideValue = (long)hintProVlaue;
+                    Log.Info("HideID = " + hideProList.HideID + " hideProList.HideValue = " + hideProList.HideValue);
+                    hideList.Add(hideProList);
+
+                    hintJiPinMaxNumSum = hintJiPinMaxNumSum + 1;
+                    if (hintJiPinMaxNumSum >= hintJiPinMaxNum)
+                    {
+                        //立即跳出循环
+                        break;
+                    }
+                }
+
+                nextID = hintProListCof.NtxtID;
+                hintProListID = nextID;
+
+
+
+            } while (nextID != 0);
+
+            return hideList;
+        }
+
+
 #if SERVER
         /// <summary>
         /// 洗练装备
@@ -223,7 +482,7 @@ namespace ET
                         {
                             //获取随机范围,并随机获取一个值
                             int hideMaxStr = equipConfig.HideMax;
-                            int addValue = ItemAddHelper.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
+                            int addValue = ComHelp.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
                             BaseHideProList.Add(new HideProList() { HideID = returnProValue(i), HideValue = addValue });
                         }
                     }
@@ -245,7 +504,7 @@ namespace ET
                             {
                                 hideMaxStr = hideMaxStr * 5;
                             }
-                            int addValue = ItemAddHelper.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
+                            int addValue = ComHelp.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
                             BaseHideProList.Add(new HideProList() { HideID = returnProValue(i), HideValue = addValue });
                         }
                     }
@@ -266,7 +525,7 @@ namespace ET
                             {
                                 hideMaxStr = hideMaxStr * 5;
                             }
-                            int addValue = ItemAddHelper.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
+                            int addValue = ComHelp.ReturnEquipRamdomValue(1, hideMaxStr, bagInfo.HideID);
                             BaseHideProList.Add(new HideProList() { HideID = returnProValue(i), HideValue = addValue });
                         }
                     }
@@ -401,7 +660,7 @@ namespace ET
                             if (hintProValueType == 1)
                             {
                                 //表示整数
-                                hintProVlaue = ItemAddHelper.ReturnEquipRamdomValue((int)propertyValueMin, (int)(propertyValueMax), bagInfo.HideID);
+                                hintProVlaue = ComHelp.ReturnEquipRamdomValue((int)propertyValueMin, (int)(propertyValueMax), bagInfo.HideID);
                                 if (hintProVlaue <= 0)
                                 {
                                     hintProVlaue = propertyValueMin;
@@ -410,7 +669,7 @@ namespace ET
                             else
                             {
                                 //表示浮点数
-                                hintProVlaue = ItemAddHelper.ReturnEquipRamdomValue_float(propertyValueMin, propertyValueMax);
+                                hintProVlaue = ComHelp.ReturnEquipRamdomValue_float(propertyValueMin, propertyValueMax);
                                 if (hintProVlaue <= 0)
                                 {
                                     hintProVlaue = propertyValueMin;

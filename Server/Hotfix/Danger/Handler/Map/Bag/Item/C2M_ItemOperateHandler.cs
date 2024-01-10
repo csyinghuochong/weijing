@@ -260,7 +260,7 @@ namespace ET
                                 }
                                 break;
                             case 15:    //附魔道具
-                                List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
+                                List<HideProList> hideProLists = XiLianHelper.GetItemFumoPro(itemConfig.Id);
                                 unit.GetComponent<BagComponent>().OnEquipFuMo(itemConfig.Id, hideProLists, int.Parse(request.OperatePar));
                                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
                                 break;

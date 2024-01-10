@@ -114,6 +114,9 @@ namespace ET
 		/// <summary>转移是否继承</summary>
 		[ProtoMember(13)]
 		public int IfMove { get; set; }
+		/// <summary>激活条件</summary>
+		[ProtoMember(14)]
+		public int NeedNumber { get; set; }
 
 	}
 }

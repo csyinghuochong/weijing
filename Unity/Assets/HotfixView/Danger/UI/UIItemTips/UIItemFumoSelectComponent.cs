@@ -88,7 +88,7 @@ namespace ET
 
             BagInfo equipinfo = self.BagInfos[index];
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.FumoItemInfo.ItemID);
-            List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
+            List<HideProList> hideProLists = XiLianHelper.GetItemFumoPro(itemConfig.Id);
             string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
             if (equipinfo.FumoProLists.Count > 0)
             {

@@ -1172,9 +1172,9 @@ namespace ET
                     if (itemCof.ItemType == ItemTypeEnum.Consume && itemCof.ItemSubType == 17)
                     {
                         // 属性
-                        useBagInfo.IncreaseProLists.AddRange(ItemHelper.GetHidePro(useBagInfo.ItemID));
+                        useBagInfo.IncreaseProLists.AddRange(XiLianHelper.GetHidePro(useBagInfo.ItemID));
                         // 技能
-                        useBagInfo.IncreaseSkillLists.AddRange(ItemHelper.GetHideSkill(useBagInfo.ItemID));
+                        useBagInfo.IncreaseSkillLists.AddRange(XiLianHelper.GetHideSkill(useBagInfo.ItemID));
                     }
 
                     // 赛季晶核

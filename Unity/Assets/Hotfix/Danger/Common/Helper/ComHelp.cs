@@ -592,6 +592,154 @@ namespace ET
             return pro;
         }
 
+        //传入随机范围,生成一个随机数,越到后面的随机数获取概率越低
+        public static int ReturnEquipRamdomValue(int randomMinValue, int randomMaxValue, int hideID = 0)
+        {
+
+            int randomChaValue = randomMaxValue - randomMinValue;
+            //随机4次,获得取值范围
+            /*
+            0-25%       0.5
+            26%-50%     0.3
+            51%-75%     0.15
+            76%-100%    0.05
+            */
+            float randomRangeValue = RandomHelper.RandFloat01();
+            float randomRangeValue_Now = 0;
+            if (randomRangeValue <= 0.5f)
+            {
+                //0-0.25f
+                randomRangeValue_Now = randomRangeValue / 4;
+
+            }
+            if (randomRangeValue > 0.5f && randomRangeValue <= 0.8f)
+            {
+                //0.25-0.5
+                randomRangeValue_Now = randomRangeValue / 4 + 0.25f;
+            }
+            if (randomRangeValue > 0.8f && randomRangeValue <= 0.95f)
+            {
+                //0.5-0.75
+                randomRangeValue_Now = randomRangeValue / 4 + 0.5f;
+            }
+            if (randomRangeValue > 0.95f && randomRangeValue <= 1f)
+            {
+                //0.75-1
+                randomRangeValue_Now = randomRangeValue / 4 + 0.75f;
+            }
+
+            //极品大师
+            if (hideID != 0)
+            {
+                float hintSkillProValue = 0f;
+                if (hintSkillProValue != 0f)
+                {
+                    randomRangeValue_Now = randomRangeValue_Now * (1 + hintSkillProValue);
+                }
+            }
+            if (randomRangeValue_Now > 1)
+            {
+                randomRangeValue_Now = 1;
+            }
+
+            //计算最终值
+            int retunrnValue = (int)(randomMinValue + randomChaValue * randomRangeValue_Now);
+            return retunrnValue;
+        }
+
+        //传入随机范围,生成一个随机数,越到后面的随机数获取概率越低
+        public static int ReturnEquipRamdomValue(int randomMinValue, int randomMaxValue)
+        {
+
+            int randomChaValue = randomMaxValue - randomMinValue;
+            //随机4次,获得取值范围
+            /*
+            0-25%       0.5
+            26%-50%     0.3
+            51%-75%     0.15
+            76%-100%    0.05
+            */
+            float randomRangeValue = RandomHelper.RandFloat();
+            float randomRangeValue_Now = 0;
+            if (randomRangeValue <= 0.5f)
+            {
+                //0-0.25f
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4;
+
+            }
+            if (randomRangeValue > 0.5f && randomRangeValue <= 0.8f)
+            {
+                //0.25-0.5
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.25f;
+            }
+            if (randomRangeValue > 0.8f && randomRangeValue <= 0.95f)
+            {
+                //0.5-0.75
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.5f;
+            }
+            if (randomRangeValue > 0.95f && randomRangeValue <= 1f)
+            {
+                //0.75-1
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.75f;
+            }
+
+            if (randomRangeValue_Now > 1)
+            {
+                randomRangeValue_Now = 1;
+            }
+
+            //计算最终值
+            int retunrnValue = (int)(randomMinValue + randomChaValue * randomRangeValue_Now);
+            return retunrnValue;
+        }
+
+        //传入随机范围,生成一个随机数,越到后面的随机数获取概率越低
+        public static float ReturnEquipRamdomValue_float(float randomMinValue, float randomMaxValue)
+        {
+
+            float randomChaValue = randomMaxValue - randomMinValue;
+            //随机4次,获得取值范围
+            /*
+            0-25%       0.5
+            26%-50%     0.3
+            51%-75%     0.15
+            76%-100%    0.05
+            */
+            float randomRangeValue = RandomHelper.RandFloat();
+            float randomRangeValue_Now = 0;
+            if (randomRangeValue <= 0.5f)
+            {
+                //0-0.25f
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4;
+
+            }
+            if (randomRangeValue > 0.5f && randomRangeValue <= 0.8f)
+            {
+                //0.25-0.5
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.25f;
+            }
+            if (randomRangeValue > 0.8f && randomRangeValue <= 0.95f)
+            {
+                //0.5-0.75
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.5f;
+            }
+            if (randomRangeValue > 0.95f && randomRangeValue <= 1f)
+            {
+                //0.75-1
+                randomRangeValue_Now = RandomHelper.RandFloat() / 4 + 0.75f;
+            }
+
+            if (randomRangeValue_Now > 1)
+            {
+                randomRangeValue_Now = 1;
+            }
+
+            //计算最终值
+            float retunrnValue = (float)(randomMinValue + randomChaValue * randomRangeValue_Now);
+            retunrnValue = (float)(System.Math.Round(retunrnValue, 3));
+            return retunrnValue;
+        }
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

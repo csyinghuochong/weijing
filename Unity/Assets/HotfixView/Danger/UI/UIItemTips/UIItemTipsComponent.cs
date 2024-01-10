@@ -269,7 +269,7 @@ namespace ET
                 return;
             }
 
-            List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
+            List<HideProList> hideProLists = XiLianHelper.GetItemFumoPro(itemConfig.Id);
             string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
 
             if (equipinfo.FumoProLists.Count > 0)
