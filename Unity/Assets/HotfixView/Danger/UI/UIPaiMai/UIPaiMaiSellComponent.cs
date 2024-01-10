@@ -73,8 +73,6 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageButtonComponent;
-         
-            self.RequestSelfPaiMaiList().Coroutine();
         }
     }
 
@@ -104,6 +102,7 @@ namespace ET
         {
             self.UpdateBagItemUIList().Coroutine();
             self.UIPageButton.OnSelectIndex(0);
+            self.RequestSelfPaiMaiList().Coroutine();
         }
 
         public static void OnClickPageButton(this UIPaiMaiSellComponent self, int page)
