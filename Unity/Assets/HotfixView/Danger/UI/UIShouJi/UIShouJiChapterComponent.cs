@@ -179,13 +179,13 @@ namespace ET
                 ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(testId);
                 testId = shouJiItemConfig.NextID;
             }
-            int row = (itemNum / 10);
-            row += (itemNum % 10 > 0 ? 1 : 0);
-            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1600f, 380 + row * 300f);
+            int row = (itemNum / 7);
+            row += (itemNum % 7 > 0? 1 : 0);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1600f, 200 + row * 270f);
 
             while (itemId!= 0)
             {
-                if (itemNum % 10 == 0)
+                if (itemNum % 7 == 0)
                 {
                     await TimerComponent.Instance.WaitFrameAsync();
                 }
