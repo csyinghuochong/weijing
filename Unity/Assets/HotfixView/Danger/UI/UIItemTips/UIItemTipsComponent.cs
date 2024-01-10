@@ -727,6 +727,7 @@ namespace ET
                 //角色栏打开显示对应功能按钮
                 case ItemOperateEnum.Juese:
                     self.Obj_BagOpenSet.SetActive(true);
+                    self.Btn_Use.SetActive(true);
                     break;
                 //商店查看属性
                 case ItemOperateEnum.Shop:
@@ -745,6 +746,7 @@ namespace ET
                     break;
                 case ItemOperateEnum.GemBag:
                     self.Btn_StoreHouse.SetActive(true);
+                    self.Btn_Use.SetActive(true);
                     break;
                 case ItemOperateEnum.CangkuBag:
                     self.Obj_BagOpenSet.SetActive(true);
@@ -773,6 +775,7 @@ namespace ET
                 //镶嵌背包切页
                 case ItemOperateEnum.XiangQianBag:
                     self.Obj_BagOpenSet.SetActive(true);
+                    self.Btn_Use.SetActive(true);
                     break;
                 //镶嵌在装备上的宝石
                 case ItemOperateEnum.XiangQianGem:
@@ -781,6 +784,7 @@ namespace ET
                     break;
                 case ItemOperateEnum.PetHeXinBag:
                     self.Obj_BagOpenSet.SetActive(true);
+                    self.Btn_Use.SetActive(true);
                     self.Btn_Use.transform.Find("TextBtn_Use").GetComponent<Text>().text = "装备";
                     break;
                 default:
