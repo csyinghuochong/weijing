@@ -255,9 +255,17 @@ namespace ET
             int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             int needRecharge = GlobalValueConfigCategory.Instance.Get(113).Value2;
             int skillmakePlan_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillMakePlan2);
+            string tip = string.Empty;
             if (plan == 2 && skillmakePlan_2 == 0)
             {
-                string tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启";
+                if (rechargeNumber < needRecharge)
+                {
+                    tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，当前充值金额{rechargeNumber}元";
+                }
+                else
+                {
+                    tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启";
+                }
                 PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启栏位", tip, () =>
                 {
                     if (rechargeNumber < needRecharge)

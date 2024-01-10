@@ -2175,7 +2175,7 @@ namespace ET
 
             for (int i = 0; i < shenshoujiban.Count; i++)
             {
-                AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicListCopy);
+                AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicList);
             }
 
             //8类型不加战力的被动技能属性

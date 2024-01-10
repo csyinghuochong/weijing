@@ -93,7 +93,7 @@ namespace ET
             string tip = string.Empty;
             if (rechargeNumber < needRecharge)
             {
-                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，请点击开启";
+                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，当前充值金额{rechargeNumber}元";
             }
             else
             {

@@ -506,7 +506,7 @@ namespace ET
             Unit main = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
 
-            float mindis = -1f;
+            float mindis = float.MaxValue;
             long rubshid = 0;
             for (int i = 0; i  < units.Count; i++)
             {
@@ -521,7 +521,7 @@ namespace ET
                 }
 
                 float t_distance = PositionHelper.Distance2D(main, units[i]);
-                if (mindis <= 0f || t_distance < mindis)
+                if (t_distance < 5f && t_distance <= mindis)
                 {
                     rubshid = units[i].Id;
                     mindis = t_distance;
