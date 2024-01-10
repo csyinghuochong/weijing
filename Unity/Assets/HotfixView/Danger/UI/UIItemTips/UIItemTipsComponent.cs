@@ -696,8 +696,8 @@ namespace ET
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
-            self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
-            self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
+            self.Btn_Use.SetActive(false);
+            self.Btn_Split.SetActive(false);
             self.Lab_FuLing.SetActive(false);
             self.Lab_FuLingDes.SetActive(false);
             self.Btn_Sell.SetActive(false);
@@ -721,6 +721,8 @@ namespace ET
                     self.Obj_BagOpenSet.SetActive(true);
                     //判定当前是否打开仓库
                     self.Obj_Diu.SetActive(true);
+                    self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
+                    self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
                     break;
                 //角色栏打开显示对应功能按钮
                 case ItemOperateEnum.Juese:
