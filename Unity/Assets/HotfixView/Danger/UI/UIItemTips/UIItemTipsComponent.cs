@@ -535,6 +535,31 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
+            if (itemConfig.ItemSubType == 139)
+            {
+                if (self.ZoneScene().GetComponent<BagComponent>().AdditionalCellNum[0] >= 10)
+                {
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达到最大购买格子数量!"));
+                    return;
+                }
+            }
+            if (itemConfig.ItemSubType == 140)
+            {
+                UI uiwarehouse = UIHelper.GetUI( self.ZoneScene(), UIType.UIWarehouse );
+                if (uiwarehouse == null || uiwarehouse.GetComponent<UIWarehouseComponent>().UIPageButtonComponent.CurrentIndex != 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请选择仓库再使用!"));
+                    return;
+                }
+                UIWarehouseRoleComponent uIWarehouseRoleComponent = uiwarehouse.GetComponent<UIWarehouseComponent>().UIPageView.UISubViewList[0].GetComponent<UIWarehouseRoleComponent>();
+                int houseId = uIWarehouseRoleComponent.UIPageComponent.CurrentIndex + 5;    
+                if (self.ZoneScene().GetComponent<BagComponent>().AdditionalCellNum[houseId] >= 10)
+                {
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达到最大购买格子数量!"));
+                    return;
+                }
+                usrPar = houseId.ToString();
+            }
 
             long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
@@ -675,7 +700,9 @@ namespace ET
             self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
             self.Lab_FuLing.SetActive(false);
             self.Lab_FuLingDes.SetActive(false);
-           
+            self.Btn_Sell.SetActive(false);
+            self.Btn_StoreHouse.SetActive(false);
+
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)
             {
@@ -718,7 +745,9 @@ namespace ET
                     self.Btn_StoreHouse.SetActive(true);
                     break;
                 case ItemOperateEnum.CangkuBag:
+                    self.Obj_BagOpenSet.SetActive(true);
                     self.Btn_StoreHouse.SetActive(true);
+                    self.Btn_Use.SetActive( itemconf.ItemType == 1 && itemconf.ItemSubType == 140 );
                     break;
                 //回收背包打开
                 case ItemOperateEnum.HuishouBag:

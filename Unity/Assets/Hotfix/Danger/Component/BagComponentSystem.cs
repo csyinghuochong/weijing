@@ -418,6 +418,16 @@ namespace ET
                 {
                     self.ZoneScene().GetComponent<ChengJiuComponent>().OnActiveJingLing(int.Parse(itemConfig.ItemUsePar));
                 }
+                if (itemConfig.ItemSubType == 139)
+                {
+                    self.AdditionalCellNum[0]++;
+                    HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
+                }
+                if (itemConfig.ItemSubType == 140)
+                {
+                    self.AdditionalCellNum[int.Parse(par)]++;
+                    HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
+                }
 
                 if (itemConfig.DayUseNum > 0)
                 {

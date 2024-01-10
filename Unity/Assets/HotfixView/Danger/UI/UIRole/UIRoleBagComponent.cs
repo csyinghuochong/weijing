@@ -193,8 +193,7 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
-            int opencell = bagComponent.GetBagTotalCell();
-            int maxCount = bagComponent.GetBagShowCell();
+            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 30)
@@ -214,7 +213,7 @@ namespace ET
                 uIItemComponent.SetClickHandler((BagInfo bInfo) => { self.OnClickHandler(bInfo); });
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
-                uIItemComponent.UpdateUnLock(i < opencell);
+                //uIItemComponent.UpdateUnLock(i < opencell);
                 uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
             }
@@ -370,11 +369,12 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(itemTypeEnum);
             int openell = bagComponent.GetBagTotalCell();
-            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            int allNumber = bagComponent.GetBagShowCell();  
+            for (int i = 0; i < allNumber; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
                 self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
-
+                self.ItemUIlist[i].GameObject.SetActive(true);
                 if (i < openell)
                 {
                     self.ItemUIlist[i].UpdateUnLock(true);
@@ -388,6 +388,10 @@ namespace ET
                     int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);
                     self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = itemnum }, ItemOperateEnum.None);
                 }
+            }
+            for (int i = allNumber; i < self.ItemUIlist.Count; i++)
+            {
+                self.ItemUIlist[i].GameObject.SetActive(false);
             }
 
             self.CheckUpItem();
