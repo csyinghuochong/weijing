@@ -1822,9 +1822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'boss
-
-'
+  m_Text: "\u9886\u4E3B\n"
 --- !u!114 &3894031001861680533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,7 +3297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1dbc85726668dc140826376e0a5f4668, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffbaa4d7ce7e5c64099ef458382c32f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3619,7 +3617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6693324929791086951
 RectTransform:
   m_ObjectHideFlags: 0
