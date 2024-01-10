@@ -181,6 +181,7 @@ namespace ET
             self.MailContent.SetActive(true);
             self.Obj_NoMail.SetActive(false);
             
+            mailInfos.Reverse();
             for (int i = 0; i < mailInfos.Count; i++)
             {
                 UIMailItemComponent ui_2 = null;
