@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -164,7 +165,8 @@ namespace ET
         public static BagInfo GetEquipBySubType(this UIPetComponent self,int subType)
         {
             // self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList;
-            foreach (UIPetEquipSetItemComponent component in self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList)
+            List<UIPetEquipSetItemComponent> equiplist = self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().EquipList;
+            foreach (UIPetEquipSetItemComponent component in equiplist)
             {
                 if (component.BagInfo == null)
                 {
