@@ -19,6 +19,28 @@ namespace ET
 
     public static class BagComponentSystem
     {
+
+        public static List<BagInfo> GetItemByLoc(this BagComponent self, ItemLocType itemEquipType)
+        {
+            return self.AllItemList[(int)(itemEquipType)];
+        }
+
+        //根据ID获取对应的背包数据
+        public static BagInfo GetItemByLoc(this BagComponent self, ItemLocType itemLocType, long bagId)
+        {
+            if (bagId == 0)
+                return null;
+            List<BagInfo> ItemTypeList = self.GetItemByLoc(itemLocType);
+            for (int i = 0; i < ItemTypeList.Count; i++)
+            {
+                if (ItemTypeList[i].BagInfoID == bagId)
+                {
+                    return ItemTypeList[i];
+                }
+            }
+            return null;
+        }
+
         //获取所有物品
         public static async ETTask GetAllBagItem(this BagComponent self)
         {

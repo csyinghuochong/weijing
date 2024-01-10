@@ -876,6 +876,20 @@ namespace ET
                 }
             }
 
+            int unactiveId = 0;
+            int unactiveNum = 0;
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            Dictionary<int, int> equipSkilllist = PetHelper.GetEquipSkillList(rolePetInfo, bagComponent);
+            foreach( var item in equipSkilllist)
+            {
+                if (!rolePetInfo.PetSkill.Contains(item.Key))
+                {
+                    unactiveId = item.Key;
+                    unactiveNum = item.Value;
+                    skills.Add(item.Key);
+                    break;
+                }
+            }
 
             for (int i = 0; i < skills.Count; i++)
             {
@@ -892,7 +906,9 @@ namespace ET
                     ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>( bagSpace);
                     self.PetSkillUIList.Add(ui_item);
                 }
-                ui_item.OnUpdateUI(skills[i], ABAtlasTypes.PetSkillIcon,rolePetInfo.LockSkill.Contains(skills[i]));
+                bool unactive = skills[i] == unactiveId;
+                ui_item.OnUpdatePetSkill(skills[i], ABAtlasTypes.PetSkillIcon ,rolePetInfo.LockSkill.Contains(skills[i]), unactive, unactiveNum);
+                UICommonHelper.SetImageGray(ui_item.ImageIcon, unactive);
             }
 
             for (int i = skills.Count; i < self.PetSkillUIList.Count; i++)
@@ -1146,6 +1162,7 @@ namespace ET
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
+            self.UpdateSkillList(self.LastSelectItem);  
             self.PetEquipSetComponent.SelectItemHandlder(null);
             self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
             self.PetEquipSetComponent.OnUpdateItemList(bagInfos);

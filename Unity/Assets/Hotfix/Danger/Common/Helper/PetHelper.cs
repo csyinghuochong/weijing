@@ -6,6 +6,38 @@ namespace ET
 {
     public static class PetHelper
     {
+
+        public static Dictionary<int, int> GetEquipSkillList(RolePetInfo rolePetInfo, BagComponent bagComponent)
+        {
+            Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
+            for (int i = 0; i < rolePetInfo.PetEquipList.Count; i++)
+            {
+                long baginfoId = rolePetInfo.PetEquipList[i];
+                if (baginfoId == 0)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.PetLocEquip, baginfoId);
+                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                {
+                    continue;
+                }
+
+                for (int skill = 0; skill < bagInfo.HideSkillLists.Count; skill++)
+                {
+                    int skillId = bagInfo.HideSkillLists[skill];
+                    if (!hideSkillId.ContainsKey(skillId))
+                    {
+                        hideSkillId.Add(skillId, 0);
+                    }
+                    hideSkillId[skillId] ++;
+                }
+            }
+
+            return hideSkillId;
+        }
+
         public static (RolePetInfo, RolePetInfo) GetPetHeChengZiZhiPreview(RolePetInfo rolePetA, RolePetInfo rolePetB)
         {
             RolePetInfo rolePetInfoMin = new RolePetInfo();

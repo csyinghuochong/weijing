@@ -910,7 +910,6 @@ namespace ET
                 }
 
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
-
                 if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
                 {
                     continue;
@@ -939,7 +938,6 @@ namespace ET
 
             //宠物装备(三个一个的属性激活新技能  添加到rolePetInfo.PetSkill, 防止技能重复添加，脱装备的时候直接C2M_PetEquipRequest去掉装备技能 )
             Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
-            Dictionary<int, int> hideProId = new Dictionary<int, int>();
             for (int i = 0; i < rolePetInfo.PetEquipList.Count; i++)
             {
                 long baginfoId = rolePetInfo.PetEquipList[i];
@@ -1130,7 +1128,7 @@ namespace ET
         {
             for (int i = rolePetInfom.PetSkill.Count - 1; i >= 0; i--)
             {
-                if (bagInfo.IncreaseSkillLists.Contains(rolePetInfom.PetSkill[i]))
+                if (bagInfo.HideSkillLists.Contains(rolePetInfom.PetSkill[i]))
                 {
                     rolePetInfom.PetSkill.RemoveAt(i);
                 }

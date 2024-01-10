@@ -306,12 +306,19 @@ namespace ET
             self.SkillPassiveInfos.Clear();
             int configId = self.GetParent<Unit>().ConfigId;
             PetConfig MonsterCof = PetConfigCategory.Instance.Get(configId);
-            int zhuanZhuSkillID = int.Parse(MonsterCof.ZhuanZhuSkillID);
-
-            SkillConfig skillConfig = null;
-            if (zhuanZhuSkillID != 0)
+            List<int> zhuanzhuids = new List<int>();
+            string[] zhuanzhuskills = MonsterCof.ZhuanZhuSkillID.Split(';');
+            for (int i = 0; i < zhuanzhuskills.Length; i++)
             {
-                skillConfig = SkillConfigCategory.Instance.Get(zhuanZhuSkillID);
+                if (zhuanzhuskills[i].Length > 1)
+                {
+                    zhuanzhuids.Add(int.Parse(zhuanzhuskills[i]));
+                }
+            }
+
+            for(int i = 0; i < zhuanzhuids.Count; i++)
+            {
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(zhuanzhuids[i]);
                 self.AddPassiveSkillByType(skillConfig);
             }
 
@@ -324,7 +331,7 @@ namespace ET
                     continue;
                 }
 
-                skillConfig = SkillConfigCategory.Instance.Get(baseSkillId);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(baseSkillId);
                 self.AddPassiveSkillByType(skillConfig);
             }
 
@@ -336,7 +343,7 @@ namespace ET
                     continue;
                 }
 
-                skillConfig = SkillConfigCategory.Instance.Get(baseSkillId);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(baseSkillId);
                 self.AddPassiveSkillByType(skillConfig);
             }
         }

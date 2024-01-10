@@ -30,7 +30,7 @@ namespace ET
         /// </summary>
         public static List<long> PopUpPlayer = new List<long>()
         {
-            2112688022947430400, 2114350999924703232
+
         };
 
         public static List<string> GetChuJi()
