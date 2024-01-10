@@ -937,7 +937,9 @@ namespace ET
                 }
             }
 
-            //宠物装备
+            //宠物装备(三个一个的属性激活新技能  添加到rolePetInfo.PetSkill, 防止技能重复添加，脱装备的时候直接C2M_PetEquipRequest去掉装备技能 )
+            Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
+            Dictionary<int, int> hideProId = new Dictionary<int, int>();
             for (int i = 0; i < rolePetInfo.PetEquipList.Count; i++)
             {
                 long baginfoId = rolePetInfo.PetEquipList[i];
@@ -952,7 +954,27 @@ namespace ET
                     continue;
                 }
 
+                for (int skill = 0; skill < bagInfo.HideSkillLists.Count; skill++)
+                { 
+                    int skillId = bagInfo.HideSkillLists[skill];
+                    if (!hideSkillId.ContainsKey(skillId))
+                    {
+                        hideSkillId.Add(skillId, 0);
+                    }
+                    hideSkillId[skillId]++;
+                }
+
                 ///宠物装备属性
+            }
+        
+            foreach ( (int skillId, int skillNum) in hideSkillId)
+            {
+                int hideId = HideProListConfigCategory.Instance.PetSkillToHideProId[skillId];
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideId);
+                if (skillNum >= hideProListConfig.NeedNumber)
+                {
+                    rolePetInfo.PetSkill.Add ( hideProListConfig.PropertyType );
+                }
             }
 
             //宠物之核套装属性
@@ -1102,6 +1124,11 @@ namespace ET
             rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
 
             PetHelper.UpdatePetNumeric( rolePetInfo );
+        }
+
+        public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, int skillId)
+        { 
+            
         }
 
         public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit)

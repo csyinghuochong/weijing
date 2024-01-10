@@ -218,7 +218,6 @@ namespace ET
 
             return hideProLists;
         }
-
         /// <summary>
         /// 从HideProListConfig配置表中读取技能id
         /// </summary>
@@ -244,6 +243,7 @@ namespace ET
             return skillListConfig;
         }
 
+        
         //获得装备洗炼隐藏属性
         public static List<HideProList> GetEquipXiLianHidePro(int equipID)
         {
@@ -282,10 +282,9 @@ namespace ET
                 }
             }
 
-
-            //---------------随机特殊属性---------------
+            int hintProListID = HideProHelper.GetInitProId(itemCof);
+         
             int nextID = 0;
-            int hintProListID = 1001;
             //获取隐藏条最大目数
             int hintJiPinMaxNum = 3;
             int hintJiPinMaxNumSum = 0;
@@ -569,15 +568,15 @@ namespace ET
                 */
 
                 float randValue = RandomHelper.RandFloat01();
+              
                 //Log.Info("randValue = " + randValue + " equipJiPinPro = " + equipJiPinPro);
                 if (randValue <= equipJiPinPro)
                 {
-
                     int nextID = 0;
-                    int hintProListID = 1001;
                     //获取隐藏条最大目数
                     int hintJiPinMaxNum = 3;
                     int hintJiPinMaxNumSum = 0;
+                    int hintProListID = HideProHelper.GetInitProId(itemConfig);
 
                     /*
                     if (hidePetEquipStatus)
@@ -715,7 +714,7 @@ namespace ET
                 if (RandomHelper.RandFloat01() <= equipJiPinSkillPro || ishaveSkill)
                 {
                     int nextID = 0;
-                    int hintProListID = 2001;
+                    int hintProListID = HideProHelper.GetInitSkillId(itemConfig);
                     //获取隐藏条最大目数
                     int hintJiPinMaxNum = 1;
                     int hintJiPinMaxNumSum = 0;

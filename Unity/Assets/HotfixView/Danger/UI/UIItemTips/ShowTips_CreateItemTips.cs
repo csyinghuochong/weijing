@@ -53,7 +53,7 @@ namespace ET
                 if (itemConfig.EquipType == 301)
                 {
                     UI uI1 = UIHelper.GetUI(args.ZoneScene, UIType.UIPet);
-                    haveEquip = uI1.GetComponent<UIPetComponent>().GetEquipBySubType(itemConfig.ItemSubType);
+                    haveEquip = uI1 != null ? uI1.GetComponent<UIPetComponent>().GetEquipBySubType(itemConfig.ItemSubType) : null;
                 }
                 else
                 {

@@ -277,61 +277,74 @@ namespace ET
         //穿戴装备
         public static void OnClickWearEquip(this UIEquipTipsComponent self)
         {
-            ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int occTwo = userInfo.OccTwo;
-
-
-            if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            if (itemconf.EquipType == 301)
             {
-                if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+                if (self.ItemOpetateType != ItemOperateEnum.PetEquipBag)
                 {
-                    switch (userInfo.Occ)
-                    {
-                        //战士
-                        case 1:
-                            FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：刀 剑！");
-                            break;
-                        //法师
-                        case 2:
-                            FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
-                            break;
-                        //猎人
-                        case 3:
-                            FloatTipManager.Instance.ShowFloatTip("本职业无法穿戴此武器");
-                            break;
-                    }
+                    FloatTipManager.Instance.ShowFloatTip("请到宠物界面操作");
                     return;
                 }
-            }
-            if ( (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi  && itemconf.ItemSubType <= (int)ItemSubTypeEnum.Xianglian)  && occTwo != 0)
-            {
-                OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
-                if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery&& itemconf.EquipType!=99)
+                if (UIHelper.GetUI(self.ZoneScene(), UIType.UIPet) == null)
                 {
-                    //FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
-                    switch (occupationTwo.ArmorMastery)
-                    {
-                        //布甲
-                        case 11:
-                            FloatTipManager.Instance.ShowFloatTip("转职后请选择布甲进行装备！");
-                            break;
-                        //轻甲
-                        case 12:
-                            FloatTipManager.Instance.ShowFloatTip("转职后请选择轻甲进行装备！");
-                            break;
-                        //重甲
-                        case 13:
-                            FloatTipManager.Instance.ShowFloatTip("转职后请选择重甲进行装备！");
-                            break;
-                    }
+                    FloatTipManager.Instance.ShowFloatTip("请到宠物界面操作");
                     return;
                 }
+                UIHelper.GetUI(self.ZoneScene(), UIType.UIPet)?.GetComponent<UIPetComponent>().RequestPetEquipSelect().Coroutine();
             }
+            else
+            {
+                if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+                {
+                    if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+                    {
+                        switch (userInfo.Occ)
+                        {
+                            //战士
+                            case 1:
+                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：刀 剑！");
+                                break;
+                            //法师
+                            case 2:
+                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
+                                break;
+                            //猎人
+                            case 3:
+                                FloatTipManager.Instance.ShowFloatTip("本职业无法穿戴此武器");
+                                break;
+                        }
+                        return;
+                    }
+                }
+                if ((itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi && itemconf.ItemSubType <= (int)ItemSubTypeEnum.Xianglian) && occTwo != 0)
+                {
+                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                    if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery && itemconf.EquipType != 99)
+                    {
+                        //FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
+                        switch (occupationTwo.ArmorMastery)
+                        {
+                            //布甲
+                            case 11:
+                                FloatTipManager.Instance.ShowFloatTip("转职后请选择布甲进行装备！");
+                                break;
+                            //轻甲
+                            case 12:
+                                FloatTipManager.Instance.ShowFloatTip("转职后请选择轻甲进行装备！");
+                                break;
+                            //重甲
+                            case 13:
+                                FloatTipManager.Instance.ShowFloatTip("转职后请选择重甲进行装备！");
+                                break;
+                        }
+                        return;
+                    }
+                }
 
-            self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
-
+                self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
+            }
             //播放音效
             UIHelper.PlayUIMusic("10005");
 
@@ -918,14 +931,6 @@ namespace ET
                     break;
                 case ItemOperateEnum.PetEquipBag:
                     self.Obj_BagOpenSet.SetActive(true);
-                    self.Btn_Use.GetComponent<Button>().onClick.RemoveAllListeners();
-                    self.Btn_Use.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        UIHelper.GetUI(self.ZoneScene(), UIType.UIPet)?.GetComponent<UIPetComponent>().RequestPetEquipSelect().Coroutine();
-                        //播放音效
-                        UIHelper.PlayUIMusic("10005");
-                        self.OnCloseTips();
-                    });
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
                     self.Obj_SaveStoreHouse.SetActive(false);

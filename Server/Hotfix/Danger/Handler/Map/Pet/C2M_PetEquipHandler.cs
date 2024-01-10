@@ -65,6 +65,8 @@ namespace ET
                     m2c_bagUpdate.BagInfoUpdate.Add(oldBagInfo);
                     rolePetInfo.PetEquipList.Remove(takeOffId);
                 }
+
+                petComponent.RemoveEquipSkill(rolePetInfo, 0);
             }
 
             if (request.OperateType == 1) //穿戴
