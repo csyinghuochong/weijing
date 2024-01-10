@@ -479,6 +479,9 @@ namespace ET
                                 // 增加副本次数
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);
                                 break;
+                            case 139:
+
+                                break;
                         }
 
                         //扣除道具
