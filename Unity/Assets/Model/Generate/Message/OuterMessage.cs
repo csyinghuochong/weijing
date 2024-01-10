@@ -3294,6 +3294,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int SeasonJingHePlan { get; set; }
 
+		[ProtoMember(9)]
+		public List<int> AdditionalCellNum = new List<int>();
+
 	}
 
 //活跃宝箱

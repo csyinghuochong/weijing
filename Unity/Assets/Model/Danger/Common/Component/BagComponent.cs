@@ -21,6 +21,11 @@ namespace ET
         public List<int> WarehouseAddedCell = new List<int>();
 
         /// <summary>
+        /// 附加格子，ItemLocType.ItemBag开始
+        /// </summary>
+        public List<int> AdditionalCellNum = new List<int>();
+
+        /// <summary>
         /// 激活的时装
         /// </summary>
         public List<int> FashionActiveIds = new List<int>();
@@ -30,8 +35,10 @@ namespace ET
         /// </summary>
         public List<int> FashionEquipList = new List<int>();
 
+        /// <summary>
+        /// 赛季晶核方案
+        /// </summary>
         public int SeasonJingHePlan = 0;      
-
 #if SERVER
         public List<BagInfo> BagItemList =new List<BagInfo>();
         public List<BagInfo> BagItemPetHeXin = new List<BagInfo>();

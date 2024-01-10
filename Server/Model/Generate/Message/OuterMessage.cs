@@ -1687,7 +1687,7 @@ namespace ET
 		public List<HideProList> IncreaseProLists = new List<HideProList>();
 
 		[ProtoMember(25)]
-		public List<int> IncreaseSkillLists = new List<int>();  //宠物装备技能
+		public List<int> IncreaseSkillLists = new List<int>();
 
 		[ProtoMember(26)]
 		public int EquipPlan { get; set; }
@@ -3293,6 +3293,9 @@ namespace ET
 
 		[ProtoMember(8)]
 		public int SeasonJingHePlan { get; set; }
+
+		[ProtoMember(9)]
+		public List<int> AdditionalCellNum = new List<int>();
 
 	}
 
