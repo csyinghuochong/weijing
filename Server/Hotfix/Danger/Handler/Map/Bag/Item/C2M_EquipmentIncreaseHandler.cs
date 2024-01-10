@@ -141,6 +141,7 @@ namespace ET
             Log.Warning($"增幅消耗: {unit.Id}  {reelBagInfo.ItemID}   获得属性:{increaseProLists}");
 
             //通知客户端背包刷新
+            equipmentBagInfo.isBinging = true;  
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate.Add(equipmentBagInfo);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);

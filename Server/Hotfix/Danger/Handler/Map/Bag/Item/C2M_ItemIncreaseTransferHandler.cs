@@ -125,6 +125,8 @@ namespace ET
                 bagInfo_2.IncreaseSkillLists.AddRange(canTransfSkillLists);
             }
 
+            bagInfo_1.isBinging = true;
+            bagInfo_2.isBinging = true;
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.IncreaseNumber_46, 0, 1);
             unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.IncreaseNumber_46, 0, 1);
 

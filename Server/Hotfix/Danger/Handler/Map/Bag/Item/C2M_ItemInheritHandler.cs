@@ -43,6 +43,7 @@ namespace ET
             }
 
             response.InheritSkills.Add(skillid);
+            bagInfo.isBinging = true;   
             bagInfo.InheritTimes += 1;
             unit.GetComponent<BagComponent>().InheritSkills = response.InheritSkills;
             //通知客户端背包道具发生改变
