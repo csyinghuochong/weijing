@@ -30,7 +30,7 @@ namespace ET
                     });
                 }
                
-                if (sceneType == SceneTypeEnum.LocalDungeon &&  units[i].ConfigId == SeasonHelper.SeasonBossId)
+                if (sceneType == SceneTypeEnum.LocalDungeon && (units[i].ConfigId == SeasonHelper.SeasonBossId || units[i].IsJingLingMonster()))
                 {
                     response.UnitList.Add(new UnitInfo()
                     {
