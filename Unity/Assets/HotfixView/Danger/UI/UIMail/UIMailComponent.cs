@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIMailComponent : Entity, IAwake, IDestroy
     {
+        public GameObject NumText;
         public GameObject ButtonOneKey;
         public GameObject ButtonGet;
         public GameObject MailListNode;
@@ -32,6 +33,7 @@ namespace ET
             self.RewardListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.NumText = rc.Get<GameObject>("NumText");
             self.MailListNode = rc.Get<GameObject>("MailListNode");
             self.UIMailItem = rc.Get<GameObject>("UIMailItem");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
@@ -159,6 +161,8 @@ namespace ET
 
         public static  void OnMailUpdate(this UIMailComponent self)
         {
+            self.NumText.GetComponent<Text>().text = $"{self.MailComponent.MailInfoList.Count}/100";
+            
             for (int I = 0; I < self.MailListUI.Count; I++)
             {
                 self.MailListUI[I].GameObject.SetActive(false);
