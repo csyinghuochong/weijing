@@ -14,6 +14,7 @@ namespace ET
         public Vector2 localPoint;
         public GameObject MapName;
         public GameObject bossIcon;
+        public GameObject jinglingIcon;
         public GameObject chuansong;
         public GameObject teamerPostion;
         public GameObject ChuanSongName;
@@ -66,6 +67,8 @@ namespace ET
             self.MapName = rc.Get<GameObject>("MapName");
             self.bossIcon = rc.Get<GameObject>("bossIcon");
             self.bossIcon.SetActive(false);
+            self.jinglingIcon = rc.Get<GameObject>("jinglingIcon");
+            self.jinglingIcon.SetActive(false);
 
             self.jiayuanPet = rc.Get<GameObject>("jiayuanPet");
             self.jiayuanPet.SetActive(false);
@@ -126,10 +129,10 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene
                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
             {
-                SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-                mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
-                mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
-                camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
+                mapCamera.transform.position = new Vector3((float)sceneConfig.CameraPos[0], (float)sceneConfig.CameraPos[1], (float)sceneConfig.CameraPos[2]);
+                mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)sceneConfig.CameraPos[3]);
+                camera.orthographicSize = (float)sceneConfig.CameraPos[4];
             }
             self.MapCamera = mapCamera;
 
@@ -180,9 +183,8 @@ namespace ET
                 DungeonTransferConfig npcConfig = DungeonTransferConfigCategory.Instance.Get(transfers[i]);
                 Vector3 npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
 
-                GameObject gameObject = GameObject.Instantiate(self.chuansong);
+                GameObject gameObject = UnityEngine.Object.Instantiate(self.chuansong, self.chuansong.transform.parent, true);
                 gameObject.SetActive(true);
-                gameObject.transform.SetParent(self.chuansong.transform.parent);
                 gameObject.transform.localScale = Vector3.one;
                 gameObject.transform.localPosition = npcPos;
                 gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
@@ -191,7 +193,6 @@ namespace ET
 
         public static void ShowLocalBossList(this UIMapBigComponent self)
         {
-            //DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(self.SceneId);
             self.CreateMonsterList(SceneConfigHelper.GetLocalDungeonMonsters_2(self.SceneId));
         }
 
@@ -230,7 +231,7 @@ namespace ET
             }    
         }
 
-        public static async ETTask RequestLocalBossPosition(this UIMapBigComponent self)
+        public static async ETTask RequestLocalUnitPosition(this UIMapBigComponent self)
         {
             long instanceid = self.InstanceId;
             C2M_TeamerPositionRequest request = new C2M_TeamerPositionRequest();
@@ -243,16 +244,36 @@ namespace ET
             {
                 return;
             }
-            UnitInfo unitInfo = response.UnitList[0];
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
-            Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
-            Vector3 npcPos = self.GetWordToUIPositon(vector3);
-            GameObject gameObject = GameObject.Instantiate(self.bossIcon);
-            gameObject.SetActive(true);
-            gameObject.transform.SetParent(self.bossIcon.transform.parent);
-            gameObject.transform.localScale = Vector3.one;
-            gameObject.transform.localPosition = npcPos;
-            gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+
+            foreach (UnitInfo unitInfo in response.UnitList)
+            {
+                GameObject gameObject = null;
+                // 赛季boss
+                if (unitInfo.ConfigId == SeasonHelper.SeasonBossId)
+                {
+                    gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
+                }
+
+                // 野生精灵
+                int sonType = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId).MonsterSonType;
+                if (unitInfo.UnitType == UnitType.Monster && (sonType == 58 || sonType == 59))
+                {
+                    gameObject = UnityEngine.Object.Instantiate(self.jinglingIcon, self.jinglingIcon.transform.parent, true);
+                }
+
+                if (gameObject == null)
+                {
+                    continue;
+                }
+
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
+                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
+                Vector3 npcPos = self.GetWordToUIPositon(vector3);
+                gameObject.SetActive(true);
+                gameObject.transform.localScale = Vector3.one;
+                gameObject.transform.localPosition = npcPos;
+                gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+            }
         }
 
         public static async ETTask RequestTeamerPosition(this UIMapBigComponent self)
@@ -291,9 +312,8 @@ namespace ET
                 }
                 else
                 {
-                    go = GameObject.Instantiate(self.teamerPostion);
+                    go = UnityEngine.Object.Instantiate(self.teamerPostion, self.teamerPostion.transform.parent, true);
                     go.SetActive(true);
-                    go.transform.SetParent(self.teamerPostion.transform.parent);
                     go.transform.localScale = Vector3.one;
                     self.TeamerPointList.Add(go);
                 }
@@ -338,9 +358,8 @@ namespace ET
             Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
             Vector3 npcPos = self.GetWordToUIPositon(vector3);
 
-            GameObject gameObject = GameObject.Instantiate(self.bossIcon);
+            GameObject gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
             gameObject.SetActive(true);
-            gameObject.transform.SetParent(self.bossIcon.transform.parent);
             gameObject.transform.localScale = Vector3.one;
             gameObject.transform.localPosition = npcPos;
             gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
@@ -379,9 +398,8 @@ namespace ET
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
                     Vector3 npcPos = self.GetWordToUIPositon(vector3);
 
-                    GameObject gameObject = GameObject.Instantiate(self.bossIcon);
+                    GameObject gameObject = UnityEngine.Object.Instantiate(self.bossIcon, self.bossIcon.transform.parent, true);
                     gameObject.SetActive(true);
-                    gameObject.transform.SetParent(self.bossIcon.transform.parent);
                     gameObject.transform.localScale = Vector3.one;
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
@@ -412,7 +430,7 @@ namespace ET
                 self.MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName;
                 self.ShowChuansong();
                 self.ShowLocalBossList();
-                self.RequestLocalBossPosition().Coroutine();
+                self.RequestLocalUnitPosition().Coroutine();
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
@@ -447,14 +465,13 @@ namespace ET
 
                     npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
 
-                    GameObject gameObject = GameObject.Instantiate(self.NpcPostion);
+                    GameObject gameObject = UnityEngine.Object.Instantiate(self.NpcPostion, self.NpcPostion.transform.parent, true);
                     gameObject.SetActive(true);
-                    gameObject.transform.SetParent(self.NpcPostion.transform.parent);
                     gameObject.transform.localScale = Vector3.one;
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
 
-                    GameObject npcGo = GameObject.Instantiate(self.UIMapBigNpcItem);
+                    GameObject npcGo = UnityEngine.Object.Instantiate(self.UIMapBigNpcItem);
                     npcGo.SetActive(true);
                     UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                     UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
@@ -466,7 +483,7 @@ namespace ET
 
             foreach (var item in self.BossList)
             {
-                GameObject npcGo = GameObject.Instantiate(self.UIMapBigNpcItem);
+                GameObject npcGo = UnityEngine.Object.Instantiate(self.UIMapBigNpcItem);
                 npcGo.SetActive(true);
                 UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                 UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
@@ -518,8 +535,9 @@ namespace ET
             Vector3 wordpos = new Vector3(self.localPoint.x / self.ScaleRateX, 100f, self.localPoint.y / self.ScaleRateY);
             wordpos = rotation * wordpos;
 
-            wordpos.x += (mapCamera.transform.position.x);
-            wordpos.z += (mapCamera.transform.position.z );
+            Vector3 position = mapCamera.transform.position;
+            wordpos.x += (position.x);
+            wordpos.z += (position.z );
 
             RaycastHit hit;
             int mapMask = (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
@@ -537,8 +555,9 @@ namespace ET
         public static Vector3 GetWordToUIPositon(this UIMapBigComponent self, Vector3 vector3)
         {
             GameObject mapCamera = self.MapCamera;
-            vector3.x -= mapCamera.transform.position.x;
-            vector3.y -= mapCamera.transform.position.z;
+            Vector3 position = mapCamera.transform.position;
+            vector3.x -= position.x;
+            vector3.y -= position.z;
 
             Quaternion rotation = Quaternion.Euler(0, 0, 1 * mapCamera.transform.eulerAngles.y);
             vector3 = rotation * vector3;
@@ -574,9 +593,8 @@ namespace ET
             {
                 return self.PathPointList[index];
             }
-            GameObject go = GameObject.Instantiate(self.pathPoint);
+            GameObject go = UnityEngine.Object.Instantiate(self.pathPoint, self.pathPoint.transform.parent, true);
             go.SetActive(true);
-            go.transform.SetParent(self.pathPoint.transform.parent);
             go.transform.localScale = Vector3.one;
             self.PathPointList.Add(go);
             return go;
