@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_WelfareDrawRequest request, M2C_WelfareDrawResponse response, Action reply)
         {
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

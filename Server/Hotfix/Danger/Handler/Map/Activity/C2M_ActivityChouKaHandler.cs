@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ActivityChouKaRequest request, M2C_ActivityChouKaResponse response, Action reply)
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() < 1)
+            if (bagComponent.GetBagLeftCell() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

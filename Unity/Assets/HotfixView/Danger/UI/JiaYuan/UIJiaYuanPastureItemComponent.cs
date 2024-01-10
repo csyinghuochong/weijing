@@ -103,7 +103,7 @@ namespace ET
 
         public static async ETTask OnButtonBuy(this UIJiaYuanPastureItemComponent self)
         {
-            int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
+            int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace();
             if (leftSpace < 1)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);

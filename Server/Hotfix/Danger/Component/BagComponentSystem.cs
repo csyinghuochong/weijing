@@ -390,15 +390,15 @@ namespace ET
 
         public static bool IsBagFull(this BagComponent self)
         {
-            return self.GetLeftSpace() <= 0;
+            return self.GetBagLeftCell() <= 0;
         }
 
-        public static int GetLeftSpace(this BagComponent self)
+        public static int GetBagLeftCell(this BagComponent self)
         {
             return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
         }
 
-        public static int GetTotalSpace(this BagComponent self)
+        public static int GetBagTotalCell(this BagComponent self)
         {
             return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
         }
@@ -406,16 +406,16 @@ namespace ET
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
         {
             List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
-            return ItemTypeList.Count >= self.GetStoreTotalCell(hourseId);
+            return ItemTypeList.Count >= self.GetHourseTotalCell(hourseId);
         }
 
-        public static int GetStoreLeftCell(this BagComponent self, int hourseId)
+        public static int GetHourseLeftCell(this BagComponent self, int hourseId)
         {
             List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
-            return self.GetStoreTotalCell(hourseId) - ItemTypeList.Count;
+            return self.GetHourseTotalCell(hourseId) - ItemTypeList.Count;
         }
 
-        public static int GetStoreTotalCell(this BagComponent self, int hourseId)
+        public static int GetHourseTotalCell(this BagComponent self, int hourseId)
         {
             int storeCapacity = GlobalValueConfigCategory.Instance.StoreCapacity;
             if (hourseId == (int)ItemLocType.GemWareHouse1)
@@ -880,7 +880,7 @@ namespace ET
             {
                 return true;
             }
-            if (bagCellNumber > self.GetLeftSpace() && UseLocType == ItemLocType.ItemLocBag)
+            if (bagCellNumber > self.GetBagLeftCell() && UseLocType == ItemLocType.ItemLocBag)
             {
                 return false;
             }

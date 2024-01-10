@@ -148,7 +148,7 @@ namespace ET
         public static async ETTask OnBtn_ChouKa(this UIPetEggChouKaComponent self, int choukaType)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() < choukaType)
+            if (bagComponent.GetBagLeftSpace() < choukaType)
             {
                 FloatTipManager.Instance.ShowFloatTip("请预留足够的背包空间！");
                 return;

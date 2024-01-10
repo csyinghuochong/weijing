@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_StallBuyRequest request, M2C_StallBuyResponse response, Action reply)
         {
             //背包是否有位置
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
@@ -25,7 +25,7 @@ namespace ET
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
             int cell = Mathf.CeilToInt(paiMaiItemInfo.BagInfo.ItemNum * 1f / itemConfig.ItemPileSum);
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < cell)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < cell)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

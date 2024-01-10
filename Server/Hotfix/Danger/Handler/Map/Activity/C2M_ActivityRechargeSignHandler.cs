@@ -21,7 +21,7 @@ namespace ET
             int itemNumber = activityConfig.Par_2.Split('@').Length;
 
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() <= itemNumber)
+            if (bagComponent.GetBagLeftCell() <= itemNumber)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

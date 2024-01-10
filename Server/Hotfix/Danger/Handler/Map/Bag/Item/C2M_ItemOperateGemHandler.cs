@@ -116,7 +116,7 @@ namespace ET
             //卸下宝石
             if (request.OperateType == 10)
             {
-                if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
                 {
                     response.Error = ErrorCode.ERR_BagIsFull;
                     reply();

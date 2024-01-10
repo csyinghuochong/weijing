@@ -36,7 +36,7 @@ namespace ET
             string[] reward = ConfigHelper.PetExploreReward[request.RewardId].Split('$');
             string[] items = reward[0].Split('@');
             string[] diamond = reward[1].Split(';')[1].Split(',');
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < items.Length)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < items.Length)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

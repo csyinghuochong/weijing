@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PetEggChouKaRequest request, M2C_PetEggChouKaResponse response, Action reply)
         {
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < request.ChouKaType)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < request.ChouKaType)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

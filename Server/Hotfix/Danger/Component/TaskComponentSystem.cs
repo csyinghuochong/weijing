@@ -460,7 +460,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
 
             List<RewardItem> rewardItems = TaskHelper.GetTaskRewards(taskid, taskConfig);
-            if (bagComponent.GetLeftSpace() < rewardItems.Count)
+            if (bagComponent.GetBagLeftCell() < rewardItems.Count)
             {
                 return ErrorCode.ERR_BagIsFull;
             }

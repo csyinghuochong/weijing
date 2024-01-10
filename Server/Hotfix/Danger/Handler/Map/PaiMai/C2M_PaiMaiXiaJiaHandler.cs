@@ -11,7 +11,7 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.XiaJia, unit.Id))
             {
-                if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
                 {
                     reply();
                     return;

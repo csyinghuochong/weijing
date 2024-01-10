@@ -123,7 +123,7 @@ namespace ET
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() < 1)
+            if (bagComponent.GetBagLeftSpace() < 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足");
                 return;

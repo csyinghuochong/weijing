@@ -234,7 +234,7 @@ namespace ET
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(sellId);
 
             int costType = storeSellConfig.SellType;
-            if (self.GetLeftSpace() == 0)
+            if (self.GetBagLeftSpace() == 0)
             {
                 HintHelp.GetInstance().ShowHint("背包已满");
                 return;
@@ -830,10 +830,10 @@ namespace ET
                     cellNumber += (itemNum % ItemPileSum > 0 ? 1 : 0);
                 }
             }
-            return self.GetLeftSpace() >= cellNumber;
+            return self.GetBagLeftSpace() >= cellNumber;
         }
 
-        public static int GetLeftSpace(this BagComponent self)
+        public static int GetBagLeftSpace(this BagComponent self)
         {
             return self.BagAddedCell +  GlobalValueConfigCategory.Instance.BagMaxCapacity - self.GetBagList().Count;
         }

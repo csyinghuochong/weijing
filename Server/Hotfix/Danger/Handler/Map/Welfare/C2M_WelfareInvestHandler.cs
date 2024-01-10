@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_WelfareInvestRequest request, M2C_WelfareInvestResponse response, Action reply)
         {
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

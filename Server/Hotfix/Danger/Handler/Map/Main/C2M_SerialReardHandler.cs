@@ -12,7 +12,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_SerialReardRequest request, M2C_SerialReardResponse response, Action reply)
         {
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 5)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 5)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

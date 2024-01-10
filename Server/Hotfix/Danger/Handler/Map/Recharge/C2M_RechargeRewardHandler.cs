@@ -34,7 +34,7 @@ namespace ET
 
             string rewarditem = ConfigHelper.RechargeReward[request.RechargeNumber];
             string[] rewardList = rewarditem.Split('@');
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewardList.Length)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < rewardList.Length)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

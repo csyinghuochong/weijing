@@ -88,7 +88,7 @@ namespace ET
 
             List<RewardItem> rewardItems = new List<RewardItem>();
             DropHelper.DropIDToDropItem_2(ActivityConfigHelper.HongBaoDropId, rewardItems);
-            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < rewardItems.Count)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() < rewardItems.Count)
             {
                 FloatTipManager.Instance.ShowFloatTip("背包已满");
                 return;

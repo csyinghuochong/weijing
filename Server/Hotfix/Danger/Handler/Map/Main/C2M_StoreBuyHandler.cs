@@ -22,7 +22,7 @@ namespace ET
                 reply();
                 return;
             }
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

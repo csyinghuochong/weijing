@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-            int leftCell = unit.GetComponent<BagComponent>().GetStoreLeftCell(hourseId);
+            int leftCell = unit.GetComponent<BagComponent>().GetHourseLeftCell(hourseId);
             if (leftCell<= 0)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;     //错误码:仓库已满

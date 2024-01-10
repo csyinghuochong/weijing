@@ -38,7 +38,7 @@ namespace ET
                 {
                     case 2: //每日特惠
                         string[] needList = activityConfig.Par_3.Split('@');
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < needList.Length)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < needList.Length)
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -76,7 +76,7 @@ namespace ET
                             return;
                         }
                         string[] rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -125,7 +125,7 @@ namespace ET
                         if (request.ReceiveIndex == 3) rewards = activityConfig.Par_4;
 
                         rewarditems = rewards.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -149,7 +149,7 @@ namespace ET
                         }
 
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -162,7 +162,7 @@ namespace ET
                         break;
                     case 32:    //新年集字
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -186,7 +186,7 @@ namespace ET
                             return;
                         }
                         string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewardItemlist.Split('@').Length)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < rewardItemlist.Split('@').Length)
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -219,7 +219,7 @@ namespace ET
                         }
 
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
@@ -242,7 +242,7 @@ namespace ET
                             return;
                         }
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetBagLeftCell())
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();

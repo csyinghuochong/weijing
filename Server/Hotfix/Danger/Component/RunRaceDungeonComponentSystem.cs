@@ -235,7 +235,7 @@ namespace ET
                         mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.ShowLie}_{serverTime}" });
                     }
 
-                    if (itemList.Length <= bagComponent.GetLeftSpace())
+                    if (itemList.Length <= bagComponent.GetBagLeftCell())
                     {
                         bagComponent.OnAddItemData(rankRewardConfig.RewardItems, $"{ItemGetWay.RunRace}_{serverTime}");
                     }

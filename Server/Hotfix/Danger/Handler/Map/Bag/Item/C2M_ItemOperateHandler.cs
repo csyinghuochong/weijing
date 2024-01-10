@@ -91,14 +91,14 @@ namespace ET
                         string[] rewardInfos = itemConfig.ItemUsePar.Split(';');
                         DropHelper.DropIDToDropItem(int.Parse(rewardInfos[1]), droplist);
 
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < ItemHelper.GetNeedCell(droplist))
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < ItemHelper.GetNeedCell(droplist))
                         {
                             bagIsFull = true;
                         }
                     }
                     if (itemConfig.ItemSubType == 102 || (itemConfig.ItemSubType == 103))  //宠物蛋(点击使用直接获得1个宠物)
                     {
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
                         {
                             bagIsFull = true;
                         }
@@ -108,7 +108,7 @@ namespace ET
                         int dropid = int.Parse(itemConfig.ItemUsePar);
                         droplist = new List<RewardItem>();
                         DropHelper.DropIDToDropItem(dropid, droplist);
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < droplist.Count)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < droplist.Count)
                         {
                             bagIsFull = true;
                         }
@@ -147,7 +147,7 @@ namespace ET
                     }
                     if (itemConfig.ItemSubType == 127)
                     {
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
                         {
                             bagIsFull = true;
                         }

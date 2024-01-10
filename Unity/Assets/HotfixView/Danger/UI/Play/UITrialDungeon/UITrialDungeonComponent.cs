@@ -225,7 +225,7 @@ namespace ET
         public static async ETTask OnBtn_Receive(this UITrialDungeonComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() < 2)
+            if (bagComponent.GetBagLeftSpace() < 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("请清理一下背包！");
                 return;

@@ -43,7 +43,7 @@ namespace ET
                     case 21:    //战区等级
                     case 22:    //战区战力
                         string[] itemlist = activityConfig.Par_3.Split('@');
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemlist.Length)
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < itemlist.Length)
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();

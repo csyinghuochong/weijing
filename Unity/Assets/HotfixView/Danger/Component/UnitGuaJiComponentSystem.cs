@@ -294,7 +294,7 @@ namespace ET
             self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(10f);
 
             //判断背包是否满了
-            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftSpace() <= 0)
             {
 
                 //如果满了就一键出售(此处看玩家是否勾选)

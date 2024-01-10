@@ -24,7 +24,7 @@ namespace ET
             int dropId = int.Parse(jingLingConfig.FunctionValue);
             List<RewardItem> droplist = new List<RewardItem>();
             DropHelper.DropIDToDropItem_2(dropId, droplist);
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < droplist.Count)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < droplist.Count)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

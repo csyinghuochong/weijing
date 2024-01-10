@@ -14,7 +14,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             // 判断背包和仓库是否能够装满
-            if (bagComponent.GetLeftSpace() + bagComponent.GetChouKaLeftSpace() < request.ChouKaType)
+            if (bagComponent.GetBagLeftCell() + bagComponent.GetChouKaLeftSpace() < request.ChouKaType)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
@@ -67,7 +67,7 @@ namespace ET
             LogHelper.LogWarning($"抽卡： {unit.Id} {droplist.Count}", true);
             
             // 判断背包是否能装下，不能的话剩下的放抽卡仓库
-            int bagLeftSpace = bagComponent.GetLeftSpace();
+            int bagLeftSpace = bagComponent.GetBagLeftCell();
             if (bagLeftSpace < droplist.Count)
             {
                 List<RewardItem> putInBag = new List<RewardItem>();

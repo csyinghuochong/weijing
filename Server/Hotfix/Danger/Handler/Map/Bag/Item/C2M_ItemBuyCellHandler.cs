@@ -19,7 +19,7 @@ namespace ET
 
             if (request.OperateType == (int)ItemLocType.ItemLocBag)
             {
-                if (bagComponent.GetTotalSpace() >= GlobalValueConfigCategory.Instance.BagMaxCell)
+                if (bagComponent.GetBagTotalCell() >= GlobalValueConfigCategory.Instance.BagMaxCell)
                 {
                     response.Error = ErrorCode.ERR_AleardyMaxCell;
                     reply();
@@ -52,7 +52,7 @@ namespace ET
             }
             else
             {
-                if (bagComponent.GetStoreTotalCell(request.OperateType) >= GlobalValueConfigCategory.Instance.StoreMaxCell)
+                if (bagComponent.GetHourseTotalCell(request.OperateType) >= GlobalValueConfigCategory.Instance.StoreMaxCell)
                 {
                     response.Error = ErrorCode.ERR_AleardyMaxCell;
                     reply();

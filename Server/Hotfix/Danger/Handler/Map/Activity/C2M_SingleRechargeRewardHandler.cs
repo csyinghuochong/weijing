@@ -40,7 +40,7 @@ namespace ET
 
             string[] rewarditemlist = ConfigHelper.SingleRechargeReward[request.RewardId].Split('@');
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() < rewarditemlist.Length)
+            if (bagComponent.GetBagLeftCell() < rewarditemlist.Length)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

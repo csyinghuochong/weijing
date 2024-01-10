@@ -29,7 +29,7 @@ namespace ET
                 return;
             }
             string[] rewarditemlist = rewardConfig.RewardItems.Split('@');
-            if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewarditemlist.Length)
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < rewarditemlist.Length)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();

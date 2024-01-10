@@ -97,7 +97,7 @@ namespace ET
         public static void OnBtn_Split(this UIRoleBagSplitComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetLeftSpace() <= 1)
+            if (bagComponent.GetBagLeftSpace() <= 1)
             {
                 HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
                 return;

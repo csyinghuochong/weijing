@@ -63,7 +63,7 @@ namespace ET
                         bagComponent.OnCostItemData(new List<long>(){ bagInfo.BagInfoID }, ItemLocType.ItemLocBag);
                         break;
                     case 2:
-                        if (bagComponent.GetLeftSpace() < 1)
+                        if (bagComponent.GetBagLeftCell() < 1)
                         {
                             response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
