@@ -395,7 +395,7 @@ namespace ET
 
         public static int GetBagLeftCell(this BagComponent self)
         {
-            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
+            return self.GetBagTotalCell() - self.BagItemList.Count;
         }
 
         public static int GetBagTotalCell(this BagComponent self)
