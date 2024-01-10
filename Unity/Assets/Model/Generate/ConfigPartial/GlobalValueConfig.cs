@@ -6,26 +6,27 @@ namespace ET
 {
     public partial class GlobalValueConfigCategory
     {
+        public int BagInitCapacity = 0;
         public int BagMaxCapacity = 0;
-        public int BagMaxCell = 0;
 
-        public int StoreCapacity = 0;
-        public int StoreMaxCell = 0;
+        public int HourseInitCapacity = 0;
+        public int HourseMaxCapacity = 0;
+
         public int AccountBagMax = 0;
-        public int GemStoreCapacity = 0;
-        public int GemStoreMaxCell = 0;
+        public int GemStoreInitCapacity = 0;
+        public int GemStoreMaxCapacity = 0;
 
         public Dictionary<int, int> ZhuaPuItem = new Dictionary<int, int>();
 
         public override void AfterEndInit()
         {
-            BagMaxCapacity = this.Get(3).Value2;
-            BagMaxCell = this.Get(84).Value2 + BagMaxCapacity;
-            StoreCapacity = this.Get(4).Value2;
-            StoreMaxCell = StoreCapacity + this.Get(85).Value2;
+            BagInitCapacity = this.Get(3).Value2;
+            BagMaxCapacity = this.Get(84).Value2 + BagInitCapacity + 10;
+            HourseInitCapacity = this.Get(4).Value2;
+            HourseMaxCapacity = this.Get(85).Value2 + HourseInitCapacity + 10;
             AccountBagMax = this.Get(115).Value2;
-            GemStoreCapacity = this.Get(118).Value2; 
-            GemStoreMaxCell = this.Get(118).Value2; 
+            GemStoreInitCapacity = this.Get(118).Value2; 
+            GemStoreMaxCapacity = this.Get(118).Value2; 
 
             string[] zhuabuItems = this.Get(82).Value.Split('@');
             for (int i = 0; i < zhuabuItems.Length; i++)

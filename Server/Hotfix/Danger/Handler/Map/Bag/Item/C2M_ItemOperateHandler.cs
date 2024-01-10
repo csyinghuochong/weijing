@@ -480,7 +480,13 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);
                                 break;
                             case 139:
-
+                                //增加背包格子
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[0]++;
+                                break;
+                            case 140:
+                                int locIndex = int.Parse(request.OperatePar);
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[locIndex]++;
+                                //增加仓库格子
                                 break;
                         }
 

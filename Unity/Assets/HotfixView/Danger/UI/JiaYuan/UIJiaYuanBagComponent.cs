@@ -96,7 +96,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
          
-            for (int i = 0; i < GlobalValueConfigCategory.Instance.BagMaxCapacity; i++)
+            for (int i = 0; i < GlobalValueConfigCategory.Instance.BagInitCapacity; i++)
             {
                 if (i % 10 == 30)
                 {

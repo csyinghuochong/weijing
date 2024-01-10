@@ -400,7 +400,7 @@ namespace ET
 
         public static int GetBagTotalCell(this BagComponent self)
         {
-            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
         }
 
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
@@ -417,10 +417,10 @@ namespace ET
 
         public static int GetHourseTotalCell(this BagComponent self, int hourseId)
         {
-            int storeCapacity = GlobalValueConfigCategory.Instance.StoreCapacity;
+            int storeCapacity = GlobalValueConfigCategory.Instance.HourseInitCapacity;
             if (hourseId == (int)ItemLocType.GemWareHouse1)
             {
-                storeCapacity = GlobalValueConfigCategory.Instance.GemStoreCapacity;
+                storeCapacity = GlobalValueConfigCategory.Instance.GemStoreInitCapacity;
             }
             return storeCapacity + self.WarehouseAddedCell[hourseId];
         }

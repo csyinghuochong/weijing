@@ -26,14 +26,14 @@ namespace ET
 
         public int FangunSkillId = 0;
 
+        public int BagInitCapacity = 0;
         public int BagMaxCapacity = 0;
-        public int BagMaxCell = 0;
 
-        public int StoreCapacity = 0;
-        public int StoreMaxCell = 0;
+        public int HourseInitCapacity = 0;
+        public int HourseMaxCapacity = 0;
 
-        public int GemStoreCapacity = 0;
-        public int GemStoreMaxCell = 0;
+        public int GemStoreInitCapacity = 0;
+        public int GemStoreMaxCapacity = 0;
 
         public int OnLineLimit = 0;
 
@@ -50,14 +50,14 @@ namespace ET
             DayMonsterList.Clear();
             JianDingFuQulity = this.Get(44).Value2;
             FangunSkillId = int.Parse(this.Get(2).Value);
-            BagMaxCapacity = this.Get(3).Value2;
-            BagMaxCell = BagMaxCapacity + this.Get(84).Value2;
-            StoreCapacity = this.Get(4).Value2;
-            StoreMaxCell = StoreCapacity + this.Get(85).Value2;
+            BagInitCapacity = this.Get(3).Value2;
+            BagMaxCapacity = BagInitCapacity + this.Get(84).Value2;
+            HourseInitCapacity = this.Get(4).Value2;
+            HourseMaxCapacity = HourseInitCapacity + this.Get(85).Value2;
             OnLineLimit = int.Parse(this.Get(25).Value);
             AccountBagMax = this.Get(115).Value2;
-            GemStoreCapacity = this.Get(118).Value2; 
-            GemStoreMaxCell = this.Get(118).Value2; 
+            GemStoreInitCapacity = this.Get(118).Value2; 
+            GemStoreMaxCapacity = this.Get(118).Value2; 
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

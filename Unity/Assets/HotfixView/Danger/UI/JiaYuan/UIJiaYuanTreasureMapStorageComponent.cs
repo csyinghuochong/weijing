@@ -148,7 +148,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int bagcellNumber = self.BagComponent.GetTotalCell();
+            int bagcellNumber = self.BagComponent.GetBagTotalCell();
 
             for (int i = 0; i < bagcellNumber; i++)
             {
@@ -159,7 +159,7 @@ namespace ET
                 self.BagList.Add(uiitem);
             }
 
-            int storageNumber = GlobalValueConfigCategory.Instance.StoreCapacity;
+            int storageNumber = GlobalValueConfigCategory.Instance.HourseInitCapacity;
             for (int i = 0; i < storageNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -232,7 +232,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanTreasureMapStorageComponent self)
         {
-            if (self.StorageList.Count < GlobalValueConfigCategory.Instance.StoreCapacity)
+            if (self.StorageList.Count < GlobalValueConfigCategory.Instance.HourseInitCapacity)
             {
                 return;
             }

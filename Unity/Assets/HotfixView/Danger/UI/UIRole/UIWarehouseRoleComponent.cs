@@ -143,7 +143,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int bagcellNumber = self.BagComponent.GetTotalCell();
+            int bagcellNumber = self.BagComponent.GetBagTotalCell();
 
             for (int i = 0; i < bagcellNumber; i++)
             {
@@ -154,7 +154,7 @@ namespace ET
                 self.BagList.Add(uiitem);
             }
 
-            int hourseNumber = GlobalValueConfigCategory.Instance.StoreMaxCell;
+            int hourseNumber = GlobalValueConfigCategory.Instance.HourseMaxCapacity;
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -211,7 +211,7 @@ namespace ET
         public static void UpdateWareHouse(this UIWarehouseRoleComponent self)
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
-            int openell = self.BagComponent.WarehouseAddedCell[curindex + 5] + GlobalValueConfigCategory.Instance.StoreCapacity;
+            int openell = self.BagComponent.WarehouseAddedCell[curindex + 5] + GlobalValueConfigCategory.Instance.HourseInitCapacity;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
 
             for (int i = 0; i < self.HouseList.Count; i++)

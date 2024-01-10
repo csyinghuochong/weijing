@@ -161,7 +161,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int bagcellNumber = self.BagComponent.GetTotalCell();
+            int bagcellNumber = self.BagComponent.GetBagTotalCell();
 
             for (int i = 0; i < bagcellNumber; i++)
             {
@@ -172,7 +172,7 @@ namespace ET
                 self.BagList.Add(uiitem);
             }
 
-            int hourseNumber = GlobalValueConfigCategory.Instance.StoreCapacity;
+            int hourseNumber = GlobalValueConfigCategory.Instance.HourseInitCapacity;
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -266,7 +266,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanWarehouseComponent self)
         {
-            if (self.HouseList.Count < GlobalValueConfigCategory.Instance.StoreCapacity)
+            if (self.HouseList.Count < GlobalValueConfigCategory.Instance.HourseInitCapacity)
             {
                 return;
             }

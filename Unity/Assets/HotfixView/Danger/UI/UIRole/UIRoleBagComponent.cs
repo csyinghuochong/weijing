@@ -178,7 +178,7 @@ namespace ET
         //点击回调
         public static void OnClickPageButton(this UIRoleBagComponent self, int page)
         {
-            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagMaxCell)
+            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagMaxCapacity)
             {
                 return;
             }
@@ -193,8 +193,8 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
-            int opencell = bagComponent.GetTotalCell();
-            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCell;
+            int opencell = bagComponent.GetBagTotalCell();
+            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 30)
@@ -369,7 +369,7 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(itemTypeEnum);
-            int openell = bagComponent.GetTotalCell();
+            int openell = bagComponent.GetBagTotalCell();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;

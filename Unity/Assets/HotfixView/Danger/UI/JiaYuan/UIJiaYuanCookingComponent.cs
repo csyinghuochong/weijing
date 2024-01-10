@@ -125,7 +125,7 @@ namespace ET
                 }
             }
 
-            for (int i = 0; i < bagComponent.GetTotalCell(); i++)
+            for (int i = 0; i < bagComponent.GetBagTotalCell(); i++)
             {
                 UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)

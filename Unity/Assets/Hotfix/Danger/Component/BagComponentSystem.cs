@@ -58,6 +58,7 @@ namespace ET
             self.FashionActiveIds = r2C_Bag.FashionActiveIds;
             self.FashionEquipList = r2C_Bag.FashionEquipList;
             self.SeasonJingHePlan = r2C_Bag.SeasonJingHePlan;
+            self.AdditionalCellNum = r2C_Bag.AdditionalCellNum;
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 
@@ -833,12 +834,17 @@ namespace ET
 
         public static int GetBagLeftCell(this BagComponent self)
         {
-            return self.GetTotalCell() - self.GetBagList().Count;
+            return self.GetBagTotalCell() - self.GetBagList().Count;
         }
 
-        public static int GetTotalCell(this BagComponent self)
+        public static int GetBagOpenCell(this BagComponent self)
         {
-            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.WarehouseAddedCell[0] + self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity ;
+        }
+
+        public static int GetBagTotalCell(this BagComponent self)
+        {
+            return self.WarehouseAddedCell[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
         }
 
         public static int GetPetHeXinLeftSpace(this BagComponent self)

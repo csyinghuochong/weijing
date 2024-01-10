@@ -118,7 +118,7 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             ///初始化背包格子
-            int bagcellNumber = self.BagComponent.GetTotalCell();
+            int bagcellNumber = self.BagComponent.GetBagTotalCell();
             for (int i = 0; i < bagcellNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -129,7 +129,7 @@ namespace ET
             }
 
             ////初始化仓库格子
-            int hourseNumber = GlobalValueConfigCategory.Instance.GemStoreMaxCell;
+            int hourseNumber = GlobalValueConfigCategory.Instance.GemStoreMaxCapacity;
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
