@@ -15,9 +15,8 @@ namespace ET
             "testcn01",
             "18319670288",          //唐1
             "18407228910",          //唐2
-            "18652422521",  
-            "18950216711",
-            "18741449090",          //临时 做视频那个人的
+            "18652422521",
+            "qqUID_9925F6D139D96D68D5B5657D2CFF0863",
         };
 
         public static List<long> BanChatPlayer = new List<long>()
