@@ -41,8 +41,17 @@ namespace ET
             double addPro = (double)numericComponent.GetAsInt(NumericType.Now_JumpDisAdd) / 10;
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
             float newspeedAdd = newSpeed - oldSpeed;
-            this.SpeedAddValue = newspeedAdd - oldspeedAdd;
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
+
+            if (newspeedAdd > oldspeedAdd)
+            {
+                this.SpeedAddValue = newspeedAdd - oldspeedAdd;
+                numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
+            }
+            else
+            {
+                this.SpeedAddValue = 0f;
+            }
+
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
