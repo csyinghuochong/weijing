@@ -44,7 +44,7 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.Btn_Type_3 = rc.Get<GameObject>("Btn_Type_3");
-            self.Btn_Type_3.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            self.Btn_Type_3.SetActive(true);
 
             //IOS适配
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
