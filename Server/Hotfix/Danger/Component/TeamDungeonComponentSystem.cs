@@ -259,16 +259,20 @@ namespace ET
                     if (hurts.ContainsKey(dBFriendInfo.FriendList[friend]))
                     {
                         haveFriend = true;
+                        break;
                     }
                 }
+
+                if (self.DomainZone() == 56 && unit.Id == 2122034524618555392)
+                {
+                    Log.Warning($"与好友完成组队副本： {unit.Id}   {dBFriendInfo.FriendList.Count}");
+                    Log.Console($"与好友完成组队副本： {unit.Id}   {dBFriendInfo.FriendList.Count}");
+                }
+
                 if (!haveFriend)
                 {
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
                     unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
-                }
-                if (self.DomainZone() == 5 && haveFriend)
-                {
-                    Log.Warning($"与好友完成组队副本： {unit.Id}");
                 }
             }
             await ETTask.CompletedTask;

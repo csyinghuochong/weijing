@@ -47,9 +47,9 @@ namespace ET
             Game.Scene.AddComponent<BuffDispatcherComponent>();
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
 
-            //long unitid = 1573661088032030720;
-            //int n = (int)((unitid / 99) % 4);
-            //Log.Console($"n: {n}");
+            long unitid = 1755199614916558848;
+            // int n = (int)((unitid / 99) % 4);
+            Log.Console($"n: {UnitIdStruct.GetUnitZone(unitid)}");
 
             switch (Game.Options.AppType)
             {
