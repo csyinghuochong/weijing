@@ -34,10 +34,14 @@ namespace ET
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
                     }
-                    chatInfoUnitsComponent.WordChatInfos.Add(request.ChatInfo);
-                    if (chatInfoUnitsComponent.WordChatInfos.Count>10)
+
+                    if (request.ChatInfo.ChannelId == (int)ChannelEnum.Word)
                     {
-                        chatInfoUnitsComponent.WordChatInfos.RemoveAt(chatInfoUnitsComponent.WordChatInfos.Count - 1);
+                        chatInfoUnitsComponent.WordChatInfos.Add(request.ChatInfo);
+                        if (chatInfoUnitsComponent.WordChatInfos.Count > 10)
+                        {
+                            chatInfoUnitsComponent.WordChatInfos.RemoveAt(chatInfoUnitsComponent.WordChatInfos.Count - 1);
+                        }
                     }
                     break;
                 case (int)ChannelEnum.Team:
