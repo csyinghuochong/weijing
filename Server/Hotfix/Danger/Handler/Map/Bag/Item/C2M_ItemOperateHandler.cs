@@ -484,8 +484,10 @@ namespace ET
                                 unit.GetComponent<BagComponent>().AdditionalCellNum[0]++;
                                 break;
                             case 140:
-                                int locIndex = int.Parse(request.OperatePar);
-                                unit.GetComponent<BagComponent>().AdditionalCellNum[locIndex]++;
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[5]++;
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[6]++;
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[7]++;
+                                unit.GetComponent<BagComponent>().AdditionalCellNum[8]++;
                                 //增加仓库格子
                                 break;
                         }

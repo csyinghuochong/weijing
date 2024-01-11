@@ -545,20 +545,11 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 140)
             {
-                UI uiwarehouse = UIHelper.GetUI( self.ZoneScene(), UIType.UIWarehouse );
-                if (uiwarehouse == null || uiwarehouse.GetComponent<UIWarehouseComponent>().UIPageButtonComponent.CurrentIndex != 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请选择仓库再使用!"));
-                    return;
-                }
-                UIWarehouseRoleComponent uIWarehouseRoleComponent = uiwarehouse.GetComponent<UIWarehouseComponent>().UIPageView.UISubViewList[0].GetComponent<UIWarehouseRoleComponent>();
-                int houseId = uIWarehouseRoleComponent.UIPageComponent.CurrentIndex + 5;    
-                if (self.ZoneScene().GetComponent<BagComponent>().AdditionalCellNum[houseId] >= 10)
+                if (self.ZoneScene().GetComponent<BagComponent>().AdditionalCellNum[5] >= 10)
                 {
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达到最大购买格子数量!"));
                     return;
                 }
-                usrPar = houseId.ToString();
             }
 
             long instanceid = self.InstanceId;
@@ -751,7 +742,7 @@ namespace ET
                 case ItemOperateEnum.CangkuBag:
                     self.Obj_BagOpenSet.SetActive(true);
                     self.Btn_StoreHouse.SetActive(true);
-                    self.Btn_Use.SetActive( itemconf.ItemType == 1 && itemconf.ItemSubType == 140 );
+                    self.Btn_Use.SetActive( false );
                     break;
                 //回收背包打开
                 case ItemOperateEnum.HuishouBag:
