@@ -266,6 +266,10 @@ namespace ET
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
                     unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
                 }
+                if (self.DomainZone() == 5 && haveFriend)
+                {
+                    Log.Warning($"与好友完成组队副本： {unit.Id}");
+                }
             }
             await ETTask.CompletedTask;
         }
