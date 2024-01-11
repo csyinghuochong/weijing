@@ -227,12 +227,20 @@ namespace ET
             for (int i = buffcnt - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
+                if (buffHandler.mBuffConfig.DeadNoRemove == 1)
+                {
+                    continue;
+                }
+
                 buffHandler.OnFinished();
                 ObjectPool.Instance.Recycle(buffHandler);
                 self.m_Buffs.RemoveAt(i);
                 self.AddBuffRecord(0, buffHandler.BuffData.BuffId); ;
             }
-            TimerComponent.Instance?.Remove(ref self.Timer);
+            if (self.m_Buffs.Count == 0)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+            }
         }
 
         public static void BuffRemoveList(this BuffManagerComponent self, List<int> buffIist)

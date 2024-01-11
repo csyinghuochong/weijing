@@ -54,6 +54,27 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void OnDead(this BuffManagerComponent self)
+        {
+            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            {
+                ABuffHandler buffHandler = self.m_Buffs[i];
+                if (buffHandler.mSkillBuffConf.DeadNoRemove == 1)
+                {
+                    continue;
+                }
+
+                buffHandler.OnFinished();
+                buffHandler.Clear();
+                self.m_Buffs.RemoveAt(i);
+                ObjectPool.Instance.Recycle(buffHandler);
+            }
+            if (self.m_Buffs.Count == 0)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+            }
+        }
+
         public static void OnUpdate(this BuffManagerComponent self)
         {
             int buffcnt = self.m_Buffs.Count;

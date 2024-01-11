@@ -873,7 +873,7 @@ namespace ET
             unit.GetComponent<StateComponent>().Reset();
             unit.GetComponent<MoveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish();
-            unit.GetComponent<BuffManagerComponent>()?.OnFinish();
+            unit.GetComponent<BuffManagerComponent>()?.OnDead();
             int sceneTypeEnum = unit.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {

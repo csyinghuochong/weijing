@@ -425,7 +425,10 @@ namespace ET
                 }
                 if (itemConfig.ItemSubType == 140)
                 {
-                    self.AdditionalCellNum[int.Parse(par)]++;
+                    self.AdditionalCellNum[5]++;
+                    self.AdditionalCellNum[6]++;
+                    self.AdditionalCellNum[7]++;
+                    self.AdditionalCellNum[8]++;
                     HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
                 }
 
