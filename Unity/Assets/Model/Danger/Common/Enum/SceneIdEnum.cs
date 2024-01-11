@@ -66,6 +66,7 @@ namespace ET
         public const int Demon = 23;        //恶魔活动
         public const int PetMing = 24;      //宠物矿场
         public const int SeasonTower = 25;  //赛季之塔
+
     }
 
     public static class SceneSubTypeEnum
