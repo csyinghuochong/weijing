@@ -155,7 +155,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (mailinfolist[i].ItemList[0].ItemID == 10032003)  //之前有一次全服误发精灵龟
+                if (mailinfolist[i].ItemList[0].ItemID == 10000151)  //之前有一次全服误发精灵龟 /羽毛
                 {
                     mailinfolist.RemoveAt(i);
                     continue;

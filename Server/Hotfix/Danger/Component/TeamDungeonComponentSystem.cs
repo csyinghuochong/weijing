@@ -261,7 +261,7 @@ namespace ET
                         haveFriend = true;
                     }
                 }
-                if (haveFriend)
+                if (!haveFriend)
                 {
                     unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.FriendPassFuben_138, 0, 1);
                     unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.FriendPassFuben_138, 0, 1);

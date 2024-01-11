@@ -56,11 +56,15 @@ namespace ET
 
         public static int GetMaxMaild(this MailSceneComponent self)
         {
-            if (self.dBServerMailInfo.ServerMailList.Count > 0)
+            int maxId = 0; 
+            foreach ((int id, ServerMailItem ServerItem) in self.dBServerMailInfo.ServerMailList)
             {
-                return self.dBServerMailInfo.ServerMailList[self.dBServerMailInfo.ServerMailList.Count - 1].ServerMailIId;
+                if (id >= maxId)
+                {
+                    maxId = id;
+                }
             }
-            return 0;
+            return maxId;
         }
 
         public static async ETTask<int> OnLogin(this MailSceneComponent self, long unitid, int curmailid)
