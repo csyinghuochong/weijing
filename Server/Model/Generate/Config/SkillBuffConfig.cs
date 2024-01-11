@@ -171,7 +171,7 @@ namespace ET
 		/// <summary>叠加层数触发技能</summary>
 		[ProtoMember(33)]
 		public int[] AddSkill { get; set; }
-		/// <summary>移除机制</summary>
+		/// <summary>被击杀后是否移除机制</summary>
 		[ProtoMember(34)]
 		public int DeadNoRemove { get; set; }
 
