@@ -1923,6 +1923,22 @@ namespace ET
                 }
             }
 
+            //神兽羁绊属性
+            int shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();
+            List<PropertyValue> shenshoujiban = new List<PropertyValue>();
+            foreach ((int petnumber, List<PropertyValue> prolist) in ConfigHelper.ShenShouJiBan)
+            {
+                if (shenshouNumber >= petnumber)
+                {
+                    shenshoujiban.AddRange(prolist);
+                }
+            }
+
+            for (int i = 0; i < shenshoujiban.Count; i++)
+            {
+                AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicList);
+            }
+
             //宠物皮肤属性
             //for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
             //{
@@ -2161,23 +2177,6 @@ namespace ET
             {
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicListCopy);
             }
-
-            //神兽羁绊属性
-            int shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();
-            List<PropertyValue> shenshoujiban = new List<PropertyValue>();
-            foreach ((int petnumber, List<PropertyValue> prolist) in ConfigHelper.ShenShouJiBan)
-            {
-                if (shenshouNumber >= petnumber)
-                {
-                    shenshoujiban.AddRange(prolist);
-                }
-            }
-
-            for (int i = 0; i < shenshoujiban.Count; i++)
-            {
-                AddUpdateProDicList(shenshoujiban[i].HideID, shenshoujiban[i].HideValue, UpdateProDicList);
-            }
-
             //8类型不加战力的被动技能属性
             //int SkillLiLiang = 0;
             //int SkillZhiLi = 0;
