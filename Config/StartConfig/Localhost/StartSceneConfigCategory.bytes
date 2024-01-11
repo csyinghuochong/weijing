@@ -543,6 +543,40 @@ $≤1?"LocalDungeon*LocalDungeon2
 $≥1?"LocalDungeon*LocalDungeon3
 $¥1?"LocalDungeon*LocalDungeon4
 µ1?	"Happy*Happy
+Å2@"Account*Account0Ö†
+Ç2@"Realm*Realm0Ü†
+É2@"Gate*Gate10á†
+Ñ2@"Queue*Queue0à†
+Ö2@"DBCache*DBCache
+Ü2@
+"Chat*Chat
+á2@
+"EMail*EMail
+à2@
+"Activity*Activity
+â2@
+"Rank*Rank
+ä2@
+"PaiMai*PaiMai
+ã2@	"Team*Team
+å2@
+"Friend*Friend
+ç2@	"Union*Union
+!é2@	"FubenCenter*FubenCenter
+è2@	"Battle*Battle
+ê2@"Map*Map101
+ë2@	"Arena*Arena
+í2@	"JiaYuan*JiaYuan
+ì2@
+"
+Popularize*
+Popularize
+î2@	"Solo*Solo
+$ï2@"LocalDungeon*LocalDungeon1
+$ñ2@"LocalDungeon*LocalDungeon2
+$ó2@"LocalDungeon*LocalDungeon3
+$ò2@"LocalDungeon*LocalDungeon4
+ô2@	"Happy*Happy
 Èù "Center*Center
 #Íù "LoginCenter*LoginCenter
 Îù "Location*Location
