@@ -54,7 +54,16 @@ namespace ET
             self.SaveDB().Coroutine();
         }
 
-        public static int OnLogin(this MailSceneComponent self, long unitid, int curmailid)
+        public static int GetMaxMaild(this MailSceneComponent self)
+        {
+            if (self.dBServerMailInfo.ServerMailList.Count > 0)
+            {
+                return self.dBServerMailInfo.ServerMailList[self.dBServerMailInfo.ServerMailList.Count - 1].ServerMailIId;
+            }
+            return 0;
+        }
+
+        public static async ETTask<int> OnLogin(this MailSceneComponent self, long unitid, int curmailid)
         {
             //检测没有发送的邮件
             foreach ((int id, ServerMailItem ServerItem) in self.dBServerMailInfo.ServerMailList)
@@ -65,7 +74,7 @@ namespace ET
                 }
                 if (!string.IsNullOrEmpty(ServerItem.ParasmNew))
                 {
-                    MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
+                   await  MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem);
                 }
                 
                 curmailid = id;
