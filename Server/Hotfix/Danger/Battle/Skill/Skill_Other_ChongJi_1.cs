@@ -42,7 +42,7 @@ namespace ET
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
             float newspeedAdd = newSpeed - oldSpeed;
 
-            if (newspeedAdd > oldspeedAdd)
+            if (newSpeed > oldSpeed && newspeedAdd > oldspeedAdd)
             {
                 this.SpeedAddValue = newspeedAdd - oldspeedAdd;
                 numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
