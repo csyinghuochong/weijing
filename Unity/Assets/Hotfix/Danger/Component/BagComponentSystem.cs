@@ -849,6 +849,10 @@ namespace ET
 
         public static int GetBagTotalCell(this BagComponent self)
         {
+            if (self.WarehouseAddedCell.Count == 0 || self.AdditionalCellNum.Count == 0)
+            {
+                return  GlobalValueConfigCategory.Instance.BagInitCapacity;
+            }
             return self.WarehouseAddedCell[0] + self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity;
         }
 
