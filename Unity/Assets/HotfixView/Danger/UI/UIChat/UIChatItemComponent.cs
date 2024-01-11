@@ -63,7 +63,7 @@ namespace ET
                 return;
             }
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, self.mChatInfo.UserId).Coroutine();
+            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Chat, self.mChatInfo.UserId).Coroutine();
         }
 
         public static async ETTask OnClickRickText(this UIChatItemComponent self, string text)

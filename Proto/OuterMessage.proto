@@ -7445,3 +7445,17 @@ message Chat2C_GetChatResponse // IChatActorResponse
 	string Message = 92;
     repeated ChatInfo ChatInfos = 1;
 }
+
+//ResponseType M2C_OneChallengeResponse 
+message C2M_OneChallengeRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OtherId = 1;
+}
+
+message M2C_OneChallengeResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}

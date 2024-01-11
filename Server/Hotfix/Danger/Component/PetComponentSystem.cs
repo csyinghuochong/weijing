@@ -180,6 +180,12 @@ namespace ET
                     }
                     rolePetInfo.ShouHuPos = 5;
                 }
+                if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
+                {
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                    rolePetInfo.SkinId = petConfig.Skin.Length >= 2 ? petConfig.Skin[1] : petConfig.Skin[0];
+                }
+
                 PetHelper.CheckPropretyPoint(rolePetInfo);
             }
 

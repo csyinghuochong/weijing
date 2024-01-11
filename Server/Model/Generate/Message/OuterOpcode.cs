@@ -863,5 +863,7 @@ namespace ET
 		 public const ushort M2C_BloodstoneQiangHuaResponse = 10860;
 		 public const ushort C2Chat_GetChatRequest = 10861;
 		 public const ushort Chat2C_GetChatResponse = 10862;
+		 public const ushort C2M_OneChallengeRequest = 10863;
+		 public const ushort M2C_OneChallengeResponse = 10864;
 	}
 }

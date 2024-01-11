@@ -303,9 +303,13 @@ namespace ET
 
         public static async ETTask OnClickUnitItem(this OperaComponent self, long unitid)
         {
-            if (unitid == self.ZoneScene().GetComponent<AccountInfoComponent>().MyId)
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if ( unitid == accountInfoComponent.MyId)
             {
-                return;
+                if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+                {
+                    return;
+                }
             }
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
             if (unit.Type == UnitType.Stall)

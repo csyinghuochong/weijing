@@ -15520,4 +15520,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_OneChallengeResponse))]
+	[Message(OuterOpcode.C2M_OneChallengeRequest)]
+	[ProtoContract]
+	public partial class C2M_OneChallengeRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long OtherId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_OneChallengeResponse)]
+	[ProtoContract]
+	public partial class M2C_OneChallengeResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

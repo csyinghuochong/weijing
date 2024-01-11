@@ -11,6 +11,7 @@ namespace ET
         Main = 1,
         Team = 2,
         Union = 3,
+        Chat  = 4,
     }
 
     public static class MenuOperation
@@ -29,6 +30,7 @@ namespace ET
         public const int UnionAider = 12;   
         public const int UnionElde = 13;
         public const int UnionDismiss = 14;
+        public const int OneChallenge = 15;    
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -49,6 +51,7 @@ namespace ET
         public GameObject Button_UnionAider;        //任命副族长
         public GameObject Button_UnionElder;        //任命长老
         public GameObject Button_UnionDismiss;      //撤销职务
+        public GameObject Button_OneChallenge;
         public GameObject PositionSet;
 
         public long UserId;
@@ -108,6 +111,8 @@ namespace ET
             self.Button_UnionElder.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(3).Coroutine(); });
             self.Button_UnionDismiss = rc.Get<GameObject>("Button_UnionDismiss");  //撤销职务
             self.Button_UnionDismiss.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(0).Coroutine(); });
+            self.Button_OneChallenge = rc.Get<GameObject>("Button_OneChallenge");  //撤销职务
+            self.Button_OneChallenge.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_OneChallenge().Coroutine(); });
 
             self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
@@ -119,6 +124,7 @@ namespace ET
             self.Button_UnionAider.SetActive(false);
             self.Button_UnionElder.SetActive(false);
             self.Button_UnionDismiss.SetActive(false);
+            self.Button_OneChallenge.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
@@ -164,6 +170,13 @@ namespace ET
             {
                 self.RequestKickUnion().Coroutine();
             }, null).Coroutine();
+        }
+
+        public static async ETTask OnButton_OneChallenge(this UIWatchMenuComponent self)
+        {
+            await ETTask.CompletedTask;
+
+            self.OnClickImageBg();
         }
 
         public static async ETTask OnButton_UnionOperate(this UIWatchMenuComponent self, int postion)
@@ -400,6 +413,8 @@ namespace ET
             switch (menuEnumType)
             {
                 case MenuEnumType.Main:
+                    MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+
                     break;
                 case MenuEnumType.Team:
                     break;
