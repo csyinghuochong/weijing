@@ -281,7 +281,7 @@ namespace ET
         /// <summary>
         /// 发送协议给ActorLocation
         /// </summary>
-        /// <param name="id">注册Actor的Id</param>
+        /// <param name="id">注册Actor的Id</param> unitid
         /// <param name="message"></param>
         public static void SendToLocationActor(long id, IActorLocationMessage message)
         {

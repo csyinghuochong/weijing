@@ -174,8 +174,8 @@ namespace ET
 
         public static async ETTask OnButton_OneChallenge(this UIWatchMenuComponent self)
         {
-            await ETTask.CompletedTask;
-
+            C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() { OtherId = self.UserId };
+            M2C_OneChallengeResponse response = (M2C_OneChallengeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.OnClickImageBg();
         }
 
@@ -414,7 +414,7 @@ namespace ET
             {
                 case MenuEnumType.Main:
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-
+                    self.Button_OneChallenge.SetActive( mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
                     break;
                 case MenuEnumType.Team:
                     break;

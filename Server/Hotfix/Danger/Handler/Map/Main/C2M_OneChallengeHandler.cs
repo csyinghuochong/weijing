@@ -21,7 +21,10 @@ namespace ET
                 return;
             }
 
-
+            M2C_OneChallenge m2CCreateUnits = new M2C_OneChallenge();
+            m2CCreateUnits.OtherId = unit.Id;
+            m2CCreateUnits.OtherName = unit.GetComponent<UserInfoComponent>().UserName;
+            MessageHelper.SendToClient(other, m2CCreateUnits);
 
             reply();
             await ETTask.CompletedTask;

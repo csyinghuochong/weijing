@@ -784,5 +784,12 @@ namespace ET
             public Action<int, bool> ShareHandler;
             public Scene ZoneScene;
         }
+
+        public class UIOneChallenge : DisposeObject
+        {
+            public static readonly UIOneChallenge Instance = new UIOneChallenge();
+            public M2C_OneChallenge m2C_OneChallenge;
+            public Scene ZoneScene;
+        }
     }
 }

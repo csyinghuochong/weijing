@@ -59,8 +59,6 @@ message A2C_RealNameResponse // IResponse
 message C2M_TestRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-
-
 	int64 ActorId = 93;
 	string request = 1;
 }
@@ -7451,6 +7449,7 @@ message C2M_OneChallengeRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 OtherId = 1;
+	int32 Operatate = 2;    //1申请 2迎战
 }
 
 message M2C_OneChallengeResponse // IActorLocationResponse
@@ -7458,4 +7457,12 @@ message M2C_OneChallengeResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;		
 	int32 Error = 92;
+}
+
+message M2C_OneChallenge // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 OtherId = 1;
+	string OtherName = 2;
 }

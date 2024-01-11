@@ -865,5 +865,6 @@ namespace ET
 		 public const ushort Chat2C_GetChatResponse = 10862;
 		 public const ushort C2M_OneChallengeRequest = 10863;
 		 public const ushort M2C_OneChallengeResponse = 10864;
+		 public const ushort M2C_OneChallenge = 10865;
 	}
 }

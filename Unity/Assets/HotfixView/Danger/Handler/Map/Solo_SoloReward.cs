@@ -1,10 +1,4 @@
-using ET;
 using UnityEngine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace ET
@@ -14,10 +8,8 @@ namespace ET
     {
         protected override void Run(object cls)
         {
-            //��ȡ�¼���Ӧ����
             EventType.UISoloQuit args = cls as EventType.UISoloQuit;
 
-            //�Ƴ���Ӧ����
             UIHelper.Remove(args.ZoneScene, UIType.UISolo);
         }
     }
@@ -27,7 +19,6 @@ namespace ET
     {
         protected override async void Run(object cls)
         {
-            //��ȡ�¼���Ӧ����
             EventType.UISoloReward args = cls as EventType.UISoloReward;
 
             UI uisoloReward = UIHelper.GetUI(args.ZoneScene, UIType.UISoloReward);
