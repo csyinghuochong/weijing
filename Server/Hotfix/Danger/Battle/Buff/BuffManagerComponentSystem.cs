@@ -221,13 +221,13 @@ namespace ET
             self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
         }
 
-        public static void OnDead(this BuffManagerComponent self)
+        public static void OnDead(this BuffManagerComponent self, Unit attack)
         {
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
-                if (buffHandler.mBuffConfig.DeadNoRemove == 1)
+                if (attack!=null && attack.Type== UnitType.Player && buffHandler.mBuffConfig.DeadNoRemove == 1)
                 {
                     continue;
                 }
