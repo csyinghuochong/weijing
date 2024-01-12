@@ -736,8 +736,9 @@ namespace ET
                     self.Btn_PutBag.SetActive(true);
                     break;
                 case ItemOperateEnum.GemBag:
+                    self.Obj_BagOpenSet.SetActive(true);
                     self.Btn_StoreHouse.SetActive(true);
-                    self.Btn_Use.SetActive(true);
+                    self.Btn_Use.SetActive(false);
                     break;
                 case ItemOperateEnum.CangkuBag:
                     self.Obj_BagOpenSet.SetActive(true);
