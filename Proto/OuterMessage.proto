@@ -7449,7 +7449,7 @@ message C2M_OneChallengeRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 OtherId = 1;
-	int32 Operatate = 2;    //1申请 2迎战
+	int32 Operatate = 2;    //1放弃挑战  2接受挑战
 }
 
 message M2C_OneChallengeResponse // IActorLocationResponse
@@ -7463,6 +7463,8 @@ message M2C_OneChallenge // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 OtherId = 1;
-	string OtherName = 2;
+
+	int32 Operatate = 1;   //1收到挑战 2开始挑战
+	int64 OtherId = 2;      
+	string OtherName = 3;
 }
