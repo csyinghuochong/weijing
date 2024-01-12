@@ -979,7 +979,7 @@ namespace ET
                     itemLockType = ItemLocType.ItemPetHeXinBag;
                     itemlist = self.GetItemByLoc(itemLockType);
                 }
-                else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone)
+                else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone && itemCof.ItemQuality > 3)
                 {
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     if (numericComponent.GetAsInt(NumericType.GemWarehouseOpen) >=1 && self.CheckCanAddItem(itemID, leftNum, ItemLocType.GemWareHouse1))
