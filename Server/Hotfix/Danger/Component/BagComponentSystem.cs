@@ -331,19 +331,20 @@ namespace ET
             return baginfo;
         }
 
-        //获取某个道具的数量[只取背包的]
-        public static long GetItemNumber(this BagComponent self, int itemId)
+        //获取某个道具的数量
+        public static long GetItemNumber(this BagComponent self, int itemId, ItemLocType itemLocType = ItemLocType.ItemLocBag)
         {
             int userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;
             switch (userDataType)
             {
                 case UserDataType.None:
-                    for (int i = 0; i < self.BagItemList.Count; i++)
+                    List<BagInfo> bagInfos = self.GetItemByLoc(itemLocType);
+                    for (int i = 0; i < bagInfos.Count; i++)
                     {
-                        if (self.BagItemList[i].ItemID == itemId)
+                        if (bagInfos[i].ItemID == itemId)
                         {
-                            number += self.BagItemList[i].ItemNum;
+                            number += bagInfos[i].ItemNum;
                         }
                     }
                     break;
@@ -1276,7 +1277,7 @@ namespace ET
         }
 
         //字符串删除道具
-        public static bool OnCostItemData(this BagComponent self, string rewardItems)
+        public static bool OnCostItemData(this BagComponent self, string rewardItems, ItemLocType itemLocType = ItemLocType.ItemLocBag)
         {
             List<RewardItem> costItems = new List<RewardItem>();
             string[] needList = rewardItems.Split('@');
@@ -1291,7 +1292,7 @@ namespace ET
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
-            return self.OnCostItemData(costItems);
+            return self.OnCostItemData(costItems, itemLocType);
         }
 
         //删除背包道具道具[支持同时添加多个]
@@ -1351,7 +1352,7 @@ namespace ET
         }
 
         //删除背包道具道具[支持同时添加多个]
-        public static bool OnCostItemData(this BagComponent self, List<RewardItem> costItems)
+        public static bool OnCostItemData(this BagComponent self, List<RewardItem> costItems, ItemLocType itemLocType = ItemLocType.ItemLocBag)
         {
             for (int i = costItems.Count - 1; i >= 0; i--)
             {
@@ -1359,7 +1360,7 @@ namespace ET
                 long itemNum = costItems[i].ItemNum;
 
                 //获取背包内的道具是否足够
-                if (self.GetItemNumber(itemID) < itemNum)
+                if (self.GetItemNumber(itemID, itemLocType) < itemNum)
                 {
                     return false;
                 }
@@ -1417,9 +1418,10 @@ namespace ET
                 //    continue;
                 //}
                 LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", false);
-                for (int k = self.BagItemList.Count - 1; k >= 0; k--)
+                List<BagInfo> bagInfos = self.GetItemByLoc(itemLocType);
+                for (int k = bagInfos.Count - 1; k >= 0; k--)
                 {
-                    BagInfo userBagInfo = self.BagItemList[k];
+                    BagInfo userBagInfo = bagInfos[k];
                     if (userBagInfo.ItemID == itemID)
                     {
                         if (userBagInfo.ItemNum >= itemNum)
@@ -1431,7 +1433,7 @@ namespace ET
                             if (userBagInfo.ItemNum <= 0)
                             {
                                 m2c_bagUpdate.BagInfoDelete.Add(userBagInfo);
-                                self.BagItemList.RemoveAt(k);
+                                bagInfos.RemoveAt(k);
                             }
                             else
                             {
@@ -1444,7 +1446,7 @@ namespace ET
                             //完全删除道具
                             userBagInfo.ItemNum = 0;
                             m2c_bagUpdate.BagInfoDelete.Add(userBagInfo);
-                            self.BagItemList.RemoveAt(k);
+                            bagInfos.RemoveAt(k);
                         }
 
                         //扣除完道具直接跳出当前循环

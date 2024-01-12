@@ -9,8 +9,14 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_GemHeChengQuickRequest request, M2C_GemHeChengQuickResponse response, Action reply)
         {
-            ///request加个仓库。  0是19ItemLocType.BagItemList     19ItemLocType.GemWareHouse1
-            List<BagInfo> bagItemList = unit.GetComponent<BagComponent>().BagItemList;
+            // request加个仓库。  0是ItemLocType.BagItemList     19ItemLocType.GemWareHouse1
+            if (request.LocType != 0 && request.LocType != 19)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+            }
+
+            List<BagInfo> bagItemList = unit.GetComponent<BagComponent>().GetItemByLoc((ItemLocType)request.LocType);
 
             List<BagInfo> gemList = new List<BagInfo>();
             for (int i = 0; i < bagItemList.Count; i++)
@@ -73,13 +79,16 @@ namespace ET
 
             foreach ((int itemid, int number) in removeids)
             {
-                unit.GetComponent<BagComponent>().OnCostItemData($"{itemid};{number}");
+                unit.GetComponent<BagComponent>().OnCostItemData($"{itemid};{number}", (ItemLocType)request.LocType);
             }
 
-            foreach ( ( int itemid, int number ) in addIds)
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            foreach ((int itemid, int number) in addIds)
             {
-                unit.GetComponent<BagComponent>().OnAddItemData($"{itemid};{number}", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
+                rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
             }
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
+                UseLocType: (ItemLocType)request.LocType);
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (costvitality * -1).ToString());

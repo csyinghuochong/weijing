@@ -12,6 +12,7 @@ namespace ET
         public GameObject BuildingList2;
         public GameObject ButtonPack;
         public GameObject ButtonQuick;
+        public GameObject ButtonHeCheng;
 
         public BagComponent BagComponent;
         public UIPageButtonComponent UIPageComponent;
@@ -42,6 +43,9 @@ namespace ET
 
             self.ButtonQuick = rc.Get<GameObject>("ButtonQuick");
             self.ButtonQuick.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonQuick().Coroutine(); });
+
+            self.ButtonHeCheng = rc.Get<GameObject>("ButtonHeCheng");
+            self.ButtonHeCheng.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonHeCheng().Coroutine(); });
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
@@ -102,6 +106,18 @@ namespace ET
         public static async ETTask OnButtonQuick(this UIWarehouseGemComponent self)
         {
             await ETTask.CompletedTask;
+        }
+
+        public static async ETTask OnButtonHeCheng(this UIWarehouseGemComponent self)
+        {
+            C2M_GemHeChengQuickRequest request = new C2M_GemHeChengQuickRequest() { LocType = 19 };
+            M2C_GemHeChengQuickResponse response =
+                    (M2C_GemHeChengQuickResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宝石合成成功！"));
+                
+            }
         }
 
         public static  void OnBtn_ZhengLi(this UIWarehouseGemComponent self)
