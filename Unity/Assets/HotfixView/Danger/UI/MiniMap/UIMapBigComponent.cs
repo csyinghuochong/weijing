@@ -15,6 +15,7 @@ namespace ET
         public GameObject MapName;
         public GameObject bossIcon;
         public GameObject jinglingIcon;
+        public GameObject monsterPostion;
         public GameObject chuansong;
         public GameObject teamerPostion;
         public GameObject ChuanSongName;
@@ -30,12 +31,14 @@ namespace ET
         public GameObject ImageSelect;
         public GameObject MapCamera;
         public GameObject UIMapBigNpcItem;
+        public GameObject Btn_ShowMonster;
 
         public MoveComponent MoveComponent;
         public List<GameObject> PathPointList = new List<GameObject>();
         public Dictionary<int, GameObject> NpcGameObject = new Dictionary<int, GameObject>();
         public Dictionary<int, Vector3> BossList = new Dictionary<int, Vector3>();
         public List<GameObject> TeamerPointList = new List<GameObject>();
+        public List<GameObject> MonsterPointList = new List<GameObject>();
 
         public Vector3 InvisiblePosition = new Vector3( -3000f, -3000f, 0f );
     }
@@ -69,6 +72,8 @@ namespace ET
             self.bossIcon.SetActive(false);
             self.jinglingIcon = rc.Get<GameObject>("jinglingIcon");
             self.jinglingIcon.SetActive(false);
+            self.monsterPostion = rc.Get<GameObject>("monsterPostion");
+            self.monsterPostion.SetActive(false);
 
             self.jiayuanPet = rc.Get<GameObject>("jiayuanPet");
             self.jiayuanPet.SetActive(false);
@@ -90,7 +95,10 @@ namespace ET
             self.UIMapBigNpcItem = rc.Get<GameObject>("UIMapBigNpcItem");
             self.UIMapBigNpcItem.SetActive(false);
 
-            self.Btn_Close.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { self.OnCloseMiniMap(); });
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMiniMap(); });
+            self.Btn_ShowMonster = rc.Get<GameObject>("Btn_ShowMonster");
+            self.Btn_ShowMonster.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Btn_ShowMonster.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ShowMonster(); });
 
             ButtonHelp.AddEventTriggers(self.RawImage, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
 
@@ -222,7 +230,7 @@ namespace ET
             }
         }
 
-        public static void InstantiateIcon(this UIMapBigComponent self, GameObject go, Vector3 position, string name)
+        public static GameObject InstantiateIcon(this UIMapBigComponent self, GameObject go, Vector3 position, string name)
         {
             position = self.GetWordToUIPositon(position);
             GameObject gameObject = UnityEngine.Object.Instantiate(go, go.transform.parent, true);
@@ -230,6 +238,7 @@ namespace ET
             gameObject.transform.localScale = Vector3.one;
             gameObject.transform.localPosition = position;
             gameObject.transform.Find("Text").GetComponent<Text>().text = name;
+            return gameObject;
         }
 
         public static async ETTask RequestLocalUnitPosition(this UIMapBigComponent self)
@@ -548,6 +557,60 @@ namespace ET
                 self.ZoneScene().GetComponent<GuideComponent>().OnNext(uIGuideComponent.guidCof.GroupId);
             }
             UIHelper.Remove(self.DomainScene(), UIType.UIMapBig);
+        }
+
+        public static void OnBtn_ShowMonster(this UIMapBigComponent self)
+        {
+            if (self.MonsterPointList.Count > 0)
+            {
+                bool isShow = false;
+                isShow = !self.MonsterPointList[0].activeSelf;
+                foreach (GameObject gameObject in self.MonsterPointList)
+                {
+                    gameObject.SetActive(isShow);
+                }
+
+                return;
+            }
+
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.LocalDungeon)
+            {
+                return;
+            }
+
+            string[] monsters = SceneConfigHelper.GetLocalDungeonMonsters_2(self.SceneId).Split('@');
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                if (ComHelp.IfNull(monsters[i]))
+                {
+                    continue;
+                }
+
+                try
+                {
+                    //1;37.65,0,3.2;70005005;1
+                    string[] mondels = monsters[i].Split(';');
+                    string[] mtype = mondels[0].Split(',');
+                    string[] position = mondels[1].Split(',');
+                    string[] monsterid = mondels[2].Split(',');
+
+                    if (mtype[0] != "1" && mtype[0] != "2")
+                    {
+                        continue;
+                    }
+
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+
+                    Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
+                    self.MonsterPointList.Add(self.InstantiateIcon(self.monsterPostion, vector3, vector3.ToString()));
+                    ;
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug(monsters[i] + "  " + ex.ToString());
+                }
+            }
         }
 
         public static void OnMainHeroMove(this UIMapBigComponent self)
