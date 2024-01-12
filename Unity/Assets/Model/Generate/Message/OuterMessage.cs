@@ -15562,9 +15562,12 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long OtherId { get; set; }
+		public int Operatate { get; set; }
 
 		[ProtoMember(2)]
+		public long OtherId { get; set; }
+
+		[ProtoMember(3)]
 		public string OtherName { get; set; }
 
 	}

@@ -49,6 +49,7 @@ namespace ET
         public const int Error_PickErrorCell = 200033;
         public const int Error_PickWaitSelect = 200034;
         public const int ERR_WarehouseIsFull = 200035;                                    //仓库已满
+        public const int ERR_OtherNotExist = 200036;
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册
