@@ -253,6 +253,15 @@ namespace ET
                     rolePetInfo.SkinId = petConfig.Skin.Length >= 2 ? petConfig.Skin[1] : petConfig.Skin[0];
                 }
             }
+            for (int i = 0; i < self.RolePetBag.Count; i++)
+            {
+                RolePetInfo rolePetInfo = self.RolePetBag[i];
+                if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
+                {
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                    rolePetInfo.SkinId = petConfig.Skin.Length >= 2 ? petConfig.Skin[1] : petConfig.Skin[0];
+                }
+            }
 
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
