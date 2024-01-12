@@ -108,6 +108,8 @@ namespace ET
                     return "0";
                 case GameSettingEnum.SkillAttackPlayerFirst:
                     return "0";
+                case GameSettingEnum.PickSet:
+                    return "0@0";
                 default:
                     return "0";
             }

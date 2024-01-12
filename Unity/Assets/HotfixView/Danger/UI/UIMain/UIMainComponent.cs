@@ -1358,6 +1358,8 @@ namespace ET
             self.ZoneScene().GetComponent<LockTargetComponent>().SkillAttackPlayerFirst =
                     int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst));
 
+            self.UIMainSkillComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
+
             self.CheckRechargeRewardButton();
         }
 
