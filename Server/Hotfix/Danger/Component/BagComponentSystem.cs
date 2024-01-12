@@ -857,7 +857,10 @@ namespace ET
 
                 if (!have)
                 {
-                    rewardItems.Add(rewardItems_init[i]);
+                    RewardItem item = new RewardItem();
+                    item.ItemID = rewardItems_init[i].ItemID;
+                    item.ItemNum = rewardItems_init[i].ItemNum;
+                    rewardItems.Add(item);
                 }
             }
 
