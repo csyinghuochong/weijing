@@ -21,6 +21,7 @@ namespace ET
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
 
             PetComponent petComponent = self.MainUnit.GetComponent<PetComponent>();
+            petComponent.CheckSkin();
             for (int i = 0; i < petComponent.TeamPetList.Count; i++)
             {
                 RolePetInfo rolePetInfo = petComponent.GetPetInfo(petComponent.TeamPetList[i]);
@@ -38,6 +39,7 @@ namespace ET
             if (d2GGetUnit.Component != null)
             {
                 PetComponent petComponent_enemy =  d2GGetUnit.Component as PetComponent;
+                petComponent_enemy.CheckSkin(); 
                 for (int i = 0; i < petComponent_enemy.TeamPetList.Count; i++)
                 {
                     RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petComponent_enemy.TeamPetList[i]);
