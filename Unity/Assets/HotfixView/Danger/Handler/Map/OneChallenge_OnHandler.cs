@@ -19,7 +19,13 @@ namespace ET
             }
             if (args.m2C_OneChallenge.Operatate == 2)
             {
-
+                MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
+                if (mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene)
+                {
+                    return;
+                }
+                int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.OneChallenge);
+                EnterFubenHelp.RequestTransfer(  args.ZoneScene, SceneTypeEnum.OneChallenge, sceneId, 0, args.m2C_OneChallenge.OtherId.ToString()).Coroutine();
             }
         }
 
@@ -30,7 +36,8 @@ namespace ET
             {
                 return;
             }
-
+            C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() { Operatate = 2, OtherId = args.m2C_OneChallenge.OtherId };
+            M2C_OneChallengeResponse response = (M2C_OneChallengeResponse)await args.ZoneScene.GetComponent<SessionComponent>().Session.Call(request);
             await ETTask.CompletedTask;
         }
     }

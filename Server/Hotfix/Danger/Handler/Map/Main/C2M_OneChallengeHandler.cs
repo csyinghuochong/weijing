@@ -33,10 +33,11 @@ namespace ET
             }
             if (request.Operatate == 2) //迎接挑战
             {
+                long fubenid = IdGenerater.Instance.GenerateInstanceId();
                 List<Unit> allUnits = new List<Unit> { unit, other };  
                 M2C_OneChallenge m2CCreateUnits = new M2C_OneChallenge();
                 m2CCreateUnits.Operatate = 2;
-                m2CCreateUnits.OtherId =  0;
+                m2CCreateUnits.OtherId = fubenid;
                 MessageHelper.SendToClient(allUnits, m2CCreateUnits);
             }
 

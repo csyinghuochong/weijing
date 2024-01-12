@@ -187,6 +187,23 @@ namespace ET
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, request.Difficulty, "0");
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
+                    case SceneTypeEnum.OneChallenge:
+                        fubenid = long.Parse(request.paramInfo);
+                        fubnescene = Game.Scene.Get(fubenid);
+                        if (fubnescene == null)
+                        {
+                            fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+                            fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "OneChallenge" + fubenid.ToString(), SceneType.Fuben);
+                            mapComponent = fubnescene.GetComponent<MapComponent>();
+                            mapComponent.SetMapInfo((int)SceneTypeEnum.OneChallenge, request.SceneId, 0);
+                            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
+                            Game.Scene.GetComponent<RecastPathComponent>().Update(fubnescene.GetComponent<MapComponent>().NavMeshId);
+                        }
+                        fubenInstanceId = fubnescene.InstanceId;
+                        TransferHelper.BeforeTransfer(unit);
+                        await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.OneChallenge, request.SceneId, request.Difficulty, "0");
+                        TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+                        break;
                     case (int)SceneTypeEnum.PetMing:
                         long cdTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime);
                         if (cdTime > TimeHelper.ServerNow())

@@ -174,7 +174,7 @@ namespace ET
 
         public static async ETTask OnButton_OneChallenge(this UIWatchMenuComponent self)
         {
-            C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() { OtherId = self.UserId };
+            C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() {  Operatate = 1, OtherId = self.UserId };
             M2C_OneChallengeResponse response = (M2C_OneChallengeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.OnClickImageBg();
         }

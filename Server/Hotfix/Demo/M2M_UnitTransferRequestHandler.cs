@@ -322,6 +322,7 @@ namespace ET
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
                     case SceneTypeEnum.SeasonTower:
+					case SceneTypeEnum.OneChallenge:
                         unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
@@ -392,7 +393,7 @@ namespace ET
                             Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 							scene.GetComponent<SeasonTowerComponent>().GenerateFuben(int.Parse(request.ParamInfo));
                         }
-						
+
                         TransferHelper.AfterTransfer(unit);
                         break;
                     case SceneTypeEnum.TowerOfSeal:
