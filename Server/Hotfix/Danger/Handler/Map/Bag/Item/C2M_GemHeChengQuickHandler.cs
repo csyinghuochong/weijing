@@ -77,14 +77,31 @@ namespace ET
                 return;
             }
 
+            string removeItems = string.Empty;
             foreach ((int itemid, int number) in removeids)
             {
-                unit.GetComponent<BagComponent>().OnCostItemData($"{itemid};{number}", (ItemLocType)request.LocType);
-            }
+                if (number == 0)
+                {
+                    continue;
+                }
 
+                if (removeItems != string.Empty)
+                {
+                    removeItems += "@";
+                }
+
+                removeItems += $"{itemid};{number}";
+            }
+            unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType);
+            
             List<RewardItem> rewardItems = new List<RewardItem>();
             foreach ((int itemid, int number) in addIds)
             {
+                if (number == 0)
+                {
+                    continue;
+                }
+
                 rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
             }
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
