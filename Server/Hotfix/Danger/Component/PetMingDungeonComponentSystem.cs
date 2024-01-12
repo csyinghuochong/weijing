@@ -128,8 +128,8 @@ namespace ET
                 }
 
                 int position = petComponent.PetMingPosition.IndexOf(petinfoid);
-                position = position != -1 ? position %= 9 : i;   
-
+                position = position != -1 ? position %= 9 : i;
+                petComponent.UpdatePetAttribute(rolePetInfo, false);
                 Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), unit.Id,
                     CampEnum.CampPlayer_1, rolePetInfo, AIHelp.Formation_1[ position ], 0f, position);
                 petunit.GetComponent<AIComponent>().Stop();

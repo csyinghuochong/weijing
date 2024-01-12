@@ -29,6 +29,7 @@ namespace ET
                 {
                     continue;
                 }
+                petComponent.UpdatePetAttribute(rolePetInfo, false);
                 Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), unit.Id,
                    unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i], 0f, i);
             }
