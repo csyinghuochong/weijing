@@ -208,7 +208,6 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData($"10010097;{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
                 }
             }
-
         }
 
         //获取新宠物
@@ -861,6 +860,12 @@ namespace ET
             //属性加点对应属性 力量-攻击 智力-魔法 体质-血量 耐力就是物防和魔防
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
+            if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
+            {
+                rolePetInfo.SkinId = petCof.Skin.Length >= 2 ? petCof.Skin[1] : petCof.Skin[0];
+                Log.Console($"rolePetInfo.SkinId:  {rolePetInfo.SkinId}");
+            }
+
             PetHelper.CheckPropretyPoint(rolePetInfo);
 
             //获取加点属性
@@ -1041,11 +1046,6 @@ namespace ET
                 }
             }
 
-            if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
-            {
-                rolePetInfo.SkinId = petCof.Skin.Length>=2 ? petCof.Skin[1] : petCof.Skin[0];
-                Log.Console($"rolePetInfo.SkinId:  {rolePetInfo.SkinId}");
-            }
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             if (!ComHelp.IfNull(petSkinConfig.PripertySet))
             {
