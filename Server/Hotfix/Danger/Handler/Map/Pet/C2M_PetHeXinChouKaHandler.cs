@@ -64,12 +64,11 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-
-            response.ReardList = rewardItems;
-            reply();
             
             unit.GetComponent<BagComponent>()
                     .OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetExplore}_{TimeHelper.ServerNow()}");
+            response.ReardList = rewardItems;
+            reply();
             await ETTask.CompletedTask;
         }
     }
