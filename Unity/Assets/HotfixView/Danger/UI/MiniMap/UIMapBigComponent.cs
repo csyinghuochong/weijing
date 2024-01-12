@@ -604,7 +604,6 @@ namespace ET
 
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
                     self.MonsterPointList.Add(self.InstantiateIcon(self.monsterPostion, vector3, vector3.ToString()));
-                    ;
                 }
                 catch (Exception ex)
                 {
