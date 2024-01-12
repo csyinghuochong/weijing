@@ -9,6 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_GemHeChengQuickRequest request, M2C_GemHeChengQuickResponse response, Action reply)
         {
+            ///request加个仓库。  0是19ItemLocType.BagItemList     19ItemLocType.GemWareHouse1
             List<BagInfo> bagItemList = unit.GetComponent<BagComponent>().BagItemList;
 
             List<BagInfo> gemList = new List<BagInfo>();
