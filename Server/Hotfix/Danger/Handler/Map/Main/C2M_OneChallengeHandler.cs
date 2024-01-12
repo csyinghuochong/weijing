@@ -36,7 +36,7 @@ namespace ET
                 List<Unit> allUnits = new List<Unit> { unit, other };  
                 M2C_OneChallenge m2CCreateUnits = new M2C_OneChallenge();
                 m2CCreateUnits.Operatate = 2;
-                m2CCreateUnits.OtherId =  ;
+                m2CCreateUnits.OtherId =  0;
                 MessageHelper.SendToClient(allUnits, m2CCreateUnits);
             }
 
