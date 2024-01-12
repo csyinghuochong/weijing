@@ -92,8 +92,11 @@ namespace ET
 
                 removeItems += $"{itemid};{number}";
             }
-            unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType);
-            
+            if (removeItems != string.Empty)
+            {
+                unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType);
+            }
+
             List<RewardItem> rewardItems = new List<RewardItem>();
             foreach ((int itemid, int number) in addIds)
             {
