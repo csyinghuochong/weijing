@@ -1157,7 +1157,7 @@ namespace ET
                     if (itemCof.ItemSubType == 121)
                     {
                         int makePlan = 1;
-                        if (getWayInfo.Length >= 3)
+                        if (getType == ItemGetWay.SkillMake &&  getWayInfo.Length >= 3)
                         {
                             makePlan = int.Parse(getWayInfo[1]);
                         }
