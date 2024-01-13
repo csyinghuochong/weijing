@@ -220,6 +220,7 @@ namespace ET
         public const int GetOrangeEquip_139 = 139;              //获得1个多少级+橙色装备
         public const int JianDingValue_140 = 140;           //需要1件鉴定属性总计达到15点的装备
         public const int KillDiYuBoss_141 = 141;            //击败5次20级以上地狱级的的领主
+        public const int GetItemNumber_142 = 142;
 
         public const int MineHaveNumber_401 = 401;
         public const int MineBattleNumber_402 = 402;

@@ -19,10 +19,21 @@ namespace ET
             MessageHelper.SendToClient(self, m2c_bagUpdate);
         }
         
-        public static void OnGetItem(this Unit self, int itemId)
+        public static void OnGetItem(this Unit self, int getWay, int itemId, int itemNum)
         {
-            self.GetComponent<TaskComponent>().OnGetItem(itemId);
+            self.GetComponent<TaskComponent>().OnGetItem_2(itemId);
+            self.GetComponent<TaskComponent>().OnGetItemNumber( getWay, itemId, itemNum);       
             self.GetComponent<ShoujiComponent>().OnGetItem(itemId);
+        }
+
+        /// <summary>
+        /// 任务类型2要检测一下道具数量
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="itemId"></param>
+        public static void OnCostItem(this Unit self, int itemId)
+        {
+            self.GetComponent<TaskComponent>().OnGetItem_2(itemId);
         }
 
         /// <summary>

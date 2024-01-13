@@ -1054,11 +1054,14 @@ namespace ET
             self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
         }
 
-        //收集道具
-        public static void OnGetItem(this TaskComponent self, int itemId)
+        //累计获得道具数量
+        public static void OnGetItemNumber(this TaskComponent self, int getWay, int itemId,int itemNumber)
         {
-            self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
-            self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
+            if (getWay != ItemGetWay.ReceieMail && getWay != ItemGetWay.PaiMaiSell)
+            {
+                self.TriggerTaskEvent(TaskTargetType.GetItemNumber_142, itemId, itemNumber);
+                self.TriggerTaskCountryEvent(TaskTargetType.GetItemNumber_142, itemId, itemNumber);
+            }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.ItemQuality >= 5)
@@ -1066,6 +1069,13 @@ namespace ET
                 self.TriggerTaskEvent(TaskTargetType.GetOrangeEquip_139, itemConfig.UseLv, 1);
                 self.TriggerTaskCountryEvent(TaskTargetType.GetOrangeEquip_139, itemConfig.UseLv, 1);
             }
+        }
+
+        //收集道具
+        public static void OnGetItem_2(this TaskComponent self, int itemId)
+        {
+            self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
+            self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
         }
 
         public static void CompletCurrentTask(this TaskComponent self)

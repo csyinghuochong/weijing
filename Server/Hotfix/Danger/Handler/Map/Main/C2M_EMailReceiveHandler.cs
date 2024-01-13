@@ -25,7 +25,6 @@ namespace ET
            
             for (int i = mailInfo.ItemList.Count - 1; i >= 0; i--)
             {
-               
                 if (!string.IsNullOrEmpty(mailInfo.ItemList[i].GetWay))
                 {
                     unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList[i], mailInfo.ItemList[i].GetWay);

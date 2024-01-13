@@ -743,7 +743,7 @@ namespace ET
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
 
                 //检测任务需求道具
-                ItemAddHelper.OnGetItem(self.GetParent<Unit>(), bagInfo.ItemID);
+                ItemAddHelper.OnGetItem(self.GetParent<Unit>(), int.Parse(getType.Split('_')[0]), bagInfo.ItemID, bagInfo.ItemNum);
             }
         }
 
@@ -951,7 +951,7 @@ namespace ET
                 {
                     //检测任务需求道具
                     unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(userDataType, leftNum.ToString(), true, getType);
-                    ItemAddHelper.OnGetItem(unit, itemID);
+                    ItemAddHelper.OnGetItem(unit, getType, itemID, leftNum);
                     continue;
                 }
 
@@ -1230,7 +1230,7 @@ namespace ET
                     m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }
                 //检测任务需求道具
-                ItemAddHelper.OnGetItem(unit, itemID);
+                ItemAddHelper.OnGetItem(unit, getType, itemID, leftNum);
             }
 
             //通知客户端背包道具发生改变
@@ -1454,7 +1454,7 @@ namespace ET
                         }
                     }
                 }
-                unit.GetComponent<TaskComponent>().OnGetItem(itemID);
+                ItemAddHelper.OnCostItem(unit, itemID);
             }
 
             //通知客户端背包道具发生改变
