@@ -458,13 +458,38 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             List<RewardItem> rewardItems = TaskHelper.GetTaskRewards(taskid, taskConfig);
-            if (bagComponent.GetBagLeftCell() < rewardItems.Count)
+            if (taskConfig.TaskType == TaskTypeEnum.Weekly)
+            {
+                int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
+                int dropId = 0;
+                ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
+                if (dropId > 0)
+                {
+                    List<RewardItem> droplist = new List<RewardItem>();
+                    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                    rewardItems.AddRange(droplist);
+                }
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.Ring)
+            {
+                int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
+                int dropId = 0;
+                ConfigHelper.RingTaskDrop.TryGetValue(ringTaskNumber, out dropId);
+                if (dropId > 0)
+                {
+                    List<RewardItem> droplist = new List<RewardItem>();
+                    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                    rewardItems.AddRange(droplist);
+                }
+            }
+
+            if (bagComponent.GetBagLeftCell() + 1 < rewardItems.Count)
             {
                 return ErrorCode.ERR_BagIsFull;
             }
-
             int checkError = self.CheckGiveItemTask(taskConfig.TargetType, taskConfig.Target,taskConfig.TargetValue, request.BagInfoID);
             if (checkError != ErrorCode.ERR_Success)
             {
@@ -479,7 +504,6 @@ namespace ET
                 }
             }
 
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (taskConfig.TaskType != TaskTypeEnum.Daily
               && taskConfig.TaskType != TaskTypeEnum.Weekly
               && taskConfig.TaskType != TaskTypeEnum.Treasure
@@ -529,14 +553,14 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Weekly)
             {
                 int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
-                int dropId = 0;
-                ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
-                if (dropId > 0)
-                {
-                    List<RewardItem> droplist = new List<RewardItem>();
-                    DropHelper.DropIDToDropItem_2(dropId, droplist);
-                    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
-                }
+                //int dropId = 0;
+                //ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
+                //if (dropId > 0)
+                //{
+                //    List<RewardItem> droplist = new List<RewardItem>();
+                //    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                //    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+                //}
                 if (weekTaskNumber < GlobalValueConfigCategory.Instance.Get(109).Value2)
                 {
                     numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv));
@@ -551,14 +575,14 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Ring)
             {
                 int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
-                int dropId = 0;
-                ConfigHelper.RingTaskDrop.TryGetValue(ringTaskNumber, out dropId);
-                if (dropId > 0)
-                {
-                    List<RewardItem> droplist = new List<RewardItem>();
-                    DropHelper.DropIDToDropItem_2(dropId, droplist);
-                    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
-                }
+                //int dropId = 0;
+                //ConfigHelper.RingTaskDrop.TryGetValue(ringTaskNumber, out dropId);
+                //if (dropId > 0)
+                //{
+                //    List<RewardItem> droplist = new List<RewardItem>();
+                //    DropHelper.DropIDToDropItem_2(dropId, droplist);
+                //    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+                //}
                 if (ringTaskNumber < 100)
                 {
                     numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
