@@ -1402,10 +1402,13 @@ namespace ET
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]) - 10;
 
-                //战场按钮延长30分钟消失
-                if (functonIds[i] == 1025)
+                if (functonIds[i] == 1025) //战场按钮延长30分钟消失
                 {
                     endTime += (30 * 60);
+                }
+                if (functonIds[i] == 1052)
+                {
+                    endTime += (10 * 60);
                 }
                 if (curTime >= endTime)
                 {
