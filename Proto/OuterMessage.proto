@@ -4396,6 +4396,7 @@ message C2M_GemHeChengQuickRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int32 LocType = 1;
 }
 
 message M2C_GemHeChengQuickResponse // IActorLocationResponse
