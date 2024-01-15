@@ -414,7 +414,7 @@ namespace ET
             {
                 case MenuEnumType.Main:
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-                    self.Button_OneChallenge.SetActive( mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
+                    self.Button_OneChallenge.SetActive(UnitHelper.IsGmAccount(self.ZoneScene()) && mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
                     break;
                 case MenuEnumType.Team:
                     break;

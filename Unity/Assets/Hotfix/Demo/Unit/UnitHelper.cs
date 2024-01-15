@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -9,6 +10,12 @@ namespace ET
         {
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
             return playerComponent.MyId;    
+        }
+
+        public static bool IsGmAccount(Scene zoneScene)
+        {
+            AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            return GMHelp.GmAccount.Contains(playerComponent.Account);
         }
 
         public static Unit GetMyUnitFromZoneScene(Scene zoneScene)
