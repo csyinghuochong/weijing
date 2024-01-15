@@ -214,6 +214,7 @@ namespace ET
         public static void OnUpdateUI(this UIWarehouseGemComponent self)
         {
             self.UpdateCurrentHouse();
+            self.UpdateWareHouse();
             self.UpdateBagList();
         }
 
