@@ -37,6 +37,7 @@ namespace ET
         public List<string> AssetPath = new List<string>();
 
         public int JueXingSkillId;
+        public string[] PickSet;
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
@@ -427,6 +428,28 @@ namespace ET
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
             if (ids.Count > 0)
             {
+                for (int i = ids.Count - 1; i >= 0; i--)
+                {
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ItemID);
+
+                    if (self.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
+                    {
+                        ids.RemoveAt(i);
+                        continue;
+                    }
+
+                    if (self.PickSet[1] == "1" && itemConfig.ItemQuality == 3)
+                    {
+                        ids.RemoveAt(i);
+                        continue;
+                    }
+                }
+
+                if (ids.Count <= 0)
+                {
+                    return;
+                }
+
                 self.RequestShiQu(ids).Coroutine();
 
                 //播放音效

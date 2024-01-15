@@ -20,6 +20,7 @@ namespace ET
         public GameObject ActTypeSet;
         public GameObject ButtonSkillSet;
         public GameObject OneSellSet;
+        public GameObject PickSet;
         public GameObject RandomHorese;
         public GameObject HighFps;
         public GameObject Smooth;
@@ -105,6 +106,10 @@ namespace ET
             self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
             self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
             self.OneSellSet.transform.Find("Btn_Click_3").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(3); });
+
+            self.PickSet = rc.Get<GameObject>("PickSet");
+            self.PickSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PickSet(0); });
+            self.PickSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PickSet(1); });
 
             self.ActTypeSet = rc.Get<GameObject>("ActTypeSet");
             self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("0"); });
@@ -279,6 +284,18 @@ namespace ET
             self.SaveSettings(GameSettingEnum.OneSellSet, value);
         }
 
+        public static void OnBtn_PickSet(this UISettingGameComponent self, int index)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet);
+            string[] setvalues = value.Split('@');
+            setvalues[index] = setvalues[index] == "1"? "0" : "1";
+            value = $"{setvalues[0]}@{setvalues[1]}";
+
+            self.PickSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
+            self.SaveSettings(GameSettingEnum.PickSet, value);
+            UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UIMainSkillComponent.PickSet = value.Split('@');
+        }
+
         public static void OnBtn_RandomHorese(this UISettingGameComponent self)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese);
@@ -360,6 +377,12 @@ namespace ET
             {
                 self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
             }
+            
+            string value2 = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet);
+            string[] setvalues2 = value2.Split('@');
+            self.PickSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues2[0] == "1");
+            self.PickSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues2[1] == "1");
+            
 
             self.UpdateYaoGan();
             self.UpdateShadow();
