@@ -107,7 +107,12 @@ namespace ET
 					unit.GetComponent<UserInfoComponent>().UserInfo.DayFubenTimes.Clear();
 					return;
 				}
-				if (message.GMMsg == "#completetask")
+                if (message.GMMsg == "#resettower")
+                {
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, 0);
+                    return;
+                }
+                if (message.GMMsg == "#completetask")
 				{
 					unit.GetComponent<TaskComponent>().CompletCurrentTask();
 					return;
