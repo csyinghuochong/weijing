@@ -179,10 +179,14 @@ namespace ET
             {
                 battleMessageComponent.OneChallengeTime.Add(self.UserId, TimeHelper.ServerNow());
             }
-            if (TimeHelper.ServerNow() - battleMessageComponent.OneChallengeTime[self.UserId] < TimeHelper.Minute)
+            else
             {
-                FloatTipManager.Instance.ShowFloatTip("一分钟内不能向该玩家再次发起挑战！");
-                return;
+                if (TimeHelper.ServerNow() - battleMessageComponent.OneChallengeTime[self.UserId] < TimeHelper.Minute)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("一分钟内不能向该玩家再次发起挑战！");
+                    return;
+                }
+                battleMessageComponent.OneChallengeTime[self.UserId] = TimeHelper.ServerNow();
             }
 
             C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() {  Operatate = 1, OtherId = self.UserId };
