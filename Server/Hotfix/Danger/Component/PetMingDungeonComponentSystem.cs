@@ -116,6 +116,7 @@ namespace ET
             Unit unit = self.MainUnit;
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
             PetComponent petComponent = unit.GetComponent<PetComponent>();
+            petComponent.CheckSkin();
             List<long> pets = petComponent.PetMingList;
             for (int i = 0; i <  5; i++)
             {
@@ -180,6 +181,7 @@ namespace ET
                     }
 
                     PetComponent petComponent_enemy = d2GGetUnit.Component as PetComponent;
+                    petComponent_enemy.CheckSkin();
                     List<long> petsenemy = petComponent_enemy.PetMingList;
                     for (int i = 0; i < 5; i++)
                     {

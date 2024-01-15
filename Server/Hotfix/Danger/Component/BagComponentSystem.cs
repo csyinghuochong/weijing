@@ -980,7 +980,7 @@ namespace ET
                     itemLockType = ItemLocType.ItemPetHeXinBag;
                     itemlist = self.GetItemByLoc(itemLockType);
                 }
-                else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone)
+                else if (getType == ItemGetWay.PickItem && itemCof.ItemType == ItemTypeEnum.Gemstone && itemCof.ItemQuality > 3)
                 {
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     if (numericComponent.GetAsInt(NumericType.GemWarehouseOpen) >=1 && self.CheckCanAddItem(itemID, leftNum, ItemLocType.GemWareHouse1))
@@ -1157,7 +1157,7 @@ namespace ET
                     if (itemCof.ItemSubType == 121)
                     {
                         int makePlan = 1;
-                        if (getWayInfo.Length >= 3)
+                        if (getType == ItemGetWay.SkillMake && getWayInfo.Length >= 3)
                         {
                             makePlan = int.Parse(getWayInfo[1]);
                         }

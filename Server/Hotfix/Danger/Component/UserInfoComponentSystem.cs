@@ -120,6 +120,10 @@ namespace ET
             {
                 self.UserInfo.CreateTime = TimeHelper.ServerNow();
             }
+            if (self.UserInfo.Lv < 20 && self.UserInfo.BaoShiDu < 100)
+            {
+                self.UserInfo.BaoShiDu = 100;
+            }
 
             int maxTowerId = 0;
             if (self.UserInfo.TowerRewardIds.Count > 0)

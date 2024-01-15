@@ -242,7 +242,7 @@ namespace ET
             return (float)Math.Round(value, 2);
         }
 
-        public static void OnLogin(this PetComponent self)
+        public static void CheckSkin(this PetComponent self)
         {
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
@@ -263,6 +263,11 @@ namespace ET
                 }
             }
 
+        }
+
+        public static void OnLogin(this PetComponent self)
+        {
+            self.CheckSkin();
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
         }

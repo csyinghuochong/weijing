@@ -85,6 +85,7 @@ namespace ET
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
 
             PetComponent petComponent = unit.GetComponent<PetComponent>();
+            petComponent.CheckSkin();
             List<long> pets = petComponent.PetFormations;
             for (int i = 0; i < pets.Count; i++)
             {
