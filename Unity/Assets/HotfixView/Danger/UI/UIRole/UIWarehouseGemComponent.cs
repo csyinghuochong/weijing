@@ -158,7 +158,7 @@ namespace ET
         public static void OnClickPageButton(this UIWarehouseGemComponent self, int page)
         {
             int itemType = self.UIPageComponent.GetCurrentIndex();
-            self.BagComponent.CurrentHouse = itemType + (int)ItemLocType.GemWareHouse1;
+            self.UpdateCurrentHouse();
             self.UpdateWareHouse();
             self.UpdateLockList(itemType);
         }
@@ -189,8 +189,15 @@ namespace ET
             self.UpdateBagList();
         }
 
+        public static void UpdateCurrentHouse(this UIWarehouseGemComponent self)
+        {
+            int itemType = self.UIPageComponent.GetCurrentIndex();
+            self.BagComponent.CurrentHouse = itemType + (int)ItemLocType.GemWareHouse1;
+        }
+
         public static void OnUpdateUI(this UIWarehouseGemComponent self)
         {
+            self.UpdateCurrentHouse();
             self.UpdateBagList();
         }
 
