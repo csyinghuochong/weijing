@@ -553,7 +553,7 @@ namespace ET
                     //技能受到0%伤害
                     if (skillconfig.SkillActType == 1)
                     {
-                        damge = (int)((float)damge * 0.01f);
+                        damge = (int)((float)damge * 0.02f);
                         //damge = 0;
                     }
                 }
