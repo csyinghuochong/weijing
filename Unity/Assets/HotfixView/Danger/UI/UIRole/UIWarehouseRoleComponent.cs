@@ -197,6 +197,7 @@ namespace ET
 
         public static void OnClickPageButton(this UIWarehouseRoleComponent self, int page)
         {
+            int itemType = self.UIPageComponent.GetCurrentIndex();
             self.UpdateCurrentHouse();
 
             self.UpdateWareHouse();

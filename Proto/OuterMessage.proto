@@ -7458,6 +7458,7 @@ message M2C_OneChallengeResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;		
 	int32 Error = 92;
+	int32 Operatate = 1;
 }
 
 message M2C_OneChallenge // IActorMessage

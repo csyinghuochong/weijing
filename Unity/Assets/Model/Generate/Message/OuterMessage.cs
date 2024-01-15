@@ -15552,6 +15552,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public int Operatate { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_OneChallenge)]
@@ -15565,9 +15568,12 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long OtherId { get; set; }
+		public int Operatate { get; set; }
 
 		[ProtoMember(2)]
+		public long OtherId { get; set; }
+
+		[ProtoMember(3)]
 		public string OtherName { get; set; }
 
 	}
