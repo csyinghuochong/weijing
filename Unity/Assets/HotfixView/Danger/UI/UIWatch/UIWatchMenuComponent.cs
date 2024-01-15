@@ -174,6 +174,17 @@ namespace ET
 
         public static async ETTask OnButton_OneChallenge(this UIWatchMenuComponent self)
         {
+            BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            if (!battleMessageComponent.OneChallengeTime.ContainsKey(self.UserId))
+            {
+                battleMessageComponent.OneChallengeTime.Add(self.UserId, TimeHelper.ServerNow());
+            }
+            if (TimeHelper.ServerNow() - battleMessageComponent.OneChallengeTime[self.UserId] < TimeHelper.Minute)
+            {
+                FloatTipManager.Instance.ShowFloatTip("一分钟内不能向该玩家再次发起挑战！");
+                return;
+            }
+
             C2M_OneChallengeRequest request = new C2M_OneChallengeRequest() {  Operatate = 1, OtherId = self.UserId };
             M2C_OneChallengeResponse response = (M2C_OneChallengeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.OnClickImageBg();

@@ -42,5 +42,7 @@ namespace ET
 
         public bool ShowPetChouKaGet = false;
         public List<EventType.RolePetAdd> RolePetAdds = new List<EventType.RolePetAdd>();
+
+        public Dictionary<long, long> OneChallengeTime = new Dictionary<long, long>();
     }
 }
