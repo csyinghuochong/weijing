@@ -438,7 +438,8 @@ namespace ET
                         continue;
                     }
 
-                    if (self.PickSet[1] == "1" && itemConfig.ItemQuality == 3)
+                    // 蓝色 金币除外
+                    if (self.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
                     {
                         ids.RemoveAt(i);
                         continue;
