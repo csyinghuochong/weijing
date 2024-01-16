@@ -40,5 +40,6 @@ namespace ET
 		public int SerialErrorTime = 0;
 
 		public int IsPopUp = 0;
-	}
+		public string PopUpInfo = string.Empty;
+    }
 }

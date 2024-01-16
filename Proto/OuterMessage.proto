@@ -219,6 +219,7 @@ message G2C_EnterGame // IResponse
 	// 自己的unit id
 	int64 MyId = 1;
 	int32 IsPopUp = 2;
+	string PopUpInfo = 3;
 }
 
 message MoveInfo

@@ -27,9 +27,10 @@ namespace ET
         /// <summary>
         /// 弹窗玩家
         /// </summary>
-        public static List<long> PopUpPlayer = new List<long>()
+        public static Dictionary<long, string> PopUpPlayer = new Dictionary<long, string>()
         {
-
+            // 账号->服务器ID(配0表示全部,9表示先锋五区,与ServerHelper.GetServerList中对应) 角色名字(配0表示全部) 弹出内容
+            { 2103768474428964866, "9@景沫渺@你作弊了！！！" }
         };
 
         public static List<string> GetChuJi()

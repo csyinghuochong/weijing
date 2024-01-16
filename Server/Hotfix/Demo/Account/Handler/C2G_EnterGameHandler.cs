@@ -187,9 +187,14 @@ namespace ET
 						player.ReChargeServerID = StartSceneConfigCategory.Instance.RechargeConfig.InstanceId;
 						player.CenterServerID = StartSceneConfigCategory.Instance.CenterConfig.InstanceId;
 						response.MyId = unitId;
-						response.IsPopUp = GMHelp.PopUpPlayer.Contains(unitId) ? 1 : 0;
+						long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
+						response.IsPopUp = GMHelp.PopUpPlayer.ContainsKey(accountId) ? 1 : 0;
+						if (response.IsPopUp == 1)
+						{
+							response.PopUpInfo = GMHelp.PopUpPlayer[accountId];
+						}
 
-                        reply();
+						reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), $"Map{ComHelp.MainCityID()}");
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
 

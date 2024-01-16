@@ -1378,10 +1378,25 @@ namespace ET
 
         public static void CheckPopUP(this UIMainComponent self)
         {
-            int ispopup = self.ZoneScene().GetComponent<AccountInfoComponent>().IsPopUp;
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            int ispopup = accountInfoComponent.IsPopUp;
             if (ispopup == 1)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "您的帐号目前存在一定问题，可以在QQ群里直接联系客服，也可直接添加QQ:136087482 (备注写角色名称) 处理，如3天内不在主动联系，我们会自动将帐号处理！", null).Coroutine();
+                string[] popInfos = self.ZoneScene().GetComponent<AccountInfoComponent>().PopUpInfo.Split('@');
+
+                // 服务器
+                if (popInfos[0] != "0" && popInfos[0] != accountInfoComponent.ServerId.ToString())
+                {
+                    return;
+                }
+
+                // 角色名字
+                if (popInfos[1] != "0" && popInfos[1] != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name)
+                {
+                    return;
+                }
+
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", popInfos[2], null).Coroutine();
             }
         }
 
