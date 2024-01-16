@@ -13936,6 +13936,12 @@ namespace ET
 		[ProtoMember(8)]
 		public List<BagInfo> PetHeXinList = new List<BagInfo>();
 
+		[ProtoMember(9)]
+		public List<int> Ks = new List<int>();
+
+		[ProtoMember(10)]
+		public List<long> Vs = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.PetMingRecord)]

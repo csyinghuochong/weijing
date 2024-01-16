@@ -6670,6 +6670,8 @@ message F2C_WatchPetResponse // IFriendActorResponse
 	
 	RolePetInfo RolePetInfos = 7;
 	repeated BagInfo PetHeXinList = 8;
+	repeated int32 Ks = 9;
+	repeated int64 Vs = 10;
 }
 
 message PetMingRecord

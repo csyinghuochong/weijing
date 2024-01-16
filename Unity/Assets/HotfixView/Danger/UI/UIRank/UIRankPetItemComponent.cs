@@ -101,7 +101,7 @@ namespace ET
                 return;
             }
 
-            uI.GetComponent<UIPetInfoComponent>().OnUpdateUI(response.RolePetInfos, response.PetHeXinList);
+            uI.GetComponent<UIPetInfoComponent>().OnUpdateUI(response.RolePetInfos, response.PetHeXinList, response.Ks, response.Vs);
         }
 
         public static void OnInitUI(this UIRankPetItemComponent self, RankPetInfo rankPetInfo)

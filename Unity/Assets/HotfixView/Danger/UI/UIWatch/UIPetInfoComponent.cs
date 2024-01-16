@@ -77,6 +77,8 @@ namespace ET
         public List<RolePetInfo> RolePetInfoList = new List<RolePetInfo>();
 
         public List<BagInfo> PetHeXinList = new List<BagInfo>();
+        public List<int> Keys = new List<int>();
+        public List<long> Values = new List<long>();
 
         public GameObject ButtonClose;
 
@@ -333,11 +335,13 @@ namespace ET
             }
         }
 
-        public static void OnUpdateUI(this UIPetInfoComponent self, RolePetInfo rolePetInfo, List<BagInfo> bagInfos)
+        public static void OnUpdateUI(this UIPetInfoComponent self, RolePetInfo rolePetInfo, List<BagInfo> bagInfos, List<int> keys, List<long> values)
         {
             self.PetSkinId = 0;
             self.PetHeXinList = bagInfos;
             self.LastSelectItem = rolePetInfo;
+            self.Keys = keys;
+            self.Values = values;
 
             self.OnClickPetHandler();
         }
@@ -504,11 +508,21 @@ namespace ET
 
         public static long GetAsLong(this UIPetInfoComponent self, int numericType)
         {
+            if (self.Keys.Contains(numericType))
+            {
+                return self.Values[self.Keys.IndexOf(numericType)];
+            }
+
             return 0;
         }
 
         public static float GetAsFloat(this UIPetInfoComponent self, int numericType)
         {
+            if (self.Keys.Contains(numericType))
+            {
+                return (float)self.Values[self.Keys.IndexOf(numericType)] / 10000;
+            }
+
             return 0f;
         }
 
@@ -520,6 +534,15 @@ namespace ET
             long petAllDef = self.GetAsLong(NumericType.Now_PetAllDef);
             long petAllHp = self.GetAsLong(NumericType.Now_PetAllHp);
 
+            petAllAct += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAct) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllActPro)));
+            petAllMageact += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_Mage) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllMageActPro)));
+            petAllDef += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllDefPro)));
+            petAllAdf += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf) *
+                (1 + self.GetAsFloat(NumericType.Now_PetAllAdfPro)));
+            
             float petAllCri = self.GetAsFloat(NumericType.Now_PetAllCri);
             float petAllHit = self.GetAsFloat(NumericType.Now_PetAllHit);
             float petAllDodge = self.GetAsFloat(NumericType.Now_PetAllDodge);

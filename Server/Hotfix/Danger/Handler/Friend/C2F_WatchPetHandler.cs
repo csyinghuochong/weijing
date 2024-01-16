@@ -23,6 +23,19 @@ namespace ET
             BagComponent bagComponents = d2GGetUnit_2.Component as BagComponent;
             response.RolePetInfos = petComponent.GetPetInfo( request.PetId );
             response.PetHeXinList = bagComponents.PetHeXinList;
+            
+            D2G_GetComponent d2GGetUnit_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UnitID, Component = DBHelper.NumericComponent });
+            NumericComponent numericComponent = d2GGetUnit_3.Component as NumericComponent;
+            foreach ((int key, long value) in numericComponent.NumericDic)
+            {
+                if (key >= (int)NumericType.Max)
+                {
+                    continue;
+                }
+                response.Ks.Add(key);
+                response.Vs.Add(value);
+            }
+            
             reply();
             await ETTask.CompletedTask;
         }
