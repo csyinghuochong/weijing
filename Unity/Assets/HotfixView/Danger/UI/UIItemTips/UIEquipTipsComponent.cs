@@ -979,6 +979,7 @@ namespace ET
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
                     break;
                 case ItemOperateEnum.Cangku:
+                case ItemOperateEnum.GemCangku:
                 case ItemOperateEnum.AccountCangku:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_RoseEquipOpenSet.SetActive(false);
