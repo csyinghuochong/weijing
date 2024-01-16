@@ -504,6 +504,7 @@ namespace ET
                 //仓库查看属性
                 case ItemOperateEnum.Cangku:
                 case ItemOperateEnum.AccountCangku:
+                case ItemOperateEnum.GemCangku:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Btn_TakeStoreHouse.SetActive(true);
                     //self.Obj_Btn_StoreHouseSet.SetActive(true);
