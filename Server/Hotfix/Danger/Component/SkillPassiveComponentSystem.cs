@@ -137,12 +137,22 @@ namespace ET
             //只有玩家和宠物有回血
             if (self.UnitType == UnitType.Pet)
             {
+                long maxHp = self.NumericComponent.GetAsLong(NumericType.Now_MaxHp);
+
                 //满血不触发回血
-                if (self.NumericComponent.GetAsLong((int)NumericType.Now_Hp) >= self.NumericComponent.GetAsLong((int)NumericType.Now_MaxHp))
+                if (self.NumericComponent.GetAsLong((int)NumericType.Now_Hp) >= maxHp)
                     return;
 
+                long addHpValue = 0;
+                float now_SecHpAddPro = self.NumericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
+                if (now_SecHpAddPro > 0f)
+                {
+                    addHpValue = (long)(maxHp * now_SecHpAddPro);
+                }
+                addHpValue += (long)(maxHp * 0.05f);
+
                 //每5秒恢复5%生命
-                self.NumericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(self.NumericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.05f), 0, true);
+                self.NumericComponent.ApplyChange(null, NumericType.Now_Hp, addHpValue ,0, true);
             }
 
             if (self.UnitType == UnitType.Player)
