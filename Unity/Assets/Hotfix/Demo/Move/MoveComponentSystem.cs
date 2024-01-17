@@ -282,9 +282,15 @@ namespace ET
             self.Stop();
         }
 
+        public static void StopImmediately(this MoveComponent self)
+        {
+            self.StartTime = TimeHelper.ClientNow() + TimeHelper.OneDay;
+            self.Stop();
+        }
+
         public static void Stop(this MoveComponent self)
         {
-            
+ 
             if (self.Targets.Count > 0)
             {
                 self.MoveForward(true);

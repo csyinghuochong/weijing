@@ -15,7 +15,10 @@ namespace ET
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             if (speed < 0.01)
             {
-                unit.SendStop(-1);
+                return -1;
+            }
+            if (unit.GetComponent<StateComponent>().CanMove()!= ErrorCode.ERR_Success)
+            {
                 return -1;
             }
 
