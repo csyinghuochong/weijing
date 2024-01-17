@@ -7,5 +7,5 @@
 {"_t":"UnionConfig","_id":7,"Exp":7500,"XiuLianLevel":7,"PeopleNum":33,"DonateGold":260000,"DonateDiamond":180,"DonateExp":[22,42],"DonateReward":[5,15],"UpAllReward":"1,200000;16,10","AddUnionGold":[20000,80000],"UnionGoldLimit":350000000},
 {"_t":"UnionConfig","_id":8,"Exp":10000,"XiuLianLevel":8,"PeopleNum":36,"DonateGold":270000,"DonateDiamond":180,"DonateExp":[24,44],"DonateReward":[5,15],"UpAllReward":"1,200000;16,10","AddUnionGold":[20000,80000],"UnionGoldLimit":400000000},
 {"_t":"UnionConfig","_id":9,"Exp":13000,"XiuLianLevel":9,"PeopleNum":38,"DonateGold":285000,"DonateDiamond":180,"DonateExp":[27,47],"DonateReward":[5,15],"UpAllReward":"1,250000;16,10","AddUnionGold":[20000,80000],"UnionGoldLimit":450000000},
-{"_t":"UnionConfig","_id":10,"Exp":16500,"XiuLianLevel":10,"PeopleNum":40,"DonateGold":300000,"DonateDiamond":180,"DonateExp":[30,50],"DonateReward":[5,15],"UpAllReward":"1,250000;16,10","AddUnionGold":[20000,80000],"UnionGoldLimit":500000000},
+{"_t":"UnionConfig","_id":10,"Exp":16500,"XiuLianLevel":15,"PeopleNum":40,"DonateGold":300000,"DonateDiamond":180,"DonateExp":[30,50],"DonateReward":[5,15],"UpAllReward":"1,250000;16,10","AddUnionGold":[20000,80000],"UnionGoldLimit":500000000},
 ]}
