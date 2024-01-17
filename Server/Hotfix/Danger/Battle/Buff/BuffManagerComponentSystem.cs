@@ -363,7 +363,7 @@ namespace ET
             //霸体状态和无敌状态免疫眩晕和沉默的buff
             if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
             {
-                if (newState == StateTypeEnum.Shackle || newState == StateTypeEnum.Dizziness)
+                if (newState == StateTypeEnum.Shackle || newState == StateTypeEnum.Dizziness || newState == StateTypeEnum.Shackle)
                 {
                     //免疫
                     M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
