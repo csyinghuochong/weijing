@@ -100,6 +100,11 @@ namespace ET
                 {
                     break;
                 }
+                
+                if (chapterCof.Id >= ConfigHelper.GMDungeonId)
+                {
+                    break;
+                }
 
                 UIDungeonMapTransferItemComponent uiitem = null;
                 if (number < self.LevelListUI.Count)

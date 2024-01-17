@@ -143,6 +143,11 @@ namespace ET
                 {
                     break;
                 }
+                
+                if (chapterCof.Id >= ConfigHelper.GMDungeonId)
+                {
+                    break;
+                }
 
                 UIDungeonLevelItemComponent uiitem = null;
                 if (number < self.LevelListUI.Count)

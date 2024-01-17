@@ -244,6 +244,11 @@ namespace ET
                 if (userInfo.Lv < chapterCof.EnterLv) {
                     break;
                 }
+                
+                if (chapterCof.Id >= ConfigHelper.GMDungeonId)
+                {
+                    break;
+                }
 
                 UI uiitem = null;
                 if (number < self.LevelListUI.Count)
