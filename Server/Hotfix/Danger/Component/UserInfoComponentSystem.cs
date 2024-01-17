@@ -329,8 +329,6 @@ namespace ET
         {
             self.ShouLieKill++;
 
-            long serverTime = TimeHelper.ServerNow();
-
             if (self.ShouLieUpLoadTimer == 0)
             {
                 self.ShouLieUpLoadTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5 * TimeHelper.Second, TimerType.ShouLieUpLoadTimer, self);
@@ -383,6 +381,7 @@ namespace ET
             if (showlieopen && ( monsterConfig.Lv >= 60 || Mathf.Abs(self.UserInfo.Lv - monsterConfig.Lv) <= 9) )
             {
                 self.OnShowLieKill();
+                main.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.ShowLieMonster_1201, 0, 1);
             }
 
             if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)

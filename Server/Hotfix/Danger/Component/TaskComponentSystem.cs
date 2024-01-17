@@ -856,11 +856,6 @@ namespace ET
                     fubenDifficulty = DomainScene.GetComponent<LocalDungeonComponent>().FubenDifficulty;
                 }
 
-                if (ActivityHelper.IsShowLieOpen())
-                {
-                    self.TriggerTaskCountryEvent(TaskTargetType.ShowLieMonster_1201, 0, 1);
-                }
-
                 self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
                 self.TriggerTaskCountryEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
 
