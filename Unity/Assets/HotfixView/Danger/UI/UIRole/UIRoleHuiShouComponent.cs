@@ -383,10 +383,12 @@ namespace ET
         {
             List<long> huishouList = new List<long>();
             string tip = "";
+            bool petHeXin8 = false;
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
             {
                 if (self.HuiShouInfos[i] != null)
                 {
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.HuiShouInfos[i].ItemID);
                     string gemStr = self.HuiShouInfos[i].GemIDNew;
                     string[] gem = gemStr.Split('_');
                     for (int j = 0; j < gem.Length; j++)
@@ -397,6 +399,12 @@ namespace ET
                             break;
                         }
                     }
+
+                    if (itemConfig.ItemType == ItemTypeEnum.PetHeXin && itemConfig.UseLv >= 8)
+                    {
+                        petHeXin8 = true;
+                    }
+                    
                     huishouList.Add(self.HuiShouInfos[i].BagInfoID);
                 }
             }
@@ -406,9 +414,19 @@ namespace ET
                 return;
             }
 
+
             if (tip != "")
             {
-                tip += " 中镶嵌宝石,分解会导致宝石消失!";
+                tip += " 中镶嵌宝石,分解会导致宝石消失!\n";
+            }
+
+            if (petHeXin8)
+            {
+                tip += "请问确实需要分解高级的宠物之核嘛？";
+            }
+            
+            if (tip != "" )
+            {
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "分解", tip, async () =>
                 {
                     await self.BagComponent.SendHuiShou(huishouList);
