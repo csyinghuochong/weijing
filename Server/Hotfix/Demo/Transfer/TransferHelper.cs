@@ -190,8 +190,10 @@ namespace ET
                     case SceneTypeEnum.OneChallenge:
                         fubenid = long.Parse(request.paramInfo);
                         fubnescene = Game.Scene.Get(fubenid);
+                        bool newdungeon = false;    
                         if (fubnescene == null)
                         {
+                            newdungeon = true;
                             fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                             fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "OneChallenge" + fubenid.ToString(), SceneType.Fuben);
                             mapComponent = fubnescene.GetComponent<MapComponent>();
@@ -202,7 +204,10 @@ namespace ET
                         fubenInstanceId = fubnescene.InstanceId;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.OneChallenge, request.SceneId, request.Difficulty, "0");
-                        TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+                        if (newdungeon)
+                        {
+                            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+                        }
                         break;
                     case (int)SceneTypeEnum.PetMing:
                         long cdTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime);
