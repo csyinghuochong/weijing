@@ -3,5 +3,5 @@
 {"_t":"DungeonSectionConfig","_id":3,"ChapterName":"第三章","Name":"冰封世界","RandomArea":[30001,30003,30004,30005,30006],"OpenLevel":[30,33,35],"ShenMiEnterID":"100;100301@100;100001"},
 {"_t":"DungeonSectionConfig","_id":4,"ChapterName":"第四章","Name":"暮色危境","RandomArea":[40001,40003,40004,40006,40007],"OpenLevel":[40,43,45],"ShenMiEnterID":"100;100401@100;100001"},
 {"_t":"DungeonSectionConfig","_id":5,"ChapterName":"第五章","Name":"黑暗陨落","RandomArea":[50001,50002,50004,50006,50007],"OpenLevel":[50,53,55],"ShenMiEnterID":"100;100501@100;100001"},
-{"_t":"DungeonSectionConfig","_id":6,"ChapterName":"终章","Name":"黎明之光","RandomArea":[60001,60002],"OpenLevel":[60,62,65],"ShenMiEnterID":"100;100601@100;100001"},
+{"_t":"DungeonSectionConfig","_id":6,"ChapterName":"终章","Name":"黎明之光","RandomArea":[60001,60002,60003],"OpenLevel":[60,62,65],"ShenMiEnterID":"100;100601@100;100001"},
 ]}

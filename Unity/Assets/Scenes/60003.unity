@@ -6901,12 +6901,12 @@ GameObject:
   - component: {fileID: 147890281}
   - component: {fileID: 147890280}
   - component: {fileID: 147890279}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!154 &147890279
 TerrainCollider:
