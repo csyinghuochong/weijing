@@ -73,7 +73,7 @@ namespace ET
                     return ErrorCode.ERR_CanNotUseSkill_Dizziness;
                 }
             }
-            if (self.StateTypeGet(StateTypeEnum.JiTui) || self.StateTypeGet(StateTypeEnum.BePulled))
+            if (self.StateTypeGet(StateTypeEnum.JiTui) )
             {
                 return ErrorCode.ERR_CanNotUseSkill_JiTui;
             }
@@ -105,6 +105,20 @@ namespace ET
                 return ErrorCode.ERR_CanNotMove_Singing;
             }
             return ErrorCode.ERR_Success;
+        }
+
+        public static int ServerCanMove(this StateComponent self)
+        {
+            int canMove = self.CanMove();
+            if (canMove == ErrorCode.ERR_Success)
+            {
+                return canMove;
+            }
+            if (self.StateTypeGet(StateTypeEnum.BePulled))
+            {
+                return ErrorCode.ERR_Success;
+            }
+            return canMove; 
         }
 
         public static int CanMove(this StateComponent self)

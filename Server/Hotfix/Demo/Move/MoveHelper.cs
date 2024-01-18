@@ -17,7 +17,9 @@ namespace ET
             {
                 return -1;
             }
-            if (unit.GetComponent<StateComponent>().CanMove()!= ErrorCode.ERR_Success)
+
+            ///以防止怪物再引力波的作用下不移动
+            if (unit.GetComponent<StateComponent>().ServerCanMove()!= ErrorCode.ERR_Success)
             {
                 return -1;
             }
