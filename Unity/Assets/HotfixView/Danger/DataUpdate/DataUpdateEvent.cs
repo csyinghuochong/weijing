@@ -698,7 +698,7 @@ namespace ET
             {
                 if (component is UITaskAComponent uitaskAComponent)
                 {
-                    uitaskAComponent.OnRecvTaskUpdate();
+                    uitaskAComponent.OnCompleteTask();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)

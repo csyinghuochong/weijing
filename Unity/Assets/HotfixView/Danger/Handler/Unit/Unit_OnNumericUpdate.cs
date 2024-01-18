@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 
     [Event]
@@ -228,6 +230,13 @@
                     {
                         NetHelper.SendGetTask(args.Unit.ZoneScene(),newvalue2).Coroutine();
                     }
+                    break;
+                case NumericType.DailyTaskID:
+                    int newvalue3 = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskID);
+                    if (newvalue3 != 0)
+                    {
+                        NetHelper.SendGetTask(args.Unit.ZoneScene(),newvalue3).Coroutine();
+                    }  
                     break;
             }
         }

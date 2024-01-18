@@ -230,6 +230,7 @@
     [NumericWatcher((int)NumericType.PetExploreLuckly)]
     [NumericWatcher((int)NumericType.UnionTaskId)]
     [NumericWatcher((int)NumericType.RingTaskId)]
+    [NumericWatcher((int)NumericType.DailyTaskID)]
     [NumericWatcher((int)NumericType.FirstUnionName)]
     public class NumericWatcher_Update : INumericWatcher
 	{

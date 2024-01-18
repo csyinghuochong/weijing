@@ -71,6 +71,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
+			DataUpdateComponent.Instance.AddListener(DataType.TaskComplete, self);
 
 			self.InitTaskTypeList();
 		}
@@ -84,6 +85,7 @@ namespace ET
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
+			DataUpdateComponent.Instance.RemoveListener(DataType.TaskComplete, self);
 		}
 	}
 
@@ -328,13 +330,29 @@ namespace ET
 				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交宠物";
 			}
 
-			if ((self.TaskConfig.TaskType == TaskTypeEnum.Ring || self.TaskConfig.TaskType == TaskTypeEnum.Union) &&
+			if ((self.TaskConfig.TaskType == TaskTypeEnum.Ring || self.TaskConfig.TaskType == TaskTypeEnum.Union ||
+				    self.TaskConfig.TaskType == TaskTypeEnum.Daily || self.TaskConfig.TaskType == TaskTypeEnum.Treasure) &&
 			    self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
 			{
 				self.Button_Going.transform.GetComponentInChildren<Text>().text = "完成任务";
 			}
 		}
 
+		public static void OnCompleteTask(this UITaskAComponent self)
+		{
+			// 任务使者赛纳
+			List<int> tasList = self.ZoneScene().GetComponent<TaskComponent>().GetOpenTaskIds(20000024);
+			foreach (int id in tasList)
+			{
+				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(id);
+				if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+				{
+					NetHelper.SendGetTask(self.ZoneScene(),taskConfig.Id).Coroutine();
+					break;
+				}
+			}
+		}
+		
 		public static void OnRecvTaskUpdate(this UITaskAComponent self)
 		{
 			self.UpdateTaskInfo(self.TaskComponent.GetTaskById(self.TaskId));
@@ -399,7 +417,8 @@ namespace ET
 		{
 			bool value = TaskViewHelp.Instance.ExcuteTask(self.ZoneScene(), self.TaskPro);
 			TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
-			if (value && taskConfig.TaskType != TaskTypeEnum.Ring && taskConfig.TaskType != TaskTypeEnum.Union)
+			if (value && taskConfig.TaskType != TaskTypeEnum.Ring && taskConfig.TaskType != TaskTypeEnum.Union &&
+			    taskConfig.TaskType != TaskTypeEnum.Daily && taskConfig.TaskType != TaskTypeEnum.Treasure)
 			{
 				self.OnCloseTask();
 			}

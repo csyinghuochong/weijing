@@ -252,12 +252,13 @@ namespace ET
             NumericDic[numericType] = value;
 
 			//血量特殊处理
-            if (old == value && numericType != NumericType.Now_Hp && numericType != NumericType.RingTaskId && numericType != NumericType.UnionTaskId)
-            {
-                return;
-            }
+			if (old == value && numericType != NumericType.Now_Hp && numericType != NumericType.RingTaskId &&
+			    numericType != NumericType.UnionTaskId && numericType != NumericType.DailyTaskID)
+			{
+				return;
+			}
 
-            if (notice)
+			if (notice)
             {
                 //发送改变属性的相关消息
                 EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;

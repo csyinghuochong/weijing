@@ -356,7 +356,8 @@ namespace ET
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
                 if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union ||
-                        taskConfig.TaskType == TaskTypeEnum.System) &&
+                        taskConfig.TaskType == TaskTypeEnum.System || taskConfig.TaskType == TaskTypeEnum.Daily ||
+                        taskConfig.TaskType == TaskTypeEnum.Treasure) &&
                     taskConfig.TargetType != TaskTargetType.GiveItem_10 &&
                     taskConfig.TargetType != TaskTargetType.GivePet_25)
                 {
