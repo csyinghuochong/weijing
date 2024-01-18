@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,17 +30,24 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2);
             string[] setvalues = value.Split('@');
+            if (setvalues.Length < 6)
+            {
+                Array.Resize(ref setvalues, setvalues.Length + 1);
+                setvalues[setvalues.Length - 1] = "0";
+            }
             self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
             self.OneSellSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues[1] == "1");
             self.OneSellSet.transform.Find("Image_Click_2").gameObject.SetActive(setvalues[2] == "1");
             self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
             self.OneSellSet.transform.Find("Image_Click_4").gameObject.SetActive(setvalues[4] == "1");
+            self.OneSellSet.transform.Find("Image_Click_5").gameObject.SetActive(setvalues[5] == "1");
 
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
             self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
             self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
             self.OneSellSet.transform.Find("Btn_Click_3").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(3); });
             self.OneSellSet.transform.Find("Btn_Click_4").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(4); });
+            self.OneSellSet.transform.Find("Btn_Click_5").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(5); });
         }
     }
 
@@ -50,8 +58,13 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2);
             string[] setvalues = value.Split('@');
+            if (setvalues.Length < 6)
+            {
+                Array.Resize(ref setvalues, setvalues.Length + 1);
+                setvalues[setvalues.Length - 1] = "0";
+            }
             setvalues[index] = setvalues[index] == "1"? "0" : "1";
-            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}@{setvalues[3]}@{setvalues[4]}";
+            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}@{setvalues[3]}@{setvalues[4]}@{setvalues[5]}";
 
             self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
             self.SaveSettings(GameSettingEnum.OneSellSet2, value);

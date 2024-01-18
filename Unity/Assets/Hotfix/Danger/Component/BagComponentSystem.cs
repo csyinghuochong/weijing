@@ -983,6 +983,11 @@ namespace ET
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string[] set2Values = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet2).Split('@'); // 低级、中级、高级
+            if (set2Values.Length < 6)
+            {
+                Array.Resize(ref set2Values, set2Values.Length + 1);
+                set2Values[set2Values.Length - 1] = "0";
+            }
             
             for (int i = 0; i < bagInfos.Count; i++)
             {
@@ -991,8 +996,8 @@ namespace ET
                     continue;
                 }
                 
-                // 一键出售 低级、中级、高级、超级、神级
-                for (int j = 0; j < 5; j++)
+                // 一键出售 低级、中级、高级、超级、神级、终级
+                for (int j = 0; j < 6; j++)
                 {
                     if (set2Values[j] == "1")
                     {
