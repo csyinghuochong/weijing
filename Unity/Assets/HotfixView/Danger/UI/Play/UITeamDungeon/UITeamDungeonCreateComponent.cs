@@ -56,18 +56,20 @@ namespace ET
             GameObject TeamdungeonList = rc.Get<GameObject>("TeamdungeonList");
             TeamdungeonItem.SetActive(false);
             List<SceneConfig> sceneConfig = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            AccountInfoComponent accountInfoComponent1 = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            bool isGmaccount = GMHelp.GmAccount.Contains(accountInfoComponent1.Account);
             for (int i = 0; i < sceneConfig.Count; i++)
             {
                 if (sceneConfig[i].MapType != (int)SceneTypeEnum.TeamDungeon)
                 {
                     continue;
                 }
-                //AccountInfoComponent accountInfoComponent1 = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                //bool isGmaccount = GMHelp.GmAccount.Contains(accountInfoComponent1.Account);
-                //if (!isGmaccount && sceneConfig[i].Id >= 110005)
-                //{
-                //    continue;
-                //}
+
+                if (!isGmaccount && sceneConfig[i].Id >= ConfigHelper.GmTeamdungeonId)
+                {
+                    continue;
+                }
+
                 self.FubenIdList.Add(sceneConfig[i].Id);
                 GameObject item = GameObject.Instantiate(TeamdungeonItem);
                 UICommonHelper.SetParent(item, TeamdungeonList);

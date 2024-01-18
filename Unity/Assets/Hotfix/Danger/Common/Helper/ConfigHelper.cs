@@ -1166,8 +1166,14 @@ namespace ET
         };
 
         /// <summary>
-        /// gm账号显示副本和新地图,大于等于指定副本id不显示
+        /// 个人副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
         public static int GMDungeonId = 900000;
+
+
+        /// <summary>
+        /// 组队副本  gm账号显示副本和新地图,大于等于指定副本id不显示
+        /// </summary>
+        public static int GmTeamdungeonId = 110006;
     }
 }
