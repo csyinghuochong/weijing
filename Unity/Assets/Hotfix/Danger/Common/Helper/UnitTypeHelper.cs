@@ -105,7 +105,8 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Solo
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace )
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.OneChallenge )
             {
                 //允许pk地图
                 return  !self.IsMasterOrPet(defend, petComponent);
