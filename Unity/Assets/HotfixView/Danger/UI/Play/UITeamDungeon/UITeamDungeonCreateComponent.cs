@@ -7,6 +7,7 @@ namespace ET
 {
     public class UITeamDungeonCreateComponent : Entity, IAwake,IDestroy
     {
+        public GameObject DungeonImg;
         public GameObject ShenYuanButton;
         public GameObject ShenYuanMode;
         public GameObject Button_XieZhu;
@@ -33,6 +34,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.DungeonImg = rc.Get<GameObject>("DungeonImg");
             self.ShenYuan = rc.Get<GameObject>("ShenYuan");
             self.Button_XieZhu = rc.Get<GameObject>("Button_XieZhu");
             ButtonHelp.AddListenerEx(self.Button_XieZhu, () => { self.OnButton_Create(TeamFubenType.XieZhu).Coroutine(); });
@@ -136,10 +138,10 @@ namespace ET
         public static void OnUpdatUI(this UITeamDungeonCreateComponent self, int fubenId)
         {
             self.FubenId = fubenId;
-            SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(fubenId);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
             UICommonHelper.DestoryChild(self.ItemNodeList);
 
-            int bossId = teamDungeonConfig.BossId;
+            int bossId = sceneConfig.BossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
             List<RewardItem> allRewardItems = new List<RewardItem>();
             for (int i = 0; i < monsterConfig.DropID.Length; i++)
@@ -149,7 +151,7 @@ namespace ET
                     allRewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 4));
                 }
             }
-            allRewardItems.AddRange(ItemHelper.GetRewardItems(teamDungeonConfig.RewardShow));
+            allRewardItems.AddRange(ItemHelper.GetRewardItems(sceneConfig.RewardShow));
 
             List<RewardItem> rewardItems = new List<RewardItem>();
             for (int i = allRewardItems.Count - 1; i >= 0; i--)
@@ -177,10 +179,17 @@ namespace ET
             }
 
             UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
-            self.TextLevelLimit.GetComponent<Text>().text = teamDungeonConfig.EnterLv.ToString();
-            self.TextPlayerLimit.GetComponent<Text>().text = $"{teamDungeonConfig.PlayerLimit}-3人";
-            self.TextFubenDesc.GetComponent<Text>().text = teamDungeonConfig.ChapterDes;
-            self.TextFubenName2.GetComponent<Text>().text = teamDungeonConfig.Name;
+            self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
+            self.TextPlayerLimit.GetComponent<Text>().text = $"{sceneConfig.PlayerLimit}-3人";
+            self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.ChapterDes;
+            self.TextFubenName2.GetComponent<Text>().text = sceneConfig.Name;
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.DungeonImg.GetComponent<Image>().sprite = sp;
         }
 
         public static void OnButton_Close(this UITeamDungeonCreateComponent self)

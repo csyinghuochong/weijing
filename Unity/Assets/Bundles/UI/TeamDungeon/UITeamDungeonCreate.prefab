@@ -124,6 +124,8 @@ MonoBehaviour:
     gameObject: {fileID: 2780773733593138719}
   - key: ShenYuan
     gameObject: {fileID: 3187600050992160226}
+  - key: DungeonImg
+    gameObject: {fileID: 7235119757018496457}
 --- !u!114 &1916934457019297545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,10 +1001,10 @@ RectTransform:
   m_Father: {fileID: 564638896848524015}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -145}
+  m_SizeDelta: {x: 600, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5753059674771444697
 CanvasRenderer:
@@ -3366,7 +3368,7 @@ GameObject:
   - component: {fileID: 5965204758071477434}
   - component: {fileID: 2570967810558548830}
   m_Layer: 5
-  m_Name: Image22 (1)
+  m_Name: DungeonImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
