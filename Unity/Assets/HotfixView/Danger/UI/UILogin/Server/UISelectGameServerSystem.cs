@@ -62,20 +62,7 @@ namespace ET
             List<ServerItem> allserverList = PlayerComponent.AllServerList;
 
 
-            //去掉先锋区
-            //for (int i = allserverList.Count - 1; i >= 0; i--)
-            //{
-            //    bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
-            //    if (!xianfenzone)
-            //    {
-            //        continue;
-            //    }
-            //    if (!newmyServer.Contains(allserverList[i].ServerId))
-            //    {
-            //       allserverList.RemoveAt(i);
-            //    }
-            //}
-
+            int platform = GlobalHelp.GetPlatform();
             string lastAccount = string.Empty;
             string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
             if (!string.IsNullOrEmpty(lastloginType))
@@ -88,6 +75,13 @@ namespace ET
                 if (allserverList[i].ServerId == 3 && !gmaccount)
                 {
                     allserverList.RemoveAt(i);
+                    continue;
+                }
+
+                if (!allserverList[i].PlatformList.Contains(platform))
+                {
+                    allserverList.RemoveAt(i);
+                    continue;
                 }
             }
 

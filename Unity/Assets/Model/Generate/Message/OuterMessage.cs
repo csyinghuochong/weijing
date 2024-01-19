@@ -1475,6 +1475,9 @@ namespace ET
 		[ProtoMember(6)]
 		public int New { get; set; }
 
+		[ProtoMember(7)]
+		public List<int> PlatformList = new List<int>();
+
 	}
 
 	[ResponseType(nameof(G2C_CreateRole))]
