@@ -311,7 +311,31 @@ namespace ET
                         MessageHelper.SendToClient(unit, m2CCreateUnits);
                         // 加入aoi
                         unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+                        break;
+                    case SceneTypeEnum.OneChallenge:
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+						if (unit.GetParent<UnitComponent>().GetAll().Count == 1)
+                        {
+							//第一个玩家坐标
+                            unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                            unit.Rotation = Quaternion.identity;
+                        }
+						else
+						{
+                            //第二个玩家坐标
+                            unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                            unit.Rotation = Quaternion.identity;
+                        }
+                       
+                        // 通知客户端创建My Unit
+                        m2CCreateUnits = new M2C_CreateMyUnit();
+                        m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
+                        // 加入aoi
+                        unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
+                        TransferHelper.AfterTransfer(unit);
                         break;
                     case SceneTypeEnum.JiaYuan:
 					case SceneTypeEnum.Union:
@@ -322,7 +346,6 @@ namespace ET
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
                     case SceneTypeEnum.SeasonTower:
-					case SceneTypeEnum.OneChallenge:
                         unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
