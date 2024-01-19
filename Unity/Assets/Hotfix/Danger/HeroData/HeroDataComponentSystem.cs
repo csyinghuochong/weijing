@@ -195,6 +195,11 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
             }
 
+            if (numericComponent.GetAsInt(NumericType.SeasonBossFuben) >= ConfigHelper.GMDungeonId)
+            {
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
+            }
+
             if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
                 Log.Console($"CheckSeasonOpen: {unit.Id}");

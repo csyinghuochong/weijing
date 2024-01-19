@@ -26,7 +26,11 @@ namespace ET
                 {
                     continue;
                 }
-                if (item.Value.EnterLv <= lv)
+                if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(item.Key))
+                {
+                    continue;
+                }
+                if (item.Value.EnterLv <= lv && item.Key < ConfigHelper.GMDungeonId)
                 {
                     canEnterIds.Add(item.Key);
                 }

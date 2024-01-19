@@ -317,7 +317,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (config.EnterLv <= lv)
+                if (config.EnterLv <= lv && config.Id < ConfigHelper.GMDungeonId)
                 {
                     openfubenids.Add(fubenid);
                 }
