@@ -114,7 +114,7 @@ namespace ET
             {
                 return canMove;
             }
-            if (self.StateTypeGet(StateTypeEnum.BePulled))
+            if (self.StateTypeGet(StateTypeEnum.BePulled) || self.StateTypeGet(StateTypeEnum.JiTui))
             {
                 return ErrorCode.ERR_Success;
             }

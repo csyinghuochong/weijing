@@ -626,10 +626,11 @@ namespace ET
                     if (self.QiangHuaLevel[i] >= maxLevel)
                     {
                         self.QiangHuaLevel[i] = maxLevel - 1;
-                    }
-                    else
-                    {
-                        Log.Error($"self.QiangHuaLevel[i] >= maxLevel： {unit.Id}");
+
+                        if (i != 0)
+                        {
+                            Log.Error($"self.QiangHuaLevel[i] >= maxLevel： {unit.Id}   {i}  {self.QiangHuaLevel[i]}");
+                        }
                     }
                 }
             }
