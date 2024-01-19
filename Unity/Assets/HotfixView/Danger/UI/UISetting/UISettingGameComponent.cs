@@ -310,7 +310,7 @@ namespace ET
 
         public static void OnLenDepth(this UISettingGameComponent self, float value)
         {
-            float va = value * 2;
+            float va = 0.1f + value * 2;
             PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.LenDepth, va);
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = va;
         }
@@ -378,12 +378,16 @@ namespace ET
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
             float va = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
-            if (va == 0)
+            if (va <= 0)
             {
-                va = 1;
+                self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = 0.4f;
             }
-            self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = va / 2;
-            
+            else
+            {
+                self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = (va - 0.1f) / 2;
+            }
+
+
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
            
