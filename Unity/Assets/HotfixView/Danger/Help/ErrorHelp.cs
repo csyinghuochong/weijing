@@ -28,6 +28,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
             ErrorHintList.Add(ErrorCode.ERR_VersionNoMatch, "版本不一致，请重开客户端");
             ErrorHintList.Add(ErrorCode.ERR_EnterGameError, "角色登录异常,请尝试再次重新登录账号!");
+            ErrorHintList.Add(ErrorCode.ERR_OtherNotExist, "该玩家不在主城!");
+            
 
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCode.ERR_GoldNotEnoughError, "金币不足!");

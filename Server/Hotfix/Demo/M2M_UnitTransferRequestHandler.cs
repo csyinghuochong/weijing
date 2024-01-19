@@ -327,7 +327,7 @@ namespace ET
                             unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
                             unit.Rotation = Quaternion.identity;
                         }
-                       
+
                         // 通知客户端创建My Unit
                         m2CCreateUnits = new M2C_CreateMyUnit();
                         m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);

@@ -428,6 +428,7 @@ namespace ET
             switch (menuEnumType)
             {
                 case MenuEnumType.Main:
+                case MenuEnumType.Chat:
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     self.Button_OneChallenge.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
                     break;
