@@ -445,18 +445,7 @@ namespace ET
             {
                 unit.Stop(skillcmd.SkillID);
             }
-            float now_ZhuanZhuPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro);
-            if (zhudong && RandomHelper.RandFloat01() < now_ZhuanZhuPro
-                && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000
-                && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
-            {
-                if (unit.Type == UnitType.Player)
-                {
-                    m2C_Skill.Message = "双重施法,触发法术连击!";
-                }
-                self.LastLianJiTime = TimeHelper.ServerFrameTime();
-                self.OnContinueSkill(skillcmd).Coroutine();
-            }
+           
             self.InterruptSing(skillcmd.SkillID,false);
 
             List<SkillHandler> handlerList = new List<SkillHandler>();  
@@ -474,16 +463,7 @@ namespace ET
             m2C_Skill.Error = ErrorCode.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
-            //M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
-            //{
-            //    UnitId = unit.Id,
-            //    ItemId = skillcmd.ItemId,
-            //    SkillID = skillcmd.SkillID,
-            //    TargetAngle = skillcmd.TargetAngle,
-            //    SkillInfos = skillList,
-            //    CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
-            //    PublicCDTime = self.SkillPublicCDTime
-            //};
+            
             M2C_UnitUseSkill useSkill = MessageHelper.m2C_UnitUseSkill;
             useSkill.UnitId = unit.Id;
             useSkill.ItemId = skillcmd.ItemId;
@@ -529,7 +509,21 @@ namespace ET
             {
                 unit.GetComponent<AttackRecordComponent>().AttackingId = skillcmd.TargetID;
             }
-            self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
+
+            float now_ZhuanZhuPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro);
+            if (zhudong && RandomHelper.RandFloat01() < now_ZhuanZhuPro
+                && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000
+                && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
+            {
+                if (unit.Type == UnitType.Player)
+                {
+                    m2C_Skill.Message = "双重施法,触发法术连击!";
+                }
+                self.LastLianJiTime = TimeHelper.ServerFrameTime();
+                self.OnContinueSkill(skillcmd).Coroutine();
+            }
+
+            self.TriggerAddSkill(skillcmd, weaponSkillConfig.Id);
             self.AddSkillTimer();
             return m2C_Skill;
         }
@@ -568,6 +562,22 @@ namespace ET
                 skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
             }
             return skillCd;
+        }
+
+        public static async ETTask TriggerBuffSkill(this SkillManagerComponent self,  KeyValuePairLong keyValuePair, long targetId)
+        {
+            Unit unit = self.GetParent<Unit>();
+            await TimerComponent.Instance.WaitAsync(keyValuePair.Value2);
+            if (unit.IsDisposed)
+            {
+                return;
+            }
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get((int)keyValuePair.Value);
+            if (self.GetComponent<StateComponent>().CanUseSkill(skillConfig, true) != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            self.OnUseSkill(new C2M_SkillCmd() { SkillID = (int)keyValuePair.Value, TargetID = targetId });
         }
 
         public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)

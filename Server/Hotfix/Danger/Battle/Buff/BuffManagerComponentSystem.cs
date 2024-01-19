@@ -546,6 +546,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (formId != 0 && formId != self.m_Buffs[i].TheUnitFrom.Id)
+                {
+                    continue;
+                }
                 buffnumber++;
             }
             return buffnumber;

@@ -6,14 +6,17 @@ namespace ET
 {
     public partial class SkillConfigCategory
     {
-
-        public Dictionary<int, List<KeyValuePairInt>> EquipSkillList = new Dictionary<int, List<KeyValuePairInt>>();
-
         /// <summary>
         /// 69060301 69060302 ..的基础技能都是69060300
         /// </summary>
         public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
 
+        public Dictionary<int, List<KeyValuePairInt>> EquipSkillList = new Dictionary<int, List<KeyValuePairInt>>();
+
+        public Dictionary<int , KeyValuePairLong> BuffTriggerSkill = new Dictionary<int , KeyValuePairLong>();
+
+        public Dictionary<int, List<KeyValuePairLong>> BuffAddHurt = new Dictionary<int, List<KeyValuePairLong>>();
+      
         /// <summary>
         /// 获取是技能的一级基础技能
         /// </summary>
@@ -26,8 +29,68 @@ namespace ET
             return baseskillid;
         }
 
+        public float GetBuffAddHurt(int skillId, int buffId, int buffNum)
+        {
+            float addHurt = 0f;
+            List<KeyValuePairLong> buffAddHurts = null;
+            BuffAddHurt.TryGetValue( skillId, out buffAddHurts );
+            if (buffAddHurts != null)
+            {
+                for (int i = buffAddHurts.Count - 1; i >= 0; i--)
+                {
+                    if (buffAddHurts[i].KeyId!= buffId)
+                    {
+                        continue;
+                    }
+                    if (buffNum >= buffAddHurts[i].Value)
+                    {
+                        addHurt = buffAddHurts[i].Value2 * 0.001f;
+                    }
+                }
+            }
+            return addHurt;
+        }
+
         public override void AfterEndInit()
         {
+            foreach (SkillConfig skillconfig in this.GetAll().Values)
+            {
+                string buffToSkill = skillconfig.BuffToSkill;
+                if (string.IsNullOrEmpty(buffToSkill) || buffToSkill.Equals("0"))
+                {
+                    continue;
+                }
+
+                //90105002,1,77006003,0.5
+                //90105002,2,1; 0.5@2; 0.7
+                string[] buffInfoParam = buffToSkill.Split(',');
+                if (buffInfoParam[1] == "1")
+                {
+                    BuffTriggerSkill.Add(skillconfig.Id, new KeyValuePairLong() {
+                        KeyId = int.Parse(buffInfoParam[0]),
+                        Value = int.Parse(buffInfoParam[2])  ,
+                        Value2 = (long)(float.Parse(buffInfoParam[3]) * 1000)
+                    } );
+                }
+                if (buffInfoParam[1] == "2")
+                {
+                    List<KeyValuePairLong> keyValuePairLongs = new List<KeyValuePairLong>();
+                    string[] buffaddhurtList = buffInfoParam[2].Split("@");
+
+                    for (int i = 0; i < buffaddhurtList.Length; i++)
+                    {
+                        keyValuePairLongs.Add(new KeyValuePairLong()
+                        {
+                            KeyId = int.Parse(buffInfoParam[0]),
+                            Value = int.Parse(buffaddhurtList[0]),
+                            Value2 = (long)(float.Parse(buffaddhurtList[1]) * 1000)
+                        });
+                    }
+
+                    BuffAddHurt.Add(skillconfig.Id, keyValuePairLongs);
+                }
+            }
+
             foreach (SkillConfig skillconfig in this.GetAll().Values)
             {
                 string equipskill = skillconfig.EquipSkill;

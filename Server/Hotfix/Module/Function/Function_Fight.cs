@@ -50,7 +50,24 @@ namespace ET
                 }
             }
 
-            ///Buff层数叠加伤害
+            float buffHurtValue = 0f;
+            ///Buff层数触发技能  buffid 1 技能ID 触发间隔
+            if (SkillConfigCategory.Instance.BuffTriggerSkill.ContainsKey(skillconfig.Id))
+            {
+                KeyValuePairLong keyValuePairLong = SkillConfigCategory.Instance.BuffTriggerSkill[skillconfig.Id];
+                if (attackUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, (int)keyValuePairLong.KeyId) > 0)
+                {
+                    attackUnit.GetComponent<SkillManagerComponent>().TriggerBuffSkill(keyValuePairLong, attackUnit.Id).Coroutine();
+                }
+            }
+
+            ///Buff层数叠加伤害  buffid 2 层数  附加伤害系数
+            if (SkillConfigCategory.Instance.BuffAddHurt.ContainsKey(skillconfig.Id))
+            {
+                int buffId = (int)SkillConfigCategory.Instance.BuffAddHurt[skillconfig.Id][0].KeyId;
+                int buffNum = defendUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, buffId);
+                buffHurtValue = SkillConfigCategory.Instance.GetBuffAddHurt(skillconfig.Id, buffId, buffNum);
+            }
 
             //闪电链增加的伤害
             float chainLightningAddValue = skillHandler.HurtAddPro;

@@ -275,7 +275,7 @@ namespace ET
 		public int EndSkillId { get; set; }
 		/// <summary>Buff触发技能</summary>
 		[ProtoMember(67)]
-		public int[] BuffToSkill { get; set; }
+		public string BuffToSkill { get; set; }
 
 	}
 }
