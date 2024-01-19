@@ -1358,7 +1358,8 @@ namespace ET
             self.ZoneScene().GetComponent<LockTargetComponent>().SkillAttackPlayerFirst =
                     int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.SkillAttackPlayerFirst));
 
-            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
+            float lenDepth = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = lenDepth <= 0? 1 : lenDepth;
 
             self.UIMainSkillComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
 
