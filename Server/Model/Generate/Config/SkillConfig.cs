@@ -273,6 +273,9 @@ namespace ET
 		/// <summary>结束时技能</summary>
 		[ProtoMember(66)]
 		public int EndSkillId { get; set; }
+		/// <summary>Buff触发技能</summary>
+		[ProtoMember(67)]
+		public int[] BuffToSkill { get; set; }
 
 	}
 }

@@ -50,6 +50,8 @@ namespace ET
                 }
             }
 
+            ///Buff层数叠加伤害
+
             //闪电链增加的伤害
             float chainLightningAddValue = skillHandler.HurtAddPro;
 
