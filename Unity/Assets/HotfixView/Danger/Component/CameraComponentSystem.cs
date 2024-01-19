@@ -217,7 +217,7 @@ namespace ET
 			//{
 			//	self.OffsetPostion = self.MainCamera.GetComponent<CameraFollow>().OffsetPostion;
 			//}
-			self.MainCamera.transform.position = self.MainUnit.Position + self.OffsetPostion;
+			self.MainCamera.transform.position = self.MainUnit.Position + self.OffsetPostion * self.LenDepth;
 			self.MainCamera.transform.LookAt(self.MainUnit.Position); 
 		}
 	}

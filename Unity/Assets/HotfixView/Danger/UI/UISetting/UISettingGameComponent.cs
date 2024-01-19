@@ -9,6 +9,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject LenDepthSet;
         public GameObject SkillAttackPlayerFirst;
         public GameObject FirstUnionName;
         public GameObject HideNode;
@@ -83,6 +84,10 @@ namespace ET
             self.RandomHorese = rc.Get<GameObject>("RandomHorese");
             self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RandomHorese);
 
+            self.LenDepthSet = rc.Get<GameObject>("LenDepthSet");
+            self.LenDepthSet.transform.GetComponentInChildren<Slider>().onValueChanged.AddListener((value) => { self.OnLenDepth(value);});
+            self.LenDepthSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
 
@@ -303,6 +308,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
         }
 
+        public static void OnLenDepth(this UISettingGameComponent self, float value)
+        {
+            float va = value * 2;
+            PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.LenDepth, va);
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = va;
+        }
+
         public static void OnBtn_FirstUnionName(this UISettingGameComponent self)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FirstUnionName);
@@ -352,7 +364,7 @@ namespace ET
             self.SliderSound.GetComponent<Slider>().value = musicvalue;
 
             string sound = PlayerPrefsHelp.GetString(PlayerPrefsHelp.SoundVolume);
-            float soundvalue = string.IsNullOrEmpty(music) ? 1f : float.Parse(sound);
+            float soundvalue = string.IsNullOrEmpty(sound) ? 1f : float.Parse(sound);
             self.SliderMusic.GetComponent<Slider>().value = soundvalue;
 
             self.ScreenToggle0.isOn = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1";
@@ -365,7 +377,13 @@ namespace ET
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
-           
+            float va = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
+            if (va == 0)
+            {
+                va = 1;
+            }
+            self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = va / 2;
+            
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
            

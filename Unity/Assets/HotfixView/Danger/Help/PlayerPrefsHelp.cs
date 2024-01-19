@@ -19,6 +19,7 @@ namespace ET
         public static string LastLoginType = "WJa_LastLoginType";
         public static string LoginErrorTime = "WJa_LoginErrorTime";
         public static string ChapterDifficulty = "WJa_ChapterDifficulty";
+        public static string LenDepth = "WJa_LenDepth";
 
         public static string LastAccount(string loginType)
         {

@@ -34,5 +34,7 @@ namespace ET
 
 		public Action OnBuildEnter;
 		public Unit MainUnit;
+
+		public float LenDepth = 1; // 镜头纵深
 	}
 }
