@@ -1177,15 +1177,5 @@ namespace ET
         /// 组队副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
         public static int GmTeamdungeonId = 110006;
-
-
-        /// <summary>
-        /// 渠道对应的服务器列表， 没有配置则全部显示
-        /// 
-        /// </summary>
-        public static Dictionary<int, List<int>> PlatformServerList = new Dictionary<int, List<int>>()
-        {
-            {  1, new List<int>(){ 1 } },
-        };
     }
 }
