@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -40,7 +41,7 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject DragPanel;
         public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
@@ -141,7 +142,11 @@ namespace ET
         public int KillMonsterRewardKey;
 
         public Unit MainUnit;
-
+        
+        public float DRAG_TO_ANGLE = 0.5f;
+        public Vector2 PreviousPressPosition;
+        public float AngleX;
+        public float AngleY;
     }
 
 
@@ -157,6 +162,12 @@ namespace ET
             self.DoMoveRight = transform.Find("DoMoveRight").gameObject;
             self.DoMoveBottom = transform.Find("DoMoveBottom").gameObject;
 
+            self.DragPanel = rc.Get<GameObject>("DragPanel");
+            self.DragPanel.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            ButtonHelp.AddEventTriggers(self.DragPanel, (pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
+            ButtonHelp.AddEventTriggers(self.DragPanel, (pdata) => { self.Drag(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.DragPanel, (pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
+            
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             self.Button_Donation.SetActive(  true );
             self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UIDonation).Coroutine(); });
@@ -491,6 +502,24 @@ namespace ET
 
     public static class UIMainComponentSystem
     {
+        public static void BeginDrag(this UIMainComponent self, PointerEventData pdata)
+        {
+            self.PreviousPressPosition = pdata.position;
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().StartRotate();
+        }
+
+        public static void Drag(this UIMainComponent self, PointerEventData pdata)
+        {
+            self.AngleX = (pdata.position.x - self.PreviousPressPosition.x) * self.DRAG_TO_ANGLE;
+            self.AngleY = (pdata.position.y - self.PreviousPressPosition.y) * self.DRAG_TO_ANGLE;
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().Rotate(-self.AngleX, -self.AngleY);
+            self.PreviousPressPosition = pdata.position;
+        }
+
+        public static void EndDrag(this UIMainComponent self, PointerEventData pdata)
+        {
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().EndRotate();
+        }
 
         public static async ETTask RequestChatList(this UIMainComponent self)
         {
