@@ -6,7 +6,7 @@ namespace ET
 
         public static string GetPlatformName(int platformid)
         {
-            ///0 默认 TapTap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  ios20001
+            ///0 默认 TapTap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  渠道100+ ios20001
             string platformname  = string.Empty;    
             switch (platformid)
             {
