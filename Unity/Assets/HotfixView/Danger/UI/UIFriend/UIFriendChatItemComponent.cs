@@ -28,7 +28,7 @@ namespace ET
             self.Text_Speak = rc.Get<GameObject>("Text_Speak");
             self.ImgHeadIcon = rc.Get<GameObject>("ImgHeadIcon");
 
-            gameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text); };
+            //gameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text); };
         }
     }
 
