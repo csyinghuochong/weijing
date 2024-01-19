@@ -280,7 +280,6 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 61, ServerIp = $"{ip}:20435", ServerName = "斗战胜佛", ServerOpenTime = 1703242800000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 62, ServerIp = $"{ip}:20375", ServerName = "新年快乐", ServerOpenTime = 1703847600000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 63, ServerIp = $"{ip}:20415", ServerName = "万里华夏", ServerOpenTime = 1704427200000, New = 0, Show = 1 });
-
                 serverItems_1.Add(new ServerItem() { ServerId = 64, ServerIp = $"{ip}:20485", ServerName = "繁星之梦", ServerOpenTime = 1705057200000, New = 0, Show = 1 });
 
                 //2024/1/19 新区
