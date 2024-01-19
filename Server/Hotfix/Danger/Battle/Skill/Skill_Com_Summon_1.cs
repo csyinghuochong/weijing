@@ -23,7 +23,7 @@ namespace ET
             {
                 return;
             }
-
+            this.InitSelfBuff();
             //70009001;0;1;1
             string[] summonParList = SkillConfigCategory.Instance.Get(this.SkillInfo.WeaponSkillID).GameObjectParameter.Split('@');
             for (int y = 0; y < summonParList.Length; y++)

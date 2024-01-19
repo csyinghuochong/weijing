@@ -202,6 +202,7 @@ namespace ET
         public const int ERR_CanNotMove_Singing = 300837;
         public const int ERR_CanNotMove_Sleep = 300837;
         public const int ERR_CanNotMove_Fear = 300838;
+        public const int ERR_CanNotMove_Speed = 300839;
 
         //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错

@@ -159,15 +159,20 @@ namespace ET
             {
                 return ErrorCode.ERR_CanNotMove_Fear;
             }
-
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-            {
-                return ErrorCode.ERR_CanNotMove_Dead;
-            }
             if (unit.Type == UnitType.Monster && self.StateTypeGet(StateTypeEnum.Singing))
             {
                 return ErrorCode.ERR_CanNotMove_Singing;
+            }
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.Now_Speed) <= 0)
+            {
+                return ErrorCode.ERR_CanNotMove_Speed;
+            }
+            if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                return ErrorCode.ERR_CanNotMove_Dead;
             }
 
             return ErrorCode.ERR_Success;
