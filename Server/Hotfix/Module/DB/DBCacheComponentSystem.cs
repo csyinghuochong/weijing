@@ -62,19 +62,19 @@ namespace ET
 
             foreach ((long unitid, long lasttime) in self.UnitCachesTime)
             {
-                if (lasttime != 0 && serverTime - lasttime > TimeHelper.Hour * 12)
+                if (lasttime != 0 && serverTime - lasttime > TimeHelper.Hour * 4)
                 {
                     self.WaitDeletUnit.Add(unitid);
                 }
             }
 
-            int removeNumber = 10;
+            int removeNumber = 40;
             for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
             {
                 //Log.Console($"长期离线，移除玩家11: {zone}  {self.WaitDeletUnit[i]}");
                 self.DeleteRole(self.WaitDeletUnit[i]);
                 removeNumber--;
-                if (removeNumber <= 10)
+                if (removeNumber <= 0)
                 {
                     break;
                 }
