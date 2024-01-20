@@ -12,14 +12,13 @@ namespace ET
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
-            //OpcodeHelper.ShowMessage = !OpcodeHelper.ShowMessage;
-#if SERVER
-            MessageHelper.LogStatus = !MessageHelper.LogStatus;
-#endif
-
             Log.Console("C2M_Reload_b: " + ConfigLoader.RemovePlayer);
             Log.Console("C2M_Reload_b: " + MongoHelper.NoRecovery);
-
+#if SERVER
+            MessageHelper.LogStatus = !MessageHelper.LogStatus;
+            OpcodeHelper.ShowMessage = MessageHelper.LogStatus;
+            Log.Console("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
+#endif
             switch (request.LoadType)
             {
                 case 0://全部

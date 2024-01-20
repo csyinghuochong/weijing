@@ -73,6 +73,12 @@ namespace ET
             }
             else
             {
+                if (string.IsNullOrEmpty(request.sdk_open_id))
+                {
+                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
+                    reply();
+                    return;
+                }
                 long accountZone = DBHelper.GetAccountCenter();
                 Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount()
                 {

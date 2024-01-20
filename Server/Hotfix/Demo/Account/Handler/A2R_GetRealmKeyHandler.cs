@@ -10,7 +10,7 @@ namespace ET
             {
                 if (scene.SceneType != SceneType.Realm)
                 {
-                    Log.Warning($"请求的Scene错误，当前Scene为：{scene.SceneType}");
+                    Log.Warning($"请求的Scene错误1，当前Scene为：{scene.SceneType}");
                     response.Error = ErrorCode.ERR_RequestSceneTypeError;
                     reply();
                     return;

@@ -326,6 +326,11 @@ namespace ET
             }
 			else
 			{
+				if (string.IsNullOrEmpty(access_token))
+				{
+                    FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+                    return;
+                }
                 long serverNow = TimeHelper.ServerNow() / 1000;
                 Dictionary<string, string> paramslist = new Dictionary<string, string>();
                 paramslist.Add("access_token", access_token);
@@ -349,7 +354,7 @@ namespace ET
                     return;
                 }
 
-                if (tikTokCode.data.age_type <= 0)
+                if (string.IsNullOrEmpty(tikTokCode.data.sdk_open_id) ||  tikTokCode.data.age_type <= 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
                     return;
@@ -366,8 +371,8 @@ namespace ET
                 }
                 else
                 {
-                    self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-                    self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+					self.Account.GetComponent<InputField>().text = string.Empty;
+                    self.Password.GetComponent<InputField>().text = string.Empty;
                     FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
                 }
             }
