@@ -13,6 +13,6 @@ CreateRobot --Zone=3 --Num=1000 --RobotId=1001
 
 
 2#7#0#15#72000003#1
-CreateRobot --Zone=5 --Num=500 --RobotId=1001     	 //战士
+CreateRobot --Zone=5 --Num=100 --RobotId=1001     	 //战士
 CreateRobot --Zone=5 --Num=500 --RobotId=1001  	 //法师
 CreateRobot --Zone=5 --Num=-1 --RobotId=1001

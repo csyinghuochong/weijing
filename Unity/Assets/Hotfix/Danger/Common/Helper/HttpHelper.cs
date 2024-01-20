@@ -352,8 +352,8 @@ namespace ET
                         postData = postData + $"{item.Key}={dic[item.Key]}&";
                     }
                 }
-                Log.Console($"OnWebRequestPost_Pay:  {postData}");
-                Log.Warning($"OnWebRequestPost_Pay:  {postData}");
+                //Log.Console($"OnWebRequestPost_Pay:  {postData}");
+                //Log.Warning($"OnWebRequestPost_Pay:  {postData}");
 
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(100);

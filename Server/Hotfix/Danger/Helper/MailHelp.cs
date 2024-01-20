@@ -85,7 +85,7 @@ namespace ET
                 default:
                     break;
             }
-            Log.Console($"CheckSendMail.true : {MailType} {Title}");
+            //Log.Console($"CheckSendMail.true : {MailType} {Title}");
             return true;
         }
 

@@ -258,8 +258,8 @@ namespace ET
                 unit.OnKickPlayer(false).Coroutine();
             }
             self.NoFindPath++;
-
-            if (self.DBInterval == -1 || self.DBInterval >= 5)
+            int saveInterval = RandomHelper.RandomNumber(5, 10);
+            if (self.DBInterval == -1 || self.DBInterval >= saveInterval)
             {
                 self.DBInterval = 0;
                 self.UpdateCacheDB();
