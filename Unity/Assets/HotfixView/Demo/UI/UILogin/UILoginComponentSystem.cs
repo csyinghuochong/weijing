@@ -297,17 +297,70 @@ namespace ET
 			}
 		}
 
-
         public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
 		{
-            try
-            {
-                C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
+			if (TikTokHelper.UseOldLogin)
+			{
+                try
+                {
+                    C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { access_token = access_token };
+                    Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+                    A2C_TikTokVerifyUser a2C_TikTokVerifyUser = (A2C_TikTokVerifyUser)await accountSession.Call(c2A_TikTokVerifyUser);
+                    if (a2C_TikTokVerifyUser.Error == ErrorCode.ERR_Success)
+                    {
+                        self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = a2C_TikTokVerifyUser.age_type;
+                        self.Account.GetComponent<InputField>().text = a2C_TikTokVerifyUser.sdk_open_id.ToString();
+                        self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                    }
+                    else
+                    {
+                        self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                        self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+                        FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.ToString());
+                }
+            }
+			else
+			{
+                long serverNow = TimeHelper.ServerNow() / 1000;
+                Dictionary<string, string> paramslist = new Dictionary<string, string>();
+                paramslist.Add("access_token", access_token);
+                paramslist.Add("app_id", TikTokHelper.AppID.ToString());
+                paramslist.Add("ts", serverNow.ToString());
+                string sign = TikTokHelper.getSign(paramslist);
+                paramslist.Add("sign", sign);
+
+                string result = HttpHelper.OnWebRequestPost_TikTokLogin("https://usdk.dailygn.com/gsdk/usdk/account/verify_user", paramslist);
+				//OnWebRequestPost_1: {"code":-1001,"log_id":"202311141714565D4B186ED56A781CCE8D","message":"invalid parameter: app_id error"}
+				if (string.IsNullOrEmpty(result))
+				{
+					FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+					return;
+				}
+				
+				TikTokCode tikTokCode = JsonHelper.FromJson<TikTokCode>(result);
+				if (tikTokCode.code!=0 || tikTokCode.data == null)
+				{
+                    FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+                    return;
+                }
+
+                if (tikTokCode.data.age_type <= 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+                    return;
+                }
+
+                C2A_TikTokVerifyUser c2A_TikTokVerifyUser = new C2A_TikTokVerifyUser() { sdk_open_id = tikTokCode.data.sdk_open_id, age_type = tikTokCode.data.age_type };
                 Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
                 A2C_TikTokVerifyUser a2C_TikTokVerifyUser = (A2C_TikTokVerifyUser)await accountSession.Call(c2A_TikTokVerifyUser);
                 if (a2C_TikTokVerifyUser.Error == ErrorCode.ERR_Success)
                 {
-					self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = a2C_TikTokVerifyUser.age_type;
+                    self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = a2C_TikTokVerifyUser.age_type;
                     self.Account.GetComponent<InputField>().text = a2C_TikTokVerifyUser.sdk_open_id.ToString();
                     self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
                 }
@@ -315,12 +368,8 @@ namespace ET
                 {
                     self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
                     self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-					FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
+                    FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
                 }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.ToString());
             }
         }
 

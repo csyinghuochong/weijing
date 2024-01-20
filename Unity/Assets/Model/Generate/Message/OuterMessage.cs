@@ -14382,6 +14382,12 @@ namespace ET
 		[ProtoMember(1)]
 		public string access_token { get; set; }
 
+		[ProtoMember(2)]
+		public string sdk_open_id { get; set; }
+
+		[ProtoMember(3)]
+		public int age_type { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_TikTokVerifyUser)]

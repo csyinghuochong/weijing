@@ -6890,6 +6890,9 @@ message C2A_TikTokVerifyUser // IRequest
 {
 	int32 RpcId = 90;
 	string	access_token	= 1;	// 帐号
+
+	string sdk_open_id = 2;
+	int age_type = 3; 
 }
 
 message A2C_TikTokVerifyUser // IResponse

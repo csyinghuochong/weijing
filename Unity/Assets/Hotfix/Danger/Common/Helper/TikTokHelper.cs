@@ -14,6 +14,8 @@ namespace ET
         public static int AppID = 554726;
         public static string AppSecret = "gacT8bvbGb9X3f52j8bZDtjvkAkhrOZy";
 
+        public static bool UseOldLogin = false;    
+
         /// <summary>
         /// HMACSHA1加密
         /// </summary>

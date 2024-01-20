@@ -147,7 +147,7 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4], false);
             }
 
-            if (numericComponent.GetAsInt(NumericType.CostTiLi) > 400)
+            if (numericComponent.GetAsInt(NumericType.CostTiLi) > 500)
             {
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 Log.Error($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
