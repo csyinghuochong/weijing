@@ -9,6 +9,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject RotaAngleSet;
         public GameObject LenDepthSet;
         public GameObject SkillAttackPlayerFirst;
         public GameObject FirstUnionName;
@@ -87,6 +88,10 @@ namespace ET
             self.LenDepthSet = rc.Get<GameObject>("LenDepthSet");
             self.LenDepthSet.transform.GetComponentInChildren<Slider>().onValueChanged.AddListener((value) => { self.OnLenDepth(value);});
             self.LenDepthSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+
+            self.RotaAngleSet = rc.Get<GameObject>("RotaAngleSet");
+            self.RotaAngleSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RotaAngle);
+            self.RotaAngleSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
@@ -301,6 +306,14 @@ namespace ET
             UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UIMainSkillComponent.PickSet = value.Split('@');
         }
 
+        public static void OnBtn_RotaAngle(this UISettingGameComponent self)
+        {
+            int value = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle);
+            self.RotaAngleSet.transform.Find("Image_Click").gameObject.SetActive(value == 0);
+            PlayerPrefsHelp.SetInt(PlayerPrefsHelp.RotaAngle, value == 0? 1 : 0);
+            UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().DragPanel.SetActive(value == 0);
+        }
+        
         public static void OnBtn_RandomHorese(this UISettingGameComponent self)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese);
@@ -377,6 +390,7 @@ namespace ET
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
+            self.RotaAngleSet.transform.Find("Image_Click").gameObject.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle) == 1);
             float va = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
             if (va <= 0)
             {

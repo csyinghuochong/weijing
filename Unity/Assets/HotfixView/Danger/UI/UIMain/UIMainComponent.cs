@@ -1389,6 +1389,8 @@ namespace ET
 
             float lenDepth = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = lenDepth <= 0? 1 : lenDepth;
+            
+            self.DragPanel.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle) == 1);
 
             self.UIMainSkillComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
 
