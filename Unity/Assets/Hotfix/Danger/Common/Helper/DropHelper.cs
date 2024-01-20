@@ -121,6 +121,13 @@ namespace ET
 				dropID = dropconf.DropSonID;
 			}
 
+			////
+			if (totalItemId.Count == 0)
+			{
+                dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = 1 });
+				return;
+            }
+
 			int sum_temp = 0;
 			int number_rand = RandomHelper.RandomNumber(1, totalWeight + 1);
 			DropItemInfo dropItemInfo = totalItemId[0];
