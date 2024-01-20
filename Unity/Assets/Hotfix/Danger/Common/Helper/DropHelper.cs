@@ -124,6 +124,7 @@ namespace ET
 			////
 			if (totalItemId.Count == 0)
 			{
+				Log.Warning($"totalItemId.Count == 0:  {dropID}");
                 dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = 1 });
 				return;
             }

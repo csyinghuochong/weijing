@@ -138,7 +138,7 @@ namespace ET
             {
                 increaseProLists += $"{increaseProLists}_";
             }
-            Log.Warning($"增幅消耗: {unit.Id}  {reelBagInfo.ItemID}   获得属性:{increaseProLists}");
+            //Log.Warning($"增幅消耗: {unit.Id}  {reelBagInfo.ItemID}   获得属性:{increaseProLists}");
 
             //通知客户端背包刷新
             equipmentBagInfo.isBinging = true;  
