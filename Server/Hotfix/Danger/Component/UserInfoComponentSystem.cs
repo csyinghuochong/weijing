@@ -54,6 +54,12 @@ namespace ET
                 //self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp(1f);
             }
+
+            if (self.UpdateRankTime > 0)
+            {
+                self.UpdateRankTime = 0;
+                self.UploadCombat().Coroutine();
+            }
         }
 
         public static void OnJiaYuanExp(this UserInfoComponent self, float hour)
@@ -743,25 +749,10 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateRankInfo(this UserInfoComponent self)
+        public static async ETTask UploadCombat(this UserInfoComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.IsRobot())
-            {
-                return;
-            }
-
-            //if (!ComHelp.IsInnerNet())
-            //{
-            //    long serverTime = TimeHelper.ServerNow();
-            //    if (serverTime - self.UpdateRankTime < TimeHelper.Minute * 5)
-            //    {
-            //        return;
-            //    }
-            //    self.UpdateRankTime = serverTime;
-            //}
-
-            //Log.Console($"UpdateRankInfoUpdateRankInfo");
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -773,17 +764,27 @@ namespace ET
             R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankUpdateRequest()
                      {
-                         CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.AcvitiyCamp),
+                         CampId = numericComponent.GetAsInt(NumericType.AcvitiyCamp),
                          RankingInfo = rankPetInfo
                      });
             if (unit.IsDisposed)
             {
                 return;
             }
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CombatRankID, Response.RankId);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.OccCombatRankID, Response.OccRankId);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetTianTiRankID, Response.PetRankId);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SoloRankId, Response.SoloRankId);
+            numericComponent.ApplyValue(NumericType.CombatRankID, Response.RankId);
+            numericComponent.ApplyValue(NumericType.OccCombatRankID, Response.OccRankId);
+            numericComponent.ApplyValue(NumericType.PetTianTiRankID, Response.PetRankId);
+            numericComponent.ApplyValue(NumericType.SoloRankId, Response.SoloRankId);
+        }
+
+        public static void  UpdateRankInfo(this UserInfoComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.IsRobot())
+            {
+                return;
+            }
+            self.UpdateRankTime = TimeHelper.ServerNow();
         }
 
         //增加经验

@@ -2604,7 +2604,7 @@ namespace ET
             //排行榜
             if (rank)
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRankInfo().Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRankInfo();
             }
 
             numericComponent_1 = null;
