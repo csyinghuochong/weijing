@@ -67,8 +67,8 @@ namespace ET
                 response.sdk_open_id = tikTokCode.data.sdk_open_id;
                 response.age_type = tikTokCode.data.age_type;
             }
-            Log.Console($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
-            Log.Warning($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
+            //Log.Console($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
+            //Log.Warning($"C2A_TikTokVerifyUser sign: {sign}    result: {result}");
 
             reply();
             await ETTask.CompletedTask;

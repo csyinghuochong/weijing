@@ -175,8 +175,8 @@ namespace ET
                         DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
                         if (AccountId > 0 && account == null)
                         {
-                            Log.Console($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
-                            Log.Warning($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
+                            //Log.Console($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
+                            //Log.Warning($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
                         }
                         bool IsHoliday = false;
                         bool StopServer = false;
