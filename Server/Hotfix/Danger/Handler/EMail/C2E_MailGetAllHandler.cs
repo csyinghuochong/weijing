@@ -14,6 +14,22 @@ namespace ET
             if (d2GGetUnit.Component != null)
             {
                 DBMailInfo dBMailInfo = d2GGetUnit.Component as DBMailInfo;
+
+                for(int i = 0; i < dBMailInfo.MailInfoList.Count; i++)
+                {
+
+                    for (int item = 0; item < dBMailInfo.MailInfoList[i].ItemList.Count; item++)
+                    {
+
+                        if (dBMailInfo.MailInfoList[i].ItemList[item].ItemID == 110000164)
+                        {
+                            dBMailInfo.MailInfoList[i].ItemList[item].ItemID = 10000164;
+                        }
+
+                    }
+
+                }
+
                 response.MailInfos = dBMailInfo.MailInfoList;
             }
             reply();

@@ -11,12 +11,17 @@ namespace ET
         /// <summary>
         /// 0 无日志 1 info  2debug  3 waring 4 error
         /// </summary>
-        public static int LogLevel = 3;
+        public static int LogLevel = 0;
 
         /// 每小时执行一次
         /// </summary>
         public static void CheckLogSize()
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
+
             string logFolderPath = "../Logs/";
             
             // 大于1G的日志直接删除
@@ -66,6 +71,10 @@ namespace ET
         public static List<string> KillInfoList = new List<string>();
         public static void KillPlayerInfo(Unit attack, Unit defend)
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
             if (attack.IsRobot() || defend.IsRobot())
             {
                 return;
@@ -236,6 +245,10 @@ namespace ET
 
         public static void WriteLogList(List<string> infolist, string filePath, bool add = true)
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
             string text = string.Empty;
             for (int i = 0; i < infolist.Count; i++)
             {
@@ -272,6 +285,10 @@ namespace ET
         public static List<string> LoginInfoList = new List<string>();
         public static void LoginInfo(string log)
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             LoginInfoList.Add(log);
             if (LoginInfoList.Count >= 100)
@@ -286,6 +303,10 @@ namespace ET
         public static List<string> ZuobiInfoList  = new List<string>(); 
         public static void ZuobiInfo(string log)
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             ZuobiInfoList.Add(log);
             if (ZuobiInfoList.Count >= 10)
@@ -308,6 +329,10 @@ namespace ET
         /// <param name="unit"></param>
         public static void CheckZuoBi(Unit unit)
         {
+            if (LogLevel == 0)
+            {
+                return;
+            }
             UserInfoComponent userInfo = unit.GetComponent<UserInfoComponent>();
 
             long rechargeValue = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber);
