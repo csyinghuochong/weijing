@@ -451,10 +451,10 @@ namespace ET
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
             int n = (int)( (unit.Id / 99) % 4 );
 
-            if (ComHelp.IsInnerNet())
-            {
-                n = 0;
-            }
+            //if (ComHelp.IsInnerNet())
+            //{
+            //    n = 0;
+            //}
 
             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
