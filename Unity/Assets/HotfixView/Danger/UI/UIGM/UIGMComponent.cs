@@ -121,7 +121,8 @@ namespace ET
             }
             int loadType = int.Parse(self.InputField_ReLoadType.GetComponent<InputField>().text);
             string loadValue = self.InputField_ReLoadType.GetComponent<InputField>().text;
-            Session session = netKcpComponent.Create(NetworkHelper.ToIPEndPoint(ip));
+            //Session session = netKcpComponent.Create(NetworkHelper.ToIPEndPoint(ip));
+            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
             {
                 M2C_Reload m2C_Reload = await session.Call(new C2M_Reload() {
                     Account = "tcg", Password = "tcg" ,
@@ -129,7 +130,7 @@ namespace ET
                     LoadValue = loadValue
                 }) as M2C_Reload;
             }
-            session.Dispose();
+           // session.Dispose();
             //self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_Reload() { Account = "tcg", Password = "tcg" }) as M2C_Reload;
         }
 

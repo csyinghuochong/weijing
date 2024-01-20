@@ -11,7 +11,7 @@ namespace ET
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetEgg rolePetEgg = petComponent.RolePetEggs[request.Index];
-            if (rolePetEgg.EndTime == 0)
+            if (rolePetEgg.EndTime == 0 && rolePetEgg.ItemId!= 0)
             {
                 string[] useparams = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId).ItemUsePar.Split('@');
                 long needTime = long.Parse(useparams[0]);

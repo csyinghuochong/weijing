@@ -780,11 +780,10 @@ namespace ET
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                     for (int k = 0; k < droplist.Count; k++)
                     {
-
-                        if (sceneType == SceneTypeEnum.TeamDungeon && (droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019))
-                        {
-                            Log.Error($"掉落装备.字: {droplist[k].ItemID}   {sceneType}");
-                        }
+                        //if (sceneType == SceneTypeEnum.TeamDungeon && (droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019))
+                        //{
+                        //    Log.Error($"掉落装备.字: {droplist[k].ItemID}   {sceneType}");
+                        //}
 
                         //宠物蛋直接进背包
                         if (monsterCof.MonsterSonType == 57)
