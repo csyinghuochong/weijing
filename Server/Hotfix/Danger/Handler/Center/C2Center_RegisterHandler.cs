@@ -11,7 +11,7 @@ namespace ET
         {
             if (session.DomainScene().SceneType != SceneType.AccountCenter)
             {
-                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                Log.Warning($"请求的Scene错误2，当前Scene为：{session.DomainScene().SceneType}");
                 session.Dispose();
                 return;
             }
