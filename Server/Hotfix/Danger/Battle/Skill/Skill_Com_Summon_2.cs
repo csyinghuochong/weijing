@@ -72,6 +72,12 @@ namespace ET
                 }
             }
 
+            if (number > 100)
+            {
+                Log.Error($"Skill_Com_Summon_2: {this.SkillConf.Id}");
+                return;
+            }
+
             for (int y = 0; y < number; y++)
             {
                 //随机坐标

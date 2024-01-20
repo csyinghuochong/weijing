@@ -951,7 +951,7 @@ namespace ET
                 }
                 if (userDataType == UserDataType.PiLao)
                 {
-                    Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {getType}  {rewardItems[i].ItemNum}");
+                    //Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {getType}  {rewardItems[i].ItemNum}");
                 }
                 if (userDataType != UserDataType.None)
                 {

@@ -58,6 +58,12 @@ namespace ET
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;
             int starAngle = angle - (int)(range * 0.5f);
+
+            if (number > 100)
+            {
+                Log.Error($"Skill_ComTargetMove_RangDamge_1: {this.SkillConf.Id}");
+                return;
+            }
             for (int i = 0; i < number; i++)
             {
                 Vector3 targetpos = this.GetBulletTargetPoint(starAngle + i * delta);

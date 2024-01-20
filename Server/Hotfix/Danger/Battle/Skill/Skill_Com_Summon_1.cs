@@ -38,6 +38,12 @@ namespace ET
 
                 //触发召唤
                 string[] vec3Str = skillParList[1].Split(',');
+
+                if(int.Parse(skillParList[2]) > 100)
+                {
+                    Log.Error($"skillParList[2]) > 100 {this.SkillInfo.WeaponSkillID}");
+                    break;
+                }
                 for (int i = 0; i < int.Parse(skillParList[2]); i++)
                 {
                     //随机坐标

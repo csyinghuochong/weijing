@@ -44,6 +44,14 @@ namespace ET
         {
             JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), masterid);
 
+            if (jiaYuanComponent.JiaYuanPastureList_7.Count > 100 
+                || jiaYuanComponent.JianYuanPlantList_7.Count > 100
+                || jiaYuanComponent.JiaYuanMonster_2.Count > 100)
+            {
+                Log.Error($"CreateJiaYuanUnit:  {masterid}");
+                return;
+            }
+
             for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_7.Count; i++)
             {
                 UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList_7[i], masterid);

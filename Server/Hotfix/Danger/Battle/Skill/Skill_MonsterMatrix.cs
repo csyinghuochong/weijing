@@ -34,6 +34,13 @@ namespace ET
             int curNumber = 0;
             int centerX = rowNumber / 2;
             int centerZ = columnNumber / 2;
+
+            if (rowNumber * columnNumber > 100)
+            {
+                Log.Error($"Skill_MonsterMatrix: {this.SkillConf.Id}");
+                return;
+            }
+
             for (int x = 0; x < rowNumber; x++)
             {
                 for (int z = 0; z < columnNumber; z++)

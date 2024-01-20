@@ -867,6 +867,14 @@ namespace ET
                 M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                 List<RewardItem> droplist = new List<RewardItem>();
                 DropHelper.DropIDToDropItem(dropId, droplist);
+
+                if (droplist.Count > 100)
+                {
+                    Log.Error($"掉落道具数量异常： {dropId}  {droplist.Count}");
+                    Log.Warning($"掉落道具数量异常： {dropId}  {droplist.Count}");
+                    return;
+                }
+
                 for (int k = 0; k < droplist.Count; k++)
                 {
                     if ((droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019) && sceneType == SceneTypeEnum.TeamDungeon)

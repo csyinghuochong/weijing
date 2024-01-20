@@ -560,8 +560,15 @@ namespace ET
                 }
             }
 
+            if (refreshMonster.Number > 100)
+            {
+                Log.Error($"refreshMonster.Number > 100");
+                return;
+            }
+
             for (int i = 0; i < refreshMonster.Number; i++)
             {
+                
                 float range = refreshMonster.Range;
                 Vector3 vector3 = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()

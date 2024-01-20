@@ -104,6 +104,11 @@ namespace ET
 
                 List<RewardItem> rewardist = new List<RewardItem>();
                 DropHelper.DropIDToDropItem(dropid, rewardist);
+                if (rewardist.Count > 100)
+                {
+                    Log.Error($"rewardist.Count > 100:   {dropid}");
+                    break;
+                }
 
                 for (int i = 0; i < rewardist.Count; i++)
                 {

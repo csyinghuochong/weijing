@@ -321,6 +321,13 @@ namespace ET
                                 int createMonsterID = 0;
                                 int lv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 string[] monsters = itemConfig.ItemUsePar.Split('@');
+
+                                if (monsters.Length > 100)
+                                {
+                                    Log.Error($"monsters.Length > 100:  {itemConfig.ItemUsePar}");
+                                    reply();
+                                    return;
+                                }
                                 for (int c = 0; c < monsters.Length; c++)
                                 {
                                     //1;20;70010101,70010102

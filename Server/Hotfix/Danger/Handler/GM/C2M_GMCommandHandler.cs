@@ -139,6 +139,12 @@ namespace ET
 						float posZ = float.Parse(commands[3]);
 						int monsterId = int.Parse(commands[4]);
 						int number = int.Parse(commands[5]);
+						if (number > 100)
+						{
+							Log.Error("number > 100");
+							return;
+						}
+
                         for (int c = 0; c < number; c++)
 						{
 							await TimerComponent.Instance.WaitAsync(1);

@@ -35,6 +35,11 @@ namespace ET
     {
         public static void Add(this UnitComponent self, Unit unit)
         {
+            if (self.Units.Count >= 5000)
+            {
+                Log.Error($"self.Units.Count >= 5000");
+            }
+
             if (unit.Type == UnitType.Player && self.AoI.Count < 100)
             {
                 self.AoI.Add(unit.Id);

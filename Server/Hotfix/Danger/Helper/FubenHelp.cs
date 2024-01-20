@@ -104,6 +104,12 @@ namespace ET
 			string[] position = monsterPosition.Position.Split(',');
 			if (mtype == 1)    //固定位置刷怪
 			{
+				if (monsterPosition.CreateNum > 100)
+				{
+					Log.Error($"monsterPosition.CreateNum:  {monsterPos}");
+                    return 0;
+                }
+
 				for (int c = 0; c < monsterPosition.CreateNum; c++)
 				{
 					MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
@@ -126,7 +132,13 @@ namespace ET
 			}
 			if (mtype == 2)
 			{
-				for (int c = 0; c < monsterPosition.CreateNum; c++)
+                if (monsterPosition.CreateNum > 100)
+                {
+                    Log.Error($"monsterPosition.CreateNum:  {monsterPos}");
+                    return 0;
+                }
+
+                for (int c = 0; c < monsterPosition.CreateNum; c++)
 				{
 					float range = (float)monsterPosition.CreateRange;
 					MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterPosition.MonsterID);
@@ -152,7 +164,13 @@ namespace ET
 					Unit mainUnit = scene.GetComponent<TowerComponent>().MainUnit;
 					playerLv = mainUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 				}
-				for (int c = 0; c < monsterPosition.CreateNum; c++)
+                if (monsterPosition.CreateNum > 100)
+                {
+                    Log.Error($"monsterPosition.CreateNum:  {monsterPos}");
+                    return 0;
+                }
+
+                for (int c = 0; c < monsterPosition.CreateNum; c++)
 				{
 					float range = (float)monsterPosition.CreateRange;
 					MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterPosition.MonsterID);
@@ -348,7 +366,14 @@ namespace ET
 
 				if (mtype[0] == "1")//固定位置刷怪
 				{
-					for (int c = 0; c < int.Parse(mcount[0]); c++)
+                    int cmcount = int.Parse(mcount[0]);
+                    if (cmcount > 100)
+					{
+						Log.Error($"int.Parse(mcount[0]) > 100； {createMonster}");
+                        return;
+                    }
+
+					for (int c = 0; c < cmcount; c++)
 					{
 						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 
@@ -383,7 +408,13 @@ namespace ET
 				if (mtype[0] == "2") //随机位置
 				{
 					int cmcount = int.Parse(mcount[0]);
-					for (int c = 0; c < cmcount; c++)
+                    if (cmcount > 100)
+                    {
+                        Log.Error($"int.Parse(mcount[0]) > 100； {createMonster}");
+                        return;
+                    }
+
+                    for (int c = 0; c < cmcount; c++)
 					{
 						float range = float.Parse(mcount[1]);
 						Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
@@ -409,7 +440,13 @@ namespace ET
 						playerLv = mainUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 					}
 					int cmcount = int.Parse(mcount[0]);
-					for (int c = 0; c < cmcount; c++)
+                    if (cmcount > 100)
+                    {
+                        Log.Error($"int.Parse(mcount[0]) > 100； {createMonster}");
+						return;
+                    }
+
+                    for (int c = 0; c < cmcount; c++)
 					{
 						float range = float.Parse(mcount[1]);
 						Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));

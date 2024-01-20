@@ -17,6 +17,12 @@ namespace ET
 
         public override void OnExecute()
         {
+            if (this.SkillExcuteNum > 100)
+            {
+                Log.Error($"Skill_ComTargetMove_RangDamge_2: {this.SkillConf.Id}");
+                return;
+            }
+
             for (int i = 0; i < this.SkillExcuteNum; i++)
             {
                 //BuffData buffData = new BuffData();

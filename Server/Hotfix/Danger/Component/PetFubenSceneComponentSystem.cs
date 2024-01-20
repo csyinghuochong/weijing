@@ -127,6 +127,11 @@ namespace ET
 				string[] monsterinfo = monsters[i].Split(';');
                 int monsterId = int.Parse(monsterinfo[0]);
                 int cmcount = int.Parse(monsterinfo[1]);
+                if (cmcount > 100)
+                {
+                    Log.Error($"GenerateCellMonsters: {cellInfo}");
+                    break;
+                }
 
                 for (int c = 0; c < cmcount; c++)
                 {
