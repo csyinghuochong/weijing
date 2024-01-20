@@ -202,7 +202,6 @@ namespace ET
 
         public static void OnUnionBoss(this UnionSceneComponent self)
         {
-            Log.Console("家族boss");
             foreach ((long unionid, long instanceid) in self.UnionFubens)
             {
                 Scene scene = self.GetChild<Scene>(unionid);

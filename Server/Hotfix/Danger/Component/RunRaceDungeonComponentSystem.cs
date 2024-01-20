@@ -175,7 +175,6 @@ namespace ET
                     continue;
                 }
                 self.HaveArrived = true;
-                Log.Console($"RunRaceDungeonComponent。玩家到达终点; {unit.Id}");
 
                 long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
                 RankingInfo rankPetInfo = new RankingInfo();

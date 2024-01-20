@@ -167,13 +167,10 @@ namespace ET
                 if (self.YeWaiFubenList.ContainsKey(sceneid))
                 {
                     self.YeWaiFubenList.Remove(sceneid);
-
-                    Log.Console($"DisposeFuben2.{sceneid}");
                 }
                 if (self.FubenInstanceList.Contains(instanceid))
                 {
                     self.FubenInstanceList.Remove(instanceid);
-                    Log.Console($"DisposeFuben3.{instanceid}");
                 }
 
                 Scene scene = Entity as Scene;
