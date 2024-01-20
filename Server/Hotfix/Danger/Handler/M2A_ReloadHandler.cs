@@ -12,8 +12,8 @@ namespace ET
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
-            Log.Console("C2M_Reload_b: " + ConfigLoader.RemovePlayer);
-            Log.Console("C2M_Reload_b: " + MongoHelper.NoRecovery);
+            Log.Console("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
+            Log.Console("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
 #if SERVER
             MessageHelper.LogStatus = !MessageHelper.LogStatus;
             OpcodeHelper.ShowMessage = MessageHelper.LogStatus;
