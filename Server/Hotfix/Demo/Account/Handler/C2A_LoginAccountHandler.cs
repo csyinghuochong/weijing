@@ -82,12 +82,13 @@ namespace ET
 
                 if (!request.Password.Equals( request.ThirdLogin ) && !request.Password.Equals(ComHelp.RobotPassWord))
                 {
-                    Log.Console($"登录的账号:  {request.AccountName} {request.Password} {request.ThirdLogin}");
+                    Log.Warning($"登录的账号:  {request.AccountName} {request.Password} {request.ThirdLogin}");
                 }
 
                 if (!ComHelp.RobotPassWord.Equals(request.Password))
                 {
-                    Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
+                    //Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
+                    Log.Warning($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
                 }
 
                 //密码要md5

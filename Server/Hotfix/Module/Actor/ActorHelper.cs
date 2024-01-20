@@ -13,7 +13,13 @@ namespace ET
             response.RpcId = iActorRequest.RpcId;
             return response;
         }
-        
+
+        public static ushort ToActorMessageCode(this MemoryStream memoryStream)
+        {
+            ushort opcode = BitConverter.ToUInt16(memoryStream.GetBuffer(), 8);
+            return opcode;
+        }
+
         public static object ToActorMessage(this MemoryStream memoryStream)
         {
             ushort opcode = BitConverter.ToUInt16(memoryStream.GetBuffer(), 8);

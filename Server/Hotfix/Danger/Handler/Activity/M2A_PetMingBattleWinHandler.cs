@@ -8,8 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2A_PetMingBattleWinRequest request, A2M_PetMingBattleWinResponse response, Action reply)
         {
-            Log.Console($"M2A_PetMingBattleWinRequest: {request}");
-
             long oldUnitid = 0;
             long serverTime = TimeHelper.ServerNow();
 

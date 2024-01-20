@@ -178,9 +178,14 @@ namespace ET
             long endTime = TimeHelper.ServerFrameTime();
 
             long costTime = endTime - beginTime;
-            if (costTime > 200)
+
+            if (costTime > 500)
             {
-                Log.Warning("actor rpc time > 200: {0} {1}", costTime, memoryStream.ToActorMessage());
+                Log.Warning("actor rpc time > 500: {0} {1}", costTime, memoryStream.ToActorMessageCode());
+            }
+            else if (costTime > 200)
+            {
+                Log.Warning("actor rpc time > 200: {0} {1}", costTime, memoryStream.ToActorMessageCode());
             }
             
             return response;
