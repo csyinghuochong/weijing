@@ -286,6 +286,10 @@ namespace ET
                     case SceneTypeEnum.MiJing:
                         F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
                         DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
+                        if (f2M_YeWaiSceneIdResponse.FubenInstanceId == 0)
+                        {
+                            return ErrorCode.ERR_MapLimit;
+                        }
 
                         SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
                         int curPlayerNum = int.Parse(f2M_YeWaiSceneIdResponse.Message); // UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count;
