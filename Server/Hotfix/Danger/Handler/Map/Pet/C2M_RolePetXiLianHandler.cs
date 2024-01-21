@@ -14,7 +14,7 @@ namespace ET
 			BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.BagInfoID);
 
 			//判断是否有足够的道具
-			if (bagInfo == null)
+			if (bagInfo == null || petInfo == null)
 			{
 				response.Error = ErrorCode.ERR_ItemNotEnoughError;
 				reply();

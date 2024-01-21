@@ -563,8 +563,6 @@ namespace ET
                 self.m_Buffs[i].OnUpdate();
                 if (self.m_Buffs.Count == 0)
                 {
-                    Unit unit = self.GetParent<Unit>();
-                    LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
 

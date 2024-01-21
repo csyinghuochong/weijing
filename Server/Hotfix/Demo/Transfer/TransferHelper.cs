@@ -190,7 +190,7 @@ namespace ET
                     case SceneTypeEnum.OneChallenge:
                         fubenid = long.Parse(request.paramInfo);
                         fubnescene = Game.Scene.Get(fubenid);
-                        bool newdungeon = false;    
+                        bool newdungeon = false;
                         if (fubnescene == null)
                         {
                             newdungeon = true;
@@ -246,10 +246,15 @@ namespace ET
                         {
                             request.Difficulty = 1;
                         }
+                       
                         if (request.SceneId > 0)
                         {
                             int chaptierd = 1;
-          
+                            if (!DungeonConfigCategory.Instance.Contain(request.SceneId))
+                            {
+                                return ErrorCode.ERR_LevelIsNot;
+                            }
+
                             DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
                             int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
                             int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
