@@ -495,7 +495,6 @@ namespace ET
 
         public static async ETTask SaveDB(this PaiMaiSceneComponent self)
         {
-
             //检测超时的道具
             long currentTime = TimeHelper.ServerNow();
             for (int i = self.dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)

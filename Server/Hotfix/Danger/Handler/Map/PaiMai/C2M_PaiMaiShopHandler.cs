@@ -11,6 +11,13 @@ namespace ET
 		//拍卖快捷列表购买道具
 		protected override async ETTask Run(Unit unit, C2M_PaiMaiShopRequest request, M2C_PaiMaiShopResponse response, Action reply)
 		{
+			if(!PaiMaiSellConfigCategory.Instance.Contain(request.PaiMaiId))
+			{
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
 			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
 			if (paiMaiSellConfig == null)
 			{

@@ -22,6 +22,11 @@ namespace ET
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 if (SceneConfigHelper.UseSceneConfig(request.SceneType) && request.SceneId > 0)
                 {
+                    if (!SceneConfigCategory.Instance.Contain(request.SceneId))
+                    {
+                        return ErrorCode.ERR_TimesIsNot;
+                    }
+
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
                     if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(request.SceneId))
                     {

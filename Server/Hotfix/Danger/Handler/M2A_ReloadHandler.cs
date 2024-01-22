@@ -15,8 +15,8 @@ namespace ET
             Log.Console("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
             Log.Console("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
 #if SERVER
-            MessageHelper.LogStatus = !MessageHelper.LogStatus;
-            OpcodeHelper.ShowMessage = MessageHelper.LogStatus;
+            MessageHelper.LogStatus = false;
+            OpcodeHelper.ShowMessage = false;
             Log.Console("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
 #endif
             switch (request.LoadType)
