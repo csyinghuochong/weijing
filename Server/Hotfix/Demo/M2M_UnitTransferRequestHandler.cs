@@ -473,13 +473,15 @@ namespace ET
 
                         break;
 				}
-
-				unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
 				unit.GetComponent<DBSaveComponent>().Activeted();
-                unit.GetComponent<SkillPassiveComponent>().Reset();
-                unit.GetComponent<SkillPassiveComponent>().Activeted();
-				unit.OnUpdateHorseRide(0);
-				unit.TriggerTeamBuff(request.SceneType);
+				if (request.SceneType != SceneTypeEnum.RunRace)
+				{
+                    unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
+                    unit.GetComponent<SkillPassiveComponent>().Reset();
+                    unit.GetComponent<SkillPassiveComponent>().Activeted();
+                    unit.OnUpdateHorseRide(0);
+                    unit.TriggerTeamBuff(request.SceneType);
+                }
                 //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
 				response.NewInstanceId = unit.InstanceId;
 				reply();
