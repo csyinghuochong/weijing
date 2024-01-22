@@ -9,6 +9,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject ZhuBoSet;
         public GameObject RotaAngleSet;
         public GameObject LenDepthSet;
         public GameObject SkillAttackPlayerFirst;
@@ -92,6 +93,10 @@ namespace ET
             self.RotaAngleSet = rc.Get<GameObject>("RotaAngleSet");
             self.RotaAngleSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RotaAngle);
             self.RotaAngleSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            
+            self.ZhuBoSet = rc.Get<GameObject>("ZhuBoSet");
+            self.ZhuBoSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhuBo);
+            self.ZhuBoSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
@@ -313,6 +318,13 @@ namespace ET
             PlayerPrefsHelp.SetInt(PlayerPrefsHelp.RotaAngle, value == 0? 1 : 0);
             UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().DragPanel.SetActive(value == 0);
         }
+
+        public static void OnBtn_ZhuBo(this UISettingGameComponent self)
+        {
+            int value = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.ZhuBo);
+            self.ZhuBoSet.transform.Find("Image_Click").gameObject.SetActive(value == 0);
+            PlayerPrefsHelp.SetInt(PlayerPrefsHelp.ZhuBo, value == 0? 1 : 0);
+        }
         
         public static void OnBtn_RandomHorese(this UISettingGameComponent self)
         {
@@ -400,6 +412,7 @@ namespace ET
             {
                 self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = (va - 0.1f) / 2;
             }
+            self.ZhuBoSet.transform.Find("Image_Click").gameObject.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.ZhuBo) == 1);
 
 
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
