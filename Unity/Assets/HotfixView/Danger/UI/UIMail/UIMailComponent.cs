@@ -181,12 +181,12 @@ namespace ET
             }
             self.MailContent.SetActive(true);
             self.Obj_NoMail.SetActive(false);
-
-            self.Reverse -= 1;
+            
             if (self.Reverse > 0)
             {
                 mailInfos.Reverse();
             }
+            self.Reverse -= 1;
 
             for (int i = 0; i < mailInfos.Count; i++)
             {
