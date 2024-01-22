@@ -44,8 +44,21 @@ namespace ET
                     Log.Error($"skillParList[2]) > 100 {this.SkillInfo.WeaponSkillID}");
                     break;
                 }
+                
+                int maxNum = GlobalValueConfigCategory.Instance.Get(120).Value2;
+                UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
                 for (int i = 0; i < int.Parse(skillParList[2]); i++)
                 {
+                    if (unitInfoComponent.ZhaohuanIds.Count >= maxNum)
+                    {
+                        Unit uu = unitComponent.Get(unitInfoComponent.ZhaohuanIds[0]);
+                        if (uu != null && uu.Type == UnitType.Monster)
+                        {
+                            uu.GetComponent<HeroDataComponent>().OnDead(null);
+                            unitInfoComponent.ZhaohuanIds.Remove(uu.Id);
+                        }
+                    }
+
                     //随机坐标
                     float rangValue = float.Parse(skillParList[3]);
                     float ran_x = Function_Role.GetInstance().ReturnRamdomValue_Float(0, rangValue) - rangValue / 2;
