@@ -405,6 +405,7 @@
 {"_t":"EffectConfig","_id":77001602,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_8","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":8000,"PlayType":0},
 {"_t":"EffectConfig","_id":77001603,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_14","SkillEffectDelayTime":0.8,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":15000,"PlayType":0},
 {"_t":"EffectConfig","_id":77001604,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_XuanFengZhan_3","SkillEffectDelayTime":0.2,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":10000,"PlayType":0},
+{"_t":"EffectConfig","_id":77001605,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_GongJian_Skill_1","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":5000,"PlayType":0},
 {"_t":"EffectConfig","_id":77001701,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_XuanFengZhan","SkillEffectDelayTime":0.4,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1200,"PlayType":0},
 {"_t":"EffectConfig","_id":77001702,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_46","SkillEffectDelayTime":0.7,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1200,"PlayType":0},
 {"_t":"EffectConfig","_id":77001703,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZhaQian_4","SkillEffectDelayTime":0.6,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000,"PlayType":0},
@@ -445,4 +446,7 @@
 {"_t":"EffectConfig","_id":77005203,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_JueXing_6","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000,"PlayType":0},
 {"_t":"EffectConfig","_id":77005204,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_FuHuo","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":2000,"PlayType":0},
 {"_t":"EffectConfig","_id":77005205,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_20","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":5000,"PlayType":0},
+{"_t":"EffectConfig","_id":77005301,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_JueXing_6","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000,"PlayType":0},
+{"_t":"EffectConfig","_id":77005302,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_FireWall_Posi_1","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000,"PlayType":0},
+{"_t":"EffectConfig","_id":77005303,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_23","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":2000,"PlayType":0},
 ]}

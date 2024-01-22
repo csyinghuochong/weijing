@@ -11,7 +11,7 @@
 {"_t":"DungeonTransferConfig","_id":1011,"Name":"绿林深处去绿林郊外","MapID":10004,"EnterLv":1,"BornPos":[25700,2910,-3300],"Position":[13761,2957,-7344]},
 {"_t":"DungeonTransferConfig","_id":1012,"Name":"地下洞穴去石墓二层","MapID":10008,"EnterLv":1,"BornPos":[20300,2910,-4900],"Position":[16407,2957,-7531]},
 {"_t":"DungeonTransferConfig","_id":1013,"Name":"石墓一层去绿林郊外","MapID":10004,"EnterLv":1,"BornPos":[26100,2910,-7300],"Position":[14072,2957,-4479]},
-{"_t":"DungeonTransferConfig","_id":1014,"Name":"石墓二层去石墓一层","MapID":10007,"EnterLv":1,"BornPos":[25310,2911,-4375],"Position":[14094,2957,-4468]},
+{"_t":"DungeonTransferConfig","_id":1014,"Name":"石墓二层去石墓一层","MapID":10007,"EnterLv":1,"BornPos":[24910,2911,-4356],"Position":[14094,2957,-4468]},
 {"_t":"DungeonTransferConfig","_id":2001,"Name":"热荒沙漠","MapID":20001,"EnterLv":15,"BornPos":[14532,2895,-5271],"Position":[]},
 {"_t":"DungeonTransferConfig","_id":2002,"Name":"绿洲小径","MapID":20002,"EnterLv":15,"BornPos":[15259,2895,-9335],"Position":[1765,2957,-7900]},
 {"_t":"DungeonTransferConfig","_id":2003,"Name":"遗忘废墟","MapID":20003,"EnterLv":15,"BornPos":[15756,2895,-7717],"Position":[5875,2941,-4603]},
