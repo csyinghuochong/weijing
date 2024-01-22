@@ -22,6 +22,7 @@ namespace ET
         public MailComponent MailComponent;
         public List<UIMailItemComponent> MailListUI = new List<UIMailItemComponent>();
         public List<UIItemComponent> RewardListUI = new List<UIItemComponent>();
+        public int Reverse = 1;
     }
 
 
@@ -180,8 +181,13 @@ namespace ET
             }
             self.MailContent.SetActive(true);
             self.Obj_NoMail.SetActive(false);
-            
-            mailInfos.Reverse();
+
+            self.Reverse -= 1;
+            if (self.Reverse > 0)
+            {
+                mailInfos.Reverse();
+            }
+
             for (int i = 0; i < mailInfos.Count; i++)
             {
                 UIMailItemComponent ui_2 = null;
