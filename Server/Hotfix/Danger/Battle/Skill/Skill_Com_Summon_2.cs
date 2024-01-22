@@ -78,8 +78,20 @@ namespace ET
                 return;
             }
 
+            int maxNum = GlobalValueConfigCategory.Instance.Get(120).Value2;
+            UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
             for (int y = 0; y < number; y++)
             {
+                if (unitInfoComponent.ZhaohuanIds.Count >= maxNum)
+                {
+                    Unit unit = unitComponent.Get(unitInfoComponent.ZhaohuanIds[0]);
+                    if (unit != null && unit.Type == UnitType.Monster)
+                    {
+                        unit.GetComponent<HeroDataComponent>().OnDead(null);
+                        unitInfoComponent.ZhaohuanIds.Remove(unit.Id);
+                    }
+                }
+                
                 //随机坐标
                 float ran_x = RandomHelper.RandomNumberFloat(-1 * range, range);
                 float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);

@@ -57,6 +57,7 @@ namespace ET
         HurtShilian = 16,
         FenyinTower = 17,
         Zhuling = 18,
+        ReturnMap = 19,
         JiayuanMain = 31,
         JiayuanExchange = 32,
         JiayuanCangku = 33,

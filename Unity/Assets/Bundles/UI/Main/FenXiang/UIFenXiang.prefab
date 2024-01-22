@@ -58,9 +58,15 @@ MonoBehaviour:
     gameObject: {fileID: 4541940628713839708}
   - key: FunctionSetBtn
     gameObject: {fileID: 5159306885230013924}
+  - key: Btn_Type1
+    gameObject: {fileID: 1526615660355015300}
   - key: Btn_Type2
-    gameObject: {fileID: 7860636035129228937}
+    gameObject: {fileID: 6673828033928144124}
+  - key: Btn_Type3
+    gameObject: {fileID: 1306192158621358018}
   - key: Btn_Type4
+    gameObject: {fileID: 7860636035129228937}
+  - key: Btn_Type5
     gameObject: {fileID: 658626288309265040}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
@@ -469,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3337754228345525715}
   m_Layer: 5
-  m_Name: Btn_Type4
+  m_Name: Btn_Type5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -491,7 +497,7 @@ RectTransform:
   - {fileID: 3049908151016327525}
   - {fileID: 4715948186533247894}
   m_Father: {fileID: 5159306885207753768}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2682,10 +2688,10 @@ RectTransform:
   m_Children:
   - {fileID: 472389222959141340}
   - {fileID: 2183866179524991539}
-  - {fileID: 4817088429604113815}
-  - {fileID: 8495673299561915623}
-  - {fileID: 3337754228345525715}
   - {fileID: 5426435902408390684}
+  - {fileID: 8495673299561915623}
+  - {fileID: 4817088429604113815}
+  - {fileID: 3337754228345525715}
   m_Father: {fileID: 22416270}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3433,7 +3439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5426435902408390684}
   m_Layer: 5
-  m_Name: Btn_Type5
+  m_Name: Btn_Type2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3455,7 +3461,7 @@ RectTransform:
   - {fileID: 1277598127842040262}
   - {fileID: 2482796157745728082}
   m_Father: {fileID: 5159306885207753768}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3776,7 +3782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4817088429604113815}
   m_Layer: 5
-  m_Name: Btn_Type2
+  m_Name: Btn_Type4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3798,7 +3804,7 @@ RectTransform:
   - {fileID: 4694237034251442585}
   - {fileID: 8358202742885418469}
   m_Father: {fileID: 5159306885207753768}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
