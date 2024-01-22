@@ -309,6 +309,11 @@ namespace ET
             GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
             di.SetActive(show);
 
+         
+        }
+
+        public static void CheckRunState(this GameObjectComponent self)
+        {
             Unit unit = self.GetParent<Unit>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool run = moveComponent != null && !moveComponent.IsArrived();
@@ -348,6 +353,7 @@ namespace ET
             }
             
             self.ShowRoleDi(false);
+            self.CheckRunState();
         }
 
         public static void OnXiaMa(this GameObjectComponent self)
@@ -362,6 +368,7 @@ namespace ET
             self.UpdatePositon(self.GetParent<Unit>().Position);
             unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(self.GameObject);
             self.ShowRoleDi(true);
+            self.CheckRunState();
         }
 
         public static void OnUpdateHorse(this GameObjectComponent self)

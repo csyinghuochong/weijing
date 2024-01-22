@@ -13,7 +13,6 @@ namespace ET
 
         private async ETTask RunAsync(EventType.LoginError args)
         {
-
             if (args.ErrorCore == ErrorCode.ERR_FangChengMi_Tip1)
             {
                 string content = ErrorHelp.Instance.ErrorHintList[args.ErrorCore];

@@ -137,6 +137,7 @@ namespace ET
                     {
                         args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInitOcc(args.Unit.ConfigId);
                         args.Unit.GetComponent<AnimatorComponent>().UpdateController();
+                        args.Unit.GetComponent<GameObjectComponent>().CheckRunState();
                     }
                     break;
                 case NumericType.Now_XiLian:
