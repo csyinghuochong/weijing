@@ -402,7 +402,7 @@ namespace ET
             {
                 return;
             }
-            if (unit == null)
+            if (unit == null || unit.GetComponent<NumericComponent>()?.GetAsInt(NumericType.Now_Dead) == 1)
             {
                 self.LockBossId = 0;
                 self.BossConfiId = 0;

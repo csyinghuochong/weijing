@@ -73,6 +73,8 @@ namespace ET
                 if (unit.Type == UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
                 {
                     unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
+                    UI uimain = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMain);
+                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnUnitDead(unit.Id);
                 }
 
                 if (unit.Type == UnitType.Monster && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
