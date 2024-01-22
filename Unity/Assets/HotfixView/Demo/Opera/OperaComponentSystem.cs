@@ -505,6 +505,23 @@ namespace ET
                     EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, mysterDungeonid, 0, "0").Coroutine();
                 }, null).Coroutine();
             }
+            else if (self.NpcId == 40000004)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "返回副本", GameSettingLanguge.LoadLocalization("是否返回副本!"),
+                    () =>
+                    {
+                        int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
+                        if (sceneid == 0)
+                        {
+                            EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+                        }
+                        else
+                        {
+                            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, sceneid, 0, "0").Coroutine();
+                        }
+                    },
+                    null).Coroutine();
+            }
             else if (functionId < 100)
             {
                 self.OpenNpcTaskUI(self.NpcId).Coroutine(); 
