@@ -14,20 +14,16 @@ namespace ET
             Unit npc = null;
             Unit main = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
-            UnitInfoComponent unitInfoComponent;
             for (int i = 0; i < units.Count; i++)
             {
-                unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-                if (units[i].Type != UnitType.Npc)
+                if (units[i].Type == UnitType.Npc || units[i].IsChest())
                 {
-                    continue;
-                }
-
-                float t_distance = PositionHelper.Distance2D(main, units[i] );
-                if (t_distance < distance)
-                {
-                    distance = t_distance;
-                    npc = units[i];
+                    float t_distance = PositionHelper.Distance2D(main, units[i]);
+                    if (t_distance < distance)
+                    {
+                        distance = t_distance;
+                        npc = units[i];
+                    }
                 }
             }
 
@@ -35,9 +31,16 @@ namespace ET
             {
                 return;
             }
-            zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId).Coroutine();
+
+            if (npc.Type == UnitType.Npc)
+            {
+                zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId).Coroutine();
+            }
+
+            if (npc.Type == UnitType.Monster)
+            {
+                zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickChest(npc.Id);
+            }
         }
-
-
     }
 }
