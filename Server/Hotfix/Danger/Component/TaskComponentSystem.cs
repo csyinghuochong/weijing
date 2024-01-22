@@ -1567,7 +1567,7 @@ namespace ET
             System.DateTime dateTime = TimeHelper.DateTimeNow();
             if( dateTime.DayOfWeek == System.DayOfWeek.Monday)
             {
-                Log.Console($"ResetWeeklyTask: passday:{self.Id} {dateTime.DayOfWeek == System.DayOfWeek.Monday}");
+                //Log.Console($"ResetWeeklyTask: passday:{self.Id} {dateTime.DayOfWeek == System.DayOfWeek.Monday}");
                 self.ResetWeeklyTask();
             }
         }

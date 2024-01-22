@@ -512,9 +512,9 @@ namespace ET
                     self.dBPaiMainInfo.PaiMaiItemInfos.RemoveAt(i);
                 }
             }
-
+            Log.Warning($"PaiMaiSceneComponent.SaveDB:  {self.dBPaiMainInfo.PaiMaiItemInfos.Count}");
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-           D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
         }
     }
 }
