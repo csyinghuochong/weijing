@@ -190,13 +190,13 @@ namespace ET
                     {
                         //Log.Console($"GenarateFuben.{request.FunctionId}");
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
-                        fubenCenter.GenarateFuben(request.FunctionId);
+                        fubenCenter.OnActivityOpen(request.FunctionId);
                     }
                     if (request.FunctionId > 0 && request.FunctionType == 2)
                     {
                         //Log.Console($"DisposeFuben.{request.FunctionId}");
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
-                        fubenCenter.DisposeFuben(request.FunctionId).Coroutine();
+                        fubenCenter.OnActivityClose(request.FunctionId);
                     }
                     break;
                 case SceneType.AccountCenter:

@@ -30,32 +30,94 @@ namespace ET
             return 0;
         }
 
-        public static void GenarateFuben(this FubenCenterComponent self, int functionId)
+        public static void OnActivityOpen(this FubenCenterComponent self, int functionId)
         {
+            if (functionId == 1058)
+            { 
+                self.RunRaceOpen = true;
+                self.RunRacePlayerList.Clear();
+            }
+            if (functionId == 1059)
+            { 
+                self.DemonOpen = true;  
+                self.DemonPlayerList.Clear();   
+            }
+            Log.Console($"OnActivityOpen: {functionId}");
+        }
+
+        public static void OnActivityClose(this FubenCenterComponent self, int functionId)
+        {
+            if (functionId == 1058)
+            {
+                self.RunRaceOpen = false;
+            }
+            if (functionId == 1059)
+            {
+                self.DemonOpen = false;
+            }
+            self.DisposeFuben(functionId).Coroutine();
+            Log.Console($"OnActivityClose: {functionId}");
+        }
+
+        public static long GetFunctionFubenId(this FubenCenterComponent self, int functionId, long unitId)
+        {
+            Dictionary<long, List<long>> playerList = null;
+            if (functionId == 1058)
+            {
+                playerList = self.RunRacePlayerList;
+            }
+            if (functionId == 1059)
+            {
+                playerList = self.DemonPlayerList;
+            }
+            if (playerList == null)
+            {
+                return 0;
+            }
+
+            foreach ((long id, List<long> players) in playerList)
+            {
+                Scene scene = self.GetChild<Scene>(id);
+                if (scene == null)
+                {
+                    Log.Error("scene == null");
+                    continue;
+                }
+
+                if (players.Contains(unitId))
+                {
+                    return scene.InstanceId;
+                }
+
+                if (players.Count < 20)
+                {
+                    players.Add(unitId);
+                    return scene.InstanceId;
+                }
+            }
+
             //动态创建副本.....RecastPathComponent.awake寻路
             int sceneid = 0;
-            switch (functionId)
+            if (functionId == 1058)
             {
-                case 1058:
-                    sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.RunRace );
-                    break;
-                case 1059:
-                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
-                    break;
+                sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
+            }
+            if (functionId == 1059)
+            {
+                sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
             }
             if (sceneid == 0)
             {
-                return;
+                return 0;
             }
 
-        
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Log.Console($"GenarateFuben2.{fubenInstanceId}");
 
             self.FubenInstanceList.Add(fubenInstanceId);
-            self.YeWaiFubenList.Add(sceneConfig.Id, fubenInstanceId);
+            //self.YeWaiFubenList.Add(sceneConfig.Id, fubenInstanceId);  可能有多个不能这样搞
 
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Fuben" + sceneConfig.Id.ToString(), SceneType.Map);
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
@@ -75,7 +137,6 @@ namespace ET
                     break;
                 case SceneTypeEnum.Demon:
                     fubnescene.AddComponent<DemonDungeonComponent>();
-
                     fubnescene.GetComponent<DemonDungeonComponent>().OnBegin();
                     break;
                 default:
@@ -84,28 +145,51 @@ namespace ET
 
             FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonsterPosi);
+
+            playerList.Add( fubenid, new List<long>() { unitId } );
+
+            return fubenInstanceId;
         }
 
+
+        /// <summary>
+        /// 活动关闭 ，一段时间后销毁副本
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="functionId"></param>
+        /// <returns></returns>
         public static async ETTask DisposeFuben(this FubenCenterComponent self, int functionId)
         {
-            int sceneid = 0;
             long waitDisposeTime = 0;
+
+            Dictionary<long, List<long>> playerList = null;
+            if (functionId == 1058)
+            {
+                playerList = self.RunRacePlayerList;
+            }
+            if (functionId == 1059)
+            {
+                playerList = self.DemonPlayerList;
+            }
+            if (playerList == null)
+            {
+                return;
+            }
+
             switch (functionId)
             {
                 case 1058:
-                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
-                    long sceneInstanceid = self.YeWaiFubenList[sceneid];
                     Scene scene = null;
-                    foreach ((long id, Entity Entity) in self.Children)
+                    foreach ((long id, List<long> players) in playerList)
                     {
-                        if (Entity.InstanceId == sceneInstanceid)
+                        scene = self.GetChild<Scene>(id);
+                        if (scene == null)
                         {
-                            scene = Entity as Scene;
+                            Log.Error($"scene == null");
                             break;
                         }
+                        scene.GetComponent<RunRaceDungeonComponent>().OnClose();
                     }
-
-                    scene.GetComponent<RunRaceDungeonComponent>().OnClose();
 
                     FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1058);
                     string[] openTimes = funtionConfig.OpenTime.Split('@');
@@ -121,19 +205,18 @@ namespace ET
                     waitDisposeTime = (endTime - closeTime) * 1000;
                     break;
                 case 1059:
-                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
-                    sceneInstanceid = self.YeWaiFubenList[sceneid];
                     scene = null;
-                    foreach ((long id, Entity Entity) in self.Children)
+                    foreach ((long id, List<long> players) in playerList)
                     {
-                        if (Entity.InstanceId == sceneInstanceid)
+                        scene = self.GetChild<Scene>(id);
+                        if (scene == null)
                         {
-                            scene = Entity as Scene;
+                            Log.Error($"scene == null");
                             break;
                         }
+                        scene.GetComponent<DemonDungeonComponent>().OnClose();
                     }
 
-                    scene.GetComponent<DemonDungeonComponent>().OnClose();
                     funtionConfig = FuntionConfigCategory.Instance.Get(1059);
                     openTimes = funtionConfig.OpenTime.Split('@');
 
@@ -158,21 +241,24 @@ namespace ET
                     continue;
                 }
                
-                if (Entity.GetComponent<MapComponent>().SceneId != sceneid)
+                if (!playerList.ContainsKey(  Entity.Id) )
                 {
                     continue;
                 }
 
-                long instanceid = Entity.InstanceId;
-                if (self.YeWaiFubenList.ContainsKey(sceneid))
+                if (playerList.ContainsKey(Entity.Id))
                 {
-                    self.YeWaiFubenList.Remove(sceneid);
+                    playerList.Remove(Entity.Id);
+                    Log.Console($"DisposeFubenId; {functionId} {Entity.Id}");
                 }
+
+                long instanceid = Entity.InstanceId;
                 if (self.FubenInstanceList.Contains(instanceid))
                 {
                     self.FubenInstanceList.Remove(instanceid);
+                    Log.Console($"DisposeFubenInstance; {functionId}  {instanceid}");
                 }
-
+              
                 Scene scene = Entity as Scene;
                 Actor_TransferRequest actor_Transfer = new Actor_TransferRequest()
                 {

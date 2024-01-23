@@ -53,6 +53,7 @@ namespace ET
 
         public static async ETTask InitServerInfo(this UnionSceneComponent self)
         {
+            await TimerComponent.Instance.WaitAsync( RandomHelper.RandomNumber(2000, 4000) );
             DBUnionManager dBServerInfo = await DBHelper.GetComponentCache<DBUnionManager>(self.DomainZone(), self.DomainZone());
             if (dBServerInfo == null)
             {

@@ -423,9 +423,7 @@ namespace ET
                 {
                     leftTime += TimeHelper.OneDay;
                 }
-
-                Log.Debug($"野外怪定时刷新ddddd  {self.DomainZone()} 区： MonsterID： {monsterPosition.MonsterID} ");
-
+                //Log.Debug($"野外怪定时刷新ddddd  {self.DomainZone()} 区： MonsterID： {monsterPosition.MonsterID} ");
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
                     MonsterId = monsterPosition.MonsterID,
