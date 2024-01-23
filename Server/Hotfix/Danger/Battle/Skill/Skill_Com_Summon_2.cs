@@ -45,32 +45,32 @@ namespace ET
                 return;
             }
 
-            // List<int> destoryOldMonsterList = new List<int>();
-            // if (summonParList.Length >= 7)
-            // {
-            //     string[] monsterids = summonParList[6].Split(",");
-            //     for (int i = 0; i < monsterids.Length; i++)
-            //     {
-            //         if (!ComHelp.IfNull(monsterids[i]))
-            //         {
-            //             destoryOldMonsterList.Add( int.Parse(monsterids[i]) );
-            //         }
-            //     }
-            // }
-            //
-            // if (destoryOldMonsterList.Count > 0)
-            // {
-            //     List<Unit> entities = theUnitFrom.GetParent<UnitComponent>().GetAll();
-            //     for (int i = entities.Count - 1; i >= 0; i--)
-            //     {
-            //         Unit uu = entities[i];
-            //         if (uu.Type == UnitType.Monster && destoryOldMonsterList.Contains(uu.ConfigId) && uu.MasterId == theUnitFrom.Id)
-            //         {
-            //             uu.GetComponent<HeroDataComponent>().OnDead(null);
-            //             unitInfoComponent.ZhaohuanIds.Remove(uu.Id);
-            //         }
-            //     }
-            // }
+            List<int> destoryOldMonsterList = new List<int>();
+            if (summonParList.Length >= 7)
+            {
+                string[] monsterids = summonParList[6].Split(",");
+                for (int i = 0; i < monsterids.Length; i++)
+                {
+                    if (!ComHelp.IfNull(monsterids[i]))
+                    {
+                        destoryOldMonsterList.Add( int.Parse(monsterids[i]) );
+                    }
+                }
+            }
+
+            if (destoryOldMonsterList.Count > 0)
+            {
+                List<Unit> entities = theUnitFrom.GetParent<UnitComponent>().GetAll();
+                for (int i = entities.Count - 1; i >= 0; i--)
+                {
+                    Unit uu = entities[i];
+                    if (uu.Type == UnitType.Monster && destoryOldMonsterList.Contains(uu.ConfigId) && uu.MasterId == theUnitFrom.Id)
+                    {
+                        uu.GetComponent<HeroDataComponent>().OnDead(null);
+                        unitInfoComponent.ZhaohuanIds.Remove(uu.Id);
+                    }
+                }
+            }
 
             if (number > 100)
             {
@@ -78,38 +78,8 @@ namespace ET
                 return;
             }
 
-            int maxNum = MonsterConfigCategory.Instance.Get(monsterId).SummonLimit;
-            UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
             for (int y = 0; y < number; y++)
             {
-                int haveNum = 0;
-                long haveId = 0;
-                foreach (long id in unitInfoComponent.ZhaohuanIds)
-                {
-                    Unit unit = unitComponent.Get(id);
-                    if (unit == null || unit.ConfigId != monsterId)
-                    {
-                        continue;
-                    }
-
-                    if (haveNum == 0)
-                    {
-                        haveId = id;
-                    }
-
-                    haveNum++;
-                }
-                
-                if (haveNum >= maxNum)
-                {
-                    Unit unit = unitComponent.Get(haveId);
-                    if (unit != null && unit.Type == UnitType.Monster)
-                    {
-                        unit.GetComponent<HeroDataComponent>().OnDead(null);
-                        unitInfoComponent.ZhaohuanIds.Remove(unit.Id);
-                    }
-                }
-                
                 //随机坐标
                 float ran_x = RandomHelper.RandomNumberFloat(-1 * range, range);
                 float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);

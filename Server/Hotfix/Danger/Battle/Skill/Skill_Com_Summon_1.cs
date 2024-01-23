@@ -44,39 +44,8 @@ namespace ET
                     Log.Error($"skillParList[2]) > 100 {this.SkillInfo.WeaponSkillID}");
                     break;
                 }
-                
-                int maxNum = MonsterConfigCategory.Instance.Get(createMonsterID).SummonLimit;
-                UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
                 for (int i = 0; i < int.Parse(skillParList[2]); i++)
                 {
-                    int haveNum = 0;
-                    long haveId = 0;
-                    foreach (long id in unitInfoComponent.ZhaohuanIds)
-                    {
-                        Unit uu = unitComponent.Get(id);
-                        if (uu == null || uu.ConfigId != createMonsterID)
-                        {
-                            continue;
-                        }
-
-                        if (haveNum == 0)
-                        {
-                            haveId = id;
-                        }
-
-                        haveNum++;
-                    }
-                    
-                    if (haveNum >= maxNum)
-                    {
-                        Unit uu = unitComponent.Get(haveId);
-                        if (uu != null && uu.Type == UnitType.Monster)
-                        {
-                            uu.GetComponent<HeroDataComponent>().OnDead(null);
-                            unitInfoComponent.ZhaohuanIds.Remove(uu.Id);
-                        }
-                    }
-
                     //随机坐标
                     float rangValue = float.Parse(skillParList[3]);
                     float ran_x = Function_Role.GetInstance().ReturnRamdomValue_Float(0, rangValue) - rangValue / 2;

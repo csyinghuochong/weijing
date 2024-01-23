@@ -57,38 +57,22 @@ namespace ET
                     return;
                 }
 
-                int maxNum = MonsterConfigCategory.Instance.Get(monsterId).SummonLimit;
-                UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
-                for (int y = 0; y < number; y++)
+                // 先销毁之前的
+                UnitComponent unitComponent = theUnitFrom.GetComponent<UnitComponent>();
+                foreach (long id in unitInfoComponent.ZhaohuanIds)
                 {
-                    int haveNum = 0;
-                    long haveId = 0;
-                    foreach (long id in unitInfoComponent.ZhaohuanIds)
+                    Unit unit = unitComponent.Get(id);
+                    if (unit == null || unit.ConfigId != monsterId)
                     {
-                        Unit unit = unitComponent.Get(id);
-                        if (unit == null || unit.ConfigId != monsterId)
-                        {
-                            continue;
-                        }
-
-                        if (haveNum == 0)
-                        {
-                            haveId = id;
-                        }
-
-                        haveNum++;
+                        continue;
                     }
                     
-                    if (haveNum >= maxNum)
-                    {
-                        Unit unit = unitComponent.Get(haveId);
-                        if (unit != null && unit.Type == UnitType.Monster)
-                        {
-                            unit.GetComponent<HeroDataComponent>().OnDead(null);
-                            unitInfoComponent.ZhaohuanIds.Remove(unit.Id);
-                        }
-                    }
-
+                    unit.GetComponent<HeroDataComponent>().OnDead(null);
+                    unitInfoComponent.ZhaohuanIds.Remove(id);
+                }
+                
+                for (int y = 0; y < number; y++)
+                {
                     //随机坐标
                     float ran_x = RandomHelper.RandomNumberFloat(-1 * range, range);
                     float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);

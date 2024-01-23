@@ -231,9 +231,6 @@ namespace ET
 		/// <summary>是否带走buff</summary>
 		[ProtoMember(52)]
 		public int RemoveBuff { get; set; }
-		/// <summary>召唤上限</summary>
-		[ProtoMember(53)]
-		public int SummonLimit { get; set; }
 
 	}
 }
