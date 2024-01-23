@@ -59,8 +59,9 @@ namespace ET
 
                 // 先销毁之前的
                 UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
-                foreach (long id in unitInfoComponent.ZhaohuanIds)
+                for (int i = unitInfoComponent.ZhaohuanIds.Count - 1; i >= 0; i--)
                 {
+                    long id = unitInfoComponent.ZhaohuanIds[i];
                     Unit unit = unitComponent.Get(id);
                     if (unit == null || !ConfigHelper.DefeatedBossIds.ContainsValue(unit.ConfigId))
                     {
