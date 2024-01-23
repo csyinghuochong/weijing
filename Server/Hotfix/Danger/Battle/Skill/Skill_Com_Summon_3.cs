@@ -58,19 +58,19 @@ namespace ET
                 }
 
                 // 先销毁之前的
-                UnitComponent unitComponent = theUnitFrom.GetComponent<UnitComponent>();
+                UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
                 foreach (long id in unitInfoComponent.ZhaohuanIds)
                 {
                     Unit unit = unitComponent.Get(id);
-                    if (unit == null || unit.ConfigId != monsterId)
+                    if (unit == null || !ConfigHelper.DefeatedBossIds.ContainsValue(unit.ConfigId))
                     {
                         continue;
                     }
-                    
+
                     unit.GetComponent<HeroDataComponent>().OnDead(null);
                     unitInfoComponent.ZhaohuanIds.Remove(id);
                 }
-                
+
                 for (int y = 0; y < number; y++)
                 {
                     //随机坐标
