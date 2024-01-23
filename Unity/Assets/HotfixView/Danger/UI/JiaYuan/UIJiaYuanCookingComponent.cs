@@ -102,8 +102,14 @@ namespace ET
 
         public static void ResetUiItem(this UIJiaYuanCookingComponent self)
         {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             for (int i = 0; i < self.CostItemList.Length; i++)
             {
+                if (self.CostItemList[i].Baginfo != null && bagComponent.GetBagInfo(self.CostItemList[i].Baginfo.BagInfoID) != null)
+                {
+                    continue;
+                }
+
                 self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
             }
         }
