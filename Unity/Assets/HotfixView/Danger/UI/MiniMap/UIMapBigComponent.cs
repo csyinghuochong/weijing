@@ -603,7 +603,8 @@ namespace ET
                     MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
 
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
-                    self.MonsterPointList.Add(self.InstantiateIcon(self.monsterPostion, vector3, vector3.ToString()));
+                    self.MonsterPointList.Add(self.InstantiateIcon(self.monsterPostion, vector3,
+                        $"({float.Parse(position[0])},{float.Parse(position[1])},{float.Parse(position[2])})"));
                 }
                 catch (Exception ex)
                 {
