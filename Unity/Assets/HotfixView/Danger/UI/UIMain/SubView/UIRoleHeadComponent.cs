@@ -23,6 +23,7 @@ namespace ET
         public GameObject Obj_Img_RolePiLao;
         public GameObject Obj_ImagePetHeadIcon;
         public GameObject Lab_PetLv;
+        public GameObject DouYinShowImg;
 
         public UserInfoComponent UserInfoComponent;
 
@@ -54,6 +55,9 @@ namespace ET
             self.Img_RoleHuoLi = rc.Get<GameObject>("Img_RoleHuoLi");
             self.Img_RolePiLao = rc.Get<GameObject>("Img_RolePiLao");
             self.Lab_PetLv = rc.Get<GameObject>("Lab_PetLv");
+
+            self.DouYinShowImg = gameObject.transform.Find("DouYinShowImg").gameObject;
+            self.DouYinShowImg.SetActive(GlobalHelp.GetPlatform() == 5);
 
             ButtonHelp.AddListenerEx(self.Obj_ImagePetHeadIcon, self.OnImagePetHeadIcon);
 
