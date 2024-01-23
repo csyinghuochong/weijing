@@ -10,6 +10,12 @@ namespace ET
 			List<int> itemList = new List<int>();
 			while (shopValue != 0)
 			{
+				if (itemList.Count > 10000)
+				{
+					Log.Error($"itemList.Count > 10000");
+					break;
+				}
+
 				itemList.Add(shopValue);
 				MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(shopValue);
 				shopValue = mysteryConfig.NextId;

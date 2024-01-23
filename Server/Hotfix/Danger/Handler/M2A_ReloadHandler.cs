@@ -14,9 +14,11 @@ namespace ET
 
             Log.Console("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
             Log.Console("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
+
+            DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
 #if SERVER
-            MessageHelper.LogStatus = false;
-            OpcodeHelper.ShowMessage = false;
+            MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;
+            OpcodeHelper.ShowMessage = dateTime.Hour >= 21 && dateTime.Hour <= 23;
             Log.Console("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
 #endif
             switch (request.LoadType)

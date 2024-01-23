@@ -567,6 +567,9 @@ namespace ET
         /// <returns></returns>
         public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int sceneId, int fubenDifficulty,  string paramInfo)
         {
+            // 删除Mailbox,让发给Unit的ActorLocation消息重发
+            unit.RemoveComponent<MailBoxComponent>();
+
             // 通知客户端开始切场景
             M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = sceneInstanceId, SceneType = sceneType, ChapterId = sceneId, Difficulty = fubenDifficulty, ParamInfo = paramInfo };
             MessageHelper.SendToClient(unit, m2CStartSceneChange);
@@ -595,9 +598,7 @@ namespace ET
             request.ChapterId = sceneId;
             request.Difficulty = fubenDifficulty;
             request.ParamInfo = paramInfo;
-            // 删除Mailbox,让发给Unit的ActorLocation消息重发
-            unit.RemoveComponent<MailBoxComponent>();
-
+          
             // location加锁
             long oldInstanceId = unit.InstanceId;
             await LocationProxyComponent.Instance.Lock(unit.Id, unit.InstanceId);
