@@ -198,7 +198,7 @@ namespace ET
                         unit.AddComponent<AOIEntity, int, Vector3>(2 * 1000, unit.Position);
                         //TransferHelper.AfterTransfer(unit);
 
-                        unit.DomainScene().GetParent<HappySceneComponent>().NoticeRefreshTime(unit);
+                        unit.DomainScene().GetComponent<HappyDungeonComponent>().NoticeRefreshTime(unit);
                         break;
                     case SceneTypeEnum.Battle:
 						//int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);

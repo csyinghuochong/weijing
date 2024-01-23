@@ -63,7 +63,7 @@ namespace ET
                     }
                     if (request.FunctionId == 1055 && request.FunctionType == 2)
                     {
-                        scene.GetComponent<HappySceneComponent>().OnHappyOver().Coroutine();
+                        scene.GetComponent<HappySceneComponent>().OnHappyOver();
                     }
                     break;
                 case SceneType.Rank:

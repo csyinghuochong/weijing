@@ -82,7 +82,7 @@
         public const int PetQuickFightTimer = 1095;
         public const int MonsterSingingTimer = 1096;
         public const int ActivityTipTimer = 1097;
-        public const int HappySceneTimer = 1098;
+        public const int HappyDungeonTimer = 1098;
         public const int UIHappyMainTimer = 1099;
         public const int TurtleSpeak = 1100;
         public const int RunRaceDungeonTimer = 1101;
