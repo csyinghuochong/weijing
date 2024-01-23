@@ -7,6 +7,7 @@ namespace ET
 
     public class UISerialComponent : Entity, IAwake
     {
+        public GameObject QRImg;
         public GameObject UICommonItem;
         public GameObject ItemList;
         public GameObject InputField_Code;
@@ -34,6 +35,12 @@ namespace ET
 
             self.ButtonOk = rc.Get<GameObject>("ButtonOk");
             ButtonHelp.AddListenerEx(self.ButtonOk, self.OnButtonOk);
+
+            self.QRImg = rc.Get<GameObject>("QRImg");
+            if (PlayerPrefsHelp.GetInt(PlayerPrefsHelp.ZhuBo) == 1)
+            {
+                self.QRImg.SetActive(false);
+            }
 
             string[] rewardItems = ConfigHelper.SerialReward[1].Split('@');
             for (int i = 0; i < rewardItems.Length; i++)

@@ -78,12 +78,13 @@ namespace ET
             {
                 rc.Get<GameObject>("Btn_Type1").SetActive(false);
                 rc.Get<GameObject>("Btn_Type2").SetActive(false);
+                rc.Get<GameObject>("Btn_Type4").SetActive(false);
                 rc.Get<GameObject>("Btn_Type5").SetActive(false);
 
                 Vector3 vector3 = rc.Get<GameObject>("Btn_Type1").transform.position;
                 rc.Get<GameObject>("Btn_Type3").transform.position = vector3;
-                vector3.y -= 160;
-                rc.Get<GameObject>("Btn_Type4").transform.position = vector3;
+                // vector3.y -= 160;
+                // rc.Get<GameObject>("Btn_Type4").transform.position = vector3;
                 
                 self.UIPageButtonComponent.OnSelectIndex(2);
             }
