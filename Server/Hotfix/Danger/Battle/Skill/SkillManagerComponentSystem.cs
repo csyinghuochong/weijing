@@ -591,20 +591,23 @@ namespace ET
             return skillCd;
         }
 
-        public static async ETTask TriggerBuffSkill(this SkillManagerComponent self,  KeyValuePairLong keyValuePair, long targetId)
+        public static async ETTask TriggerBuffSkill(this SkillManagerComponent self,  KeyValuePairLong keyValuePair, long targetId, int buffNum)
         {
-            Unit unit = self.GetParent<Unit>();
-            await TimerComponent.Instance.WaitAsync(keyValuePair.Value2);
-            if (unit.IsDisposed)
+            for (int i = 0; i < buffNum; i++)
             {
-                return;
+                Unit unit = self.GetParent<Unit>();
+                await TimerComponent.Instance.WaitAsync(keyValuePair.Value2);
+                if (unit.IsDisposed)
+                {
+                    return;
+                }
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get((int)keyValuePair.Value);
+                if (unit.GetComponent<StateComponent>().CanUseSkill(skillConfig, true) != ErrorCode.ERR_Success)
+                {
+                    return;
+                }
+                self.OnUseSkill(new C2M_SkillCmd() { SkillID = (int)keyValuePair.Value, TargetID = targetId }, false);
             }
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get((int)keyValuePair.Value);
-            if (self.GetComponent<StateComponent>().CanUseSkill(skillConfig, true) != ErrorCode.ERR_Success)
-            {
-                return;
-            }
-            self.OnUseSkill(new C2M_SkillCmd() { SkillID = (int)keyValuePair.Value, TargetID = targetId });
         }
 
         public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
