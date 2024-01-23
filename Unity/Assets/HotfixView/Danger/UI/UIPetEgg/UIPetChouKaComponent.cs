@@ -107,7 +107,7 @@ namespace ET
             }
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            if (GlobalValueConfigCategory.Instance.Get(119).Value2 - self.ZoneScene().GetComponent<PetComponent>().RolePetBag.Count < choukaType)
+            if (petComponent.RolePetBag.Count >= GlobalValueConfigCategory.Instance.Get(119).Value2)
             {
                 FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
                 return;
