@@ -1104,6 +1104,7 @@ namespace ET
                 addPro = 0;
             }
 
+            //addPro = addPro + 0.05f;
             if (addPro > 0.3f)
             {
                 addPro = 0.3f;
