@@ -314,8 +314,9 @@ namespace ET
                     }
                     else
                     {
-                        self.Account.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-                        self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
+						self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = -1;
+                        self.Account.GetComponent<InputField>().text = string.Empty;
+                        self.Password.GetComponent<InputField>().text = string.Empty;
                         FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
                     }
                 }
@@ -371,7 +372,8 @@ namespace ET
                 }
                 else
                 {
-					self.Account.GetComponent<InputField>().text = string.Empty;
+                    self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = -1;
+                    self.Account.GetComponent<InputField>().text = string.Empty;
                     self.Password.GetComponent<InputField>().text = string.Empty;
                     FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
                 }
@@ -909,6 +911,11 @@ namespace ET
 				FloatTipManager.Instance.ShowFloatTip("稍后登录！");
 				return;
 			}
+			if (GlobalHelp.GetPlatform() == 5 && self.PlayerComponent.Age_Type < 0)
+			{
+                FloatTipManager.Instance.ShowFloatTip("稍后登录！");
+                return;
+            }
 
 			self.Loading.SetActive(true);
 			account = account.Replace(" ", "");

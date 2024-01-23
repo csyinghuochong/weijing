@@ -13,7 +13,7 @@ namespace ET
 
 		public PlayerInfo PlayerInfo;
 
-		public int Age_Type = 0;	
+		public int Age_Type = -1;	
 
 		public long AccountId = 0;
 
