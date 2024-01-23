@@ -688,6 +688,9 @@ namespace ET
 		[ProtoMember(59)]
 		public List<int> ItemXiLianNumRewardIds = new List<int>();
 
+		[ProtoMember(60)]
+		public List<int> DefeatedBossIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

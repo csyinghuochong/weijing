@@ -1177,5 +1177,13 @@ namespace ET
         /// 组队副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
         public static int GmTeamdungeonId = 110006;
+
+        /// <summary>
+        /// 击败过的BossId,包含在这个列表的才记录
+        /// BossId -> BossId(召唤)
+        /// 要新增配置，复制Boss的配置后，将 !!! MonsterType改为1、AI改为2 !!! 、Exp改为0、IfBoss改为0、掉落ID改为0、SelectSize改为1、DropType改为0、、、
+        /// 与上面的召唤物配置差不多
+        /// </summary>
+        public static Dictionary<int, int> DefeatedBossIds = new Dictionary<int, int>() { { 70001004, 90000201 }, { 70001011, 90000202 } };
     }
 }

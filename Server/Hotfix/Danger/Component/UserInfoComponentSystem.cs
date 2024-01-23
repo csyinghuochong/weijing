@@ -449,6 +449,15 @@ namespace ET
                 int addexp = (int)(expcoefficient * mCof.Exp);
                 self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
             }
+
+            // 纪录击败的Boss
+            if (beKill.IsBoss() && ConfigHelper.DefeatedBossIds.ContainsKey(beKill.ConfigId))
+            {
+                if (!self.UserInfo.DefeatedBossIds.Contains(beKill.ConfigId))
+                {
+                    self.UserInfo.DefeatedBossIds.Add(beKill.ConfigId);
+                }
+            }
         }
 
         public static void UpdateRoleDataBroadcast(this UserInfoComponent self, int Type, string value)
