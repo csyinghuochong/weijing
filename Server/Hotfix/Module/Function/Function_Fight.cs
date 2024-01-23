@@ -1096,7 +1096,7 @@ namespace ET
         public static float GetFightValueActProValue(int actFightValue, int defFightValue)
         {
 
-            float addPro = actFightValue / defFightValue;
+            float addPro = (actFightValue / defFightValue) - 1;
 
             //范围限制
             if (addPro < 0)
@@ -1110,7 +1110,6 @@ namespace ET
             }
 
             return addPro;
-
 
         }
 
