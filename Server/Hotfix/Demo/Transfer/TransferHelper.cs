@@ -443,7 +443,7 @@ namespace ET
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             unit.GetComponent<UnitInfoComponent>().LastDungeonId = 0;
             //传送回主场景
-            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId;
+            long mapInstanceId = DBHelper.GetMainCityServerId(unit.DomainZone());
             //动态删除副本
             Scene scene = unit.DomainScene();
             TransferHelper.BeforeTransfer(unit);

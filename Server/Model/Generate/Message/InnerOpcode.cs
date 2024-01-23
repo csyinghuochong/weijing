@@ -239,5 +239,7 @@ namespace ET
 		 public const ushort A2M_ActivitySelfInfo = 20236;
 		 public const ushort M2A_ActivityFeedRequest = 20237;
 		 public const ushort A2M_ActivityFeedResponse = 20238;
+		 public const ushort M2M_AllPlayerListRequest = 20239;
+		 public const ushort M2M_AllPlayerListResponse = 20240;
 	}
 }

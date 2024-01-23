@@ -2044,3 +2044,18 @@ message A2M_ActivityFeedResponse // IActorResponse
 	string Message = 92;
 	int32 BaoShiDu = 1;
 }
+
+//ResponseType M2M_AllPlayerListResponse
+message M2M_AllPlayerListRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2M_AllPlayerListResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int64 AllPlayers = 1;
+}

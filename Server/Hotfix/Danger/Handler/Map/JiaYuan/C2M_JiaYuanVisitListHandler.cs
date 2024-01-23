@@ -44,7 +44,7 @@ namespace ET
                     {
                         return;
                     }
-                    unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanVisitRefresh, 1, 0);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JiaYuanVisitRefresh, 1, 0);
                     jiaYuanComponent.JiaYuanFuJinTime_3 = 0;
                 }
 
@@ -66,72 +66,49 @@ namespace ET
                     }
                 }
 
-               
-                List<long> fujinList = jiaYuanComponent.JiaYuanFuJins_3;
-                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_3 < TimeHelper.Hour * 4)
-                {
-                    for (int i = 0; i < fujinList.Count; i++)
-                    {
-                        JiaYuanVisit jiaYuanVisit = await GetJiaYuanVisit(unit.DomainZone(), fujinList[i]);
-                        if (jiaYuanVisit != null)
-                        {
-                            response.JiaYuanVisit_2.Add(jiaYuanVisit);
-                        }
-                    }
-                }
-                else
+                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_3 > TimeHelper.Hour * 4)
                 {
                     jiaYuanComponent.JiaYuanFuJins_3.Clear();
 
-                    bool getall = false;
-                    if (getall)
+                    long mapInstanceId = DBHelper.GetMainCityServerId(unit.DomainZone());
+                    M2M_AllPlayerListResponse reqEnter = (M2M_AllPlayerListResponse)await ActorMessageSenderComponent.Instance.Call(mapInstanceId, new M2M_AllPlayerListRequest()
                     {
-                        List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserInfo.Lv > 10 && _account.UserInfo.JiaYuanExp > 0);
-                        for (int i = resultUser.Count - 1; i >= 0; i--)
-                        {
-                            if (resultUser[i].Id == unit.Id || resultUser[i].Id == request.MasterId)
-                            {
-                                resultUser.RemoveAt(i);
-                                continue;
-                            }
-                            if (friendList.Contains(resultUser[i].Id))
-                            {
-                                resultUser.RemoveAt(i);
-                                continue;
-                            }
-                        }
-
-                        List<UserInfoComponent> destUserinfos = new List<UserInfoComponent>();
-                        RandomHelper.GetRandListByCount(resultUser, destUserinfos, Math.Min(resultUser.Count, 3));
-
-                        for (int i = 0; i < destUserinfos.Count; i++)
-                        {
-                            List<JiaYuanComponent> resultJiaYuan = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(unit.DomainZone(), _account => _account.Id == destUserinfos[i].Id);
-                            if (resultJiaYuan.Count == 0)
-                            {
-                                continue;
-                            }
-
-                            jiaYuanComponent.JiaYuanFuJins_3.Add(resultJiaYuan[0].Id);
-                            JiaYuanVisit jiaYuanVisit = new JiaYuanVisit();
-                            jiaYuanVisit.Occ = destUserinfos[i].UserInfo.Occ;
-                            jiaYuanVisit.OccTwo = destUserinfos[i].UserInfo.OccTwo;
-                            jiaYuanVisit.PlayerName = destUserinfos[i].UserInfo.Name;
-                            jiaYuanVisit.UnitId = resultJiaYuan[0].Id;
-                            jiaYuanVisit.Rubbish = resultJiaYuan[0].GetRubbishNumber();
-                            jiaYuanVisit.Gather = resultJiaYuan[0].GetCanGatherNumber();
-                            response.JiaYuanVisit_2.Add(jiaYuanVisit);
-                        }
-                    }
-                    else
-                    { 
-                        
+                    });
+                    List<long> allPlayers = new List<long>();
+                    if (reqEnter.Error == ErrorCode.ERR_Success)
+                    {
+                        allPlayers = reqEnter.AllPlayers;
                     }
 
-                   jiaYuanComponent.JiaYuanFuJinTime_3 = TimeHelper.ServerNow();
+                    for (int i = allPlayers.Count - 1; i >= 0; i--)
+                    {
+                        if (allPlayers[i] == unit.Id || allPlayers[i] == request.MasterId)
+                        {
+                            allPlayers.RemoveAt(i);
+                            continue;
+                        }
+                        if (friendList.Contains(allPlayers[i]))
+                        {
+                            allPlayers.RemoveAt(i);
+                            continue;
+                        }
+                    }
+
+                    List<long> destUserinfos = new List<long>();
+                    RandomHelper.GetRandListByCount(allPlayers, destUserinfos, Math.Min(allPlayers.Count, 3));
+                    jiaYuanComponent.JiaYuanFuJinTime_3 = TimeHelper.ServerNow();
+                    jiaYuanComponent.JiaYuanFuJins_3 = destUserinfos;
                 }
-            }
 
+                for (int i = 0; i < jiaYuanComponent.JiaYuanFuJins_3.Count; i++)
+                {
+                    JiaYuanVisit jiaYuanVisit = await GetJiaYuanVisit(unit.DomainZone(), jiaYuanComponent.JiaYuanFuJins_3[i]);
+                    if (jiaYuanVisit != null)
+                    {
+                        response.JiaYuanVisit_2.Add(jiaYuanVisit);
+                    }
+                }
+            }    
             reply();
             await ETTask.CompletedTask;
         }

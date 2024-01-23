@@ -143,6 +143,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Rank)).InstanceId;
         }
 
+        public static long GetMainCityServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, $"Map{ComHelp.MainCityID()}").InstanceId;
+        }
+
         public static long GetMailServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.EMail)).InstanceId;
