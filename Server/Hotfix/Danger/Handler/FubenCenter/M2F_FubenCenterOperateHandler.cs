@@ -18,7 +18,7 @@ namespace ET
                 fubenCenterComponent.FubenInstanceList.Remove(request.FubenInstanceId);
             }
 
-            Log.Debug($"FubenCenterOperate {scene.DomainZone()} {request.OperateType} {request.SceneType} {fubenCenterComponent.FubenInstanceList.Count}");
+            //Log.Debug($"FubenCenterOperate {scene.DomainZone()} {request.OperateType} {request.SceneType} {fubenCenterComponent.FubenInstanceList.Count}");
             response.ServerInfo = fubenCenterComponent.ServerInfo;
             reply();
             await ETTask.CompletedTask;

@@ -36,8 +36,12 @@ namespace ET
         /// <returns></returns>
         public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler, int hurtMode)
         {
-            SkillConfig skillconfig = skillHandler.SkillConf;
+            if (defendUnit.IsDisposed)
+            {
+                return false;
+            }
 
+            SkillConfig skillconfig = skillHandler.SkillConf;
             //吟唱进度
             float singingvalue = 1;
             //蓄力技能计算伤害

@@ -38,7 +38,7 @@ namespace ET
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }
 
-                Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
+                //Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
                 Log.Warning($"Save<DBCenterAccountInfo>222: { scene.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);
                 newAccount.Dispose();

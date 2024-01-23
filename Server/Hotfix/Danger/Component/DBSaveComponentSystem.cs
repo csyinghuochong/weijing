@@ -75,6 +75,11 @@ namespace ET
                     return;
                 }
                 Unit unit = self.GetParent<Unit>();
+                if (unit.IsRobot())
+                {
+                    return;
+                }
+
                 long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
                 M2D_SaveUnit message = new M2D_SaveUnit() { UnitId = unit.Id };
                 foreach (Type type in self.EntityChangeTypeSet)

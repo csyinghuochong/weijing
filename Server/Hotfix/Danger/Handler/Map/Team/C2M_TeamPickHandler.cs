@@ -8,6 +8,10 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_TeamPickRequest request)
         {
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
+            if (teamDungeonComponent == null)
+            {
+                return;
+            }
             List<TeamDropItem> teamDropItems = teamDungeonComponent.TeamDropItems;
             TeamDropItem teamDropItem = null;
             for (int i = 0; i < teamDropItems.Count; i++)
