@@ -45,13 +45,31 @@ namespace ET
                     break;
                 }
                 
-                int maxNum = GlobalValueConfigCategory.Instance.Get(120).Value2;
+                int maxNum = MonsterConfigCategory.Instance.Get(createMonsterID).SummonLimit;
                 UnitComponent unitComponent = theUnitFrom.GetParent<UnitComponent>();
                 for (int i = 0; i < int.Parse(skillParList[2]); i++)
                 {
-                    if (unitInfoComponent.ZhaohuanIds.Count >= maxNum)
+                    int haveNum = 0;
+                    long haveId = 0;
+                    foreach (long id in unitInfoComponent.ZhaohuanIds)
                     {
-                        Unit uu = unitComponent.Get(unitInfoComponent.ZhaohuanIds[0]);
+                        Unit uu = unitComponent.Get(id);
+                        if (uu == null || uu.ConfigId != createMonsterID)
+                        {
+                            continue;
+                        }
+
+                        if (haveNum == 0)
+                        {
+                            haveId = id;
+                        }
+
+                        haveNum++;
+                    }
+                    
+                    if (haveNum >= maxNum)
+                    {
+                        Unit uu = unitComponent.Get(haveId);
                         if (uu != null && uu.Type == UnitType.Monster)
                         {
                             uu.GetComponent<HeroDataComponent>().OnDead(null);
