@@ -654,8 +654,17 @@ namespace ET
             }
             else
             {
+                int randomNumber = 0;
+
                 while (indexList.Count < 3)
                 {
+                    if (randomNumber > 200)
+                    {
+                        Log.Warning($"randomNumber > 200:  {randomNumber}");
+                        Log.Console($"randomNumber > 200:  {randomNumber}");
+                        break;
+                    }
+
                     int index = 0;
                     if (rankNumber == 0)        //没上榜就找排行榜最后十名
                         index = RandomHelper.RandomNumber(self.DBRankInfo.rankingPets.Count - 10, self.DBRankInfo.rankingPets.Count);
@@ -677,6 +686,8 @@ namespace ET
                     {
                         indexList.Add(index);
                     }
+
+                    randomNumber++;
                 }
             }
             indexList.Sort();

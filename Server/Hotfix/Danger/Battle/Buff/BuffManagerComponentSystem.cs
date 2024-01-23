@@ -105,7 +105,13 @@ namespace ET
         /// <param name="operate">1新增 0移除</param>
         /// <param name="buffHandler"></param>
         public static void AddBuffRecord(this BuffManagerComponent self, int operate, int buffId)
-        { 
+        {
+            if (buffId > 0)
+            {
+                ////先屏蔽掉
+                return;
+            }
+
             Unit unit = self.GetParent<Unit>();
             if (unit.Type!= UnitType.Player)
             {

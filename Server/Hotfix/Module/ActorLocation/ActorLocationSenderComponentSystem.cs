@@ -142,11 +142,18 @@ namespace ET
         private static async ETTask<IActorResponse> CallInner(this ActorLocationSenderComponent self, ActorLocationSender actorLocationSender, int rpcId, MemoryStream memoryStream)
         {
             int failTimes = 0;
+            int findTimes = 0;
             long instanceId = actorLocationSender.InstanceId;
             actorLocationSender.LastSendOrRecvTime = TimeHelper.ServerNow();
-            
+
             while (true)
             {
+                findTimes++;
+                if (findTimes > 100)
+                {
+                    Log.Error("findTimes > 100");
+                }
+
                 if (actorLocationSender.ActorId == 0)
                 {
                     actorLocationSender.ActorId = await LocationProxyComponent.Instance.Get(actorLocationSender.Id);

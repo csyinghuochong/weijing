@@ -100,6 +100,13 @@ namespace ET
                     int randomNumber = 0;
                     int randomRange = 0;
                     int skillNumber = 0;
+
+                    if (skillNumber > 100)
+                    {
+                        Log.Error($"skillNumber > 100: {skillcmd.SkillID}");
+                        skillNumber = 10;
+                    }
+
                     if (randomInfos.Length < 3)
                     {
                         Log.Console($"技能配置错误: {skillConfig.Id}");
@@ -131,6 +138,12 @@ namespace ET
                     randomRange = int.Parse(randomInfos[2]);
                     skillNumber = RandomHelper.RandomNumber(1, randomNumber);
 
+                    if (skillNumber > 100)
+                    {
+                        Log.Error($"skillNumber > 100: {skillcmd.SkillID}");
+                        skillNumber = 10;
+                    }
+
                     for (int i = 0; i < skillNumber; i++)
                     {
                         skillInfo = new SkillInfo();
@@ -152,6 +165,13 @@ namespace ET
                     sourcePoint = unit.Position;
                     rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
                     targetPoint = sourcePoint + rotation * Vector3.forward * skillcmd.TargetDistance;
+
+                    if (skillNumber > 100)
+                    {
+                        Log.Error($"skillNumber > 100: {skillcmd.SkillID}");
+                        skillNumber = 10;
+                    }
+
                     for (int i = 0; i < skillNumber; i++)
                     {
                         skillInfo = new SkillInfo();
@@ -169,6 +189,13 @@ namespace ET
                     randomSkillId = int.Parse(randomInfos[0]);
                     float intervalTime = float.Parse(randomInfos[1]);
                     skillNumber = Mathf.FloorToInt(float.Parse(randomInfos[2]) / intervalTime);
+
+                    if (skillNumber > 100)
+                    {
+                        Log.Error($"skillNumber > 100: {skillcmd.SkillID}");
+                        skillNumber = 10;
+                    }
+
                     for (int i = 0; i < skillNumber; i++)
                     {
                         skillInfo = new SkillInfo();
