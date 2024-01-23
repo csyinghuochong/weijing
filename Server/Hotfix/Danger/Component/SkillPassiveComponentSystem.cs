@@ -400,11 +400,11 @@ namespace ET
 
         public static void OnSingOver(this SkillPassiveComponent self)
         {
+            self.StateComponent.StateTypeRemove(StateTypeEnum.Singing);
             if (self.SingSkillIfo != null)
             {
                 self.ImmediateUseSkill(self.SingSkillIfo, self.SingTargetId);
             }
-            self.StateComponent.StateTypeRemove(StateTypeEnum.Singing);
         }
 
         public static void StateTypeAdd(this SkillPassiveComponent self, long nowStateType)

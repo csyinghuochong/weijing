@@ -51,7 +51,7 @@ namespace ET
             {
                 this.SpeedAddValue = 0f;
             }
-
+            this.TheUnitFrom.GetComponent<StateComponent>().SetRigidityEndTime(0);
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
