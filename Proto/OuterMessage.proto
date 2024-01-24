@@ -2894,8 +2894,7 @@ message C2E_GMEMailRequest // IMailActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 UserId = 1;			//为0 全服邮件
-	MailInfo MailInfo = 2;
+	string MailInfo = 2;
 }
 
 message E2C_GMEMailResponse // IMailActorResponse

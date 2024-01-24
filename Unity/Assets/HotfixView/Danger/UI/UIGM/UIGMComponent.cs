@@ -13,8 +13,6 @@ namespace ET
         public GameObject Button_ServerClose;
         public GameObject Button_ReLoad;
         public GameObject InputField_Broadcast;
-        public GameObject InputField_EmailTitle;
-        public GameObject InputField_EmailContent;
         public GameObject InputField_EmailItem;
         public GameObject Button_Broadcast_1;
         public GameObject Button_Broadcast_2;
@@ -35,8 +33,6 @@ namespace ET
             self.Button_ServerClose = rc.Get<GameObject>("Button_ServerClose");
             self.Button_ReLoad = rc.Get<GameObject>("Button_ReLoad");
             self.InputField_Broadcast = rc.Get<GameObject>("InputField_Broadcast");
-            self.InputField_EmailTitle = rc.Get<GameObject>("InputField_EmailTitle");
-            self.InputField_EmailContent = rc.Get<GameObject>("InputField_EmailContent");
             self.InputField_EmailItem = rc.Get<GameObject>("InputField_EmailItem");
 
             self.InputField_ReLoadValue = rc.Get<GameObject>("InputField_ReLoadValue");
@@ -63,6 +59,12 @@ namespace ET
     public static class UIGMComponentSystem
     {
 
+        /// <summary>
+        /// boradType 0全服广播  1本服广播
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="boradType"></param>
+        /// <returns></returns>
         public static async ETTask OnButton_Broadcast_1(this UIGMComponent self,int boradType)
         {
             if (self.InputField_Broadcast.GetComponent<InputField>().text.Length == 0)
@@ -70,7 +72,7 @@ namespace ET
                 return;
             }
 
-            C2C_SendBroadcastRequest c2S_SendChatRequest = new C2C_SendBroadcastRequest() { };
+            C2C_SendBroadcastRequest c2S_SendChatRequest = new C2C_SendBroadcastRequest() { ZoneType = boradType };
             c2S_SendChatRequest.ChatInfo = new ChatInfo();
             c2S_SendChatRequest.ChatInfo.ChatMsg = self.InputField_Broadcast.GetComponent<InputField>().text;
             C2C_SendBroadcastResponse sendChatResponse = (C2C_SendBroadcastResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2S_SendChatRequest);
@@ -78,26 +80,19 @@ namespace ET
 
         public static async ETTask OnButton_Email(this UIGMComponent self)
         {
-            MailInfo mailInfo = new MailInfo();
-
-            mailInfo.Title = self.InputField_EmailTitle.GetComponent<InputField>().text;
-            mailInfo.Context = self.InputField_EmailContent.GetComponent<InputField>().text;
-
-            List<BagInfo> rewardItems = new List<BagInfo>();
-            string[] itemlist = self.InputField_EmailItem.GetComponent<InputField>().text.Split('@');
-            for (int i = 0; i < itemlist.Length; i++)
+            string itemlist = self.InputField_EmailItem.GetComponent<InputField>().text;
+            if (string.IsNullOrEmpty(itemlist))
             {
-                string[] itemInfo = itemlist[i].Split(';');
-                if (itemInfo.Length < 2)
-                {
-                    continue;
-                }
-                rewardItems.Add(new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) } );
+                FloatTipManager.Instance.ShowFloatTip("输入不能为空！");
+                return;
             }
-            mailInfo.ItemList = rewardItems;
-
-            C2E_GMEMailRequest c2E_GetAllMailRequest = new C2E_GMEMailRequest() { MailInfo = mailInfo };
+            
+            C2E_GMEMailRequest c2E_GetAllMailRequest = new C2E_GMEMailRequest() { MailInfo = itemlist };
             E2C_GMEMailResponse sendChatResponse = (E2C_GMEMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
+            if (sendChatResponse.Error == ErrorCode.ERR_Success)
+            {
+                FloatTipManager.Instance.ShowFloatTip("邮件发送成功！");
+            }
         }
 
         public static void OnButton_Close(this UIGMComponent self)
