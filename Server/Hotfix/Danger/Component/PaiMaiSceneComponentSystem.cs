@@ -245,28 +245,28 @@ namespace ET
 
             if (curTime < openTime)
             {
-                await TimerComponent.Instance.WaitAsync( (openTime - curTime) * TimeHelper.Second );
+                await TimerComponent.Instance.WaitAsync((openTime - curTime) * TimeHelper.Second);
                 dateTime = TimeHelper.DateTimeNow();
                 curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
                 self.OnAuctionBegin((closeTime - curTime) * 1000).Coroutine();
             }
             else if (curTime >= openTime && curTime <= closeTime)
             {
-                self.OnAuctionBegin((closeTime -curTime) * 1000).Coroutine();
+                self.OnAuctionBegin((closeTime - curTime) * 1000).Coroutine();
             }
             else
             {
 
             }
         }
-       
+
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             await TimerComponent.Instance.WaitAsync(zone * 100);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
-         
+
             if (d2GGetUnit.Component == null)
             {
                 //初始化拍卖行数据
@@ -313,10 +313,10 @@ namespace ET
         }
 
         //每天更新道具物品价格
-        public static  void UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
+        public static void UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
         {
             int curzone = ServerHelper.GetOldServerId(self.DomainZone());
-            int openserverDay =  DBHelper.GetOpenServerDay(curzone);
+            int openserverDay = DBHelper.GetOpenServerDay(curzone);
             Log.Info($"curzone = {curzone} openserverDay = {openserverDay} PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
             if (openserverDay == 0)
             {
@@ -326,14 +326,14 @@ namespace ET
             List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo.PaiMaiShopItemInfos;
             for (int i = 0; i < paiMaiShopItemInfos.Count; i++)
             {
-                float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
+                float upPrice = RandomHelper.RandomNumberFloat(0.03f, 0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
                 int sellid = PaiMaiHelper.Instance.GetPaiMaiSellId((int)info.Id);
                 if (sellid == 0)
                 {
                     continue;
                 }
-  
+
                 int PriceMax = PaiMaiSellConfigCategory.Instance.Get(sellid).PriceMax;
                 int PriceMin = PaiMaiSellConfigCategory.Instance.Get(sellid).PriceMin;
                 /*
@@ -351,7 +351,8 @@ namespace ET
                 else
                 {
                     //如果当前出售数量为0,则进行降价
-                    if (info.BuyNum == 0) {
+                    if (info.BuyNum == 0)
+                    {
                         upPrice = upPrice * -1;
                     }
 
@@ -400,7 +401,8 @@ namespace ET
                     {
                         buyPro = 0.1f;
                     }
-                    else if (pro <= 1.2f) {
+                    else if (pro <= 1.2f)
+                    {
 
                         buyPro = 0.05f;
                     }
@@ -411,14 +413,15 @@ namespace ET
 
                     ItemConfig itemCof = ItemConfigCategory.Instance.Get(paiMaiItem.BagInfo.ItemID);
                     int costNum = 0;
-                    switch (itemCof.ItemQuality) {
+                    switch (itemCof.ItemQuality)
+                    {
 
                         case 1:
                             costNum = RandomHelper.NextInt(1, 100);
                             break;
                         //绿色道具随机数量
                         case 2:
-                            costNum = RandomHelper.NextInt(1,100);
+                            costNum = RandomHelper.NextInt(1, 100);
                             break;
                         //蓝道具随机数量
                         case 3:
@@ -428,7 +431,7 @@ namespace ET
                         case 4:
                             costNum = RandomHelper.NextInt(1, 5);
                             break;
-                    
+
                     }
 
                     //不能超过当前拥有上限
@@ -473,13 +476,13 @@ namespace ET
             }
         }
 
-        public static List<PaiMaiItemInfo> GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID,int singPrice)
+        public static List<PaiMaiItemInfo> GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID, int singPrice)
         {
             List<PaiMaiItemInfo> paiMaiItemInfo = new List<PaiMaiItemInfo>();
             List<PaiMaiItemInfo> paiMaiItemInfos = self.dBPaiMainInfo.PaiMaiItemInfos;
             for (int i = 0; i < paiMaiItemInfos.Count; i++)
             {
-                if (paiMaiItemInfos[i].BagInfo.ItemID!=itemID)
+                if (paiMaiItemInfos[i].BagInfo.ItemID != itemID)
                 {
                     continue;
                 }
@@ -497,21 +500,45 @@ namespace ET
         {
             //检测超时的道具
             long currentTime = TimeHelper.ServerNow();
+
+
+            List<long> removeIds = new List<long>();
+            if (self.dBPaiMainInfo.PaiMaiItemInfos.Count > 1400)
+            {
+                for (int i = 0; i < self.dBPaiMainInfo.PaiMaiItemInfos.Count; i++)
+                {
+                    PaiMaiItemInfo paiMaiItemInfo = self.dBPaiMainInfo.PaiMaiItemInfos[i];
+                    if (ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).ItemQuality <= 3)
+                    {
+                        removeIds.Add(paiMaiItemInfo.Id);
+                    }
+                    if (removeIds.Count >= 100)
+                    {
+                        break;
+                    }
+                }
+            }
+            if (removeIds.Count > 0)
+            {
+                Log.Console("removeIds.Count: " + removeIds.Count);
+            }
+
             for (int i = self.dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)
             {
                 PaiMaiItemInfo paiMaiItemInfo = self.dBPaiMainInfo.PaiMaiItemInfos[i];
-                if (currentTime - paiMaiItemInfo.SellTime >= TimeHelper.OneDay)
+                if (currentTime - paiMaiItemInfo.SellTime >= TimeHelper.OneDay || removeIds.Contains(paiMaiItemInfo.Id))
                 {
                     long emaiId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
                     E2P_PaiMaiOverTimeResponse g_SendChatRequest = (E2P_PaiMaiOverTimeResponse)await ActorMessageSenderComponent.Instance.Call
                         (emaiId, new P2E_PaiMaiOverTimeRequest()
                         {
-                             PaiMaiItemInfo = paiMaiItemInfo
+                            PaiMaiItemInfo = paiMaiItemInfo
                         });
 
                     self.dBPaiMainInfo.PaiMaiItemInfos.RemoveAt(i);
                 }
             }
+
             Log.Warning($"PaiMaiSceneComponent.SaveDB:  {self.dBPaiMainInfo.PaiMaiItemInfos.Count}");
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
