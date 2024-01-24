@@ -524,8 +524,8 @@ message G2C_Test // IMessage
 {
 }
 
-//ResponseType M2C_Reload
-message C2M_Reload // IRequest
+//ResponseType G2C_Reload
+message C2G_Reload // IRequest
 {
 	int32 RpcId = 90;
 	string Account = 1;
@@ -535,7 +535,7 @@ message C2M_Reload // IRequest
 	string LoadValue = 4;
 }
 
-message M2C_Reload // IResponse
+message G2C_Reload // IResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
@@ -2886,6 +2886,23 @@ message C2C_GMInfoResponse // ICenterActorResponse
 
 	int32 OnLineNumber = 1;
 	int32 OnLineRobot = 2;
+}
+
+//GM后台指令
+//ResponseType C2C_GMCommonResponse
+message C2C_GMCommonRequest // ICenterActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	string Account = 1;
+	string Context = 2;
+}
+
+message C2C_GMCommonResponse // ICenterActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }
 
 //GM邮件

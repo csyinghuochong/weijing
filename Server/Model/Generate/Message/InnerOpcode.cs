@@ -3,8 +3,8 @@ namespace ET
 	public static partial class InnerOpcode
 	{
 		 public const ushort ObjectQueryRequest = 20002;
-		 public const ushort M2A_Reload = 20003;
-		 public const ushort A2M_Reload = 20004;
+		 public const ushort G2A_Reload = 20003;
+		 public const ushort A2G_Reload = 20004;
 		 public const ushort R2A_Broadcast = 20005;
 		 public const ushort A2R_Broadcast = 20006;
 		 public const ushort G2G_LockRequest = 20007;

@@ -19,10 +19,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(A2M_Reload))]
-	[Message(InnerOpcode.M2A_Reload)]
+	[ResponseType(nameof(A2G_Reload))]
+	[Message(InnerOpcode.G2A_Reload)]
 	[ProtoContract]
-	public partial class M2A_Reload: Object, IActorRequest
+	public partial class G2A_Reload: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -38,9 +38,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.A2M_Reload)]
+	[Message(InnerOpcode.A2G_Reload)]
 	[ProtoContract]
-	public partial class A2M_Reload: Object, IActorResponse
+	public partial class A2G_Reload: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

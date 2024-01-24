@@ -7,10 +7,9 @@ namespace ET
 {
     public  class UIGMComponent : Entity, IAwake
     {
-
+        public GameObject InputField_Common;
+        public GameObject Button_Common;
         public GameObject InputField_ReLoadValue;
-        public GameObject InputField_ReLoadType;
-        public GameObject Button_ServerClose;
         public GameObject Button_ReLoad;
         public GameObject InputField_Broadcast;
         public GameObject InputField_EmailItem;
@@ -22,22 +21,17 @@ namespace ET
         public GameObject Text_OnLineNumber;
     }
 
-
-
     public class UIGMComponentAwakeSystem : AwakeSystem<UIGMComponent>
     {
         public override void Awake(UIGMComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.Button_ServerClose = rc.Get<GameObject>("Button_ServerClose");
             self.Button_ReLoad = rc.Get<GameObject>("Button_ReLoad");
             self.InputField_Broadcast = rc.Get<GameObject>("InputField_Broadcast");
             self.InputField_EmailItem = rc.Get<GameObject>("InputField_EmailItem");
 
             self.InputField_ReLoadValue = rc.Get<GameObject>("InputField_ReLoadValue");
-            self.InputField_ReLoadType = rc.Get<GameObject>("InputField_ReLoadType");
-
             self.Button_Broadcast_1 = rc.Get<GameObject>("Button_Broadcast_1");
             self.Button_Broadcast_1.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Broadcast_1(0).Coroutine(); });
             self.Button_Broadcast_2 = rc.Get<GameObject>("Button_Broadcast_2");
@@ -51,6 +45,10 @@ namespace ET
          
             self.Button_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Close(); });
             self.Button_ReLoad.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ReLoad().Coroutine(); });
+
+            self.InputField_Common = rc.Get<GameObject>("InputField_Common");
+            self.Button_Common = rc.Get<GameObject>("Button_Common");
+            self.Button_Common.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Common().Coroutine(); });
 
             self.RequestGMInfo().Coroutine();
         }
@@ -100,33 +98,37 @@ namespace ET
             UIHelper.Remove( self.DomainScene(), UIType.UIGM );
         }
 
+        public static async ETTask OnButton_Common(this UIGMComponent self)
+        {
+            string content = self.InputField_Common.GetComponent<InputField>().text;
+            if (content.Length < 1)
+            {
+                return;
+            }
+
+            C2C_GMCommonRequest request = new C2C_GMCommonRequest() 
+            {
+                Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account,
+                Context = content
+            };
+            C2C_GMCommonResponse repose = (C2C_GMCommonResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
         public static async ETTask OnButton_ReLoad(this UIGMComponent self)
         {
-            Scene zoneScene = self.ZoneScene();
-            NetKcpComponent netKcpComponent = zoneScene.GetComponent<NetKcpComponent>();
-            Init init = GameObject.Find("Global").GetComponent<Init>();
-
-
-            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode)).AddressList;
-            string ip = init.OueNetMode ? $"{xxc[0]}:20305" : "127.0.0.1:20305";
-            if (self.InputField_ReLoadType.GetComponent<InputField>().text.Length == 0)
+            string reload = self.InputField_ReLoadValue.GetComponent<InputField>().text;
+            if (reload.Length < 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("请输入热重载类型！");
                 return;
             }
-            int loadType = int.Parse(self.InputField_ReLoadType.GetComponent<InputField>().text);
-            string loadValue = self.InputField_ReLoadType.GetComponent<InputField>().text;
-            //Session session = netKcpComponent.Create(NetworkHelper.ToIPEndPoint(ip));
+
             Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
+            G2C_Reload m2C_Reload = await session.Call(new C2G_Reload()
             {
-                M2C_Reload m2C_Reload = await session.Call(new C2M_Reload() {
-                    Account = "tcg", Password = "tcg" ,
-                    LoadType = loadType,
-                    LoadValue = loadValue
-                }) as M2C_Reload;
-            }
-           // session.Dispose();
-            //self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_Reload() { Account = "tcg", Password = "tcg" }) as M2C_Reload;
+                Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account,
+                LoadValue = reload
+            }) as G2C_Reload;
         }
 
         public static async ETTask RequestGMInfo(this UIGMComponent self)
@@ -136,8 +138,7 @@ namespace ET
 
             if (sendChatResponse.Error == 0)
             {
-                self.Text_OnLineNumber.GetComponent<Text>().text = sendChatResponse.OnLineNumber.ToString();
-
+                self.Text_OnLineNumber.GetComponent<Text>().text = $"玩家:{sendChatResponse.OnLineNumber} 机器人:{sendChatResponse.OnLineRobot}";
             }
             else
             {

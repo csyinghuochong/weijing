@@ -9,8 +9,8 @@ message ObjectQueryRequest // IActorRequest
 	int64 InstanceId = 2;
 }
 
-//ResponseType A2M_Reload
-message M2A_Reload // IActorRequest
+//ResponseType A2G_Reload
+message G2A_Reload // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
@@ -19,7 +19,7 @@ message M2A_Reload // IActorRequest
     string LoadValue = 4;
 }
 
-message A2M_Reload // IActorResponse
+message A2G_Reload // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;

@@ -156,5 +156,11 @@ namespace ET
 			public Unit UnitAttack;
 			public Unit UnitDefend;
 		}
-	}
+
+        public struct GMCommonRequest
+        {
+            public Scene DomainScene;
+            public string Context;
+        }
+    }
 }

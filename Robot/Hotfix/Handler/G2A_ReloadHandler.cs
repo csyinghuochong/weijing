@@ -3,23 +3,24 @@
 namespace ET
 {
     [ActorMessageHandler]
-    public class M2A_ReloadHandler : AMActorRpcHandler<Scene, M2A_Reload, A2M_Reload>
+    public class G2A_ReloadHandler : AMActorRpcHandler<Scene, G2A_Reload, A2G_Reload>
     {
-        protected override async ETTask Run(Scene session, M2A_Reload request, A2M_Reload response, Action reply)
+        protected override async ETTask Run(Scene session, G2A_Reload request, A2G_Reload response, Action reply)
         {
             Log.Console("C2M_Reload_b: " + session.Name);
+            Log.Warning("C2M_Reload_b: " + session.Name);
 
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
-            Log.Console("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
-            Log.Console("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
+            Log.Warning("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
+            Log.Warning("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
 
             DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
 #if SERVER
             MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;
             OpcodeHelper.ShowMessage = dateTime.Hour >= 21 && dateTime.Hour <= 23;
-            Log.Console("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
+            Log.Warning("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
 #endif
             switch (request.LoadType)
             {
@@ -46,11 +47,11 @@ namespace ET
                         Type type = Game.EventSystem.GetType($"ET.{category}");
                         if (type == null)
                         {
-                            Log.Console($"reload config but not find {category}");
+                            Log.Warning($"reload config but not find {category}");
                             return;
                         }
                         ConfigComponent.Instance.LoadOneConfig(type);
-                        Log.Console($"reload config {configName} finish!");
+                        Log.Warning($"reload config {configName} finish!");
                     }
                     break;
                 case 3:
@@ -67,12 +68,12 @@ namespace ET
                     break;
             }
 
-            Log.Console("EventSystem.Instance.ToString: 1");
-            Log.Console("EventSystem:   "+ EventSystem.Instance.ToString());
-            Log.Console("TimerComponent:"+ TimerComponent.Instance.ToString());
-            Log.Console("ObjectPool:    "+ ObjectPool.Instance.ToString());
-            Log.Console("MonoPool:      "+ MonoPool.Instance.ToString());
-            Log.Console("EventSystem.Instance.ToString: 2");
+            Log.Warning("EventSystem.Instance.ToString: 1");
+            Log.Warning("EventSystem:   "+ EventSystem.Instance.ToString());
+            Log.Warning("TimerComponent:"+ TimerComponent.Instance.ToString());
+            Log.Warning("ObjectPool:    "+ ObjectPool.Instance.ToString());
+            Log.Warning("MonoPool:      "+ MonoPool.Instance.ToString());
+            Log.Warning("EventSystem.Instance.ToString: 2");
 
             reply();
             await ETTask.CompletedTask;

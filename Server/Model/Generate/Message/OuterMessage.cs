@@ -1057,10 +1057,10 @@ namespace ET
 	{
 	}
 
-	[ResponseType(nameof(M2C_Reload))]
-	[Message(OuterOpcode.C2M_Reload)]
+	[ResponseType(nameof(G2C_Reload))]
+	[Message(OuterOpcode.C2G_Reload)]
 	[ProtoContract]
-	public partial class C2M_Reload: Object, IRequest
+	public partial class C2G_Reload: Object, IRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -1079,9 +1079,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_Reload)]
+	[Message(OuterOpcode.G2C_Reload)]
 	[ProtoContract]
-	public partial class M2C_Reload: Object, IResponse
+	public partial class G2C_Reload: Object, IResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6103,6 +6103,41 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int OnLineRobot { get; set; }
+
+	}
+
+//GM后台指令
+	[ResponseType(nameof(C2C_GMCommonResponse))]
+	[Message(OuterOpcode.C2C_GMCommonRequest)]
+	[ProtoContract]
+	public partial class C2C_GMCommonRequest: Object, ICenterActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Context { get; set; }
+
+	}
+
+	[Message(OuterOpcode.C2C_GMCommonResponse)]
+	[ProtoContract]
+	public partial class C2C_GMCommonResponse: Object, ICenterActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

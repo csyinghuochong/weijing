@@ -176,6 +176,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.Err_StopPaiMai, "此道具无法在拍卖行中进行出售!");
             ErrorHintList.Add(ErrorCode.Err_Auction_Low, "出价低于其他玩家!");
             ErrorHintList.Add(ErrorCode.Err_Auction_Finish, "竞拍已结束!");
+            ErrorHintList.Add(ErrorCode.ERR_Parameter, "参数错误!");
+            
 
             ErrorHintList.Add(ErrorCode.ERR_HoreseNotFight,"请到主城坐骑训练师选择自己的骑乘坐骑吧");
             ErrorHintList.Add(ErrorCode.ERR_HoreseNotActive, "坐骑未出战");

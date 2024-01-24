@@ -7,10 +7,9 @@ namespace ET
 
     public class C2G_GMInfoHandler : AMActorRpcHandler<Scene, C2C_GMInfoRequest, C2C_GMInfoResponse>
     {
-
         protected override async ETTask Run(Scene scene, C2C_GMInfoRequest request, C2C_GMInfoResponse response, Action reply)
         {
-            if (GMHelp.AdminAccount.Contains(request.Account))
+            if (AdminHelper.AdminAccount.Contains(request.Account))
             {
                 int totalNumber = 0;
                 int robotNumber = 0;
