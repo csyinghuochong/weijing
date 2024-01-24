@@ -44,5 +44,7 @@ namespace ET
         public List<EventType.RolePetAdd> RolePetAdds = new List<EventType.RolePetAdd>();
 
         public Dictionary<long, long> OneChallengeTime = new Dictionary<long, long>();
+
+        public List<long> AttackSelfPlayer = new List<long>();  
     }
 }

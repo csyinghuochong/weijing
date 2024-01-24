@@ -78,7 +78,19 @@ namespace ET
                 UI petmain = UIHelper.GetUI(zoneScene, UIType.UIPetMain);
                 petmain?.GetComponent<UIPetMainComponent>()?.OnUnitHpUpdate(unitDefend);
             }
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon && unitDefend.Type == UnitType.Monster)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang
+                && unitDefend.Type == UnitType.Player && unitDefend.MainHero
+                && unitAttack.Type == UnitType.Player)
+            {
+                int attackMode = unitDefend.GetAttackMode();
+                if (attackMode == 3 && !zoneScene.GetComponent<BattleMessageComponent>().AttackSelfPlayer.Contains(unitAttack.Id))
+                {
+                    zoneScene.GetComponent<BattleMessageComponent>().AttackSelfPlayer.Add(unitAttack.Id);
+                    FloatTipManager.Instance.ShowFloatTip($"{unitAttack.GetComponent<UnitInfoComponent>().UnitName} 攻击了你");
+                }
+            }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon
+                && unitDefend.Type == UnitType.Monster)
             {
                 UI trialmain = UIHelper.GetUI(zoneScene, UIType.UITrialMain);
                 trialmain?.GetComponent<UITrialMainComponent>()?.OnUpdateHurt(args.ChangeHpValue);

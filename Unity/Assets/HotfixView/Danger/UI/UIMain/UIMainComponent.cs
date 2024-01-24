@@ -1801,6 +1801,7 @@ namespace ET
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(0);
+            self.ZoneScene().GetComponent<BattleMessageComponent>().AttackSelfPlayer.Clear();
             self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
         }
 
