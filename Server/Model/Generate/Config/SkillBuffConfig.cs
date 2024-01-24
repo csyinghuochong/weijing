@@ -135,44 +135,47 @@ namespace ET
 		/// <summary>Buff是叠加层数上限</summary>
 		[ProtoMember(21)]
 		public int BuffAddClassMax { get; set; }
-		/// <summary>唯一buffID</summary>
+		/// <summary>buff叠加后时间统一</summary>
 		[ProtoMember(22)]
+		public int BuffAddSync { get; set; }
+		/// <summary>唯一buffID</summary>
+		[ProtoMember(23)]
 		public string WeiYiBuffID { get; set; }
 		/// <summary>伤害类型</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害系数</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public double DamgePro { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否立即释放</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int IfImmediatelyUse { get; set; }
 		/// <summary>是否在主界面显示BuffIcon</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int IfShowIconTips { get; set; }
 		/// <summary>buff特效</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public int BuffEffectID { get; set; }
 		/// <summary>Buff描述</summary>
-		[ProtoMember(29)]
+		[ProtoMember(30)]
 		public string BuffDescribe { get; set; }
 		/// <summary>附加目标类型</summary>
-		[ProtoMember(30)]
+		[ProtoMember(31)]
 		public int[] BuffTargetType { get; set; }
 		/// <summary>移除机制</summary>
-		[ProtoMember(31)]
+		[ProtoMember(32)]
 		public int Remove { get; set; }
 		/// <summary>移动触发</summary>
-		[ProtoMember(32)]
+		[ProtoMember(33)]
 		public int MoveAction { get; set; }
 		/// <summary>叠加层数触发技能</summary>
-		[ProtoMember(33)]
+		[ProtoMember(34)]
 		public int[] AddSkill { get; set; }
 		/// <summary>被击杀后是否移除机制</summary>
-		[ProtoMember(34)]
+		[ProtoMember(35)]
 		public int DeadNoRemove { get; set; }
 
 	}

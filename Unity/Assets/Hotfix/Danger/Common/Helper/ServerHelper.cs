@@ -281,11 +281,11 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 62, ServerIp = $"{ip}:20375", ServerName = "新年快乐", ServerOpenTime = 1703847600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 63, ServerIp = $"{ip}:20415", ServerName = "万里华夏", ServerOpenTime = 1704427200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 64, ServerIp = $"{ip}:20485", ServerName = "繁星之梦", ServerOpenTime = 1705057200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-                //2024/1/19 新区
                 serverItems_1.Add(new ServerItem() { ServerId = 65, ServerIp = $"{ip}:20495", ServerName = "天下无双", ServerOpenTime = 1705662000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 66, ServerIp = $"{ip}:20505", ServerName = "万里冰封", ServerOpenTime = 1705914000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
-                //2024/1/22 新区
-                serverItems_1.Add(new ServerItem() { ServerId = 66, ServerIp = $"{ip}:20505", ServerName = "万里冰封", ServerOpenTime = 1705914000000, New = 1, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+                //新区 2024/1/26 12:30 天空之城
+                serverItems_1.Add(new ServerItem() { ServerId = 67, ServerIp = $"{ip}:20515", ServerName = "天空之城", ServerOpenTime = 1706243400000, New = 1, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             }
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             return serverItems_1;
