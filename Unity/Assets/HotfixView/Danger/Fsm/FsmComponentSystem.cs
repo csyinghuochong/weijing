@@ -193,27 +193,7 @@ namespace ET
         public static void OnEnterFsmSkillState(this FsmComponent self, int skillid)
         {
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-
-            bool noMoveSkill = skillConfig.Id == 77007004 || (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206);
-            long SkillMoveTime = noMoveSkill ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
-            skillManagerComponent.SkillMoveTime = SkillMoveTime;
-
-            double singTime = skillConfig.SkillSingTime;
-            skillManagerComponent.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
-
-            double rigibTime = skillConfig.SkillRigidity;
-            long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
-            //光之能量 保持在动作的最后一帧
-            if (skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306 && skillConfig.Id!= 77007004)
-            {
-                skillManagerComponent.SkillMoveTime = skillRigibTime;
-            }
-            //if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
-            //{
-            //    skillManagerComponent.SkillMoveTime = skillRigibTime;
-            //}
-
+          
             if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
                || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())
             {
