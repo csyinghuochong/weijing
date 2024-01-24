@@ -6081,7 +6081,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long UserId { get; set; }
+		public string Account { get; set; }
 
 	}
 
@@ -6100,6 +6100,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int OnLineNumber { get; set; }
+
+		[ProtoMember(2)]
+		public int OnLineRobot { get; set; }
 
 	}
 

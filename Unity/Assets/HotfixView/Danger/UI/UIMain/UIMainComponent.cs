@@ -222,7 +222,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
             self.Btn_Auction.SetActive(false);
             self.Btn_GM = rc.Get<GameObject>("Btn_GM");
-            self.Btn_GM.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            self.Btn_GM.SetActive(GMHelp.AdminAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
             ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UIGM).Coroutine(); });
 
             self.Btn_Task = rc.Get<GameObject>("Btn_Task");

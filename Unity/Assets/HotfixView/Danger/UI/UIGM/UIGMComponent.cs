@@ -136,12 +136,13 @@ namespace ET
 
         public static async ETTask RequestGMInfo(this UIGMComponent self)
         {
-            C2C_GMInfoRequest c2E_GetAllMailRequest = new C2C_GMInfoRequest() { UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.AccInfoID };
+            C2C_GMInfoRequest c2E_GetAllMailRequest = new C2C_GMInfoRequest() { Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account };
             C2C_GMInfoResponse sendChatResponse = (C2C_GMInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
             if (sendChatResponse.Error == 0)
             {
                 self.Text_OnLineNumber.GetComponent<Text>().text = sendChatResponse.OnLineNumber.ToString();
+
             }
             else
             {

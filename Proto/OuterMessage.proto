@@ -2875,7 +2875,7 @@ message C2C_GMInfoRequest // ICenterActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 UserId = 1;
+	string Account = 1;
 }
 
 message C2C_GMInfoResponse // ICenterActorResponse
@@ -2885,6 +2885,7 @@ message C2C_GMInfoResponse // ICenterActorResponse
 	string Message = 92;
 
 	int32 OnLineNumber = 1;
+	int32 OnLineRobot = 2;
 }
 
 //GM邮件

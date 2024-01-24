@@ -10,12 +10,10 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, C2C_GMInfoRequest request, C2C_GMInfoResponse response, Action reply)
         {
-            List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(scene.DomainZone(), d => d.Id == scene.DomainZone());
-            DBCenterServerInfo dBServerInfo = result[0];
-            if (dBServerInfo.GmWhiteList.Contains(request.UserId))
+            if (GMHelp.AdminAccount.Contains(request.Account))
             {
                 int totalNumber = 0;
-
+                int robotNumber = 0;
                 List<int> zones = ServerMessageHelper.GetAllZone();
                 for (int i = 0; i < zones.Count; i++)
                 {
@@ -23,8 +21,10 @@ namespace ET
                     G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                         (gateServerId, new G2G_UnitListRequest() { });
                     totalNumber+= g2M_UpdateUnitResponse.OnLinePlayer;
+                    robotNumber += g2M_UpdateUnitResponse.OnLineRobot;
                 }
                 response.OnLineNumber = totalNumber;
+                response.OnLineRobot = robotNumber;
             }
             else
             {

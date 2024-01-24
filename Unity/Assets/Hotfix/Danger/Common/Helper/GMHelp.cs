@@ -13,10 +13,19 @@ namespace ET
             "tcg02",
             "test01",
             "testcn01",
-            "18319670288",          //唐1
-            "18407228910",          //唐2
+            "18319670288",          //唐
             "18652422521",
             "qqUID_9925F6D139D96D68D5B5657D2CFF0863",
+        };
+
+        /// <summary>
+        /// 后台管理员账号
+        /// </summary>
+        public static List<string> AdminAccount = new List<string>()
+        {
+            "test01",  
+            "18652422521", 
+            "18319670288", 
         };
 
         public static List<long> BanChatPlayer = new List<long>()
