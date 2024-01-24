@@ -345,7 +345,7 @@ namespace ET
             }
             else
             {
-                bool noMoveSkill = skillConfig.Id == 77007004 || (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206);
+                bool noMoveSkill = skillConfig.GameObjectName.Equals("Skill_Other_XuanFengZhan_1");
                 long SkillMoveTime = noMoveSkill ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
                 self.SkillMoveTime = SkillMoveTime;
 
@@ -355,14 +355,11 @@ namespace ET
                 double rigibTime = skillConfig.SkillRigidity;
                 long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
                 //光之能量 保持在动作的最后一帧
-                if (skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306 && skillConfig.Id != 77007004)
+                if (!noMoveSkill && skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306 && )
                 {
                     self.SkillMoveTime = skillRigibTime;
                 }
-                //if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
-                //{
-                //    self.SkillMoveTime = skillRigibTime;
-                //}
+               
                 if (!ComHelp.IfNull(skillConfig.SkillAnimation))
                 {
                     int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
@@ -370,7 +367,6 @@ namespace ET
                     {
                         fsmType = 4;
                     }
-
 
                     EventType.FsmChange.Instance.FsmHandlerType = fsmType;
                     EventType.FsmChange.Instance.SkillId = skillcmd.SkillInfos[0].WeaponSkillID;
