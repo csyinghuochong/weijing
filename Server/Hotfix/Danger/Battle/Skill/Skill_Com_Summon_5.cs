@@ -107,7 +107,7 @@ namespace ET
             }
 
             // '1;90000102;1;1;1;0.5,0.5,0.5,0.5,0.5;0,0,0,0,0;5
-            // 时间间隔；召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值;数量上限
+            // 时间间隔；召唤ID,召唤ID(随机从中召唤一个)；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值;数量上限
             string gameObjectParameter = this.SkillConf.GameObjectParameter;
             string[] summonParListold = gameObjectParameter.Split(';');
             string[] summonParList = new string[summonParListold.Length - 1];
@@ -117,9 +117,14 @@ namespace ET
             float range = 0f;
             int number = 0;
             int maxNum = 0;
+            List<int> monsterIds = new List<int>();
             try
             {
-                monsterId = int.Parse(summonParList[0]);
+                foreach (string id in summonParList[0].Split(','))
+                {
+                    monsterIds.Add(int.Parse(id));
+                }
+
                 range = float.Parse(summonParList[2]);
                 number = int.Parse(summonParList[3]);
                 maxNum = int.Parse(summonParList[6]);
@@ -135,7 +140,7 @@ namespace ET
             List<Unit> all = theUnitFrom.GetParent<UnitComponent>().GetAll();
             foreach (Unit unit in all)
             {
-                if (unit.Type == UnitType.Monster && unit.ConfigId == monsterId && unit.MasterId == theUnitFrom.Id)
+                if (unit.Type == UnitType.Monster && monsterIds.Contains(unit.ConfigId) && unit.MasterId == theUnitFrom.Id)
                 {
                     haved.Add(unit);
                 }
@@ -153,7 +158,7 @@ namespace ET
                     --de;
                 }
             }
-            
+
             if (number > 100)
             {
                 Log.Error($"Skill_Com_Summon_5: {this.SkillConf.Id}");
@@ -172,6 +177,7 @@ namespace ET
                     initPosi = this.TargetPosition;
                 }
 
+                monsterId = monsterIds[RandomHelper.RandomNumber(0, monsterIds.Count)];
                 Unit unitMonster = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), monsterId, initPosi,
                     new CreateMonsterInfo()
                     {
