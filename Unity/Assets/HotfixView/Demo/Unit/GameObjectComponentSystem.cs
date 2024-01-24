@@ -887,6 +887,7 @@ namespace ET
             {
                 self.ObjectHorse.SetActive(true);
             }
+            self.CheckRunState();
             self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().ExitHide();
         }
 
