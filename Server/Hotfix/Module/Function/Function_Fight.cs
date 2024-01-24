@@ -75,6 +75,8 @@ namespace ET
                 if(buffNum > 0)
                 {
                     buffHurtValueAdd = keyValuePairLong.Value2 * 0.001f * buffNum;
+
+                    singingvalue += buffHurtValueAdd;
                 }
             }
 
