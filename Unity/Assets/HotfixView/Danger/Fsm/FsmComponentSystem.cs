@@ -193,7 +193,7 @@ namespace ET
         public static void OnEnterFsmSkillState(this FsmComponent self, int skillid)
         {
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
-          
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
             if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
                || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())
             {
