@@ -44,7 +44,8 @@ namespace ET
 	                // 攻击者创建召唤怪。属性也是复制攻击者
 	                // '1;90000102;1;1;1;0.5,0.5,0.5,0.5,0.5;0,0,0,0,0;5
 	                // 时间间隔；召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值;数量上限
-	                if (unitInfoComponent.GetZhaoHuanNumber() >= 100)
+	                UnitInfoComponent unitInfoComponentAttack = args.Attack.GetComponent<UnitInfoComponent>();
+	                if (unitInfoComponentAttack.GetZhaoHuanNumber() >= 100)
 	                {
 		                Log.Error("Skill_Com_Summon_5:Error:  死亡召唤数量超过100！！！");
 		                return;
@@ -88,7 +89,7 @@ namespace ET
 			                Unit uu = haved[0];
 			                haved.Remove(uu);
 			                uu.GetComponent<HeroDataComponent>().OnDead(null);
-			                unitInfoComponent.ZhaohuanIds.Remove(uu.Id);
+			                unitInfoComponentAttack.ZhaohuanIds.Remove(uu.Id);
 			                --de;
 		                }
 	                }
@@ -100,7 +101,7 @@ namespace ET
 			                MasterID = args.Attack.Id,
 			                AttributeParams = summonParList[1] + ";" + summonParList[4] + ";" + summonParList[5]
 		                });
-	                unitInfoComponent.ZhaohuanIds.Add(unitMonster.Id);
+	                unitInfoComponentAttack.ZhaohuanIds.Add(unitMonster.Id);
                 }
 
 
