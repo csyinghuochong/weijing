@@ -29,6 +29,7 @@ namespace ET
         public override void Awake(YeWaiRefreshComponent self)
         {
             self.LogTest = false;
+            self.RandomTime = RandomHelper.RandomNumber(0, 10);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
         }
     }
@@ -466,7 +467,7 @@ namespace ET
 
         public static void OnTimer(this YeWaiRefreshComponent self)
         {
-            long time = TimeHelper.ServerNow();
+            long time = TimeHelper.ServerNow() + self.RandomTime;
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
             if (!self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
@@ -502,11 +503,11 @@ namespace ET
 
                 //DateTime dateTime =  TimeHelper.DateTimeNow();
                 //根据refreshMonster.Time可以纠正时间
-                self.CreateMonsters(refreshMonster);
+                self.CreateMonsters(refreshMonster).Coroutine();
             }
         }
 
-        public static  void CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
+        public static  async ETTask CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
         {
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
@@ -566,7 +567,6 @@ namespace ET
 
             for (int i = 0; i < refreshMonster.Number; i++)
             {
-                
                 float range = refreshMonster.Range;
                 Vector3 vector3 = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
@@ -574,6 +574,7 @@ namespace ET
                     Camp = monsterConfig.MonsterCamp,
                     Rotation = refreshMonster.Rotation, 
                 });
+                await TimerComponent.Instance.WaitFrameAsync();
             }
 
 
