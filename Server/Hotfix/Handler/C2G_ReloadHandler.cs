@@ -16,8 +16,8 @@ namespace ET
 				Log.Error($"error reload account and password: {MongoHelper.ToJson(request)}");
 				return;
 			}
-
-			//response.Error = await ConsoleHelper.ReloadDllConsoleHandler(request.LoadValue);
+            Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = request.LoadValue });
+            //response.Error = await ConsoleHelper.ReloadDllConsoleHandler(request.LoadValue);
             reply();
 			await ETTask.CompletedTask;
 		}
