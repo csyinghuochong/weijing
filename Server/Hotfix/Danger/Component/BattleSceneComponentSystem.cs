@@ -32,7 +32,6 @@ namespace ET
         public static void  OnBattleOpen(this BattleSceneComponent self)
         {
             self.BattleOpen = true;
-            Log.Console("Battle:  OnBattleOpen");
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
@@ -44,7 +43,6 @@ namespace ET
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
             self.BattleOpen = false;
-            Log.Console("Battle:  OnBattleOver");
             LogHelper.LogDebug($"OnBattleOver : {self.DomainZone()}");
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });

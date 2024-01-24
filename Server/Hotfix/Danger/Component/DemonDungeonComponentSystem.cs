@@ -23,7 +23,6 @@ namespace ET
 
         public static void OnClose(this DemonDungeonComponent self)
         {
-            Log.Console("生成恶魔");
             List<Unit> destlist = new List<Unit>();
             List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
 
@@ -34,8 +33,6 @@ namespace ET
 
             for (int i = 0; i < destlist.Count; i++)
             {
-                Log.Console($"生成恶魔: {destlist[i].Id}");
-
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2);
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceTransform, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
@@ -171,8 +168,6 @@ namespace ET
                 //游戏结束， 发阵营奖励
                 if (demonNumber == 0)
                 {
-                    Log.Console("恶魔活动: 玩家胜利");
-
                     self.IsOver = true;
                     self.SendCampReward(1, 100);
                     self.SendCampReward(2, 101);
@@ -180,8 +175,6 @@ namespace ET
                 }
                 if (playerNumber == 0)
                 {
-                    Log.Console("恶魔活动: 恶魔胜利");
-
                     self.IsOver = true;
                     self.SendCampReward(1, 101);
                     self.SendCampReward(2, 100);

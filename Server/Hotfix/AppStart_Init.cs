@@ -49,7 +49,7 @@ namespace ET
 
             long unitid = 1755199614916558848;
             // int n = (int)((unitid / 99) % 4);
-            Log.Console($"n: {UnitIdStruct.GetUnitZone(unitid)}");
+            Log.Warning($"n: {UnitIdStruct.GetUnitZone(unitid)}");
 
             switch (Game.Options.AppType)
             {
@@ -83,7 +83,7 @@ namespace ET
                 case AppType.DeleteZone:
                     int delezone = int.Parse(Game.Options.Parameters);
                     await DeleteZoneHelper.DeletionZone(delezone);
-                    Log.Console("DeleteZone完成！");
+                    Log.Warning("DeleteZone完成！");
                     break;
                 case AppType.Watcher:
                 {

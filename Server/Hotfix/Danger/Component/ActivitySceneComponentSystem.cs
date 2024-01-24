@@ -176,12 +176,12 @@ namespace ET
         { 
             DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (dateTime.Year == 2024 && dateTime.Month == 1 && dateTime.Day == 5 && dateTime.Hour == 15 && dateTime.Minute == 19)
-            {
-                Log.Console($"更新试炼排行: {self.DomainZone()}");
-                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { Hour = 16, OpenDay = 1 });
-            }
+            //if (dateTime.Year == 2024 && dateTime.Month == 1 && dateTime.Day == 5 && dateTime.Hour == 15 && dateTime.Minute == 19)
+            //{
+             
+            //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+            //             (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { Hour = 16, OpenDay = 1 });
+            //}
             await ETTask.CompletedTask;
         }
 
@@ -409,7 +409,7 @@ namespace ET
                 long mailServerId = DBHelper.GetMailServerId(self.DomainZone());
                 for (int i = 0; i < playerIds.Count; i++)
                 {
-                    Log.Console($"发放竞猜奖励: {self.DomainZone()}  {guessIndex} {playerIds[i]}");
+                    Log.Warning($"发放竞猜奖励: {self.DomainZone()}  {guessIndex} {playerIds[i]}");
 
                     MailInfo mailInfo = new MailInfo();
                     mailInfo.Status = 0;

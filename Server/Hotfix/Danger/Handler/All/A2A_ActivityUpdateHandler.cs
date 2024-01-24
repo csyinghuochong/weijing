@@ -96,7 +96,7 @@ namespace ET
                     }
                     if (request.FunctionId == 1059 && request.FunctionType == 2)
                     {
-                        Log.Console("RankSceneComponent.OnDemonOver");
+                        Log.Warning("RankSceneComponent.OnDemonOver");
                         scene.GetComponent<RankSceneComponent>().OnDemonOver().Coroutine();
                     }
                     break;

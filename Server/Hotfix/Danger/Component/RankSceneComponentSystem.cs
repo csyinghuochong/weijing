@@ -98,7 +98,7 @@ namespace ET
             if (self.DomainZone() == 1 && dateTime.Year == 2023 && dateTime.Month == 12 && dateTime.Day == 30)
             {
                 self.DBRankInfo.rankingTrial.Clear();
-                Log.Console("self.DBRankInfo.rankingTrial.Clear");
+                Log.Warning("self.DBRankInfo.rankingTrial.Clear");
             }
         }
 

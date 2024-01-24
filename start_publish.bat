@@ -1,2 +1,2 @@
-dotnet publish Client-Server.sln -c Debug
+dotnet publish Client-Server.sln -c Release
 pause

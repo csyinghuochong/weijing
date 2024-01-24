@@ -92,7 +92,7 @@ namespace ET
                         string[] messagevalue = request.MessageValue.Split('_');
                         if (!messagevalue[1].Equals(DllHelper.Admin))
                         {
-                            Log.Console($"AccountCenter = a: {messagevalue[1]}   b: {DllHelper.Admin}");
+                            Log.Warning($"AccountCenter = a: {messagevalue[1]}   b: {DllHelper.Admin}");
                             reply();
                             return;
                         }
@@ -101,12 +101,12 @@ namespace ET
                         {
                             scene.GetComponent<FangChenMiComponent>().StopServer = true;
                             LogHelper.OnStopServer();
-                            Log.Console("StopServer = true");
+                            Log.Warning("StopServer = true");
                         }
                         if(messagevalue[0] == "1")
                         {
                             scene.GetComponent<FangChenMiComponent>().StopServer = false;
-                            Log.Console("StopServer = false");
+                            Log.Warning("StopServer = false");
                         }
                         if (messagevalue[0] == "2")
                         {

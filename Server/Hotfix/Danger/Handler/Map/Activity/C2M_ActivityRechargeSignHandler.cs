@@ -12,7 +12,7 @@ namespace ET
         {
             if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
             {
-                Log.Console($"C2M_ActivityRechargeError {unit.Id} {request.ActivityId}");
+                Log.Warning($"C2M_ActivityRechargeError {unit.Id} {request.ActivityId}");
                 reply();
                 return;
             }

@@ -51,7 +51,7 @@ namespace ET
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
             }
             */
-            Log.Console($"OnSoloBegin: {self.DomainZone()}");
+            Log.Warning($"OnSoloBegin: {self.DomainZone()}");
 
             //清除之前的排名坐骑
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
@@ -124,7 +124,7 @@ namespace ET
         //竞技场结束
         public static async ETTask OnSoloOver(this SoloSceneComponent self)
         {
-            Log.Console($"OnSoloOver: {self.DomainZone()}");
+            Log.Warning($"OnSoloOver: {self.DomainZone()}");
 
             self.MatchList.Clear();
 

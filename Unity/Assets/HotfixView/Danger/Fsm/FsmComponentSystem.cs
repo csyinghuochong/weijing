@@ -194,7 +194,9 @@ namespace ET
         {
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-            long SkillMoveTime = (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206) ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
+
+            bool noMoveSkill = skillConfig.Id == 77007004 || (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206);
+            long SkillMoveTime = noMoveSkill ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
             skillManagerComponent.SkillMoveTime = SkillMoveTime;
 
             double singTime = skillConfig.SkillSingTime;

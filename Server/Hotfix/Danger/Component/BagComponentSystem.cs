@@ -288,7 +288,7 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Gemstone)
                 {
-                    Log.Console($"误穿宝石！！  {itemConfig.ItemName}");
+                    Log.Warning($"误穿宝石！！  {itemConfig.ItemName}");
                     self.EquipList.RemoveAt(i);
                     break;
                 }
@@ -673,7 +673,7 @@ namespace ET
                     List<BagInfo> bagInfo = self.GetIdItemList(equipList[i]);
                     if (bagInfo.Count == 0)
                     {
-                        Log.Console("机器人装备 bagInfo.Count == 0");
+                        Log.Warning("机器人装备 bagInfo.Count == 0");
                         continue;
                     }
 

@@ -1064,7 +1064,7 @@ namespace ET
             if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
             {
                 rolePetInfo.SkinId = petCof.Skin.Length>=2 ? petCof.Skin[1] : petCof.Skin[0];
-                Log.Console($"rolePetInfo.SkinId:  {rolePetInfo.SkinId}");
+                Log.Warning($"rolePetInfo.SkinId:  {rolePetInfo.SkinId}");
             }
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             if (!ComHelp.IfNull(petSkinConfig.PripertySet))
@@ -1080,7 +1080,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Console($"attriStrexc Eption： {petSkinConfig.PripertySet} {ex.ToString()}");
+                        Log.Warning($"attriStrexc Eption： {petSkinConfig.PripertySet} {ex.ToString()}");
                     }
                 }
             }

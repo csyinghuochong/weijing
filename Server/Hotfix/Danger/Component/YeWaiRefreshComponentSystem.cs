@@ -514,7 +514,7 @@ namespace ET
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.UnionRace)
             {
-                Log.Console($"refreshMonster.UnionRace: {refreshMonster.MonsterId}");
+                Log.Warning($"refreshMonster.UnionRace: {refreshMonster.MonsterId}");
             }
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing && monsterConfig.MonsterType == MonsterTypeEnum.Boss)

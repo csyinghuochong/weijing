@@ -12,7 +12,7 @@ namespace ET
             ChatInfoUnit chatInfoUnit = chatInfoUnitsComponent.Get(request.UnitId);
             if (chatInfoUnit == null)
             {
-                Log.Console($"chatInfoUnit == null; {request.UnitId}");
+                Log.Warning($"chatInfoUnit == null; {request.UnitId}");
                 reply();
                 return;
             }

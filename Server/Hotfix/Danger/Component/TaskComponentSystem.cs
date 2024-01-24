@@ -1662,7 +1662,7 @@ namespace ET
             float passday = ((curTime - lastTime) * 1f / TimeHelper.OneDay);
             if (passday >= 7)
             {
-                Log.Console($"ResetWeeklyTask: passday:{self.Id} {passday}");
+                //Log.Warning($"ResetWeeklyTask: passday:{self.Id} {passday}");
                 self.ResetWeeklyTask();
             }
             else
@@ -1672,7 +1672,7 @@ namespace ET
                 if ((curdateTime.DayOfWeek < lastdateTime.DayOfWeek && curdateTime.DayOfWeek!= 0)
                  || (curdateTime.DayOfWeek > lastdateTime.DayOfWeek && lastdateTime.DayOfWeek == 0))
                 {
-                    Log.Console($"ResetWeeklyTask:{self.Id} {curdateTime.DayOfWeek} {lastdateTime.DayOfWeek}");
+                    Log.Warning($"ResetWeeklyTask:{self.Id} {curdateTime.DayOfWeek} {lastdateTime.DayOfWeek}");
                     self.ResetWeeklyTask();
                 }
                 //int curday = curdateTime.DayOfWeek == DayOfWeek.Sunday ? 7 : (int)(curdateTime.DayOfWeek);

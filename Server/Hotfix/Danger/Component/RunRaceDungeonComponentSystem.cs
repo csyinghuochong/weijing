@@ -58,7 +58,6 @@ namespace ET
         {
             if (self.DomainZone() == 5)
             {
-                Log.Console("召喚機器人！！");
 
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
@@ -243,6 +242,7 @@ namespace ET
                         // 发送邮箱
                         int zone = self.DomainZone();
                         Log.Console($"发放赛跑大赛排行榜奖励： {zone}");
+                        Log.Warning($"发放赛跑大赛排行榜奖励： {zone}");
                         long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
 
                         mailInfo.Status = 0;

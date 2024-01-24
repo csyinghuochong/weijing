@@ -51,14 +51,14 @@ namespace ET
 
         public static void OnHappyBegin(this HappySceneComponent self)
         {
-            Log.Console($"OnHappyBegin");
+            Log.Warning($"OnHappyBegin :{self.DomainZone()}");
             self.HappyOpen = true;
             self.FubenPlayers.Clear();
         }
 
         public static  void OnHappyOver(this HappySceneComponent self)
         {
-            Log.Console($"OnHappyOver11");
+            Log.Warning($"OnHappyOver11:{self.DomainZone()}");
             self.HappyOpen = false;
             foreach (  ( long id, List<long> plays ) in self.FubenPlayers)
             {

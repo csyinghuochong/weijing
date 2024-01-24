@@ -13,7 +13,7 @@ namespace ET
             string[] mailInfo = request.MailInfo.Split(" ");
             if (mailInfo[0] != "mail" && mailInfo.Length < 6)
             {
-                Log.Console("邮件发送失败！");
+                Log.Warning("邮件发送失败！");
                 errorCode = ErrorCode.ERR_Parameter;
             }
             try
@@ -23,7 +23,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Console("邮件发送失败！" + ex.ToString());
+                Log.Warning("邮件发送失败！" + ex.ToString());
                 errorCode = ErrorCode.ERR_Parameter;
             }
 

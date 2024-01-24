@@ -17,7 +17,7 @@ namespace ET
             if (string.IsNullOrEmpty(invelTime))
             {
                 this.SkillTriggerInvelTime = 1000;
-                Log.Console($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
+                Log.Warning($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
             }
             else
             {
@@ -28,7 +28,7 @@ namespace ET
                 catch (Exception ex)
                 {
                     Log.Debug(ex.ToString());
-                    Log.Console($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
+                    Log.Warning($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
                 }
             }
         }

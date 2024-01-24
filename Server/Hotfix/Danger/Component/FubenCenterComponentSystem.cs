@@ -42,7 +42,7 @@ namespace ET
                 self.DemonOpen = true;  
                 self.DemonPlayerList.Clear();   
             }
-            Log.Console($"OnActivityOpen: {functionId}");
+            //Log.Console($"OnActivityOpen: {functionId}");
         }
 
         public static void OnActivityClose(this FubenCenterComponent self, int functionId)
@@ -56,7 +56,7 @@ namespace ET
                 self.DemonOpen = false;
             }
             self.DisposeFuben(functionId).Coroutine();
-            Log.Console($"OnActivityClose: {functionId}");
+            //Log.Console($"OnActivityClose: {functionId}");
         }
 
         public static long GetFunctionFubenId(this FubenCenterComponent self, int functionId, long unitId)
@@ -114,7 +114,7 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
-            Log.Console($"GenarateFuben2.{fubenInstanceId}");
+            Log.Warning($"GenarateFuben2.{fubenInstanceId}");
 
             self.FubenInstanceList.Add(fubenInstanceId);
             //self.YeWaiFubenList.Add(sceneConfig.Id, fubenInstanceId);  可能有多个不能这样搞
@@ -249,14 +249,14 @@ namespace ET
                 if (playerList.ContainsKey(Entity.Id))
                 {
                     playerList.Remove(Entity.Id);
-                    Log.Console($"DisposeFubenId; {functionId} {Entity.Id}");
+                    Log.Warning($"DisposeFubenId; {functionId} {Entity.Id}");
                 }
 
                 long instanceid = Entity.InstanceId;
                 if (self.FubenInstanceList.Contains(instanceid))
                 {
                     self.FubenInstanceList.Remove(instanceid);
-                    Log.Console($"DisposeFubenInstance; {functionId}  {instanceid}");
+                    Log.Warning($"DisposeFubenInstance; {functionId}  {instanceid}");
                 }
               
                 Scene scene = Entity as Scene;

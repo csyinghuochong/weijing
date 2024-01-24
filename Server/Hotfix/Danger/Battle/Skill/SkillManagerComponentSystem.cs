@@ -109,7 +109,7 @@ namespace ET
 
                     if (randomInfos.Length < 3)
                     {
-                        Log.Console($"技能配置错误: {skillConfig.Id}");
+                        Log.Warning($"技能配置错误: {skillConfig.Id}");
                     }
                     else
                     {

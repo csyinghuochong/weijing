@@ -66,7 +66,7 @@ namespace ET
                 }
                 catch (Exception e)
                 {
-                    Log.Console(e.ToString() + buffToSkill);
+                    Log.Error(e.ToString() + buffToSkill);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace ET
                 string[] skillkeys = equipskill.Split(';');
                 if (skillkeys == null)
                 {
-                    Log.Console($"skillconfig.EquipSkill.error1: equipskillid: {skillconfig.Id}  :{equipskill}");
+                    Log.Error($"skillconfig.EquipSkill.error1: equipskillid: {skillconfig.Id}  :{equipskill}");
                     continue;
                 }
 
@@ -101,7 +101,7 @@ namespace ET
                         string[] skillitem = key.Split(',');
                         if (skillitem.Length != 2)
                         {
-                            Log.Console($"skillconfig.EquipSkill.error2: equipskillid: {skillconfig.Id} {equipskill}");
+                            Log.Error($"skillconfig.EquipSkill.error2: equipskillid: {skillconfig.Id} {equipskill}");
                             continue;
                         }
 
@@ -112,7 +112,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Console(ex.ToString());
+                        Log.Error(ex.ToString());
                     }
                 }
             }

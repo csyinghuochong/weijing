@@ -48,7 +48,7 @@ namespace ET
             }
             else if (request.OperateType == (int)ItemLocType.GemWareHouse1)
             {
-                Log.Console("还没有购买格子的需求！");
+                Log.Warning("还没有购买格子的需求！");
             }
             else
             {

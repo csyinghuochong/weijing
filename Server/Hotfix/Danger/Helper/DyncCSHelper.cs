@@ -143,7 +143,7 @@ namespace HelloWorld
                     return;//出错了
 
                 string admin = (string)method.Invoke(instanceDll, new object[] { });
-                Log.Console(admin);
+                Log.Warning(admin);
             }
         }
     }
