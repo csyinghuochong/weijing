@@ -27,7 +27,7 @@ namespace ET
                     return scene.InstanceId;
                 }
 
-                if (players.Count < 2)
+                if (players.Count < 20)
                 {
                     players.Add(unitId);
                     return scene.InstanceId;

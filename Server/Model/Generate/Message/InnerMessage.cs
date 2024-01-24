@@ -2756,6 +2756,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int SceneId { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.F2M_YeWaiSceneIdResponse)]

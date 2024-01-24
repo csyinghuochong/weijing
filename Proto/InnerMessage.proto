@@ -1312,6 +1312,7 @@ message M2F_YeWaiSceneIdRequest // IActorRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 SceneId = 2;
+	int64 UnitId = 3;
 }
 
 message F2M_YeWaiSceneIdResponse // IActorResponse
