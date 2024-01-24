@@ -62,6 +62,7 @@ namespace ET
                 int buffNum = defendUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, (int)keyValuePairLong.KeyId);
                 if (buffNum > 0)
                 {
+                    defendUnit.GetComponent<BuffManagerComponent>().BuffRemove((int)keyValuePairLong.KeyId);
                     attackUnit.GetComponent<SkillManagerComponent>().TriggerBuffSkill(keyValuePairLong, attackUnit.Id, buffNum).Coroutine();
                 }
             }
@@ -74,6 +75,7 @@ namespace ET
                 int buffNum = defendUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, buffId);
                 if(buffNum > 0)
                 {
+                    defendUnit.GetComponent<BuffManagerComponent>().BuffRemove((int)keyValuePairLong.KeyId);
                     buffHurtValueAdd = keyValuePairLong.Value2 * 0.001f * buffNum;
 
                     singingvalue += buffHurtValueAdd;
