@@ -334,7 +334,7 @@ namespace ET
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             }
-            
+
 
             //播放对应攻击动作
             if (skillConfig.IfStopMove == 1)
@@ -343,19 +343,41 @@ namespace ET
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
                 Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
             }
-            else  if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+            else
             {
-                int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
-                if (SkillHelp.NotCombatSkill.Contains( skillConfig.SkillAnimation))
-                {
-                    fsmType = 4;
-                }
-                EventType.FsmChange.Instance.FsmHandlerType = fsmType;
-                EventType.FsmChange.Instance.SkillId = skillcmd.SkillInfos[0].WeaponSkillID;
-                EventType.FsmChange.Instance.Unit = unit;
-                Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
-            }
+                bool noMoveSkill = skillConfig.Id == 77007004 || (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206);
+                long SkillMoveTime = noMoveSkill ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
+                self.SkillMoveTime = SkillMoveTime;
 
+                double singTime = skillConfig.SkillSingTime;
+                self.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
+
+                double rigibTime = skillConfig.SkillRigidity;
+                long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
+                //光之能量 保持在动作的最后一帧
+                if (skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306 && skillConfig.Id != 77007004)
+                {
+                    self.SkillMoveTime = skillRigibTime;
+                }
+                //if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
+                //{
+                //    self.SkillMoveTime = skillRigibTime;
+                //}
+                if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+                {
+                    int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
+                    if (SkillHelp.NotCombatSkill.Contains(skillConfig.SkillAnimation))
+                    {
+                        fsmType = 4;
+                    }
+
+
+                    EventType.FsmChange.Instance.FsmHandlerType = fsmType;
+                    EventType.FsmChange.Instance.SkillId = skillcmd.SkillInfos[0].WeaponSkillID;
+                    EventType.FsmChange.Instance.Unit = unit;
+                    Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
+                }
+            }
 
             //播放对应技能特效
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
