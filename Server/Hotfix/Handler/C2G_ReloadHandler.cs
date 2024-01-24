@@ -17,7 +17,7 @@ namespace ET
 				return;
 			}
 
-			response.Error = await ConsoleHelper.ReloadDllConsoleHandler(request.LoadValue);
+			//response.Error = await ConsoleHelper.ReloadDllConsoleHandler(request.LoadValue);
             reply();
 			await ETTask.CompletedTask;
 		}
