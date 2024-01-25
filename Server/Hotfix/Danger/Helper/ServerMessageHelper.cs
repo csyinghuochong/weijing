@@ -23,13 +23,17 @@ namespace ET
         }
 
 
+        /// <summary>
+        /// 一般是做全服操作
+        /// </summary>
+        /// <returns></returns>
         public static List<int> GetAllZone()
         {
             List<int> zoneList = new List<int> { };
             List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < listprogress.Count; i++)
             {
-                if (listprogress[i].Id >= ComHelp.MaxZone)
+                if (listprogress[i].Id >= ComHelp.MaxZone || ComHelp.InnerZoneList.Contains(listprogress[i].Id))
                 {
                     continue;
                 }

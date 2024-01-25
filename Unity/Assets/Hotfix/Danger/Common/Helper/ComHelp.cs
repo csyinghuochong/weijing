@@ -8,7 +8,7 @@ namespace ET
     public static class ComHelp
     {
 
-        public const int MaxZone = 202;
+        public const int MaxZone = 1024;
         //版号专区
         public static bool IsBanHaoZone(int zone)
         {
@@ -20,6 +20,11 @@ namespace ET
         {
             return zone == 200;
         }
+
+        /// <summary>
+        /// 200内部区 201版号区 202中心区 203机器人
+        /// </summary>
+        public static List<int> InnerZoneList = new List<int>() { 200, 201, 202, 203 };
 
         public const int Version = 20240120;
 
