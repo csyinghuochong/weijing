@@ -6,7 +6,7 @@ namespace ET
     public static class DBHelper
     {
 
-        public static long DebugUnitId = 1853710032957407232;
+        public static long DebugUnitId = 2204503686468665344; //66区
 
         public const string UserInfoComponent = "UserInfoComponent";
         public const string BagComponent = "BagComponent";
