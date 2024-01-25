@@ -153,11 +153,13 @@ namespace ET
                     }
                     unitCache.AddOrUpdate(entity);
                     list.Add(entity);
+
+                    if (id == DBHelper.DebugUnitId)
+                    {
+                        Log.Warning($"CacheCompoenntsDictionary.Count:  {key} {unitCache.CacheCompoenntsDictionary.Count} ");
+                    }
                 }
-                if (list.Count > 0 && id == DBHelper.DebugUnitId) 
-                {
-                    Log.Warning($"{id}: {list.Count} DBHelperSaveBd");
-                }
+
                 if (list.Count > 0)
                 {
                     await Game.Scene.GetComponent<DBComponent>().Save(self.DomainZone(), id, list);
