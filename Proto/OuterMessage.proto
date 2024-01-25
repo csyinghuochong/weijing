@@ -7496,3 +7496,18 @@ message M2C_OneChallenge // IActorMessage
 	int64 OtherId = 2;      
 	string OtherName = 3;
 }
+
+//ResponseType M2C_PetChangePosResponse 
+message C2M_PetChangePosRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 Index1 = 1;
+	int32 Index2 = 2;
+}
+
+message M2C_PetChangePosResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}

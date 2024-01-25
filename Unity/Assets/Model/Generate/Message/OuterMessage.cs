@@ -15634,4 +15634,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PetChangePosResponse))]
+	[Message(OuterOpcode.C2M_PetChangePosRequest)]
+	[ProtoContract]
+	public partial class C2M_PetChangePosRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int Index1 { get; set; }
+
+		[ProtoMember(2)]
+		public int Index2 { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetChangePosResponse)]
+	[ProtoContract]
+	public partial class M2C_PetChangePosResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

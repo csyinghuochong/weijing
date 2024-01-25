@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
 {
-
-    public class UIPetListComponent : Entity, IAwake, IDestroy
+    public class UIPetListComponent: Entity, IAwake, IDestroy
     {
-
         public GameObject EquipSet;
         public GameObject PetHeXinSuitBtn;
         public GameObject JiBanBtn;
@@ -70,6 +69,8 @@ namespace ET
         public GameObject ImageJinHua;
         public GameObject JinHuaReddot;
         public GameObject Lab_JinHua;
+        public GameObject Img_Mask;
+        public GameObject ScrollView1;
 
         public UI PetModelShowComponent;
         public UI SkinModelShowComponent;
@@ -87,10 +88,11 @@ namespace ET
         public int PetHeXinSuit;
         public int PetSkinId;
         public List<string> AssetPath = new List<string>();
+        public long ClickTime;
+        public bool IsChange;
     }
 
-
-    public class UIPetListComponentDestroySystem : DestroySystem<UIPetListComponent>
+    public class UIPetListComponentDestroySystem: DestroySystem<UIPetListComponent>
     {
         public override void Destroy(UIPetListComponent self)
         {
@@ -103,7 +105,7 @@ namespace ET
             }
 
             self.AssetPath = null;
-            
+
             self.PetUIList.Clear();
             self.PetSkillUIList.Clear();
             self.PetSkinList.Clear();
@@ -113,8 +115,7 @@ namespace ET
         }
     }
 
-
-    public class UIPetListComponentAwakeSystem : AwakeSystem<UIPetListComponent>
+    public class UIPetListComponentAwakeSystem: AwakeSystem<UIPetListComponent>
     {
         public override void Awake(UIPetListComponent self)
         {
@@ -143,22 +144,23 @@ namespace ET
             self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
             self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
             self.PetHeXinSuitBtn = rc.Get<GameObject>("PetHeXinSuitBtn");
+            self.Img_Mask = rc.Get<GameObject>("Img_Mask");
+            self.Img_Mask.SetActive(false);
             self.JiBanBtn = rc.Get<GameObject>("JiBanBtn");
             self.JiBanBtn.SetActive(false);
+            self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI PageButton = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
-            uIPageButtonComponent.SetClickHandler((int page) => {
-                self.OnClickPageButton(page);
-            });
+            uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
 
             ButtonHelp.AddListenerEx(self.PetHeXinSuitBtn, () => { self.OnPetHeXinSuitBtn().Coroutine(); });
             ButtonHelp.AddListenerEx(self.JiBanBtn, () => { UIHelper.Create(self.ZoneScene(), UIType.UIShenShouJiBan).Coroutine(); });
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
-            ButtonHelp.AddListenerEx( self.ButtonRName, ()=> { self.OnButtonRName().Coroutine(); } );
+            ButtonHelp.AddListenerEx(self.ButtonRName, () => { self.OnButtonRName().Coroutine(); });
             self.ButtonAddPoint = rc.Get<GameObject>("ButtonAddPoint");
             ButtonHelp.AddListenerEx(self.ButtonAddPoint, self.OnButtonAddPoint);
 
@@ -168,7 +170,7 @@ namespace ET
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
 
             self.EquipSet = rc.Get<GameObject>("EquipSet");
-            self.EquipSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) );
+            self.EquipSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             for (int i = 0; i <= 2; i++)
             {
                 GameObject go = self.EquipSet.transform.Find("Equip_" + i).gameObject;
@@ -176,11 +178,11 @@ namespace ET
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.RemoveAllListeners();
                 int i1 = i;
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(2); });
-                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonPetEquipItem(i1);});
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonPetEquipItem(i1); });
                 uiitem.InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
                 self.EquipList.Add(uiitem);
             }
-            
+
             GameObject gameObject = rc.Get<GameObject>("PetAddPoint");
             self.PetAddPointComponent = self.AddChild<UIPetAddPointComponent, GameObject>(gameObject);
             self.PetAddPointComponent.GameObject.SetActive(false);
@@ -190,22 +192,26 @@ namespace ET
             self.PetHeXinSetComponent.GameObject.SetActive(false);
             self.PetEquipSetComponent = self.AddChild<UIPetEquipSetComponent, GameObject>(PetHeXinSet);
             self.ButtonCloseHexin = rc.Get<GameObject>("ButtonCloseHexin");
-            self.ButtonCloseHexin.GetComponent<Button>().onClick.AddListener(() =>{
-                self.OnChangeNode(1);
-            } );
+            self.ButtonCloseHexin.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(1); });
 
             GameObject petHeXinItem0 = rc.Get<GameObject>("PetHeXinItem0");
-            ButtonHelp.AddListenerEx(petHeXinItem0.transform.Find("Node_1/ButtonAdd").gameObject, () => {
+            ButtonHelp.AddListenerEx(petHeXinItem0.transform.Find("Node_1/ButtonAdd").gameObject, () =>
+            {
                 self.OnChangeNode(2);
-                self.OnButtonPetHeXinItem(0); });
+                self.OnButtonPetHeXinItem(0);
+            });
             GameObject petHeXinItem1 = rc.Get<GameObject>("PetHeXinItem1");
-            ButtonHelp.AddListenerEx(petHeXinItem1.transform.Find("Node_1/ButtonAdd").gameObject, () => {
+            ButtonHelp.AddListenerEx(petHeXinItem1.transform.Find("Node_1/ButtonAdd").gameObject, () =>
+            {
                 self.OnChangeNode(2);
-                self.OnButtonPetHeXinItem(1); });
+                self.OnButtonPetHeXinItem(1);
+            });
             GameObject petHeXinItem2 = rc.Get<GameObject>("PetHeXinItem2");
-            ButtonHelp.AddListenerEx(petHeXinItem2.transform.Find("Node_1/ButtonAdd").gameObject, () => {
+            ButtonHelp.AddListenerEx(petHeXinItem2.transform.Find("Node_1/ButtonAdd").gameObject, () =>
+            {
                 self.OnChangeNode(2);
-                self.OnButtonPetHeXinItem(2); });
+                self.OnButtonPetHeXinItem(2);
+            });
             petHeXinItem0.transform.Find("ImageSelect").gameObject.SetActive(false);
             petHeXinItem1.transform.Find("ImageSelect").gameObject.SetActive(false);
             petHeXinItem2.transform.Find("ImageSelect").gameObject.SetActive(false);
@@ -265,7 +271,6 @@ namespace ET
 
     public static class UIPetListComponentSystem
     {
-
         /// <summary>
         ///  //1 属性 2 宠物之核 3 加点
         /// </summary>
@@ -295,7 +300,7 @@ namespace ET
             UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPetHeXinSuit);
             ui.GetComponent<UIPetHeXinSuitComponent>().UpdateInfo(self.PetHeXinSuit);
         }
-        
+
         public static void OnButtonPetHeXinItem(this UIPetListComponent self, int position)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
@@ -304,6 +309,7 @@ namespace ET
             {
                 self.PetHeXinItemList[i].transform.Find("ImageSelect").gameObject.SetActive(i == position);
             }
+
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
@@ -335,12 +341,14 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请输入名字！");
                 return;
             }
+
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(text_old);
             if (mask)
             {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
             }
+
             if (text_old.Length > 10)
             {
                 FloatTipManager.Instance.ShowFloatTip("名字过长！");
@@ -348,7 +356,8 @@ namespace ET
             }
 
             C2M_RolePetRName c2M_RolePetRName = new C2M_RolePetRName() { PetInfoId = self.LastSelectItem.Id, PetName = text_old };
-            M2C_RolePetRName m2C_RolePetRName = (M2C_RolePetRName)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetRName);
+            M2C_RolePetRName m2C_RolePetRName =
+                    (M2C_RolePetRName)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetRName);
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.LastSelectItem.Id);
             rolePetInfo.PetName = text_old;
             self.LastSelectItem = rolePetInfo;
@@ -383,6 +392,7 @@ namespace ET
             {
                 self.PetUIList[i].OnPetFightingSet(rolePetInfo);
             }
+
             self.OnUpdatePetInfo(self.LastSelectItem);
         }
 
@@ -403,11 +413,13 @@ namespace ET
             C2M_RolePetSkinSet c2M_RolePetSkinSet = new C2M_RolePetSkinSet();
             c2M_RolePetSkinSet.PetInfoId = self.LastSelectItem.Id;
             c2M_RolePetSkinSet.SkinId = self.PetSkinId;
-            M2C_RolePetSkinSet m2C_RolePetSkinSet = (M2C_RolePetSkinSet)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetSkinSet);
+            M2C_RolePetSkinSet m2C_RolePetSkinSet =
+                    (M2C_RolePetSkinSet)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetSkinSet);
             if (m2C_RolePetSkinSet.Error != 0)
             {
                 return;
             }
+
             self.LastSelectItem.SkinId = self.PetSkinId;
             self.UpdatePetModel(self.LastSelectItem);
             FloatTipManager.Instance.ShowFloatTip("宠物皮肤更换成功！");
@@ -425,32 +437,38 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("宠物已锁定！");
                 return;
             }
+
             if (self.LastSelectItem.PetStatus == 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("出战宠物不能分解！");
                 return;
             }
+
             if (self.LastSelectItem.PetStatus == 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先停止家园散步！");
                 return;
             }
+
             if (self.LastSelectItem.PetStatus == 3)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先从仓库取出！");
                 return;
             }
+
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能分解！");
                 return;
             }
+
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物副本上阵中,不能分解！");
                 return;
             }
-            if ( PetHelper.IsShenShou(self.LastSelectItem.ConfigId) )
+
+            if (PetHelper.IsShenShou(self.LastSelectItem.ConfigId))
             {
                 FloatTipManager.Instance.ShowFloatTip("神兽不能放生");
                 return;
@@ -468,11 +486,8 @@ namespace ET
             //    return;
             //}
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生?"),
-            () =>
-            {
-                self.PetComponent.RequestFenJie(self.LastSelectItem.Id).Coroutine();
-            },
-            null).Coroutine();
+                () => { self.PetComponent.RequestFenJie(self.LastSelectItem.Id).Coroutine(); },
+                null).Coroutine();
         }
 
         public static void OnClickChuZhan(this UIPetListComponent self)
@@ -482,6 +497,7 @@ namespace ET
             {
                 return;
             }
+
             if (rolePetInfo.PetStatus == 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("先停止散步！");
@@ -499,17 +515,19 @@ namespace ET
                 return;
             }
 
-            NetHelper.RequestPetFight(self.DomainScene(), rolePetInfo.Id, rolePetInfo.PetStatus == 0 ? 1 : 0).Coroutine();
+            NetHelper.RequestPetFight(self.DomainScene(), rolePetInfo.Id, rolePetInfo.PetStatus == 0? 1 : 0).Coroutine();
         }
 
         //进化按钮
         public static void OnClickJinHua(this UIPetListComponent self)
         {
             RolePetInfo rolePetInfo = self.LastSelectItem;
-            if (rolePetInfo.UpStageStatus == 0) {
+            if (rolePetInfo.UpStageStatus == 0)
+            {
                 FloatTipManager.Instance.ShowFloatTip("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
             }
-            if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv>=70)
+
+            if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
             {
                 self.OpenJinHuaUI().Coroutine();
                 /*
@@ -521,6 +539,7 @@ namespace ET
                     ).Coroutine();
                 */
             }
+
             if (rolePetInfo.UpStageStatus == 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("您的宠物已进化完成。");
@@ -533,7 +552,7 @@ namespace ET
             uI.GetComponent<UIPetXianjiComponent>().OnInitUI(self.LastSelectItem.Id);
         }
 
-        public static async ETTask OnJinHua(this UIPetListComponent self,long petInfoID)
+        public static async ETTask OnJinHua(this UIPetListComponent self, long petInfoID)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
             if (petConfig.PetType == 2)
@@ -544,7 +563,8 @@ namespace ET
             RolePetInfo oldpetInfo = self.PetComponent.GetPetInfoByID(petInfoID);
 
             C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = petInfoID };
-            M2C_RolePetUpStage m2C_RolePetUpStageg = (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
+            M2C_RolePetUpStage m2C_RolePetUpStageg =
+                    (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
 
             if (m2C_RolePetUpStageg.Error == ErrorCode.ERR_Success)
             {
@@ -576,7 +596,8 @@ namespace ET
             if (self.LastSelectItem != null)
             {
                 PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
-                self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.PetModel.ToString(), true).Coroutine();
+                self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.PetModel.ToString(), true)
+                        .Coroutine();
             }
         }
 
@@ -591,6 +612,7 @@ namespace ET
             {
                 return;
             }
+
             GameObject gameObject_2 = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject_2, self.PetSkinRawImage);
             gameObject_2.transform.localPosition = new Vector3(1 * 1000, 0, 0);
@@ -626,7 +648,7 @@ namespace ET
             {
                 return 0;
             }
-            
+
             string[] petInfos = GlobalValueConfigCategory.Instance.Get(34).Value.Split('@');
             for (int i = 0; i < petInfos.Length; i++)
             {
@@ -636,6 +658,7 @@ namespace ET
                     return int.Parse(petNumber[0]);
                 }
             }
+
             return 0;
         }
 
@@ -652,11 +675,13 @@ namespace ET
                     showList.Add(rolePetInfos[i]);
                 }
             }
+
             int nextLv = self.NextPetNumber();
             if (nextLv > 0)
             {
                 showList.Add(null);
             }
+
             for (int i = 0; i < showList.Count; i++)
             {
                 UIPetListItemComponent ui_pet = null;
@@ -669,10 +694,26 @@ namespace ET
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.PetListNode);
-                    ui_pet = self.AddChild<UIPetListItemComponent, GameObject>( go);
+                    ui_pet = self.AddChild<UIPetListItemComponent, GameObject>(go);
                     ui_pet.SetClickHandler((long petId) => { self.OnClickPetHandler(petId); });
                     self.PetUIList.Add(ui_pet);
+
+                    ui_pet.ImageDiButton.SetActive(false);
+                    ui_pet.ImageDiEventTrigger.SetActive(true);
+                    int i1 = i;
+                    go.name = $"UIPetListItem_{i1}";
+                    ButtonHelp.AddEventTriggers(ui_pet.ImageDiEventTrigger, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
+                        EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(ui_pet.ImageDiEventTrigger, (PointerEventData pdata) => { self.OnPointerUp(pdata, i1); },
+                        EventTriggerType.PointerUp);
+                    ButtonHelp.AddEventTriggers(ui_pet.ImageDiEventTrigger, (PointerEventData pdata) => { self.OnBeginDrag(pdata, i1); },
+                        EventTriggerType.BeginDrag);
+                    ButtonHelp.AddEventTriggers(ui_pet.ImageDiEventTrigger, (PointerEventData pdata) => { self.OnDraging(pdata); },
+                        EventTriggerType.Drag);
+                    ButtonHelp.AddEventTriggers(ui_pet.ImageDiEventTrigger, (PointerEventData pdata) => { self.OnEndDrag(pdata, i1); },
+                        EventTriggerType.EndDrag);
                 }
+
                 ui_pet.OnInitData(showList[i], nextLv);
             }
 
@@ -696,7 +737,155 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
-            self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}",  PetHelper.GetBagPetNum(rolePetInfos), maxNum);
+            self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}", PetHelper.GetBagPetNum(rolePetInfos), maxNum);
+        }
+
+        public static void OnPointerDown(this UIPetListComponent self, PointerEventData pdata)
+        {
+            self.ClickTime = TimeHelper.ServerNow();
+            self.IsChange = false;
+        }
+
+        public static void OnPointerUp(this UIPetListComponent self, PointerEventData pdata, int index1)
+        {
+            if (TimeHelper.ServerNow() - self.ClickTime <= 200)
+            {
+                self.OnClick(index1);
+            }
+
+            self.ClickTime = 0;
+        }
+
+        public static void OnBeginDrag(this UIPetListComponent self, PointerEventData pdata, int index1)
+        {
+            if (TimeHelper.ServerNow() - self.ClickTime <= 500)
+            {
+                self.IsChange = false;
+                self.ScrollView1.GetComponent<ScrollRect>().OnBeginDrag(pdata);
+            }
+            else
+            {
+                self.IsChange = true;
+                self.Img_Mask.SetActive(true);
+                self.Img_Mask.transform.Find("Img_PetIcon").GetComponent<Image>().sprite =
+                        self.PetUIList[index1].Img_PetHeroIon.GetComponent<Image>().sprite;
+                self.Img_Mask.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Low]);
+                self.Img_Mask.transform.localScale = Vector3.one;
+            }
+        }
+
+        public static void OnDraging(this UIPetListComponent self, PointerEventData pdata)
+        {
+            if (self.IsChange)
+            {
+                if (self.Img_Mask == null)
+                {
+                    return;
+                }
+
+                Vector2 localPoint = new Vector3();
+                RectTransform canvas = self.Img_Mask.transform.parent.GetComponent<RectTransform>();
+                Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
+
+                self.Img_Mask.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
+            }
+            else
+            {
+                self.ScrollView1.GetComponent<ScrollRect>().OnDrag(pdata);
+            }
+        }
+
+        public static void OnEndDrag(this UIPetListComponent self, PointerEventData pdata, int index1)
+        {
+            if (self.IsChange)
+            {
+                if (self.Img_Mask == null)
+                {
+                    return;
+                }
+
+                RectTransform canvas = self.Img_Mask.transform.parent.GetComponent<RectTransform>();
+                GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
+                List<RaycastResult> results = new List<RaycastResult>();
+                gr.Raycast(pdata, results);
+
+                for (int i = 0; i < results.Count; i++)
+                {
+                    string name = results[i].gameObject.name;
+                    if (!name.Contains("ImageDiEventTrigger"))
+                    {
+                        continue;
+                    }
+
+                    name = results[i].gameObject.transform.parent.parent.name;
+
+                    int index2 = int.Parse(name.Substring(14, name.Length - 14));
+
+                    self.ChangePos(index1, index2);
+
+                    break;
+                }
+
+                self.Img_Mask.transform.SetParent(self.GetParent<UI>().GameObject.transform);
+                self.Img_Mask.SetActive(false);
+            }
+            else
+            {
+                self.ScrollView1.GetComponent<ScrollRect>().OnEndDrag(pdata);
+            }
+        }
+
+        public static void OnClick(this UIPetListComponent self, int index)
+        {
+            self.PetUIList[index].OnClickPetItem();
+        }
+
+        public static void ChangePos(this UIPetListComponent self, int index1, int index2)
+        {
+            if (index1 == index2)
+            {
+                return;
+            }
+
+            long petId1 = self.PetUIList[index1].PetId;
+            long petId2 = self.PetUIList[index2].PetId;
+
+            if (petId1 == 0 || petId2 == 0)
+            {
+                return;
+            }
+
+            RolePetInfo rolePetInfo1 = null;
+            RolePetInfo rolePetInfo2 = null;
+            int petIndex1 = 0;
+            int petIndex2 = 0;
+            for (int i = 0; i < self.PetComponent.RolePetInfos.Count; i++)
+            {
+                if (self.PetComponent.RolePetInfos[i].Id == petId1)
+                {
+                    rolePetInfo1 = self.PetComponent.RolePetInfos[i];
+                    petIndex1 = i;
+                }
+
+                if (self.PetComponent.RolePetInfos[i].Id == petId2)
+                {
+                    rolePetInfo2 = self.PetComponent.RolePetInfos[i];
+                    petIndex2 = i;
+                }
+            }
+
+            if (rolePetInfo1 == null || rolePetInfo2 == null)
+            {
+                return;
+            }
+
+            self.PetComponent.RolePetInfos[petIndex1] = rolePetInfo2;
+            self.PetComponent.RolePetInfos[petIndex2] = rolePetInfo1;
+
+            self.ZoneScene().GetComponent<SessionComponent>().Session
+                    .Call(new C2M_PetChangePosRequest() { Index1 = petIndex1, Index2 = petIndex2 }).Coroutine();
+            self.OnUpdateUI();
         }
 
         public static void OnClickPetHandler(this UIPetListComponent self, long petId)
@@ -714,7 +903,7 @@ namespace ET
             self.UpdatePetModel(self.LastSelectItem);
             self.UpdatePetSelected(self.LastSelectItem);
             self.UpdatePetHeXin(self.LastSelectItem);
-            self.JiBanBtn.SetActive( PetHelper.IsShenShou(self.LastSelectItem.ConfigId) );
+            self.JiBanBtn.SetActive(PetHelper.IsShenShou(self.LastSelectItem.ConfigId));
         }
 
         public static void UpdatePetHeXin(this UIPetListComponent self, RolePetInfo rolePetItem)
@@ -732,6 +921,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 BagInfo bagInfo = bagComponent.GetBagInfo(rolePetItem.PetHeXinList[i]);
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 Transform itemTransform = self.PetHeXinItemList[i].transform;
@@ -740,14 +930,15 @@ namespace ET
                 itemTransform.Find("Node_2/TextName").gameObject.GetComponent<Text>().text = itemConfig.ItemName;
                 itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = $"等级 {itemConfig.UseLv}";
                 Image ImageIcon = itemTransform.Find("Node_2/ImageIcon").gameObject.GetComponent<Image>();
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
+
                 ImageIcon.sprite = sp;
-                
+
                 petheXinLv.Add(itemConfig.UseLv);
             }
 
@@ -774,10 +965,12 @@ namespace ET
                 {
                     lv5number++;
                 }
+
                 if (petheXinLv[i] >= 8)
                 {
                     lv8number++;
                 }
+
                 if (petheXinLv[i] >= 10)
                 {
                     lv10number++;
@@ -813,14 +1006,15 @@ namespace ET
                 index = 1;
                 self.PetHeXinSuit = 0;
             }
-            
+
             // 更换图标
-            string path1 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"hexin{index}");
+            string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"hexin{index}");
             Sprite sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
             if (!self.AssetPath.Contains(path1))
             {
                 self.AssetPath.Add(path1);
             }
+
             self.PetHeXinSuitBtn.GetComponent<Image>().sprite = sp1;
         }
 
@@ -841,17 +1035,19 @@ namespace ET
             {
                 skinId = PetConfigCategory.Instance.Get(rolePetItem.ConfigId).Skin[0];
             }
+
             PetSkinConfig petConfig = PetSkinConfigCategory.Instance.Get(skinId);
             if (self.PetModelShowComponent != null)
             {
-                self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.SkinID.ToString(), true).Coroutine();
+                self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.SkinID.ToString(), true)
+                        .Coroutine();
             }
         }
 
-        public static void  UpdateSkillList(this UIPetListComponent self, RolePetInfo rolePetInfo)
+        public static void UpdateSkillList(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
-            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             List<int> zhuanzhuids = new List<int>();
@@ -863,6 +1059,7 @@ namespace ET
                     zhuanzhuids.Add(int.Parse(zhuanzhuskills[i]));
                 }
             }
+
             List<int> skills = new List<int>();
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {
@@ -880,7 +1077,7 @@ namespace ET
             int unactiveNum = 0;
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             Dictionary<int, int> equipSkilllist = PetHelper.GetEquipSkillList(rolePetInfo, bagComponent);
-            foreach( var item in equipSkilllist)
+            foreach (var item in equipSkilllist)
             {
                 if (!rolePetInfo.PetSkill.Contains(item.Key))
                 {
@@ -903,11 +1100,12 @@ namespace ET
                 {
                     GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(bagSpace, self.PetSkillNode);
-                    ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>( bagSpace);
+                    ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
                     self.PetSkillUIList.Add(ui_item);
                 }
+
                 bool unactive = skills[i] == unactiveId;
-                ui_item.OnUpdatePetSkill(skills[i], ABAtlasTypes.PetSkillIcon ,rolePetInfo.LockSkill.Contains(skills[i]), unactive, unactiveNum);
+                ui_item.OnUpdatePetSkill(skills[i], ABAtlasTypes.PetSkillIcon, rolePetInfo.LockSkill.Contains(skills[i]), unactive, unactiveNum);
                 UICommonHelper.SetImageGray(ui_item.ImageIcon, unactive);
             }
 
@@ -927,7 +1125,6 @@ namespace ET
 
         public static void UpdateAttribute(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
-
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long petAllAct = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllAct);
             long petAllMageact = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllMageAct);
@@ -937,10 +1134,14 @@ namespace ET
 
             //self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAct, 0);
 
-            petAllAct += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAct) * (1+ unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllActPro)));
-            petAllMageact += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_Mage) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllMageActPro)));
-            petAllDef += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllDefPro)));
-            petAllAdf += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf) * (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllAdfPro)));
+            petAllAct += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAct) *
+                (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllActPro)));
+            petAllMageact += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_Mage) *
+                (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllMageActPro)));
+            petAllDef += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef) *
+                (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllDefPro)));
+            petAllAdf += (int)(NumericHelp.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf) *
+                (1 + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllAdfPro)));
 
             float petAllCri = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllCri);
             float petAllHit = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllHit);
@@ -954,23 +1155,25 @@ namespace ET
                 self.GetAttributeShow(rolePetInfo, NumericType.Now_Mage, petAllMageact));
 
             self.UpdateAttributeItem(2, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxDef),
-                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxDef, petAllDef));
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxDef, petAllDef));
 
             self.UpdateAttributeItem(3, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxAdf),
-                  self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAdf, petAllAdf));
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAdf, petAllAdf));
 
             self.UpdateAttributeItem(4, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxHp),
-                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxHp, petAllHp));
-
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxHp, petAllHp));
 
             //特殊属性
-            self.UpdateAttributeItem(0, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Cri, petAllCri));
-            self.UpdateAttributeItem(1, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Res,0));
-            self.UpdateAttributeItem(2, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Hit, petAllHit));
-            self.UpdateAttributeItem(3, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Dodge, petAllDodge));
+            self.UpdateAttributeItem(0, self.PetProSetItem_2, self.PetProSetNode_2, "",
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_Cri, petAllCri));
+            self.UpdateAttributeItem(1, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Res, 0));
+            self.UpdateAttributeItem(2, self.PetProSetItem_2, self.PetProSetNode_2, "",
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_Hit, petAllHit));
+            self.UpdateAttributeItem(3, self.PetProSetItem_2, self.PetProSetNode_2, "",
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_Dodge, petAllDodge));
         }
 
-        public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType,float addValue)
+        public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType, float addValue)
         {
             NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[numericType];
             if (NumericHelp.GetNumericValueType(numericType) == 2)
@@ -982,11 +1185,12 @@ namespace ET
             }
             else
             {
-               return $"{ItemViewHelp.GetAttributeName(numericType)} {(long)(NumericHelp.GetAttributeValue(rolePetInfo, numericType) + addValue)}";
+                return $"{ItemViewHelp.GetAttributeName(numericType)} {(long)(NumericHelp.GetAttributeValue(rolePetInfo, numericType) + addValue)}";
             }
         }
 
-        public static void UpdateAttributeItem(this UIPetListComponent self, int index, GameObject itemObj, GameObject parentObj, string iconid, string value)
+        public static void UpdateAttributeItem(this UIPetListComponent self, int index, GameObject itemObj, GameObject parentObj, string iconid,
+        string value)
         {
             GameObject gameObject = null;
             if (parentObj.transform.childCount > index)
@@ -996,18 +1200,20 @@ namespace ET
             else
             {
                 gameObject = GameObject.Instantiate(itemObj);
-                UICommonHelper.SetParent( gameObject, parentObj);
+                UICommonHelper.SetParent(gameObject, parentObj);
                 gameObject.SetActive(true);
             }
+
             gameObject.transform.Find("Text_Attribute1").GetComponent<Text>().text = value;
             if (iconid.Length > 0)
             {
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, iconid);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PropertyIcon, iconid);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
+
                 gameObject.transform.Find("ImageIcon").GetComponent<Image>().sprite = sp;
             }
         }
@@ -1016,7 +1222,7 @@ namespace ET
         {
             for (int i = 0; i < self.ImagePetStar.transform.childCount; i++)
             {
-                self.ImagePetStar.transform.GetChild(i).gameObject.SetActive(rolePetInfo.Star > i );
+                self.ImagePetStar.transform.GetChild(i).gameObject.SetActive(rolePetInfo.Star > i);
             }
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -1025,12 +1231,18 @@ namespace ET
             //self.Text_Attribute[2].GetComponent<Text>().text = string.Format("物防 {0}", self.PetComponent.GetAttributeValue(rolePetInfo, NumericType.Now_MaxDef));
             //self.Text_Attribute[3].GetComponent<Text>().text = string.Format("魔防 {0}", self.PetComponent.GetAttributeValue(rolePetInfo, NumericType.Now_MaxAdf));
 
-            self.PetZiZhiItemList[0].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
-            self.PetZiZhiItemList[1].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_Act, petConfig.ZiZhi_Act_Max);
-            self.PetZiZhiItemList[2].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_Def, petConfig.ZiZhi_Def_Max);
-            self.PetZiZhiItemList[3].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_Adf, petConfig.ZiZhi_Adf_Max);
-            self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", UICommonHelper.ShowFloatValue(rolePetInfo.ZiZhi_ChengZhang), UICommonHelper.ShowFloatValue((float)petConfig.ZiZhi_ChengZhang_Max));
-            self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
+            self.PetZiZhiItemList[0].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
+                    string.Format("{0}/{1}", rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
+            self.PetZiZhiItemList[1].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
+                    string.Format("{0}/{1}", rolePetInfo.ZiZhi_Act, petConfig.ZiZhi_Act_Max);
+            self.PetZiZhiItemList[2].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
+                    string.Format("{0}/{1}", rolePetInfo.ZiZhi_Def, petConfig.ZiZhi_Def_Max);
+            self.PetZiZhiItemList[3].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
+                    string.Format("{0}/{1}", rolePetInfo.ZiZhi_Adf, petConfig.ZiZhi_Adf_Max);
+            self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}",
+                UICommonHelper.ShowFloatValue(rolePetInfo.ZiZhi_ChengZhang), UICommonHelper.ShowFloatValue((float)petConfig.ZiZhi_ChengZhang_Max));
+            self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
+                    string.Format("{0}/{1}", rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
             /*
             self.PetZiZhiItemList[0].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_Hp * 1f / petConfig.ZiZhi_Hp_Max, 0f, 1f), 1f, 1f);
             self.PetZiZhiItemList[1].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_Act * 1f / petConfig.ZiZhi_Act_Max, 0f, 1f), 1f, 1f);
@@ -1042,39 +1254,51 @@ namespace ET
             Sprite sprite16 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_16.png");
             Sprite sprite17 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_17.png");
 
-            self.PetZiZhiItemList[0].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_Hp >= petConfig.ZiZhi_Hp_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[0].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_Hp / (float)petConfig.ZiZhi_Hp_Max, 0f,1f);
+            self.PetZiZhiItemList[0].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_Hp >= petConfig.ZiZhi_Hp_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[0].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_Hp / (float)petConfig.ZiZhi_Hp_Max, 0f, 1f);
 
-            self.PetZiZhiItemList[1].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_Act >= petConfig.ZiZhi_Act_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[1].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_Act / (float)petConfig.ZiZhi_Act_Max, 0f, 1f);
-            
-            
-            self.PetZiZhiItemList[2].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_Def >= petConfig.ZiZhi_Def_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[2].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_Def / (float)petConfig.ZiZhi_Def_Max, 0f, 1f);
-            
-            self.PetZiZhiItemList[3].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_Adf >= petConfig.ZiZhi_Adf_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[3].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_Adf / (float)petConfig.ZiZhi_Adf_Max, 0f, 1f);
-            
-            self.PetZiZhiItemList[4].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_ChengZhang >= petConfig.ZiZhi_ChengZhang_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[4].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_ChengZhang / (float)petConfig.ZiZhi_ChengZhang_Max, 0f, 1f);
-            
-            self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().sprite = rolePetInfo.ZiZhi_MageAct >= petConfig.ZiZhi_MageAct_Max? sprite16 : sprite17;
-            self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_MageAct / (float)petConfig.ZiZhi_MageAct_Max, 0f, 1f);
+            self.PetZiZhiItemList[1].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_Act >= petConfig.ZiZhi_Act_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[1].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_Act / (float)petConfig.ZiZhi_Act_Max, 0f, 1f);
+
+            self.PetZiZhiItemList[2].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_Def >= petConfig.ZiZhi_Def_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[2].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_Def / (float)petConfig.ZiZhi_Def_Max, 0f, 1f);
+
+            self.PetZiZhiItemList[3].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_Adf >= petConfig.ZiZhi_Adf_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[3].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_Adf / (float)petConfig.ZiZhi_Adf_Max, 0f, 1f);
+
+            self.PetZiZhiItemList[4].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_ChengZhang >= petConfig.ZiZhi_ChengZhang_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[4].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_ChengZhang / (float)petConfig.ZiZhi_ChengZhang_Max, 0f, 1f);
+
+            self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
+                    rolePetInfo.ZiZhi_MageAct >= petConfig.ZiZhi_MageAct_Max? sprite16 : sprite17;
+            self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount =
+                    Mathf.Clamp((float)rolePetInfo.ZiZhi_MageAct / (float)petConfig.ZiZhi_MageAct_Max, 0f, 1f);
         }
 
-        public static  void UpdatePetSkin(this UIPetListComponent self, RolePetInfo rolePetInfo)
+        public static void UpdatePetSkin(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
             if (self.LastSelectItem == null)
             {
                 return;
             }
+
             self.PetSkinList.Clear();
             UICommonHelper.DestoryChild(self.ScrollViewSkin);
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
 
             int selectIndex = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");
-            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             for (int i = 0; i < petConfig.Skin.Length; i++)
             {
@@ -1082,10 +1306,12 @@ namespace ET
                 {
                     continue;
                 }
+
                 if (petConfig.Skin[i] == rolePetInfo.SkinId)
                 {
                     selectIndex = i;
                 }
+
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.ScrollViewSkin);
                 UIPetSkinIconComponent uIPetSkinIcon = self.AddChild<UIPetSkinIconComponent, GameObject>(bagSpace);
@@ -1108,8 +1334,10 @@ namespace ET
             PetSkinConfig petConfig = PetSkinConfigCategory.Instance.Get(skinId);
             if (self.SkinModelShowComponent != null)
             {
-                self.SkinModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.SkinID.ToString(), true).Coroutine();
+                self.SkinModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.SkinID.ToString(), true)
+                        .Coroutine();
             }
+
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.SkinJiHuo.SetActive(self.LastSelectItem.SkinId == self.PetSkinId);
             self.SkinWeiJiHuo.SetActive(!self.SkinJiHuo.activeSelf);
@@ -1120,10 +1348,10 @@ namespace ET
                 self.PropertyShowText.SetActive(true);
                 self.PropertyShowText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("激活属性") + ":" + petConfig.PripertyShow;
             }
-            else {
+            else
+            {
                 self.PropertyShowText.SetActive(false);
             }
-            
         }
 
         public static void OnBagItemUpdate(this UIPetListComponent self)
@@ -1140,6 +1368,7 @@ namespace ET
             {
                 self.PetUIList[i].OnUpdatePetPoint(rolePetItem);
             }
+
             self.UpdateAttribute(self.LastSelectItem);
         }
 
@@ -1154,7 +1383,7 @@ namespace ET
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
         }
-        
+
         public static void OnEquipPetEquip(this UIPetListComponent self)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemLocBag);
@@ -1162,7 +1391,7 @@ namespace ET
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
-            self.UpdateSkillList(self.LastSelectItem);  
+            self.UpdateSkillList(self.LastSelectItem);
             self.PetEquipSetComponent.SelectItemHandlder(null);
             self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
             self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
@@ -1183,35 +1412,40 @@ namespace ET
             self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
             self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
                 self.AssetPath.Add(path);
             }
+
             self.ImageShouHu.GetComponent<Image>().sprite = sp;
 
             //更新宠物是否进化
             if (rolePetInfo.UpStageStatus == 0 || rolePetInfo.UpStageStatus == 1)
             {
                 UICommonHelper.SetImageGray(self.ImageJinHua, true);
-                if (rolePetInfo.UpStageStatus == 1) {
+                if (rolePetInfo.UpStageStatus == 1)
+                {
                     self.JinHuaReddot.SetActive(true);
                     self.Lab_JinHua.GetComponent<Text>().text = "点击进化";
                 }
-                else {
+                else
+                {
                     self.JinHuaReddot.SetActive(false);
                     self.Lab_JinHua.GetComponent<Text>().text = "未进化";
                 }
             }
-            else {
+            else
+            {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
                 self.JinHuaReddot.SetActive(false);
                 self.Lab_JinHua.GetComponent<Text>().text = "已进化";
             }
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
-            if (petConfig.PetType == 2) {
+            if (petConfig.PetType == 2)
+            {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
                 self.JinHuaReddot.SetActive(false);
                 self.Lab_JinHua.GetComponent<Text>().text = "已进化";

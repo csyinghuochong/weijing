@@ -868,5 +868,7 @@ namespace ET
 		 public const ushort C2M_OneChallengeRequest = 10865;
 		 public const ushort M2C_OneChallengeResponse = 10866;
 		 public const ushort M2C_OneChallenge = 10867;
+		 public const ushort C2M_PetChangePosRequest = 10868;
+		 public const ushort M2C_PetChangePosResponse = 10869;
 	}
 }

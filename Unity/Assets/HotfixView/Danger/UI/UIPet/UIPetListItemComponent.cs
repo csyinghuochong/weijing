@@ -1,13 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
 {
-
-    public class UIPetListItemComponent : Entity, IAwake<GameObject>,IDestroy
+    public class UIPetListItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Image_Protect;
         public GameObject Lab_Status;
@@ -16,6 +15,7 @@ namespace ET
         public GameObject Node_1;
         public GameObject Text_Open;
         public GameObject ImageDiButton;
+        public GameObject ImageDiEventTrigger;
         public GameObject Img_CanZhan;
         public GameObject Lab_PetLv;
         public GameObject Lab_PetName;
@@ -33,13 +33,12 @@ namespace ET
         public GameObject Lab_PetQuality;
         public GameObject GameObject;
 
-        public long  PetId;
+        public long PetId;
         public Action<long> ClickPetHandler;
         public List<string> AssetPath = new List<string>();
     }
 
-
-    public class UIPetListItemComponentAwakeSystem : AwakeSystem<UIPetListItemComponent, GameObject>
+    public class UIPetListItemComponentAwakeSystem: AwakeSystem<UIPetListItemComponent, GameObject>
     {
         public override void Awake(UIPetListItemComponent self, GameObject gameObject)
         {
@@ -49,7 +48,7 @@ namespace ET
             self.Node_2 = rc.Get<GameObject>("Node_2");
             self.Node_1 = rc.Get<GameObject>("Node_1");
             self.Text_Open = rc.Get<GameObject>("Text_Open");
-            self.Reddot  = rc.Get<GameObject>("Reddot");
+            self.Reddot = rc.Get<GameObject>("Reddot");
 
             self.Img_CanZhan = rc.Get<GameObject>("Img_CanZhan");
             self.Lab_PetLv = rc.Get<GameObject>("Lab_PetLv");
@@ -72,29 +71,34 @@ namespace ET
             self.Lab_PetQuality = rc.Get<GameObject>("Lab_PetQuality");
 
             self.Image_Protect = rc.Get<GameObject>("Image_Protect");
-            self.Image_Protect?.SetActive(false);   
+            self.Image_Protect?.SetActive(false);
 
             self.ImageDiButton = rc.Get<GameObject>("ImageDiButton");
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
+
+            self.ImageDiEventTrigger = rc.Get<GameObject>("ImageDiEventTrigger");
+            self.ImageDiEventTrigger.SetActive(false);
         }
     }
-    public class UIPetListItemComponentDestroy : DestroySystem<UIPetListItemComponent>
+
+    public class UIPetListItemComponentDestroy: DestroySystem<UIPetListItemComponent>
     {
         public override void Destroy(UIPetListItemComponent self)
         {
-            for(int i = 0; i < self.AssetPath.Count; i++)
+            for (int i = 0; i < self.AssetPath.Count; i++)
             {
                 if (!string.IsNullOrEmpty(self.AssetPath[i]))
                 {
-                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
+                    ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
+
             self.AssetPath = null;
         }
     }
+
     public static class UIPetListItemComponentSystem
     {
-
         public static void OnClickPetItem(this UIPetListItemComponent self)
         {
             self.ClickPetHandler(self.PetId);
@@ -111,10 +115,12 @@ namespace ET
             {
                 return;
             }
+
             if (rolePetInfo.Id != self.PetId)
             {
                 return;
             }
+
             self.PetId = rolePetInfo.Id;
             self.Reddot.SetActive(rolePetInfo.AddPropretyNum > 0);
         }
@@ -124,9 +130,9 @@ namespace ET
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
         }
 
-        public static void OnPetFightingSet(this UIPetListItemComponent self,RolePetInfo rolePetInfo)
+        public static void OnPetFightingSet(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
         {
-            self.Img_CanZhan.SetActive(rolePetInfo!=null && self.PetId == rolePetInfo.Id);
+            self.Img_CanZhan.SetActive(rolePetInfo != null && self.PetId == rolePetInfo.Id);
         }
 
         public static void OnPetProtectSet(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
@@ -145,10 +151,11 @@ namespace ET
             {
                 self.PetId = rolePetInfo.Id;
             }
-            else 
+            else
             {
                 self.PetId = 0;
             }
+
             self.Node_1.SetActive(rolePetInfo != null);
             self.Node_2.SetActive(rolePetInfo == null);
             if (rolePetInfo != null)
@@ -156,12 +163,13 @@ namespace ET
                 self.OnUpdatePetPoint(rolePetInfo);
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                 PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
                     self.AssetPath.Add(path);
                 }
+
                 self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
                 self.Img_CanZhan.SetActive(rolePetInfo.PetStatus == 1);
@@ -171,26 +179,26 @@ namespace ET
                 self.Lab_PetQuality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);
                 self.Lab_PetQuality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
 
-                self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2 ? "散步中..." : String.Empty;
+                self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2? "散步中..." : String.Empty;
 
                 self.Image_Protect?.SetActive(rolePetInfo.IsProtect);
             }
             else
-            { 
+            {
                 self.Text_Open.GetComponent<Text>().text = $"{nextLv}级开启";
             }
         }
 
-        public static void StartShowImg(this UIPetListItemComponent self,GameObject startObj)
+        public static void StartShowImg(this UIPetListItemComponent self, GameObject startObj)
         {
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Start_2");
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Start_2");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
                 self.AssetPath.Add(path);
             }
+
             startObj.GetComponent<Image>().sprite = sp;
         }
     }
 }
-
