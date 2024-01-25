@@ -12,7 +12,11 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccInfoID))
             {
                 DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountInfo>(scene.DomainZone(), request.AccInfoID);
-                response.BagInfos = dBAccountWarehouse.BagInfoList;
+                if (dBAccountWarehouse != null)
+                {
+                    response.BagInfos = dBAccountWarehouse.BagInfoList;
+                }
+
                 reply();
             }
             await ETTask.CompletedTask;
