@@ -77,7 +77,6 @@ namespace ET
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
 
             self.ImageDiEventTrigger = rc.Get<GameObject>("ImageDiEventTrigger");
-            self.ImageDiEventTrigger.SetActive(false);
         }
     }
 

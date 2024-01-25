@@ -145,7 +145,6 @@ namespace ET
             self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
             self.PetHeXinSuitBtn = rc.Get<GameObject>("PetHeXinSuitBtn");
             self.Img_Mask = rc.Get<GameObject>("Img_Mask");
-            self.Img_Mask.SetActive(false);
             self.JiBanBtn = rc.Get<GameObject>("JiBanBtn");
             self.JiBanBtn.SetActive(false);
             self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
