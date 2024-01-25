@@ -98,16 +98,16 @@ namespace ET
                 if (!self.SkillHandler.HurtIds.Contains(uu.Id))
                 {
                     self.SkillHandler.HurtIds.Add(uu.Id);
-                    // 推怪
-                    Skill_ComTargetMove_RangDamge_5 handler = self.SkillHandler as Skill_ComTargetMove_RangDamge_5;
-                    handler.PushUnit(uu);
                 }
 
+                Skill_ComTargetMove_RangDamge_5 handler = self.SkillHandler as Skill_ComTargetMove_RangDamge_5;
                 if (!self.SkillHandler.LastHurtTimes.ContainsKey(uu.Id))
                 {
                     // 第一次伤害
                     self.SkillHandler.LastHurtTimes.Add(uu.Id, nowTime);
                     self.SkillHandler.OnCollisionUnit(uu);
+                    // 推怪
+                    handler.PushUnit(uu);
                 }
 
                 if (self.SkillHandler.SkillTriggerInvelTime > 0)
@@ -118,6 +118,8 @@ namespace ET
                         self.SkillHandler.OnCollisionUnit(uu);
                     }
                 }
+
+                handler.ReSetPush(uu);
             }
         }
     }

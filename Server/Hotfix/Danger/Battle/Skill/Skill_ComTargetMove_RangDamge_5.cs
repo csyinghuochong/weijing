@@ -127,6 +127,15 @@ namespace ET
                 false).Coroutine();
         }
 
+        public void ReSetPush(Unit unit)
+        {
+            unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
+            unit.FindPathMoveToAsync(
+                this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, this.TargetPos),
+                null,
+                false).Coroutine();
+        }
+
         public void ReSetUnit(Unit unit)
         {
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
