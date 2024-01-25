@@ -11,7 +11,7 @@ namespace ET
     {
         private int isChonFeng;
         private float SpeedAddValue = 0f;
-        private Vector3 TargetPos;
+        private Vector3 UnitTargetPos;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
@@ -26,7 +26,7 @@ namespace ET
 
             this.SkillExcuteNum = 1;
 
-            this.TargetPos = this.GetBulletTargetPoint(this.SkillInfo.TargetAngle);
+            this.UnitTargetPos = this.TheUnitFrom.Position;
         }
 
         public override void OnExecute()
@@ -91,9 +91,11 @@ namespace ET
             Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position,
                 new CreateMonsterInfo());
             unit.AddComponent<RoleBullet5Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
-            unit.BulletMoveToAsync(this.TargetPos).Coroutine();
+            Vector3 target = this.GetBulletTargetPoint(this.SkillInfo.TargetAngle);
+            unit.BulletMoveToAsync(target).Coroutine();
             this.SkillExcuteNum--;
 
+            this.UnitTargetPos = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, target);
             if (this.isChonFeng == 1)
             {
                 this.PushUnit(this.TheUnitFrom);
@@ -121,8 +123,7 @@ namespace ET
             }
 
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
-            unit.FindPathMoveToAsync(
-                this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, this.TargetPos),
+            unit.FindPathMoveToAsync(this.UnitTargetPos,
                 null,
                 false).Coroutine();
         }
@@ -130,8 +131,7 @@ namespace ET
         public void ReSetPush(Unit unit)
         {
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
-            unit.FindPathMoveToAsync(
-                this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, this.TargetPos),
+            unit.FindPathMoveToAsync(this.UnitTargetPos,
                 null,
                 false).Coroutine();
         }
