@@ -80,7 +80,7 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang
                 && unitDefend.Type == UnitType.Player && unitDefend.MainHero
-                && unitAttack.Type == UnitType.Player)
+                && unitAttack !=null && unitAttack.Type == UnitType.Player)
             {
                 int attackMode = unitDefend.GetAttackMode();
                 if (attackMode == 3 && !zoneScene.GetComponent<BattleMessageComponent>().AttackSelfPlayer.Contains(unitAttack.Id))
