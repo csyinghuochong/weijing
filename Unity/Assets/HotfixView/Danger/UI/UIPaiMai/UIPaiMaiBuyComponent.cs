@@ -25,24 +25,20 @@ namespace ET
         //当前用到的显示用的
         public List<PaiMaiItemInfo> PaiMaiIteminfos_Now = new List<PaiMaiItemInfo>();
 
-        //-----------拍卖行缓存---------- <ItemSubType,<Page , [PaiMaiItemInfo,PaiMaiItemInfo,···]>>  ItemSubType==0表示该大类
-        public Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>> PaiMaiItemInfos_Consume =
-                new Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>>();
+        //-----------拍卖行缓存----------
+        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Consume = new Dictionary<int, List<PaiMaiItemInfo>>();
 
-        public Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>> PaiMaiItemInfos_Material =
-                new Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>>();
+        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Material = new Dictionary<int, List<PaiMaiItemInfo>>();
 
-        public Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>> PaiMaiItemInfos_Equipment =
-                new Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>>();
+        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Equipment = new Dictionary<int, List<PaiMaiItemInfo>>();
 
-        public Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>> PaiMaiItemInfos_Gemstone =
-                new Dictionary<int, Dictionary<int, List<PaiMaiItemInfo>>>();
+        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Gemstone = new Dictionary<int, List<PaiMaiItemInfo>>();
 
         //记录下一页index
-        public Dictionary<int, int> MaxPage_Consume = new Dictionary<int, int>();
-        public Dictionary<int, int> MaxPage_Material = new Dictionary<int, int>();
-        public Dictionary<int, int> MaxPage_Equipment = new Dictionary<int, int>();
-        public Dictionary<int, int> MaxPage_Gemstone = new Dictionary<int, int>();
+        public int MaxPage_Consume = 1;
+        public int MaxPage_Material = 1;
+        public int MaxPage_Equipment = 1;
+        public int MaxPage_Gemstone = 1;
     }
 
     public class UIPaiMaiBuyComponentAwakeSystem: AwakeSystem<UIPaiMaiBuyComponent>
@@ -144,7 +140,6 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType1Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
-                self.PaiMaiItemInfos_Consume.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 1;
@@ -155,7 +150,6 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType2Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
-                self.PaiMaiItemInfos_Material.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 2;
@@ -166,7 +160,6 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType3Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType3Name[key] });
-                self.PaiMaiItemInfos_Equipment.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 3;
@@ -177,7 +170,6 @@ namespace ET
             foreach (int key in ItemViewHelp.ItemSubType4Name.Keys)
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType4Name[key] });
-                self.PaiMaiItemInfos_Gemstone.Add(key, new Dictionary<int, List<PaiMaiItemInfo>>());
             }
 
             typeButtonInfo.TypeId = 4;
@@ -199,68 +191,56 @@ namespace ET
             switch (type)
             {
                 case 1:
-                    foreach (Dictionary<int, List<PaiMaiItemInfo>> dictionary in self.PaiMaiItemInfos_Consume.Values)
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume.Values)
                     {
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in dictionary.Values)
+                        foreach (PaiMaiItemInfo info in paiMaiItemInfos)
                         {
-                            foreach (PaiMaiItemInfo info in paiMaiItemInfos)
+                            if (info.Id == infoId)
                             {
-                                if (info.Id == infoId)
-                                {
-                                    paiMaiItemInfos.Remove(info);
-                                    break;
-                                }
+                                paiMaiItemInfos.Remove(info);
+                                break;
                             }
                         }
                     }
 
                     break;
                 case 2:
-                    foreach (Dictionary<int, List<PaiMaiItemInfo>> dictionary in self.PaiMaiItemInfos_Material.Values)
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material.Values)
                     {
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in dictionary.Values)
+                        foreach (PaiMaiItemInfo info in paiMaiItemInfos)
                         {
-                            foreach (PaiMaiItemInfo info in paiMaiItemInfos)
+                            if (info.Id == infoId)
                             {
-                                if (info.Id == infoId)
-                                {
-                                    paiMaiItemInfos.Remove(info);
-                                    break;
-                                }
+                                paiMaiItemInfos.Remove(info);
+                                break;
                             }
                         }
                     }
 
                     break;
                 case 3:
-                    foreach (Dictionary<int, List<PaiMaiItemInfo>> dictionary in self.PaiMaiItemInfos_Equipment.Values)
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
                     {
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in dictionary.Values)
+                        foreach (PaiMaiItemInfo info in paiMaiItemInfos)
                         {
-                            foreach (PaiMaiItemInfo info in paiMaiItemInfos)
+                            if (info.Id == infoId)
                             {
-                                if (info.Id == infoId)
-                                {
-                                    paiMaiItemInfos.Remove(info);
-                                    break;
-                                }
+                                paiMaiItemInfos.Remove(info);
+                                break;
                             }
                         }
                     }
 
                     break;
                 case 4:
-                    foreach (Dictionary<int, List<PaiMaiItemInfo>> dictionary in self.PaiMaiItemInfos_Equipment.Values)
+                    foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
                     {
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in dictionary.Values)
+                        foreach (PaiMaiItemInfo info in paiMaiItemInfos)
                         {
-                            foreach (PaiMaiItemInfo info in paiMaiItemInfos)
+                            if (info.Id == infoId)
                             {
-                                if (info.Id == infoId)
-                                {
-                                    paiMaiItemInfos.Remove(info);
-                                    break;
-                                }
+                                paiMaiItemInfos.Remove(info);
+                                break;
                             }
                         }
                     }
@@ -291,7 +271,7 @@ namespace ET
             if (self.PaiMaiIteminfos_Now == null || self.PaiMaiIteminfos_Now.Count <= 0)
             {
                 // 从服务端获取
-                await self.UpdatePaiMaiData(itemType, itemSubType);
+                await self.UpdatePaiMaiData(itemType);
                 self.PaiMaiIteminfos_Now.AddRange(self.GetInfoLocal(self.ItemType, self.ItemSubType));
             }
 
@@ -310,64 +290,59 @@ namespace ET
         /// <returns></returns>
         public static List<PaiMaiItemInfo> GetInfoLocal(this UIPaiMaiBuyComponent self, int itemType, int itemSubType)
         {
+            List<PaiMaiItemInfo> paiMaiItemInfos = new List<PaiMaiItemInfo>();
             switch (itemType)
             {
                 case 1:
-                    if (!self.PaiMaiItemInfos_Consume.ContainsKey(itemSubType))
+                    if (!self.PaiMaiItemInfos_Consume.ContainsKey(self.PageIndex))
                     {
-                        self.PaiMaiItemInfos_Consume.Add(itemSubType, new Dictionary<int, List<PaiMaiItemInfo>>());
+                        self.PaiMaiItemInfos_Consume.Add(self.PageIndex, new List<PaiMaiItemInfo>());
                     }
 
-                    if (!self.PaiMaiItemInfos_Consume[itemSubType].ContainsKey(self.PageIndex))
-                    {
-                        self.PaiMaiItemInfos_Consume[itemSubType].Add(self.PageIndex, new List<PaiMaiItemInfo>());
-                    }
-
-                    return self.PaiMaiItemInfos_Consume[itemSubType][self.PageIndex];
+                    paiMaiItemInfos.AddRange(self.PaiMaiItemInfos_Consume[self.PageIndex]);
+                    break;
 
                 case 2:
-                    if (!self.PaiMaiItemInfos_Material.ContainsKey(itemSubType))
+                    if (!self.PaiMaiItemInfos_Material.ContainsKey(self.PageIndex))
                     {
-                        self.PaiMaiItemInfos_Material.Add(itemSubType, new Dictionary<int, List<PaiMaiItemInfo>>());
+                        self.PaiMaiItemInfos_Material.Add(self.PageIndex, new List<PaiMaiItemInfo>());
                     }
 
-                    if (!self.PaiMaiItemInfos_Material[itemSubType].ContainsKey(self.PageIndex))
-                    {
-                        self.PaiMaiItemInfos_Material[itemSubType].Add(self.PageIndex, new List<PaiMaiItemInfo>());
-                    }
-
-                    return self.PaiMaiItemInfos_Material[itemSubType][self.PageIndex];
+                    paiMaiItemInfos.AddRange(self.PaiMaiItemInfos_Material[self.PageIndex]);
+                    break;
 
                 case 3:
-
-                    if (!self.PaiMaiItemInfos_Equipment.ContainsKey(itemSubType))
+                    if (!self.PaiMaiItemInfos_Equipment.ContainsKey(self.PageIndex))
                     {
-                        self.PaiMaiItemInfos_Equipment.Add(itemSubType, new Dictionary<int, List<PaiMaiItemInfo>>());
+                        self.PaiMaiItemInfos_Equipment.Add(self.PageIndex, new List<PaiMaiItemInfo>());
                     }
 
-                    if (!self.PaiMaiItemInfos_Equipment[itemSubType].ContainsKey(self.PageIndex))
-                    {
-                        self.PaiMaiItemInfos_Equipment[itemSubType].Add(self.PageIndex, new List<PaiMaiItemInfo>());
-                    }
-
-                    return self.PaiMaiItemInfos_Equipment[itemSubType][self.PageIndex];
+                    paiMaiItemInfos.AddRange(self.PaiMaiItemInfos_Equipment[self.PageIndex]);
+                    break;
 
                 case 4:
-
-                    if (!self.PaiMaiItemInfos_Gemstone.ContainsKey(itemSubType))
+                    if (!self.PaiMaiItemInfos_Gemstone.ContainsKey(self.PageIndex))
                     {
-                        self.PaiMaiItemInfos_Gemstone.Add(itemSubType, new Dictionary<int, List<PaiMaiItemInfo>>());
+                        self.PaiMaiItemInfos_Gemstone.Add(self.PageIndex, new List<PaiMaiItemInfo>());
                     }
 
-                    if (!self.PaiMaiItemInfos_Gemstone[itemSubType].ContainsKey(self.PageIndex))
-                    {
-                        self.PaiMaiItemInfos_Gemstone[itemSubType].Add(self.PageIndex, new List<PaiMaiItemInfo>());
-                    }
-
-                    return self.PaiMaiItemInfos_Gemstone[itemSubType][self.PageIndex];
+                    paiMaiItemInfos.AddRange(self.PaiMaiItemInfos_Gemstone[self.PageIndex]);
+                    break;
             }
 
-            return null;
+            if (itemSubType != 0)
+            {
+                for (int i = paiMaiItemInfos.Count - 1; i >= 0; i--)
+                {
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfos[i].BagInfo.ItemID);
+                    if (itemConfig.ItemSubType != itemSubType)
+                    {
+                        paiMaiItemInfos.RemoveAt(i);
+                    }
+                }
+            }
+
+            return paiMaiItemInfos;
         }
 
         /// <summary>
@@ -394,7 +369,7 @@ namespace ET
             switch (self.ItemType)
             {
                 case 1:
-                    if (self.PageIndex >= self.MaxPage_Consume[self.ItemSubType])
+                    if (self.PageIndex >= self.MaxPage_Consume)
                     {
                         FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
                         return;
@@ -403,7 +378,7 @@ namespace ET
                     break;
 
                 case 2:
-                    if (self.PageIndex >= self.MaxPage_Material[self.ItemSubType])
+                    if (self.PageIndex >= self.MaxPage_Material)
                     {
                         FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
                         return;
@@ -412,7 +387,7 @@ namespace ET
                     break;
 
                 case 3:
-                    if (self.PageIndex >= self.MaxPage_Equipment[self.ItemSubType])
+                    if (self.PageIndex >= self.MaxPage_Equipment)
                     {
                         FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
                         return;
@@ -421,7 +396,7 @@ namespace ET
                     break;
 
                 case 4:
-                    if (self.PageIndex >= self.MaxPage_Gemstone[self.ItemSubType])
+                    if (self.PageIndex >= self.MaxPage_Gemstone)
                     {
                         FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
                         return;
@@ -501,7 +476,7 @@ namespace ET
                     switch (findTypeList[i])
                     {
                         case 1:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume[0].Values)
+                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume.Values)
                             {
                                 foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                                 {
@@ -515,7 +490,7 @@ namespace ET
                             break;
 
                         case 2:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material[0].Values)
+                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material.Values)
                             {
                                 foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                                 {
@@ -529,7 +504,7 @@ namespace ET
                             break;
 
                         case 3:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment[0].Values)
+                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
                             {
                                 foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                                 {
@@ -543,7 +518,7 @@ namespace ET
                             break;
 
                         case 4:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone[0].Values)
+                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone.Values)
                             {
                                 foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                                 {
@@ -563,7 +538,7 @@ namespace ET
                 switch (findType)
                 {
                     case 1:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume[0].Values)
+                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume.Values)
                         {
                             foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                             {
@@ -577,7 +552,7 @@ namespace ET
                         break;
 
                     case 2:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material[0].Values)
+                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material.Values)
                         {
                             foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                             {
@@ -591,7 +566,7 @@ namespace ET
                         break;
 
                     case 3:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment[0].Values)
+                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
                         {
                             foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                             {
@@ -605,7 +580,7 @@ namespace ET
                         break;
 
                     case 4:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone[0].Values)
+                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone.Values)
                         {
                             foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
                             {
@@ -632,14 +607,13 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="itemType"></param>
-        /// <param name="itemSubType"></param>
-        public static async ETTask UpdatePaiMaiData(this UIPaiMaiBuyComponent self, int itemType, int itemSubType)
+        public static async ETTask UpdatePaiMaiData(this UIPaiMaiBuyComponent self, int itemType)
         {
             long instanceId = self.InstanceId;
 
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
-                Page = self.PageIndex, PaiMaiType = itemType, PaiMaiShowType = itemSubType, UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
+                Page = self.PageIndex, PaiMaiType = itemType, UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse =
                     (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
@@ -653,55 +627,27 @@ namespace ET
             switch (itemType)
             {
                 case 1:
-                    self.PaiMaiItemInfos_Consume[itemSubType][self.PageIndex].Clear();
-                    self.PaiMaiItemInfos_Consume[itemSubType][self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
-
-                    if (!self.MaxPage_Consume.ContainsKey(itemSubType))
-                    {
-                        self.MaxPage_Consume.Add(itemSubType, 1);
-                    }
-
-                    self.MaxPage_Consume[itemSubType] = m2C_PaiMaiBuyResponse.NextPage;
-
+                    self.PaiMaiItemInfos_Consume[self.PageIndex].Clear();
+                    self.PaiMaiItemInfos_Consume[self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
+                    self.MaxPage_Consume = m2C_PaiMaiBuyResponse.NextPage;
                     break;
 
                 case 2:
-                    self.PaiMaiItemInfos_Material[itemSubType][self.PageIndex].Clear();
-                    self.PaiMaiItemInfos_Material[itemSubType][self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
-
-                    if (!self.MaxPage_Material.ContainsKey(itemSubType))
-                    {
-                        self.MaxPage_Material.Add(itemSubType, 1);
-                    }
-
-                    self.MaxPage_Material[itemSubType] = m2C_PaiMaiBuyResponse.NextPage;
-
+                    self.PaiMaiItemInfos_Material[self.PageIndex].Clear();
+                    self.PaiMaiItemInfos_Material[self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
+                    self.MaxPage_Material = m2C_PaiMaiBuyResponse.NextPage;
                     break;
 
                 case 3:
-                    self.PaiMaiItemInfos_Equipment[itemSubType][self.PageIndex].Clear();
-                    self.PaiMaiItemInfos_Equipment[itemSubType][self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
-
-                    if (!self.MaxPage_Equipment.ContainsKey(itemSubType))
-                    {
-                        self.MaxPage_Equipment.Add(itemSubType, 1);
-                    }
-
-                    self.MaxPage_Equipment[itemSubType] = m2C_PaiMaiBuyResponse.NextPage;
-
+                    self.PaiMaiItemInfos_Equipment[self.PageIndex].Clear();
+                    self.PaiMaiItemInfos_Equipment[self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
+                    self.MaxPage_Equipment = m2C_PaiMaiBuyResponse.NextPage;
                     break;
 
                 case 4:
-                    self.PaiMaiItemInfos_Gemstone[itemSubType][self.PageIndex].Clear();
-                    self.PaiMaiItemInfos_Gemstone[itemSubType][self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
-
-                    if (!self.MaxPage_Gemstone.ContainsKey(itemSubType))
-                    {
-                        self.MaxPage_Gemstone.Add(itemSubType, 1);
-                    }
-
-                    self.MaxPage_Gemstone[itemSubType] = m2C_PaiMaiBuyResponse.NextPage;
-
+                    self.PaiMaiItemInfos_Gemstone[self.PageIndex].Clear();
+                    self.PaiMaiItemInfos_Gemstone[self.PageIndex].AddRange(m2C_PaiMaiBuyResponse.PaiMaiItemInfos);
+                    self.MaxPage_Gemstone = m2C_PaiMaiBuyResponse.NextPage;
                     break;
             }
         }
@@ -731,7 +677,7 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(self.UIPaiMaiBuyItem);
+                    GameObject go = UnityEngine.Object.Instantiate(self.UIPaiMaiBuyItem);
                     go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
