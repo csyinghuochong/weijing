@@ -119,7 +119,7 @@ namespace ET
                 self.BuffID = 0;
                 self.EndTime = 0;
             }
-            else
+            else if(number >= 0)
             {
                 self.EndTime = buffHandler.BuffEndTime;
             }

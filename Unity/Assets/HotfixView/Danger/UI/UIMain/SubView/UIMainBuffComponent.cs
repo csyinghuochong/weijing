@@ -148,6 +148,7 @@ namespace ET
                 if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId && uIMainBuffItemComponent.UnitId == buffHandler.TheUnitBelongto.Id)
                 {
                     uIMainBuffItemComponent.UpdateBuffNumber(buffHandler, 0);
+                    uIMainBuffItemComponent.EndTime = buffHandler.BuffEndTime;
                     return true;
                 }
             }
