@@ -1407,6 +1407,9 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(1)]
+		public int ItemType { get; set; }
+
 		[ProtoMember(2)]
 		public long PaiMaiItemInfoId { get; set; }
 

@@ -2707,7 +2707,8 @@ message C2M_PaiMaiXiaJiaRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 PaiMaiItemInfoId = 1;
+	int32 ItemType = 1;
+	int64 PaiMaiItemInfoId = 2;
 }
 
 message M2C_PaiMaiXiaJiaResponse // IActorLocationResponse
@@ -6893,7 +6894,8 @@ message C2P_PaiMaiFindRequest // IPaiMaiListRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 PaiMaiItemInfoId = 1;
+	int32 ItemType = 1;
+	int64 PaiMaiItemInfoId = 2;
 }
 
 message P2C_PaiMaiFindResponse // IPaiMaiListResponse
