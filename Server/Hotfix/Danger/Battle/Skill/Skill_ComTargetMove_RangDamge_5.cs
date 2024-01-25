@@ -79,14 +79,7 @@ namespace ET
                 return;
             }
 
-            long serverTime = TimeHelper.ServerNow();
-            if (serverTime - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
-            {
-                return;
-            }
-
             this.HurtIds.Clear();
-            this.SkillTriggerLastTime = serverTime;
 
             Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position,
                 new CreateMonsterInfo());
