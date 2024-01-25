@@ -118,14 +118,9 @@ namespace ET
 
         public override void OnFinished()
         {
-            //float cur_mul = TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul);
-            //float speed_mul = cur_mul - this.AddSpeed_Mul;
-            //Log.Debug($"OnFinished {speed_mul}");
-            //TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
             NumericComponent numericComponent = this.TheUnitFrom.GetComponent<NumericComponent>();
             float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
-            this.TheUnitFrom.GetComponent<BuffManagerComponent>().AddBuffRecord(0, 1);
             this.Clear();
         }
     }
