@@ -122,7 +122,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选中道具");
                 return;
             }
-            
+
+            int itemType = 0;
             for (int i = self.PaiMaiItemInfos.Count - 1; i >= 0; i--)
             {
                 if (self.PaiMaiItemInfos[i].Id == self.PaiMaiItemInfoId)
@@ -132,10 +133,12 @@ namespace ET
                         FloatTipManager.Instance.ShowFloatTip("数据错误!");
                         return;
                     }
+                    itemType = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfos[i].BagInfo.ItemID).ItemType;
                 }
             }
 
-            C2M_PaiMaiXiaJiaRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiXiaJiaRequest() {  PaiMaiItemInfoId = self.PaiMaiItemInfoId };
+
+            C2M_PaiMaiXiaJiaRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiXiaJiaRequest() { ItemType = itemType,  PaiMaiItemInfoId = self.PaiMaiItemInfoId };
             M2C_PaiMaiXiaJiaResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiXiaJiaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             if (self.IsDisposed)
             {

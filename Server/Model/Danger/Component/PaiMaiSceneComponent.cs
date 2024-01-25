@@ -24,23 +24,34 @@ namespace ET
         public List<long> AuctionJoinList = new List<long>();
 
         //拍卖行存储列表
-        public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();      
+        public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();          //废弃掉， 里面的数据分散到以下几个列表
+
+        //Administrator:
+        //1：消耗性道具
+        //2：材料
+        //3：装备
+        //4：宝石
+        //5：宠物之核
+        /// <summary>
+        /// 拍卖上架 id = zone * 100 + 道具类型(itemconfig.ItemType) 最多十个列表
+        /// </summary>
+        public DBPaiMainInfo dBPaiMainInfo_Consume = new DBPaiMainInfo();       //消耗品  dBPaiMainInfo.PaiMaiItemInfos里面的消耗品1
+        public DBPaiMainInfo dBPaiMainInfo_Material = new DBPaiMainInfo();      //材料    dBPaiMainInfo.PaiMaiItemInfos里面的材料
+        public DBPaiMainInfo dBPaiMainInfo_Equipment = new DBPaiMainInfo();     //装备    dBPaiMainInfo.PaiMaiItemInfos里面的装备
+        public DBPaiMainInfo dBPaiMainInfo_Gemstone = new DBPaiMainInfo();      //宝石    dBPaiMainInfo.PaiMaiItemInfos里面的宝石
+
+        /// <summary>
+        /// 拍卖商店 id = zone * 100 +  11
+        /// </summary>
+        public DBPaiMainInfo dBPaiMainInfo_Shop = new DBPaiMainInfo();      //拍卖商店   dBPaiMainInfo.PaiMaiShopItemInfos   
+
+        /// <summary>
+        /// 摆摊道具 id  = zone * 100 +  12
+        /// </summary>
+        public DBPaiMainInfo dBPaiMainInfo_Stall = new DBPaiMainInfo();         //摆摊    dBPaiMainInfo.PaiMaiItemInfos里面的摆摊
 
         //出价记录
         public List<PaiMaiAuctionRecord> AuctionRecords = new List<PaiMaiAuctionRecord>();
         
-        //-----------拍卖行缓存---------- <ItemSubType,<Page , [PaiMaiItemInfo,PaiMaiItemInfo,···]>>  ItemSubType==0表示该大类
-        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Consume_New = new Dictionary<int, List<PaiMaiItemInfo>>();
-        public long UpdateTimeConsume;
-        //材料
-        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Material_New = new Dictionary<int, List<PaiMaiItemInfo>>();
-        public long UpdateTimeMaterial;
-        //装备
-        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Equipment_New = new Dictionary<int, List<PaiMaiItemInfo>>();
-        public long UpdateTimeEquipment;
-        //宝石
-        public Dictionary<int, List<PaiMaiItemInfo>> PaiMaiItemInfos_Gemstone_New = new Dictionary<int, List<PaiMaiItemInfo>>();
-        public long UpdateTimeGemstone;
-
     }
 }

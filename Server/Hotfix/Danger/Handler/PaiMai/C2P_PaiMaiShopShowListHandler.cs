@@ -11,8 +11,7 @@ namespace ET
 		protected override async ETTask Run(Scene scene, C2P_PaiMaiShopShowListRequest request, P2C_PaiMaiShopShowListResponse response, Action reply)
 		{
 			PaiMaiSceneComponent paimaiCompontent = scene.GetComponent<PaiMaiSceneComponent>();
-			List<PaiMaiShopItemInfo> paiMaiItemInfos = paimaiCompontent.dBPaiMainInfo.PaiMaiShopItemInfos;
-			response.PaiMaiShopItemInfos = paiMaiItemInfos;
+			response.PaiMaiShopItemInfos = paimaiCompontent.dBPaiMainInfo_Shop.PaiMaiShopItemInfos;
 
 			reply();
 			await ETTask.CompletedTask;

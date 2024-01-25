@@ -19,8 +19,7 @@ namespace ET
                     return;
                 }
             }
-
-            scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.StallItemInfos.Add(request.PaiMaiItemInfo);
+            scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo_Stall.StallItemInfos.Add(request.PaiMaiItemInfo);
             reply();
             await ETTask.CompletedTask;
         }

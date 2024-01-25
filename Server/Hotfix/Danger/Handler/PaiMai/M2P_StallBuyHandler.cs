@@ -10,7 +10,7 @@ namespace ET
         {
             long needGold = 0;
             PaiMaiItemInfo paiMaiItemInfo = null;
-            List<PaiMaiItemInfo> stallItemInfos = scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.StallItemInfos;
+            List<PaiMaiItemInfo> stallItemInfos = scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo_Stall.StallItemInfos;
             for (int i = stallItemInfos.Count - 1; i >= 0; i--)
             {
                 if (stallItemInfos[i].Id == request.PaiMaiItemInfo.Id)

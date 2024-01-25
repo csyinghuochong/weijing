@@ -7,11 +7,10 @@ namespace ET
     [BsonIgnoreExtraElements]
     public class DBPaiMainInfo : Entity
     {
-        public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
+        public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();                       
 
-        public List<PaiMaiShopItemInfo> PaiMaiShopItemInfos = new List<PaiMaiShopItemInfo>();
+        public List<PaiMaiItemInfo> StallItemInfos = new List<PaiMaiItemInfo>();                       //摆摊，废弃掉，PaiMaiItemInfos
+        public List<PaiMaiShopItemInfo> PaiMaiShopItemInfos = new List<PaiMaiShopItemInfo>();         //商店，
 
-        // 摆摊数据
-        public List<PaiMaiItemInfo> StallItemInfos = new List<PaiMaiItemInfo>();
     }
 }

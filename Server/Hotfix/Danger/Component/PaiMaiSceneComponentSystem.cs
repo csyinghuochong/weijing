@@ -260,45 +260,229 @@ namespace ET
             }
         }
 
+
+        /// <summary>
+        /// 拍卖商店
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static async ETTask InitPaiMainShop(this PaiMaiSceneComponent self, List<PaiMaiShopItemInfo> oldPaiMaiShop)
+        {
+            int zone = self.DomainZone();
+            long unitid = zone * 100 + 11;
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+
+            if (zone == 66)
+            {
+                Log.Console("zone == 66");
+            }
+
+            if (d2GGetUnit.Component == null)
+            {
+                //初始拍卖行商店
+                DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
+                dBPaiMainInfo.Id = unitid;
+                self.dBPaiMainInfo_Shop = dBPaiMainInfo;
+                //存储拍卖行商店
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            }
+            else
+            {
+                self.dBPaiMainInfo_Shop = d2GGetUnit.Component as DBPaiMainInfo;
+            }
+
+            //更新快捷购买列表
+            self.UpdatePaiMaiShopItemList();
+        }
+
+        public static async ETTask InitPaiMainStall(this PaiMaiSceneComponent self, List<PaiMaiItemInfo> oldPaiMaiStall)
+        {
+            int zone = self.DomainZone();
+            long unitid = zone * 100 + 12;
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+
+            if (zone == 66)
+            {
+                Log.Console("zone == 66");
+            }
+
+            if (d2GGetUnit.Component == null)
+            {
+                //初始摆摊数据
+                DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
+                dBPaiMainInfo.Id = unitid;
+                self.dBPaiMainInfo_Stall = dBPaiMainInfo;
+                self.dBPaiMainInfo_Stall.PaiMaiItemInfos = oldPaiMaiStall;
+                //存储摆摊数据
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            }
+            else
+            {
+                self.dBPaiMainInfo_Stall = d2GGetUnit.Component as DBPaiMainInfo;
+            }
+        }
+
+        public static List<PaiMaiItemInfo> GetItemListByUser(this PaiMaiSceneComponent self, long useriD, List<PaiMaiItemInfo> oldPaiMaiAl)
+        {
+            List<PaiMaiItemInfo> paiMaiType = new List<PaiMaiItemInfo>();
+
+            for (int i = 0; i < oldPaiMaiAl.Count; i++)
+            {
+                if (useriD != 9 && oldPaiMaiAl[i].UserId == useriD)
+                {
+                    paiMaiType.Add(oldPaiMaiAl[i]);
+                }
+            }
+
+            return paiMaiType;
+        }
+
+        public static List<PaiMaiItemInfo> GetItemListByType(this PaiMaiSceneComponent self, int itemType, List<PaiMaiItemInfo> oldPaiMaiAl)
+        {
+            List<PaiMaiItemInfo> paiMaiType = new List<PaiMaiItemInfo>();
+
+            for (int i = 0;  i < oldPaiMaiAl.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(oldPaiMaiAl[i].BagInfo.ItemID);
+                if (itemConfig.ItemType == itemType)
+                {
+                    paiMaiType.Add(oldPaiMaiAl[i]);
+                }
+            }
+
+            return paiMaiType;
+        }
+
+        public static void UpdatePaiMaiDBByType(this PaiMaiSceneComponent self, int itemType, DBPaiMainInfo dBPaiMainInfo_Type)
+        {
+            switch (itemType)
+            {
+                case 1:
+                    self.dBPaiMainInfo_Consume = dBPaiMainInfo_Type;
+                    break;
+                case 2:
+                    self.dBPaiMainInfo_Material = dBPaiMainInfo_Type;
+                    break;
+                case 3:
+                    self.dBPaiMainInfo_Equipment = dBPaiMainInfo_Type;
+                    break;
+                case 4:
+                    self.dBPaiMainInfo_Gemstone = dBPaiMainInfo_Type;
+                    break;
+                default:
+                    Log.Error($"InitPaiMainShangJia: {itemType}");
+                    break;
+            }
+
+        }
+
+        public static DBPaiMainInfo GetPaiMaiDBByType(this PaiMaiSceneComponent self, int itemType)
+        {
+            DBPaiMainInfo dBPaiMainInfo_Type = null;
+            switch (itemType)
+            {
+                case 1:
+                    dBPaiMainInfo_Type = self.dBPaiMainInfo_Consume;
+                    break;
+                case 2:
+                    dBPaiMainInfo_Type = self.dBPaiMainInfo_Material;
+                    break;
+                case 3:
+                    dBPaiMainInfo_Type = self.dBPaiMainInfo_Equipment;
+                    break;
+                case 4:
+                    dBPaiMainInfo_Type = self.dBPaiMainInfo_Gemstone;
+                    break;
+                default:
+                    Log.Error($"InitPaiMainShangJia: {itemType}");
+                    break;
+            }
+
+            return dBPaiMainInfo_Type;  
+        }
+
+        public static async ETTask InitPaiMaiShangJia(this PaiMaiSceneComponent self, int itemType, List<PaiMaiItemInfo> oldPaiMaiAll)
+        {
+            int zone = self.DomainZone();
+            long unitid = zone * 100 + itemType;
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+
+            if (zone == 66)
+            {
+                Log.Console("zone == 66");
+            }
+
+            if (d2GGetUnit.Component == null)
+            {
+                //初始摆摊数据
+                DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
+                dBPaiMainInfo.Id = unitid;
+                dBPaiMainInfo.PaiMaiItemInfos = self.GetItemListByType(itemType, oldPaiMaiAll);
+                self.UpdatePaiMaiDBByType(itemType, dBPaiMainInfo);
+                //存储摆摊数据
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            }
+            else
+            {
+                self.UpdatePaiMaiDBByType(itemType, d2GGetUnit.Component as DBPaiMainInfo);
+            }
+        }
+
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            await TimerComponent.Instance.WaitAsync(zone * 100);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
+
+            List<PaiMaiShopItemInfo> oldPaiMaiShop = new List<PaiMaiShopItemInfo>();
+            List<PaiMaiItemInfo> oldPaiMaiAll = new List<PaiMaiItemInfo>();
+            List<PaiMaiItemInfo> oldPaiMaiStall = new List<PaiMaiItemInfo>();
+
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
 
-            if (d2GGetUnit.Component == null)
+            if (zone == 66)
             {
-                //初始化拍卖行数据
-                DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
-                dBPaiMainInfo.Id = self.DomainZone();
-                self.dBPaiMainInfo = dBPaiMainInfo;
-
-                //初始化快捷购买列表
-                dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList();
-
-                //存储数据库数据
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = zone, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                Log.Console("zone == 66");
             }
-            else
+
+            if (d2GGetUnit.Component != null)
             {
-                self.dBPaiMainInfo = d2GGetUnit.Component as DBPaiMainInfo;
+                DBPaiMainInfo oldDBPaiMainInfo =  d2GGetUnit.Component as DBPaiMainInfo;
+                if (oldDBPaiMainInfo.PaiMaiShopItemInfos.Count > 0
+                    || oldDBPaiMainInfo.PaiMaiItemInfos.Count > 0
+                    || oldDBPaiMainInfo.StallItemInfos.Count > 0)
+                {
+                    Console.WriteLine($"拍卖服有旧数据；  {zone}");
 
-                //更新快捷购买列表
-                self.UpdatePaiMaiShopItemList();
+                    oldPaiMaiShop = oldDBPaiMainInfo.PaiMaiShopItemInfos;
+                    oldPaiMaiAll = oldDBPaiMainInfo.PaiMaiItemInfos;
+                    oldPaiMaiStall = oldDBPaiMainInfo.StallItemInfos;
+                }
             }
+
+            await self.InitPaiMainShop(oldPaiMaiShop);
+            await self.InitPaiMainStall(oldPaiMaiStall);
+
+            await self.InitPaiMaiShangJia(1, oldPaiMaiAll);
+            await self.InitPaiMaiShangJia(2, oldPaiMaiAll);
+            await self.InitPaiMaiShangJia(3, oldPaiMaiAll);
+            await self.InitPaiMaiShangJia(4, oldPaiMaiAll);
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 4 + self.DomainZone() * 200, TimerType.PaiMaiTimer, self);
-            //测试更新价格
-            //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
-
+           
             self.OnZeroClockUpdate();
         }
 
         //更新快捷购买列表
         public static void UpdatePaiMaiShopItemList(this PaiMaiSceneComponent self)
         {
-            self.dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
+            self.dBPaiMainInfo_Shop.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList(self.dBPaiMainInfo_Shop.PaiMaiShopItemInfos);
         }
 
         //零点刷新
@@ -323,7 +507,7 @@ namespace ET
                 return;
             }
 
-            List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo.PaiMaiShopItemInfos;
+            List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo_Shop.PaiMaiShopItemInfos;
             for (int i = 0; i < paiMaiShopItemInfos.Count; i++)
             {
                 float upPrice = RandomHelper.RandomNumberFloat(0.03f, 0.06f);
@@ -374,8 +558,17 @@ namespace ET
         //遍历上架道具
         public static void UpdateShangJiaItems(this PaiMaiSceneComponent self)
         {
+            self.UpdateShangJiaItems_ByType(self.dBPaiMainInfo_Consume );
+            self.UpdateShangJiaItems_ByType(self.dBPaiMainInfo_Material);
+            self.UpdateShangJiaItems_ByType(self.dBPaiMainInfo_Equipment);
+            self.UpdateShangJiaItems_ByType(self.dBPaiMainInfo_Gemstone);
+        }
+
+
+        public static void UpdateShangJiaItems_ByType(this PaiMaiSceneComponent self, DBPaiMainInfo dBPaiMainInfo)
+        {
             int AAA = self.DomainZone();
-            List<PaiMaiItemInfo> paimaiItems = self.dBPaiMainInfo.PaiMaiItemInfos;
+            List<PaiMaiItemInfo> paimaiItems = dBPaiMainInfo.PaiMaiItemInfos;
 
             for (int i = 0; i < paimaiItems.Count; i++)
             {
@@ -454,7 +647,7 @@ namespace ET
         public static PaiMaiShopItemInfo GetPaiMaiShopInfo(this PaiMaiSceneComponent self, long needItemID)
         {
             //获取当前的数据
-            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo.PaiMaiShopItemInfos)
+            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo_Shop.PaiMaiShopItemInfos)
             {
                 if (info.Id == needItemID)
                 {
@@ -467,7 +660,7 @@ namespace ET
         //根据道具ID获取对应快捷购买的列表
         public static void PaiMaiShopInfoAddBuyNum(this PaiMaiSceneComponent self, long needItemID, int buyNum)
         {
-            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo.PaiMaiShopItemInfos)
+            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo_Shop.PaiMaiShopItemInfos)
             {
                 if (info.Id == needItemID)
                 {
@@ -476,57 +669,41 @@ namespace ET
             }
         }
 
-        public static List<PaiMaiItemInfo> GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID, int singPrice)
+        public static async ETTask SaveDB(this PaiMaiSceneComponent self)
         {
-            List<PaiMaiItemInfo> paiMaiItemInfo = new List<PaiMaiItemInfo>();
-            List<PaiMaiItemInfo> paiMaiItemInfos = self.dBPaiMainInfo.PaiMaiItemInfos;
-            for (int i = 0; i < paiMaiItemInfos.Count; i++)
-            {
-                if (paiMaiItemInfos[i].BagInfo.ItemID != itemID)
-                {
-                    continue;
-                }
+            int zone = self.DomainZone();
+            await self.CheckOverTime(self.dBPaiMainInfo_Consume);
+            await self.CheckOverTime(self.dBPaiMainInfo_Material);
+            await self.CheckOverTime(self.dBPaiMainInfo_Equipment);
+            await self.CheckOverTime(self.dBPaiMainInfo_Gemstone);
+            await self.CheckOverTime(self.dBPaiMainInfo_Stall);
 
-                int sellSingPri = (int)((float)paiMaiItemInfos[i].Price / paiMaiItemInfos[i].BagInfo.ItemNum);
-                if (sellSingPri < (int)((float)singPrice * 0.8f))
-                {
-                    paiMaiItemInfo.Add(paiMaiItemInfos[i]);
-                }
-            }
-            return paiMaiItemInfo;
+            await self.SavePaiMaiData(zone  *100 + 1, self.dBPaiMainInfo_Consume);
+            await self.SavePaiMaiData(zone * 100 + 2, self.dBPaiMainInfo_Material);
+            await self.SavePaiMaiData(zone * 100 + 3, self.dBPaiMainInfo_Equipment);
+            await self.SavePaiMaiData(zone * 100 + 4, self.dBPaiMainInfo_Gemstone);
+
+            await self.SavePaiMaiData(zone * 100 + 11, self.dBPaiMainInfo_Shop);
+            await self.SavePaiMaiData(zone * 100 + 12, self.dBPaiMainInfo_Stall);
         }
 
-        public static async ETTask SaveDB(this PaiMaiSceneComponent self)
+        public static async ETTask SavePaiMaiData(this PaiMaiSceneComponent self, long unitId, DBPaiMainInfo dBPaiMainInfo)
+        {
+            Log.Warning($"PaiMaiSceneComponent.SaveDB:  zone:{self.DomainZone()}  id:{unitId}  {dBPaiMainInfo.PaiMaiItemInfos.Count}");
+
+            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitId, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+        }
+
+        public static async ETTask CheckOverTime(this PaiMaiSceneComponent self, DBPaiMainInfo dBPaiMainInfo)
         {
             //检测超时的道具
             long currentTime = TimeHelper.ServerNow();
 
-
-            List<long> removeIds = new List<long>();
-            if (self.dBPaiMainInfo.PaiMaiItemInfos.Count > 1400)
+            for (int i = dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)
             {
-                for (int i = 0; i < self.dBPaiMainInfo.PaiMaiItemInfos.Count; i++)
-                {
-                    PaiMaiItemInfo paiMaiItemInfo = self.dBPaiMainInfo.PaiMaiItemInfos[i];
-                    if (ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).ItemQuality <= 3)
-                    {
-                        removeIds.Add(paiMaiItemInfo.Id);
-                    }
-                    if (removeIds.Count >= 100)
-                    {
-                        break;
-                    }
-                }
-            }
-            if (removeIds.Count > 0)
-            {
-                Log.Console("removeIds.Count: " + removeIds.Count);
-            }
-
-            for (int i = self.dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)
-            {
-                PaiMaiItemInfo paiMaiItemInfo = self.dBPaiMainInfo.PaiMaiItemInfos[i];
-                if (currentTime - paiMaiItemInfo.SellTime >= TimeHelper.OneDay || removeIds.Contains(paiMaiItemInfo.Id))
+                PaiMaiItemInfo paiMaiItemInfo = dBPaiMainInfo.PaiMaiItemInfos[i];
+                if (currentTime - paiMaiItemInfo.SellTime >= TimeHelper.OneDay)
                 {
                     long emaiId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
                     E2P_PaiMaiOverTimeResponse g_SendChatRequest = (E2P_PaiMaiOverTimeResponse)await ActorMessageSenderComponent.Instance.Call
@@ -534,14 +711,10 @@ namespace ET
                         {
                             PaiMaiItemInfo = paiMaiItemInfo
                         });
-
-                    self.dBPaiMainInfo.PaiMaiItemInfos.RemoveAt(i);
+                    dBPaiMainInfo.PaiMaiItemInfos.RemoveAt(i);
                 }
             }
-
-            Log.Warning($"PaiMaiSceneComponent.SaveDB:  {self.DomainZone()} {self.dBPaiMainInfo.PaiMaiItemInfos.Count}");
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
         }
+
     }
 }

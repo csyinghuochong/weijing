@@ -9,6 +9,12 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, M2P_PaiMaiSellRequest request, P2M_PaiMaiSellResponse response, Action reply)
         {
+            if (!ItemConfigCategory.Instance.Contain(request.PaiMaiItemInfo.BagInfo.ItemID))
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
 
             //判定出售价格最低不能低于快捷拍卖列表的50%
             PaiMaiShopItemInfo shopinfo = scene.GetComponent<PaiMaiSceneComponent>().GetPaiMaiShopInfo(request.PaiMaiItemInfo.BagInfo.ItemID);
@@ -22,37 +28,17 @@ namespace ET
                     return;
                 }
             }
-            scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.PaiMaiItemInfos.Add(request.PaiMaiItemInfo);
-            
             // 上架紫色道具刷新该类型的道具
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
-            if (itemConfig.ItemQuality >= 4)
+            DBPaiMainInfo dBPaiMainInfo = scene.GetComponent<PaiMaiSceneComponent>().GetPaiMaiDBByType(itemConfig.ItemType);
+            if (dBPaiMainInfo == null)
             {
-                switch (itemConfig.ItemType)
-                {
-                    //消耗品
-                    case 1:
-                        scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeConsume = 0;
-                        break;
-                    //材料
-                    case 2:
-                        scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
-                        break;
-                    //装备
-                    case 3:
-                        scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeEquipment = 0;
-                        break;
-                    //宝石
-                    case 4:
-                        scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeGemstone = 0;
-                        break;
-                    //宠物之核
-                    case 5:
-                        scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
-                        break;
-                }
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
             }
 
+            dBPaiMainInfo.PaiMaiItemInfos.Add(request.PaiMaiItemInfo);
             reply();
             await ETTask.CompletedTask;
         }

@@ -9,9 +9,26 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, M2P_PaiMaiBuyRequest request, P2M_PaiMaiBuyResponse response, Action reply)
         {
+            //获取列表,对应的缓存进行清空
+            if (!ItemConfigCategory.Instance.Contain(request.PaiMaiItemInfo.BagInfo.ItemID))
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
+            int itemType = itemCof.ItemType;
+            DBPaiMainInfo dBPaiMainInfo = scene.GetComponent<PaiMaiSceneComponent>().GetPaiMaiDBByType(itemType);
+            if (dBPaiMainInfo == null)
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
             long needGold = 0 ;
             PaiMaiItemInfo paiMaiItemInfo = null;
-            List<PaiMaiItemInfo> paiMaiItemInfos =  scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.PaiMaiItemInfos;
+            List<PaiMaiItemInfo> paiMaiItemInfos = dBPaiMainInfo.PaiMaiItemInfos;
             for (int i = paiMaiItemInfos.Count - 1; i >= 0; i--)
             {
                 if (paiMaiItemInfos[i].Id == request.PaiMaiItemInfo.Id)
@@ -41,44 +58,6 @@ namespace ET
                 response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
-            }
-
-            //获取列表,对应的缓存进行清空
-            if (!ItemConfigCategory.Instance.Contain(request.PaiMaiItemInfo.BagInfo.ItemID))
-            {
-                response.Error = ErrorCode.ERR_ItemNotExist;
-                reply();
-                return;
-            }
-
-            ItemConfig itemCof = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
-            switch (itemCof.ItemType) {
-
-                //消耗品
-                case 1:
-                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeConsume = 0;
-                    break;
-
-                //材料
-                case 2:
-                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
-                    break;
-
-                //装备
-                case 3:
-                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeEquipment = 0;
-                    break;
-
-                //宝石
-                case 4:
-                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeGemstone = 0;
-                    break;
-
-                //宠物之核
-                case 5:
-                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
-                    break;
-
             }
 
             BagInfo bagInfo = paiMaiItemInfo.BagInfo;

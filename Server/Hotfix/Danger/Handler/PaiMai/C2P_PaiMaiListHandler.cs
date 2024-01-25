@@ -9,103 +9,30 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2P_PaiMaiListRequest request, P2C_PaiMaiListResponse response, Action reply)
         {
             PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
-            List<PaiMaiItemInfo> PaiMaiItemInfo = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos;
+            
             // 0自己 1-4道具分类
             if (request.PaiMaiType == 0) // 0自己的
             {
                 List<PaiMaiItemInfo> paiMaiItemsTo = new List<PaiMaiItemInfo>();
-                for (int i = 0; i < PaiMaiItemInfo.Count; i++)
-                {
-                    if (PaiMaiItemInfo[i].UserId == request.UserId)
-                    {
-                        paiMaiItemsTo.Add(PaiMaiItemInfo[i]);
-                    }
-                }
-
+                paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UserId, paiMaiComponent.dBPaiMainInfo_Consume.PaiMaiItemInfos ) );
+                paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UserId, paiMaiComponent.dBPaiMainInfo_Material.PaiMaiItemInfos));
+                paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UserId, paiMaiComponent.dBPaiMainInfo_Equipment.PaiMaiItemInfos));
+                paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UserId, paiMaiComponent.dBPaiMainInfo_Gemstone.PaiMaiItemInfos));
                 response.PaiMaiItemInfos = paiMaiItemsTo;
                 reply();
                 return;
             }
             else // 1-4道具
             {
-                List<PaiMaiItemInfo> paimaiListShow = new List<PaiMaiItemInfo>();
-                long nowTime = TimeHelper.ServerNow();
-
-                // 获取物品缓存
-                switch (request.PaiMaiType)
+                DBPaiMainInfo dBPaiMainInfo = paiMaiComponent.GetPaiMaiDBByType(request.PaiMaiType);
+                if (dBPaiMainInfo == null)
                 {
-                    //消耗品
-                    case 1:
-
-                        long chaTimeValue = nowTime - paiMaiComponent.UpdateTimeConsume;
-                        //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || !paiMaiComponent.PaiMaiItemInfos_Consume_New.ContainsKey(request.PaiMaiShowType))
-                        {
-                            paiMaiComponent.UpdateTimeConsume = nowTime;
-                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiType);
-                        }
-
-                        if (paiMaiComponent.PaiMaiItemInfos_Consume_New.TryGetValue(request.PaiMaiShowType, out var value))
-                        {
-                            paimaiListShow = value;
-                        }
-
-                        break;
-
-                    //材料
-                    case 2:
-
-                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeMaterial;
-                        //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || !paiMaiComponent.PaiMaiItemInfos_Material_New.ContainsKey(request.PaiMaiShowType))
-                        {
-                            paiMaiComponent.UpdateTimeMaterial = nowTime;
-                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiType);
-                        }
-
-                        if (paiMaiComponent.PaiMaiItemInfos_Material_New.TryGetValue(request.PaiMaiShowType, out var value1))
-                        {
-                            paimaiListShow = value1;
-                        }
-
-                        break;
-
-                    //装备
-                    case 3:
-
-                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeEquipment;
-                        //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || !paiMaiComponent.PaiMaiItemInfos_Equipment_New.ContainsKey(request.PaiMaiShowType))
-                        {
-                            paiMaiComponent.UpdateTimeEquipment = nowTime;
-                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiType);
-                        }
-
-                        if (paiMaiComponent.PaiMaiItemInfos_Equipment_New.TryGetValue(request.PaiMaiShowType, out var value2))
-                        {
-                            paimaiListShow = value2;
-                        }
-
-                        break;
-
-                    //宝石
-                    case 4:
-
-                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeGemstone;
-                        //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || !paiMaiComponent.PaiMaiItemInfos_Gemstone_New.ContainsKey(request.PaiMaiShowType))
-                        {
-                            paiMaiComponent.UpdateTimeGemstone = nowTime;
-                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiType);
-                        }
-
-                        if (paiMaiComponent.PaiMaiItemInfos_Gemstone_New.TryGetValue(request.PaiMaiShowType, out var value3))
-                        {
-                            paimaiListShow = value3;
-                        }
-
-                        break;
+                    reply();
+                    return;
                 }
+
+                List<PaiMaiItemInfo> paimaiListShow = dBPaiMainInfo.PaiMaiItemInfos;
+                long nowTime = TimeHelper.ServerNow();
 
                 // 拿到指定页数的物品
                 int page = request.Page;

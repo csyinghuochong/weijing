@@ -21,6 +21,7 @@ namespace ET
                 P2M_PaiMaiXiaJiaResponse r_GameStatusResponse = (P2M_PaiMaiXiaJiaResponse)await ActorMessageSenderComponent.Instance.Call
                     (chargeServerId, new M2P_PaiMaiXiaJiaRequest()
                     {
+                        ItemType = request.ItemType,    
                         PaiMaiItemInfoId = request.PaiMaiItemInfoId
                     });
 

@@ -1076,7 +1076,7 @@ namespace ET
         public static async ETTask SendPetReward(this RankSceneComponent self)
         {
             int zone = self.DomainZone();
-            await TimerComponent.Instance.WaitAsync(zone * 1000);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 10000));
             DateTime dateTime = TimeHelper.DateTimeNow();
             if (!RankHelper.HaveReward(2, (int)dateTime.DayOfWeek))
             {

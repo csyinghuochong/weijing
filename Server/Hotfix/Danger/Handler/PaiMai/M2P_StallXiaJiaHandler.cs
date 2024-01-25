@@ -8,8 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2P_StallXiaJiaRequest request, P2M_StallXiaJiaResponse response, Action reply)
         {
-            List<PaiMaiItemInfo> StallItemInfos = scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.StallItemInfos;
-
+            List<PaiMaiItemInfo> StallItemInfos = scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo_Stall.StallItemInfos;
             for (int i = StallItemInfos.Count - 1; i >= 0; i--)
             {
                 if (StallItemInfos[i].Id == request.PaiMaiItemInfoId)
