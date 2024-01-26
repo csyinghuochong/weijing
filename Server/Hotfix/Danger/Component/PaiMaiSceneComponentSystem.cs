@@ -453,17 +453,21 @@ namespace ET
 
             if (d2GGetUnit.Component != null)
             {
-                DBPaiMainInfo oldDBPaiMainInfo =  d2GGetUnit.Component as DBPaiMainInfo;
+                DBPaiMainInfo oldDBPaiMainInfo = d2GGetUnit.Component as DBPaiMainInfo;
                 if (oldDBPaiMainInfo.PaiMaiShopItemInfos.Count > 0
                     || oldDBPaiMainInfo.PaiMaiItemInfos.Count > 0
                     || oldDBPaiMainInfo.StallItemInfos.Count > 0)
                 {
-                    Console.WriteLine($"拍卖服有旧数据；  {zone}");
+                    Console.WriteLine($"拍卖服有旧数据；  {zone}   {oldDBPaiMainInfo.PaiMaiItemInfos.Count}");
 
                     oldPaiMaiShop = oldDBPaiMainInfo.PaiMaiShopItemInfos;
                     oldPaiMaiAll = oldDBPaiMainInfo.PaiMaiItemInfos;
                     oldPaiMaiStall = oldDBPaiMainInfo.StallItemInfos;
                 }
+            }
+            else
+            {
+                Console.WriteLine($"拍卖服无旧数据；  {zone}");
             }
 
             await self.InitPaiMainShop(oldPaiMaiShop);
