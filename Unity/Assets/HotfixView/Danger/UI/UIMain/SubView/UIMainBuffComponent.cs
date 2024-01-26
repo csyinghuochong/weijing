@@ -175,7 +175,7 @@ namespace ET
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 if (uIMainBuffItemComponent.BuffID == buffHandler.BuffData.BuffId)
                 {
-                    uIMainBuffItemComponent.OnResetBuff();
+                    uIMainBuffItemComponent.OnResetBuff(buffHandler);
                 }
             }
         }

@@ -29,11 +29,11 @@
             this.BuffState = BuffState.Running;
         }
 
-        public override void OnReset()
+        public override void OnReset(long endTime)
         {
             this.PassTime = 0f;
             this.BuffBeginTime = TimeHelper.ClientNow();
-            this.BuffEndTime = TimeHelper.ClientNow() + this.mSkillBuffConf.BuffTime;
+            this.BuffEndTime = endTime;
             EventType.SkillEffectReset.Instance.Unit = TheUnitBelongto;
             EventType.SkillEffectReset.Instance.EffectInstanceId = this.EffectInstanceId;
             EventSystem.Instance.PublishClass(EventType.SkillEffectReset.Instance);

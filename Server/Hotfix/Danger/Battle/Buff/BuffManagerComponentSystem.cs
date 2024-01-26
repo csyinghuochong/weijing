@@ -539,6 +539,35 @@ namespace ET
 
                 self.BuffRemoveByUnit(from.Id, buffData.BuffId);
             }
+            if (notice && addBufStatus == 1 && skillBuffConfig.BuffAddSync == 1)
+            {
+                self.BuffAddSyncTime(buffHandler.BuffEndTime, skillBuffConfig);
+            }
+        }
+
+        public static void BuffAddSyncTime(this BuffManagerComponent self, long endTime, SkillBuffConfig skillBuffConfig)
+        {
+            Unit unit = self.GetParent<Unit>();
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                BuffHandler buffHandler = self.m_Buffs[i];
+                if (buffHandler.mBuffConfig.Id == skillBuffConfig.Id)
+                {
+                    buffHandler.BuffEndTime = endTime;
+                }
+            }
+            M2C_UnitBuffUpdate m2C_UnitBuffUpdate = self.m2C_UnitBuffUpdate;
+            m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
+            m2C_UnitBuffUpdate.BuffID = skillBuffConfig.Id;
+            m2C_UnitBuffUpdate.BuffOperateType = 3;
+            m2C_UnitBuffUpdate.BuffEndTime = endTime;
+            if (unit.GetComponent<AOIEntity>() == null)
+            {
+                Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");
+                return;
+            }
+            MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
         }
 
         public static int GetBuffSourceNumber(this BuffManagerComponent self, long formId,  int buffId)

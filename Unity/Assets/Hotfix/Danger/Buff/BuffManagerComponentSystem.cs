@@ -185,8 +185,9 @@ namespace ET
         /// 通过标识ID获得Buff
         /// </summary>
         /// <param name="buffId">BuffData的标识ID</param>
-        public static ABuffHandler GetBuffById(this BuffManagerComponent self, long buffId)
+        public static List<ABuffHandler> GetBuffByConfigId(this BuffManagerComponent self, int buffId)
         {
+            List < ABuffHandler > list = new List < ABuffHandler >();   
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
@@ -196,10 +197,10 @@ namespace ET
                 }
                 if (self.m_Buffs[i].mSkillBuffConf.Id == buffId)
                 {
-                    return self.m_Buffs[i];
+                    list.Add(self.m_Buffs[i]);
                 }
             }
-            return null;
+            return list;
         }
         #endregion
     }

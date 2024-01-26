@@ -48,7 +48,7 @@ namespace ET
 
         public abstract void OnInit(BuffData buffData, Unit theUnitBelongto);
 
-        public abstract void OnReset();
+        public abstract void OnReset(long endTime);
 
         public abstract void OnExecute();
 

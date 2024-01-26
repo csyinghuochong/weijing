@@ -106,9 +106,9 @@ namespace ET
             return leftTime > 0;
         }
 
-        public static void OnResetBuff(this UIMainBuffItemComponent self)
+        public static void OnResetBuff(this UIMainBuffItemComponent self, ABuffHandler aBuffHandler)
         {
-            self.EndTime = TimeHelper.ServerNow() + self.BuffTime; 
+            self.EndTime = aBuffHandler.BuffEndTime;
         }
 
         public static void UpdateBuffNumber(this UIMainBuffItemComponent self, ABuffHandler buffHandler, int number)

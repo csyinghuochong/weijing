@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -34,10 +35,10 @@ namespace ET
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().RemoveBuff(message.BuffID);
                     break;
                 case 3: //重置
-                    ABuffHandler buffHandler = msgUnitBelongTo.GetComponent<BuffManagerComponent>().GetBuffById(message.BuffID);
-                    if (buffHandler != null)
+                    List < ABuffHandler > buffList = msgUnitBelongTo.GetComponent<BuffManagerComponent>().GetBuffByConfigId(message.BuffID);
+                    for (int i = 0; i < buffList.Count; i++)
                     {
-                        buffHandler.OnReset();
+                        buffList[i].OnReset(message.BuffEndTime);
                     }
                     break;
             }
