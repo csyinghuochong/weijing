@@ -59,11 +59,21 @@ namespace ET
             if (SkillConfigCategory.Instance.BuffTriggerSkill.ContainsKey(skillconfig.Id))
             {
                 KeyValuePairLong keyValuePairLong = SkillConfigCategory.Instance.BuffTriggerSkill[skillconfig.Id];
-                int buffNum = defendUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, (int)keyValuePairLong.KeyId);
-                if (buffNum > 0)
+                List<Unit> allDefend = attackUnit.GetParent<UnitComponent>().GetAll();
+                for ( int defend = 0; defend < allDefend.Count; defend++  )
                 {
-                    defendUnit.GetComponent<BuffManagerComponent>().BuffRemove((int)keyValuePairLong.KeyId);
-                    attackUnit.GetComponent<SkillManagerComponent>().TriggerBuffSkill(keyValuePairLong, attackUnit.Id, buffNum).Coroutine();
+                    BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
+                    if (buffManagerComponent == null)
+                    {
+                        continue;
+                    }
+                    int buffNum = buffManagerComponent.GetBuffSourceNumber(attackUnit.Id, (int)keyValuePairLong.KeyId);
+                    if (buffNum <= 0)
+                    {
+                        continue;
+                    }
+                    allDefend[defend].GetComponent<BuffManagerComponent>().BuffRemove((int)keyValuePairLong.KeyId);
+                    attackUnit.GetComponent<SkillManagerComponent>().TriggerBuffSkill(keyValuePairLong, allDefend[defend].Id, buffNum).Coroutine();
                 }
             }
 
