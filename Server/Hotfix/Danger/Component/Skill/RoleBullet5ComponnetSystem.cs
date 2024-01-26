@@ -55,8 +55,6 @@ namespace ET
 
         public static void OnUpdate(this RoleBullet5Componnet self)
         {
-            self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
-
             Unit bullet = self.GetParent<Unit>();
             UnitComponent unitComponent = bullet.GetParent<UnitComponent>();
             long nowTime = TimeHelper.ServerNow();
@@ -116,6 +114,7 @@ namespace ET
                     if (nowTime - self.SkillHandler.LastHurtTimes[uu.Id] > self.SkillHandler.SkillTriggerInvelTime)
                     {
                         self.SkillHandler.OnCollisionUnit(uu);
+                        self.SkillHandler.LastHurtTimes[uu.Id] = nowTime;
                     }
                 }
 
