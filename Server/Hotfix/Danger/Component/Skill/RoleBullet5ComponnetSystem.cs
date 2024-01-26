@@ -92,6 +92,11 @@ namespace ET
                 {
                     continue;
                 }
+                
+                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu))
+                {
+                    continue;
+                }
 
                 if (!self.SkillHandler.HurtIds.Contains(uu.Id))
                 {

@@ -99,6 +99,11 @@ namespace ET
                     self.SkillHandler.HurtIds.Add(uu.Id);
                 }
 
+                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu))
+                {
+                    continue;
+                }
+                
                 if (!self.SkillHandler.LastHurtTimes.ContainsKey(uu.Id))
                 {
                     // 第一次伤害
