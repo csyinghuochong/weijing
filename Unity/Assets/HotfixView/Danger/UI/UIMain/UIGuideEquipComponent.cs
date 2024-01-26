@@ -40,6 +40,11 @@ namespace ET
 
         public static void OnEquipBtn(this UIGuideEquipComponent self)
         {
+            if (self.BagInfo == null || self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(self.BagInfo.BagInfoID) == null)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UIGuideEquip);
+                return;
+            }
             self.ZoneScene().GetComponent<BagComponent>().SendWearEquip(self.BagInfo).Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIGuideEquip);
         }
