@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -171,8 +172,17 @@ namespace ET
                     }
                 }
 
+                if (allAttackIds.Count >= 50)
+                {
+                    Console.WriteLine($"allAttackIds.Count : {allAttackIds.Count >= 50}  {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}");
+                }
+
                 for (int i = 0; i < allAttackIds.Count; i++)
                 {
+                    if (i >= 20)
+                    {
+                        break;
+                    }
                     Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
                     if (attackUnit == null || attackUnit.Type != UnitType.Player)
                     {

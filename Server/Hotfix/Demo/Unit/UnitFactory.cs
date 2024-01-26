@@ -776,6 +776,10 @@ namespace ET
                     {
                         continue;
                     }
+                    if (i >= 20)
+                    {
+                        break;
+                    }
 
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                     for (int k = 0; k < droplist.Count; k++)
