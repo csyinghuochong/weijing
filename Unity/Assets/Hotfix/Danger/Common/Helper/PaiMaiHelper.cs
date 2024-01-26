@@ -65,6 +65,11 @@ namespace ET
             return PaiMaiTypeData[typeid].PaiMaiIDItemList[chapterId];
         }
 
+        public long GetPaiMaiId(int itemType)
+        { 
+            return 1000 + (int)itemType;    
+        }
+
         public void InitPaiMaiData()
         {
             for (int i = 0; i < (int)PaiMaiTypeEnum.Number+1; i++)

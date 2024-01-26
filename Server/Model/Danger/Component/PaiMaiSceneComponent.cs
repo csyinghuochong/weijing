@@ -33,7 +33,7 @@ namespace ET
         //4：宝石
         //5：宠物之核
         /// <summary>
-        /// 拍卖上架 id = zone * 100 + 道具类型(itemconfig.ItemType) 最多十个列表
+        /// 拍卖上架 id = 1000 + 道具类型(itemconfig.ItemType) 最多十个列表
         /// </summary>
         public DBPaiMainInfo dBPaiMainInfo_Consume = new DBPaiMainInfo();       //消耗品  dBPaiMainInfo.PaiMaiItemInfos里面的消耗品1
         public DBPaiMainInfo dBPaiMainInfo_Material = new DBPaiMainInfo();      //材料    dBPaiMainInfo.PaiMaiItemInfos里面的材料
@@ -41,12 +41,12 @@ namespace ET
         public DBPaiMainInfo dBPaiMainInfo_Gemstone = new DBPaiMainInfo();      //宝石    dBPaiMainInfo.PaiMaiItemInfos里面的宝石
 
         /// <summary>
-        /// 拍卖商店 id = zone * 100 +  11
+        /// 拍卖商店 id = 1011
         /// </summary>
         public DBPaiMainInfo dBPaiMainInfo_Shop = new DBPaiMainInfo();      //拍卖商店   dBPaiMainInfo.PaiMaiShopItemInfos   
 
         /// <summary>
-        /// 摆摊道具 id  = zone * 100 +  12
+        /// 摆摊道具 id  = 1012
         /// </summary>
         public DBPaiMainInfo dBPaiMainInfo_Stall = new DBPaiMainInfo();         //摆摊    dBPaiMainInfo.PaiMaiItemInfos里面的摆摊
 

@@ -266,10 +266,10 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static async ETTask InitPaiMainShop(this PaiMaiSceneComponent self, List<PaiMaiShopItemInfo> oldPaiMaiShop)
+        public static async ETTask InitPaiMainShop(this PaiMaiSceneComponent self, int itemType, List<PaiMaiShopItemInfo> oldPaiMaiShop)
         {
             int zone = self.DomainZone();
-            long unitid = zone * 100 + 11;
+            long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
@@ -297,10 +297,10 @@ namespace ET
             self.UpdatePaiMaiShopItemList();
         }
 
-        public static async ETTask InitPaiMainStall(this PaiMaiSceneComponent self, List<PaiMaiItemInfo> oldPaiMaiStall)
+        public static async ETTask InitPaiMainStall(this PaiMaiSceneComponent self, int itemType, List<PaiMaiItemInfo> oldPaiMaiStall)
         {
             int zone = self.DomainZone();
-            long unitid = zone * 100 + 12;
+            long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
@@ -408,7 +408,7 @@ namespace ET
         public static async ETTask InitPaiMaiShangJia(this PaiMaiSceneComponent self, int itemType, List<PaiMaiItemInfo> oldPaiMaiAll)
         {
             int zone = self.DomainZone();
-            long unitid = zone * 100 + itemType;
+            long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
@@ -470,13 +470,14 @@ namespace ET
                 Console.WriteLine($"拍卖服无旧数据；  {zone}");
             }
 
-            await self.InitPaiMainShop(oldPaiMaiShop);
-            await self.InitPaiMainStall(oldPaiMaiStall);
-
             await self.InitPaiMaiShangJia(1, oldPaiMaiAll);
             await self.InitPaiMaiShangJia(2, oldPaiMaiAll);
             await self.InitPaiMaiShangJia(3, oldPaiMaiAll);
             await self.InitPaiMaiShangJia(4, oldPaiMaiAll);
+
+            await self.InitPaiMainShop(11, oldPaiMaiShop);
+            await self.InitPaiMainStall(12, oldPaiMaiStall);
+
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 4 + self.DomainZone() * 200, TimerType.PaiMaiTimer, self);
            
@@ -682,13 +683,13 @@ namespace ET
             await self.CheckOverTime(self.dBPaiMainInfo_Gemstone);
             await self.CheckOverTime(self.dBPaiMainInfo_Stall);
 
-            await self.SavePaiMaiData(zone  *100 + 1, self.dBPaiMainInfo_Consume);
-            await self.SavePaiMaiData(zone * 100 + 2, self.dBPaiMainInfo_Material);
-            await self.SavePaiMaiData(zone * 100 + 3, self.dBPaiMainInfo_Equipment);
-            await self.SavePaiMaiData(zone * 100 + 4, self.dBPaiMainInfo_Gemstone);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(1), self.dBPaiMainInfo_Consume);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(2), self.dBPaiMainInfo_Material);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(3), self.dBPaiMainInfo_Equipment);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(4), self.dBPaiMainInfo_Gemstone);
 
-            await self.SavePaiMaiData(zone * 100 + 11, self.dBPaiMainInfo_Shop);
-            await self.SavePaiMaiData(zone * 100 + 12, self.dBPaiMainInfo_Stall);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(11), self.dBPaiMainInfo_Shop);
+            await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(12), self.dBPaiMainInfo_Stall);
         }
 
         public static async ETTask SavePaiMaiData(this PaiMaiSceneComponent self, long unitId, DBPaiMainInfo dBPaiMainInfo)
