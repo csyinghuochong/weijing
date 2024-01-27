@@ -7470,7 +7470,7 @@ message Chat2C_GetChatResponse // IChatActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-    repeated ChatInfo ChatInfos = 1;
+	repeated ChatInfo ChatInfos = 1;
 }
 
 //ResponseType M2C_OneChallengeResponse 
@@ -7512,4 +7512,13 @@ message M2C_PetChangePosResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;		
 	int32 Error = 92;
+}
+
+//二段技能
+message M2C_SkillSecondResult // IActorMessage
+{
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int32 SkillId = 2;
+	repeated int64 HurtIds = 3;
 }

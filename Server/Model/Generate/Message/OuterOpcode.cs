@@ -870,5 +870,6 @@ namespace ET
 		 public const ushort M2C_OneChallenge = 10867;
 		 public const ushort C2M_PetChangePosRequest = 10868;
 		 public const ushort M2C_PetChangePosResponse = 10869;
+		 public const ushort M2C_SkillSecondResult = 10870;
 	}
 }

@@ -15671,4 +15671,23 @@ namespace ET
 
 	}
 
+//二段技能
+	[Message(OuterOpcode.M2C_SkillSecondResult)]
+	[ProtoContract]
+	public partial class M2C_SkillSecondResult: Object, IActorMessage
+	{
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public int SkillId { get; set; }
+
+		[ProtoMember(3)]
+		public List<long> HurtIds = new List<long>();
+
+	}
+
 }
