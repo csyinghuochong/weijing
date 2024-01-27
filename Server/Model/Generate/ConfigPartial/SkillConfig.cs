@@ -13,10 +13,21 @@ namespace ET
 
         public Dictionary<int, List<KeyValuePairInt>> EquipSkillList = new Dictionary<int, List<KeyValuePairInt>>();
 
+        /// <summary>
+        /// 给该buff的玩家触发一个技能
+        /// </summary>
         public Dictionary<int , KeyValuePairLong> BuffTriggerSkill = new Dictionary<int , KeyValuePairLong>();
 
+        /// <summary>
+        /// 给该buff的玩家触发额外伤害
+        /// </summary>
         public Dictionary<int, KeyValuePairLong> BuffAddHurt = new Dictionary<int, KeyValuePairLong>();
-      
+
+        /// <summary>
+        /// 给该buff的玩家触发二段技能
+        /// </summary>
+        public Dictionary<int, KeyValuePairLong> BuffSecondSkill = new Dictionary<int, KeyValuePairLong>();
+
         /// <summary>
         /// 获取是技能的一级基础技能
         /// </summary>
@@ -61,6 +72,16 @@ namespace ET
                             KeyId = int.Parse(buffInfoParam[0]),
                             Value = int.Parse(buffInfoParam[0]),
                             Value2 = (long)(float.Parse(buffInfoParam[2]) * 1000)
+                        });
+                    }
+                    //97050203,3,77008007  buffid/类型/二段技能0
+                    if (buffInfoParam[1] == "3")
+                    {
+                        BuffSecondSkill.Add(skillconfig.Id, new KeyValuePairLong()
+                        {
+                            KeyId = int.Parse(buffInfoParam[0]),
+                            Value = int.Parse(buffInfoParam[0]),
+                            Value2 = int.Parse(buffInfoParam[2]),
                         });
                     }
                 }
