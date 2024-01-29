@@ -272,25 +272,25 @@ namespace ET
             long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
-
+            //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+            List<DBPaiMainInfo> paimaiList = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(self.DomainZone(), d => d.Id == unitid);
             if (zone == 66)
             {
                 Log.Console("zone == 66");
             }
-
-            if (d2GGetUnit.Component == null)
+            if (paimaiList == null || paimaiList.Count == 0)
             {
                 //初始拍卖行商店
                 DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
                 dBPaiMainInfo.Id = unitid;
                 self.dBPaiMainInfo_Shop = dBPaiMainInfo;
                 //存储拍卖行商店
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                //D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(self.DomainZone(), dBPaiMainInfo);
             }
             else
             {
-                self.dBPaiMainInfo_Shop = d2GGetUnit.Component as DBPaiMainInfo;
+                self.dBPaiMainInfo_Shop = paimaiList[0];
             }
 
             //更新快捷购买列表
@@ -303,14 +303,14 @@ namespace ET
             long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
-
+            // D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+            List<DBPaiMainInfo> paimaiList = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(self.DomainZone(), d => d.Id == unitid);
             if (zone == 66)
             {
                 Log.Console("zone == 66");
             }
 
-            if (d2GGetUnit.Component == null)
+            if (paimaiList == null || paimaiList.Count == 0)
             {
                 //初始摆摊数据
                 DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
@@ -318,11 +318,12 @@ namespace ET
                 self.dBPaiMainInfo_Stall = dBPaiMainInfo;
                 self.dBPaiMainInfo_Stall.PaiMaiItemInfos = oldPaiMaiStall;
                 //存储摆摊数据
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                //D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(self.DomainZone(), dBPaiMainInfo);
             }
             else
             {
-                self.dBPaiMainInfo_Stall = d2GGetUnit.Component as DBPaiMainInfo;
+                self.dBPaiMainInfo_Stall = paimaiList[0];
             }
         }
 
@@ -411,14 +412,14 @@ namespace ET
             long unitid = PaiMaiHelper.Instance.GetPaiMaiId(itemType);
             long dbCacheId = DBHelper.GetDbCacheId(zone);
 
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
-
+            //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.DBPaiMainInfo });
+            List<DBPaiMainInfo> paimaiList = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(self.DomainZone(), d => d.Id == unitid);
             if (zone == 66)
             {
                 Log.Console("zone == 66");
             }
 
-            if (d2GGetUnit.Component == null)
+            if (paimaiList == null || paimaiList.Count == 0)
             {
                 //初始摆摊数据
                 DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();
@@ -426,11 +427,12 @@ namespace ET
                 dBPaiMainInfo.PaiMaiItemInfos = self.GetItemListByType(itemType, oldPaiMaiAll);
                 self.UpdatePaiMaiDBByType(itemType, dBPaiMainInfo);
                 //存储摆摊数据
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                //D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(self.DomainZone(), dBPaiMainInfo);
             }
             else
             {
-                self.UpdatePaiMaiDBByType(itemType, d2GGetUnit.Component as DBPaiMainInfo);
+                self.UpdatePaiMaiDBByType(itemType, paimaiList[0]);
             }
         }
 
@@ -444,11 +446,12 @@ namespace ET
             List<PaiMaiItemInfo> oldPaiMaiAll = new List<PaiMaiItemInfo>();
             List<PaiMaiItemInfo> oldPaiMaiStall = new List<PaiMaiItemInfo>();
 
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
+            //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
+            List<DBPaiMainInfo> paimaiList = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(self.DomainZone(), d => d.Id == zone);
 
-            if (d2GGetUnit.Component != null)
+            if (paimaiList != null && paimaiList.Count > 0)
             {
-                DBPaiMainInfo oldDBPaiMainInfo = d2GGetUnit.Component as DBPaiMainInfo;
+                DBPaiMainInfo oldDBPaiMainInfo = paimaiList[0];
                 if (oldDBPaiMainInfo.PaiMaiShopItemInfos.Count > 0
                     || oldDBPaiMainInfo.PaiMaiItemInfos.Count > 0
                     || oldDBPaiMainInfo.StallItemInfos.Count > 0)
@@ -690,9 +693,10 @@ namespace ET
         public static async ETTask SavePaiMaiData(this PaiMaiSceneComponent self, long unitId, DBPaiMainInfo dBPaiMainInfo)
         {
             Log.Warning($"PaiMaiSceneComponent.SaveDB:  zone:{self.DomainZone()}  id:{unitId}  {dBPaiMainInfo.PaiMaiItemInfos.Count}");
-
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitId, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            
+            //long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            //D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitId, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
+            await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(self.DomainZone(), dBPaiMainInfo);
         }
 
         public static async ETTask CheckOverTime(this PaiMaiSceneComponent self, DBPaiMainInfo dBPaiMainInfo)

@@ -24,7 +24,6 @@ namespace ET
         public const string JiaYuanComponent = "JiaYuanComponent";
         public const string DataCollationComponent = "DataCollationComponent";
 
-
         public const string DBRankInfo = "DBRankInfo";
         public const string DBUnionInfo = "DBUnionInfo";
         public const string DBMailInfo = "DBMailInfo";
@@ -38,7 +37,6 @@ namespace ET
         public const string DBDayActivityInfo = "DBDayActivityInfo";
         public const string DBCenterSerialInfo = "DBCenterSerialInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";
-
 
         public static List<string> UnitCacheKeyList = new List<string>();
 
