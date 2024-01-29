@@ -477,7 +477,6 @@ namespace ET
             await self.InitPaiMainStall(12, oldPaiMaiStall);
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + RandomHelper.RandomNumber(1000, 5000), TimerType.PaiMaiTimer, self);
-           
             self.OnZeroClockUpdate();
         }
 
