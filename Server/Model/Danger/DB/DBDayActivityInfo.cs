@@ -41,10 +41,19 @@ namespace ET
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, List<long>> GuessPlayerList = new Dictionary<int, List<long>>();
 
+        /// <summary>
+        /// 参与竞猜的玩家
+        /// </summary>
+        /// <param name="guessPlayerList"></param>
         public void AddGuessPlayerList(Dictionary<int, List<long>> guessPlayerList)
         {
             foreach (var item in guessPlayerList)
             {
+                if (!GuessPlayerList.ContainsKey(item.Key))
+                {
+                    GuessPlayerList.Add(item.Key, new List<long>());        
+                }
+
                 if (item.Value.Count > 0 && GuessPlayerList[item.Key].Contains(item.Value[0]))
                 {
                     continue;
@@ -63,6 +72,11 @@ namespace ET
         {
             foreach (var item in guessRewardList)
             {
+                if (!GuessRewardList.ContainsKey(item.Key))
+                {
+                    GuessRewardList.Add(item.Key, new List<long>());    
+                }
+
                 if (item.Value.Count > 0 && GuessRewardList[item.Key].Contains(item.Value[0]))
                 {
                     continue;

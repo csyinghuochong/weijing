@@ -446,11 +446,6 @@ namespace ET
 
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
 
-            if (zone == 66)
-            {
-                Log.Console("zone == 66");
-            }
-
             if (d2GGetUnit.Component != null)
             {
                 DBPaiMainInfo oldDBPaiMainInfo = d2GGetUnit.Component as DBPaiMainInfo;
