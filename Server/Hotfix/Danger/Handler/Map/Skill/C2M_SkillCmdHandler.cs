@@ -50,7 +50,7 @@ namespace ET
                         {
                             continue;
                         }
-
+                        request.TargetID = allDefend[defend].Id;
                         allDefend[defend].GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
                     }
                 }
