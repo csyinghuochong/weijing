@@ -515,6 +515,21 @@ namespace ET
             }
         }
 
+        public static void OnSkillSecond(this UIMainSkillComponent self, M2C_SkillSecondResult message)
+        {
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                if (self.UISkillGirdList[i].SkillPro == null)
+                {
+                    continue;
+                }
+                if (self.UISkillGirdList[i].SkillPro.SkillID == message.SkillId)
+                {
+                    self.UISkillGirdList[i].OnSkillSecondResult(message);
+                }
+            }
+        }
+
         public static void OnSkillBeging(this UIMainSkillComponent self, string dataParams)
         { 
             int skillId = int.Parse(dataParams);
@@ -591,6 +606,7 @@ namespace ET
                 uISkillGridComponent.RemoveSkillInfoShow();
                 uISkillGridComponent.OnUpdate(0,0);
                 uISkillGridComponent.UseSkill = false;
+                uISkillGridComponent.SkillSecond = 0;
             }
             self.UIFangunComponet.OnUpdate(0);
         }

@@ -5,6 +5,10 @@ namespace ET
 
     public class SkillManagerComponent : Entity, IAwake, IDestroy
     {
+        /// <summary>
+        /// 二段技能 原技能
+        /// </summary>
+        public Dictionary<int, int> SkillSecond = new Dictionary<int, int>();
         public List<SkillInfo> t_Skills = new List<SkillInfo>();
         public List<ASkillHandler> Skills = new List<ASkillHandler>();
         public List<SkillCDItem> SkillCDs = new List<SkillCDItem>();       //冷却时间列表

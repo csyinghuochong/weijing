@@ -349,6 +349,7 @@ namespace ET
             if (ishit) 
             {
                 self.SkillFirstHurtTime = TimeHelper.ServerNow();
+                self.TheUnitFrom.GetComponent<SkillManagerComponent>().CheckSkillSecond(self, uu.Id);
             }
             return ishit;
         }

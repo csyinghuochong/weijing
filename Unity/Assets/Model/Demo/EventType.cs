@@ -520,6 +520,14 @@ namespace ET
             public Unit Unit;
         }
 
+        public class M2C_SkillSecond : DisposeObject
+        {
+            public static readonly M2C_SkillSecond Instance = new M2C_SkillSecond();
+            public M2C_SkillSecondResult M2C_SkillSecondResult;
+            public Scene ZoneScene;
+            public Unit Unit;
+        }
+
         //技能预警
         public class SkillYuJing : DisposeObject
         {

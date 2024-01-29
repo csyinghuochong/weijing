@@ -95,6 +95,17 @@ namespace ET
             self.OnFinish();
         }
 
+        public static void ClearSkillCD(this SkillManagerComponent self,  int skillId)
+        {
+            for (int i = 0; i < self.SkillCDs.Count; i++)
+            {
+                if (self.SkillCDs[i].SkillID == skillId)
+                {
+                    self.SkillCDs[i].CDEndTime = 0;
+                }
+            }
+        }
+
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();
@@ -246,8 +257,22 @@ namespace ET
             }
         }
 
+        public static void AddSkillSecond(this SkillManagerComponent self, int skillId, int secondId)
+        {
+            if (self.SkillSecond.ContainsKey(secondId))
+            {
+                return;
+            }
+            self.SkillSecond.Add(secondId, skillId);
+        }
+
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, long cdEndTime, long pulicCD)
         {
+            if (self.SkillSecond.ContainsKey(skillId))
+            {
+                skillId = self.SkillSecond[skillId];    
+            }
+
             //添加技能CD列表
             SkillCDItem skillcd = self.GetSkillCD(skillId);
             if (skillcd == null)
@@ -404,6 +429,14 @@ namespace ET
                     continue;
                 }
                 skillHandler.SetSkillState(SkillState.Finished);
+            }
+        }
+
+        public static void OnSkillSecondResult(this SkillManagerComponent self, M2C_SkillSecondResult message)
+        {
+            if (message.HurtIds.Count == 0)
+            { 
+                
             }
         }
 

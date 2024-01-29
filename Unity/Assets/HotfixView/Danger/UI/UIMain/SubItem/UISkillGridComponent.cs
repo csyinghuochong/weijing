@@ -21,6 +21,7 @@ namespace ET
             }
         }
     }
+
     public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, GameObject>
     {
         public override void Awake(UISkillGridComponent self, GameObject gameObjectnt)
@@ -54,6 +55,7 @@ namespace ET
         public Image Img_PublicSkillCD;
         public GameObject Img_Mask;
         public GameObject GameObject;
+        public Image SkillSecondCD;
 
         public SkillConfig SkillWuqiConfig;
         public SkillConfig SkillBaseConfig;
@@ -69,6 +71,9 @@ namespace ET
         public int Index;
         public Action<int> UseSkillHandler;
         public List<string> AssetPath = new List<string>();
+
+        public int SkillSecond = 0;    //1 可以二段 
+
         
         public void Awake(GameObject gameObject)
         {
@@ -83,6 +88,8 @@ namespace ET
             this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject.GetComponent<Image>();
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
             this.SkillYanGan = gameObject.transform.Find("SkillYanGan").gameObject;
+            this.SkillSecondCD = gameObject.transform.Find("SkillSecondCD").gameObject.GetComponent<Image>();
+            this.SkillSecondCD.gameObject.SetActive(false);
             this.Button_Cancle.SetActive(false);
             this.SkillYanGan.SetActive(false);
             this.Text_SkillItemNum.SetActive(false);
@@ -156,6 +163,11 @@ namespace ET
                 self.Text_SkillCD.text = showCostTime.ToString();
                 float proValue = (float)leftCDTime / ((float)self.SkillBaseConfig.SkillCD * 1000f);
                 self.Img_SkillCD.fillAmount = proValue;
+                if (self.SkillSecond == 1)  //已释放二段斩 进入CD
+                {
+                    self.SkillSecond = 0;
+                    self.SkillSecondCD.gameObject.SetActive(false);  
+                }
             }
             else
             {
@@ -256,7 +268,15 @@ namespace ET
             EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
             if (self.SkillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle, targetId, distance).Coroutine();
+                int skillId = self.SkillBaseConfig.Id;
+                SkillManagerComponent skillManagerComponent = myUnit.GetComponent<SkillManagerComponent>();
+                if (self.SkillSecond == 1)
+                {
+                    //用二段技能
+                    skillId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillId].Value2;
+                    skillManagerComponent.AddSkillSecond(self.SkillBaseConfig.Id, skillId);
+                }
+                skillManagerComponent.SendUseSkill(skillId, 0, angle, targetId, distance).Coroutine();
             }
             else
             {
@@ -407,6 +427,76 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + 10000, TimeHelper.ServerNow() + 1000);
             self.Button_Cancle.SetActive(false);
+        }
+
+        public static void OnSkillSecondResult(this UISkillGridComponent self, M2C_SkillSecondResult message)
+        {
+            if (self.SkillPro == null)
+            {
+                return;
+            }
+
+            if (message != null && message.HurtIds.Count > 0)
+            {
+                ///可以释放二段技能
+                if (self.SkillSecond == 0)
+                {
+                    self.SkillSecond = 1;
+                    self.SkillSecondCD.gameObject.SetActive(true);
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    unit.GetComponent<SkillManagerComponent>().ClearSkillCD(message.SkillId);
+                    self.ShowSkillSecondCD(self.SkillPro.SkillID).Coroutine();
+                }
+            }
+
+            if (message == null)
+            {
+                //未及时释放二段斩，进入CD
+                self.SkillSecond = 0;
+                self.SkillSecondCD.gameObject.SetActive(false);
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
+                unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + (skillConfig.SkillLiveTime), TimeHelper.ServerNow() + 500);
+            }
+        }
+
+        public static async ETTask ShowSkillSecondCD(this UISkillGridComponent self, int skillId)
+        {
+            KeyValuePairLong keyValuePairLong = null;
+            SkillConfigCategory.Instance.BuffSecondSkill.TryGetValue(skillId, out keyValuePairLong);
+            if (keyValuePairLong == null)
+            {
+                return;
+            }
+
+            long allTime = SkillBuffConfigCategory.Instance.Get((int)keyValuePairLong.KeyId).BuffTime;
+            long passTime = 0;
+            while (true) 
+            {
+                if (self.IsDisposed)
+                {
+                    self.SkillSecond = 0;
+                    break;
+                }
+                if (self.SkillPro == null || self.SkillPro.SkillID != skillId)
+                {
+                    self.SkillSecond = 0;
+                    self.SkillSecondCD.gameObject.SetActive(false);
+                    break;
+                }
+                if (passTime >= allTime)
+                {
+                    self.OnSkillSecondResult(null);
+                    break;
+                }
+                if (self.SkillSecond == 0)
+                {
+                    break;
+                }
+                self.SkillSecondCD.fillAmount = 1f * (allTime - passTime) / allTime;
+                await TimerComponent.Instance.WaitAsync(100);
+                passTime += 100;
+            }
         }
 
         public static void UpdateSkillInfo(this UISkillGridComponent self, SkillPro skillpro)

@@ -485,7 +485,7 @@ namespace ET
                 handlerList.Add(skillAction);
             }
 
-            //添加技能CD列表  给客户端发送消失 我创建了一个技能,客户端创建特效等相关功能
+            //添加技能CD列表  给客户端发送消息 我创建了一个技能,客户端创建特效等相关功能
             SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
             m2C_Skill.Error = ErrorCode.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
@@ -681,7 +681,6 @@ namespace ET
             if (unit.Type != UnitType.Player && skillConfig.SkillActType == 0)
             {
                 //float attackSpped = 1f - numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-
                 //攻击速度调整
                 float attackSpped = 1f / (1 +  numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro));
 
@@ -890,6 +889,40 @@ namespace ET
         {
             self.SkillCDs.Clear();
             self.OnDispose();
+        }
+
+        /// <summary>
+        /// 二段斩第一技能结束
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillConfig"></param>
+        public static void CheckSkillSecond(this SkillManagerComponent self, SkillHandler skillHandler, long hurtId) 
+        {
+            KeyValuePairLong keyValuePairLong = null;
+            SkillConfigCategory.Instance.BuffSecondSkill.TryGetValue(skillHandler.SkillConf.Id, out keyValuePairLong);
+            if (keyValuePairLong == null)
+            {
+                return;
+            }
+            Unit unit = self.GetParent<Unit>();
+            List<long> hurtIds = new List<long>() {  hurtId };
+
+            ///攻击到目标则暂时清除CD
+            SkillCDItem skillCDItem = null;
+            self.SkillCDs.TryGetValue(skillHandler.SkillConf.Id, out skillCDItem);
+            if (skillCDItem != null)
+            {
+                skillCDItem.CDEndTime = 0;
+            }
+
+            if (!self.SkillSecond.ContainsKey((int)keyValuePairLong.Value2))
+            {
+                self.SkillSecond.Add((int)(keyValuePairLong.Value2), skillHandler.SkillConf.Id );
+            }
+
+            //有伤害才同步 打断CD. 只同步一次
+            M2C_SkillSecondResult request = new M2C_SkillSecondResult() { UnitId = self.Id, SkillId = skillHandler.SkillConf.Id, HurtIds = hurtIds };
+            MessageHelper.SendToClient(self.GetParent<Unit>(), request);
         }
 
         public static void CheckEndSkill(this SkillManagerComponent self, int endSkillId)

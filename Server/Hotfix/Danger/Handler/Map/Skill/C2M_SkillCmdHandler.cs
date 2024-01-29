@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -29,7 +30,30 @@ namespace ET
 
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
-                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
+                SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();   
+                M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
+
+                if (skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
+                {
+                    int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillManagerComponent.SkillSecond[request.SkillID]].KeyId;
+
+                    List<Unit> allDefend = unit.GetParent<UnitComponent>().GetAll();
+                    for (int defend = 0; defend < allDefend.Count; defend++)
+                    {
+                        BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
+                        if (buffManagerComponent == null || allDefend[defend].Id == request.TargetID)
+                        {
+                            continue;
+                        }
+                        int buffNum = buffManagerComponent.GetBuffSourceNumber(unit.Id, buffId);
+                        if (buffNum <= 0)
+                        {
+                            continue;
+                        }
+
+                        allDefend[defend].GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
+                    }
+                }
 
                 if (m2C_SkillCmd.Error == ErrorCode.ERR_Success)
                 {
