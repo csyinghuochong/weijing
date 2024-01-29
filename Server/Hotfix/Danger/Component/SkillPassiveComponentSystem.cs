@@ -554,7 +554,7 @@ namespace ET
                     int weaponType = targetId == 0 ? ItemEquipType.Common : (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
                     if (weaponType != weapontype)
                     {
-                        unit.GetComponent<BuffManagerComponent>().BuffRemove(buffId);
+                        unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, buffId);
                     }
                     if (weaponType == weapontype && buffId!=0)
                     {

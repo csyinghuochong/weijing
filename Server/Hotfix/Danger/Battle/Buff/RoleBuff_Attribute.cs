@@ -187,7 +187,7 @@ namespace ET
                     {
                         foreach (int buffId in relieveBuffs)
                         {
-                            this.TheUnitBelongto.GetComponent<BuffManagerComponent>().BuffRemove(buffId);
+                            this.TheUnitBelongto.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, buffId);
                         }
                     }
                     break;

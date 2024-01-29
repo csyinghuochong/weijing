@@ -11,7 +11,7 @@ namespace ET
             if (oldHorse > 0)
             {
                 ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(oldHorse);
-                self.GetComponent<BuffManagerComponent>().BuffRemove(zuoqiCof.MoveBuffID);
+                self.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, zuoqiCof.MoveBuffID);
             }
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))

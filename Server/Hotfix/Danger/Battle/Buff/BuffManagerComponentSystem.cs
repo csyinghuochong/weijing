@@ -281,27 +281,14 @@ namespace ET
             }
         }
 
-        public static void BuffRemove(this BuffManagerComponent self, int buffId)
-        {
-            //判断玩家身上是否有相同的buff,如果有就注销此Buff
-            int buffcnt = self.m_Buffs.Count;
-            for (int i = buffcnt - 1; i >=0 ; i--)
-            {
-                if (self.m_Buffs[i].mBuffConfig.Id == buffId)
-                {
-                    self.OnRemoveBuffItem(self.m_Buffs[i]);
-                    self.m_Buffs.RemoveAt(i);
-                }
-            }
-        }
-
         public static void BuffRemoveByUnit(this BuffManagerComponent self, long unitId, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
-                if (self.m_Buffs[i].mBuffConfig.Id == buffId && self.m_Buffs[i].TheUnitFrom.Id == unitId)
+                if (self.m_Buffs[i].mBuffConfig.Id == buffId &&
+                    (self.m_Buffs[i].TheUnitFrom.Id == unitId || unitId == 0) )
                 {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
                     self.m_Buffs.RemoveAt(i);
@@ -343,7 +330,16 @@ namespace ET
 
         public static void BuffFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler, bool notice = true)
         {
+          
             Unit unit =self.GetParent<Unit>();
+
+            if (unit.Type == UnitType.Player &&  buffData.BuffId==97050204)
+            {
+                Log.Error("111");
+            }
+
+
+
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             float now_DiKangPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_DiKangPro);
             if (RandomHelper.RandFloat01() < now_DiKangPro && skillBuffConfig.BuffBenefitType == 2)

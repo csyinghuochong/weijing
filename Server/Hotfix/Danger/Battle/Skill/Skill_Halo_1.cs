@@ -32,7 +32,7 @@
                 }
                 if (!this.CheckShape(unit.Position))
                 {
-                    unit.GetComponent<BuffManagerComponent>().BuffRemove(SkillConf.BuffID[0]);
+                    unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, SkillConf.BuffID[0]);
                     HurtIds.RemoveAt(i);
                     continue;
                 }

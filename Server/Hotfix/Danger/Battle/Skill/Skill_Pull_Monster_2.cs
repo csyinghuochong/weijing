@@ -68,7 +68,7 @@ namespace ET
               
                 if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
                 {
-                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, 99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     removeIds.Add(uid);
                     continue;
@@ -126,7 +126,7 @@ namespace ET
                 
                 if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
                 {
-                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, 99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     aIComponent.TargetPoint.Clear();
                     removeIds.Add(uid);
@@ -174,13 +174,13 @@ namespace ET
                     {
                         continue;
                     }
-                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, 99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     aIComponent.TargetPoint.Clear();
                 }
                 else
                 {
-                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, 99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                 }
             }
