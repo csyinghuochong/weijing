@@ -41,7 +41,7 @@ namespace ET
                     for (int defend = 0; defend < allDefend.Count; defend++)
                     {
                         BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
-                        if (buffManagerComponent == null || allDefend[defend].Id == request.TargetID)
+                        if (buffManagerComponent == null || allDefend[defend].Id == request.TargetID || allDefend[defend].Id == unit.Id)
                         {
                             continue;
                         }
