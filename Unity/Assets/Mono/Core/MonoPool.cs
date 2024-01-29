@@ -37,7 +37,7 @@ namespace ET
             StringBuilder sb = new StringBuilder();
             foreach (var item in pool)
             {
-                sb.AppendLine($"\t    {item.Key.Name}:      \t{item.Value.Count}");
+                sb.AppendLine($"\t    {item.Key.FullName}:      \t{item.Value.Count}");
             }
             return sb.ToString();
         }
