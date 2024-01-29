@@ -36,7 +36,7 @@ namespace ET
         {
             if (self.SkillInfoShowTimer != 0 )
             {
-                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                TimerComponent.Instance?.Remove(ref self.SkillInfoShowTimer);
                 self.SkillInfoShowTimer = 0;
             }
         }
