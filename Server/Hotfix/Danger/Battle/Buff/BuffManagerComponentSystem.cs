@@ -330,16 +330,7 @@ namespace ET
 
         public static void BuffFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler, bool notice = true)
         {
-          
             Unit unit =self.GetParent<Unit>();
-
-            if (unit.Type == UnitType.Player &&  buffData.BuffId==97050204)
-            {
-                Log.Error("111");
-            }
-
-
-
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             float now_DiKangPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_DiKangPro);
             if (RandomHelper.RandFloat01() < now_DiKangPro && skillBuffConfig.BuffBenefitType == 2)
