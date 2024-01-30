@@ -98,7 +98,7 @@ namespace ET
 
             long instanceid = self.InstanceId;
 
-            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { PaiMaiItemInfoId = paimaiItemId };
+            C2P_PaiMaiFindRequest reuqest = new C2P_PaiMaiFindRequest() { ItemType = itemType, PaiMaiItemInfoId = paimaiItemId };
             P2C_PaiMaiFindResponse response = (P2C_PaiMaiFindResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(reuqest);
             if (response.Page == 0)
             {

@@ -11,6 +11,12 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2P_PaiMaiFindRequest request, P2C_PaiMaiFindResponse response, Action reply)
         {
+            if (request.ItemType == 0)
+            {
+                response.Page = 0;
+                reply();
+                return;
+            }
             PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
             DBPaiMainInfo dBPaiMainInfo = paiMaiComponent.GetPaiMaiDBByType(request.ItemType);
             if (dBPaiMainInfo == null)
