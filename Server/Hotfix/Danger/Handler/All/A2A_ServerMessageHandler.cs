@@ -42,7 +42,7 @@ namespace ET
                     case SceneType.PaiMai:
                         if (request.MessageType == NoticeType.StopSever)
                         {
-                            scene.GetComponent<PaiMaiSceneComponent>().SaveDB().Coroutine();
+                            scene.GetComponent<PaiMaiSceneComponent>().SaveDB(0).Coroutine();
                             Log.Debug($"数据落地:  PaiMai: {scene.DomainZone()}");
                         }
                         break;

@@ -11,7 +11,7 @@ namespace ET
         {
             try
             {
-                self.SaveDB().Coroutine();
+                self.SaveDB(1).Coroutine();
             }
             catch (Exception e)
             {
@@ -670,8 +670,16 @@ namespace ET
             }
         }
 
-        public static async ETTask SaveDB(this PaiMaiSceneComponent self)
+        public static async ETTask SaveDB(this PaiMaiSceneComponent self, int random)
         {
+            if (random == 1)
+            {
+                if (RandomHelper.RandFloat01() < 0.33f)
+                {
+                    return;
+                }
+            }
+
             int zone = self.DomainZone();
             await self.CheckOverTime(self.dBPaiMainInfo_Consume);
             await self.CheckOverTime(self.dBPaiMainInfo_Material);
