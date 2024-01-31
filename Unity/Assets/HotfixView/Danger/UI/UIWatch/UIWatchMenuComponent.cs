@@ -52,10 +52,12 @@ namespace ET
         public GameObject Button_UnionElder;        //任命长老
         public GameObject Button_UnionDismiss;      //撤销职务
         public GameObject Button_OneChallenge;
+        public GameObject Button_ServerBlack;
         public GameObject PositionSet;
 
         public long UserId;
         public long TeamId;
+        public string UserName;
         public F2C_WatchPlayerResponse f2C_WatchPlayerResponse;
     }
 
@@ -114,6 +116,9 @@ namespace ET
             self.Button_OneChallenge = rc.Get<GameObject>("Button_OneChallenge");  //撤销职务
             self.Button_OneChallenge.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_OneChallenge().Coroutine(); });
 
+            self.Button_ServerBlack = rc.Get<GameObject>("Button_ServerBlack");
+            self.Button_ServerBlack.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ServerBlack().Coroutine(); });
+
             self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
@@ -125,6 +130,7 @@ namespace ET
             self.Button_UnionElder.SetActive(false);
             self.Button_UnionDismiss.SetActive(false);
             self.Button_OneChallenge.SetActive(false);
+            self.Button_ServerBlack.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
@@ -170,6 +176,23 @@ namespace ET
             {
                 self.RequestKickUnion().Coroutine();
             }, null).Coroutine();
+        }
+
+        public static async ETTask OnButton_ServerBlack(this UIWatchMenuComponent self)
+        {
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            if (string.IsNullOrEmpty(self.UserName))
+            {
+                self.OnClickImageBg();
+                return;
+            }
+            C2C_GMCommonRequest request = new C2C_GMCommonRequest()
+            {
+                Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account,
+                Context = $"black {zone} {self.UserName}"
+            };
+            C2C_GMCommonResponse repose = (C2C_GMCommonResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.OnClickImageBg();
         }
 
         public static async ETTask OnButton_OneChallenge(this UIWatchMenuComponent self)
@@ -379,11 +402,12 @@ namespace ET
             self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
         }
 
-        public static async ETTask OnUpdateUI_1(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId)
+        public static async ETTask OnUpdateUI_1(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId, string userName)
         {
             self.OnUpdatePos();
 
             self.UserId = userId;
+            self.UserName = userName;   
             for (int i = 0; i < self.PositionSet.transform.childCount; i++)
             {
                 self.PositionSet.transform.GetChild(i).gameObject.SetActive(false);
@@ -429,8 +453,10 @@ namespace ET
             {
                 case MenuEnumType.Main:
                 case MenuEnumType.Chat:
+                    AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     self.Button_OneChallenge.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
+                    self.Button_ServerBlack.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
                     break;
                 case MenuEnumType.Team:
                     break;

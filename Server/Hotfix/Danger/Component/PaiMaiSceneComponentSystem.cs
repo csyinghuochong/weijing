@@ -680,8 +680,11 @@ namespace ET
             await self.CheckOverTime(self.dBPaiMainInfo_Stall);
 
             await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(1), self.dBPaiMainInfo_Consume);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000,5000));
             await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(2), self.dBPaiMainInfo_Material);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
             await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(3), self.dBPaiMainInfo_Equipment);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
             await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(4), self.dBPaiMainInfo_Gemstone);
 
             await self.SavePaiMaiData(PaiMaiHelper.Instance.GetPaiMaiId(11), self.dBPaiMainInfo_Shop);

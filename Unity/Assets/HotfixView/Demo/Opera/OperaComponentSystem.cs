@@ -320,7 +320,8 @@ namespace ET
             if (unit.Type == UnitType.Player)
             {
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id).Coroutine();
+                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();       
+                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id, unitInfoComponent.UnitName).Coroutine();
             }
         }
 
