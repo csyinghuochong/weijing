@@ -21,6 +21,11 @@ namespace ET
                 reply();
                 return;
             }
+            if(request.ChatInfo.PlayerLevel <12)
+            {
+                reply();
+                return;
+            }
 
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             request.ChatInfo.Time = TimeHelper.ServerNow();
@@ -33,6 +38,15 @@ namespace ET
                     foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
+                    }
+                    //chatInfoUnitsComponent.WordChatInfos.Clear();
+
+                    for (int i = chatInfoUnitsComponent.WordChatInfos.Count - 1; i >=0; i--)
+                    {
+                        if (chatInfoUnitsComponent.WordChatInfos[i].PlayerLevel < 12)
+                        {
+                            chatInfoUnitsComponent.WordChatInfos.RemoveAt(i);
+                        }
                     }
 
                     if (request.ChatInfo.ChannelId == (int)ChannelEnum.Word)
