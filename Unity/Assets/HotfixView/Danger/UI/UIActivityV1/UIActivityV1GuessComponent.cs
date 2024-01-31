@@ -173,9 +173,9 @@ namespace ET
                 if (key <= TimeHelper.DateTimeNow().Hour)
                 {
                     ReferenceCollector rc = self.UIActivityV1GuessItems[index].GetComponent<ReferenceCollector>();
-                    rc.Get<GameObject>("NewYearImg").SetActive(true);
 
                     // 显示开奖的图片------------
+                    // rc.Get<GameObject>("NewYearImg").SetActive(true);
 
                     rc.Get<GameObject>("GuessText").GetComponent<Text>().text = activityV1Info.LastGuessReward.Contains(key)? "中奖" : "未中";
 
