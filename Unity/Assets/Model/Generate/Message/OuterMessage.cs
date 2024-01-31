@@ -15043,6 +15043,9 @@ namespace ET
 		[ProtoMember(10)]
 		public List<int> ChouKa2RewardIds = new List<int>();
 
+		[ProtoMember(11)]
+		public List<int> OpenGuessIds = new List<int>();
+
 	}
 
 //v1活动.抽奖

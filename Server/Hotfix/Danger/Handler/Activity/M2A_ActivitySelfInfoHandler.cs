@@ -34,6 +34,7 @@ namespace ET
             response.GuessIds = guessIds;
             response.LastGuessReward = lastGuessRewatd;
             response.BaoShiDu = dBDayActivityInfo.BaoShiDu;
+            response.OpenGuessIds = dBDayActivityInfo.OpenGuessIds;
             reply();
             await ETTask.CompletedTask;
         }

@@ -7207,6 +7207,7 @@ message ActivityV1Info
 	int32 BaoShiDu = 8;					//饱食度
 	string ChouKa2ItemList = 9;				//抽卡2所有奖励列表 @切分
 	repeated int32 ChouKa2RewardIds = 10;	//抽卡2已抽取奖励   达到一半可以刷新奖励
+	repeated int32 OpenGuessIds = 11;       //竞猜开奖字
 }
 
 //v1活动.抽奖

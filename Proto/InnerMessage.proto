@@ -2030,6 +2030,7 @@ message A2M_ActivitySelfInfo // IActorResponse
     repeated int32 GuessIds = 1;
 	repeated int32 LastGuessReward = 2;   //竞猜中奖纪录
 	int32 BaoShiDu = 3;  
+	repeated int32 OpenGuessIds = 4;
 }
 
 //喂食物

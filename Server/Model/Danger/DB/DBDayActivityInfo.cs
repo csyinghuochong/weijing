@@ -95,6 +95,11 @@ namespace ET
         public int FeedRewardKey = 0;
 
         public int BaoShiDu = 0;
+
+        /// <summary>
+        /// 竞猜开奖的字
+        /// </summary>
+        public List<int> OpenGuessIds = new List<int>() { };
     }
 
 }

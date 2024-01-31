@@ -41,6 +41,7 @@ namespace ET
             activityV1Info.GuessIds = r_GameStatusResponse.GuessIds;
             activityV1Info.LastGuessReward = r_GameStatusResponse.LastGuessReward;
             activityV1Info.BaoShiDu = r_GameStatusResponse.BaoShiDu;
+            activityV1Info.OpenGuessIds = r_GameStatusResponse.OpenGuessIds;
             response.ActivityV1Info = activityV1Info;
 
             reply();

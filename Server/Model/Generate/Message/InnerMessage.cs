@@ -4259,6 +4259,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int BaoShiDu { get; set; }
 
+		[ProtoMember(4)]
+		public List<int> OpenGuessIds = new List<int>();
+
 	}
 
 //喂食物

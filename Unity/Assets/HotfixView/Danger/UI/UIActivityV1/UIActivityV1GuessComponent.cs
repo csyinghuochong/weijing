@@ -13,6 +13,7 @@ namespace ET
 
         public List<GameObject> NewYearItems = new List<GameObject>();
         public List<GameObject> UIActivityV1GuessItems = new List<GameObject>();
+        public List<string> YearItemPath = new List<string>();
         public List<string> AssetPath = new List<string>();
     }
 
@@ -28,6 +29,16 @@ namespace ET
             self.UIActivityV1GuessItem = rc.Get<GameObject>("UIActivityV1GuessItem");
             self.NewYearItem.SetActive(false);
             self.UIActivityV1GuessItem.SetActive(false);
+
+            self.YearItemPath = new List<string>()
+            {
+                "10030011",
+                "10030012",
+                "10030013",
+                "10030016",
+                "10030014",
+                "10030015",
+            };
 
             self.GetInfo().Coroutine();
         }
@@ -65,20 +76,11 @@ namespace ET
 
         public static void InitNewYearItems(this UIActivityV1GuessComponent self)
         {
-            List<string> YearItemPath = new List<string>()
-            {
-                "10030011",
-                "10030012",
-                "10030013",
-                "10030016",
-                "10030014",
-                "10030015",
-            };
             self.NewYearItems.Clear();
             for (int i = 0; i < ActivityConfigHelper.GuessNumber; i++)
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.NewYearItem);
-                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, YearItemPath[i]);
+                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, self.YearItemPath[i]);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {
@@ -175,7 +177,18 @@ namespace ET
                     ReferenceCollector rc = self.UIActivityV1GuessItems[index].GetComponent<ReferenceCollector>();
 
                     // 显示开奖的图片------------
-                    // rc.Get<GameObject>("NewYearImg").SetActive(true);
+                    rc.Get<GameObject>("NewYearImg").SetActive(true);
+                    if (index < activityV1Info.OpenGuessIds.Count)
+                    {
+                        string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, self.YearItemPath[activityV1Info.OpenGuessIds[index]]);
+                        Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                        if (!self.AssetPath.Contains(path))
+                        {
+                            self.AssetPath.Add(path);
+                        }
+
+                        rc.Get<GameObject>("NewYearImg").GetComponent<Image>().sprite = sp;
+                    }
 
                     rc.Get<GameObject>("GuessText").GetComponent<Text>().text = activityV1Info.LastGuessReward.Contains(key)? "中奖" : "未中";
 

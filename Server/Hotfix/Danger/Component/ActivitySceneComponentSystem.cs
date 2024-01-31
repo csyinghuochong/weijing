@@ -429,14 +429,17 @@ namespace ET
                 if (hour == 0)
                 {
                     self.DBDayActivityInfo.GuessRewardList.Clear();
+                    self.DBDayActivityInfo.OpenGuessIds.Clear();
                 }
                 if (self.DBDayActivityInfo.GuessRewardList.ContainsKey(hour))
                 {
                     self.DBDayActivityInfo.GuessRewardList[hour] =  playerIds;
+                    self.DBDayActivityInfo.OpenGuessIds.Add(guessIndex);
                 }
                 else
                 {
                     self.DBDayActivityInfo.GuessRewardList.Add(hour, playerIds);
+                    self.DBDayActivityInfo.OpenGuessIds.Add(guessIndex);
                 }
                
                 self.DBDayActivityInfo.GuessPlayerList.Clear();
