@@ -29,7 +29,8 @@ namespace ET
                     {
                         type = OpcodeTypeComponent.Instance.GetType(opcode);
                         message = MessageSerializeHelper.DeserializeFrom(opcode, type, memoryStream);
-                        Log.Error($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} {message}");
+                        Log.Warning($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} ");
+                        //Log.Error($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} ");
                         return;
                     }
                     
