@@ -36,7 +36,7 @@ namespace ET
         {
             await self.InitServerInfo();
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 30 + RandomHelper.RandomNumber(1000, 10000), TimerType.UnionTimer, self);
         }
 
         public static int GetDonationRank(this UnionSceneComponent self, long usrerId)

@@ -28,7 +28,7 @@ namespace ET
             self.InitServerInfo().Coroutine();
             self.InitDBRankInfo().Coroutine();
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 10 + self.DomainZone() * 1000, TimerType.RankeTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 30 + RandomHelper.RandomNumber(1000, 10000), TimerType.RankeTimer, self);
         }
     }
 
