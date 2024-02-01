@@ -21,6 +21,7 @@ namespace ET
                         (gateServerId, new G2G_UnitListRequest() { });
                     totalNumber+= g2M_UpdateUnitResponse.OnLinePlayer;
                     robotNumber += g2M_UpdateUnitResponse.OnLineRobot;
+                    robotNumber += g2M_UpdateUnitResponse.YaCeRobot;
                 }
                 response.OnLineNumber = totalNumber;
                 response.OnLineRobot = robotNumber;
