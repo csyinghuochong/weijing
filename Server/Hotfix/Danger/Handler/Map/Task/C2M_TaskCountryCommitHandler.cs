@@ -11,7 +11,13 @@ namespace ET
         {
             try
             {
-                
+                if (!TaskCountryConfigCategory.Instance.Contain(request.TaskId))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
                 int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
                 if (unit.GetComponent<BagComponent>().GetBagLeftCell() < itemItem)
