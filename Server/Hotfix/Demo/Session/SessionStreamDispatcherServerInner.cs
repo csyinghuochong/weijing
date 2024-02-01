@@ -35,29 +35,29 @@ namespace ET
                         return;
                     }
 
-                    //long playerId = 0;
-                    //List<int> allzones =  ServerMessageHelper.GetAllZone();
-                    //for (int zone = 0; zone < allzones.Count; zone++)
-                    //{
-                    //    Scene scene = session.DomainScene().GetChild<Scene>(allzones[zone] * 100 + 3);
-                    //    if (scene == null)
-                    //    {
-                    //        continue;
-                    //    }
-                    //    if (scene.SceneType != SceneType.Gate)
-                    //    {
-                    //        continue;
-                    //    }
-                    //    PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
-                    //    playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
-                    //    if (playerId > 0)
-                    //    {
-                    //        Console.WriteLine("1111");
-                    //        DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine();
-                    //        break;
-                    //    }
-                    //}
-                   
+                    long playerId = 0;
+                    List<int> allzones = ServerMessageHelper.GetAllZone();
+                    for (int zone = 0; zone < allzones.Count; zone++)
+                    {
+                        Scene scene = session.DomainScene().GetChild<Scene>(allzones[zone] * 100 + 3);
+                        if (scene == null)
+                        {
+                            continue;
+                        }
+                        if (scene.SceneType != SceneType.Gate)
+                        {
+                            continue;
+                        }
+                        PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
+                        playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
+                        if (playerId > 0)
+                        {
+                            //Console.WriteLine("playerId > 0");
+                            DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine();
+                            break;
+                        }
+                    }
+
                     if (entity is Session gateSession)
                     {
                         // 发送给客户端
