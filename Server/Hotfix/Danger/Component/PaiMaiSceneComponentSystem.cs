@@ -672,13 +672,13 @@ namespace ET
 
         public static async ETTask SaveDB(this PaiMaiSceneComponent self, int random)
         {
-            if (random == 1)
-            {
-                if (RandomHelper.RandomNumber(1,3) != 1)
-                {
-                    return;
-                }
-            }
+            //if (random == 1)
+            //{
+            //    if (RandomHelper.RandomNumber(1,3) != 1)
+            //    {
+            //        return;
+            //    }
+            //}
 
             int zone = self.DomainZone();
             await self.CheckOverTime(self.dBPaiMainInfo_Consume);
