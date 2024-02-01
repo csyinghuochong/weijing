@@ -476,7 +476,7 @@ namespace ET
             await self.InitPaiMainShop(11, oldPaiMaiShop);
             await self.InitPaiMainStall(12, oldPaiMaiStall);
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 10 + RandomHelper.RandomNumber(1000, 10000), TimerType.PaiMaiTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 30 + RandomHelper.RandomNumber(1000, 10000), TimerType.PaiMaiTimer, self);
             self.OnZeroClockUpdate();
         }
 
