@@ -23,6 +23,15 @@ namespace ET
         public static void Add(this PlayerComponent self, Player player)
         {
             self.idPlayers.Add(player.AccountId, player);
+
+            if (!self.instanceToId.ContainsKey(player.InstanceId))
+            {
+                self.instanceToId.Add(player.InstanceId, player.Id);
+            }
+            else
+            {
+                self.instanceToId[player.InstanceId] = player.Id;
+            }
         }
 
         public static Player Get(this PlayerComponent self, long id)

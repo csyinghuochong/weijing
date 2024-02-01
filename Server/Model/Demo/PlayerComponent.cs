@@ -7,6 +7,8 @@ namespace ET
 	{
 		public readonly Dictionary<long, Player> idPlayers = new Dictionary<long, Player>();
 		
+		public Dictionary<long, long> instanceToId = new Dictionary<long, long>();	
+
 		public int Count
 		{
 			get
