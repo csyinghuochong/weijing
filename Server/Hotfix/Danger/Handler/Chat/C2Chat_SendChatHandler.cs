@@ -39,15 +39,6 @@ namespace ET
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
                     }
-                    //chatInfoUnitsComponent.WordChatInfos.Clear();
-
-                    for (int i = chatInfoUnitsComponent.WordChatInfos.Count - 1; i >=0; i--)
-                    {
-                        if (chatInfoUnitsComponent.WordChatInfos[i].PlayerLevel < 12)
-                        {
-                            chatInfoUnitsComponent.WordChatInfos.RemoveAt(i);
-                        }
-                    }
 
                     if (request.ChatInfo.ChannelId == (int)ChannelEnum.Word)
                     {
