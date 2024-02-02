@@ -363,7 +363,7 @@ namespace ET
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 long addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
                                 addCoin *= costNumber;
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, 39);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, ItemGetWay.Sell);
                                 break;
                             //经验木桩
                             case 112:
@@ -565,9 +565,9 @@ namespace ET
                     }
 
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConf.SellMoneyType, (sellNum * sellValue).ToString(), true, 39);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConf.SellMoneyType, (sellNum * sellValue).ToString(), true, ItemGetWay.Sell);
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, sellNum);
-                    if (useBagInfo.ItemNum == 0)
+                    if (useBagInfo.ItemNum <= 0)
                     {
                         m2c_bagUpdate.BagInfoDelete.Add(useBagInfo);
                     }
