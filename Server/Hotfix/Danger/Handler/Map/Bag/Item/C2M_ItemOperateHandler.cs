@@ -502,7 +502,7 @@ namespace ET
                         //扣除道具
                         if (costItemStatus)
                         {
-                            if (useBagInfo.ItemNum == 0)
+                            if (useBagInfo.ItemNum <= 0)
                             {
                                 m2c_bagUpdate.BagInfoDelete.Add(useBagInfo);
                             }
