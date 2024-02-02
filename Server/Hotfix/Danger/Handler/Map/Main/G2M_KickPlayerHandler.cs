@@ -10,7 +10,6 @@ namespace ET
         protected override async ETTask Run(Scene scene, G2M_KickPlayerRequest request)
         {
             Unit unit = scene.GetComponent<UnitComponent>().Get(request.UnitId);
-            Console.WriteLine($"G2M_KickPlayerRequest: {scene.Id}");
             if (unit != null)
             {
                 //MessageHelper.SendToClient(unit, new M2C_KickPlayerMessage());
