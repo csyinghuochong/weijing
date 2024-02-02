@@ -515,6 +515,11 @@ namespace ET
             {
                 Log.Warning($"增加货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
             }
+            else if (gold > 1000000 || gold < -1000000)
+            {
+                Log.Warning($"增加货币[超额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+            }
+
             if (gold > 0 && getWay == ItemGetWay.PaiMaiSell)
             {
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
