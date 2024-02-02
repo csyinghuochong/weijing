@@ -19,7 +19,13 @@ namespace ET
             EquipQiangHuaConfig equipQiangHuaConfig =QiangHuaHelper.GetQiangHuaConfig(request.WeiZhi, bagComponent.QiangHuaLevel[request.WeiZhi]);
             string costItems = equipQiangHuaConfig.CostItem;
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
-            bagComponent.OnCostItemData(costItems);
+            if (!bagComponent.OnCostItemData(costItems))
+            {
+                response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
             double addPro = equipQiangHuaConfig.AdditionPro * bagComponent.QiangHuaFails[request.WeiZhi];
             if ((float)equipQiangHuaConfig.SuccessPro + addPro >= RandomHelper.RandFloat01())
             {
