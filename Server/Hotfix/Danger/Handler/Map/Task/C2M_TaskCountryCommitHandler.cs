@@ -31,7 +31,6 @@ namespace ET
                 TaskPro taskPro = null;
                 for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
                 {
-      
                     if (taskComponent.TaskCountryList[i].taskID != request.TaskId)
                     {
                         continue;
@@ -42,6 +41,12 @@ namespace ET
                 }
 
                 if (taskPro == null)
+                {
+                    response.Error = ErrorCode.ERR_TaskCommited;
+                    reply();
+                    return;
+                }
+                if (taskPro.taskStatus == (int)TaskStatuEnum.Commited)
                 {
                     response.Error = ErrorCode.ERR_TaskCommited;
                     reply();
