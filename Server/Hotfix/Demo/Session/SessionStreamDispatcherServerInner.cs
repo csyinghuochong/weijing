@@ -50,7 +50,7 @@ namespace ET
                             playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
                             if (playerId > 0)
                             {
-                                //Console.WriteLine("playerId > 0");
+                                Console.WriteLine($"KickPlayer: playerId: {playerId}");
                                 DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine();
                                 break;
                             }
