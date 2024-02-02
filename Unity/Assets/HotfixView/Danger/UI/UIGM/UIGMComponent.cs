@@ -138,7 +138,7 @@ namespace ET
 
             if (sendChatResponse.Error == 0)
             {
-                self.Text_OnLineNumber.GetComponent<Text>().text = $"玩家:{sendChatResponse.OnLineNumber} 机器人:{sendChatResponse.OnLineRobot}";
+                self.Text_OnLineNumber.GetComponent<Text>().text = $"玩家:{sendChatResponse.OnLineNumber}机器人:{sendChatResponse.OnLineRobot}";
             }
             else
             {
