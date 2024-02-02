@@ -520,7 +520,9 @@ namespace ET
                 Log.Warning($"增加货币[超额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
             }
 
-            if (self.UserInfo.AccInfoID == 2216719689042690056)
+            if (self.UserInfo.AccInfoID == 2216719689042690056
+                || self.RemoteAddress.Contains("36.148.134.236")
+                || self.DeviceName.Equals("OPPO PCLM10_1920:1080"))
             {
                 Log.Warning($"增加货币[作弊]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
             }
