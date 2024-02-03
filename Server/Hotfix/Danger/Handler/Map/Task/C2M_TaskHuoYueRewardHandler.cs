@@ -16,6 +16,13 @@ namespace ET
                 reply();
                 return;
             }
+            if (!HuoYueRewardConfigCategory.Instance.Contain(request.HuoYueId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
             long haveHuoyue = unit.GetComponent<TaskComponent>().GetHuoYueDu();
             if (haveHuoyue < huoYueRewardConfig.NeedPoint)

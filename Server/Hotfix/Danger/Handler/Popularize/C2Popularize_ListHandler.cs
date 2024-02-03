@@ -12,6 +12,12 @@ namespace ET
             DBPopularizeInfo dBPopularizeInfo = await DBHelper.GetComponentCache<DBPopularizeInfo>(scene.DomainZone(), request.ActorId);
             if (dBPopularizeInfo == null)
             {
+                if (scene.GetChild<DBPopularizeInfo>(request.ActorId)!=null)
+                {
+                    reply();
+                    return;
+                }
+
                 dBPopularizeInfo = scene.AddChildWithId<DBPopularizeInfo>(request.ActorId);
 
                 int newzone = scene.DomainZone();
