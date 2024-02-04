@@ -521,6 +521,7 @@ namespace ET
             }
 
             if (self.UserInfo.AccInfoID == 2216719689042690056
+                || self.UserInfo.AccInfoID == 7330971014316759846
                 || self.RemoteAddress.Contains("36.148.134.236")
                 || self.DeviceName.Equals("OPPO PCLM10_1920:1080"))
             {

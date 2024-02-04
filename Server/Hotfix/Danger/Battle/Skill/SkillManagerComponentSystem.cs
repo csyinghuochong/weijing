@@ -653,8 +653,8 @@ namespace ET
         public static SkillCDItem UpdateNormalCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool zhudong)
         {
             Unit unit = self.GetParent<Unit>();
+            //int equipType = UnitHelper.GetEquipType(unit);
             SkillCDItem skillcd = null;
-            
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
