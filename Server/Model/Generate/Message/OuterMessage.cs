@@ -10145,6 +10145,9 @@ namespace ET
 		[ProtoMember(2)]
 		public string payMessage { get; set; }
 
+		[ProtoMember(3)]
+		public string UnitName { get; set; }
+
 	}
 
 	[Message(OuterOpcode.R2C_IOSPayVerifyResponse)]

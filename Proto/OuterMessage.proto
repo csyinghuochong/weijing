@@ -4838,6 +4838,7 @@ message C2R_IOSPayVerifyRequest // IRechargeActorRequest
 	int64 ActorId = 93;
 	int64 UnitId = 1;
 	string payMessage = 2;
+	string UnitName = 3;
 }
 
 message R2C_IOSPayVerifyResponse // IRechargeActorResponse

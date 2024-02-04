@@ -262,7 +262,11 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
-            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
+            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
+            {   UnitId = unit.Id, 
+                payMessage = receipt.Payload,
+                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+            };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
