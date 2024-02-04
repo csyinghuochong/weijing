@@ -575,7 +575,11 @@ namespace ET
             else if (weaponConfig.SkillActType == 0)
             {
                 Unit unit = self.GetParent<Unit>();
-                if (unit.Type != UnitType.Player)
+                if (unit.Type == UnitType.Player)
+                {
+                    skillCd = self.UpdateNormalCD(skillid, weaponConfig.Id, zhudong);
+                }
+                else
                 {
                     skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
                 }
@@ -644,6 +648,23 @@ namespace ET
                 c2M_SkillCmd.SkillID = selfSkillId;
                 self.OnUseSkill(c2M_SkillCmd, false);
             }
+        }
+
+        public static SkillCDItem UpdateNormalCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool zhudong)
+        {
+            Unit unit = self.GetParent<Unit>();
+            SkillCDItem skillcd = null;
+           
+            self.SkillCDs.TryGetValue(skillId, out skillcd);
+            if (skillcd == null)
+            {
+                skillcd = new SkillCDItem();
+                self.SkillCDs.Add(skillId, skillcd);
+            }
+            skillcd.SkillID = skillId;
+            skillcd.CDEndTime = TimeHelper.ServerNow() + 400;
+
+            return null;
         }
 
         public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool zhudong)

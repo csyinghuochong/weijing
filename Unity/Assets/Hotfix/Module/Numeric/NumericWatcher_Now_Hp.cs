@@ -35,7 +35,7 @@ namespace ET
 			{
                 if (attack == null || attack.IsDisposed)
                 {
-                    Log.Error("NumericWatcher_Now_Hp.args.NewValue <= 0 ");
+                    Log.Warning($"NumericWatcher_Now_Hp.args.NewValue <= 0: {attack.Type}");
                 }
 
                 // 死亡召唤
