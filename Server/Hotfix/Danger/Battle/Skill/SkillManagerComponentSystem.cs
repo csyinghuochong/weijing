@@ -952,6 +952,10 @@ namespace ET
             {
                 return;
             }
+            if (!SkillConfigCategory.Instance.Contain(endSkillId))
+            {
+                return;
+            }
 
             Unit unit = self.GetParent<Unit>();
             C2M_SkillCmd cmd = new C2M_SkillCmd();
