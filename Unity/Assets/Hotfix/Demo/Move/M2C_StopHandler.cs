@@ -32,7 +32,7 @@ namespace ET
                 else
                 {
                     float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-                    var list = ListComponent<Vector3>.Create();
+                    using var list = ListComponent<Vector3>.Create();
                     list.Add(unit.Position + (pos - unit.Position) * 0.5f);
                     list.Add(pos);
                     unit.GetComponent<MoveComponent>().MoveToAsync(list, speed * 1.5f).Coroutine();

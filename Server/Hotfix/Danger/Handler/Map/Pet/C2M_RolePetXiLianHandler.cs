@@ -219,7 +219,7 @@ namespace ET
 				{
 					//int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
                     //petinfo.PetSkill.RemoveAt(tihuanNum);
-					ListComponent<int> canRemoveSkil = ListComponent<int>.Create();
+				    using	ListComponent<int> canRemoveSkil = ListComponent<int>.Create();
 					for (int i = 0; i < petinfo.PetSkill.Count; i++)
 					{
 						if (!petinfo.LockSkill.Contains(petinfo.PetSkill[i]))

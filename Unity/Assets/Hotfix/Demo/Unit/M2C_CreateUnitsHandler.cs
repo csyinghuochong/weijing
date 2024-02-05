@@ -25,7 +25,7 @@ namespace ET
 				return;
 			}
 
-			ListComponent<long> allunitids = ListComponent<long>.Create();
+			using ListComponent<long> allunitids = ListComponent<long>.Create();
             UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			foreach (UnitInfo unitInfo in message.Units)
 			{

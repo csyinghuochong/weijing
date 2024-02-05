@@ -48,7 +48,7 @@ namespace ET
         /// <returns></returns>
         public static bool GetCanReachPath(Scene scene, int navMeshId, Vector3 from, Vector3 target)
 		{
-			var list = ListComponent<Vector3>.Create();
+			using var list = ListComponent<Vector3>.Create();
 			//scene.GetComponent<PathfindingComponent>().Find(from, target, list);
 			List<Vector3> path = list;
 			if (path.Count >= 2)
