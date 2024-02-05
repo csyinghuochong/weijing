@@ -69,6 +69,7 @@ namespace ET
             }
 
             int removeNumber = 40;
+            Log.Warning($"待移除缓存玩家: {self.DomainZone()} {self.WaitDeletUnit.Count}");
             for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
             {
                 //Log.Console($"长期离线，移除玩家11: {zone}  {self.WaitDeletUnit[i]}");
