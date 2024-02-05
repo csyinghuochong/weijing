@@ -7,7 +7,6 @@ namespace ET
     public class C2A_RealNameHandler : AMRpcHandler<C2A_RealNameRequest, A2C_RealNameResponse>
     {
 
-
         protected override async ETTask Run(Session session, C2A_RealNameRequest request, A2C_RealNameResponse response, Action reply)
         {
             if (string.IsNullOrEmpty(request.IdCardNO) || string.IsNullOrEmpty(request.Name))
@@ -17,7 +16,8 @@ namespace ET
                 return;
             }
  
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountId.GetHashCode()))
+            //using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountId.GetHashCode()))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, 1))
             {
                 long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
