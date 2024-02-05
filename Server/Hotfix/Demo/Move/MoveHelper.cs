@@ -25,76 +25,71 @@ namespace ET
             }
 
             MapComponent mapComponent = unit.Domain.GetComponent<MapComponent>();
-            using var list = ListComponent<Vector3>.Create();
-            mapComponent.SearchPath(unit, target, list);
-
-            List<Vector3> path = list;
-            if (path.Count == 0)
+            using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
             {
-                if (unit.Type == UnitType.Player)
+                mapComponent.SearchPath(unit, target, list);
+                List<Vector3> path = list;
+                if (path.Count == 0)
                 {
-                    Log.Debug($"玩家寻路失败： {unit.DomainZone()} {unit.Id} mapid: {mapComponent.SceneId}  x:{target.x}  y:{target.y} z:{target.z}");
+                    if (unit.Type == UnitType.Player)
+                    {
+                        Log.Debug($"玩家寻路失败： {unit.DomainZone()} {unit.Id} mapid: {mapComponent.SceneId}  x:{target.x}  y:{target.y} z:{target.z}");
+                    }
+                    return -1;
+                }
+                if (path.Count < 2 && yaogan)
+                {
+                    unit.SendStop(-1);
+                    return -1;
+                }
+                if (path.Count < 2 && !yaogan)
+                {
+                    list.Clear();
+                    list.Add(unit.Position + (target - unit.Position) * 0.5f);
+                    list.Add(target);
+                    path = list;
+                }
+                if (path.Count >= 1000)
+                {
+                    unit.SendStop(-1);
+                    return -1;
+                }
+
+                // 广播寻路路径
+                M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+                m2CPathfindingResult.Id = unit.Id;
+                for (int i = 0; i < list.Count; ++i)
+                {
+                    Vector3 vector3 = list[i];
+                    m2CPathfindingResult.Xs.Add(vector3.x);
+                    m2CPathfindingResult.Ys.Add(vector3.y);
+                    m2CPathfindingResult.Zs.Add(vector3.z);
+                }
+
+                if (path.Count < 2)
+                {
+                    LogHelper.LogWarning("path.Count < 2");
+                }
+
+                if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
+                {
+                    MessageHelper.BroadcastMainCity(unit, m2CPathfindingResult);
+                }
+                else
+                {
+                    MessageHelper.Broadcast(unit, m2CPathfindingResult);
+                }
+
+                //MessageHelper.BroadcastMove(unit, mapComponent, m2CPathfindingResult);
+                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                bool ret = await moveComponent.MoveToAsync(path, speed, 0, cancellationToken);
+                if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
+                {
+                    unit.SendStop(0);
+                    return 0;
                 }
                 return -1;
             }
-            if (path.Count < 2 && yaogan)
-            {
-                unit.SendStop(-1);
-                return -1;
-            }
-            if (path.Count < 2 && !yaogan)
-            {
-                list.Clear();
-                list.Add(unit.Position + (target - unit.Position) * 0.5f);
-                list.Add(target);
-                path = list;
-            }
-            if (path.Count >= 1000)
-            {
-                unit.SendStop(-1);
-                return -1;
-            }
-
-            // 广播寻路路径
-            Vector3 lastvector = Vector3.zero;
-            M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
-            m2CPathfindingResult.Id = unit.Id;
-            for (int i = 0; i < list.Count; ++i)
-            {
-                Vector3 vector3 = list[i];
-                //if (lastvector.Equals(vector3) && m2CPathfindingResult.Xs.Count > 2)
-                //{
-                //    continue;
-                //}
-                m2CPathfindingResult.Xs.Add(vector3.x);
-                m2CPathfindingResult.Ys.Add(vector3.y);
-                m2CPathfindingResult.Zs.Add(vector3.z);
-                lastvector = vector3;
-            }
-
-            if (path.Count < 2)
-            {
-                LogHelper.LogWarning("path.Count < 2");
-            }
-
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
-            {
-                MessageHelper.BroadcastMainCity(unit, m2CPathfindingResult);
-            }
-            else
-            {
-                MessageHelper.Broadcast(unit, m2CPathfindingResult);
-            }    
-
-            //MessageHelper.BroadcastMove(unit, mapComponent, m2CPathfindingResult);
-            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool ret = await moveComponent.MoveToAsync(path, speed, 0, cancellationToken);
-            if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
-            {
-                unit.SendStop(0);
-                return 0;
-            }
-            return -1;
         }
 
         // 可以多次调用，多次调用的话会取消上一次的协程
