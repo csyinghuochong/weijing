@@ -38,7 +38,7 @@ namespace ET
     {
         public static void OnButton_AddQQ(this UIQQAddSetComponent self)
         {
-            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=lO16qovjL3YUFcBxPedlJUQDTwbsiUGg&authKey=fQK6IldA%2FhZiZ6Ow2zIWOwb33MvxOD7FHU2WzxBdbOmJ622V8oHvReMCybgXreeC&noverify=0&group_code=690868439");
+            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=O8ztskOODz1LkuC5t2MVcC_Z8QcKf8_z&authKey=kRO7JCoNWSygqXRQdHb2YOqSgTzIVbdrlL2GjEYdxTItEXCHaasRfNU%2F6swOVlRo&noverify=0&group_code=719546102");
         }
     }
 }
