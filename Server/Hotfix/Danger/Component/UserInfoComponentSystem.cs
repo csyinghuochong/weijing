@@ -537,6 +537,11 @@ namespace ET
                 self.UserInfo.DiamondGetWay.Add(getWay);
             }
 
+            if (Type == UserDataType.Diamond)
+            {
+                Log.Warning($"增加钻石:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+            }
+
             if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)
             {
                 self.SendUnionOperate(getWay, Type, gold).Coroutine();
