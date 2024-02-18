@@ -30,7 +30,7 @@ namespace ET
                     {
                         type = OpcodeTypeComponent.Instance.GetType(opcode);
                         message = MessageSerializeHelper.DeserializeFrom(opcode, type, memoryStream);
-                        Log.Warning($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} ");
+                        Log.Warning($"not found actor(2): {session.DomainScene().Name}  {opcode} {realActorId} ");
                         //Log.Error($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} ");
 
                         long playerId = 0;
@@ -50,8 +50,8 @@ namespace ET
                             playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
                             if (playerId > 0)
                             {
-                                Console.WriteLine($"KickPlayer: playerId: {playerId}");
-                                DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine();
+                                Console.WriteLine($"not found actor(2): playerId: {playerId}");
+                                //DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); 先屏蔽 
                                 break;
                             }
                         }

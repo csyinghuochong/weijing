@@ -71,7 +71,7 @@ namespace ET
             Entity entity = Game.EventSystem.Get(actorId);
             if (entity == null)
             {
-                Log.Warning($"not found actor: {actorId} {opcode}");
+                Log.Warning($"not found actor(1): {actorId} {opcode}");
                 //Log.Error($"not found actor: {actorId} {opcode}");
                 return;
             }
