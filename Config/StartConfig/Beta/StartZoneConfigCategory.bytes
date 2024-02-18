@@ -60,7 +60,7 @@
 *:mongodb://localhost:27017/:"WJBeta58
 *;mongodb://localhost:27017/:"WJBeta59
 *<mongodb://localhost:27017/<"WJBeta60
-*=mongodb://localhost:27017/="WJBeta61
+*=mongodb://localhost:27017/<"WJBeta61
 *>mongodb://localhost:27017/>"WJBeta62
 *?mongodb://localhost:27017/?"WJBeta63
 *@mongodb://localhost:27017/@"WJBeta64
@@ -73,5 +73,6 @@
 *Gmongodb://localhost:27017/G"WJBeta71
 *Hmongodb://localhost:27017/H"WJBeta72
 *Imongodb://localhost:27017/I"WJBeta73
+*Jmongodb://localhost:27017/J"WJBeta74
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
