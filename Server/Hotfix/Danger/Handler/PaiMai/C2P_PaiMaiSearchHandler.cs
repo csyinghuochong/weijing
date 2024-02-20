@@ -33,8 +33,7 @@ namespace ET
                     return;
                 }
 
-                List<PaiMaiItemInfo> paiMaiItemInfos = dBPaiMainInfo.PaiMaiItemInfos;
-                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
+                foreach (PaiMaiItemInfo paiMaiItemInfo in dBPaiMainInfo.PaiMaiItemInfos)
                 {
                     if (request.FindItemIdList.Contains(paiMaiItemInfo.BagInfo.ItemID))
                     {
