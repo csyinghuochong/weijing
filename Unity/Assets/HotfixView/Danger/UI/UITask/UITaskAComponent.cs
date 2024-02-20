@@ -117,11 +117,11 @@ namespace ET
 				GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
 				UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
-				UITaskTypeComponent uIItemComponent = self.AddChild<UITaskTypeComponent, GameObject>(taskTypeItem);
-				uIItemComponent.OnUpdateData(ids[i]);
-				uIItemComponent.SetClickTypeHandler((int typeid) => { self.OnClickTaskType(typeid); });
-				uIItemComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTaskTypeItem(typeid, chapterId); });
-				self.TaskTypeUIList.Add(uIItemComponent);
+				UITaskTypeComponent uiTaskTypeComponent = self.AddChild<UITaskTypeComponent, GameObject>(taskTypeItem);
+				uiTaskTypeComponent.OnUpdateData(ids[i]);
+				uiTaskTypeComponent.SetClickTypeHandler((int typeid) => { self.OnClickTaskType(typeid); });
+				uiTaskTypeComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTaskTypeItem(typeid, chapterId); });
+				self.TaskTypeUIList.Add(uiTaskTypeComponent);
 			}
 
 			TaskPro taskPro = self.TaskComponent.GetTaskById(self.TaskId);
@@ -164,6 +164,13 @@ namespace ET
 			self.GetParent<UI>().GameObject.transform.Find("Right").gameObject.SetActive(taskPro != null);
 			if (taskPro == null)
 			{
+				for (int i = 0; i < self.TaskTypeUIList.Count; i++)
+				{
+					if (self.TaskTypeUIList[i].bSelected)
+					{
+						self.TaskTypeUIList[i].SetExpand();
+					}
+				}
 				return;
 			}
 
