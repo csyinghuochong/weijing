@@ -84,86 +84,89 @@ namespace ET
 		/// <summary>图标显示</summary>
 		[ProtoMember(3)]
 		public string Icon { get; set; }
-		/// <summary>摆摊区域</summary>
+		/// <summary>图标显示2</summary>
 		[ProtoMember(4)]
+		public string Icon2 { get; set; }
+		/// <summary>摆摊区域</summary>
+		[ProtoMember(5)]
 		public int[] StallArea { get; set; }
 		/// <summary>出生坐标点</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] InitPos { get; set; }
 		/// <summary>NPC</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int[] NpcList { get; set; }
 		/// <summary>地图类型</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int MapType { get; set; }
 		/// <summary>地图ID</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int MapID { get; set; }
 		/// <summary>loading图</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public string LoadingRes { get; set; }
 		/// <summary>是否有小地图</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int ifShowMinMap { get; set; }
 		/// <summary>是否可以使用复活</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int IfUseRes { get; set; }
 		/// <summary>是否允许PVP</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int IfPVP { get; set; }
 		/// <summary>是否允许使用道具</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int IfUseSkillItem { get; set; }
 		/// <summary>返回主城是否在默认点</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int IfInitPosi { get; set; }
 		/// <summary>音乐</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public string Music { get; set; }
 		/// <summary>创建等级限制</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int CreateLv { get; set; }
 		/// <summary>进入等级限制</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int EnterLv { get; set; }
 		/// <summary>推荐等级</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int[] TuiJianLv { get; set; }
 		/// <summary>进入人数限制</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int PlayerLimit { get; set; }
 		/// <summary>进入次数限制</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int DayEnterNum { get; set; }
 		/// <summary>是否可以上马</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int IfMount { get; set; }
 		/// <summary>章节BossId</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int BossId { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public string CreateMonster { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int[] CreateMonsterPosi { get; set; }
 		/// <summary>章节文本描述</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public string ChapterDes { get; set; }
 		/// <summary>奖励展示</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public string RewardShow { get; set; }
 		/// <summary>通关经验奖励</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int RewardExp { get; set; }
 		/// <summary>通关金币奖励</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public int RewardGold { get; set; }
 		/// <summary>翻卡掉落ID</summary>
-		[ProtoMember(29)]
+		[ProtoMember(30)]
 		public int BoxDropID { get; set; }
 		/// <summary>摄像机参数</summary>
-		[ProtoMember(30)]
+		[ProtoMember(31)]
 		public double[] CameraPos { get; set; }
 
 	}
