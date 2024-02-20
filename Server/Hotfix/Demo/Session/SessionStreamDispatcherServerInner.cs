@@ -64,7 +64,7 @@ namespace ET
                                 if (playerId > 0)
                                 {
                                     Console.WriteLine($"not found actor(2): playerId:  {allzones[zone]} {playerId}");
-                                    //DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); 先屏蔽 
+                                    //DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); //先屏蔽 
                                     break;
                                 }
                             }

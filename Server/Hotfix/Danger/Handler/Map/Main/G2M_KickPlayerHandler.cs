@@ -30,7 +30,7 @@ namespace ET
             }
             else
             {
-                Log.Debug($"G2M_KickPlayerRequest ==null");
+                Console.WriteLine($"G2M_KickPlayerRequest ==null");
             }
 
             await ETTask.CompletedTask;
