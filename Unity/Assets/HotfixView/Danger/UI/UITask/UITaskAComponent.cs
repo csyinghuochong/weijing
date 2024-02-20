@@ -169,6 +169,7 @@ namespace ET
 					if (self.TaskTypeUIList[i].bSelected)
 					{
 						self.TaskTypeUIList[i].SetExpand();
+						break;
 					}
 				}
 				return;
