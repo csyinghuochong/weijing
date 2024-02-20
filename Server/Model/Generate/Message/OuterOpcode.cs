@@ -871,5 +871,7 @@ namespace ET
 		 public const ushort C2M_PetChangePosRequest = 10868;
 		 public const ushort M2C_PetChangePosResponse = 10869;
 		 public const ushort M2C_SkillSecondResult = 10870;
+		 public const ushort C2P_PaiMaiSearchRequest = 10871;
+		 public const ushort P2C_PaiMaiSearchResponse = 10872;
 	}
 }

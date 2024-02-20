@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ET
+{
+    [ActorMessageHandler]
+    public class C2P_PaiMaiSearchHandler: AMActorRpcHandler<Scene, C2P_PaiMaiSearchRequest, P2C_PaiMaiSearchResponse>
+    {
+        protected override async ETTask Run(Scene scene, C2P_PaiMaiSearchRequest request, P2C_PaiMaiSearchResponse response, Action reply)
+        {
+            if (request.FindTypeList.Count <= 0)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
+            if (request.FindItemIdList.Count <= 0)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
+            PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
+            foreach (int type in request.FindTypeList)
+            {
+                DBPaiMainInfo dBPaiMainInfo = paiMaiComponent.GetPaiMaiDBByType(type);
+                if (dBPaiMainInfo == null)
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
+                List<PaiMaiItemInfo> paiMaiItemInfos = dBPaiMainInfo.PaiMaiItemInfos;
+                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
+                {
+                    if (request.FindItemIdList.Contains(paiMaiItemInfo.BagInfo.ItemID))
+                    {
+                        response.PaiMaiItemInfos.Add(paiMaiItemInfo);
+                    }
+                }
+            }
+
+            reply();
+            await ETTask.CompletedTask;
+        }
+    }
+}

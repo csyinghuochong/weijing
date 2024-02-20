@@ -15696,4 +15696,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2C_PaiMaiSearchResponse))]
+	[Message(OuterOpcode.C2P_PaiMaiSearchRequest)]
+	[ProtoContract]
+	public partial class C2P_PaiMaiSearchRequest: Object, IPaiMaiListRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> FindItemIdList = new List<int>();
+
+		[ProtoMember(2)]
+		public List<int> FindTypeList = new List<int>();
+
+	}
+
+	[Message(OuterOpcode.P2C_PaiMaiSearchResponse)]
+	[ProtoContract]
+	public partial class P2C_PaiMaiSearchResponse: Object, IPaiMaiListResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
+
+	}
+
 }

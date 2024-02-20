@@ -7524,3 +7524,20 @@ message M2C_SkillSecondResult // IActorMessage
 	int32 SkillId = 2;
 	repeated int64 HurtIds = 3;
 }
+
+//ResponseType P2C_PaiMaiSearchResponse
+message C2P_PaiMaiSearchRequest // IPaiMaiListRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated int32 FindItemIdList = 1;
+	repeated int32 FindTypeList = 2;
+}
+
+message P2C_PaiMaiSearchResponse // IPaiMaiListResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated PaiMaiItemInfo PaiMaiItemInfos = 1;
+}

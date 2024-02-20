@@ -39,6 +39,8 @@ namespace ET
         public int MaxPage_Material = 1;
         public int MaxPage_Equipment = 1;
         public int MaxPage_Gemstone = 1;
+
+        public long SearchTime;
     }
 
     public class UIPaiMaiBuyComponentAwakeSystem: AwakeSystem<UIPaiMaiBuyComponent>
@@ -64,7 +66,7 @@ namespace ET
             self.UITypeViewComponent.OnInitUI().Coroutine();
 
             self.Btn_Search = rc.Get<GameObject>("Btn_Search");
-            self.Btn_Search.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn_Search(); });
+            self.Btn_Search.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn_Search().Coroutine(); });
 
             self.NextPageBtn = rc.Get<GameObject>("NextPageBtn");
             self.NextPageBtn.GetComponent<Button>().onClick.AddListener(self.OnNextPageBtn);
@@ -410,190 +412,59 @@ namespace ET
         }
 
         /// <summary>
-        /// 查询按钮(目前只是从本地缓存中查找 findPaiMaiType 0模糊查找 1精准查找)
+        /// 查询
         /// </summary>
         /// <param name="self"></param>
-        /// <param name="findPaiMaiType"></param>
-        public static void OnClickBtn_Search(this UIPaiMaiBuyComponent self, int findPaiMaiType = 0)
+        public static async ETTask OnClickBtn_Search(this UIPaiMaiBuyComponent self)
         {
             string text = self.InputField.GetComponent<InputField>().text;
 
-            //获取ID
-            int findItemID = 0;
-            int findType = 0;
-
-            List<int> findItemIDLiSt = new List<int>();
-            List<int> findTypeList = new List<int>();
-
-            //模糊查找
-            if (findPaiMaiType == 0)
+            if (string.IsNullOrEmpty(text))
             {
-                foreach (ItemConfig itemConfig in ItemConfigCategory.Instance.GetAll().Values)
-                {
-                    if (itemConfig.ItemName.Contains(text))
-                    {
-                        if (!findItemIDLiSt.Contains(itemConfig.Id))
-                        {
-                            findItemIDLiSt.Add(itemConfig.Id);
-                        }
-
-                        if (!findTypeList.Contains(itemConfig.ItemType))
-                        {
-                            findTypeList.Add(itemConfig.ItemType);
-                        }
-                    }
-                }
-            }
-            else if (findPaiMaiType == 1) //精准查找
-            {
-                foreach (ItemConfig itemConfig in ItemConfigCategory.Instance.GetAll().Values)
-                {
-                    if (itemConfig.ItemName == text)
-                    {
-                        findItemID = itemConfig.Id;
-                        findType = itemConfig.ItemType;
-                        if (findType == 5)
-                        {
-                            findType = 2;
-                        }
-
-                        break;
-                    }
-                }
-            }
-
-            //精准查找为空直接返回
-            if (findItemID == 0 && findPaiMaiType == 1)
-            {
+                FloatTipManager.Instance.ShowFloatTipDi("请输入道具名字！！！");
                 return;
             }
 
-            self.PaiMaiIteminfos_Now.Clear();
-            if (findPaiMaiType == 0)
+            List<int> findTypeList = new List<int>();
+            List<int> findItemIdList = new List<int>();
+
+            foreach (ItemConfig itemConfig in ItemConfigCategory.Instance.GetAll().Values)
             {
-                for (int i = 0; i < findTypeList.Count; i++)
+                if (itemConfig.ItemName.Contains(text))
                 {
-                    switch (findTypeList[i])
+                    if (!findItemIdList.Contains(itemConfig.Id))
                     {
-                        case 1:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume.Values)
-                            {
-                                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                                {
-                                    if (findItemIDLiSt.Contains(paiMaiItemInfo.BagInfo.ItemID))
-                                    {
-                                        self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                    }
-                                }
-                            }
+                        findItemIdList.Add(itemConfig.Id);
+                    }
 
-                            break;
-
-                        case 2:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material.Values)
-                            {
-                                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                                {
-                                    if (findItemIDLiSt.Contains(paiMaiItemInfo.BagInfo.ItemID))
-                                    {
-                                        self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                    }
-                                }
-                            }
-
-                            break;
-
-                        case 3:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
-                            {
-                                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                                {
-                                    if (findItemIDLiSt.Contains(paiMaiItemInfo.BagInfo.ItemID))
-                                    {
-                                        self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                    }
-                                }
-                            }
-
-                            break;
-
-                        case 4:
-                            foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone.Values)
-                            {
-                                foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                                {
-                                    if (findItemIDLiSt.Contains(paiMaiItemInfo.BagInfo.ItemID))
-                                    {
-                                        self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                    }
-                                }
-                            }
-
-                            break;
+                    if (!findTypeList.Contains(itemConfig.ItemType))
+                    {
+                        findTypeList.Add(itemConfig.ItemType);
                     }
                 }
             }
-            else if (findPaiMaiType == 1) //精准查找
+
+            if (findTypeList.Count <= 0 || findItemIdList.Count <= 0)
             {
-                switch (findType)
-                {
-                    case 1:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Consume.Values)
-                        {
-                            foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                            {
-                                if (paiMaiItemInfo.BagInfo.ItemID == findItemID)
-                                {
-                                    self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                }
-                            }
-                        }
-
-                        break;
-
-                    case 2:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Material.Values)
-                        {
-                            foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                            {
-                                if (paiMaiItemInfo.BagInfo.ItemID == findItemID)
-                                {
-                                    self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                }
-                            }
-                        }
-
-                        break;
-
-                    case 3:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Equipment.Values)
-                        {
-                            foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                            {
-                                if (paiMaiItemInfo.BagInfo.ItemID == findItemID)
-                                {
-                                    self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                }
-                            }
-                        }
-
-                        break;
-
-                    case 4:
-                        foreach (List<PaiMaiItemInfo> paiMaiItemInfos in self.PaiMaiItemInfos_Gemstone.Values)
-                        {
-                            foreach (PaiMaiItemInfo paiMaiItemInfo in paiMaiItemInfos)
-                            {
-                                if (paiMaiItemInfo.BagInfo.ItemID == findItemID)
-                                {
-                                    self.PaiMaiIteminfos_Now.Add(paiMaiItemInfo);
-                                }
-                            }
-                        }
-
-                        break;
-                }
+                FloatTipManager.Instance.ShowFloatTipDi("不存在该名称的道具，请输入正确的道具名！！！");
+                return;
             }
+
+            long timeNow = TimeHelper.ServerNow();
+            if (timeNow - self.SearchTime <= 3000)
+            {
+                FloatTipManager.Instance.ShowFloatTipDi("搜索过于频繁！！！");
+                return;
+            }
+
+            self.SearchTime = timeNow;
+
+            self.PaiMaiIteminfos_Now.Clear();
+
+            C2P_PaiMaiSearchRequest reuqest = new C2P_PaiMaiSearchRequest() { FindTypeList = findTypeList, FindItemIdList = findItemIdList };
+            P2C_PaiMaiSearchResponse response =
+                    (P2C_PaiMaiSearchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+            self.PaiMaiIteminfos_Now.AddRange(response.PaiMaiItemInfos);
 
             self.ShowPaiMaiList();
             if (self.PaiMaiIteminfos_Now.Count <= 0)
