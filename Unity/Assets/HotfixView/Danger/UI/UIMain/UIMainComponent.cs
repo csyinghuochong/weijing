@@ -1046,19 +1046,23 @@ namespace ET
 
         public static async ETTask OnCompleteTask(this UIMainComponent self, string taskid)
         {
-            // 任务使者赛纳
-            List<int> tasList = self.ZoneScene().GetComponent<TaskComponent>().GetOpenTaskIds(20000024);
-            foreach (int id in tasList)
+            // 完成藏宝图任务后自动接取藏宝图任务
+            if (TaskConfigCategory.Instance.Contain(int.Parse(taskid)) &&
+                TaskConfigCategory.Instance.Get(int.Parse(taskid)).TaskType == TaskTypeEnum.Treasure)
             {
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(id);
-                // 完成任务自动接取赏金任务
-                if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+                // 任务使者赛纳
+                List<int> tasList = self.ZoneScene().GetComponent<TaskComponent>().GetOpenTaskIds(20000024);
+                foreach (int id in tasList)
                 {
-                    NetHelper.SendGetTask(self.ZoneScene(), taskConfig.Id).Coroutine();
-                    break;
+                    TaskConfig taskConfig = TaskConfigCategory.Instance.Get(id);
+                    if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+                    {
+                        NetHelper.SendGetTask(self.ZoneScene(), taskConfig.Id).Coroutine();
+                        break;
+                    }
                 }
             }
-            
+
             await TimerComponent.Instance.WaitAsync(200);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, taskid);
         }
