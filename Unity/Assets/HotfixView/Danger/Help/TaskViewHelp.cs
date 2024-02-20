@@ -357,9 +357,9 @@ namespace ET
             {
                 if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union ||
                         taskConfig.TaskType == TaskTypeEnum.System || taskConfig.TaskType == TaskTypeEnum.Daily ||
-                        taskConfig.TaskType == TaskTypeEnum.Treasure) &&
-                    taskConfig.TargetType != TaskTargetType.GiveItem_10 &&
-                    taskConfig.TargetType != TaskTargetType.GivePet_25)
+                        taskConfig.TaskType == TaskTypeEnum.Treasure || ConfigHelper.TaskCompleteDirectly.Contains(taskPro.taskID))
+                   && taskConfig.TargetType != TaskTargetType.GiveItem_10
+                   && taskConfig.TargetType != TaskTargetType.GivePet_25)
                 {
                     zoneScene.GetComponent<TaskComponent>().SendCommitTask(taskPro.taskID, 0).Coroutine();
                     return true;
