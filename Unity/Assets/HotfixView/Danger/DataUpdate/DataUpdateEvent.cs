@@ -696,11 +696,6 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UITaskAComponent uitaskAComponent)
-                {
-                    uitaskAComponent.OnCompleteTask();
-                    continue;
-                }
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnCompleteTask(DataParams).Coroutine();

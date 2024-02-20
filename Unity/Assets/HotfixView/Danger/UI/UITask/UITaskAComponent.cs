@@ -337,21 +337,6 @@ namespace ET
 				self.Button_Going.transform.GetComponentInChildren<Text>().text = "完成任务";
 			}
 		}
-
-		public static void OnCompleteTask(this UITaskAComponent self)
-		{
-			// 任务使者赛纳
-			List<int> tasList = self.ZoneScene().GetComponent<TaskComponent>().GetOpenTaskIds(20000024);
-			foreach (int id in tasList)
-			{
-				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(id);
-				if (taskConfig.TaskType == TaskTypeEnum.Treasure)
-				{
-					NetHelper.SendGetTask(self.ZoneScene(),taskConfig.Id).Coroutine();
-					break;
-				}
-			}
-		}
 		
 		public static void OnRecvTaskUpdate(this UITaskAComponent self)
 		{
