@@ -68,6 +68,7 @@ namespace ET
             
             // 判断背包是否能装下，不能的话剩下的放抽卡仓库
             int bagLeftSpace = bagComponent.GetBagLeftCell();
+            bool addItemError = false; 
             if (bagLeftSpace < droplist.Count)
             {
                 List<RewardItem> putInBag = new List<RewardItem>();
@@ -88,14 +89,26 @@ namespace ET
                 }
 
                 // 放入背包
-                bagComponent.OnAddItemData(putInBag, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
-                // 放入抽卡仓库
-                bagComponent.OnAddItemData(putInChouKa, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}",
-                    UseLocType: ItemLocType.ChouKaWarehouse);
+                addItemError = bagComponent.OnAddItemData(putInBag, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+                if (addItemError)
+                {
+                    // 放入抽卡仓库
+                    addItemError = bagComponent.OnAddItemData(putInChouKa, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}",
+                        UseLocType: ItemLocType.ChouKaWarehouse);
+                }
             }
             else
             {
-                bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+                addItemError = bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            }
+
+            if (addItemError == false)
+            {
+                for (int i = 0; i < droplist.Count; i++)
+                {
+                    Log.Error($"addItemError == false1 {droplist[i].ItemID}:{droplist[i].ItemNum}");
+                }
+                Log.Error($"addItemError == false2 {bagComponent.GetBagLeftCell()}:{bagComponent.GetChouKaLeftSpace()}");
             }
 
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
