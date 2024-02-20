@@ -96,6 +96,10 @@ namespace ET
                     addItemError = bagComponent.OnAddItemData(putInChouKa, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}",
                         UseLocType: ItemLocType.ChouKaWarehouse);
                 }
+                else
+                {
+                    Log.Error($"addItemError == false0 {bagComponent.GetBagLeftCell()}:{bagComponent.GetChouKaLeftSpace()}");
+                }
             }
             else
             {
