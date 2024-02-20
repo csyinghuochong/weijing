@@ -49,7 +49,7 @@ namespace ET
             self.InputField_Common = rc.Get<GameObject>("InputField_Common");
             self.Button_Common = rc.Get<GameObject>("Button_Common");
             self.Button_Common.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Common().Coroutine(); });
-
+            self.Text_OnLineNumber.GetComponent<Text>().text = string.Empty;
             self.RequestGMInfo().Coroutine();
         }
     }
