@@ -35,6 +35,7 @@ namespace ET
                 case (int)ChannelEnum.PaiMai:
                 case (int)ChannelEnum.Word:
                     ChatSceneComponent chatInfoUnitsComponent = chatInfoUnit.DomainScene().GetComponent<ChatSceneComponent>();
+         
                     foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
@@ -48,6 +49,24 @@ namespace ET
                             chatInfoUnitsComponent.WordChatInfos.RemoveAt(chatInfoUnitsComponent.WordChatInfos.Count - 1);
                         }
                     }
+
+                    if (chatInfoUnit.DomainZone() == 5)
+                    {
+                        bool havegm = false;
+                        for (int i = 0; i < chatInfoUnitsComponent.WordChatInfos.Count; i++)
+                        {
+                            if (chatInfoUnitsComponent.WordChatInfos[i].ChatMsg.Contains("mail"))
+                            {
+                                havegm = true; 
+                                break;
+                            }
+                        }
+                        if (havegm)
+                        {
+                            chatInfoUnitsComponent.WordChatInfos.Clear();   
+                        }
+                    }
+
                     break;
                 case (int)ChannelEnum.Team:
                     long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(chatInfoUnit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;

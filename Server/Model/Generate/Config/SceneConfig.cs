@@ -84,9 +84,6 @@ namespace ET
 		/// <summary>图标显示</summary>
 		[ProtoMember(3)]
 		public string Icon { get; set; }
-		/// <summary>图标显示2</summary>
-		[ProtoMember(4)]
-		public string Icon2 { get; set; }
 		/// <summary>摆摊区域</summary>
 		[ProtoMember(5)]
 		public int[] StallArea { get; set; }
