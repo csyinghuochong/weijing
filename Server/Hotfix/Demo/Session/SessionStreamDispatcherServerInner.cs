@@ -7,6 +7,9 @@ namespace ET
     [SessionStreamDispatcher(SessionStreamDispatcherType.SessionStreamDispatcherServerInner)]
     public class SessionStreamDispatcherServerInner: ISessionStreamDispatcher
     {
+
+        public Dictionary<long, long> NotFoundActorTimes = new Dictionary<long, long>();    
+
         public void Dispatch(Session session, MemoryStream memoryStream)
         {
             ushort opcode = 0;
@@ -33,26 +36,37 @@ namespace ET
                         Log.Warning($"not found actor(2): {session.DomainScene().Name}  {opcode} {realActorId} ");
                         //Log.Error($"not found actor: {session.DomainScene().Name}  {opcode} {realActorId} ");
 
-                        long playerId = 0;
-                        List<int> allzones = ServerMessageHelper.GetAllZone();
-                        for (int zone = 0; zone < allzones.Count; zone++)
+                        if (!NotFoundActorTimes.ContainsKey(realActorId))
                         {
-                            Scene scene = session.DomainScene().GetChild<Scene>(allzones[zone] * 100 + 3);
-                            if (scene == null)
+                            NotFoundActorTimes.Add(realActorId, 0);
+                        }
+
+                        NotFoundActorTimes[realActorId]++;
+                        if (NotFoundActorTimes[realActorId] >= 100)
+                        {
+                            NotFoundActorTimes[realActorId] = 0;
+
+                            long playerId = 0;
+                            List<int> allzones = ServerMessageHelper.GetAllZone();
+                            for (int zone = 0; zone < allzones.Count; zone++)
                             {
-                                continue;
-                            }
-                            if (scene.SceneType != SceneType.Gate)
-                            {
-                                continue;
-                            }
-                            PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
-                            playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
-                            if (playerId > 0)
-                            {
-                                Console.WriteLine($"not found actor(2): playerId: {playerId}");
-                                //DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); 先屏蔽 
-                                break;
+                                Scene scene = session.DomainScene().GetChild<Scene>(allzones[zone] * 100 + 3);
+                                if (scene == null)
+                                {
+                                    continue;
+                                }
+                                if (scene.SceneType != SceneType.Gate)
+                                {
+                                    continue;
+                                }
+                                PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
+                                playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
+                                if (playerId > 0)
+                                {
+                                    Console.WriteLine($"not found actor(2): playerId:  {allzones[zone]} {playerId}");
+                                    //DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); 先屏蔽 
+                                    break;
+                                }
                             }
                         }
 
