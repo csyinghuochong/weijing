@@ -233,13 +233,14 @@ namespace ET
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(sellId);
-
-            int costType = storeSellConfig.SellType;
-            if (self.GetBagLeftCell() == 0)
+            int needCell =  ItemHelper.GetNeedCell($"{storeSellConfig.SellItemID};{storeSellConfig.SellItemNum * buyNum}");
+            if (self.GetBagLeftCell() < needCell)
             {
                 HintHelp.GetInstance().ShowHint("背包已满");
                 return;
             }
+
+            int costType = storeSellConfig.SellType;
             if (costType == 1 && userInfo.Gold < storeSellConfig.SellValue)
             {
                 HintHelp.GetInstance().ShowHint("金币不足");

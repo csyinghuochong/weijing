@@ -22,7 +22,9 @@ namespace ET
                 reply();
                 return;
             }
-            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
+
+            int needCell = ItemHelper.GetNeedCell($"{storeSellConfig.SellItemID};{storeSellConfig.SellItemNum * request.SellItemNum}");
+            if (unit.GetComponent<BagComponent>().GetBagLeftCell() < needCell)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
