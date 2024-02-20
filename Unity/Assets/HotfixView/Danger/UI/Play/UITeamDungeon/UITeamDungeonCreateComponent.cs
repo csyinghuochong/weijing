@@ -183,7 +183,7 @@ namespace ET
             self.TextPlayerLimit.GetComponent<Text>().text = $"{sceneConfig.PlayerLimit}-3人";
             self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.ChapterDes;
             self.TextFubenName2.GetComponent<Text>().text = sceneConfig.Name;
-            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon);
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon2);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
