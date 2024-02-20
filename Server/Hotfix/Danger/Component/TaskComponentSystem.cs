@@ -1052,7 +1052,7 @@ namespace ET
         //累计获得道具数量
         public static void OnGetItemNumber(this TaskComponent self, int getWay, int itemId,int itemNumber)
         {
-            if (getWay != ItemGetWay.ReceieMail && getWay != ItemGetWay.PaiMaiSell)
+            if (itemId == 1 || (getWay != ItemGetWay.ReceieMail && getWay != ItemGetWay.PaiMaiSell))
             {
                 self.TriggerTaskEvent(TaskTargetType.GetItemNumber_142, itemId, itemNumber);
                 self.TriggerTaskCountryEvent(TaskTargetType.GetItemNumber_142, itemId, itemNumber);
