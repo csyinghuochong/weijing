@@ -31,10 +31,10 @@ namespace ET
                 List<Vector3> path = list;
                 if (path.Count == 0)
                 {
-                    if (unit.Type == UnitType.Player)
-                    {
-                        Log.Debug($"玩家寻路失败： {unit.DomainZone()} {unit.Id} mapid: {mapComponent.SceneId}  x:{target.x}  y:{target.y} z:{target.z}");
-                    }
+                    //if (unit.Type == UnitType.Player)
+                    //{
+                    //    Log.Debug($"玩家寻路失败： {unit.DomainZone()} {unit.Id} mapid: {mapComponent.SceneId}  x:{target.x}  y:{target.y} z:{target.z}");
+                    //}
                     return -1;
                 }
                 if (path.Count < 2 && yaogan)
