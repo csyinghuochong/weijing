@@ -76,7 +76,7 @@ namespace ET
              || mapComponent.SceneTypeEnum == SceneTypeEnum.PetMing)
             {
                 UI petmain = UIHelper.GetUI(zoneScene, UIType.UIPetMain);
-                petmain?.GetComponent<UIPetMainComponent>()?.OnUnitHpUpdate(unitDefend);
+                petmain?.GetComponent<UIPetMainComponent>()?.OnUnitHpUpdate(unitDefend, unitAttack, args.ChangeHpValue);
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang
                 && unitDefend.Type == UnitType.Player && unitDefend.MainHero

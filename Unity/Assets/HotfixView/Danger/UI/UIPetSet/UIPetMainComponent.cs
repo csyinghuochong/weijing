@@ -45,8 +45,7 @@ namespace ET
         public long Timer;
         public float BeginTime;
 
-        public Dictionary<long, Image> UIHpList= new Dictionary<long, Image>();
-        public Dictionary<long, Text> HurtList = new Dictionary<long, Text>();
+        public Dictionary<long, PetBattleInfo> PetBattleList= new Dictionary<long, PetBattleInfo>();
 
         public M2C_FubenSettlement M2C_FubenSettlement;
 
@@ -59,11 +58,17 @@ namespace ET
         public override void Destroy(UIPetMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.UIHpList.Clear();
-            self.HurtList.Clear();
+            self.PetBattleList.Clear();
         }
     }
 
+    public class PetBattleInfo
+    {
+        public Image Image;
+        public Text Text;
+        public long hurt;
+        public long receive;
+    }
 
     public class UIPetMainComponentAwakeSystem : AwakeSystem<UIPetMainComponent>
     {
@@ -84,8 +89,7 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             self.PetFubenFinger.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.PetDungeon);
 
-            self.UIHpList.Clear();
-            self.HurtList.Clear();
+            self.PetBattleList.Clear();
             self.UIMonsterHp = rc.Get<GameObject>("UIMonsterHp");
             self.UIMonsterHp.SetActive(false);
             self.UIPetHp = rc.Get<GameObject>("UIPetHp");
@@ -118,19 +122,32 @@ namespace ET
             self.M2C_FubenSettlement = m2C_FubenSettlement;
         }
 
-        public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit unit)
+        public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit defend, Unit attack, long changeHp)
         {
-            if (!self.UIHpList.ContainsKey(unit.Id))
+            if (!self.PetBattleList.ContainsKey(defend.Id))
             {
                 return;
             }
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            NumericComponent numericComponent = defend.GetComponent<NumericComponent>();
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
             blood = Mathf.Max(blood, 0f);
-   
-            self.UIHpList[unit.Id].fillAmount = blood;
+            self.PetBattleList[defend.Id].Image.fillAmount = blood;
 
+            if (attack != null && self.PetBattleList.ContainsKey(attack.Id) && defend !=attack && changeHp < 0)
+            {
+                self.PetBattleList[attack.Id].hurt += (changeHp * -1);
+                self.PetBattleList[defend.Id].receive += (changeHp * -1);
+                self.UpdateHurtValue(attack.Id);
+                self.UpdateHurtValue(defend.Id);
+            }
+        }
+
+        public static void UpdateHurtValue(this UIPetMainComponent self, long unitId)
+        { 
+            PetBattleInfo petBattleInfo = self.PetBattleList[unitId];
+            self.PetBattleList[unitId].Text.text = $"造成伤害:{petBattleInfo.hurt} 承受伤害:{petBattleInfo.receive}";
         }
 
         public static void InitHpList(this UIPetMainComponent self)
@@ -143,6 +160,8 @@ namespace ET
                     continue;
                 }
                 int camp = entities[i].GetBattleCamp();
+
+                self.PetBattleList.Add(entities[i].Id, new PetBattleInfo());
                 if (camp == CampEnum.CampPlayer_1)
                 {
                     GameObject gameObject = GameObject.Instantiate(self.UIPetHp);
@@ -150,8 +169,8 @@ namespace ET
                     gameObject.SetActive(true);
 
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
-                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
-                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
+                    self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
+                    self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();
                     continue;
                 }
                 if (entities[i].Type == UnitType.Pet)
@@ -163,8 +182,8 @@ namespace ET
 
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = "";
-                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
-                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
+                    self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
+                    self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();
                     continue;
                 }
                 if (entities[i].Type == UnitType.Monster)
@@ -177,8 +196,8 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = monsterCof.MonsterName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
-                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
-                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
+                    self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
+                    self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();
                     continue;
                 }
             }
