@@ -160,6 +160,12 @@ namespace ET
                     mailinfolist.RemoveAt(i);
                     continue;
                 }
+
+                if ( !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[0].ItemID) )  //
+                {
+                    mailinfolist.RemoveAt(i);
+                    continue;
+                }
             }
 
             //存储邮件
