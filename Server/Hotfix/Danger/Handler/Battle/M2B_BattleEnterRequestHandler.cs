@@ -7,12 +7,27 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2B_BattleEnterRequest request, B2M_BattleEnterResponse response, Action reply)
         {
-            (long fubeninstanceid, int camp)  = scene.GetComponent<BattleSceneComponent>().GetBattleInstanceId(request.UserID, request.SceneId);
-            response.FubenInstanceId = fubeninstanceid;
-            response.Camp = camp;
-
-
-            reply();
+            KeyValuePairInt keyValuePairInt  = scene.GetComponent<BattleSceneComponent>().GetBattleInstanceId(request.UserID, request.SceneId);
+            if (keyValuePairInt != null)
+            {
+                response.FubenInstanceId = keyValuePairInt.Value;
+                response.Camp = keyValuePairInt.KeyId;
+                reply();
+            }
+            else
+            {
+                using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Battle, scene.DomainZone()))
+                {
+                    keyValuePairInt = await scene.GetComponent<BattleSceneComponent>().GenerateBattleInstanceId(request.UserID, request.SceneId);
+                    if (keyValuePairInt != null)
+                    {
+                        response.FubenInstanceId = keyValuePairInt.Value;
+                        response.Camp = keyValuePairInt.KeyId;
+                    }
+                }
+                reply();
+            }
+           
             await ETTask.CompletedTask;
         }
     }

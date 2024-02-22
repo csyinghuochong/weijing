@@ -1609,6 +1609,7 @@ message M2LocalDungeon_EnterRequest // IActorRequest
 	int32 SceneId = 2;
 	int32 TransferId = 3;
 	int32 Difficulty = 4;
+	int32 SceneType = 5;
 }
 
 message LocalDungeon2M_EnterResponse // IActorResponse
@@ -1618,6 +1619,28 @@ message LocalDungeon2M_EnterResponse // IActorResponse
 	string Message = 92;
 
 	int64 FubenInstanceId = 2;
+	int64 FubenId = 3;
+}
+
+//退出副本
+//ResponseType LocalDungeon2M_ExitResponse
+message M2LocalDungeon_ExitRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 SceneType = 1;
+	int64 FubenInstanceId = 2;
+	int64 FubenId = 3;
+	repeated int64 Camp1Player = 4;
+	repeated int64 Camp2Player = 5;
+}
+
+message LocalDungeon2M_ExitResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }
 
 message ServerMailItem

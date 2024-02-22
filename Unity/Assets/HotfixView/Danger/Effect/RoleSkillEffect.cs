@@ -25,7 +25,7 @@ namespace ET
         {
             try
             {
-                if (this.EffectState != BuffState.Running)
+                if (this.EffectState != BuffState.Running || instanceId != this.InstanceId)
                 {
                     if (gameObject != null)
                     {
@@ -35,7 +35,7 @@ namespace ET
                 }
                 this.EffectObj = gameObject;
                 this.EffectObj.name = this.EffectConfig.EffectName;
-                if (this.EffectData.InstanceId == 0 || instanceId != this.InstanceId || gameObject == null)
+                if (this.EffectData.InstanceId == 0  || gameObject == null)
                 {
                     this.EffectState = BuffState.Finished;
                 }

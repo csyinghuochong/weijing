@@ -42,7 +42,7 @@ namespace ET
                         }
 
                         NotFoundActorTimes[realActorId]++;
-                        if (NotFoundActorTimes[realActorId] >= 100)
+                        if (NotFoundActorTimes[realActorId] >= 200)
                         {
                             NotFoundActorTimes[realActorId] = 0;
 

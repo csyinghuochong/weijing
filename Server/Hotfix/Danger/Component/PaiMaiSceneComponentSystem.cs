@@ -456,7 +456,7 @@ namespace ET
                     || oldDBPaiMainInfo.PaiMaiItemInfos.Count > 0
                     || oldDBPaiMainInfo.StallItemInfos.Count > 0)
                 {
-                    Console.WriteLine($"拍卖服有旧数据；  {zone}   {oldDBPaiMainInfo.PaiMaiItemInfos.Count}");
+                    Console.WriteLine($"拍卖有旧数据:  {zone}   {oldDBPaiMainInfo.PaiMaiItemInfos.Count}");
 
                     oldPaiMaiShop = oldDBPaiMainInfo.PaiMaiShopItemInfos;
                     oldPaiMaiAll = oldDBPaiMainInfo.PaiMaiItemInfos;
@@ -465,7 +465,7 @@ namespace ET
             }
             else
             {
-                Console.WriteLine($"拍卖服无旧数据；  {zone}");
+                Console.WriteLine($"拍卖无旧数据:  {zone}");
             }
 
             await self.InitPaiMaiShangJia(1, oldPaiMaiAll);

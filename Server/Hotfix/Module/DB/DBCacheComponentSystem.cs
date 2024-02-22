@@ -64,7 +64,10 @@ namespace ET
             {
                 if (lasttime != 0 && serverTime - lasttime > TimeHelper.Hour * 4)
                 {
-                    self.WaitDeletUnit.Add(unitid);
+                    if (!self.WaitDeletUnit.Contains(unitid))
+                    {
+                        self.WaitDeletUnit.Add(unitid);
+                    }
                 }
             }
 

@@ -462,7 +462,7 @@ namespace ET
 
             long oldsceneid = unit.DomainScene().Id;
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
-            int n = (int)( (unit.Id / 99) % 4 );
+            int n = (int)( (unit.Id / 99) % zonelocaldungeons.Count);
 
             //if (ComHelp.IsInnerNet())
             //{
@@ -478,7 +478,10 @@ namespace ET
             }
             //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
             LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
-                        startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest() { UserID = unit.Id, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty });
+                        startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest()
+                        { 
+                            UserID = unit.Id, SceneType = SceneTypeEnum.LocalDungeon, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty
+                        });
 
             if (createUnit.Error != ErrorCode.ERR_Success)
             {

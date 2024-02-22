@@ -332,7 +332,7 @@ namespace ET
             int mtype = monsterPosition.Type;
             string[] position = monsterPosition.Position.Split(',');
             string[] refreshPar = monsterPosition.Par.Split(',');
-            Log.Debug($"野外怪定时刷新bbbbbb:  {self.DomainZone()}区：   MonsterID：{monsterPosition.MonsterID} ");
+            //Log.Debug($"野外怪定时刷新bbbbbb:  {self.DomainZone()}区：   MonsterID：{monsterPosition.MonsterID} ");
 
             self.RefreshMonsters.Add(new RefreshMonster()
             {

@@ -3384,6 +3384,9 @@ namespace ET
 		[ProtoMember(4)]
 		public int Difficulty { get; set; }
 
+		[ProtoMember(5)]
+		public int SceneType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.LocalDungeon2M_EnterResponse)]
@@ -3401,6 +3404,53 @@ namespace ET
 
 		[ProtoMember(2)]
 		public long FubenInstanceId { get; set; }
+
+		[ProtoMember(3)]
+		public long FubenId { get; set; }
+
+	}
+
+//退出副本
+	[ResponseType(nameof(LocalDungeon2M_ExitResponse))]
+	[Message(InnerOpcode.M2LocalDungeon_ExitRequest)]
+	[ProtoContract]
+	public partial class M2LocalDungeon_ExitRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int SceneType { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+		[ProtoMember(3)]
+		public long FubenId { get; set; }
+
+		[ProtoMember(4)]
+		public List<long> Camp1Player = new List<long>();
+
+		[ProtoMember(5)]
+		public List<long> Camp2Player = new List<long>();
+
+	}
+
+	[Message(InnerOpcode.LocalDungeon2M_ExitResponse)]
+	[ProtoContract]
+	public partial class LocalDungeon2M_ExitResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

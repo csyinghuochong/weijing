@@ -52,7 +52,7 @@ namespace ET
             }
         }
 
-        public static void SendReward(this BattleDungeonComponent self, BattleInfo battleInfo)
+        public static void SendReward(this BattleDungeonComponent self, List<long> Camp1Player, List<long> Camp2Player)
         {
             if (self.SendReward)
             {
@@ -69,7 +69,7 @@ namespace ET
                 winCamp = CampEnum.CampPlayer_2;
             }
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(56);
-            List<long> winPlayers = winCamp == 1 ? battleInfo.Camp1Player: battleInfo.Camp2Player;
+            List<long> winPlayers = winCamp == 1 ? Camp1Player: Camp2Player;
         
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < winPlayers.Count; i++)
@@ -133,9 +133,9 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static  void OnBattleOver(this BattleDungeonComponent self, BattleInfo battleInfo)
+        public static  void OnBattleOver(this BattleDungeonComponent self, List<long> Camp1Player, List<long> Camp2Player)
         {
-            self.SendReward(battleInfo);
+            self.SendReward(Camp1Player, Camp2Player);
         }
     }
 }

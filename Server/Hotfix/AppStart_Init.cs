@@ -49,7 +49,8 @@ namespace ET
 
             long unitid = DBHelper.DebugUnitId;
             // int n = (int)((unitid / 99) % 4);
-            Log.Console($"n: {UnitIdStruct.GetUnitZone(unitid)}");
+            Log.Console($"unit.zone: {UnitIdStruct.GetUnitZone(unitid)}");
+            Console.WriteLine($"unit.zone: {UnitIdStruct.GetUnitZone(unitid)}");
 
             switch (Game.Options.AppType)
             {

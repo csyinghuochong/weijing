@@ -22,5 +22,7 @@ namespace ET
         /// </summary>
         public bool DemonOpen = false;
         public Dictionary<long, List<long>> DemonPlayerList = new Dictionary<long, List<long>>();
+
+
     }
 }
