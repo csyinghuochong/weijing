@@ -129,7 +129,7 @@ namespace ET
 
             Log.ILog.Debug("unity111  Awake");
             Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
-
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
             ///平台Id定义 不得更改
             ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) QuDao100渠道母包(100以上为渠道包) ios20001
 #if TapTap1
