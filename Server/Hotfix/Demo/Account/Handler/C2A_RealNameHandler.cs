@@ -19,6 +19,13 @@ namespace ET
             //using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountId.GetHashCode()))
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, 1))
             {
+                if (session.IsDisposed)
+                {
+                    response.Error = ErrorCode.ERR_RealNameFail;
+                    reply();
+                    return;
+                }
+
                 long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
                 DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
