@@ -209,6 +209,7 @@ message C2G_EnterGame // IRequest
 	string DeviceName = 5;
 	int32 Version = 6;
 	int32 Platform = 7;
+	int32 Simulator = 8;
 }
 
 message G2C_EnterGame // IResponse
@@ -552,6 +553,7 @@ message C2A_LoginAccount // IRequest
 	string ThirdLogin = 4;
 	bool Relink = 5;
 	int32 age_type = 6;
+	int32 Simulator = 7;
 }
 
 message A2C_LoginAccount // IResponse

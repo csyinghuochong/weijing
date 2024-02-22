@@ -443,6 +443,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int Platform { get; set; }
 
+		[ProtoMember(8)]
+		public int Simulator { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
@@ -1119,6 +1122,9 @@ namespace ET
 
 		[ProtoMember(6)]
 		public int age_type { get; set; }
+
+		[ProtoMember(7)]
+		public int Simulator { get; set; }
 
 	}
 

@@ -7,7 +7,6 @@ namespace ET
     [SessionStreamDispatcher(SessionStreamDispatcherType.SessionStreamDispatcherServerInner)]
     public class SessionStreamDispatcherServerInner: ISessionStreamDispatcher
     {
-
         public Dictionary<long, long> NotFoundActorTimes = new Dictionary<long, long>();    
 
         public void Dispatch(Session session, MemoryStream memoryStream)
