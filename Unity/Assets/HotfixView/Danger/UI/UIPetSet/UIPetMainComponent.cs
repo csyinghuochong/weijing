@@ -45,7 +45,8 @@ namespace ET
         public long Timer;
         public float BeginTime;
 
-        public Dictionary<long, GameObject> HpList= new Dictionary<long, GameObject>();
+        public Dictionary<long, Image> UIHpList= new Dictionary<long, Image>();
+        public Dictionary<long, Text> HurtList = new Dictionary<long, Text>();
 
         public M2C_FubenSettlement M2C_FubenSettlement;
 
@@ -58,6 +59,8 @@ namespace ET
         public override void Destroy(UIPetMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            self.UIHpList.Clear();
+            self.HurtList.Clear();
         }
     }
 
@@ -81,7 +84,8 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             self.PetFubenFinger.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.PetDungeon);
 
-            self.HpList.Clear();
+            self.UIHpList.Clear();
+            self.HurtList.Clear();
             self.UIMonsterHp = rc.Get<GameObject>("UIMonsterHp");
             self.UIMonsterHp.SetActive(false);
             self.UIPetHp = rc.Get<GameObject>("UIPetHp");
@@ -116,7 +120,7 @@ namespace ET
 
         public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit unit)
         {
-            if (!self.HpList.ContainsKey(unit.Id))
+            if (!self.UIHpList.ContainsKey(unit.Id))
             {
                 return;
             }
@@ -124,8 +128,9 @@ namespace ET
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
             blood = Mathf.Max(blood, 0f);
-            GameObject gameObject = self.HpList[unit.Id];
-            gameObject.transform.Find("Img_HpValue").GetComponent<Image>().fillAmount = blood;
+   
+            self.UIHpList[unit.Id].fillAmount = blood;
+
         }
 
         public static void InitHpList(this UIPetMainComponent self)
@@ -145,7 +150,8 @@ namespace ET
                     gameObject.SetActive(true);
 
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
-                    self.HpList.Add(entities[i].Id, gameObject);
+                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
+                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
                     continue;
                 }
                 if (entities[i].Type == UnitType.Pet)
@@ -157,7 +163,8 @@ namespace ET
 
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = "";
-                    self.HpList.Add(entities[i].Id, gameObject);
+                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
+                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
                     continue;
                 }
                 if (entities[i].Type == UnitType.Monster)
@@ -170,7 +177,8 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
                     gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = monsterCof.MonsterName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
-                    self.HpList.Add(entities[i].Id, gameObject);
+                    self.UIHpList.Add(entities[i].Id, gameObject.transform.Find("Img_HpValue").GetComponent<Image>());
+                    self.HurtList.Add(entities[i].Id, gameObject.transform.Find("Lal_Hurt").GetComponent<Text>());
                     continue;
                 }
             }

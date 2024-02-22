@@ -26,13 +26,10 @@ namespace ET
                 self.InitSdk();
 
 				Application.runInBackground = true;
-
-                Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
-				//Screen.sleepTimeout = SleepTimeout.NeverSleep; 
-				self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
+                // Screen.sleepTimeout = SleepTimeout.NeverSleep;
+                self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
 				ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
                 self.ZhuCe = rc.Get<GameObject>("ZhuCe");
