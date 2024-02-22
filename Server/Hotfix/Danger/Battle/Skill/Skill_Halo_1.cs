@@ -24,7 +24,7 @@
             this.UpdateCheckPoint(this.TheUnitFrom.Position);
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {
-                Unit unit = TheUnitFrom.Domain.GetComponent<UnitComponent>().Get(HurtIds[i]);
+                Unit unit = this.TheUnitFrom.Domain.GetComponent<UnitComponent>().Get(HurtIds[i]);
                 if (unit == null || unit.IsDisposed)
                 {
                     HurtIds.RemoveAt(i);
@@ -33,12 +33,12 @@
                 if (!this.CheckShape(unit.Position))
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, SkillConf.BuffID[0]);
-                    HurtIds.RemoveAt(i);
+                    this.HurtIds.RemoveAt(i);
                     continue;
                 }
                 if (!unit.IsCanBeAttack())
                 {
-                    HurtIds.RemoveAt(i);
+                    this.HurtIds.RemoveAt(i);
                     continue;
                 }
             }
