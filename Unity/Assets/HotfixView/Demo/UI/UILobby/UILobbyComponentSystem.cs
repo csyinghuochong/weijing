@@ -292,7 +292,7 @@ namespace ET
 #else
             string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
 #endif
-            await  LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, false, GlobalHelp.GetPlatform());
+            await  LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, false, GlobalHelp.GetPlatform(), IPHoneHelper.IsSimulator_1()?1:0);
         }
 
         //删除角色

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ET
 {
@@ -54,6 +55,48 @@ namespace ET
         {
             return (Screen.width == 2796 && Screen.height == 1290)      //iphone15promax
                 || (Screen.width == 2556 && Screen.height == 1179);     //iphone15
+        }
+
+        /// <summary>
+        /// 判断是否运行在模拟器上
+        /// 通过cpu类型来判断，电脑cpu一般是intel和amd，都是x86架构
+        /// </summary>
+        /// <returns>是否运行在模拟器上</returns>
+        public static bool IsSimulator_1()
+        {
+#if UNITY_ANDROID
+            string processorType = SystemInfo.processorType;    //模拟器上返回以x86开头的字符串
+            if (string.IsNullOrEmpty(processorType))
+                return false;
+            else
+                return processorType.StartsWith("x86", StringComparison.OrdinalIgnoreCase);
+#else
+            return false;
+#endif
+        }
+
+        public static bool IsSimulator_2()
+        {
+#if UNITY_ANDROID
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                AndroidJavaClass buildClass = new AndroidJavaClass("android.os.Build");
+                string radioVersion = buildClass.CallStatic<string>("getRadioVersion");
+                return radioVersion != string.Empty;
+            }
+            return false;
+#else
+            return false;
+#endif
+        }
+
+        public static bool IsSimulator_3()
+        {
+#if UNITY_ANDROID
+            return SystemInfo.graphicsDeviceID == 0 && SystemInfo.graphicsDeviceVendorID == 0;
+#else
+            return false;
+#endif
         }
 
         public static bool CheckIphone()
