@@ -21,6 +21,46 @@ namespace ET
         private static string sSceneCheckPath = "Assets/Scenes";
         private static string sResPath = "Assets/Res";
 
+        // [MenuItem("Asset / ), false, 1]
+        [MenuItem("Assets/Custom/Copy  Dependencies", false, 1)]//路径
+        public static void CopyDependencies()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+            UnityEngine.Debug.Log("fontPath: " + fontPath);
+            UnityEngine.Debug.Log("CopyDependencies: Begin");
+            string dataPath = Application.dataPath;
+            string[] dependPathList = AssetDatabase.GetDependencies(new string[] { fontPath });
+            foreach (string path in dependPathList)
+            {
+                using (var stream = File.OpenRead(path))
+                {
+                    long fileSize = stream.Length;
+                    string strNum = BuildScript.GetSizeNum(fileSize);
+                    UnityEngine.Debug.Log(strNum + "   " + path);
+                }
+   
+                string[] fileInfo = path.Split('/');
+                string formPath = path.Replace("Assets", Application.dataPath);
+                string toPath = "H:/TempFile/" + fileInfo[fileInfo.Length - 1];
+                CopyDirectory(formPath, toPath);
+            }
+
+            //dataPath: H:/GitWeiJing/Unity/Assets
+            //Assets/Res/Models/RoleModelSet/RoleFaShi/Animtor/Girl_Act_1.fbx
+            UnityEngine.Debug.Log("dataPath: " + dataPath);
+            UnityEngine.Debug.Log("CopyDependencies: End");
+        }
+
+        /// <summary>
+        /// 拷贝文件
+        /// </summary>
+        /// <param name="srcDir">起始文件夹</param>
+        /// <param name="tgtDir">目标文件夹</param>
+        public static void CopyDirectory(string srcDir, string tgtDir)
+        {
+            File.Copy(srcDir, tgtDir , true);
+        }
+
 
         // [MenuItem("Asset / ), false, 1]
         [MenuItem("Assets/Custom/Check  Dependencies", false, 1)]//路径
