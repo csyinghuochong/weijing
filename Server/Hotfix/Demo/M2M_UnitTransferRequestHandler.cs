@@ -41,7 +41,7 @@ namespace ET
                 foreach (byte[] bytes in request.EntityBytes)
 				{
 					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
-                    if (bytes.Length > 200000)
+                    if (bytes.Length > 300000)
                     {
 						Log.Warning($"bytes.Length > too large: {unit.Id} {entity.GetType().Name} {bytes.Length}");
                     }
