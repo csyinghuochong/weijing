@@ -127,7 +127,7 @@ namespace ET
                         playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                        errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0);
+                        errorCode = await LoginHelper.EnterGame(zoneScene, string.Empty, false, 0);
                         Log.Debug($"create robot ok: {robotZone}");
                     }
                 }

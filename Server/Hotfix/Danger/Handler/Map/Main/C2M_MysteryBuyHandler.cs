@@ -24,6 +24,12 @@ namespace ET
                     reply();
                     return;
                 }
+                if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
+                {
+                    response.Error = ErrorCode.ERR_BagIsFull;
+                    reply();
+                    return;
+                }
 
                 if (!unit.GetComponent<BagComponent>().CheckCostItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
                 {

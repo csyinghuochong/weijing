@@ -12,7 +12,7 @@ namespace ET
 			{
 				Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
 			}
-
+            
             if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -31,8 +31,21 @@ namespace ET
 				reply();
 				return;
 			}
-			//没有loginGate
-			SessionPlayerComponent sessionPlayerComponent = session.GetComponent<SessionPlayerComponent>();
+
+			string[] ipinfo = session.RemoteAddress.ToString().Split(':');
+			if (!string.IsNullOrEmpty(request.DeviceName) && ipinfo.Length > 1)
+			{
+                PlayerComponent playerComponent = session.DomainScene().GetComponent<PlayerComponent>();
+                int sameIpNumber = playerComponent.GetSameIpNumber(request.AccountId,ipinfo[0]);
+
+				if (sameIpNumber > 5)
+				{
+					Log.Warning($"同ip玩家超过五个: {sameIpNumber} {request.UserID}");
+				}
+            }
+           
+            //没有loginGate
+            SessionPlayerComponent sessionPlayerComponent = session.GetComponent<SessionPlayerComponent>();
 			if (null == sessionPlayerComponent)
 			{
 				response.Error = ErrorCode.ERR_SessionPlayerError;
@@ -131,7 +144,7 @@ namespace ET
 						}
 						GateMapComponent gateMapComponent = player.AddComponent<GateMapComponent>();
 						gateMapComponent.Scene = SceneFactory.Create(gateMapComponent, "GateMap", SceneType.GateMap);
-
+						
 						Unit unit = UnitFactory.Create(gateMapComponent.Scene, request.UserID, UnitType.Player);
 						await DBHelper.AddDataComponent<UserInfoComponent>(unit, request.UserID, DBHelper.UserInfoComponent);
 						await DBHelper.AddDataComponent<NumericComponent>(unit, request.UserID, DBHelper.NumericComponent);

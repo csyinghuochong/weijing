@@ -117,7 +117,7 @@ namespace ET
                             reply();
                             return;
                         }
-                        zhanQuTokenRecvives.Add(new TokenRecvive() { ActivityId = request.ActivityId, ReceiveIndex = request.ReceiveIndex });
+
                         activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                         string rewards = "";
                         if (request.ReceiveIndex == 1) rewards = activityConfig.Par_2;
@@ -131,6 +131,8 @@ namespace ET
                             reply();
                             return;
                         }
+
+                        zhanQuTokenRecvives.Add(new TokenRecvive() { ActivityId = request.ActivityId, ReceiveIndex = request.ReceiveIndex });
                         unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 31:    //登录奖励

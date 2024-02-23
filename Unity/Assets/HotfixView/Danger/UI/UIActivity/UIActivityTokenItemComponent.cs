@@ -80,6 +80,12 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("等级不足！");
                 return;
             }
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包已满！");
+                return;
+            }
+
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             if (index == 3 && selfRechage < 298)

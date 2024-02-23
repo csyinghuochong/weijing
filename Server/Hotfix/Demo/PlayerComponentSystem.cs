@@ -40,6 +40,23 @@ namespace ET
             return gamer;
         }
 
+        public static int GetSameIpNumber(this PlayerComponent self, long accountid,  string ip)
+        {
+            int number = 0;
+            foreach ( (long id , Player Player) in self.idPlayers )
+            {
+                if (id == accountid)
+                {
+                    continue;
+                }
+                if (!string.IsNullOrEmpty(Player.RemoteAddress) && Player.RemoteAddress.Contains(ip))
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
         public static Player GetByUserId(this PlayerComponent self, long id)
         {
             foreach (var player in self.idPlayers.Values)

@@ -399,7 +399,7 @@ namespace ET
                     dBPaiMainInfo_Type = self.dBPaiMainInfo_Gemstone;
                     break;
                 default:
-                    Log.Error($"InitPaiMainShangJia: {itemType}");
+                    Log.Warning($"InitPaiMainShangJia: {itemType}");
                     break;
             }
 
