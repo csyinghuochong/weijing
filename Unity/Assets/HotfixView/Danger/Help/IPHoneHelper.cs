@@ -57,6 +57,11 @@ namespace ET
                 || (Screen.width == 2556 && Screen.height == 1179);     //iphone15
         }
 
+        public static bool IsSimulator()
+        { 
+            return IsSimulator_1() || IsSimulator_2();  
+        }
+
         /// <summary>
         /// 判断是否运行在模拟器上
         /// 通过cpu类型来判断，电脑cpu一般是intel和amd，都是x86架构

@@ -295,12 +295,15 @@ namespace ET
             main.startSize = new ParticleSystem.MinMaxCurve(3 * size);
         }
 
-        public static void OnLockNpc(this LockTargetComponent self, Unit unitTarget=null)
+        public static void OnLockNpc(this LockTargetComponent self, Unit unitTarget)
         {
             self.CheckLockEffect();
-            UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
-            self.LockUnitEffect.SetActive(true);
-            self.SetEffectSize(1f);
+            if (unitTarget != null)
+            {
+                UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+                self.LockUnitEffect.SetActive(true);
+                self.SetEffectSize(1f);
+            }
         }
     }
 

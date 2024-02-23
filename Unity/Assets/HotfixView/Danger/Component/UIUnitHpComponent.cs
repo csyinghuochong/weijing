@@ -356,6 +356,10 @@ namespace ET
 
         public void OnUpdateUnionName()
         {
+            if (this.Lal_JiaZuName == null)
+            {
+                return;
+            }
             Unit unit = this.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             UnitInfoComponent infoComponent = unit.GetComponent<UnitInfoComponent>();

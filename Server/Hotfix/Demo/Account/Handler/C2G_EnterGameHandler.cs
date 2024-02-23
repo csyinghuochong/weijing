@@ -16,7 +16,8 @@ namespace ET
 			{
                 Log.Warning($"模拟器登录: {request.UserID}");
             }
-			if (2246331668656881670 == request.UserID)
+			if (request.UserID == 2246331668656881670
+                || request.UserID == 2247658298205601811)
 			{
                 Log.Warning($"工作室登录: {request.UserID} {request.DeviceName}");
             }
