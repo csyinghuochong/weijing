@@ -19,7 +19,7 @@ namespace ET
 			if (request.UserID == 2246331668656881670
                 || request.UserID == 2247658298205601811)
 			{
-                Log.Warning($"工作室登录: {request.UserID} {request.DeviceName}");
+                Log.Warning($"工作室登录1: {request.UserID} {request.DeviceName}");
             }
 
             if (session.DomainScene().SceneType != SceneType.Gate)
@@ -34,6 +34,19 @@ namespace ET
                 reply();
                 return;
             }
+
+			if (request.Simulator == 1 && request.DeviceName.Contains("960:540") )
+			{
+                List<DBCenterAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
+				if (dBAccountInfos_new != null && dBAccountInfos_new.Count > 0 && dBAccountInfos_new[0].PlayerInfo.RechargeInfos.Count == 0)
+				{
+                    Log.Warning($"工作室登录2: {request.UserID} {request.DeviceName}");
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
+                    reply();
+                    return;
+                }
+            }
+
             if (session.GetComponent<SessionLockingComponent>() != null)
 			{
 				response.Error = ErrorCode.ERR_RequestRepeatedly;
