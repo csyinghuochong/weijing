@@ -51,7 +51,7 @@ namespace ET
 				{
 					Log.Warning($"同ip玩家超过五个: {sameIpNumber} {request.UserID}");
 				}
-				if (sameIpNumber > 5 && request.Simulator == 1)
+				if (sameIpNumber > 5) /////temp && request.Simulator == 1)
 				{
                     response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
