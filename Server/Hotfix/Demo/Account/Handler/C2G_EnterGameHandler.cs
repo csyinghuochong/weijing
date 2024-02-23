@@ -12,7 +12,11 @@ namespace ET
 			{
 				Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
 			}
-            
+			if (request.Simulator == 1)
+			{
+                Log.Warning($"模拟器登录: {request.AccountId}");
+            }
+
             if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -42,6 +46,12 @@ namespace ET
 				{
 					Log.Warning($"同ip玩家超过五个: {sameIpNumber} {request.UserID}");
 				}
+				if (sameIpNumber > 5 && request.Simulator == 1)
+				{
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
+                    reply();
+                    return;
+                }
             }
            
             //没有loginGate
