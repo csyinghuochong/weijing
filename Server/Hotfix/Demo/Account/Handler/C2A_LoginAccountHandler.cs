@@ -41,7 +41,7 @@ namespace ET
                 LogHelper.LogWarning($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}", true);
                 if (session.DomainScene().SceneType != SceneType.Account)
                 {
-                    Log.Error($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                    Log.Warning($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
                     session.Dispose();
                     return;
                 }

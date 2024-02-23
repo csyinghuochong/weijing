@@ -10,7 +10,7 @@ namespace ET
             {
                 if (session.DomainScene().SceneType != SceneType.Account)
                 {
-                    Log.Error($"LoginTest 请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}  {session.RemoteAddress}");
+                    Log.Warning($"LoginTest 请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}  {session.RemoteAddress}");
                     session.Dispose();
                     return;
                 }

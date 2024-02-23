@@ -24,7 +24,7 @@ namespace ET
 
             if (session.DomainScene().SceneType != SceneType.Gate)
 			{
-				Log.Error($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+				Log.Warning($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
 				session.Dispose();
 				return;
 			}
