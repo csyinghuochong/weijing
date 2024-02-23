@@ -214,6 +214,9 @@ namespace ET
                         buffData_2.BuffId = int.Parse(commands[1]); 
                         unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
                         break;
+					case 12:
+
+						break;
 					default:
 						break;
 				}
