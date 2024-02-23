@@ -164,14 +164,6 @@ namespace ET
 			self.GetParent<UI>().GameObject.transform.Find("Right").gameObject.SetActive(taskPro != null);
 			if (taskPro == null)
 			{
-				for (int i = 0; i < self.TaskTypeUIList.Count; i++)
-				{
-					if (self.TaskTypeUIList[i].bSelected)
-					{
-						self.TaskTypeUIList[i].SetExpand();
-						break;
-					}
-				}
 				return;
 			}
 
