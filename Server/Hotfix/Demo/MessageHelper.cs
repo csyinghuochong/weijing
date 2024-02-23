@@ -104,7 +104,7 @@ namespace ET
                         timechar = TimeHelper.ServerNow();
                         if (LogStatus)
                         {
-                            Log.Console(TimeHelper.DateTimeNow().ToString() + " 总数据:" + (messagelenght + messagelenght222).ToString() + " 移动数据:" + messagelenght + " 其他数据:" + messagelenght222 + " 广播人数:" + num + " 其他广播" + num222 + " 移动源数:" + playerBroadcast + " 其他源数:" + playerBroadcast222);
+                            Log.Warning(TimeHelper.DateTimeNow().ToString() + " 总数据:" + (messagelenght + messagelenght222).ToString() + " 移动数据:" + messagelenght + " 其他数据:" + messagelenght222 + " 广播人数:" + num + " 其他广播" + num222 + " 移动源数:" + playerBroadcast + " 其他源数:" + playerBroadcast222);
                         }
                         messagelenght = 0;
                         num = 0;

@@ -76,7 +76,8 @@ namespace ET
 
                 if (totalNumber > 0)
                 {
-                    Log.Console($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" + sb.ToString());
+                    //Log.Console($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" + sb.ToString());
+                    Log.Warning($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" + sb.ToString());
                 }
                
                 OuterMessageLength.Clear();
