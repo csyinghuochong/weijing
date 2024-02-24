@@ -104,7 +104,7 @@ namespace ET
                 excels = excels.Substring(0, excels.Length - 1);
 
                 string tools = ".\\Tools.exe";
-                ShellHelper.Run($"{tools} --AppType=ExcelExporter --Console=1 --StartConfig={excels}", "../Bin/");
+                ShellHelper.Run($"{tools} --AppType=ExcelExporter --Console=1 --StartConfig={excels}", "../BinET/");
             }
             GUILayout.EndScrollView();
             GUILayout.EndVertical();
