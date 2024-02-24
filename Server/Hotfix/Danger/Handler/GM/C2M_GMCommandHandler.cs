@@ -215,7 +215,26 @@ namespace ET
                         unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
                         break;
 					case 12:
-
+						for (int i = 0; i < long.Parse(commands[1]); i++)
+						{
+                            buffData_2 = new BuffData();
+                            buffData_2.SkillId = 67000278;
+                            buffData_2.BuffId = int.Parse(commands[2]);
+                            unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
+                        }
+						break;
+					case 13:
+						List<Unit> players = unit.GetParent<UnitComponent>().GetAll();
+						for (int player = 0; player < players.Count; player++)
+						{
+                            for (int i = 0; i < long.Parse(commands[1]); i++)
+                            {
+                                buffData_2 = new BuffData();
+                                buffData_2.SkillId = 67000278;
+                                buffData_2.BuffId = int.Parse(commands[2]);
+                                players[player].GetComponent<BuffManagerComponent>()?.BuffFactory(buffData_2, unit, null);
+                            }
+                        }
 						break;
 					default:
 						break;
