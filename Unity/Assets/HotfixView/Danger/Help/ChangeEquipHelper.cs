@@ -29,7 +29,14 @@ namespace ET
             {
                 GameObject.DestroyImmediate(self.newDiffuseTexture);        
             }
-            self.newDiffuseTexture = null;  
+            self.newDiffuseTexture = null;
+
+            if (!string.IsNullOrEmpty(self.WeaponAsset) && self.WeaponObject != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.WeaponAsset, self.WeaponObject);
+            }
+            self.WeaponAsset = null;
+            self.WeaponObject = null;   
         }
     }
 
@@ -52,33 +59,6 @@ namespace ET
         }
 
         public static void OnLoadGameObject(this ChangeEquipHelper self, GameObject go, long formId)
-        {
-            if (self.IsDisposed)
-            {
-                //删除加载出来的子部件
-                foreach (GameObject goTemp in self.gameObjects)
-                {
-                    if (goTemp)
-                    {
-                        GameObject.Destroy(goTemp);
-                    }
-                }
-                return;
-            }
-
-            self.gameObjects.Add(go);
-            go.transform.parent = self.trparent;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one;
-            self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            if (self.gameObjects.Count >= self.objectNames.Count)
-            {
-                self.OnAllLoadComplete();
-            }
-        }
-
-        public static void OnLoadGameObject_2(this ChangeEquipHelper self, GameObject go, long formId)
         {
             if (self.IsDisposed)
             {
@@ -243,9 +223,9 @@ namespace ET
             self.RecoverGameObject();
         }
 
-        public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
+        public static void LoadPrefab(this ChangeEquipHelper self,  string asset)
         {
-            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject_2);
+            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
@@ -321,6 +301,44 @@ namespace ET
             self.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid, false);
         }
 
+        public static void OnLoadGameObject_Weapon(this ChangeEquipHelper self, GameObject go, long formId)
+        {
+            //GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            //GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            go.SetActive(true);
+            go.transform.parent = self.WeaponParent;
+            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            self.WeaponObject = go;
+
+            //rimLight = true;
+            if (self.RimLight)
+            {
+                foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+
+                foreach (SkinnedMeshRenderer meshRenderer in go.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+            }
+
+            LayerHelp.ChangeLayerAll(self.WeaponParent, LayerEnum.RenderTexture);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -335,13 +353,18 @@ namespace ET
             {
                 return;
             }
+
+            if (!string.IsNullOrEmpty(self.WeaponAsset) && self.WeaponObject != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.WeaponAsset, self.WeaponObject);
+            }
+
             string weaponPath = "";
             if (weaponId != 0 && ItemConfigCategory.Instance.Contain(weaponId))
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
                 weaponPath = itemConfig.ItemModelID;
             }
-
             GameObject weaponParent_1 = hero.Get<GameObject>("Wuqi001");
             GameObject weaponParent_2 = hero.Get<GameObject>("Wuqi002");
             if (weaponParent_1 != null)
@@ -380,38 +403,11 @@ namespace ET
                 weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
             }
             var path = ABPathHelper.GetItemPath(weaponPath);
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            go.SetActive(true);
-            go.transform.parent = weaponParent;
-            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one;
-            //rimLight = true;
-            if (rimLight)
-            {
-                foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
-                {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
-                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
-                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
-                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
-                    meshRenderer.material.SetTexture("_RimMask", texture2D);
-                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
-                }
-
-                foreach (SkinnedMeshRenderer meshRenderer in go.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
-                {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
-                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
-                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
-                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
-                    meshRenderer.material.SetTexture("_RimMask", texture2D);
-                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
-                }
-            }
-
-            LayerHelp.ChangeLayerAll(weaponParent, LayerEnum.RenderTexture);
+            self.WeaponAsset = path;
+            self.WeaponObject = null;
+            self.WeaponParent = weaponParent;
+            self.RimLight = rimLight;
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject_Weapon);
         }
 
 
@@ -455,7 +451,7 @@ namespace ET
 
             for (int i = 0; i < self.objectNames.Count; i++)
             {
-                self.LoadPrefab_2(self.objectNames[i]);
+                self.LoadPrefab(self.objectNames[i]);
             }
         }
     }
@@ -474,13 +470,20 @@ namespace ET
 
         public bool LoadCompleted;
 
+        public Mesh NewMesh;
+
         public Transform trparent;
 
         public Transform trparentbone;
 
-        public Mesh NewMesh;
-
         public Texture2D newDiffuseTexture;
+
+        public string WeaponAsset;
+
+        public GameObject WeaponObject;
+
+        public Transform WeaponParent;
+        public bool RimLight;
 
         public List<GameObject> gameObjects = new List<GameObject>();
 
