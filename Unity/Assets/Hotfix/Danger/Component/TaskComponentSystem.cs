@@ -409,6 +409,12 @@ namespace ET
                 {
                     return ErrorCode.Pre_Condition_Error;
                 }
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+                List<RewardItem> rewardItems = TaskHelper.GetTaskRewards(taskid, taskConfig);
+                if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < rewardItems.Count)
+                {
+                    return ErrorCode.ERR_BagIsFull;
+                }
 
                 long instanceId = self.InstanceId;
                 C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid, BagInfoID = banginfoId };
