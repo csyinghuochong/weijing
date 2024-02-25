@@ -318,8 +318,102 @@ namespace ET
                 }
                 return;
             }
-            UICommonHelper.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid, false);
+            self.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid, false);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="occ"></param>
+        /// <param name="equipIndex"></param>
+        /// <param name="weaponId"></param>
+        /// <param name="rimLight">边缘光</param>
+        public static void ShowWeapon(this ChangeEquipHelper self,  GameObject hero, int occ, int equipIndex, int weaponId, bool rimLight)
+        {
+            if (hero == null)
+            {
+                return;
+            }
+            string weaponPath = "";
+            if (weaponId != 0 && ItemConfigCategory.Instance.Contain(weaponId))
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
+                weaponPath = itemConfig.ItemModelID;
+            }
+
+            GameObject weaponParent_1 = hero.Get<GameObject>("Wuqi001");
+            GameObject weaponParent_2 = hero.Get<GameObject>("Wuqi002");
+            if (weaponParent_1 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_1);
+            }
+            if (weaponParent_2 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_2);
+            }
+
+            Transform weaponParent = weaponParent_1.transform;
+            if (weaponPath == "" || weaponPath == "0")
+            {
+                //战士武器
+                if (occ == 1)
+                {
+                    weaponPath = "14100002";
+                }
+
+                //法师武器
+                if (occ == 2)
+                {
+                    weaponPath = "14100101";
+                }
+
+                //猎人武器
+                if (occ == 3)
+                {
+                    weaponPath = equipIndex == 0 ? "90000006" : "14100002";
+
+                }
+            }
+            if (occ == 3)
+            {
+                weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
+            }
+            var path = ABPathHelper.GetItemPath(weaponPath);
+            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            go.SetActive(true);
+            go.transform.parent = weaponParent;
+            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            //rimLight = true;
+            if (rimLight)
+            {
+                foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+
+                foreach (SkinnedMeshRenderer meshRenderer in go.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
+                    meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
+                    meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
+                    meshRenderer.material.SetTexture("_RimMask", texture2D);
+                    meshRenderer.material.SetFloat("_RimPower", 2f); // 光的亮度
+                }
+            }
+
+            LayerHelp.ChangeLayerAll(weaponParent, LayerEnum.RenderTexture);
+        }
+
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
