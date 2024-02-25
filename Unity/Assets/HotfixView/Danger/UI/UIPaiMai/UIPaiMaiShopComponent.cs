@@ -136,6 +136,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip($"{paiMaiSellConfig.BuyLv}级才能购买！");
                 return;
             }
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包已满！");
+                return;
+            }
 
             C2M_PaiMaiShopRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiShopRequest() { PaiMaiId = self.PaiMaiSellId ,BuyNum = self.BuyNum};
             M2C_PaiMaiShopResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiShopResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
