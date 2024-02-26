@@ -132,5 +132,8 @@ namespace ET
         public string Account;
 
         public int PetHeCheng;
+
+        //模拟器
+        public int Simulator;
     }
 }
