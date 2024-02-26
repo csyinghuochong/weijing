@@ -205,7 +205,14 @@ namespace ET
             unit.GetComponent<SkillManagerComponent>().InterruptSing(0, true);
             unit.GetComponent<SkillPassiveComponent>().StateTypeAdd(nowStateType);
             //发送改变属性的相关消息
-            MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
+            if (self.IsBroadcastType(nowStateType))
+            {
+                MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
+            }
+            else
+            {
+                MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
+            }  
 #else
             if (unit.MainHero)
             {
@@ -222,6 +229,15 @@ namespace ET
 #endif
         }
 
+        public static bool IsBroadcastType(this StateComponent self, long nowStateType)
+        {
+            return nowStateType == StateTypeEnum.Singing
+                || nowStateType == StateTypeEnum.OpenBox
+                || nowStateType == StateTypeEnum.Stealth
+                || nowStateType == StateTypeEnum.Hide
+                || nowStateType == StateTypeEnum.BaTi;  
+        }
+
         /// <summary>
         /// 移除某个状态
         /// </summary>
@@ -229,14 +245,20 @@ namespace ET
         public static void StateTypeRemove(this StateComponent self, long nowStateType)
         {
             self.CurrentStateType = self.CurrentStateType & ~nowStateType;
-
 #if SERVER
             //发送改变属性的相关消息
             Unit unit = self.GetParent<Unit>();
             if (unit == null || unit.IsDisposed)
                 return;
 
-            MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
+            if (self.IsBroadcastType(nowStateType))
+            {
+                MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
+            }
+            else
+            {
+                MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
+            }
 #else
             Unit unit = self.GetParent<Unit>();
             if (unit.MainHero && self.CanMove()== ErrorCode.ERR_Success)
