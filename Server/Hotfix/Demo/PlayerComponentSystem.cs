@@ -78,5 +78,10 @@ namespace ET
         {
             return self.idPlayers.Values.ToArray();
         }
+
+        public static long GetActorId(this Player self)
+        {
+            return ComHelp.AccountOldLogic ? self.UnitId : self.InstanceId;
+        }
     }
 }
