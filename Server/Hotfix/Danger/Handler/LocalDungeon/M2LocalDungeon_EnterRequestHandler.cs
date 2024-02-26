@@ -27,7 +27,7 @@ namespace ET
                     fubenid = IdGenerater.Instance.GenerateId();
                     fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                     fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, scene.DomainZone(), "Battle" + fubenid.ToString(), SceneType.Fuben);
-                    Console.WriteLine($"M2LocalDungeon_Enter: {fubnescene.Name}   {scene.DomainZone()}");
+                    //Console.WriteLine($"M2LocalDungeon_Enter: {fubnescene.Name}   {scene.DomainZone()}");
                     fubnescene.AddComponent<BattleDungeonComponent>().SendReward = false;
                     fubnescene.GetComponent<BattleDungeonComponent>().BattleOpenTime = TimeHelper.ServerNow();
                     MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();

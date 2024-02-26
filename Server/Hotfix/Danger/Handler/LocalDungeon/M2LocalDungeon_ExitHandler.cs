@@ -8,7 +8,7 @@ namespace ET
 
         private async ETTask CloseBattleFubenScene(Scene fubenscene, M2LocalDungeon_ExitRequest request)
         {
-            Console.WriteLine($"M2LocalDungeon_Exit:  {fubenscene.Name}  {request.Camp1Player.Count}  {request.Camp2Player.Count}   {fubenscene.DomainZone()} ");
+            //Console.WriteLine($"M2LocalDungeon_Exit:  {fubenscene.Name}  {request.Camp1Player.Count}  {request.Camp2Player.Count}   {fubenscene.DomainZone()} ");
             fubenscene.GetComponent<BattleDungeonComponent>().OnBattleOver(request.Camp1Player, request.Camp2Player);
             await fubenscene.GetComponent<BattleDungeonComponent>().KickOutPlayer();
             await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
