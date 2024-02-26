@@ -300,7 +300,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 75, ServerIp = $"{ip}:20415", ServerName = "万家灯火", ServerOpenTime = 1708686000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
                 //2024/2/26 19:00 新区 花好月圆 
-                serverItems_1.Add(new ServerItem() { ServerId = 75, ServerIp = $"{ip}:20595", ServerName = "花好月圆", ServerOpenTime = 1708945200000, New = 1, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 76, ServerIp = $"{ip}:20595", ServerName = "花好月圆", ServerOpenTime = 1708945200000, New = 1, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             }
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             return serverItems_1;
