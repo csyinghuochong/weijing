@@ -303,6 +303,13 @@ namespace ET
 
         public static void OnLoadGameObject_Weapon(this ChangeEquipHelper self, GameObject go, long formId)
         {
+            if (self.IsDisposed || self.InstanceId != formId)
+            {
+                //删除加载出来的子部件
+                GameObject.Destroy(go);
+                return;
+            }
+
             //GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             //GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             go.SetActive(true);
