@@ -14,7 +14,7 @@ namespace ET
 			}
 			if (request.Simulator == 1)
 			{
-                Log.Warning($"模拟器登录: {request.UserID}");
+                Log.Warning($"模拟器登录: {request.UserID} {request.DeviceName}");
             }
 			if (request.UserID == 2246331668656881670
                 || request.UserID == 2247658298205601811)
