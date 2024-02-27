@@ -1311,7 +1311,7 @@ namespace ET
                         
                         for (int y = 0; y < equipItemList.Count; y++)
                         {
-                            Debug.Log("equipItemList.Count = " + equipItemList.Count);
+                            //Debug.Log("equipItemList.Count = " + equipItemList.Count);
                             List<int>inheritSkills = equipItemList[i].InheritSkills;
                             Debug.Log("inheritSkills.Count = " + inheritSkills.Count);
                             
@@ -1320,13 +1320,20 @@ namespace ET
 
                                 if (inheritSkills[z] == skillID && equipItemList[y].BagInfoID != baginfo.BagInfoID)
                                 {
-                                    proStr += "/n(同类传承属性只激活一种)";
+                                    proStr += "\n(同类传承属性只激活一种)";
                                     ifRepeat = true;
                                     showYanSe = "11";
+                                    break;
                                 }
                             
                             }
                             
+                        }
+
+                        //////防止循环多次
+                        if (ifRepeat)
+                        {
+                            break;
                         }
                         
                         //ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
