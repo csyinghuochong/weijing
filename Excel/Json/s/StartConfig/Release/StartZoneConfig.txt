@@ -1,4 +1,0 @@
-{"list":[
-{"_t":"StartZoneConfig","_id":200,"DBConnection":"mongodb://localhost:27017/","DBName":"WJAlpha200"},
-{"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","DBName":"WJAlpha202(center)"},
-]}
