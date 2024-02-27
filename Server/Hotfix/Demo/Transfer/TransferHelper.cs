@@ -453,6 +453,11 @@ namespace ET
 
         public static async ETTask<int> LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
+            if (transferId != 0 && !DungeonTransferConfigCategory.Instance.Contain(transferId))
+            {
+                return ErrorCode.ERR_ModifyData;
+            }
+
             //前往神秘之门
             if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
             {
