@@ -614,6 +614,19 @@ namespace ET
             }
         }
 
+        public static  void TestTriggerBuffSkill(this SkillManagerComponent self, int skillId, int buffNum)
+        {
+            for (int i = 0; i < buffNum; i++)
+            {
+                Unit unit = self.GetParent<Unit>();
+                if (unit.IsDisposed)
+                {
+                    return;
+                }
+                self.OnUseSkill(new C2M_SkillCmd() { SkillID = skillId, TargetID = 0 }, false);
+            }
+        }
+
         public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);

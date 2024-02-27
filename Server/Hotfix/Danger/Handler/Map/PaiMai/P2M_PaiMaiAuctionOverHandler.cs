@@ -20,7 +20,7 @@ namespace ET
             {
                 userInfoComponent.UpdateRoleMoneySub( UserDataType.Gold, (request.Price * -1).ToString(), true, ItemGetWay.Auction );
                 response.Error = ErrorCode.ERR_Success;
-                Log.Warning($"扣除竞拍价：{request.Price}");
+                Log.Warning($"扣除竞拍价：{unit.DomainZone()} {request.Price}");
             }
             reply();
             await ETTask.CompletedTask;

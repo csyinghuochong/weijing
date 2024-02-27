@@ -627,7 +627,11 @@ namespace ET
             }
             if (errorCode == ErrorCode.ERR_Success)
             {
-                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
+                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201);
+            }
+            else
+            {
+                HintHelp.GetInstance().ShowHintError(errorCode);
             }
             self.OnTaskGet();
         }
