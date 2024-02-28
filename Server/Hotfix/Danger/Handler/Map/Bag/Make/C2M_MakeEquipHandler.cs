@@ -15,6 +15,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (!EquipMakeConfigCategory.Instance.Contain(request.MakeId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
 
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(request.MakeId);
             ItemLocType locType = ItemLocType.ItemLocBag;
