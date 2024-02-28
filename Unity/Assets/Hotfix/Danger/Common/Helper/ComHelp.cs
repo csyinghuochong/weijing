@@ -12,19 +12,19 @@ namespace ET
         //版号专区
         public static bool IsBanHaoZone(int zone)
         {
-            return zone == 201;
+            return zone == 3;
         }
 
         //内部专区
         public static bool IsAlphaZone(int zone)
         {
-            return zone == 200;
+            return zone == 3;
         }
 
         /// <summary>
-        /// 200内部区 201版号区 202中心区 203机器人
+        /// 3内部区 3版号区 202中心区 203机器人
         /// </summary>
-        public static List<int> InnerZoneList = new List<int>() { 200, 201, 202, 203 };
+        public static List<int> InnerZoneList = new List<int>() { 202, 203 };
 
         public const int Version = 20240130;
 
@@ -123,16 +123,6 @@ namespace ET
         {
             if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
                || StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("192.168"))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool IsBanHaoZone()
-        {
-            //////20201是版号区的
-            if (StartMachineConfigCategory.Instance.Get(1).WatcherPort.Equals("20201") )
             {
                 return true;
             }

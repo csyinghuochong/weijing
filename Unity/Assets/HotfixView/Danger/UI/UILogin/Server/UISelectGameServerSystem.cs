@@ -69,15 +69,10 @@ namespace ET
             {
                 lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(lastloginType));
             }
-            bool gmaccount = GMHelp.GmAccount.Contains(lastAccount);
+
             for (int i = allserverList.Count - 1; i >= 0; i--)
             {
-                if (allserverList[i].ServerId == 3 && !gmaccount)
-                {
-                    allserverList.RemoveAt(i);
-                    continue;
-                }
-
+                
                 if (!allserverList[i].PlatformList.Contains(platform))
                 {
                     allserverList.RemoveAt(i);

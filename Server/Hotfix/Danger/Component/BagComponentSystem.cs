@@ -730,14 +730,14 @@ namespace ET
             }
         }
 
-        public static void OnAddItemData(this BagComponent self, BagInfo bagInfo, string getType)
+        public static bool OnAddItemData(this BagComponent self, BagInfo bagInfo, string getType)
         {
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             int maxPileSum = itemCof.ItemPileSum;
 
             if (maxPileSum > 1 || bagInfo.BagInfoID == 0)
             {
-                self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}", string.IsNullOrEmpty(bagInfo.GetWay) ? getType : bagInfo.GetWay);
+                return self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}", string.IsNullOrEmpty(bagInfo.GetWay) ? getType : bagInfo.GetWay);
             }
             else
             {
@@ -750,6 +750,7 @@ namespace ET
 
                 //检测任务需求道具
                 ItemAddHelper.OnGetItem(self.GetParent<Unit>(), int.Parse(getType.Split('_')[0]), bagInfo.ItemID, bagInfo.ItemNum);
+                return true;
             }
         }
 
@@ -965,11 +966,11 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id <= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
-                    LogHelper.LogWarning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
+                    Log.Warning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
                 if (leftNum >= 99)
                 {
-                    LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
+                    Log.Warning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
 
                 int maxPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;

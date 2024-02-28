@@ -55,15 +55,6 @@ namespace ET
                     return;
                 }
 
-                if (session.DomainZone() == 3
-                    && !GMHelp.GmAccount.Contains(request.AccountName)
-                    && !request.Password.Equals(ComHelp.RobotPassWord))
-                {
-                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
-                    reply();
-                    session.Disconnect().Coroutine();
-                    return;
-                }
                 if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
                 {
                     response.Error = ErrorCode.ERR_LoginInfoIsNull;

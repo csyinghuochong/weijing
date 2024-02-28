@@ -21,6 +21,7 @@ namespace ET
                 if (ComHelp.IsBanHaoZone(unit.DomainZone()))
                 {
                     LogHelper.LogWarning($"充值[版号服]SendDiamondToUnit: {unit.Id}");
+                    Console.WriteLine($"充值[版号服]SendDiamondToUnit: {unit.Id}");
                     RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "版号服");
                     reply();
                     return;

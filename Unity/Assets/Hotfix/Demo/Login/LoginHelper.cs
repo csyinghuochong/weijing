@@ -298,7 +298,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_DeleteAccountResponse r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet,  versionCode)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -325,18 +325,15 @@ namespace ET
                 Center2C_Register r2CRegister;
                 string address = string.Empty;
 
-                if (versionCode == VersionMode.BanHao)
-                {
-                    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
-                }
-                else
-                {
-                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
-                    address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
-                }
-             
+                //if (versionCode == VersionMode.BanHao)
+                //{
+                //    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                //}
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
+                address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+
                 //走的中心服
-                 
+
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -387,10 +384,6 @@ namespace ET
         /// <returns></returns>
         public static int GetAccountCenterPort(VersionMode versionMode)
         {
-            if (versionMode == VersionMode.BanHao)
-            {
-                return 20104;
-            }
             if (versionMode == VersionMode.Alpha)
             {
                 return 20204;
@@ -401,10 +394,6 @@ namespace ET
         //账号服
         public static int GetAccountPort(VersionMode versionMode)
         {
-            if (versionMode == VersionMode.BanHao)
-            {
-                return 20105;
-            }
             if (versionMode == VersionMode.Alpha)
             {
                 return 20205;
@@ -447,16 +436,16 @@ namespace ET
                     if (!ComHelp.IsBanHaoZone(serverItems[i].ServerId))
                     {
                         serverItems.RemoveAt(i);
+                        continue;
                     }
-                    continue;
                 }
                 if (versionMode == VersionMode.Alpha)
                 {
                     if (!ComHelp.IsAlphaZone(serverItems[i].ServerId))
                     {
                         serverItems.RemoveAt(i);
+                        continue;
                     }
-                    continue;
                 }
                 if (versionMode == VersionMode.Beta)
                 {

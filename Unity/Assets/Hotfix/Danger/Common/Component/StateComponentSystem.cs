@@ -211,7 +211,10 @@ namespace ET
             }
             else
             {
-                MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
+                if (unit.Type == UnitType.Player)
+                {
+                    MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
+                }   
             }  
 #else
             if (unit.MainHero)
@@ -257,7 +260,10 @@ namespace ET
             }
             else
             {
-                MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
+                if (unit.Type == UnitType.Player)
+                {
+                    MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
+                }
             }
 #else
             Unit unit = self.GetParent<Unit>();

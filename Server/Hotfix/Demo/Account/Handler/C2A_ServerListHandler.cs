@@ -24,7 +24,7 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.GetServerList, 0))
                     {
                         long serverTime = TimeHelper.ServerNow();
-                        List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
+                        List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet());
                         response.ServerItems.Clear();
                         for (int i = 0; i < serverItems.Count; i++)
                         {

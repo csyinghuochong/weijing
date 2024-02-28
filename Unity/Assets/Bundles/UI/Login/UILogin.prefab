@@ -4929,7 +4929,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5148\u950B\u4E00\u533A"
+  m_Text: 
 --- !u!114 &8756251961499125732
 MonoBehaviour:
   m_ObjectHideFlags: 0

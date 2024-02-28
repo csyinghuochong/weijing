@@ -77,17 +77,14 @@ namespace libx
         internal static void ApplyBuildRules(bool hash = true)
         {
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
-            VersionMode versionMode = (VersionMode)version;
-            switch (versionMode)
+            switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
                     outputPath = "../Release/DLCAlpha/" + GetPlatformName();
                     break;
                 case VersionMode.Beta:
-                    outputPath = "../Release/DLCBeta/" + GetPlatformName();
-                    break;
                 case VersionMode.BanHao:
-                    outputPath = "../Release/DLCBanHao/" + GetPlatformName();
+                    outputPath = "../Release/DLCBeta/" + GetPlatformName();
                     break;
             }
 
@@ -380,18 +377,15 @@ namespace libx
         {
             List<string> fileList = new List<string>();
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
-            VersionMode versionMode = (VersionMode)version;
             string outputPath = string.Empty;
-            switch (versionMode)
+            switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
                     outputPath = "DLCAlpha";
                     break;
                 case VersionMode.Beta:
-                    outputPath = "DLCBeta";
-                    break;
                 case VersionMode.BanHao:
-                    outputPath = "DLCBanHao";
+                    outputPath = "DLCBeta";
                     break;
             }
             string dataPath = Application.dataPath;

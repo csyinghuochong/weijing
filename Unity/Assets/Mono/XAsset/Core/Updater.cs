@@ -123,10 +123,8 @@ namespace libx
                     dlcPath = "DLCAlpha";
                     break;
                 case VersionMode.Beta:
-                    dlcPath = "DLCBeta";
-                    break;
                 case VersionMode.BanHao:
-                    dlcPath = "DLCBanHao";
+                    dlcPath = "DLCBeta";
                     break;
             }
             baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";

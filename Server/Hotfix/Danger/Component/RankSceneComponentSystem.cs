@@ -732,7 +732,7 @@ namespace ET
 
         public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
         {
-            ServerHelper.GetServerList(ComHelp.IsInnerNet(), self.DomainZone());
+            ServerHelper.GetServerList(ComHelp.IsInnerNet());
 
             int firstserver = 0;
             for (int i = 0; i < ServerHelper.ServerItems.Count; i++)

@@ -71,17 +71,14 @@ namespace libx
                 UnityEngine.Debug.LogError("version == -1");
                 return version;
             }
-            VersionMode versionMode = (VersionMode)version;
-            switch (versionMode)
+            switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
                     BuildScript.outputPath = "../Release/DLCAlpha/" + BuildScript.GetPlatformName();
                     break;
+                case VersionMode.BanHao:
                 case VersionMode.Beta:
                     BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
-                    break;
-                case VersionMode.BanHao:
-                    BuildScript.outputPath = "../Release/DLCBanHao/" + BuildScript.GetPlatformName();
                     break;
             }
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;

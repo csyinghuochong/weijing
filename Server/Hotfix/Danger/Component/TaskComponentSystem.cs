@@ -326,6 +326,7 @@ namespace ET
             string[] monsters =  SceneConfigHelper.GetLocalDungeonMonsters_2(dungeonid).Split('@');
             taskPro.FubenId = dungeonid;
             taskPro.WaveId = RandomHelper.RandomNumber(0, monsters.Length);
+            Log.Warning($"生成藏宝图任务怪: {self.GetParent<Unit>().Id} {dungeonid} {taskPro.WaveId}");
         }
 
         public static bool IsCompleted(this TaskComponent self, TaskPro taskPro, int TargetType, int[] Target, int[] TargetValue)
