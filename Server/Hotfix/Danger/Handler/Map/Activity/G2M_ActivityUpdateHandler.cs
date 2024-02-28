@@ -23,6 +23,10 @@ namespace ET
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(true);
                     break;
+                case -1:
+                    Log.Debug($"OnZeroClockUpdate防止卡死 [-1]");
+                    LocationProxyComponent.Instance.Remove(unit.Id).Coroutine();
+                    break;
                 default:
                     unit.GetComponent<UserInfoComponent>().OnHourUpdate(message.ActivityType, true);
                     break;

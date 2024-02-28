@@ -21,6 +21,9 @@ namespace ET
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
 
+
+        public static List<int> FunctionOpenIds = new List<int> { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059 , 2000};
+
         /// <summary>
         /// 小龟说话
         /// </summary>

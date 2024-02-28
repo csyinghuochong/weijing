@@ -227,7 +227,6 @@ namespace ET
                 Log.Warning($"OnCheckFuntionButton: {functionId} {self.ActivityTimerList[0].FunctionType}");
 
                 long sceneserverid = 0;
-
                 switch (functionId)
                 {
                     case 1025://战场
@@ -255,6 +254,9 @@ namespace ET
                     case 1058://奔跑比赛
                     case 1059://恶魔活动
                         sceneserverid = DBHelper.GetFubenCenterId(self.DomainZone());
+                        break;
+                    case 2000:
+                        sceneserverid = DBHelper.GetGateServerId(self.DomainZone());
                         break;
                     default:
                         break;
@@ -293,13 +295,18 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             TimerComponent.Instance.Remove(ref self.ActivityTimer);
             ///1025 战场 1043家族boss 1044家族争霸  1045竞技 1052狩猎活动  1055喜从天降  1057小龟大赛  1058奔跑比赛 1059恶魔活动
-            List<int> functonIds = new List<int>() { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059 };
+            List<int> functonIds = ConfigHelper.FunctionOpenIds;
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
-                //Log.Console($"InitFunctionButton: {functonIds[i]} {functionopne}");
+
+                if (functonIds[i] == 2000)
+                {
+                    startTime = curTime + RandomHelper.NextLong(TimeHelper.Second * 5, TimeHelper.Hour * 10);
+                }
+
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;

@@ -13,8 +13,6 @@ namespace ET
             switch (scene.SceneType)
             {
                 case SceneType.Gate:
-
-                    
                     LogHelper.LogWarning($"Gate定时刷新: {scene.DomainZone()} {hour} ", true);
                     if (hour == 0)
                     {

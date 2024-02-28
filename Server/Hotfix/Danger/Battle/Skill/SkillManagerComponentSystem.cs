@@ -553,7 +553,7 @@ namespace ET
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
 
-            self.TriggerAddSkill(skillcmd, weaponSkillConfig.Id);
+            self.TriggerAddSkill(skillcmd, weaponSkillConfig.Id).Coroutine();
             self.AddSkillTimer();
             return m2C_Skill;
         }
@@ -630,10 +630,14 @@ namespace ET
             }
         }
 
-        public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
+        public static async ETTask TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-
+            if (skillConfig.AddSkillID == null || skillConfig.AddSkillID.Length == 0)
+            {
+                return;
+            }
+            await TimerComponent.Instance.WaitFrameAsync();
             int addSkillId = skillConfig.AddSkillID[0];
             if (addSkillId!= 0 && !SkillConfigCategory.Instance.Contain(addSkillId))
             {
@@ -641,8 +645,12 @@ namespace ET
             }
             if (addSkillId!=0 && SkillConfigCategory.Instance.Contain(addSkillId))
             {
-                c2M_SkillCmd.SkillID = addSkillId;
-                self.OnUseSkill(c2M_SkillCmd, false);
+                int skillNumber = skillConfig.AddSkillID.Length >= 2 ? skillConfig.AddSkillID[1] : 1;
+                for (int i = 0; i < skillNumber; i++)
+                {
+                    c2M_SkillCmd.SkillID = addSkillId;
+                    self.OnUseSkill(c2M_SkillCmd, false);
+                }
             }
             int[] selfSkillList = skillConfig.TriggerSelfSkillID;
             if (selfSkillList == null || selfSkillList.Length == 0 || selfSkillList[0] == 0)
