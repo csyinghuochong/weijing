@@ -347,7 +347,10 @@ namespace ET
             {
                 return;
             }
-            self.OnUseSkill(skillcmd, false);
+            for (int i = 0; i < 1; i++)
+            {
+                self.OnUseSkill(skillcmd, false);
+            }
         }
 
         public static void InterruptSkill(this SkillManagerComponent self, int skillId)
@@ -631,7 +634,7 @@ namespace ET
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
-            int addSkillId = skillConfig.AddSkillID;
+            int addSkillId = skillConfig.AddSkillID[0];
             if (addSkillId!= 0 && !SkillConfigCategory.Instance.Contain(addSkillId))
             {
                 Log.Debug($"skillConfig.AddSkillID无效：  {skillId} {addSkillId}");

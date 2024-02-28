@@ -236,7 +236,7 @@ namespace ET
 		public double IfLookAtTatgetTime { get; set; }
 		/// <summary>触发技能时附带技能</summary>
 		[ProtoMember(54)]
-		public int AddSkillID { get; set; }
+		public int[] AddSkillID { get; set; }
 		/// <summary>技能触发时间</summary>
 		[ProtoMember(55)]
 		public double PassiveSkillTriggerTime { get; set; }
