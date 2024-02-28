@@ -30,8 +30,8 @@ namespace ET
                 int lastNumber = session.PackageNumber;
                 sessionPlayer.LastRecvTime = serverTime;
                 session.PackageNumber = 0;
-               
-                if (lastNumber > 500)
+                
+                if (lastNumber > ConfigHelper.PackageLimit)
                 {
                     Log.Warning($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}");
                     session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_PackageFrequent });

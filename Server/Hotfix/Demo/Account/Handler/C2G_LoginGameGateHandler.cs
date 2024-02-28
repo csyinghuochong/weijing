@@ -79,18 +79,19 @@ namespace ET
                         player.PlayerState = PlayerState.Gate;
                         player.RemoteAddress = session.RemoteAddress.ToString();
                         LogHelper.LogDebug($"LoginTest C2G_LoginGameGate  player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+
+                        session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
+                        session.GetComponent<SessionPlayerComponent>().PlayerInstanceId = player.InstanceId;
+                        session.GetComponent<SessionPlayerComponent>().AccountId = request.Account;
+                        player.ClientSession = session;
                     }
                     else
                     {
                         //移除倒计时下线组件   //断线重连、
                         player.RemoveComponent<PlayerOfflineOutTimeComponent>();
                         LogHelper.LogDebug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+                        Game.EventSystem.Publish(new EventType.PlayerReLink() { Session = session, Player = player, AccountId = request.Account });
                     }
-
-                    session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
-                    session.GetComponent<SessionPlayerComponent>().PlayerInstanceId = player.InstanceId;
-                    session.GetComponent<SessionPlayerComponent>().AccountId = request.Account;
-                    player.ClientSession = session;
                 }
                 reply();
             }

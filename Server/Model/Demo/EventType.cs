@@ -138,7 +138,14 @@ namespace ET
 			}
 		}
 
-		public struct UnitEnterSightRange
+        public struct PlayerReLink
+        {
+            public Session Session;
+            public Player Player;
+			public long AccountId;
+        }
+
+        public struct UnitEnterSightRange
 		{
 			public AOIEntity A;
 			public AOIEntity B;
@@ -162,5 +169,6 @@ namespace ET
             public Scene DomainScene;
             public string Context;
         }
+
     }
 }

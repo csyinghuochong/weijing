@@ -6,6 +6,9 @@ namespace ET
     public static class ConfigHelper
     {
 
+        public static int PackageLimit = 100;
+
+
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
         /// <summary>

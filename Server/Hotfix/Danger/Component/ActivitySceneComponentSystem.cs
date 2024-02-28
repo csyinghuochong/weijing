@@ -304,6 +304,10 @@ namespace ET
 
                 if (functonIds[i] == 2000)
                 {
+                    if (ComHelp.IsInnerNet())
+                    {
+                        continue;
+                    }
                     startTime = curTime + RandomHelper.NextLong(TimeHelper.Second * 5, TimeHelper.Hour * 10);
                 }
 
