@@ -166,10 +166,10 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+		jo.Call("CallNative", InitHelper.InitKey);
 
 		if(this.Platform!=5)
 		{
-			jo.Call("CallNative", "weijing" );
 			jo.Call("WechatInit", WXAppID);
 		}
 #elif UNITY_IPHONE && !UNITY_EDITOR
