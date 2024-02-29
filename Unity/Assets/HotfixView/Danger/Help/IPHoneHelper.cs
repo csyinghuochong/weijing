@@ -58,7 +58,7 @@ namespace ET
         }
 
         public static bool IsSimulator()
-        { 
+        {
             return IsSimulator_1() || IsSimulator_3();  
         }
 

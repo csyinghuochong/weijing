@@ -97,8 +97,8 @@ namespace ET
                 teamDropItem.EndTime = -1;
                 if (playerCount == 0)
                 {
-                    //Log.Warning($"TeamDungeonComponent.DropInfo：playerCount == 0");
-                    self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);   
+                    Log.Warning($"TeamDungeonComponent.DropInfo：playerCount == 0");
+                    //self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);   
                     continue;
                 }
 
@@ -144,8 +144,8 @@ namespace ET
                 }
                 else
                 {
-                    //Log.Warning($"TeamDungeonComponent.DropInfo：unit == null");
-                    self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
+                    Log.Warning($"TeamDungeonComponent.DropInfo：unit == null");
+                    //self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                 }
             }
         }
@@ -166,6 +166,12 @@ namespace ET
         {
             for (int i = self.TeamDropItems.Count - 1; i >=  0; i--)
             {
+                if (self.TeamDropItems[i].EndTime == -1)
+                {
+                    Log.Warning($"self.TeamDropItems[i].EndTime == -1:   {dropInfo.ItemID}");
+                    self.TeamDropItems.RemoveAt(i);
+                    continue;
+                }
                 if (self.TeamDropItems[i].DropInfo.UnitId == dropInfo.UnitId)
                 {
                     self.Check();
