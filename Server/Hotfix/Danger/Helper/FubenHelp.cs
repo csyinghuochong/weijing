@@ -320,6 +320,11 @@ namespace ET
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 				for (int kk = 0; kk < randomMonsterList.Count; kk++)
 				{
+					if (position.Length < 3)
+					{
+						Log.Warning($"{mapComponent.SceneId} {i} {(int)randomMonsterList[kk].Value}  {position}");
+					}
+
                     if (randomMonsterList[kk].KeyId == i && (int)randomMonsterList[kk].Value > 0 && position.Length >= 3)
 					{
 						monsterid = (int)randomMonsterList[kk].Value;
