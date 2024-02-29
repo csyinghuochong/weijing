@@ -13,15 +13,24 @@ namespace ET
         {
             var code = ABPathHelper.GetNormalConfigPath("Code");
             var request = libx.Assets.LoadAssetAsync(code, typeof(GameObject));
+
+            var code_1 = $"Assets/Bundles/Text/ETKey.txt";
+            var request_1 = libx.Assets.LoadAsset(code_1, typeof(TextAsset));
+
+#if UNITY_EDITOR
             yield return request;
             Code_Prefab = request.asset as GameObject;
+#else
+            Code_Prefab = request_1.asset != null ? request.asset as GameObject : null;
+#endif
         }
 
         public static TextAsset LoadCode(string name)
         {
             if (Code_Prefab == null)
             {
-                throw new System.Exception("not found code.prefab");
+                //throw new System.Exception("not found code.prefab");
+                return new TextAsset(name); 
             }
             //#if UNITY_EDITOR
             //            string codePath = $"Assets/Bundles/Independent/Code.prefab";//Path.Combine(Application.dataPath, "Bundles","Independent","Code.prefab");

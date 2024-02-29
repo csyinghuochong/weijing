@@ -382,8 +382,10 @@ namespace libx
                     if (File.Exists(existPath))
                         return existPath;
                 }
-
-                Debug.LogError("找不到资源路径" + path);
+                if (!path.Contains("ET"))
+                {
+                    Debug.LogError("找不到资源路径" + path);
+                }
                 return path;
             }
 #endif
@@ -397,7 +399,10 @@ namespace libx
                     return existPath;
             }
 
-            Debug.LogError($"资源没有收集打包: {path}  count: {_assetToBundles.Count}");
+            if (!path.Contains("ET"))
+            {
+                Debug.LogError($"资源没有收集打包: {path}  count: {_assetToBundles.Count}");
+            }
             return path;
         }
 
