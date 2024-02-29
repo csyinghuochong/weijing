@@ -13,12 +13,10 @@ namespace ET
         {
             var code = ABPathHelper.GetNormalConfigPath("Code");
             var request = libx.Assets.LoadAssetAsync(code, typeof(GameObject));
-
             var code_1 = $"Assets/Bundles/Text/ETKey.txt";
             var request_1 = libx.Assets.LoadAsset(code_1, typeof(TextAsset));
-
-#if UNITY_EDITOR
             yield return request;
+#if UNITY_EDITOR
             Code_Prefab = request.asset as GameObject;
 #else
             Code_Prefab = request_1.asset != null ? request.asset as GameObject : null;

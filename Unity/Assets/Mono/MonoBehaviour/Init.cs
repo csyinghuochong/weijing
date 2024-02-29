@@ -216,7 +216,6 @@ namespace ET
 			if (this.Platform != 5)
 			{
 				return; 
-
             }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
