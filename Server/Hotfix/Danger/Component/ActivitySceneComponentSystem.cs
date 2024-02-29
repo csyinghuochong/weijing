@@ -350,7 +350,7 @@ namespace ET
             {
                 MysteryItemInfo mysteryItemInfo1 = self.DBDayActivityInfo.MysteryItemInfos[i];
 
-                if (mysteryItemInfo1.ItemID != mysteryInfo.ItemID)
+                if (mysteryItemInfo1.MysteryId != mysteryInfo.MysteryId)
                 {
                     continue;
                 }
