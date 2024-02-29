@@ -68,7 +68,8 @@ namespace ET
                             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
                             m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                             m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.PaiMai;
-                            m2C_SyncChatInfo.ChatInfo.ChatMsg = request.MessageValue;   
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg = request.MessageValue;
+                            m2C_SyncChatInfo.ChatInfo.Time = TimeHelper.ServerNow();
                             foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                             {
                                 MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);

@@ -140,6 +140,7 @@ namespace ET
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                 m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
+                m2C_SyncChatInfo.ChatInfo.Time = TimeHelper.ServerNow();
                 string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
                 string numShow = "";
                 if (itemConfig.Id == 1)

@@ -78,11 +78,13 @@ namespace ET
     {
         public static void OnTeamPickNotice(this UITeamMainComponent self, List<DropInfo> dropInfos)
         {
-            self.DropInfos.AddRange(dropInfos);
-            if (self.CurDrop == null)
+            for (int i = 0; i < dropInfos.Count; i++)
             {
-                self.UpdateDropItem();
+                dropInfos[i].BeKillId = TimeHelper.ServerNow() + TimeHelper.Second * 50 + self.DropInfos.Count;
             }
+
+            self.DropInfos.AddRange(dropInfos);
+           
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TeamDropTimer, self);
@@ -92,56 +94,71 @@ namespace ET
         public static void UpdateDropItem(this UITeamMainComponent self)
         {
             self.CurDrop = self.DropInfos[0];
-            self.LeftTime = 30;
+            self.LeftTime = (int)( self.CurDrop.BeKillId - TimeHelper.ServerNow() ) / 1000;
             self.DropInfos.RemoveAt(0);
             self.TeamDropItem.SetActive(true);
             self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID, ItemNum = self.CurDrop.ItemNum }, ItemOperateEnum.None);
-
             Log.Debug($"self.DropInfos {self.DropInfos.Count}");
         }
 
-        public static  void SendTeamPick(this UITeamMainComponent self, int needType)
+        public static  void SendTeamPick(this UITeamMainComponent self, DropInfo dropInfo, int needType)
         {
-            DropInfo dropInfo = self.CurDrop;
             if (dropInfo == null)
             {
                 return;
             }
             C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = needType };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
-            self.TeamDropItem.SetActive(false);
-            self.LeftTime = 0;
-            self.CurDrop = null;
-            self.Check();
         }
 
         public static void OnBtn_Close(this UITeamMainComponent self)
         {
-            self.SendTeamPick(2);
+            self.SendTeamPick(self.CurDrop, 2);
+            self.LeftTime = 0;
+            self.CurDrop = null;
+            self.TeamDropItem.SetActive(false);
         }
 
         public static void OnBtn_Need(this UITeamMainComponent self)
         {
-            self.SendTeamPick(1);
+            self.SendTeamPick(self.CurDrop, 1);
+            self.LeftTime = 0;
+            self.CurDrop = null;
+            self.TeamDropItem.SetActive(false);
         }
 
         public static void Check(this UITeamMainComponent self)
         {
-            if (self.LeftTime  < 0)
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = self.DropInfos.Count - 1; i >= 0; i--)
             {
-                if (self.DropInfos.Count == 0)
+                if (serverTime >= self.DropInfos[i].BeKillId)
                 {
-                    self.SendTeamPick(2);
-                    TimerComponent.Instance.Remove(ref self.Timer);
-                }
-                else
-                {
-                    self.UpdateDropItem();
+                    self.SendTeamPick(self.DropInfos[i], 1);
+                    self.DropInfos.RemoveAt(i); 
                 }
             }
+
+            if (self.LeftTime  < 0 )
+            {
+                self.SendTeamPick(self.CurDrop, 2);
+                self.CurDrop = null;
+                self.TeamDropItem.SetActive(false);
+            }
+
+            if (self.CurDrop == null && self.DropInfos.Count == 0)
+            {
+                TimerComponent.Instance.Remove(ref self.Timer);
+            }
+            if (self.CurDrop == null && self.DropInfos.Count > 0)
+            {
+                self.UpdateDropItem();  
+            }
+
             self.LeftTime--;
             int timeStr = self.LeftTime;
-            if (self.LeftTime < 0) {
+            if (self.LeftTime < 0) 
+            {
                 timeStr = 0;
             }
             self.Label_LeftTime.GetComponent<Text>().text = $"拾取剩余:{timeStr}秒";

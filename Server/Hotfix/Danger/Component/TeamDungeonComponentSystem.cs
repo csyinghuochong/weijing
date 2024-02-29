@@ -181,7 +181,7 @@ namespace ET
 
             TeamDropItem teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
             teamDropItem.DropInfo = dropInfo;
-            teamDropItem.EndTime = TimeHelper.ServerNow() + 40 * 1000;
+            teamDropItem.EndTime = TimeHelper.ServerNow() + 60 * 1000;
 
             self.TeamDropItems.Add(teamDropItem);
             if (self.Timer == 0)
