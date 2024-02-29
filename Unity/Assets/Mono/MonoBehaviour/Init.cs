@@ -203,21 +203,24 @@ namespace ET
 			{
 				return;
 			}
+
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("TikTokInit", "weijing" );
+			jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
 #else
 
 #endif
         }
 
-		public void TikTokLogin()
+        public void TikTokLogin()
 		{
 			if (this.Platform != 5)
 			{
-				return;
-			}
+				return; 
+
+            }
+
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("TikTokLogin", "weijing" );
+			jo.Call(InitHelper.TikTokLoginFunc, InitHelper.TikTokLoginParam );
 #else
             this.OnRecvTikTokAccesstoken("Q2dZSUFTQUhLQUVTcndJS3JBSWs5VGQ4aFFGZXlhODJocEZKQUVYNU42RFN2QlVnREJNS2ZoVFRwYVNuQzNVblNkQkhFN1VGbWh3WTBZeG54Y3FMblBvWFoxemNhSXFkM1owSjMrc0N0clNnMG5pVGJZa3dULzF1eFdSVmFHdUZ2QTRVRW1OZFUvak5Bb0ZXbkFIb3F5MlVZR00vU1FxVFdOWDJxWEhtRUswODRpTkNUNnVlQ0Yrdno2OHZ0alhoVWNNd2FDSWJocUFkRlNWZVluTnVZSUNoMlZFdkM0TjZpREcwVCtaZUREQWR2N2dCbSt1SWRFR25CdHNJd0xveVJ2T0FOR3BKbmpMVmQwV1lzcHZZU3NKOTF4QmVNSE8wbGNzUTc2YlltTjZESVBZdCt3dStrcXlEeExVcldIS2JhWjMxSXR2VjYyVVdYTWdwTDV2dHZKVzk1NzU1cGE4SXovc1VZWE50VXVSOXlNV01waHBUNk1JTThlWmU2d2lqekllUFprMHo0dS96ZkxqeEExYnZCeVgyQzBGelZabnFFYzRhQUE9PQ==");
 #endif
@@ -258,10 +261,8 @@ namespace ET
             {
                 return;
             }
-
-
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("TikTokPay", cpOrderId,amountInCent,  productId,productName, sdkParam);
+			jo.Call(InitHelper.TikTokPayFunc, cpOrderId,amountInCent,  productId,productName, sdkParam);
 #else
 #endif
         }
