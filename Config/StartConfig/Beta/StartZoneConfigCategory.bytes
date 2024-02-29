@@ -66,7 +66,7 @@
 *@mongodb://localhost:27017/@"WJBeta64
 *Amongodb://localhost:27017/@"WJBeta65
 *Bmongodb://localhost:27017/B"WJBeta66
-*Cmongodb://localhost:27017/C"WJBeta67
+*Cmongodb://localhost:27017/B"WJBeta67
 *Dmongodb://localhost:27017/D"WJBeta68
 *Emongodb://localhost:27017/E"WJBeta69
 *Fmongodb://localhost:27017/F"WJBeta70
@@ -76,5 +76,6 @@
 *Jmongodb://localhost:27017/J"WJBeta74
 *Kmongodb://localhost:27017/K"WJBeta75
 *Lmongodb://localhost:27017/L"WJBeta76
+*Mmongodb://localhost:27017/M"WJBeta77
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
