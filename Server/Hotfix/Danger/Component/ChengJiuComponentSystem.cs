@@ -52,10 +52,7 @@ namespace ET
                 self.JingLingUnitId = 0;
             }
 
-            if (self.RandomDrop == 1)
-            {
-                return;
-            }
+            self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel_205, 0, self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv);
         }
 
         public static void OnZeroClockUpdate(this ChengJiuComponent self)
