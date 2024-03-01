@@ -80,7 +80,7 @@ namespace ET
         {
             for (int i = 0; i < dropInfos.Count; i++)
             {
-                dropInfos[i].BeKillId = TimeHelper.ServerNow() + TimeHelper.Second * 40 + self.DropInfos.Count;
+                dropInfos[i].BeKillId = TimeHelper.ServerNow() + TimeHelper.Second * 50 + self.DropInfos.Count;
             }
 
             self.DropInfos.AddRange(dropInfos);
