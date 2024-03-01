@@ -190,7 +190,7 @@ namespace ET
             }
 
             teamDropItem.DropInfo = dropInfo;
-            teamDropItem.EndTime = TimeHelper.ServerNow() + 120 * 1000;
+            teamDropItem.EndTime = TimeHelper.ServerNow() + 60 * 1000;
 
             self.TeamDropItems.Add(teamDropItem);
             if (self.Timer == 0)
