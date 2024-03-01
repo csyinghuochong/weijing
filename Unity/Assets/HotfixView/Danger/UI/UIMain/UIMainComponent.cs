@@ -1563,7 +1563,10 @@ namespace ET
             switch (functionId)
             {
                 case 1014:
-                    self.Btn_PaiMaiHang.SetActive(showButton);
+                    AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                    self.Btn_PaiMaiHang.SetActive(showButton && taskComponent.ShowPaiMai(userInfoComponent.UserInfo.Lv, accountInfoComponent.Simulator));
                     break;
                 case 1070:
                     int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;

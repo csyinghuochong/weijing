@@ -218,6 +218,7 @@ namespace ET
             else
             {
                 AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                accountInfoComponent.Simulator = simulator;
                 accountInfoComponent.MyId = g2CEnterGame.MyId;
                 accountInfoComponent.IsPopUp = g2CEnterGame.IsPopUp;
                 accountInfoComponent.PopUpInfo = g2CEnterGame.PopUpInfo;
