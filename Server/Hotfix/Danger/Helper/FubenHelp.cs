@@ -322,7 +322,7 @@ namespace ET
 				{
 					if (position.Length < 3)
 					{
-						Log.Warning($"{mapComponent.SceneId} {i} {(int)randomMonsterList[kk].Value}  {position}");
+						Log.Warning($"生成随机怪错误： {mapComponent.SceneId} {i} {(int)randomMonsterList[kk].Value}  {position}");
 					}
 
                     if (randomMonsterList[kk].KeyId == i && (int)randomMonsterList[kk].Value > 0 && position.Length >= 3)
