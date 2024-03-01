@@ -134,7 +134,7 @@ namespace ET
             {
                 if (serverTime >= self.DropInfos[i].BeKillId)
                 {
-                    self.SendTeamPick(self.DropInfos[i], 1);
+                    self.SendTeamPick(self.DropInfos[i], 2);
                     self.DropInfos.RemoveAt(i); 
                 }
             }

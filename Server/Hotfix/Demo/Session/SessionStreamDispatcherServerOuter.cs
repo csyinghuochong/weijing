@@ -33,7 +33,7 @@ namespace ET
                 
                 if (lastNumber > ConfigHelper.PackageLimit)
                 {
-                    Log.Warning($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}");
+                    Log.Warning($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}  {ConfigHelper.PackageLimit}");
                     session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_PackageFrequent });
                     session.Disconnect().Coroutine();
 					return;

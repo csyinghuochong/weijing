@@ -179,7 +179,16 @@ namespace ET
                 }
             }
 
-            TeamDropItem teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
+            TeamDropItem teamDropItem = null;
+            if (self.GetChild<TeamDropItem>(dropInfo.UnitId) != null)
+            {
+                teamDropItem = self.GetChild<TeamDropItem>(dropInfo.UnitId);
+            }
+            else
+            {
+                teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
+            }
+
             teamDropItem.DropInfo = dropInfo;
             teamDropItem.EndTime = TimeHelper.ServerNow() + 60 * 1000;
 

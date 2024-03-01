@@ -302,7 +302,7 @@
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.taptap.tds.tapdb@033d2210a0/Plugins/TapTap.TapDB.dll</HintPath>
      </Reference>
      <Reference Include="dnlib">
-     <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@f810ede6d7/Plugins/dnlib.dll</HintPath>
+     <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@67c487f521/Plugins/dnlib.dll</HintPath>
      </Reference>
      <Reference Include="DOTween">
      <HintPath>H:/GitWeiJing/Unity/Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/SampleProject/Extensions/Demigiant/DOTween/DOTween.dll</HintPath>
@@ -330,6 +330,9 @@
      </Reference>
      <Reference Include="LiveQuery">
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
+     </Reference>
+     <Reference Include="LZ4">
+     <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@67c487f521/Plugins/LZ4.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.iOS.Extensions.Xcode">
      <HintPath>D:/unityhub/2020.3.33f1c2/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

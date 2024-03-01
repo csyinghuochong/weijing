@@ -98,7 +98,15 @@ namespace ET
         public static bool IsSimulator_3()
         {
 #if UNITY_ANDROID
-            return SystemInfo.graphicsDeviceID == 0 && SystemInfo.graphicsDeviceVendorID == 0;
+            //return SystemInfo.graphicsDeviceID == 0 && SystemInfo.graphicsDeviceVendorID == 0;
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                AndroidJavaClass buildClass = new AndroidJavaClass("android.os.Build");
+                string radioVersion = buildClass.CallStatic<string>("getRadioVersion");
+                return radioVersion == string.Empty || radioVersion == null;
+
+            }
+            return false;
 #else
             return false;
 #endif
