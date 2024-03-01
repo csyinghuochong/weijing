@@ -81,23 +81,26 @@ namespace ET
 
         public static async ETTask<long> GetJiaYuanFubenId(this JiaYuanSceneComponent self, long masterid, long unitid)
         {
-            if (self.JiaYuanFubens.ContainsKey(masterid))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, masterid))
             {
-                return self.JiaYuanFubens[masterid];
+                if (self.JiaYuanFubens.ContainsKey(masterid))
+                {
+                    return self.JiaYuanFubens[masterid];
+                }
+                int jiayuansceneid = 2000011;
+                long fubenid = IdGenerater.Instance.GenerateId();
+                long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+                Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "JiaYuan" + masterid.ToString(), SceneType.Fuben);
+                fubnescene.AddComponent<JiaYuanDungeonComponent>().MasterId = masterid;
+                MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+                mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
+                mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID;
+                await self.CreateJiaYuanUnit(fubnescene, masterid, unitid);
+                FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
+                TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+                self.JiaYuanFubens.Add(masterid, fubenInstanceId);
+                return fubenInstanceId;
             }
-            int jiayuansceneid = 2000011;
-            long fubenid = IdGenerater.Instance.GenerateId();
-            long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
-            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "JiaYuan" + masterid.ToString(), SceneType.Fuben);
-            fubnescene.AddComponent<JiaYuanDungeonComponent>().MasterId = masterid;
-            MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
-            mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
-            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID;
-            await self.CreateJiaYuanUnit(fubnescene, masterid, unitid);
-            FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
-            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
-            self.JiaYuanFubens.Add(masterid, fubenInstanceId);
-            return fubenInstanceId;
         }
     }
 }
