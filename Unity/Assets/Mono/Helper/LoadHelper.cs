@@ -20,6 +20,7 @@ namespace ET
             Code_Prefab = request.asset as GameObject;
 #else
             Code_Prefab = request_1.asset != null ? request.asset as GameObject : null;
+            InitHelper.InitKey = request_1.asset != null ? request_1.asset.ToString() : string.Empty;
 #endif
         }
 
