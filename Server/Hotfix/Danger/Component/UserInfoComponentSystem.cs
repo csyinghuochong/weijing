@@ -532,9 +532,19 @@ namespace ET
             {
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
             }
-            if (Type == UserDataType.Diamond && !self.UserInfo.DiamondGetWay.Contains(getWay))
+
+            //if (Type == UserDataType.Diamond && !self.UserInfo.DiamondGetWay.Contains(getWay))
+            //{
+            //    self.UserInfo.DiamondGetWay.Add(getWay);
+            //}
+
+            if (Type == UserDataType.Gold)
             {
                 self.UserInfo.DiamondGetWay.Add(getWay);
+                if (self.UserInfo.DiamondGetWay.Count > 200)
+                {
+                    self.UserInfo.DiamondGetWay.RemoveAt(0);    
+                }
             }
 
             if (Type == UserDataType.Diamond)
