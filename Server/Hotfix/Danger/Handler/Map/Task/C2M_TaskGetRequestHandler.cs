@@ -9,6 +9,13 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_TaskGetRequest request, M2C_TaskGetResponse response, Action reply)
         {
+            if (!TaskConfigCategory.Instance.Contain(request.TaskId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(request.TaskId);
             if (taskConfig.TaskType == TaskTypeEnum.Daily)
             {

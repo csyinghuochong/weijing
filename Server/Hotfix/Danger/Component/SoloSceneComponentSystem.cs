@@ -209,9 +209,21 @@ namespace ET
             }
 
             //销毁所有场景
-            foreach ((long id, Entity entity) in self.Children)
+            List<long> childids = self.Children.Keys.ToList();  
+            //foreach ((long id, Entity entity) in self.Children)
+            for(int i = 0; i < childids.Count; i++)
             {
+                Entity entity = self.GetChild<Entity>(childids[i]);
+                if (entity == null)
+                {
+                    continue;
+                }
                 Scene scene = entity as Scene;
+                if (scene == null)
+                {
+                    continue;
+                }
+
                 scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
                 await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
