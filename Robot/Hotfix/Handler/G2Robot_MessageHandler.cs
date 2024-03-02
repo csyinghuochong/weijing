@@ -94,14 +94,8 @@ namespace ET
                         robotManagerComponent.TeamRobot.Add( teamId, TimeHelper.ServerNow());
                     }
 
-                    int totalnumber = 0;
                     while (robotnumber < 1)
                     {
-                        totalnumber++ ;
-                        if (totalnumber >= 2)
-                        {
-                            break;
-                        }
                         int robotZone = robotManagerComponent.ZoneIndex++;
                       
                         robotId = BattleHelper.GetTeamRobotId(fubenId);
@@ -117,7 +111,6 @@ namespace ET
                         }
                         behaviourComponent.MessageValue = message.Message;
                         behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                        robotnumber++;
                         await TimerComponent.Instance.WaitAsync(500);
                     }
                     break;
