@@ -15,18 +15,17 @@ namespace ET
             if (simulator == 0)
             {
                 return true;
-
             }
-            int mainTaskNumber = 0;
-            for (int i = 0; i < self.RoleComoleteTaskList.Count; i++)
-            {
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
-                if (taskConfig.TaskType == TaskTypeEnum.Main)
-                {
-                    mainTaskNumber ++;  
-                }
-            }
-            return lv >= 5 && mainTaskNumber > lv;
+            //int mainTaskNumber = 0;
+            //for (int i = 0; i < self.RoleComoleteTaskList.Count; i++)
+            //{
+            //    TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
+            //    if (taskConfig.TaskType == TaskTypeEnum.Main)
+            //    {
+            //        mainTaskNumber ++;  
+            //    }
+            //}
+            return lv >= 5 && self.RoleComoleteTaskList.Count > lv;
         }
 
         public static int GetHuoYueDu(this TaskComponent self)
