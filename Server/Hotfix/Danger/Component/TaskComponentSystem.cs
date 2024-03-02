@@ -35,6 +35,24 @@ namespace ET
     public static class TaskComponentSystem
     {
 
+        public static bool ShowPaiMai(this TaskComponent self, int lv, int simulator)
+        {
+            if (simulator == 0)
+            {
+                return true;
+            }
+            //int mainTaskNumber = 0;
+            //for (int i = 0; i < self.RoleComoleteTaskList.Count; i++)
+            //{
+            //    TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
+            //    if (taskConfig.TaskType == TaskTypeEnum.Main)
+            //    {
+            //        mainTaskNumber ++;  
+            //    }
+            //}
+            return lv >= 5 && self.RoleComoleteTaskList.Count > lv;
+        }
+
         public static int GetHuoYueDu(this TaskComponent self)
         {
             int huoYueDu = 0;
