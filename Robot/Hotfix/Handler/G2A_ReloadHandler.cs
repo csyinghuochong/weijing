@@ -9,14 +9,14 @@ namespace ET
         {
             Log.Console("C2M_Reload_b: " + session.Name);
             Log.Warning("C2M_Reload_b: " + session.Name);
-
+            Log.Warning("C2M_Reload_b: 测试热重载！");
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
             Log.Warning("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
             Log.Warning("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
 
-            DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
 #if SERVER
             MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;
             OpcodeHelper.ShowMessage = dateTime.Hour >= 21 && dateTime.Hour <= 23;
@@ -69,10 +69,10 @@ namespace ET
             }
 
             Log.Warning("EventSystem.Instance.ToString: 1");
-            Log.Warning("EventSystem:   "+ EventSystem.Instance.ToString());
-            Log.Warning("TimerComponent:"+ TimerComponent.Instance.ToString());
-            Log.Warning("ObjectPool:    "+ ObjectPool.Instance.ToString());
-            Log.Warning("MonoPool:      "+ MonoPool.Instance.ToString());
+            Log.Warning("EventSystem:   " + EventSystem.Instance.ToString());
+            Log.Warning("TimerComponent:" + TimerComponent.Instance.ToString());
+            Log.Warning("ObjectPool:    " + ObjectPool.Instance.ToString());
+            Log.Warning("MonoPool:      " + MonoPool.Instance.ToString());
             Log.Warning("EventSystem.Instance.ToString: 2");
 
             reply();
