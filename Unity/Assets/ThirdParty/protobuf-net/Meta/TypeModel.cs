@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-
 using System.Collections;
 using ILRuntime.Reflection;
 #if FEAT_IKVM
@@ -108,8 +107,6 @@ namespace ProtoBuf.Meta
             // note the "ref type" here normalizes against proxies
 			int modelKey;
             WireType wireType = GetWireType(typecode, format, ref type, out modelKey);
-
-
             if (modelKey >= 0)
             {   // write the header, but defer to the model
                 if (Helpers.IsEnum(type))

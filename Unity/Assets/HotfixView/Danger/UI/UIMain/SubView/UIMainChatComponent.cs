@@ -46,6 +46,14 @@ namespace ET
             if (self.ChatInfoList.Count >= 10)
             {
                 self.ChatInfoList.RemoveAt(0);
+
+                if (self.ChatUIList.Count > 0)
+                {
+                    UIMainChatItemComponent ui_1 = self.ChatUIList[0];
+                    self.ChatUIList.RemoveAt(0);
+                    self.ChatUIList.Add(ui_1);
+                    ui_1.GameObject.transform.SetAsLastSibling();       
+                }
             }
             self.ChatInfoList.Add(chatInfo);
 

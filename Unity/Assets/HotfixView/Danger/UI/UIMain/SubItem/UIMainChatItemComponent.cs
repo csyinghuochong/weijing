@@ -74,9 +74,13 @@ namespace ET
             try
             {
                 self.UpdateHeight = true;
+                if (chatInfo == self.m2C_SyncChatInfo)
+                {
+                    return;
+                }
+
                 self.m2C_SyncChatInfo = chatInfo;
                 Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
-
                 string showValue = string.Empty;
                 if (!string.IsNullOrEmpty(chatInfo.ChatMsg))
                 {
@@ -97,8 +101,8 @@ namespace ET
                     }
                     else
                     {
-                        textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
-                        //textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
+                        //textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
+                        textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
                     }
                     float preferredHeight = self.Lab_ChatText.preferredHeight;
                     if (preferredHeight > 40f)
