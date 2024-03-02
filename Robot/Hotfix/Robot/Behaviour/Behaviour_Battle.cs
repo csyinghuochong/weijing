@@ -20,7 +20,7 @@
             while (true)
             {
                 int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
-                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, 2, 0, 0);
+                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
 
                 if (errorCode != 0)
                 {

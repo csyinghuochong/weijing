@@ -20,7 +20,7 @@
             Log.Debug($"Behaviour_Arena: Execute");
             while (true)
             {
-                int errorCode = await  EnterFubenHelp.RequestTransfer(zoneScene, 1, 0, 0, "1002");
+                int errorCode = await NetHelper.RequestArenaEnter(zoneScene);
                 Log.Debug($"Behaviour_Arena: errorCode {errorCode}");
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回

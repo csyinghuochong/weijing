@@ -29,7 +29,7 @@ namespace ET
         {
             int sceneId = int.Parse(aiComponent.MessageValue.Split('@')[0]);
             int mapType = SceneConfigCategory.Instance.Get(sceneId).MapType;
-            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, 2, 0, 0);
+            int errorCode = await EnterFubenHelp.RequestTransfer(aiComponent.ZoneScene(), mapType, sceneId);
             if (errorCode == ErrorCode.ERR_Success)
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 30000));
