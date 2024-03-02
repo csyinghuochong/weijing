@@ -356,6 +356,8 @@ message UserInfo
 	repeated int32 ItemXiLianNumRewardIds = 59;
 
 	repeated int32 DefeatedBossIds = 60;
+
+	repeated int32 GoldGetWay = 61;
 }
 
 message KeyValuePair
