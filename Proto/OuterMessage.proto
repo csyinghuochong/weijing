@@ -359,7 +359,7 @@ message UserInfo
 
 	repeated int32 GoldGetWay = 61;
 
-	repeated int32 ExpGetWay = 61;
+	repeated int32 ExpGetWay = 62;
 }
 
 message KeyValuePair

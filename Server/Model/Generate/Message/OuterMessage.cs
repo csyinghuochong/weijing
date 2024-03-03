@@ -697,7 +697,7 @@ namespace ET
 		[ProtoMember(61)]
 		public List<int> GoldGetWay = new List<int>();
 
-		[ProtoMember(61)]
+		[ProtoMember(62)]
 		public List<int> ExpGetWay = new List<int>();
 
 	}
