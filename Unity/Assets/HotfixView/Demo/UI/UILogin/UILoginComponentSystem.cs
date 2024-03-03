@@ -23,8 +23,22 @@ namespace ET
 			{
                 Log.ILog.Debug($"UILoginComponent  111");
 
-                self.InitSdk();
+                bool taptap = false;
+                int bigversion = GlobalHelp.GetBigVersion();
+				int platform = GlobalHelp.GetPlatform();
 
+#if UNITY_ANDROID
+    //            if (bigversion < 18)
+				//{
+				//	string apk_Extension = (platform == 5 || platform == 6) ? "tiktok" : "taptap";
+    //                apk_Extension  = apk_Extension  + ".apk";
+				//    string apk_Url =	"http://verification.weijinggame.com/weijing/apk/weijing_" + apk_Extension;
+    //                Application.OpenURL(apk_Url);	
+				//	return;
+				//}
+#endif 
+
+                self.InitSdk();
 				Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
@@ -36,7 +50,7 @@ namespace ET
 				self.ZhuCe.SetActive(false);
 				self.Btn_Return = rc.Get<GameObject>("Btn_Return");
 				self.Btn_Return.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Return(); });
-
+				
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_QQ").gameObject, () => { self.OnBtn_QQLogin(); });
                 ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_WeChat").gameObject, () => { self.OnBtn_WeChatLogin(); });
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject, () => { self.OnBtn_ZhuCe(); });
@@ -48,8 +62,6 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-				bool taptap = false;
-                int bigversion = GlobalHelp.GetBigVersion();
 #if UNITY_ANDROID
                 taptap = bigversion >= 15 && GlobalHelp.GetPlatform() == 1;
 #endif 
@@ -142,7 +154,7 @@ namespace ET
 				self.TextButton_2_1 = rc.Get<GameObject>("TextButton_2_1");
 				self.YinSiToggle2 = rc.Get<GameObject>("YinSiToggle2");
 				self.TextYinSi = rc.Get<GameObject>("TextYinSi");
-				if (GlobalHelp.GetPlatform() == 6)
+				if (platform == 6)
 				{
 					self.YinSiToggle2.GetComponent<Toggle>().isOn = false;
                     self.ZhuCe.transform.Find("Btn_iPhone").gameObject.SetActive(false);	
