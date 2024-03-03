@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2Popularize_ListRequest request, Popularize2C_ListResponse response, Action reply)
         {
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Popularize, request.ActorId))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Popularize, scene.Zone()))
             {
                 DBPopularizeInfo dBPopularizeInfo = await DBHelper.GetComponentCache<DBPopularizeInfo>(scene.DomainZone(), request.ActorId);
                 if (dBPopularizeInfo == null)

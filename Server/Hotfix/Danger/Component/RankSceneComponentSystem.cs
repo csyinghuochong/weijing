@@ -85,7 +85,7 @@ namespace ET
         public static async ETTask BroadcastWorldLv(this RankSceneComponent self)
         {           
             //延迟刷新，以免有些服务器还没启动
-            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 20000));
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
             long fubenCenterId = DBHelper.GetFubenCenterId(self.DomainZone());
             R2F_WorldLvUpdateRequest request    = new R2F_WorldLvUpdateRequest() {  ServerInfo = self.DBServerInfo.ServerInfo };
             F2R_WorldLvUpdateResponse response = (F2R_WorldLvUpdateResponse)await ActorMessageSenderComponent.Instance.Call(fubenCenterId, request);
