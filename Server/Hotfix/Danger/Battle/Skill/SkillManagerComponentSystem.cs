@@ -638,6 +638,10 @@ namespace ET
                 return;
             }
             await TimerComponent.Instance.WaitFrameAsync();
+            if (self.IsDisposed)
+            {
+                return;
+            }
             int addSkillId = skillConfig.AddSkillID[0];
             if (addSkillId!= 0 && !SkillConfigCategory.Instance.Contain(addSkillId))
             {
