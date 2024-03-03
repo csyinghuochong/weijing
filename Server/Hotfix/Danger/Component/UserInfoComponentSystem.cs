@@ -538,7 +538,7 @@ namespace ET
             //    self.UserInfo.DiamondGetWay.Add(getWay);
             //}
 
-            if (Type == UserDataType.Gold)
+            if (Type == UserDataType.Diamond)
             {
                 self.UserInfo.DiamondGetWay.Add(getWay);
                 if (self.UserInfo.DiamondGetWay.Count > 200)
@@ -546,6 +546,24 @@ namespace ET
                     self.UserInfo.DiamondGetWay.RemoveAt(0);    
                 }
             }
+
+            //if (Type == UserDataType.Gold)
+            //{
+            //    self.UserInfo.GoldGetWay.Add(getWay);
+            //    if (self.UserInfo.GoldGetWay.Count > 200)
+            //    {
+            //        self.UserInfo.GoldGetWay.RemoveAt(0);
+            //    }
+            //}
+
+            //if (Type == UserDataType.Exp)
+            //{
+            //    self.UserInfo.ExpGetWay.Add(getWay);
+            //    if (self.UserInfo.ExpGetWay.Count > 200)
+            //    {
+            //        self.UserInfo.ExpGetWay.RemoveAt(0);
+            //    }
+            //}
 
             if (Type == UserDataType.Diamond)
             {

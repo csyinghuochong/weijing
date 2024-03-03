@@ -694,6 +694,12 @@ namespace ET
 		[ProtoMember(60)]
 		public List<int> DefeatedBossIds = new List<int>();
 
+		[ProtoMember(61)]
+		public List<int> GoldGetWay = new List<int>();
+
+		[ProtoMember(61)]
+		public List<int> ExpGetWay = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
