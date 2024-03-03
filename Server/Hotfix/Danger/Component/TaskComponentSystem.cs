@@ -549,7 +549,7 @@ namespace ET
             int TaskExp = (int)(taskConfig.TaskExp * coffiexp);
             int TaskCoin = (int)(taskConfig.TaskCoin* cofficoin);
 
-            userInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
+            userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Exp, TaskExp.ToString(), true, ItemGetWay.TaskReward);
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
             int roleLv = userInfoComponent.UserInfo.Lv;
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");

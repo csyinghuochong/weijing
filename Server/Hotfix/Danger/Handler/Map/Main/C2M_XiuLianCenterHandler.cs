@@ -24,7 +24,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.XiuLian_ExpTime, TimeHelper.ServerNow());
                 float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(29).Value);
                 int addValue = Mathf.CeilToInt(coefficient * level);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Exp, addValue.ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd( UserDataType.Exp, addValue.ToString(), true, ItemGetWay.XiuLian);
             }
             if (request.XiuLianType == 2)
             {

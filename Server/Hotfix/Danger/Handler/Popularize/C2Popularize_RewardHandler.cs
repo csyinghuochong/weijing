@@ -41,6 +41,9 @@ namespace ET
                     dBPopularizeInfo.MyPopularizeList[i].OccTwo = userInfoComponent.UserInfo.OccTwo;
                 }
                 List<RewardItem> rewardItems = PopularizeHelper.GetRewardList(dBPopularizeInfo.MyPopularizeList);
+
+                Log.Warning($"推广奖励: {request.ActorId}  {rewardItems.Count}");
+
                 Popularize2M_RewardRequest rewardRequest = new Popularize2M_RewardRequest() { ReardList = rewardItems };
                 M2Popularize_RewardResponse reqEnter = (M2Popularize_RewardResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, rewardRequest);
                 //(M2Popularize_RewardResponse)await MessageHelper.CallLocationActor(request.ActorId, rewardRequest);

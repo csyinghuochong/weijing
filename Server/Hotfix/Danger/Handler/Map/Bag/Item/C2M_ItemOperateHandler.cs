@@ -201,7 +201,7 @@ namespace ET
                                 break;
                             //增加经验
                             case 2:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, itemConfig.ItemUsePar);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Exp, itemConfig.ItemUsePar, true, ItemGetWay.CostItem);
                                 break;
                             //回城卷轴[返回另外一个副本场景]
                             case 4:
@@ -381,7 +381,7 @@ namespace ET
 
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString());
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Exp, addExp.ToString(), true, ItemGetWay.DuiHuan);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (needZuanshi * -1).ToString(), true, ItemGetWay.DuiHuan);
                                 response.OperatePar = addExp.ToString();
                                 break;

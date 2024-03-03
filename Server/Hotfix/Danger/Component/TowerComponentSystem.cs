@@ -96,7 +96,7 @@ namespace ET
             MessageHelper.SendToClient(self.MainUnit, message);
 
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
-            userInfoComponent.UpdateRoleData(UserDataType.Exp, message.RewardExp.ToString());
+            userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Exp, message.RewardExp.ToString(), true, ItemGetWay.TiaoZhan);
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, message.RewardGold.ToString(), true, ItemGetWay.TiaoZhan);
             self.TowerId = 0;
         }
