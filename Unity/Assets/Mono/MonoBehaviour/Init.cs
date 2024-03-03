@@ -90,6 +90,7 @@ namespace ET
 		[HideInInspector]
 		public bool HotUpdateComplete = false;
 
+		public string Apk_Extension = string.Empty;
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
@@ -135,26 +136,34 @@ namespace ET
 #if TapTap1
             Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
+			this.Apk_Extension = "taptap";
 #elif QQ2
             Log.ILog.Debug("unity111  QQ2=true");
 			this.Platform = 2;
+			this.Apk_Extension = "taptap";
 #elif Platform3
 			Log.ILog.Debug("unity111  Platform3=true");
 			this.Platform = 3;
+			this.Apk_Extension = "taptap";
 #elif Platform4
 			Log.ILog.Debug("unity111  Platform4=true");
 			this.Platform = 4;
+			this.Apk_Extension = "taptap";
 #elif TikTok5             //抖音                   
 			Log.ILog.Debug("unity111  TikTok5=true");
 			this.Platform = 5;
+			this.Apk_Extension = "tiktok";
 #elif TikTokMuBao6            //抖音母包                
 			Log.ILog.Debug("unity111  TikTokMuBao6=true");
 			this.Platform = 6;
+			this.Apk_Extension = "tiktok";
 #elif QuDao
 			Log.ILog.Debug("unity111  TikTokMuBao6=true");
 			this.Platform = 100;
+			this.Apk_Extension = "qudao";
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
+			this.Apk_Extension = "taptap";
 #endif
 
 
@@ -219,7 +228,7 @@ namespace ET
             }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call(InitHelper.TikTokLoginFunc, InitHelper.TikTokLoginParam );
+			jo.Call(InitHelper.TikTokLoginFunc, InitHelper.InitKey );
 #else
             this.OnRecvTikTokAccesstoken("Q2dZSUFTQUhLQUVTcndJS3JBSWs5VGQ4aFFGZXlhODJocEZKQUVYNU42RFN2QlVnREJNS2ZoVFRwYVNuQzNVblNkQkhFN1VGbWh3WTBZeG54Y3FMblBvWFoxemNhSXFkM1owSjMrc0N0clNnMG5pVGJZa3dULzF1eFdSVmFHdUZ2QTRVRW1OZFUvak5Bb0ZXbkFIb3F5MlVZR00vU1FxVFdOWDJxWEhtRUswODRpTkNUNnVlQ0Yrdno2OHZ0alhoVWNNd2FDSWJocUFkRlNWZVluTnVZSUNoMlZFdkM0TjZpREcwVCtaZUREQWR2N2dCbSt1SWRFR25CdHNJd0xveVJ2T0FOR3BKbmpMVmQwV1lzcHZZU3NKOTF4QmVNSE8wbGNzUTc2YlltTjZESVBZdCt3dStrcXlEeExVcldIS2JhWjMxSXR2VjYyVVdYTWdwTDV2dHZKVzk1NzU1cGE4SXovc1VZWE50VXVSOXlNV01waHBUNk1JTThlWmU2d2lqekllUFprMHo0dS96ZkxqeEExYnZCeVgyQzBGelZabnFFYzRhQUE9PQ==");
 #endif

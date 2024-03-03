@@ -9,7 +9,7 @@ namespace ET
         {
             Log.Console("C2M_Reload_b: " + session.Name);
             Log.Warning("C2M_Reload_b: " + session.Name);
-            Log.Warning("C2M_Reload_b: 测试热重载！");
+            Log.Warning("C2M_Reload_b: 测试热重载, 消息分发！");
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
