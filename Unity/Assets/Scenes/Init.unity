@@ -1200,8 +1200,8 @@ MonoBehaviour:
   Development: 1
   EditorMode: 1
   OueNetMode: 0
-  BigVersion: 17
-  BigVersionIOS: 17
+  BigVersion: 18
+  BigVersionIOS: 18
   Updater: {fileID: 2018631435}
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}
@@ -1214,6 +1214,7 @@ MonoBehaviour:
   VersionMode: 1
   Platform: 0
   HotUpdateComplete: 0
+  Apk_Extension: 
 --- !u!4 &575235020
 Transform:
   m_ObjectHideFlags: 0
