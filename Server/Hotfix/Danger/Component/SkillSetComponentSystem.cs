@@ -919,6 +919,12 @@ namespace ET
 					oldSkill.SkillPosition = 0;
 				}
 				newSkill = self.GetBySkillID(request.SkillID);
+
+				if (newSkill == null)
+				{
+					Log.Warning($"技能设置错误: {request.SkillID}");
+					return ErrorCode.ERR_ModifyData;
+				}
 			}
 			else	//药剂
 			{
