@@ -500,6 +500,11 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Ring)
             {
                 int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
+                if (ringTaskNumber >= 101)
+                {
+                    return ErrorCode.ERR_ModifyData;
+                }
+
                 int dropId = 0;
                 ConfigHelper.RingTaskDrop.TryGetValue(ringTaskNumber, out dropId);
                 if (dropId > 0)
@@ -509,6 +514,7 @@ namespace ET
                     rewardItems.AddRange(droplist);
                 }
             }
+
 
             if (bagComponent.GetBagLeftCell() + 1 < rewardItems.Count)
             {
