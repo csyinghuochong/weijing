@@ -168,7 +168,7 @@ namespace ET
             {
                 if (self.TeamDropItems[i].EndTime == -1)
                 {
-                    Log.Warning($"self.TeamDropItems[i].EndTime == -1:   {dropInfo.ItemID}");
+                    //Log.Warning($"self.TeamDropItems[i].EndTime == -1:   {dropInfo.ItemID}");
                     self.TeamDropItems.RemoveAt(i);
                     continue;
                 }
