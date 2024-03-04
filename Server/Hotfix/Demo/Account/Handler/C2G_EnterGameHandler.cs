@@ -16,12 +16,7 @@ namespace ET
 			{
                 Log.Warning($"模拟器登录: {request.UserID} {request.DeviceName}");
             }
-			if (request.UserID == 2246331668656881670
-                || request.UserID == 2247658298205601811)
-			{
-                Log.Warning($"工作室登录1: {request.UserID} {request.DeviceName}");
-            }
-
+			
             if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Warning($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -35,7 +30,7 @@ namespace ET
                 return;
             }
 
-			if (request.Simulator == 1 && request.DeviceName.Contains("960:540") )
+			if (request.Simulator == 1 && request.DeviceName.Contains("2220:1080") )
 			{
                 List<DBCenterAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
 				if (dBAccountInfos_new != null && dBAccountInfos_new.Count > 0 && dBAccountInfos_new[0].PlayerInfo.RechargeInfos.Count == 0)
