@@ -531,6 +531,11 @@ namespace ET
               && taskConfig.TaskType != TaskTypeEnum.Ring
               && taskConfig.TaskType != TaskTypeEnum.System )
             {
+                if (self.RoleComoleteTaskList.Contains(taskid))
+                {
+                    return ErrorCode.ERR_ModifyData;
+                }
+
                 if (!self.RoleComoleteTaskList.Contains(taskid))
                 {
                     self.RoleComoleteTaskList.Add(taskid);
