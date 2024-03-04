@@ -76,11 +76,12 @@ namespace ET
                 }
                 response.TaskPro = taskComponent.OnGetDailyTask(unionTaskId);
             }
-            else if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+            else if (taskConfig.TaskType == TaskTypeEnum.Treasure
+                || taskConfig.TaskType == TaskTypeEnum.Ring)
             {
-                if (unit.GetComponent<TaskComponent>().GetTaskList(TaskTypeEnum.Treasure).Count > 1)
+                if (unit.GetComponent<TaskComponent>().GetTaskList(taskConfig.TaskType).Count > 1)
                 {
-                    response.Error = ErrorCode.ERR_TaskCanNotGet;
+                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
