@@ -12,12 +12,12 @@ namespace ET
             int su = unit.GetComponent<DataCollationComponent>().Simulator;
             int lv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
-            if (!unit.GetComponent<TaskComponent>().ShowPaiMai( lv, su) )
-            {
-                response.Error = ErrorCode.Pre_Condition_Error;
-                reply();
-                return;
-            }
+            //if (!unit.GetComponent<TaskComponent>().ShowPaiMai( lv, su) )
+            //{
+            //    response.Error = ErrorCode.Pre_Condition_Error;
+            //    reply();
+            //    return;
+            //}
 
             //背包是否有位置
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)

@@ -53,7 +53,7 @@ namespace ET
                     return;
                 }
 
-                int checkError = unit.GetComponent<TaskComponent>().CheckGiveItemTask(taskCountryConfig.TargetType, taskCountryConfig.Target, taskCountryConfig.TargetValue, request.BagInfoID);
+                int checkError = unit.GetComponent<TaskComponent>().CheckGiveItemTask(taskCountryConfig.TargetType, taskCountryConfig.Target, taskCountryConfig.TargetValue, request.BagInfoID, taskPro );
                 if (checkError != ErrorCode.ERR_Success)
                 {
                     response.Error = checkError;

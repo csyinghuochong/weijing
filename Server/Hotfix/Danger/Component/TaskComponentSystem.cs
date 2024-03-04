@@ -411,7 +411,7 @@ namespace ET
             return null;
         }
         
-        public static int CheckGiveItemTask (this TaskComponent self, int TargetType, int[] Target, int[] TargetValue, long BagInfoID)
+        public static int CheckGiveItemTask (this TaskComponent self, int TargetType, int[] Target, int[] TargetValue, long BagInfoID, TaskPro taskPro)
         {
             //收集道具的任务
             
@@ -429,6 +429,7 @@ namespace ET
                 }
 
                 bagComponent.OnCostItemData($"{needid};{neednumber}");
+                return ErrorCode.ERR_Success;
             }
             //给予任务
             if (TargetType == (int)TaskTargetType.GiveItem_10)
@@ -443,8 +444,8 @@ namespace ET
                 {
                     return ErrorCode.ERR_ItemNotEnoughError;
                 }
-
                 bagComponent.OnCostItemData(BagInfoID, 1);
+                return ErrorCode.ERR_Success;
             }
             //给予宠物
             if (TargetType == (int)TaskTargetType.GivePet_25)
@@ -461,8 +462,10 @@ namespace ET
                 }
 
                 petComponent.OnRolePetFenjie(BagInfoID);
+                return ErrorCode.ERR_Success;
             }
-            return ErrorCode.ERR_Success; 
+            return taskPro.taskStatus == (int)(TaskStatuEnum.Completed)? ErrorCode.ERR_Success : ErrorCode.Pre_Condition_Error;
+            //return ErrorCode.ERR_Success; 
         }
 
         //领取奖励
@@ -514,13 +517,16 @@ namespace ET
                     rewardItems.AddRange(droplist);
                 }
             }
+            if (taskConfig.TaskType == TaskTypeEnum.System)
+            { 
 
+            }
 
             if (bagComponent.GetBagLeftCell() + 1 < rewardItems.Count)
             {
                 return ErrorCode.ERR_BagIsFull;
             }
-            int checkError = self.CheckGiveItemTask(taskConfig.TargetType, taskConfig.Target,taskConfig.TargetValue, request.BagInfoID);
+            int checkError = self.CheckGiveItemTask(taskConfig.TargetType, taskConfig.Target,taskConfig.TargetValue, request.BagInfoID,taskPro);
             if (checkError != ErrorCode.ERR_Success)
             {
                 return checkError;
@@ -588,14 +594,7 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Weekly)
             {
                 int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
-                //int dropId = 0;
-                //ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
-                //if (dropId > 0)
-                //{
-                //    List<RewardItem> droplist = new List<RewardItem>();
-                //    DropHelper.DropIDToDropItem_2(dropId, droplist);
-                //    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
-                //}
+                
                 if (weekTaskNumber < GlobalValueConfigCategory.Instance.Get(109).Value2)
                 {
                     numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv));
@@ -610,14 +609,7 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Ring)
             {
                 int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
-                //int dropId = 0;
-                //ConfigHelper.RingTaskDrop.TryGetValue(ringTaskNumber, out dropId);
-                //if (dropId > 0)
-                //{
-                //    List<RewardItem> droplist = new List<RewardItem>();
-                //    DropHelper.DropIDToDropItem_2(dropId, droplist);
-                //    unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
-                //}
+                
                 if (ringTaskNumber < 100)
                 {
                     numericComponent.ApplyValue(NumericType.RingTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Ring, roleLv));
