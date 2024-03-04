@@ -483,6 +483,11 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.Weekly)
             {
                 int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
+                if (weekTaskNumber >= GlobalValueConfigCategory.Instance.Get(109).Value2 + 1)
+                {
+                    return ErrorCode.ERR_ModifyData;
+                }
+
                 int dropId = 0;
                 ConfigHelper.WeekTaskDrop.TryGetValue(weekTaskNumber, out dropId);
                 if (dropId > 0)
