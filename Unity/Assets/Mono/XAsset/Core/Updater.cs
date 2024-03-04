@@ -865,7 +865,8 @@ namespace libx
                  apkversion = init_cs.BigVersionIOS;
                   hotVersion = hotVersion1.VersionIOS;
 #else
-                downloadUrl = hotVersion1.Apk_URL + init_cs.Apk_Extension + ".apk";
+                //downloadUrl = hotVersion1.Apk_URL + init_cs.Apk_Extension + ".apk";
+                downloadUrl = hotVersion1.Apk_URL;
                 apkversion = init_cs.BigVersion;
                 hotVersion = hotVersion1.Version;
 #endif

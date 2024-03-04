@@ -533,10 +533,6 @@ namespace ET
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
             }
 
-            //if (Type == UserDataType.Diamond && !self.UserInfo.DiamondGetWay.Contains(getWay))
-            //{
-            //    self.UserInfo.DiamondGetWay.Add(getWay);
-            //}
 
             if (Type == UserDataType.Diamond)
             {
@@ -547,23 +543,23 @@ namespace ET
                 }
             }
 
-            //if (Type == UserDataType.Gold)
-            //{
-            //    self.UserInfo.GoldGetWay.Add(getWay);
-            //    if (self.UserInfo.GoldGetWay.Count > 200)
-            //    {
-            //        self.UserInfo.GoldGetWay.RemoveAt(0);
-            //    }
-            //}
+            if (Type == UserDataType.Gold)
+            {
+                self.UserInfo.GoldGetWay.Add(getWay);
+                if (self.UserInfo.GoldGetWay.Count > 200)
+                {
+                    self.UserInfo.GoldGetWay.RemoveAt(0);
+                }
+            }
 
-            //if (Type == UserDataType.Exp)
-            //{
-            //    self.UserInfo.ExpGetWay.Add(getWay);
-            //    if (self.UserInfo.ExpGetWay.Count > 200)
-            //    {
-            //        self.UserInfo.ExpGetWay.RemoveAt(0);
-            //    }
-            //}
+            if (Type == UserDataType.Exp)
+            {
+                self.UserInfo.ExpGetWay.Add(getWay);
+                if (self.UserInfo.ExpGetWay.Count > 200)
+                {
+                    self.UserInfo.ExpGetWay.RemoveAt(0);
+                }
+            }
 
             if (Type == UserDataType.Diamond)
             {
