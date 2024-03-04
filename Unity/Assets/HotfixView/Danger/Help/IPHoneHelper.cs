@@ -83,13 +83,7 @@ namespace ET
         public static bool IsSimulator_2()
         {
 #if UNITY_ANDROID
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                AndroidJavaClass buildClass = new AndroidJavaClass("android.os.Build");
-                string radioVersion = buildClass.CallStatic<string>("getRadioVersion");
-                return radioVersion != string.Empty;
-            }
-            return false;
+            return SystemInfo.graphicsDeviceID == 0 && SystemInfo.graphicsDeviceVendorID == 0;
 #else
             return false;
 #endif
@@ -98,7 +92,6 @@ namespace ET
         public static bool IsSimulator_3()
         {
 #if UNITY_ANDROID
-            //return SystemInfo.graphicsDeviceID == 0 && SystemInfo.graphicsDeviceVendorID == 0;
             if (Application.platform == RuntimePlatform.Android)
             {
                 AndroidJavaClass buildClass = new AndroidJavaClass("android.os.Build");
