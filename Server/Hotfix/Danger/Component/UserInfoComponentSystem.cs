@@ -513,7 +513,7 @@ namespace ET
             }
             if (gold > 100000 || gold < -100000)
             {
-                Log.Warning($"增加货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+                Log.Warning($"增加货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}  {paramsifo}", true);
             }
             else if (gold > 1000000 || gold < -1000000)
             {
