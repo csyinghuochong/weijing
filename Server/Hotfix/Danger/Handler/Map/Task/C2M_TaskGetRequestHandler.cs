@@ -76,6 +76,18 @@ namespace ET
                 }
                 response.TaskPro = taskComponent.OnGetDailyTask(unionTaskId);
             }
+            else if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+            {
+                if (unit.GetComponent<TaskComponent>().GetTaskList(TaskTypeEnum.Treasure).Count > 1)
+                {
+                    response.Error = ErrorCode.ERR_TaskCanNotGet;
+                    reply();
+                    return;
+                }
+                (TaskPro taskPro, int error) = unit.GetComponent<TaskComponent>().OnAcceptedTask(request.TaskId);
+                response.Error = error;
+                response.TaskPro = taskPro;
+            }
             else
             {
                 (TaskPro taskPro, int error) = unit.GetComponent<TaskComponent>().OnAcceptedTask(request.TaskId);
