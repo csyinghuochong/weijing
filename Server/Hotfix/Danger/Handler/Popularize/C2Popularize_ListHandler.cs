@@ -11,6 +11,31 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Popularize, scene.DomainZone()))
             {
+                //UserInfoComponent userInfoComponent_self = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), request.ActorId);
+                //if (userInfoComponent_self == null)
+                //{
+                //    response.Error = ErrorCode.ERR_ModifyData;
+                //    reply();
+                //    return;
+                //}
+                
+                //List<DBCenterAccountInfo> resulets = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == userInfoComponent_self.UserInfo.AccInfoID);
+                //if (resulets == null || resulets.Count == 0)
+                //{
+                //    response.Error = ErrorCode.ERR_ModifyData;
+                //    reply();
+                //    return;
+                //}
+
+                //int createDay = userInfoComponent_self.GetCrateDay();
+                //int needLv = ComHelp.IsCanPaiMai(createDay, userInfoComponent_self.UserInfo.Lv);
+                //if (!ComHelp.IsRecharge(resulets[0].PlayerInfo) && ComHelp.IsCanPaiMai(createDay, userInfoComponent_self.UserInfo.Lv) > 0)
+                //{
+                //    response.Error = ErrorCode.ERR_ModifyData;
+                //    reply();
+                //    return;
+                //}
+
                 DBPopularizeInfo dBPopularizeInfo = await DBHelper.GetComponentCache<DBPopularizeInfo>(scene.DomainZone(), request.ActorId);
                 if (dBPopularizeInfo == null)
                 {

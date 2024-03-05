@@ -65,6 +65,8 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
+
+            uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
             self.UIPageButton = uIPageButtonComponent;
         }
     }
@@ -79,6 +81,29 @@ namespace ET
 
     public static class UIPaiMaiComponentSystem
     {
+
+        public static bool CheckPageButton_1(this UIPaiMaiComponent self, int page)
+        {
+            if (page == (int)PaiMaiPageEnum.PaiMaiSell || page == (int)PaiMaiPageEnum.PaiMaiBuy)
+            {
+                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                if (ComHelp.IsRecharge(accountInfo.PlayerInfo))
+                {
+                    return true;
+                }
+
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                int createDay = userInfoComponent.GetCrateDay();
+                int needLv = ComHelp.IsCanPaiMai(createDay, userInfoComponent.UserInfo.Lv);
+                if (needLv == 0)
+                {
+                    return true;
+                }
+                FloatTipManager.Instance.ShowFloatTip($"需要等级达到{needLv}");
+                return false;
+            }
+            return true;
+        }
 
         public static void OnClickPageButton(this UIPaiMaiComponent self, int page)
         {

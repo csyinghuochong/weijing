@@ -735,6 +735,56 @@ namespace ET
             return retunrnValue;
         }
 
+
+        //拍卖行开启-
+        //充值任意金额
+        //或
+        //根据当前角色创建天数来计算
+        //1. 15
+        //2. 18
+        //3. 20
+        //4. 22
+        //5. 24
+        //6. 26
+        //7. 28
+        public static bool IsRecharge(PlayerInfo playerInfo)
+        {
+            return playerInfo.RechargeInfos.Count > 0;  
+        }
+
+        public static int IsCanPaiMai(int createDay, int lv)
+        {
+            if(createDay <= 1 && lv <= 15)
+            {
+                return 15;
+            }
+            if (createDay <= 2 && lv <= 18)
+            {
+                return 18;
+            }
+            if (createDay <= 3 && lv <= 20)
+            {
+                return 20;
+            }
+            if (createDay <= 4 && lv <= 22)
+            {
+                return 22;
+            }
+            if (createDay <= 5 && lv <= 24)
+            {
+                return 24;
+            }
+            if (createDay <= 6 && lv <= 26)
+            {
+                return 26;
+            }
+            if (createDay <= 7 && lv <= 28)
+            {
+                return 28;
+            }
+            return 0;    
+        }
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {
