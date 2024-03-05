@@ -8,17 +8,25 @@ namespace ET
 		protected override async ETTask Run(Session session, C2G_EnterGame request, G2C_EnterGame response, Action reply)
 		{
 			List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
-			//if (accountInfoList.Count >0 && accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
-			//{
-			//	Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
-			//}
-			if (request.Simulator == 1)
+            //if (accountInfoList.Count >0 && accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
+            //{
+            //	Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
+            //}
+
+			string ip = string.Empty;
+            string[] ipinfo = session.RemoteAddress.ToString().Split(':');
+			if (ipinfo.Length > 0 )
 			{
-				Log.Warning($"模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName}");
+                ip = ipinfo[0];	
+            }
+
+            if (request.Simulator == 1)
+			{
+				Log.Warning($"模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName}  {ip}");
 			}
 			else
 			{
-                Log.Warning($"非模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName}");
+                Log.Warning($"非模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {ip}");
             }
 			
             if (session.DomainScene().SceneType != SceneType.Gate)
@@ -34,18 +42,6 @@ namespace ET
                 return;
             }
 
-			if (request.Simulator == 1 && request.DeviceName.Contains("2220:1080") )
-			{
-                List<DBCenterAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
-				if (dBAccountInfos_new != null && dBAccountInfos_new.Count > 0 && dBAccountInfos_new[0].PlayerInfo.RechargeInfos.Count == 0)
-				{
-                    Log.Warning($"工作室登录2: {request.UserID} {request.DeviceName}");
-                    response.Error = ErrorCode.ERR_RequestRepeatedly;
-                    reply();
-                    return;
-                }
-            }
-
             if (session.GetComponent<SessionLockingComponent>() != null)
 			{
 				response.Error = ErrorCode.ERR_RequestRepeatedly;
@@ -53,17 +49,50 @@ namespace ET
 				return;
 			}
 
-			string[] ipinfo = session.RemoteAddress.ToString().Split(':');
-			if (!string.IsNullOrEmpty(request.DeviceName) && ipinfo.Length > 1)
+            //没有loginGate
+            SessionPlayerComponent sessionPlayerComponent = session.GetComponent<SessionPlayerComponent>();
+            if (null == sessionPlayerComponent)
+            {
+                response.Error = ErrorCode.ERR_SessionPlayerError;
+                reply();
+                return;
+            }
+            //连接gate的时候会做记录
+            Player player = Game.EventSystem.Get(sessionPlayerComponent.PlayerInstanceId) as Player;
+            if (player == null || player.IsDisposed)
+            {
+                response.Error = ErrorCode.ERR_NonePlayerError;
+                reply();
+                return;
+            }
+
+			if (!player.RemoteAddress.Contains("_"))
+			{
+				player.RemoteAddress = $"{ip}_{request.DeviceName}";
+            }
+
+            if (request.Simulator == 1 && request.DeviceName.Contains("2220:1080"))
+            {
+                List<DBCenterAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
+                if (dBAccountInfos_new != null && dBAccountInfos_new.Count > 0 && dBAccountInfos_new[0].PlayerInfo.RechargeInfos.Count == 0)
+                {
+                    Log.Warning($"工作室登录2: {request.UserID} {request.DeviceName}");
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
+                    reply();
+                    return;
+                }
+            }
+
+			if (!string.IsNullOrEmpty(request.DeviceName) && ip.Length > 1)
 			{
                 PlayerComponent playerComponent = session.DomainScene().GetComponent<PlayerComponent>();
-                int sameIpNumber = playerComponent.GetSameIpNumber(request.AccountId,ipinfo[0]);
+                int sameIpNumber = playerComponent.GetSameIpNumber(request.AccountId, player.RemoteAddress);
 
-				if (sameIpNumber > 5)
+				if (sameIpNumber >= 2)
 				{
-					Log.Warning($"同ip玩家超过五个: {sameIpNumber} {request.UserID}");
+					Log.Warning($"同ip玩家超过2个: {sameIpNumber} {request.UserID}");
 				}
-				if (sameIpNumber > 5) /////temp && request.Simulator == 1)
+				if (sameIpNumber >= 2) /////temp && request.Simulator == 1)
 				{
                     response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
@@ -71,23 +100,7 @@ namespace ET
                 }
             }
            
-            //没有loginGate
-            SessionPlayerComponent sessionPlayerComponent = session.GetComponent<SessionPlayerComponent>();
-			if (null == sessionPlayerComponent)
-			{
-				response.Error = ErrorCode.ERR_SessionPlayerError;
-				reply();
-				return;
-			}
-			//连接gate的时候会做记录
-			Player player = Game.EventSystem.Get(sessionPlayerComponent.PlayerInstanceId) as Player;
-			if (player == null || player.IsDisposed)
-			{
-				response.Error = ErrorCode.ERR_NonePlayerError;
-				reply();
-				return;
-			}
-
+           
 			long instanceId = session.InstanceId;
 			using (session.AddComponent<SessionLockingComponent>())
 			{
