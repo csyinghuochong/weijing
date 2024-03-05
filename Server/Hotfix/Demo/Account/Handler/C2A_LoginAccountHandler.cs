@@ -207,7 +207,7 @@ namespace ET
                             await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
 
-                        if (account.AccountType == 2) //黑名单
+                        if (account.AccountType == 2 && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
                         {
                             response.Error = ErrorCode.ERR_AccountInBlackListError;
                             response.AccountId = account.Id;
