@@ -160,7 +160,12 @@ namespace ET
             string[] itemsList = needItems.Split('@');
 
             //显示名称
-            self.Lab_MakeName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemName;
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
+            string itemName = itemConfig.ItemName; 
+  
+            self.Lab_MakeName.GetComponent<Text>().text = itemName;
+            self.Lab_MakeName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemConfig.ItemQuality);
+
             self.Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
 
             //self.TextVitality.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality.ToString();
