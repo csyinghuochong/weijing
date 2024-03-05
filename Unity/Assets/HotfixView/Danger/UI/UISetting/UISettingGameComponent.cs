@@ -174,6 +174,10 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonPhone.SetActive(true);
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
+            {
+                self.ButtonPhone.SetActive(false);
+            }
 
             self.HighFps = rc.Get<GameObject>("HighFps");
             ButtonHelp.AddListenerEx(self.HighFps.transform.Find("Btn_Click").gameObject, self.OnHighFps);
