@@ -50,6 +50,7 @@ namespace ET
         {
             return Screen.width > Screen.height;
         }
+
         //2796:1290
         public static bool IsHaveLiuHai()
         {
@@ -59,7 +60,13 @@ namespace ET
 
         public static bool IsSimulator()
         {
-            return IsSimulator_1() || IsSimulator_3();  
+            return IsSimulator_1() || IsSimulator_2() || IsSimulator_3();  
+        }
+
+        public static bool IsRoot()
+        {
+            bool isRoot = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) == "/";
+            return isRoot;      
         }
 
         /// <summary>
