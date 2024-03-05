@@ -754,33 +754,61 @@ namespace ET
 
         public static int IsCanPaiMai(int createDay, int lv)
         {
-            if(createDay <= 1 && lv <= 15)
+            if(createDay == 1)
             {
-                return 15;
+                if(lv <= 15)
+                {
+                    return 15;
+                }
+                return 0;
             }
-            if (createDay <= 2 && lv <= 18)
+            if (createDay <= 2)
             {
-                return 18;
+                if (lv <= 18)
+                {
+                    return 18;
+                }
+                return 0;
             }
-            if (createDay <= 3 && lv <= 20)
+            if (createDay <= 3)
             {
-                return 20;
+                if (lv <= 20)
+                {
+                    return 20;
+                }
+                return 0;
             }
-            if (createDay <= 4 && lv <= 22)
+            if (createDay <= 4)
             {
-                return 22;
+                if (lv <= 22)
+                {
+                    return 22;
+                }
+                return 0;
             }
-            if (createDay <= 5 && lv <= 24)
+            if (createDay <= 5)
             {
-                return 24;
+                if (lv <= 24)
+                {
+                    return 24;
+                }
+                return 0;
             }
-            if (createDay <= 6 && lv <= 26)
+            if (createDay <= 6)
             {
-                return 26;
+                if (lv <= 26)
+                {
+                    return 26;
+                }
+                return 0;
             }
-            if (createDay <= 7 && lv <= 28)
+            if (createDay <= 7)
             {
-                return 28;
+                if (lv <= 28)
+                {
+                    return 28;
+                }
+                return 0;
             }
             return 0;    
         }
