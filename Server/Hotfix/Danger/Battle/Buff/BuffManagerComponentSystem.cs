@@ -700,7 +700,7 @@ namespace ET
                 self.BuffFactory(buffData_2, unit, null);
             }
 
-            if (userInfoComponent.UserInfo.BaoShiDu >= 60 && userInfoComponent.UserInfo.BaoShiDu < 80)
+            if (userInfoComponent.UserInfo.BaoShiDu >= 40 && userInfoComponent.UserInfo.BaoShiDu < 80)
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
@@ -713,7 +713,7 @@ namespace ET
                 self.BuffFactory(buffData_2, unit, null);
             }
 
-            if (userInfoComponent.UserInfo.BaoShiDu >= 20 && userInfoComponent.UserInfo.BaoShiDu < 60)
+            if (userInfoComponent.UserInfo.BaoShiDu >= 20 && userInfoComponent.UserInfo.BaoShiDu < 40)
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
