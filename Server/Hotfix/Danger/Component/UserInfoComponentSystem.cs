@@ -554,7 +554,7 @@ namespace ET
 
             if (Type == UserDataType.Diamond)
             {
-                Log.Warning($"增加钻石:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+                Log.Warning($"增加钻石: {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
             }
 
             if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)

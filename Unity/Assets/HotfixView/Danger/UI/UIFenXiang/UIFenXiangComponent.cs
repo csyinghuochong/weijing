@@ -104,24 +104,24 @@ namespace ET
 
         public static bool CheckPageButton_1(this UIFenXiangComponent self, int page)
         {
-            if (page == (int)FenXiangPageEnum.Popularize)
-            {
-                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                if (ComHelp.IsRecharge(accountInfo.PlayerInfo))
-                {
-                    return true;
-                }
+            //if (page == (int)FenXiangPageEnum.Popularize)
+            //{
+            //    AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //    if (ComHelp.IsRecharge(accountInfo.PlayerInfo))
+            //    {
+            //        return true;
+            //    }
 
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                int createDay = userInfoComponent.GetCrateDay();
-                int needLv = ComHelp.IsCanPaiMai(createDay, userInfoComponent.UserInfo.Lv);
-                if (needLv == 0)
-                {
-                    return true;
-                }
-                FloatTipManager.Instance.ShowFloatTip($"需要等级达到{needLv}");
-                return false;
-            }
+            //    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            //    int createDay = userInfoComponent.GetCrateDay();
+            //    int needLv = ComHelp.IsCanPaiMai(createDay, userInfoComponent.UserInfo.Lv);
+            //    if (needLv == 0)
+            //    {
+            //        return true;
+            //    }
+            //    FloatTipManager.Instance.ShowFloatTip($"需要等级达到{needLv}");
+            //    return false;
+            //}
             return true;
         }
 
