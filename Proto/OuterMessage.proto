@@ -2643,6 +2643,7 @@ message C2M_PaiMaiBuyRequest // IActorLocationRequest
 	
 	PaiMaiItemInfo PaiMaiItemInfo = 1;
 	int32 BuyNum = 2;
+	int32 IsRecharge = 3;
 }
 
 message M2C_PaiMaiBuyResponse // IActorLocationResponse
@@ -2658,6 +2659,7 @@ message C2M_PaiMaiSellRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	PaiMaiItemInfo PaiMaiItemInfo = 1;
+	int32 IsRecharge = 3;
 }
 
 message M2C_PaiMaiSellResponse // IActorLocationResponse
