@@ -105,6 +105,8 @@ namespace ET
                     break;
                 case 1:
                 case 2:
+
+
                     C2M_FashionWearRequest request1 = new C2M_FashionWearRequest() { FashionId = self.FashionId, OperatateType = self.Status };
                     M2C_FashionWearResponse response1 = (M2C_FashionWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request1);
                     if (instanceid != self.InstanceId)

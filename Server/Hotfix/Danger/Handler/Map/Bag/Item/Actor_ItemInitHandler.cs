@@ -51,6 +51,19 @@ namespace ET
 				//}
 			}
 
+			List<int> fashionTypes = new List<int>();
+			for (int i = bagComponent.FashionEquipList.Count - 1; i >= 0; i--)
+			{
+				FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]);
+				if (fashionTypes.Contains(fashionConfig.SubType))
+				{
+                    fashionTypes.RemoveAt(i);	
+                    continue;
+				}
+
+				fashionTypes.Add(fashionConfig.SubType);
+            }
+
 			response.BagInfos = bagInfos;
 			response.QiangHuaLevel = bagComponent.QiangHuaLevel;
 			response.QiangHuaFails = bagComponent.QiangHuaFails;
