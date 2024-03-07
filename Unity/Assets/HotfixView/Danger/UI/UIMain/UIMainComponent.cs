@@ -1416,7 +1416,7 @@ namespace ET
             
             self.DragPanel.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle) == 1);
 
-            self.UIMainSkillComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
+            userInfoComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
 
             self.CheckRechargeRewardButton();
         }

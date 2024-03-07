@@ -312,7 +312,7 @@ namespace ET
 
             self.PickSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
             self.SaveSettings(GameSettingEnum.PickSet, value);
-            UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().UIMainSkillComponent.PickSet = value.Split('@');
+            self.UserInfoComponent.PickSet = value.Split('@');
         }
 
         public static void OnBtn_RotaAngle(this UISettingGameComponent self)

@@ -37,7 +37,6 @@ namespace ET
         public List<string> AssetPath = new List<string>();
 
         public int JueXingSkillId;
-        public string[] PickSet;
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
@@ -426,20 +425,21 @@ namespace ET
                 return;
             }
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();       
             if (ids.Count > 0)
             {
                 for (int i = ids.Count - 1; i >= 0; i--)
                 {
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ItemID);
 
-                    if (self.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
+                    if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
                     {
                         ids.RemoveAt(i);
                         continue;
                     }
 
                     // 蓝色 金币除外
-                    if (self.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
+                    if (userInfoComponent.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
                     {
                         ids.RemoveAt(i);
                         continue;

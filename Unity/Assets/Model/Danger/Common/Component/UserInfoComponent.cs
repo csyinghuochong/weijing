@@ -98,6 +98,9 @@ namespace ET
 
         [BsonIgnore]
         public long ShouLieUpLoadTimer;
+#else
+        public string[] PickSet;
+
 #endif
     }
 }
