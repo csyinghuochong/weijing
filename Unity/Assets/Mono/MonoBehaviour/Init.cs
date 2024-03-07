@@ -43,8 +43,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 18;      //17部分包含抖音sdk能力 18
-		public int BigVersionIOS = 18;   //17部分包含抖音sdk能力 18
+		public int BigVersion = 18;      //17部分包含抖音sdk能力 18(模拟器检测)
+		public int BigVersionIOS = 18;   //17部分包含抖音sdk能力 18(模拟器检测)
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -91,6 +91,10 @@ namespace ET
 		public bool HotUpdateComplete = false;
 
 		public string Apk_Extension = string.Empty;
+
+		public int IsRoot;
+        public int IsEmulator;
+
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
@@ -125,7 +129,7 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop = OueNetMode ? 0 : 1;
+			Options.Instance.Develop =  OueNetMode ? 0 : 1;
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
 
             Log.ILog.Debug("unity111  Awake");
@@ -845,5 +849,15 @@ namespace ET
 			Log.ILog.Debug($"OnRecvPhoneNum: {phoneNum}");
 			this.OnGetPhoneNumHandler(phoneNum);
 		}
-	}
+
+		public void OnRecvRoot(string root)
+		{
+			this.IsRoot = int.Parse(root);
+		}
+
+        public void OnRecvEmulator(string emulator)
+        {
+			this.IsEmulator = int.Parse(emulator);	
+        }
+    }
 }

@@ -446,6 +446,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int Simulator { get; set; }
 
+		[ProtoMember(9)]
+		public int Root { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
@@ -5586,6 +5589,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int BuyNum { get; set; }
 
+		[ProtoMember(3)]
+		public int IsRecharge { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PaiMaiBuyResponse)]
@@ -5616,6 +5622,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
+
+		[ProtoMember(3)]
+		public int IsRecharge { get; set; }
 
 	}
 

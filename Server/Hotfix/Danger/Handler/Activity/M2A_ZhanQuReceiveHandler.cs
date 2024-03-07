@@ -36,12 +36,14 @@ namespace ET
                 {
                     continue;
                 }
-                //if (zhanQuReceiveNumbers[i].ReceiveUnitIds.Contains(request.UnitId))
-                //{
-                //    response.Error = ErrorCode.ERR_AlreadyReceived;
-                //    reply();
-                //    return;
-                //}
+
+                if (zhanQuReceiveNumbers[i].ReceiveUnitIds.Contains(request.UnitId))
+                {
+                    response.Error = ErrorCode.ERR_AlreadyReceived;
+                    reply();
+                    return;
+                }
+
                 zhanQuReceive = zhanQuReceiveNumbers[i];
                 zhanQuReceiveNumbers[i].ReceiveNum++;
                 zhanQuReceiveNumbers[i].ReceiveUnitIds.Add(request.UnitId);

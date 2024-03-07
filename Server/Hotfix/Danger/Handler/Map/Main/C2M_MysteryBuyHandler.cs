@@ -11,6 +11,12 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {
                 int mysteryId = request.MysteryItemInfo.MysteryId;
+                if (!MysteryConfigCategory.Instance.Contain(mysteryId))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
                 MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
                 if (mysteryConfig == null)
                 {

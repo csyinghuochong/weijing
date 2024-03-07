@@ -131,7 +131,7 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink , int plaform, int simulator)
+        public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink , int plaform)
         {
             string realmAddress = zoneScene.GetComponent<AccountInfoComponent>().RealmAddress;
             // 1. 连接Realm，获取分配的Gate
@@ -184,6 +184,7 @@ namespace ET
 
             //3. 角色正式请求进入游戏逻辑服
             G2C_EnterGame g2CEnterGame = null;
+            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             try
             {
                 g2CEnterGame = (G2C_EnterGame)await gateSession.Call(new C2G_EnterGame() { 
@@ -194,7 +195,8 @@ namespace ET
                     Version = ComHelp.Version,
                     AccountId = accountId,
                     Platform = plaform,
-                    Simulator = simulator
+                    Simulator = accountInfoComponent.Simulator,
+                    Root = accountInfoComponent.Root,
                 });
             }
             catch (Exception e)
@@ -217,8 +219,6 @@ namespace ET
             }
             else
             {
-                AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
-                accountInfoComponent.Simulator = simulator;
                 accountInfoComponent.MyId = g2CEnterGame.MyId;
                 accountInfoComponent.IsPopUp = g2CEnterGame.IsPopUp;
                 accountInfoComponent.PopUpInfo = g2CEnterGame.PopUpInfo;

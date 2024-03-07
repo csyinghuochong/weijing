@@ -43,5 +43,6 @@ namespace ET
 		public string PopUpInfo = string.Empty;
 
 		public int Simulator = 0;
+		public int Root = 0;
     }
 }

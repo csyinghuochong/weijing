@@ -96,7 +96,7 @@ namespace ET
                     playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                    errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0, 0); ;
+                    errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0); 
                     Log.Console($"create robot ok: {robotZone}");
                 }
                 else if (registerCode == ErrorCode.ERR_AccountAlreadyRegister)
@@ -108,7 +108,7 @@ namespace ET
                         playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                        errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0, 0);
+                        errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0);
                         Log.Debug($"create robot ok: {robotZone}");
                     }
                     else
@@ -126,7 +126,7 @@ namespace ET
                         playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                        errorCode = await LoginHelper.EnterGame(zoneScene, string.Empty, false, 0, 0);
+                        errorCode = await LoginHelper.EnterGame(zoneScene, string.Empty, false, 0);
                         Log.Debug($"create robot ok: {robotZone}");
                     }
                 }

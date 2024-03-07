@@ -762,6 +762,12 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class LoginCheckRoot : DisposeObject
+        {
+            public static readonly LoginCheckRoot Instance = new LoginCheckRoot();
+            public Scene ZoneScene;
+        }
+
         public class TikTokGetAccesstoken : DisposeObject
         {
             public static readonly TikTokGetAccesstoken Instance = new TikTokGetAccesstoken();

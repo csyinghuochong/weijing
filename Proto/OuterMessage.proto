@@ -210,6 +210,7 @@ message C2G_EnterGame // IRequest
 	int32 Version = 6;
 	int32 Platform = 7;
 	int32 Simulator = 8;
+	int32 Root = 9;
 }
 
 message G2C_EnterGame // IResponse

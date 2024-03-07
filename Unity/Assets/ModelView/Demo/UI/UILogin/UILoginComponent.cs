@@ -58,7 +58,7 @@ namespace ET
 		public long LastLoginTime;
 		
 		public ServerItem ServerInfo;
-		public AccountInfoComponent PlayerComponent;
+		public AccountInfoComponent AccountInfoComponent;
 		public UI UIRotateComponent;
 
 		public string LoginType;

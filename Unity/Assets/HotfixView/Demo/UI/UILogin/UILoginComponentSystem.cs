@@ -178,12 +178,22 @@ namespace ET
 				self.Loading.SetActive(false);
 				
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
-				self.PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
+				self.AccountInfoComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
+
+				if (bigversion >= 18)
+				{
+					EventType.LoginCheckRoot.Instance.ZoneScene = self.ZoneScene();
+					EventSystem.Instance.PublishClass(EventType.LoginCheckRoot.Instance);
+				}
+				else
+				{
+					self.AccountInfoComponent.Root = IPHoneHelper.IsRoot() ? 1 : 0;
+					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
+                }
 
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
 				self.InitLoginType();
-
                 self.RequestAllServer().Coroutine();
 
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
@@ -665,16 +675,16 @@ namespace ET
 				}
 				self.ShowNotice();
 
-				ServerItem serverItem = self.PlayerComponent.AllServerList[self.PlayerComponent.AllServerList.Count - 1];
+				ServerItem serverItem = self.AccountInfoComponent.AllServerList[self.AccountInfoComponent.AllServerList.Count - 1];
 				List<int> myids = new List<int>();
 				int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
 				myserver = ServerHelper.GetNewServerId(myserver);
 
-				for (int i = 0; i < self.PlayerComponent.AllServerList.Count; i++)
+				for (int i = 0; i < self.AccountInfoComponent.AllServerList.Count; i++)
 				{
-					if (self.PlayerComponent.AllServerList[i].ServerId == myserver)
+					if (self.AccountInfoComponent.AllServerList[i].ServerId == myserver)
 					{
-						serverItem = self.PlayerComponent.AllServerList[i];
+						serverItem = self.AccountInfoComponent.AllServerList[i];
 						myids.Add(serverItem.ServerId);
 						break;
 					}
@@ -890,10 +900,10 @@ namespace ET
 
 		public static void OnReLogin(this UILoginComponent self)
 		{
-			string account = self.PlayerComponent.Account;
-			string password = self.PlayerComponent.Password;
+			string account = self.AccountInfoComponent.Account;
+			string password = self.AccountInfoComponent.Password;
 			Log.ILog.Debug($"Login: {account} {password}");
-			self.RequestLogin(account, password, self.PlayerComponent.LoginType).Coroutine();
+			self.RequestLogin(account, password, self.AccountInfoComponent.LoginType).Coroutine();
 		}
 
 		public static async ETTask RequestLogin(this UILoginComponent self, string account ,string password, string loginType)
@@ -923,7 +933,7 @@ namespace ET
 				FloatTipManager.Instance.ShowFloatTip("稍后登录！");
 				return;
 			}
-			if (GlobalHelp.GetPlatform() == 5 && self.PlayerComponent.Age_Type < 0)
+			if (GlobalHelp.GetPlatform() == 5 && self.AccountInfoComponent.Age_Type < 0)
 			{
                 FloatTipManager.Instance.ShowFloatTip("稍后登录！");
                 return;
@@ -933,11 +943,11 @@ namespace ET
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");
 			self.LastLoginTime = TimeHelper.ClientNow();
-			self.PlayerComponent.ServerId = self.ServerInfo.ServerId;
-			self.PlayerComponent.ServerIp = self.ServerInfo.ServerIp;
-			self.PlayerComponent.Account = account;
-			self.PlayerComponent.Password = password;
-			self.PlayerComponent.LoginType = loginType;
+			self.AccountInfoComponent.ServerId = self.ServerInfo.ServerId;
+			self.AccountInfoComponent.ServerIp = self.ServerInfo.ServerIp;
+			self.AccountInfoComponent.Account = account;
+			self.AccountInfoComponent.Password = password;
+			self.AccountInfoComponent.LoginType = loginType;
 			self.UIRotateComponent.GameObject.SetActive(true);
 			self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(true);
 
