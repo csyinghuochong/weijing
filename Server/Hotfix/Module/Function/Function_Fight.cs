@@ -366,13 +366,14 @@ namespace ET
 
             //等级差命中
             float HitLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
-            if (HitLvPro <= 0)
+            if (HitLvPro <= -0.1f)
             {
-                HitLvPro = 0;
+                HitLvPro = -0.1f;
             }
-            if (HitLvPro >= 0.1f)
+
+            if (HitLvPro >= 0.2f)
             {
-                HitLvPro = 0.1f;
+                HitLvPro = 0.2f;
             }
 
             //等级差闪避
@@ -1010,6 +1011,12 @@ namespace ET
                         CriPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerCriSubPro);
                     }
 
+                    //根据双方战力调整暴击系数
+                    if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
+                    {
+                        CriPro += GetFightValueCriAndHitProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
+                    }
+
 
                     if (CriPro <= 0f)
                     {
@@ -1171,6 +1178,28 @@ namespace ET
             if (addPro > 0.3f)
             {
                 addPro = 0.3f;
+            }
+
+            return addPro;
+
+        }
+
+        //根据双方战力比调整攻击系数，攻击者打弱势有额外的命中和攻击
+        public static float GetFightValueCriAndHitProValue(int actFightValue, int defFightValue)
+        {
+
+            float addPro = (actFightValue / defFightValue) - 1;
+
+            //范围限制
+            if (addPro < 0)
+            {
+                addPro = 0;
+            }
+
+            //addPro = addPro + 0.05f;
+            if (addPro > 0.2f)
+            {
+                addPro = 0.2f;
             }
 
             return addPro;
