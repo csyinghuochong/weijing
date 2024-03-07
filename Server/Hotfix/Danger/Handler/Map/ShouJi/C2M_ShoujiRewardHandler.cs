@@ -9,8 +9,13 @@ namespace ET
         {
             ShoujiComponent shoujiComponent = unit.GetComponent<ShoujiComponent>();
             ShouJiChapterInfo shouJiChapterInfo = shoujiComponent.GetShouJiChapterInfo(request.ChapterId);
+            if (!ShouJiConfigCategory.Instance.Contain(request.ChapterId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
             ShouJiConfig shouJiConfig = ShouJiConfigCategory.Instance.Get(request.ChapterId);
-
             if (request.RewardIndex == 1 && shouJiChapterInfo.StarNum < shouJiConfig.ProList1_StartNum)
             {
                 reply();
