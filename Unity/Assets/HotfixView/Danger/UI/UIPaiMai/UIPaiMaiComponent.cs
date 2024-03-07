@@ -116,7 +116,7 @@ namespace ET
                 {
                     return true;
                 }
-                FloatTipManager.Instance.ShowFloatTip($"需要等级达到{needLv}");
+                FloatTipManager.Instance.ShowFloatTip($"等级需达到{needLv}级或赞助任意金额开启拍卖行购买功能！");
                 return false;
             }
             return true;
