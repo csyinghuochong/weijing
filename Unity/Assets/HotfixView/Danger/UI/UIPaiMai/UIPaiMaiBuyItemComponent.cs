@@ -129,6 +129,45 @@ namespace ET
                 return;
             }
 
+            bool canBuy = false;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int openPaiMai = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PaiMaiOpen);
+            if (openPaiMai == 1)
+            {
+                canBuy = true;
+            }
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            int createDay = userInfoComponent.GetCrateDay();
+            if (createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10)
+            {
+                canBuy = true;
+            }
+
+            AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (ComHelp.IsCanPaiMai_Recharge(accountInfo.PlayerInfo))
+            {
+                canBuy = true;
+            }
+
+            if (ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv))
+            {
+                canBuy = true;
+            }
+
+            int needLv = ComHelp.IsCanPaiMai_Level(createDay, userInfoComponent.UserInfo.Lv);
+            if (needLv == 0)
+            {
+                canBuy = true;
+            }
+
+            if (!canBuy)
+            {
+                FloatTipManager.Instance.ShowFloatTip($"等级需达到{needLv}级或赞助任意金额开启拍卖行购买功能！");
+                return;
+            }
+
+
             if (self.PaiMaiItemInfo.BagInfo.ItemNum > 1)
             {
                 UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiBuyTip);

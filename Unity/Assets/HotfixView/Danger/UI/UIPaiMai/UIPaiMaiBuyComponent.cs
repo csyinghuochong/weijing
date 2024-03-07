@@ -153,7 +153,7 @@ namespace ET
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
             }
-
+            
             typeButtonInfo.TypeId = 2;
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
             typeButtonInfos.Add(typeButtonInfo);

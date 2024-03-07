@@ -64,9 +64,10 @@ namespace ET
             uIPageButtonComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
-            uIPageButtonComponent.OnSelectIndex(0);
 
             uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
+
+            uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
         }
     }
@@ -84,41 +85,6 @@ namespace ET
 
         public static bool CheckPageButton_1(this UIPaiMaiComponent self, int page)
         {
-            if (page == (int)PaiMaiPageEnum.PaiMaiBuy)
-            {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int openPaiMai = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PaiMaiOpen);
-                if(openPaiMai == 1)
-                {
-                    return true;
-                }
-
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                int createDay = userInfoComponent.GetCrateDay();
-                if (createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10)
-                {
-                    return true;
-                }
-
-                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                if (ComHelp.IsCanPaiMai_Recharge(accountInfo.PlayerInfo))
-                {
-                    return true;
-                }
-
-                if (ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv))
-                {
-                    return true;
-                }
-
-                int needLv = ComHelp.IsCanPaiMai_Level(createDay, userInfoComponent.UserInfo.Lv);
-                if (needLv == 0)
-                {
-                    return true;
-                }
-                FloatTipManager.Instance.ShowFloatTip($"等级需达到{needLv}级或赞助任意金额开启拍卖行购买功能！");
-                return false;
-            }
             return true;
         }
 
