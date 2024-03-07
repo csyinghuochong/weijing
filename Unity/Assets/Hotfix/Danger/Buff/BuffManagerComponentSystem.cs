@@ -54,12 +54,14 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+
+        //DeadNoRemove 0移除   1 不移除
         public static void OnDead(this BuffManagerComponent self, Unit attack)
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
                 ABuffHandler buffHandler = self.m_Buffs[i];
-                if (attack!=null && attack.Type==UnitType.Player && buffHandler.mSkillBuffConf.DeadNoRemove == 1)
+                if (buffHandler.mSkillBuffConf.DeadNoRemove == 1)
                 {
                     continue;
                 }
