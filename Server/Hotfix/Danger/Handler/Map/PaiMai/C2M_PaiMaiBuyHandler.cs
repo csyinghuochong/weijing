@@ -12,13 +12,6 @@ namespace ET
             int su = unit.GetComponent<DataCollationComponent>().Simulator;
             int lv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
-            //if (!unit.GetComponent<TaskComponent>().ShowPaiMai( lv, su) )
-            //{
-            //    response.Error = ErrorCode.Pre_Condition_Error;
-            //    reply();
-            //    return;
-            //}
-
             //背包是否有位置
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
@@ -71,6 +64,32 @@ namespace ET
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
             {
                 response.Error = ErrorCode.ERR_GoldNotEnoughError;
+                reply();
+                return;
+            }
+
+            bool firstDay = false;
+            int openPaiMai = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PaiMaiOpen);
+
+            if (openPaiMai == 0)
+            {
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                int createDay = userInfoComponent.GetCrateDay();
+
+                firstDay = createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10;
+
+                if (request.IsRecharge==1
+                    || ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv)
+                    || ComHelp.IsCanPaiMai_Level(createDay, userInfoComponent.UserInfo.Lv) == 0)
+                {
+                    openPaiMai = 1;
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiOpen, 1);
+                }
+            }
+
+            if (!firstDay && openPaiMai == 0)
+            {
+                response.Error = ErrorCode.Pre_Condition_Error;
                 reply();
                 return;
             }

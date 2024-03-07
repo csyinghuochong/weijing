@@ -735,34 +735,42 @@ namespace ET
             return retunrnValue;
         }
 
+        //第一天达到10级以上或第二天进行等级限制
+        //1-10级默认开启（只有第一天,确保开始的时候是开启的）
 
-        //拍卖行开启-
-        //充值任意金额
-        //或
-        //根据当前角色创建天数来计算
-        //1. 15
-        //2. 18
-        //3. 20
-        //4. 22
-        //5. 24
-        //6. 26
-        //7. 28
-        public static bool IsRecharge(PlayerInfo playerInfo)
-        {
-            return playerInfo.RechargeInfos.Count > 0;  
-        }
-
-        public static int IsCanPaiMai(int createDay, int lv)
+        //以下三个条件满足任意一个
+        //拍卖行购买功能限制
+        //1. 充值任意金额
+        //2. 或者击败2个以上的同级别（等级不低于玩家等级5级）的BOSS(狼王不算)
+        //3.
+        //1. 14  （24小时内)
+        //2. 16
+        //3. 18
+        //4. 19
+        //5. 20
+        //6. 21
+        //7. 22
+        //以上开启一次就不会进行二次限制。
+        //未开启统一提示:等级需达到X级或赞助任意金额开启拍卖行购买功能！
+        public static int IsCanPaiMai_Level(int createDay, int lv)
         {
             if(createDay == 1)
             {
-                if(lv <= 15)
+                if(lv <= 14)
                 {
-                    return 15;
+                    return 14;
                 }
                 return 0;
             }
             if (createDay <= 2)
+            {
+                if (lv <= 16)
+                {
+                    return 16;
+                }
+                return 0;
+            }
+            if (createDay <= 3)
             {
                 if (lv <= 18)
                 {
@@ -770,7 +778,15 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 3)
+            if (createDay <= 4)
+            {
+                if (lv <= 19)
+                {
+                    return 19;
+                }
+                return 0;
+            }
+            if (createDay <= 5)
             {
                 if (lv <= 20)
                 {
@@ -778,7 +794,15 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 4)
+            if (createDay <= 6)
+            {
+                if (lv <= 21)
+                {
+                    return 21;
+                }
+                return 0;
+            }
+            if (createDay <= 7)
             {
                 if (lv <= 22)
                 {
@@ -786,32 +810,34 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 5)
-            {
-                if (lv <= 24)
-                {
-                    return 24;
-                }
-                return 0;
-            }
-            if (createDay <= 6)
-            {
-                if (lv <= 26)
-                {
-                    return 26;
-                }
-                return 0;
-            }
-            if (createDay <= 7)
-            {
-                if (lv <= 28)
-                {
-                    return 28;
-                }
-                return 0;
-            }
             return 0;    
         }
+
+        public static bool IsCanPaiMai_Recharge(PlayerInfo playerInfo)
+        {
+            return playerInfo.RechargeInfos.Count > 0;
+        }
+
+        public static bool IsCanPaiMai_KillBoss(List<KeyValuePair> monsterlist, int lv)
+        {
+            int number = 0;
+
+            for (int i = 0; i < monsterlist.Count; i++)
+            {
+                if (monsterlist[i].KeyId == 70001004)
+                {
+                    continue;
+                }
+
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterlist[i].KeyId);
+                if (monsterConfig.Lv >= (lv - 5))
+                {
+                    number++;
+                }
+            }
+            return number >= 2;
+        }
+
 
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)

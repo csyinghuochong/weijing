@@ -215,16 +215,20 @@ namespace ET
 
         public static void OnRevive(this BuffManagerComponent self)
         {
-            self.InitBaoShiBuff();
-            self.InitDonationBuff();
-            self.InitMaoXianJiaBuff();
-            self.InitCombatRankBuff();  
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace)
+            {
+                self.InitBaoShiBuff();
+                self.InitDonationBuff();
+                self.InitMaoXianJiaBuff();
+                self.InitCombatRankBuff();
 
-            //99002003
-            BuffData buffData_2 = new BuffData();
-            buffData_2.SkillId = 67000278;
-            buffData_2.BuffId = 99002003;
-            self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                //99002003
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99002003;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
         }
 
         //DeadNoRemove 0移除   1 不移除
@@ -745,11 +749,14 @@ namespace ET
             }
             unitInfoComponent.Buffs.Clear();
 
-            self.InitBaoShiBuff();
-            self.InitDonationBuff();
-            self.InitSoloBuff(sceneType);
-            self.InitMaoXianJiaBuff();
-            self.InitCombatRankBuff();
+            if (sceneType != SceneTypeEnum.RunRace)
+            {
+                self.InitBaoShiBuff();
+                self.InitDonationBuff();
+                self.InitSoloBuff(sceneType);
+                self.InitMaoXianJiaBuff();
+                self.InitCombatRankBuff();
+            }
         }
 
         public static void InitSoloBuff(this BuffManagerComponent self, int sceneType)
