@@ -49,7 +49,7 @@ namespace ET
 
             long curTime = (huor * 60 * 60 + minute * 60 + dateTime.Second) * 1000;
             long closeTime = FunctionHelp.GetCloseTime(1025)  * 1000;
-            self.CDTime = (int)(closeTime - curTime) - RandomHelper.RandomNumber(1000, 5000);
+            self.CDTime = (int)(closeTime - curTime) - RandomHelper.RandomNumber(1000, 10000);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BattleMainTimer, self);
 
             self.OnUpdateSelfKill();
