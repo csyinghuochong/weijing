@@ -88,7 +88,7 @@ namespace ET
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int openPaiMai = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PaiMaiOpen);
-                if(openPaiMai == 0)
+                if(openPaiMai == 1)
                 {
                     return true;
                 }
