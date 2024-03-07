@@ -197,6 +197,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string OrderInfo { get; set; }
 
+		[ProtoMember(5)]
+		public string CpOrder { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2R_RechargeResultResponse)]

@@ -853,11 +853,13 @@ namespace ET
 		public void OnRecvRoot(string root)
 		{
 			this.IsRoot = int.Parse(root);
+			Log.ILog.Debug($"OnRecvRoot:  {root}");
 		}
 
         public void OnRecvEmulator(string emulator)
         {
-			this.IsEmulator = int.Parse(emulator);	
+			this.IsEmulator = int.Parse(emulator);
+            Log.ILog.Debug($"OnRecvEmulator:  {emulator}");
         }
     }
 }
