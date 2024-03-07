@@ -84,7 +84,7 @@ namespace ET
 
         public static bool CheckPageButton_1(this UIPaiMaiComponent self, int page)
         {
-            if (page == (int)PaiMaiPageEnum.PaiMaiSell)
+            if (page == (int)PaiMaiPageEnum.PaiMaiBuy)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int openPaiMai = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PaiMaiOpen);
