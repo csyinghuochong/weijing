@@ -123,6 +123,7 @@ namespace ET
         public const int Err_OnLineTimeNot = 300413;
         public const int Err_OnLineTimeNotFenXiang = 300414;
         public const int ERR_LevelIsNotFenXiang = 300415;                                   //等级不足
+        public const int ERR_HuoYueNot = 300416;
 
         //防沉迷
         public const int ERR_FangChengMi_Tip1 = 300501;

@@ -21,6 +21,7 @@ namespace ET
                 reply();
                 return;
             }
+            
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             if (taskComponent.OnLineTime < 30)
             {
@@ -28,6 +29,13 @@ namespace ET
                 reply();
                 return;
             }
+            if (taskComponent.GetHuoYueDu() < 30)
+            {
+                response.Error = ErrorCode.ERR_HuoYueNot;
+                reply();
+                return;
+            }
+
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long shareSet = numericComponent.GetAsLong(NumericType.FenShangSet);
             if ((shareSet & request.ShareType) > 0)

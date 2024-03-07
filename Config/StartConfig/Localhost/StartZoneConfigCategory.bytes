@@ -68,9 +68,9 @@
 *Bmongodb://localhost:27017/B"WJBeta66
 *Cmongodb://localhost:27017/B"WJBeta67
 *Dmongodb://localhost:27017/D"WJBeta68
-*Emongodb://localhost:27017/E"WJBeta69
+*Emongodb://localhost:27017/D"WJBeta69
 *Fmongodb://localhost:27017/F"WJBeta70
-*Gmongodb://localhost:27017/G"WJBeta71
+*Gmongodb://localhost:27017/F"WJBeta71
 *Hmongodb://localhost:27017/H"WJBeta72
 *Imongodb://localhost:27017/I"WJBeta73
 *Jmongodb://localhost:27017/J"WJBeta74
