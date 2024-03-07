@@ -10,14 +10,6 @@ namespace ET
         {
             DBDayActivityInfo dBDayActivityInfo = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo;
 
-            if(scene.DomainZone() == 76)
-            {
-                for (int i = 0; i < dBDayActivityInfo.ZhanQuReveives.Count; i++ )
-                {
-                    dBDayActivityInfo.ZhanQuReveives[i].ReceiveUnitIds.Clear();
-                }
-            }
-
             response.ReceiveNum= dBDayActivityInfo.ZhanQuReveives;
 
             reply();
