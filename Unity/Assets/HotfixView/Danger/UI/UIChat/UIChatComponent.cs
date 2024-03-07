@@ -196,15 +196,16 @@ namespace ET
                 return;
             }
 
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+
             int userLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (userLv < 12)
+            if (userLv < 12 && !gm)
             {
                 FloatTipManager.Instance.ShowFloatTip("等级达到12级才能世界发言！");
                 return;
             }
 
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
             bool mask = false;
             if (!gm)
             {
