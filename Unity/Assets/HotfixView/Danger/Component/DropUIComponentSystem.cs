@@ -283,7 +283,9 @@ namespace ET
                 {
                     return;
                 }
-                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                //MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(20);
             }
         }
 
