@@ -191,9 +191,13 @@ namespace ET
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
 
+#if UNITY_EDITOR
+				self.AccountInfoComponent.Age_Type = 100;
+#endif
+
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
-				self.InitLoginType();
+                self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))

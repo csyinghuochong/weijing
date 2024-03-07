@@ -60,7 +60,7 @@ namespace ET
 
         public static bool IsSimulator()
         {
-            return IsSimulator_1() || IsSimulator_2() || IsSimulator_3();  
+            return IsSimulator_1() || IsSimulator_3();  
         }
 
         public static bool IsRoot()
