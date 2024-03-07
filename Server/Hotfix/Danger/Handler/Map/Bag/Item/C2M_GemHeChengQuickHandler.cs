@@ -14,6 +14,7 @@ namespace ET
             {
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
+                return;
             }
 
             List<BagInfo> bagItemList = unit.GetComponent<BagComponent>().GetItemByLoc((ItemLocType)request.LocType);
