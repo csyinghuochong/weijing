@@ -28,7 +28,7 @@ namespace ET
             if (sceneType == SceneTypeEnum.TrialDungeon)
             {
                 int passId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
-                if (request.RewardId < passId)
+                if (passId < request.RewardId )
                 {
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
