@@ -23,6 +23,26 @@ namespace ET
                 return;
             }
 
+            int sceneType = request.SceneType;  
+
+            if (sceneType == SceneTypeEnum.TrialDungeon)
+            {
+                int passId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
+                if (request.RewardId < passId)
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+            }
+
+            if (sceneType != SceneTypeEnum.TrialDungeon)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             TowerConfig towerRewardConfig = TowerConfigCategory.Instance.Get(request.RewardId);
             if (unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.DropShow, $"{ItemGetWay.RandomTowerReward}_{TimeHelper.ServerNow()}"))
             {

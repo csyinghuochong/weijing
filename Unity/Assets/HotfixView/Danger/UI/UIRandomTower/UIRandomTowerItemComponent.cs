@@ -55,7 +55,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("为达到领取条件！");
                 return;
             }
-            NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerConfig.Id).Coroutine();
+            NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerConfig.Id, SceneTypeEnum.RandomTower).Coroutine();
             self.SetRewarded(true);
         }
 

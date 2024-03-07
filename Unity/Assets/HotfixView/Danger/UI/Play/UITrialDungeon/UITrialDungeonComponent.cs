@@ -230,7 +230,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请清理一下背包！");
                 return;
             }
-            await NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerId);
+            //试炼之地
+            await NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerId, SceneTypeEnum.TrialDungeon);
             self.UpdateButtons();
         }
 

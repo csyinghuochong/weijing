@@ -8771,6 +8771,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int RewardId { get; set; }
 
+		[ProtoMember(2)]
+		public int SceneType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_RandomTowerRewardResponse)]

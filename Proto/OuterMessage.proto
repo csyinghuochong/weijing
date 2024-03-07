@@ -4163,6 +4163,7 @@ message C2M_RandomTowerRewardRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 RewardId = 1;
+	int32 SceneType = 2;
 }
 
 message M2C_RandomTowerRewardResponse // IActorLocationResponse

@@ -72,9 +72,9 @@ namespace ET
             }
         }
 
-        public static async ETTask<int> RequestTowerReward(Scene zoneScene, int towerid)
+        public static async ETTask<int> RequestTowerReward(Scene zoneScene, int towerid, int sceneType)
         {
-            C2M_RandomTowerRewardRequest request = new C2M_RandomTowerRewardRequest() { RewardId = towerid };
+            C2M_RandomTowerRewardRequest request = new C2M_RandomTowerRewardRequest() { RewardId = towerid, SceneType = sceneType };
             M2C_RandomTowerRewardResponse respone = (M2C_RandomTowerRewardResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             if (respone.Error== ErrorCode.ERR_Success)
             {
