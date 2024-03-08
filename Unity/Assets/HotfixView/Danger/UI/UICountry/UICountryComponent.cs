@@ -65,8 +65,8 @@ namespace ET
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageViewComponent;
 
-            self.Btn_Close = rc.Get<GameObject>("ImageButton");
-            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
+            //self.Btn_Close = rc.Get<GameObject>("ImageButton");
+            //self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
         }
