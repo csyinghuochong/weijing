@@ -214,7 +214,6 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData($"10010097;{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
                 }
             }
-
         }
 
         //获取新宠物

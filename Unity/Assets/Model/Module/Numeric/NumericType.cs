@@ -184,6 +184,7 @@
         public const int BloodstoneFail = 3184;                                     //血石升级失败
         public const int GemWarehouseOpen = 3185;
         public const int PaiMaiOpen = 3186;
+        public const int UpdateActivty = 3187;                                     //更新活动
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

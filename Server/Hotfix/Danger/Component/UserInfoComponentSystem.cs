@@ -141,7 +141,11 @@ namespace ET
             {
                 numericComponent.Set(NumericType.TrialDungeonId, maxTowerId, false);
             }
-
+            if (numericComponent.GetAsInt(3187) == 0)
+            {
+                self.GetParent<Unit>().GetComponent<ActivityComponent>().ClearJieRiActivty();
+                numericComponent.Set(3187, 1, false);
+            }
             //if (self.UserInfo.UserId == 2091730437935267840)
             //{
             //    self.UserInfo.UnionName = "清风醉花亭";

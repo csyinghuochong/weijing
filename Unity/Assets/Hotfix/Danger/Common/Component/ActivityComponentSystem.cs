@@ -73,6 +73,18 @@ namespace ET
             }
         }
 
+        public static void ClearJieRiActivty(this ActivityComponent self)
+        {
+            for (int i = self.ActivityReceiveIds.Count - 1; i >= 0; i--)
+            {
+                ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
+                if (activityConfig.ActivityType == 33)
+                {
+                    self.ActivityReceiveIds.RemoveAt(i);
+                }
+            }
+        }
+
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
             self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(2, level);
