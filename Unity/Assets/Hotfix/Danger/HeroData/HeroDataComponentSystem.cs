@@ -382,10 +382,11 @@ namespace ET
                 }
                 else
                 {
-                    resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
                     if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
                     {
+                        resurrectionTime = TimeHelper.ServerNow() + resurrection * 1000;
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, resurrectionTime);
+
                         unit.RemoveComponent<ReviveTimeComponent>();
                         unit.AddComponent<ReviveTimeComponent, long>(resurrectionTime);
                         return 1;

@@ -497,6 +497,10 @@ namespace ET
             {
                 return;
             }
+            if (this.GameObject == null)
+            {
+                return;
+            }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
             if (monsterConfig.ReviveTime > 0)
             {

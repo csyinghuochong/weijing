@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -18,6 +19,32 @@ namespace ET
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
+            }
+
+            if (unit.Id == 2268423382062137344 && unit.DomainZone() == 32)
+            {
+                List<long> removeIds = new List<long>();    
+                MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+
+                if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+                {
+                    List<Unit> monsterid = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
+                    for (int i = 0; i < monsterid.Count; i++)
+                    {
+                        NumericComponent numericComponent = monsterid[i].GetComponent<NumericComponent>();
+
+                        if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1
+                            && (monsterid[i].ConfigId == 70005012 || monsterid[i].ConfigId == 70005013))
+                        {
+                            removeIds.Add(monsterid[i].Id);
+                            Console.WriteLine($"umericType.Now_Dead: {monsterid[i].ConfigId}");
+                        }
+                    }
+                }
+                for (int i = 0; i < removeIds.Count; i++)
+                {
+                    unit.GetParent<UnitComponent>().Remove(removeIds[i]);
+                }
             }
 
             PaiMaiItemInfo paiMaiItemInfo = request.PaiMaiItemInfo;
