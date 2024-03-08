@@ -156,6 +156,7 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+            int maxLv = GlobalValueConfigCategory.Instance.Get(41).Value2;
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
                 RolePetInfo rolePetInfo = self.RolePetInfos[i];
@@ -179,6 +180,11 @@ namespace ET
                         }
                     }
                     rolePetInfo.ShouHuPos = 5;
+                }
+
+                if (rolePetInfo.PetLv > maxLv)
+                {
+                    rolePetInfo.PetLv =maxLv;
                 }
                
                 PetHelper.CheckPropretyPoint(rolePetInfo);
@@ -837,14 +843,15 @@ namespace ET
                 return;
             }
 
+            int maxLv = GlobalValueConfigCategory.Instance.Get(41).Value2;
             int newExp = rolePetInfo.PetExp + exp;
             ExpConfig xiulianconf1 = ExpConfigCategory.Instance.Get(rolePetInfo.PetLv);
-            if (newExp >= xiulianconf1.PetUpExp)
+            if (newExp >= xiulianconf1.PetUpExp && rolePetInfo.PetLv < maxLv)
             {
                 self.PetAddLv(rolePetInfo, 1);
                 newExp -= xiulianconf1.PetUpExp;
             }
-
+          
             rolePetInfo.PetExp = newExp;
 
             //通知客户端
