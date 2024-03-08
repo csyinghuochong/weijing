@@ -24,7 +24,7 @@ namespace ET
                 {
                     JiaYuanOperate jiaYuanOperate = new JiaYuanOperate();
                     jiaYuanOperate = new JiaYuanOperate();
-                    jiaYuanOperate.OperateType = JiaYuanOperateType.Pick;
+                    jiaYuanOperate.OperateType = JiaYuanOperateType.Visit;
                     jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                     M2M_JiaYuanOperateMessage opmessage = new M2M_JiaYuanOperateMessage()
                     {
