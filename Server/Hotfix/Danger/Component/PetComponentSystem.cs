@@ -156,7 +156,7 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            int maxLv = GlobalValueConfigCategory.Instance.Get(41).Value2;
+            //int maxLv = GlobalValueConfigCategory.Instance.Get(41).Value2;
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
                 RolePetInfo rolePetInfo = self.RolePetInfos[i];
@@ -182,10 +182,10 @@ namespace ET
                     rolePetInfo.ShouHuPos = 5;
                 }
 
-                if (rolePetInfo.PetLv > maxLv)
-                {
-                    rolePetInfo.PetLv =maxLv;
-                }
+                //if (rolePetInfo.PetLv > maxLv)
+                //{
+                //    rolePetInfo.PetLv =maxLv;
+                //}
                
                 PetHelper.CheckPropretyPoint(rolePetInfo);
             }
