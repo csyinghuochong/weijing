@@ -18,14 +18,13 @@ namespace ET
             }
 
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
-            int itemNumber = activityConfig.Par_2.Split('@').Length;
-
+            int itemNumber = ItemHelper.GetNeedCell(activityConfig.Par_2);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.GetBagLeftCell() <= itemNumber)
+            if (bagComponent.GetBagLeftCell() < itemNumber)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
-                return;
+                return; ;
             }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
