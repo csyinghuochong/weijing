@@ -143,6 +143,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("不满足领取条件");
                 return;
             }
+            ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityId);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetBagLeftCell() < ItemHelper.GetNeedCell(activityConfig.Par_2) )
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
 
             C2M_ActivityRechargeSignRequest     request     = new C2M_ActivityRechargeSignRequest() { ActivityType = 23, ActivityId = self.ActivityId };
             M2C_ActivityRechargeSignResponse response = (M2C_ActivityRechargeSignResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
