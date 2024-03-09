@@ -100,6 +100,7 @@ namespace ET
             }
             if ((shouJiChapterInfo.RewardInfo & 1 << index) > 0)
             {
+                FloatTipManager.Instance.ShowFloatTip("奖励已领取！");
                 return;
             }
             if (index == 1 && shouJiChapterInfo.StarNum < shouJiConfig.ProList1_StartNum)
