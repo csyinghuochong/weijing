@@ -19,6 +19,13 @@ namespace ET
             int configId = request.OperateId;
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(configId);
             string[] configInfo = globalValueConfig.Value.Split('@');
+            if(configInfo.Length < 2)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.OnCostItemData(configInfo[0]))
             {
