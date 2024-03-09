@@ -19,6 +19,13 @@ namespace ET
                 }
 
                 int mysteryId = request.MysteryId;
+                if (!MysteryConfigCategory.Instance.Contain(mysteryId))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
                 MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
                 if (mysteryConfig == null)
                 {

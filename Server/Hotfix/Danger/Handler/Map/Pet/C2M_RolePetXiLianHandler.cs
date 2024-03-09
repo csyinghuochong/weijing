@@ -73,9 +73,12 @@ namespace ET
 					break;
 				//增加经验
 				case 108:
-					int addExp = ExpConfigCategory.Instance.Get(petInfo.PetLv).PetItemUpExp;
-					unit.GetComponent<PetComponent>().PetAddExp(petInfo, addExp);
-					response.rolePetInfo = petInfo;
+					if (ExpConfigCategory.Instance.Contain(petInfo.PetLv))
+					{
+                        int addExp = ExpConfigCategory.Instance.Get(petInfo.PetLv).PetItemUpExp;
+                        unit.GetComponent<PetComponent>().PetAddExp(petInfo, addExp);
+                        response.rolePetInfo = petInfo;
+                    }
 					break;
 				//增加等级
 				case 109:
