@@ -557,6 +557,7 @@ namespace ET
             if (petConfig.PetType == 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("神兽已达最终阶段,无需进化！");
+                return;
             }
 
             RolePetInfo oldpetInfo = self.PetComponent.GetPetInfoByID(petInfoID);
