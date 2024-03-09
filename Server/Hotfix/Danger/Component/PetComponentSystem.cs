@@ -823,6 +823,11 @@ namespace ET
         public static void OnPetDead(this PetComponent self, long petId)
         {
             RolePetInfo petinfo = self.GetPetInfo(petId);
+            if (petinfo == null)
+            {
+                Log.Warning($"petinfo == null:  {self.Id} {petId}");
+                return;
+            }
             petinfo.PetStatus = 0;
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.PetStatus, PetId = petId, UpdateTypeValue = "0" });
         }
