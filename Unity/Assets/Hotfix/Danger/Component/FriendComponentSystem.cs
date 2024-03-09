@@ -103,7 +103,7 @@ namespace ET
             {
                 self.ChatMsgList.Add(friendId, new List<ChatInfo>());
             }
-            if (!self.FriendChatId.Contains(chatInfo.UserId))
+            if (!self.FriendChatId.Contains(chatInfo.UserId) && myUserId!= chatInfo.UserId)
             {
                 self.FriendChatId.Add(chatInfo.UserId);
             }
