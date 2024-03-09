@@ -20,6 +20,22 @@ namespace ET
             response.FriendList = await FriendHelper.GetFriendInfos(dbCacheId, gateServerId, dBFriendInfo.FriendList);
             response.ApplyList = await FriendHelper.GetFriendInfos(dbCacheId, gateServerId, dBFriendInfo.ApplyList);
             response.Blacklist = await FriendHelper.GetFriendInfos(dbCacheId, gateServerId, dBFriendInfo.Blacklist);
+
+
+            ListComponent<long> friendids = ListComponent<long>.Create();
+            for (int k = 0; k < response.FriendList.Count; k++)
+            {
+                friendids.Add(response.FriendList[k].UserId);
+            }
+
+            for (int i = dBFriendInfo.FriendChats.Count - 1;i >= 0; i-- )
+            {
+                if (!friendids.Contains(dBFriendInfo.FriendChats[i].UserId))
+                {
+                    dBFriendInfo.FriendChats.RemoveAt(i);   
+                }
+            }
+
             response.FriendChats = dBFriendInfo.FriendChats;
             reply();
         }
