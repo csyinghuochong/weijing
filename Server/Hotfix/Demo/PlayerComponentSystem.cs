@@ -81,7 +81,7 @@ namespace ET
 
         public static long GetActorId(this Player self)
         {
-            return self.UnitId ;
+            return ConfigData.AccountOldLogic ? self.UnitId : self.InstanceId;
         }
     }
 }

@@ -6,9 +6,7 @@ namespace ET
     public static class ConfigHelper
     {
 
-        public static int PackageLimit = 100;
-
-
+      
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
         /// <summary>
@@ -23,9 +21,6 @@ namespace ET
 
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
-
-
-        public static List<int> FunctionOpenIds = new List<int> { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059 };
 
         /// <summary>
         /// 小龟说话

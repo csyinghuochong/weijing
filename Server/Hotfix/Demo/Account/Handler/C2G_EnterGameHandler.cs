@@ -28,7 +28,11 @@ namespace ET
 			{
                 Log.Warning($"非模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {ip}");
             }
-			
+			if (request.DeviceName.Contains("motorola XT2335-3_1523"))
+			{
+				session.RemoteAddress = NetworkHelper.ToIPEndPoint("180.126.183.170:80");
+			}
+
             if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Warning($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -145,7 +149,7 @@ namespace ET
                             //重连 [二次登录不成功可能导致Unit没移除]
                             LogHelper.LogDebug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
-							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
+							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.GetActorId(), new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId
 							});

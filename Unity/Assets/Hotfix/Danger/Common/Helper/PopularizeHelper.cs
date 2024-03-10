@@ -5,8 +5,6 @@ namespace ET
     public static class PopularizeHelper
     {
 
-        public static int PopularizeZone = 2;  
-
         public static List<RewardItem> GetRewardList(List<PopularizeInfo> popularizeInfos)
         {
             //30 100000金币

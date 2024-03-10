@@ -47,7 +47,6 @@ namespace ET
 
         public const int ShenYuanCostId = 10000150;
 
-        public static bool AccountOldLogic = false;
 
         public static int MaxShuLianDu()
         {

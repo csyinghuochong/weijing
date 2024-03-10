@@ -15,7 +15,6 @@ namespace ET
 
             Log.Warning("C2M_Reload_Remove: " + ConfigLoader.RemovePlayer);
             Log.Warning("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
-            Log.Warning("C2M_Reload_PackageLimit: " + ConfigHelper.PackageLimit);
             DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
 #if SERVER
             MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;

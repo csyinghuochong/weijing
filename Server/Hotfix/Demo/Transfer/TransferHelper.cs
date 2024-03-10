@@ -640,12 +640,15 @@ namespace ET
             //删除unit,让其它进程发送过来的消息找不到actor，重发
             //Game.EventSystem.Remove(unitId);
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
-            unit.RemoveComponent<MailBoxComponent>();
-            unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
-            unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
 
-            RemovePetAndJingLing(unit);
+            if (ConfigData.CleanSkill)
+            {
+                unit.RemoveComponent<MailBoxComponent>();
+                unit.GetComponent<SkillPassiveComponent>()?.Stop();
+                unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
+                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
+                RemovePetAndJingLing(unit);
+            }
         }
 
         public static void RemoveStall(Unit unit)

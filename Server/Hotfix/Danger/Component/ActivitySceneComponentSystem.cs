@@ -295,7 +295,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             TimerComponent.Instance.Remove(ref self.ActivityTimer);
             ///1025 战场 1043家族boss 1044家族争霸  1045竞技 1052狩猎活动  1055喜从天降  1057小龟大赛  1058奔跑比赛 1059恶魔活动
-            List<int> functonIds = ConfigHelper.FunctionOpenIds;
+            List<int> functonIds = ConfigData.FunctionOpenIds;
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);

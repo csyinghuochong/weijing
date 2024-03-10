@@ -8,8 +8,6 @@ namespace ET
     public static class SkillHelp
     {
 
-        public static bool CleanSkill = false;
-
         public static string ChongJiSkill = "Skill_Other_ChongJi_1";
 
         public static List<string> NotCombatSkill = new List<string>() { "Act_11", "Act_12", "Act_13" };
