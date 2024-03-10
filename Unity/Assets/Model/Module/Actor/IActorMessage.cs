@@ -124,4 +124,15 @@
     public interface IPopularizeActorResponse : IActorResponse
     {
     }
+
+  
+    public interface IAccountCenterRequest : IActorRequest
+    {
+    }
+
+    public interface IAccountCenterResponse : IActorResponse
+    {
+
+    }
+
 }
