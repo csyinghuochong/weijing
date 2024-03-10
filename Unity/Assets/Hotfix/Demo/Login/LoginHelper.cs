@@ -197,6 +197,7 @@ namespace ET
                     Platform = plaform,
                     Simulator = accountInfoComponent.Simulator,
                     Root = accountInfoComponent.Root,
+                    IsRecharge = accountInfoComponent.PlayerInfo.RechargeInfos.Count > 0?1:0,
                 });
             }
             catch (Exception e)

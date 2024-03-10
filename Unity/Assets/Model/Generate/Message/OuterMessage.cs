@@ -449,6 +449,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int Root { get; set; }
 
+		[ProtoMember(10)]
+		public int IsRecharge { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
