@@ -60,7 +60,7 @@ namespace ET
             self.BuyNum = 1;
             self.Lab_RmbNum.GetComponent<InputField>().text = self.BuyNum.ToString();
             self.UnitPriceText.GetComponent<Text>().text = $"单价：{self.PaiMaiItemInfo.Price}";
-            self.TotalPriceText.GetComponent<Text>().text = $"总金币：{self.PaiMaiItemInfo.Price * self.BuyNum}";
+            self.TotalPriceText.GetComponent<Text>().text = $"总价：{self.PaiMaiItemInfo.Price * self.BuyNum}";
         }
 
         public static void OnClickChangeBuyNum(this UIPaiMaiBuyTipComponent self, int num)
@@ -78,7 +78,7 @@ namespace ET
 
             self.Lab_RmbNum.GetComponent<InputField>().text = self.BuyNum.ToString();
 
-            self.TotalPriceText.GetComponent<Text>().text = $"总金币：{self.PaiMaiItemInfo.Price * self.BuyNum}";
+            self.TotalPriceText.GetComponent<Text>().text = $"总价：{self.PaiMaiItemInfo.Price * self.BuyNum}";
         }
 
         public static async ETTask OnBtn_Buy(this UIPaiMaiBuyTipComponent self)
