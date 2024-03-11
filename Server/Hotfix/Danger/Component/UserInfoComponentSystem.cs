@@ -146,7 +146,9 @@ namespace ET
                 self.GetParent<Unit>().GetComponent<ActivityComponent>().ClearJieRiActivty();
                 numericComponent.Set(3187, 1, false);
             }
-            if ((numericComponent.GetAsInt(NumericType.ChouKa)) > (numericComponent.GetAsInt(NumericType.RechargeNumber) * 2) )
+            DataCollationComponent dataCollationComponent = self.GetParent<Unit>().GetComponent<DataCollationComponent>();
+            int recharge = numericComponent.GetAsInt(NumericType.RechargeNumber);
+            if (recharge!=0 && dataCollationComponent.ChouKaTimes > (recharge * 2) && dataCollationComponent.ChouKaTimes > 100)
             {
                 Log.Warning($"抽卡次数异常:{self.DomainZone()} {self.UserInfo.Name}   充值:{numericComponent.GetAsInt(NumericType.RechargeNumber)}  抽卡:{numericComponent.GetAsInt(NumericType.ChouKa)}");
             }
