@@ -146,6 +146,11 @@ namespace ET
                 self.GetParent<Unit>().GetComponent<ActivityComponent>().ClearJieRiActivty();
                 numericComponent.Set(3187, 1, false);
             }
+            if ((numericComponent.GetAsInt(NumericType.ChouKa)) > (numericComponent.GetAsInt(NumericType.RechargeNumber) * 2) )
+            {
+                Log.Warning($"抽卡次数异常:{self.DomainZone()} {self.UserInfo.Name}   充值:{numericComponent.GetAsInt(NumericType.RechargeNumber)}  抽卡:{numericComponent.GetAsInt(NumericType.ChouKa)}");
+            }
+
             //if (self.UserInfo.UserId == 2091730437935267840)
             //{
             //    self.UserInfo.UnionName = "清风醉花亭";
