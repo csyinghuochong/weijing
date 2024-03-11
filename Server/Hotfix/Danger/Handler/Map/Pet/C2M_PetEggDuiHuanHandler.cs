@@ -9,6 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PetEggDuiHuanRequest request, M2C_PetEggDuiHuanResponse response, Action reply)
         {
+            if (!PetEggDuiHuanConfigCategory.Instance.Contain(request.ChouKaId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             PetEggDuiHuanConfig config = PetEggDuiHuanConfigCategory.Instance.Get(request.ChouKaId);
             if (unit.GetComponent<BagComponent>().OnCostItemData(config.CostItems))
             {
