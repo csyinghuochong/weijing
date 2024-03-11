@@ -610,7 +610,7 @@ namespace ET
             {110003,90013},
             {110004,90014},
             {110005,90015},
-            {110006,90015},  //临时
+            {110006,90016},
         };
 
         /// <summary>
@@ -1125,7 +1125,7 @@ namespace ET
             //int weight_1 = ChengHaoWeight[1];
             //if (weight_0 >= weight_1 &&  rankId >= 1 && rankId <= 3)
             //{
-            //    return RankChengHao[rankId - 1];
+            //    return RankChengHao[rankId - 1];72009034
             //}
             //if (weight_0 < weight_1 && occRankId == 1)
             //{

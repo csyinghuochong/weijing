@@ -414,70 +414,76 @@ namespace ET
 
             //闪避概率
             bool ifHit = true;
-            if (RandomHelper.RandFloat() >= HitPro)
-            {
-                ifHit = false;
-            }
 
-            //技能闪避
-            if (skillconfig.SkillActType == 1)
-            {
-                float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_SkillDodgePro);
+            if (skillconfig.IfMustAct != 1) {
 
-                //玩家闪避最多不超过60%
-                if (defendUnit.Type == UnitType.Player)
-                {
-                    if (dodgeNowValue >= 0.5)
-                    {
-                        dodgeNowValue = 0.5f;
-                    }
-                }
-
-                if (RandomHelper.RandFloat() <= dodgeNowValue)
+                if (RandomHelper.RandFloat() >= HitPro)
                 {
                     ifHit = false;
                 }
-            }
 
-            //物理闪避
-            if (skillconfig.DamgeType == 1)
-            {
-                float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_ActDodgePro);
-
-                //玩家闪避最多不超过60%
-                if (defendUnit.Type == UnitType.Player)
+                //技能闪避
+                if (skillconfig.SkillActType == 1)
                 {
-                    if (dodgeNowValue >= 0.5)
+                    float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_SkillDodgePro);
+
+                    //玩家闪避最多不超过60%
+                    if (defendUnit.Type == UnitType.Player)
                     {
-                        dodgeNowValue = 0.5f;
+                        if (dodgeNowValue >= 0.5)
+                        {
+                            dodgeNowValue = 0.5f;
+                        }
+                    }
+
+                    if (RandomHelper.RandFloat() <= dodgeNowValue)
+                    {
+                        ifHit = false;
                     }
                 }
 
-                if (RandomHelper.RandFloat() <= dodgeNowValue)
+                //物理闪避
+                if (skillconfig.DamgeType == 1)
                 {
-                    ifHit = false;
-                }
-            }
+                    float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_ActDodgePro);
 
-            //魔法闪避
-            if (skillconfig.DamgeType == 2)
-            {
-                float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_MageDodgePro);
-
-                //玩家闪避最多不超过60%
-                if (defendUnit.Type == UnitType.Player)
-                {
-                    if (dodgeNowValue >= 0.5)
+                    //玩家闪避最多不超过60%
+                    if (defendUnit.Type == UnitType.Player)
                     {
-                        dodgeNowValue = 0.5f;
+                        if (dodgeNowValue >= 0.5)
+                        {
+                            dodgeNowValue = 0.5f;
+                        }
+                    }
+
+                    if (RandomHelper.RandFloat() <= dodgeNowValue)
+                    {
+                        ifHit = false;
                     }
                 }
 
-                if (RandomHelper.RandFloat() <= dodgeNowValue)
+                //魔法闪避
+                if (skillconfig.DamgeType == 2)
                 {
-                    ifHit = false;
+                    float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_MageDodgePro);
+
+                    //玩家闪避最多不超过60%
+                    if (defendUnit.Type == UnitType.Player)
+                    {
+                        if (dodgeNowValue >= 0.5)
+                        {
+                            dodgeNowValue = 0.5f;
+                        }
+                    }
+
+                    if (RandomHelper.RandFloat() <= dodgeNowValue)
+                    {
+                        ifHit = false;
+                    }
                 }
+
             }
+
 
             if (ifHit)
             {
