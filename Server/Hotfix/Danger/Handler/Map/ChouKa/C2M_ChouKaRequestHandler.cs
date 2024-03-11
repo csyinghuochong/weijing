@@ -26,6 +26,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (request.ChouKaType != 1 && request.ChouKaType != 10)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
