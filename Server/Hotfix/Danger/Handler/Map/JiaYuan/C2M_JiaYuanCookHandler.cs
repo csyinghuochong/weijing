@@ -28,6 +28,7 @@ namespace ET
 
             int totallv = 0;
             List<int> itemIdList = new List<int>();
+            Dictionary<int,int> itemNumber = new Dictionary<int,int>(); 
             for (int i = 0; i < huishouList.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
@@ -41,7 +42,23 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 totallv += (itemConfig.UseLv);
                 itemIdList.Add(bagInfo.ItemID);
+
+                if (!itemNumber.ContainsKey(bagInfo.ItemID))
+                {
+                    itemNumber.Add(bagInfo.ItemID, 0);
+                }
+                itemNumber[bagInfo.ItemID] ++;
             }
+            foreach (( int itemid, int itemnum ) in itemNumber)
+            {
+                if (bagComponent.GetItemNumber(itemid) < itemnum)
+                {
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                    reply();
+                    return;
+                }
+            }
+
             if (response.Error != ErrorCode.ERR_Success)
             {
                 reply();
