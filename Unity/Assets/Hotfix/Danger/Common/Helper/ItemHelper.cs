@@ -19,9 +19,32 @@ namespace ET
         /// <returns>返回一个本次预计增加品质范围(客户端显示用， 服务器随机取值)</returns>
         public static List<int> GetJingHeAddQulity(List<int> qulitylv)
         {
+            int baseValue = 3;  //每个附加
+            float addValue = 0;
+
+            for (int i = 0; i < qulitylv.Count; i++) {
+                addValue = addValue + baseValue + (float)qulitylv[i]/5f;
+            }
+
+            int min = (int)(addValue * 0.8f);
+            int max = (int)(addValue * 1.2f);
+
+            if (min < 3) {
+                min = 3;
+            }
+            if (max < 5) {
+                max = 5;
+            }
+
+            if (min > 100) {
+                min = 100;
+            }
+
+            if (max > 100) {
+                max = 100;
+            }
             //int addValue = (int)(qulitylv / 10f);
-            int min = 10;
-            int max = 20;
+
             return new List<int>() { min, max };
         }
 
