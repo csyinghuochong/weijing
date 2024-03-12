@@ -82,6 +82,12 @@ namespace ET
 					break;
 				//增加等级
 				case 109:
+					///////
+					if ( !ExpConfigCategory.Instance.Contain(petInfo.PetLv + 1) )
+					{
+						reply();
+						return;
+					}
 					unit.GetComponent<PetComponent>().PetAddLv(petInfo, 1);
 					response.rolePetInfo = petInfo;
 					break;
