@@ -27,10 +27,12 @@ namespace ET
 
             if (bePortedNumber.ReportedList.Contains(request.UnitId))
             {
+                reply();
                 return;
             }
             if (bePortedNumber.ReportedList.Count >= 5)
             {
+                reply();
                 return;
             }
 

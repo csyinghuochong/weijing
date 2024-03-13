@@ -190,8 +190,12 @@ namespace ET
                 return;
             }
 
-            C2C_ChatJinYanRequest reuqest = new C2C_ChatJinYanRequest() { JinYanId = self.UserId };
+            C2C_ChatJinYanRequest reuqest = new C2C_ChatJinYanRequest() {
+                JinYanId = self.UserId,
+                UnitId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
+            };
             C2C_ChatJinYanResponse response = (C2C_ChatJinYanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+            self.OnClickImageBg();
         }
 
         public static async ETTask OnButton_ServerBlack(this UIWatchMenuComponent self)
