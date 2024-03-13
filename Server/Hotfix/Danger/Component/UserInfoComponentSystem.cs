@@ -591,7 +591,7 @@ namespace ET
             }
             if (gold > 100000 || gold < -100000)
             {
-                LogHelper.LogWarning($"扣除货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+                Log.Warning($"扣除货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
             unit.GetComponent<DataCollationComponent>().UpdateRoleMoneySub(Type, getWay, gold);
             self.UpdateRoleData(Type, value, notice);

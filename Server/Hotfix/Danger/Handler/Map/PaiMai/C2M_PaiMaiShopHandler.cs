@@ -41,7 +41,9 @@ namespace ET
 				return;
 			}
 
-			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
+            Log.Warning($"拍卖行购买请求 : {unit.Id}  {paiMaiSellConfig.ItemID}  {request.BuyNum}  {cell}");
+
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
 			{
 
 				M2P_PaiMaiShopRequest m2P_PaiMaiShopRequest = new M2P_PaiMaiShopRequest()

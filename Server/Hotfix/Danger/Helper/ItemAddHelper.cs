@@ -124,6 +124,11 @@ namespace ET
                     baotutype = 2;
                 }
                 int dropID2 = ComHelp.TreasureToDropID(dungeonid, roleLv, baotutype);
+                if (dropID2 == 0)
+                {
+                    Log.Warning($"TreasureToDropID: {roleLv} {baotutype}");
+                }
+
                 DropHelper.DropIDToDropItem_2(dropID2, rewardList);
             }
 

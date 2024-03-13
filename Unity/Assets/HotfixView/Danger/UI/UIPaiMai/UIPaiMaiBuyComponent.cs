@@ -481,7 +481,7 @@ namespace ET
         public static async ETTask UpdatePaiMaiData(this UIPaiMaiBuyComponent self, int itemType)
         {
             long instanceId = self.InstanceId;
-
+            
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
                 Page = self.PageIndex, PaiMaiType = itemType, UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
