@@ -16,7 +16,8 @@ namespace ET
         public GameObject ObjBtnDeleteRole;
         public GameObject ObjBtnReturnRole;
         public GameObject ObjBtnRandomName;
-        
+        public GameObject Button_Return;
+
         public GameObject RawImage;
         public UIModelShowComponent uIModelShowComponent;
         public GameObject ObjInputCreateRoleName;
@@ -52,6 +53,9 @@ namespace ET
             self.Button_2 = rc.Get<GameObject>("Button_2");
             ButtonHelp.AddListenerEx(self.Button_1, self.OnButton_1);
             ButtonHelp.AddListenerEx(self.Button_2, self.OnButton_2);
+
+            self.Button_Return = rc.Get<GameObject>("Button_Return");
+            ButtonHelp.AddListenerEx(self.Button_Return, self.OnButton_Return);
 
 
             //ios适配
@@ -130,6 +134,13 @@ namespace ET
 
             self.Button_1.SetActive( self.PageIndex > 0 );
             self.Button_2.SetActive( self.PageIndex < pagetotal - 1);
+        }
+
+        public static void OnButton_Return(this UILobbyComponent self)
+        {
+            //加载登录场景
+            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
         }
 
         public static void OnButton_2(this UILobbyComponent self)
