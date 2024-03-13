@@ -138,9 +138,12 @@ namespace ET
 
         public static void OnButton_Return(this UILobbyComponent self)
         {
-            //加载登录场景
-            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
-            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "请问是否返回主界面?", ()=>
+            {  //加载登录场景
+                EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+                Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+            }, null).Coroutine();
+           
         }
 
         public static void OnButton_2(this UILobbyComponent self)
