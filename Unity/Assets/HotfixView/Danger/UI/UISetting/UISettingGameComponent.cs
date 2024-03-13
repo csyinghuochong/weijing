@@ -10,6 +10,7 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake
     {
         public GameObject ZhuBoSet;
+        public GameObject ReSetCameraBtn;
         public GameObject RotaAngleSet;
         public GameObject LenDepthSet;
         public GameObject SkillAttackPlayerFirst;
@@ -93,6 +94,10 @@ namespace ET
             self.RotaAngleSet = rc.Get<GameObject>("RotaAngleSet");
             self.RotaAngleSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RotaAngle);
             self.RotaAngleSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+
+            self.ReSetCameraBtn = rc.Get<GameObject>("ReSetCameraBtn");
+            self.ReSetCameraBtn.GetComponent<Button>().onClick.AddListener(self.OnReSetCameraBtn);
+            self.ReSetCameraBtn.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             
             self.ZhuBoSet = rc.Get<GameObject>("ZhuBoSet");
             self.ZhuBoSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhuBo);
@@ -342,6 +347,13 @@ namespace ET
             float va = 0.1f + value * 2;
             PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.LenDepth, va);
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = va;
+        }
+
+        public static void OnReSetCameraBtn(this UISettingGameComponent self)
+        {
+            PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.LenDepth, 1f);
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = 1f;
+            self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().OffsetPostion = new Vector3(0, 10f, -6f);
         }
 
         public static void OnBtn_FirstUnionName(this UISettingGameComponent self)
