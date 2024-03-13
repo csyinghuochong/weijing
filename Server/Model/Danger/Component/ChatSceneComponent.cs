@@ -14,6 +14,12 @@ namespace ET
         public string Name;
     }
 
+    public class BeReportedInfo
+    {
+        public long JinYanTime;
+        public List<long> ReportedList = new List<long>();
+    }
+
     public class ChatSceneComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
@@ -25,5 +31,7 @@ namespace ET
 
         //世界列表记录
         public List<ChatInfo> WordChatInfos = new List<ChatInfo> ();    
+
+        public Dictionary<long, BeReportedInfo> BeReportedNumber = new Dictionary<long, BeReportedInfo> ();   
     }
 }

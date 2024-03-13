@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ET
 {
@@ -31,6 +30,7 @@ namespace ET
         public const int UnionElde = 13;
         public const int UnionDismiss = 14;
         public const int OneChallenge = 15;    
+        public const int JinYan = 16;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -53,6 +53,7 @@ namespace ET
         public GameObject Button_UnionDismiss;      //撤销职务
         public GameObject Button_OneChallenge;
         public GameObject Button_ServerBlack;
+        public GameObject Button_JinYan;
         public GameObject PositionSet;
 
         public long UserId;
@@ -119,6 +120,9 @@ namespace ET
             self.Button_ServerBlack = rc.Get<GameObject>("Button_ServerBlack");
             self.Button_ServerBlack.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ServerBlack().Coroutine(); });
 
+            self.Button_JinYan = rc.Get<GameObject>("Button_JinYan");
+            self.Button_JinYan.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JinYan().Coroutine(); });
+
             self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
@@ -131,6 +135,7 @@ namespace ET
             self.Button_UnionDismiss.SetActive(false);
             self.Button_OneChallenge.SetActive(false);
             self.Button_ServerBlack.SetActive(false);
+            self.Button_JinYan.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
@@ -176,6 +181,17 @@ namespace ET
             {
                 self.RequestKickUnion().Coroutine();
             }, null).Coroutine();
+        }
+
+        public static async ETTask OnButton_JinYan(this UIWatchMenuComponent self)
+        {
+            if (self.UserId == 0)
+            {
+                return;
+            }
+
+            C2C_ChatJinYanRequest reuqest = new C2C_ChatJinYanRequest() { JinYanId = self.UserId };
+            C2C_ChatJinYanResponse response = (C2C_ChatJinYanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
         }
 
         public static async ETTask OnButton_ServerBlack(this UIWatchMenuComponent self)
@@ -457,6 +473,7 @@ namespace ET
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     self.Button_OneChallenge.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
                     self.Button_ServerBlack.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+                    self.Button_JinYan.SetActive(true);
                     break;
                 case MenuEnumType.Team:
                     break;

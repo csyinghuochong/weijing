@@ -1186,6 +1186,23 @@ message C2C_SendChatResponse // IChatActorResponse
 	int32 ChannelId = 2;	//0世界 1帮派 2队伍
 }
 
+//ResponseType C2C_ChatJinYanResponse
+message C2C_ChatJinYanRequest // IChatActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	
+	int64 UnitId = 1;
+	int64 JinYanId = 2;
+}
+
+message C2C_ChatJinYanResponse // IChatActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 message ChatInfo
 {
 	int64 UserId = 1;

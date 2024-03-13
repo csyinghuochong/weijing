@@ -106,6 +106,7 @@ namespace ET
         public const int ERR_UnionChatLimit = 300311;
         public const int ERR_EquipRepeat = 300312;                                    //装备类型不符
         public const int ERR_Parameter = 300313;
+        public const int ERR_Chat_JinYan = 300314;
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满

@@ -23,9 +23,11 @@ namespace ET
             }
             if(request.ChatInfo.PlayerLevel <12)
             {
+                response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
                 return;
             }
+
 
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             request.ChatInfo.Time = TimeHelper.ServerNow();
@@ -35,7 +37,23 @@ namespace ET
                 case (int)ChannelEnum.PaiMai:
                 case (int)ChannelEnum.Word:
                     ChatSceneComponent chatInfoUnitsComponent = chatInfoUnit.DomainScene().GetComponent<ChatSceneComponent>();
-         
+
+                    if (request.ChatInfo.ChannelId == ChannelEnum.Word)
+                    {
+                        BeReportedInfo bePortedNumber = null;
+                        chatInfoUnitsComponent.BeReportedNumber.TryGetValue(request.ChatInfo.UserId, out bePortedNumber);
+                        if (bePortedNumber != null && bePortedNumber.JinYanTime > TimeHelper.ServerNow())
+                        {
+                            response.Error = ErrorCode.ERR_Chat_JinYan;
+                            reply();
+                            return;
+                        }
+                        if (bePortedNumber != null && bePortedNumber.JinYanTime!=0 && bePortedNumber.JinYanTime<= TimeHelper.ServerNow())
+                        {
+                            chatInfoUnitsComponent.BeReportedNumber.Remove(request.ChatInfo.UserId);    
+                        }
+                    }
+
                     foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                     {
                         MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_SyncChatInfo);
