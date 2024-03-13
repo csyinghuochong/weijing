@@ -343,6 +343,11 @@ namespace ET
         public static async ETTask ShowSelectEff(this UILobbyComponent self)
         {
             GameObject child = GameObject.Find("Effect_CreateSelect");
+            if (child == null)
+            {
+                return;
+            }
+
             for (int c = 0; c < child.transform.childCount; c++)
             {
                 child.transform.GetChild(c).gameObject.SetActive(true);

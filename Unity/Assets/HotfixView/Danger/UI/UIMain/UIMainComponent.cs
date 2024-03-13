@@ -1016,7 +1016,7 @@ namespace ET
                         else
                         {
                             ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGuideEquip);
-                            ui.GetComponent<UIGuideEquipComponent>().UpdateInfo(baginfo1);
+                            ui?.GetComponent<UIGuideEquipComponent>()?.UpdateInfo(baginfo1);
                         }
 
                         break;
