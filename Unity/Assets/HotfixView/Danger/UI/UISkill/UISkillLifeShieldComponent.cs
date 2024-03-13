@@ -14,6 +14,7 @@ namespace ET
         public GameObject Text_ShieldName;
         public GameObject ImageProgess;
         public GameObject BuildingList;
+        public Text Text_Zhuru_Exp;
 
         public GameObject Btn_ZhuRu;
 
@@ -43,6 +44,7 @@ namespace ET
             self.Text_ShieldName = rc.Get<GameObject>("Text_ShieldName");
             self.ImageProgess = rc.Get<GameObject>("ImageProgess");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.Text_Zhuru_Exp = rc.Get<GameObject>("Text_Zhuru_Exp").GetComponent<Text>();
 
             for (int i = 0; i < 6; i++)
             {
@@ -86,6 +88,7 @@ namespace ET
         {
             self.UpdateBagUI();
             self.OnUpdateShieldUI();
+            self.UpdateZhuRuExp();
 
             for (int i = 0; i < self.HuiShoulist.Count; i++)
             {
@@ -106,6 +109,55 @@ namespace ET
         {
             self.UpdateHuiShouInfo(dataparams);
             self.UpdateBagSelected();
+            self.UpdateZhuRuExp();
+        }
+
+        public static void UpdateZhuRuExp(this UISkillLifeShieldComponent self)
+        {
+            List<long> costs = self.GetConstItems();
+            if (costs.Count == 0)
+            {
+                self.Text_Zhuru_Exp.text = string.Empty;
+            }
+            else
+            {
+                int minExp = 0;
+                int maxExp = 0; 
+
+                for (int i = 0; i < costs.Count; i++)
+                { 
+                    BagInfo bagInfo = self.BagComponent.GetBagInfo(costs[i]);
+                    if (bagInfo == null)
+                    {
+                        continue;
+                    }
+                    if (!ConfigHelper.ItemAddShieldExp.ContainsKey(bagInfo.ItemID))
+                    {
+                        continue;
+                    }
+
+                    int addValue = ConfigHelper.ItemAddShieldExp[bagInfo.ItemID];
+                    if (addValue > 10)
+                    {
+                        minExp += (int)(0.8f * addValue * bagInfo.ItemNum);
+                        maxExp += (int)(1.2f * addValue * bagInfo.ItemNum);
+                    }
+                    else
+                    {
+                        minExp += addValue * bagInfo.ItemNum;
+                        maxExp += addValue * bagInfo.ItemNum;   
+                    }
+                }
+
+                if (minExp == maxExp)
+                {
+                    self.Text_Zhuru_Exp.text = $"本次注入预计获得{minExp}经验";
+                }
+                else
+                {
+                    self.Text_Zhuru_Exp.text = $"本次注入预计获得{minExp}-{maxExp}经验";
+                }
+            }
         }
 
         public static void UpdateHuiShouInfo(this UISkillLifeShieldComponent self, string dataparams)
