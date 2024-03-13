@@ -110,6 +110,10 @@ namespace ET
             //获取最终奖励
             if (RandomHelper.RandFloat01() <= 0.7f)
             {
+                if (dropId == 0)
+                {
+                    Log.Warning($"dropId == 0:  {itemConfig.Id}");
+                }
                 DropHelper.DropIDToDropItem_2(dropId, rewardList);
             }
             else {
