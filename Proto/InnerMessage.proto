@@ -91,7 +91,8 @@ message R2G_RechargeResultRequest // IActorRequest
     int32 RechargeNumber = 2;
     int64 UserID = 3;
     string OrderInfo = 4;
-	string CpOrder = 5;   //
+	string CpOrder = 5;   
+	int32 RechargetType = 6;
 }
 
 message G2R_RechargeResultResponse // IActorResponse

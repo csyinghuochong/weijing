@@ -92,7 +92,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnPaySucessToGate( int zone, long userId, int rechargeNumber, string orderInfo)
+        public static async ETTask OnPaySucessToGate( int zone, long userId, int rechargeNumber, string orderInfo, int rechargeType)
         {
             long gateServerId = DBHelper.GetGateServerId(zone);
             R2G_RechargeResultRequest r2M_RechargeRequest = new R2G_RechargeResultRequest() { RechargeNumber = rechargeNumber, UserID = userId , OrderInfo = orderInfo};

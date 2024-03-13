@@ -200,6 +200,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string CpOrder { get; set; }
 
+		[ProtoMember(6)]
+		public int RechargetType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2R_RechargeResultResponse)]
