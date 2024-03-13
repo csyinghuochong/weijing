@@ -379,7 +379,7 @@ namespace ET
                             case 112:
                                 string[] expInfos = itemConfig.ItemUsePar.Split('@');
                                 string[] operatePar = request.OperatePar.Split(';'); //使用类型;数量
-                                int needZuanshi = operatePar[0] == "1" ? int.Parse(expInfos[0]) : 0;
+                                int needZuanshi = operatePar[0] == "1"? int.Parse(expInfos[0]) * costNumber : 0;
                                 string[] paramInfo = expInfos[int.Parse(operatePar[0])].Split(';');
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
