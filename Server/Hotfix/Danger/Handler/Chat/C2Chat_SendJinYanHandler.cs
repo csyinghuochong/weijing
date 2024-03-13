@@ -45,7 +45,7 @@ namespace ET
                     }
                 }
 
-                bePortedNumber.JinYanTime = TimeHelper.ServerNow() + TimeHelper.Minute;
+                bePortedNumber.JinYanTime = TimeHelper.ServerNow() + TimeHelper.OneDay;
             }
 
             reply();
