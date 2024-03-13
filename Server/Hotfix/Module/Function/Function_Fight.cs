@@ -269,7 +269,7 @@ namespace ET
 
             if (sceneType == SceneTypeEnum.RunRace)
             {
-                Log.Error($"变身大赛触发技能伤害： sceneType == SceneTypeEnum.RunRace");
+                Log.Error($"变身大赛触发技能伤害： sceneType == SceneTypeEnum.RunRace  {skillconfig.Id}");
                 return false;
             }
 
