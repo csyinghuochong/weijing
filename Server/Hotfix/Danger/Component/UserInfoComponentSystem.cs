@@ -868,14 +868,12 @@ namespace ET
                 long maxExp = upNeedExp * 2;
                 if (self.UserInfo.Exp > maxExp) 
                 {
-                    self.UserInfo.Exp = maxExp;
                     self.UpdateRoleData(UserDataType.Message, "当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔!");
+                    return;
                 }
-                return;
             }
 
             self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
-
 
             //判定是否升级
             if (self.UserInfo.Lv >= serverInfo.WorldLv)
