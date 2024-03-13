@@ -2544,6 +2544,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long JinYanId { get; set; }
 
+		[ProtoMember(3)]
+		public string JinYanPlayer { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2C_ChatJinYanResponse)]

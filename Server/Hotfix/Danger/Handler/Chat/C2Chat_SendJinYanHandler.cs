@@ -49,7 +49,7 @@ namespace ET
 
                 bePortedNumber.JinYanTime = TimeHelper.ServerNow() + TimeHelper.OneDay;
             }
-
+            Log.Warning($"{chatInfoUnit.DomainZone()}  {request.JinYanPlayer} 被举报");
             reply();
             await ETTask.CompletedTask;
         }

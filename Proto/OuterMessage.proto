@@ -1194,6 +1194,7 @@ message C2C_ChatJinYanRequest // IChatActorRequest
 	
 	int64 UnitId = 1;
 	int64 JinYanId = 2;
+	string JinYanPlayer = 3;
 }
 
 message C2C_ChatJinYanResponse // IChatActorResponse

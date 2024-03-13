@@ -62,8 +62,11 @@ namespace ET
             {
                 return;
             }
+
+            bool jinyan = !self.mChatInfo.ChatMsg.Contains("<link=team_");
+
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Chat, self.mChatInfo.UserId, self.mChatInfo.PlayerName).Coroutine();
+            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Chat, self.mChatInfo.UserId, self.mChatInfo.PlayerName, jinyan).Coroutine();
         }
 
         public static async ETTask OnClickRickText(this UIChatItemComponent self, string text)

@@ -192,7 +192,8 @@ namespace ET
 
             C2C_ChatJinYanRequest reuqest = new C2C_ChatJinYanRequest() {
                 JinYanId = self.UserId,
-                UnitId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
+                JinYanPlayer = self.UserName,
+                UnitId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId,
             };
             C2C_ChatJinYanResponse response = (C2C_ChatJinYanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
             self.OnClickImageBg();
@@ -422,7 +423,7 @@ namespace ET
             self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
         }
 
-        public static async ETTask OnUpdateUI_1(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId, string userName)
+        public static async ETTask OnUpdateUI_1(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId, string userName, bool jinyan)
         {
             self.OnUpdatePos();
 
@@ -477,7 +478,7 @@ namespace ET
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     self.Button_OneChallenge.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.MainCityScene );
                     self.Button_ServerBlack.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
-                    self.Button_JinYan.SetActive(true);
+                    self.Button_JinYan.SetActive(jinyan);
                     break;
                 case MenuEnumType.Team:
                     break;

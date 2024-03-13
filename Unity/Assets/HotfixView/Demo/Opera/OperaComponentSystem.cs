@@ -321,7 +321,7 @@ namespace ET
             {
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();       
-                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id, unitInfoComponent.UnitName).Coroutine();
+                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id, unitInfoComponent.UnitName, true).Coroutine();
             }
         }
 
