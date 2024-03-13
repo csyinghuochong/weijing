@@ -110,13 +110,19 @@ namespace ET
 
         public static async ETTask OnButtonHeCheng(this UIWarehouseGemComponent self)
         {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetBagLeftCell() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请至少预留一个格子");
+                return;
+            }
+
             C2M_GemHeChengQuickRequest request = new C2M_GemHeChengQuickRequest() { LocType = 19 };
             M2C_GemHeChengQuickResponse response =
                     (M2C_GemHeChengQuickResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宝石合成成功！"));
-                
             }
         }
 

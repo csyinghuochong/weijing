@@ -39,6 +39,8 @@ namespace ET
 
         public int AccountBagMax = 0;
 
+        public int MaxLevel = 0;
+
         public List<DayMonsters> DayMonsterList = new List<DayMonsters>();
 
         public List<DayJingLing> DayJingLingList = new List<DayJingLing>();
@@ -57,7 +59,8 @@ namespace ET
             OnLineLimit = int.Parse(this.Get(25).Value);
             AccountBagMax = this.Get(115).Value2;
             GemStoreInitCapacity = this.Get(118).Value2; 
-            GemStoreMaxCapacity = this.Get(118).Value2; 
+            GemStoreMaxCapacity = this.Get(118).Value2;
+            MaxLevel = this.Get(41).Value2;
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

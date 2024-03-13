@@ -79,7 +79,14 @@ namespace ET
 
         public static  void OnBtn_OneGem(this UIRoleBagComponent self)
         {
-            List<BagInfo> bagItemList = self.ZoneScene().GetComponent<BagComponent>().GetBagList();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetBagLeftCell() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请至少预留一个格子");
+                return;
+            }
+
+            List <BagInfo> bagItemList = bagComponent.GetBagList();
             List<BagInfo> gemList = new List<BagInfo>();
             for (int i = 0; i < bagItemList.Count; i++)
             {
