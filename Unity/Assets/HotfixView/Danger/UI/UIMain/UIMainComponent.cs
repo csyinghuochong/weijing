@@ -2196,7 +2196,11 @@ namespace ET
                     C2M_KillMonsterRewardRequest request = new C2M_KillMonsterRewardRequest() { Key = self.KillMonsterRewardKey };
                     M2C_KillMonsterRewardResponse response =
                             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_KillMonsterRewardResponse;
-                    self.UpdateKillMonsterReward();
+
+                    if (!self.IsDisposed)
+                    {
+                        self.UpdateKillMonsterReward();
+                    }
                 }
             }
         }
