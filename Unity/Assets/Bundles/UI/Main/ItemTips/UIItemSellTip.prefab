@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UILayer: 20
-  UIType: 1
+  UIType: 0
   HideMainUI: 0
   ShowHuoBi: 0
 --- !u!114 &5005980823002171796
