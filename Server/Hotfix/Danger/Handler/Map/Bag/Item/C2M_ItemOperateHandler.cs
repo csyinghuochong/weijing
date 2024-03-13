@@ -121,7 +121,8 @@ namespace ET
                         return;
                     }
 
-                    if (itemConfig.ItemSubType == 111 && ConfigHelper.BatchUseItemList.Contains(itemConfig.Id))
+                    if ((itemConfig.ItemSubType == 111 || itemConfig.ItemSubType == 112)
+                        && ConfigHelper.BatchUseItemList.Contains(itemConfig.Id))
                     {
                         //目前只有111类型支持批量使用
                         if (!string.IsNullOrEmpty(request.OperatePar))
@@ -381,6 +382,7 @@ namespace ET
 
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
+                                addExp *= costNumber;   
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Exp, addExp.ToString(), true, ItemGetWay.DuiHuan);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (needZuanshi * -1).ToString(), true, ItemGetWay.DuiHuan);
                                 response.OperatePar = addExp.ToString();
