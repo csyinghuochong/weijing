@@ -24,7 +24,7 @@ namespace ET
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
-                return; ;
+                return;
             }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

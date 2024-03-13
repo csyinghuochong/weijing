@@ -127,7 +127,16 @@ namespace ET
                         //目前只有111类型支持批量使用
                         if (!string.IsNullOrEmpty(request.OperatePar))
                         {
-                            costNumber = int.Parse(request.OperatePar);
+                            if (itemConfig.ItemSubType == 112)
+                            {
+                                // 经验盒子特殊处理，有免费开启和钻石开启
+                                costNumber = int.Parse(request.OperatePar.Split(';')[1]);
+                            }
+                            else
+                            {
+                                costNumber = int.Parse(request.OperatePar);
+                            }
+                            
                         }
                     }
 
@@ -369,8 +378,9 @@ namespace ET
                             //经验木桩
                             case 112:
                                 string[] expInfos = itemConfig.ItemUsePar.Split('@');
-                                int needZuanshi = request.OperatePar == "1" ? int.Parse(expInfos[0]) : 0;
-                                string[] paramInfo = expInfos[int.Parse(request.OperatePar)].Split(';');
+                                string[] operatePar = request.OperatePar.Split(';'); //使用类型;数量
+                                int needZuanshi = operatePar[0] == "1" ? int.Parse(expInfos[0]) : 0;
+                                string[] paramInfo = expInfos[int.Parse(operatePar[0])].Split(';');
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
                                 //如果当前钻石不足返回错误

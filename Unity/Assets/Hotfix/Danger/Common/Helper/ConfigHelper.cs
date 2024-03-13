@@ -883,7 +883,7 @@ namespace ET
         /// 支持批量使用的道具客户端点击使用的时候二次弹框，输入使用数量。
         /// self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, 使用数量).Coroutine();
         /// </summary>
-        public static List<int> BatchUseItemList = new List<int>() { 10010042, 10010043 };
+        public static List<int> BatchUseItemList = new List<int>() { 10010041, 10010042, 10010043 };
 
 
         public static List<BossDevelopment> BossDevelopmentList_5 = new List<BossDevelopment>()
