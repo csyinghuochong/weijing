@@ -3509,6 +3509,7 @@ message RechargeInfo
 	int64 Time = 2;
 	int64 UserId = 3;
 	string OrderInfo = 4;
+	int32 RechargeType = 5;
 }
 
 message ShouJiChapterInfo

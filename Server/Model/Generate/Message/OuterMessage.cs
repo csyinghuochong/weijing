@@ -7404,6 +7404,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string OrderInfo { get; set; }
 
+		[ProtoMember(5)]
+		public int RechargeType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.ShouJiChapterInfo)]
