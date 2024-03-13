@@ -424,7 +424,7 @@ namespace ET
             try
             {
                 TaskPro taskPro = self.GetTaskById(taskid);
-                if (taskPro.taskStatus != (int)TaskStatuEnum.Completed)
+                if (taskPro == null || taskPro.taskStatus != (int)TaskStatuEnum.Completed)
                 {
                     return ErrorCode.Pre_Condition_Error;
                 }

@@ -23,7 +23,7 @@ namespace ET
             self.EquipBtn = rc.Get<GameObject>("EquipBtn");
 
             self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIGuideEquip); });
-            self.EquipBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnEquipBtn(); });
+            self.EquipBtn.GetComponent<Button>().onClick.AddListener(self.OnEquipBtn);
         }
     }
 
