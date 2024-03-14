@@ -96,6 +96,7 @@
         public const int ShouLieUpLoadTimer = 1109;
         public const int RoleBullet5Timer = 1110;
         public const int RoleBullet6Timer = 1111;
+        public const int DialogTimer = 1112;
         // 不能超过10000
     }
 }

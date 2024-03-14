@@ -623,6 +623,10 @@ namespace ET
                     uimainComponent.OnRecvChat();
                     continue;
                 }
+                if (component is UIUnitHpComponent uiUnitHpComponent)
+                {
+                    uiUnitHpComponent.ShowDialog();
+                }
             }
         }
 

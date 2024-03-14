@@ -21,6 +21,22 @@ namespace ET
             }
         }
     }
+    
+    [Timer(TimerType.DialogTimer)]
+    public class DialogTimer : ATimer<UIUnitHpComponent>
+    {
+        public override void Run(UIUnitHpComponent self)
+        {
+            try
+            {
+                self.HideDialog();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     public class UIUnitHpComponentAwakeSystem : AwakeSystem<UIUnitHpComponent>
     {
@@ -37,6 +53,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.RecoverGameObject(self.GameObject);
             self.UIXuLieZhenComponent = null;
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
         }
     }
 
@@ -45,7 +62,7 @@ namespace ET
     /// </summary>
     public class UIUnitHpComponent: Entity, IAwake, IDestroy
     {
-
+        public GameObject DialogText;
         public GameObject Lal_Name;
         public GameObject Img_HpValue;
         public GameObject GameObject;
@@ -66,6 +83,7 @@ namespace ET
         public UIXuLieZhenComponent UIXuLieZhenComponent;
         public float LastTime;
         public long Timer;
+        public long DialogTimer;
 
         public void  Awake( )
         {
@@ -94,6 +112,8 @@ namespace ET
                     break;
             }
             GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);
+            
+            DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, this);
         }
 
         public void ShowHearBar(bool show)
@@ -270,6 +290,8 @@ namespace ET
                     break;
             }
 
+            this.DialogText = rc.Get<GameObject>("DialogText");
+            this.DialogText.SetActive(false);
             this.Lal_Name = rc.Get<GameObject>("Lal_Name");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
@@ -629,7 +651,35 @@ namespace ET
 
     public static class UIUnitHpComponentSystem
     {
-       
+        public static void ShowDialog(this UIUnitHpComponent self)
+        {
+            ChatInfo chatInfo = self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo;
+            if (chatInfo.ChannelId != ChannelEnum.Team)
+            {
+                return;
+            }
+
+            if (chatInfo.UserId != self.GetParent<Unit>().Id)
+            {
+                return;
+            }
+
+            if (!UnitTypeHelper.IsSameTeam(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.GetParent<Unit>()))
+            {
+                return;
+            }
+            
+            self.DialogText.SetActive(true);
+            self.DialogText.GetComponent<Text>().text = chatInfo.ChatMsg;
+            TimerComponent.Instance.Remove(ref self.DialogTimer);
+            self.DialogTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 2000, TimerType.DialogTimer, self);
+        }
+
+        public static void HideDialog(this UIUnitHpComponent self)
+        {
+            self.DialogText.SetActive(false);
+        }
+
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
         {
             if (string.IsNullOrEmpty(stallName))
