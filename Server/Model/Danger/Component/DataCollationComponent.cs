@@ -135,5 +135,7 @@ namespace ET
 
         //模拟器
         public int Simulator;
+
+        public long PaiMaiGold;
     }
 }
