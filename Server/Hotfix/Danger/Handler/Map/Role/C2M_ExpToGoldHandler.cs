@@ -44,7 +44,7 @@ namespace ET
             int costExp = (int)(expCof.UpExp * costPro);
             if (userInfo.Exp < costExp||costExp <= 0)
             {
-                response.Error = ErrorCode.ERR_LevelNoEnough;
+                response.Error = ErrorCode.ERR_ExpNoEnough;
                 reply();
                 return;
             }
