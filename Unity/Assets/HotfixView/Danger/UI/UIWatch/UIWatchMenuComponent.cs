@@ -207,6 +207,18 @@ namespace ET
                 self.OnClickImageBg();
                 return;
             }
+
+            for (int i = 1; i <= 5; i++)
+            {
+                C2C_ChatJinYanRequest reuqest = new C2C_ChatJinYanRequest()
+                {
+                    JinYanId = self.UserId,
+                    JinYanPlayer = self.UserName,
+                    UnitId = i + 100000,
+                };
+                C2C_ChatJinYanResponse response = (C2C_ChatJinYanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+            }
+
             C2C_GMCommonRequest request = new C2C_GMCommonRequest()
             {
                 Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account,
