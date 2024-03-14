@@ -137,5 +137,7 @@ namespace ET
         public int Simulator;
 
         public long PaiMaiGold;
+
+        public int JinZhiPaiMai;
     }
 }

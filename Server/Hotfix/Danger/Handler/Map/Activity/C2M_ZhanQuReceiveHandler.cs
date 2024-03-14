@@ -18,6 +18,13 @@ namespace ET
                     reply();
                     return;
                 }
+                if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
 

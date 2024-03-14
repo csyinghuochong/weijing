@@ -22,6 +22,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (unit.DomainScene().GetComponent<RandomTowerComponent>() == null)
+            {
+                reply();
+                return;
+            }
+
             unit.DomainScene().GetComponent<RandomTowerComponent>().TowerId = randomTowerid;
             TowerConfig randowTowerConfig = TowerConfigCategory.Instance.Get(randomTowerid);
             FubenHelp.CreateMonsterList(unit.DomainScene(), randowTowerConfig.MonsterSet);
