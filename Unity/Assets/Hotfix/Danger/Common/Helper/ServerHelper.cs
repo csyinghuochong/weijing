@@ -166,12 +166,12 @@ namespace ET
 
         public static List<ServerItem> GetServerList(bool innerNet)
         {
-            if (ServerItems.Count > 0 && UpdateServerList == 1)
+            if (ServerItems.Count > 0 && UpdateServerList == 2)
             { 
                 return ServerItems;
             }
             //Log.Debug("UpdateServerList");
-            UpdateServerList = 1;
+            UpdateServerList = 2;
             ServerItems.Clear();
 
             string ip =  GetLogicServer(innerNet, VersionMode.Beta);
@@ -287,7 +287,7 @@ namespace ET
 
 
             //2024/3/15 19:00 新增服务器--燃烧之地 81
-            serverItems_1.Add(new ServerItem() { ServerId = 80, ServerIp = $"{ip}:20555", ServerName = "燃烧之地", ServerOpenTime = 1710500400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 81, ServerIp = $"{ip}:20555", ServerName = "燃烧之地", ServerOpenTime = 1710500400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             return serverItems_1;
         }
