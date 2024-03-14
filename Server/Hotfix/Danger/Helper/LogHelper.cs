@@ -237,7 +237,7 @@ namespace ET
             filePath = "../Logs/WJ_ZuoBi.txt";
             WriteLogList(ZuobiInfoList, filePath);
             ZuobiInfoList.Clear();
-
+            
             filePath = "../Logs/WJ_KillPlayer.txt";
             WriteLogList(KillInfoList, filePath);
             KillInfoList.Clear();
