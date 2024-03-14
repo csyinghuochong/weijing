@@ -245,10 +245,6 @@ namespace ET
 
         public static void WriteLogList(List<string> infolist, string filePath, bool add = true)
         {
-            if (LogLevel == 0)
-            {
-                return;
-            }
             string text = string.Empty;
             for (int i = 0; i < infolist.Count; i++)
             {
@@ -315,6 +311,13 @@ namespace ET
                 WriteLogList(ZuobiInfoList, filePath);
                 ZuobiInfoList.Clear();
             }
+        }
+
+        public static void PaiMaiInfo(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_ZuoBi.txt";
+            WriteLogList(new List<string>() { log }, filePath);
         }
 
 

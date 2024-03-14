@@ -36,6 +36,12 @@ namespace ET
                     if (!string.IsNullOrEmpty(mailInfo.ItemList[i].GetWay))
                     {
                         unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList[i], mailInfo.ItemList[i].GetWay);
+
+                        string[] getwayInfo = mailInfo.ItemList[i].GetWay.Split('_');
+                        if (getwayInfo.Length >= 2 && mailInfo.ItemList[i].ItemID == 1 && int.Parse(getwayInfo[0]) == ItemGetWay.PaiMaiSell)
+                        {
+                            unit.GetComponent<DataCollationComponent>().PaiMaiGold += mailInfo.ItemList[i].ItemNum;
+                        }
                     }
                     else
                     {
