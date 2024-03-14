@@ -863,7 +863,7 @@ namespace ET
             long upNeedExp = xiulianconf1.UpExp;
 
             //等级达到上限,则无法获得经验. 经验最多200%
-            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.MaxLevel)
+            if (addValue > 0 &&self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.MaxLevel)
             {
                 long maxExp = upNeedExp * 2;
                 if (self.UserInfo.Exp > maxExp) 
