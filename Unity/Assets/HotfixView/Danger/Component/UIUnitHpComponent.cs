@@ -53,7 +53,10 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.RecoverGameObject(self.GameObject);
             self.UIXuLieZhenComponent = null;
-            DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
+            if (self.GetParent<Unit>().Type == UnitType.Player)
+            {
+                DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
+            }
         }
     }
 
@@ -99,6 +102,7 @@ namespace ET
             {
                 case UnitType.Player:
                     this.HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIUnitHp");
+                    DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, this);
                     break;
                 case UnitType.Monster:
                     this.HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIMonsterHp");
@@ -112,8 +116,6 @@ namespace ET
                     break;
             }
             GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);
-            
-            DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, this);
         }
 
         public void ShowHearBar(bool show)
@@ -244,6 +246,8 @@ namespace ET
                 case UnitType.Player:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
+                    this.DialogText = rc.Get<GameObject>("DialogText");
+                    this.DialogText.SetActive(false);
                     this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
@@ -289,9 +293,7 @@ namespace ET
                 default:
                     break;
             }
-
-            this.DialogText = rc.Get<GameObject>("DialogText");
-            this.DialogText.SetActive(false);
+            
             this.Lal_Name = rc.Get<GameObject>("Lal_Name");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
