@@ -45,7 +45,25 @@ namespace ET
 							return;
 						}
 
-						int zone = session.DomainZone();
+                        List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+						if (newAccountList == null || newAccountList.Count == 0)
+						{
+                            response.Error = ErrorCode.ERR_NotFindAccount;
+                            reply();
+                            return;
+                        }
+
+						
+						DBAccountInfo newAccount = newAccountList[0];
+						if (newAccount.UserList.Count > 10)
+						{
+                            response.Error = ErrorCode.ERR_ModifyData;
+                            reply();
+                            return;
+                        }
+
+
+                        int zone = session.DomainZone();
 						long userId = IdGenerater.Instance.GenerateUnitId(session.DomainZone()); /// (request.ServerId)
 						long dbCacheId = DBHelper.GetDbCacheId(zone);
 
@@ -53,8 +71,6 @@ namespace ET
                         //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
                         //DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
 
-                        List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
-                        DBAccountInfo newAccount = newAccountList[0];
 
                         UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
 						userInfoComponent.Account = newAccount.Account;
