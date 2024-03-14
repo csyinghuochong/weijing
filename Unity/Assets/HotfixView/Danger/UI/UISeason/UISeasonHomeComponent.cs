@@ -181,6 +181,12 @@ namespace ET
 
         public static async ETTask OnGetBtn(this UISeasonHomeComponent self)
         {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 5)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
