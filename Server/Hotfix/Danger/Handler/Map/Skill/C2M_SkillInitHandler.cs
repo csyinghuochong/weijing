@@ -109,7 +109,20 @@ namespace ET
             response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
             response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
 
-            List<int> tianfulist = new List<int>();
+            using var allskill =  ListComponent<int>.Create();
+            for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
+            {
+                if (allskill.Contains(skillSetComponent.SkillList[i].SkillID))
+                {
+                    Console.WriteLine($"重复技能ID: {skillSetComponent.SkillList[i].SkillID}");
+                }
+                else
+                {
+                    allskill.Add(skillSetComponent.SkillList[i].SkillID);
+                }
+            }
+
+            using var tianfulist = ListComponent<int>.Create();
             for (int i = 0; i < skillSetComponent.TianFuList.Count; i++)
             {
                 if (!tianfulist.Contains(skillSetComponent.TianFuList[i]))
@@ -120,7 +133,7 @@ namespace ET
             response.SkillSetInfo.TianFuList = tianfulist;
             skillSetComponent.TianFuList = tianfulist;
 
-            List<int> tianfulist1 = new List<int>();
+            using var tianfulist1 = ListComponent<int>.Create();
             for (int i = 0; i < skillSetComponent.TianFuList1.Count; i++)
             {
                 if (!tianfulist1.Contains(skillSetComponent.TianFuList1[i]))

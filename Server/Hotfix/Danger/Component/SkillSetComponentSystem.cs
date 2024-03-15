@@ -665,7 +665,7 @@ namespace ET
 				{
 					continue;
 				}
-				if (self.GetBySkillID(skillId) != null)
+				if (!self.IsCanMultiple(skillId) && self.GetBySkillID(skillId) != null)
 				{
 					continue;
 				}
@@ -707,6 +707,11 @@ namespace ET
             self.AddiontTianFu(tianfuid, active);
         }
 
+		public static bool IsCanMultiple(this SkillSetComponent self, int skillId)
+		{
+			return SkillConfigCategory.Instance.Get(skillId).SkillType == 8;
+		}
+
         public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills, long baginfoid)
 		{
 			
@@ -722,7 +727,7 @@ namespace ET
 				}
 
 				//其他装备也持有该技能
-				if (bagComponent.IsHaveEquipSkill(skillId, baginfoid))
+				if (!self.IsCanMultiple(skillId) && bagComponent.IsHaveEquipSkill(skillId, baginfoid))
 				{
 					continue;
 				}
