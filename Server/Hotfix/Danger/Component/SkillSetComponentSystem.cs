@@ -665,7 +665,7 @@ namespace ET
 				{
 					continue;
 				}
-				if (!self.IsCanMultiple(skillId) && self.GetBySkillID(skillId) != null)
+				if ( self.GetBySkillID(skillId) != null)
 				{
 					continue;
 				}
@@ -727,7 +727,7 @@ namespace ET
 				}
 
 				//其他装备也持有该技能
-				if (!self.IsCanMultiple(skillId) && bagComponent.IsHaveEquipSkill(skillId, baginfoid))
+				if ( bagComponent.IsHaveEquipSkill(skillId, baginfoid))
 				{
 					continue;
 				}
