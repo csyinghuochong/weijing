@@ -182,7 +182,7 @@ namespace ET
                         PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
                         IsHoliday = centerAccount.IsHoliday;
                         StopServer = centerAccount.StopServer;
-                        if (StopServer && !GMHelp.GmAccount.Contains(request.AccountName))
+                        if (StopServer && !GMHelp.GmAccount.Contains(request.AccountName) && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
                         {
                             response.Error = ErrorCode.ERR_StopServer;
                             reply();

@@ -166,12 +166,12 @@ namespace ET
 
         public static List<ServerItem> GetServerList(bool innerNet)
         {
-            if (ServerItems.Count > 0 && UpdateServerList == 2)
+            if (ServerItems.Count > 0 && UpdateServerList == 1)
             { 
                 return ServerItems;
             }
             //Log.Debug("UpdateServerList");
-            UpdateServerList = 2;
+            UpdateServerList = 1;
             ServerItems.Clear();
 
             string ip =  GetLogicServer(innerNet, VersionMode.Beta);
