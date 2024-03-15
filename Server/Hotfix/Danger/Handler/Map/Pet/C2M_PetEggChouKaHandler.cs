@@ -15,6 +15,12 @@ namespace ET
                 reply();
                 return;
             }
+            if(request.ChouKaType!=1 && request.ChouKaType!= 10)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
 
             int dropId = 0;
             int exlporeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);

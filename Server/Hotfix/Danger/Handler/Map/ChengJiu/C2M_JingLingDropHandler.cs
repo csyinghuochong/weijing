@@ -22,6 +22,10 @@ namespace ET
                 return;
             }
             int dropId = int.Parse(jingLingConfig.FunctionValue);
+            if (dropId == 0)
+            {
+                Log.Warning($"C2M_JingLingDropRequest.dropId == 0");
+            }
             List<RewardItem> droplist = new List<RewardItem>();
             DropHelper.DropIDToDropItem_2(dropId, droplist);
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < droplist.Count)

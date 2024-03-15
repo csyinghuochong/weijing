@@ -109,7 +109,7 @@ namespace ET
             response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
             response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
 
-            using var allskill =  ListComponent<int>.Create();
+            List<int> allskill = new List<int>();
             for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
             {
                 if (allskill.Contains(skillSetComponent.SkillList[i].SkillID))
@@ -122,7 +122,7 @@ namespace ET
                 }
             }
 
-            using var tianfulist = ListComponent<int>.Create();
+            List<int> tianfulist = new List<int>();
             for (int i = 0; i < skillSetComponent.TianFuList.Count; i++)
             {
                 if (!tianfulist.Contains(skillSetComponent.TianFuList[i]))
@@ -133,7 +133,7 @@ namespace ET
             response.SkillSetInfo.TianFuList = tianfulist;
             skillSetComponent.TianFuList = tianfulist;
 
-            using var tianfulist1 = ListComponent<int>.Create();
+            List<int> tianfulist1 = new List<int>();
             for (int i = 0; i < skillSetComponent.TianFuList1.Count; i++)
             {
                 if (!tianfulist1.Contains(skillSetComponent.TianFuList1[i]))
