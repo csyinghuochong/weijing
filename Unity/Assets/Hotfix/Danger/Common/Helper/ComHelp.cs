@@ -839,8 +839,12 @@ namespace ET
 
         public static bool IsCanChat_KillBoss(List<KeyValuePair> monsterlist, int lv)
         {
-            int number = 0;
+            if (lv >= 30)
+            {
+                return true;
+            }
 
+            int number = 0;
             for (int i = 0; i < monsterlist.Count; i++)
             {
                 if (monsterlist[i].KeyId == 70001004)
