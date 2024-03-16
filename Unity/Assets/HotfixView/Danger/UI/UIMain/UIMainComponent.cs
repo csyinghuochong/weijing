@@ -630,12 +630,18 @@ namespace ET
 
         public static void UpdatePing(this UIMainComponent self)
         {
-            SessionComponent sessionComponent = self.ZoneScene().GetComponent<SessionComponent>();
+            SessionComponent sessionComponent = self.ZoneScene()?.GetComponent<SessionComponent>();
             if (sessionComponent == null || sessionComponent.Session == null)
             {
                 return;
             }
-            long ping = sessionComponent.Session.GetComponent<PingComponent>().Ping;
+            PingComponent pingComponent = sessionComponent.Session.GetComponent<PingComponent>();
+            if (pingComponent == null)
+            {
+                return;
+            }
+
+            long ping = pingComponent.Ping;
             self.TextPing.text = StringBuilderHelper.GetPing(ping); 
             if (ping <= 200)
             {

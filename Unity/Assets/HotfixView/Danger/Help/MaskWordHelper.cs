@@ -26,7 +26,7 @@ namespace ET
             keyDict.Clear();
             await InitMaskWordText("MaskWord", "、");
             await InitMaskWordText("MaskWord2", "、\r\n");
-            await InitMaskWordText("MaskWord3", "、\r\n");
+            await InitMaskWordText("MaskWord3", "、");
         }
 
         public async ETTask InitMaskWordText(string maskword, string split)

@@ -200,9 +200,16 @@ namespace ET
             bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
 
             int userLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (userLv < 12 && !gm)
+            if (userLv < 20 && !gm)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级达到12级才能世界发言！");
+                FloatTipManager.Instance.ShowFloatTip("等级达到20级才能世界发言！");
+                return;
+            }
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (!ComHelp.IsCanChat_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userLv) && !gm)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级达到20级才能世界发言！");
                 return;
             }
 

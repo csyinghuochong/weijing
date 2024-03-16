@@ -289,6 +289,21 @@ namespace ET
             //2024/3/15 19:00 新增服务器--燃烧之地 81
             serverItems_1.Add(new ServerItem() { ServerId = 81, ServerIp = $"{ip}:20555", ServerName = "燃烧之地", ServerOpenTime = 1710500400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
+
+
+            List<int> allserverId = new List<int>();
+            for (int i = 0; i < serverItems_1.Count; i++)
+            {
+                if (allserverId.Contains(serverItems_1[i].ServerId))
+                {
+                    Console.WriteLine($"服务器ID冲突： {serverItems_1[i].ServerId}");
+                }
+                else
+                {
+                    allserverId.Add(serverItems_1[i].ServerId);
+                }
+            }
+            
             return serverItems_1;
         }
     }
