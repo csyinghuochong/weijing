@@ -68,23 +68,22 @@ namespace ET
                         }
                     }
 
-                    if (chatInfoUnit.DomainZone() == 5)
-                    {
-                        bool havegm = false;
-                        for (int i = 0; i < chatInfoUnitsComponent.WordChatInfos.Count; i++)
-                        {
-                            if (chatInfoUnitsComponent.WordChatInfos[i].ChatMsg.Contains("mail"))
-                            {
-                                havegm = true; 
-                                break;
-                            }
-                        }
-                        if (havegm)
-                        {
-                            chatInfoUnitsComponent.WordChatInfos.Clear();   
-                        }
-                    }
-
+                    //if (chatInfoUnit.DomainZone() == 5)
+                    //{
+                    //    bool havegm = false;
+                    //    for (int i = 0; i < chatInfoUnitsComponent.WordChatInfos.Count; i++)
+                    //    {
+                    //        if (chatInfoUnitsComponent.WordChatInfos[i].ChatMsg.Contains("mail"))
+                    //        {
+                    //            havegm = true; 
+                    //            break;
+                    //        }
+                    //    }
+                    //    if (havegm)
+                    //    {
+                    //        chatInfoUnitsComponent.WordChatInfos.Clear();   
+                    //    }
+                    //}
                     break;
                 case (int)ChannelEnum.Team:
                     long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(chatInfoUnit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
