@@ -62,6 +62,12 @@ namespace ET
                             return;
                         }
 
+						if (!OccupationConfigCategory.Instance.Contain(request.CreateOcc))
+						{
+                            response.Error = ErrorCode.ERR_ModifyData;
+                            reply();
+                            return;
+                        }
 
                         int zone = session.DomainZone();
 						long userId = IdGenerater.Instance.GenerateUnitId(session.DomainZone()); /// (request.ServerId)
