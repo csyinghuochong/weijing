@@ -63,7 +63,7 @@ namespace ET
                                 }
                                 PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
                                 playerComponent.instanceToId.TryGetValue(realActorId, out playerId);
-                                if (playerId > 0)
+                                if (playerId > 0 && ConfigData.PackageLimit > 300)
                                 {
                                     Console.WriteLine($"not found actor(2): playerId:  {allzones[zone]} {playerId}");
                                     DisconnectHelper.KickPlayer(allzones[zone], playerId).Coroutine(); //先屏蔽 
