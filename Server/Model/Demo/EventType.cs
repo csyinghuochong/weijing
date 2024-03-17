@@ -71,6 +71,23 @@ namespace ET
 			public string OperatePar;
         }
 
+		public struct OnArenaClose
+		{
+            public Scene DomainScene;
+        }
+
+        public struct OnBattleKill
+        {
+            public Scene DomainScene;
+			public Unit Defend;
+			public Unit Attack;
+        }
+
+		public struct OnAuctionOver
+		{
+            public Scene DomainScene;
+        }
+
         public struct ReturnMainCity
 		{
             public Scene DomainScene;
