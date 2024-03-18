@@ -79,7 +79,7 @@ namespace ET
                 if (!ComHelp.RobotPassWord.Equals(request.Password))
                 {
                     //Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
-                    Log.Warning($"客户端登录:  {request.AccountName}  {session.RemoteAddress} ");
+                    Log.Warning($"客户端登录:{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
                 }
 
                 //密码要md5
