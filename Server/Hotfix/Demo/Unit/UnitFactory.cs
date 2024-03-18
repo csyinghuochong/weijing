@@ -676,15 +676,15 @@ namespace ET
             }
             if ((monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 56) && droplist.Count == 0)
             {
-                Log.Debug($"宝箱掉落为空{monsterCof.Id} {main.Id}");
+                Log.Warning($"宝箱掉落为空{monsterCof.Id} {main.Id}");
             }
             if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss && droplist.Count == 0)
             {
-                Log.Debug($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
+                Log.Warning($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
-            if (monsterCof.Id == 70003003)
+            if (monsterCof.Id == 72006013)
             {
-                Log.Debug($"BOSS掉落道具数量： {monsterCof.Id}  {droplist.Count}");
+                Log.Warning($"BOSS掉落数量[72006013]： {monsterCof.Id}  {droplist.Count}");
             }
 
             if (droplist.Count > 100)
@@ -810,11 +810,11 @@ namespace ET
 
                         if (monsterCof.Id == 70003003)
                         {
-                            Log.Debug($"BOSS掉落道具位置:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
+                            Log.Warning($"BOSS掉落道具位置:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
                         }
                         if (Vector3.Distance( main.Position, new Vector3(dropInfo.X, dropInfo.Y, dropInfo.Z)) > 10f )
                         {
-                            Log.Debug($"BOSS掉落道具位置过远:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
+                            Log.Warning($"BOSS掉落道具位置过远:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
                         }
                     }                    
                     MessageHelper.SendToClient(beAttack, m2C_CreateDropItems);

@@ -18,7 +18,7 @@ namespace ET
 
         public static void Check(this DataCollationComponent self)
         {
-            self.TodayOnLine++;
+            self.TotalOnLine++;
         }
 
         public static void OnXiLian(this DataCollationComponent self, int times)
@@ -66,6 +66,26 @@ namespace ET
             {
                 self.OnAddCostList(self.DiamondCostList, getWay, value);
             }
+        }
+
+        public static long GetCostByType(this DataCollationComponent self, int getWay)
+        {
+            string[] costlist = self.GoldCost.Split('_');
+            for (int i = 0; i < costlist.Length; i++)
+            {
+                string[] costinfo = costlist[i].Split(',');
+                if (costinfo.Length < 3)
+                {
+                    continue;
+                }
+
+                if (int.Parse(costinfo[0]) == getWay)
+                {
+                    long value = long.Parse(costinfo[2]);
+                    return value;
+                }
+            }
+            return 0;
         }
 
         public static void OnAddCostList(this DataCollationComponent self, List<KeyValuePairInt> pairInts, int getWay, long value)

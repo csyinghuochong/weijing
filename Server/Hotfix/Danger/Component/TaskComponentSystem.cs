@@ -53,6 +53,20 @@ namespace ET
             return lv >= 5 && self.RoleComoleteTaskList.Count > lv;
         }
 
+        public static int GetMainTaskNumber(this TaskComponent self)
+        {
+            int mainTaskNumber = 0;
+            for (int i = 0; i < self.RoleComoleteTaskList.Count; i++)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
+                if (taskConfig.TaskType == TaskTypeEnum.Main)
+                {
+                    mainTaskNumber++;
+                }
+            }
+            return mainTaskNumber;
+        }
+
         public static int GetHuoYueDu(this TaskComponent self)
         {
             int huoYueDu = 0;
