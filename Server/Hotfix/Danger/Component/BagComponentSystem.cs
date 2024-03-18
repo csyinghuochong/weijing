@@ -973,7 +973,8 @@ namespace ET
                 }
                 if (itemCof.Id == 10000152 && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 30)
                 {
-                    Log.Error($"[获取道具]10000152 ：  {unit.DomainZone()}  {unit.Id}");
+                    MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+                    Log.Error($"[获取道具]10000152 ：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
                 }
                 if (leftNum >= 99)
                 {

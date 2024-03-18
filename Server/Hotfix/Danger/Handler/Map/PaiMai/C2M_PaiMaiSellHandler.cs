@@ -15,6 +15,13 @@ namespace ET
 					reply();
 					return;
 				}
+				if (request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price > 5000000)
+				{
+                    reply();
+                    return;
+                }
+
+
 				//获取出售数据
 				long paimaiItemId = IdGenerater.Instance.GenerateId();
 				request.PaiMaiItemInfo.Id = paimaiItemId;
