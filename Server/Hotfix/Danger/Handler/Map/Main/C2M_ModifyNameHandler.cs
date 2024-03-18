@@ -16,6 +16,21 @@ namespace ET
                 reply();
                 return;
             }
+            if (string.IsNullOrEmpty(request.NewName))
+            {
+                response.Error = ErrorCode.ERR_CreateRoleName;
+                response.Message = "角色名字过短!";
+                reply();
+                return;
+            }
+            if (request.NewName.Length >= 8)
+            {
+                response.Error = ErrorCode.ERR_CreateRoleName;
+                response.Message = "角色名字过长!";
+                reply();
+                return;
+            }
+
             List<UserInfoComponent> result = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserName == request.NewName);
             if (result.Count > 0)
             {
