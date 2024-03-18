@@ -91,11 +91,11 @@ namespace ET
                 PlayerComponent playerComponent = session.DomainScene().GetComponent<PlayerComponent>();
                 int sameIpNumber = playerComponent.GetSameIpNumber(request.AccountId, player.RemoteAddress);
 
-				if (sameIpNumber >= 2)
+				if (sameIpNumber >= 20)
 				{
-					Log.Warning($"同ip玩家超过2个: {sameIpNumber} {request.UserID}");
+					Log.Warning($"同ip玩家超过20个: {sameIpNumber} {request.UserID}");
 				}
-				if (sameIpNumber >= 2) /////temp && request.Simulator == 1)
+				if (sameIpNumber >= 20) /////temp && request.Simulator == 1)
 				{
                     response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();

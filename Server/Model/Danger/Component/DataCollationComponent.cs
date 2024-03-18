@@ -121,6 +121,11 @@ namespace ET
         public List<KeyValuePairInt> DiamondCostList = new List<KeyValuePairInt>();
 
 
+        //金币获取列表
+        public string GoldGet;
+        [BsonIgnore]
+        public List<KeyValuePairInt> GoldGetList = new List<KeyValuePairInt>();
+
         //平台
         public string Platform;
 
