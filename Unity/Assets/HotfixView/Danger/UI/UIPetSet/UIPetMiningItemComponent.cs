@@ -114,7 +114,7 @@ namespace ET
 
             if (petMingPlayerInfo != null)
             {
-                playerName = "占领者：" + petMingPlayerInfo.PlayerName;
+                playerName = "拥有者：" + petMingPlayerInfo.PlayerName;
                 confids = petMingPlayerInfo.PetConfig;
 
                 for (int i = 0; i < self.PetIconList.Length; i++)
