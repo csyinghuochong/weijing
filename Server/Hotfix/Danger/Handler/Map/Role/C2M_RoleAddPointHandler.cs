@@ -15,13 +15,20 @@ namespace ET
                 int totalPoint = 0;
                 for (int i = 0; i < request.PointList.Count; i++)
                 {
+                    if (request.PointList[i] < 0)
+                    {
+                        Log.Warning($"C2M_RoleAddPointRequest: {unit.DomainZone()}  {unit.Id}");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
 
                     totalPoint += request.PointList[i];
                 }
                 int remainPoint = (unit.GetComponent<UserInfoComponent>().UserInfo.Lv - 1) * 10 - totalPoint;
                 if (remainPoint < 0)
                 {
-                    response.Error = ErrorCode.ERR_Error;
+                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }

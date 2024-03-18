@@ -2677,6 +2677,11 @@ namespace ET
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
 
+            if (zhanliValue < 0 || zhanliValue > 500000)
+            {
+                Log.Error($"战力异常: {unit.DomainZone()}  {unit.GetComponent<UserInfoComponent>().UserInfo.Name}  {zhanliValue}");
+            }
+
             if (notice)
             {
                 List<int> ks = new List<int>();
