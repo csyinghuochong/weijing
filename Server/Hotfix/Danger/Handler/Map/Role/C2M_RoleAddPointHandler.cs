@@ -15,9 +15,9 @@ namespace ET
                 int totalPoint = 0;
                 for (int i = 0; i < request.PointList.Count; i++)
                 {
-                    if (request.PointList[i] < 0)
+                    if (request.PointList[i] < 0 || request.PointList[i] > 2000)
                     {
-                        Log.Warning($"C2M_RoleAddPointRequest: {unit.DomainZone()}  {unit.Id}");
+                        Log.Warning($"C2M_RoleAddPointRequest: {unit.DomainZone()}  {unit.Id}  {request.PointList[i]}");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
