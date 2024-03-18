@@ -7,9 +7,9 @@ namespace ET
     {
         General = 0,
 
-        BlackList = 1,  //黑名单
+        BlackList = 1, //禁止拍卖
 
-        Delete = 2,
+        Delete = 2, //黑名单
     }
 
 
