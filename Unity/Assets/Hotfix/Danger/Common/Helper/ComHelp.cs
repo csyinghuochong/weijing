@@ -755,21 +755,13 @@ namespace ET
         {
             if(createDay == 1)
             {
-                if(lv <= 15)
-                {
-                    return 15;
-                }
-                return 0;
-            }
-            if (createDay <= 2)
-            {
-                if (lv <= 18)
+                if(lv <= 18)
                 {
                     return 18;
                 }
                 return 0;
             }
-            if (createDay <= 3)
+            if (createDay <= 2)
             {
                 if (lv <= 20)
                 {
@@ -777,7 +769,7 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 4)
+            if (createDay <= 3)
             {
                 if (lv <= 22)
                 {
@@ -785,7 +777,7 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 5)
+            if (createDay <= 4)
             {
                 if (lv <= 24)
                 {
@@ -793,11 +785,19 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 6)
+            if (createDay <= 5)
             {
                 if (lv <= 26)
                 {
                     return 26;
+                }
+                return 0;
+            }
+            if (createDay <= 6)
+            {
+                if (lv <= 28)
+                {
+                    return 28;
                 }
                 return 0;
             }
