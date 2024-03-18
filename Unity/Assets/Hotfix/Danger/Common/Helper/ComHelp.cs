@@ -755,21 +755,13 @@ namespace ET
         {
             if(createDay == 1)
             {
-                if(lv <= 14)
+                if(lv <= 15)
                 {
-                    return 14;
+                    return 15;
                 }
                 return 0;
             }
             if (createDay <= 2)
-            {
-                if (lv <= 16)
-                {
-                    return 16;
-                }
-                return 0;
-            }
-            if (createDay <= 3)
             {
                 if (lv <= 18)
                 {
@@ -777,15 +769,7 @@ namespace ET
                 }
                 return 0;
             }
-            if (createDay <= 4)
-            {
-                if (lv <= 19)
-                {
-                    return 19;
-                }
-                return 0;
-            }
-            if (createDay <= 5)
+            if (createDay <= 3)
             {
                 if (lv <= 20)
                 {
@@ -793,19 +777,35 @@ namespace ET
                 }
                 return 0;
             }
+            if (createDay <= 4)
+            {
+                if (lv <= 22)
+                {
+                    return 22;
+                }
+                return 0;
+            }
+            if (createDay <= 5)
+            {
+                if (lv <= 24)
+                {
+                    return 24;
+                }
+                return 0;
+            }
             if (createDay <= 6)
             {
-                if (lv <= 21)
+                if (lv <= 26)
                 {
-                    return 21;
+                    return 26;
                 }
                 return 0;
             }
             if (createDay <= 7)
             {
-                if (lv <= 22)
+                if (lv <= 28)
                 {
-                    return 22;
+                    return 28;
                 }
                 return 0;
             }
@@ -834,7 +834,7 @@ namespace ET
                     number++;
                 }
             }
-            return number >= 2;
+            return number >= 3;
         }
 
         public static bool IsCanChat_KillBoss(List<KeyValuePair> monsterlist, int lv)
