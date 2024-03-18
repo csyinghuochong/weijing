@@ -70,6 +70,11 @@ namespace ET
 
         public static long GetCostByType(this DataCollationComponent self, int getWay)
         {
+            if (string.IsNullOrEmpty(self.GoldCost))
+            { 
+                return 0; 
+            }
+
             string[] costlist = self.GoldCost.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
