@@ -1579,6 +1579,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int YaCeRobot { get; set; }
 
+		[ProtoMember(4)]
+		public List<long> UnitList = new List<long>();
+
 	}
 
 //创建组队副本

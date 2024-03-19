@@ -68,6 +68,18 @@ namespace ET
             }
         }
 
+        public static void UpdateRoleMoneyAdd(this DataCollationComponent self, int Type, int getWay, long value)
+        {
+            if (value < 0)
+            {
+                return;
+            }
+            if (Type == UserDataType.Gold)
+            {
+                self.OnAddCostList(self.GoldGetList, getWay, value);
+            }
+        }
+
         public static long GetCostByType(this DataCollationComponent self, int getWay)
         {
             if (string.IsNullOrEmpty(self.GoldCost))
@@ -224,9 +236,14 @@ namespace ET
             self.GoldCost = self.CostListToString(self.GoldCostList);
             self.GoldCostList.Clear();
 
+            self.SetAllCostList(self.GoldGetList, self.GoldGet);
+            self.GoldGet = self.CostListToString(self.GoldGetList);
+            self.GoldGetList.Clear();
+
             self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
             self.DiamondCost = self.CostListToString(self.DiamondCostList);
             self.DiamondCostList.Clear();
+
         }
     }
 }

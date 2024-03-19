@@ -572,7 +572,7 @@ namespace ET
             {
                 self.SendUnionOperate(getWay, Type, gold).Coroutine();
             }
-
+            unit.GetComponent<DataCollationComponent>().UpdateRoleMoneyAdd(Type, getWay, gold);
             self.UpdateRoleData(Type, value, notice);
         }
 
