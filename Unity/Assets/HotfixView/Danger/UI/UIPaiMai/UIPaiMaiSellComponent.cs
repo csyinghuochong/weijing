@@ -93,6 +93,10 @@ namespace ET
             {
                 return;
             }
+            if (m2C_PaiMaiBuyResponse.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
 
             self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
             self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);

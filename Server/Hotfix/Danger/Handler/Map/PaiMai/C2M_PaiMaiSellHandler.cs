@@ -12,12 +12,14 @@ namespace ET
 			{
 				if (request.PaiMaiItemInfo.BagInfo.ItemNum <= 0)
 				{
-					reply();
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
 					return;
 				}
 				long allprice = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
                 if (allprice > 5000000 || allprice < 0)
 				{
+					response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
@@ -52,12 +54,14 @@ namespace ET
 
 				//判断道具是否可以上架和绑定
 				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-				if (itemConfig.IfStopPaiMai == 1) {
+				if (itemConfig.IfStopPaiMai == 1) 
+				{
 					response.Error = ErrorCode.Err_StopPaiMai;      //道具无法上架
 					reply();
 					return;
 				}
-				if (bagInfo.isBinging) {
+				if (bagInfo.isBinging) 
+				{
 					response.Error = ErrorCode.ERR_ItemBing;      //道具绑定
 					reply();
 					return;
@@ -66,7 +70,8 @@ namespace ET
 				long gold = (long)request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
 				if (gold < 0)
 				{
-					reply();
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
 					return;
 				}
 
