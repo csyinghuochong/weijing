@@ -220,15 +220,7 @@ namespace ET
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
             self.Btn_Auction.SetActive(false);
-            self.Btn_GM = rc.Get<GameObject>("Btn_GM");
-            List<string> AdminAccount = new List<string>()
-            {
-                "tcg01",
-                "test01",
-                "18652422521",
-                "18319670288",
-            };
-            self.Btn_GM.SetActive(AdminAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+          
             ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UIGM).Coroutine(); });
 
             self.Btn_Task = rc.Get<GameObject>("Btn_Task");
@@ -381,9 +373,19 @@ namespace ET
             self.Button_RechargeReward.GetComponent<Button>().onClick.AddListener(self.OnButton_RechargeReward);
 
             self.Button_ActivityV1 = rc.Get<GameObject>("Button_ActivityV1");
-            self.Button_ActivityV1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
-
             self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
+
+
+            self.Btn_GM = rc.Get<GameObject>("Btn_GM");
+            List<string> AdminAccount = new List<string>()
+            {
+                "tcg01",
+                "test01",
+                "18652422521",
+                "18319670288",
+            };
+            self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_Fashion.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
