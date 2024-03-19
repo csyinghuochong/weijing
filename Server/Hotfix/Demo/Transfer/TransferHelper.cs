@@ -254,6 +254,11 @@ namespace ET
                        
                         if (request.SceneId > 0)
                         {
+                            if (request.SceneId == 100001 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
+                            {
+                                return ErrorCode.ERR_ModifyData;
+                            }
+
                             int chaptierd = 1;
                             if (!DungeonConfigCategory.Instance.Contain(request.SceneId))
                             {

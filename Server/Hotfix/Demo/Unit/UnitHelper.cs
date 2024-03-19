@@ -275,6 +275,23 @@ namespace ET
             return realPlayer;
         }
 
+        public static bool IsHaveNpc(Scene scene, int npcId)
+        {
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type != UnitType.Npc)
+                {
+                    continue;
+                }
+                if (allunits[i].ConfigId == npcId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             List<Unit> list = new List<Unit>();
