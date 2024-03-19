@@ -125,6 +125,13 @@ namespace ET
 #if !UNITY_EDITOR && UNITY_IOS
         string modelStr = UnityEngine.SystemInfo.deviceModel;
         Log.ILog.Debug("deviceModel:  " + modelStr);
+
+        if (IsIphoneSE())
+            {
+                return false;
+            }
+
+
         if (IsHaveLiuHai())
         { 
             return true;
@@ -136,12 +143,7 @@ namespace ET
             //需要适配
             return true;
         }
-          if (IsIphoneSE())
-            {
-                return false;
-            }
-
-      
+          
         return false;
 #else
 
