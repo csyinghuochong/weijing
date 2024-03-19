@@ -384,9 +384,9 @@ namespace ET
                 "18652422521",
                 "18319670288",
             };
-            self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-            self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-            self.Button_Fashion.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Btn_GM.SetActive(false);
+            self.Button_ActivityV1.SetActive(false);
+            self.Button_Fashion.SetActive(false);
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
