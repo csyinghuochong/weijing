@@ -220,7 +220,7 @@ namespace ET
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
             self.Btn_Auction.SetActive(false);
-          
+            self.Btn_GM = rc.Get<GameObject>("Btn_GM");
             ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UIGM).Coroutine(); });
 
             self.Btn_Task = rc.Get<GameObject>("Btn_Task");
@@ -376,7 +376,7 @@ namespace ET
             self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
 
 
-            self.Btn_GM = rc.Get<GameObject>("Btn_GM");
+           
             List<string> AdminAccount = new List<string>()
             {
                 "tcg01",
