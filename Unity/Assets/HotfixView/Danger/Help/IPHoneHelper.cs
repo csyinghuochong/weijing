@@ -58,6 +58,12 @@ namespace ET
                 || (Screen.width == 2556 && Screen.height == 1179);     //iphone15
         }
 
+        public static bool IsIphoneSE()
+        {
+            return (Screen.width == 1334 && Screen.height == 750)      //iphone15promax
+                || (Screen.width == 1136 && Screen.height == 640);
+        }
+
         public static bool IsSimulator()
         {
             return IsSimulator_1() || IsSimulator_3();  
@@ -130,9 +136,16 @@ namespace ET
             //需要适配
             return true;
         }
-        
+          if (IsIphoneSE())
+            {
+                return false;
+            }
+
+      
         return false;
 #else
+
+
             return false;
             //return true;
 #endif

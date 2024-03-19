@@ -10,7 +10,7 @@ message C2A_Register // IRequest
 {
 	int32 RpcId = 90;
 	string	Account	 = 1;	// 帐号
-	string	Password = 2;	// 密码
+	string	Password = 2;	// 密码SkillSetInfo
 }
 
 message A2C_Register // IResponse
