@@ -15,7 +15,8 @@ namespace ET
 					reply();
 					return;
 				}
-				if (request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price > 5000000)
+				long allprice = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
+                if (allprice > 5000000 || allprice < 0)
 				{
                     reply();
                     return;
