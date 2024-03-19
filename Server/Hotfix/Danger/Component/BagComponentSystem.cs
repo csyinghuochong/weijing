@@ -971,11 +971,11 @@ namespace ET
                     //    Log.Warning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
                     //}
                 }
-                if (itemCof.Id == 10000152 && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 30)
-                {
-                    MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-                    Log.Error($"[获取道具]10000152 ：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
-                }
+                //if (itemCof.Id == 10000152 && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 30)
+                //{
+                //    MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+                //    Log.Error($"[获取道具]10000152 ：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
+                //}
                 if (leftNum >= 99)
                 {
                     Log.Warning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);

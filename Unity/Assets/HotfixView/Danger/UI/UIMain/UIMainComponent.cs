@@ -188,8 +188,7 @@ namespace ET
 
             self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
             self.Button_Fashion.GetComponent<Button>().onClick.AddListener(self.OnButton_Fashion);
-            self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
-
+            
             self.Button_Happy = rc.Get<GameObject>("Button_Happy");
             self.Button_Happy.GetComponent<Button>().onClick.AddListener(self.OnButton_Happy);
             self.Button_Happy.SetActive(false);
@@ -383,7 +382,9 @@ namespace ET
 
             self.Button_ActivityV1 = rc.Get<GameObject>("Button_ActivityV1");
             self.Button_ActivityV1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
             self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
+            self.Button_Fashion.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();

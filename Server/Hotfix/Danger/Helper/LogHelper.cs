@@ -313,6 +313,18 @@ namespace ET
             }
         }
 
+        public static void OnLineInfo(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            ZuobiInfoList.Add(log);
+            if (ZuobiInfoList.Count >= 10)
+            {
+                string filePath = "../Logs/WJ_ZuoBi.txt";
+                WriteLogList(ZuobiInfoList, filePath);
+                ZuobiInfoList.Clear();
+            }
+        }
+
         public static void PaiMaiInfo(string log)
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
