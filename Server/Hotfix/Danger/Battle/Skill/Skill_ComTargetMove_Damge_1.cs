@@ -62,6 +62,7 @@ namespace ET
             }
             else
             {
+                this.UpdateCheckPoint(this.NowPosition);
                 this.ExcuteSkillAction();
             }
             this.SetSkillState(SkillState.Finished);
