@@ -19,8 +19,9 @@ namespace ET
 
         public static async ETTask OnLoginOut(this FangChenMiComponent self)
         {
-            EventType.CommonHint.Instance.HintText = "防沉迷提示:当前可游玩时间结束,请安心休息吧！稍后将立即退出游戏";
-            Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
+            EventType.CommonPopup.Instance.ZoneScene = self.ZoneScene();
+            EventType.CommonPopup.Instance.HintText = "防沉迷提示:当前可游玩时间结束,请安心休息吧！将立即退出游戏";
+            Game.EventSystem.PublishClass(EventType.CommonPopup.Instance);
 
             await TimerComponent.Instance.WaitAsync(10000);
 
@@ -36,6 +37,8 @@ namespace ET
             int minute = dateTime.Minute;
             if (self.GetPlayerAge() >= 18)
             {
+                //await TimerComponent.Instance.WaitAsync(20000);
+                //self.OnLoginOut().Coroutine();
                 return;
             }
             if (!jiari && huor != 20)

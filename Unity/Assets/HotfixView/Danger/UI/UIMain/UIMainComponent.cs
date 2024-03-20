@@ -453,6 +453,17 @@ namespace ET
 
     //通用提示事件
     [Event]
+    public class CommonPopupEvent : AEventClass<EventType.CommonPopup>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.CommonPopup args = cls as EventType.CommonPopup;
+            PopupTipHelp.OpenPopupTip(args.ZoneScene, "系统提示", args.HintText, null, null).Coroutine();
+        }
+    }
+
+    //通用提示事件
+    [Event]
     public class CommonHintErrorEvent : AEventClass<EventType.CommonHintError>
     {
         protected override void Run(object cls)
