@@ -20,15 +20,17 @@ namespace ET
                 ip = ipinfo[0];	
             }
 
-            if (request.Simulator == 1)
+			string moniq = string.Empty;
+            moniq = request.Simulator == 1 ? "模拟器_" : "真机_";
+
+            if (request.Root == 1)
 			{
-				Log.Warning($"模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName}  {ip}");
-			}
-			else
-			{
-                Log.Warning($"非模拟器登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {ip}");
+				moniq += "Root";
             }
-			if (request.DeviceName.Contains("motorola XT2335-3_1523"))
+
+            Log.Warning($"账号登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
+
+            if (request.DeviceName.Contains("motorola XT2335-3_1523"))
 			{
 				session.RemoteAddress = NetworkHelper.ToIPEndPoint("180.126.183.170:80");
 			}
@@ -278,7 +280,8 @@ namespace ET
 			}
 		}
 
-		private async ETTask<long> EnterWorldChatServer(Unit unit)
+
+        private async ETTask<long> EnterWorldChatServer(Unit unit)
 		{
 			long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
 			Chat2G_EnterChat chat2G_EnterChat = (Chat2G_EnterChat)await MessageHelper.CallActor(chatServerId, new G2Chat_EnterChat()
