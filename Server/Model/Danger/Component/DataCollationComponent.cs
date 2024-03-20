@@ -142,7 +142,7 @@ namespace ET
         public int Simulator;
 
         //Root
-        public int Root;
+        public int IsRoot;
 
         //设备ID
         public string DeviceID;

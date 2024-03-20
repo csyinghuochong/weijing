@@ -166,8 +166,30 @@ namespace ET
             }
             self.Platform += $"{platformName}: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}_";
             self.Simulator = simulator;
-            self.Root = root;   
+            self.IsRoot = root;   
             self.DeviceID = deviceId;       
+        }
+
+        public static string GetDeviceID(this DataCollationComponent self)
+        { 
+            string device = string.Empty;
+
+            if (self.Simulator == 1)
+            {
+                device = "模拟器_";
+            }
+            else
+            {
+                device = "真机_";
+            }
+
+            if (self.IsRoot == 1)
+            {
+                device += "Root_";
+            }
+
+            device += self.DeviceID;
+            return device;
         }
 
         public static void UpdateData(this DataCollationComponent self)
