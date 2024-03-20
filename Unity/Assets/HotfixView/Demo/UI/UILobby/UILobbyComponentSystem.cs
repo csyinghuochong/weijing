@@ -140,19 +140,8 @@ namespace ET
         {
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "请问是否返回主界面?", ()=>
             {  //加载登录场景
-
-                Scene zoneScene = self.ZoneScene();
-                Session session = zoneScene.GetComponent<SessionComponent>().Session;
-                if (session != null && !session.IsDisposed)
-                {
-                    session.GetComponent<PingComponent>().DisconnectType = -1;
-                }
-                Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(self.ZoneScene(), (int)SceneTypeEnum.LoginScene, SceneTypeEnum.NONE, 1).Coroutine();
-                zoneScene.Dispose();
-                zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
-
-                EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
-                Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
+                EventType.ReturnLogin.Instance.ZoneScene = self.ZoneScene();
+                Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
             }, null).Coroutine();
            
         }

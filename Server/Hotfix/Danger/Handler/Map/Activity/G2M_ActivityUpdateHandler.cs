@@ -28,6 +28,38 @@ namespace ET
                     LocationProxyComponent.Instance.Remove(unit.Id).Coroutine();
                     break;
                 default:
+                    //if (message.ActivityType == 18  && unit.DomainZone() == 81)
+                    //{
+                    //    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    //    DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
+                    //    ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
+
+                    //    int chengjiuNumber = 0;
+                    //    if (chengJiuComponent.ChengJiuCompleteList.Contains(10000002))
+                    //    {
+                    //        chengjiuNumber++;
+                    //    }
+                    //    if (chengJiuComponent.ChengJiuCompleteList.Contains(10000003))
+                    //    {
+                    //        chengjiuNumber++;
+                    //    }
+                    //    if (chengJiuComponent.ChengJiuCompleteList.Contains(10000004))
+                    //    {
+                    //        chengjiuNumber++;
+                    //    }
+                    //    if (chengJiuComponent.ChengJiuCompleteList.Contains(10000005))
+                    //    {
+                    //        chengjiuNumber++;
+                    //    }
+
+                    //    string gongzuoshiInfo = $"账号: {userInfoComponent.Account}  \t名称：{userInfoComponent.UserInfo.Name}  \t等级:{userInfoComponent.UserInfo.Lv}   \t充值:{dataCollationComponent.Recharge}" +
+                    //      $"\t体力:{userInfoComponent.UserInfo.PiLao}  \t金币:{userInfoComponent.UserInfo.Gold}   \t成就值:{chengJiuComponent.TotalChengJiuPoint}   \t成就任务:{chengjiuNumber}" +
+                    //      $"\t拍卖消耗:{dataCollationComponent.GetCostByType(ItemGetWay.PaiMaiBuy)}" +
+                    //      $"\t当前主线:{dataCollationComponent.MainTask}  \t角色天数:{userInfoComponent.GetCrateDay()} \n";
+
+                    //    LogHelper.OnLineInfo(gongzuoshiInfo);    
+                    //}
+
                     unit.GetComponent<UserInfoComponent>().OnHourUpdate(message.ActivityType, true);
                     break;
             }
