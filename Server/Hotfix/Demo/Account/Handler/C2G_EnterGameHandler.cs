@@ -236,7 +236,7 @@ namespace ET
                         unit.AddComponent<DBSaveComponent>();
                         unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
                         unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
-						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform, request.Simulator);
+						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 
