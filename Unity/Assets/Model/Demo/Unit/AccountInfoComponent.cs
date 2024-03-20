@@ -44,5 +44,6 @@ namespace ET
 
 		public int Simulator = 0;
 		public int Root = 0;
+		public string DeviceID = string.Empty;	
     }
 }

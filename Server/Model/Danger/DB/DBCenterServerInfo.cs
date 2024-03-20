@@ -12,5 +12,7 @@ namespace ET
         public List<long> GmWhiteList = new List<long>();
 
         public List<int> RechageDic = new List<int>();
+
+        public List<string> BanDeviceID = new List<string>();  
     }
 }

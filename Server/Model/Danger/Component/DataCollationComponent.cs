@@ -141,6 +141,12 @@ namespace ET
         //模拟器
         public int Simulator;
 
+        //Root
+        public int Root;
+
+        //设备ID
+        public string DeviceID;
+
         public long PaiMaiGold;
 
         public int JinZhiPaiMai;

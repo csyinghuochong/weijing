@@ -452,6 +452,9 @@ namespace ET
 		[ProtoMember(10)]
 		public int IsRecharge { get; set; }
 
+		[ProtoMember(11)]
+		public string DeviceID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

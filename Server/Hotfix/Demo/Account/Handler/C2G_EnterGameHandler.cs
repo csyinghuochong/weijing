@@ -7,12 +7,6 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_EnterGame request, G2C_EnterGame response, Action reply)
 		{
-			List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
-            //if (accountInfoList.Count >0 && accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
-            //{
-            //	Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
-            //}
-
 			string ip = string.Empty;
             string[] ipinfo = session.RemoteAddress.ToString().Split(':');
 			if (ipinfo.Length > 0 )
@@ -27,8 +21,6 @@ namespace ET
 			{
 				moniq += "Root";
             }
-
-            Log.Warning($"账号登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
 
             if (request.DeviceName.Contains("motorola XT2335-3_1523"))
 			{
@@ -111,7 +103,37 @@ namespace ET
 			{
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, player.AccountId.GetHashCode()))
 				{
-					if (instanceId != session.InstanceId || player.IsDisposed)
+					if (!string.IsNullOrEmpty(request.DeviceID))
+                    {
+                        List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(202, d => d.Id == 202);
+                        if (result != null && result.Count > 0)
+                        {
+                            if (result[0].BanDeviceID.Contains(request.DeviceID))
+                            {
+                                response.Error = ErrorCode.ERR_AccountInBlackListError;
+                                reply();
+                                return;
+                            }
+                        }
+                    }
+
+                    List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+					if (accountInfoList ==null || accountInfoList.Count == 0)
+					{
+                        response.Error = ErrorCode.ERR_AccountInBlackListError;
+                        reply();
+                        return;
+                    }
+
+					if (accountInfoList[0].BanUserList.Contains(request.UserID))
+					{
+                        response.Error = ErrorCode.ERR_RoleInBlackListError;
+                        reply();
+                        return;
+                    }
+					
+					Log.Warning($"账号登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
+                    if (instanceId != session.InstanceId || player.IsDisposed)
 					{
 						LogHelper.LogDebug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
 						response.Error = ErrorCode.ERR_PlayerSessionError;

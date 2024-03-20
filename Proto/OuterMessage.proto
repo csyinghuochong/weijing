@@ -212,6 +212,7 @@ message C2G_EnterGame // IRequest
 	int32 Simulator = 8;
 	int32 Root = 9;
 	int32 IsRecharge = 10;
+	string DeviceID = 11;
 }
 
 message G2C_EnterGame // IResponse

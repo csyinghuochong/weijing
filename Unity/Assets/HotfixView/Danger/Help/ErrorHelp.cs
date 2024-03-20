@@ -208,6 +208,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_PackageFrequent, "消息异常,请稍后再试");
             ErrorHintList.Add(ErrorCode.ERR_PaiMaiBuyMaxPage, "拍卖道具页数已达底部");
             ErrorHintList.Add(ErrorCode.ERR_FenXiangMaxNum, "今日分享次数已达上限,请明日再来");
+            ErrorHintList.Add(ErrorCode.ERR_RoleInBlackListError, "该角色已被禁止登陆");
+            
 
             ErrorHintList.Add(ErrorCode.Pre_Condition_Error, "前置条件不足！");
         }

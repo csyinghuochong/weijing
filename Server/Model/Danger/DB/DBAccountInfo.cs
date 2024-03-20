@@ -19,7 +19,10 @@ namespace ET
 		//删除UserList列表
 		public List<long> DeleteUserList = new List<long>();
 
-		public int AccountType; //账号类型     0正常  1白名单  2黑名单
+        //禁封角色列表
+        public List<long> BanUserList = new List<long>();
+
+        public int AccountType; //账号类型     0正常  1白名单  2黑名单
 
 		public long CreateTime; //创建时间
 
