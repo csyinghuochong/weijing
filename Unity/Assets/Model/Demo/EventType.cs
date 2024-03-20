@@ -344,6 +344,13 @@ namespace ET
             public string HintText;
         }
 
+        public class CommonPopup : DisposeObject
+        {
+            public static readonly CommonPopup Instance = new CommonPopup();
+            public Scene ZoneScene;
+            public string HintText;
+        }
+
         /// <summary>
         /// 错误码通用提示
         /// </summary>

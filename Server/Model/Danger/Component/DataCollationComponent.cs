@@ -149,6 +149,7 @@ namespace ET
 
         public long PaiMaiGold;
 
+        //禁止拍卖
         public int JinZhiPaiMai;
     }
 }
