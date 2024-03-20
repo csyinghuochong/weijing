@@ -173,12 +173,12 @@ namespace ET
 
         public static void CheckSensitiveWords(this UIChatComponent self)
         {
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
-            if (gm)
-            {
-                return;
-            }
+            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            //if (gm)
+            //{
+            //    return;
+            //}
             string text_new = "";
             string text_old = self.InputFieldTMP.GetComponent<InputField>().text;
             if (text_old.Equals("#etgm"))
@@ -198,6 +198,10 @@ namespace ET
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            if (ComHelp.IsBanHaoZone( accountInfoComponent.ServerId ))
+            {
+                gm = true;
+            }
 
             int userLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             if (userLv < 20 && !gm)

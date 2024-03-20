@@ -21,7 +21,8 @@ namespace ET
                 reply();
                 return;
             }
-            if(request.ChatInfo.PlayerLevel <12)
+           
+            if (!ComHelp.IsBanHaoZone(chatInfoUnit.DomainZone()) &&  request.ChatInfo.PlayerLevel < 20)
             {
                 response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
