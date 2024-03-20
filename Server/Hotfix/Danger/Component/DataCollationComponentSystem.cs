@@ -153,7 +153,7 @@ namespace ET
             return str;
         }
 
-        public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator)
+        public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId)
         {
             string platformName = PlatformHelper.GetPlatformName(platform);
             if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
@@ -166,6 +166,8 @@ namespace ET
             }
             self.Platform += $"{platformName}: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}_";
             self.Simulator = simulator;
+            self.Root = root;   
+            self.DeviceID = deviceId;       
         }
 
         public static void UpdateData(this DataCollationComponent self)
