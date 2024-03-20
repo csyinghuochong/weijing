@@ -191,10 +191,7 @@ namespace ET
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
 				self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
-#if UNITY_EDITOR
-                self.AccountInfoComponent.Age_Type = 100;
-#endif
-				
+
 				Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
 
 				//Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
