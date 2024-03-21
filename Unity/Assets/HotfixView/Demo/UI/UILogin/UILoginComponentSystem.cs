@@ -194,7 +194,7 @@ namespace ET
 				{
                     self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
                 }
-				Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
+                Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
 
 				//Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
@@ -206,6 +206,12 @@ namespace ET
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
 					PlayerPrefsHelp.SetString("UIYinSi0627", "1");
                 }
+#if UNITY_EDITOR
+				if (self.Password.GetComponent<InputField>().text == "6")
+                {
+                    self.AccountInfoComponent.Age_Type = 100;
+                }
+#endif
 			}
 			catch (Exception E)
 			{
