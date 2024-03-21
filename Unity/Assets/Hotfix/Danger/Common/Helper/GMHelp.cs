@@ -146,21 +146,21 @@ namespace ET
 
         public static void SendGmCommands(Scene zongscene, string gmlist)
         {
-            if (gmlist.Contains("chuji"))
-            {
-                ExcurteGmList(zongscene, GetChuJi());
-                return;
-            }
-            if (gmlist.Contains("zhongji"))
-            {
-                ExcurteGmList(zongscene, GetZhongJi());
-                return;
-            }
-            if (gmlist.Contains("gaoji"))
-            {
-                ExcurteGmList(zongscene, GetGaopJi());
-                return;
-            }
+            //if (gmlist.Contains("chuji"))
+            //{
+            //    ExcurteGmList(zongscene, GetChuJi());
+            //    return;
+            //}
+            //if (gmlist.Contains("zhongji"))
+            //{
+            //    ExcurteGmList(zongscene, GetZhongJi());
+            //    return;
+            //}
+            //if (gmlist.Contains("gaoji"))
+            //{
+            //    ExcurteGmList(zongscene, GetGaopJi());
+            //    return;
+            //}
         }
 #endif
 

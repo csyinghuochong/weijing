@@ -46,6 +46,10 @@ namespace ET
             self.Button_AddLevel.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_AddLevel(); });
             self.Button_AddDiamond.GetComponent<Button>().onClick.AddListener(() => { self.SendCommon("1#3#1000"); }); 
             self.Button_AddCoin.GetComponent<Button>().onClick.AddListener(() => { self.SendCommon("1#1#100000"); });
+
+            self.Button_Gaoji.SetActive(false);
+            self.Button_Zhongji.SetActive(false);
+            self.Button_Chuji.SetActive(false);
         }
     }
 

@@ -65,6 +65,15 @@ namespace ET
 					unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Lv, (level*-1).ToString());
 					return;
 				}
+				if (message.GMMsg == "#gaoji")
+				{
+					if (!ComHelp.IsBanHaoZone(unit.DomainZone()))
+					{
+						return;
+					}
+
+
+                }
 				if (message.GMMsg == "#killall")
 				{
 					List<Unit> units = unit.GetParent<UnitComponent>().GetAll();

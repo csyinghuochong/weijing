@@ -314,14 +314,14 @@ namespace ET
                     }
                     return;
                 }
-                if (commands[1].Contains("chuji")
-                    || commands[1].Contains("zhongji")
-                    || commands[1].Contains("zhongji")
-                    )
-                {
-                    GMHelp.SendGmCommands(self.ZoneScene(), text);
-                    return;
-                }
+                //if (commands[1].Contains("chuji")
+                //    || commands[1].Contains("zhongji")
+                //    || commands[1].Contains("zhongji")
+                //    )
+                //{
+                //    GMHelp.SendGmCommands(self.ZoneScene(), text);
+                //    return;
+                //}
                 GMHelp.SendGmCommand( self.ZoneScene(), text);
             }
             else
