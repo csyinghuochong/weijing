@@ -71,8 +71,6 @@ namespace ET
 					{
 						return;
 					}
-
-
                 }
 				if (message.GMMsg == "#killall")
 				{
