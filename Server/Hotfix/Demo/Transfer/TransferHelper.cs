@@ -87,6 +87,11 @@ namespace ET
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case SceneTypeEnum.SeasonTower:
+                        if (!GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
+                        {
+                            return ErrorCode.ERR_ModifyData;
+                        }
+
                         //计算赛季之塔下一关
                         int seasonTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId);
                         if (seasonTowerid == 0)
