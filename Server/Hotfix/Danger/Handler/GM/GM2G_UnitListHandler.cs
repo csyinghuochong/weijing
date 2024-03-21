@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -7,6 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, G2G_UnitListRequest request, G2G_UnitListResponse response, Action reply)
         {
+            List<long> unitlist = new List<long>(); 
             Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
             for (int i = 0; i < players.Length; i++)
             {
@@ -20,6 +22,7 @@ namespace ET
                 else
                 {
                     response.OnLinePlayer++;
+                    unitlist.Add(players[i].UnitId );
                 }
             }
 

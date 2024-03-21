@@ -266,10 +266,9 @@ namespace ET
 
             //当前是否在宠物副本
             bool petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
-
             if (sceneType == SceneTypeEnum.RunRace)
             {
-                Log.Error($"变身大赛触发技能伤害： sceneType == SceneTypeEnum.RunRace  {skillconfig.Id}");
+                Log.Warning($"变身大赛触发技能伤害： sceneType == SceneTypeEnum.RunRace  {skillconfig.Id}");
                 return false;
             }
 
