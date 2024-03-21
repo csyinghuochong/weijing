@@ -25,7 +25,7 @@ namespace ET
                     unitlist.Add(players[i].UnitId );
                 }
             }
-
+            response.UnitList = unitlist;   
             reply();
             await ETTask.CompletedTask;
         }
