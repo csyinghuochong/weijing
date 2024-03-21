@@ -11,6 +11,13 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
+            if (request.OperatateType != 1 && request.OperatateType != 2 && request.OperatateType != 3)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             if (request.OperatateType == 1)
             {
                 //非免费时间则返回

@@ -254,8 +254,10 @@ namespace ET
                        
                         if (request.SceneId > 0)
                         {
-                            if (request.SceneId == 100001 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
+                            if (( request.SceneId >= 100001 && request.SceneId >= 100601)
+                                && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
                             {
+                                Log.Warning($"神秘之门异常: {unit.Id}");
                                 return ErrorCode.ERR_ModifyData;
                             }
 

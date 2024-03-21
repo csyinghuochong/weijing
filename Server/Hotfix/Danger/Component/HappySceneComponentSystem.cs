@@ -13,6 +13,11 @@ namespace ET
 
         public static long GetFubenInstanceId(this HappySceneComponent self, long unitId)
         {
+            if (!self.HappyOpen)
+            {
+                return 0;
+            }
+
             foreach ((long id, List<long> players) in self.FubenPlayers)
             {
                 Scene scene = self.GetChild<Scene>(id);
