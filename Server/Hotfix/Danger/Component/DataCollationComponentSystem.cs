@@ -19,6 +19,8 @@ namespace ET
         public static void Check(this DataCollationComponent self)
         {
             self.TotalOnLine++;
+
+            self.TodayOnLine = self.GetParent<Unit>().GetComponent<UserInfoComponent>().TodayOnLine;
         }
 
         public static void OnXiLian(this DataCollationComponent self, int times)

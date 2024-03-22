@@ -1177,7 +1177,7 @@ namespace ET
                     {
                         useBagInfo.isBinging = true;
                     }
-                    if (getType == ItemGetWay.System)
+                    if (getType == ItemGetWay.System || gm)
                     {
                         useBagInfo.IfJianDing = false;
                     }
@@ -1797,11 +1797,9 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipList[i]);
                 int itemsubType = itemConfig.ItemSubType;
 
-
                 BagInfo useBagInfo = equiplist[0];
-                useBagInfo.IfJianDing = false;
                 useBagInfo.HideProLists = ItemAddHelper.GetEquipZhuanJingHidePro(itemConfig.ItemEquipID, itemConfig.Id, 100, unit, false);
-
+                useBagInfo.IfJianDing = false;
                 if (self.GetEquipListByWeizhi(ItemLocType.ItemLocEquip, itemsubType).Count > 0)
                 {
                     continue;

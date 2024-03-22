@@ -1205,7 +1205,7 @@ namespace ET
         /// <param name="level"></param>
         public static void OnGmGaoJi(this UserInfoComponent self, int level)
         {
-            int lv = level == 1 ? 70 : 40 - self.UserInfo.Lv;
+            int lv = level == 1 ? 70 - self.UserInfo.Lv : 40 - self.UserInfo.Lv;
             self.UpdateRoleData(UserDataType.Lv, lv.ToString());
 
             self.UserInfo.HorseIds.Clear();
