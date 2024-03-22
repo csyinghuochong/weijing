@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIFenXiangSetComponent : Entity, IAwake
     {
+
+        public GameObject Text_tip1;
         public GameObject Button_support;
         public GameObject FenXiang_WeiXin;
         public GameObject FenXiang_QQ;
@@ -29,6 +31,7 @@ namespace ET
             self.FenXiang_QQ = rc.Get<GameObject>("FenXiang_QQ");
             self.Button_AddQQ = rc.Get<GameObject>("Button_AddQQ");
             self.FenXiang_TikTok = rc.Get<GameObject>("FenXiang_TikTok");
+            self.Text_tip1 = rc.Get<GameObject>("Text_tip1");
 
             if (GlobalHelp.GetPlatform() == 5)
             {
@@ -36,6 +39,8 @@ namespace ET
                 self.FenXiang_WeiXin.SetActive(false);
                 self.FenXiang_QQ.SetActive(true);
                 self.FenXiang_QQ.transform.localPosition = new Vector3(0f, 112f, 0f);
+                self.Text_tip1.SetActive(false);
+                self.Button_AddQQ.SetActive(false);
             }
             else
             {

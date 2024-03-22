@@ -332,6 +332,8 @@ MonoBehaviour:
     gameObject: {fileID: 3772940861833351827}
   - key: FenXiang_TikTok
     gameObject: {fileID: 7843789951286071986}
+  - key: Text_tip1
+    gameObject: {fileID: 1985091962000185833}
 --- !u!1 &1063124106129313952
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +589,7 @@ GameObject:
   - component: {fileID: 1085173534110593228}
   - component: {fileID: 8238614920023057634}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_tip1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,6 +17,9 @@ namespace ET
 
     public class UIFenXiangComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Type1;
+        public GameObject Btn_Type2;
+        public GameObject Btn_Type3;
         public GameObject Btn_Type4;
         public GameObject Btn_Type5;
         public GameObject SubViewNode;
@@ -59,10 +62,22 @@ namespace ET
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
+
+            self.Btn_Type1 = rc.Get<GameObject>("Btn_Type1");
+            self.Btn_Type2 = rc.Get<GameObject>("Btn_Type2");
+            self.Btn_Type3 = rc.Get<GameObject>("Btn_Type3");
             self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
             self.Btn_Type5 = rc.Get<GameObject>("Btn_Type5");
             if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
             {
+                self.Btn_Type4.SetActive(false);
+                self.Btn_Type5.SetActive(false);
+            }
+
+            if (GlobalHelp.IsBanHaoMode)
+            {
+                self.Btn_Type2.SetActive(false);
+                self.Btn_Type3.SetActive(false);
                 self.Btn_Type4.SetActive(false);
                 self.Btn_Type5.SetActive(false);
             }
@@ -85,8 +100,8 @@ namespace ET
                 rc.Get<GameObject>("Btn_Type4").SetActive(false);
                 rc.Get<GameObject>("Btn_Type5").SetActive(false);
 
-                Vector3 vector3 = rc.Get<GameObject>("Btn_Type1").transform.position;
-                rc.Get<GameObject>("Btn_Type3").transform.position = vector3;
+                //Vector3 vector3 = rc.Get<GameObject>("Btn_Type1").transform.position;
+                //rc.Get<GameObject>("Btn_Type3").transform.position = vector3;
                 // vector3.y -= 160;
                 // rc.Get<GameObject>("Btn_Type4").transform.position = vector3;
                 
