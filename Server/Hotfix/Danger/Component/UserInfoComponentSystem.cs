@@ -1198,6 +1198,41 @@ namespace ET
             return  ServerHelper.DateDiff_Time(TimeHelper.ServerNow(), self.UserInfo.CreateTime);
         }
 
+        public static void OnGmGaoJi(this UserInfoComponent self)
+        { 
+            self.UserInfo.HorseIds.Clear();
+            Dictionary<int, ZuoQiShowConfig> allzuoqi = ZuoQiShowConfigCategory.Instance.GetAll();
+            foreach (( int zuoqiid, ZuoQiShowConfig zuoQiShowConfig ) in allzuoqi)
+            {
+                self.UserInfo.HorseIds.Add(zuoqiid);
+            }
+            self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, self.UserInfo.HorseIds[0]);
+            self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, self.UserInfo.HorseIds[0]);
+
+            JiaYuanConfig maxjiayuan = null;
+            Dictionary<int, JiaYuanConfig> allJiayuan = JiaYuanConfigCategory.Instance.GetAll();
+            foreach ((int jiayualv, JiaYuanConfig jiaYuanConfig) in allJiayuan)
+            {
+                maxjiayuan = jiaYuanConfig;
+            }
+            self.UserInfo.JiaYuanLv = maxjiayuan.Id;
+
+
+            SeasonLevelConfig maxseason = null;
+            Dictionary<int, SeasonLevelConfig> allseason = SeasonLevelConfigCategory.Instance.GetAll(); 
+            foreach ((int seasonid, SeasonLevelConfig seasonLevelConfig) in allseason )
+            {
+                maxseason = seasonLevelConfig;
+            }
+            self.UserInfo.SeasonLevel = maxseason.Id;
+
+            if (self.UserInfo.OccTwo == 0)
+            {
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.UserInfo.Occ);
+                self.UserInfo.OccTwo = occupationConfig.OccTwoID[ RandomHelper.RandomNumber(0, occupationConfig.OccTwoID.Length) ];
+            }
+        }
+
         public static void ClearDayData(this UserInfoComponent self)
         {
             self.UserInfo.DayFubenTimes.Clear();

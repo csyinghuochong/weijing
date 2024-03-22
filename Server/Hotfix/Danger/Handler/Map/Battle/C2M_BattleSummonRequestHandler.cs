@@ -10,6 +10,15 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_BattleSummonRequest request, M2C_BattleSummonResponse response, Action reply)
         {
+            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.Battle)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
+            int sceneid = mapComponent.SceneId;
             AttackRecordComponent attackRecordComponent = unit.GetComponent<AttackRecordComponent>();
             List<BattleSummonInfo> BattleSummonList = attackRecordComponent.BattleSummonList;
 
@@ -79,7 +88,6 @@ namespace ET
             int camp = unit.GetBattleCamp();
             int monsterid = battleSummonConfig.MonsterIds[camp - 1];
             int monsternum = battleSummonConfig.MonsterNumber;
-            int sceneid = unit.DomainScene().GetComponent<MapComponent>().SceneId;
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
 
             for (int i = 0;i <monsternum; i++)

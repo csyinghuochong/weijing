@@ -27,7 +27,7 @@ namespace ET
             self.ChengJiuListNode = rc.Get<GameObject>("ChengJiuListNode");
             self.TypeListNode = rc.Get<GameObject>("TypeListNode");
             self.UIChengJiuShowItem = rc.Get<GameObject>("UIChengJiuShowItem");
-            self.UIChengJiuShowItem.SetActive(true);
+            self.UIChengJiuShowItem.SetActive(false);
             self.UIChengJiuType = rc.Get<GameObject>("UIChengJiuType");
             self.UIChengJiuType.SetActive(false);
 

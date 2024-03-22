@@ -68,6 +68,7 @@ namespace ET
             }
         }
 
+
         public static int GetShoujiIdByItemId(this ShoujiComponent self, int itemId)
         {
             int shoujiId = 0;   
@@ -130,6 +131,42 @@ namespace ET
                 }
             }
             return keyValuePairInt;
+        }
+
+        public static void OnGmGaoJi(this ShoujiComponent self)
+        {
+#if SERVER
+            //收集
+            self.ShouJiChapterInfos.Clear();
+            foreach (var item in ShouJiConfigCategory.Instance.GetAll().Values)
+            {
+                int itemId = item.ItemListID;
+                ShouJiChapterInfo shouJiChapterInfo = new ShouJiChapterInfo();
+                shouJiChapterInfo.ShouJiItemList = new List<int> { };
+                while (itemId != 0)
+                {
+                    ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(itemId);
+                    itemId = shouJiItemConfig.NextID;
+
+                    shouJiChapterInfo.ShouJiItemList.Add(shouJiItemConfig.ItemID);
+                }
+                shouJiChapterInfo.ChapterId = item.Id;
+                shouJiChapterInfo.StarNum = item.ProList3_StartNum;
+                self.ShouJiChapterInfos.Add(shouJiChapterInfo);
+            }
+
+            //珍宝
+            Dictionary<int, ShouJiItemConfig>  treasureList = ShouJiItemConfigCategory.Instance.GetAll();
+            foreach ((  int shoujiid, ShouJiItemConfig shouJiConfig ) in treasureList) 
+            {
+                if (shouJiConfig.StartType!=2)
+                {
+                    continue;
+                }
+
+                self.OnShouJiTreasure(shouJiConfig.Id, shouJiConfig.AcitveNum);
+            }
+#endif
         }
 
         public static List<PropertyValue> GetTreasurePro(this ShoujiComponent self)

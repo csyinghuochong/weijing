@@ -131,6 +131,15 @@ namespace ET
             return 0;
         }
 
+        public static void OnGmGaoJi(this TitleComponent self)
+        {
+            Dictionary<int, TitleConfig> allTitle = TitleConfigCategory.Instance.GetAll();
+            foreach (var key in allTitle.Keys) 
+            {
+                self.OnActiveTile( key );
+            }
+        }
+
         public static void OnActiveTile(this TitleComponent self, int titleId)
         {
             for (int i = self.TitleList.Count - 1; i >= 0; i--)

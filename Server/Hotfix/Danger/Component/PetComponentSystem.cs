@@ -1529,6 +1529,87 @@ namespace ET
             self.PetMingRecordList.Add( record );
         }
 
+        public static void OnGmGaoJi(this PetComponent self)
+        {
+ 
+            //每个宠物附带满级的宠物之核,并进化
+            List<int> itemids = new List<int>()
+            {
+            10031001,10031005,10031011,10031013,10031014,10031015,10031016,10031017
+            };
+
+            for (int i = 0; i < itemids.Count; i++)
+            {
+                string itempar = ItemConfigCategory.Instance.Get(itemids[i] ).ItemUsePar;
+                int petid = int.Parse( itempar );
+                if (self.HavePetConfigId(petid))
+                {
+                    continue;
+                }
+                self.OnGmAddPet( petid );
+            }
+        }
+
+        public static bool HavePetConfigId(this PetComponent self, int configId)
+        {
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (self.RolePetInfos[i].ConfigId == configId)
+                { 
+                    return true;    
+                }
+            }
+            return false;
+        }
+
+        public static void OnGmAddPet(this PetComponent self, int petId)
+        {
+            //10060230(攻击之核-1)   10060430(物防之核-2) 10060130(生命之核-3)  
+
+            Unit unit = self.GetParent<Unit>();
+            PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
+            List<int> weight = new List<int>(petConfig.SkinPro);
+
+            int index = RandomHelper.RandomByWeight(weight);
+            int skinId = petConfig.Skin[index];
+
+            self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
+
+            RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
+
+            newpet = self.PetXiLian(newpet, 1, 0, 0);
+            newpet.PetLv = 70;
+            newpet.AddPropretyValue = "70_70_70_70";
+            newpet.UpStageStatus = 2;
+            self.UpdatePetAttribute(newpet, false);
+            self.CheckPetPingFen();
+            self.CheckPetZiZhi();
+
+            unit.GetComponent<ChengJiuComponent>().OnGetPet(newpet);
+            unit.GetComponent<TaskComponent>().OnGetPet(newpet);
+
+            self.OnGmPetEquip(10060230 , newpet);
+            self.OnGmPetEquip(10060430, newpet);
+            self.OnGmPetEquip(10060130, newpet);
+
+            self.RolePetInfos.Add(newpet);
+        }
+
+        public static void OnGmPetEquip(this PetComponent self, int itemid,  RolePetInfo rolePetInfo)
+        {
+            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+            bagComponent.OnAddItemData($"{itemid};1", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}");
+            List<BagInfo> bagitemList = bagComponent.GetIdItemListByLoc(itemid, ItemLocType.ItemPetHeXinBag);
+            if (bagitemList.Count == 0)
+            {
+                return;
+            }
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            int postion = itemConfig.ItemSubType - 1;
+            bagComponent.OnChangeItemLoc(bagitemList[0], ItemLocType.ItemPetHeXinEquip, ItemLocType.ItemPetHeXinBag);
+            rolePetInfo.PetHeXinList[postion] = bagitemList[0].BagInfoID;
+        }
+
         //判断当前宠物是否已满
         public static bool PetIsFull(this PetComponent self)
         {

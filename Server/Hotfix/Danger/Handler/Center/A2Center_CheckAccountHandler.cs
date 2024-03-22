@@ -27,10 +27,10 @@ namespace ET
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;
             response.PlayerInfo = dBCenterAccountInfo != null ? dBCenterAccountInfo.PlayerInfo : null;
             response.AccountId = dBCenterAccountInfo != null ? dBCenterAccountInfo.Id : 0;
-            if (dBCenterAccountInfo != null && dBCenterAccountInfo.AccountType == (int)AccountType.Delete)
-            {
-                response.PlayerInfo = null;
-            }
+            //if (dBCenterAccountInfo != null && dBCenterAccountInfo.AccountType == (int)AccountType.Delete)
+            //{
+            //    response.PlayerInfo = null;
+            //}
             if (response.PlayerInfo != null)
             {
                 for (int i = 0; i < response.PlayerInfo.RechargeInfos.Count; i++)
@@ -40,6 +40,7 @@ namespace ET
             }
             response.IsHoliday = scene.GetComponent<FangChenMiComponent>().IsHoliday;
             response.StopServer = scene.GetComponent<FangChenMiComponent>().StopServer;
+            response.Message = dBCenterAccountInfo!=null? dBCenterAccountInfo.AccountType.ToString():string.Empty;
             reply();
             await ETTask.CompletedTask;
         }

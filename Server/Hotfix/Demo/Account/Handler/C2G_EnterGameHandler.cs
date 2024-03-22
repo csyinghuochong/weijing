@@ -132,7 +132,7 @@ namespace ET
                         return;
                     }
 					
-					Log.Warning($"账号登录: {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
+					Log.Warning($"账号登录(EnterGame):{session.DomainZone()} {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
                     if (instanceId != session.InstanceId || player.IsDisposed)
 					{
 						LogHelper.LogDebug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
@@ -151,7 +151,7 @@ namespace ET
 						return;
 					}
 
-					//LogHelper.LogDebug($"LoginTest  C2G_EnterGame_1 player.Id： {player.Id} request.UserID: {request.UserID} player.PlayerState：{player.PlayerState} request.Relink：{request.Relink}");
+					//LogHelper.LogDebug($"LoginTest  C2G_EnterGame_1 player.Id： {player.Id} request.UserID: {request.UserID} player.PlayerState：{player.PlayerState} request.Relinkk：{request.Relink}");
                     //player可以映射任意一个seesion。 session是唯一的
                     if (player.PlayerState == PlayerState.Game && !request.Relink)
                     {

@@ -143,6 +143,52 @@ namespace ET
             }
         }
 
+        public static long GetGoldGetTotal(this DataCollationComponent self)
+        {
+            if (string.IsNullOrEmpty(self.GoldGet))
+            {
+                return 0;
+            }
+            long value = 0;
+            string[] costlist = self.GoldGet.Split('_');
+            for (int i = 0; i < costlist.Length; i++)
+            {
+                string[] costinfo = costlist[i].Split(',');
+                if (costinfo.Length < 3)
+                {
+                    continue;
+                }
+
+                int getWay = int.Parse(costinfo[0]);
+                 value += long.Parse(costinfo[2]);
+                
+            }
+            return value;
+        }
+
+        public static long GetGoldCostTotal(this DataCollationComponent self)
+        {
+            if (string.IsNullOrEmpty(self.GoldCost))
+            {
+                return 0;
+            }
+            long value = 0;
+            string[] costlist = self.GoldCost.Split('_');
+            for (int i = 0; i < costlist.Length; i++)
+            {
+                string[] costinfo = costlist[i].Split(',');
+                if (costinfo.Length < 3)
+                {
+                    continue;
+                }
+
+                int getWay = int.Parse(costinfo[0]);
+                value += long.Parse(costinfo[2]);
+
+            }
+            return value;
+        }
+
         public static string CostListToString(this DataCollationComponent self, List<KeyValuePairInt> pairInts)
         {
             string str = string.Empty;
@@ -169,6 +215,7 @@ namespace ET
             self.IsRoot = root;   
             self.DeviceID = deviceId;       
         }
+
 
         public static string GetDeviceID(this DataCollationComponent self)
         { 

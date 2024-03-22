@@ -71,8 +71,49 @@ namespace ET
 					{
 						return;
 					}
+
+                    //if (unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Count > 2)
+                    //{
+                    //	return;
+                    //}
+                    int level = 70 - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
+
+
+                    //激活全部坐骑
+                    //家园等级提升到满级
+                    //赛季等级达到25级
+                    unit.GetComponent<UserInfoComponent>().OnGmGaoJi();
+
+
+                    //角色装备强化全部到上限
+                    unit.GetComponent<BagComponent>().OnGmGaoJi();
+
+					//每个宠物附带满级的宠物之核,并进化
+					unit.GetComponent<PetComponent>().OnGmGaoJi();
+
+                    //激活全部收集
+                    //激活全部珍宝
+                    unit.GetComponent<ShoujiComponent>().OnGmGaoJi();
+
+                   
+                    //激活全部称号
+                    unit.GetComponent<TitleComponent>().OnGmGaoJi();
+
+                    //激活全部成就
+                    //激活全部精灵
+                    unit.GetComponent<ChengJiuComponent>().OnGmGaoJi();
+
+					//激活试炼之地所有层数
+					 int trialFubenid = TowerHelper.GetLastTowerIdByScene(SceneTypeEnum.TrialDungeon);
+					 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TrialDungeonId, trialFubenid);
+
+                    //激活家园里的美味大师//激活家园里的菜谱
+                    //家园土地默认全部开启
+                    unit.GetComponent<JiaYuanComponent>().OnGmGaoJi();
                 }
-				if (message.GMMsg == "#killall")
+
+                if (message.GMMsg == "#killall")
 				{
 					List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
 					for(int i = units.Count - 1; i >= 0; i--)

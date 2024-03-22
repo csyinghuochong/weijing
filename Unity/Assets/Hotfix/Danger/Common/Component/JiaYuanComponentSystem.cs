@@ -169,6 +169,48 @@ namespace ET
             return proList;
         }
 
+        public static void OnGmGaoJi(this JiaYuanComponent self)
+        {
+#if SERVER
+            JiaYuanConfig maxjiayuan = null;
+            Dictionary<int, JiaYuanConfig> allJiayuan = JiaYuanConfigCategory.Instance.GetAll();
+            foreach ( (int jiayualv, JiaYuanConfig jiaYuanConfig) in allJiayuan)
+            {
+                maxjiayuan = jiaYuanConfig;
+            }
+
+            Dictionary<int,int> maxpro = JiaYuanConfigCategory.Instance.JiaYuanProMax[maxjiayuan.Id];
+            foreach ( (int keyid, int addvalue) in maxpro)
+            {
+                self.UpdateDaShiProInfo( keyid, addvalue );
+            }
+
+
+            List<int> FoodList = new List<int>();
+            Dictionary<int, ItemConfig> allItem = ItemConfigCategory.Instance.GetAll();
+            foreach ((int itemid, ItemConfig itemConfig) in allItem)
+            {
+                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131 && itemConfig.ItemQuality > 2)
+                {
+                    FoodList.Add(itemConfig.Id);
+                }
+            }
+            self.LearnMakeIds_7.Clear();
+            self.LearnMakeIds_7.AddRange(FoodList);
+
+            self.PlanOpenList_7.Clear();
+            int planMax = ConfigHelper.JiaYuanFarmOpen.Count + 4;
+            for (int i = 0; i < planMax; i++)
+            {
+                self.PlanOpenList_7.Add(i);
+            }
+
+            self.JiaYuanDaShiTime_1 = 5000;
+
+
+#endif
+        }
+
         public static void UpdateDaShiProInfo(this JiaYuanComponent self, int keyid, int addvalue)
         {
             for (int i = 0; i < self.JiaYuanProList_7.Count; i++)

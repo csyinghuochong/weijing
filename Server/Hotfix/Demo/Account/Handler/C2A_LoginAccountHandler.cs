@@ -79,7 +79,7 @@ namespace ET
                 if (!ComHelp.RobotPassWord.Equals(request.Password))
                 {
                     //Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
-                    Log.Warning($"客户端登录:{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
+                    Log.Warning($"账号登录(LoginAccount):{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
                 }
 
                 //密码要md5
@@ -207,7 +207,9 @@ namespace ET
                             await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
 
-                        if (account.AccountType == 2 && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
+                        if (response.Message == "2"
+                            && !session.RemoteAddress.ToString().Contains("119.39.6.47")
+                            && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
                         {
                             response.Error = ErrorCode.ERR_AccountInBlackListError;
                             response.AccountId = account.Id;

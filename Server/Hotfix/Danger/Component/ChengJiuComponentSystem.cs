@@ -218,6 +218,24 @@ namespace ET
             self.JingLingList.Add(jid);
         }
 
+        public static void OnGmGaoJi(this ChengJiuComponent self)
+        {
+            self.ChengJiuProgessList.Clear();
+            self.ChengJiuCompleteList.Clear();
+            Dictionary<int, ChengJiuConfig> allchengjiu = ChengJiuConfigCategory.Instance.GetAll();
+            foreach (var item in allchengjiu)
+            {
+                self.ChengJiuCompleteList.Add( item.Key );
+            }
+
+            self.JingLingList.Clear();  
+            Dictionary<int, JingLingConfig> alljingling = JingLingConfigCategory.Instance.GetAll();
+            foreach (var item in alljingling)
+            {
+                self.OnActiveJingLing(item.Key); 
+            }
+        }
+
         public static void TriggerEvent(this ChengJiuComponent self, ChengJiuTargetEnum chengJiuTarget, int target_id, int target_value=1)
         {
             int chengJiuTargetInt = (int)chengJiuTarget;

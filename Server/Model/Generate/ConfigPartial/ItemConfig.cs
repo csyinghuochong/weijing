@@ -6,6 +6,7 @@ namespace ET
     public partial class ItemConfigCategory
     {
 
+        public List<int> FoodList = new List<int> { };
         public Dictionary<int, List<int>> FoodLevelList = new Dictionary<int, List<int>>();
         public Dictionary<int, List<int>> EquipTypeList = new Dictionary<int, List<int>>(); 
 
@@ -34,6 +35,14 @@ namespace ET
                         EquipTypeList.Add(itemConfig.ItemSubType, equiplist);
                     }
                     equiplist.Add(itemConfig.Id);
+                }
+            }
+
+            foreach (ItemConfig itemConfig in this.GetAll().Values)
+            {
+                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131 && itemConfig.ItemQuality > 2)
+                {
+                    FoodList.Add(itemConfig.Id);
                 }
             }
         }
