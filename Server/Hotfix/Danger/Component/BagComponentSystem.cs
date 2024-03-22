@@ -1625,7 +1625,7 @@ namespace ET
 
             List<int> equipList = new List<int>() 
             {
-                14060004,14100004,14100008,14100104,14100108,14100204
+                
             };
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
@@ -1779,14 +1779,19 @@ namespace ET
                 self.OnAddItemData($"{itemInfo[1]};{itemInfo[2]}", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}");
             }
 
-            //"1#14060004#1",
-            //"1#14100004#1",
-            //"1#14100008#1",
-            //"1#14100104#1",
-            //"1#14100108#1",
-            //"1#14100204#1",
-            //穿戴装备
             for (int i = 0; i < equipList.Count; i++)
+            {
+                self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}");
+            }
+
+                //"1#14060004#1",
+                //"1#14100004#1",
+                //"1#14100008#1",
+                //"1#14100104#1",
+                //"1#14100108#1",
+                //"1#14100204#1",
+                //穿戴装备
+                for (int i = 0; i < equipList.Count; i++)
             { 
                 List<BagInfo> equiplist = self.GetIdItemList(equipList[i]);
                 if (equiplist.Count == 0)
