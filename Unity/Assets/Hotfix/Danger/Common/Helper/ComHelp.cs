@@ -837,6 +837,26 @@ namespace ET
             return number >= 3;
         }
 
+        public static int KillBoss_Lv_Number(List<KeyValuePair> monsterlist, int lv)
+        {
+            int number = 0;
+
+            for (int i = 0; i < monsterlist.Count; i++)
+            {
+                if (monsterlist[i].KeyId == 70001004)
+                {
+                    continue;
+                }
+
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterlist[i].KeyId);
+                if (monsterConfig.Lv >= (lv - 5))
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
         public static bool IsCanChat_KillBoss(List<KeyValuePair> monsterlist, int lv)
         {
             if (lv >= 30)
