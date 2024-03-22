@@ -1198,8 +1198,16 @@ namespace ET
             return  ServerHelper.DateDiff_Time(TimeHelper.ServerNow(), self.UserInfo.CreateTime);
         }
 
-        public static void OnGmGaoJi(this UserInfoComponent self)
-        { 
+        /// <summary>
+        /// 高级是1  中级是2
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="level"></param>
+        public static void OnGmGaoJi(this UserInfoComponent self, int level)
+        {
+            int lv = level == 1 ? 70 : 40 - self.UserInfo.Lv;
+            self.UpdateRoleData(UserDataType.Lv, lv.ToString());
+
             self.UserInfo.HorseIds.Clear();
             Dictionary<int, ZuoQiShowConfig> allzuoqi = ZuoQiShowConfigCategory.Instance.GetAll();
             foreach (( int zuoqiid, ZuoQiShowConfig zuoQiShowConfig ) in allzuoqi)

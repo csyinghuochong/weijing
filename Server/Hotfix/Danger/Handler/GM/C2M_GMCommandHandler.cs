@@ -65,29 +65,28 @@ namespace ET
 					unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Lv, (level*-1).ToString());
 					return;
 				}
-				if (message.GMMsg == "#gaoji")
+				if (message.GMMsg == "#gaoji"
+					|| message.GMMsg == "#zhongji")
 				{
 					if (!ComHelp.IsBanHaoZone(unit.DomainZone()))
 					{
 						return;
 					}
 
-                    //if (unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Count > 2)
-                    //{
-                    //	return;
-                    //}
-                    int level = 70 - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
-
+					//if (unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Count > 2)
+					//{
+					//	return;
+					//}
+					int level = message.GMMsg == "#gaoji" ? 1 : 2;
 
                     //激活全部坐骑
                     //家园等级提升到满级
                     //赛季等级达到25级
-                    unit.GetComponent<UserInfoComponent>().OnGmGaoJi();
+                    unit.GetComponent<UserInfoComponent>().OnGmGaoJi(level);
 
 
                     //角色装备强化全部到上限
-                    unit.GetComponent<BagComponent>().OnGmGaoJi();
+                    unit.GetComponent<BagComponent>().OnGmGaoJi(level);
 
 					//每个宠物附带满级的宠物之核,并进化
 					unit.GetComponent<PetComponent>().OnGmGaoJi();

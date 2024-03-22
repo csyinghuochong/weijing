@@ -207,7 +207,7 @@ namespace ET
 					PlayerPrefsHelp.SetString("UIYinSi0627", "1");
                 }
 #if UNITY_EDITOR
-				if (self.Password.GetComponent<InputField>().text == "6")
+				//if (self.Password.GetComponent<InputField>().text == "6")
                 {
                     self.AccountInfoComponent.Age_Type = 100;
                 }

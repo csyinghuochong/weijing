@@ -1578,8 +1578,8 @@ namespace ET
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
             newpet = self.PetXiLian(newpet, 1, 0, 0);
-            newpet.PetLv = 70;
-            newpet.AddPropretyValue = "70_70_70_70";
+            newpet.PetLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+            newpet.AddPropretyValue = $"{newpet.PetLv}_{newpet.PetLv}_{newpet.PetLv}_{newpet.PetLv}";
             newpet.UpStageStatus = 2;
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();

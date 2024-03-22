@@ -862,6 +862,11 @@ namespace ET
                 return true;
             }
 
+            if (getType == ItemGetWay.GM)
+            {
+                gm = true;
+            }
+
             List<RewardItem> rewardItems = new List<RewardItem>();
             for (int i = rewardItems_init.Count - 1; i >= 0; i--)
             {
@@ -1527,7 +1532,7 @@ namespace ET
 
 
 
-        public static void OnGmGaoJi(this BagComponent self)
+        public static void OnGmGaoJi(this BagComponent self, int level)
         {
             List<string> gmitemList = new List<string>()
             {
@@ -1624,68 +1629,142 @@ namespace ET
             };
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.Occ == 1)  //战士
+
+            if (level == 1) //高级
             {
-                equipList.Add(15810001);
-                equipList.Add(15810002);
-            }
-            if (userInfo.Occ == 2)  //法师
-            {
-                equipList.Add(15810101);
-                equipList.Add(15810102);
-            }
-            if (userInfo.Occ == 3)  //猎人
-            {
-                equipList.Add(15810001);
-                equipList.Add(15810201);
-            }
-            //11:布甲
-            //12:轻甲
-            //13:重甲
-            int occTwo = userInfo.OccTwo;
-            if (occTwo == 0)
-            {
-                equipList.Add(10030001);
-                equipList.Add(15806001);
-                equipList.Add(15807001);
-                equipList.Add(15808001);
-                equipList.Add(15809001);
-                equipList.Add(15806001);
-                equipList.Add(15807001);
-                equipList.Add(15808001);
-                equipList.Add(15809001);
-            }
-            else
-            { 
-                OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
-                if (occupationTwo.ArmorMastery == 1)
+                if (userInfo.Occ == 1)  //战士
                 {
-                    equipList.Add(15801002);
-                    equipList.Add(15802002);
-                    equipList.Add(15803002);
-                    equipList.Add(15804002);
-                    equipList.Add(15805002);
-                    equipList.Add(15811002);
+                    equipList.Add(15810001);
+                    equipList.Add(15810002);
                 }
-                if (occupationTwo.ArmorMastery == 12)
+                if (userInfo.Occ == 2)  //法师
                 {
-                    equipList.Add(15801001);
-                    equipList.Add(15802001);
-                    equipList.Add(15803001);
-                    equipList.Add(15804001);
-                    equipList.Add(15805001);
-                    equipList.Add(15811001);
+                    equipList.Add(15810101);
+                    equipList.Add(15810102);
                 }
-                if (occupationTwo.ArmorMastery == 13)
+                if (userInfo.Occ == 3)  //猎人
                 {
-                    equipList.Add(15801003);
-                    equipList.Add(15802003);
-                    equipList.Add(15803003);
-                    equipList.Add(15804003);
-                    equipList.Add(15805003);
-                    equipList.Add(15811003);
+                    equipList.Add(15810001);
+                    equipList.Add(15810201);
+                }
+                //11:布甲
+                //12:轻甲
+                //13:重甲
+                int occTwo = userInfo.OccTwo;
+                if (occTwo == 0)
+                {
+                    equipList.Add(10030001);
+                    equipList.Add(15806001);
+                    equipList.Add(15807001);
+                    equipList.Add(15808001);
+                    equipList.Add(15809001);
+                    equipList.Add(15806001);
+                    equipList.Add(15807001);
+                    equipList.Add(15808001);
+                    equipList.Add(15809001);
+                }
+                else
+                {
+                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                    if (occupationTwo.ArmorMastery == 1)
+                    {
+                        equipList.Add(15801002);
+                        equipList.Add(15802002);
+                        equipList.Add(15803002);
+                        equipList.Add(15804002);
+                        equipList.Add(15805002);
+                        equipList.Add(15811002);
+                    }
+                    if (occupationTwo.ArmorMastery == 12)
+                    {
+                        equipList.Add(15801001);
+                        equipList.Add(15802001);
+                        equipList.Add(15803001);
+                        equipList.Add(15804001);
+                        equipList.Add(15805001);
+                        equipList.Add(15811001);
+                    }
+                    if (occupationTwo.ArmorMastery == 13)
+                    {
+                        equipList.Add(15801003);
+                        equipList.Add(15802003);
+                        equipList.Add(15803003);
+                        equipList.Add(15804003);
+                        equipList.Add(15805003);
+                        equipList.Add(15811003);
+                    }
                 }
             }
+            if (level == 2)  //中级158-154
+            {
+                if (userInfo.Occ == 1)  //战士
+                {
+                    equipList.Add(15410001);
+                    equipList.Add(15410002);
+                }
+                if (userInfo.Occ == 2)  //法师
+                {
+                    equipList.Add(15410101);
+                    equipList.Add(15410102);
+                }
+                if (userInfo.Occ == 3)  //猎人
+                {
+                    equipList.Add(15410001);
+                    equipList.Add(15410201);
+                }
+                //11:布甲
+                //12:轻甲
+                //13:重甲
+                int occTwo = userInfo.OccTwo;
+                if (occTwo == 0)
+                {
+                    equipList.Add(10030001);
+                    equipList.Add(15406001);
+                    equipList.Add(15407001);
+                    equipList.Add(15408001);
+                    equipList.Add(15409001);
+                    equipList.Add(15406001);
+                    equipList.Add(15407001);
+                    equipList.Add(15408001);
+                    equipList.Add(15409001);
+                }
+                else
+                {
+                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                    if (occupationTwo.ArmorMastery == 1)
+                    {
+                        equipList.Add(15401002);
+                        equipList.Add(15402002);
+                        equipList.Add(15403002);
+                        equipList.Add(15404002);
+                        equipList.Add(15405002);
+                        equipList.Add(15411002);
+                    }
+                    if (occupationTwo.ArmorMastery == 12)
+                    {
+                        equipList.Add(15401001);
+                        equipList.Add(15402001);
+                        equipList.Add(15403001);
+                        equipList.Add(15404001);
+                        equipList.Add(15405001);
+                        equipList.Add(15411001);
+                    }
+                    if (occupationTwo.ArmorMastery == 13)
+                    {
+                        equipList.Add(15401003);
+                        equipList.Add(15402003);
+                        equipList.Add(15403003);
+                        equipList.Add(15404003);
+                        equipList.Add(15405003);
+                        equipList.Add(15411003);
+                    }
+                }
+            }
+            if (level == 3)  //低级账号
+            {
+
+            }
+
 
             for (int i = 0; i < gmitemList.Count; i++)
             { 
@@ -1696,6 +1775,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 self.OnAddItemData($"{itemInfo[1]};{itemInfo[2]}", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}");
             }
 
