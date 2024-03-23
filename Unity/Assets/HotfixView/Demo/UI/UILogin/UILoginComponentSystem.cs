@@ -956,6 +956,7 @@ namespace ET
 			self.LastLoginTime = TimeHelper.ClientNow();
 			self.AccountInfoComponent.ServerId = self.ServerInfo.ServerId;
 			self.AccountInfoComponent.ServerIp = self.ServerInfo.ServerIp;
+			self.AccountInfoComponent.ServerName = self.ServerInfo.ServerName;
 			self.AccountInfoComponent.Account = account;
 			self.AccountInfoComponent.Password = password;
 			self.AccountInfoComponent.LoginType = loginType;

@@ -607,7 +607,7 @@ namespace ET
                 int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
 
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+                string serverName = accountInfoComponent.ServerName;
 
                 //UploadUserData
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -1154,7 +1154,7 @@ namespace ET
             int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            string serverName = accountInfoComponent.ServerName;
 
             //UploadUserData
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;

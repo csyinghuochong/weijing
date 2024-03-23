@@ -29,6 +29,7 @@ namespace ET
 		public string Password;
 		public string LoginType;
 		public long CurrentRoleId;
+		public string ServerName;
 
 		public long LastTime = 0;
 

@@ -69,7 +69,8 @@ namespace ET
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Lab_ServerName.GetComponent<Text>().text = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            string serverName = accountInfoComponent.ServerName;
+            self.Lab_ServerName.GetComponent<Text>().text = serverName;
 
             self.InitShow();
         }

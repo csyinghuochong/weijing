@@ -137,7 +137,7 @@ namespace ET
 
             //记录tap数据
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            string serverName = accountInfoComponent.ServerName;
 #if UNITY_ANDROID
             if (choukaType == 1)
             {

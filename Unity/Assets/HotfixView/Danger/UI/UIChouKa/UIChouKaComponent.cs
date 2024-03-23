@@ -213,7 +213,7 @@ namespace ET
 
             //记录tap数据
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            string serverName = accountInfoComponent.ServerName;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 #if UNITY_ANDROID
             TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName,userInfo.Lv, 1, times);
