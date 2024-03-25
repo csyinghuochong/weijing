@@ -82,8 +82,13 @@ namespace ET
                 self.NoticeActivityUpdate_Hour(dateTime).Coroutine();
             }
 
-            self.SaveDB();
-            self.CheckPetMine();
+            self.CheckIndex++;
+            if(self.CheckIndex >= 10)
+            {
+               
+                self.CheckPetMine();
+                self.SaveDB();
+            }
 
             //self.TeamUpdateHandler().Coroutine();
         }
@@ -126,10 +131,7 @@ namespace ET
 
         public static void CheckPetMine(this ActivitySceneComponent self)
         {
-            self.CheckIndex++;
-            if (self.CheckIndex >= 1)
-            {
-                int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
+            int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
 
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
 
@@ -168,8 +170,6 @@ namespace ET
                         self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] = oldValue;
                     }
                 }
-                self.CheckIndex = 0;
-            }
         }
 
         public static async ETTask TeamUpdateHandler(this ActivitySceneComponent self)
