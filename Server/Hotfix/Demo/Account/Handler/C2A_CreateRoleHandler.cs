@@ -121,13 +121,13 @@ namespace ET
 						await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
 
 						//梦想之城 角色名 邵蓝璃  误删恢复
-						if (newAccount.Account.Equals(("13898488192")))
-						{
-							if (!newAccount.UserList.Contains((2289640847777529857)))
-							{
-								newAccount.UserList.Add(2289640847777529857);
-							}
-						}
+						// if (newAccount.Account.Equals(("13898488192")))
+						// {
+						// 	if (!newAccount.UserList.Contains((2289640847777529857)))
+						// 	{
+						// 		newAccount.UserList.Add(2289640847777529857);
+						// 	}
+						// }
 
 						//存储账号信息
 						newAccount.UserList.Add(userId);
