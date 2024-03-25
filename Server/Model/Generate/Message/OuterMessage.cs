@@ -1475,6 +1475,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string NoticeText { get; set; }
 
+		[ProtoMember(5)]
+		public string AccountCenterIp { get; set; }
+
 	}
 
 	[Message(OuterOpcode.ServerItem)]

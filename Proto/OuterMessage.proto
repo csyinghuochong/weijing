@@ -719,6 +719,7 @@ message A2C_ServerList // IResponse
 	repeated ServerItem ServerItems = 2;		//服务器列表
 	string NoticeVersion = 3;
 	string NoticeText = 4;
+	string AccountCenterIp = 5;
 }
 
 message ServerItem
