@@ -11,6 +11,7 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, M2Center_BuChangeRequest request, Center2M_BuChangeResponse response, Action reply)
         {
+            Log.Warning($"M2Center_BuChangeRequest:{request.AccountId}");
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Id == request.AccountId);
             PlayerInfo playerInfo = centerAccountInfoList[0].PlayerInfo;
 

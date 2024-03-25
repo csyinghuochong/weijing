@@ -9,6 +9,7 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2A_DeleteRoleData request, A2C_DeleteRoleData response, Action reply)
 		{
+            Log.Warning($"C2A_DeleteRoleData: {request.AccountId} {request.DeleUserID}");
             try
             {
                 if (session.GetComponent<SessionLockingComponent>() != null)
@@ -30,9 +31,7 @@ namespace ET
                         reply();
                         return;
                     }
-
-                    Log.Warning($"C2A_DeleteRoleData: {request.AccountId} {request.DeleUserID}");
-
+                    
                     DBAccountInfo newAccount = newAccountList[0];
                     //移除角色
                     if (newAccount.UserList.Count - 1 >= request.DeleXuhaoID)

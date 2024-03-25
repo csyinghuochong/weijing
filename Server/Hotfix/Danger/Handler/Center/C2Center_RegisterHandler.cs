@@ -9,6 +9,7 @@ namespace ET
 
         protected override async ETTask Run(Session session, C2Center_Register request, Center2C_Register response, Action reply)
         {
+            Log.Warning($"C2Center_Register:{request.Account}");
             if (session.DomainScene().SceneType != SceneType.AccountCenter)
             {
                 Log.Warning($"请求的Scene错误2，当前Scene为：{session.DomainScene().SceneType}");
@@ -60,9 +61,7 @@ namespace ET
                         newAccount.PlayerInfo.Name = request.Account;
                         newAccount.PlayerInfo.IdCardNo = "429001198010232399";
                     }
-
-
-                    Log.Debug($"C2Center_RegisterHandler-Save<DBCenterAccountInfo>55555: { session.DomainZone()}");
+ 
                     await Game.Scene.GetComponent<DBComponent>().Save(session.DomainZone(), newAccount);
                     //发送创建回执
                     reply();

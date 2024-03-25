@@ -10,6 +10,7 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2Center_PhoneBinging request, Center2C_PhoneBinging response, Action reply)
         {
+            Log.Warning($"C2Center_PhoneBinging:{request.Account}");
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Register, request.Account.Trim().GetHashCode()))
             {
                 if (request.AccountId == 0 || string.IsNullOrEmpty(request.Account) || string.IsNullOrEmpty(request.PhoneNumber))
@@ -55,8 +56,7 @@ namespace ET
                 }
 
                 dBCenterAccountInfo.PlayerInfo.PhoneNumber = request.PhoneNumber;
-
-                Log.Debug($"Save<DBCenterAccountInfo>4444: { session.DomainZone()}");
+                
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo);
             }
 

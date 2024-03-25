@@ -35,6 +35,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_JiaYuanVisitListRequest request, M2C_JiaYuanVisitListResponse response, Action reply)
         {
+            Log.Warning($"C2M_JiaYuanVisitListRequest:{request.ActorId}");
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
             {
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();

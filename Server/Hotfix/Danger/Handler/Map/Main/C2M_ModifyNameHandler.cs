@@ -10,6 +10,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_ModifyNameRequest request, M2C_ModifyNameResponse response, Action reply)
         {
+            Log.Warning($"C2M_ModifyNameRequest:  {unit.DomainZone()} {unit.Id}");
             if (!StringHelper.IsSafeSqlString(request.NewName))
             {
                 response.Error = ErrorCode.ERR_UnSafeSqlString;

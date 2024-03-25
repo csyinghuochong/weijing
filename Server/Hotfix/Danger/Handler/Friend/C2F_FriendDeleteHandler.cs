@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ET
 {
     [ActorMessageHandler]
@@ -11,7 +10,6 @@ namespace ET
             DBFriendInfo dBFriendInfo = await DBHelper.GetComponentCache<DBFriendInfo>(scene.DomainZone(), request.UserID);
             if (dBFriendInfo == null || !dBFriendInfo.FriendList.Contains(request.FriendID))
             {
-               
                 reply();
                 return;
             }

@@ -12,6 +12,7 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Register, request.AccountName.GetHashCode()))
             {
+                Log.Warning($"A2Center_RegisterAccount:{request.AccountName}");
                 List<DBCenterAccountInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), _account => _account.Account == request.AccountName);
 
                 //如果查询数据不为空,表示当前账号已经被注册
@@ -39,7 +40,6 @@ namespace ET
                 }
 
                 //Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
-                Log.Warning($"Save<DBCenterAccountInfo>222: { scene.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);
                 newAccount.Dispose();
                 response.AccountId = newAccount.Id;

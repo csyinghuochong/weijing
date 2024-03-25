@@ -9,6 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2U_UnionListRequest request, U2C_UnionListResponse response, Action reply)
         {
+            Log.Warning($"C2U_UnionListRequest:{request.ActorId}");
             List<UnionListItem> unionList = new List<UnionListItem>();
             List<DBUnionInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(scene.DomainZone(), _account => _account.UnionInfo!=null);
             for (int i = result.Count -1; i >=0 ; i--)

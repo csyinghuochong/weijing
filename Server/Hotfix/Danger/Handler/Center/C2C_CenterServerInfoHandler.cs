@@ -9,7 +9,7 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, C2C_CenterServerInfoReuest request, C2C_CenterServerInfoRespone response, Action reply)
         {
-            //Log.ILog.Info("scene.DomainZone() = " + scene.DomainZone());
+            Log.Warning($"C2C_CenterServerInfoReuest:{request.Zone}");
             List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(scene.DomainZone(), d => d.Id == scene.DomainZone());
             DBCenterServerInfo dBServerInfo = result[0];
             switch (request.infoType)

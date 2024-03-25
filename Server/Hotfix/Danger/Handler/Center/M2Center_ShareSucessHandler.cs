@@ -9,6 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2Center_ShareSucessRequest request, Center2M_ShareSucessResponse response, Action reply)
         {
+            Log.Warning($"M2Center_ShareSucessRequest:{request.AccountId}");
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Id == request.AccountId);
             //await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == userInfo.AccInfoID);
             if (centerAccountInfoList == null || centerAccountInfoList.Count == 0)

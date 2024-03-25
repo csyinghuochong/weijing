@@ -8,7 +8,8 @@ namespace ET
     public class A2Center_SaveAccountHandler : AMActorRpcHandler<Scene, A2Center_SaveAccount, Center2A_SaveAccount>
     {
         protected override async ETTask Run(Scene scene, A2Center_SaveAccount request, Center2A_SaveAccount response, Action reply)
-        {
+        { 
+            Log.Warning($"Save<DBCenterAccountInfo>3333: { scene.DomainZone()}");
             List<DBCenterAccountInfo> resulets = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Id == request.AccountId);
 
             DBCenterAccountInfo dBCenterAccountInfo = null;
@@ -23,7 +24,7 @@ namespace ET
             dBCenterAccountInfo.Account = request.AccountName;
             dBCenterAccountInfo.Password = request.Password;
             dBCenterAccountInfo.PlayerInfo = request.PlayerInfo;
-            Log.Debug($"Save<DBCenterAccountInfo>3333: { scene.DomainZone()}");
+           
             await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), dBCenterAccountInfo);
             dBCenterAccountInfo.Dispose();
 

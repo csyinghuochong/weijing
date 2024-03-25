@@ -9,6 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2Popularize_ListRequest request, Popularize2C_ListResponse response, Action reply)
         {
+            Log.Warning($"C2Popularize_ListRequest:{request.ActorId}");
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Popularize, scene.DomainZone()))
             {
                 

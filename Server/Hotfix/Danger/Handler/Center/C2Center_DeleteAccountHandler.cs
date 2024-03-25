@@ -9,13 +9,12 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2Center_DeleteAccountRequest request, Center2C_DeleteAccountResponse response, Action reply)
         {
+            Log.Warning($"C2Center_DeleteAccountRequest: { session.DomainZone()}");
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(session.DomainZone(), d => d.Account == request.Account && d.Password == request.Password);
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;
             if (dBCenterAccountInfo != null)
             {
                 dBCenterAccountInfo.AccountType = (int)AccountType.Delete;
-
-                Log.Debug($"Save<DBCenterAccountInfo>666: { session.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
             }
             else
