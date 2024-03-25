@@ -38,7 +38,7 @@ namespace ET
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
             }
-            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

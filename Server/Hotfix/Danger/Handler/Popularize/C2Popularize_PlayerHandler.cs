@@ -73,10 +73,10 @@ namespace ET
                 }
 
                 dBPopularizeInfoList[0].MyPopularizeList.Add(new PopularizeInfo() { UnitId = request.ActorId });
-                await DBHelper.SaveComponent(newzone, dBPopularizeInfoList[0].Id, dBPopularizeInfoList[0]);
+                await DBHelper.SaveComponentCache(newzone, dBPopularizeInfoList[0].Id, dBPopularizeInfoList[0]);
 
                 dBPopularizeInfo.BePopularizeId = request.PopularizeId;
-                await DBHelper.SaveComponent(newzone, dBPopularizeInfo.Id, dBPopularizeInfo);
+                await DBHelper.SaveComponentCache(newzone, dBPopularizeInfo.Id, dBPopularizeInfo);
 
             }
 

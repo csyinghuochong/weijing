@@ -47,7 +47,7 @@ namespace ET
             dBUnionInfo.UnionInfo.KeJiActitePos = -1;
             dBUnionInfo.UnionInfo.KeJiActiteTime = 0;
             response.UnionInfo = dBUnionInfo.UnionInfo;
-            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
     }

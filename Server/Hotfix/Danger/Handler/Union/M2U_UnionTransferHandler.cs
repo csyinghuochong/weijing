@@ -34,7 +34,7 @@ namespace ET
             dBUnionInfo.UnionInfo.LeaderId  = request.NewLeader;
             unionPlayerInfo_new.Position    = 1;
             unionPlayerInfo_self.Position   = 0;
-            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
 
             //通知新族长
             //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse_2 = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call

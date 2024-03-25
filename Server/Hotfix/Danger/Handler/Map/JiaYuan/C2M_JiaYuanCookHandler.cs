@@ -126,7 +126,7 @@ namespace ET
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanCook}_{TimeHelper.ServerNow()}");
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.ItemId = getItemid;
-            DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
+            DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanCooking_403, 0, 1);
             unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.JiaYuanCook_1018, 0, 1);
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanCookNumber_91, 0, 1);

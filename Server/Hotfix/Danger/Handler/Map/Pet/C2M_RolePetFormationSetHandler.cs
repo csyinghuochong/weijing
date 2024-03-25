@@ -22,7 +22,7 @@ namespace ET
                     petComponent.PetMingPosition = request.PetPosition;   
                     break;
             }
-            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, petComponent).Coroutine();
+            DBHelper.SaveComponentCache( unit.DomainZone(), unit.Id, petComponent).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

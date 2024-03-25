@@ -171,7 +171,7 @@ namespace ET
                     if (userInfoComponent.UserInfo.Gold >= self.AuctionPrice)
                     {
                         userInfoComponent.UserInfo.Gold -= self.AuctionPrice;
-                        DBHelper.SaveComponent(self.DomainZone(), self.AuctioUnitId, userInfoComponent).Coroutine();
+                        DBHelper.SaveComponentCache(self.DomainZone(), self.AuctioUnitId, userInfoComponent).Coroutine();
 
                         //发送道具
                         getitem = true;

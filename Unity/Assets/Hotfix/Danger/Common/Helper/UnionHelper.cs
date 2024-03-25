@@ -22,7 +22,7 @@ namespace ET
             {
                 NumericComponent numericComponent_3 = await DBHelper.GetComponentCache<NumericComponent>(zone, unitid);
                 numericComponent_3.Set(NumericType.UnionLeader, leader, false);
-                DBHelper.SaveComponent(zone, unitid, numericComponent_3).Coroutine();
+                DBHelper.SaveComponentCache(zone, unitid, numericComponent_3).Coroutine();
             }
 
         }

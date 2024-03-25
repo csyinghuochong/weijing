@@ -21,7 +21,7 @@ namespace ET
                     dBFriendInfo.FriendChats.RemoveAt(i);   
                 }
             }
-            DBHelper.SaveComponent(scene.DomainZone(), request.UserID, dBFriendInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UserID, dBFriendInfo).Coroutine();
             reply();
         }
     }

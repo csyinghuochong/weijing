@@ -32,7 +32,7 @@ namespace ET
 
             jiaYuanComponent.LearnMakeIds_7.Add(request.LearnMakeId);
             userInfoComponent.UpdateRoleData(UserDataType.JiaYuanFund, (needzijin * -1).ToString() );
-            DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
+            DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
 
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             reply();

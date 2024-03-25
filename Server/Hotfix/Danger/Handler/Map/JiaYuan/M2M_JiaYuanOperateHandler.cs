@@ -69,7 +69,7 @@ namespace ET
                     break;
             }
 
-            await  DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent );
+            await  DBHelper.SaveComponentCache( unit.DomainZone(), unit.Id, jiaYuanComponent );
         }
     }
 }

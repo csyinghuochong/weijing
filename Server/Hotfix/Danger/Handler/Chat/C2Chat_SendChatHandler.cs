@@ -149,7 +149,7 @@ namespace ET
                         if (dBFriendInfo != null && dBFriendInfo.FriendChats.Count < 10)
                         {
                             dBFriendInfo.FriendChats.Add(request.ChatInfo);
-                            DBHelper.SaveComponent(chatInfoUnit.DomainZone(), request.ChatInfo.ParamId, dBFriendInfo).Coroutine();
+                            DBHelper.SaveComponentCache(chatInfoUnit.DomainZone(), request.ChatInfo.ParamId, dBFriendInfo).Coroutine();
                         }
                     }
 

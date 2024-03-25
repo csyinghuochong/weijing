@@ -74,7 +74,7 @@ namespace ET
                         break;
                 }
 
-                DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             }
             reply();
             await ETTask.CompletedTask;

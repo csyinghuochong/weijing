@@ -30,7 +30,7 @@ namespace ET
 
             unit.GetParent<UnitComponent>().Remove(request.UnitId);
             response.JiaYuanPastureList = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7;
-            DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<JiaYuanComponent>()).Coroutine();
+            DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, unit.GetComponent<JiaYuanComponent>()).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

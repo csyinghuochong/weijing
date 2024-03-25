@@ -49,7 +49,7 @@ namespace ET
                 //(M2Popularize_RewardResponse)await MessageHelper.CallLocationActor(request.ActorId, rewardRequest);
                 if (reqEnter.Error == ErrorCode.ERR_Success)
                 {
-                    await DBHelper.SaveComponent(scene.DomainZone(), request.ActorId, dBPopularizeInfo);
+                    await DBHelper.SaveComponentCache(scene.DomainZone(), request.ActorId, dBPopularizeInfo);
                 }
 
             }

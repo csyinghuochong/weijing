@@ -86,7 +86,7 @@ namespace ET
                             dBUnionInfo.UnionInfo.ActiveRecord.RemoveAt(0);
                         }
 
-                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     case 2:  //获取等级
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
@@ -112,7 +112,7 @@ namespace ET
                             Time = TimeHelper.ServerNow(),
                             UnitId = request.UnitId
                         });
-                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     case 4: //钻石捐献
                         dBUnionInfo.UnionInfo.Level = Math.Max(dBUnionInfo.UnionInfo.Level, 1);
@@ -135,11 +135,11 @@ namespace ET
                             Time = TimeHelper.ServerNow(),
                             UnitId = request.UnitId
                         });
-                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     case 5: //增加金币
                         dBUnionInfo.UnionInfo.UnionGold += int.Parse(request.Par);
-                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                        DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     default:
                         break;

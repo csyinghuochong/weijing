@@ -94,7 +94,7 @@ namespace ET
                     break;
             }
 
-            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
+            DBHelper.SaveComponentCache( unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

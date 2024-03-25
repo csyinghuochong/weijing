@@ -43,7 +43,7 @@ namespace ET
                  PlayerName = userInfoComponent.UserInfo.Name,
                  UserID = request.UserID,
             });
-            DBHelper.SaveComponent(scene.DomainZone(), unionId, unionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), unionId, unionInfo).Coroutine();
             response.UnionId = unionId;
             reply();
             await ETTask.CompletedTask;

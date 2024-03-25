@@ -893,7 +893,7 @@ namespace ET
 
                 if (unit.IsRobot())
                 {
-                    DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<BagComponent>()).Coroutine();
+                    DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, unit.GetComponent<BagComponent>()).Coroutine();
                 }
 
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);

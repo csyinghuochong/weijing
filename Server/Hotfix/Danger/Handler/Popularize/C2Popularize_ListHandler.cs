@@ -31,7 +31,7 @@ namespace ET
                     //推广码生成规则
                     dBPopularizeInfo.PopularizeCode = newzone * 1000000 + xuindex;
 
-                    await DBHelper.SaveComponent(scene.DomainZone(), request.ActorId, dBPopularizeInfo);
+                    await DBHelper.SaveComponentCache(scene.DomainZone(), request.ActorId, dBPopularizeInfo);
                     dBPopularizeInfo.Dispose();
                 }
 

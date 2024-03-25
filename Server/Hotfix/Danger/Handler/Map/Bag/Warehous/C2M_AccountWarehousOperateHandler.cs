@@ -87,8 +87,8 @@ namespace ET
                         break;
                 }
 
-                DBHelper.SaveComponent(unit.DomainZone(), unit.Id, bagComponent).Coroutine();
-                DBHelper.SaveComponent(unit.DomainZone(), accountId, dBAccountWarehouse).Coroutine();
+                DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, bagComponent).Coroutine();
+                DBHelper.SaveComponentCache(unit.DomainZone(), accountId, dBAccountWarehouse).Coroutine();
                 reply();
             }
             await ETTask.CompletedTask;

@@ -40,7 +40,7 @@ namespace ET
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
                 jiaYuanComponent.OnRemoveUnit(request.UnitId);
 
-                await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
+                await DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, jiaYuanComponent);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace ET
                 else
                 {
                     jiaYuanComponent_2.OnRemoveUnit(request.UnitId);
-                    await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
+                    await DBHelper.SaveComponentCache(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
                 }
             }
             

@@ -191,7 +191,7 @@ namespace ET
                 }
             }
 
-            DBHelper.SaveComponent(self.DomainZone(), unionid, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(self.DomainZone(), unionid, dBUnionInfo).Coroutine();
             return ErrorCode.ERR_Success;
         }
 
@@ -603,7 +603,7 @@ namespace ET
 
         public static  void SaveDB(this UnionSceneComponent self)
         {
-            DBHelper.SaveComponent(self.DomainZone(), self.DomainZone(), self.DBUnionManager).Coroutine();
+            DBHelper.SaveComponentCache(self.DomainZone(), self.DomainZone(), self.DBUnionManager).Coroutine();
         }
     }
 }

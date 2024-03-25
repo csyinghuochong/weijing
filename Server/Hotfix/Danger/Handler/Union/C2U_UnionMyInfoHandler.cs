@@ -162,7 +162,7 @@ namespace ET
             }
            
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
-            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
     }

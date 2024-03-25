@@ -21,7 +21,7 @@ namespace ET
                 int openDay = ServerHelper.GetOpenServerDay(false, scene.DomainZone());
                 dBUnionInfo.MysteryItemInfos = UnionHelper.InitMysteryItemInfos(openDay);
                 dBUnionInfo.MysteryFreshTime = TimeHelper.ServerNow();
-                DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+                DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             }
 
             response.MysteryItemInfos = dBUnionInfo.MysteryItemInfos;

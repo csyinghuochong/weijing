@@ -256,17 +256,7 @@ namespace ET
             long instanceId = DBHelper.GetDbCacheId(zone);
             await MessageHelper.CallActor(instanceId, message);
         }
-
-        public static async ETTask SaveComponent(int zone, long unitId, Entity entity)
-        {
-            long dbCacheId = DBHelper.GetDbCacheId(zone);
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() {
-                UnitId = unitId,
-                EntityByte =MongoHelper.ToBson(entity),
-                ComponentType = entity.GetType().Name
-            });
-        }
-
+        
         public static long GetUnitCacheConfig(long unitId)
         {
             int zone = UnitIdStruct.GetUnitZone(unitId);
@@ -291,5 +281,31 @@ namespace ET
             }
             return null;
         }
+        
+        public static async ETTask SaveComponentCache(int zone, long unitId, Entity entity)
+        {
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() {
+                UnitId = unitId,
+                EntityByte =MongoHelper.ToBson(entity),
+                ComponentType = entity.GetType().Name
+            });
+        }
+        
+        public static async ETTask<T> GetComponent<T>(int zone, long unitId) where T : Entity
+        {
+            List<T> resulets = await Game.Scene.GetComponent<DBComponent>().Query<T>(zone, d => d.Id == unitId);
+            if (resulets == null || resulets.Count == 0)
+            {
+                return null;
+            }
+
+            return resulets[0];
+        }
+        
+        // public static async ETTask SaveDBComponent(int zone, long unitId, Entity entity)
+        // {
+        //     await Game.Scene.GetComponent<DBComponent>().Save(zone, entity);
+        // }
     }
 }

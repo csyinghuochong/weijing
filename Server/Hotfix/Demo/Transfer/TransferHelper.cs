@@ -171,7 +171,7 @@ namespace ET
                         {
                             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
                             jiaYuanComponent.OnBeforEnter();
-                            await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
+                            await DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, jiaYuanComponent);
                         }
                         J2M_JiaYuanEnterResponse j2M_JianYuanEnterResponse = (J2M_JiaYuanEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2J_JiaYuanEnterRequest() { MasterId = long.Parse(request.paramInfo), UnitId = unit.Id, SceneId = request.SceneId });

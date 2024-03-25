@@ -41,7 +41,7 @@ namespace ET
                         PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                         Time = TimeHelper.ServerNow(),
                     });
-                    await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
+                    await DBHelper.SaveComponentCache(unit.DomainZone(), request.MasterId, jiaYuanComponent);
                 }
             }
 

@@ -43,7 +43,7 @@ namespace ET
             {
                 dBUnionInfo.UnionInfo.LeaderId = 0;
             }
-            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            DBHelper.SaveComponentCache(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             //if (unionPlayerInfo.UserID == dBUnionInfo.UnionInfo.LeaderId)
             //{
             //    //族长退出解散家族

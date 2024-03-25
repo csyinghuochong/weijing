@@ -159,7 +159,7 @@ namespace ET
                 }
                 else
                 {
-                    await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
+                    await DBHelper.SaveComponentCache(unit.DomainZone(), request.MasterId, jiaYuanComponent);
                 }
                
                 unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanGatherOther,1, 0 );
