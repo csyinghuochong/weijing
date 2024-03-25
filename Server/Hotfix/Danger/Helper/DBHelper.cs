@@ -303,9 +303,9 @@ namespace ET
             return resulets[0];
         }
         
-        // public static async ETTask SaveDBComponent(int zone, long unitId, Entity entity)
-        // {
-        //     await Game.Scene.GetComponent<DBComponent>().Save(zone, entity);
-        // }
+        public static async ETTask SaveComponent(int zone, long unitId, Entity entity)
+        {
+            await Game.Scene.GetComponent<DBComponent>().Save(zone, entity);
+        }
     }
 }

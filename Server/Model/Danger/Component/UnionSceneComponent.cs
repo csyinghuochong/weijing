@@ -18,5 +18,8 @@ namespace ET
         public Dictionary<long, long> UnionBossList = new Dictionary<long, long>(); 
 
         public Dictionary<long, long> UnionFubens = new Dictionary<long, long>();   //fubenid->fubeninstanceid
+
+
+        public Dictionary<long, DBUnionInfo> DBUnionInfos = new Dictionary<long, DBUnionInfo>();
     }
 }
