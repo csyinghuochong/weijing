@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 using System.Collections.Generic;
 
 namespace ET
@@ -21,12 +22,14 @@ namespace ET
 
         //禁封角色列表
         public List<long> BanUserList = new List<long>();
+        
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<long, long> BanUserTime = new Dictionary<long, long>();
 
         public int AccountType; //账号类型     0正常  1白名单  2黑名单
 
 		public long CreateTime; //创建时间
-
-
+		
         public List<BagInfo> BagInfoList = new List<BagInfo>();
 
         public int HaveItemById(long bagInfoId)

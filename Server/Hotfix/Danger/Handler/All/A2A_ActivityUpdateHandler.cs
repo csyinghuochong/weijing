@@ -203,6 +203,12 @@ namespace ET
                         scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
                     }
 
+                    if (hour >= 16)
+                    {
+                        Console.WriteLine("gongzuoshi3 0");
+                        Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = "gongzuoshi3 0" });
+                    }
+
                     LogHelper.CheckLogSize();
                     break;
                 default:

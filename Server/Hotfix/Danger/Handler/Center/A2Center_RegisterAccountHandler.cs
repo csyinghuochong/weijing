@@ -28,6 +28,7 @@ namespace ET
                 newAccount.Account = request.AccountName;
                 newAccount.Password = request.Password;
                 newAccount.PlayerInfo = new PlayerInfo();
+                newAccount.CreateTime = TimeHelper.ServerNow();
 
                 //抖音账户直接实名
                 if (request.LoginType == LoginTypeEnum.TikTok && request.age_type > 0)

@@ -27,5 +27,7 @@ namespace ET
         public int AccountType; //账号类型
 
         public long CreateTime; //创建时间
+        
+        public long BanTime;    //封号时间
     }
 }
