@@ -1177,7 +1177,7 @@ namespace ET
                     {
                         useBagInfo.isBinging = true;
                     }
-                    if (getType == ItemGetWay.System || gm)
+                    if (getType == ItemGetWay.System )
                     {
                         useBagInfo.IfJianDing = false;
                     }
