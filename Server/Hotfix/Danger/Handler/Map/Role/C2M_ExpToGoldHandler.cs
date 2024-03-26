@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -53,11 +54,10 @@ namespace ET
             {
                 case 0:
                 case 1:
-                    int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
-                    sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
-                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, sendGold.ToString(), true, 32);
-                    
-                    Log.Debug($"Gold:  {userInfoComponent.Id} {sendGold} excharge");
+                     int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
+                     sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
+                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, sendGold.ToString(), true, 32);
+                     Log.Debug($"Gold:  {userInfoComponent.Id} {sendGold} excharge");
                     break;
                 case 2:
                     string[] droplist = GlobalValueConfigCategory.Instance.Get(81).Value.Split(';');
@@ -65,6 +65,12 @@ namespace ET
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     DropHelper.DropIDToDropItem_2(dropid, rewardItems);
                     unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
+                    break;
+                case 3:
+                    List<int> weights = ConfigHelper.ExpToItemList.Keys.ToList();
+                    List<string> itemlist = ConfigHelper.ExpToItemList.Values.ToList();
+                    int index = RandomHelper.RandomByWeight(weights);
+                    unit.GetComponent<BagComponent>().OnAddItemData(itemlist[index],  $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
                     break;
                 default:
                     break;
