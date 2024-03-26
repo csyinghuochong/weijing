@@ -2462,8 +2462,15 @@ namespace ET
             UIHelper.Create(self.ZoneScene(), UIType.UIWelfare).Coroutine(); 
         }
 
-        public static async ETTask OnButton_Season(this UIMainComponent self) 
+        public static async ETTask OnButton_Season(this UIMainComponent self)
         {
+            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            if (!SeasonHelper.IsOpenSeason(lv))
+            {
+                FloatTipManager.Instance.ShowFloatTip("赛季已结束！");
+                return;
+            }
+
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
 
             ////宠物穿戴装备
