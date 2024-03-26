@@ -25,8 +25,18 @@ namespace ET
                 return;
             }
 
+            if (!OccupationTwoConfigCategory.Instance.Contain(request.OccTwoID))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(request.OccTwoID);
             unit.GetComponent<TaskComponent>().OnChangeOccTwo();
+            string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+            string noticeContent = $"{userName} 在主城转职大师处成功转职:{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName}";
+            ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
             reply();
             await ETTask.CompletedTask;
         }
