@@ -153,7 +153,12 @@ namespace ET
         //设备ID
         public string DeviceID;
 
+
+        //拍卖总金币
         public long PaiMaiGold;
+
+        //今日拍卖金币
+        public long PaiMaiTodayGold;
 
         //禁止拍卖
         public int JinZhiPaiMai;

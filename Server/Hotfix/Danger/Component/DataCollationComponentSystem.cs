@@ -75,6 +75,7 @@ namespace ET
         {
             if (value < 0)
             {
+                Log.Warning($"UpdateRoleMoneyAdd<0 : {Type}  {value}");
                 return;
             }
             if (Type == UserDataType.Gold)
@@ -185,9 +186,8 @@ namespace ET
                     continue;
                 }
 
-                int getWay = int.Parse(costinfo[0]);
-                 value += long.Parse(costinfo[2]);
-                
+                value += long.Parse(costinfo[2]);
+
             }
             return value;
         }
@@ -322,7 +322,6 @@ namespace ET
 
             //self.ChouKaTimes 
             //self.PetChouKaTimes
-
             self.ChengZhuangNumber = ItemHelper.GetNumberByQulity(bagComponent.EquipList, 5);
 
             self.XiLianExp = numericComponent.GetAsInt( NumericType.ItemXiLianDu);

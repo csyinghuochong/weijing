@@ -328,10 +328,16 @@ namespace ET
         public static void PaiMaiInfo(string log)
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
-            string filePath = "../Logs/WJ_ZuoBi.txt";
+            string filePath = "../Logs/WJ_PaiMai.txt";
             WriteLogList(new List<string>() { log }, filePath);
         }
 
+        public static void GongZuoShi(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_ZuoBi.txt";
+            WriteLogList(new List<string>() { log }, filePath);
+        }
 
         public static void SoloInfo(string soloInfo, int zone)
         { 

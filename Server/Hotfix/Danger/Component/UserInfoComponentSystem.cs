@@ -513,7 +513,7 @@ namespace ET
             long gold = long.Parse(value);
             if (gold < 0)
             {
-                LogHelper.LogWarning($"增加货币出错:{Type}  {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
+                Log.Warning($"增加货币出错:{Type}  {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
             }
             else
             {
