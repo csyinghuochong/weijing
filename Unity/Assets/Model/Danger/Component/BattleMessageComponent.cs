@@ -45,6 +45,8 @@ namespace ET
 
         public Dictionary<long, long> OneChallengeTime = new Dictionary<long, long>();
 
-        public List<long> AttackSelfPlayer = new List<long>();  
+        public List<long> AttackSelfPlayer = new List<long>();
+
+        public long LastPopularize_ListTime = 0;
     }
 }

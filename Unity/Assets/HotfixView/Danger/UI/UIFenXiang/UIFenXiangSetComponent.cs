@@ -75,6 +75,12 @@ namespace ET
 
         public static async ETTask RequestPopularizeCode(this UIFenXiangSetComponent self)
         {
+            BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            if ( TimeHelper.ServerNow() -  battleMessageComponent.LastPopularize_ListTime < TimeHelper.Minute)
+            {
+                return;
+            }
+            battleMessageComponent.LastPopularize_ListTime = TimeHelper.ServerNow();    
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2Popularize_ListRequest request = new C2Popularize_ListRequest() { ActorId = userInfoComponent.UserInfo.UserId };
             Popularize2C_ListResponse response = (Popularize2C_ListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);

@@ -126,6 +126,11 @@ namespace ET
                     scene.AddComponent<NpcComponent>();
                     //scene.AddComponent<RecastPathComponent>();
                     break;
+                case SceneType.Popularize:
+
+                    break;
+                default:
+                    break;  
             }
             return scene;
         }
