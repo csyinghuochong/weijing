@@ -107,6 +107,11 @@ namespace ET
                 playerPKStatus = true;
             }
 
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster && defendUnit.MasterId > 0)
+            {
+                playerPKStatus = true;
+            }
+
 
             //已死亡
             if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)

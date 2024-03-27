@@ -230,6 +230,12 @@ namespace ET
                 randomNum = 2;
             }
 
+            //70级装备默认3条属性
+            if (itemCof.UseLv >= 70 && randomNum < 3)
+            {
+                randomNum = 3;
+            }
+
             if (ifItem)
             {
                 if (randomNum >= 2)
