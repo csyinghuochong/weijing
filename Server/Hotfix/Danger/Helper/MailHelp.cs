@@ -21,6 +21,7 @@ namespace ET
             reward.GetWay = $"{ItemGetWay.PaiMaiSell}_{TimeHelper.ServerNow()}";
             mailInfo.ItemList.Add(reward);
             mailInfo.ItemSell = paiMaiItemInfo.BagInfo;
+            mailInfo.BuyPlayerId = paiMaiItemInfo.UserId;
 
             //发送到邮件服
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(zone, "EMail").InstanceId;      //获取邮件消息ID

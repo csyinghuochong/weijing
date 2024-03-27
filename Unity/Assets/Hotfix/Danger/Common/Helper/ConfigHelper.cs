@@ -1217,6 +1217,16 @@ namespace ET
             { 70006013, 90000223 }        
         };
 
+        
+        /// <summary>
+        /// key权重  value道具
+        /// </summary>
+        public static Dictionary<int, string> ExpToItemList = new Dictionary<int, string>()
+        {
+            {  100, "1;200000@10000158;1" },
+            {  200, "1;400000@10000158;1" },
+        };
+        
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
     }
 }

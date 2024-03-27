@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -80,6 +81,29 @@ namespace ET
             {
                 self.OnAddCostList(self.GoldGetList, getWay, value);
             }
+        }
+
+        public static void UpdateBuySelfPlayerList(this DataCollationComponent self, long addgold, long unitid)
+        {
+            if (unitid == 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
+            {
+                if (self.BuySelfPlayerList[i].KeyId == unitid)
+                {
+                    self.BuySelfPlayerList[i].Value += addgold;
+                    return;
+                }
+            }
+
+            self.BuySelfPlayerList.Add( new KeyValuePairLong()
+            { 
+                KeyId = unitid,
+                Value = addgold
+            });
         }
 
         public static long GetCostByType(this DataCollationComponent self, int getWay)

@@ -29,5 +29,16 @@ namespace ET
         public long CreateTime; //创建时间
         
         public long BanTime;    //封号时间
+
+        public int GetTotalRecharge()
+        {
+            int total = 0;
+            for (int i = 0; i < PlayerInfo.RechargeInfos.Count; i++)
+            {
+                total += PlayerInfo.RechargeInfos[i].Amount;
+            }
+
+            return total;
+        }
     }
 }

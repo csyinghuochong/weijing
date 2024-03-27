@@ -243,5 +243,7 @@ namespace ET
 		 public const ushort A2M_ActivityFeedResponse = 20240;
 		 public const ushort M2M_AllPlayerListRequest = 20241;
 		 public const ushort M2M_AllPlayerListResponse = 20242;
+		 public const ushort M2M_PaiMaiBuyInfoRequest = 20243;
+		 public const ushort M2M_PaiMaiBuyInfoResponse = 20244;
 	}
 }

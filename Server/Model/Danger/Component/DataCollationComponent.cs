@@ -126,6 +126,12 @@ namespace ET
         [BsonIgnore]
         public List<KeyValuePairInt> GoldGetList = new List<KeyValuePairInt>();
 
+
+        /// <summary>
+        /// 购买自己的玩家列表
+        /// </summary>
+        public List<KeyValuePairLong> BuySelfPlayerList = new List<KeyValuePairLong>();
+
         //平台
         public string Platform;
 

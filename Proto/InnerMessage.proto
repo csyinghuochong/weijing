@@ -2090,3 +2090,19 @@ message M2M_AllPlayerListResponse // IActorResponse
 	string Message = 92;
 	repeated int64 AllPlayers = 1;
 }
+
+//ResponseType M2M_PaiMaiBuyInfoResponse
+message M2M_PaiMaiBuyInfoRequest // IActorRequest
+{
+  int32 RpcId = 90;
+  int64 ActorId = 93;
+  int64 PlayerId = 1;
+  int64 CostGold = 2;
+}
+
+message M2M_PaiMaiBuyInfoResponse // IActorResponse
+{
+  int32 RpcId = 90;
+  int32 Error = 91;
+  string Message = 92;
+}

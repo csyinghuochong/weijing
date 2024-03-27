@@ -75,7 +75,7 @@ namespace ET
         public static void OnCheck(this ActivitySceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-  
+
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
@@ -83,11 +83,11 @@ namespace ET
             }
 
             self.CheckIndex++;
-            if(self.CheckIndex >= 10)
+            if (self.CheckIndex >= 10)
             {
-               
                 self.CheckPetMine();
                 self.SaveDB();
+                self.CheckIndex = 0;
             }
 
             //self.TeamUpdateHandler().Coroutine();
@@ -120,7 +120,7 @@ namespace ET
 
                 for (int hexin = 0; hexin < hexinlist.Count; hexin++)
                 {
-                    self.DBDayActivityInfo.PetMingHexinList.Add(new KeyValuePairInt() 
+                    self.DBDayActivityInfo.PetMingHexinList.Add(new KeyValuePairInt()
                     {
                         KeyId = mineBattleConfig[i].Id,
                         Value = hexinlist[hexin]
@@ -131,7 +131,9 @@ namespace ET
 
         public static void CheckPetMine(this ActivitySceneComponent self)
         {
-            int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
+            
+            {
+                int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
 
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
 
@@ -166,19 +168,20 @@ namespace ET
                         long oldValue = self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId];
                         oldValue += chanchu;
                         oldValue = Math.Min(oldValue, playerLimit);
-                        
+
                         self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] = oldValue;
                     }
                 }
+            }
         }
 
         public static async ETTask TeamUpdateHandler(this ActivitySceneComponent self)
-        { 
+        {
             DateTime dateTime = TimeHelper.DateTimeNow();
 
             //if (dateTime.Year == 2024 && dateTime.Month == 1 && dateTime.Day == 5 && dateTime.Hour == 15 && dateTime.Minute == 19)
             //{
-             
+
             //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
             //             (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { Hour = 16, OpenDay = 1 });
             //}
@@ -189,7 +192,7 @@ namespace ET
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000,2000));
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
             if (d2GGetUnit.Component == null)
             {
@@ -203,7 +206,7 @@ namespace ET
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
             LogHelper.LogDebug($"InitDayActivity: {zone}  {openServerDay}");
-            self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
+            self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
 
             if (self.DBDayActivityInfo.PetMingHexinList.Count == 0)
             {
@@ -239,7 +242,7 @@ namespace ET
                         sceneserverid = DBHelper.GetUnionServerId(self.DomainZone());
                         break;
                     case 1045:
-                        sceneserverid = DBHelper.GetSoloServerId(self.DomainZone());    
+                        sceneserverid = DBHelper.GetSoloServerId(self.DomainZone());
                         break;
                     case 1052://狩猎活动
                         sceneserverid = DBHelper.GetRankServerId(self.DomainZone());
@@ -286,7 +289,7 @@ namespace ET
             }
         }
 
-        public static  void InitFunctionButton(this ActivitySceneComponent self)
+        public static void InitFunctionButton(this ActivitySceneComponent self)
         {
             self.ActivityTimerList.Clear();
             Log.Warning("InitFunctionButton");
@@ -322,7 +325,7 @@ namespace ET
                     self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = sTime, FunctionType = 2 });
                 }
                 bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
-                if (inTime )
+                if (inTime)
                 {
                     self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = serverTime, FunctionType = 1 });
                 }
@@ -339,7 +342,7 @@ namespace ET
             }
         }
 
-        public static  void SaveDB(this ActivitySceneComponent self)
+        public static void SaveDB(this ActivitySceneComponent self)
         {
             DBHelper.SaveComponentCache(self.DomainZone(), self.DomainZone(), self.DBDayActivityInfo).Coroutine();
         }
@@ -370,7 +373,7 @@ namespace ET
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
             //int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
             int hour = dateTime.Hour;
-            int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
+            int openServerDay = DBHelper.GetOpenServerDay(self.DomainZone());
             LogHelper.LogWarning($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}", true);
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
@@ -403,9 +406,9 @@ namespace ET
             if (ActivityConfigHelper.GuessRewardList.ContainsKey(hour))
             {
                 int guessIndex = RandomHelper.RandomNumber(0, ActivityConfigHelper.GuessNumber);
-                List<long> playerIds = null; 
+                List<long> playerIds = null;
                 self.DBDayActivityInfo.GuessPlayerList.TryGetValue(guessIndex, out playerIds);
-                if (playerIds==null)
+                if (playerIds == null)
                 {
                     playerIds = new List<long>();
                 }
@@ -415,7 +418,7 @@ namespace ET
                 for (int i = 0; i < rewardItem.Length; i++)
                 {
                     string[] itemInfo = rewardItem[i].Split(';');
-                    itemList.Add( new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) } );
+                    itemList.Add(new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) });
                 }
                 long mailServerId = DBHelper.GetMailServerId(self.DomainZone());
                 for (int i = 0; i < playerIds.Count; i++)
@@ -444,7 +447,7 @@ namespace ET
                 }
                 if (self.DBDayActivityInfo.GuessRewardList.ContainsKey(hour))
                 {
-                    self.DBDayActivityInfo.GuessRewardList[hour] =  playerIds;
+                    self.DBDayActivityInfo.GuessRewardList[hour] = playerIds;
                     self.DBDayActivityInfo.OpenGuessIds.Add(guessIndex);
                 }
                 else
@@ -452,7 +455,7 @@ namespace ET
                     self.DBDayActivityInfo.GuessRewardList.Add(hour, playerIds);
                     self.DBDayActivityInfo.OpenGuessIds.Add(guessIndex);
                 }
-               
+
                 self.DBDayActivityInfo.GuessPlayerList.Clear();
             }
         }

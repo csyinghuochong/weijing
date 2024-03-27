@@ -4893,6 +4893,9 @@ namespace ET
 		[ProtoMember(8)]
 		public BagInfo ItemSell { get; set; }
 
+		[ProtoMember(9)]
+		public long BuyPlayerId { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_ReceiveMailResponse))]
