@@ -747,6 +747,12 @@ namespace ET
                             dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
                             break;
                     }
+
+                    if (sceneType == SceneTypeEnum.Tower)
+                    {
+                        dropComponent.OwnerId = 0;
+                    }
+
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
                     float dropY = bekill.Position.y;
                     float dropZ = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
