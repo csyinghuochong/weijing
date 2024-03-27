@@ -886,7 +886,7 @@ namespace ET
             float actPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Act);
             float magePro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_MageAct);
             float defPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
-            float adfPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
+            float adfPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Adf);
             float hpPro = self.GetZiZhiAddPro(2, rolePetInfo.ZiZhi_Hp);
 
             //属性加点对应属性 力量-攻击 智力-魔法 体质-血量 耐力就是物防和魔防

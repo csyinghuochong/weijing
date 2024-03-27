@@ -1227,6 +1227,7 @@ namespace ET
             new KeyValuePair(){  KeyId = 100, Value =  "10010040;1" },      //高级藏宝图
             new KeyValuePair(){  KeyId = 100, Value =  "10000141;1" },      //洗炼袋子
             new KeyValuePair(){  KeyId = 100, Value =  "10000152;1" },      //璀璨传承
+            new KeyValuePair(){  KeyId = 50, Value =  "10000165;1" },      //神话之灵
             new KeyValuePair(){  KeyId = 200, Value =  "10010045;1" },      //金条
             new KeyValuePair(){  KeyId = 100, Value =  "10010094;1" },      //超级宠物蛋
             new KeyValuePair(){  KeyId = 100, Value =  "10010093;1" },      //珍贵宠物蛋
