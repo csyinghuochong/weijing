@@ -748,7 +748,8 @@ namespace ET
                             break;
                     }
 
-                    if (sceneType == SceneTypeEnum.Tower)
+                    //单人副本不要搞归属掉落，以免出问题
+                    if ( SceneConfigHelper.IsSingleFuben(sceneType) )
                     {
                         dropComponent.OwnerId = 0;
                     }
