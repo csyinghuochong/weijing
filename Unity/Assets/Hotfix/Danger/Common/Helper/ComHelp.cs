@@ -26,7 +26,7 @@ namespace ET
         /// </summary>
         public static List<int> InnerZoneList = new List<int>() { 202, 203 };
 
-        public const int Version = 20240325;
+        public const int Version = 20240328;
 
         public const string RobotPassWord = "et@#robot";
 
