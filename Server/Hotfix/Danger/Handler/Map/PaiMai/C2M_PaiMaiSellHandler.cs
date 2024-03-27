@@ -24,16 +24,16 @@ namespace ET
                     return;
                 }
 
+                //获取时间戳
+                long currentTime = TimeHelper.ServerNow();
 
-				//获取出售数据
-				long paimaiItemId = IdGenerater.Instance.GenerateId();
+                //获取出售数据
+                long paimaiItemId = IdGenerater.Instance.GenerateId();
 				request.PaiMaiItemInfo.Id = paimaiItemId;
 
                 request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
 				request.PaiMaiItemInfo.UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
-
-				//获取时间戳
-				long currentTime = TimeHelper.ServerNow();
+                request.PaiMaiItemInfo.Account = unit.GetComponent<UserInfoComponent>().Account;
 				request.PaiMaiItemInfo.SellTime = currentTime;
 
 				//对比出售数量和道具是否匹配

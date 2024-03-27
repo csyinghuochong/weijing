@@ -1217,16 +1217,25 @@ namespace ET
             { 70006013, 90000223 }        
         };
 
-        
+
         /// <summary>
         /// key权重  value道具
         /// </summary>
-        public static Dictionary<int, string> ExpToItemList = new Dictionary<int, string>()
+
+        public static List<KeyValuePair> ExpToItemList = new List<KeyValuePair>()
         {
-            {  100, "1;200000@10000158;1" },
-            {  200, "1;400000@10000158;1" },
+            new KeyValuePair(){  KeyId = 100, Value =  "10010040;1" },      //高级藏宝图
+            new KeyValuePair(){  KeyId = 100, Value =  "10000141;1" },      //洗炼袋子
+            new KeyValuePair(){  KeyId = 100, Value =  "10000152;1" },      //璀璨传承
+            new KeyValuePair(){  KeyId = 200, Value =  "10010045;1" },      //金条
+            new KeyValuePair(){  KeyId = 100, Value =  "10010094;1" },      //超级宠物蛋
+            new KeyValuePair(){  KeyId = 100, Value =  "10010093;1" },      //珍贵宠物蛋
+            new KeyValuePair(){  KeyId = 50,  Value =  "10010096;1" },      //超级宠之晶
+            new KeyValuePair(){  KeyId = 50,  Value =  "10000150;1" },      //深渊凭证
+            new KeyValuePair(){  KeyId = 50,  Value =  "10000135;1" },      //金盒
         };
-        
+
+
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
     }
 }

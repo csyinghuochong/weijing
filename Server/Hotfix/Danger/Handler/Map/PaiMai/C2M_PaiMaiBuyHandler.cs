@@ -154,21 +154,38 @@ namespace ET
                 //Log.Warning($"拍卖购买者: {unit.Id} 购买 {r_GameStatusResponse.PaiMaiItemInfo.UserId} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
                 Log.Warning($"拍卖被购买: {r_GameStatusResponse.PaiMaiItemInfo.UserId} 被购 {unit.Id} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
 
-                
-                //服务器 道具名称 数量  价格  购买者名称 购买者等级  购买者充值 购买者当前金币 购买者账号 出售者名称 出售者等级 出售者等级 出售者当前金币 出售者账号
-                string serverName = ServerHelper.GetGetServerItem(false, unit.DomainZone()).ServerName;
-                string itemName = itemConfig.ItemName;
-                int itemNumber = r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum;
-                long price = r_GameStatusResponse.PaiMaiItemInfo.Price;
-
-                string buyPlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                int buyPlayerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                int buyPlayerRecharget = 
 
                 //每天更新文本。
                 //今天拍卖出售获取金币数量>=50000000  打印出来
+                //充值《100 金币大于5亿
+                if (needGold >= 500000)
+                {
+                    //服务器 道具名称 数量  价格  购买者名称 购买者等级  购买者充值 购买者当前金币 购买者账号 出售者名称   出售者账号  出售者等级 出售者当前金币
+                    string serverName = ServerHelper.GetGetServerItem(false, unit.DomainZone()).ServerName;
+                    string itemName = itemConfig.ItemName;
+                    int itemNumber = r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum;
+                    long price = r_GameStatusResponse.PaiMaiItemInfo.Price;
 
-                //LogHelper.PaiMaiInfo();
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    string buyPlayerName = userInfoComponent.UserInfo.Name;
+                    int buyPlayerLv = userInfoComponent.UserInfo.Lv;
+                    int buyPlayerRecharge = request.IsRecharge;
+                    long buyNowGold = userInfoComponent.UserInfo.Gold;
+                    string buyAccount = userInfoComponent.Account;
+                    
+                    string sellPlayerName = r_GameStatusResponse.PaiMaiItemInfo.PlayerName;
+                    string sellAccoount = r_GameStatusResponse.PaiMaiItemInfo.Account;
+                    UserInfoComponent userInfoComponentSell = await DBHelper.GetComponentCache<UserInfoComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
+                    if (userInfoComponentSell != null)
+                    {
+                        int sellPlayerLv = userInfoComponentSell.UserInfo.Lv;
+                        long sellNowGold = userInfoComponent.UserInfo.Gold;
+
+                        string paimaiInfo = $"服务器:{serverName}   \t道具名称:{itemName}   \t数量:{itemNumber}   \t价格:{price}  \t购买者名称:{buyPlayerName}   \t购买者等级:{buyPlayerLv}    " +
+                            $"\t购买者充值:{buyPlayerRecharge}   \t购买者当前金币:{buyNowGold}   \t购买者账号:{buyAccount}    \t出售者名称:{sellPlayerName}   \t出售者账号:{sellAccoount}   \t出售者等级:{sellPlayerLv}    \t出售者当前金币:{sellNowGold} ";
+                        LogHelper.PaiMaiInfo(paimaiInfo);
+                    }
+                }
             }
 
             reply();

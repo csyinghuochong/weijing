@@ -24,6 +24,11 @@ namespace ET
             self.TodayOnLine = self.GetParent<Unit>().GetComponent<UserInfoComponent>().TodayOnLine;
         }
 
+        public static void OnZeroClockUpdate(this DataCollationComponent self)
+        {
+            self.PaiMaiTodayGold = 0;
+        }
+
         public static void OnXiLian(this DataCollationComponent self, int times)
         {
             self.XiLianTimes += times;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog.Fluent;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -32,6 +33,22 @@ namespace ET
                     {
                         Console.WriteLine("gongzuoshi3 0");
                         Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = "gongzuoshi3 0" });
+                    }
+
+                    if (request.Hour == 23 && scene.DomainZone() == 3)
+                    {
+                        //打印所有拍卖大于特定值
+                        string command = "paimai2 0 50000000";
+                        Console.WriteLine(command);
+                        Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = command });
+
+                        //清理今日拍卖
+                        string filePath = "../Logs/WJ_PaiMai.txt";
+                        LogHelper.WriteLogList(new List<string>() { "" }, filePath, false);
+                    }
+                    if (request.Hour == 10 && scene.DomainZone() == 3)
+                    {
+                        //打印拍卖
                     }
 
                     break;

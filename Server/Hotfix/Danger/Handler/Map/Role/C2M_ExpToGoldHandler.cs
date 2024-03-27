@@ -67,10 +67,13 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
                     break;
                 case 3:
-                    List<int> weights = ConfigHelper.ExpToItemList.Keys.ToList();
-                    List<string> itemlist = ConfigHelper.ExpToItemList.Values.ToList();
+                    List<int> weights = ListComponent<int>.Create();
+                    for (int i = 0; i < ConfigHelper.ExpToItemList.Count; i++)
+                    {
+                        weights.Add(ConfigHelper.ExpToItemList[i].KeyId);
+                    }
                     int index = RandomHelper.RandomByWeight(weights);
-                    unit.GetComponent<BagComponent>().OnAddItemData(itemlist[index],  $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData(ConfigHelper.ExpToItemList[index].Value,  $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
                     break;
                 default:
                     break;

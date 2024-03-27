@@ -41,6 +41,7 @@ namespace ET
                         if (getwayInfo.Length >= 2 && mailInfo.ItemList[i].ItemID == 1 && int.Parse(getwayInfo[0]) == ItemGetWay.PaiMaiSell)
                         {
                             unit.GetComponent<DataCollationComponent>().PaiMaiGold += mailInfo.ItemList[i].ItemNum;
+                            unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold += mailInfo.ItemList[i].ItemNum;
                             unit.GetComponent<DataCollationComponent>().UpdateBuySelfPlayerList(mailInfo.ItemList[i].ItemNum,mailInfo.BuyPlayerId );
                         }
                     }

@@ -22,6 +22,7 @@ namespace ET
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(userInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(true);
+                    unit.GetComponent<DataCollationComponent>().OnZeroClockUpdate();
                     break;
                 case -1:
                     Log.Debug($"OnZeroClockUpdate防止卡死 [-1]");
