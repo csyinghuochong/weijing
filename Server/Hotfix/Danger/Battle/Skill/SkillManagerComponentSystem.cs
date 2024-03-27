@@ -509,7 +509,7 @@ namespace ET
                 handlerList[i].OnExecute();
                 self.Skills.Add(handlerList[i] );
             }
-            if (zhudong)
+            if (zhudong && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
                 if (skillPassiveComponent == null)
