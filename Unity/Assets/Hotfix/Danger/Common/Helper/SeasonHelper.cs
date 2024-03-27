@@ -45,7 +45,7 @@ namespace ET
         public static long SeasonOpenTime = 1701360000000;
 
         //赛季结束时间
-        public static long SeasonCloseTime = 1711814400000;
+        public static long SeasonCloseTime = 1713715200000;
 
         /// <summary>
         /// 赛季BOSS
