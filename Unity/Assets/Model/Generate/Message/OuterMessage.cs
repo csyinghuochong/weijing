@@ -5717,6 +5717,12 @@ namespace ET
 		[ProtoMember(7)]
 		public long SellTime { get; set; }
 
+		[ProtoMember(8)]
+		public string Account { get; set; }
+
+		[ProtoMember(9)]
+		public int Recharget { get; set; }
+
 	}
 
 	[Message(OuterOpcode.PaiMaiShopItemInfo)]

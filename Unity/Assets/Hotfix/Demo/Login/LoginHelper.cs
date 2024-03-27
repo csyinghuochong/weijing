@@ -198,7 +198,7 @@ namespace ET
                     Simulator = accountInfoComponent.Simulator,
                     Root = accountInfoComponent.Root,
                     DeviceID = accountInfoComponent.DeviceID,
-                    IsRecharge = accountInfoComponent.PlayerInfo.RechargeInfos.Count > 0?1:0,
+                    IsRecharge = accountInfoComponent.GetRecharge(),
                 });
             }
             catch (Exception e)

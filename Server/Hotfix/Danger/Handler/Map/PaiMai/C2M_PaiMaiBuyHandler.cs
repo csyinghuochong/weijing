@@ -105,7 +105,7 @@ namespace ET
 
                 firstDay = createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10;
 
-                if (request.IsRecharge==1
+                if (request.IsRecharge > 0
                     || ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv)
                     || ComHelp.IsCanPaiMai_Level(createDay, userInfoComponent.UserInfo.Lv) == 0)
                 {
@@ -151,14 +151,23 @@ namespace ET
                 //给出售者邮件发送金币
                 MailHelp.SendPaiMaiEmail(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();
 
-                Log.Warning($"拍卖购买者: {unit.Id} 购买 {r_GameStatusResponse.PaiMaiItemInfo.UserId} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
+                //Log.Warning($"拍卖购买者: {unit.Id} 购买 {r_GameStatusResponse.PaiMaiItemInfo.UserId} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
                 Log.Warning($"拍卖被购买: {r_GameStatusResponse.PaiMaiItemInfo.UserId} 被购 {unit.Id} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
 
                 
                 //服务器 道具名称 数量  价格  购买者名称 购买者等级  购买者充值 购买者当前金币 购买者账号 出售者名称 出售者等级 出售者等级 出售者当前金币 出售者账号
                 string serverName = ServerHelper.GetGetServerItem(false, unit.DomainZone()).ServerName;
+                string itemName = itemConfig.ItemName;
+                int itemNumber = r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum;
+                long price = r_GameStatusResponse.PaiMaiItemInfo.Price;
 
-                //每天清空改文本。输入拍卖和金币大于一亿   今日金币数量
+                string buyPlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                int buyPlayerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                int buyPlayerRecharget = 
+
+                //每天更新文本。
+                //今天拍卖出售获取金币数量>=50000000  打印出来
+
                 //LogHelper.PaiMaiInfo();
             }
 

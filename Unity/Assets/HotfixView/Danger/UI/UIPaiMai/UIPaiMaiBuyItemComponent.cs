@@ -89,7 +89,7 @@ namespace ET
             C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest()
             {
                 PaiMaiItemInfo = self.PaiMaiItemInfo,
-                IsRecharge = self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo.RechargeInfos.Count > 0 ? 1 : 0
+                IsRecharge = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRecharge()
             };
             M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse =
                     (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);

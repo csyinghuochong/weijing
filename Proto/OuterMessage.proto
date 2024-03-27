@@ -2701,6 +2701,8 @@ message PaiMaiItemInfo
 	int32 Price = 5;
 	string PlayerName = 6;
 	int64 SellTime = 7;
+	string Account = 8;
+	int Recharget = 9;
 }
 
 message PaiMaiShopItemInfo
