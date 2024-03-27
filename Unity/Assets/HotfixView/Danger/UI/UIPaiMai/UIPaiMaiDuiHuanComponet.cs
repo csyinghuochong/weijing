@@ -112,6 +112,13 @@ namespace ET
                 return;
             }
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) < 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("为保证游戏内金币保值，充值任意额度后激活此功能！");
+                return;
+            }
+
             C2M_PaiMaiDuiHuanRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiDuiHuanRequest() { DiamondsNumber = diamondsNumber };
             M2C_PaiMaiDuiHuanResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiDuiHuanResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
 

@@ -18,6 +18,12 @@ namespace ET
                 return;
             }
 
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) <= 0)
+            {
+                reply();
+                return;
+            }
+
             //服务器限制,单次最多兑换100000钻石
             if (request.DiamondsNumber > 100000)
             {
