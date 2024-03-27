@@ -6,7 +6,7 @@ namespace ET
     public static class MailHelp
     {
 
-        public static async ETTask SendPaiMaiEmail(int zone, PaiMaiItemInfo paiMaiItemInfo,int costNum)
+        public static async ETTask SendPaiMaiEmail(int zone, PaiMaiItemInfo paiMaiItemInfo,int costNum, long unitid)
         {
             MailInfo mailInfo = new MailInfo();
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
@@ -21,7 +21,7 @@ namespace ET
             reward.GetWay = $"{ItemGetWay.PaiMaiSell}_{TimeHelper.ServerNow()}";
             mailInfo.ItemList.Add(reward);
             mailInfo.ItemSell = paiMaiItemInfo.BagInfo;
-            mailInfo.BuyPlayerId = paiMaiItemInfo.UserId;
+            mailInfo.BuyPlayerId = unitid;
 
             //发送到邮件服
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(zone, "EMail").InstanceId;      //获取邮件消息ID

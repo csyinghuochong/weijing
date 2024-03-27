@@ -637,7 +637,7 @@ namespace ET
                         if (RandomHelper.RandFloat01() < buyPro)
                         {
                             Log.Info("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price * costNum + "玩家名称:" + paiMaiItem.PlayerName + "出售道具:" + paiMaiItem.BagInfo.ItemID + "出售单价:" + paiMaiItem.Price + "道具拥有数量:" + paiMaiItem.BagInfo.ItemNum);
-                            MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, costNum).Coroutine();
+                            MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, costNum, 0).Coroutine();
                         }
                     }
                 }

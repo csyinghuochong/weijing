@@ -207,7 +207,7 @@ namespace ET
                             await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
 
-                        if (response.Message == "2"
+                        if (centerAccount.Message == "2"
                             && !session.RemoteAddress.ToString().Contains("119.39.6.47")
                             && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
                         {

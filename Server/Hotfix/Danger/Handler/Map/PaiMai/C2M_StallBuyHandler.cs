@@ -71,7 +71,7 @@ namespace ET
                         .OnAddItemData(p2MStallBuyResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.StallBuy}_{TimeHelper.ServerNow()}");
 
                 //给出售者邮件发送金币
-                MailHelp.SendPaiMaiEmail(unit.DomainZone(), p2MStallBuyResponse.PaiMaiItemInfo, p2MStallBuyResponse.PaiMaiItemInfo.BagInfo.ItemNum)
+                MailHelp.SendPaiMaiEmail(unit.DomainZone(), p2MStallBuyResponse.PaiMaiItemInfo, p2MStallBuyResponse.PaiMaiItemInfo.BagInfo.ItemNum, unit.Id)
                         .Coroutine();
 
                 Log.Warning(
