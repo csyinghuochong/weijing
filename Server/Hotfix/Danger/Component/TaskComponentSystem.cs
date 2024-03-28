@@ -1207,7 +1207,11 @@ namespace ET
             {
                 if (targetType == TaskTargetType.ItemID_Number_2)
                 {
-                    targetValue = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(Target[t]);
+                    long targetNumber = self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(Target[t]);
+                    if (targetNumber >= Int32.MaxValue)
+                    {
+                        targetValue = Int32.MaxValue;
+                    }
                 }
 
                 if (targetType == TaskTargetType.MakeQulityNumber_29

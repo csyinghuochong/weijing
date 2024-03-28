@@ -141,6 +141,8 @@ namespace ET
                 return;
             }
 
+            string playerList = string.Empty;
+
             StreamReader sr = new StreamReader(filePath, Encoding.Default);
             string content;
             while ((content = sr.ReadLine()) != null)
@@ -151,14 +153,21 @@ namespace ET
                     continue;
                 }
 
+                if (account[0] == '1')
+                {
+                    playerList += $"{account}_3&";
+                }
+
                 Log.ILog.Debug("封号:" + content.ToString());
-                C2C_GMCommonRequest request = new C2C_GMCommonRequest()
+               C2C_GMCommonRequest request = new C2C_GMCommonRequest()
                 {
                     Account = zoneScene.GetComponent<AccountInfoComponent>().Account,
-                    Context = $"black2 {content}"
+                   Context = $"black2 {content}"
                 };
                 C2C_GMCommonResponse repose = (C2C_GMCommonResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             }
+            //CreateRobot --Zone=5 --Num=-1 --RobotId=1001
+            Log.ILog.Debug(playerList);
         }
 
         public static void ExcurteGmList(Scene zongscene, List<string> gms)
