@@ -117,6 +117,13 @@ namespace ET
                         }
                     }
 
+					if (session.IsDisposed || session.DomainZone() == 0)
+					{
+                        response.Error = ErrorCode.ERR_SessionStateError;
+                        reply();
+                        return;
+                    }
+
                     List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 					if (accountInfoList ==null || accountInfoList.Count == 0)
 					{
