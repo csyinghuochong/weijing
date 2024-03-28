@@ -52,8 +52,7 @@ namespace ET
 
             switch (request.OperateType)
             {
-                case 0:
-                case 1:
+                case 3:
                      int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
                      sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
                      userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, sendGold.ToString(), true, 32);
@@ -66,7 +65,7 @@ namespace ET
                     DropHelper.DropIDToDropItem_2(dropid, rewardItems);
                     unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
                     break;
-                case 3:
+                case 0:
                     List<int> weights = ListComponent<int>.Create();
                     for (int i = 0; i < ConfigHelper.ExpToItemList.Count; i++)
                     {
