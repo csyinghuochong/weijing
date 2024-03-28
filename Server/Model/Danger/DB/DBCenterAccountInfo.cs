@@ -30,6 +30,8 @@ namespace ET
         
         public long BanTime;    //封号时间
 
+        public string BanAccount;  //关联封禁帐号
+
         public int GetTotalRecharge()
         {
             int total = 0;
