@@ -9,6 +9,12 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2A_DeleteRoleData request, A2C_DeleteRoleData response, Action reply)
 		{
+            if (session.DomainZone() != 3)
+            {
+                reply();
+                return;
+            }
+
             Log.Warning($"C2A_DeleteRoleData: {request.AccountId} {request.DeleUserID}");
             try
             {
