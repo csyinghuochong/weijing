@@ -257,6 +257,10 @@ namespace ET
                 self.InputFieldTMP.GetComponent<InputField>().text = "";
                 return;
             }
+            if (text.Equals("#fenghao"))
+            {
+                GMHelp.SendFengHao(self.ZoneScene()).Coroutine();
+            }
             if (text.Equals("#openall"))
             {
                 SettingHelper.ShowBlood = true;

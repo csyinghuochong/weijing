@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace ET
 {
@@ -127,6 +129,38 @@ namespace ET
         }
 
 #if !SERVER
+
+        public static async ETTask SendFengHao(Scene zoneScene)
+        {
+            await ETTask.CompletedTask;
+
+            string filePath = "H:\\FengHao.txt";
+            if (!File.Exists(filePath))
+            {
+                Log.ILog.Debug("不存在");
+                return;
+            }
+
+            StreamReader sr = new StreamReader(filePath, Encoding.Default);
+            string content;
+            while ((content = sr.ReadLine()) != null)
+            {
+                string account = content.Trim();
+                if (string.IsNullOrEmpty(account))
+                {
+                    continue;
+                }
+
+                Log.ILog.Debug("封号:" + content.ToString());
+                C2C_GMCommonRequest request = new C2C_GMCommonRequest()
+                {
+                    Account = zoneScene.GetComponent<AccountInfoComponent>().Account,
+                    Context = $"black2 {content}"
+                };
+                C2C_GMCommonResponse repose = (C2C_GMCommonResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+            }
+        }
+
         public static void ExcurteGmList(Scene zongscene, List<string> gms)
         {
             for (int i = 0; i < gms.Count; i++)
