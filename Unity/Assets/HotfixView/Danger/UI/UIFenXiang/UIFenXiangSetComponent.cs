@@ -49,6 +49,12 @@ namespace ET
                 self.FenXiang_QQ.SetActive(true);
                 self.FenXiang_QQ.transform.localPosition = new Vector3(-257f, 112f, 0f);
             }
+
+            if (GlobalHelp.IsBanHaoMode)
+            {
+                self.Text_tip1.SetActive(false);
+            }
+
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Share").gameObject, self.OnQQZone);
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Friend").gameObject, self.OnQQShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Share").gameObject, self.OnWeiXinShare);
