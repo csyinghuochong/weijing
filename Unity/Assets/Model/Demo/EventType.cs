@@ -775,6 +775,12 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class ShareSDKInit : DisposeObject
+        {
+            public static readonly ShareSDKInit Instance = new ShareSDKInit();
+            public Scene ZoneScene;
+        }
+
         public class TikTokGetAccesstoken : DisposeObject
         {
             public static readonly TikTokGetAccesstoken Instance = new TikTokGetAccesstoken();
