@@ -177,8 +177,12 @@ namespace ET
 
         public static void OnUpdateBelongID(this UIMainHpBarComponent self, long bossid, long belongid)
         {
-            self.Lab_Owner.text = string.Empty;
+            if (bossid!= self.LockBossId)
+            {
+                return;
+            }
 
+            self.Lab_Owner.text = string.Empty;
             Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit unitboss = unitmain.GetParent<UnitComponent>().Get(bossid);
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
