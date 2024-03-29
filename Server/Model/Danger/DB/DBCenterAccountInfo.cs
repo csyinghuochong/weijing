@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -32,6 +33,9 @@ namespace ET
 
         public string BanAccount;  //关联封禁帐号
 
+        public List<KeyValuePairLong> CreateRoleList = new List<KeyValuePairLong>();
+
+
         public int GetTotalRecharge()
         {
             int total = 0;
@@ -42,5 +46,6 @@ namespace ET
 
             return total;
         }
+
     }
 }

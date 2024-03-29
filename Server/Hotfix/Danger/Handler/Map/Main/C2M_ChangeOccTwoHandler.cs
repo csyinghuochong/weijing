@@ -35,7 +35,8 @@ namespace ET
             unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(request.OccTwoID);
             unit.GetComponent<TaskComponent>().OnChangeOccTwo();
             string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-            string noticeContent = $"{userName} 在主城转职大师处成功转职:{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName}";
+
+            string noticeContent = $"{userName} 在主城转职大师处成功转职:<color=#C4FF00>{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName}</color>";
             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
             reply();
             await ETTask.CompletedTask;

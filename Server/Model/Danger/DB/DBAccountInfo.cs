@@ -32,8 +32,6 @@ namespace ET
 		
         public List<BagInfo> BagInfoList = new List<BagInfo>();
 
-        public List<KeyValuePairLong> DeletUserTime = new List<KeyValuePairLong>(); 
-
         public int HaveItemById(long bagInfoId)
         {
             for (int i = 0; i < BagInfoList.Count; i++)

@@ -47,6 +47,21 @@ namespace ET
 							return;
 						}
 
+                        List<DBCenterAccountInfo> centerAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
+                        if (centerAccountList == null || centerAccountList.Count == 0)
+                        {
+                            response.Error = ErrorCode.ERR_NotFindAccount;
+                            reply();
+                            return;
+                        }
+						if (ComHelp.GetTodayCreateRoleNumber(centerAccountList[0].CreateRoleList) >= 8)
+						{
+                            response.Error = ErrorCode.ERR_CreateRole_Limit;
+                            reply();
+                            return;
+                        }
+
+
                         List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 						if (newAccountList == null || newAccountList.Count == 0)
 						{
@@ -129,13 +144,20 @@ namespace ET
 						// 		newAccount.UserList.Add(2289640847777529857);
 						// 	}
 						// }
-
+						
 						//存储账号信息
 						newAccount.UserList.Add(userId);
 						d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = newAccount.Id, EntityByte = MongoHelper.ToBson(newAccount), ComponentType = DBHelper.DBAccountInfo });
 
-						//返回角色信息
-						CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo,  userId);
+						if (centerAccountList[0].CreateRoleList.Count > 100)
+						{
+							centerAccountList[0].CreateRoleList.RemoveAt(0);
+                        }
+						centerAccountList[0].CreateRoleList.Add( new KeyValuePairLong() { KeyId = userId, Value  = TimeHelper.ServerNow() } );
+                        Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, centerAccountList[0]).Coroutine();
+
+                        //返回角色信息
+                        CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo,  userId);
 						response.createRoleInfo = roleList;
 						reply();
 					}

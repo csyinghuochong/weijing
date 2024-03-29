@@ -144,6 +144,22 @@ namespace ET
             }
         }
 
+        public static int GetTodayCreateRoleNumber(List<KeyValuePairLong> CreateRoleList)
+        {
+            int createNumber = 0;
+            long serverTime = TimeHelper.ServerNow();
+            int today = GetDayByTime(serverTime);
+            for (int i = 0; i < CreateRoleList.Count; i++)
+            {
+                if (today == GetDayByTime(CreateRoleList[i].Value))
+                { 
+                    createNumber++; 
+                }
+            }
+            return createNumber;
+        }
+
+
         public static int GetDayByTime(long time)
         {
             DateTime dateTime = TimeInfo.Instance.ToDateTime(time);
