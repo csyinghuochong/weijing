@@ -155,9 +155,9 @@ namespace ET
                 }
             }
 
-            if (paiMaiItemInfo.Price * self.SellNum >= 5000000)
+            if (paiMaiItemInfo.Price * self.SellNum >= 10000000)
             {
-                FloatTipManager.Instance.ShowFloatTip("上架总金额不能超过500万金币！");
+                FloatTipManager.Instance.ShowFloatTip("上架总金额不能超过1000万金币！");
                 return;
             }
 

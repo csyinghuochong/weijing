@@ -17,7 +17,7 @@ namespace ET
 					return;
 				}
 				long allprice = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
-                if (allprice > 5000000 || allprice < 0)
+                if (allprice > 10000000 || allprice < 0)
 				{
 					response.Error = ErrorCode.ERR_ModifyData;
                     reply();
