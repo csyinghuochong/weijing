@@ -143,10 +143,10 @@ namespace ET
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             int createDay = userInfoComponent.GetCrateDay();
-            if (createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10)
-            {
-                canBuy = true;
-            }
+            //if (createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10)
+            //{
+            //    canBuy = true;
+            //}
 
             AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (ComHelp.IsCanPaiMai_Recharge(accountInfo.PlayerInfo))

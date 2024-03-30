@@ -103,7 +103,7 @@ namespace ET
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 int createDay = userInfoComponent.GetCrateDay();
 
-                firstDay = createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10;
+                //firstDay = createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10;
 
                 if (request.IsRecharge > 0
                     || ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv)
