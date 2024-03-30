@@ -82,6 +82,25 @@ namespace ET
                     Log.Warning($"账号登录(LoginAccount):{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
                 }
 
+                if (request.Password == "3" || request.Password == "4")
+                {
+                    if (request.AccountName.Length < 3)
+                    {
+                        response.Error = ErrorCode.ERR_LoginInfoIsNull;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        return;
+                    }
+                    string head = request.AccountName.Substring(0, 3);
+                    if (GMHelp.IllegalPhone.Contains(head))
+                    {
+                        response.Error = ErrorCode.ERR_IllegalPhoneError;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        return;
+                    }
+                }
+
                 //密码要md5
                 //if (!Regex.IsMatch(request.AccountName.Trim(),@"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
                 //{

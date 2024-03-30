@@ -23,6 +23,12 @@ namespace ET
 
         };
 
+        ////if (head == "170" || head == "171" || head == "162" || head == "165" || head == "167" || head == "192")
+        public static List<string> IllegalPhone = new List<string>()
+        {
+            "170","171","162","165","167","192"
+        };
+
         /// <summary>
         /// //{ 2103768474428964866, "9@景沫渺@你作弊了！！！" }
         /// 弹窗玩家

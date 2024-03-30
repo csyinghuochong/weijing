@@ -728,15 +728,9 @@ namespace ET
 			{
 				return;
 			}
-   //         170
-			//171
-			//162
-			//165
-			//167
-			//192
+
             string head = phoneNum.Substring(0, 3);
-            if (head.Equals("170") || head.Equals("171") || head.Equals("162")
-				|| head.Equals("165") || head.Equals("167") || head.Equals("192"))
+            if (GMHelp.IllegalPhone.Contains(head))
 			{
 				FloatTipManager.Instance.ShowFloatTip("此号码不支持注册,请使用其他方式登录游戏！");
 				return;

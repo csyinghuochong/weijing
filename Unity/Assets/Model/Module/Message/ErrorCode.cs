@@ -81,6 +81,7 @@ namespace ET
         public const int ERR_PackageFrequent = 200126;                                //发送太频繁
         public const int ERR_AlreadyHave = 200127;
         public const int ERR_RoleInBlackListError = 200128;                      //账号黑名单
+        public const int ERR_IllegalPhoneError = 200129;
 
         //300001-400001 服务器提示性错误码
         //角色
