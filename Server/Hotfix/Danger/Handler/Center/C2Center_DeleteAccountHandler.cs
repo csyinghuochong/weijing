@@ -15,7 +15,7 @@ namespace ET
             if (dBCenterAccountInfo != null)
             {
                 ///确认要不要删除所有区服的账号数据
-                dBCenterAccountInfo.AccountType = 3;////(int)AccountType.Delete;
+                dBCenterAccountInfo.AccountType = 2;////(int)AccountType.Delete;
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
             }
             else
