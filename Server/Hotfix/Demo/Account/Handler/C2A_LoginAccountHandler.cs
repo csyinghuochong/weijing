@@ -82,6 +82,14 @@ namespace ET
                     Log.Warning($"账号登录(LoginAccount):{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
                 }
 
+                if (session.RemoteAddress.ToString().Contains("42.177.217.71"))
+                {
+                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
+                    reply();
+                    session.Disconnect().Coroutine();
+                    return;
+                }
+
                 if (request.Password == "3" || request.Password == "4")
                 {
                     if (request.AccountName.Length < 3)
