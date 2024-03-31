@@ -65,7 +65,7 @@ namespace ET
             }
 
             self.LayerText.GetComponent<Text>().text =
-                    $"{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId) % 250000}/20";
+                    $"{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId) % 250000}/10";
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             List<RankSeasonTowerInfo> rankList = response.RankList;
             for (int i = 0; i < rankList.Count; i++)
