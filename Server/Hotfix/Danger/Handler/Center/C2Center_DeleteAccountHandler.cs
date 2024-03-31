@@ -14,7 +14,8 @@ namespace ET
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;
             if (dBCenterAccountInfo != null)
             {
-                dBCenterAccountInfo.AccountType = (int)AccountType.Delete;
+                ///确认要不要删除所有区服的账号数据
+                dBCenterAccountInfo.AccountType = 3;////(int)AccountType.Delete;
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
             }
             else

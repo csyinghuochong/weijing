@@ -8,9 +8,11 @@ namespace ET
     {
         General = 0,
 
-        BlackList = 1, //禁止拍卖
+        NoPaiMai = 1, //禁止拍卖
 
-        Delete = 2, //黑名单
+        BlackList = 2, //黑名单
+
+        Delete = 3, //删号
     }
 
 
