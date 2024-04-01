@@ -28,9 +28,9 @@ namespace ET
         //战士
         public static Dictionary<int, List<string>> FashionBaseTemplate_1 = new Dictionary<int, List<string>>()
         {
-            { 1001,     new List<string>(){"Hero_lian" } },
-            { 2001 ,    new List<string>(){"Hero_meimao" } },
-            { 3001,     new List<string>(){"Hero_pifeng" } },
+            { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi" } },
+            { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
+            { 3001,     new List<string>(){"Hero_pifeng", "Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } },
 
             { 2002,     new List<string>(){"Hero_shangyi" } },
             { 2003,     new List<string>(){"Hero_fashi" } },
@@ -43,9 +43,9 @@ namespace ET
         //法师
         public static Dictionary<int, List<string>> FashionBaseTemplate_2 = new Dictionary<int, List<string>>()
         {
-            { 1001,     new List<string>(){"Hero_lian" } },
-            { 2001 ,    new List<string>(){"Hero_meimao" } },
-            { 3001,     new List<string>(){"Hero_pifeng" } },
+            { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi", "fashi_fashi2" } },
+            { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
+            { 3001,     new List<string>(){"Hero_shangyi", "Hero_xiashen", "Hero_xiezi", "Hero_pifu1", "Hero_pifu2" } },
 
 
             //{ 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
@@ -60,9 +60,9 @@ namespace ET
         //猎人
         public static Dictionary<int, List<string>> FashionBaseTemplate_3 = new Dictionary<int, List<string>>()
         {
-            { 1001,     new List<string>(){"Hero_lian" } },
-            { 2001 ,    new List<string>(){"Hero_meimao" } },
-            { 3001,     new List<string>(){"Hero_pifeng" } },
+            { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi" } },
+            { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
+            { 3001,     new List<string>(){ "Hero_weijin","Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } },
 
 
             { 2002,     new List<string>(){"Hero_shangyi", "Hero_weijin" } },
