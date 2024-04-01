@@ -175,7 +175,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f246ba5a459051b42be7c0f7e7ef0ad6, type: 2}
+  - {fileID: 2100000, guid: 77768694096184e4589ff0046aeaa0c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2343,7 +2343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7778671190638578803}
   m_Layer: 14
-  m_Name: Hero_xiezi_lvmu
+  m_Name: zhanshi_101_xiezi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

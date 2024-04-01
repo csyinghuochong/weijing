@@ -163,7 +163,7 @@ namespace ET
 
             string[] costitem = fashionConfig.ActiveCost.Split(';');
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
-            self.Text_222.GetComponent<Text>().text = $"X{int.Parse(costitem[1])}";
+            self.Text_222.GetComponent<Text>().text = $"需要:{int.Parse(costitem[1])}个";
             int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
             self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber } , ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemName.SetActive(true);
