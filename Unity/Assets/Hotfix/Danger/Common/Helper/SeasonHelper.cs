@@ -13,7 +13,7 @@ namespace ET
                 return false;
             }
             long serverTime = TimeHelper.ServerNow();
-            return serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;
+            return SeasonOpenTime >0 && serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;
         }
 
         public static int GetFubenId(int lv)
