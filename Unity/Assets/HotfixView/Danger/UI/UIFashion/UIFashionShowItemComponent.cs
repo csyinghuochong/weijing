@@ -102,6 +102,8 @@ namespace ET
                     {
                         bagComponent.FashionActiveIds.Add( self.FashionId );
                     }
+
+                    self.OnUpdateUI(self.FashionId);
                     break;
                 case 1:
                 case 2:
@@ -127,8 +129,6 @@ namespace ET
                     self.FashionWearHandler?.Invoke();
                     break;
             }
-
-            self.OnUpdateUI(self.FashionId);
         }
 
         public static void OnUpdateUI(this UIFashionShowItemComponent self, int fashionid)

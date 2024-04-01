@@ -82,6 +82,11 @@ namespace ET
                 ItemID = UnitHelper.GetWuqiItemID(self.ZoneScene())
             };
             self.UIModelShowComponent.ShowPlayerPreviewModel(bagInfo, fashionids, occ);
+
+            for (int i = 0; i < self.FashionItemList.Count; i++)
+            {
+                self.FashionItemList[i].OnUpdateUI(self.FashionItemList[i].FashionId);
+            }
         }
 
         public static void OnFashionPreview(this UIFashionShowComponent self, int fashionid)
