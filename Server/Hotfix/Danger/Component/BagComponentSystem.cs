@@ -507,7 +507,11 @@ namespace ET
             self.SeasonJingHePlan = 0;
             self.SeasonJingHe.Clear();
 
-            //self.ClearJingHeItem(self.BagItemList);
+            self.ClearJingHeItem(self.BagItemList);
+            self.ClearJingHeItem(self.Warehouse1);
+            self.ClearJingHeItem(self.Warehouse2);
+            self.ClearJingHeItem(self.Warehouse3);
+            self.ClearJingHeItem(self.Warehouse4);
         }
 
         public static void ClearJingHeItem(this BagComponent self, List<BagInfo> bagInfos)
