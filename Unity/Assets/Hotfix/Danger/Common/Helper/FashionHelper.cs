@@ -21,23 +21,16 @@ namespace ET
 
         //1001  头饰
         //2001  脸
-        //3003  身体
+        //3001  身体
         /// <summary>
         /// 默认配置
         /// </summary>
         //战士
         public static Dictionary<int, List<string>> FashionBaseTemplate_1 = new Dictionary<int, List<string>>()
         {
-            { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi" } },
+            { 1001,     new List<string>(){"Hero_toufa",} },
             { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
-            { 3001,     new List<string>(){"Hero_pifeng", "Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } },
-
-            { 2002,     new List<string>(){"Hero_shangyi" } },
-            { 2003,     new List<string>(){"Hero_fashi" } },
-            { 1001,     new List<string>(){"Hero_toufa" } },
-            { 3001,     new List<string>(){"Hero_xiashen" } },
-            { 3002,     new List<string>(){"Hero_xiezi" } },
-            { 1003,     new List<string>(){"Hero_yanjing" } },
+            { 3001,     new List<string>(){"Hero_pifeng", "Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } }
         };
 
         //法师
@@ -45,16 +38,7 @@ namespace ET
         {
             { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi", "fashi_fashi2" } },
             { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
-            { 3001,     new List<string>(){"Hero_shangyi", "Hero_xiashen", "Hero_xiezi", "Hero_pifu1", "Hero_pifu2" } },
-
-
-            //{ 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
-            { 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
-            { 2003,     new List<string>(){"Hero_fashi", "fashi_fashi2" } },
-            { 1001,     new List<string>(){"Hero_toufa" } },
-            { 3001,     new List<string>(){"Hero_xiashen" , "Hero_pifu2" } },
-            { 3002,     new List<string>(){"Hero_xiezi" } },
-            { 1003,     new List<string>(){"Hero_yanjing" } },
+            { 3001,     new List<string>(){"Hero_shangyi", "Hero_xiashen", "Hero_xiezi", "Hero_pifu1", "Hero_pifu2" } }
         };
 
         //猎人
@@ -62,17 +46,8 @@ namespace ET
         {
             { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi" } },
             { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
-            { 3001,     new List<string>(){ "Hero_weijin","Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } },
-
-
-            { 2002,     new List<string>(){"Hero_shangyi", "Hero_weijin" } },
-            { 2003,     new List<string>(){"Hero_fashi" } },
-            { 1001,     new List<string>(){"Hero_toufa" } },
-            { 3001,     new List<string>(){"Hero_xiashen" } },
-            { 3002,     new List<string>(){"Hero_xiezi" } },
-            { 1003,     new List<string>(){"Hero_yanjing" } },
+            { 3001,     new List<string>(){ "Hero_weijin","Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } }
         };
-
 
     }
 }
