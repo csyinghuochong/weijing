@@ -97,6 +97,7 @@
         public const int RoleBullet5Timer = 1110;
         public const int RoleBullet6Timer = 1111;
         public const int DialogTimer = 1112;
+        public const int SeasonTowerTimer = 1113;
         // 不能超过10000
     }
 }

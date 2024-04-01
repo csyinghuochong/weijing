@@ -337,6 +337,10 @@ namespace ET
                     UIHelper.Create(zoneScene, UIType.UIMiJingMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
+                case SceneTypeEnum.SeasonTower:
+                    UIHelper.Create(zoneScene, UIType.UISeasonMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
                 default:
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;

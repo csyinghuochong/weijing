@@ -98,6 +98,9 @@ namespace ET
                 case SceneTypeEnum.MiJing:
                     UIHelper.Remove(args.ZoneScene, UIType.UIMiJingMain);
                     break;
+                case SceneTypeEnum.SeasonTower:
+                    UIHelper.Remove(args.ZoneScene, UIType.UISeasonMain);
+                    break;
                 default:
                     break;
             }

@@ -92,7 +92,8 @@ namespace ET
 		public const string UIRechargeReward = "Main/Recharge/UIRechargeReward";
         public const string UIChengJiu = "Main/ChengJiu/UIChengJiu";
 		public const string UISeason = "Main/Season/UISeason";
-		public const string UISeasonLordDetail = "Main/Season/UISeasonLordDetail";
+		public const string UISeasonMain = "Main/Season/UISeasonMain";
+        public const string UISeasonLordDetail = "Main/Season/UISeasonLordDetail";
 		public const string UISeasonJingHeZhuru = "Main/Season/UISeasonJingHeZhuru";
 		public const string UISeasonTower = "Main/Season/UISeasonTower";
 		public const string UISeasonTowerReward = "Main/Season/UISeasonTowerReward";
