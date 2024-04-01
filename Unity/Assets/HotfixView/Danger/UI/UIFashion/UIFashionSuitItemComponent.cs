@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,9 +41,13 @@ namespace ET
         public override void Destroy(UIFashionSuitItemComponent self)
         {
             self.UIModelShowComponent.ReleaseRenderTexture();
-            self.RenderTexture.Release();
-            GameObject.Destroy(self.RenderTexture);
-            self.RenderTexture = null;
+
+            if (self.RenderTexture != null)
+            {
+                self.RenderTexture.Release();
+                GameObject.Destroy(self.RenderTexture);
+                self.RenderTexture = null;
+            }
             //RenderTexture.ReleaseTemporary(self.RenderTexture);
         }
     }
@@ -51,10 +56,15 @@ namespace ET
     {
         public static void OnUpdateUI(this UIFashionSuitItemComponent self, int fashionid)
         {
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);
+            //int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            //FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<string> fashionmodels = FashionConfigCategory.Instance.GetModelList(fashionid);
+            if (fashionmodels == null || fashionmodels.Count == 0)
+            {
+                return;
+            }
 
             //int status = 0;  //0 未激活  1没穿戴 2 已穿戴
             if (bagComponent.FashionActiveIds.Contains(fashionid))
@@ -84,7 +94,7 @@ namespace ET
 
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-                self.UIModelShowComponent.ShowModel($"Parts/Fashion/" + FashionConfigCategory.Instance.GetModelList(fashionid)[0]).Coroutine();
+                self.UIModelShowComponent.ShowModel($"Parts/Fashion/" + fashionmodels[0]).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 130f, 175f);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 45;
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);

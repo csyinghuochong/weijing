@@ -50,7 +50,9 @@ namespace ET
 
         public List<string> GetModelList(int fashionId)
         {
-            return FashonModeList[fashionId];
+            List<string> list = null;
+            FashonModeList.TryGetValue(fashionId, out list);
+            return list;    
         }
 
         public List<int> GetOccFashionList(int occ, int subType)
