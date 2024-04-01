@@ -40,10 +40,10 @@ namespace ET
     {
         public override void Destroy(UIFashionSuitItemComponent self)
         {
-            self.UIModelShowComponent.ReleaseRenderTexture();
-
             if (self.RenderTexture != null)
             {
+                self.UIModelShowComponent.ReleaseRenderTexture();
+
                 self.RenderTexture.Release();
                 GameObject.Destroy(self.RenderTexture);
                 self.RenderTexture = null;
