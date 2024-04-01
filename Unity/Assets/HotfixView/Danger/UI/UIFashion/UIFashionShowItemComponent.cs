@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -183,7 +184,10 @@ namespace ET
 
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-                self.UIModelShowComponent.ShowModel($"Parts/Fashion/" + FashionConfigCategory.Instance.GetModelList(fashionid)[0]).Coroutine();
+
+                List<string> assetList = FashionConfigCategory.Instance.GetModelList(fashionid);
+
+                self.UIModelShowComponent.ShowModelList(assetList).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3((float)fashionConfig.Camera[0], (float)fashionConfig.Camera[1], (float)fashionConfig.Camera[2]);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = (float)fashionConfig.Camera[3];
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);

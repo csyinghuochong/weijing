@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -110,6 +111,37 @@ namespace ET
             go.transform.localPosition = Vector3.zero;
             go.transform.localEulerAngles = Vector3.zero;
             self.Model = go;
+        }
+
+        public static async ETTask ShowModelList(this UIModelDynamicComponent self, List<string> assetPath)
+        {
+            self.RemoveModel();
+            long instanceId = self.InstanceId;
+
+            for (int i = 0; i < assetPath.Count; i++)
+            {
+                var path = ABPathHelper.GetUnitPath($"Parts/Fashion/" + assetPath[i]);
+                GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
+                GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+                LayerHelp.ChangeLayerAll(go.transform, LayerEnum.RenderTexture);
+                go.transform.SetParent(self.ModelParent);
+                go.transform.localScale = Vector3.one;
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localEulerAngles = Vector3.zero;
+
+                if (self.Model == null)
+                {
+                    self.Model = go;
+                }
+                else
+                {
+                    go.transform.SetParent(self.Model.transform);
+                }
+            }
         }
 
         public static void PlayAnimate(this UIModelDynamicComponent self, string animate)
