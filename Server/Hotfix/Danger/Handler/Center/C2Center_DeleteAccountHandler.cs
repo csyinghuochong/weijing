@@ -15,12 +15,24 @@ namespace ET
             if (dBCenterAccountInfo != null)
             {
                 ///确认要不要删除所有区服的账号数据
-                dBCenterAccountInfo.AccountType = 2;////(int)AccountType.Delete;
-                await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
+                //dBCenterAccountInfo.AccountType = 2;////(int)AccountType.Delete;
+                //await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
+                await Game.Scene.GetComponent<DBComponent>().Remove<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo.Id);
+
+                List<int> allZones = ServerMessageHelper.GetAllZone();
+                for ( int i = 0; i < allZones.Count; i++ )
+                { 
+                    int pzone = allZones[i];
+                    await Game.Scene.GetComponent<DBComponent>().Remove<DBAccountInfo>(pzone, dBCenterAccountInfo.Id);
+                }
             }
             else
             {
             }
+
+
+
+
             //response.PlayerInfo = dBCenterAccountInfo != null ? dBCenterAccountInfo.PlayerInfo : null;
             //response.AccountId = dBCenterAccountInfo != null ? dBCenterAccountInfo.Id : 0;
             
