@@ -367,8 +367,9 @@ namespace ET
                             roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
                             roleList.EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
 
-                            //d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.BagComponent });
-                            //roleList.FashionIds = (d2GGetUnit.Component as BagComponent).FashionEquipList;
+                            d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.BagComponent });
+                            BagComponent bagComponent = d2GGetUnit.Component as BagComponent;
+                            roleList.FashionIds = bagComponent.FashionEquipList;
                             response.RoleLists.Add(roleList);
                         }
                         response.PlayerInfo = centerPlayerInfo;
