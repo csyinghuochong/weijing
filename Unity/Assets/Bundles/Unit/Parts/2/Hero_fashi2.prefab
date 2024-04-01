@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 1449060959580932436}
   - component: {fileID: 4826791825115747118}
   m_Layer: 0
-  m_Name: fashi_fashi2
+  m_Name: Hero_fashi2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
