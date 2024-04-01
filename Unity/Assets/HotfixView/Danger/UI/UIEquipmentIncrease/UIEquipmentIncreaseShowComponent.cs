@@ -92,7 +92,7 @@ namespace ET
             self.UIEquipSetComponent = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet, 0);
             self.UIEquipSetComponent.PlayerLv(userInfo.Lv);
             self.UIEquipSetComponent.PlayerName(userInfo.Name);
-            self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex));
+            self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex), self.BagComponent.FashionEquipList);
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             

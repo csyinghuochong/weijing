@@ -197,7 +197,7 @@ namespace ET
 			BagInfo bagInfo = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
 
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex));
+			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ, unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex), bagComponent.FashionEquipList);
 			int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
 			if (occTwo != 0) 
 			{

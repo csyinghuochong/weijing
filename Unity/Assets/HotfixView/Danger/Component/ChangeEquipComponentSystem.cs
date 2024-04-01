@@ -36,7 +36,6 @@ namespace ET
 
         public static void UpdateFashion(this ChangeEquipComponent self, List<int> fashions, int occ, int equipId = 0)
         {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
         }
 

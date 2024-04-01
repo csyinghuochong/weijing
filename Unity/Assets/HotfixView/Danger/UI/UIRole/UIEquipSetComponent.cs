@@ -104,13 +104,13 @@ namespace ET
             self.UIModelShowComponent.PlayShowIdelAnimate();
         }
 
-        public static void  ShowPlayerModel(this UIEquipSetComponent self, BagInfo bagInfo, int occ, int equipIndex)
+        public static void  ShowPlayerModel(this UIEquipSetComponent self, BagInfo bagInfo, int occ, int equipIndex, List<int> fashonids)
         {
             if (self.UIModelShowComponent == null)
             {
                 self.InitModelShowView(self.Index);
             }
-            self.UIModelShowComponent.ShowPlayerModel(bagInfo, occ, equipIndex);
+            self.UIModelShowComponent.ShowPlayerModel(bagInfo, occ, equipIndex, fashonids);
         }
 
         public static  void ChangeWeapon(this UIEquipSetComponent self, BagInfo bagInfo, int occ)

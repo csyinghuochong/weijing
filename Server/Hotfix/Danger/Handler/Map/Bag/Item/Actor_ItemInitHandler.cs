@@ -51,7 +51,26 @@ namespace ET
 				//}
 			}
 
-			List<int> fashionTypes = new List<int>();
+			if (bagComponent.FashionEquipList.Count == 0)
+			{
+				int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+				for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+				{
+					bagComponent.FashionEquipList.Add(occupationConfig.FashionBase[i]);
+                }
+			}
+            if (bagComponent.FashionActiveIds.Count == 0)
+            {
+                int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+                for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+                {
+                    bagComponent.FashionActiveIds.Add(occupationConfig.FashionBase[i]);
+                }
+            }
+
+            List<int> fashionTypes = new List<int>();
 			for (int i = bagComponent.FashionEquipList.Count - 1; i >= 0; i--)
 			{
 				FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]);

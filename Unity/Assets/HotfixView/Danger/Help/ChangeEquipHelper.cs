@@ -269,22 +269,40 @@ namespace ET
         public static List<string> GetPartsPath(this ChangeEquipHelper self, int occ, int subType, int fashonid)
         {
             List<string> assetlist = new List<string>();
-            if (fashonid == 0)
+
+            bool isbasefashion = false;
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+            for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
             {
-                List<string> assets = FashionHelper.FashionBaseTemplate(occ)[subType];
-                for (int i = 0; i < assets.Count; i++)
+                if (occupationConfig.FashionBase[i] == fashonid)
                 {
-                    assetlist.Add(StringBuilderHelper.GetFashionDefault(occ, assets[i]));
+                    isbasefashion = true;
+                    break;
                 }
             }
-            else
+            
+            //if (fashonid == 0)
+            //{
+            //    List<string> assets = FashionHelper.FashionBaseTemplate(occ)[subType];
+            //    for (int i = 0; i < assets.Count; i++)
+            //    {
+            //        assetlist.Add(StringBuilderHelper.GetFashionDefault(occ, assets[i]));
+            //    }
+            //}
+            //else
+            //{
+
+            //}
+
+            List<string> assets = FashionConfigCategory.Instance.GetModelList(fashonid);
+            if (assets != null)
             {
-                List<string> assets = FashionConfigCategory.Instance.GetModelList(fashonid);
                 for (int i = 0; i < assets.Count; i++)
                 {
-                    assetlist.Add(StringBuilderHelper.GetFashionPath(assets[i]));
+                    assetlist.Add(isbasefashion ? StringBuilderHelper.GetFashionDefault(occ, assets[i]) : StringBuilderHelper.GetFashionPath(assets[i]));
                 }
             }
+            
 
             return assetlist;
         }
@@ -442,29 +460,42 @@ namespace ET
             }
             self.oldFashions.Clear();
 
+            //for (int i = 0; i < fashionids.Count; i++)
+            //{
+            //    if (!FashionConfigCategory.Instance.Contain(fashionids[i]))
+            //    {
+            //        continue;
+            //    }
+
+            //    FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
+            //    self.FashionBase.Add(fashionConfig.SubType, fashionids[i]);
+            //}
+
+            //for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+            //{
+            //    if (!self.FashionBase.ContainsKey(occupationConfig.FashionBase[i]))
+            //    {
+            //        self.FashionBase.Add(occupationConfig.FashionBase[i], 0);
+            //    }
+            //}
+
+            //foreach (var item in self.FashionBase)
+            //{
+            //    List<string> assetlist = self.GetPartsPath(occ, item.Key, item.Value);
+            //    self.objectNames.AddRange(assetlist);
+            //}
+
+            if (fashionids.Count == 0)
+            {
+                for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+                {
+                    fashionids.Add(occupationConfig.FashionBase[i]);
+                }
+            }
+
             for (int i = 0; i < fashionids.Count; i++)
             {
-                if (!FashionConfigCategory.Instance.Contain(fashionids[i]))
-                {
-                    continue;
-                }
-
-                FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
-                self.FashionBase.Add(fashionConfig.SubType, fashionids[i]);
-            }
-
-           
-            for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
-            {
-                if (!self.FashionBase.ContainsKey(occupationConfig.FashionBase[i]))
-                {
-                    self.FashionBase.Add(occupationConfig.FashionBase[i], 0);
-                }
-            }
-
-            foreach (var item in self.FashionBase)
-            {
-                List<string> assetlist = self.GetPartsPath(occ, item.Key, item.Value);
+                List<string> assetlist = self.GetPartsPath(occ, 0, fashionids[i]);
                 self.objectNames.AddRange(assetlist);
             }
 

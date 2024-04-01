@@ -124,7 +124,7 @@ namespace ET
             self.GetComponent<ChangeEquipHelper>().ChangeWeapon(self.GetWeaponId(bagInfo, occ));
         }
 
-        public static  void ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ, int equipIndex)
+        public static  void ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ, int equipIndex, List<int> fashionids)
         {
             if (self.UnitModel != null)
             {
@@ -139,7 +139,7 @@ namespace ET
             changeEquipHelper.WeaponId = self.GetWeaponId(bagInfo, occ);
             changeEquipHelper.EquipIndex = equipIndex;
             changeEquipHelper.UseLayer = true; 
-            changeEquipHelper.LoadEquipment(go, new List<int>(), occ);
+            changeEquipHelper.LoadEquipment(go, fashionids, occ);
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
             if ( animator != null)

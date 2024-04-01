@@ -38,7 +38,7 @@ namespace ET
             self.OnInitModelShow();
 
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            List<int> keys = FashionHelper.FashionBaseTemplate(occ).Keys.ToList();
+            List<int> keys= new List<int> { 1001, 2001, 3001 };
             for (int i = 0; i < keys.Count; i++)
             {
                 int keyid = keys[i];
@@ -47,8 +47,7 @@ namespace ET
                 self.ButtonList.Add(keyid, Button_key);
             }
 
-            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
-            self.OnClickSubButton(occupationConfig.FashionBase[0]);
+            self.OnClickSubButton(keys[0]);
         }
     }
 

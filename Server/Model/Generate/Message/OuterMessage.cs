@@ -778,6 +778,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int EquipIndex { get; set; }
 
+		[ProtoMember(10)]
+		public List<int> FashionIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.UnitInfo)]

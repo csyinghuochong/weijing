@@ -394,6 +394,7 @@ message CreateRoleInfo
 	string PlayerName = 7;
 	int32 OccTwo = 8;
 	int32 EquipIndex = 9;
+	repeated int32 FashionIds = 10;
 }
 
 message UnitInfo
