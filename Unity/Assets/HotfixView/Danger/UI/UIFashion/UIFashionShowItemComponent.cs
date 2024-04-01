@@ -187,9 +187,20 @@ namespace ET
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
 
+                bool isbasefashion = false;
+                int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+                for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+                {
+                    if (occupationConfig.FashionBase[i] == fashionid)
+                    {
+                        isbasefashion = true;
+                        break;
+                    }
+                }
                 List<string> assetList = FashionConfigCategory.Instance.GetModelList(fashionid);
-
-                self.UIModelShowComponent.ShowModelList(assetList).Coroutine();
+                string initPath = isbasefashion ? $"Parts/{occ}/" : "Parts/Fashion/";
+                self.UIModelShowComponent.ShowModelList(initPath,  assetList).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3((float)fashionConfig.Camera[0], (float)fashionConfig.Camera[1], (float)fashionConfig.Camera[2]);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = (float)fashionConfig.Camera[3];
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);

@@ -122,14 +122,14 @@ namespace ET
             self.Model.Add(go);
         }
 
-        public static async ETTask ShowModelList(this UIModelDynamicComponent self, List<string> assetPath)
+        public static async ETTask ShowModelList(this UIModelDynamicComponent self, string initpath, List<string> assetPath)
         {
             self.RemoveModel();
             long instanceId = self.InstanceId;
 
             for (int i = 0; i < assetPath.Count; i++)
             {
-                var path = ABPathHelper.GetUnitPath($"Parts/Fashion/" + assetPath[i]);
+                var path = ABPathHelper.GetUnitPath(initpath +  assetPath[i]);
                 GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
                 if (instanceId != self.InstanceId)
                 {
