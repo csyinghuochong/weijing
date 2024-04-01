@@ -174,6 +174,7 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.SeasonReward, 0, false);
                 numericComponent.ApplyValue(NumericType.SeasonBossFuben, 0, false);
                 numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, 0, false);
+                numericComponent.ApplyValue(NumericType.SeasonTowerId, 0, false);
                 unit.GetComponent<UserInfoComponent>().OnResetSeason();
                 unit.GetComponent<BagComponent>().OnResetSeason();
                 unit.GetComponent<TaskComponent>().OnResetSeason();
