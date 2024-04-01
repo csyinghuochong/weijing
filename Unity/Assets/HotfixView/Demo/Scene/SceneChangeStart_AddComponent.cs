@@ -104,7 +104,7 @@ namespace ET
                 default:
                     break;
             }
-
+            
             await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId);
         }
 
