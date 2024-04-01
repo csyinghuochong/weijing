@@ -135,7 +135,6 @@ namespace ET
         public static void OnUpdateUI(this UIFashionShowItemComponent self, int fashionid)
         {
             self.FashionId = fashionid; 
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             int status = 0;  //0 未激活  1没穿戴 2 已穿戴
@@ -149,12 +148,15 @@ namespace ET
             {
                 case 0:
                     self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "激活";
+                    UICommonHelper.SetRawImageGray( self.RawImage, true );
                     break;
                 case 1:
                     self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "穿戴";
+                    UICommonHelper.SetRawImageGray(self.RawImage, false);
                     break;
                 case 2:
                     self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "卸下";
+                    UICommonHelper.SetRawImageGray(self.RawImage, false);
                     break;
             }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );

@@ -49,6 +49,16 @@ namespace ET
             buttonClickedEvent.AddListener(() => SafeClick(call));
         }
 
+        public static void RemoveEventTriggers(GameObject button)
+        {
+            EventTrigger trigger = button.GetComponent<EventTrigger>();
+            if (trigger == null)
+            {
+                return;
+            }
+            trigger.triggers.Clear();   
+        }
+
         public static void AddEventTriggers(GameObject button, Action<PointerEventData> action, EventTriggerType etype)
         {
             EventTrigger trigger = button.GetComponent<EventTrigger>();

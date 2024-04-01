@@ -15,6 +15,8 @@ namespace ET
         public Vector2 StartPosition;
         public Action ClickHandler;
         public bool draged = false;
+
+        public bool OnInit = false;
     }
 
 
@@ -22,6 +24,7 @@ namespace ET
     {
         public override void Awake(UIModelDynamicComponent self, GameObject gameObject)
         {
+            self.OnInit = false;
             self.draged = false;
             self.Model = new List<GameObject>();
             self.ClickHandler = null;
@@ -52,11 +55,11 @@ namespace ET
         public static void OnInitUI(this UIModelDynamicComponent self, GameObject parentImage, RenderTexture rc)
         {
             UICommonHelper.SetParent(self.GameObject, parentImage);
+            ButtonHelp.RemoveEventTriggers(  parentImage );
             ButtonHelp.AddEventTriggers(parentImage, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(parentImage, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(parentImage, (PointerEventData pdata) => { self.PointerUp(pdata); }, EventTriggerType.PointerUp);
             self.Camera.targetTexture = rc;
-
         }
 
         public static void ReleaseRenderTexture(this UIModelDynamicComponent self)
