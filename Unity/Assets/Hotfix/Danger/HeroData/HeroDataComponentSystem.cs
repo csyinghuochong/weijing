@@ -607,6 +607,10 @@ namespace ET
             numericComponent.Set((int)NumericType.Base_MinAdf_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MinAdf) * float.Parse(attributeList_1[4]) * (1 + masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[4]), false);
             numericComponent.Set((int)NumericType.Base_MaxAdf_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MaxAdf) * float.Parse(attributeList_1[4]) * (1 + masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[4]), false);
 
+            numericComponent.Set((int)NumericType.Now_MageBossPro, (int)(masterNumberComponent.GetAsInt(NumericType.Now_MageBossPro) ), false);
+            numericComponent.Set((int)NumericType.Now_ActBossSubPro, (int)(masterNumberComponent.GetAsInt(NumericType.Now_ActBossSubPro) ), false);
+
+
             //属性
             numericComponent.Set((int)NumericType.Base_Speed_Base, monsterConfig.MoveSpeed, false);
             numericComponent.Set((int)NumericType.Base_Cri_Base, monsterConfig.Cri, false);
