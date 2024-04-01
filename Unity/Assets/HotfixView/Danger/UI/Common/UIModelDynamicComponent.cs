@@ -7,7 +7,7 @@ namespace ET
 {
     public class UIModelDynamicComponent : Entity, IAwake, IAwake<GameObject>, IDestroy
     {
-        public GameObject Model;
+        public List<GameObject> Model = null;
         public Transform ModelParent;
         public Camera Camera;
         public GameObject GameObject;
@@ -23,7 +23,7 @@ namespace ET
         public override void Awake(UIModelDynamicComponent self, GameObject gameObject)
         {
             self.draged = false;
-            self.Model = null;
+            self.Model = new List<GameObject>();
             self.ClickHandler = null;
             self.GameObject = gameObject;   
             self.ModelParent = gameObject.transform.Find("Model");
@@ -38,9 +38,12 @@ namespace ET
         {
             if (self.Model != null)
             {
-                GameObject.Destroy(self.Model);
-                self.Model = null;
+                for (int i = 0; i < self.Model.Count; i++)
+                {
+                    GameObject.Destroy(self.Model[i]);
+                }
             }
+            self.Model = null;
         }
     }
 
@@ -89,9 +92,12 @@ namespace ET
         {
             if (self.Model != null)
             {
-                GameObject.Destroy(self.Model);
-                self.Model = null;
+                for (int i = 0; i < self.Model.Count; i++)
+                {
+                    GameObject.Destroy(self.Model[i]);
+                }
             }
+            self.Model.Clear();
         }
 
         public static async ETTask ShowModel(this UIModelDynamicComponent self, string assetPath)
@@ -110,7 +116,7 @@ namespace ET
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             go.transform.localEulerAngles = Vector3.zero;
-            self.Model = go;
+            self.Model.Add(go);
         }
 
         public static async ETTask ShowModelList(this UIModelDynamicComponent self, List<string> assetPath)
@@ -133,20 +139,18 @@ namespace ET
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localEulerAngles = Vector3.zero;
 
-                if (self.Model == null)
-                {
-                    self.Model = go;
-                }
-                else
-                {
-                    go.transform.SetParent(self.Model.transform);
-                }
+                self.Model.Add(go);
             }
         }
 
         public static void PlayAnimate(this UIModelDynamicComponent self, string animate)
         {
-            Animator animator = self.Model.GetComponentInChildren<Animator>();
+            if (self.Model.Count == 0)
+            {
+                return;
+            }
+
+            Animator animator = self.Model[0].GetComponentInChildren<Animator>();
             if (animator != null)
             {
                 animator.Play(animate);
