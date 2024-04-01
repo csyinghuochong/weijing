@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -150,7 +151,7 @@ namespace ET
             if (numericComponent.GetAsInt(NumericType.CostTiLi) > 600)
             {
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                Log.Console($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
+                Log.Warning($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
             }
 
             if (numericComponent.UpdateNumber < 1)
@@ -167,15 +168,21 @@ namespace ET
                 //清空赛季相关数据. 赛季任务 晶核
                 numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0, false);
 
-                Log.Console("清空赛季数据！");
-
+                Log.Warning($"清空赛季数据！:{unit.Id}");
+                Console.WriteLine($"清空赛季数据！:{unit.Id}");
+               
+                numericComponent.ApplyValue(NumericType.SeasonReward, 0, false);
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, 0, false);
+                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, 0, false);
+                unit.GetComponent<UserInfoComponent>().OnResetSeason();
+                unit.GetComponent<BagComponent>().OnResetSeason();
+                unit.GetComponent<TaskComponent>().OnResetSeason();
             }
 
             if (numericComponent.GetAsInt(NumericType.SkillMakePlan2) == 0)
             {
                 numericComponent.ApplyValue(NumericType.MakeType_2, 0, false);
             }
-
             self.CheckSeasonOpen(false);
         }
 
@@ -202,7 +209,7 @@ namespace ET
 
             if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
             {
-                Log.Console($"CheckSeasonOpen: {unit.Id}");
+                Console.WriteLine($"CheckSeasonOpen: {unit.Id}");
 
                 //刷新boss
                 numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
@@ -212,7 +219,6 @@ namespace ET
                 //刷新任务
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 taskComponent.InitSeasonMainTask(notice);
-
                 taskComponent.UpdateSeasonWeekTask(notice); 
             }
         }
@@ -427,7 +433,7 @@ namespace ET
             {
                 if (unit.ConfigId == 90000202)   //90030005
                 {
-                    Log.Console("PlayDeathSkill: 72009045");
+                    Log.Warning("PlayDeathSkill: 72009045");
                 }
 
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);

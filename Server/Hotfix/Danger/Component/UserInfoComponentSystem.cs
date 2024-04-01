@@ -1241,6 +1241,14 @@ namespace ET
             }
         }
 
+        public static void OnResetSeason(this UserInfoComponent self)
+        {
+            self.UserInfo.SeasonLevel = 1;
+            self.UserInfo.SeasonExp = 0;
+            self.UserInfo.SeasonCoin =0 ;
+            self.UserInfo.OpenJingHeIds.Clear();
+        }
+
         public static void ClearDayData(this UserInfoComponent self)
         {
             self.UserInfo.DayFubenTimes.Clear();

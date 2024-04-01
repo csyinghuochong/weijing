@@ -502,6 +502,26 @@ namespace ET
             return false;
         }
 
+        public static void OnResetSeason(this BagComponent self)
+        { 
+            self.SeasonJingHePlan = 0;
+            self.SeasonJingHe.Clear();
+
+            //self.ClearJingHeItem(self.BagItemList);
+        }
+
+        public static void ClearJingHeItem(this BagComponent self, List<BagInfo> bagInfos)
+        {
+            for (int i = bagInfos.Count - 1; i >= 0; i--)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.EquipType == 201)
+                {
+                    bagInfos.RemoveAt(i);
+                }
+            }
+        }
+
         public static List<BagInfo> GetCurJingHeList(this BagComponent self)
         {
             List<BagInfo> bagInfos = new List<BagInfo>();
