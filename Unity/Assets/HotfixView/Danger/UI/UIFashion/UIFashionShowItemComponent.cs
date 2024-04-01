@@ -9,6 +9,7 @@ namespace ET
     public class UIFashionShowItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
 
+        public GameObject Equipinged;
         public GameObject ImageDi;
         public GameObject GameObject;
 
@@ -43,6 +44,9 @@ namespace ET
             self.Text_222 = rc.Get<GameObject>("Text_222");
             self.Text_111 = rc.Get<GameObject>("Text_111");
             self.Btn_Active = rc.Get<GameObject>("Btn_Active");
+
+            self.Equipinged = rc.Get<GameObject>("Equipinged");
+
             ButtonHelp.AddListenerEx(  self.Btn_Active, () => { self.OnBtn_Active().Coroutine();  } );
 
             self.RawImage = rc.Get<GameObject>("RawImage");
@@ -147,15 +151,21 @@ namespace ET
             switch (self.Status)
             {
                 case 0:
+                    self.Equipinged.SetActive(false);
+                    self.Btn_Active.SetActive(true);
                     self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "激活";
                     UICommonHelper.SetRawImageGray( self.RawImage, true );
                     break;
                 case 1:
+                    self.Equipinged.SetActive(false);
+                    self.Btn_Active.SetActive(true);
                     self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "穿戴";
                     UICommonHelper.SetRawImageGray(self.RawImage, false);
                     break;
                 case 2:
-                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "卸下";
+                    //self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "卸下";
+                    self.Equipinged.SetActive(true);
+                    self.Btn_Active.SetActive(false);
                     UICommonHelper.SetRawImageGray(self.RawImage, false);
                     break;
             }
