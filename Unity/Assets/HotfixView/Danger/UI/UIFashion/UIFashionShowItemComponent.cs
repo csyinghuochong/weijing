@@ -105,17 +105,17 @@ namespace ET
                     break;
                 case 1:
                 case 2:
-                    if (self.Status == 1)
-                    {
-                        for (int i = 0; i < bagComponent.FashionEquipList.Count; i++)
-                        {
-                            if (FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]).SubType == fashionConfig.SubType)
-                            {
-                                FloatTipManager.Instance.ShowFloatTip("相同部位装备只能穿戴一个");
-                                return;
-                            }
-                        }
-                    }
+                    //if (self.Status == 1)
+                    //{
+                    //    for (int i = 0; i < bagComponent.FashionEquipList.Count; i++)
+                    //    {
+                    //        if (FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]).SubType == fashionConfig.SubType)
+                    //        {
+                    //            FloatTipManager.Instance.ShowFloatTip("相同部位装备只能穿戴一个");
+                    //            return;
+                    //        }
+                    //    }
+                    //}
                     
                     C2M_FashionWearRequest request1 = new C2M_FashionWearRequest() { FashionId = self.FashionId, OperatateType = self.Status };
                     M2C_FashionWearResponse response1 = (M2C_FashionWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request1);
@@ -124,7 +124,7 @@ namespace ET
                         return;
                     }
 
-                    self.FashionWearHandler.Invoke();
+                    self.FashionWearHandler?.Invoke();
                     break;
             }
 

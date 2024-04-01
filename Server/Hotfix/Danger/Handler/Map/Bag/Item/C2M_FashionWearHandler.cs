@@ -45,14 +45,12 @@ namespace ET
                     return;
                 }
 
-                for (int  i = 0; i < bagComponent.FashionEquipList.Count; i++)
+                for (int  i = bagComponent.FashionEquipList.Count - 1; i >= 0 ; i--)
                 {
                     FashionConfig fashionConfig_2 = FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]);
                     if (fashionConfig_2.SubType == fashionConfig.SubType)
                     {
-                        response.Error = ErrorCode.ERR_AlreadyLearn;
-                        reply();
-                        return;
+                        bagComponent.FashionEquipList.RemoveAt(i);  
                     }
                 }
 
