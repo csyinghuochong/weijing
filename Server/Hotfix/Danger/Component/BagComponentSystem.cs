@@ -1284,6 +1284,11 @@ namespace ET
                         }
                     }
 
+                    if (getType == ItemGetWay.PaiMaiShop)
+                    {
+                        useBagInfo.isBinging = true;    
+                    }
+
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
                     m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }
