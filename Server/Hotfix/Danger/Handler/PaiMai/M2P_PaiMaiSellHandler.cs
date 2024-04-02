@@ -32,7 +32,8 @@ namespace ET
 
             int openday = ServerHelper.GetOpenServerDay(false, scene.DomainZone());
             long todayGold = ConfigHelper.GetPaiMaiTodayGold(openday);
-            if (paimaiingGold + request.PaiMaiTodayGold >= todayGold)
+            long sellGold = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
+            if (paimaiingGold + request.PaiMaiTodayGold + sellGold >= todayGold)
             {
                 response.Error = ErrorCode.ERR_PaiMaiSellLimit;
                 reply();
