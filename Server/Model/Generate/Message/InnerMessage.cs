@@ -2617,6 +2617,9 @@ namespace ET
 		[ProtoMember(4)]
 		public long UnionId { get; set; }
 
+		[ProtoMember(5)]
+		public int Level { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Chat2G_EnterChat)]

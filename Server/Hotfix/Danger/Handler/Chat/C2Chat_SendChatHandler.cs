@@ -32,9 +32,9 @@ namespace ET
                 return;
             }
 
-
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             request.ChatInfo.Time = TimeHelper.ServerNow();
+            request.ChatInfo.PlayerName = chatInfoUnit.Name;
             m2C_SyncChatInfo.ChatInfo = request.ChatInfo;
             switch (request.ChatInfo.ChannelId)
             {

@@ -317,7 +317,8 @@ namespace ET
 			{ 
 				UnitId = unit.Id,
 				Name = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
-				UnionId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0),
+				Level = unit.GetComponent<UserInfoComponent>().UserInfo.Lv,
+                UnionId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0),
 				GateSessionActorId = unit.GetComponent<UnitGateComponent>().GateSessionActorId
 			});
 			return chat2G_EnterChat.ChatInfoUnitInstanceId;

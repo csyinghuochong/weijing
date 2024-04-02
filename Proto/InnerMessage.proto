@@ -1241,6 +1241,7 @@ message G2Chat_EnterChat //IActorRequest
 	int64 UnitId = 2;
 	int64 GateSessionActorId = 3;
 	int64 UnionId = 4;
+	int32 Level = 5;
 }
 
 message Chat2G_EnterChat //IActorResponse

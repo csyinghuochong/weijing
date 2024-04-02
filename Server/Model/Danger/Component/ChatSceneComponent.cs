@@ -12,6 +12,8 @@ namespace ET
         public long UnionId;
 
         public string Name;
+
+        public int Level;
     }
 
     public class BeReportedInfo
