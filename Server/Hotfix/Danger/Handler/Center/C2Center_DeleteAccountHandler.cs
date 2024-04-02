@@ -5,7 +5,7 @@ namespace ET
 {
 
     [MessageHandler]
-    internal class C2Center_DeleteAccountHandler : AMRpcHandler<C2Center_DeleteAccountRequest, Center2C_DeleteAccountResponse>
+    public class C2Center_DeleteAccountHandler : AMRpcHandler<C2Center_DeleteAccountRequest, Center2C_DeleteAccountResponse>
     {
         protected override async ETTask Run(Session session, C2Center_DeleteAccountRequest request, Center2C_DeleteAccountResponse response, Action reply)
         {
