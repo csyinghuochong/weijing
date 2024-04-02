@@ -19,7 +19,6 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Minute)
             {
-                response.Error = ErrorCode.ERR_OperationOften;
                 reply();
                 return;
             }

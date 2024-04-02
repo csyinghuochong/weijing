@@ -106,9 +106,6 @@ namespace ET
             self.PaiMaiGold += addgold;
             self.PaiMaiTodayGold += addgold;
 
-            Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, self.PaiMaiTodayGold, notice);
-
             for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
             {
                 if (self.BuySelfPlayerList[i].KeyId == unitid)
