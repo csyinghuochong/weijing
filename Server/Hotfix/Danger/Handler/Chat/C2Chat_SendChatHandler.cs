@@ -11,18 +11,21 @@ namespace ET
         {
             if (string.IsNullOrEmpty(request.ChatInfo.ChatMsg))
             {
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
+
             long serverTime = TimeHelper.ServerNow();
-            if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Second * 2)
+            if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Minute)
             {
                 response.Error = ErrorCode.ERR_OperationOften;
                 reply();
                 return;
             }
-           
-            if (!ComHelp.IsBanHaoZone(chatInfoUnit.DomainZone()) &&  request.ChatInfo.PlayerLevel < 20)
+            chatInfoUnit.LastSendChat = serverTime;
+
+            if (!ComHelp.IsBanHaoZone(chatInfoUnit.DomainZone()) && request.ChatInfo.PlayerLevel < 20)
             {
                 response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
@@ -49,9 +52,9 @@ namespace ET
                             reply();
                             return;
                         }
-                        if (bePortedNumber != null && bePortedNumber.JinYanTime!=0 && bePortedNumber.JinYanTime<= TimeHelper.ServerNow())
+                        if (bePortedNumber != null && bePortedNumber.JinYanTime != 0 && bePortedNumber.JinYanTime <= TimeHelper.ServerNow())
                         {
-                            chatInfoUnitsComponent.BeReportedNumber.Remove(request.ChatInfo.UserId);    
+                            chatInfoUnitsComponent.BeReportedNumber.Remove(request.ChatInfo.UserId);
                         }
                     }
 
@@ -97,11 +100,11 @@ namespace ET
                     {
                         for (int i = 0; i < g_SendChatRequest1.TeamInfo.PlayerList.Count; i++)
                         {
-                           g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                           (gateServerId, new T2G_GateUnitInfoRequest()
-                           {
-                               UserID = g_SendChatRequest1.TeamInfo.PlayerList[i].UserID
-                           });
+                            g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                            (gateServerId, new T2G_GateUnitInfoRequest()
+                            {
+                                UserID = g_SendChatRequest1.TeamInfo.PlayerList[i].UserID
+                            });
 
                             if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                             {
@@ -162,6 +165,7 @@ namespace ET
                     MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_SyncChatInfo);
                     break;
             }
+
             reply();
         }
     }
