@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel.Channels;
 using UnityEngine;
 
 namespace ET
@@ -162,6 +163,20 @@ namespace ET
                         $" \t账号:{userInfoComponent.Account}   \t钻石:{userInfoComponent.UserInfo.Diamond}  \t金币:{userInfoComponent.UserInfo.Gold} \n";
                     LogHelper.PaiMaiInfo(levelInfo);
                 }
+
+                M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() {  PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
+                M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(r_GameStatusResponse.PaiMaiItemInfo.UserId, r2M_RechargeRequest);
+                if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
+                {
+                    DataCollationComponent dataCollationComponent = await DBHelper.GetComponentCache<DataCollationComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
+                    if(dataCollationComponent!= null) 
+                    {
+                        dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id);
+                        DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, dataCollationComponent).Coroutine();
+                    }
+                }
+
+                Console.WriteLine($"m2G_RechargeResponse: {m2G_RechargeResponse.Error}");
 
                 //每天更新文本。
                 //今天拍卖出售获取金币数量>=50000000  打印出来

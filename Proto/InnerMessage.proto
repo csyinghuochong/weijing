@@ -2092,7 +2092,7 @@ message M2M_AllPlayerListResponse // IActorResponse
 }
 
 //ResponseType M2M_PaiMaiBuyInfoResponse
-message M2M_PaiMaiBuyInfoRequest // IActorRequest
+message M2M_PaiMaiBuyInfoRequest // IActorLocationRequest
 {
   int32 RpcId = 90;
   int64 ActorId = 93;
@@ -2100,7 +2100,7 @@ message M2M_PaiMaiBuyInfoRequest // IActorRequest
   int64 CostGold = 2;
 }
 
-message M2M_PaiMaiBuyInfoResponse // IActorResponse
+message M2M_PaiMaiBuyInfoResponse // IActorLocationResponse
 {
   int32 RpcId = 90;
   int32 Error = 91;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace ET
 {
@@ -96,6 +97,9 @@ namespace ET
             {
                 return;
             }
+
+            self.PaiMaiGold += addgold;
+            self.PaiMaiTodayGold += addgold;
 
             for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
             {

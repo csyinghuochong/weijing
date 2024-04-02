@@ -24,6 +24,13 @@ namespace ET
                     return;
                 }
 
+				if (allprice + unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold >= 50000000)
+				{
+                    response.Error = ErrorCode.ERR_PaiMaiSellLimit;
+                    reply();
+                    return;
+                }
+
                 //获取时间戳
                 long currentTime = TimeHelper.ServerNow();
 

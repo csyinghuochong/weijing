@@ -133,8 +133,13 @@ namespace ET
 
         public static async ETTask RequestGMInfo(this UIGMComponent self)
         {
+            long instanceid = self.InstanceId;
             C2C_GMInfoRequest c2E_GetAllMailRequest = new C2C_GMInfoRequest() { Account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account };
             C2C_GMInfoResponse sendChatResponse = (C2C_GMInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
+            if (instanceid == self.InstanceId )
+            {
+                return;
+            }
 
             if (sendChatResponse.Error == 0)
             {

@@ -4392,7 +4392,7 @@ namespace ET
 	[ResponseType(nameof(M2M_PaiMaiBuyInfoResponse))]
 	[Message(InnerOpcode.M2M_PaiMaiBuyInfoRequest)]
 	[ProtoContract]
-	public partial class M2M_PaiMaiBuyInfoRequest: Object, IActorRequest
+	public partial class M2M_PaiMaiBuyInfoRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -4410,7 +4410,7 @@ namespace ET
 
 	[Message(InnerOpcode.M2M_PaiMaiBuyInfoResponse)]
 	[ProtoContract]
-	public partial class M2M_PaiMaiBuyInfoResponse: Object, IActorResponse
+	public partial class M2M_PaiMaiBuyInfoResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
