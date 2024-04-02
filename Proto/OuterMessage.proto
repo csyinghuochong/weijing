@@ -3103,6 +3103,7 @@ message TeamPlayerInfo
 	int32 RobotId = 10;
 	int32 OccTwo = 11;
 	int32 Prepare = 12;
+	repeated int32 FashionIds = 13;
 }
 
 //邀请组队
@@ -3395,6 +3396,7 @@ message F2C_WatchPlayerResponse // IFriendActorResponse
 	repeated BagInfo PetHeXinList = 9;
 	repeated int32 Ks = 11;
 	repeated int64 Vs = 12;
+	repeated int32 FashionIds = 13;
 }
 
 //好友列表

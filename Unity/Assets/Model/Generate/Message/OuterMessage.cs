@@ -6578,6 +6578,9 @@ namespace ET
 		[ProtoMember(12)]
 		public int Prepare { get; set; }
 
+		[ProtoMember(13)]
+		public List<int> FashionIds = new List<int>();
+
 	}
 
 //邀请组队
@@ -7174,6 +7177,9 @@ namespace ET
 
 		[ProtoMember(12)]
 		public List<long> Vs = new List<long>();
+
+		[ProtoMember(13)]
+		public List<int> FashionIds = new List<int>();
 
 	}
 

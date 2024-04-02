@@ -52,6 +52,7 @@ namespace ET
                 Combat = userInfoComponent.UserInfo.Combat,
                 RobotId = userInfoComponent.UserInfo.RobotId,
                 OccTwo = userInfoComponent.UserInfo.OccTwo, 
+                FashionIds = zoneScene.GetComponent<BagComponent>().FashionEquipList,
             };
         }
 
