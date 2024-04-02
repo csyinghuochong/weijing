@@ -96,7 +96,7 @@ namespace ET
         }
 
 
-        public static void UpdateBuySelfPlayerList(this DataCollationComponent self, long addgold, long unitid)
+        public static void UpdateBuySelfPlayerList(this DataCollationComponent self, long addgold, long unitid, bool notice)
         {
             if (unitid == 0)
             {
@@ -107,7 +107,7 @@ namespace ET
             self.PaiMaiTodayGold += addgold;
 
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, self.PaiMaiTodayGold, true);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, self.PaiMaiTodayGold, notice);
 
             for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
             {

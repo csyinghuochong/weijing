@@ -171,8 +171,15 @@ namespace ET
                     DataCollationComponent dataCollationComponent = await DBHelper.GetComponentCache<DataCollationComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
                     if(dataCollationComponent!= null) 
                     {
-                        dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id);
+                        dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id, false);
                         DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, dataCollationComponent).Coroutine();
+                    }
+
+                    NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
+                    if (numericComponent!= null)
+                    {
+                        numericComponent.ApplyValue( NumericType.PaiMaiTodayGold, dataCollationComponent.PaiMaiTodayGold, false);
+                        DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, numericComponent).Coroutine();
                     }
                 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alipay.AopSdk.F2FPay.Business;
+using System;
 
 
 namespace ET
@@ -9,7 +10,10 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, M2M_PaiMaiBuyInfoRequest request, M2M_PaiMaiBuyInfoResponse response, Action reply)
         {
-            unit.GetComponent<DataCollationComponent>().UpdateBuySelfPlayerList( request.CostGold,request.PlayerId );
+            unit.GetComponent<DataCollationComponent>().UpdateBuySelfPlayerList( request.CostGold,request.PlayerId, true );
+
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold, true);
+
             await ETTask.CompletedTask;
         }
     }
