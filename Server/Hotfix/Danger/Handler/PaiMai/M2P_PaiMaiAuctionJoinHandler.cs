@@ -23,6 +23,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (paiMaiSceneComponent.AuctionStatus != 1)
+            {
+                response.Error = ErrorCode.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
 
             if (!paiMaiSceneComponent.AuctionJoinList.Contains(request.UnitID))
             {
