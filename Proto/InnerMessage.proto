@@ -1252,6 +1252,22 @@ message Chat2G_EnterChat //IActorResponse
 	int64 ChatInfoUnitInstanceId = 1;
 }
 
+//ResponseType Chat2M_UpdateLevel
+message M2Chat_UpdateLevel //IActorRequest
+{
+	int32 RpcId = 90;
+	int64 UnitId = 2;
+	int32 Level = 5;
+}
+
+message Chat2M_UpdateLevel //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
 //ResponseType Chat2G_RequestExitChat
 message G2Chat_RequestExitChat //IActorRequest
 {

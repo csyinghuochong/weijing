@@ -2640,6 +2640,37 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Chat2M_UpdateLevel))]
+	[Message(InnerOpcode.M2Chat_UpdateLevel)]
+	[ProtoContract]
+	public partial class M2Chat_UpdateLevel: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(5)]
+		public int Level { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Chat2M_UpdateLevel)]
+	[ProtoContract]
+	public partial class Chat2M_UpdateLevel: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(Chat2G_RequestExitChat))]
 	[Message(InnerOpcode.G2Chat_RequestExitChat)]
 	[ProtoContract]

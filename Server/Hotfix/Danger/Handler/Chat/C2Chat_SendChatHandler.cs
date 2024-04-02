@@ -23,15 +23,15 @@ namespace ET
                 reply();
                 return;
             }
-            chatInfoUnit.LastSendChat = serverTime;
 
-            if (!ComHelp.IsBanHaoZone(chatInfoUnit.DomainZone()) && request.ChatInfo.PlayerLevel < 20)
+            if (!ComHelp.IsBanHaoZone(chatInfoUnit.DomainZone()) && chatInfoUnit.Level < 20)
             {
                 response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
                 return;
             }
 
+            chatInfoUnit.LastSendChat = serverTime;
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             request.ChatInfo.Time = TimeHelper.ServerNow();
             request.ChatInfo.PlayerName = chatInfoUnit.Name;

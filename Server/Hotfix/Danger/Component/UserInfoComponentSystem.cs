@@ -611,6 +611,17 @@ namespace ET
                             serverod, new M2U_UnionOperationRequest() { OperateType = 1, UnionId = unionid, Par = $"{playerName}_{getWay}_{dataType}_{dataValue}" });
         }
 
+        public static async ETTask BroadcastLevel(this UserInfoComponent self, int level)
+        {
+            Unit unit = self.GetParent<Unit>();
+            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
+            Chat2M_UpdateLevel chat2G_EnterChat = (Chat2M_UpdateLevel)await MessageHelper.CallActor(chatServerId, new M2Chat_UpdateLevel()
+            {
+                UnitId = unit.Id,
+                Level = level,
+            });
+        }
+
         //需要通知客户端
         public static void UpdateRoleData(this UserInfoComponent self, int Type, string value, bool notice = true)
         {
@@ -687,6 +698,7 @@ namespace ET
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<HeroDataComponent>().CheckSeasonOpen(true);
                     self.UpdateRoleData(UserDataType.Sp, value, notice);
+                    self.BroadcastLevel(self.UserInfo.Lv).Coroutine();
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true,true );
                     break;
                 case UserDataType.Sp:
