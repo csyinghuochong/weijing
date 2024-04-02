@@ -57,7 +57,7 @@ namespace ET
             self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
                     $"{rolePetInfoMin.ZiZhi_MageAct}-{rolePetInfoMax.ZiZhi_MageAct}";
             self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text =
-                    $"{UICommonHelper.ShowFloatValue(rolePetInfoMin.ZiZhi_ChengZhang)}-{UICommonHelper.ShowFloatValue(rolePetInfoMax.ZiZhi_ChengZhang)}";
+                    $"{UICommonHelper.ShowFloatValue_2(rolePetInfoMin.ZiZhi_ChengZhang)}-{UICommonHelper.ShowFloatValue_2(rolePetInfoMax.ZiZhi_ChengZhang)}";
 
             self.PetZiZhiItemList[0].transform.Find("ImageExpMinValue").GetComponent<Image>().fillAmount =
                     Mathf.Clamp((float)rolePetInfoMin.ZiZhi_Hp / 3000, 0f, 1f);

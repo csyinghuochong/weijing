@@ -30,7 +30,9 @@ namespace ET
                 paimaiingGold += (paiMaiItemsTo[i].Price * paiMaiItemsTo[i].BagInfo.ItemNum);
             }
 
-            if (paimaiingGold + request.PaiMaiTodayGold >= 50000000)
+            int openday = ServerHelper.GetOpenServerDay(false, scene.DomainZone());
+            long todayGold = ConfigHelper.GetPaiMaiTodayGold(openday);
+            if (paimaiingGold + request.PaiMaiTodayGold >= todayGold)
             {
                 response.Error = ErrorCode.ERR_PaiMaiSellLimit;
                 reply();

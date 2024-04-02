@@ -18,9 +18,20 @@ namespace ET
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ShowFloatValue(float value)
+        public static string ShowFloatValue_2(float value)
         {
             string svalue = value.ToString("0.##");
+            return svalue;
+        }
+
+        /// <summary>
+        /// 保留两位小数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ShowFloatValue_1(float value)
+        {
+            string svalue = value.ToString("0.#");
             return svalue;
         }
 

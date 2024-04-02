@@ -100,11 +100,19 @@ namespace ET
                 return;
             }
 
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openday = ServerHelper.GetOpenServerDay(false, zone);
+
             self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long sellgold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
-            self.PaiMaiGoldText.text = $"今日已获得金币:{sellgold}";
+            long todayGold = ConfigHelper.GetPaiMaiTodayGold(openday);
+
+            float sellgold_1 = sellgold * 0.0001f;
+            float todayGold_1 = todayGold * 0.0001f;
+
+            self.PaiMaiGoldText.text = $"今日获利:{UICommonHelper.ShowFloatValue_1(sellgold_1)}万/{UICommonHelper.ShowFloatValue_1(todayGold_1)}万";
             self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
