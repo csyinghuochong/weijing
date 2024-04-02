@@ -202,7 +202,7 @@ namespace ET
                     if (userInfoComponentSell != null)
                     {
                         int sellPlayerLv = userInfoComponentSell.UserInfo.Lv;
-                        long sellNowGold = userInfoComponent.UserInfo.Gold;
+                        long sellNowGold = userInfoComponentSell.UserInfo.Gold;
 
                         string paimaiInfo = $"服务器:{serverName}   \t道具名称:{itemName}   \t数量:{itemNumber}   \t价格:{price}  \t购买者名称:{buyPlayerName}   \t购买者等级:{buyPlayerLv}    " +
                             $"\t购买者充值:{buyPlayerRecharge}   \t购买者当前金币:{buyNowGold}   \t购买者账号:{buyAccount}    \t出售者名称:{sellPlayerName}   \t出售者账号:{sellAccoount}   \t出售者等级:{sellPlayerLv}    \t出售者当前金币:{sellNowGold} ";

@@ -210,7 +210,7 @@ namespace ET
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(false);
-                    unit.GetComponent<DataCollationComponent>().OnZeroClockUpdate();
+                    unit.GetComponent<DataCollationComponent>().OnZeroClockUpdate(false);
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
                 else

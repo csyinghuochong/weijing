@@ -2734,6 +2734,7 @@ message P2C_PaiMaiListResponse // IPaiMaiListResponse
 	string Message = 92;
 	repeated PaiMaiItemInfo PaiMaiItemInfos = 1;
 	int32 NextPage = 2;
+	int64 PaiMaiCostGoldToday = 3;
 }
 
 //ResponseType M2C_PaiMaiXiaJiaResponse

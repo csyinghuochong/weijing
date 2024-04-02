@@ -5796,6 +5796,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int NextPage { get; set; }
 
+		[ProtoMember(3)]
+		public long PaiMaiCostGoldToday { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_PaiMaiXiaJiaResponse))]

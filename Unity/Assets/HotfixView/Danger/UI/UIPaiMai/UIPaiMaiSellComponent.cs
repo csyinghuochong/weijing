@@ -18,6 +18,7 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject PaiMaiListNode;
         public GameObject UIPaiMaiSellItem;
+        public Text PaiMaiGoldText;
 
         public List<UIItemComponent> BagItemUILIist = new List<UIItemComponent>();
         public List<UIPaiMaiSellItemComponent> SellItemUILIist = new List<UIPaiMaiSellItemComponent>();
@@ -59,6 +60,8 @@ namespace ET
             self.UIPaiMaiSellItem = rc.Get<GameObject>("UIPaiMaiSellItem");
             self.UIPaiMaiSellItem.SetActive(false);
 
+            self.PaiMaiGoldText = rc.Get<GameObject>("PaiMaiGoldText").GetComponent<Text>();
+
             self.Btn_Stall = rc.Get<GameObject>("Btn_Stall");
             self.Btn_Stall.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Stall(); });
 
@@ -99,6 +102,10 @@ namespace ET
             }
 
             self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long sellgold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
+            self.PaiMaiGoldText.text = $"今日已获得金币:{sellgold}";
             self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
