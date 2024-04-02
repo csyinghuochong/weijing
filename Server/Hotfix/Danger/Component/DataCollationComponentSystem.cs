@@ -27,6 +27,7 @@ namespace ET
         public static void OnZeroClockUpdate(this DataCollationComponent self)
         {
             self.PaiMaiTodayGold = 0;
+            self.PaiMaiCostGoldToday = 0;   
         }
 
         public static void OnXiLian(this DataCollationComponent self, int times)

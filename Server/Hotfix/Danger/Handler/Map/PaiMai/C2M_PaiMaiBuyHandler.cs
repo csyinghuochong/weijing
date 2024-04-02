@@ -154,6 +154,15 @@ namespace ET
                 //Log.Warning($"拍卖购买者: {unit.Id} 购买 {r_GameStatusResponse.PaiMaiItemInfo.UserId} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
                 Log.Warning($"拍卖被购买: [出售者]{r_GameStatusResponse.PaiMaiItemInfo.UserId}  [购买者]{unit.Id} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemID} 花费：{needGold} {ret}");
 
+                unit.GetComponent<DataCollationComponent>().PaiMaiCostGoldToday += needGold;
+                if (unit.GetComponent<DataCollationComponent>().PaiMaiCostGoldToday >= 50000000)
+                {
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    string levelInfo = $"区： {unit.DomainZone()}  {userInfoComponent.UserInfo.Name}   \t拍卖消耗金币:{unit.GetComponent<DataCollationComponent>().PaiMaiCostGoldToday}  " +
+                        $" \t账号:{userInfoComponent.Account}   \t钻石:{userInfoComponent.UserInfo.Diamond}  \t金币:{userInfoComponent.UserInfo.Gold} \n";
+                    LogHelper.PaiMaiInfo(levelInfo);
+                }
+
                 //每天更新文本。
                 //今天拍卖出售获取金币数量>=50000000  打印出来
                 //充值《100 金币大于5亿
