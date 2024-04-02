@@ -1345,6 +1345,12 @@ namespace ET
 		[ProtoMember(2)]
 		public PaiMaiItemInfo PaiMaiItemInfo { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(4)]
+		public long PaiMaiTodayGold { get; set; }
+
 	}
 
 	[Message(InnerOpcode.P2M_PaiMaiSellResponse)]

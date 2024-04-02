@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -12,6 +13,26 @@ namespace ET
             if (!ItemConfigCategory.Instance.Contain(request.PaiMaiItemInfo.BagInfo.ItemID))
             {
                 response.Error = ErrorCode.ERR_ItemNotExist;
+                reply();
+                return;
+            }
+
+            PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
+            List<PaiMaiItemInfo> paiMaiItemsTo = new List<PaiMaiItemInfo>();
+            paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UnitID, paiMaiComponent.dBPaiMainInfo_Consume.PaiMaiItemInfos));
+            paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UnitID, paiMaiComponent.dBPaiMainInfo_Material.PaiMaiItemInfos));
+            paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UnitID, paiMaiComponent.dBPaiMainInfo_Equipment.PaiMaiItemInfos));
+            paiMaiItemsTo.AddRange(paiMaiComponent.GetItemListByUser(request.UnitID, paiMaiComponent.dBPaiMainInfo_Gemstone.PaiMaiItemInfos));
+
+            long paimaiingGold = 0;
+            for (int i = 0; i < paiMaiItemsTo.Count; i++)
+            {
+                paimaiingGold += (paiMaiItemsTo[i].Price * paiMaiItemsTo[i].BagInfo.ItemNum);
+            }
+
+            if (paimaiingGold + request.PaiMaiTodayGold >= 50000000)
+            {
+                response.Error = ErrorCode.ERR_PaiMaiSellLimit;
                 reply();
                 return;
             }

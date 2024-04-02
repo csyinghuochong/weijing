@@ -68,6 +68,16 @@ namespace ET
 
 
         /// <summary>
+        /// 开服天数金币限制
+        /// </summary>
+        /// <param name="openDay"></param>
+        /// <returns></returns>
+        public static long GetPaiMaiTodayGold(int openDay)
+        {
+            return 50000000;
+        }
+
+        /// <summary>
         /// 家园开启宠物仓库的消耗
         /// </summary>
         public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()

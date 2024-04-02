@@ -24,12 +24,12 @@ namespace ET
                     return;
                 }
 
-				if (allprice + unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold >= 50000000)
-				{
-                    response.Error = ErrorCode.ERR_PaiMaiSellLimit;
-                    reply();
-                    return;
-                }
+				//if (allprice + unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold >= 50000000)
+				//{
+    //                response.Error = ErrorCode.ERR_PaiMaiSellLimit;
+    //                reply();
+    //                return;
+    //            }
 
                 //获取时间戳
                 long currentTime = TimeHelper.ServerNow();
@@ -87,7 +87,9 @@ namespace ET
 				P2M_PaiMaiSellResponse r_GameStatusResponse = (P2M_PaiMaiSellResponse)await ActorMessageSenderComponent.Instance.Call
 					(paimaiServerId, new M2P_PaiMaiSellRequest()
 					{
-						PaiMaiItemInfo = request.PaiMaiItemInfo
+						UnitID = unit.Id,
+						PaiMaiItemInfo = request.PaiMaiItemInfo,
+						PaiMaiTodayGold = unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold
 					});
 
 				if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)
