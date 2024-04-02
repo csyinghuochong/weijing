@@ -12,8 +12,8 @@ namespace ET
             if(chatInfoUnit != null ) 
             {
                 chatInfoUnit.Level = request.Level;
-                //Console.WriteLine("11121212");
             }
+            reply();
             await ETTask.CompletedTask;
         }
     }
