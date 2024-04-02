@@ -748,7 +748,7 @@ namespace ET
 
         public static void OnPointerUp(this UIPetListComponent self, PointerEventData pdata, int index1)
         {
-            if (TimeHelper.ServerNow() - self.ClickTime <= 200)
+            if (TimeHelper.ServerNow() - self.ClickTime <= 250)
             {
                 self.OnClick(index1);
             }
@@ -758,7 +758,7 @@ namespace ET
 
         public static void OnBeginDrag(this UIPetListComponent self, PointerEventData pdata, int index1)
         {
-            if (TimeHelper.ServerNow() - self.ClickTime <= 500)
+            if (TimeHelper.ServerNow() - self.ClickTime <= 250)
             {
                 self.IsChange = false;
                 self.ScrollView1.GetComponent<ScrollRect>().OnBeginDrag(pdata);
