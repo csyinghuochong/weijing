@@ -4869,6 +4869,21 @@ message Center2C_DeleteAccountResponse // IResponse
 	string Message = 92;
 }
 
+//ResponseType Center2C_BlackAccountResponse
+message C2Center_BlackAccountRequest // IRequest
+{
+	int32 RpcId = 90;
+	string Account = 1;
+	string Password = 2;
+}
+
+message Center2C_BlackAccountResponse // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //ResponseType R2C_IOSPayVerifyResponse
 message C2R_IOSPayVerifyRequest // IRechargeActorRequest
 {
