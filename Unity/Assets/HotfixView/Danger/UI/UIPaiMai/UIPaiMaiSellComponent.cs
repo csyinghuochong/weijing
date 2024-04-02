@@ -8,7 +8,6 @@ namespace ET
 {
     public class UIPaiMaiSellComponent : Entity, IAwake
     {
-
         public GameObject SellTypeButton;
         public GameObject Btn_Stall;
         public GameObject Lab_ShengYuTime;

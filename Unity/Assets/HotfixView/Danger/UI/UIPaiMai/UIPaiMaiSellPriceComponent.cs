@@ -165,7 +165,7 @@ namespace ET
             long instanceid = self.InstanceId;
             C2M_PaiMaiSellRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiSellRequest() {  PaiMaiItemInfo = paiMaiItemInfo };
             M2C_PaiMaiSellResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiSellResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
-            if (instanceid != self.InstanceId)
+            if (instanceid != self.InstanceId || m2C_PaiMaiBuyResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }
