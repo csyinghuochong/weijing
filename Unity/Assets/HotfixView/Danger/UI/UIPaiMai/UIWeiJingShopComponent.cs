@@ -6,8 +6,10 @@ namespace ET
 {
     public class UIWeiJingShopComponent : Entity, IAwake
     {
+
         public int SellId;
         public GameObject ButtonBuy;
+        public GameObject Btn_Close;
         public GameObject ItemListNode;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
 
@@ -47,6 +49,9 @@ namespace ET
             self.Btn_BuyNum_jia10.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(10); });
             self.Btn_BuyNum_jia1 = rc.Get<GameObject>("Btn_BuyNum_jia1");
             self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(1); });
+
+            self.Btn_Close = rc.Get<GameObject>("Btn_Close");
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIWeiJingShop ); });
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
             self.OnInitUI();
