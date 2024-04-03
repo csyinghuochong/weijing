@@ -15,6 +15,7 @@ namespace ET
         public GameObject Btn_Shop;
 
 
+        public Text Lab_WeiJingGold;
         public GameObject Btn_BuyNum_jian10;
         public GameObject Btn_BuyNum_jian1;
         public GameObject Btn_BuyNum_jia10;
@@ -53,18 +54,19 @@ namespace ET
             self.Lab_DuiHuanZuanShiProShow = rc.Get<GameObject>("Lab_DuiHuanZuanShiProShow");
             self.Lab_RmbNum.GetComponent<InputField>().onValueChanged.AddListener((string str) => { self.OnBtn_BuyNum_jia(0); });
 
-            self.Btn_BuyNum_jian10_2 = rc.Get<GameObject>("Btn_BuyNum_jian10_2");
-            self.Btn_BuyNum_jian10_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(-1000); });
-            self.Btn_BuyNum_jian1_2 = rc.Get<GameObject>("Btn_BuyNum_jian1_2");
-            self.Btn_BuyNum_jian1_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(-100); });
-            self.Btn_BuyNum_jia10_2 = rc.Get<GameObject>("Btn_BuyNum_jia10_2");
-            self.Btn_BuyNum_jia10_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(1000); });
-            self.Btn_BuyNum_jia1_2 = rc.Get<GameObject>("Btn_BuyNum_jia1_2");
-            self.Btn_BuyNum_jia1_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(100); });
-            self.Lab_RmbNum_2 = rc.Get<GameObject>("Lab_RmbNum_2");
-            self.Lab_RmbNum_2.GetComponent<InputField>().onValueChanged.AddListener((string str) => { self.OnBtn_BuyNum_jia_2(0); });
-            self.Btn_DuiHuan_2 = rc.Get<GameObject>("Btn_DuiHuan_2");
-            self.Btn_DuiHuan_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_DuiHuan_2().Coroutine(); });
+            self.Lab_WeiJingGold = rc.Get<GameObject>("Lab_WeiJingGold").GetComponent<Text>();
+            //self.Btn_BuyNum_jian10_2 = rc.Get<GameObject>("Btn_BuyNum_jian10_2");
+            //self.Btn_BuyNum_jian10_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(-1000); });
+            //self.Btn_BuyNum_jian1_2 = rc.Get<GameObject>("Btn_BuyNum_jian1_2");
+            //self.Btn_BuyNum_jian1_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(-100); });
+            //self.Btn_BuyNum_jia10_2 = rc.Get<GameObject>("Btn_BuyNum_jia10_2");
+            //self.Btn_BuyNum_jia10_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(1000); });
+            //self.Btn_BuyNum_jia1_2 = rc.Get<GameObject>("Btn_BuyNum_jia1_2");
+            //self.Btn_BuyNum_jia1_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia_2(100); });
+            //self.Lab_RmbNum_2 = rc.Get<GameObject>("Lab_RmbNum_2");
+            //self.Lab_RmbNum_2.GetComponent<InputField>().onValueChanged.AddListener((string str) => { self.OnBtn_BuyNum_jia_2(0); });
+            //self.Btn_DuiHuan_2 = rc.Get<GameObject>("Btn_DuiHuan_2");
+            //self.Btn_DuiHuan_2.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_DuiHuan_2().Coroutine(); });
 
             self.Btn_Shop = rc.Get<GameObject>("Btn_Shop");
             ButtonHelp.AddListenerEx(self.Btn_Shop, ()=> { self.OnBtn_Shop().Coroutine(); } );
@@ -93,12 +95,12 @@ namespace ET
             self.Lab_DuiHuanZuanShiProShow.GetComponent<Text>().text = self.ExchangeZuanShi.ToString();
             self.DuiHuan_Gold.GetComponent<Text>().text = (self.ExchangeValue * self.ExchangeZuanShi).ToString();
             self.Lab_RmbNum.GetComponent<InputField>().text = self.ExchangeZuanShi.ToString();
-            self.Lab_RmbNum_2.GetComponent<InputField>().text = "100";
+            //self.Lab_RmbNum_2.GetComponent<InputField>().text = "100";
         }
 
         public static async ETTask OnBtn_Shop(this UIPaiMaiDuiHuanComponet self)
         {
-            await ETTask.CompletedTask;
+            await UIHelper.Create( self.ZoneScene(), UIType.UIWeiJingShop );
         }
 
         public static void OnBtn_BuyNum_jia_2(this UIPaiMaiDuiHuanComponet self, int num)
@@ -148,6 +150,7 @@ namespace ET
 
             self.Lab_RmbNum.GetComponent<InputField>().text = diamondsNumber.ToString();
             self.DuiHuan_Gold.GetComponent<Text>().text = (self.ExchangeValue * diamondsNumber).ToString();
+            self.Lab_WeiJingGold.GetComponent<Text>().text = $"获得危境币：  {diamondsNumber/100}";
         }
 
         public static async ETTask OnBtn_DuiHuan(this UIPaiMaiDuiHuanComponet self)
