@@ -150,7 +150,7 @@ namespace ET
 
             self.Lab_RmbNum.GetComponent<InputField>().text = diamondsNumber.ToString();
             self.DuiHuan_Gold.GetComponent<Text>().text = (self.ExchangeValue * diamondsNumber).ToString();
-            self.Lab_WeiJingGold.GetComponent<Text>().text = $"获得危境币：  {diamondsNumber/100}";
+            self.Lab_WeiJingGold.GetComponent<Text>().text = $"{diamondsNumber/100}";
         }
 
         public static async ETTask OnBtn_DuiHuan(this UIPaiMaiDuiHuanComponet self)
