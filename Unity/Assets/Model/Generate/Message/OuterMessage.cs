@@ -712,6 +712,10 @@ namespace ET
 		[ProtoMember(63)]
 		public long WeiJingGold { get; set; }
 
+//购买过的神秘商品
+		[ProtoMember(64)]
+		public List<KeyValuePairInt> BuyStoreItems = new List<KeyValuePairInt>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

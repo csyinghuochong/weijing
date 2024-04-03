@@ -23,6 +23,14 @@ namespace ET
                 return;
             }
 
+            int buynumber =  unit.GetComponent<UserInfoComponent>().GetStoreBuy(storeSellConfig.Id);
+            if (storeSellConfig.LimitNumber >0 && buynumber >= storeSellConfig.LimitNumber)
+            {
+                response.Error = ErrorCode.ERR_BuyMaxLimit;
+                reply();
+                return;
+            }
+
             int needCell = ItemHelper.GetNeedCell($"{storeSellConfig.SellItemID};{storeSellConfig.SellItemNum * request.SellItemNum}");
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < needCell)
             {
@@ -87,6 +95,10 @@ namespace ET
                     break;
             }
 
+            if (response.Error != ErrorCode.ERR_Success && storeSellConfig.LimitNumber > 0)
+            {
+                unit.GetComponent<UserInfoComponent>().OnStoreBuy( storeSellConfig.Id );
+            }
             reply();
 
             await ETTask.CompletedTask;

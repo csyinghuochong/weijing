@@ -215,11 +215,38 @@ namespace ET
             }
         }
 
+        public static int GetStoreBuy(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.BuyStoreItems.Count; i++)
+            {
+                if (self.UserInfo.BuyStoreItems[i].KeyId == mysteryId)
+                {
+                    return (int)self.UserInfo.BuyStoreItems[i].Value;
+                }
+            }
+            return 0;
+        }
+
+        public static void OnStoreBuy(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.BuyStoreItems.Count; i++)
+            {
+                if (self.UserInfo.BuyStoreItems[i].KeyId == mysteryId)
+                {
+                    self.UserInfo.BuyStoreItems[i].Value += 1;
+                    return;
+                }
+            }
+            self.UserInfo.BuyStoreItems.Add(new KeyValuePairInt() { KeyId = mysteryId, Value = 1 });
+        }
+
         public static void ClearDayData(this UserInfoComponent self)
         {
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
             self.UserInfo.MysteryItems.Clear();
+            self.UserInfo.BuyStoreItems.Clear();
+            self.UserInfo.BuyStoreItems.Clear(); 
             self.UserInfo.DayItemUse.Clear();
             self.UserInfo.DayMonsters.Clear();
             self.UserInfo.DayJingLing.Clear();

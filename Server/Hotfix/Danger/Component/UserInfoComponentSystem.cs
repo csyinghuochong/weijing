@@ -506,6 +506,31 @@ namespace ET
             self.UserInfo.MysteryItems.Add(new KeyValuePairInt() { KeyId = mysteryId, Value = 1 });
         }
 
+        public static int GetStoreBuy(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.BuyStoreItems.Count; i++)
+            {
+                if (self.UserInfo.BuyStoreItems[i].KeyId == mysteryId)
+                {
+                    return (int)self.UserInfo.BuyStoreItems[i].Value;
+                }
+            }
+            return 0;
+        }
+
+        public static void OnStoreBuy(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.BuyStoreItems.Count; i++)
+            {
+                if (self.UserInfo.BuyStoreItems[i].KeyId == mysteryId)
+                {
+                    self.UserInfo.BuyStoreItems[i].Value += 1;
+                    return;
+                }
+            }
+            self.UserInfo.BuyStoreItems.Add(new KeyValuePairInt() { KeyId = mysteryId, Value = 1 });
+        }
+
         //加金币
         public static void UpdateRoleMoneyAdd(this UserInfoComponent self, int Type, string value, bool notice, int getWay, string paramsifo = "")
         {
