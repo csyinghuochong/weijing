@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ServiceModel.Channels;
 using UnityEngine;
 
 namespace ET
@@ -105,6 +104,7 @@ namespace ET
                 int createDay = userInfoComponent.GetCrateDay();
 
                 //firstDay = createDay <= 1 && userInfoComponent.UserInfo.Lv <= 10;
+                request.IsRecharge = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
 
                 if (request.IsRecharge > 0
                     || ComHelp.IsCanPaiMai_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userInfoComponent.UserInfo.Lv)

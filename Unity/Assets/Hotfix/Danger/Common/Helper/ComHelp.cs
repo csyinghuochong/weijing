@@ -827,9 +827,9 @@ namespace ET
             return 0;    
         }
 
-        public static bool IsCanPaiMai_Recharge(PlayerInfo playerInfo)
+        public static bool IsCanPaiMai_Recharge( Unit unit )
         {
-            return playerInfo.RechargeInfos.Count > 0;
+            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) > 0;  
         }
 
         public static bool IsCanPaiMai_KillBoss(List<KeyValuePair> monsterlist, int lv)
