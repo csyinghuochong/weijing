@@ -133,6 +133,7 @@ namespace ET
                 //public const int TapTap = 5;                //taptap登录
                 //先检测一下QQ和微信登录
                 long AccountId = 0;
+                long sessionId  = session.InstanceId;
                 if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
                 {
                     using (session.AddComponent<SessionLockingComponent>())
@@ -166,6 +167,10 @@ namespace ET
                     }
                 }
 
+                if( sessionId != session.InstanceId)
+                {
+                    return;
+                }
                 using (session.AddComponent<SessionLockingComponent>())
                 {
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
