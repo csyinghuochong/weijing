@@ -73,6 +73,12 @@ namespace ET
             List<int> fashionTypes = new List<int>();
 			for (int i = bagComponent.FashionEquipList.Count - 1; i >= 0; i--)
 			{
+				if(!FashionConfigCategory.Instance.Contain(bagComponent.FashionEquipList[i]))
+				{
+                    bagComponent.FashionEquipList.RemoveAt(i);	
+                    continue;
+                }
+
 				FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(bagComponent.FashionEquipList[i]);
 				if (fashionTypes.Contains(fashionConfig.SubType))
 				{

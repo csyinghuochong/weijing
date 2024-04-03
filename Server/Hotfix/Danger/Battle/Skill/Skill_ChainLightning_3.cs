@@ -44,7 +44,6 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-
             if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
