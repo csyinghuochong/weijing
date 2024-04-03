@@ -1448,6 +1448,12 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, ItemGetWay.CostItem);
                     continue;
                 }
+                if (itemID == (int)UserDataType.WeiJingGold)
+                {
+                    itemNum = -1 * itemNum;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.WeiJingGold, itemNum.ToString(), true, ItemGetWay.CostItem);
+                    continue;
+                }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
