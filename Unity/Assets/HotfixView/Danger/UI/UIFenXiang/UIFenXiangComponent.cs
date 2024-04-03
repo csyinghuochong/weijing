@@ -135,7 +135,6 @@ namespace ET
                 //    return true;
                 //}
 
-                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 if (ComHelp.IsCanPaiMai_Recharge(unit))
                 {
                     return true;

@@ -363,6 +363,8 @@ message UserInfo
 	repeated int32 GoldGetWay = 61;
 
 	repeated int32 ExpGetWay = 62;
+
+	int64 WeiJingGold = 63;
 }
 
 message KeyValuePair

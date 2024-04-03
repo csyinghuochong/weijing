@@ -709,6 +709,9 @@ namespace ET
 		[ProtoMember(62)]
 		public List<int> ExpGetWay = new List<int>();
 
+		[ProtoMember(63)]
+		public long WeiJingGold { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

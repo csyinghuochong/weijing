@@ -683,6 +683,9 @@ namespace ET
                 case UserDataType.SeasonCoin:
                     number = userInfo.SeasonCoin;
                     break;
+                case UserDataType.WeiJingGold:
+                    number = userInfo.WeiJingGold;
+                    break;
                 default:
                     number = 0;
                     break;

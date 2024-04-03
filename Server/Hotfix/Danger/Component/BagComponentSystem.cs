@@ -380,6 +380,9 @@ namespace ET
                 case UserDataType.SeasonCoin:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.SeasonCoin;
                     break;
+                case UserDataType.WeiJingGold:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.WeiJingGold;
+                    break;
                 default:
                     break;
             }

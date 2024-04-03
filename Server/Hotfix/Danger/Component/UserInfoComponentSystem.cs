@@ -711,6 +711,10 @@ namespace ET
                     unit.GetComponent<ChengJiuComponent>().OnGetGold(int.Parse(value));
                     unit.GetComponent<TaskComponent>().OnCostCoin(int.Parse(value));
                     break;
+                case UserDataType.WeiJingGold:
+                    self.UserInfo.WeiJingGold += long.Parse(value);
+                    saveValue = self.UserInfo.WeiJingGold.ToString();
+                    break;
                 case UserDataType.RongYu:
                     self.UserInfo.RongYu += long.Parse(value);
                     saveValue = self.UserInfo.RongYu.ToString();

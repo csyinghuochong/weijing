@@ -64,6 +64,10 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Gold).ToString();
                     userInfo.Gold = long.Parse(message.UpdateTypeValue);
                     break;
+                case UserDataType.WeiJingGold:
+                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.WeiJingGold).ToString();
+                    userInfo.WeiJingGold = long.Parse(message.UpdateTypeValue);
+                    break;
                 case (int)UserDataType.RongYu:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.RongYu).ToString();
                     userInfo.RongYu = long.Parse(message.UpdateTypeValue);
