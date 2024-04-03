@@ -95,7 +95,7 @@ namespace ET
                     break;
             }
 
-            if (response.Error != ErrorCode.ERR_Success && storeSellConfig.LimitNumber > 0)
+            if (response.Error == ErrorCode.ERR_Success && storeSellConfig.LimitNumber > 0)
             {
                 unit.GetComponent<UserInfoComponent>().OnStoreBuy( storeSellConfig.Id );
             }
