@@ -7,6 +7,9 @@ namespace ET
 
     public class UICommonHuoBiSetComponent : Entity, IAwake, IDestroy
     {
+
+        public Text WeiJing_ZiJin;
+        public GameObject WeiJingSet;
         public GameObject JiaZuSet;
         public GameObject JiaZu_ZiJin;
         public GameObject ImageZuanShiIcon;
@@ -62,7 +65,11 @@ namespace ET
 
             self.Lab_ZiJin = rc.Get<GameObject>("Lab_ZiJin");
             self.ZiJinSet = rc.Get<GameObject>("ZiJinSet");
- 
+
+            self.WeiJing_ZiJin = rc.Get<GameObject>("WeiJing_ZiJin").GetComponent<Text>();
+            self.WeiJingSet = rc.Get<GameObject>("WeiJingSet");
+            self.WeiJingSet.SetActive(false);
+
             self.InitShow();
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
         }
@@ -151,6 +158,7 @@ namespace ET
                 self.OnUpdateTitle(UIHelper.OpenUIList[0]);
                 self.ZiJinSet.SetActive(UIHelper.OpenUIList[0].Contains("JiaYuan"));
                 self.JiaZuSet.SetActive(UIHelper.OpenUIList[0].Contains("UIUnion"));
+                self.WeiJingSet.SetActive(UIHelper.OpenUIList[0].Contains("UIPaiMai"));
             }
         }
 
@@ -161,6 +169,12 @@ namespace ET
             self.UpdateRongYu();
             self.UpdateZiJin();
             self.UpdateJiaZuZiJin();
+            self.UpdateWeiJinZiJin();
+        }
+
+        public static void UpdateWeiJinZiJin(this UICommonHuoBiSetComponent self)
+        {
+            self.WeiJing_ZiJin.text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WeiJingGold.ToString();
         }
 
         public static void UpdateJiaZuZiJin(this UICommonHuoBiSetComponent self)
