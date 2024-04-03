@@ -114,7 +114,7 @@ namespace ET
         public static void OnUpdateNumShow(this UIWeiJingShopComponent self)
         {
             //获取道具数量进行显示
-            self.Lab_Num.GetComponent<Text>().text = "当前拥有数量:" + self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000148);
+            self.Lab_Num.GetComponent<Text>().text = "当前拥有数量:" + self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(36);
         }
 
         public static void OnBtn_BuyNum_jia(this UIWeiJingShopComponent self, int num)

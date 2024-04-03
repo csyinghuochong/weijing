@@ -99,6 +99,9 @@ namespace ET
 		/// <summary>出售价格</summary>
 		[ProtoMember(8)]
 		public int SellValue { get; set; }
+		/// <summary>限购次数</summary>
+		[ProtoMember(9)]
+		public int LimitNumber { get; set; }
 
 	}
 }
