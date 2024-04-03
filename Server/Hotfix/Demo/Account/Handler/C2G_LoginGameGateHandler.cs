@@ -41,7 +41,7 @@ namespace ET
                 {
                     if (instanceId != session.InstanceId)   //防止多个客户端同时请求
                     {
-                        Log.Console($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
+                        Log.Console($"LoginTest C2G_LoginGameGate1 多个客户端同时请求 request.RoleId: {request.RoleId}");
                         return;
                     }
 
@@ -54,6 +54,12 @@ namespace ET
                         response.Error = l2ARoleLogin.Error;
                         reply();
                         session?.Disconnect().Coroutine();
+                        return;
+                    }
+
+                    if (instanceId != session.InstanceId)   //防止多个客户端同时请求
+                    {
+                        Log.Console($"LoginTest C2G_LoginGameGate2 多个客户端同时请求 request.RoleId: {request.RoleId}");
                         return;
                     }
 

@@ -363,13 +363,20 @@ namespace ET
                             CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, account.UserList[i]);
 
                             d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.NumericComponent });
-                            NumericComponent numericComponent = d2GGetUnit.Component as NumericComponent;
-                            roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
-                            roleList.EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
-
+                            if (d2GGetUnit.Component!=null)
+                            {
+                                NumericComponent numericComponent = d2GGetUnit.Component as NumericComponent;
+                                roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
+                                roleList.EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
+                            }
+                           
                             d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.BagComponent });
-                            BagComponent bagComponent = d2GGetUnit.Component as BagComponent;
-                            roleList.FashionIds = bagComponent.FashionEquipList;
+                            if (d2GGetUnit.Component != null)
+                            {
+                                BagComponent bagComponent = d2GGetUnit.Component as BagComponent;
+                                roleList.FashionIds = bagComponent.FashionEquipList;
+                            }
+                            
                             response.RoleLists.Add(roleList);
                         }
                         response.PlayerInfo = centerPlayerInfo;
