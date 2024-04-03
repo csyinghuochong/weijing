@@ -823,11 +823,11 @@ namespace ET
                 case UserDataType.WeiJingGold:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 危境币");
+                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 兑换币");
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 危境币");
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 兑换币");
                     }
                     break;
                 case UserDataType.RongYu:
