@@ -259,6 +259,10 @@ namespace ET
 
             C2M_StoreBuyRequest c2M_StoreBuyRequest = new C2M_StoreBuyRequest() { SellItemID = sellId,SellItemNum = buyNum };
             M2C_StoreBuyResponse r2c_roleEquip = (M2C_StoreBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_StoreBuyRequest);
+            if (r2c_roleEquip.Error == ErrorCode.ERR_Success && storeSellConfig.LimitNumber > 0)
+            {
+                self.ZoneScene().GetComponent<UserInfoComponent>().OnStoreBuy( storeSellConfig.Id );
+            }
         }
 
         public static async ETTask SendBuyBagCell(this BagComponent self, int itemlocktype)

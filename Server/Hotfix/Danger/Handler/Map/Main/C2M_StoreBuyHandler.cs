@@ -24,7 +24,7 @@ namespace ET
             }
 
             int buynumber =  unit.GetComponent<UserInfoComponent>().GetStoreBuy(storeSellConfig.Id);
-            if (storeSellConfig.LimitNumber >0 && buynumber >= storeSellConfig.LimitNumber)
+            if (storeSellConfig.LimitNumber >0 && request.SellItemNum +  buynumber >= storeSellConfig.LimitNumber)
             {
                 response.Error = ErrorCode.ERR_BuyMaxLimit;
                 reply();
