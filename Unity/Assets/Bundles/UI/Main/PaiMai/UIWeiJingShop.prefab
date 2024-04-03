@@ -2762,6 +2762,8 @@ MonoBehaviour:
     gameObject: {fileID: 7978661551891373516}
   - key: UITowerShopItem
     gameObject: {fileID: 8322184767652653958}
+  - key: Btn_Close
+    gameObject: {fileID: 8668759490061708425}
 --- !u!114 &1142667792847728487
 MonoBehaviour:
   m_ObjectHideFlags: 0
