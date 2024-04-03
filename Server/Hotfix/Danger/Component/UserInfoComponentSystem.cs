@@ -150,7 +150,7 @@ namespace ET
             int recharge = numericComponent.GetAsInt(NumericType.RechargeNumber);
             if (recharge!=0 && dataCollationComponent.ChouKaTimes > (recharge * 2) && dataCollationComponent.ChouKaTimes > 100)
             {
-                Log.Warning($"抽卡次数异常:{self.DomainZone()} {self.UserInfo.Name}   充值:{numericComponent.GetAsInt(NumericType.RechargeNumber)}  抽卡:{numericComponent.GetAsInt(NumericType.ChouKa)}");
+                Log.Warning($"抽卡次数异常:{self.DomainZone()} {self.UserInfo.Name}   充值:{numericComponent.GetAsInt(NumericType.RechargeNumber)}  抽卡:{dataCollationComponent.ChouKaTimes}");
             }
 
             //if (self.UserInfo.UserId == 2091730437935267840)
