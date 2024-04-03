@@ -101,13 +101,13 @@ namespace ET
             {
                 if (storeSellConfig.LimitNumber <= 0)
                 {
-                    self.Text_left.text = "不限购";
+                    self.Text_left.text = "";
                 }
                 else
                 {
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                     int left = storeSellConfig.LimitNumber - userInfoComponent.GetStoreBuy(storeSellConfig.Id);
-                    self.Text_left.text = $"剩余:{left}";
+                    self.Text_left.text = $"限购:{left}";
                 }
             }
         }
