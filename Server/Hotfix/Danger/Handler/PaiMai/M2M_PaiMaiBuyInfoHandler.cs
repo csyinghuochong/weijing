@@ -11,7 +11,8 @@ namespace ET
         {
             unit.GetComponent<DataCollationComponent>().UpdateBuySelfPlayerList( request.CostGold,request.PlayerId, true );
 
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold, true);
+            long paimaiGold = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PaiMaiTodayGold);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, paimaiGold + request.CostGold, true);
             reply();
             await ETTask.CompletedTask;
         }

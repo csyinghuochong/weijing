@@ -88,11 +88,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this DataCollationComponent self, bool notice)
         {
-            self.PaiMaiTodayGold = 0;
             self.PaiMaiCostGoldToday = 0;
-
-            Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, self.PaiMaiTodayGold, notice);
         }
 
 
@@ -104,7 +100,6 @@ namespace ET
             }
 
             self.PaiMaiGold += addgold;
-            self.PaiMaiTodayGold += addgold;
 
             for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
             {

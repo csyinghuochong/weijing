@@ -89,7 +89,7 @@ namespace ET
 					{
 						UnitID = unit.Id,
 						PaiMaiItemInfo = request.PaiMaiItemInfo,
-						PaiMaiTodayGold = unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold
+						PaiMaiTodayGold = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PaiMaiTodayGold),
 					});
 
 				if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)

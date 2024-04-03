@@ -178,7 +178,8 @@ namespace ET
                     NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
                     if (numericComponent!= null)
                     {
-                        numericComponent.ApplyValue( NumericType.PaiMaiTodayGold, dataCollationComponent.PaiMaiTodayGold, false);
+                        long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
+                        numericComponent.ApplyValue( NumericType.PaiMaiTodayGold, paimaigold, false);
                         DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, numericComponent).Coroutine();
                     }
                 }

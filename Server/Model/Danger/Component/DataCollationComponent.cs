@@ -157,8 +157,6 @@ namespace ET
         //拍卖总获得金币
         public long PaiMaiGold;
 
-        //今日拍卖获得金币
-        public long PaiMaiTodayGold;
 
         //禁止拍卖
         public int JinZhiPaiMai;
