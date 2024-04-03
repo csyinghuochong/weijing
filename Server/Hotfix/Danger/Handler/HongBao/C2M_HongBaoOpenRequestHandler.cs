@@ -37,34 +37,34 @@ namespace ET
             if (playerLv >= 1 && playerLv <= 19)
             {
                 minGold = 10000;
-                maxGold = 75000;
+                maxGold = 50000;
             }
 
 
             if (playerLv >= 20 && playerLv <= 29)
             {
                 minGold = 20000;
-                maxGold = 100000;
+                maxGold = 75000;
             }
 
 
             if (playerLv >= 30 && playerLv <= 39)
             {
                 minGold = 30000;
-                maxGold = 120000;
+                maxGold = 100000;
             }
 
 
             if (playerLv >= 40 && playerLv <= 49)
             {
                 minGold = 40000;
-                maxGold = 150000;
+                maxGold = 125000;
             }
 
             if (playerLv >= 50)
             {
                 minGold = 50000;
-                maxGold = 200000;
+                maxGold = 150000;
             }
 
             int hongbaoAmount = RandomHelper.RandomNumber(minGold, maxGold);
