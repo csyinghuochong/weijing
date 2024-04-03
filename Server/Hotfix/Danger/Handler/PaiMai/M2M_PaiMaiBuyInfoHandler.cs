@@ -13,7 +13,7 @@ namespace ET
             unit.GetComponent<DataCollationComponent>().UpdateBuySelfPlayerList( request.CostGold,request.PlayerId, true );
 
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, unit.GetComponent<DataCollationComponent>().PaiMaiTodayGold, true);
-
+            reply();
             await ETTask.CompletedTask;
         }
     }
