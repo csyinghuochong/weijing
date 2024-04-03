@@ -8,6 +8,7 @@ namespace ET
     {
         public StoreSellConfig StoreSellConfig;
 
+        public Text Text_left;
         public GameObject Text_value;
         public GameObject ButtonBuy;
         public GameObject UIItem;
@@ -47,6 +48,12 @@ namespace ET
                 ButtonHelp.AddListenerEx(self.Image_bg, () => { self.OnClickImageBg(); });
             }
 
+            GameObject Text_left = rc.Get<GameObject>("Text_left");
+            if (Text_left != null)
+            {
+                self.Text_left = Text_left.GetComponent<Text>();
+            }
+           
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             if (self.ImageSelect != null)
             {
@@ -87,6 +94,24 @@ namespace ET
             self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.StoreSellConfig.Id,1).Coroutine() ;
         }
 
+        public static void UpdateLeftNumber(this UIStoreItemComponent self)
+        {
+            StoreSellConfig storeSellConfig = self.StoreSellConfig; 
+            if (self.Text_left != null)
+            {
+                if (storeSellConfig.LimitNumber <= 0)
+                {
+                    self.Text_left.text = "不限购";
+                }
+                else
+                {
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    int left = storeSellConfig.LimitNumber - userInfoComponent.GetStoreBuy(storeSellConfig.Id);
+                    self.Text_left.text = $"剩余:{left}";
+                }
+            }
+        }
+
         public static void OnUpdateData(this UIStoreItemComponent self, StoreSellConfig storeSellConfig)
         {
             self.StoreSellConfig = storeSellConfig;
@@ -97,7 +122,7 @@ namespace ET
             self.Image_gold.Label_ItemNum.SetActive(false);
             self.Image_gold.Image_ItemQuality.SetActive(false);
 
-           BagInfo bagInfo = new BagInfo();
+            BagInfo bagInfo = new BagInfo();
             bagInfo.ItemNum = storeSellConfig.SellItemNum;
             bagInfo.ItemID = storeSellConfig.SellItemID;
             self.Text_value.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
@@ -106,6 +131,8 @@ namespace ET
             {
                 self.uIItemComponent.Label_ItemNum.SetActive(false);
             }
+
+            self.UpdateLeftNumber();
         }
 
     }

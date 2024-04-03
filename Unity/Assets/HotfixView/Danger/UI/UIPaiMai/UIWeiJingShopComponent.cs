@@ -74,6 +74,10 @@ namespace ET
             int buyNum = int.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
             await self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId, buyNum);
             self.OnUpdateNumShow();
+            for (int i = 0; i < self.SellList.Count; i++)
+            {
+                self.SellList[i].UpdateLeftNumber();
+            }
         }
 
         public static void OnUpdateUI(this UIWeiJingShopComponent self)
