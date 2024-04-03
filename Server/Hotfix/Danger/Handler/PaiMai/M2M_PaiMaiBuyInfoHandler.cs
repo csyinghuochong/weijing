@@ -1,10 +1,9 @@
-﻿using Alipay.AopSdk.F2FPay.Business;
-using System;
+﻿using System;
 
 
 namespace ET
 {
-    
+
     [ActorMessageHandler]
     public class M2M_PaiMaiBuyInfoHandler: AMActorLocationRpcHandler<Unit, M2M_PaiMaiBuyInfoRequest, M2M_PaiMaiBuyInfoResponse>
     {
