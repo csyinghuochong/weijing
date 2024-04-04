@@ -57,6 +57,8 @@ namespace ET
                             {
                                 chatInfoUnitsComponent.BeReportedNumber.Remove(request.ChatInfo.UserId);
                             }
+
+                            LogHelper.ChatInfo( $"区:{chatInfoUnit.DomainZone()}  {request.ChatInfo.ChatMsg}");
                         }
 
                         foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)

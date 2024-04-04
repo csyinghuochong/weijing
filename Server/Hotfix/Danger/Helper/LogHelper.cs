@@ -344,6 +344,13 @@ namespace ET
             WriteLogList(new List<string>() { log }, filePath, false);
         }
 
+        public static void ChatInfo(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_Chat.txt";
+            WriteLogList(new List<string>() { log }, filePath, false);
+        }
+
         public static void GongZuoShi(string log)
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;

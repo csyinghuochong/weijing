@@ -56,8 +56,7 @@ namespace ET
             {
                 case AppType.Server:
                 {
-                      
-                        if (!string.IsNullOrEmpty(Game.Options.Parameters))
+                    if (!string.IsNullOrEmpty(Game.Options.Parameters))
                     {
                         DyncCSHelper.Test_2(Game.Options.Parameters);
                     }
