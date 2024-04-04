@@ -164,8 +164,16 @@ namespace ET
                     LogHelper.PaiMaiInfo(levelInfo);
                 }
 
-
-
+                //long gateServerId = DBHelper.GetGateServerId(unit.DomainZone());
+                //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                //   (gateServerId, new T2G_GateUnitInfoRequest()
+                //   {
+                //       UserID = r_GameStatusResponse.PaiMaiItemInfo.UserId
+                //   });
+                //if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                //{ 
+                    
+                //}
 
                 M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() {  PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
                 M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(r_GameStatusResponse.PaiMaiItemInfo.UserId, r2M_RechargeRequest);
