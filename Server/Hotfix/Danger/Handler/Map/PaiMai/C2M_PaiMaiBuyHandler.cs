@@ -164,6 +164,9 @@ namespace ET
                     LogHelper.PaiMaiInfo(levelInfo);
                 }
 
+
+
+
                 M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() {  PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
                 M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(r_GameStatusResponse.PaiMaiItemInfo.UserId, r2M_RechargeRequest);
                 if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
@@ -184,7 +187,7 @@ namespace ET
                     }
                 }
 
-                Console.WriteLine($"m2G_RechargeResponse: {m2G_RechargeResponse.Error}");
+                //Console.WriteLine($"m2G_RechargeResponse: {m2G_RechargeResponse.Error}");
 
                 //每天更新文本。
                 //今天拍卖出售获取金币数量>=50000000  打印出来
