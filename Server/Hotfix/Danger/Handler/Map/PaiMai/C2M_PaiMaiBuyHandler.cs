@@ -172,29 +172,32 @@ namespace ET
                 //   });
                 //if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                 //{ 
-                    
+
                 //}
-
-                M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() {  PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
-                M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(r_GameStatusResponse.PaiMaiItemInfo.UserId, r2M_RechargeRequest);
-                if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
+                if (unit.Id!= r_GameStatusResponse.PaiMaiItemInfo.UserId)
                 {
-                    DataCollationComponent dataCollationComponent = await DBHelper.GetComponentCache<DataCollationComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
-                    if(dataCollationComponent!= null) 
+                    M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() { PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
+                    M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(r_GameStatusResponse.PaiMaiItemInfo.UserId, r2M_RechargeRequest);
+                    if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
                     {
-                        dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id, false);
-                        DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, dataCollationComponent).Coroutine();
-                    }
+                        DataCollationComponent dataCollationComponent = await DBHelper.GetComponentCache<DataCollationComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
+                        if (dataCollationComponent != null)
+                        {
+                            dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id, false);
+                            DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, dataCollationComponent).Coroutine();
+                        }
 
-                    NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
-                    if (numericComponent!= null)
-                    {
-                        long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
-                        numericComponent.ApplyValue( NumericType.PaiMaiTodayGold, paimaigold, false);
-                        DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, numericComponent).Coroutine();
+                        NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
+                        if (numericComponent != null)
+                        {
+                            long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
+                            numericComponent.ApplyValue(NumericType.PaiMaiTodayGold, paimaigold, false);
+                            DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, numericComponent).Coroutine();
+                        }
                     }
                 }
 
+                
                 //Console.WriteLine($"m2G_RechargeResponse: {m2G_RechargeResponse.Error}");
 
                 //每天更新文本。
