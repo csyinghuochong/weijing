@@ -15,14 +15,14 @@ namespace ET
             };
 
             ETTask.ExceptionHandler += Log.Error;
-            
+
             // 异步方法全部会回掉到主线程
             SynchronizationContext.SetSynchronizationContext(ThreadSynchronizationContext.Instance);
-			
+
             try
-            {		
+            {
                 Game.EventSystem.Add(typeof(Game).Assembly);
-				
+
                 ProtobufHelper.Init();
                 MongoRegister.Init();
 
@@ -43,14 +43,14 @@ namespace ET
 
                 Log.ILog = new NLogger(Game.Options.AppType.ToString());
                 //LogManager.Configuration.Variables["appIdFormat"] = $"{Game.Options.Process:000000}";
-				
+
                 Log.Info($"server start........................ {Game.Scene.Id}");
-				
+
                 switch (Game.Options.AppType)
                 {
                     case AppType.ExcelExporter:
-                    {
-                        Game.Options.Console = 1;
+                        {
+                            Game.Options.Console = 1;
                             if (Game.Options.StartConfig == "")
                             {
                                 ExcelExporter.Export();
@@ -60,14 +60,14 @@ namespace ET
                                 string[] excels = Game.Options.StartConfig.Split('#');
                                 ExcelExporter.ExcelSingle(excels, false);
                             }
-                        return 0;
-                    }
+                            return 0;
+                        }
                     case AppType.Proto2CS:
-                    {
-                        Game.Options.Console = 1;
-                        Proto2CS.Export();
-                        return 0;
-                    }
+                        {
+                            Game.Options.Console = 1;
+                            Proto2CS.Export();
+                            return 0;
+                        }
                 }
             }
             catch (Exception e)

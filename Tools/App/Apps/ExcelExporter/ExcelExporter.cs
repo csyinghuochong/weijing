@@ -557,7 +557,7 @@ namespace ET
             }
         }
 
-        private static string Convert(string excel, string field, int row,int col, string type, string value)
+        private static string Convert(string excel, string field, int row, int col, string type, string value)
         {
             switch (type)
             {
