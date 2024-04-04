@@ -10,8 +10,6 @@ namespace ET
         //拍卖行购买道具
         protected override async ETTask Run(Unit unit, C2M_PaiMaiBuyRequest request, M2C_PaiMaiBuyResponse response, Action reply)
         {
-            int su = unit.GetComponent<DataCollationComponent>().Simulator;
-            int lv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
             //背包是否有位置
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
