@@ -162,7 +162,13 @@ namespace ET
                     continue;
                 }
 
-                if ( !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[0].ItemID) )  //
+                if (!ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[0].ItemID))  //
+                {
+                    mailinfolist.RemoveAt(i);
+                    continue;
+                }
+
+                if(mailinfolist[i].ItemList.Count >= 2 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[1].ItemID))
                 {
                     mailinfolist.RemoveAt(i);
                     continue;
