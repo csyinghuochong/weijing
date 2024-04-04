@@ -87,3 +87,6 @@ Unity/Assets/Bundles/Text/ETKey.txt.meta
 Unity/Assets/Mono/MonoBehaviour/InitHelper.cs
 Unity/Assets/Mono/MonoBehaviour/InitHelper.cs.meta
 Server/App/Server.App.csproj.user
+Unity/MeshBakerCore.csproj
+Unity/MeshBakerEditor.csproj
+Unity/MeshBakerExamples.csproj
