@@ -221,8 +221,6 @@ namespace ET
                 {
                     ++this.lastInstanceIdTime; // 借用下一秒
                     this.instanceIdValue = 0;
-
-                    Log.Error($"instanceid count per sec overflow: {time} {this.lastInstanceIdTime}");
                 }
             }
 
@@ -247,7 +245,6 @@ namespace ET
                 {
                     this.value = 0;
                     ++this.lastIdTime; // 借用下一秒
-                    Log.Error($"id count per sec overflow: {time} {this.lastIdTime}");
                 }
             }
             
@@ -276,7 +273,6 @@ namespace ET
                 {
                     this.unitIdValue = 0;
                     ++this.lastUnitIdTime; // 借用下一秒
-                    Log.Error($"unitid count per sec overflow: {time} {this.lastUnitIdTime}");
                 }
             }
 
