@@ -132,7 +132,7 @@ namespace ET
 						IResponse response = null;
 						int rpcId = actorRequest.RpcId;
 						long instanceId = session.InstanceId;
-						Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
+						Player player = session.GetComponent<SessionPlayerComponent>()?.GetMyPlayer();
 						if (player == null)
 						{
 							break; 
