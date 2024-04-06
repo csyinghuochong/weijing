@@ -348,7 +348,7 @@ namespace ET
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             string filePath = "../Logs/WJ_Chat.txt";
-            WriteLogList(new List<string>() { log }, filePath, false);
+            WriteLogList(new List<string>() { log }, filePath, true);
         }
 
         public static void GongZuoShi(string log)
