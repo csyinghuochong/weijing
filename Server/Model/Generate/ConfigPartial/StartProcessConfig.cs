@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net;
 
 namespace ET
@@ -26,6 +27,8 @@ namespace ET
         public string OuterIP => this.StartMachineConfig.OuterIP;
 
         public StartMachineConfig StartMachineConfig => StartMachineConfigCategory.Instance.Get(this.MachineId);
+
+        public static List<int> ProcessList = new List<int>() { 1, 2 };
 
         public override void AfterEndInit()
         {

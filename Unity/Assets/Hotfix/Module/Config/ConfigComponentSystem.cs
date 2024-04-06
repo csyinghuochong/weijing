@@ -53,6 +53,14 @@ namespace ET
 			List<Type> types = Game.EventSystem.GetTypes(typeof (ConfigAttribute));
 			
 			Dictionary<string, byte[]> configBytes = new Dictionary<string, byte[]>();
+
+#if SERVER
+			if (Game.Options.Process == 1)
+			{
+				self.ConfigLoader.PreGetAllConfigBytes();
+            }
+#endif
+
 			self.ConfigLoader.GetAllConfigBytes(configBytes);
 
 			using (ListComponent<Task> listTasks = ListComponent<Task>.Create())

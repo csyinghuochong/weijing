@@ -51,21 +51,11 @@ namespace ET
                     case AppType.ExcelExporter:
                         {
                             Game.Options.Console = 1;
-                            if (Game.Options.StartConfig == "")
-                            {
-                                //ExcelExporter.Export();
-                            }
-                            else
-                            {
-                                string[] excels = Game.Options.StartConfig.Split('#');
-                                //ExcelExporter.ExcelSingle(excels, false);
-                            }
                             return 0;
                         }
                     case AppType.Proto2CS:
                         {
                             Game.Options.Console = 1;
-                            //Proto2CS.Export();
                             return 0;
                         }
                 }

@@ -14,11 +14,13 @@ namespace ET
         private async ETTask RunAsync(EventType.AppStart args)
         {
             Game.Scene.AddComponent<ConfigComponent>();
+            Game.Scene.AddComponent<TimerComponent>();
+
             await ConfigComponent.Instance.LoadAsync();
             TimeInfo.Instance.TimeZone = 8;
             StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
 
-            Game.Scene.AddComponent<TimerComponent>();
+
             Game.Scene.AddComponent<OpcodeTypeComponent>();
             Game.Scene.AddComponent<MessageDispatcherComponent>();
             Game.Scene.AddComponent<SessionStreamDispatcher>();

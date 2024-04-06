@@ -15,10 +15,34 @@ namespace ET
                 string key = Path.GetFileNameWithoutExtension(file);
                 output[key] = File.ReadAllBytes(file);
             }
+
             output["StartMachineConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartMachineConfigCategory.bytes");
             output["StartProcessConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartProcessConfigCategory.bytes");
             output["StartSceneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartSceneConfigCategory.bytes");
             output["StartZoneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartZoneConfigCategory.bytes");
+        }
+
+        public void PreGetAllConfigBytes()
+        {
+            CheckBytes("StartMachineConfigCategory");
+            CheckBytes("StartProcessConfigCategory");
+            CheckBytes("StartSceneConfigCategory");
+            CheckBytes("StartZoneConfigCategory");
+        }
+
+        public void CheckBytes(string key)
+        {
+            if (!string.IsNullOrEmpty(Game.Options.Parameters))
+            {
+                string password = Game.Options.Parameters + "0000000";
+                string inputPath = $"../Config/{Game.Options.StartConfig}/{key}.bytes";
+                string outputPath = $"../Config/{Game.Options.StartConfig}/{key}De.bytes";
+                ByteHelper.Decrypt(inputPath, outputPath, password);
+
+                File.Delete(inputPath);
+                File.Move(outputPath, inputPath);
+                File.Delete(outputPath);
+            }
         }
 
         public byte[] GetOneConfigBytes(string configName)

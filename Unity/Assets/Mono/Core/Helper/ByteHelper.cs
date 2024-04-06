@@ -104,86 +104,61 @@ namespace ET
 			}
 		}
 
-		// 使用方法:
-		// string inputPath = "path/to/input/file.bytes";
-		// string outputPath = "path/to/output/encrypted.bytes";
-		// string password = "yourStrongPassword";
-		// FileEncrypter.EncryptFile(inputPath, outputPath, password);
-		//public static void EncryptFile(string inputFilePath, string outputFilePath, string password)
-		//{
-		//    byte[] key = new Rfc2898DeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }).GetBytes(32);
-		//    byte[] iv = new Rfc2898DeriveBytes(password, new byte[] { 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x76 }).GetBytes(16);
+        public static void Decrypt(string inputFilePath, string outputFilePath, string password)
+        {
+            byte[] Key = Encoding.UTF8.GetBytes(password); // 16字节密钥
+            byte[] IV = Encoding.UTF8.GetBytes(password);  // 16字节初始化向量
 
-		//    using (Aes aes = Aes.Create())
-		//    {
-		//        aes.Key = key;
-		//        aes.IV = iv;
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Key;
+                aes.IV = IV;
 
-		//        using (FileStream fileInput = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
-		//        using (FileStream fileOutput = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
-		//        using (CryptoStream cryptoStream = new CryptoStream(fileOutput, aes.CreateEncryptor(), CryptoStreamMode.Write))
-		//        {
-		//            byte[] buffer = new byte[1024];
-		//            int bytesRead;
-		//            while ((bytesRead = fileInput.Read(buffer, 0, buffer.Length)) > 0)
-		//            {
-		//                cryptoStream.Write(buffer, 0, bytesRead);
-		//            }
-		//            cryptoStream.FlushFinalBlock();
-		//        }
-		//    }
-		//}
-
-		public static void EncryptFile(string inputFile, string outputFile, string password)
-		{
-			byte[] key = new Rfc2898DeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }).GetBytes(32);
-
-			using (Aes aes = Aes.Create())
-			{
-				aes.Key = key;
-				aes.GenerateIV();
-
-				using (FileStream fsRead = new FileStream(inputFile, FileMode.Open, FileAccess.Read))
-				using (FileStream fsWrite = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
-				using (CryptoStream cryptoStream = new CryptoStream(fsWrite, aes.CreateEncryptor(), CryptoStreamMode.Write))
-				{
-					fsRead.CopyTo(cryptoStream);
-					cryptoStream.FlushFinalBlock();
-
-					// 写入初始化向量
-					fsWrite.Write(aes.IV, 0, aes.IV.Length);
-				}
-			}
-		}
-
-		public static void DecryptFile(string inputFile, string outputFile, string password)
-		{
-			byte[] key = new Rfc2898DeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }).GetBytes(32);
-
-			using (Aes aes = Aes.Create())
-			{
-				aes.Key = key;
-
-				using (FileStream fsRead = new FileStream(inputFile, FileMode.Open, FileAccess.Read))
-				{
-					byte[] iv = new byte[aes.BlockSize / 8];
-					fsRead.Read(iv, 0, iv.Length);
-
-					aes.IV = iv;
-
-					using (FileStream fsWrite = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
-					using (CryptoStream cryptoStream = new CryptoStream(fsWrite, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                using (FileStream fileInput = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
+                using (FileStream fileOutput = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+                using (CryptoStream cryptoStream = new CryptoStream(fileInput, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                {
+					try
+                    {
+                        cryptoStream.CopyTo(fileOutput);
+                    }
+                   catch (Exception e) 
 					{
-						int data;
-						while ((data = fsRead.ReadByte()) != -1)
-						{
-							cryptoStream.WriteByte((byte)data);
-						}
-
-						cryptoStream.FlushFinalBlock();
+						Console.WriteLine(e.ToString());	
 					}
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+
+        public static void DecryptFile(string inputFile, string outputFile, string password)
+        {
+            byte[] key = new Rfc2898DeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }).GetBytes(32);
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = key;
+
+                using (FileStream fsRead = new FileStream(inputFile, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] iv = new byte[aes.BlockSize / 8];
+                    fsRead.Read(iv, 0, iv.Length);
+
+                    aes.IV = iv;
+
+                    using (FileStream fsWrite = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                    using (CryptoStream cryptoStream = new CryptoStream(fsWrite, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        int data;
+                        while ((data = fsRead.ReadByte()) != -1)
+                        {
+                            cryptoStream.WriteByte((byte)data);
+                        }
+
+                        cryptoStream.FlushFinalBlock();
+                    }
+                }
+            }
+        }
+
+    }
 }

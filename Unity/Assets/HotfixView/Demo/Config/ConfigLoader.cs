@@ -23,6 +23,11 @@ namespace ET
             }
         }
 
+        public void PreGetAllConfigBytes()
+        { 
+        
+        }
+
         public byte[] GetOneConfigBytes(string configName)
         {
             //TextAsset v = ResourcesComponent.Instance.GetAsset("config.unity3d", configName) as TextAsset;

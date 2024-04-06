@@ -6,5 +6,7 @@ namespace ET
     {
         void GetAllConfigBytes(Dictionary<string, byte[]> output);
         byte[] GetOneConfigBytes(string configName);
+
+        void PreGetAllConfigBytes();
     }
 }
