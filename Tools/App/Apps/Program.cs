@@ -5,6 +5,20 @@ using NLog;
 
 namespace ET
 {
+    namespace EventType
+    {
+        public struct ExcelExporter
+        {
+            public string StartConfig;
+        }
+
+        public struct Proto2CS
+        {
+
+        }
+    }
+
+
     internal static class Program
     {
         private static int Main(string[] args)
@@ -51,11 +65,13 @@ namespace ET
                     case AppType.ExcelExporter:
                         {
                             Game.Options.Console = 1;
+                            Game.EventSystem.Publish(new EventType.ExcelExporter() { StartConfig = Game.Options.StartConfig });
                             return 0;
                         }
                     case AppType.Proto2CS:
                         {
                             Game.Options.Console = 1;
+                            Game.EventSystem.Publish(new EventType.Proto2CS());
                             return 0;
                         }
                 }
