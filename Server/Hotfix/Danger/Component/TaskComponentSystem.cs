@@ -532,8 +532,11 @@ namespace ET
                 }
             }
             if (taskConfig.TaskType == TaskTypeEnum.System)
-            { 
-
+            {
+                if (numericComponent.GetAsInt(NumericType.SystemTask) != request.TaskId)
+                {
+                    return ErrorCode.ERR_ModifyData;
+                }
             }
 
             if (bagComponent.GetBagLeftCell() + 1 < rewardItems.Count)
