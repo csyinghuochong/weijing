@@ -247,7 +247,7 @@ namespace ET
             //2024/4/8 合区:  精灵国度-璀璨之境20475  56 / 58
             serverItems_1.Add(new ServerItem() { ServerId = 56, ServerIp = $"{ip}:20455", ServerName = "精灵国度", ServerOpenTime = 1700195400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 57, ServerIp = $"{ip}:20455", ServerName = "梦回华夏", ServerOpenTime = 1700800200000, New = 0, Show = 0 });
-            serverItems_1.Add(new ServerItem() { ServerId = 58, ServerIp = $"{ip}:20455", ServerName = "璀璨之境", ServerOpenTime = 1701405000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 58, ServerIp = $"{ip}:20455", ServerName = "璀璨之境", ServerOpenTime = 1701405000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 59, ServerIp = $"{ip}:20455", ServerName = "遗忘森林", ServerOpenTime = 1702009800000, New = 0, Show = 0 });
 
             //2024-1-19 合区希望之光合斗战胜佛 60/61
