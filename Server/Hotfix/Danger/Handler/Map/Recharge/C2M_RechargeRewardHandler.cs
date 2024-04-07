@@ -41,7 +41,7 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.RechargeReward}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{93}_{TimeHelper.ServerNow()}");
             userInfoComponent.UserInfo.RechargeReward.Add(request.RechargeNumber);
             reply();
             await ETTask.CompletedTask;

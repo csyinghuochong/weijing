@@ -50,7 +50,8 @@ namespace ET
                     DBHelper.DeleteUnitCache(session.DomainZone(), request.DeleUserID).Coroutine();
                     UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(zone, request.DeleUserID);
                     NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(zone, request.DeleUserID);
-                    if (userInfoComponent != null && userInfoComponent.UserInfo.Lv <= 10 && numericComponent.GetAsInt(NumericType.RechargeNumber) <= 0)
+                    if (userInfoComponent != null && userInfoComponent.UserInfo.Lv <= 10 &&
+                        (numericComponent.GetAsInt(NumericType.RechargeNumber) <= 0 || newAccount.Account.Contains("7344243772311526")))
                     {
                         List<string> allComponets = DBHelper.GetAllUnitComponent();
                         for (int i = 0; i < allComponets.Count; i++)

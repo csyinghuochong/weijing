@@ -45,8 +45,8 @@ namespace ET
 
             userInfoComponent.UserInfo.PetHeXinExploreRewardIds.Add(request.RewardId);
             int randomZuanshi = RandomHelper.RandomNumber(int.Parse(diamond[0]), int.Parse(diamond[1]));
-            unit.GetComponent<BagComponent>().OnAddItemData(reward[0], $"{ItemGetWay.PetHeXinExplore}_{TimeHelper.ServerNow()}");
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, randomZuanshi.ToString(), true, ItemGetWay.PetHeXinExplore);
+            unit.GetComponent<BagComponent>().OnAddItemData(reward[0], $"{96}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, randomZuanshi.ToString(), true, 96);
 
             reply();
             await ETTask.CompletedTask;

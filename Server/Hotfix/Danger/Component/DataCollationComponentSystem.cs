@@ -86,7 +86,7 @@ namespace ET
             }
             if (Type == UserDataType.Diamond)
             {
-                self.OnAddCostList(self.DiamondGetList, getWay, value);
+                //self.OnAddCostList(self.DiamondGetList, getWay, value);
             }
         }
 
@@ -350,9 +350,9 @@ namespace ET
             self.GoldGet = self.CostListToString(self.GoldGetList);
             self.GoldGetList.Clear();
 
-            self.SetAllCostList(self.DiamondGetList, self.DiamondGet);
-            self.DiamondGet = self.CostListToString(self.DiamondGetList);
-            self.DiamondGetList.Clear();
+            //self.SetAllCostList(self.DiamondGetList, self.DiamondGet);
+            //self.DiamondGet = self.CostListToString(self.DiamondGetList);
+            //self.DiamondGetList.Clear();
 
             self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
             self.DiamondCost = self.CostListToString(self.DiamondCostList);
