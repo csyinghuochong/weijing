@@ -1,10 +1,9 @@
-﻿using SharpCompress.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET
 {
-	[MessageHandler]
+    [MessageHandler]
 	public class C2A_DeleteRoleHandler : AMRpcHandler<C2A_DeleteRoleData, A2C_DeleteRoleData>
 	{
 		protected override async ETTask Run(Session session, C2A_DeleteRoleData request, A2C_DeleteRoleData response, Action reply)
