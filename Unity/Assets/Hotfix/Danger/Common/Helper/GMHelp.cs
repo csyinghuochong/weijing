@@ -8,14 +8,12 @@ namespace ET
     public static class GMHelp
     {
 
-        //qqUID_84E70C11CC937F72EE508CD43D7DD4DA 一直胖头鱼
         public static List<string> GmAccount = new List<string>()
         {
             "tcg01",
             "test01",
             "18319670288",          //唐
             "18652422521",
-            "qqUID_9925F6D139D96D68D5B5657D2CFF0863",
         };
 
         public static List<long> BanChatPlayer = new List<long>()
