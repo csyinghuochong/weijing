@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ET
 {
@@ -45,8 +42,8 @@ namespace ET
 
             userInfoComponent.UserInfo.PetExploreRewardIds.Add(request.RewardId);
             int randomZuanshi = RandomHelper.RandomNumber(int.Parse(diamond[0]), int.Parse(diamond[1]));
-            unit.GetComponent<BagComponent>().OnAddItemData(reward[0], $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}");
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, randomZuanshi.ToString(), true, ItemGetWay.PetChouKa);
+            unit.GetComponent<BagComponent>().OnAddItemData(reward[0], $"{ItemGetWay.PetExploreReward}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, randomZuanshi.ToString(), true, ItemGetWay.PetExploreReward);
 
             reply();
             await ETTask.CompletedTask;

@@ -101,7 +101,10 @@ namespace ET
         public const int PetExplore = 90;               //宠物探索
         public const int SingleRecharge = 91;           //单笔充值奖励
         public const int ItemXiLian = 92;               //道具洗练
-
+        public const int RechargeReward = 93;                 //充值
+        public const int ChouKaReward = 94;                //抽卡奖励
+        public const int PetExploreReward = 95;
+        public const int PetHeXinExplore = 96;  
         public const int Activity = 100;                //活动
 
 

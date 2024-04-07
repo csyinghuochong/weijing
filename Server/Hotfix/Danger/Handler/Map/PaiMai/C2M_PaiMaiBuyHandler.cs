@@ -172,7 +172,7 @@ namespace ET
                 //{ 
 
                 //}
-                
+                if(unit.Id != r_GameStatusResponse.PaiMaiItemInfo.UserId)
                 {
                     long locationactor = r_GameStatusResponse.PaiMaiItemInfo.UserId;
 

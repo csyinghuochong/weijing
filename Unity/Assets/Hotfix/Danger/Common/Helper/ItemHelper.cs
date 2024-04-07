@@ -1004,7 +1004,11 @@ namespace ET
                 { ItemGetWay.ActivityConsume, "消耗钻石" },
                 { ItemGetWay.ActivityHongBao, "充值红包" },
                 { ItemGetWay.PetExplore, "宠物探索" },
-                
+                { ItemGetWay.SingleRecharge, "单笔充值奖励" },
+                { ItemGetWay.ItemXiLian, "洗练奖励" },
+                { ItemGetWay.RechargeReward, "充值奖励" },
+                { ItemGetWay.ChouKaReward, "抽卡奖励" },
+                { ItemGetWay.PetHeXinExplore, " 宠物之核探索" },
                 { ItemGetWay.Activity, "活动" },
         };
 
