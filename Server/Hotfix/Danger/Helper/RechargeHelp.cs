@@ -27,7 +27,7 @@ namespace ET
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, number.ToString(), notice, ItemGetWay.Recharge);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            numericComponent.ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);    
+            numericComponent.ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 1, notice);    
             numericComponent.ApplyChange(null, NumericType.V1RechageNumber, rechargeNumber, 0, notice);    
             //已经领取的不充值
             if (numericComponent.GetAsInt(NumericType.RechargeSign) != 2)
@@ -77,7 +77,7 @@ namespace ET
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.NumericComponent });
                 NumericComponent numericComponent = (d2GGetUnit.Component as NumericComponent);
-                numericComponent.ApplyChange(null, NumericType.RechargeBuChang, rechargeNumber, 0, false);
+                numericComponent.ApplyChange(null, NumericType.RechargeBuChang, rechargeNumber, 1, false);
                 D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
                 {
                     UnitId = userId,

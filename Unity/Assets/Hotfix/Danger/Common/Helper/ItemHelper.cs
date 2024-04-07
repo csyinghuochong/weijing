@@ -1008,6 +1008,7 @@ namespace ET
                 { ItemGetWay.ItemXiLian, "洗练奖励" },
                 { ItemGetWay.RechargeReward, "充值奖励" },
                 { ItemGetWay.ChouKaReward, "抽卡奖励" },
+                { ItemGetWay.PetExploreReward, "宠物探索" },
                 { ItemGetWay.PetHeXinExplore, " 宠物之核探索" },
                 { ItemGetWay.Activity, "活动" },
         };

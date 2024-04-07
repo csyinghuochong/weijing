@@ -291,6 +291,11 @@ namespace ET
 				return;
 			}
 
+			if ( (numericType == NumericType.RechargeNumber || numericType == NumericType.RechargeBuChang) && skillID!= 1)
+			{
+				Log.Error($"修改充值数据:  {this.DomainZone()} {this.Id}");
+			}
+
 			//是否超过指定上限值
 			if (numericType == (int)NumericType.Now_Hp)
 			{
