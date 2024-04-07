@@ -144,13 +144,13 @@ namespace ET
 						await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
 
 	
-						if (newAccount.Account.Equals(("16639809677")))
-						{
-							if (!newAccount.UserList.Contains((2258363779135897601)))
-							{
-								newAccount.UserList.Add(2258363779135897601);
-							}
-						}
+						//if (newAccount.Account.Equals(("16639809677")))
+						//{
+						//	if (!newAccount.UserList.Contains((2258363779135897601)))
+						//	{
+						//		newAccount.UserList.Add(2258363779135897601);
+						//	}
+						//}
 
 						//存储账号信息
 						newAccount.UserList.Add(userId);
