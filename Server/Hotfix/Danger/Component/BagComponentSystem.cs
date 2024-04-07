@@ -1017,11 +1017,13 @@ namespace ET
                     //    Log.Warning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
                     //}
                 }
-                //if (itemCof.Id == 10000152 && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 30)
-                //{
-                //    MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-                //    Log.Error($"[获取道具]10000152 ：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
-                //}
+                //10000143 10000152   10010086  10025009
+                if ( ( itemCof.Id == 10000143 || itemCof.Id == 10000152 || itemCof.Id == 10010086 || itemCof.Id == 10025009)
+                    && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 20)
+                {
+                    MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+                    Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
+                }
                 if (leftNum >= 99)
                 {
                     Log.Warning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);

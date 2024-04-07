@@ -262,10 +262,15 @@ namespace ET
                             if (( request.SceneId >= 100001 && request.SceneId >= 100601)
                                 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
                             {
-                                Log.Warning($"神秘之门异常: {unit.Id}");
+                                Log.Error($"神秘之门异常: {unit.Id}");
                                 return ErrorCode.ERR_ModifyData;
                             }
 
+                            if ((request.SceneId >= 100001 && request.SceneId >= 100601))
+                            {
+                                Log.Warning($"神秘之门进入: {unit.DomainZone()} {unit.Id}");
+                            }
+                            
                             int chaptierd = 1;
                             if (!DungeonConfigCategory.Instance.Contain(request.SceneId))
                             {

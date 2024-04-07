@@ -52,7 +52,7 @@ namespace ET
 
 
             ///刷新刷出神秘之门
-            if (userInfoComponent.UserInfo.PiLao > 0 && !unit.IsSceneItem() && RandomHelper.RandFloat01() < 0.001f)
+            if (userInfoComponent.UserInfo.PiLao > 0 && userInfoComponent.UserInfo.Lv > 20  && !unit.IsSceneItem() && RandomHelper.RandFloat01() < 0.001f)
             {
                 int shenminId = 40000003;
                 List<Unit> npclist = self.MainUnit.GetParent<UnitComponent>().GetAll();
@@ -67,6 +67,7 @@ namespace ET
                 {
                     UnitFactory.CreateNpcByPosition(self.DomainScene(), shenminId, unit.Position);
                 }
+                Log.Warning($"神秘之门刷新: {self.DomainZone()} {self.MainUnit.Id}");
             }
         }
 

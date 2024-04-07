@@ -585,6 +585,20 @@ namespace ET
             int TaskExp = (int)(taskConfig.TaskExp * coffiexp);
             int TaskCoin = (int)(taskConfig.TaskCoin* cofficoin);
 
+            bool loginfo  = false;  
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                if (rewardItems[i].ItemID == 10010041)
+                {
+                    loginfo = true;
+                    break;
+                }
+            }
+            if (loginfo)
+            {
+                Log.Warning($"领取任务奖励:  {self.DomainZone()}  {self.Id} {taskConfig.Id}");
+            }
+            
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Exp, TaskExp.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
             int roleLv = userInfoComponent.UserInfo.Lv;
