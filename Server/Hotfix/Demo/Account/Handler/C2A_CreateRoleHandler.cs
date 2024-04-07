@@ -20,7 +20,14 @@ namespace ET
                     reply();
                     return;
                 }
-				if (request.CreateName.Length >= 8)
+                if (request.CreateName.Contains(" "))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+                request.CreateName = request.CreateName.Trim();
+                if (request.CreateName.Length >= 8)
 				{
 					response.Error = ErrorCode.ERR_CreateRoleName;
 					response.Message = "角色名字过长!";

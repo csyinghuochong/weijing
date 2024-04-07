@@ -17,6 +17,7 @@ namespace ET
                 reply();
                 return;
             }
+            
             if (string.IsNullOrEmpty(request.NewName))
             {
                 response.Error = ErrorCode.ERR_CreateRoleName;
@@ -24,6 +25,15 @@ namespace ET
                 reply();
                 return;
             }
+
+            if (request.NewName.Contains(" "))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            request.NewName = request.NewName.Trim();   
+
             if (request.NewName.Length >= 8)
             {
                 response.Error = ErrorCode.ERR_CreateRoleName;
