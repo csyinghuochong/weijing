@@ -14,7 +14,7 @@
             this.InitSelfBuff();
             this.OnUpdate();
         }
-
+        
         public override void OnUpdate()
         {
             this.BaseOnUpdate();
