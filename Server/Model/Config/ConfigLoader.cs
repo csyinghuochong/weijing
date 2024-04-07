@@ -24,10 +24,10 @@ namespace ET
 
         public void PreGetAllConfigBytes()
         {
-            CheckBytes("StartMachineConfigCategory");
-            CheckBytes("StartProcessConfigCategory");
-            CheckBytes("StartSceneConfigCategory");
-            CheckBytes("StartZoneConfigCategory");
+            //CheckBytes("StartMachineConfigCategory");
+            //CheckBytes("StartProcessConfigCategory");
+            //CheckBytes("StartSceneConfigCategory");
+            //CheckBytes("StartZoneConfigCategory");
         }
 
         public void CheckBytes(string key)
