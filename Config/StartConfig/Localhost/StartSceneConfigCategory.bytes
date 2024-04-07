@@ -339,40 +339,6 @@ $ö+8"LocalDungeon*LocalDungeon2
 $÷+8"LocalDungeon*LocalDungeon3
 $ø+8"LocalDungeon*LocalDungeon4
 ù+8	"Happy*Happy
-©-:"Account*Account0ûŸ
-ª-:"Realm*Realm0üŸ
-«-:"Gate*Gate10ýŸ
-¬-:"Queue*Queue0þŸ
-­-:"DBCache*DBCache
-®-:
-"Chat*Chat
-¯-:
-"EMail*EMail
-°-:
-"Activity*Activity
-±-:
-"Rank*Rank
-²-:
-"PaiMai*PaiMai
-³-:	"Team*Team
-´-:
-"Friend*Friend
-µ-:	"Union*Union
-!¶-:	"FubenCenter*FubenCenter
-·-:	"Battle*Battle
-¸-:"Map*Map101
-¹-:	"Arena*Arena
-º-:	"JiaYuan*JiaYuan
-»-:
-"
-Popularize*
-Popularize
-¼-:	"Solo*Solo
-$½-:"LocalDungeon*LocalDungeon1
-$¾-:"LocalDungeon*LocalDungeon2
-$¿-:"LocalDungeon*LocalDungeon3
-$À-:"LocalDungeon*LocalDungeon4
-Á-:	"Happy*Happy
 ñ.<"Account*Account0µŸ
 ò.<"Realm*Realm0¶Ÿ
 ó.<"Gate*Gate10·Ÿ
@@ -679,40 +645,6 @@ $Æ;L"LocalDungeon*LocalDungeon2
 $Ç;L"LocalDungeon*LocalDungeon3
 $È;L"LocalDungeon*LocalDungeon4
 É;L	"Happy*Happy
-•<M"Account*Account0ÓŸ
-–<M"Realm*Realm0ÔŸ
-—<M"Gate*Gate10ÕŸ
-˜<M"Queue*Queue0ÖŸ
-™<M"DBCache*DBCache
-š<M
-"Chat*Chat
-›<M
-"EMail*EMail
-œ<M
-"Activity*Activity
-<M
-"Rank*Rank
-ž<M
-"PaiMai*PaiMai
-Ÿ<M	"Team*Team
- <M
-"Friend*Friend
-¡<M	"Union*Union
-!¢<M	"FubenCenter*FubenCenter
-£<M	"Battle*Battle
-¤<M"Map*Map101
-¥<M	"Arena*Arena
-¦<M	"JiaYuan*JiaYuan
-§<M
-"
-Popularize*
-Popularize
-¨<M	"Solo*Solo
-$©<M"LocalDungeon*LocalDungeon1
-$ª<M"LocalDungeon*LocalDungeon2
-$«<M"LocalDungeon*LocalDungeon3
-$¬<M"LocalDungeon*LocalDungeon4
-­<M	"Happy*Happy
 ù<N"Account*Account0 
 ú<N"Realm*Realm0 
 û<N"Gate*Gate10‘ 
@@ -1053,6 +985,40 @@ $’DW"LocalDungeon*LocalDungeon2
 $“DW"LocalDungeon*LocalDungeon3
 $”DW"LocalDungeon*LocalDungeon4
 •DW	"Happy*Happy
+áDX"Account*Account0¥¡
+âDX"Realm*Realm0¦¡
+ãDX"Gate*Gate10§¡
+äDX"Queue*Queue0¨¡
+åDX"DBCache*DBCache
+æDX
+"Chat*Chat
+çDX
+"EMail*EMail
+èDX
+"Activity*Activity
+éDX
+"Rank*Rank
+êDX
+"PaiMai*PaiMai
+ëDX	"Team*Team
+ìDX
+"Friend*Friend
+íDX	"Union*Union
+!îDX	"FubenCenter*FubenCenter
+ïDX	"Battle*Battle
+ðDX"Map*Map101
+ñDX	"Arena*Arena
+òDX	"JiaYuan*JiaYuan
+óDX
+"
+Popularize*
+Popularize
+ôDX	"Solo*Solo
+$õDX"LocalDungeon*LocalDungeon1
+$öDX"LocalDungeon*LocalDungeon2
+$÷DX"LocalDungeon*LocalDungeon3
+$øDX"LocalDungeon*LocalDungeon4
+ùDX	"Happy*Happy
 éÊ"Center*Center
 #êÊ"LoginCenter*LoginCenter
 ëÊ"Location*Location
