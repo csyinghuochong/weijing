@@ -299,10 +299,10 @@ namespace ET
         public static List<string> ZuobiInfoList  = new List<string>(); 
         public static void ZuobiInfo(string log)
         {
-            if (LogLevel == 0)
-            {
-                return;
-            }
+            //if (LogLevel == 0)
+            //{
+            //    return;
+            //}
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             ZuobiInfoList.Add(log);
             if (ZuobiInfoList.Count >= 10)
@@ -369,10 +369,10 @@ namespace ET
         /// <param name="unit"></param>
         public static void CheckZuoBi(Unit unit)
         {
-            if (LogLevel == 0)
-            {
-                return;
-            }
+            //if (LogLevel == 0)
+            //{
+            //    return;
+            //}
             UserInfoComponent userInfo = unit.GetComponent<UserInfoComponent>();
 
             long rechargeValue = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber);
