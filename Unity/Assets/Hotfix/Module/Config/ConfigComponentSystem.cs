@@ -54,8 +54,8 @@ namespace ET
 			
 			Dictionary<string, byte[]> configBytes = new Dictionary<string, byte[]>();
 
-#if SERVER
-			if (Game.Options.Process == 1)
+#if NOT_UNITY
+			if (Game.Options.Process == 1 || Game.Options.Process == 203)
 			{
 				self.ConfigLoader.PreGetAllConfigBytes();
             }
