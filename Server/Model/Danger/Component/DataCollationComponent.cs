@@ -126,6 +126,10 @@ namespace ET
         [BsonIgnore]
         public List<KeyValuePairInt> GoldGetList = new List<KeyValuePairInt>();
 
+        //钻石获取列表
+        public string DiamondGet;
+        [BsonIgnore]
+        public List<KeyValuePairInt> DiamondGetList = new List<KeyValuePairInt>();
 
         /// <summary>
         /// 购买自己的玩家列表

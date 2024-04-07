@@ -777,6 +777,10 @@ namespace ET
         /// </summary>
         public static void BuffPropertyUpdate_Long(this HeroDataComponent self, int numericType, long NumericTypeValue)
         {
+            if (numericType== NumericType.RechargeBuChang || numericType == NumericType.RechargeNumber)
+            {
+                Log.Error($"BuffPropertyUpdate_Long: {self.DomainZone()}  {self.Id}");
+            }
 
             Unit nowUnit = self.GetParent<Unit>();
             NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
@@ -803,6 +807,10 @@ namespace ET
 
         public static void BuffPropertyUpdate_Float(this HeroDataComponent self, int numericType, float NumericTypeValue)
         {
+            if (numericType == NumericType.RechargeBuChang || numericType == NumericType.RechargeNumber)
+            {
+                Log.Error($"BuffPropertyUpdate_Long: {self.DomainZone()}  {self.Id}");
+            }
             Unit nowUnit = self.GetParent<Unit>();
             NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
             float newvalue = numericComponent.GetAsFloat(numericType) + NumericTypeValue;

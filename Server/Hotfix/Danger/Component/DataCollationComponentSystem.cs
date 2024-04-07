@@ -84,6 +84,10 @@ namespace ET
             {
                 self.OnAddCostList(self.GoldGetList, getWay, value);
             }
+            if (Type == UserDataType.Diamond)
+            {
+                self.OnAddCostList(self.DiamondGetList, getWay, value);
+            }
         }
 
         public static void OnZeroClockUpdate(this DataCollationComponent self, bool notice)
@@ -345,6 +349,10 @@ namespace ET
             self.SetAllCostList(self.GoldGetList, self.GoldGet);
             self.GoldGet = self.CostListToString(self.GoldGetList);
             self.GoldGetList.Clear();
+
+            self.SetAllCostList(self.DiamondGetList, self.DiamondGet);
+            self.DiamondGet = self.CostListToString(self.DiamondGetList);
+            self.DiamondGetList.Clear();
 
             self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
             self.DiamondCost = self.CostListToString(self.DiamondCostList);
