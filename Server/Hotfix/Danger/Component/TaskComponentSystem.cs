@@ -533,7 +533,8 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.System)
             {
-                if (numericComponent.GetAsInt(NumericType.SystemTask) != request.TaskId)
+                if (numericComponent.GetAsInt(NumericType.SystemTask) != 0
+                    && numericComponent.GetAsInt(NumericType.SystemTask) != request.TaskId - 1)
                 {
                     return ErrorCode.ERR_ModifyData;
                 }
