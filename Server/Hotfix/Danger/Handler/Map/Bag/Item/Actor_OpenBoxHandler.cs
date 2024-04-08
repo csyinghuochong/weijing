@@ -12,7 +12,7 @@ namespace ET
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (boxUnit == null)
             {
-                response.Error = ErrorCode.ERR_Success;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }

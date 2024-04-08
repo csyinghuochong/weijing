@@ -260,7 +260,7 @@ namespace ET
                         if (request.SceneId > 0)
                         {
                             if (( request.SceneId >= 100001 && request.SceneId >= 100601)
-                                && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
+                                && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003) && userInfoComponent.UserInfo.Lv < 20)
                             {
                                 Log.Error($"神秘之门异常: {unit.Id}");
                                 return ErrorCode.ERR_ModifyData;
@@ -498,6 +498,14 @@ namespace ET
                 Log.Error($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
                 return ErrorCode.ERR_NotFindLevel;
             }
+
+            if ((sceneId >= 100001 && sceneId >= 100601)
+                                 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
+            {
+                Log.Error($"神秘之门异常2: {unit.Id}");
+                return ErrorCode.ERR_ModifyData;
+            }
+
             //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
             LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest()

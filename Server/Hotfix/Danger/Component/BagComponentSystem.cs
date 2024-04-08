@@ -1022,7 +1022,12 @@ namespace ET
                     && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 20)
                 {
                     MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-                    Log.Warning($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
+                    int sceneId = mapComponent.SceneId;
+                    if (sceneId >= 100001 && sceneId >= 100601)
+                    {
+                        Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
+                    }
+
                 }
                 if (leftNum >= 99)
                 {
