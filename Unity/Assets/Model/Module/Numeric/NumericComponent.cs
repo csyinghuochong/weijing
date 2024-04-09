@@ -132,7 +132,9 @@ namespace ET
 
 				if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
                 {
+#if SERVER
 					Log.Error($"充值改变当前值：  {this.Id} {value} ");
+#endif
 				}
 
 				Update(numericType, notice);
@@ -259,7 +261,9 @@ namespace ET
         {
             if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
             {
-                Log.Error($"充值改变增加值：  {this.Id}  {value}");
+#if SERVER
+				Log.Error($"充值改变增加值：  {this.Id}  {value}");
+#endif
             }
 
             //是否超过指定上限值
