@@ -1294,7 +1294,7 @@ namespace ET
                         }
                     }
 
-                    if (getType == ItemGetWay.PaiMaiShop || getType == ItemGetWay.StoreBuy)
+                    if (getType == ItemGetWay.PaiMaiShop || getType == ItemGetWay.StoreBuy || getType == ItemGetWay.RandomTowerReward)
                     {
                         useBagInfo.isBinging = true;    
                     }
