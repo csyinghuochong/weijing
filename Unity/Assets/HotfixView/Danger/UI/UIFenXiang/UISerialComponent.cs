@@ -42,6 +42,11 @@ namespace ET
                 self.QRImg.SetActive(false);
             }
 
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
+            {
+                self.QRImg.SetActive(false);
+            }
+
             string[] rewardItems = ConfigHelper.SerialReward[1].Split('@');
             for (int i = 0; i < rewardItems.Length; i++)
             {
