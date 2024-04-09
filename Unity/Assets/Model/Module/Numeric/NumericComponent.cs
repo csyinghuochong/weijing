@@ -132,8 +132,10 @@ namespace ET
 
 				if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
                 {
+
 #if SERVER
-					Log.Error($"充值改变当前值：  {this.Id} {value} ");
+                    Log.Warning($"充值改变当前值1：  {this.Id} {value} ");
+                    Log.Error($"充值改变当前值1：  {this.Id} {value} ");
 #endif
 				}
 
@@ -223,7 +225,8 @@ namespace ET
 		{
             if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
             {
-                Log.Error($"充值改变当前值：  {this.Id}  {value}");
+                Log.Warning($"充值改变当前值2：  {this.Id}  {value}");
+                Log.Error($"充值改变当前值2：  {this.Id}  {value}");
             }
 
             long old = this.GetByKey(numericType);
@@ -262,7 +265,8 @@ namespace ET
             if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
             {
 #if SERVER
-				Log.Error($"充值改变增加值：  {this.Id}  {value}");
+                Log.Warning($"充值改变增加值1：  {this.Id}  {value}");
+                Log.Error($"充值改变增加值1：  {this.Id}  {value}");
 #endif
             }
 
@@ -312,12 +316,14 @@ namespace ET
 
             if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
             {
-                Log.Error($"充值改变增加值：  {this.Id}  {changedValue}");
+                Log.Warning($"充值改变增加值2：  {this.Id}  {changedValue}");
+                Log.Error($"充值改变增加值2：  {this.Id}  {changedValue}");
             }
 
             if ( (numericType == NumericType.RechargeNumber || numericType == NumericType.RechargeBuChang) && skillID!= 1)
 			{
-				Log.Error($"修改充值数据:  {this.DomainZone()} {this.Id}");
+                Log.Warning($"修改充值数据2:  {this.DomainZone()} {this.Id}");
+                Log.Error($"修改充值数据2:  {this.DomainZone()} {this.Id}");
 			}
 
 			//是否超过指定上限值

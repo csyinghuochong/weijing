@@ -8,7 +8,7 @@ namespace ET
 
         public static void  SendDiamondToUnit(Unit unit, int rechargeNumber, string orderInfo)
         {
-            LogHelper.LogWarning($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber} {orderInfo}");
+            Log.Warning($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber} {orderInfo}");
             OnRechage(unit, rechargeNumber, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
