@@ -259,14 +259,14 @@ namespace ET
                        
                         if (request.SceneId > 0)
                         {
-                            if (( request.SceneId >= 100001 && request.SceneId >= 100601)
+                            if (( request.SceneId >= 100001 && request.SceneId <= 100601)
                                 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003) && userInfoComponent.UserInfo.Lv < 20)
                             {
                                 Log.Error($"神秘之门异常: {unit.Id}");
                                 return ErrorCode.ERR_ModifyData;
                             }
 
-                            if ((request.SceneId >= 100001 && request.SceneId >= 100601))
+                            if ((request.SceneId >= 100001 && request.SceneId <= 100601))
                             {
                                 Log.Warning($"神秘之门进入: {unit.DomainZone()} {unit.Id}");
                             }
@@ -499,7 +499,7 @@ namespace ET
                 return ErrorCode.ERR_NotFindLevel;
             }
 
-            if ((sceneId >= 100001 && sceneId >= 100601)
+            if ((sceneId >= 100001 && sceneId <= 100601)
                                  && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
             {
                 Log.Error($"神秘之门异常2: {unit.Id}");
