@@ -63,10 +63,12 @@ namespace ET
             UICommonHelper.SetParent(gameObject, self.RawImage);
             UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
             self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
-
+            gameObject.transform.localPosition  = new Vector2(2000, 20000);
             //配置摄像机位置[0,115,257]
             gameObject.transform.Find("Camera").localPosition = new Vector3(-20f, 80f, 250f);
             gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 35;
+            gameObject.transform.Find("Camera").GetComponent<Camera>().cullingMask = 1 << 0;
+            gameObject.transform.Find("Camera").GetComponent<Camera>().cullingMask = 1 <<11;
         }
 
 
@@ -84,6 +86,7 @@ namespace ET
 
             for (int i = 0; i < self.FashionItemList.Count; i++)
             {
+                self.FashionItemList[i].Position = i + 2;
                 self.FashionItemList[i].OnUpdateUI(self.FashionItemList[i].FashionId);
             }
         }
@@ -153,6 +156,7 @@ namespace ET
                     uiitem = self.AddChild<UIFashionShowItemComponent, GameObject>(go);
                     self.FashionItemList.Add(uiitem);
                 }
+                self.FashionItemList[i].Position = i + 2;
                 uiitem.OnUpdateUI(occfashionids[i]);
                 uiitem.FashionWearHandler = self.OnFashionWear;
                 uiitem.PreviewHandler = self.OnFashionPreview;

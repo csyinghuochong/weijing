@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
+using System.Collections.Generic;
 
 namespace ET
 {
-	namespace EventType
-	{
-		//NumericChangeEvent_NotifyWatcher
-		public class NumericChangeEvent : DisposeObject
+    namespace EventType
+    {
+        //NumericChangeEvent_NotifyWatcher
+        public class NumericChangeEvent : DisposeObject
 		{
 			public static readonly NumericChangeEvent Instance = new NumericChangeEvent();
 
@@ -130,6 +130,11 @@ namespace ET
 
 				NumericDic[numericType] = value;
 
+				if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+                {
+					Log.Error($"充值改变当前值：  {this.Id} {value} ");
+				}
+
 				Update(numericType, notice);
 			}
 		}
@@ -214,7 +219,12 @@ namespace ET
 
 		public void ApplyValue(int numericType, long value, bool notice = true, bool check = false)
 		{
-			long old = this.GetByKey(numericType);
+            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+            {
+                Log.Error($"充值改变当前值：  {this.Id}  {value}");
+            }
+
+            long old = this.GetByKey(numericType);
 			NumericDic[numericType] = value;
 
 			if (check && old == value)
@@ -247,6 +257,11 @@ namespace ET
         /// <param name="compare">是否比较变化值</param>
         public void ApplyValue(Unit attack, int numericType, long value, int skillID, bool notice = true, int DamgeType = 0)
         {
+            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+            {
+                Log.Error($"充值改变增加值：  {this.Id}  {value}");
+            }
+
             //是否超过指定上限值
             long old = this.GetByKey(numericType);
             NumericDic[numericType] = value;
@@ -291,7 +306,12 @@ namespace ET
 				return;
 			}
 
-			if ( (numericType == NumericType.RechargeNumber || numericType == NumericType.RechargeBuChang) && skillID!= 1)
+            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+            {
+                Log.Error($"充值改变增加值：  {this.Id}  {changedValue}");
+            }
+
+            if ( (numericType == NumericType.RechargeNumber || numericType == NumericType.RechargeBuChang) && skillID!= 1)
 			{
 				Log.Error($"修改充值数据:  {this.DomainZone()} {this.Id}");
 			}
