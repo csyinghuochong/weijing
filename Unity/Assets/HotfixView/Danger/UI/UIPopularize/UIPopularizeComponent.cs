@@ -120,10 +120,6 @@ namespace ET
         public static async ETTask OnUpdateUI(this UIPopularizeComponent self)
         {
             BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
-            if (TimeHelper.ServerNow() - battleMessageComponent.LastPopularize_ListTime < TimeHelper.Minute)
-            {
-                return;
-            }
             battleMessageComponent.LastPopularize_ListTime = TimeHelper.ServerNow();
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

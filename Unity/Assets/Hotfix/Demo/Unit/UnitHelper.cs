@@ -126,6 +126,9 @@ namespace ET
             int rechargeNum = self.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             rechargeNum *= 10;
             rechargeNum += self.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
+
+            Log.ILog.Debug($" GetMaoXianExp:  {self.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber)}   {self.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp)}");
+
             return rechargeNum;
         }
 

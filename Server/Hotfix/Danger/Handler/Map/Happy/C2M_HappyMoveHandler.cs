@@ -11,7 +11,7 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
-            if (request.OperatateType != 1 && request.OperatateType != 2 && request.OperatateType != 3)
+            if (request.OperatateType != 1 && request.OperatateType != 3)
             {
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();

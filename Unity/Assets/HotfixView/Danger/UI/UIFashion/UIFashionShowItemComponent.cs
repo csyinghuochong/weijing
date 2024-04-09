@@ -28,6 +28,8 @@ namespace ET
 
         public int FashionId;
         public int Status;
+
+        public int Position;
     }
 
     public class UIFashionShowItemComponentAwake : AwakeSystem<UIFashionShowItemComponent, GameObject>
@@ -213,8 +215,10 @@ namespace ET
                 self.UIModelShowComponent.ShowModelList(initPath,  assetList).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3((float)fashionConfig.Camera[0], (float)fashionConfig.Camera[1], (float)fashionConfig.Camera[2]);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = (float)fashionConfig.Camera[3];
-                gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);
+                gameObject.transform.localPosition = new Vector2(self.Position * 1000, -20000);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().cullingMask = 1 << 0;
+                gameObject.transform.Find("Camera").GetComponent<Camera>().cullingMask = 1 << 11;
             }
         }
     }

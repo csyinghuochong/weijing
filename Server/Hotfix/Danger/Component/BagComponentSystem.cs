@@ -1023,9 +1023,9 @@ namespace ET
                 {
                     MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
                     int sceneId = mapComponent.SceneId;
-                    if (sceneId >= 100001 && sceneId >= 100601)
+                    if (sceneId >= 100001 && sceneId <= 100601)
                     {
-                        Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}    {mapComponent.SceneId}");
+                        Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}  {mapComponent.SceneTypeEnum}  {mapComponent.SceneId}");
                     }
 
                 }
@@ -1294,7 +1294,7 @@ namespace ET
                         }
                     }
 
-                    if (getType == ItemGetWay.PaiMaiShop || getType == ItemGetWay.StoreBuy)
+                    if (getType == ItemGetWay.PaiMaiShop || getType == ItemGetWay.StoreBuy || getType == ItemGetWay.RandomTowerReward)
                     {
                         useBagInfo.isBinging = true;    
                     }

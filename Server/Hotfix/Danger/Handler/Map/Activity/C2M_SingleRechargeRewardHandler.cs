@@ -47,11 +47,20 @@ namespace ET
                 return;
             }
 
-            userInfo.SingleRewardIds.Add(request.RewardId);
-            unit.GetComponent<BagComponent>().OnAddItemData(ConfigHelper.SingleRechargeReward[request.RewardId],
+            
+            bool ret = unit.GetComponent<BagComponent>().OnAddItemData(ConfigHelper.SingleRechargeReward[request.RewardId],
                 $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
 
-            response.RewardIds = userInfo.SingleRewardIds;
+            if (ret)
+            {
+                userInfo.SingleRewardIds.Add(request.RewardId);
+                response.RewardIds = userInfo.SingleRewardIds;
+            }
+            else
+            {
+                Log.Error($"领取失败: {bagComponent.GetBagLeftCell()} {request.RewardId}");
+            }
+           
             reply();
             await ETTask.CompletedTask;
         }

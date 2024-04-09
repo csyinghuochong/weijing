@@ -102,6 +102,9 @@ namespace ET
 		/// <summary>摄像机参数</summary>
 		[ProtoMember(9)]
 		public double[] Camera { get; set; }
+		/// <summary>时装描述</summary>
+		[ProtoMember(10)]
+		public string PropertyDes { get; set; }
 
 	}
 }
