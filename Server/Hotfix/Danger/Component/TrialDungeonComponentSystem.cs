@@ -36,7 +36,7 @@ namespace ET
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
             string userName = players[0].GetComponent<UserInfoComponent>().UserInfo.Name;
-            Log.Warning($"试炼之地通关： 区:{players[0].DomainZone()}   {players[0].Id}   {mapComponent.SceneId}  {userName}  {players[0].GetComponent<UserInfoComponent>().UserInfo.Lv}");
+            Log.Warning($"试炼之地通关： 区:{players[0].DomainZone()}   {players[0].Id}   {mapComponent.SonSceneId}  {userName}  {players[0].GetComponent<UserInfoComponent>().UserInfo.Lv}");
 
             if (lastDungeonId < mapComponent.SonSceneId)
             {

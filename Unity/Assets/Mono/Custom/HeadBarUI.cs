@@ -31,8 +31,8 @@ public class HeadBarUI : MonoBehaviour
         Vector3 NewPosition = Vector3.zero;
         NewPosition.x = OldPosition.x;
         NewPosition.y = OldPosition.y;
-        // HeadBar.transform.localPosition = NewPosition;
-        HeadBar.transform.localPosition = Vector3.SmoothDamp(HeadBar.transform.localPosition, NewPosition, ref velocity, 0.1f);
+        HeadBar.transform.localPosition = NewPosition;
+        //HeadBar.transform.localPosition = Vector3.SmoothDamp(HeadBar.transform.localPosition, NewPosition, ref velocity, 0.1f);
     }
 
     private void LateUpdate()

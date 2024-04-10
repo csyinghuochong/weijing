@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog.Fluent;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -75,6 +76,31 @@ namespace ET
                         }
                         break;
                     case (int)SceneTypeEnum.TrialDungeon:
+                        int requestTowerId = int.Parse(request.paramInfo);
+                        int passId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
+                        if (!TowerConfigCategory.Instance.Contain(requestTowerId))
+                        {
+                            Log.Error($"试炼之地作弊1:{unit.DomainZone()} {unit.Id} {requestTowerId}   {passId}");
+                            return ErrorCode.ERR_ModifyData;
+                        }
+                        if (TowerConfigCategory.Instance.Get(requestTowerId).MapType!= SceneTypeEnum.TrialDungeon)
+                        {
+                            Log.Error($"试炼之地作弊2:{unit.DomainZone()} {unit.Id} {requestTowerId}   {passId}");
+                            return ErrorCode.ERR_ModifyData;
+                        }
+                        
+                        if (passId == 0 && requestTowerId != 20001)
+                        {
+                            Log.Error($"试炼之地作弊3:{unit.DomainZone()} {unit.Id} {requestTowerId}   {passId}");
+                            return ErrorCode.ERR_ModifyData;
+                        }
+                        if (passId != 0 && requestTowerId > passId + 1 )
+                        {
+                            Log.Error($"试炼之地作弊4:{unit.DomainZone()} {unit.Id} {requestTowerId}   {passId}");
+                            return ErrorCode.ERR_ModifyData;
+                        }
+
+
                         fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                         fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "TrialDungeon" + fubenid.ToString(), SceneType.Fuben);
