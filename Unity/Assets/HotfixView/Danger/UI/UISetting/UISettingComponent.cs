@@ -10,12 +10,15 @@ namespace ET
         Game = 0,
         Title = 1,  
         GuaJi =2,
+        Fashion = 3,
 
         Number,
     }
 
     public class UISettingComponent : Entity, IAwake
     {
+
+        public GameObject Btn_Type_4;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -42,10 +45,15 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)SettingEnum.Game] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingGame");
             pageViewComponent.UISubViewPath[(int)SettingEnum.Title] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingTitle");
             pageViewComponent.UISubViewPath[(int)SettingEnum.GuaJi] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingGuaJi");
+            pageViewComponent.UISubViewPath[(int)SettingEnum.Fashion] = ABPathHelper.GetUGUIPath("Main/Fashion/UIFashionShow");
 
             pageViewComponent.UISubViewType[(int)SettingEnum.Game] = typeof(UISettingGameComponent);
             pageViewComponent.UISubViewType[(int)SettingEnum.Title] = typeof(UISettingTitleComponent);
             pageViewComponent.UISubViewType[(int)SettingEnum.GuaJi] = typeof(UISettingGuaJiComponent);
+            pageViewComponent.UISubViewType[(int)SettingEnum.Fashion] = typeof(UIFashionShowComponent);
+
+            self.Btn_Type_4 = rc.Get<GameObject>("Btn_Type_4");
+            self.Btn_Type_4.SetActive( GMHelp.GmAccount.Contains(  self.ZoneScene().GetComponent<AccountInfoComponent>().Account )  );
 
             self.UIPageView = pageViewComponent;
 

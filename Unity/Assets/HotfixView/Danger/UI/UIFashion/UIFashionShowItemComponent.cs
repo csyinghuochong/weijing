@@ -12,7 +12,7 @@ namespace ET
         public GameObject Equipinged;
         public GameObject ImageDi;
         public GameObject GameObject;
-
+        public GameObject Btn_Desc;
         public GameObject Text_222;
         public GameObject Text_111;
 
@@ -51,6 +51,9 @@ namespace ET
 
             ButtonHelp.AddListenerEx(  self.Btn_Active, () => { self.OnBtn_Active().Coroutine();  } );
 
+            self.Btn_Desc = rc.Get<GameObject>("Btn_Desc");
+            ButtonHelp.AddListenerEx(self.Btn_Desc, () => { self.OnBtn_Desc().Coroutine(); });
+
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.RawImage.gameObject.SetActive(true);
 
@@ -82,6 +85,12 @@ namespace ET
         public static void OnImageDi(this UIFashionShowItemComponent self)
         {
             self.PreviewHandler( self.FashionId );
+        }
+
+        public static async ETTask OnBtn_Desc(this UIFashionShowItemComponent self)
+        {
+            UI ui = await UIHelper.Create(   self.ZoneScene(), UIType.UIFashionExplain );
+            ui.GetComponent<UIFashionExplainComponent>().OnInitData( self.FashionId );
         }
 
         public static async ETTask OnBtn_Active(this UIFashionShowItemComponent self)
@@ -187,7 +196,7 @@ namespace ET
                 self.UIItemComponent.Label_ItemName.SetActive(true);
                 self.UIItemComponent.Label_ItemNum.SetActive(false);
             }
-
+            self.Btn_Desc.SetActive( !string.IsNullOrEmpty(fashionConfig.PropertyDes)   );
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, havenumber < int.Parse(costitem[1]));
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, havenumber < int.Parse(costitem[1]));
 

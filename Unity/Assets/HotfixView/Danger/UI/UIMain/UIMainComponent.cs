@@ -53,7 +53,6 @@ namespace ET
         public GameObject Button_Demon;
         public GameObject Button_RunRace;
         public GameObject Button_Happy;
-        public GameObject Button_Fashion;
         public GameObject Btn_Union;
         public GameObject Button_Hunt;
         public GameObject Button_Solo;
@@ -186,9 +185,6 @@ namespace ET
             self.Btn_Union = rc.Get<GameObject>("Btn_Union");
             self.Btn_Union.GetComponent<Button>().onClick.AddListener(self.OnBtn_Union);
 
-            self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
-            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(self.OnButton_Fashion);
-            
             self.Button_Happy = rc.Get<GameObject>("Button_Happy");
             self.Button_Happy.GetComponent<Button>().onClick.AddListener(self.OnButton_Happy);
             self.Button_Happy.SetActive(false);
@@ -386,8 +382,7 @@ namespace ET
             };
             self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-            self.Button_Fashion.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-
+         
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
 
