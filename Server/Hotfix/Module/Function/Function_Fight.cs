@@ -1618,6 +1618,22 @@ namespace ET
                 }
             }
 
+            //时装
+            List<int> fashionids = unit.GetComponent<BagComponent>().FashionActiveIds;
+            for (int i = 0; i < fashionids.Count; i++)
+            {
+                FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
+                if (fashionConfig.PropertyKey == null || fashionConfig.PropertyKey.Length == 0 || fashionConfig.PropertyKey[0] == 0)
+                {
+                    continue;
+                }
+
+                for (int pro = 0; pro < fashionConfig.PropertyKey.Length; pro++ )
+                {
+                    AddUpdateProDicList(fashionConfig.PropertyKey[pro], fashionConfig.PropertyValue[pro], UpdateProDicList);
+                }
+            }
+
             long BaseHp_EquipSuit = 0;
             long BaseMinAct_EquipSuit = 0;
             long BaseMaxAct_EquipSuit = 0;

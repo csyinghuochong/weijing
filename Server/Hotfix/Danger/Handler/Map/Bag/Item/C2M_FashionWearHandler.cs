@@ -66,7 +66,8 @@ namespace ET
                 }
                 bagComponent.FashionEquipList.Remove(request.FashionId);
             }
-            
+
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
 
             M2C_FashionUpdate m2C_FashionUpdate = new M2C_FashionUpdate();
             m2C_FashionUpdate.UnitID = unit.Id;
