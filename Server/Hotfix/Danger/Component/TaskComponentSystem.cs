@@ -536,6 +536,16 @@ namespace ET
                 if (numericComponent.GetAsInt(NumericType.SystemTask) != 0
                     && numericComponent.GetAsInt(NumericType.SystemTask) != request.TaskId - 1)
                 {
+                    Log.Error($"任务作弊:  {unit.DomainZone()} {unit.Id}   {request.TaskId}");
+                    return ErrorCode.ERR_ModifyData;
+                }
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.Season)
+            {
+                if (numericComponent.GetAsInt(NumericType.SeasonTask) != 0
+                    && numericComponent.GetAsInt(NumericType.SeasonTask) != request.TaskId - 1)
+                {
+                    Log.Error($"任务作弊:  {unit.DomainZone()} {unit.Id}   {request.TaskId}");
                     return ErrorCode.ERR_ModifyData;
                 }
             }
