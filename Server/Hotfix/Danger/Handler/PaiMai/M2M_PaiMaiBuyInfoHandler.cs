@@ -14,6 +14,9 @@ namespace ET
             long paimaiGold = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PaiMaiTodayGold);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PaiMaiTodayGold, paimaiGold + request.CostGold, true);
             reply();
+
+
+            Console.WriteLine($"m2G_RechargeResponse1: 在线");
             await ETTask.CompletedTask;
         }
     }
