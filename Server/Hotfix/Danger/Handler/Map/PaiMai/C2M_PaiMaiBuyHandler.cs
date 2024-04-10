@@ -172,7 +172,7 @@ namespace ET
                 //{ 
 
                 //}
-                if(unit.Id != r_GameStatusResponse.PaiMaiItemInfo.UserId)
+                if (unit.Id != r_GameStatusResponse.PaiMaiItemInfo.UserId)
                 {
                     long locationactor = r_GameStatusResponse.PaiMaiItemInfo.UserId;
 
@@ -191,13 +191,20 @@ namespace ET
                         NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
                         if (numericComponent != null)
                         {
-                            long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold);
+                            long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold) + (long)(needGold * 0.95f);
                             numericComponent.ApplyValue(NumericType.PaiMaiTodayGold, paimaigold, false);
                             DBHelper.SaveComponentCache(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId, numericComponent).Coroutine();
                         }
                     }
                 }
-
+                else
+                {
+                    DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    dataCollationComponent.UpdateBuySelfPlayerList((long)(needGold * 0.95f), unit.Id, true);
+                    long paimaigold = numericComponent.GetAsLong(NumericType.PaiMaiTodayGold)+(long)(needGold * 0.95f);
+                    numericComponent.ApplyValue(NumericType.PaiMaiTodayGold, paimaigold, true);
+                }
                 
                 //每天更新文本。
                 //今天拍卖出售获取金币数量>=50000000  打印出来
