@@ -359,6 +359,12 @@ namespace ET
             //}
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
+            if (mainPlayerInfo == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("你也不在家族，请重新退出！");
+                return;
+            }
+            
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)unionInfo.Level);
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
             self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
