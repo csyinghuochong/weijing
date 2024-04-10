@@ -7,6 +7,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_StallSellRequest request, M2C_StallSellResponse response, Action reply)
         {
+            if (unit.DomainZone() != 3)
+            {
+                reply();
+                return;
+            }
+
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Sell, unit.Id))
             {
                 if (request.PaiMaiItemInfo.BagInfo.ItemNum <= 0)
