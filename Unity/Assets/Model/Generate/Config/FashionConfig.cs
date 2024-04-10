@@ -98,12 +98,15 @@ namespace ET
 		public string ActiveCost { get; set; }
 		/// <summary>时装属性加成Key</summary>
 		[ProtoMember(8)]
-		public int[] ItemModelID { get; set; }
-		/// <summary>摄像机参数</summary>
+		public int[] PropertyKey { get; set; }
+		/// <summary>时装属性加成Value</summary>
 		[ProtoMember(9)]
+		public long[] PropertyValue { get; set; }
+		/// <summary>摄像机参数</summary>
+		[ProtoMember(10)]
 		public double[] Camera { get; set; }
 		/// <summary>时装描述</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string PropertyDes { get; set; }
 
 	}
