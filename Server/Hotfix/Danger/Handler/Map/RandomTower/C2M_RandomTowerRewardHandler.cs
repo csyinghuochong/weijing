@@ -46,7 +46,7 @@ namespace ET
             TowerConfig towerRewardConfig = TowerConfigCategory.Instance.Get(request.RewardId);
 
             string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-            Log.Warning($"试炼之地领取奖励： 区:{unit.DomainZone()}   {unit.Id}   {request.RewardId}  {userName} ");
+            Log.Warning($"试炼之地领取奖励： 区:{unit.DomainZone()}   {unit.Id}   {request.RewardId}  {userName}  {unit.GetComponent<UserInfoComponent>().UserInfo.Lv}");
 
             if (unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.DropShow, $"{ItemGetWay.RandomTowerReward}_{TimeHelper.ServerNow()}"))
             {
