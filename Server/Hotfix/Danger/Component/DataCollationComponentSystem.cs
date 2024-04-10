@@ -146,6 +146,32 @@ namespace ET
             return 0;
         }
 
+
+        public static long GetGoldByType(this DataCollationComponent self, int getWay)
+        {
+            if (string.IsNullOrEmpty(self.GoldGet))
+            {
+                return 0;
+            }
+
+            string[] costlist = self.GoldGet.Split('_');
+            for (int i = 0; i < costlist.Length; i++)
+            {
+                string[] costinfo = costlist[i].Split(',');
+                if (costinfo.Length < 3)
+                {
+                    continue;
+                }
+
+                if (int.Parse(costinfo[0]) == getWay)
+                {
+                    long value = long.Parse(costinfo[2]);
+                    return value;
+                }
+            }
+            return 0;
+        }
+
         public static void OnAddCostList(this DataCollationComponent self, List<KeyValuePairInt> pairInts, int getWay, long value)
         {
             bool have = false;

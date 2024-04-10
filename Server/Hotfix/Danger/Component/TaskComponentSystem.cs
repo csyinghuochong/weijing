@@ -608,7 +608,12 @@ namespace ET
             //        break;
             //    }
             //}
-            Log.Warning($"领取任务奖励:  {self.DomainZone()}  {self.Id} {taskConfig.Id}");
+            Log.Warning($"任务奖励: {self.DomainZone()}  {self.Id} {taskConfig.Id}");
+            if (userInfoComponent.UserInfo.Lv < 30 && unit.GetComponent<DataCollationComponent>().GetGoldByType(ItemGetWay.TaskReward) > 100000000)
+            {
+                Log.Warning($"任务作弊: {self.DomainZone()}  {self.Id} {taskConfig.Id}");
+                return ErrorCode.ERR_ModifyData;
+            }
 
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Exp, TaskExp.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
