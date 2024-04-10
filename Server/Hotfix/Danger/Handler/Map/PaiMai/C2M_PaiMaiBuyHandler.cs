@@ -179,7 +179,6 @@ namespace ET
                     M2M_PaiMaiBuyInfoRequest r2M_RechargeRequest = new M2M_PaiMaiBuyInfoRequest() { PlayerId = unit.Id, CostGold = (long)(needGold * 0.95f) };
                     M2M_PaiMaiBuyInfoResponse m2G_RechargeResponse = (M2M_PaiMaiBuyInfoResponse)await MessageHelper.CallLocationActor(locationactor, r2M_RechargeRequest);
 
-                    Console.WriteLine($"m2G_RechargeResponse2: {r_GameStatusResponse.PaiMaiItemInfo.PlayerName} {m2G_RechargeResponse.Error}");
                     if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
                     {
                         DataCollationComponent dataCollationComponent = await DBHelper.GetComponentCache<DataCollationComponent>(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo.UserId);
