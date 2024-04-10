@@ -182,7 +182,7 @@ namespace ET
             }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
-            if (fashionConfig.ActiveCost == "0;0")
+            if (fashionConfig.ActiveCost == "0;0"|| fashionConfig.ActiveCost == "0")
             {
                 self.Text_222.gameObject.SetActive(false);  
                 self.UIItemComponent.GameObject.SetActive(false);    
