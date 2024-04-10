@@ -33,12 +33,12 @@ namespace ET
                     break;
                 }
             }
-            if (unionPlayerInfo == null)
-            {
-                response.Error = ErrorCode.ERR_Union_Not_Exist;
-                reply();
-                return;
-            }
+            //if (unionPlayerInfo == null)
+            //{
+            //    response.Error = ErrorCode.ERR_Union_Not_Exist;
+            //    reply();
+            //    return;
+            //}
             if(dBUnionInfo.UnionInfo.UnionPlayerList.Count == 0)
             {
                 dBUnionInfo.UnionInfo.LeaderId = 0;

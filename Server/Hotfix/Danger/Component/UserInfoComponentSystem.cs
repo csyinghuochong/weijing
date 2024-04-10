@@ -153,11 +153,12 @@ namespace ET
                 Log.Warning($"抽卡次数异常:{self.DomainZone()} {self.UserInfo.Name}   充值:{numericComponent.GetAsInt(NumericType.RechargeNumber)}  抽卡:{dataCollationComponent.ChouKaTimes}");
             }
 
-            //if (self.UserInfo.UserId == 2091730437935267840)
-            //{
-            //    self.UserInfo.UnionName = "清风醉花亭";
-            //    numericComponent.ApplyValue(NumericType.UnionId_0, 2091902218525016328, false);
-            //}
+            if (self.UserInfo.UserId == 2308831070960812032)
+            {
+                //self.UserInfo.UnionName = "";
+                //self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.UnionLeader, 0, false);
+                //self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId_0, 0, false);
+            }
 
             if (self.UserInfo.UnionKeJiList.Count < UnionKeJiConfigCategory.Instance.UnionQiangHuaList.Count)
             {
