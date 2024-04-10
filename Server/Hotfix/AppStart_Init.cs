@@ -16,10 +16,11 @@ namespace ET
             Game.Scene.AddComponent<ConfigComponent>();
             Game.Scene.AddComponent<TimerComponent>();
 
-            await ConfigComponent.Instance.LoadAsync();
             TimeInfo.Instance.TimeZone = 8;
-            StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
+            await ConfigComponent.Instance.LoadAsync();
 
+            StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
+            
 
             Game.Scene.AddComponent<OpcodeTypeComponent>();
             Game.Scene.AddComponent<MessageDispatcherComponent>();
