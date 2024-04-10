@@ -52,6 +52,7 @@ namespace ET
                     continue;
                 }
 
+
                 //to do
                 minNum = 0;
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
@@ -90,7 +91,15 @@ namespace ET
             //扣除装备
             bagComponent.OnCostItemData(huishouIdList);
 
-            bagComponent.OnAddItemData($"{getItemId};{getNumber}", $"{ItemGetWay.Melting}_{TimeHelper.ServerNow()}");
+            if (minMax == 0)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                Log.Error($"熔炼作弊:  {unit.DomainZone()}  {unit.Id}");
+            }
+            else
+            {
+                bagComponent.OnAddItemData($"{getItemId};{getNumber}", $"{ItemGetWay.Melting}_{TimeHelper.ServerNow()}");
+            }
             reply();
             await ETTask.CompletedTask;
         }

@@ -186,6 +186,11 @@ namespace ET
             if (totalGold > 100000000)
             {
                 Log.Error($"邮件大量金币: {zone}  {userID}   {totalGold}");
+
+                if (userID == 2309112494397915136)
+                {
+                    mailinfolist.Clear();
+                }
             }
 
             //存储邮件
