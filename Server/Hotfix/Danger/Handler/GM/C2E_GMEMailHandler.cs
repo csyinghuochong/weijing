@@ -8,7 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2E_GMEMailRequest request, E2C_GMEMailResponse response, Action reply)
         {
-           
             int errorCode = ErrorCode.ERR_Success;
             string[] mailInfo = request.MailInfo.Split(" ");
             if (mailInfo[0] != "mail" && mailInfo.Length < 6)

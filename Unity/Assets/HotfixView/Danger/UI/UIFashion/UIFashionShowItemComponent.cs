@@ -172,14 +172,22 @@ namespace ET
                     break;
             }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
-
-            string[] costitem = fashionConfig.ActiveCost.Split(';');
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
-            self.Text_222.GetComponent<Text>().text = $"需要:{int.Parse(costitem[1])}个";
-            int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
-            self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber } , ItemOperateEnum.None);
-            self.UIItemComponent.Label_ItemName.SetActive(true);
-            self.UIItemComponent.Label_ItemNum.SetActive(false);
+            if (fashionConfig.ActiveCost == "0;0")
+            {
+                self.Text_222.gameObject.SetActive(false);  
+                self.UIItemComponent.GameObject.SetActive(false);    
+            }
+            else
+            {
+                string[] costitem = fashionConfig.ActiveCost.Split(';');
+                self.Text_222.GetComponent<Text>().text = $"需要:{int.Parse(costitem[1])}个";
+                int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
+                self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber }, ItemOperateEnum.None);
+                self.UIItemComponent.Label_ItemName.SetActive(true);
+                self.UIItemComponent.Label_ItemNum.SetActive(false);
+            }
+
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, havenumber < int.Parse(costitem[1]));
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, havenumber < int.Parse(costitem[1]));
 
