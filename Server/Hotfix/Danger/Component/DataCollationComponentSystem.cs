@@ -105,7 +105,7 @@ namespace ET
 
             self.PaiMaiGold += addgold;
 
-            for (int i = 0; i < self.BuySelfPlayerList.Count; i++)
+            for (int i = self.BuySelfPlayerList.Count - 1; i >= 0 ; i--)
             {
                 if (self.BuySelfPlayerList[i].KeyId == unitid)
                 {

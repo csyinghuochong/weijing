@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MongoDB.Bson.Serialization;
+using System.Linq;
 
 namespace ET
 {
@@ -212,7 +213,9 @@ namespace ET
                     self.AccountInfoComponent.Age_Type = 100;
                 }
 #endif
-			}
+            }
+
+
 			catch (Exception E)
 			{
 				Log.Error(E.ToString());
@@ -653,6 +656,8 @@ namespace ET
             {
                 return;
             }
+
+			self.AccountReversal = StringBuilderHelper.Encrypt(platinfo);
             self.Account.GetComponent<InputField>().text = platinfo;
             self.Password.GetComponent<InputField>().text = self.LoginType;
             self.ZhuCe.SetActive(false);
@@ -814,7 +819,19 @@ namespace ET
                 return;
             }
 
-			self.Loading.SetActive(true);
+
+			if (!string.IsNullOrEmpty(self.AccountReversal))
+			{
+				self.AccountReversal = StringBuilderHelper.Decrypt(self.AccountReversal);
+                if (!self.AccountReversal.Equals(account))
+				{
+                    FloatTipManager.Instance.ShowFloatTip("数据异常！");
+                    return;
+                }
+            }
+           
+
+            self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");
 			self.LastLoginTime = TimeHelper.ClientNow();

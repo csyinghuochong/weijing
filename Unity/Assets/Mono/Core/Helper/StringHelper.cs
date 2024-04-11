@@ -162,12 +162,12 @@ namespace ET
 			return output;
 		}
 
-		/// <summary> 
-		/// 检查过滤设定的危险字符
-		/// </summary> 
-		/// <param name="InText">要过滤的字符串 </param> 
-		/// <returns>如果参数存在不安全字符，则返回true </returns> 
-		public static bool SqlFilter(string word, string InText)
+        /// <summary> 
+        /// 检查过滤设定的危险字符
+        /// </summary> 
+        /// <param name="InText">要过滤的字符串 </param> 
+        /// <returns>如果参数存在不安全字符，则返回true </returns> 
+        public static bool SqlFilter(string word, string InText)
 		{
 			if (InText == null)
 				return false;

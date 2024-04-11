@@ -163,6 +163,27 @@ namespace ET
             return stringBuilder.ToString();
         }
 
+        public static int EncryptKey = 5;
+        public static string Encrypt(string input)
+        {
+            StringBuilder encrypted = new StringBuilder();
+            foreach (char c in input)
+            {
+                encrypted.Append((char)(c + EncryptKey));
+            }
+            return encrypted.ToString();
+        }
+
+        public static string Decrypt(string input)
+        {
+            StringBuilder decrypted = new StringBuilder();
+            foreach (char c in input)
+            {
+                decrypted.Append((char)(c - EncryptKey));
+            }
+            return decrypted.ToString();
+        }
+
         public static string GetGemHole(List<int> gemholeid)
         {
             stringBuilder.Clear();

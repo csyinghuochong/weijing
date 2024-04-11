@@ -68,5 +68,7 @@ namespace ET
 		public bool IOSReview = false;
 
 		public ShareSDK ssdk;
+
+		public string AccountReversal;
 	}
 }
