@@ -890,7 +890,7 @@ namespace ET
         public static void OnRegister(this UILoginComponent self)
 		{
 			Log.ILog.Debug("OnButtonOtherLogin");
-
+			self.AccountReversal = string.Empty;
 			bool register = false;
 			if (self.IOSReview && GlobalHelp.GetBigVersion() == 17)
 			{
