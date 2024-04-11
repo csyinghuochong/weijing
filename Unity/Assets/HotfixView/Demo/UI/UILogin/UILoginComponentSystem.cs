@@ -690,7 +690,7 @@ namespace ET
 					self.LoginType = "2";
                 }
             }
-
+			self.AccountReversal = StringBuilderHelper.Encrypt(planids[0]);	
 			self.Account.GetComponent<InputField>().text = planids[0];
 			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.ZhuCe.SetActive(false);
