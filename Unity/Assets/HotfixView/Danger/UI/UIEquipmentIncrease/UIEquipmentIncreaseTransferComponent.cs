@@ -87,7 +87,8 @@ namespace ET
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(self.BagInfo_Transfer[1].ItemID);
 
             //道具配置
-            if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99) {
+            //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99) 
+            {
                 //相同部位
                 if (itemConfig_0.EquipType != itemConfig_1.EquipType)
                 {
@@ -96,7 +97,7 @@ namespace ET
                 }
             }
 
-            if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+           // if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
             {
                 //相同部位
                 if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)

@@ -52,11 +52,10 @@ namespace ET
             pageViewComponent.UISubViewType[(int)SettingEnum.GuaJi] = typeof(UISettingGuaJiComponent);
             pageViewComponent.UISubViewType[(int)SettingEnum.Fashion] = typeof(UIFashionShowComponent);
 
-            self.Btn_Type_4 = rc.Get<GameObject>("Btn_Type_4");
-            self.Btn_Type_4.SetActive( GMHelp.GmAccount.Contains(  self.ZoneScene().GetComponent<AccountInfoComponent>().Account )  );
+            //self.Btn_Type_4 = rc.Get<GameObject>("Btn_Type_4");
+            //self.Btn_Type_4.SetActive( GMHelp.GmAccount.Contains(  self.ZoneScene().GetComponent<AccountInfoComponent>().Account )  );
 
             self.UIPageView = pageViewComponent;
-
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
