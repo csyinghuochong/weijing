@@ -1027,11 +1027,16 @@ namespace ET
                     {
                         Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}  {mapComponent.SceneTypeEnum}  {mapComponent.SceneId}");
                     }
-
+                    
                 }
                 if (leftNum >= 99)
                 {
-                    Log.Warning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
+                    Log.Warning($"[获取道具]leftNum >= 99    {unit.DomainZone()} {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
+
+                    if ( getType == ItemGetWay.PickItem &&  rewardItems[i].ItemNum >= 5)
+                    {
+                        Log.Error($"[获取道具]leftNum >= 99_2    {unit.DomainZone()} {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
+                    }
                 }
 
                 int maxPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;

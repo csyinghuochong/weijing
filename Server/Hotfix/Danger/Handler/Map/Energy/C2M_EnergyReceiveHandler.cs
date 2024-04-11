@@ -10,14 +10,23 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_EnergyReceiveRequest request, M2C_EnergyReceiveResponse response, Action reply)
         {
             EnergyComponent energyComponent = unit.GetComponent<EnergyComponent>();
+
+            if (request.RewardType < 0 || request.RewardType >= energyComponent.GetRewards.Count)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
             if (energyComponent.GetRewards[request.RewardType] == 1)
             {
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             //0 早起  1早睡 2 答题
             if (request.RewardType == 1 && !energyComponent.EarlySleepReward)
             {
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }

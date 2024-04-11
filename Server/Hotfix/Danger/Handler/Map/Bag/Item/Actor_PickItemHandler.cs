@@ -89,6 +89,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             int errorCode = ErrorCode.ERR_Success;
 
+            //DropType ==  0 公共掉落 2保护掉落   1私有掉落
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             for (int i = drops.Count - 1; i >= 0; i--)
             {
@@ -243,7 +244,7 @@ namespace ET
                 }
                 if (!have)
                 {
-                    LogHelper.LogDebug($"无效的私人掉落: {unit.GetComponent<UserInfoComponent>().UserInfo.Name} {unit.Id} {request.ItemIds[i].ItemID}");
+                    Log.Error($"无效的私人掉落: {unit.GetComponent<UserInfoComponent>().UserInfo.Name} {unit.Id} {request.ItemIds[i].ItemID}");
                     request.ItemIds.RemoveAt(i);
                 }
             }

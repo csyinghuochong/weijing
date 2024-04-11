@@ -8,7 +8,20 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JingHeWearRequest request, M2C_JingHeWearResponse response, Action reply)
         {
-            int equipIndex = int.Parse(request.OperatePar);
+            int equipIndex = 0;
+            try
+            {
+                equipIndex = int.Parse(request.OperatePar);
+            }
+            catch (Exception ex) 
+            {
+                Log.Error(ex.ToString());
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            
+
             ItemLocType locType = request.OperateType == 1 ? ItemLocType.ItemLocBag : ItemLocType.SeasonJingHe;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             BagInfo useBagInfo = bagComponent.GetItemByLoc(locType, request.OperateBagID);

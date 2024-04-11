@@ -288,7 +288,7 @@ namespace ET
                             if (( request.SceneId >= 100001 && request.SceneId <= 100601)
                                 && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003) && userInfoComponent.UserInfo.Lv < 20)
                             {
-                                Log.Error($"神秘之门异常: {unit.Id}");
+                                Log.Error($"神秘之门异常: {unit.DomainZone()} {unit.Id}");
                                 return ErrorCode.ERR_ModifyData;
                             }
 
@@ -528,7 +528,7 @@ namespace ET
             if ((sceneId >= 100001 && sceneId <= 100601)
                                  && !UnitHelper.IsHaveNpc(unit.DomainScene(), 40000003))
             {
-                Log.Error($"神秘之门异常2: {unit.Id}");
+                Log.Error($"神秘之门异常2: {unit.DomainZone()} {unit.Id}");
                 return ErrorCode.ERR_ModifyData;
             }
 

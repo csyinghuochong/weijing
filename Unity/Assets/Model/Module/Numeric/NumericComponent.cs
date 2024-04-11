@@ -269,7 +269,7 @@ namespace ET
                 Log.Error($"充值改变增加值1：  {this.Id}  {value}");
 #endif
             }
-
+		
             //是否超过指定上限值
             long old = this.GetByKey(numericType);
             NumericDic[numericType] = value;

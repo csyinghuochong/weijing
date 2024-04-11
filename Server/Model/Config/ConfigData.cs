@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -15,6 +11,8 @@ namespace ET
         public static bool AccountOldLogic = false;
 
         public static bool CleanSkill = false;
+
+        public static bool LogRechargeNumber = true;
 
         public static List<int> FunctionOpenIds = new List<int> { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059, 2000 };
     }
