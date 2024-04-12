@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -631,7 +632,7 @@ namespace ET
             }
             else
             {
-                HintHelp.GetInstance().ShowHintError(errorCode);
+                HintHelp.GetInstance().ShowHintError(errorCode, self.ZoneScene());
             }
             self.OnTaskGet();
         }

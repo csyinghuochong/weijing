@@ -21,7 +21,7 @@
             EventSystem.Instance.PublishClass(EventType.CommonHint.Instance);
         }
 
-        public void ShowHintError(int error)
+        public void ShowHintError(int error, Scene zoneScene)
         {
             if (!SettingHelper.ShowNoMoving &&
                 (error == ErrorCode.ERR_CanNotMove_NetWait
@@ -33,6 +33,7 @@
             }
 
             EventType.CommonHintError.Instance.errorValue = error;
+            EventType.CommonHintError.Instance.ZoneScene = zoneScene;
             EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
         }
 

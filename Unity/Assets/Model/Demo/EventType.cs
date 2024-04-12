@@ -357,6 +357,7 @@ namespace ET
         public class CommonHintError : DisposeObject
         {
             public static readonly CommonHintError Instance = new CommonHintError();
+            public Scene ZoneScene;
             public int errorValue;
         }
 

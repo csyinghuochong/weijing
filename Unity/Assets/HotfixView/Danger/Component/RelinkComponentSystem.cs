@@ -175,6 +175,21 @@ namespace ET
             }
         }
 
+        public static void  OnModifyData(this RelinkComponent self)
+        {
+            self.ModifyDataNumber++;
+
+            if (self.ModifyDataNumber> 10)
+            {
+                return;
+            }
+            if (self.ModifyDataNumber == 10)
+            {
+                EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+                Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+            }
+        }
+
         public  static async ETTask OnRelinkSucess(this RelinkComponent self)
         {
             self.Relink = false;

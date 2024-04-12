@@ -100,7 +100,7 @@ namespace ET
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
                 if (teamInfo != null)
                 {
-                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_IsHaveTeam);
+                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_IsHaveTeam, self.ZoneScene()); 
                     return ErrorCode.ERR_IsHaveTeam;
                 }
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -109,13 +109,13 @@ namespace ET
                     int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), fubenType, fubenId, userInfo.UserId);
                     if (errorCode != 0)
                     {
-                        HintHelp.GetInstance().ShowHintError(errorCode);
+                        HintHelp.GetInstance().ShowHintError(errorCode, self.ZoneScene());
                         return errorCode;
                     }
                 }
                 if (fubenType == TeamFubenType.XieZhu && userInfo.Lv > leaderLv)
                 {
-                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_TeamerLevelIsNot);
+                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_TeamerLevelIsNot, self.ZoneScene());
                     return ErrorCode.ERR_TeamerLevelIsNot;
                 }
                 HintHelp.GetInstance().ShowHint("已申请加入队伍！");

@@ -371,8 +371,6 @@ namespace ET
             self.Button_ActivityV1 = rc.Get<GameObject>("Button_ActivityV1");
             self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
 
-
-           
             List<string> AdminAccount = new List<string>()
             {
                 "tcg01",
@@ -464,6 +462,12 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.CommonHintError args = cls as EventType.CommonHintError;
+
+            if (args.errorValue == ErrorCode.ERR_ModifyData && args.ZoneScene!=null)
+            {
+                args.ZoneScene.GetComponent<RelinkComponent>()?.OnModifyData();
+            }
+
             ErrorHelp.Instance.ErrorHint(args.errorValue);
         }
     }
@@ -2387,6 +2391,13 @@ namespace ET
 
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
+            C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() 
+            { 
+                OperateBagID = new List<long>() { 1, 2 }
+            };
+            M2C_ItemMeltingResponse response = (M2C_ItemMeltingResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+
             await NetHelper.RequestActivityInfo(self.ZoneScene());
             await UIHelper.Create(self.ZoneScene(), UIType.UIActivityV1);
             //UI命名规则

@@ -26,12 +26,14 @@ namespace ET
         {
             if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 20 * TimeHelper.Second)
             {
+                EventType.CommonHintError.Instance.ZoneScene = self.ZoneScene();
                 EventType.CommonHintError.Instance.errorValue = ErrorCode.ERR_WordChat;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
             if ((channelEnum == ChannelEnum.Team || channelEnum == ChannelEnum.Union) && TimeHelper.ClientNow() - self.LastSendWord < 5 * TimeHelper.Second)
             {
+                EventType.CommonHintError.Instance.ZoneScene = self.ZoneScene();
                 EventType.CommonHintError.Instance.errorValue = ErrorCode.ERR_UnionChatLimit;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;

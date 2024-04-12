@@ -70,9 +70,11 @@ namespace ET
                 action.Tcs.SetException(new Exception($"Rpc error, request: {action.Request} response: {response}"));
                 return;
             }
+
 #if !NOT_UNITY
             if (response.Error!= 0)
             {
+                EventType.CommonHintError.Instance.ZoneScene = self.DomainScene();
                 EventType.CommonHintError.Instance.errorValue = response.Error;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
             }

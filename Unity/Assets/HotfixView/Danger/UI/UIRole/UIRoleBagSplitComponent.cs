@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -99,7 +100,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() <= 1)
             {
-                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
+                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull, self.ZoneScene());
                 return;
             }
             int number = 0;

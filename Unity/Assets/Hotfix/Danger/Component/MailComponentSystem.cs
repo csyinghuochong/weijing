@@ -36,7 +36,7 @@ namespace ET
             }
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
             {
-                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
+                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull, self.ZoneScene());
                 return ErrorCode.ERR_BagIsFull;
             }
             C2M_ReceiveMailRequest c2E_ReceiveMailRequest = new C2M_ReceiveMailRequest() { MailId = self.SelectMail.MailId };

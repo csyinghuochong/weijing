@@ -178,7 +178,7 @@ namespace ET
                 int errorCode = self.CanUseSkill(itemId, skillid);
                 if (errorCode != ErrorCode.ERR_Success)
                 {
-                    HintHelp.GetInstance().ShowHintError(errorCode);
+                    HintHelp.GetInstance().ShowHintError(errorCode, self.ZoneScene());
                     return errorCode;       
                 }
                 if (unit.GetComponent<SingingComponent>().IsSkillSinging(skillid))

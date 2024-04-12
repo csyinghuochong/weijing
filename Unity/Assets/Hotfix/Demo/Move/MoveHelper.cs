@@ -22,7 +22,7 @@ namespace ET
             int errorCode = stateComponent.CanMove();
             if (ErrorCode.ERR_Success != errorCode)
             {
-                HintHelp.GetInstance().ShowHintError(errorCode);
+                HintHelp.GetInstance().ShowHintError(errorCode, unit.ZoneScene());
                 stateComponent.CheckSilence();
                 return -1;
             }
@@ -71,7 +71,7 @@ namespace ET
             int errorCode = stateComponent.CanMove();
             if (ErrorCode.ERR_Success!= errorCode)
             {
-                HintHelp.GetInstance().ShowHintError(errorCode);
+                HintHelp.GetInstance().ShowHintError(errorCode, unit.ZoneScene());
                 stateComponent.CheckSilence();
                 return -1;
             }
