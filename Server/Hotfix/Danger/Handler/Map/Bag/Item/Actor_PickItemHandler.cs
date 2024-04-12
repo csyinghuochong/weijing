@@ -244,7 +244,7 @@ namespace ET
                 }
                 if (!have)
                 {
-                    Log.Error($"无效的私人掉落: {unit.DomainZone()} {unit.Id} {request.ItemIds[i].ItemID}  {request.ItemIds[i].ItemNum}");
+                    Log.Error($"无效的私人掉落: {unit.DomainZone()}   {unit.Id}   {request.ItemIds[i].ItemID}   {request.ItemIds[i].ItemNum}");
                     request.ItemIds.RemoveAt(i);
                 }
             }
