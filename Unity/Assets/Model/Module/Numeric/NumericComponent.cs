@@ -129,17 +129,16 @@ namespace ET
 				}
 
 				NumericDic[numericType] = value;
-
-				if ( numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+#if SERVER
+                if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp) )
                 {
 
-#if SERVER
                     Log.Warning($"充值改变当前值1：  {this.Id} {value} ");
                     Log.Error($"充值改变当前值1：  {this.Id} {value} ");
-#endif
-				}
 
-				Update(numericType, notice);
+				}
+#endif
+                Update(numericType, notice);
 			}
 		}
 
@@ -223,13 +222,16 @@ namespace ET
 
 		public void ApplyValue(int numericType, long value, bool notice = true, bool check = false)
 		{
-            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+
+#if SERVER
+			if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
             {
                 Log.Warning($"充值改变当前值2：  {this.Id}  {value}");
                 Log.Error($"充值改变当前值2：  {this.Id}  {value}");
             }
+#endif
 
-            long old = this.GetByKey(numericType);
+			long old = this.GetByKey(numericType);
 			NumericDic[numericType] = value;
 
 			if (check && old == value)
@@ -262,14 +264,15 @@ namespace ET
         /// <param name="compare">是否比较变化值</param>
         public void ApplyValue(Unit attack, int numericType, long value, int skillID, bool notice = true, int DamgeType = 0)
         {
-            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
-            {
 #if SERVER
+            if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
+            {
+
                 Log.Warning($"充值改变增加值1：  {this.Id}  {value}");
                 Log.Error($"充值改变增加值1：  {this.Id}  {value}");
-#endif
+
             }
-		
+#endif
             //是否超过指定上限值
             long old = this.GetByKey(numericType);
             NumericDic[numericType] = value;
@@ -314,17 +317,13 @@ namespace ET
 				return;
 			}
 
-            if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+#if SERVER
+			if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
             {
                 Log.Warning($"充值改变增加值2：  {this.Id}  {changedValue}");
                 Log.Error($"充值改变增加值2：  {this.Id}  {changedValue}");
             }
-
-            if ( (numericType == NumericType.RechargeNumber || numericType == NumericType.RechargeBuChang) && skillID!= 1)
-			{
-                Log.Warning($"修改充值数据2:  {this.DomainZone()} {this.Id}");
-                Log.Error($"修改充值数据2:  {this.DomainZone()} {this.Id}");
-			}
+#endif
 
 			//是否超过指定上限值
 			if (numericType == (int)NumericType.Now_Hp)
