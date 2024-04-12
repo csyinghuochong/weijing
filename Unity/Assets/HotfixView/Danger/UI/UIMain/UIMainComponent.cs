@@ -2391,13 +2391,6 @@ namespace ET
 
         public static async ETTask Button_ActivityV1(this UIMainComponent self)
         {
-            C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() 
-            { 
-                OperateBagID = new List<long>() { 1, 2 }
-            };
-            M2C_ItemMeltingResponse response = (M2C_ItemMeltingResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-
             await NetHelper.RequestActivityInfo(self.ZoneScene());
             await UIHelper.Create(self.ZoneScene(), UIType.UIActivityV1);
             //UI命名规则
