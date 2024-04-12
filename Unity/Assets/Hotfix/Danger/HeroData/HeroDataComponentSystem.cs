@@ -563,6 +563,11 @@ namespace ET
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             foreach ((int ntype, long value) in masterNumericComponent.NumericDic)
             {
+                if (ntype == NumericType.RechargeNumber || ntype == NumericType.MaoXianExp)
+                {
+                    continue;
+                }
+
                 numericComponent.Set(ntype, value, false);
             }
         }

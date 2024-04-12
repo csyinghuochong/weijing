@@ -130,7 +130,7 @@ namespace ET
 
 				NumericDic[numericType] = value;
 
-				if (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
+				if ( numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp)
                 {
 
 #if SERVER
