@@ -1,7 +1,4 @@
-﻿using Alipay.AopSdk.F2FPay.Business;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -305,6 +302,25 @@ namespace ET
             return device;
         }
 
+        public static void UpdateData(this DataCollationComponent self)
+        {
+            self.SetAllCostList(self.GoldCostList, self.GoldCost);
+            self.GoldCost = self.CostListToString(self.GoldCostList);
+            self.GoldCostList.Clear();
+
+            self.SetAllCostList(self.GoldGetList, self.GoldGet);
+            self.GoldGet = self.CostListToString(self.GoldGetList);
+            self.GoldGetList.Clear();
+
+            self.SetAllCostList(self.DiamondGetList, self.DiamondGet);
+            self.DiamondGet = self.CostListToString(self.DiamondGetList);
+            self.DiamondGetList.Clear();
+
+            self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
+            self.DiamondCost = self.CostListToString(self.DiamondCostList);
+            self.DiamondCostList.Clear();
+        }
+
         public static void OnOffLine(this DataCollationComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -368,22 +384,7 @@ namespace ET
 
             self.LastSealTowerId = numericComponent.GetAsInt( NumericType.TowerOfSealArrived);
 
-            self.SetAllCostList(self.GoldCostList, self.GoldCost);
-            self.GoldCost = self.CostListToString(self.GoldCostList);
-            self.GoldCostList.Clear();
-
-            self.SetAllCostList(self.GoldGetList, self.GoldGet);
-            self.GoldGet = self.CostListToString(self.GoldGetList);
-            self.GoldGetList.Clear();
-
-            self.SetAllCostList(self.DiamondGetList, self.DiamondGet);
-            self.DiamondGet = self.CostListToString(self.DiamondGetList);
-            self.DiamondGetList.Clear();
-
-            self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
-            self.DiamondCost = self.CostListToString(self.DiamondCostList);
-            self.DiamondCostList.Clear();
-
+            self.UpdateData();
         }
     }
 }

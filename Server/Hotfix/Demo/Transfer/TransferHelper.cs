@@ -695,6 +695,7 @@ namespace ET
             if (ConfigData.CleanSkill)
             {
                 unit.RemoveComponent<MailBoxComponent>();
+                unit.GetComponent<DataCollationComponent>()?.UpdateData();
                 unit.GetComponent<SkillPassiveComponent>()?.Stop();
                 unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
