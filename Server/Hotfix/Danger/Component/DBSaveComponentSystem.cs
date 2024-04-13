@@ -144,7 +144,7 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().OnOffLine();
-            unit.GetComponent<DataCollationComponent>().UpdateData();
+            unit.GetComponent<DataCollationComponent>().OnOffLine();
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
             if (!unit.IsRobot())
             {

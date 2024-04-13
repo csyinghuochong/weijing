@@ -9,8 +9,14 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_EnergyReceiveRequest request, M2C_EnergyReceiveResponse response, Action reply)
         {
-            EnergyComponent energyComponent = unit.GetComponent<EnergyComponent>();
+            if (unit.DomainZone() != 3)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
 
+            EnergyComponent energyComponent = unit.GetComponent<EnergyComponent>();
             if (request.RewardType < 0 || request.RewardType >= energyComponent.GetRewards.Count)
             {
                 response.Error = ErrorCode.ERR_ModifyData;

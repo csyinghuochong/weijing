@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using MongoDB.Bson.Serialization;
-using System.Linq;
 
 namespace ET
 {

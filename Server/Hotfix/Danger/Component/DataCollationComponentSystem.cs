@@ -305,7 +305,7 @@ namespace ET
             return device;
         }
 
-        public static void UpdateData(this DataCollationComponent self)
+        public static void OnOffLine(this DataCollationComponent self)
         {
             Unit unit = self.GetParent<Unit>();
 

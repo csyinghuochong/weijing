@@ -9,9 +9,15 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_EnergyAnswerRequest request, M2C_EnergyAnswerResponse response, Action reply)
         {
+            if (unit.DomainZone() != 3)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             EnergyComponent energyComponent = unit.GetComponent<EnergyComponent>();
             energyComponent.QuestionIndex++;
-
             if (request.AnswerIndex == 1)
             {
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(15);

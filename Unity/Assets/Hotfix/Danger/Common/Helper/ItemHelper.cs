@@ -953,7 +953,7 @@ namespace ET
                 { ItemGetWay.XiuLian, "修炼" },
                 { ItemGetWay.TreasureMap, "藏宝图获得" },
                 { ItemGetWay.Sell, "出售获得" },
-                { ItemGetWay.PaiMaiSell, "拍賣出售" },
+                { ItemGetWay.PaiMaiSell, "拍卖出售" },
                 { ItemGetWay.BuChang, "补偿" },
                 { ItemGetWay.JingLing, "精灵" },
                 { ItemGetWay.JiaYuanGather, "家园种植" },
