@@ -283,9 +283,40 @@ namespace ET
                 }
             }
 
-            C2M_LifeShieldCostRequest  request = new C2M_LifeShieldCostRequest() { OperateType = self.ShieldType, OperateBagID = costs };
-            M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            bool havegreen = false;
+            for (int i = 0; i < costs.Count; i++)
+            { 
+                BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(costs[i]);
+                if (bagInfo == null)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("数据异常！");
+                    return;
+                }
 
+                if (ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemQuality >= 5)
+                {
+                    havegreen = true;
+                    break;
+                }
+            }
+
+            if (havegreen)
+            {
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "有橙色装备，是否要继续注入?", ()=>
+                {
+                    self.RequestZhuru(self.ShieldType, costs).Coroutine();
+                }, null).Coroutine();
+            }
+            else
+            {
+                self.RequestZhuru(self.ShieldType, costs).Coroutine();
+            }
+        }
+
+        public static async ETTask RequestZhuru(this UISkillLifeShieldComponent self, int shieldType, List<long> costs)
+        {
+            C2M_LifeShieldCostRequest request = new C2M_LifeShieldCostRequest() { OperateType = shieldType, OperateBagID = costs };
+            M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.AddExp > 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("注入成功!本次增加" + response.AddExp + "点魂值");
