@@ -244,7 +244,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 55, ServerIp = $"{ip}:20445", ServerName = "盛世如愿", ServerOpenTime = 1699590600000, New = 0, Show = 0 });
 
 
-            //2024/4/8 合区:  精灵国度-璀璨之境20475  56 / 58
+            //2024/4/8 合区:  精灵国度-璀璨之境  56 / 58
             serverItems_1.Add(new ServerItem() { ServerId = 56, ServerIp = $"{ip}:20455", ServerName = "精灵国度", ServerOpenTime = 1700195400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 57, ServerIp = $"{ip}:20455", ServerName = "梦回华夏", ServerOpenTime = 1700800200000, New = 0, Show = 0 });
             serverItems_1.Add(new ServerItem() { ServerId = 58, ServerIp = $"{ip}:20455", ServerName = "璀璨之境", ServerOpenTime = 1701405000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
@@ -299,9 +299,11 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 86, ServerIp = $"{ip}:20395", ServerName = "光芒万丈", ServerOpenTime = 1711969200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 87, ServerIp = $"{ip}:20575", ServerName = "岁月如歌", ServerOpenTime = 1712228400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 88, ServerIp = $"{ip}:20645", ServerName = "龙飞凤舞", ServerOpenTime = 1712574000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-            //诗情画意89   2024/04/12 19:00:00  1712919600000   烟雨云烟-九霄云外    希望之光-万里华夏   合区
             serverItems_1.Add(new ServerItem() { ServerId = 89, ServerIp = $"{ip}:20435", ServerName = "诗情画意", ServerOpenTime = 1712919600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+
+
+            //2024/04/19 19:00:00  1713178800000 新区新区90  
+            serverItems_1.Add(new ServerItem() { ServerId = 90, ServerIp = $"{ip}:20475", ServerName = "诗情画意", ServerOpenTime = 1713178800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();
