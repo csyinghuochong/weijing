@@ -130,7 +130,7 @@ namespace ET
 
 				NumericDic[numericType] = value;
 #if SERVER
-                if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp) )
+                if (ConfigData.LogRechargeNumber && numericType == NumericType.RechargeNumber)
                 {
 
                     Log.Warning($"充值改变当前值1：  {this.Id} {value} ");
@@ -224,7 +224,7 @@ namespace ET
 		{
 
 #if SERVER
-			if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
+			if (ConfigData.LogRechargeNumber && numericType == NumericType.RechargeNumber)
             {
                 Log.Warning($"充值改变当前值2：  {this.Id}  {value}");
                 Log.Error($"充值改变当前值2：  {this.Id}  {value}");
@@ -265,7 +265,7 @@ namespace ET
         public void ApplyValue(Unit attack, int numericType, long value, int skillID, bool notice = true, int DamgeType = 0)
         {
 #if SERVER
-            if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
+            if (ConfigData.LogRechargeNumber && numericType == NumericType.RechargeNumber)
             {
 
                 Log.Warning($"充值改变增加值1：  {this.Id}  {value}");
@@ -318,7 +318,7 @@ namespace ET
 			}
 
 #if SERVER
-			if (ConfigData.LogRechargeNumber && (numericType == NumericType.RechargeNumber || numericType == NumericType.MaoXianExp))
+            if (ConfigData.LogRechargeNumber && numericType == NumericType.RechargeNumber)
             {
                 Log.Warning($"充值改变增加值2：  {this.Id}  {changedValue}");
                 Log.Error($"充值改变增加值2：  {this.Id}  {changedValue}");
