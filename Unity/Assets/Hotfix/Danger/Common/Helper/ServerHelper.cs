@@ -303,7 +303,7 @@ namespace ET
 
 
             //2024/04/19 19:00:00  1713178800000 新区新区90  
-            serverItems_1.Add(new ServerItem() { ServerId = 90, ServerIp = $"{ip}:20475", ServerName = "诗情画意", ServerOpenTime = 1713178800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 90, ServerIp = $"{ip}:20475", ServerName = "问鼎江湖", ServerOpenTime = 1713178800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();
