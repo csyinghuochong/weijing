@@ -265,6 +265,7 @@ namespace ET
 
         public static async ETTask OnBtn_ZhuRu(this UISkillLifeShieldComponent self)
         {
+            await ETTask.CompletedTask;
             List<long> costs = self.GetConstItems ();
             if (costs.Count == 0 || self.ShieldType == 0)
             {
