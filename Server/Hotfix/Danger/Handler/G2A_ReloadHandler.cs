@@ -17,8 +17,9 @@ namespace ET
             Log.Warning("C2M_Reload_NoRecovery: " + MongoHelper.NoRecovery);
             DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
 #if SERVER
-            MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;
-            OpcodeHelper.ShowMessage = dateTime.Hour >= 21 && dateTime.Hour <= 23;
+            ConfigData.LogRechargeNumber = false;
+            //MessageHelper.LogStatus = dateTime.Hour >= 21 && dateTime.Hour <= 23;
+            //OpcodeHelper.ShowMessage = dateTime.Hour >= 21 && dateTime.Hour <= 23;
             Log.Warning("C2M_Reload_LogStatus: " + MessageHelper.LogStatus);
 #endif
             switch (request.LoadType)
