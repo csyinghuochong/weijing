@@ -19,7 +19,7 @@ namespace ET
                 }
 
                 long serverTime = TimeHelper.ServerNow();
-                if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Minute)
+                if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Second * 10)
                 {
                     response.Error = ErrorCode.ERR_WordChat;
                     reply();

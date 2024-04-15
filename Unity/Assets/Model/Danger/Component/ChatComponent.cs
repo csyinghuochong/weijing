@@ -13,6 +13,8 @@ namespace ET
 
         public long LastSendWord;
 
+        public long LastSendTeam;
+
         public ChatInfo LastChatInfo;
 
         public M2C_HorseNoticeInfo HorseNoticeInfo;

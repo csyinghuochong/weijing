@@ -31,7 +31,7 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
-            if ((channelEnum == ChannelEnum.Team || channelEnum == ChannelEnum.Union) && TimeHelper.ClientNow() - self.LastSendWord < 5 * TimeHelper.Second)
+            if (channelEnum != ChannelEnum.Word  && TimeHelper.ClientNow() - self.LastSendTeam < 10 * TimeHelper.Second)
             {
                 EventType.CommonHintError.Instance.ZoneScene = self.ZoneScene();
                 EventType.CommonHintError.Instance.errorValue = ErrorCode.ERR_UnionChatLimit;
@@ -50,17 +50,23 @@ namespace ET
                     self.LastSendWord = TimeHelper.ClientNow();
                     break;
                 case ChannelEnum.Team:
+                    self.LastSendTeam = TimeHelper.ClientNow();
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.TeamId);
                     break;
                 case ChannelEnum.Union:
+                    self.LastSendTeam = TimeHelper.ClientNow();
                     unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     numericComponent = unit.GetComponent<NumericComponent>();
                     c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId_0);
                     break;
                 case ChannelEnum.Friend:
+                    self.LastSendTeam = TimeHelper.ClientNow();
                     c2S_SendChatRequest.ChatInfo.ParamId = paramId;
+                    break;
+                default:
+                    self.LastSendTeam = TimeHelper.ClientNow();
                     break;
             }
 
