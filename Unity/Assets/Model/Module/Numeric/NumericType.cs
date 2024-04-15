@@ -188,8 +188,8 @@
         public const int MasterPlayerId = 3188;                                          //主人【玩家】
         public const int PaiMaiTodayGold = 3189;
         public const int ShenMiDungeonNumber = 3190;
-
         public const int Max = 10000;
+
         public const int Now_MaxHp = 1002;                                       //生命总值
         public const int Base_MaxHp_Base = Now_MaxHp * 100 + 1;                  //属性累加
         public const int Base_MaxHp_Mul = Now_MaxHp * 100 + 2;                   //属性乘法

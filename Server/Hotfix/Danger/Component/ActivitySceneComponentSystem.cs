@@ -396,11 +396,32 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = 0 });
             }
-            if (self.DomainZone() == 3)
+            if (!ComHelp.IsInnerNet() && self.DomainZone() != 3 && hour == 8 )
             {
-                Log.Warning("刷新机器人！！");
-                ///long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                ///MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot });
+                Log.Warning($"刷新机器人: {self.DomainZone()}");
+                int createRobotNumber = 0;
+                if (openServerDay >= 30)
+                {
+                    createRobotNumber = 10;
+                }
+                else if (openServerDay >= 20)
+                {
+                    createRobotNumber = 15;
+                }
+                else if (openServerDay >= 15)
+                {
+                    createRobotNumber = 20;
+                }
+                else if (openServerDay >= 10)
+                {
+                    createRobotNumber = 25;
+                }
+                else
+                {
+                    createRobotNumber = 30;
+                }
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot, Message = $"1001#{createRobotNumber}" });
             }
 
             if (ActivityConfigHelper.GuessRewardList.ContainsKey(hour))
