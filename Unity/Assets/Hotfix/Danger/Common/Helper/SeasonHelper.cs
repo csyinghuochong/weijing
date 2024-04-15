@@ -39,6 +39,26 @@ namespace ET
             return canEnterIds[RandomHelper.RandomNumber(0, canEnterIds.Count)];
         }
 
+
+
+        /// <summary>
+        /// 赛季结束奖励
+        /// </summary>
+        public static string SeasonOverReward(int seasonLevel)
+        {
+            if (seasonLevel >= 25)
+            {
+                return "10010040;1";
+            }
+            if (seasonLevel >= 10)
+            {
+                return "10000135;1";
+            }
+
+            return "";
+        }
+
+
         /// <summary>
         /// 赛季开始时间
         /// </summary>

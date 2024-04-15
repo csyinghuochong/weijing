@@ -1264,25 +1264,6 @@ namespace ET
             new KeyValuePair(){  KeyId = 50,  Value =  "10000135;1" },      //金盒
         };
 
-
-        /// <summary>
-        /// 赛季结束奖励
-        /// </summary>
-        public static string SeasonOverReward(int seasonLevel)
-        {
-            if (seasonLevel >= 25)
-            {
-                return "10010040;1";
-            }
-            if (seasonLevel >= 10)
-            {
-                return "10000135;1";
-            }
-
-            return "";
-        }
-       
-
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
     }
 }
