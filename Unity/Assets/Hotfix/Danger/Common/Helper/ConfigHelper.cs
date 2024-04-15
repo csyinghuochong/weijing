@@ -1268,13 +1268,20 @@ namespace ET
         /// <summary>
         /// 赛季结束奖励
         /// </summary>
-        public static Dictionary<string, string> SeasonOverReward = new Dictionary<string, string>()
+        public static string SeasonOverReward(int seasonLevel)
         {
-            {  "1_10", "10010040;1" },
-            {  "11_20", "10010040;1" },
-            {  "21_100000", "10010040;1" },
-        };
+            if (seasonLevel >= 25)
+            {
+                return "10010040;1";
+            }
+            if (seasonLevel >= 10)
+            {
+                return "10000135;1";
+            }
 
+            return "";
+        }
+       
 
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
     }
