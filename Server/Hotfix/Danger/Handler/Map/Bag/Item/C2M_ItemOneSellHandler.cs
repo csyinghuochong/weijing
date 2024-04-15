@@ -9,6 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ItemOneSellRequest request, M2C_ItemOneSellResponse response, Action reply)
         {
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            long sellGold = 0;
 
             for (int i = 0; i < request.BagInfoIds.Count; i++)
             {
@@ -41,9 +42,16 @@ namespace ET
                     sellValue = itemConfig.SellMoneyValue * 20;
                 }
 
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConfig.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
-                unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, (ItemLocType)request.OperateType, useBagInfo.ItemNum);
-
+                if (itemConfig.SellMoneyType == UserDataType.Gold)
+                {
+                    sellGold += (useBagInfo.ItemNum * sellValue);
+                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, (ItemLocType)request.OperateType, useBagInfo.ItemNum);
+                }
+                else
+                {
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConfig.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
+                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, (ItemLocType)request.OperateType, useBagInfo.ItemNum);
+                }
                 if (useBagInfo.ItemNum == 0)
                 {
                     m2c_bagUpdate.BagInfoDelete.Add(useBagInfo);
@@ -53,6 +61,11 @@ namespace ET
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                 }
             }
+            if (sellGold > 0)
+            {
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, sellGold.ToString(), true, 39);
+            }
+
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
             reply();
             await ETTask.CompletedTask;
