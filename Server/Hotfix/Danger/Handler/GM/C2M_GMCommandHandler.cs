@@ -253,7 +253,7 @@ namespace ET
 					case 10:
                         Log.Warning("刷新机器人！！");
                         robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                        MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = unit.DomainZone(), MessageType = 18, Message = commands[1] });
+                        MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = unit.DomainZone(), MessageType = 18, Message = $"1001#{commands[1]}" });
                         break;
 					case 11:
                         BuffData buffData_2 = new BuffData();
