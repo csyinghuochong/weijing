@@ -51,18 +51,6 @@ namespace ET
                         return false;
                     }
                     break;
-                case 5:
-                    // 充值>=6<30元 10011003
-                    //充值额度某个区间段
-                    string[] needrecharge = Title.Split('_');
-                    int min_value = int.Parse(needrecharge[0]);
-                    int max_value = int.Parse(needrecharge[1]);
-                    if (numericComponent.GetAsLong(NumericType.RechargeNumber) < min_value
-                        || numericComponent.GetAsLong(NumericType.RechargeNumber) >= max_value)
-                    {
-                        return false;
-                    }
-                    break;
                 case 3: //20级以上 补
                     if (userInfoComponent.UserInfo.Lv < int.Parse(Title))
                     {
@@ -82,6 +70,21 @@ namespace ET
                     {
                         return false;
                     }
+                    break;
+                case 5:
+                    // 充值>=6<30元 10011003
+                    //充值额度某个区间段
+                    string[] needrecharge = Title.Split('_');
+                    int min_value = int.Parse(needrecharge[0]);
+                    int max_value = int.Parse(needrecharge[1]);
+                    if (numericComponent.GetAsLong(NumericType.RechargeNumber) < min_value
+                        || numericComponent.GetAsLong(NumericType.RechargeNumber) >= max_value)
+                    {
+                        return false;
+                    }
+                    break;
+                case 6:
+
                     break;
                 default:
                     break;
