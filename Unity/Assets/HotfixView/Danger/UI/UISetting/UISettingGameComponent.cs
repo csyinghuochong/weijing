@@ -101,7 +101,7 @@ namespace ET
             
             self.ZhuBoSet = rc.Get<GameObject>("ZhuBoSet");
             self.ZhuBoSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhuBo);
-            self.ZhuBoSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.ZhuBoSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
             
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
