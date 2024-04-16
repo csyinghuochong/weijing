@@ -34,6 +34,32 @@ namespace ET
                     return;
                 }
 
+                if (request.ItemId > 0)
+                { 
+                    if(unit.GetComponent<BagComponent>().GetItemNumber(request.ItemId) <= 0)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                    if (!ItemConfigCategory.Instance.Contain(request.ItemId))
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(request.ItemId);
+                    if (itemConfig.ItemSubType != 101 && itemConfig.ItemSubType != 110)
+                    {
+                        Console.WriteLine($"request.SkillID error:  {request.SkillID}");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                }
+
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(request.SkillID);
                 if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
                     && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 && request.ItemId == 0)
