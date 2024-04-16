@@ -27,8 +27,16 @@ namespace ET
                     }
                 }
 
+                if (!SkillConfigCategory.Instance.Contain(request.SkillID))
+                {
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(request.SkillID);
                 if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
-                    && request.SkillID != 60000011)
+                    && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 )
                 {
                     Console.WriteLine($"request.SkillID==null:  {request.SkillID}");
                     response.Error = ErrorCode.ERR_ModifyData;
