@@ -45,14 +45,14 @@ namespace ET
                 int itemId = int.Parse(itemInfo[0]);
                 GameObject itemObject = GameObject.Instantiate(bundleGameObject);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemObject);
-                uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId}, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 uIItemComponent.Label_ItemName.SetActive(false);
                 self.WordItems.Add(uIItemComponent);
                 UICommonHelper.SetParent(itemObject, self.WordList);
             }
 
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self);
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self, 1, true, ItemGetWay.ActivityNewYear);
         }
 
         public static void OnUpdateUI(this UINewYearCollectionWordIemComponent self)

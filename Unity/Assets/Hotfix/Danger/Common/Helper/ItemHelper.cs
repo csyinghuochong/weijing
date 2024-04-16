@@ -1028,6 +1028,7 @@ namespace ET
                 { ItemGetWay.ChouKaReward, "抽卡奖励" },
                 { ItemGetWay.PetExploreReward, "宠物探索" },
                 { ItemGetWay.PetHeXinExplore, " 宠物之核探索" },
+                { ItemGetWay.ActivityNewYear, " 新年活动" },
                 { ItemGetWay.Activity, "活动" },
         };
 

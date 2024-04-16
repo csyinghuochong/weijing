@@ -100,7 +100,7 @@ namespace ET
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(showName);
                 uIItemComponent.Label_ItemNum.SetActive(showNumber);
-                uIItemComponent.Image_Binding.SetActive(getWay == ItemGetWay.Activity_DayTeHui);
+                uIItemComponent.Image_Binding.SetActive(getWay == ItemGetWay.Activity_DayTeHui || getWay == ItemGetWay.ActivityNewYear);
                 itemSpace.transform.localScale = Vector3.one * scale;
             }
         }

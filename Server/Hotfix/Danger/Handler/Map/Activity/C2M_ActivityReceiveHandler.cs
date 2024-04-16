@@ -173,7 +173,7 @@ namespace ET
                         if (unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
                         {
                             unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                            unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                            unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{97}_{TimeHelper.ServerNow()}");
                         }
                         else
                         {

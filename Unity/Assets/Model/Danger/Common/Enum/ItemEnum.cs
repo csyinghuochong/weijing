@@ -104,7 +104,8 @@ namespace ET
         public const int RechargeReward = 93;                 //充值
         public const int ChouKaReward = 94;                //抽卡奖励
         public const int PetExploreReward = 95;
-        public const int PetHeXinExplore = 96;  
+        public const int PetHeXinExplore = 96;
+        public const int ActivityNewYear = 97;
         public const int Activity = 100;                //活动
 
 
