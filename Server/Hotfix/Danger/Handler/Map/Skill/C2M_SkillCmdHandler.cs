@@ -64,7 +64,7 @@ namespace ET
                 if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
                     && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 && request.ItemId == 0)
                 {
-                    Console.WriteLine($"request.SkillID==null:  {request.SkillID}");
+                    Console.WriteLine($"request.SkillID==null:  {request.SkillID}   {unit.DomainZone()}  {unit.Id}");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
