@@ -58,6 +58,12 @@ namespace ET
                 }
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetHeXinExploreNumber, 10, 0);
             }
+            else
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
 
             List<RewardItem> rewardItems = new List<RewardItem>();
             for (int i = 0; i < request.ChouKaType; i++)
