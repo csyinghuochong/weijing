@@ -42,6 +42,7 @@ public class NpcLocal : MonoBehaviour
         }
     }
 
+  
     // Update is called once per frame
     void Update()
     {
@@ -64,13 +65,22 @@ public class NpcLocal : MonoBehaviour
             this.HeadBar = null;
         }
 
-        if (this.HeadBar != null)
+        if (this.HeadBar == null)
+        {
+            return;
+        }
+
+        if (HeadBarUI.ObjectVisible(MainCamera, HeadPos.gameObject))
         {
             Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(this.HeadPos.position, HeadBar, UiCamera, MainCamera, false);
             Vector3 NewPosition = Vector3.zero;
             NewPosition.x = OldPosition.x;
             NewPosition.y = OldPosition.y;
             this.HeadBar.transform.localPosition = NewPosition;
+        }
+        else
+        {
+            HeadBar.transform.localPosition = new Vector3(-2000, -2000, 0);
         }
     }
 }
