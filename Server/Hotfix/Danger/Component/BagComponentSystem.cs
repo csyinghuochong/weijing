@@ -1032,11 +1032,10 @@ namespace ET
                 if (leftNum >= 99)
                 {
                     Log.Warning($"[获取道具]leftNum >= 99    {unit.DomainZone()} {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
-
-                    if ( getType == ItemGetWay.PickItem &&  rewardItems[i].ItemNum >= 5)
-                    {
-                        Log.Error($"[获取道具]leftNum >= 99_2    {unit.DomainZone()} {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
-                    }
+                    //if ( getType == ItemGetWay.PickItem &&  rewardItems[i].ItemNum >= 5)
+                    //{
+                    //    Log.Error($"[获取道具]leftNum >= 99_2    {unit.DomainZone()} {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
+                    //}
                 }
 
                 int maxPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;
