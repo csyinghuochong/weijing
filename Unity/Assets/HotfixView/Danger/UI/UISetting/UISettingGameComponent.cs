@@ -354,6 +354,20 @@ namespace ET
             PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.LenDepth, 1f);
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = 1f;
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().OffsetPostion = new Vector3(0, 10f, -6f);
+
+            float va = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
+            if (va <= 0)
+            {
+                self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = 0.4f;
+            }
+            else
+            {
+                self.LenDepthSet.transform.GetComponentInChildren<Slider>().value = (va - 0.1f) / 2;
+            }
+
+            PlayerPrefsHelp.SetInt(PlayerPrefsHelp.RotaAngle, 0);
+            self.RotaAngleSet.transform.Find("Image_Click").gameObject.SetActive(false);
+            UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().DragPanel.SetActive(false);
         }
 
         public static void OnBtn_FirstUnionName(this UISettingGameComponent self)

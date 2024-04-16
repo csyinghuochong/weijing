@@ -43,8 +43,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 18;      //17部分包含抖音sdk能力 18(模拟器检测)
-		public int BigVersionIOS = 18;   //17部分包含抖音sdk能力 18(模拟器检测)
+		public int BigVersion = 19;      //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角
+		public int BigVersionIOS = 19;   //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -119,7 +119,7 @@ namespace ET
 
 			LitJson.UnityTypeBindings.Register();
 
-			ETTask.ExceptionHandler -= Log.Error;
+            ETTask.ExceptionHandler -= Log.Error;
 			ETTask.ExceptionHandler += Log.Error;
 			Application.logMessageReceived -= OnLogMessageReceived;
 			Application.logMessageReceived += OnLogMessageReceived;
