@@ -23,9 +23,17 @@ namespace ET
                     {
                         response.Error = ErrorCode.Error_AngleNotEnough;
                         reply();
-                        await ETTask.CompletedTask;
                         return;
                     }
+                }
+
+                if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
+                    && request.SkillID != 60000011)
+                {
+                    Console.WriteLine($"request.SkillID==null:  {request.SkillID}");
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
                 }
 
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
