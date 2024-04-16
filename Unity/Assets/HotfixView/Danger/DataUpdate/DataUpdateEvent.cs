@@ -790,6 +790,11 @@ namespace ET
                     uiTargetComponent.OnSkillUpgrade(DataParams);
                     continue;
                 }
+                if (component is UIMainComponent uiMainComponent)
+                {
+                    uiMainComponent.OnSkillSetUpdate();
+                    continue;
+                }
             }
         }
 

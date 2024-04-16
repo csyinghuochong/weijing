@@ -430,6 +430,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
             DataUpdateComponent.Instance.AddListener(DataType.BeforeMove, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
         }
     }
 
@@ -499,7 +500,8 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
-            
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
+
             if (self.TianQiEffectObj != null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
