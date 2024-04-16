@@ -36,7 +36,7 @@ namespace ET
 
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(request.SkillID);
                 if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
-                    && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 )
+                    && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 && request.ItemId == 0)
                 {
                     Console.WriteLine($"request.SkillID==null:  {request.SkillID}");
                     response.Error = ErrorCode.ERR_ModifyData;
