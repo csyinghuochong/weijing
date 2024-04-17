@@ -1714,7 +1714,8 @@ namespace ET
         public static void UpdateSeasonWeekTask(this TaskComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, 0, notice);
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.SeasonTowerId, 0, notice);
 
             //赛季任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
@@ -1733,7 +1734,7 @@ namespace ET
                 }
             }
             UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
-            if (SeasonHelper.IsOpenSeason(userInfoComponent.UserInfo.Lv))
+            if (SeasonHelper.GetOpenSeason(userInfoComponent.UserInfo.Lv) != null )
             {
                 List<int> taskCountryList = TaskHelper.GetSeasonTask();
                 for (int i = 0; i < taskCountryList.Count; i++)

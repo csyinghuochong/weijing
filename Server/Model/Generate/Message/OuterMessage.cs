@@ -1488,6 +1488,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string AccountCenterIp { get; set; }
 
+		[ProtoMember(6)]
+		public string RealAndGate { get; set; }
+
 	}
 
 	[Message(OuterOpcode.ServerItem)]
@@ -15862,6 +15865,111 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
+
+	}
+
+	[ResponseType(nameof(G2C_EnterGame))]
+	[Message(OuterOpcode.C2G_EnterGameCheck)]
+	[ProtoContract]
+	public partial class C2G_EnterGameCheck: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int MapId { get; set; }
+
+		[ProtoMember(2)]
+		public long UserID { get; set; }
+
+		[ProtoMember(3)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(4)]
+		public bool Relink { get; set; }
+
+		[ProtoMember(5)]
+		public string DeviceName { get; set; }
+
+		[ProtoMember(6)]
+		public int Version { get; set; }
+
+		[ProtoMember(7)]
+		public int Platform { get; set; }
+
+		[ProtoMember(8)]
+		public int Simulator { get; set; }
+
+		[ProtoMember(9)]
+		public int Root { get; set; }
+
+		[ProtoMember(10)]
+		public int IsRecharge { get; set; }
+
+		[ProtoMember(11)]
+		public string DeviceID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.G2C_EnterGameCheck)]
+	[ProtoContract]
+	public partial class G2C_EnterGameCheck: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+// 自己的unit id
+		[ProtoMember(1)]
+		public long MyId { get; set; }
+
+		[ProtoMember(2)]
+		public int IsPopUp { get; set; }
+
+		[ProtoMember(3)]
+		public string PopUpInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2C_LoginRealmCheck))]
+	[Message(OuterOpcode.C2R_LoginRealmCheck)]
+	[ProtoContract]
+	public partial class C2R_LoginRealmCheck: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(2)]
+		public string RealmTokenKey { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_LoginRealmCheck)]
+	[ProtoContract]
+	public partial class R2C_LoginRealmCheck: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string GateSessionKey { get; set; }
+
+		[ProtoMember(2)]
+		public string GateAddress { get; set; }
 
 	}
 

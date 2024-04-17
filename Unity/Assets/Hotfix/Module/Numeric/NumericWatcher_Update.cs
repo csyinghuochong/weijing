@@ -108,16 +108,15 @@
 #if SERVER
 			if(args.NewValue == 0)
 			{
-				unit.GetComponent<UserInfoComponent>().OnResetSeason(false);
-                unit.GetComponent<BagComponent>().OnResetSeason(false);
-                unit.GetComponent<TaskComponent>().OnResetSeason(false);
+              
 			}
 #else
             if (args.NewValue == 0)
-            {
-                unit.GetComponent<UserInfoComponent>().OnResetSeason(false);
-                unit.GetComponent<BagComponent>().OnResetSeason(false);
-                unit.GetComponent<TaskComponent>().OnResetSeason(false);
+            {				
+				Scene zoneScene = unit.ZoneScene();
+                zoneScene.GetComponent<UserInfoComponent>().OnResetSeason(false);
+                zoneScene.GetComponent<BagComponent>().OnResetSeason(false);
+                zoneScene.GetComponent<TaskComponent>().OnResetSeason(false);
             }
 #endif
         }

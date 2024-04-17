@@ -407,7 +407,7 @@ namespace ET
                 self.OnAddChests(sceneId, beKill.ConfigId);
             }
 
-            if (SeasonHelper.IsOpenSeason(self.UserInfo.Lv) && beKill.IsBoss() && monsterConfig.Lv >= 40)
+            if (SeasonHelper.GetOpenSeason(self.UserInfo.Lv)!=null && beKill.IsBoss() && monsterConfig.Lv >= 40)
             {
                 int seasonExp = RandomHelper.RandomNumber(1, 6);
                 self.UpdateRoleData(UserDataType.SeasonExp, seasonExp.ToString());

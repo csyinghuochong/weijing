@@ -41,6 +41,11 @@ namespace ET
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;
                         response.AccountCenterIp = $"{outeIp}:{accountcenter}";
 
+                        StartSceneConfig realmStartSceneConfig = RealmGateAddressHelper.GetRealm(5);
+                        string real = realmStartSceneConfig.OuterIPPort.ToString();
+                        StartSceneConfig gateconfig = RealmGateAddressHelper.GetGate(5, 1);
+                        string gate = gateconfig.OuterIPPort.ToString();
+                        response.RealAndGate = real + "_" + gate;
                         reply();
                         await ETTask.CompletedTask;
                     }

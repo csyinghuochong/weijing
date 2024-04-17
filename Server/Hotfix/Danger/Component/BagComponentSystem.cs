@@ -515,6 +515,7 @@ namespace ET
             self.ClearJingHeItem(self.Warehouse2);
             self.ClearJingHeItem(self.Warehouse3);
             self.ClearJingHeItem(self.Warehouse4);
+            self.ClearJingHeItem(self.SeasonJingHe);
         }
 
         public static void ClearJingHeItem(this BagComponent self, List<BagInfo> bagInfos)

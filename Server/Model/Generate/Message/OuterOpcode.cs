@@ -877,5 +877,9 @@ namespace ET
 		 public const ushort M2C_SkillSecondResult = 10874;
 		 public const ushort C2P_PaiMaiSearchRequest = 10875;
 		 public const ushort P2C_PaiMaiSearchResponse = 10876;
+		 public const ushort C2G_EnterGameCheck = 10877;
+		 public const ushort G2C_EnterGameCheck = 10878;
+		 public const ushort C2R_LoginRealmCheck = 10879;
+		 public const ushort R2C_LoginRealmCheck = 10880;
 	}
 }

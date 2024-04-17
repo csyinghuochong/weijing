@@ -29,6 +29,7 @@ namespace ET
             self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse2]);
             self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse3]);
             self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse4]);
+            self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.SeasonJingHe]);
         }
 
         public static void ClearJingHeItem(this BagComponent self, List<BagInfo> bagInfos)

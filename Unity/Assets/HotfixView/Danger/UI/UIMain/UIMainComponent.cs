@@ -2481,14 +2481,13 @@ namespace ET
         public static async ETTask OnButton_Season(this UIMainComponent self)
         {
             int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (!SeasonHelper.IsOpenSeason(lv))
+            if (SeasonHelper.GetOpenSeason(lv) == null)
             {
                 FloatTipManager.Instance.ShowFloatTip("赛季已结束！");
                 return;
             }
 
             UIHelper.Create(self.DomainScene(), UIType.UISeason).Coroutine();
-
             ////宠物穿戴装备
             //PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             //long petInfoId = petComponent.RolePetInfos[0].Id;

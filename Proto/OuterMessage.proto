@@ -726,6 +726,7 @@ message A2C_ServerList // IResponse
 	string NoticeVersion = 3;
 	string NoticeText = 4;
 	string AccountCenterIp = 5;
+	string RealAndGate = 6;
 }
 
 message ServerItem
@@ -7599,4 +7600,51 @@ message P2C_PaiMaiSearchResponse // IPaiMaiListResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated PaiMaiItemInfo PaiMaiItemInfos = 1;
+}
+
+
+//ResponseType G2C_EnterGame
+message C2G_EnterGameCheck // IRequest
+{
+	int32 RpcId = 90;
+	int32 MapId = 1;
+	int64 UserID = 2;
+	int64 AccountId = 3;
+	bool Relink = 4;
+	string DeviceName = 5;
+	int32 Version = 6;
+	int32 Platform = 7;
+	int32 Simulator = 8;
+	int32 Root = 9;
+	int32 IsRecharge = 10;
+	string DeviceID = 11;
+}
+
+message G2C_EnterGameCheck // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	// 自己的unit id
+	int64 MyId = 1;
+	int32 IsPopUp = 2;
+	string PopUpInfo = 3;
+}
+
+
+//ResponseType R2C_LoginRealmCheck
+message C2R_LoginRealmCheck // IRequest
+{
+	int32 RpcId = 90;
+	int64 AccountId = 1;
+	string RealmTokenKey = 2;
+}
+
+message R2C_LoginRealmCheck // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string GateSessionKey = 1;
+	string GateAddress = 2;
 }

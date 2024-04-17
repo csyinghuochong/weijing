@@ -6,16 +6,6 @@ namespace ET
     public static class SeasonHelper
     {
 
-        public static bool IsOpenSeason(int userLv)
-        {
-            if (userLv < 55)
-            {
-                return false;
-            }
-            long serverTime = TimeHelper.ServerNow();
-            return SeasonOpenTime >0 && serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;
-        }
-
         public static int GetFubenId(int lv)
         {
             List<int> canEnterIds = new List<int>();
@@ -56,15 +46,51 @@ namespace ET
 
             return string.Empty;
         }
+        /// <summary>
+        /// 第几赛季
+        /// </summary>
+        /// <param name="userLv"></param>
+        /// <returns></returns>
+        public static KeyValuePairLong GetOpenSeason(int userLv)
+        {
+            if (userLv < 55)
+            {
+                return null;
+            }
+            long serverTime = TimeHelper.ServerNow();
+            //return SeasonOpenTime > 0 && serverTime >= SeasonOpenTime && serverTime <= SeasonCloseTime;
+            for (int i = 0; i < SeasonTimeList.Count; i++)
+            {
+                if (serverTime > SeasonTimeList[i].Value && serverTime <= SeasonTimeList[i].Value2)
+                {
+                    return SeasonTimeList[i];
+                }
+            }
 
+            return null;
+        }
 
         /// <summary>
-        /// 赛季开始时间
+        /// 赛季开始时间 . 已废弃
         /// </summary>
-        public static long SeasonOpenTime = 1701360000000;
+        //public static long SeasonOpenTime = 1701360000000;
 
-        //赛季结束时间
-        public static long SeasonCloseTime = 1713715200000;
+        //赛季结束时间 . 已废弃
+        //public static long SeasonCloseTime = 1713715200000;
+
+        /// <summary>
+        /// 赛季开时间
+        /// </summary>
+        public static List<KeyValuePairLong> SeasonTimeList = new List<KeyValuePairLong>()
+        {
+            new KeyValuePairLong(){ KeyId = 0, Value = 1701360000000, Value2 = 1713715200000 },
+            new KeyValuePairLong(){ KeyId = 1, Value = 1713715200001, Value2 = 1721577600000 }
+        };
+
+        /// <summary>
+        /// 第几赛季
+        /// </summary>
+        public static long SeasonIndex = 0;
 
         /// <summary>
         /// 赛季BOSS

@@ -77,12 +77,28 @@ namespace ET
     {
         public static void UpdateInfo(this UISeasonHomeComponent self)
         {
-            DateTime startTime = TimeInfo.Instance.ToDateTime(SeasonHelper.SeasonOpenTime);
-            DateTime endTime = TimeInfo.Instance.ToDateTime(SeasonHelper.SeasonCloseTime);
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            KeyValuePairLong seasonOpenTime = SeasonHelper.GetOpenSeason(userInfo.Lv);
+            if(seasonOpenTime == null)
+            {
+                return;
+            }
+
+            DateTime startTime = TimeInfo.Instance.ToDateTime(seasonOpenTime.Value);
+            DateTime endTime = TimeInfo.Instance.ToDateTime(seasonOpenTime.Value2);
+
             self.SeasonTimeText.GetComponent<Text>().text =
                     $"赛季时间:{startTime.Year}.{startTime.Month}.{startTime.Day}-{endTime.Year}.{endTime.Month}.{endTime.Day}";
 
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (seasonOpenTime.KeyId == 0)
+            {
+                self.SeasonText.GetComponent<Text>().text = "2023第一赛季";
+            }
+            if (seasonOpenTime.KeyId == 1)
+            {
+                self.SeasonText.GetComponent<Text>().text = "2023第二赛季";
+            }
+
             int seasonExp = userInfo.SeasonExp;
             SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel);
 
