@@ -675,12 +675,6 @@ namespace ET
         {
              self.TextMessage.text = StringBuilderHelper.GetMessageCnt(OpcodeHelper.OneTotalNumber);
              OpcodeHelper.OneTotalNumber = 0;
-
-#if UNITY_EDITOR
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            unit.MoveToAsync(unit.Position).Coroutine();
-#endif
-
         }
 
         public static void ShowPing(this UIMainComponent self)
