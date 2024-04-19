@@ -94,7 +94,7 @@ namespace ET
             if (minMax == 0)
             {
                 response.Error = ErrorCode.ERR_ModifyData;
-                Log.Error($"熔炼作弊:  {unit.DomainZone()}  {unit.Id}");
+                Log.Warning($"熔炼作弊:  {unit.DomainZone()}  {unit.Id}");
             }
             else
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -34,7 +35,8 @@ namespace ET
         {
             if (!string.IsNullOrEmpty(Game.Options.Parameters))
             {
-                string password = Game.Options.Parameters + "0000000";
+                string password = Game.Options.Parameters + "00000";
+                Console.WriteLine($"password:  {password}");
                 string inputPath = $"../Config/{Game.Options.StartConfig}/{key}.bytes";
                 string outputPath = $"../Config/{Game.Options.StartConfig}/{key}De.bytes";
                 ByteHelper.Decrypt(inputPath, outputPath, password);
