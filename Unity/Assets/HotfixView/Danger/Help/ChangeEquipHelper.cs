@@ -12,6 +12,7 @@ namespace ET
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
             self.FashionBase.Clear();
+            self.childDictonary.Clear();        
         }
     }
 
@@ -110,7 +111,12 @@ namespace ET
             Transform[] myBones = new Transform[thisRender.bones.Length];
             for (int i = 0; i < thisRender.bones.Length; i++)
             {
-                myBones[i] = self.FindChildByName(thisRender.bones[i].name, rootObj);
+                string boneName = thisRender.bones[i].name;
+                if (!self.childDictonary.ContainsKey(boneName))
+                {
+                    self.childDictonary[boneName] = self.FindChildByName(boneName, rootObj);
+                }
+                myBones[i] = self.childDictonary[boneName];
             }
             newRenderer.rootBone = rootObj;
             newRenderer.bones = myBones;
@@ -138,91 +144,91 @@ namespace ET
             return resultObj;
         }
 
-        public static void OnAllLoadComplete(this ChangeEquipHelper self)
-        {
-            List<Transform> oldBones = new List<Transform>();
-            oldBones.AddRange(self.trparent.GetComponentsInChildren<Transform>());
-            SkinnedMeshRenderer newSkinMR = self.trparent.GetComponentInChildren<SkinnedMeshRenderer>();
+        //public static void OnAllLoadComplete(this ChangeEquipHelper self)
+        //{
+        //    List<Transform> oldBones = new List<Transform>();
+        //    oldBones.AddRange(self.trparent.GetComponentsInChildren<Transform>());
+        //    SkinnedMeshRenderer newSkinMR = self.trparent.GetComponentInChildren<SkinnedMeshRenderer>();
 
-            //利用这个来整合所有的submesh
-            List<CombineInstance> combineInstances = new List<CombineInstance>();
-            //记录所有的uv点,uvList中每一个元素代表子部件的所有uv点集合
-            List<Vector2[]> uvList = new List<Vector2[]>();
-            //整合后的所有uv点的数量
-            int newUVCount = 0;
-            //新的骨骼index列表,用来存储对应于蒙皮组合顺序的,所有骨骼的index信息
-            List<Transform> boneList = new List<Transform>();
-            //所有子部件中的漫反射贴图,目前工程资源里只有一个漫反射贴图,如果还有法线这类贴图,也要缝合成一张新贴图
-            List<Texture2D> diffuseTextureList = new List<Texture2D>();
-            //新漫反射图片的分辨率
-            int diffuseTextureWidth = 0;
-            int diffuseTextureHeight = 0;
-            foreach (var skinMR in self.skinnedMeshRenderers)
-            {
+        //    //利用这个来整合所有的submesh
+        //    List<CombineInstance> combineInstances = new List<CombineInstance>();
+        //    //记录所有的uv点,uvList中每一个元素代表子部件的所有uv点集合
+        //    List<Vector2[]> uvList = new List<Vector2[]>();
+        //    //整合后的所有uv点的数量
+        //    int newUVCount = 0;
+        //    //新的骨骼index列表,用来存储对应于蒙皮组合顺序的,所有骨骼的index信息
+        //    List<Transform> boneList = new List<Transform>();
+        //    //所有子部件中的漫反射贴图,目前工程资源里只有一个漫反射贴图,如果还有法线这类贴图,也要缝合成一张新贴图
+        //    List<Texture2D> diffuseTextureList = new List<Texture2D>();
+        //    //新漫反射图片的分辨率
+        //    int diffuseTextureWidth = 0;
+        //    int diffuseTextureHeight = 0;
+        //    foreach (var skinMR in self.skinnedMeshRenderers)
+        //    {
 
-                //找到每一个submesh
-                for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
-                {
-                    CombineInstance ci = new CombineInstance();
-                    ci.mesh = skinMR.sharedMesh;
-                    ci.subMeshIndex = sub;
-                    combineInstances.Add(ci);
-                }
-                uvList.Add(skinMR.sharedMesh.uv);
-                newUVCount += skinMR.sharedMesh.uv.Length;
-                //从子蒙皮中找到其绑定的骨骼的index数组,然后加入到骨骼列表中
-                //这里的顺序对应了蒙皮的顺序,实际写应该用for()才合理,不过这里foreach顺序是一样的
-                foreach (Transform bone in skinMR.bones)
-                {
-                    foreach (Transform item in oldBones)
-                    {
-                        if (item.name != bone.name) continue;
-                        boneList.Add(item);
-                        break;
-                    }
-                }
-                if (skinMR.sharedMaterial.mainTexture != null)
-                {
-                    diffuseTextureList.Add(skinMR.sharedMaterial.mainTexture as Texture2D);
-                    diffuseTextureWidth += skinMR.sharedMaterial.mainTexture.width;
-                    diffuseTextureHeight += skinMR.sharedMaterial.mainTexture.height;
-                }
-            }
+        //        //找到每一个submesh
+        //        for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
+        //        {
+        //            CombineInstance ci = new CombineInstance();
+        //            ci.mesh = skinMR.sharedMesh;
+        //            ci.subMeshIndex = sub;
+        //            combineInstances.Add(ci);
+        //        }
+        //        uvList.Add(skinMR.sharedMesh.uv);
+        //        newUVCount += skinMR.sharedMesh.uv.Length;
+        //        //从子蒙皮中找到其绑定的骨骼的index数组,然后加入到骨骼列表中
+        //        //这里的顺序对应了蒙皮的顺序,实际写应该用for()才合理,不过这里foreach顺序是一样的
+        //        foreach (Transform bone in skinMR.bones)
+        //        {
+        //            foreach (Transform item in oldBones)
+        //            {
+        //                if (item.name != bone.name) continue;
+        //                boneList.Add(item);
+        //                break;
+        //            }
+        //        }
+        //        if (skinMR.sharedMaterial.mainTexture != null)
+        //        {
+        //            diffuseTextureList.Add(skinMR.sharedMaterial.mainTexture as Texture2D);
+        //            diffuseTextureWidth += skinMR.sharedMaterial.mainTexture.width;
+        //            diffuseTextureHeight += skinMR.sharedMaterial.mainTexture.height;
+        //        }
+        //    }
 
-            self.NewMesh = new Mesh();
+        //    self.NewMesh = new Mesh();
 
-            newSkinMR.sharedMesh = self.NewMesh;
-            //整合mesh
-            newSkinMR.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, false);
-            //刷新骨骼索引数据
-            newSkinMR.bones = boneList.ToArray();
+        //    newSkinMR.sharedMesh = self.NewMesh;
+        //    //整合mesh
+        //    newSkinMR.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, false);
+        //    //刷新骨骼索引数据
+        //    newSkinMR.bones = boneList.ToArray();
          
-            Texture2D[] texture2Ds = diffuseTextureList.ToArray();
-            Vector2[] newUVs = new Vector2[newUVCount];
+        //    Texture2D[] texture2Ds = diffuseTextureList.ToArray();
+        //    Vector2[] newUVs = new Vector2[newUVCount];
 
-            //构造新的漫反射贴图
-            Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-            Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
-            // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
-            int j = 0;
-            for (int i = 0; i < uvList.Count; i++)
-            {
-                foreach (Vector2 uv in uvList[i])
-                {
-                    newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
-                    newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
-                    j++;
-                }
-            }
+        //    //构造新的漫反射贴图
+        //    Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+        //    Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
+        //    // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
+        //    int j = 0;
+        //    for (int i = 0; i < uvList.Count; i++)
+        //    {
+        //        foreach (Vector2 uv in uvList[i])
+        //        {
+        //            newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
+        //            newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
+        //            j++;
+        //        }
+        //    }
 
-            newSkinMR.sharedMesh.uv = newUVs;
-            // 设置漫反射贴图和UV
-            newSkinMR.material.mainTexture = newDiffuseTexture;
-            self.newDiffuseTexture = newDiffuseTexture;
-            self.LoadCompleted = true;
-            self.ChangeWeapon( self.WeaponId );
-            self.RecoverGameObject();
-        }
+        //    newSkinMR.sharedMesh.uv = newUVs;
+        //    // 设置漫反射贴图和UV
+        //    newSkinMR.material.mainTexture = newDiffuseTexture;
+        //    self.newDiffuseTexture = newDiffuseTexture;
+        //    self.LoadCompleted = true;
+        //    self.ChangeWeapon( self.WeaponId );
+        //    self.RecoverGameObject();
+        //}
 
         public static void LoadPrefab(this ChangeEquipHelper self,  string asset)
         {
@@ -453,6 +459,7 @@ namespace ET
             self.trparent = target.transform;
             self.trparentbone = self.trparent.Find("BaseModel/Bip001");
             self.FashionBase.Clear();
+            self.childDictonary.Clear();    
 
             for (int i = self.oldFashions.Count - 1; i >= 0; i--)
             {
@@ -544,5 +551,7 @@ namespace ET
         public Dictionary<int, int> FashionBase = new Dictionary<int, int>();
 
         public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
+
+        public Dictionary<string, Transform> childDictonary = new Dictionary<string, Transform>();  
     }
 }
