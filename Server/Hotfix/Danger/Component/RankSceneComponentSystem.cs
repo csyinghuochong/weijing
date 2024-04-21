@@ -966,7 +966,7 @@ namespace ET
             int zone = self.DomainZone();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (dateTime.DayOfWeek != DayOfWeek.Sunday)
+            if (dateTime.DayOfWeek != DayOfWeek.Monday)
             {
                 return;
             }

@@ -11,7 +11,7 @@ namespace ET
             long timeNow = TimeHelper.ServerNow();
             RankSceneComponent rankComponent = scene.GetComponent<RankSceneComponent>();
 
-            if (timeNow - rankComponent.RankSeasonTowerLastTime < TimeHelper.Minute)
+            if (timeNow - rankComponent.RankSeasonTowerLastTime < TimeHelper.Second * 10)
             {
                 response.RankList = rankComponent.RankSeasonTowers;
             }
