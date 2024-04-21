@@ -20,6 +20,29 @@ namespace ET
     public static class BagComponentSystem
     {
 
+        public static void OnResetSeason(this BagComponent self, bool notice)
+        {
+            self.SeasonJingHePlan = 0;
+
+            self.ClearJingHeItem(self.AllItemList[(int) ItemLocType.ItemLocBag ]);
+            self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse1]);
+            self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse2]);
+            self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse3]);
+            self.ClearJingHeItem(self.AllItemList[(int)ItemLocType.ItemWareHouse4]);
+        }
+
+        public static void ClearJingHeItem(this BagComponent self, List<BagInfo> bagInfos)
+        {
+            for (int i = bagInfos.Count - 1; i >= 0; i--)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.EquipType == 201)
+                {
+                    bagInfos.RemoveAt(i);
+                }
+            }
+        }
+
         public static List<BagInfo> GetItemByLoc(this BagComponent self, ItemLocType itemEquipType)
         {
             return self.AllItemList[(int)(itemEquipType)];

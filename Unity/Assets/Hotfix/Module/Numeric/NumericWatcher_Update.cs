@@ -96,6 +96,33 @@
 		}
 	}
 
+    
+    [NumericWatcher((int)NumericType.SeasonOpenTime)]
+    public class NumericWatcher_SeasonOpenTime : INumericWatcher
+    {
+        public void Run(EventType.NumericChangeEvent args)
+        {
+            Unit unit = args.Defend;
+
+			Log.ILog.Debug($"NumericWatcher_SeasonOpenTime:  {args.NewValue}");
+#if SERVER
+			if(args.NewValue == 0)
+			{
+				unit.GetComponent<UserInfoComponent>().OnResetSeason(false);
+                unit.GetComponent<BagComponent>().OnResetSeason(false);
+                unit.GetComponent<TaskComponent>().OnResetSeason(false);
+			}
+#else
+            if (args.NewValue == 0)
+            {
+                unit.GetComponent<UserInfoComponent>().OnResetSeason(false);
+                unit.GetComponent<BagComponent>().OnResetSeason(false);
+                unit.GetComponent<TaskComponent>().OnResetSeason(false);
+            }
+#endif
+        }
+    }
+
     [NumericWatcher((int)NumericType.OccCombatRankID)]
     public class NumericWatcher_OccCombatRankID : INumericWatcher
     {

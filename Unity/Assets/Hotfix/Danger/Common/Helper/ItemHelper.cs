@@ -414,6 +414,24 @@ namespace ET
             return costItems;
         }
 
+        public static List<BagInfo> GetRewardItems_2(string needitems)
+        {
+            List<BagInfo> costItems = new List<BagInfo>();
+            if (ComHelp.IfNull(needitems))
+            {
+                return costItems;
+            }
+            string[] needList = needitems.Split('@');
+            for (int i = 0; i < needList.Length; i++)
+            {
+                string[] itemInfo = needList[i].Split(';');
+                int itemId = int.Parse(itemInfo[0]);
+                int itemNum = int.Parse(itemInfo[1]);
+                costItems.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum });
+            }
+            return costItems;
+        }
+
         public static List<int> GetGemIdList(BagInfo bagInfo)
         {
             string[] gemIdInfos = bagInfo.GemIDNew.Split('_');

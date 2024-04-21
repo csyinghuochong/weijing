@@ -9,6 +9,27 @@ namespace ET
     public static class TaskComponentSystem
     {
 
+        public static void OnResetSeason(this TaskComponent self, bool notice)
+        {
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.Season)
+                {
+                    self.RoleTaskList.RemoveAt(i);
+                }
+            }
+
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.Season)
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                }
+            }
+        }
+
 
         public static bool ShowPaiMai(this TaskComponent self, int lv,  int simulator)
         {

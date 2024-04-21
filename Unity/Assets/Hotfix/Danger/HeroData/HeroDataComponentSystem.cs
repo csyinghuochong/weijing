@@ -124,6 +124,23 @@ namespace ET
             }
         }
 
+        public static void SendSeasonReward(this HeroDataComponent self, int seasonLevel)
+        {
+            string rewardItem = SeasonHelper.GetSeasonOverReward(seasonLevel);
+            if (string.IsNullOrEmpty(rewardItem))
+            {
+                return;
+            }
+
+            MailInfo mailInfo = new MailInfo();
+            mailInfo.Status = 0;
+            mailInfo.Context = "赛季结束奖励";
+            mailInfo.Title = "赛季结束奖励";
+            mailInfo.MailId = IdGenerater.Instance.GenerateId();
+            mailInfo.ItemList.AddRange(ItemHelper.GetRewardItems_2(rewardItem));
+            MailHelp.SendUserMail( self.DomainZone(), self.Id, mailInfo ).Coroutine();
+        }
+
         public static void OnLogin(this HeroDataComponent self, int robotId)
         {
             Unit unit = self.GetParent<Unit>();
@@ -160,36 +177,37 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PetExploreLuckly, 100, false);
             }
 
-            ///赛季数据[赛季开始]
-            long serverTime = TimeHelper.ServerNow();
-            long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
-            if (seasonopenTime != 0 && serverTime >=  SeasonHelper.SeasonCloseTime)
-            {
-                //清空赛季相关数据. 赛季任务 晶核
-                numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0, false);
-
-                Log.Warning($"清空赛季数据！:{unit.Id}");
-                Console.WriteLine($"清空赛季数据！:{unit.Id}");
-               
-                numericComponent.ApplyValue(NumericType.SeasonReward, 0, false);
-                numericComponent.ApplyValue(NumericType.SeasonBossFuben, 0, false);
-                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, 0, false);
-                numericComponent.ApplyValue(NumericType.SeasonTowerId, 0, false);
-                unit.GetComponent<UserInfoComponent>().OnResetSeason();
-                unit.GetComponent<BagComponent>().OnResetSeason();
-                unit.GetComponent<TaskComponent>().OnResetSeason();
-            }
-
+           
             if (numericComponent.GetAsInt(NumericType.SkillMakePlan2) == 0)
             {
                 numericComponent.ApplyValue(NumericType.MakeType_2, 0, false);
             }
+
+            self.CheckSeasonOver(false);
             self.CheckSeasonOpen(false);
         }
 
-        public static void ClearSeasonData(this HeroDataComponent self)
-        { 
-            
+        public static void CheckSeasonOver(this HeroDataComponent self, bool notice)
+        {
+            ///赛季数据[赛季开始]
+            long serverTime = TimeHelper.ServerNow();
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long seasonopenTime = numericComponent.GetAsLong(NumericType.SeasonOpenTime);
+            if (seasonopenTime != 0 && serverTime >= SeasonHelper.SeasonCloseTime)
+            {
+                //清空赛季相关数据. 赛季任务 晶核
+                Log.Warning($"清空赛季数据！:{unit.Id}");
+                Console.WriteLine($"清空赛季数据！:{unit.Id}");
+                self.SendSeasonReward(unit.GetComponent<UserInfoComponent>().UserInfo.SeasonLevel);
+
+                numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0, notice);
+                numericComponent.ApplyValue(NumericType.SeasonReward, 0, notice);
+                numericComponent.ApplyValue(NumericType.SeasonBossFuben, 0, notice);
+                numericComponent.ApplyValue(NumericType.SeasonBossRefreshTime, 0, notice);
+                numericComponent.ApplyValue(NumericType.SeasonTowerId, 0, notice);
+                numericComponent.ApplyValue(NumericType.SeasonTask, 0, notice);
+            }
         }
 
         public static void CheckSeasonOpen(this HeroDataComponent self, bool notice)
@@ -289,6 +307,8 @@ namespace ET
 
             int lirun =  (int)(numericComponent.GetAsInt(NumericType.InvestTotal) * 0.25f);
             numericComponent.ApplyValue(NumericType.InvestTotal, numericComponent.GetAsInt(NumericType.InvestTotal) + lirun, notice);
+
+            self.CheckSeasonOver(notice);
         }
 
         /// <summary>

@@ -1502,7 +1502,7 @@ namespace ET
             }
         }
 
-        public static void OnResetSeason(this TaskComponent self)
+        public static void OnResetSeason(this TaskComponent self, bool notice)
         {
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {

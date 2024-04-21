@@ -505,7 +505,7 @@ namespace ET
             return false;
         }
 
-        public static void OnResetSeason(this BagComponent self)
+        public static void OnResetSeason(this BagComponent self, bool notice)
         { 
             self.SeasonJingHePlan = 0;
             self.SeasonJingHe.Clear();

@@ -43,18 +43,18 @@ namespace ET
         /// <summary>
         /// 赛季结束奖励
         /// </summary>
-        public static string SeasonOverReward(int seasonLevel)
+        public static string GetSeasonOverReward(int seasonLevel)
         {
-            if (seasonLevel >= 25)
+            if (seasonLevel >= 15)
             {
-                return "10010040;1";
+                return "10010040;10@10000135;10";
             }
-            if (seasonLevel >= 10)
+            if (seasonLevel >= 5)
             {
-                return "10000135;1";
+                return "10010040;1@10000135;1";
             }
 
-            return "";
+            return string.Empty;
         }
 
 
