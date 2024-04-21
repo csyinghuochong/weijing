@@ -38,17 +38,17 @@ namespace ET
                 { 
                     if(unit.GetComponent<BagComponent>().GetItemNumber(request.ItemId) <= 0)
                     {
-                        response.Error = ErrorCode.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }
                     if (!ItemConfigCategory.Instance.Contain(request.ItemId))
                     {
+                        Console.WriteLine($"request.SkillID item:  {request.ItemId}");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
                     }
-
 
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(request.ItemId);
                     if (itemConfig.ItemSubType != 101 && itemConfig.ItemSubType != 110)
@@ -60,16 +60,20 @@ namespace ET
                     }
                 }
 
+                MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();        
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(request.SkillID);
-                if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
-                    && request.SkillID != 60000011 && skillConfig.SkillActType!= 0 && request.ItemId == 0)
+                if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace)
                 {
-                    Console.WriteLine($"request.SkillID==null:  {request.SkillID}   {unit.DomainZone()}  {unit.Id}");
-                    response.Error = ErrorCode.ERR_ModifyData;
-                    reply();
-                    return;
-                }
 
+                    if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
+                   && request.SkillID != 60000011 && skillConfig.SkillActType != 0 && request.ItemId == 0)
+                    {
+                        Console.WriteLine($"request.SkillID==null:  {request.SkillID}   {unit.DomainZone()}  {unit.Id}");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                }
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();   
