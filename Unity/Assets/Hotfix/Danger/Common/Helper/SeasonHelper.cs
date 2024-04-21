@@ -35,13 +35,25 @@ namespace ET
         /// </summary>
         public static string GetSeasonOverReward(int seasonLevel)
         {
+            if (seasonLevel >= 20)
+            {
+                return "1;1000000@10000159;30@10010094;1@10000165;10";
+            }
             if (seasonLevel >= 15)
             {
-                return "10010040;10@10000135;10";
+                return "1;500000@10000159;20@10010093;1@10000165;5";
+            }
+            if (seasonLevel >= 10)
+            {
+                return "1;300000@10000159;10@10010093;1";
             }
             if (seasonLevel >= 5)
             {
-                return "10010040;1@10000135;1";
+                return "1;100000@10000159;5@10010092;1";
+            }
+            if (seasonLevel >= 1)
+            {
+                return "1;10000@10000159;2";
             }
 
             return string.Empty;
