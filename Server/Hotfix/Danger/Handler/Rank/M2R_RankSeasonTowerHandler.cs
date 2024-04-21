@@ -23,12 +23,12 @@ namespace ET
                 }
                 if (rankSeasonTower[i].Value2 < request.RankingInfo.Value2)  //优先副本
                 {
-                    rankSeasonTower[i].Value = request.RankingInfo.Value;
+                    rankSeasonTower[i].Value += request.RankingInfo.Value;
                     rankSeasonTower[i].Value2 = request.RankingInfo.Value2;
                 }
                 else if (rankSeasonTower[i].Value2 == request.RankingInfo.Value2)
                 {
-                    rankSeasonTower[i].Value = request.RankingInfo.Value < rankSeasonTower[i].Value ? request.RankingInfo.Value : rankSeasonTower[i].Value;
+                    rankSeasonTower[i].Value += request.RankingInfo.Value;
                     rankSeasonTower[i].Value2 = request.RankingInfo.Value2;
                 }
                 else
