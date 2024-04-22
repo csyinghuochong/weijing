@@ -119,13 +119,18 @@ namespace ET
             {
                 return;
             }
+            if (self.TheUnitFrom.IsDisposed)
+            {
+                return;
+            }
+
             //只触发一次，需要多次触发的重写
             if (!self.IsExcuteHurt)
             {
                 self.IsExcuteHurt = true;
                 if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly)
                 {
-                    Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillInfo.TargetID);
+                    Unit targetUnit = self.TheUnitFrom.GetParent<UnitComponent>().Get(self.SkillInfo.TargetID);
                     if (targetUnit != null && self.SkillConf.SkillActType == 1)
                     {
                         self.OnCollisionUnit(targetUnit);
