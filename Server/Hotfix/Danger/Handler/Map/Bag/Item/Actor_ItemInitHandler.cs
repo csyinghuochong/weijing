@@ -88,8 +88,16 @@ namespace ET
 
 				fashionTypes.Add(fashionConfig.SubType);
             }
+			for (int i = bagComponent.FashionActiveIds.Count - 1; i >= 0; i--)
+			{
+				if (!FashionConfigCategory.Instance.Contain(bagComponent.FashionActiveIds[i]))
+				{
+					bagComponent.FashionActiveIds.RemoveAt(i);
+					continue;
+				}
+			}
 
-			response.BagInfos = bagInfos;
+            response.BagInfos = bagInfos;
 			response.QiangHuaLevel = bagComponent.QiangHuaLevel;
 			response.QiangHuaFails = bagComponent.QiangHuaFails;
 			//response.BagAddedCell = bagComponent.BagAddedCell;
