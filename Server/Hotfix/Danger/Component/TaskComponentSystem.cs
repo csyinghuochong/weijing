@@ -1717,7 +1717,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ApplyValue(NumericType.SeasonTowerId, 0, notice);
 
-            Console.WriteLine($"赛季之塔清空: {unit.DomainZone()} ");
+            Console.WriteLine($"赛季之塔清空: {unit.DomainZone()} {unit.Id}");
 
             //赛季任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
