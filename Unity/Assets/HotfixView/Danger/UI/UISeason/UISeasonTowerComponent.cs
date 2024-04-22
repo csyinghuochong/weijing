@@ -7,6 +7,7 @@ namespace ET
 {
     public class UISeasonTowerComponent: Entity, IAwake
     {
+        public Text Text_Ceng;
         public GameObject UISeasonTowerRankItemListNode;
         public GameObject UISeasonTowerRankItem;
         public GameObject RewardShowBtn;
@@ -27,6 +28,7 @@ namespace ET
             self.TimeText = rc.Get<GameObject>("TimeText");
             self.LayerText = rc.Get<GameObject>("LayerText");
             self.EnterBtn = rc.Get<GameObject>("EnterBtn");
+            self.Text_Ceng = rc.Get<GameObject>("Text_Ceng").GetComponent<Text>();
 
             self.TimeText.GetComponent<Text>().text = string.Empty;
             self.LayerText.GetComponent<Text>().text = string.Empty;
@@ -64,8 +66,11 @@ namespace ET
                 return;
             }
 
-            self.LayerText.GetComponent<Text>().text =
-                    $"{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId) % 250000}/10";
+
+            int cengshu = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId) % 250000;
+
+            self.LayerText.GetComponent<Text>().text = $"{cengshu}/10";
+            self.Text_Ceng.GetComponent<Text>().text = $"{cengshu}层";
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             List<RankSeasonTowerInfo> rankList = response.RankList;
             for (int i = 0; i < rankList.Count; i++)

@@ -970,7 +970,10 @@ namespace ET
             {
                 return;
             }
+
             Log.Debug($"发放赛季之塔排行榜奖励： {zone}");
+            Console.WriteLine($"发放赛季之塔排行榜奖励： {zone}");
+
             long serverTime = TimeHelper.ServerNow();
             List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankSeasonTower;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;

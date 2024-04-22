@@ -708,6 +708,8 @@ MonoBehaviour:
     gameObject: {fileID: 2502140857943625897}
   - key: UISeasonTowerRankItemListNode
     gameObject: {fileID: 2742283751841471416}
+  - key: Text_Ceng
+    gameObject: {fileID: 5689894491432442760}
 --- !u!114 &4232379268670863866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1968,7 +1970,7 @@ GameObject:
   - component: {fileID: 6672947393649786387}
   - component: {fileID: 8710991546293347215}
   m_Layer: 5
-  m_Name: TextTip
+  m_Name: Text_Ceng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
