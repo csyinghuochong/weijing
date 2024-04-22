@@ -53,7 +53,7 @@ namespace ET
             self.ImageButton.GetComponent<Button>().onClick.AddListener(self.OnCloseChengJiu);
 
             self.Btn_Tower = rc.Get<GameObject>("Btn_Tower");
-            self.Btn_Tower.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Btn_Tower.SetActive( true );
 
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
