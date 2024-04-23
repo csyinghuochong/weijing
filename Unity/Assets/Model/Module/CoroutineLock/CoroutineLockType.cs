@@ -56,6 +56,8 @@ namespace ET
 
         public const int Chat = 38;
 
+        public const int EMail = 39;
+
         public const int BeiYong = 99;
         public const int Max = 100; // 这个必须最大
     }
