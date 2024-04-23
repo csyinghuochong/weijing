@@ -112,9 +112,12 @@ namespace ET
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(self.OnRealNameButton);
 
 				self.loginBtn = rc.Get<GameObject>("LoginBtn");
-				//self.loginBtn.GetComponent<Button>().onClick.AddListener();
-				ButtonHelp.AddListenerEx(self.loginBtn, () => { self.OnLogin(); });
-				self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
+				ButtonHelp.AddListenerEx(self.loginBtn, self.OnLogin);
+
+				self.ServerBtn = rc.Get<GameObject>("ServerBtn");
+                ButtonHelp.AddListenerEx(self.ServerBtn, self.OnServerBtn);
+
+                self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
 				self.registerBtn.GetComponent<Button>().onClick.AddListener(self.OnRegister);
                 self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5);
 
@@ -352,6 +355,7 @@ namespace ET
             Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
+			self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
         }
 
         //public const int RegisterLogin = 0;     //注册账号登录
@@ -762,7 +766,13 @@ namespace ET
 			self.HideNode.SetActive(true);
 		}
 
-		public static void  OnLogin(this UILoginComponent self)
+		public static void OnServerBtn(this UILoginComponent self)
+		{ 
+			
+		}
+
+
+        public static void  OnLogin(this UILoginComponent self)
 		{
 			if (!self.YinSiToggle.GetComponent<Toggle>().isOn)
 			{

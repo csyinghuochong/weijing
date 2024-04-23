@@ -70,5 +70,8 @@ namespace ET
 		public ShareSDK ssdk;
 
 		public string AccountReversal;
-	}
+
+		public GameObject ServerBtn;
+
+    }
 }
