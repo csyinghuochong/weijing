@@ -116,7 +116,10 @@ namespace ET
             await self.OnClickTypeItem(itemType, 0, response.Page);
 
             await TimerComponent.Instance.WaitAsync(500);
-
+            if (self.InstanceId != instanceid)
+            {
+                return;
+            }
             // 移动到指定位置
             for (int i = 0; i < self.PaiMaiIteminfos_Now.Count; i++)
             {
