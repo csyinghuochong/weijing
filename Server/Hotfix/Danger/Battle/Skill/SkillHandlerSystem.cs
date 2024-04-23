@@ -130,7 +130,13 @@ namespace ET
                 self.IsExcuteHurt = true;
                 if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly)
                 {
-                    Unit targetUnit = self.TheUnitFrom.GetParent<UnitComponent>().Get(self.SkillInfo.TargetID);
+                    UnitComponent unitComponent = self.TheUnitFrom.GetParent<UnitComponent>();
+                    if (unitComponent == null)
+                    {
+                        Log.Warning($"unitComponent == null:  {self.SkillConf.Id}");
+                        return;
+                    }
+                    Unit targetUnit = unitComponent.Get(self.SkillInfo.TargetID);
                     if (targetUnit != null && self.SkillConf.SkillActType == 1)
                     {
                         self.OnCollisionUnit(targetUnit);

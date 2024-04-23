@@ -59,7 +59,7 @@ namespace ET
                                 chatInfoUnitsComponent.BeReportedNumber.Remove(request.ChatInfo.UserId);
                             }
 
-                            LogHelper.ChatInfo( $"区:{chatInfoUnit.DomainZone()}  {request.ChatInfo.ChatMsg}");
+                            LogHelper.ChatInfo( $"区:{chatInfoUnit.DomainZone()}    {request.ChatInfo.PlayerName}:  {request.ChatInfo.ChatMsg} ");
                         }
 
                         foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)

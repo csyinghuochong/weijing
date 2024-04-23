@@ -1017,10 +1017,11 @@ namespace ET
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
                     SkillHandler skillHandler = self.Skills[i];
+                    int enskillid = skillHandler.SkillConf.EndSkillId;
                     ObjectPool.Instance.Recycle(skillHandler);
-                    self.CheckEndSkill(skillHandler.SkillConf.EndSkillId);
                     skillHandler.OnFinished();
                     self.Skills.RemoveAt(i);
+                    self.CheckEndSkill(enskillid);
                     continue;
                 }
             }
