@@ -43,7 +43,8 @@ namespace ET
 		public const string UICommonHuoBiSet = "Common/UICommonHuoBiSet";
 		public const string UINotice = "Login/UINotice";
 		public const string UISelectServer = "Login/UISelectServer";
-		public const string UILoading = "Common/UILoading";
+		public const string UIServerShow = "Login/UIServerShow";
+        public const string UILoading = "Common/UILoading";
 		public const string UIPet = "Main/Pet/UIPet";
 		public const string UIPetHeChengExplain = "Main/Pet/UIPetHeChengExplain";
 		public const string UIPetHeChengPreview = "Main/Pet/UIPetHeChengPreview";

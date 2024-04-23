@@ -767,8 +767,8 @@ namespace ET
 		}
 
 		public static void OnServerBtn(this UILoginComponent self)
-		{ 
-			
+		{
+			UIHelper.Create( self.ZoneScene(), UIType.UIServerShow ).Coroutine();
 		}
 
 
