@@ -9,6 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ActivityChouKaRequest request, M2C_ActivityChouKaResponse response, Action reply)
         {
+            if (unit.DomainZone()!=3)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
