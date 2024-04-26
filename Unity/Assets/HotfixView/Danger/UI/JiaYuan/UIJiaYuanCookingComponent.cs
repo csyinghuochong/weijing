@@ -103,15 +103,37 @@ namespace ET
         public static void ResetUiItem(this UIJiaYuanCookingComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            Dictionary<long, long> itemNumber = new Dictionary<long, long>();
 
             for (int i = 0; i < self.CostItemList.Length; i++)
             {
-                if (self.CostItemList[i].Baginfo != null && bagComponent.GetBagInfo(self.CostItemList[i].Baginfo.BagInfoID) != null)
+                if (self.CostItemList[i].Baginfo == null)
                 {
+                    self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
                     continue;
                 }
 
-                self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
+                BagInfo bagInfo = bagComponent.GetBagInfo(self.CostItemList[i].Baginfo.BagInfoID);
+                if (bagInfo == null)
+                {
+                    self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
+                    continue;
+                }
+
+
+                if (!itemNumber.ContainsKey(bagInfo.BagInfoID))
+                {
+                    itemNumber.Add(bagInfo.BagInfoID, 1);
+                }
+                else
+                {
+                    itemNumber[bagInfo.BagInfoID]++;
+                }
+
+                if (itemNumber[bagInfo.BagInfoID] > bagInfo.ItemNum)
+                {
+                    self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
+                }
             }
         }
 
