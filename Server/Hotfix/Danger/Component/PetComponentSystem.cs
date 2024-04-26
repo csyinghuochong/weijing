@@ -531,6 +531,14 @@ namespace ET
             unit.GetComponent<ChengJiuComponent>().OnGetPet(newpet);
             unit.GetComponent<TaskComponent>().OnGetPet(newpet);
 
+            if (PetHelper.IsShenShou(petId) && unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) < 5000)
+            {
+                //充值低于5千的就记录 记录信息 等级 名称 充值额度 当前钻石额
+                LogHelper.GongZuoShi($"神兽作弊: {unit.DomainZone()}   \t名称:{unit.GetComponent<UserInfoComponent>().UserInfo.Name}  " +
+                    $"\t等级:{unit.GetComponent<UserInfoComponent>().UserInfo.Lv}" + $"\t钻石:{unit.GetComponent<UserInfoComponent>().UserInfo.Diamond}" +
+                    $"\t充值:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber)}");
+            }
+
             if (ItemGetWay.PetExplore == getWay)
             {
                 self.RolePetBag.Add(newpet);
