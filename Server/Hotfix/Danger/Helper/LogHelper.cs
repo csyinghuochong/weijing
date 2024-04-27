@@ -364,6 +364,23 @@ namespace ET
         }
 
         /// <summary>
+        /// 检测小黑屋
+        /// </summary>
+        /// <param name="unit"></param>
+        public static void CheckBlackRoom(Unit unit)
+        {
+            bool black = false;
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
+
+
+
+            if (black)
+            {
+                numericComponent.ApplyValue( NumericType.BlackRoom, 1 );
+            }
+        }
+
+        /// <summary>
         /// 每小时检测一次
         /// </summary>
         /// <param name="unit"></param>

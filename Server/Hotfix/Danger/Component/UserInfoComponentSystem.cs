@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -307,6 +308,7 @@ namespace ET
 
             self.GetParent<Unit>().GetComponent<JiaYuanComponent>().OnHourUpdate(hour, notice);
             LogHelper.CheckZuoBi(self.GetParent<Unit>());
+            LogHelper.CheckBlackRoom(self.GetParent<Unit>());
         }
 
         public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)
