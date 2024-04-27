@@ -11,6 +11,13 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.RecvTeamDungeonPrepare args = (EventType.RecvTeamDungeonPrepare)cls;
+
+            bool blackroom = UnitHelper.IsBackRoom(args.ZoneScene);
+            if (blackroom)
+            {
+                return;
+            }
+
             UI uI = UIHelper.GetUI(args.ZoneScene, UIType.UITeamDungeonPrepare);
             if (uI == null)
             {

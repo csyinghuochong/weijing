@@ -6,6 +6,12 @@
         protected override void Run(object cls)
         {
             EventType.RecvTeamInvite args = (EventType.RecvTeamInvite)cls;
+            bool blackroom = UnitHelper.IsBackRoom(args.ZoneScene);
+            if (blackroom)
+            {
+                return;
+            }
+
             PopupTipHelp.OpenPopupTip( args.ZoneScene, "组队邀请", $"{args.m2C_TeamInviteResult.TeamPlayerInfo.PlayerName}邀请你组队",
                 () => 
                 {

@@ -217,6 +217,12 @@ namespace ET
                 return;
             }
 
+            bool blackroom = UnitHelper.IsBackRoom(self.ZoneScene());
+            if (blackroom)
+            {
+                return;
+            }
+
             bool mask = false;
             if (!gm)
             {
