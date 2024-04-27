@@ -1590,12 +1590,15 @@ namespace ET
 
         public static void ShowFunctionButton(this UIMainComponent self, int functionId,  bool showButton)
         {
+            bool blackroom = UnitHelper.IsBackRoom(  self.ZoneScene() );
+            if (blackroom)
+            {
+                showButton = true;
+            }
+
             switch (functionId)
             {
                 case 1014:
-                    AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                    TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
                     self.Btn_PaiMaiHang.SetActive(showButton);
                     break;
                 case 1070:

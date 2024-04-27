@@ -126,6 +126,11 @@ namespace ET
                 }
             }
 
+            if (UnitHelper.IsBackRoom(self.ZoneScene()))
+            {
+                return;
+            }
+
             self.LastChatInfo = chatInfo;
             List<ChatInfo> chatInfos = self.ChatTypeList[chatInfo.ChannelId];
             if (chatInfos.Count >= 20)

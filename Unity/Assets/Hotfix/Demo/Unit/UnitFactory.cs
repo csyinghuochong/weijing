@@ -27,10 +27,10 @@ namespace ET
 			{
 				selfpet = true;
             }
-			
 
-            if (mainScene  && (SettingHelper.NoShowOther|| UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
-                && !mainHero && !selfpet)
+			bool noshowOther = SettingHelper.NoShowOther || UnitHelper.IsBackRoom(currentScene.ZoneScene())
+				|| UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer;
+            if (mainScene && !mainHero && !selfpet && noshowOther)
 			{
 				return null;
 			}

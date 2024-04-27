@@ -121,6 +121,19 @@ namespace ET
             return ItemHelper.GetEquipType(self.ConfigId, itemId);
         }
 
+        public static bool IsBackRoom(this Unit self)
+        {
+            int black = self.GetComponent<NumericComponent>().GetAsInt(NumericType.BlackRoom);
+            return black != 0;  
+        }
+
+        public static bool IsBackRoom( Scene zoneScene)
+        {
+            //return true;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( zoneScene );
+            return unit!= null ? unit.IsBackRoom(): false;
+        }
+
         public static int GetMaoXianExp(this Unit self)
         {
             int rechargeNum = self.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
