@@ -1591,9 +1591,9 @@ namespace ET
         public static void ShowFunctionButton(this UIMainComponent self, int functionId,  bool showButton)
         {
             bool blackroom = UnitHelper.IsBackRoom(  self.ZoneScene() );
-            if (blackroom)
+            if (blackroom && !string.IsNullOrEmpty(FuntionConfigCategory.Instance.Get(functionId).OpenTime))
             {
-                showButton = true;
+                showButton = false;
             }
 
             switch (functionId)

@@ -96,6 +96,12 @@ namespace ET
                 return;
             }
 
+            bool blackroom = UnitHelper.IsBackRoom(self.ZoneScene());
+            if (blackroom)
+            {
+                return;
+            }
+
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanVisitItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.AssetPath = path;
