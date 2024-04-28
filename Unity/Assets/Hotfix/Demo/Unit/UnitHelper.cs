@@ -127,9 +127,14 @@ namespace ET
             return black != 0;  
         }
 
+
+        /// <summary>
+        /// 是否小黑屋
+        /// </summary>
+        /// <param name="zoneScene"></param>
+        /// <returns></returns>
         public static bool IsBackRoom( Scene zoneScene)
         {
-            //return true;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( zoneScene );
             return unit!= null ? unit.IsBackRoom(): false;
         }
