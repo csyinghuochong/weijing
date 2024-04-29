@@ -429,7 +429,7 @@ namespace ET
 
             //查找神兽
             int  shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();    
-            if (shenshouNumber > 0 && shenshouNumber * 4000 < rechargeValue)
+            if (shenshouNumber > 0 && shenshouNumber * 4000 > rechargeValue)
             {
                 //if (PetHelper.IsHaveShenShou(unit.GetComponent<PetComponent>().GetAllPets()))
                 {
