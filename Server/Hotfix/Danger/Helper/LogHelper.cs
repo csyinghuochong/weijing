@@ -428,9 +428,10 @@ namespace ET
             }
 
             //查找神兽
-            if (rechargeValue < 1000)
+            int  shenshouNumber = unit.GetComponent<PetComponent>().GetShenShouNumber();    
+            if (shenshouNumber > 0 && shenshouNumber * 4000 < rechargeValue)
             {
-                if (PetHelper.IsHaveShenShou(unit.GetComponent<PetComponent>().GetAllPets()))
+                //if (PetHelper.IsHaveShenShou(unit.GetComponent<PetComponent>().GetAllPets()))
                 {
                     LogHelper.ZuobiInfo("低充值有神兽需核查! " + " 服务器:" + unit.DomainZone() + " 名字:" + userInfo.UserName + " 充值:" + rechargeValue);
                 }
