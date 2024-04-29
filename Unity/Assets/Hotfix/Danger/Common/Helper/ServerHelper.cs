@@ -305,7 +305,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 92, ServerIp = $"{ip}:20415", ServerName = "征服之海", ServerOpenTime = 1713783600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 93, ServerIp = $"{ip}:20445", ServerName = "梦想之旅", ServerOpenTime = 1714129200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
-            //2024/04/29 19:00:00 1714129200000  94
+            //2024/04/29 19:00:00 1714129200000 时光如梭 94
             serverItems_1.Add(new ServerItem() { ServerId = 94, ServerIp = $"{ip}:20505", ServerName = "时光如梭", ServerOpenTime = 1714388400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
