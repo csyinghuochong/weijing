@@ -118,9 +118,9 @@ namespace ET
             {
                 return false;
             }
-            //无敌buff，不受伤害. 对怪有效 对玩家无效
+            //无敌对所有都有效
             //if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi) && playerPKStatus == false)
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi) && attackUnit.Type != UnitType.Player)
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
             {
                 return false;
             }
@@ -129,8 +129,8 @@ namespace ET
             {
                 return false;
             }
-            //对怪无敌
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == false)
+            //对怪无敌，对人不无敌
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == true)
             {
                 return false;
             }
