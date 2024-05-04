@@ -101,13 +101,13 @@ namespace ET
             {
                 playerPKStatus = true;
             }
-
-            if (attackUnit.Type == UnitType.Monster && attackUnit.MasterId > 0 && defendUnit.Type == UnitType.Player)
+           
+            if (attackUnit.Type == UnitType.Monster && attackUnit.MasterIsPlayer() && defendUnit.Type == UnitType.Player)
             {
                 playerPKStatus = true;
             }
 
-            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster && defendUnit.MasterId > 0)
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster && defendUnit.MasterIsPlayer() )
             {
                 playerPKStatus = true;
             }
