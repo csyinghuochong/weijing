@@ -130,7 +130,7 @@ namespace ET
                 return false;
             }
             //对怪无敌，对人不无敌
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == true)
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == false)
             {
                 return false;
             }
