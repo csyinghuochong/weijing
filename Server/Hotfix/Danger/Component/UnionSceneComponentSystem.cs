@@ -286,7 +286,11 @@ namespace ET
             {
                 self.UnionRaceUnits.Add(unionid, new List<long>());
             }
-            self.UnionRaceUnits[unionid].Add(unitid);
+
+            if (!self.UnionRaceUnits[unionid].Contains(unitid))
+            {
+                self.UnionRaceUnits[unionid].Add(unitid);
+            }
         }
 
         public static async ETTask OnCheckWinUnion(this UnionSceneComponent self)
