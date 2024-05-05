@@ -45,7 +45,7 @@ namespace ET
         {
             self.BattleOpen = false;
             LogHelper.LogDebug($"OnBattleOver : {self.DomainZone()}");
-            Console.WriteLine($"OnBattleOver : {self.DomainZone()}");
+            //Console.WriteLine($"OnBattleOver : {self.DomainZone()}");
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
 
