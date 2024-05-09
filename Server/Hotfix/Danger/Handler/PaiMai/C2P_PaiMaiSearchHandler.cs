@@ -38,6 +38,11 @@ namespace ET
                     if (request.FindItemIdList.Contains(paiMaiItemInfo.BagInfo.ItemID))
                     {
                         response.PaiMaiItemInfos.Add(paiMaiItemInfo);
+
+                        if (response.PaiMaiItemInfos.Count > 200)
+                        {
+                            break;
+                        }
                     }
                 }
             }
