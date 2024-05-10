@@ -588,7 +588,7 @@ namespace ET
 
             GameObject gameObject_1 = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject_1, self.PetRawImage);
-            gameObject_1.transform.localPosition = new Vector3(0 * 1000, 0, 0);
+            gameObject_1.transform.localPosition = new Vector3(2000, 2000, 0);
             self.PetModelShowComponent = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject_1);
             self.PetModelShowComponent.AddComponent<UIModelShowComponent, GameObject>(self.PetRawImage);
             //配置摄像机位置[0,115,257]
