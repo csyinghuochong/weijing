@@ -1028,7 +1028,11 @@ namespace ET
                     {
                         Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}  {mapComponent.SceneTypeEnum}  {mapComponent.SceneId}");
                     }
-                    
+                }
+
+                if (itemCof.Id == 10000136 && (getType != ItemGetWay.ChouKa && getType != ItemGetWay.ChouKaReward && getType != ItemGetWay.Activity_MaoXianJia))
+                {
+                    Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id} ");
                 }
                 if (leftNum >= 99)
                 {
