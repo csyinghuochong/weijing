@@ -96,5 +96,6 @@
 *^mongodb://localhost:27017/^"WJBeta94
 *_mongodb://localhost:27017/_"WJBeta95
 *`mongodb://localhost:27017/`"WJBeta96
+*amongodb://localhost:27017/a"WJBeta97
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
