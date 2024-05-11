@@ -2240,9 +2240,12 @@ namespace ET
 
         public static void UpdateKillMonsterReward(this UIMainComponent self)
         {
+            if (self.MainUnit == null)
+            {
+                return;
+            }
             NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
             int oldNum = numericComponent.GetAsInt(NumericType.KillMonsterReward);
-
             int newNum = int.MaxValue;
             bool flag = false;
             foreach (int key in ConfigHelper.KillMonsterReward.Keys)
