@@ -113,7 +113,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonOccReset = rc.Get<GameObject>("ButtonOccReset");
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
-            self.ButtonOccReset.SetActive(ComHelp.IsBanHaoZone( accountInfoComponent.ServerId )  );
+            self.ButtonOccReset.SetActive(ComHelp.IsBanHaoZone( accountInfoComponent.ServerId ) || GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account  )   );
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");

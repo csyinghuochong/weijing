@@ -43,7 +43,8 @@ namespace ET
 
                     sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
-					break;
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
+                    break;
                 case 3:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillMakePlan2, 1);
                     break;
