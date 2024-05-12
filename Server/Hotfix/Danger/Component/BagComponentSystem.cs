@@ -1032,7 +1032,7 @@ namespace ET
 
                 if (itemCof.Id == 10000136 && (getType != ItemGetWay.ChouKa && getType != ItemGetWay.ChouKaReward && getType != ItemGetWay.Activity_MaoXianJia))
                 {
-                    Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id} ");
+                    Log.Error($"[获取道具作弊]{itemCof.Id}：  {unit.DomainZone()}  {unit.Id}  {getType}");
                 }
                 if (leftNum >= 99)
                 {
