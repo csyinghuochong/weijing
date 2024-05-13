@@ -365,6 +365,28 @@ namespace ET
                 }
                 skillHandler.SetSkillState(SkillState.Finished);
             }
+            Unit unit = self.GetParent<Unit>();
+            M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillId };
+            MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
+        }
+
+        public static void InterruptSkill(this SkillManagerComponent self, string skillName)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                if (!skillHandler.SkillConf.GameObjectName.Equals(skillName))
+                {
+                    continue;
+                }
+                skillHandler.SetSkillState(SkillState.Finished);
+
+                M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
+                MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
+            }
         }
 
         public static bool HaveChongJi(this SkillManagerComponent self)

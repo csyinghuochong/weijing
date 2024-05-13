@@ -200,6 +200,10 @@ namespace ET
             {
                 unit.GetComponent<BuffManagerComponent>().OnRemoveBuffByState( StateTypeEnum.Dizziness );
             }
+            if (nowStateType == StateTypeEnum.Dizziness || nowStateType == StateTypeEnum.Silence)
+            {
+                unit.GetComponent<SkillManagerComponent>().InterruptSkill("Skill_Other_XuanFengZhan_1");
+            }
 
             //打断吟唱中技能
             unit.GetComponent<SkillManagerComponent>().InterruptSing(0, true);
