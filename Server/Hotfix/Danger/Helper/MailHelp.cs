@@ -196,11 +196,6 @@ namespace ET
                 }
             }
 
-            if (userID == 2294210933515419648)
-            {
-                mailinfolist.RemoveAt(0);
-            }
-
             //存储邮件
             if (mailinfolist.Count > 100)
             {
