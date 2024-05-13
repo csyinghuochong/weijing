@@ -311,7 +311,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 97, ServerIp = $"{ip}:20555", ServerName = "萤火森林", ServerOpenTime = 1715338800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/05/13 19:00:00 1714993200000 新区 98
+            //2024/05/13 19:00:00 1715598000000 新区 98
             serverItems_1.Add(new ServerItem() { ServerId = 98, ServerIp = $"{ip}:20395", ServerName = "新区新区", ServerOpenTime = 1715598000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
