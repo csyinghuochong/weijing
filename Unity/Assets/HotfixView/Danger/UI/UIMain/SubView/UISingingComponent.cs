@@ -25,6 +25,12 @@ namespace ET
     {
         public static void OnTimer(this UISingingComponent self, EventType.SingingUpdate args)
         {
+            if (args.TotalTime <= 0)
+            {
+                self.GameObject.SetActive(false);
+                return;
+            }
+
             if (args.Type == 1)
             {
                 self.Img_Progress.transform.localScale = new Vector3((1f * args.PassTime / args.TotalTime), 1f, 1f);
