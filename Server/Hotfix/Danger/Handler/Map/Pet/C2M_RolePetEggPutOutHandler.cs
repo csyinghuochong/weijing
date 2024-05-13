@@ -8,9 +8,17 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_RolePetEggPutOut request, M2C_RolePetEggPutOut response, Action reply)
         {
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            if (bagComponent.GetBagLeftCell() < 1)
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
+                reply();
+                return;
+            }
+
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetEgg rolePetEgg = petComponent.RolePetEggs[request.Index];
-            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            
             bagComponent.OnAddItemData($"{rolePetEgg.ItemId};1", $"{ItemGetWay.PetEggDuiHuan}_{TimeHelper.ServerNow()}");
             rolePetEgg.ItemId = 0;
             rolePetEgg.EndTime = 0;

@@ -58,7 +58,7 @@ namespace ET
             int openindex = 0;
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < ConfigHelper.PetOpenCangKu.Count + 1; i++)
             {
                 UIPetCangKuDefendComponent ui_1 = null;
                 if (i < self.UIDefendList.Count)

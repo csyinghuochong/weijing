@@ -211,6 +211,12 @@ namespace ET
 
         public static async ETTask RequestXieXia(this UIPetEggListComponent self, int binfo)
         {
+            if ( self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1 )
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+
             C2M_RolePetEggPutOut request = new C2M_RolePetEggPutOut() { Index = binfo };
             M2C_RolePetEggPutOut respose = (M2C_RolePetEggPutOut)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 

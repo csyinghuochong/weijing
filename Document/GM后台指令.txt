@@ -1,10 +1,7 @@
 后台查询当前服务器各个等级的人数列表 level 0 所有区 level zone 指定区
 
-在线人数
-online  区服（0所有区服）  			
-online 0	
-online 1
 
+gongzuoshi 0     //查询全服在线玩家
 
 
 服务器热更新
