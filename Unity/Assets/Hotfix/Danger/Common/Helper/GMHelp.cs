@@ -172,7 +172,7 @@ namespace ET
                C2C_GMCommonRequest request = new C2C_GMCommonRequest()
                 {
                     Account = zoneScene.GetComponent<AccountInfoComponent>().Account,
-                   Context = $"black2 {content} 35"
+                   Context = $"black2 {content} 60"
                 };
                 C2C_GMCommonResponse repose = (C2C_GMCommonResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             }

@@ -918,6 +918,13 @@ namespace ET
             float speed = petCof.Base_MoveSpeed;
             //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 
+
+            ///传承鉴定：你的召唤物属性提升10%
+            ///宠物如有需要 ，在此处加上
+            ///rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
+            ///rolePetInfo.Vs.Add(hp_Now * (1 + now_SummonAddPro));
+            float now_SummonAddPro = numericComponent.GetAsFloat(NumericType.Now_SummonAddPro);
+
             //存储数据
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
@@ -1162,9 +1169,6 @@ namespace ET
                     }
                 }
             }
-
-
-
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;
@@ -1177,6 +1181,8 @@ namespace ET
                 }
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
+
+
 
             int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
             if (pingfenIndex != -1)
