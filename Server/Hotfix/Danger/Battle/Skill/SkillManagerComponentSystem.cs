@@ -382,10 +382,8 @@ namespace ET
                 {
                     continue;
                 }
-                skillHandler.SetSkillState(SkillState.Finished);
-
-                M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
-                MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
+                self.InterruptSkill(skillHandler.SkillConf.Id);
+                break;
             }
         }
 
