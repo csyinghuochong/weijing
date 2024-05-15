@@ -23,7 +23,10 @@ namespace ET
         public GameObject ButtonClose2;
         public GameObject Btn_AddZuanShi;
         public GameObject Btn_AddGold;
-        
+        public Image JiaZu_ZijinIcon;
+        public Image WeiJing_ZiJinIcon;
+
+
         public List<string> AssetPath = new List<string>();
     }
 
@@ -42,14 +45,19 @@ namespace ET
             self.JiaZu_ZiJin = rc.Get<GameObject>("JiaZu_ZiJin");
 
             self.ImageZuanShiIcon = rc.Get<GameObject>("ImageZuanShiIcon");
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "3");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            if (!self.AssetPath.Contains(path))
-            {
-                self.AssetPath.Add(path);
-            }
             self.ImageZuanShiIcon.GetComponent<Image>().sprite = sp;
+
+            self.JiaZu_ZijinIcon = rc.Get<GameObject>("JiaZu_ZijinIcon").GetComponent<Image>();
+            string path_2 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "16");
+            Sprite sp_2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path_2);
+            self.JiaZu_ZijinIcon.sprite = sp_2;
+            
+            self.WeiJing_ZiJinIcon = rc.Get<GameObject>("WeiJing_ZiJinIcon").GetComponent<Image>();
+            string path_3 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "36");
+            Sprite sp_3 = ResourcesComponent.Instance.LoadAsset<Sprite>(path_3);
+            self.WeiJing_ZiJinIcon.sprite = sp_3;
 
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
             ButtonHelp.AddListenerEx(self.Btn_AddZuanShi, self.OnBtn_AddZuanShi);

@@ -361,6 +361,10 @@ MonoBehaviour:
     gameObject: {fileID: 7877872212250194819}
   - key: WeiJing_ZiJin
     gameObject: {fileID: 1741284625925677507}
+  - key: JiaZu_ZijinIcon
+    gameObject: {fileID: 7951021133949309569}
+  - key: WeiJing_ZiJinIcon
+    gameObject: {fileID: 6149861123551276750}
 --- !u!114 &8784690855397500819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7171,7 +7175,7 @@ GameObject:
   - component: {fileID: 8691564249979078177}
   - component: {fileID: 1200969163226662285}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: WeiJing_ZiJinIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7954,7 +7958,7 @@ GameObject:
   - component: {fileID: 1845496947597026330}
   - component: {fileID: 4864282713761167182}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: JiaZu_ZijinIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8007,7 +8011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b42ee3efd47b9f49a7c92e39c46b105, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1d31f8e9d3529b48a1f8929a6c78276, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
