@@ -8,7 +8,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2E_EMailSendRequest request, E2M_EMailSendResponse response, Action reply)
         {
    
-            using (await CoroutineLockComponent.Instance.Wait(39, request.Id))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.EMail, request.Id))
             {
 
                 //存储邮件

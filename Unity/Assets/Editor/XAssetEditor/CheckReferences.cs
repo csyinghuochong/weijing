@@ -43,6 +43,11 @@ namespace ET
                 string formPath = path.Replace("Assets", Application.dataPath);
                 string toPath = "H:/TempFile/" + fileInfo[fileInfo.Length - 1];
                 CopyDirectory(formPath, toPath);
+
+                string formPathMeta = path.Replace("Assets", Application.dataPath) + ".meta"; 
+                string toPathMata = "H:/TempFile/" + fileInfo[fileInfo.Length - 1] + ".meta";
+
+                CopyDirectory(formPathMeta, toPathMata);
             }
 
             //dataPath: H:/GitWeiJing/Unity/Assets

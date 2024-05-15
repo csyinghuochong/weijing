@@ -214,7 +214,7 @@ namespace ET
 
         public static async ETTask RequestXiLian(this PetComponent self, long itemId, long petId)
         {
-            C2M_RolePetXiLian c2M_RolePetXiLian = new C2M_RolePetXiLian() { BagInfoID = itemId, PetInfoId = petId };
+            C2M_RolePetXiLian c2M_RolePetXiLian = new C2M_RolePetXiLian() { BagInfoID = itemId, PetInfoId = petId, CostItemNum = 1 };
             M2C_RolePetXiLian m2C_RolePetXiLian = (M2C_RolePetXiLian)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetXiLian);
 
             //Log.ILog.Info("ConfigId = " + m2C_RolePetXiLian.rolePetInfo.ConfigId + "ZIZHI:" + m2C_RolePetXiLian.rolePetInfo.ZiZhi_Hp);
