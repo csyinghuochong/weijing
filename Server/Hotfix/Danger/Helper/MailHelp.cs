@@ -1,4 +1,4 @@
-﻿using Alipay.AopSdk.Core.Domain;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -144,67 +144,74 @@ namespace ET
         //指定玩家发送邮件
         public static async ETTask<int> SendUserMail(int zone,long userID, MailInfo mailInfo )
         {
-            long dbCacheId = DBHelper.GetDbCacheId(zone);
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.DBMailInfo });
-            DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
-            if (dBMainInfo == null )
+           
             {
-                return ErrorCode.ERR_NotFindAccount;
+                long dbCacheId = DBHelper.GetDbCacheId(zone);
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.DBMailInfo });
+                DBMailInfo dBMainInfo = d2GGetUnit.Component as DBMailInfo;
+                if (dBMainInfo == null)
+                {
+                    dBMainInfo = (DBMailInfo)await DBHelper.AddDataComponent<DBMailInfo>(zone, userID, DBHelper.DBMailInfo);
+                    Console.WriteLine($"AddDataComponent.DBMailInfo  {userID}");
+                }
+                if (dBMainInfo == null)
+                {
+                    return ErrorCode.ERR_NotFindAccount;
+                }
+
+                int totalGold = 0;
+                List<MailInfo> mailinfolist = dBMainInfo.MailInfoList;
+                for (int i = mailinfolist.Count - 1; i >= 0; i--)
+                {
+                    if (mailinfolist[i].ItemList.Count != 1)
+                    {
+                        continue;
+                    }
+
+                    if (mailinfolist[i].ItemList[0].ItemID == 1)
+                    {
+                        totalGold += mailinfolist[i].ItemList[0].ItemNum;
+                    }
+
+                    if (mailinfolist[i].ItemList[0].ItemID == 10000151)  //之前有一次全服误发精灵龟 /羽毛
+                    {
+                        mailinfolist.RemoveAt(i);
+                        continue;
+                    }
+
+                    if (mailinfolist[i].ItemList.Count >= 1 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[0].ItemID))  //
+                    {
+                        mailinfolist.RemoveAt(i);
+                        continue;
+                    }
+
+                    if (mailinfolist[i].ItemList.Count >= 2 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[1].ItemID))
+                    {
+                        mailinfolist.RemoveAt(i);
+                        continue;
+                    }
+                }
+
+                if (totalGold > 100000000)
+                {
+                    Log.Error($"邮件大量金币: {zone}  {userID}   {totalGold}");
+
+                    if (userID == 2309112494397915136)
+                    {
+                        mailinfolist.Clear();
+                    }
+                }
+
+                //存储邮件
+                if (mailinfolist.Count > 100)
+                {
+                    mailinfolist.RemoveAt(0);
+                }
+                mailinfolist.Add(mailInfo);
+
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
+                return d2GSave.Error;
             }
-
-
-            int totalGold = 0;
-            List<MailInfo> mailinfolist = dBMainInfo.MailInfoList;
-            for (int i = mailinfolist.Count - 1; i >= 0; i--)
-            {
-                if (mailinfolist[i].ItemList.Count != 1)
-                {
-                    continue;
-                }
-
-                if (mailinfolist[i].ItemList[0].ItemID == 1)
-                {
-                    totalGold += mailinfolist[i].ItemList[0].ItemNum;
-                }
-
-                if (mailinfolist[i].ItemList[0].ItemID == 10000151)  //之前有一次全服误发精灵龟 /羽毛
-                {
-                    mailinfolist.RemoveAt(i);
-                    continue;
-                }
-
-                if (mailinfolist[i].ItemList.Count >= 1 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[0].ItemID))  //
-                {
-                    mailinfolist.RemoveAt(i);
-                    continue;
-                }
-
-                if(mailinfolist[i].ItemList.Count >= 2 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[1].ItemID))
-                {
-                    mailinfolist.RemoveAt(i);
-                    continue;
-                }
-            }
-
-            if (totalGold > 100000000)
-            {
-                Log.Error($"邮件大量金币: {zone}  {userID}   {totalGold}");
-
-                if (userID == 2309112494397915136)
-                {
-                    mailinfolist.Clear();
-                }
-            }
-
-            //存储邮件
-            if (mailinfolist.Count > 100)
-            {
-                mailinfolist.RemoveAt(0);
-            }
-            mailinfolist.Add(mailInfo);
-
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
-            return d2GSave.Error;
         }
     }
 }
