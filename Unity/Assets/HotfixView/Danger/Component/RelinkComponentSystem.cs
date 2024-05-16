@@ -185,6 +185,7 @@ namespace ET
             }
             if (self.ModifyDataNumber == 10)
             {
+                PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (TimeHelper.ServerNow() + TimeHelper.Hour).ToString());
                 EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
             }
