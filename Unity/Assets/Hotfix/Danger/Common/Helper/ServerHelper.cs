@@ -312,7 +312,6 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 97, ServerIp = $"{ip}:20555", ServerName = "萤火森林", ServerOpenTime = 1715338800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 98, ServerIp = $"{ip}:20395", ServerName = "前程似锦", ServerOpenTime = 1715598000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
-
             //2024/05/17 19:00:00 1715943600000 合区 精灵国度 - 希望之光  60/56
             //2024/05/17 19:00:00 1715943600000 合区 繁星之梦 - 梦境森林  68/64
             //2024/05/17 19:00:00 1715943600000 合区 诗情画意 - 问鼎江湖  90/89
