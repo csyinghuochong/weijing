@@ -811,12 +811,13 @@ namespace ET
 				return;
 			}
 			long loginErrorTime = 0;
-			string errorTime = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LoginErrorTime);
+            long serverTime = TimeHelper.ServerNow();
+            string errorTime = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LoginErrorTime);
 			if (!ComHelp.IfNull(errorTime))
 			{
 				loginErrorTime = long.Parse(errorTime);
 			}
-			if (TimeHelper.ServerNow() < loginErrorTime)
+			if (serverTime < loginErrorTime)
 			{
 				FloatTipManager.Instance.ShowFloatTip("稍后登录！");
 				return;
@@ -827,17 +828,25 @@ namespace ET
                 return;
             }
 
-
-			if (!string.IsNullOrEmpty(self.AccountReversal))
+            if (!string.IsNullOrEmpty(self.AccountReversal))
 			{
 				self.AccountReversal = StringBuilderHelper.Decrypt(self.AccountReversal);
                 if (!self.AccountReversal.Equals(account))
 				{
+					self.LoginErrorNumber++;
+					if (self.LoginErrorNumber >= 10)
+					{
+						PlayerPrefsHelp.SetString( PlayerPrefsHelp.LoginErrorTime,  (serverTime + TimeHelper.Hour).ToString() );
+					}
+                    if (self.LoginErrorNumber >= 30)
+                    {
+                        PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.OneDay).ToString());
+                    }
                     FloatTipManager.Instance.ShowFloatTip("数据异常！");
                     return;
                 }
             }
-           
+
 
             self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
@@ -881,7 +890,7 @@ namespace ET
 			}
 			if (self.LoginErrorNumber >= 50)
 			{
-				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (TimeHelper.ServerNow() + 10 * 60 * 1000).ToString());
+				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.Minute * 10).ToString());
 			}
 		}
 
