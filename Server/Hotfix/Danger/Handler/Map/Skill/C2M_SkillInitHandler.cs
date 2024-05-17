@@ -105,6 +105,17 @@ namespace ET
                 }
             }
 
+            if (unit.Id == 2294043601589567488)
+            {
+                Console.WriteLine("重置雨天坏蛋生命之魂！");
+
+                for (int i = 0; i < skillSetComponent.LifeShieldList.Count; i++)
+                {
+                    skillSetComponent.LifeShieldList[i].Level = 9;
+                    skillSetComponent.LifeShieldList[i].Exp = 0;
+                }
+            }
+
             response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
             response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
             response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
