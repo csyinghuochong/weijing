@@ -583,6 +583,8 @@ namespace ET
 
         public static void InitData(this UIItemTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler = null)
         {
+            Log.ILog.Debug($"getway:  {baginfo.GetWay}");
+
             self.BagInfo = baginfo;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
 
