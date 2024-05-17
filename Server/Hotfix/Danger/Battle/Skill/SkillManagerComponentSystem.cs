@@ -1019,6 +1019,10 @@ namespace ET
             int skillcnt = self.Skills.Count;
             for (int i = skillcnt - 1; i >= 0; i-- )
             {
+                if (self.IsDisposed)
+                {
+                    return;
+                }
                 self.Skills[i].OnUpdate();
                 if (self.Skills.Count == 0 || self.SelfUnit.IsDisposed)
                 {

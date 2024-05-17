@@ -592,6 +592,10 @@ namespace ET
                 {
                     break;
                 }
+                if (self.IsDisposed)
+                {
+                    return;
+                }
 
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
