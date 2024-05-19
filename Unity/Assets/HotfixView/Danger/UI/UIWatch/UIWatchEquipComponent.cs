@@ -28,7 +28,7 @@ namespace ET
             self.UIEquipSetComponent1.Position = 4;
 
             self.UIEquipSetComponent2 = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet2, 1);
-            self.UIEquipSetComponent1.Position = 5;
+            self.UIEquipSetComponent2.Position = 5;
 
             self.OnInitUI();
         }
