@@ -23,6 +23,7 @@ namespace ET
         public const string Watcher = "watcher";
         public const string Level = "level";
         public const string Gold = "gold";
+        public const string RechargeChaXun = "rechargechaxun";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad
