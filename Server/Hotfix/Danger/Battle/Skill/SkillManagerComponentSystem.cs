@@ -331,7 +331,8 @@ namespace ET
                 skillHandler.OnFinished();
                 ObjectPool.Instance.Recycle(skillHandler);
             }
-
+            self.DelaySkillList.Clear();
+            TimerComponent.Instance?.Remove(ref self.Timer);
             if (notice && unit!=null && !unit.IsDisposed)
             {
                 self.M2C_UnitFinishSkill.UnitId = unit.Id;
