@@ -244,11 +244,11 @@ namespace ET
                         unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
 
 						//角色换账号
-						//if (unit.GetComponent<UserInfoComponent>().UserInfo.Name.Equals("杨丶大桃"))
-						//{
-      //                      unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID = request.AccountId;
-      //                  }
-                        unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
+						if (unit.GetComponent<UserInfoComponent>().UserInfo.Name.Equals("进击的小宝宝"))
+						{
+							unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID = request.AccountId;
+						}
+						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
 						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
