@@ -60,7 +60,7 @@ namespace ET
             int unionLevel = int.Parse(responseUnionEnter.Par);
             UnionConfig unionConfig = UnionConfigCategory.Instance.Get(unionLevel);
 
-            Console.WriteLine($"unionConfig:  {unionLevel}  {unionQiangHuaConfig.QiangHuaLv}");
+            Console.WriteLine($"unionConfig:  {unionLevel}  {unionConfig.XiuLianLevel} {unionQiangHuaConfig.QiangHuaLv}");
             if (unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
             {
                 reply();
