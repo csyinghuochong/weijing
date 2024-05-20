@@ -15,6 +15,12 @@ namespace ET
                 return;
             }
 
+            long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+            if (unionid == 0)
+            {
+                return;
+            }
+
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int xiulianid = numericComponent.GetAsInt(numerType);
 
@@ -44,6 +50,21 @@ namespace ET
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
+            }
+
+
+            long selfgold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold;
+            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
+                       DBHelper.GetUnionServerId(unit.DomainZone()),
+                       new M2U_UnionOperationRequest() { OperateType = 3, UnitId = unit.Id, UnionId = unionid, Par = selfgold.ToString() });
+            int unionLevel = int.Parse(responseUnionEnter.Par);
+            UnionConfig unionConfig = UnionConfigCategory.Instance.Get(unionLevel);
+
+            Console.WriteLine($"unionConfig:  {unionLevel}  {unionQiangHuaConfig.QiangHuaLv}");
+            if (unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
+            {
+                reply();
+                return; 
             }
 
             unit.GetComponent<NumericComponent>().ApplyValue( numerType, xiulianid+1);
