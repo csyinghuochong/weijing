@@ -1024,20 +1024,21 @@ namespace ET
                 {
                     return;
                 }
-                self.Skills[i].OnUpdate();
+                
                 if (self.Skills.Count == 0 || self.SelfUnit.IsDisposed)
                 {
-                    //Unit unit = self.GetParent<Unit>();
-                    //Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    Unit unit = self.GetParent<Unit>();
+                    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
                 if (i >= self.Skills.Count)
                 {
                     Unit unit = self.GetParent<Unit>();
-                    Log.Console($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     Log.Warning($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
+
+                self.Skills[i].OnUpdate();
 
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
