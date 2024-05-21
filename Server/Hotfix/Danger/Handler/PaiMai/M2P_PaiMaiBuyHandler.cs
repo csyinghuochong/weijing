@@ -40,6 +40,7 @@ namespace ET
 
             if (paiMaiItemInfo == null)
             {
+                response.Error = ErrorCode.ERR_ItemNotExist;
                 reply();
                 return;
             }
