@@ -43,7 +43,7 @@ namespace ET
             if (splitNumber >= useBagInfo.ItemNum )
             {
                 Log.Error($"C2M_ItemSplitRequest 3");
-                response.Error = ErrorCode.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_Parameter;
                 reply();
                 return;
             }
