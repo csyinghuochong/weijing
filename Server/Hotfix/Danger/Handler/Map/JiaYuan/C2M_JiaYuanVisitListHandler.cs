@@ -52,9 +52,11 @@ namespace ET
                 long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unit.Id, Component = DBHelper.DBFriendInfo });
                 DBFriendInfo dBFriendInfo = d2GGetUnit.Component as DBFriendInfo;
+
+                List<long> friendList = new List<long>();
                 if (dBFriendInfo != null)
                 {
-                    List<long> friendList = dBFriendInfo.FriendList;
+                    friendList = dBFriendInfo.FriendList;
                     for (int i = 0; i < friendList.Count; i++)
                     {
                         if (friendList[i] == unit.Id)
