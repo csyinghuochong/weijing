@@ -1025,6 +1025,8 @@ namespace ET
                     return;
                 }
 
+                self.Skills[i].OnUpdate();
+
                 int skillcnt_2 = self.Skills.Count;
                 if (skillcnt_2 == 0  ||  i >= skillcnt_2)
                 {
@@ -1032,8 +1034,6 @@ namespace ET
                     Log.Warning($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
-
-                self.Skills[i].OnUpdate();
 
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
