@@ -1024,14 +1024,9 @@ namespace ET
                 {
                     return;
                 }
-                
-                if (self.Skills.Count == 0 || self.SelfUnit.IsDisposed)
-                {
-                    Unit unit = self.GetParent<Unit>();
-                    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
-                    break;
-                }
-                if (i >= self.Skills.Count)
+
+                int skillcnt_2 = self.Skills.Count;
+                if (skillcnt_2 == 0  ||  i >= skillcnt_2)
                 {
                     Unit unit = self.GetParent<Unit>();
                     Log.Warning($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
