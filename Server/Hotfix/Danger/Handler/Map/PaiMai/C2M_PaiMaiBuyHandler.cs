@@ -64,6 +64,7 @@ namespace ET
             int buyNum = 0;
             if (request.BuyNum < 0 || request.BuyNum > paiMaiItemInfo.BagInfo.ItemNum)
             {
+                Log.Error($"C2M_PaiMaiBuyRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

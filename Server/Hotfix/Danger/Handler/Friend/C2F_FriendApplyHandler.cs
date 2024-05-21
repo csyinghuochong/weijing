@@ -15,6 +15,7 @@ namespace ET
 
             if (dBFriendInfo == null)
             {
+                Log.Error($"C2F_FriendApplyRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

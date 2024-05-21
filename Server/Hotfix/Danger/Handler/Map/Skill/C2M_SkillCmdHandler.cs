@@ -29,6 +29,7 @@ namespace ET
 
                 if (!SkillConfigCategory.Instance.Contain(request.SkillID))
                 {
+                    Log.Error($"C2M_SkillCmd 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
@@ -45,6 +46,7 @@ namespace ET
                     if (!ItemConfigCategory.Instance.Contain(request.ItemId))
                     {
                         Console.WriteLine($"request.SkillID item:  {request.ItemId}");
+                        Log.Error($"C2M_SkillCmd 2");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -54,6 +56,7 @@ namespace ET
                     if (itemConfig.ItemSubType != 101 && itemConfig.ItemSubType != 110)
                     {
                         Console.WriteLine($"request.SkillID error:  {request.SkillID}");
+                        Log.Error($"C2M_SkillCmd 3");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -68,8 +71,9 @@ namespace ET
                     if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
                    && request.SkillID != 60000011 && skillConfig.SkillActType != 0 && request.ItemId == 0)
                     {
+                        Log.Error($"C2M_SkillCmd 4");
                         Console.WriteLine($"request.SkillID==null:  {request.SkillID}   {unit.DomainZone()}  {unit.Id}");
-                        response.Error = ErrorCode.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_UseSkillError;
                         reply();
                         return;
                     }

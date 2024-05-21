@@ -11,6 +11,7 @@ namespace ET
         {
             if (!ConfigHelper.KillMonsterReward.Keys.Contains(request.Key))
             {
+                Log.Error($"C2M_KillMonsterRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -18,6 +19,7 @@ namespace ET
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.KillMonsterReward) >= request.Key)
             {
+                Log.Error($"C2M_KillMonsterRewardRequest 2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -25,6 +27,7 @@ namespace ET
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.KillMonsterNumber) < request.Key)
             {
+                Log.Error($"C2M_KillMonsterRewardRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -44,6 +47,7 @@ namespace ET
 
             if (items.Length < request.Index + 1 || request.Index < 0)
             {
+                Log.Error($"C2M_KillMonsterRewardRequest 4");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

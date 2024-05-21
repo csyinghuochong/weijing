@@ -13,6 +13,7 @@ namespace ET
             {
                 if (string.IsNullOrEmpty(request.ChatInfo.ChatMsg))
                 {
+                    Log.Error($"C2Chat_SendChatHandler.1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

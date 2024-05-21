@@ -15,7 +15,8 @@ namespace ET
             }
             catch (Exception ex) 
             {
-                Log.Error(ex.ToString());
+                Log.Error(ex);  
+                Log.Error($"C2M_JingHeWearRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

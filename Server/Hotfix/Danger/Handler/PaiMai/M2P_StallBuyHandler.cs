@@ -22,7 +22,6 @@ namespace ET
 
             if (paiMaiItemInfo == null)
             {
-                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }

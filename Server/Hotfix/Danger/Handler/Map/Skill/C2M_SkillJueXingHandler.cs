@@ -13,6 +13,7 @@ namespace ET
             OccupationJueXingConfig occupationJueXingConfig = OccupationJueXingConfigCategory.Instance.Get(request.JueXingId);
             if (occupationJueXingConfig == null)
             {
+                Log.Error($"C2M_SkillJueXingRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

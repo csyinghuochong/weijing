@@ -16,6 +16,7 @@ namespace ET
 
             if (request.BagInfoIDs.Count <= 0)
             {
+                Log.Error($"C2M_SeasonUseFruitRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
             }
@@ -40,6 +41,7 @@ namespace ET
             BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[0]);
             if (bagInfo == null)
             {
+                Log.Error($"C2M_SeasonUseFruitRequest 2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -48,8 +50,10 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             if (itemConfig.ItemType != ItemTypeEnum.Consume || itemConfig.ItemSubType != 132)
             {
+                Log.Error($"C2M_SeasonUseFruitRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
+                return;
             }
 
             reduceTime += long.Parse(itemConfig.ItemUsePar);

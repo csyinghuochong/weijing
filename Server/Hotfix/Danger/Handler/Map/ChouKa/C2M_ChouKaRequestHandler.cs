@@ -28,6 +28,7 @@ namespace ET
             }
             if (request.ChouKaType != 1 && request.ChouKaType != 10)
             {
+                Log.Error($"C2M_ChouKaRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

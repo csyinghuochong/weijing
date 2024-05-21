@@ -18,6 +18,7 @@ namespace ET
 
             if (!ConfigHelper.ItemXiLianNumReward.Keys.Contains(request.RewardId))
             {
+                Log.Error($"C2M_ItemXiLianNumReward 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

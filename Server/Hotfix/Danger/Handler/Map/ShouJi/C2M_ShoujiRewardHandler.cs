@@ -11,6 +11,7 @@ namespace ET
             ShouJiChapterInfo shouJiChapterInfo = shoujiComponent.GetShouJiChapterInfo(request.ChapterId);
             if (!ShouJiConfigCategory.Instance.Contain(request.ChapterId))
             {
+                Log.Error($"C2M_ShoujiRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

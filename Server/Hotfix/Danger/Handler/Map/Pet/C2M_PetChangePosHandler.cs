@@ -11,6 +11,7 @@ namespace ET
 
             if (request.Index1 < 0 || request.Index1 >= petComponent.RolePetInfos.Count)
             {
+                Log.Error($"C2M_PetChangePosRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -18,6 +19,7 @@ namespace ET
 
             if (request.Index2 < 0 || request.Index2 >= petComponent.RolePetInfos.Count)
             {
+                Log.Error($"C2M_PetChangePosRequest 2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -25,6 +27,7 @@ namespace ET
 
             if (request.Index1 == request.Index2)
             {
+                Log.Error($"C2M_PetChangePosRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

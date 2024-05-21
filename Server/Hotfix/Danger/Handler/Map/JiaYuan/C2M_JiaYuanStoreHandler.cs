@@ -12,6 +12,7 @@ namespace ET
             int hourseId = request.HorseId;
             if (hourseId >= (int)ItemLocType.ItemLocMax)
             {
+                Log.Error($"C2M_JiaYuanStoreRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;    
                 reply();
                 return;

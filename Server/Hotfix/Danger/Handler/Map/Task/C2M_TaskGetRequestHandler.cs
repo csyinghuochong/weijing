@@ -11,6 +11,7 @@ namespace ET
         {
             if (!TaskConfigCategory.Instance.Contain(request.TaskId))
             {
+                Log.Error($"C2M_TaskGetRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -81,6 +82,7 @@ namespace ET
             {
                 if (unit.GetComponent<TaskComponent>().GetTaskList(taskConfig.TaskType).Count > 1)
                 {
+                    Log.Error($"C2M_TaskGetRequest 2");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

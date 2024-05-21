@@ -12,6 +12,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.FashionActiveIds.Contains(request.FashionId))
             {
+                Log.Error($"C2M_FashionWearRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -31,6 +32,7 @@ namespace ET
             }
             if (!canwear)
             {
+                Log.Error($"C2M_FashionWearRequest.2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

@@ -11,6 +11,7 @@ namespace ET
         {
             if (!PetHelper.IsShenShouFull(unit.GetComponent<PetComponent>().RolePetInfos))
             {
+                Log.Error($"C2M_PetFragmentDuiHuan 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

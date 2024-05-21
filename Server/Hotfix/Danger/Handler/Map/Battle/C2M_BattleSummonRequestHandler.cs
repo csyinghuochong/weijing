@@ -13,6 +13,7 @@ namespace ET
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.Battle)
             {
+                Log.Error($"C2M_BattleSummonRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

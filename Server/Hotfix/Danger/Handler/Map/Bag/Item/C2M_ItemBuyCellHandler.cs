@@ -55,6 +55,7 @@ namespace ET
                 int storeindex = request.OperateType;
                 if (storeindex < 5 || storeindex > 9)
                 {
+                    Log.Error($"C2M_ItemBuyCellRequest.1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

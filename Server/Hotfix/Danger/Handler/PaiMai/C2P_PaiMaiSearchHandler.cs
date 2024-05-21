@@ -10,14 +10,12 @@ namespace ET
         {
             if (request.FindTypeList.Count <= 0)
             {
-                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
 
             if (request.FindItemIdList.Count <= 0)
             {
-                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -28,7 +26,6 @@ namespace ET
                 DBPaiMainInfo dBPaiMainInfo = paiMaiComponent.GetPaiMaiDBByType(type);
                 if (dBPaiMainInfo == null)
                 {
-                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }

@@ -11,15 +11,17 @@ namespace ET
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Sell, unit.Id))
 			{
 				if (request.PaiMaiItemInfo.BagInfo.ItemNum <= 0)
-				{
+                {
+                    Log.Error($"C2M_PaiMaiSellRequest 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
 					return;
 				}
 				long allprice = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
                 if (allprice > 10000000 || allprice < 0)
-				{
-					response.Error = ErrorCode.ERR_ModifyData;
+                {
+                    Log.Error($"C2M_PaiMaiSellRequest 2");
+                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
@@ -76,7 +78,8 @@ namespace ET
 
 				long gold = (long)request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
 				if (gold < 0)
-				{
+                {
+                    Log.Error($"C2M_PaiMaiSellRequest 3");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
 					return;

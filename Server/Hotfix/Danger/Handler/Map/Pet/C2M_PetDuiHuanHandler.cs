@@ -21,6 +21,7 @@ namespace ET
             string[] configInfo = globalValueConfig.Value.Split('@');
             if(configInfo.Length < 2)
             {
+                Log.Error($"C2M_PetDuiHuanRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

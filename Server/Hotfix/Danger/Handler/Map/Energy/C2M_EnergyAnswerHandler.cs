@@ -9,8 +9,9 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_EnergyAnswerRequest request, M2C_EnergyAnswerResponse response, Action reply)
         {
-            if (unit.DomainZone() != 3)
+            if (unit.DomainZone() != 0)
             {
+                Log.Error($"C2M_EnergyAnswerRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

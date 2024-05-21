@@ -20,6 +20,7 @@ namespace ET
                 }
                 if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
                 {
+                    Log.Error($"C2M_ZhanQuReceiveRequest 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

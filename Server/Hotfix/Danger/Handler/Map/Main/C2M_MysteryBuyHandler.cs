@@ -13,6 +13,7 @@ namespace ET
                 int mysteryId = request.MysteryItemInfo.MysteryId;
                 if (!MysteryConfigCategory.Instance.Contain(mysteryId))
                 {
+                    Log.Error($"C2M_MysteryBuyRequest 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

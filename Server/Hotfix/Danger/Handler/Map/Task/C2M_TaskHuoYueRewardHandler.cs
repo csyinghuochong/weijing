@@ -18,6 +18,7 @@ namespace ET
             }
             if (!HuoYueRewardConfigCategory.Instance.Contain(request.HuoYueId))
             {
+                Log.Error($"C2M_TaskHuoYueRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

@@ -18,6 +18,7 @@ namespace ET
 
             if (!SeasonJingHeConfigCategory.Instance.Contain(request.JingHeId))
             {
+                Log.Error($"C2M_SeasonLevelRewardRequest 4");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

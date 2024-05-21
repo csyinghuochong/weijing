@@ -11,6 +11,7 @@ namespace ET
         {
             if (!ConfigHelper.RechargeReward.ContainsKey(request.RechargeNumber))
             {
+                Log.Error($"C2M_RechargeRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

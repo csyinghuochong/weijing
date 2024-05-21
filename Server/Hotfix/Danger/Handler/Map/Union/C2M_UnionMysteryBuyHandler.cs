@@ -21,6 +21,7 @@ namespace ET
                 int mysteryId = request.MysteryId;
                 if (!MysteryConfigCategory.Instance.Contain(mysteryId))
                 {
+                    Log.Error($"C2M_UnionMysteryBuyRequest 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

@@ -13,6 +13,7 @@ namespace ET
 
             if (!MysteryConfigCategory.Instance.Contain(mysteryId))
             {
+                Log.Error($"C2M_JiaYuanMysteryBuyRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

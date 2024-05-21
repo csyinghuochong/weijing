@@ -13,6 +13,7 @@ namespace ET
             {
                 if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
                 {
+                    Log.Error($"C2M_ActivityReceiveRequest.1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
@@ -29,6 +30,7 @@ namespace ET
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                 if (activityConfig.ActivityType!= request.ActivityType)
                 {
+                    Log.Error($"C2M_ActivityReceiveRequest.2");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
@@ -239,6 +241,7 @@ namespace ET
                         rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
                         if (rechargeNum < needrecharge)
                         {
+                            Log.Error($"C2M_ActivityReceiveRequest.3");
                             response.Error = ErrorCode.ERR_ModifyData;
                             reply();
                             return;

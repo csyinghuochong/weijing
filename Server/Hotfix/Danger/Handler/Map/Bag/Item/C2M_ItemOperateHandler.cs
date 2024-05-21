@@ -552,6 +552,7 @@ namespace ET
                     int sellNum = int.Parse(sellinfo[1]);
                     if (sellNum <= 0 || sellNum > useBagInfo.ItemNum)
                     {
+                        Log.Error($"C2M_ItemOperateHandler 3");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -596,6 +597,7 @@ namespace ET
                     int sellNum = int.Parse(request.OperatePar.Split('_')[1]);
                     if (sellNum <= 0 || sellNum > useBagInfo.ItemNum)
                     {
+                        Log.Error($"C2M_ItemOperateHandler 4");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -853,6 +855,7 @@ namespace ET
                     }
                     if (useBagInfo.Loc != (int)ItemLocType.ItemLocBag)
                     {
+                        Log.Error($"C2M_ItemOperateHandler 5");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -875,6 +878,7 @@ namespace ET
                     }
                     if (useBagInfo.Loc != hourseId)
                     {
+                        Log.Error($"C2M_ItemOperateHandler 6");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;

@@ -10,6 +10,7 @@ namespace ET
         {
             if (request.FashionId == 0 || !FashionConfigCategory.Instance.Contain(request.FashionId))
             {
+                Log.Error($"C2M_FashionActiveRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

@@ -9,6 +9,7 @@ namespace ET
         {
             if (!TowerConfigCategory.Instance.Contain(request.RewardId))
             {
+                Log.Error($"C2M_RandomTowerRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -30,6 +31,7 @@ namespace ET
                 int passId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
                 if (passId < request.RewardId )
                 {
+                    Log.Error($"C2M_RandomTowerRewardRequest 2");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
@@ -38,6 +40,7 @@ namespace ET
 
             if (sceneType != SceneTypeEnum.TrialDungeon)
             {
+                Log.Error($"C2M_RandomTowerRewardRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

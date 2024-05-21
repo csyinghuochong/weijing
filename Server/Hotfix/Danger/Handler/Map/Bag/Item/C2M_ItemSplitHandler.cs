@@ -26,6 +26,7 @@ namespace ET
             catch (Exception ex)
             {
                 Log.Error(ex.ToString());
+                Log.Error($"C2M_ItemSplitRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -33,6 +34,7 @@ namespace ET
             
             if (splitNumber <= 0 )
             {
+                Log.Error($"C2M_ItemSplitRequest 2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -40,12 +42,14 @@ namespace ET
 
             if (splitNumber >= useBagInfo.ItemNum )
             {
+                Log.Error($"C2M_ItemSplitRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             if (splitNumber >= 100000)
             {
+                Log.Error($"C2M_ItemSplitRequest 4");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -54,6 +58,7 @@ namespace ET
             useBagInfo.ItemNum -= (int)splitNumber;
             if (useBagInfo.ItemNum <= 0)
             {
+                Log.Error($"C2M_ItemSplitRequest 5");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

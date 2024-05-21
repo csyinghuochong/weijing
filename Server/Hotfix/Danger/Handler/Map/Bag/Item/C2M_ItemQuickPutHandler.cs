@@ -19,6 +19,7 @@ namespace ET
             int hourseId = request.HorseId;
             if (hourseId < (int)ItemLocType.ItemWareHouse1 || hourseId > (int)ItemLocType.ItemWareHouse4)
             {
+                Log.Error($"C2M_ItemQuickPutRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

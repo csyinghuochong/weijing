@@ -11,6 +11,7 @@ namespace ET
         {
             if (!PetEggDuiHuanConfigCategory.Instance.Contain(request.ChouKaId))
             {
+                Log.Error($"C2M_PetEggDuiHuanRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

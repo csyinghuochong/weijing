@@ -16,7 +16,7 @@ namespace ET
             }
             if (!TakeCardRewardConfigCategory.Instance.Contain(request.RewardId))
             {
-                Log.Console($"C2M_ChouKaRewardError {unit.Id} {request.RewardId}");
+                Log.Error($"C2M_ChouKaRewardError {unit.Id} {request.RewardId}");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

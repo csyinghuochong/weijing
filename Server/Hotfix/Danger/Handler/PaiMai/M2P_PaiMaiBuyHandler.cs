@@ -40,13 +40,13 @@ namespace ET
 
             if (paiMaiItemInfo == null)
             {
-                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             
             if (request.BuyNum < 0 || request.BuyNum > paiMaiItemInfo.BagInfo.ItemNum)
             {
+                Log.Error("M2P_PaiMaiBuyHandler 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

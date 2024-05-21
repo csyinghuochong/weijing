@@ -22,6 +22,7 @@ namespace ET
                 }
                 if (request.CreateName.Contains(" "))
                 {
+					Log.Error($"C2A_CreateRoleHandler.1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
@@ -81,6 +82,7 @@ namespace ET
 						DBAccountInfo newAccount = newAccountList[0];
 						if (newAccount.UserList.Count > 10)
 						{
+                            Log.Error($"C2A_CreateRoleHandler.2");
                             response.Error = ErrorCode.ERR_ModifyData;
                             reply();
                             return;
@@ -88,6 +90,7 @@ namespace ET
 
 						if (!OccupationConfigCategory.Instance.Contain(request.CreateOcc))
 						{
+                            Log.Error($"C2A_CreateRoleHandler.3");
                             response.Error = ErrorCode.ERR_ModifyData;
                             reply();
                             return;

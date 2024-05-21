@@ -502,6 +502,7 @@ namespace ET
                 int weekTaskNumber = numericComponent.GetAsInt(NumericType.WeeklyTaskNumber) + 1;
                 if (weekTaskNumber >= GlobalValueConfigCategory.Instance.Get(109).Value2 + 1)
                 {
+                    Log.Error($"TaskComponent 1 ");
                     return ErrorCode.ERR_ModifyData;
                 }
 
@@ -519,6 +520,7 @@ namespace ET
                 int ringTaskNumber = numericComponent.GetAsInt(NumericType.RingTaskNumber) + 1;
                 if (ringTaskNumber >= 101)
                 {
+                    Log.Error($"TaskComponent 2 ");
                     return ErrorCode.ERR_ModifyData;
                 }
 
@@ -578,7 +580,7 @@ namespace ET
             {
                 if (self.RoleComoleteTaskList.Contains(taskid))
                 {
-                    return ErrorCode.ERR_ModifyData;
+                    return ErrorCode.ERR_AlreadyReceived;
                 }
 
                 if (!self.RoleComoleteTaskList.Contains(taskid))

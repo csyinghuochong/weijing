@@ -21,6 +21,7 @@ namespace ET
 
             if (!ConfigHelper.PetHeXinExploreReward.Keys.Contains(request.RewardId))
             {
+                Log.Error($"C2M_PetHeXinExploreReward 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

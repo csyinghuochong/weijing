@@ -17,7 +17,7 @@ namespace ET
                 {
                     if (request.PointList[i] < 0 || request.PointList[i] > 2000)
                     {
-                        Log.Warning($"C2M_RoleAddPointRequest: {unit.DomainZone()}  {unit.Id}  {request.PointList[i]}");
+                        Log.Error($"C2M_RoleAddPointRequest: {unit.DomainZone()}  {unit.Id}  {request.PointList[i]}");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -28,6 +28,7 @@ namespace ET
                 int remainPoint = (unit.GetComponent<UserInfoComponent>().UserInfo.Lv - 1) * 10 - totalPoint;
                 if (remainPoint < 0)
                 {
+                    Log.Error($"C2M_RoleAddPointRequest 2");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

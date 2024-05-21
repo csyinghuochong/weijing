@@ -11,6 +11,7 @@ namespace ET
         {
             if (!ConfigHelper.LeavlRewardItem.Keys.Contains(request.LvKey))
             {
+                Log.Error($"C2M_LeavlRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -18,6 +19,7 @@ namespace ET
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LeavlReward) >= request.LvKey)
             {
+                Log.Error($"C2M_LeavlRewardRequest 2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -25,6 +27,7 @@ namespace ET
 
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < request.LvKey)
             {
+                Log.Error($"C2M_LeavlRewardRequest 3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -44,6 +47,7 @@ namespace ET
 
             if (items.Length < request.Index + 1 || request.Index < 0)
             {
+                Log.Error($"C2M_LeavlRewardRequest 4");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

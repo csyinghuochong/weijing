@@ -12,6 +12,7 @@ namespace ET
             // request加个仓库。  0是ItemLocType.BagItemList     19ItemLocType.GemWareHouse1
             if (request.LocType != 0 && request.LocType != 19)
             {
+                Log.Error($"C2M_GemHeChengQuickRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

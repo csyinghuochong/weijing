@@ -13,6 +13,7 @@ namespace ET
 
             if (request.OperatateType != 1 && request.OperatateType != 2 && request.OperatateType != 3)
             {
+                Log.Error($"C2M_DungeonHappyMoveRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

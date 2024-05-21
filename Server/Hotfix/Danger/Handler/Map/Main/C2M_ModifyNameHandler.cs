@@ -28,6 +28,7 @@ namespace ET
 
             if (request.NewName.Contains(" "))
             {
+                Log.Error($"C2M_ModifyNameRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

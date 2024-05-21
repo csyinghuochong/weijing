@@ -15,14 +15,12 @@ namespace ET
                 DBPopularizeInfo dBPopularizeInfo = await DBHelper.GetComponentCache<DBPopularizeInfo>(scene.DomainZone(), request.ActorId);
                 if (dBPopularizeInfo == null)
                 {
-                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
                 UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), request.ActorId);
                 if (userInfoComponent == null)
                 {
-                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }

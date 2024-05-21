@@ -60,6 +60,7 @@ namespace ET
             }
             else
             {
+                Log.Error($"C2M_PetHeXinChouKaRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

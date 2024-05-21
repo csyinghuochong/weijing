@@ -17,6 +17,7 @@ namespace ET
             }
             if (!EquipMakeConfigCategory.Instance.Contain(request.MakeId))
             {
+                Log.Error($"C2M_MakeEquipRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

@@ -11,6 +11,7 @@ namespace ET
         {
             if (unit.DomainZone() != 3)
             {
+                Log.Error($"C2M_EnergyReceiveRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -19,12 +20,14 @@ namespace ET
             EnergyComponent energyComponent = unit.GetComponent<EnergyComponent>();
             if (request.RewardType < 0 || request.RewardType >= energyComponent.GetRewards.Count)
             {
+                Log.Error($"C2M_EnergyReceiveRequest.2");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             if (energyComponent.GetRewards[request.RewardType] == 1)
             {
+                Log.Error($"C2M_EnergyReceiveRequest.3");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
@@ -32,6 +35,7 @@ namespace ET
             //0 早起  1早睡 2 答题
             if (request.RewardType == 1 && !energyComponent.EarlySleepReward)
             {
+                Log.Error($"C2M_EnergyReceiveRequest.4");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

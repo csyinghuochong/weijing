@@ -27,6 +27,7 @@ namespace ET
 
             if (!OccupationTwoConfigCategory.Instance.Contain(request.OccTwoID))
             {
+                Log.Error($"C2M_ChangeOccTwoRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

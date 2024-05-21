@@ -21,7 +21,6 @@ namespace ET
                 MailInfo mailInfo = g_SendChatRequest.MailInfo;
                 if (mailInfo == null)
                 {
-                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }

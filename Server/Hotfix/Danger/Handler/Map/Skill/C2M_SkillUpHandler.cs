@@ -12,7 +12,8 @@ namespace ET
 		{
 			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			if (skillSetComponent.GetBySkillID(request.SkillID) == null)
-			{
+            {
+                Log.Error($"C2M_SkillUp 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

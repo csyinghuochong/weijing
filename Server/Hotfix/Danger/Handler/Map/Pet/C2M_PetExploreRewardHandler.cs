@@ -18,6 +18,7 @@ namespace ET
 
             if (!ConfigHelper.PetExploreReward.Keys.Contains(request.RewardId))
             {
+                Log.Error($"C2M_PetExploreReward 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

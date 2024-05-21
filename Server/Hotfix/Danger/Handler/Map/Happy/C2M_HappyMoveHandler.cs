@@ -13,6 +13,7 @@ namespace ET
 
             if (request.OperatateType != 1 && request.OperatateType != 3)
             {
+                Log.Error($"C2M_HappyMoveRequest.1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

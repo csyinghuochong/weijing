@@ -16,6 +16,7 @@ namespace ET
             }
             if (request.Index < 0 || request.Index >= ConfigHelper.WelfareInvestList.Count)
             {
+                Log.Error($"C2M_WelfareInvestRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

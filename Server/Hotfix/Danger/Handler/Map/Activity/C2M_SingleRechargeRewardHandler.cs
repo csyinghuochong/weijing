@@ -19,6 +19,7 @@ namespace ET
 
             if (!ConfigHelper.SingleRechargeReward.ContainsKey(request.RewardId))
             {
+                Log.Error($"C2M_SingleRechargeRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

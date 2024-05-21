@@ -32,6 +32,7 @@ namespace ET
 
                     if (!ActivityConfigHelper.ChouKaNumberReward.ContainsKey(request.RewardId))
                     {
+                        Log.Error($"C2M_ActivityReceiveRequest.4");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -49,6 +50,7 @@ namespace ET
                 case ActivityConfigHelper.ActivityV1_Consume:
                     if (!ActivityConfigHelper.ConsumeDiamondReward.ContainsKey(request.RewardId))
                     {
+                        Log.Error($"C2M_ActivityReceiveRequest.5");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
@@ -163,6 +165,7 @@ namespace ET
                     }
                     if (!activityComponent.ActivityV1Info.LiBaoAllIds.Contains(request.RewardId))
                     {
+                        Log.Error($"C2M_ActivityReceiveRequest.6");
                         response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;

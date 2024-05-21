@@ -10,6 +10,7 @@ namespace ET
         {
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawReward) == 1)
             {
+                Log.Error($"C2M_WelfareDrawRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;

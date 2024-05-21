@@ -13,6 +13,7 @@ namespace ET
             {
                 if (!TaskCountryConfigCategory.Instance.Contain(request.TaskId))
                 {
+                    Log.Error($"C2M_CommitTaskCountryRequest 1");
                     response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;

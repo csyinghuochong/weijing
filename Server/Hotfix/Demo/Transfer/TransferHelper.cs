@@ -56,6 +56,7 @@ namespace ET
                         int petfubenid = int.Parse(request.paramInfo);
                         if (!PetFubenConfigCategory.Instance.Contain(petfubenid))
                         {
+                            Log.Error($"TransferHelper 1");
                             return ErrorCode.ERR_ModifyData;
                         }
                         Scene oldscene = unit.DomainScene();
@@ -369,7 +370,7 @@ namespace ET
                         }
                         if (d2GGetUnit.FubenInstanceId == 0)
                         {
-                            return ErrorCode.ERR_ModifyData;
+                            return ErrorCode.ERR_AlreadyFinish;
                         }
                         if ( !FunctionHelp.IsInTime(1045))
                         {
