@@ -13,9 +13,8 @@ namespace ET
             switch (request.LoadType)
             {
                 case 1: //狩猎
-                    ActivityHelper.ShowLieOpen = request.LoadValue == "1";
-
-                    Log.Console($" ActivityHelper.ShowLieOpen:  {ActivityHelper.ShowLieOpen}");
+                    ConfigData.ShowLieOpen = request.LoadValue == "1";
+                    Console.WriteLine($" ConfigData.ShowLieOpen:  {ConfigData.ShowLieOpen}");
                     break;
             }
 

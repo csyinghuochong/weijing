@@ -47,8 +47,7 @@ namespace ET
             
             if (request.BuyNum < 0 || request.BuyNum > paiMaiItemInfo.BagInfo.ItemNum)
             {
-                Log.Error("M2P_PaiMaiBuyHandler 1");
-                response.Error = ErrorCode.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_Parameter;
                 reply();
                 return;
             }

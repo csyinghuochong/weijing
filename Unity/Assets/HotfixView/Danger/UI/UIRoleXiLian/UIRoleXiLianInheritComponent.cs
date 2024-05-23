@@ -93,8 +93,9 @@ namespace ET
 				self.XiLianItemUI.UpdateItem(bagInfo, ItemOperateEnum.None);
 			}
 
+
 			//洗炼消耗
-			string[] costitem = GlobalValueConfigCategory.Instance.Get(88).Value.Split(';');
+			string[] costitem = ItemHelper.GetInheritCost(bagInfo.InheritTimes).Split(';');
 			int costitemid		= int.Parse(costitem[0]);
 			int constitemnumber = int.Parse(costitem[1]);
 			BagInfo bagInfoNeed = new BagInfo() { ItemID = costitemid, ItemNum = constitemnumber };
@@ -236,8 +237,8 @@ namespace ET
 			}
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			string costitem = GlobalValueConfigCategory.Instance.Get(88).Value;
-			if (!self.BagComponent.CheckNeedItem(costitem))
+			string costitem = ItemHelper.GetInheritCost(bagInfo.InheritTimes);
+            if (!self.BagComponent.CheckNeedItem(costitem))
 			{
 				FloatTipManager.Instance.ShowFloatTip("材料不足！");
 				return;

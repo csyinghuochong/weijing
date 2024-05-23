@@ -14,6 +14,8 @@ namespace ET
 
         public static bool LogRechargeNumber = true;
 
+        public static bool ShowLieOpen = false;
+
         public static List<int> FunctionOpenIds = new List<int> { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059, 2000 };
     }
 }

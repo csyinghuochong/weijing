@@ -24,7 +24,7 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            string costitem = GlobalValueConfigCategory.Instance.Get(88).Value;
+            string costitem = ItemHelper.GetInheritCost(bagInfo.InheritTimes);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.CheckCostItem(costitem))
             {

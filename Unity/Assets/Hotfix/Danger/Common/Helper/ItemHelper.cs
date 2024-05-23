@@ -48,6 +48,22 @@ namespace ET
             return new List<int>() { min, max };
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="number">鉴定次数</param>
+        /// <returns></returns>
+        public static string GetInheritCost(int number)
+        {
+            string[] costitem = GlobalValueConfigCategory.Instance.Get(88).Value.Split('@');
+            if (number >= costitem.Length)
+            {
+                return costitem[costitem.Length - 1];
+            }
+            return costitem[number];
+        }
+
         //晶核初始品质
         public static int GetJingHeInitQulity(int itemid)
         {
