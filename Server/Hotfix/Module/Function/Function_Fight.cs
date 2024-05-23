@@ -391,7 +391,8 @@ namespace ET
                 DodgeLvPro = 0.1f;
             }
 
-            float initHitPro = 0.9f;
+            //初始化命中
+            float initHitPro = 0.95f;
             float dodgeSum = addDodgePro + DodgeLvPro + defendPet_dodge;
             float HitPro = initHitPro + HitLvPro + addHitPro + attackPet_hit - dodgeSum;
 
@@ -402,9 +403,15 @@ namespace ET
             }
 
             //最低命中
-            if (HitPro <= 0.5f)
+            if (HitPro <= 0.6f)
             {
-                HitPro = 0.5f;
+                HitPro = 0.6f;
+            }
+
+            //根据双方战力增加命中
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
+            {
+                HitPro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat) * 0.66f;
             }
 
             //百发百中(只有玩家对怪物有效)
