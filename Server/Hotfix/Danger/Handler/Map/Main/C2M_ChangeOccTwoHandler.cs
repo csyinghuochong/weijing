@@ -17,8 +17,8 @@ namespace ET
             }
 
             int OccTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
-            //判断当前角色是否已经进行转职
-            if (OccTwo != 0 && !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
+            ////判断当前角色是否已经进行转职
+            if (OccTwo != 0 )
             {
                 response.Error = ErrorCode.ERR_Occ_Hint_2;
                 reply();
@@ -36,7 +36,8 @@ namespace ET
             unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(request.OccTwoID);
             unit.GetComponent<TaskComponent>().OnChangeOccTwo();
 
-            if (OccTwo == 0 && !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
+            //if (OccTwo == 0 && !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
+            if (OccTwo == 0)
             {
                 string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                 string noticeContent = $"{userName} 在主城转职大师处成功转职:<color=#C4FF00>{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName}</color>";

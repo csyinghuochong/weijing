@@ -9,6 +9,9 @@ namespace ET
       
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+
+        public static string ChangeOccItem = "10000178;1";
+
         /// <summary>
         /// 竞技场buff
         /// </summary>

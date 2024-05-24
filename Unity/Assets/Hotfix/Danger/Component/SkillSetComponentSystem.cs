@@ -321,6 +321,13 @@ namespace ET
 		public static async ETTask<bool> ChangeOccTwoRequest(this SkillSetComponent self, int occTwoID)
 		{
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+			if (userInfoComponent.UserInfo.OccTwo != 0)
+			{
+                HintHelp.GetInstance().ShowHint("请先重置职业!");
+                return false;
+            }
+
+
 			C2M_ChangeOccTwoRequest c2M_ChangeOccTwoRequest = new C2M_ChangeOccTwoRequest() { OccTwoID = occTwoID };
 			M2C_ChangeOccTwoResponse m2C_SkillSet = (M2C_ChangeOccTwoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ChangeOccTwoRequest);
 

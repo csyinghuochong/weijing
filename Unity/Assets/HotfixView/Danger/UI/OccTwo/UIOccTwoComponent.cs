@@ -113,7 +113,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonOccReset = rc.Get<GameObject>("ButtonOccReset");
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
-            self.ButtonOccReset.SetActive(ComHelp.IsBanHaoZone( accountInfoComponent.ServerId ) || GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account  )   );
+            self.ButtonOccReset.SetActive( self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0   );
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
@@ -316,10 +316,16 @@ namespace ET
 
         public static async ETTask OnButtonOccReset(this UIOccTwoComponent self)
         {
-            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(29);
-            int needGold = int.Parse(globalValueConfig.Value);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.OccTwo == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
+                return;
+            }
+            
+            string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
-                $"是否花费{needGold}钻石重置技能点",
+                $"是否花费{costitem}重置技能点",
                 () =>
                 {
                     self.RequestReset(2).Coroutine();
@@ -330,15 +336,13 @@ namespace ET
 
         public static async ETTask RequestReset(this UIOccTwoComponent self, int operation)
         {
-            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(29);
-            int needGold = int.Parse(globalValueConfig.Value);
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.Diamond < needGold)
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();  
+            if (!bagComponent.CheckNeedItem(ConfigHelper.ChangeOccItem))
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
                 return;
             }
-
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2M_SkillOperation c2M_SkillSet = new C2M_SkillOperation() { OperationType = operation };
             M2C_SkillOperation m2C_SkillSet = (M2C_SkillOperation)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
             if (m2C_SkillSet.Error != 0)
@@ -346,6 +350,7 @@ namespace ET
                 return;
             }
             userInfoComponent.UserInfo.OccTwo = 0;
+            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
             HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
         }
 

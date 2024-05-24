@@ -31,19 +31,19 @@ namespace ET
 					unit.GetComponent<SkillSetComponent>().OnSkillReset();
 					break;
 				case 2:
-                     globalValueConfig = GlobalValueConfigCategory.Instance.Get(29);
-                     needGold = int.Parse(globalValueConfig.Value);
-                   
-                    if (userInfoComponent.UserInfo.Diamond < needGold)
+                    string ChangeOccItem = "10000178;1";
+                    BagComponent bagComponent = unit.GetComponent<BagComponent>();  
+                    if (!bagComponent.CheckCostItem(ChangeOccItem))
                     {
-                        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }
 
                     sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
-                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
+                    bagComponent.OnCostItemData(ChangeOccItem);    
+                    //userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
                     break;
                 case 3:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillMakePlan2, 1);
