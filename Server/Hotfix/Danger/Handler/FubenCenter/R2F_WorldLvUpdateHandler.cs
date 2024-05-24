@@ -22,7 +22,7 @@ namespace ET
 
                     if (i != 0 && m2m_TrasferUnitResponse.Error != ErrorCode.ERR_Success)
                     {
-                        Log.Debug($"WorldLvUpdateError: {mapIdList[i]}");
+                        Log.Error($"WorldLvUpdateError: {mapIdList[i]}");
                         mapIdList.Remove(i);
                     }
                 }
