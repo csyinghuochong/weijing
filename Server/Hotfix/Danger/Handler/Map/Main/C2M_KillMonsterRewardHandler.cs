@@ -19,8 +19,7 @@ namespace ET
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.KillMonsterReward) >= request.Key)
             {
-                Log.Error($"C2M_KillMonsterRewardRequest 2");
-                response.Error = ErrorCode.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_Parameter;
                 reply();
                 return;
             }

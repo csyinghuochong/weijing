@@ -19,8 +19,7 @@ namespace ET
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LeavlReward) >= request.LvKey)
             {
-                Log.Error($"C2M_LeavlRewardRequest 2");
-                response.Error = ErrorCode.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_Parameter;
                 reply();
                 return;
             }
