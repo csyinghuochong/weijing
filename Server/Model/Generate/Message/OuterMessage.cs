@@ -480,6 +480,9 @@ namespace ET
 		[ProtoMember(3)]
 		public string PopUpInfo { get; set; }
 
+		[ProtoMember(4)]
+		public long AccInfoID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.MoveInfo)]

@@ -224,6 +224,7 @@ message G2C_EnterGame // IResponse
 	int64 MyId = 1;
 	int32 IsPopUp = 2;
 	string PopUpInfo = 3;
+	int64 AccInfoID = 4;
 }
 
 message MoveInfo
