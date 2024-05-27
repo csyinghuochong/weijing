@@ -15976,4 +15976,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Center2C_BlackAccountResponse))]
+	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
+	[ProtoContract]
+	public partial class C2Center_QueryAccountRequest: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string UserName { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Center2C_QueryAccountResponse)]
+	[ProtoContract]
+	public partial class Center2C_QueryAccountResponse: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Password { get; set; }
+
+	}
+
 }

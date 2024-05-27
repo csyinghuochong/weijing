@@ -881,5 +881,7 @@ namespace ET
 		 public const ushort G2C_EnterGameCheck = 10878;
 		 public const ushort C2R_LoginRealmCheck = 10879;
 		 public const ushort R2C_LoginRealmCheck = 10880;
+		 public const ushort C2Center_QueryAccountRequest = 10881;
+		 public const ushort Center2C_QueryAccountResponse = 10882;
 	}
 }
