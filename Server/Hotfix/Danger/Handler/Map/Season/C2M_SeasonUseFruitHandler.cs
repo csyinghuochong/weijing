@@ -41,8 +41,7 @@ namespace ET
             BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[0]);
             if (bagInfo == null)
             {
-                Log.Error($"C2M_SeasonUseFruitRequest 2");
-                response.Error = ErrorCode.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_Parameter;
                 reply();
                 return;
             }

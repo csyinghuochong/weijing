@@ -1,7 +1,5 @@
-﻿using MongoDB.Driver.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ET
 {
@@ -1003,6 +1001,19 @@ namespace ET
                 {
                     damge = 1;
                 }
+
+                //2293987578036158464  入梦
+                if (attackUnit.Id == 2293987578036158464  && skillconfig.SkillActType == 1
+                    && ( sceneType == SceneTypeEnum.SeasonTower || sceneType == SceneTypeEnum.TrialDungeon) )
+                {
+                    Log.Warning($"入梦伤害   技能:{skillconfig.Id}  伤害:{damge}");
+                }
+                if (attackUnit.MasterId == 2293987578036158464 && skillconfig.SkillActType == 1
+                    && (sceneType == SceneTypeEnum.SeasonTower || sceneType == SceneTypeEnum.TrialDungeon))
+                {
+                    Log.Warning($"入梦宠物  技能:{skillconfig.Id}  伤害:{damge}");
+                }
+
 
                 //存储是为万为单位的
                 //damge = (damge / 10000 * 10000);

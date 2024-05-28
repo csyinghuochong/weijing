@@ -207,11 +207,11 @@ namespace ET
                         {
                             //增加金币
                             case 1:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, itemConfig.ItemUsePar, true, ItemGetWay.CostItem);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, itemConfig.ItemUsePar, true, ItemGetWay.ItemBox_6);
                                 break;
                             //增加经验
                             case 2:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Exp, itemConfig.ItemUsePar, true, ItemGetWay.CostItem);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Exp, itemConfig.ItemUsePar, true, ItemGetWay.ItemBox_6);
                                 break;
                             //回城卷轴[返回另外一个副本场景]
                             case 4:
@@ -373,7 +373,7 @@ namespace ET
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 long addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
                                 addCoin *= costNumber;
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, ItemGetWay.Sell);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, ItemGetWay.ItemBox_6);
                                 break;
                             //经验木桩
                             case 112:
