@@ -74,13 +74,13 @@ namespace ET
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
 						if (accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
 						{
-                            response.Error = ErrorCode.ERR_CreateRole_Limit;
+                            response.Error = ErrorCode.ERR_CreateRole_Limit_2;
                             reply();
                             return;
                         }
                         if (accountCrateTime == 0 && (serverNowTime - serverOpenTime >= TimeHelper.OneDay * 14))
                         {
-                            response.Error = ErrorCode.ERR_CreateRole_Limit;
+                            response.Error = ErrorCode.ERR_CreateRole_Limit_2;
                             reply();
                             return;
                         }
