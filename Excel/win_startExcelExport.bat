@@ -1,3 +1,3 @@
-cd /d ../Bin
+cd /d ../BinET
 dotnet Tools.dll --AppType=ExcelExporter
 pause
