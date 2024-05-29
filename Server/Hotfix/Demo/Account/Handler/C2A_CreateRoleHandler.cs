@@ -69,6 +69,21 @@ namespace ET
                             return;
                         }
 
+						long accountCrateTime = centerAccountList[0].CreateTime;
+						long serverNowTime = TimeHelper.ServerNow();
+						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
+						if (accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
+						{
+                            response.Error = ErrorCode.ERR_CreateRole_Limit;
+                            reply();
+                            return;
+                        }
+                        if (accountCrateTime == 0 && (serverNowTime - serverOpenTime >= TimeHelper.OneDay * 14))
+                        {
+                            response.Error = ErrorCode.ERR_CreateRole_Limit;
+                            reply();
+                            return;
+                        }
 
                         List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 						if (newAccountList == null || newAccountList.Count == 0)

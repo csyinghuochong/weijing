@@ -103,21 +103,23 @@ namespace ET
 			{
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, player.AccountId.GetHashCode()))
 				{
-					if (!string.IsNullOrEmpty(request.DeviceID))
+                    List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(202, d => d.Id == 202);
+
+                    if (!string.IsNullOrEmpty(request.DeviceID) && result[0].BanDeviceID.Contains(request.DeviceID))
                     {
-                        List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(202, d => d.Id == 202);
-                        if (result != null && result.Count > 0)
-                        {
-                            if (result[0].BanDeviceID.Contains(request.DeviceID))
-                            {
-                                response.Error = ErrorCode.ERR_AccountInBlackListError;
-                                reply();
-                                return;
-                            }
-                        }
+                        response.Error = ErrorCode.ERR_AccountInBlackListError;
+                        reply();
+                        return;
                     }
 
-					if (session.IsDisposed || session.DomainZone() == 0)
+                    if (result[0].BanIPList.Contains(ip))
+                    {
+                        response.Error = ErrorCode.ERR_AccountInBlackListError;
+                        reply();
+                        return;
+                    }
+
+                    if (session.IsDisposed || session.DomainZone() == 0)
 					{
                         response.Error = ErrorCode.ERR_SessionStateError;
                         reply();
