@@ -84,7 +84,10 @@ namespace ET
 
         public static void OnImageDi(this UIFashionShowItemComponent self)
         {
-            self.PreviewHandler( self.FashionId );
+            if (self.Status == 0)
+            {
+                self.PreviewHandler(self.FashionId);
+            }
         }
 
         public static async ETTask OnBtn_Desc(this UIFashionShowItemComponent self)
