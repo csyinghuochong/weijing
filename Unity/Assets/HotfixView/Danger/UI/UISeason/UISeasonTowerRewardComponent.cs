@@ -37,7 +37,7 @@ namespace ET
 
         public static void OnInitUI(this UISeasonTowerRewardComponent self, int rankType)
         {
-            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(6);
+            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(rankType);
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.UIRankRewardItem);
