@@ -94,12 +94,12 @@ namespace ET
             self.Button_ZhiYe_1 = rc.Get<GameObject>("Button_ZhiYe_1");
             self.Button_ZhiYe_1.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ZhiYe(0); });
             self.SkillContainer = rc.Get<GameObject>("SkillContainer");
-            self.Button_ZhiYe_List.Add( self.Button_ZhiYe_1);
-            self.Button_ZhiYe_List.Add( self.Button_ZhiYe_2);
-            self.Button_ZhiYe_List.Add( self.Button_ZhiYe_3);
+            self.Button_ZhiYe_List.Add(self.Button_ZhiYe_1);
+            self.Button_ZhiYe_List.Add(self.Button_ZhiYe_2);
+            self.Button_ZhiYe_List.Add(self.Button_ZhiYe_3);
 
             self.ButtonOccTwo = rc.Get<GameObject>("ButtonOccTwo");
-            ButtonHelp.AddListenerEx(self.ButtonOccTwo, () => { self.OnClickOccTwo();   });
+            ButtonHelp.AddListenerEx(self.ButtonOccTwo, () => { self.OnClickOccTwo(); });
 
             self.Text_ZhiYe_4 = rc.Get<GameObject>("Text_ZhiYe_4");
             self.Text_ZhiYe_3 = rc.Get<GameObject>("Text_ZhiYe_3");
@@ -113,7 +113,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonOccReset = rc.Get<GameObject>("ButtonOccReset");
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
-            self.ButtonOccReset.SetActive( false  );
+            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
@@ -121,7 +121,7 @@ namespace ET
             self.OnInitUI();
         }
     }
-    public class UIOccTwoComponentDestroy: DestroySystem<UIOccTwoComponent>
+    public class UIOccTwoComponentDestroy : DestroySystem<UIOccTwoComponent>
     {
         public override void Destroy(UIOccTwoComponent self)
         {
@@ -142,12 +142,10 @@ namespace ET
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.OccTwo != 0)
-            {
-                HintHelp.GetInstance().ShowHint("不能重复转职!");
-                return;
-            }
+            //if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            //{
+            //    return;
+            //}
 
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "转职", $"是否转职为：{occupationTwoConfig.OccupationName}", () =>
@@ -191,16 +189,16 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Button_ZhiYe_1.GetComponent<Image>().sprite = sp;
-            
-            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[1]}"); 
+
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[1]}");
             sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
                 self.AssetPath.Add(path);
             }
             self.Button_ZhiYe_2.GetComponent<Image>().sprite = sp;
-            
-            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[2]}"); 
+
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{OccTwoID[2]}");
             sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
@@ -208,7 +206,7 @@ namespace ET
             }
             self.Button_ZhiYe_3.GetComponent<Image>().sprite = sp;
 
-            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Occ_{occ}"); 
+            path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Occ_{occ}");
             sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
@@ -254,9 +252,9 @@ namespace ET
                     self.OccLine_3.SetActive(true);
                     self.Button_ZhiYeSelect_3.SetActive(true);
                     break;
-                    
+
             }
-    }
+        }
 
         public static void OnSelectZhiYe(this UIOccTwoComponent self, int occTwoId)
         {
@@ -272,7 +270,7 @@ namespace ET
                 self.AssetPath.Add(path1);
             }
             self.Image_WuQi_Zhuan.GetComponent<Image>().sprite = sp1;
-            
+
             path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"WuQi_{occupationTwoConfig.WeaponType}");
             sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);
             if (!self.AssetPath.Contains(path1))
@@ -281,7 +279,7 @@ namespace ET
             }
             self.Image_WuQi_Type.GetComponent<Image>().sprite = sp1;
 
-            self.Lab_HuJia.GetComponent<Text>().text = self.showType[occupationTwoConfig.ArmorMastery]+"专精";
+            self.Lab_HuJia.GetComponent<Text>().text = self.showType[occupationTwoConfig.ArmorMastery] + "专精";
             self.Lab_WuQi.GetComponent<Text>().text = self.showType[occupationTwoConfig.WeaponType] + "专精";
 
             path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{occupationTwoConfig.Id}");
@@ -311,7 +309,7 @@ namespace ET
                 skillItem.SetActive(true);
                 skillItem.transform.localScale = Vector3.one * 1f;
 
-                UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>( skillItem);
+                UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
                 ui_item.OnUpdateUI(skills[i]);
             }
         }
@@ -324,7 +322,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
                 return;
             }
-            
+
             string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
                 $"是否花费{costitem}重置技能点",
@@ -338,7 +336,7 @@ namespace ET
 
         public static async ETTask RequestReset(this UIOccTwoComponent self, int operation)
         {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();  
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(ConfigHelper.ChangeOccItem))
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
@@ -352,7 +350,7 @@ namespace ET
                 return;
             }
             userInfoComponent.UserInfo.OccTwo = 0;
-            self.ButtonOccReset.SetActive(false);
+            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
             HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
         }
 
