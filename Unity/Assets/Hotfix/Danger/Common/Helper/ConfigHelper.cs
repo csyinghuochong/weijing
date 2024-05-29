@@ -84,17 +84,17 @@ namespace ET
             }
             if (openDay <= 2)
             {
-                return 15000000;
+                return 12500000;
             }
             if (openDay <= 3)
             {
-                return 20000000;
+                return 15000000;
             }
             if (openDay <= 4)
             {
-                return 25000000;
+                return 17500000;
             }
-            return 30000000;
+            return 20000000;
         }
 
         /// <summary>

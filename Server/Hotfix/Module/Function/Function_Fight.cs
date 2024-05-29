@@ -2250,6 +2250,7 @@ namespace ET
 
             //--------------------新版属性加点------------------------
 
+            /*
             long Power_value_add = 0;
             long Intellect_value_add = 0;
             long Agility_value_add = 0;
@@ -2280,7 +2281,7 @@ namespace ET
             int damgeProCostLv = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
             float damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicList);
-
+            */
 
             //属性点加成
             //二次计算暴击等属性
@@ -2349,6 +2350,41 @@ namespace ET
             */
 
 
+            //--------------------新版属性加点------------------------
+
+            long Power_value_add = 0;
+            long Intellect_value_add = 0;
+            long Agility_value_add = 0;
+            long Stamina_value_add = 0;
+            long Constitution_value_add = 0;
+
+
+            //力量加物理穿透
+            int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
+            float adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicListCopy);
+
+            //智力加魔法穿透
+            int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 5;
+            float adddMageChuanTou = LvProChange(mageChuanTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), UpdateProDicListCopy);
+
+            //敏捷冷却时间
+            int cdTimeLv = (PointMinJie + (int)Agility_value + (int)Agility_value_add) * 2;
+            float addMinJie = LvProChange(cdTimeLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), UpdateProDicListCopy);
+
+            //耐力
+            int huixueLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add);
+            AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicListCopy);
+
+            //体力
+            int damgeProCostLv = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
+            float damgeProCost = LvProChange(damgeProCostLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
+
+            //------------
+
             List<PropertyValue> skillProList_8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
             for (int i = 0; i < skillProList_8.Count; i++)
             {
@@ -2378,11 +2414,11 @@ namespace ET
 
 
             //缓存一级属性
-            Power_value = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
-            Agility_value = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
-            Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
-            Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
-            Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
+            Power_value_add = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
+            Agility_value_add = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
+            Intellect_value_add = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
+            Stamina_value_add = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
+            Constitution_value_add = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
 
 
             //---加点属性---  加点和1级属性战力做平均
@@ -2390,7 +2426,7 @@ namespace ET
             if (Power_value > 0 || PointLiLiang > 0)
             {
                 long value = Power_value + PointLiLiang + Power_value_add;
-                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 4, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 6, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 1, UpdateProDicListCopy);
 
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 2, UpdateProDicListCopy);
@@ -2402,7 +2438,7 @@ namespace ET
             if (Agility_value > 0 || PointMinJie > 0)
             {
                 long value = Agility_value + PointMinJie + Agility_value_add;
-                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 5, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 6, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 2, UpdateProDicListCopy);
 
                 //额外战力附加(因为冷却CD附加的战力少)
@@ -2421,17 +2457,18 @@ namespace ET
             if (Stamina_value > 0 || PointNaiLi > 0)
             {
                 long value = Stamina_value + PointNaiLi + Stamina_value_add;
-                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 3, UpdateProDicListCopy);
-                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 3, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 4, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 4, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 2, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 2, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_GeDang_Base, value * 3, UpdateProDicListCopy);
             }
 
             //体质换算
             if (Constitution_value > 0 || PointTiZhi > 0)
             {
                 long value = Constitution_value + PointTiZhi + Constitution_value_add;
-                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 72, UpdateProDicListCopy);
             }
 
             //更新属性的额外加点属性
@@ -2491,6 +2528,9 @@ namespace ET
                 }
             }
 
+
+            //攻击部分
+
             List<int> keys = new List<int>();
 
             //更新属性
@@ -2517,6 +2557,7 @@ namespace ET
                     keys.Add(key);
                 }
             }
+
 
             /*
             //更新属性
@@ -2582,6 +2623,10 @@ namespace ET
             {
                 ShiLi_ActPro += ((float)numericComponent_1.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
+
+            Console.WriteLine("ShiLi_ActPro = " + ShiLi_ActPro);
+
+
 
             //幸运副本附加
             int luck = numericComponent_1.GetAsInt(NumericType.Now_Luck);
@@ -2687,13 +2732,23 @@ namespace ET
             addZhanLi += addJueXingZhanLi;
 
             //加点属性,每个1级属性6个战力
+            /*
             int OneProAddValue = 6;
-            long OneProvalueNaiLi = (long)((Stamina_value + PointNaiLi) * OneProAddValue * (1 + ShiLi_DefPro));
-            long OneProvalueZhiLi = (long)((Intellect_value + PointZhiLi) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
-            long OneProvalueMinJie = (long)((Agility_value + PointMinJie) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
-            long OneProvalueLiLiang = (long)((Power_value + PointLiLiang) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
-            long OneProvalueTiZhi = (long)((Constitution_value + PointTiZhi) * OneProAddValue * (1 + ShiLi_HpPro));
-            addZhanLi += (int)(OneProvalueNaiLi + OneProvalueZhiLi + OneProvalueMinJie + OneProvalueLiLiang + OneProvalueTiZhi);
+            long OneProvalueNaiLi1 = (long)((Stamina_value + PointNaiLi) * OneProAddValue * (1 + ShiLi_DefPro));
+            long OneProvalueZhiLi1 = (long)((Intellect_value + PointZhiLi) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
+            long OneProvalueMinJie1 = (long)((Agility_value + PointMinJie) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
+            long OneProvalueLiLiang1 = (long)((Power_value + PointLiLiang) * OneProAddValue * (1 + ShiLi_ActPro * 0.5f));
+            long OneProvalueTiZhi1 = (long)((Constitution_value + PointTiZhi) * OneProAddValue * (1 + ShiLi_HpPro));
+            int addZhanLi11 = (int)(OneProvalueNaiLi1 + OneProvalueZhiLi1 + OneProvalueMinJie1 + OneProvalueLiLiang1 + OneProvalueTiZhi1);
+            */
+
+            int OneProAddValue = 15;
+            long OneProvalueNaiLi = (long)((Stamina_value + PointNaiLi) * OneProAddValue );
+            long OneProvalueZhiLi = (long)((Intellect_value + PointZhiLi) * OneProAddValue);
+            long OneProvalueMinJie = (long)((Agility_value + PointMinJie) * OneProAddValue );
+            long OneProvalueLiLiang = (long)((Power_value + PointLiLiang) * OneProAddValue );
+            long OneProvalueTiZhi = (long)((Constitution_value + PointTiZhi) * OneProAddValue );
+            addZhanLi = (int)((OneProvalueNaiLi + OneProvalueZhiLi + OneProvalueMinJie + OneProvalueLiLiang + OneProvalueTiZhi));   //属性点放大系数
 
             //技能属性点附加战力
             int skillPointFight = (roleLv - userInfo.Sp);  //剩余属性点
@@ -2710,7 +2765,8 @@ namespace ET
             }
 
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
-            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 60 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd + skillPointFight;
+            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 100 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd + skillPointFight;
+            //Console.WriteLine("ShiLi_Act = " + ShiLi_Act + " ShiLi_ActPro = " + ShiLi_ActPro + " ShiLi_Def = " + ShiLi_Def + " ShiLi_DefPro = "+ ShiLi_DefPro + " ShiLi_Hp = " + ShiLi_Hp + " ShiLi_HpPro = " + ShiLi_HpPro + " proLvAdd = " + proLvAdd + " addZhanLi = " + addZhanLi);
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
