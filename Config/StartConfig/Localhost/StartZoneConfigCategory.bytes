@@ -86,12 +86,12 @@
 *Tmongodb://localhost:27017/T"WJBeta84
 *Umongodb://localhost:27017/U"WJBeta85
 *Vmongodb://localhost:27017/U"WJBeta86
-*Wmongodb://localhost:27017/W"WJBeta87
-*Xmongodb://localhost:27017/W"WJBeta88
+*Wmongodb://localhost:27017/U"WJBeta87
+*Xmongodb://localhost:27017/U"WJBeta88
 *Ymongodb://localhost:27017/Y"WJBeta89
 *Zmongodb://localhost:27017/Y"WJBeta90
-*[mongodb://localhost:27017/["WJBeta91
-*\mongodb://localhost:27017/["WJBeta92
+*[mongodb://localhost:27017/Y"WJBeta91
+*\mongodb://localhost:27017/Y"WJBeta92
 *]mongodb://localhost:27017/]"WJBeta93
 *^mongodb://localhost:27017/]"WJBeta94
 *_mongodb://localhost:27017/_"WJBeta95
