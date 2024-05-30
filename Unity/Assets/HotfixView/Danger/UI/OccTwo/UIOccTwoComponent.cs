@@ -113,7 +113,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonOccReset = rc.Get<GameObject>("ButtonOccReset");
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
-            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
+            self.ButtonOccReset.SetActive(false);
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
@@ -142,10 +142,12 @@ namespace ET
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            //if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
-            //{
-            //    return;
-            //}
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.OccTwo != 0)
+            {
+                HintHelp.GetInstance().ShowHint("不能重复转职!");
+                return;
+            }
 
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "转职", $"是否转职为：{occupationTwoConfig.OccupationName}", () =>
@@ -350,7 +352,7 @@ namespace ET
                 return;
             }
             userInfoComponent.UserInfo.OccTwo = 0;
-            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
+            self.ButtonOccReset.SetActive(false);
             HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
         }
 
