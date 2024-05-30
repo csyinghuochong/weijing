@@ -7,7 +7,7 @@ namespace ET
     {
 
       
-        public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
+        public static int PetFramgeItemId = 10000165;       //神兽碎片兑换神话之灵
 
 
         public static string ChangeOccItem = "10000178;1";
@@ -434,13 +434,14 @@ namespace ET
             {10025010,1},
             {10010085,3 },
             {10010083,10 },
-            {10000143,1500},    //灿烂的结晶
+            {10000143,1200},    //灿烂的结晶
             {10000152,2000},    //璀璨
             {10000165,2500},    //神话
-            {10000157,2000},    //灿烂的结晶
+            {10000157,2000},    //传承灵石
             {10010037,10},      //生效之灵
             {10010029,100},      //图纸碎片回收
             {10010030,200},      //图纸碎片回收
+
         };
 
         //购买背包
@@ -1263,12 +1264,12 @@ namespace ET
             new KeyValuePair(){  KeyId = 100, Value =  "10010040;1" },      //高级藏宝图
             new KeyValuePair(){  KeyId = 100, Value =  "10000141;1" },      //洗炼袋子
             new KeyValuePair(){  KeyId = 100, Value =  "10000152;1" },      //璀璨传承
-            new KeyValuePair(){  KeyId = 50, Value =  "10000165;1" },      //神话之灵
-            new KeyValuePair(){  KeyId = 200, Value =  "10010045;1" },      //金条
+            new KeyValuePair(){  KeyId = 100, Value =  "10000165;1" },      //神话之灵
+            new KeyValuePair(){  KeyId = 100, Value =  "10010045;1" },      //金条
             new KeyValuePair(){  KeyId = 100, Value =  "10010094;1" },      //超级宠物蛋
             new KeyValuePair(){  KeyId = 100, Value =  "10010093;1" },      //珍贵宠物蛋
-            new KeyValuePair(){  KeyId = 50,  Value =  "10010096;1" },      //超级宠之晶
-            new KeyValuePair(){  KeyId = 50,  Value =  "10000150;1" },      //深渊凭证
+            new KeyValuePair(){  KeyId = 100,  Value =  "10010096;1" },     //超级宠之晶
+            new KeyValuePair(){  KeyId = 100,  Value =  "10000150;1" },     //深渊凭证
             new KeyValuePair(){  KeyId = 50,  Value =  "10000135;1" },      //金盒
         };
 
