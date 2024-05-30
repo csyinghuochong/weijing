@@ -133,6 +133,14 @@ namespace ET
                 return false;
             }
 
+            //99002002 角斗场免伤状态
+            int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            if (sceneType == SceneTypeEnum.Arena && attackUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, 99002002) > 0)
+            {
+                return false;
+            }
+
+
             if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.MiaoSha))
             {
                 long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp) + 1;
@@ -264,8 +272,6 @@ namespace ET
 
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
-
-            int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
 
             //当前是否在宠物副本
             bool petfuben = sceneType == SceneTypeEnum.PetDungeon || sceneType == SceneTypeEnum.PetTianTi;
