@@ -281,23 +281,18 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 84, ServerIp = $"{ip}:20625", ServerName = "龙的传人", ServerOpenTime = 1711364400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/05/10 19:00:00 1714993200000 合区 春意阑珊-光芒万丈 85/86
+            //2024/05/31 19:00:00 1717153200000 合区 春意阑珊 - 岁月如歌  85/87
             serverItems_1.Add(new ServerItem() { ServerId = 85, ServerIp = $"{ip}:20635", ServerName = "春意阑珊", ServerOpenTime = 1711710000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 86, ServerIp = $"{ip}:20635", ServerName = "光芒万丈", ServerOpenTime = 1711969200000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-            //2024/05/10 19:00:00 1714993200000 合区 岁月如歌-龙飞凤舞 87/88
-            serverItems_1.Add(new ServerItem() { ServerId = 87, ServerIp = $"{ip}:20575", ServerName = "岁月如歌", ServerOpenTime = 1712228400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            serverItems_1.Add(new ServerItem() { ServerId = 88, ServerIp = $"{ip}:20575", ServerName = "龙飞凤舞", ServerOpenTime = 1712574000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 87, ServerIp = $"{ip}:20635", ServerName = "岁月如歌", ServerOpenTime = 1712228400000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 88, ServerIp = $"{ip}:20635", ServerName = "龙飞凤舞", ServerOpenTime = 1712574000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/05/17 19:00:00 1715943600000 合区 诗情画意 - 问鼎江湖  89/90
+            //2024/05/31 19:00:00 1717153200000 合区 诗情画意 - 万里山河  89/91
             serverItems_1.Add(new ServerItem() { ServerId = 89, ServerIp = $"{ip}:20435", ServerName = "诗情画意", ServerOpenTime = 1712919600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 90, ServerIp = $"{ip}:20435", ServerName = "问鼎江湖", ServerOpenTime = 1713178800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2024/05/17 19:00:00 1715943600000 合区 万里山河 - 征服之海  91/92
-            serverItems_1.Add(new ServerItem() { ServerId = 91, ServerIp = $"{ip}:20375", ServerName = "万里山河", ServerOpenTime = 1713524400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            serverItems_1.Add(new ServerItem() { ServerId = 92, ServerIp = $"{ip}:20375", ServerName = "征服之海", ServerOpenTime = 1713783600000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 91, ServerIp = $"{ip}:20435", ServerName = "万里山河", ServerOpenTime = 1713524400000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 92, ServerIp = $"{ip}:20435", ServerName = "征服之海", ServerOpenTime = 1713783600000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             //2024/05/20 19:00:00 1716202800000 合区 梦想之旅-时光如梭 93/94
             serverItems_1.Add(new ServerItem() { ServerId = 93, ServerIp = $"{ip}:20445", ServerName = "梦想之旅", ServerOpenTime = 1714129200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
@@ -307,16 +302,20 @@ namespace ET
             //2024/05/20 19:00:00 1716202800000 合区 披星戴月-繁花满地 95/96
             serverItems_1.Add(new ServerItem() { ServerId = 95, ServerIp = $"{ip}:20515", ServerName = "披星戴月", ServerOpenTime = 1714734000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 96, ServerIp = $"{ip}:20515", ServerName = "繁花满地", ServerOpenTime = 1714993200000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            
+
+
+            //2024/05/31 19:00:00 1717153200000 合区 萤火森林 - 前程似锦  97/98
             serverItems_1.Add(new ServerItem() { ServerId = 97, ServerIp = $"{ip}:20555", ServerName = "萤火森林", ServerOpenTime = 1715338800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            serverItems_1.Add(new ServerItem() { ServerId = 98, ServerIp = $"{ip}:20395", ServerName = "前程似锦", ServerOpenTime = 1715598000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 98, ServerIp = $"{ip}:20555", ServerName = "前程似锦", ServerOpenTime = 1715598000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            
             serverItems_1.Add(new ServerItem() { ServerId = 99, ServerIp = $"{ip}:20495", ServerName = "皓月千里", ServerOpenTime = 1715943600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 100, ServerIp = $"{ip}:20585", ServerName = "希望之城", ServerOpenTime = 1716202800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 101, ServerIp = $"{ip}:20405", ServerName = "长风破浪", ServerOpenTime = 1716548400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2024/05/31 19:00:00 1717153200000  新区 - 新区新区  102
-            serverItems_1.Add(new ServerItem() { ServerId = 102, ServerIp = $"{ip}:20415", ServerName = "新区新区", ServerOpenTime = 1717153200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            //2024/05/31 19:00:00 1717153200000 新区 璀璨星空  102
+            //2024/05/31 19:00:00 1717153200000 合区 春意阑珊 - 岁月如歌  85/87
+            //2024/05/31 19:00:00 1717153200000 合区 诗情画意 - 万里山河  89/91
+            //2024/05/31 19:00:00 1717153200000 合区 萤火森林 - 前程似锦  97/98
+            serverItems_1.Add(new ServerItem() { ServerId = 102, ServerIp = $"{ip}:20415", ServerName = "璀璨星空", ServerOpenTime = 1717153200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();

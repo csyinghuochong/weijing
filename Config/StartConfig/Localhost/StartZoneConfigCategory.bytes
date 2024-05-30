@@ -97,7 +97,7 @@
 *_mongodb://localhost:27017/_"WJBeta95
 *`mongodb://localhost:27017/_"WJBeta96
 *amongodb://localhost:27017/a"WJBeta97
-*bmongodb://localhost:27017/b"WJBeta98
+*bmongodb://localhost:27017/a"WJBeta98
 *cmongodb://localhost:27017/c"WJBeta99
 +dmongodb://localhost:27017/d"	WJBeta100
 +emongodb://localhost:27017/e"	WJBeta101
