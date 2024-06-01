@@ -53,6 +53,7 @@ namespace ET
                     DBCenterAccountInfo newAccount = session.AddChild<DBCenterAccountInfo>();
                     newAccount.Account = request.Account;
                     newAccount.Password = request.Password;
+                    newAccount.CreateTime = TimeHelper.ServerNow();
                     newAccount.PlayerInfo = new PlayerInfo();
 
                     if (request.Password == ComHelp.RobotPassWord)

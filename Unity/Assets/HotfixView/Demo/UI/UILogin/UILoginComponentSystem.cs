@@ -828,7 +828,9 @@ namespace ET
                 return;
             }
 
-            if (!string.IsNullOrEmpty(self.AccountReversal))
+
+#if !UNITY_EDITOR
+			if (!string.IsNullOrEmpty(self.AccountReversal))
 			{
 				self.AccountReversal = StringBuilderHelper.Decrypt(self.AccountReversal);
                 if (!self.AccountReversal.Equals(account))
@@ -846,9 +848,9 @@ namespace ET
                     return;
                 }
             }
+#endif
 
-
-            self.Loading.SetActive(true);
+			self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");
 			self.LastLoginTime = TimeHelper.ClientNow();
