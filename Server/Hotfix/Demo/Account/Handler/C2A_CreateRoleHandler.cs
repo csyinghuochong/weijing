@@ -78,12 +78,12 @@ namespace ET
                             reply();
                             return;
                         }
-                        if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime == 0 && (serverNowTime - serverOpenTime >= TimeHelper.OneDay * 14))
-                        {
-                            response.Error = ErrorCode.ERR_CreateRole_Limit_2;
-                            reply();
-                            return;
-                        }
+                        //if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime == 0 && (serverNowTime - serverOpenTime >= TimeHelper.OneDay * 14))
+                        //{
+                        //    response.Error = ErrorCode.ERR_CreateRole_Limit_2;
+                        //    reply();
+                        //    return;
+                        //}
 
                         List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 						if (newAccountList == null || newAccountList.Count == 0)
