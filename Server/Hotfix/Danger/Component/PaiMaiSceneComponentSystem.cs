@@ -105,8 +105,8 @@ namespace ET
             //进入循环随机
             if (openDay > 7)
             {
-                int[] weights = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-                string[] weightsItem = new string[] { "10000143,10", "10000141,1", "10000152,3", "10000150,1", "10010026,1", "10010053,1", "10010040,1", "10045106,1", "10045107,1" };
+                int[] weights = new int[] { 10, 10, 10, 10, 10, 10, 10, 20, 5 };
+                string[] weightsItem = new string[] { "10000143,10", "10000141,1", "10000152,3", "10000150,1", "10000165,1", "10010053,1", "10010040,1", "10045108,1", "10010094,1" };
                 int id = RandomHelper.RandomByWeight(weights);
 
                 self.AuctionItem = int.Parse(weightsItem[id].Split(',')[0]);
