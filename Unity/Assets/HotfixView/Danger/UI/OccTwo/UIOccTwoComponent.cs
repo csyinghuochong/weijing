@@ -115,7 +115,6 @@ namespace ET
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
             self.ButtonOccReset.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account) && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
 
-
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
 
@@ -142,8 +141,6 @@ namespace ET
 
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
-           
-
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "转职", $"是否转职为：{occupationTwoConfig.OccupationName}", () =>
             {
@@ -153,6 +150,13 @@ namespace ET
 
         public static async ETTask RequestChangeOcc(this UIOccTwoComponent self)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.OccTwo != 0)
+            {
+                HintHelp.GetInstance().ShowHint("不能重复转职!");
+                return;
+            }
+
             bool ifChange = await self.ZoneScene().GetComponent<SkillSetComponent>().ChangeOccTwoRequest(self.OccTwoId);
             if (ifChange)
             {
@@ -160,6 +164,69 @@ namespace ET
                 UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo);
             }
         }
+
+        public static async ETTask OnButtonOccReset(this UIOccTwoComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+
+            if (self.OccTwoId == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
+                return;
+            }
+            if (userInfoComponent.UserInfo.OccTwo == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
+                return;
+            }
+            if (self.OccTwoId == userInfoComponent.UserInfo.OccTwo)
+            {
+                FloatTipManager.Instance.ShowFloatTip("重置职业不能和当前职业一样！");
+                return;
+            }
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.HaveOccEquip())
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先把装备全部卸到背包中！");
+                return;
+            }
+
+            string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
+                $"是否花费{costitem}重置技能点",
+                () =>
+                {
+                    self.RequestReset(2).Coroutine();
+                }).Coroutine();
+
+            await ETTask.CompletedTask;
+        }
+
+        public static async ETTask RequestReset(this UIOccTwoComponent self, int operation)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (!bagComponent.CheckNeedItem(ConfigHelper.ChangeOccItem))
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            C2M_SkillOperation c2M_SkillSet = new C2M_SkillOperation() { OperationType = operation, OperationValue = self.OccTwoId.ToString()};
+            M2C_SkillOperation m2C_SkillSet = (M2C_SkillOperation)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
+            if (m2C_SkillSet.Error != 0)
+            {
+                return;
+            }
+            userInfoComponent.UserInfo.OccTwo = self.OccTwoId;
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.ButtonOccReset.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account) && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
+            HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
+
+            UIHelper.Create(self.DomainScene(), UIType.UIOccTwoShow).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo);
+        }
+
 
         public static void OnInitUI(this UIOccTwoComponent self)
         {
@@ -310,48 +377,7 @@ namespace ET
                 ui_item.OnUpdateUI(skills[i]);
             }
         }
-
-        public static async ETTask OnButtonOccReset(this UIOccTwoComponent self)
-        {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.OccTwo == 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
-                return;
-            }
-
-            string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
-                $"是否花费{costitem}重置技能点",
-                () =>
-                {
-                    self.RequestReset(2).Coroutine();
-                }).Coroutine();
-
-            await ETTask.CompletedTask;
-        }
-
-        public static async ETTask RequestReset(this UIOccTwoComponent self, int operation)
-        {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (!bagComponent.CheckNeedItem(ConfigHelper.ChangeOccItem))
-            {
-                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
-                return;
-            }
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            C2M_SkillOperation c2M_SkillSet = new C2M_SkillOperation() { OperationType = operation };
-            M2C_SkillOperation m2C_SkillSet = (M2C_SkillOperation)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
-            if (m2C_SkillSet.Error != 0)
-            {
-                return;
-            }
-            userInfoComponent.UserInfo.OccTwo = 0;
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.ButtonOccReset.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account) && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
-            HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
-        }
-
+     
         public static void OnClickOccTwoui(this UIOccTwoComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo);

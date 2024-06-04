@@ -35,8 +35,9 @@ namespace ET
 				self.SkillList.Add(new SkillPro() { SkillID = int.Parse(needList[1].Split(';')[0]), SkillPosition = 10, SkillSetType = (int)SkillSetEnum.Item });
 			}
 
-			int robotId = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RobotId;
-			if (robotId != 0)
+			UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
+            int robotId = userInfoComponent.UserInfo.RobotId;
+			if (userInfoComponent.UserInfo.OccTwo == 0 && robotId != 0 )
 			{
 				RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
 				self.OnChangeOccTwoRequest(robotConfig.OccTwo);
@@ -598,14 +599,8 @@ namespace ET
 				return;
 			}
 			Unit unit = self.GetParent<Unit>();
-            UserInfo useInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-			if (useInfo.OccTwo != 0)
-			{
-				useInfo.OccTwo = occTwo;
-				return;
-			}
-			
-			useInfo.OccTwo = occTwo;
+
+            unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo = occTwo;
 			//新增技能
 			OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
 			int[] addSkills = occupationTwoConfig.SkillID;

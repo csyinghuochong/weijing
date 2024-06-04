@@ -20,6 +20,31 @@ namespace ET
     public static class BagComponentSystem
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static bool HaveOccEquip(this BagComponent self)
+        {
+            List<BagInfo> allequiplist = new List<BagInfo>();
+            allequiplist.AddRange(self.EquipList);
+            allequiplist.AddRange(self.EquipList_2);
+
+            for (int i = 0; i < allequiplist.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allequiplist[i].ItemID);
+                if (itemConfig.ItemType == 3
+                    && itemConfig.EquipType >= 0 && itemConfig.EquipType <= 100
+                    && itemConfig.ItemSubType >= 0 && itemConfig.ItemSubType <= 12)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static List<PropertyValue> GetGemProLists(this BagComponent self)
         {
             List<PropertyValue> list = new List<PropertyValue>();

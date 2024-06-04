@@ -31,6 +31,29 @@ namespace ET
 					unit.GetComponent<SkillSetComponent>().OnSkillReset();
 					break;
 				case 2:
+
+                    int toOcc = 0;
+                    try
+                    {
+                        toOcc = int.Parse(request.OperationValue);
+                    }
+                    catch (Exception ex)
+                    { 
+                        Log.Error(ex);
+                        response.Error = ErrorCode.ERR_Parameter;
+                        reply();
+                        return;
+                    }
+
+                    if (!OccupationTwoConfigCategory.Instance.Contain(toOcc))
+                    {
+                        Log.Error($"C2M_ChangeOccTwoRequest.1");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+
                     string ChangeOccItem = "10000178;1";
                     BagComponent bagComponent = unit.GetComponent<BagComponent>();  
                     if (!bagComponent.CheckCostItem(ChangeOccItem))
@@ -42,8 +65,9 @@ namespace ET
 
                     sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
-                    bagComponent.OnCostItemData(ChangeOccItem);    
-                    //userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
+                    bagComponent.OnCostItemData(ChangeOccItem);
+                    
+                    unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(toOcc);
                     break;
                 case 3:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillMakePlan2, 1);
