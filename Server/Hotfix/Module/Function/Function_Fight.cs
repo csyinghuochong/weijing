@@ -2641,9 +2641,7 @@ namespace ET
                 ShiLi_ActPro += ((float)numericComponent_1.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
-            Console.WriteLine("ShiLi_ActPro = " + ShiLi_ActPro);
-
-
+            //Console.WriteLine("ShiLi_ActPro = " + ShiLi_ActPro);
 
             //幸运副本附加
             int luck = numericComponent_1.GetAsInt(NumericType.Now_Luck);
