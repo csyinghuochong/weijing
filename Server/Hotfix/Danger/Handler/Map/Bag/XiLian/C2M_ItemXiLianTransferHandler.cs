@@ -24,6 +24,9 @@ namespace ET
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(bagInfo_1.ItemID);
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(bagInfo_2.ItemID);
 
+            bool all60green = itemConfig_0.UseLv >= 60 && itemConfig_0.ItemQuality >= 5 && itemConfig_1.UseLv >= 60 && itemConfig_1.ItemQuality >= 5;
+
+
             //绑定装备无法转移(客户端已经给出对应提示)
             if (bagInfo_1.isBinging == true && bagInfo_2.isBinging == false && itemConfig_1.ItemQuality == 4)
             {
@@ -38,7 +41,7 @@ namespace ET
             }
 
             //相同部位  只有护甲类型相同的装备才能转移
-            //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            if (!all60green)
             {
                 //相同部位
                 if (itemConfig_0.EquipType != itemConfig_1.EquipType)
@@ -48,7 +51,7 @@ namespace ET
                 }
             }
 
-            //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            if (!all60green)
             {
                 //相同部位  只有相同部位的装备才能转移
                 if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)

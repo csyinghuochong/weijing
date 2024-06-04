@@ -1,11 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEngine.UI.CanvasScaler;
-using System.Xml.Linq;
 
 namespace ET
 {
@@ -86,8 +82,10 @@ namespace ET
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(self.BagInfo_Transfer[0].ItemID);
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(self.BagInfo_Transfer[1].ItemID);
 
-            //道具配置
-            //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99) 
+            bool all60green = itemConfig_0.UseLv >= 60 && itemConfig_0.ItemQuality >= 5 && itemConfig_1.UseLv >= 60 && itemConfig_1.ItemQuality >= 5;
+
+
+            if (!all60green) 
             {
                 //相同部位
                 if (itemConfig_0.EquipType != itemConfig_1.EquipType)
@@ -97,7 +95,7 @@ namespace ET
                 }
             }
 
-            //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            if(!all60green)
             {
                 //相同部位
                 if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
@@ -108,7 +106,8 @@ namespace ET
             }
 
             //紫色品质以上才可以转移
-            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4) {
+            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
+            {
                 FloatTipManager.Instance.ShowFloatTip("只有紫色及以上品质的装备才能转移！");
                 return;
             }
