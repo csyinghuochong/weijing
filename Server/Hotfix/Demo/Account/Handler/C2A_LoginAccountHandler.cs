@@ -238,10 +238,11 @@ namespace ET
                             account.CreateTime = TimeHelper.ServerNow();
                             await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
-
+                        
                         if (centerAccount.Message == "2"
                             && !session.RemoteAddress.ToString().Contains("119.39.6.47")
-                            && !session.RemoteAddress.ToString().Contains("119.39.6.77")) //黑名单
+                            && !session.RemoteAddress.ToString().Contains("119.39.6.77")
+                            && !session.RemoteAddress.ToString().Contains("117.155.204.40")) //黑名单
                         {
                             response.Error = ErrorCode.ERR_AccountInBlackListError;
                             response.AccountId = account.Id;
