@@ -1072,8 +1072,14 @@ namespace ET
                     if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.CriStatus) == true)
                     {
                         CriPro = 1;
-                        attackUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.CriStatus);
 
+                        BuffManagerComponent buffManagerComponent = attackUnit.GetComponent<BuffManagerComponent>();
+
+                        if (buffManagerComponent.GetCritBuffNumber() <= 1)
+                        {
+                            attackUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.CriStatus);
+                        }
+                        buffManagerComponent.RemoveFirstCritBuff();
                     }
 
                     //暴击概率..

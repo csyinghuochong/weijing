@@ -562,6 +562,46 @@ namespace ET
             MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
         }
 
+        public static int GetCritBuffNumber(this BuffManagerComponent self)
+        {
+            int buffnumber = 0;
+            int bufflist = self.m_Buffs.Count;
+
+            for (int i = bufflist - 1; i >= 0; i--)
+            {
+                int buffId = self.m_Buffs[i].BuffData.BuffId;
+                SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
+                if (skillBuffConfig.BuffType == 2 && skillBuffConfig.buffParameterType == 13)
+                {
+                    buffnumber++;   
+                }
+            }
+            return buffnumber;  
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="number">移除数量</param>
+        /// <returns></returns>
+        public static void RemoveFirstCritBuff(this BuffManagerComponent self )
+        {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = 0; i < buffcnt; i++)
+            {
+                int buffId = self.m_Buffs[i].BuffData.BuffId;
+                SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
+                if (skillBuffConfig.BuffType == 2 && skillBuffConfig.buffParameterType == 13)
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+
+                    break;
+                }
+            }
+        }
+
         public static int GetBuffSourceNumber(this BuffManagerComponent self, long formId,  int buffId)
         {
             int buffnumber = 0;
