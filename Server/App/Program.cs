@@ -28,6 +28,16 @@ namespace ET
 				ProtobufHelper.Init();
 				MongoRegister.Init();
 
+				int age = 19;  ///
+				if(age < 18)
+				{
+					Console.WriteLine("未成年不能玩游戏");
+				}
+                else
+                {
+					Console.WriteLine("成年能玩游戏");
+                }
+
                 if (args.Length == 0)
                 {
                     args = new string[5];

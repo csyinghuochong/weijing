@@ -152,7 +152,7 @@
 {"_t":"ActivityConfig","_id":33007,"ActivityType":33,"Icon":"","Par_1":"5;1","Par_2":"","Par_3":"","Par_4":"劳动节"},
 {"_t":"ActivityConfig","_id":33008,"ActivityType":33,"Icon":"","Par_1":"5;4","Par_2":"","Par_3":"","Par_4":"青年节"},
 {"_t":"ActivityConfig","_id":33009,"ActivityType":33,"Icon":"","Par_1":"6;1","Par_2":"","Par_3":"","Par_4":"儿童节"},
-{"_t":"ActivityConfig","_id":33010,"ActivityType":33,"Icon":"","Par_1":"6;22","Par_2":"","Par_3":"","Par_4":"端午节"},
+{"_t":"ActivityConfig","_id":33010,"ActivityType":33,"Icon":"","Par_1":"6;10","Par_2":"","Par_3":"","Par_4":"端午节"},
 {"_t":"ActivityConfig","_id":33011,"ActivityType":33,"Icon":"","Par_1":"7;1","Par_2":"","Par_3":"","Par_4":"建党节"},
 {"_t":"ActivityConfig","_id":33012,"ActivityType":33,"Icon":"","Par_1":"8;1","Par_2":"","Par_3":"","Par_4":"建军节"},
 {"_t":"ActivityConfig","_id":33013,"ActivityType":33,"Icon":"","Par_1":"8;22","Par_2":"","Par_3":"","Par_4":"七夕节"},
