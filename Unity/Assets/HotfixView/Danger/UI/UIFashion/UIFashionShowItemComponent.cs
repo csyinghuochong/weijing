@@ -84,7 +84,7 @@ namespace ET
 
         public static void OnImageDi(this UIFashionShowItemComponent self)
         {
-            if (self.Status == 0)
+            //if (self.Status == 0)
             {
                 self.PreviewHandler(self.FashionId);
             }
