@@ -38,6 +38,7 @@ namespace ET
         public float Distance = 110;
         public long lastSendTime;
         public long checkTime;
+        public long noCheckTime;
 
         public int direction;
         public int lastDirection;
@@ -294,11 +295,18 @@ namespace ET
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
             float distance = self.CanMoveDistance(unit, rotation);
             distance = Mathf.Max(distance, 2f);
-            float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
-            speed = Mathf.Max(speed, 4f);
-            float needTime = distance / speed;
-            self.checkTime = (int)(1000 * needTime) - 200;
 
+            if (self.noCheckTime < clientNow)
+            {
+                float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
+                speed = Mathf.Max(speed, 4f);
+                float needtime = distance / speed;
+                self.checkTime = (int)(1000 * needtime) - 200;
+            }
+            else
+            {
+                self.checkTime = 100;
+            }
             //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
             //移动速度最低发送间隔
 

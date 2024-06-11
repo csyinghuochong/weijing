@@ -51,15 +51,21 @@ namespace ET
 
         public static void OnUseFangunSkill(this UIFangunSkillComponent self)
         {
-            if (Time.time - self.LastSkillTime < 0.4f)
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            UIJoystickMoveComponent uIJoystickMoveComponent = uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent;
+            uIJoystickMoveComponent.checkTime = 0;
+            uIJoystickMoveComponent.noCheckTime = TimeHelper.ClientNow() + TimeHelper.Minute;
+            uIJoystickMoveComponent.lastDirection = -1000;
+            if (Time.time - self.LastSkillTime < 0.2f)
+            {
                 return;
+            }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int skillID = unit.GetComponent<SkillManagerComponent>().FangunSkillId;
             EventType.BeforeSkill.Instance.ZoneScene = self.ZoneScene();    
             EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillID, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
-
             self.LastSkillTime = Time.time;
         }
     }
