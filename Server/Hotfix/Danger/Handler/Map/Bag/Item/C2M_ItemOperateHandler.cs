@@ -677,6 +677,11 @@ namespace ET
                                     ifWear = true;
                                 }
 
+                                if (useInfo.Occ == 4 && (itemConfig.EquipType == 3 || itemConfig.EquipType == 4))
+                                {
+                                    ifWear = true;
+                                }
+
                                 //佩戴部位不符
                                 if (ifWear == false)
                                 {
