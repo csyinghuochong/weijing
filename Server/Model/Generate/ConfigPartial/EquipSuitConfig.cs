@@ -23,6 +23,11 @@ namespace ET
                 }
                 OccSuiList[suitConfig.Occ].Add(suitConfig.Id);
             }
+
+            if (!OccSuiList.ContainsKey(4))
+            {
+                OccSuiList.Add(4, new List<int>());
+            }
         }
     }
 }

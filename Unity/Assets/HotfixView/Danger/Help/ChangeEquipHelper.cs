@@ -427,7 +427,11 @@ namespace ET
                 if (occ == 3)
                 {
                     weaponPath = equipIndex == 0 ? "90000006" : "14100002";
+                }
 
+                if (occ == 4)
+                {
+                    weaponPath = "14100101";
                 }
             }
             if (occ == 3)
@@ -445,13 +449,7 @@ namespace ET
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
-            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
-            if (occupationConfig.ChangeEquip == 0)
-            {
-                return;
-            }
-
-            self.Occ = occ; 
+            self.Occ = occ;
             self.LoadCompleted = false;
             self.gameObjects.Clear();
             self.objectNames.Clear();
@@ -459,13 +457,21 @@ namespace ET
             self.trparent = target.transform;
             self.trparentbone = self.trparent.Find("BaseModel/Bip001");
             self.FashionBase.Clear();
-            self.childDictonary.Clear();    
+            self.childDictonary.Clear();
 
             for (int i = self.oldFashions.Count - 1; i >= 0; i--)
             {
-                GameObject.DestroyImmediate(self.oldFashions[i]);   
+                GameObject.DestroyImmediate(self.oldFashions[i]);
             }
             self.oldFashions.Clear();
+
+
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+            if (occupationConfig.ChangeEquip == 0)
+            {
+                self.OnAllLoadComplete_2(); 
+                return;
+            }
 
             //for (int i = 0; i < fashionids.Count; i++)
             //{
