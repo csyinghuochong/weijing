@@ -1032,7 +1032,7 @@ namespace ET
         /// 等级奖励,大于或等于可以领取奖励.  一个道具直接领取，多个道具弹出选择界面
         /// 三个职业 以&切分
         /// </summary>
-        public static Dictionary<int, string> LeavlRewardItem = new Dictionary<int, string>()
+        public static Dictionary<int, string> LevelRewardItem = new Dictionary<int, string>()
         {
             //14060006
             { 5, "14060006;1" },            //升级到6级装备

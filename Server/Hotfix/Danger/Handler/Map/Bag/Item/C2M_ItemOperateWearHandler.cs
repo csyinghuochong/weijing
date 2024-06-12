@@ -63,20 +63,8 @@ namespace ET
                         }
                         else
                         {
-                            bool ifWear = false;
-                            if (useInfo.Occ == 1 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 2))
-                            {
-                                ifWear = true;
-                            }
-
-                            if (useInfo.Occ == 2 && (itemConfig.EquipType == 3 || itemConfig.EquipType == 4))
-                            {
-                                ifWear = true;
-                            }
-                            if (useInfo.Occ == 3 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 5))
-                            {
-                                ifWear = true;
-                            }
+                            bool ifWear = ConfigHelper.OccWeaponList[useInfo.Occ].Contains(itemConfig.EquipType); ;
+                            
 
                             //佩戴部位不符
                             if (ifWear == false)

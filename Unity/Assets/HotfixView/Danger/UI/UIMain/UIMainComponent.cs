@@ -2075,7 +2075,7 @@ namespace ET
         public static async ETTask OnBtn_LvReward(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            string[] occItems = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('&');
+            string[] occItems = ConfigHelper.LevelRewardItem[self.LevelRewardKey].Split('&');
             string[] items;
             if (occItems.Length == 3)
             {
@@ -2124,7 +2124,7 @@ namespace ET
 
             int newLv = int.MaxValue;
             bool flag = false;
-            foreach (int key in ConfigHelper.LeavlRewardItem.Keys)
+            foreach (int key in ConfigHelper.LevelRewardItem.Keys)
             {
                 if (key > oldLv)
                 {
@@ -2137,7 +2137,7 @@ namespace ET
             {
                 self.LevelRewardKey = newLv;
 
-                string[] occItems = ConfigHelper.LeavlRewardItem[self.LevelRewardKey].Split('&');
+                string[] occItems = ConfigHelper.LevelRewardItem[self.LevelRewardKey].Split('&');
                 string[] items;
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 if (occItems.Length > 1)

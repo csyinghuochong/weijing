@@ -314,6 +314,10 @@ namespace ET
                             case 3:
                                 FloatTipManager.Instance.ShowFloatTip("本职业无法穿戴此武器");
                                 break;
+                            //唤魔师
+                            case 4:
+                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
+                                break;
                         }
                         return;
                     }

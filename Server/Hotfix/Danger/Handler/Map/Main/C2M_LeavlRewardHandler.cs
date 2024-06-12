@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_LeavlRewardRequest request, M2C_LeavlRewardResponse response, Action reply)
         {
-            if (!ConfigHelper.LeavlRewardItem.Keys.Contains(request.LvKey))
+            if (!ConfigHelper.LevelRewardItem.Keys.Contains(request.LvKey))
             {
                 Log.Error($"C2M_LeavlRewardRequest 1");
                 response.Error = ErrorCode.ERR_ModifyData;
@@ -33,7 +33,7 @@ namespace ET
             }
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            string[] occItems = ConfigHelper.LeavlRewardItem[request.LvKey].Split('&');
+            string[] occItems = ConfigHelper.LevelRewardItem[request.LvKey].Split('&');
             string[] items;
             if (occItems.Length > 1)
             {

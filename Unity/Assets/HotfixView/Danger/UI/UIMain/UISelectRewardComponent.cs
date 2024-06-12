@@ -43,7 +43,7 @@ namespace ET
             {
                 case 0:
                     self.TitleText.GetComponent<Text>().text = "等级领取";
-                    occItems = ConfigHelper.LeavlRewardItem[key].Split('&');
+                    occItems = ConfigHelper.LevelRewardItem[key].Split('&');
                     break;
                 case 1:
                     self.TitleText.GetComponent<Text>().text = "击败怪物领取";
