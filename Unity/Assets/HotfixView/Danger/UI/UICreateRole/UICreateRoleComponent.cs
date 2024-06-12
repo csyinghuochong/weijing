@@ -8,6 +8,10 @@ namespace ET
     public class UICreateRoleComponent : Entity, IAwake
     {
 
+
+        public GameObject Btn_Occ4;
+        public GameObject Icon_4_2;
+        public GameObject Icon_4_1;
         public GameObject Icon_3_2;
         public GameObject Icon_3_1;
         public GameObject Icon_2_2;
@@ -48,7 +52,7 @@ namespace ET
         public override void Awake(UICreateRoleComponent self)
         {
             self.LastCrateRoleTime = 0;
-            self.OccList = new List<int>() { 1 , 2, 3 };
+            self.OccList = new List<int>() { 1 , 2, 3, 4 };
             self.SkillUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -74,6 +78,11 @@ namespace ET
             self.InputCreateRoleName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
 
 
+            self.Btn_Occ4 = rc.Get<GameObject>("Btn_Occ4");
+            self.Btn_Occ4.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account )   );
+
+            self.Icon_4_2 = rc.Get<GameObject>("Icon_4_2");
+            self.Icon_4_1 = rc.Get<GameObject>("Icon_4_1");
             self.Icon_3_2 = rc.Get<GameObject>("Icon_3_2");
             self.Icon_3_1 = rc.Get<GameObject>("Icon_3_1");
             self.Icon_2_2 = rc.Get<GameObject>("Icon_2_2");
@@ -81,6 +90,8 @@ namespace ET
             self.Icon_1_2 = rc.Get<GameObject>("Icon_1_2");
             self.Icon_1_1 = rc.Get<GameObject>("Icon_1_1");
 
+            UICommonHelper.ShowOccIcon(self.Icon_4_2, 4);
+            UICommonHelper.ShowOccIcon(self.Icon_4_1, 4);
             UICommonHelper.ShowOccIcon(self.Icon_3_2, 3);
             UICommonHelper.ShowOccIcon(self.Icon_3_1, 3);
             UICommonHelper.ShowOccIcon(self.Icon_2_2, 2);
