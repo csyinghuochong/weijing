@@ -55,7 +55,7 @@ namespace ET
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string[] items;
-            if (occItems.Length == 3)
+            if (occItems.Length > 1)
             {
                 items = occItems[userInfoComponent.UserInfo.Occ - 1].Split('@');
             }
