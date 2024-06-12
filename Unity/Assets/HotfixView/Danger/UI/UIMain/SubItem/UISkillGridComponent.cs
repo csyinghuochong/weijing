@@ -73,6 +73,7 @@ namespace ET
         public List<string> AssetPath = new List<string>();
 
         public int SkillSecond = 0;    //1 可以二段 
+        public int CdRate = 1;
 
         
         public void Awake(GameObject gameObject)
@@ -161,7 +162,7 @@ namespace ET
             {
                 int showCostTime = (int)(leftCDTime / 1000) + 1;
                 self.Text_SkillCD.text = showCostTime.ToString();
-                float proValue = (float)leftCDTime / ((float)self.SkillBaseConfig.SkillCD * 1000f);
+                float proValue = (float)leftCDTime / ((float)self.SkillBaseConfig.SkillCD * 1000f * self.CdRate);
                 self.Img_SkillCD.fillAmount = proValue;
                 if (self.SkillSecond == 1)  //已释放二段斩 进入CD
                 {
@@ -514,7 +515,6 @@ namespace ET
             }
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
                 int skillid = SkillHelp.GetWeaponSkill(skillpro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList);
                 if (!SkillConfigCategory.Instance.Contain(skillid))
@@ -534,6 +534,7 @@ namespace ET
 
                 self.SkillWuqiConfig = skillConfig;
                 self.SkillBaseConfig = SkillConfigCategory.Instance.Get(skillpro.SkillID);
+                self.CdRate = 1;
             }
             else
             {
@@ -550,11 +551,15 @@ namespace ET
 
                     self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillid);
                     self.SkillBaseConfig = self.SkillWuqiConfig;
+
+                    MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+                    self.CdRate = ComHelp.GetSkillCdRate(mapComponent.SceneTypeEnum);
                 }
                 else // 道具 走的使用道具的流程
                 {
                     self.SkillWuqiConfig = new SkillConfig();
                     self.SkillBaseConfig = self.SkillWuqiConfig;
+                    self.CdRate = 1;    
                 }
 
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);

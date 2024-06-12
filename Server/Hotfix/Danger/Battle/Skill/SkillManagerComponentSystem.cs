@@ -510,7 +510,7 @@ namespace ET
             }
 
             //添加技能CD列表  给客户端发送消息 我创建了一个技能,客户端创建特效等相关功能
-            SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
+            SkillCDItem skillCd = self.AddSkillCD(skillcmd.ItemId, skillcmd.SkillID,  weaponSkillConfig, zhudong);
             m2C_Skill.Error = ErrorCode.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
@@ -589,7 +589,7 @@ namespace ET
             }
         }
 
-        public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig, bool zhudong)
+        public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int itemid, int skillid, SkillConfig weaponConfig, bool zhudong)
         {
             SkillCDItem skillCd = null;
             if (skillid == self.FangunSkillId)
@@ -605,7 +605,7 @@ namespace ET
                 }
                 else
                 {
-                    skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
+                    skillCd = self.UpdateSkillCD(itemid, skillid, weaponConfig.Id, zhudong);
                 }
             }
             else
@@ -614,7 +614,7 @@ namespace ET
                 {
                     return null;
                 }
-                skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
+                skillCd = self.UpdateSkillCD(itemid,skillid, weaponConfig.Id, zhudong);
             }
             return skillCd;
         }
@@ -716,7 +716,7 @@ namespace ET
             return null;
         }
 
-        public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool zhudong)
+        public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int itemid, int skillId, int weaponSkill, bool zhudong)
         {
             Unit unit = self.GetParent<Unit>();
             SkillCDItem skillcd = null;
@@ -770,6 +770,14 @@ namespace ET
             {
                 keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
             }
+
+            int cdRate = 1;
+            if (itemid > 0 && unit.Type == UnitType.Player)
+            {
+                int sceneType = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                cdRate = ComHelp.GetSkillCdRate(sceneType); 
+            }
+
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
@@ -779,7 +787,7 @@ namespace ET
             if (zhudong)
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillcdTime - reduceCD) );
+                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillcdTime - reduceCD) * cdRate);
             }
             else
             {

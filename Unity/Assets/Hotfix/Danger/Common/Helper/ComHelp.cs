@@ -53,6 +53,12 @@ namespace ET
             return GlobalValueConfigCategory.Instance.Get(45).Value2;
         }
 
+        public static int GetSkillCdRate(int sceneType)
+        {
+            int cdRate =  (sceneType == SceneTypeEnum.Arena || sceneType == SceneTypeEnum.Solo) ? 2 : 1;
+            return cdRate;
+        }
+
         public static int GetMaxBaoShiDu()
         {
             return 120;
