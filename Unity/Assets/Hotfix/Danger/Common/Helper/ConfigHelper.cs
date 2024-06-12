@@ -1129,7 +1129,19 @@ namespace ET
                                                                 99003051, 99003052,99003053,99003061,99003062,99003063, 99003064};
 
 
-        
+
+        /// <summary>
+        /// 职业武器
+        /// </summary>
+
+        public static Dictionary<int, List<int>> OccWeaponList = new Dictionary<int, List<int>>()
+        {
+            { 1, new List<int>() { 0, 1, 2 } },
+            { 2, new List<int>() { 0, 3, 4 } },
+            { 3, new List<int>() { 0, 1, 5 } },
+            { 4, new List<int>() { 0, 3, 4 } }
+        };
+
 
         public static List<string> RankChengHao = new List<string>() { "天下第一勇士", "天下第二勇士", "天下第三勇士" };
         public static List<string> OccRankChengHao = new List<string>() { 

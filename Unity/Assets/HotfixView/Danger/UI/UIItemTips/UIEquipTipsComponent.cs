@@ -298,7 +298,7 @@ namespace ET
             {
                 if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
                 {
-                    if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+                    if (!ConfigHelper.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
                     {
                         switch (userInfo.Occ)
                         {
