@@ -489,6 +489,11 @@ namespace ET
                     unit.GetComponent<BuffManagerComponent>()?.InitBuff();
                     unit.GetComponent<SkillManagerComponent>()?.InitSkill();
 
+                    if (weaponid != 0 && !ConfigHelper.OccWeaponList[unit.ConfigId].Contains(ItemConfigCategory.Instance.Get(weaponid).EquipType))
+                    {
+                        weaponid = 0;
+                    }
+
                     if (numericComponent.GetAsInt(NumericType.RunRaceTransform) == 0
                         && numericComponent.GetAsInt(NumericType.CardTransform) == 0)
                     {
