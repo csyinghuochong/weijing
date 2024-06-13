@@ -305,16 +305,20 @@ namespace ET
             //2024/05/31 19:00:00 1717153200000 合区 萤火森林 - 前程似锦  97/98
             serverItems_1.Add(new ServerItem() { ServerId = 97, ServerIp = $"{ip}:20555", ServerName = "萤火森林", ServerOpenTime = 1715338800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 98, ServerIp = $"{ip}:20555", ServerName = "前程似锦", ServerOpenTime = 1715598000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            
+
+
+            //2024/06/14 19:00:00 1718362800000 合区 皓月千里-希望之城  99/100
             serverItems_1.Add(new ServerItem() { ServerId = 99, ServerIp = $"{ip}:20495", ServerName = "皓月千里", ServerOpenTime = 1715943600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            serverItems_1.Add(new ServerItem() { ServerId = 100, ServerIp = $"{ip}:20585", ServerName = "希望之城", ServerOpenTime = 1716202800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 100, ServerIp = $"{ip}:20495", ServerName = "希望之城", ServerOpenTime = 1716202800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            
             serverItems_1.Add(new ServerItem() { ServerId = 101, ServerIp = $"{ip}:20405", ServerName = "长风破浪", ServerOpenTime = 1716548400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 102, ServerIp = $"{ip}:20415", ServerName = "璀璨星空", ServerOpenTime = 1717153200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2024/06/07 19:00:00 1717758000000 新区 翡翠之光  103
-            //2024/06/07 19:00:00 1717758000000 合区 梦想之旅-披星戴月  93/95
             serverItems_1.Add(new ServerItem() { ServerId = 103, ServerIp = $"{ip}:20425", ServerName = "翡翠之光", ServerOpenTime = 1717758000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+
+
+            //2024/06/14 19:00:00 1718362800000 新区 琉璃之海  104
+            //2024/06/14 19:00:00 1718362800000 合区 皓月千里-希望之城  99/100
+            serverItems_1.Add(new ServerItem() { ServerId = 104, ServerIp = $"{ip}:20375", ServerName = "琉璃之海", ServerOpenTime = 1718362800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
