@@ -200,7 +200,7 @@ namespace ET
             {
                 //清空赛季相关数据. 赛季任务 晶核
                 Log.Warning($"清空赛季数据！:{unit.Id}");
-                Console.WriteLine($"清空赛季数据！: {unit.DomainZone()}  {unit.Id}  {seasonopenTime} ");
+                //Console.WriteLine($"清空赛季数据！: {unit.DomainZone()}  {unit.Id}  {seasonopenTime} ");
                 self.SendSeasonReward(unit.GetComponent<UserInfoComponent>().UserInfo.SeasonLevel);
 
                 numericComponent.ApplyValue(NumericType.SeasonOpenTime, 0, notice);

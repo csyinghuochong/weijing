@@ -68,8 +68,15 @@ namespace ET
                             reply();
                             return;
                         }
+                        if (request.CreateOcc == 4 && !GMHelp.GmAccount.Contains(centerAccountList[0].Account))
+                        {
+                            response.Error = ErrorCode.ERR_Error;
+                            reply();
+                            return;
+                        }
 
-						long accountCrateTime = centerAccountList[0].CreateTime;
+
+                        long accountCrateTime = centerAccountList[0].CreateTime;
 						long serverNowTime = TimeHelper.ServerNow();
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
 						if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
