@@ -1663,6 +1663,11 @@ namespace ET
             List<int> fashionids = unit.GetComponent<BagComponent>().FashionActiveIds;
             for (int i = 0; i < fashionids.Count; i++)
             {
+                if (!FashionConfigCategory.Instance.Contain(fashionids[i]))
+                {
+                    continue;
+                }
+
                 FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
                 if (fashionConfig.PropertyKey == null || fashionConfig.PropertyKey.Length == 0 || fashionConfig.PropertyKey[0] == 0)
                 {
