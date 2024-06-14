@@ -367,6 +367,8 @@ namespace ET
         public static void UpdateLoginType(this UILoginComponent self)
 		{
 			Log.ILog.Debug($"UpdateLoginType : {self.LoginType}");
+
+			self.AccountReversal = string.Empty;
 			self.ThirdLoginBg.SetActive(true);
 			self.YiJianDengLu.SetActive(int.Parse(self.LoginType) == LoginTypeEnum.PhoneNumLogin);
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
@@ -829,11 +831,10 @@ namespace ET
             }
 
 
-#if !UNITY_EDITOR
 			if (!string.IsNullOrEmpty(self.AccountReversal))
 			{
-				self.AccountReversal = StringBuilderHelper.Decrypt(self.AccountReversal);
-                if (!self.AccountReversal.Equals(account))
+				string accountReversal = StringBuilderHelper.Decrypt(self.AccountReversal);
+                if (! accountReversal.Equals(account))
 				{
 					self.LoginErrorNumber++;
 					if (self.LoginErrorNumber >= 10)
@@ -848,7 +849,7 @@ namespace ET
                     return;
                 }
             }
-#endif
+
 
 			self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
