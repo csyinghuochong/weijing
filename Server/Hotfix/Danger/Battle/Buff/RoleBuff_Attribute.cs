@@ -124,9 +124,15 @@ namespace ET
                             nowdamgeType = 0;
                         }
 
+
+                        long attackId = this.TheUnitFrom.GetComponent<AttackRecordComponent>().AttackingId;
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && (this.TheUnitFrom.Id == 2294038413269073920 || this.TheUnitFrom.Id == 2304469306957692928))
                         {
-                            Log.Warning($"玩家(亞奇洛貝),回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
+                            Log.Warning($"玩家(亞奇洛貝)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
+                        }
+                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && this.TheUnitFrom.Type == UnitType.Player && (attackId == 2294038413269073920 || attackId == 2304469306957692928) )
+                        {
+                            Log.Warning($"玩家(亞奇洛貝)对手 回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
                         }
 
                         heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)this.NowBuffValue, 0, true, nowdamgeType);
