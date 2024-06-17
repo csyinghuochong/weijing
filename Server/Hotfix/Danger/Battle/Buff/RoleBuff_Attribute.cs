@@ -125,10 +125,14 @@ namespace ET
                         }
 
 
-                        long attackId = this.TheUnitFrom.GetComponent<AttackRecordComponent>().AttackingId;
+                        long attackId = 0;
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && (this.TheUnitFrom.Id == 2294038413269073920 || this.TheUnitFrom.Id == 2304469306957692928))
                         {
                             Log.Warning($"玩家(亞奇洛貝)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
+                        }
+                        if (this.TheUnitFrom.GetComponent<AttackRecordComponent>() != null)
+                        {
+                            attackId = this.TheUnitFrom.GetComponent<AttackRecordComponent>().AttackingId;
                         }
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && this.TheUnitFrom.Type == UnitType.Player && (attackId == 2294038413269073920 || attackId == 2304469306957692928) )
                         {
