@@ -130,11 +130,11 @@ namespace ET
                         {
                             Log.Warning($"玩家(亞奇洛貝)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
                         }
-                        if (this.TheUnitFrom.GetComponent<AttackRecordComponent>() != null)
+                        if (this.TheUnitFrom.Type == UnitType.Player && this.TheUnitFrom.GetComponent<AttackRecordComponent>() != null)
                         {
                             attackId = this.TheUnitFrom.GetComponent<AttackRecordComponent>().AttackingId;
                         }
-                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && this.TheUnitFrom.Type == UnitType.Player && (attackId == 2294038413269073920 || attackId == 2304469306957692928) )
+                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 &&  (attackId == 2294038413269073920 || attackId == 2304469306957692928) )
                         {
                             Log.Warning($"玩家(亞奇洛貝)对手 回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}  {this.TheUnitFrom.Id}");
                         }

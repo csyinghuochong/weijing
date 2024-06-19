@@ -87,7 +87,7 @@ namespace ET
             GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
-            gameObject.transform.localPosition = new Vector3(self.Position * 2000, 2000, 0);
+            gameObject.transform.localPosition = new Vector3(self.Position * 2000, 4000, 0);
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
 
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
