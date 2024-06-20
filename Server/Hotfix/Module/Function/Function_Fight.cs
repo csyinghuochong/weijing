@@ -2442,11 +2442,11 @@ namespace ET
 
 
             //缓存一级属性
-            Power_value_add = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
-            Agility_value_add = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
-            Intellect_value_add = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
-            Stamina_value_add = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
-            Constitution_value_add = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
+            Power_value_add += GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
+            Agility_value_add += GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
+            Intellect_value_add += GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
+            Stamina_value_add += GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
+            Constitution_value_add += GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
 
 
             //---加点属性---  加点和1级属性战力做平均
