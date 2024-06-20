@@ -193,8 +193,8 @@ namespace ET
             }
 
             string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
-                $"是否花费{costitem}重置技能点",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置职业",
+                $"<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>\n<color=#FFFFFF>是否花费{costitem}重置技能点?</color>",
                 () =>
                 {
                     self.RequestReset(2).Coroutine();
