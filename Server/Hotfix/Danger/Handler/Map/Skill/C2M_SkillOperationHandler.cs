@@ -63,6 +63,11 @@ namespace ET
                         return;
                     }
 
+                    if (userInfoComponent.UserInfo.OccTwo != 0)
+                    {
+                        userInfoComponent.UserInfo.OccTwoOld.Add(userInfoComponent.UserInfo.OccTwo);
+                    }
+
                     sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
                     bagComponent.OnCostItemData(ChangeOccItem);

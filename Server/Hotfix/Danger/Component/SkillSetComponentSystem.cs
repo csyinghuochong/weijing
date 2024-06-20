@@ -600,10 +600,6 @@ namespace ET
 			}
 			Unit unit = self.GetParent<Unit>();
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-			if (userInfoComponent.UserInfo.OccTwo != 0)
-			{
-                userInfoComponent.UserInfo.OccTwoOld.Add(userInfoComponent.UserInfo.OccTwo);
-            }
             userInfoComponent.UserInfo.OccTwo = occTwo;
 
             //新增技能
