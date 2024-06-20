@@ -71,14 +71,14 @@
 *Emongodb://localhost:27017/@"WJBeta69
 *Fmongodb://localhost:27017/@"WJBeta70
 *Gmongodb://localhost:27017/@"WJBeta71
-*Hmongodb://localhost:27017/H"WJBeta72
-*Imongodb://localhost:27017/H"WJBeta73
-*Jmongodb://localhost:27017/H"WJBeta74
-*Kmongodb://localhost:27017/H"WJBeta75
-*Lmongodb://localhost:27017/H"WJBeta76
-*Mmongodb://localhost:27017/H"WJBeta77
-*Nmongodb://localhost:27017/H"WJBeta78
-*Omongodb://localhost:27017/H"WJBeta79
+*Hmongodb://localhost:27017/@"WJBeta72
+*Imongodb://localhost:27017/@"WJBeta73
+*Jmongodb://localhost:27017/@"WJBeta74
+*Kmongodb://localhost:27017/@"WJBeta75
+*Lmongodb://localhost:27017/@"WJBeta76
+*Mmongodb://localhost:27017/@"WJBeta77
+*Nmongodb://localhost:27017/@"WJBeta78
+*Omongodb://localhost:27017/@"WJBeta79
 *Pmongodb://localhost:27017/P"WJBeta80
 *Qmongodb://localhost:27017/P"WJBeta81
 *Rmongodb://localhost:27017/P"WJBeta82
@@ -101,8 +101,9 @@
 *cmongodb://localhost:27017/c"WJBeta99
 +dmongodb://localhost:27017/c"	WJBeta100
 +emongodb://localhost:27017/e"	WJBeta101
-+fmongodb://localhost:27017/f"	WJBeta102
++fmongodb://localhost:27017/e"	WJBeta102
 +gmongodb://localhost:27017/g"	WJBeta103
 +hmongodb://localhost:27017/h"	WJBeta104
++imongodb://localhost:27017/i"	WJBeta105
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)

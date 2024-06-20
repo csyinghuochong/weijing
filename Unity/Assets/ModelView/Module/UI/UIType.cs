@@ -34,7 +34,7 @@ namespace ET
 		public const string UIStorySpeak = "Main/RoleStory/UIStorySpeak";
 		public const string UIPopupview = "Common/UI_CommonHint";
 		public const string UI_CommonHint_2 = "Common/UI_CommonHint_2";
-		public const string UIItemTips = "Main/ItemTips/UIItemTips";
+        public const string UIItemTips = "Main/ItemTips/UIItemTips";
 		public const string UIItemSellTip = "Main/ItemTips/UIItemSellTip";
         public const string UIItemExpBox = "Main/ItemTips/UIItemExpBox";
         public const string UIItemBatchUse = "Main/ItemTips/UIItemBatchUse";

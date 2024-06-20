@@ -84,6 +84,23 @@ namespace ET
             uIPopupComponent.confirButton.transform.localPosition = new UnityEngine.Vector3(0f, old.y, 0f);
         }
 
+
+        /// <summary>
+        /// 打开公用弹窗
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        /// <param name="okhandle"></param>
+        public static async ETTask<UI> OpenPopupTip_4(Scene scene, string title, string content, Action okhandle, Action cancelHandle = null)
+        {
+            UI uipopup = await UIHelper.Create(scene, UIType.UI_CommonHint_2);
+            if (uipopup != null)
+            {
+                uipopup.GetComponent<UIPopupComponent>().InitData(title, content, okhandle, cancelHandle, string.Empty, string.Empty);
+                uipopup.GetComponent<UIPopupComponent>().UIType = UIType.UI_CommonHint_2;
+            }
+            return uipopup;
+        }
     }
 
 }
