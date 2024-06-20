@@ -599,10 +599,15 @@ namespace ET
 				return;
 			}
 			Unit unit = self.GetParent<Unit>();
+			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+			if (userInfoComponent.UserInfo.OccTwo != 0)
+			{
+                userInfoComponent.UserInfo.OccTwoOld.Add(userInfoComponent.UserInfo.OccTwo);
+            }
+            userInfoComponent.UserInfo.OccTwo = occTwo;
 
-            unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo = occTwo;
-			//新增技能
-			OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
+            //新增技能
+            OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
 			int[] addSkills = occupationTwoConfig.SkillID;
 			for (int i = 0; i < addSkills.Length; i++)
 			{

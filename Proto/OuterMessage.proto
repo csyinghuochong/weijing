@@ -369,6 +369,8 @@ message UserInfo
 
 	//购买过的神秘商品
 	repeated KeyValuePairInt  BuyStoreItems = 64;
+
+	repeated int32 OccTwoOld = 65;
 }
 
 message KeyValuePair

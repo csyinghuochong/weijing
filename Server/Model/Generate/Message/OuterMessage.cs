@@ -719,6 +719,9 @@ namespace ET
 		[ProtoMember(64)]
 		public List<KeyValuePairInt> BuyStoreItems = new List<KeyValuePairInt>();
 
+		[ProtoMember(65)]
+		public List<int> OccTwoOld = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
