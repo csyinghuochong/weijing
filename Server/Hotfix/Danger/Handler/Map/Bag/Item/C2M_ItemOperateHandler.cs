@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alipay.AopSdk.Core.Domain;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -131,13 +132,26 @@ namespace ET
                             {
                                 // 经验盒子特殊处理，有免费开启和钻石开启
                                 costNumber = int.Parse(request.OperatePar.Split(';')[1]);
+
+                                string[] expInfos = itemConfig.ItemUsePar.Split('@');
+                                string[] operatePar = request.OperatePar.Split(';'); //使用类型;数量
+                                int needZuanshi = operatePar[0] == "1" ? int.Parse(expInfos[0]) * costNumber : 0;
+                                string[] paramInfo = expInfos[int.Parse(operatePar[0])].Split(';');
+                             
+                                //如果当前钻石不足返回错误
+                                if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < needZuanshi)
+                                {
+                                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                                    reply();
+                                    return;
+                                }
                             }
                             else
                             {
                                 costNumber = int.Parse(request.OperatePar);
                             }
-                            
                         }
+
                     }
 
                     if (itemConfig.ItemSubType == 14      //召唤卷轴
@@ -382,13 +396,6 @@ namespace ET
                                 int needZuanshi = operatePar[0] == "1"? int.Parse(expInfos[0]) * costNumber : 0;
                                 string[] paramInfo = expInfos[int.Parse(operatePar[0])].Split(';');
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-
-                                //如果当前钻石不足返回错误
-                                if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < needZuanshi)
-                                {
-                                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
-                                    break;
-                                }
 
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
