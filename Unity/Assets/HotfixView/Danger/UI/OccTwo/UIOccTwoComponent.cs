@@ -113,7 +113,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonOccReset = rc.Get<GameObject>("ButtonOccReset");
             self.ButtonOccReset.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOccReset().Coroutine(); });
-            self.ButtonOccReset.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account) && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
+            self.ButtonOccReset.SetActive( self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
@@ -218,8 +218,7 @@ namespace ET
                 return;
             }
             userInfoComponent.UserInfo.OccTwo = self.OccTwoId;
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.ButtonOccReset.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account) && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
+            self.ButtonOccReset.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0);
             HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
 
             UIHelper.Create(self.DomainScene(), UIType.UIOccTwoShow).Coroutine();
