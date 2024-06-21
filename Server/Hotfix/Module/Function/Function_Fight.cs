@@ -536,6 +536,7 @@ namespace ET
                 {
                     defValue = 0;
                     adfValue = 0;
+                    DamgeType = 3;
                 }
 
                 //生命低于30%触发,防御提升X%

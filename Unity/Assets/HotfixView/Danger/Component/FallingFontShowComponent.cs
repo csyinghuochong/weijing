@@ -95,6 +95,11 @@ namespace ET
                 //addStr = "AJ";  //暴击
                 addStr = "暴击";  //暴击
             }
+            if (type == 3)
+            {
+                //addStr = "AJ";  //暴击
+                addStr = "重击";  //重击
+            }
             if (type != 2 && type != 11 && type != 12 && targetValue == 0)
             {
                 //addStr = "SB";  //闪避
