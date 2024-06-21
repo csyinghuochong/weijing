@@ -65,6 +65,7 @@ namespace ET
 
                     if (userInfoComponent.UserInfo.OccTwo != 0)
                     {
+                        unit.GetComponent<SkillSetComponent>().OnChangeJueXing(userInfoComponent.UserInfo.OccTwo, toOcc);
                         userInfoComponent.UserInfo.OccTwoOld.Add(userInfoComponent.UserInfo.OccTwo);
                     }
 
@@ -73,6 +74,7 @@ namespace ET
                     bagComponent.OnCostItemData(ChangeOccItem);
                     
                     unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(toOcc);
+                    unit.GetComponent<SkillSetComponent>().AsyncUpdateSkillSet().Coroutine();
                     break;
                 case 3:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillMakePlan2, 1);

@@ -2740,7 +2740,8 @@ namespace ET
             int addZhanLi = numericComponent.GetAsInt(NumericType.Now_FightValue);
 
             //觉醒战力附加
-            List<int> juexingSkillList = unit.GetComponent<SkillSetComponent>().GetJueSkillIds();
+            int occtweo = userInfo.OccTwo;
+            List<int> juexingSkillList = unit.GetComponent<SkillSetComponent>().GetJueSkillIds(occtweo);
             int addJueXingZhanLi = 0;
             if (juexingSkillList.Count >= 1)
             {

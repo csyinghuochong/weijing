@@ -50,18 +50,18 @@ namespace ET
 
 		public static bool IfJuexXingSkill(this SkillSetComponent self)
 		{
-            int juexingid = 0;
-            Unit unit = self.GetParent<Unit>();
-            int occtwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
-            if (occtwo == 0)
-            {
+			int juexingid = 0;
+			Unit unit = self.GetParent<Unit>();
+			int occtwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+			if (occtwo == 0)
+			{
 				return false;
-            }
+			}
 
-            OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
-            juexingid = occupationConfig.JueXingSkill[7];
-			return self.GetBySkillID(juexingid)!=null;		
-        }
+			OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+			juexingid = occupationConfig.JueXingSkill[7];
+			return self.GetBySkillID(juexingid) != null;
+		}
 
 		public static List<int> TianFuList(this SkillSetComponent self)
 		{
@@ -79,17 +79,17 @@ namespace ET
 
 		public static List<int> TianFuListAll(this SkillSetComponent self)
 		{
-            List<int> list = new List<int>();
+			List<int> list = new List<int>();
 
-            List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
-            for (int i = 0; i < tianfulist.Count; i++)
-            {
-                list.Add(tianfulist[i]);
-            }
+			List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+			for (int i = 0; i < tianfulist.Count; i++)
+			{
+				list.Add(tianfulist[i]);
+			}
 
-            list.AddRange(self.TianFuAddition);
-            return list;
-        }
+			list.AddRange(self.TianFuAddition);
+			return list;
+		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
 		{
@@ -259,7 +259,7 @@ namespace ET
 					{
 						string[] properInfo = addPropreListStr[k].Split(";");
 
-						if (!properInfo[0].Equals( TianFuProEnum.RolePropertyAdd))
+						if (!properInfo[0].Equals(TianFuProEnum.RolePropertyAdd))
 						{
 							continue;
 						}
@@ -269,7 +269,7 @@ namespace ET
 							proList.Add(new PropertyValue() { HideID = int.Parse(properInfo[1]), HideValue = long.Parse(properInfo[2]) });
 						}
 						else {
-							proList.Add(new PropertyValue() { HideID = int.Parse(properInfo[1]), HideValue = (int)(float.Parse(properInfo[2])*10000) });
+							proList.Add(new PropertyValue() { HideID = int.Parse(properInfo[1]), HideValue = (int)(float.Parse(properInfo[2]) * 10000) });
 						}
 					}
 				}
@@ -306,7 +306,7 @@ namespace ET
 				}
 
 				string[] addProList = GameObjectParameter.Split(";");
-				for (int p = 0; p < addProList.Length; p++ )
+				for (int p = 0; p < addProList.Length; p++)
 				{
 					string[] addPro = addProList[p].Split(",");
 					if (addPro.Length < 2)
@@ -330,7 +330,7 @@ namespace ET
 						Log.Error($"{ex.ToString()} {GameObjectParameter}");
 					}
 				}
-            }
+			}
 			return proList;
 		}
 
@@ -440,7 +440,7 @@ namespace ET
 					}
 					else
 					{
-						HideProList.Add( key, value );
+						HideProList.Add(key, value);
 					}
 				}
 			}
@@ -451,7 +451,7 @@ namespace ET
 		{
 			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillSingingCancel);
 			if (tianfuids.Count == 0)
-				return  false;
+				return false;
 
 			for (int i = 0; i < tianfuids.Count; i++)
 			{
@@ -459,7 +459,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					
+
 					if (!properInfo[1].Contains(skillId.ToString()))
 					{
 						return true;
@@ -534,7 +534,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (!properInfo[0].Equals( TianFuProEnum.ReplaceSkillId))
+					if (!properInfo[0].Equals(TianFuProEnum.ReplaceSkillId))
 					{
 						continue;
 					}
@@ -561,7 +561,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (!properInfo[0].Equals( TianFuProEnum.BuffPropertyAdd))
+					if (!properInfo[0].Equals(TianFuProEnum.BuffPropertyAdd))
 					{
 						continue;
 					}
@@ -600,10 +600,10 @@ namespace ET
 			}
 			Unit unit = self.GetParent<Unit>();
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            userInfoComponent.UserInfo.OccTwo = occTwo;
+			userInfoComponent.UserInfo.OccTwo = occTwo;
 
-            //新增技能
-            OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
+			//新增技能
+			OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
 			int[] addSkills = occupationTwoConfig.SkillID;
 			for (int i = 0; i < addSkills.Length; i++)
 			{
@@ -616,22 +616,29 @@ namespace ET
 
 			if (!unit.IsRobot())
 			{
-                self.UpdateSkillSet();
-                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
-                unit.GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
-            }
+				self.UpdateSkillSet();
+				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+				unit.GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
+			}
 		}
 
-		/// <summary>
-		/// 获取激活的觉醒技能
-		/// </summary>
-		/// <param name="self"></param>
-		/// <returns></returns>
-		public static List<int> GetJueSkillIds(this SkillSetComponent self)
+		public static async ETTask AsyncUpdateSkillSet(this SkillSetComponent self)
+		{
+			await TimerComponent.Instance.WaitAsync(1000);
+			if (self.IsDisposed)
+			{
+				return;
+			}
+            self.UpdateSkillSet();
+        }
+        /// <summary>
+        /// 获取激活的觉醒技能
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static List<int> GetJueSkillIds(this SkillSetComponent self, int occtweo)
 		{
 			List<int> ids = new List<int>();	
-
-			int occtweo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
 			if (occtweo == 0)
 			{ 
 				return ids;
@@ -1002,11 +1009,40 @@ namespace ET
 			self.UpdateSkillSet();
 		}
 
-		/// <summary>
-		/// 重置第二职业
-		/// </summary>
-		/// <param name="self"></param>
-		public static int OnOccReset(this SkillSetComponent self)
+		public static void OnChangeJueXing(this SkillSetComponent self, int occOld, int occNew)
+		{
+			Unit unit = self.GetParent<Unit>();
+			Console.WriteLine($"OnChangeJueXing:  {unit.Id}  {occOld}  {occNew}");
+
+			if (occOld == occNew || occOld == 0 || occNew == 0)
+			{
+				return;
+			}
+
+			List<int> openjuexing = self.GetJueSkillIds(occOld);
+			if (openjuexing.Count <= 0)
+			{
+				return;
+			}
+
+			self.OnRmItemSkill( openjuexing, 0 );
+
+			List<int> newjuexing = new List<int>();
+            OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occNew);
+            int[] juexingids = occupationConfig.JueXingSkill;
+			for (int i = 0; i < openjuexing.Count; i++ )
+			{
+				newjuexing.Add(juexingids[i]);
+            }
+
+			self.OnAddItemSkill(newjuexing);
+        }
+
+        /// <summary>
+        /// 重置第二职业
+        /// </summary>
+        /// <param name="self"></param>
+        public static int OnOccReset(this SkillSetComponent self)
 		{
 			int sp = 0;
 			List<int> skilllist = new List<int>();

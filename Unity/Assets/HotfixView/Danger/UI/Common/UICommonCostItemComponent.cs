@@ -65,11 +65,7 @@ namespace ET
 
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
             string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
-            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            if (!self.AssetPath.Contains(path2))
-            {
-                self.AssetPath.Add(path2);
-            }
+            Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);
             self.Image_ItemQuality.GetComponent<Image>().sprite = sp2;
         }
     }
