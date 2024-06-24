@@ -42,7 +42,7 @@ namespace ET
             newrank = rankSceneComponent.GetDonationRank(request.RankingInfo.UserId);
 
             //有变化则通知
-            if (oldrank != newrank)
+            if (oldrank != newrank || newrank <= 10)
             {
                 int number = Math.Min(dBRankInfo.rankingDonation.Count, 20);
                 for (int i = 0; i < number;i++)
