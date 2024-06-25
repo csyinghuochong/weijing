@@ -87,7 +87,7 @@ namespace ET
         {
             this.CreateBullet();
 
-            this.CheckChiXuHurt();  
+            //this.CheckChiXuHurt();  
 
             if (TimeHelper.ServerNow() > SkillEndTime)
             {
