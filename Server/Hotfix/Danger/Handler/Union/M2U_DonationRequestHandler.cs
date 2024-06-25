@@ -28,7 +28,7 @@ namespace ET
                 if (rankingInfoTemp.UserId == request.RankingInfo.UserId)
                 {
                     rankingInfoTemp.Combat += request.RankingInfo.Combat;
-                    oldrank = i;
+                    oldrank = i + 1;
                 }
             }
             if (oldrank == -1)
@@ -43,7 +43,7 @@ namespace ET
 
             if (scene.DomainZone() == 5)
             {
-                Console.WriteLine($"排名对比: {request.RankingInfo.UserId}  {oldrank} {newrank}");
+                Console.WriteLine($"排名对比: {request.RankingInfo.UserId}  {oldrank}   {newrank}");
             }
 
             //有变化则通知
