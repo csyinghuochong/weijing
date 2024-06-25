@@ -1023,16 +1023,16 @@ namespace ET
                 //2293987578036158464  入梦
                 if (attackUnit.Id == 2291096446520328192 && skillconfig.SkillActType == 1 )
                 {
-                    Log.Warning($"玩家(追风)造成伤害   技能:{skillconfig.Id}  伤害:{damge}");
+                    Log.Warning($"玩家(追风)造成伤害   技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
                 if (attackUnit.MasterId == 2291096446520328192 && skillconfig.SkillActType == 1)
                 {
-                    Log.Warning($"玩家(追风)宠物伤害  技能:{skillconfig.Id}  伤害:{damge}");
+                    Log.Warning($"玩家(追风)宠物伤害  技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
                 if (defendUnit.Type == UnitType.Player && defendUnit.Id == 2291096446520328192)
                 {
-                    Log.Warning($"玩家(追风)对手伤害   技能:{skillconfig.Id}  伤害:{damge}");
+                    Log.Warning($"玩家(追风)对手伤害   技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
 

@@ -128,7 +128,7 @@ namespace ET
                         long attackId = 0;
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && this.TheUnitFrom.Id == 2291096446520328192 )
                         {
-                            Log.Warning($"玩家(追风)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
+                            Log.Warning($"玩家(追风)，   回血:{this.NowBuffValue}. skillid: {this.mSkillConf.SkillName}  buffid：{this.mBuffConfig.BuffName}");
                         }
                         if (this.TheUnitFrom.Type == UnitType.Player && this.TheUnitFrom.GetComponent<AttackRecordComponent>() != null)
                         {
@@ -136,7 +136,7 @@ namespace ET
                         }
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && attackId == 2291096446520328192)
                         {
-                            Log.Warning($"玩家(追风)对手 回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}  {this.TheUnitFrom.Id}");
+                            Log.Warning($"玩家(追风)对手 回血:{this.NowBuffValue}. skillid: {this.mSkillConf.SkillName}  buffid：{this.mBuffConfig.BuffName}  {this.TheUnitFrom.Id}");
                         }
 
                         heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)this.NowBuffValue, 0, true, nowdamgeType);
