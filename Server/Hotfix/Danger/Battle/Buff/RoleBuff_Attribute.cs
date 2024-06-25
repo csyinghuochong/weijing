@@ -126,17 +126,17 @@ namespace ET
 
 
                         long attackId = 0;
-                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && (this.TheUnitFrom.Id == 2294038413269073920 || this.TheUnitFrom.Id == 2304469306957692928))
+                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && this.TheUnitFrom.Id == 2291096446520328192 )
                         {
-                            Log.Warning($"玩家(亞奇洛貝)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
+                            Log.Warning($"玩家(追风)，   回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}");
                         }
                         if (this.TheUnitFrom.Type == UnitType.Player && this.TheUnitFrom.GetComponent<AttackRecordComponent>() != null)
                         {
                             attackId = this.TheUnitFrom.GetComponent<AttackRecordComponent>().AttackingId;
                         }
-                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 &&  (attackId == 2294038413269073920 || attackId == 2304469306957692928) )
+                        if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && attackId == 2291096446520328192)
                         {
-                            Log.Warning($"玩家(亞奇洛貝)对手 回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}  {this.TheUnitFrom.Id}");
+                            Log.Warning($"玩家(追风)对手 回血:{this.NowBuffValue}. skillid: {this.BuffData.SkillId}  buffid：{this.BuffData.BuffId}  {this.TheUnitFrom.Id}");
                         }
 
                         heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)this.NowBuffValue, 0, true, nowdamgeType);

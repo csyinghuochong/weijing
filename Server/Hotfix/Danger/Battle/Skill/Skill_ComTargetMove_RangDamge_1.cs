@@ -87,6 +87,8 @@ namespace ET
         {
             this.CreateBullet();
 
+            this.CheckChiXuHurt();  
+
             if (TimeHelper.ServerNow() > SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
