@@ -12,7 +12,6 @@ namespace ET
             try
             {
                 self.OnUpdate();
-                //self.CheckChiXuHurt();
             }
             catch (Exception e)
             {
