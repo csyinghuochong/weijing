@@ -744,6 +744,10 @@ namespace ET
             else
             {
                 float now_cdpro= numericComponent.GetAsFloat(NumericType.Now_SkillCDTimeCostPro);
+                //急速削减最多达到50%
+                if (now_cdpro > 0.5f) {
+                    now_cdpro = 0.5f;
+                }
                 skillcdTime *= ( 1f - now_cdpro);
             }
 
