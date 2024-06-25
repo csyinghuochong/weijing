@@ -48,6 +48,36 @@ namespace ET
             return new List<int>() { min, max };
         }
 
+        /// <summary>
+        /// 是否有传承增幅属性
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static bool IsHaveMovePro(BagInfo info)
+        {
+            bool canTrans = false;
+            foreach (HideProList hideProList in info.IncreaseProLists)
+            {
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideProList.HideID);
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTrans = true;
+                    break;
+                }
+            }
+            foreach (int increaseSkillList in info.IncreaseSkillLists)
+            {
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(increaseSkillList);
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTrans = true;
+                    break;
+                }
+            }
+
+            return canTrans;   
+        }
+
 
         /// <summary>
         /// 

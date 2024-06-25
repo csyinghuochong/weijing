@@ -82,6 +82,16 @@ namespace ET
                 return;
             }
 
+            bool ifMovePro = ItemHelper.IsHaveMovePro(self.BagInfo_Transfer[0]);
+            // A装备无传承增幅
+
+            if (!ifMovePro)
+            {
+                FloatTipManager.Instance.ShowFloatTip("左侧装备未拥有传承增幅！");
+                return;
+            }
+
+
             //圣光装备洗练继承功能 布甲只能继承布甲 同类型只能继承同类型
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(self.BagInfo_Transfer[0].ItemID);
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(self.BagInfo_Transfer[1].ItemID);
@@ -90,25 +100,26 @@ namespace ET
             //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99) 
             {
                 //相同部位
-                if (itemConfig_0.EquipType != itemConfig_1.EquipType)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("只有护甲类型相同的装备才能转移！");
-                    return;
-                }
+                //if (!ifMovePro &&  itemConfig_0.EquipType != itemConfig_1.EquipType)
+                //{
+                //    FloatTipManager.Instance.ShowFloatTip("只有护甲类型相同的装备才能转移！");
+                //    return;
+                //}
             }
 
            // if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
             {
                 //相同部位
-                if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("只有相同部位的装备才能转移！");
-                    return;
-                }
+                //if (!ifMovePro &&  itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
+                //{
+                //    FloatTipManager.Instance.ShowFloatTip("只有相同部位的装备才能转移！");
+                //    return;
+                //}
             }
 
             //紫色品质以上才可以转移
-            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4) {
+            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4) 
+            {
                 FloatTipManager.Instance.ShowFloatTip("只有紫色及以上品质的装备才能转移！");
                 return;
             }
@@ -119,33 +130,6 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("绑定装备的增幅属性无法转移至未绑定的装备！");
                 return;
             }
-            
-            // A装备无传承增幅
-            bool canTrans = false;
-            foreach (HideProList hideProList in self.BagInfo_Transfer[0].IncreaseProLists)
-            {
-                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideProList.HideID);
-                if (hideProListConfig.IfMove == 1)
-                {
-                    canTrans = true;
-                    break;
-                }
-            }
-            foreach (int increaseSkillList in self.BagInfo_Transfer[0].IncreaseSkillLists)
-            {
-                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(increaseSkillList);
-                if (hideProListConfig.IfMove == 1)
-                {
-                    canTrans = true;
-                    break;
-                }
-            }
-            if (!canTrans)
-            {
-                FloatTipManager.Instance.ShowFloatTip("左侧装备未拥有传承增幅！");
-                return;
-            }
-
             
 
             C2M_ItemIncreaseTransferRequest request = new C2M_ItemIncreaseTransferRequest()

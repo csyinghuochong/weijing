@@ -33,7 +33,18 @@ namespace ET
                 reply();
                 return;
             }
-            
+
+            bool ifMovePro = ItemHelper.IsHaveMovePro(bagInfo_1);
+            // A装备无传承增幅
+
+            if (!ifMovePro)
+            {
+                response.Error = ErrorCode.ERR_ItemUseError;
+                reply();
+                return;
+            }
+
+
             //绑定装备无法转移(客户端已经给出对应提示)
             if (bagInfo_1.isBinging == true && bagInfo_2.isBinging == false && itemConfig_1.ItemQuality == 4)
             {
@@ -51,21 +62,21 @@ namespace ET
             //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
             {
                 //相同部位
-                if (itemConfig_0.EquipType != itemConfig_1.EquipType)
-                {
-                    reply();
-                    return;
-                }
+                //if (itemConfig_0.EquipType != itemConfig_1.EquipType)
+                //{
+                //    reply();
+                //    return;
+                //}
             }
 
             //if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
             {
                 //相同部位  只有相同部位的装备才能转移
-                if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
-                {
-                    reply();
-                    return;
-                }
+                //if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
+                //{
+                //    reply();
+                //    return;
+                //}
             }
 
             string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
