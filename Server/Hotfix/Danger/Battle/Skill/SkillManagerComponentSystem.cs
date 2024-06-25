@@ -735,11 +735,23 @@ namespace ET
                 skillcdTime = petConfig.Base_ActSpeed;
             }
 
+
+            //减少的技能CD
+            float reduceCD = 0f;
+            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
+
+            Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
+            if (keyValuePairs != null)
+            {
+                keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
+            }
+
+
             float nocdPro = numericComponent.GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
             {
-                //return skillcd;
                 skillcdTime = 1;  //1秒冷却CD
+                skillcdTime -= reduceCD;
             }
             else
             {
@@ -748,6 +760,7 @@ namespace ET
                 if (now_cdpro > 0.5f) {
                     now_cdpro = 0.5f;
                 }
+                skillcdTime -= reduceCD;
                 skillcdTime *= ( 1f - now_cdpro);
             }
 
@@ -764,15 +777,7 @@ namespace ET
                     attackSpped = 0.25f;
                 }
                 skillcdTime = skillcdTime * attackSpped;
-            }
-
-            float reduceCD = 0f;
-            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
-            
-            Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
-            if (keyValuePairs != null)
-            {
-                keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
+                skillcdTime -= reduceCD;
             }
 
             int cdRate = 1;
@@ -791,12 +796,12 @@ namespace ET
             if (zhudong)
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillcdTime - reduceCD) * cdRate);
+                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 *  skillcdTime* cdRate);
             }
             else
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * ((float)skillcdTime - reduceCD));
+                skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * skillcdTime);
             }
 
             if (zhudong && skillConfig.IfPublicSkillCD == 0)
