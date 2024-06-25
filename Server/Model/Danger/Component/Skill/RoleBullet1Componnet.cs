@@ -13,6 +13,7 @@ namespace ET
         public SkillHandler SkillHandler;
         public BuffState BuffState;
         public long Timer;
+        //public long DamgeChiXuLastTime;
     }
 
 }

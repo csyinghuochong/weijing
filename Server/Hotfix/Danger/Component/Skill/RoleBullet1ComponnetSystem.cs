@@ -12,6 +12,7 @@ namespace ET
             try
             {
                 self.OnUpdate();
+                //self.CheckChiXuHurt();
             }
             catch (Exception e)
             {
@@ -53,6 +54,33 @@ namespace ET
             self.BuffEndTime = 1000 * (int)skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) + skillHandler.SkillConf.SkillLiveTime + TimeHelper.ServerNow();
 
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.RoleBullet1Timer, self);
+        }
+
+        public static void CheckChiXuHurt(this RoleBullet1Componnet self)
+        {
+            if (self.SkillHandler.SkillConf.DamgeChiXuValue == 0 || self.SkillHandler.TheUnitFrom.IsDisposed)
+            {
+                return;
+            }
+
+            long servernow = TimeHelper.ServerNow();
+            long interval = self.SkillHandler.SkillConf.DamgeChiXuInterval;
+            if (servernow - self.SkillHandler.DamgeChiXuLastTime < interval)
+            {
+                return;
+            }
+            self.SkillHandler.DamgeChiXuLastTime = servernow;
+            List<Unit> entities = self.SkillHandler.TheUnitFrom.GetParent<UnitComponent>().GetAll();
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                Unit uu = entities[i];
+                //检测目标是否在技能范围
+                if (!self.SkillHandler.CheckShape(uu.Position))
+                {
+                    continue;
+                }
+                self.SkillHandler.OnChiXuHurtCollision(uu);
+            }
         }
 
         public static void OnUpdate(this RoleBullet1Componnet self)
