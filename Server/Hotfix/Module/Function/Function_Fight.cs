@@ -751,8 +751,6 @@ namespace ET
                     actDamgeValue = skillconfig.DamgeChiXuValue;
                 }
 
-
-
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
 
                 float damgePro = 1;
@@ -936,25 +934,9 @@ namespace ET
                 //pk相关
                 if (playerPKStatus)
                 {
+                    //actDamgeValue -= (int)(actDamgeValue * 0.4f);
 
-                    actDamgeValue -= (int)(actDamgeValue * 0.4f);
-                    damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
-
-                    //damgePro -= 0.5f;
-                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
-                    //普通攻击
-                    /*
-                    if (skillconfig.SkillActType == 0 && damgePro > 0)
-                    {
-                        damgePro = damgePro * 0.4f;
-                    }
-
-                    //技能攻击
-                    if (skillconfig.SkillActType == 1 && damgePro > 0)
-                    {
-                        damgePro = damgePro * 0.3f;
-                    }
-                    */
+                    //damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
 
                     bool jueXinSkill = false;
                     if (ConfigHelper.JueXingSkillIDList.Contains(skillHandler.SkillConf.Id))
@@ -979,22 +961,23 @@ namespace ET
                     }
 
                     //普通攻击降低
+                    /*
                     if (skillconfig.SkillActType == 0)
                     {
                         damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerActDamgeSubPro);
                     }
+
                     //技能伤害降低
                     if (skillconfig.SkillActType == 1)
                     {
                         damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerSkillDamgeSubPro);
                     }
-
+                    */
                     //根据双方战力调整系数
                     if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
                     {
                         damgePro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
                     }
-
 
                     //系数类的百分比加减乘放在后面
 
@@ -1004,19 +987,54 @@ namespace ET
                         damgePro = damgePro / 2;
                     }
 
-                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
+                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低20%
                     //普通攻击
                     if (skillconfig.SkillActType == 0 && damgePro > 0)
                     {
-                        damgePro = damgePro * 0.4f;
+                        damgePro = damgePro * 0.3f;
                     }
 
                     //技能攻击
                     if (skillconfig.SkillActType == 1 && damgePro > 0)
                     {
-                        damgePro = damgePro * 0.3f;
+                        damgePro = damgePro * 0.2f;
                     }
 
+                    //----------生命之盾相关-----------
+
+                    //普通攻击降低
+                    if (skillconfig.SkillActType == 0)
+                    {
+                        float PlayerActDamgeSubPro = numericComponentDefend.GetAsFloat(NumericType.Now_PlayerActDamgeSubPro);
+                        if (PlayerActDamgeSubPro >= 0.75f)
+                        {
+                            PlayerActDamgeSubPro = 0.75f;
+                        }
+
+                        //降低受到玩家全部攻击伤害比例
+                        damgePro = damgePro * (1 - PlayerActDamgeSubPro);
+                    }
+
+                    //技能伤害降低
+                    if (skillconfig.SkillActType == 1)
+                    {
+                        float PlayerSkillDamgeSubPro = numericComponentDefend.GetAsFloat(NumericType.Now_PlayerSkillDamgeSubPro);
+                        if (PlayerSkillDamgeSubPro >= 0.75f)
+                        {
+                            PlayerSkillDamgeSubPro = 0.75f;
+                        }
+
+                        //降低受到玩家全部攻击伤害比例
+                        damgePro = damgePro * (1 - PlayerSkillDamgeSubPro);
+                    }
+
+                    float PlayerAllDamgeSubPro = numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
+                    if (PlayerAllDamgeSubPro >= 0.75f) {
+                        PlayerAllDamgeSubPro = 0.75f;
+                    }
+
+                    //降低受到玩家全部攻击伤害比例
+                    damgePro = damgePro * (1 - PlayerAllDamgeSubPro);
                 }
 
                 damgePro = damgePro < 0 ? 0 : damgePro;
@@ -1251,9 +1269,9 @@ namespace ET
             }
 
             //addPro = addPro + 0.05f;
-            if (addPro > 0.3f)
+            if (addPro > 0.5f)
             {
-                addPro = 0.3f;
+                addPro = 0.5f;
             }
 
             return addPro;
