@@ -568,10 +568,9 @@ namespace ET
 
         public static void UpdateShangJiaItems_ByType(this PaiMaiSceneComponent self, DBPaiMainInfo dBPaiMainInfo)
         {
-            int AAA = self.DomainZone();
             List<PaiMaiItemInfo> paimaiItems = dBPaiMainInfo.PaiMaiItemInfos;
 
-            for (int i = 0; i < paimaiItems.Count; i++)
+            for (int i = paimaiItems.Count - 1; i >= 0; i--)
             {
                 PaiMaiItemInfo paiMaiItem = paimaiItems[i];
 
@@ -597,7 +596,6 @@ namespace ET
                     }
                     else if (pro <= 1.2f)
                     {
-
                         buyPro = 0.05f;
                     }
                     else if (pro <= 1.5f)
@@ -627,17 +625,19 @@ namespace ET
                             break;
 
                     }
-
                     //不能超过当前拥有上限
                     costNum = Math.Min(costNum, paiMaiItem.BagInfo.ItemNum);
 
-                    if (pro < 1.5f)
+                    //概率购买
+                    if (pro < 1.5f && RandomHelper.RandFloat01() < buyPro)
                     {
-                        //概率购买
-                        if (RandomHelper.RandFloat01() < buyPro)
+                        Log.Info("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price * costNum + "玩家名称:" + paiMaiItem.PlayerName + "出售道具:" + paiMaiItem.BagInfo.ItemID + "出售单价:" + paiMaiItem.Price + "道具拥有数量:" + paiMaiItem.BagInfo.ItemNum);
+                        MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, costNum, 0).Coroutine();
+
+                        paiMaiItem.BagInfo.ItemNum -= costNum;
+                        if (paiMaiItem.BagInfo.ItemNum <= 0)
                         {
-                            Log.Info("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price * costNum + "玩家名称:" + paiMaiItem.PlayerName + "出售道具:" + paiMaiItem.BagInfo.ItemID + "出售单价:" + paiMaiItem.Price + "道具拥有数量:" + paiMaiItem.BagInfo.ItemNum);
-                            MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, costNum, 0).Coroutine();
+                            dBPaiMainInfo.PaiMaiItemInfos.RemoveAt(i);
                         }
                     }
                 }
