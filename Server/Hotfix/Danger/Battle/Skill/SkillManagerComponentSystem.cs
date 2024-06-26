@@ -762,6 +762,12 @@ namespace ET
                 }
                 skillcdTime -= reduceCD;
                 skillcdTime *= ( 1f - now_cdpro);
+
+                //技能最低不会低于2秒的CD
+                if (skillcdTime <= 2) {
+                    skillcdTime = 2;
+                }
+
             }
 
             //if (unit.Type != UnitType.Player && unit.MasterId != 0 && skillConfig.SkillActType == 0)

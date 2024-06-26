@@ -751,6 +751,8 @@ namespace ET
                     actDamgeValue = skillconfig.DamgeChiXuValue;
                 }
 
+
+
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
 
                 float damgePro = 1;
@@ -941,6 +943,7 @@ namespace ET
                     //damgePro -= 0.5f;
                     //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
                     //普通攻击
+                    /*
                     if (skillconfig.SkillActType == 0 && damgePro > 0)
                     {
                         damgePro = damgePro * 0.4f;
@@ -951,6 +954,7 @@ namespace ET
                     {
                         damgePro = damgePro * 0.3f;
                     }
+                    */
 
                     bool jueXinSkill = false;
                     if (ConfigHelper.JueXingSkillIDList.Contains(skillHandler.SkillConf.Id))
@@ -974,12 +978,6 @@ namespace ET
                         jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
                     }
 
-                    //觉醒技能伤害减半
-                    if (jueXinSkill)
-                    {
-                        damgePro = damgePro / 2;
-                    }
-
                     //普通攻击降低
                     if (skillconfig.SkillActType == 0)
                     {
@@ -996,6 +994,29 @@ namespace ET
                     {
                         damgePro += GetFightValueActProValue(attackUnit.GetComponent<UserInfoComponent>().UserInfo.Combat, defendUnit.GetComponent<UserInfoComponent>().UserInfo.Combat);
                     }
+
+
+                    //系数类的百分比加减乘放在后面
+
+                    //觉醒技能伤害减半
+                    if (jueXinSkill)
+                    {
+                        damgePro = damgePro / 2;
+                    }
+
+                    //玩家之间PK伤害降低,普通攻击降低40%,技能伤害降低30%
+                    //普通攻击
+                    if (skillconfig.SkillActType == 0 && damgePro > 0)
+                    {
+                        damgePro = damgePro * 0.4f;
+                    }
+
+                    //技能攻击
+                    if (skillconfig.SkillActType == 1 && damgePro > 0)
+                    {
+                        damgePro = damgePro * 0.3f;
+                    }
+
                 }
 
                 damgePro = damgePro < 0 ? 0 : damgePro;
@@ -1032,7 +1053,7 @@ namespace ET
 
                 if (defendUnit.Type == UnitType.Player && defendUnit.Id == 2291096446520328192)
                 {
-                    Log.Warning($"玩家(追风)对手伤害   技能:{skillconfig.SkillName}  伤害:{damge}");
+                    Log.Warning($"玩家(追风)对手伤害   技能ID:{skillconfig.Id} 技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
 
@@ -1447,7 +1468,7 @@ namespace ET
             long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
             long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
             */
-            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp;
+                    long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp;
             long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct;
             long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct;
             long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct;
