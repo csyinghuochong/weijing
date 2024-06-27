@@ -317,14 +317,11 @@ namespace ET
 
             serverItems_1.Add(new ServerItem() { ServerId = 103, ServerIp = $"{ip}:20425", ServerName = "翡翠之光", ServerOpenTime = 1717758000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 104, ServerIp = $"{ip}:20375", ServerName = "琉璃之海", ServerOpenTime = 1718362800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2024/06/21 19:00:00 1718967600000 新区 锦绣山河  105
-            //2024/06/21 19:00:00 1718967600000 合区 繁星之梦-新年快乐  64/72
-            //2024/06/21 19:00:00 1718967600000 合区 长风破浪-璀璨星空  101/102
             serverItems_1.Add(new ServerItem() { ServerId = 105, ServerIp = $"{ip}:20395", ServerName = "锦绣山河", ServerOpenTime = 1718967600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
+            //2024/06/28 19:00:00 1719572400000 新区 巨龙之魂  106
+            serverItems_1.Add(new ServerItem() { ServerId = 106, ServerIp = $"{ip}:20415", ServerName = "巨龙之魂", ServerOpenTime = 1719572400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();
