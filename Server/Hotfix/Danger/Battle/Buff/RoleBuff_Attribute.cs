@@ -136,7 +136,7 @@ namespace ET
                         }
                         if (NowBuffParameterType == NumericType.Now_Hp && this.NowBuffValue > 0 && GMHelp.DebugPlayerList.ContainsKey(attackId))
                         {
-                            Log.Warning($"玩家({GMHelp.DebugPlayerList[attackId]}})对手 回血:{this.NowBuffValue}. skillid: {this.mSkillConf.SkillName}  buffid：{this.mBuffConfig.BuffName}  {this.TheUnitFrom.Id}");
+                            Log.Warning($"玩家({GMHelp.DebugPlayerList[attackId]})对手 回血:{this.NowBuffValue}. skillid: {this.mSkillConf.SkillName}  buffid：{this.mBuffConfig.BuffName}  {this.TheUnitFrom.Id}");
                         }
 
                         heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)this.NowBuffValue, 0, true, nowdamgeType);
