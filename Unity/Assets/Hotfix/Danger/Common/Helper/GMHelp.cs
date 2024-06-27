@@ -21,6 +21,12 @@ namespace ET
 
         };
 
+        public static Dictionary<long, string> DebugPlayerList = new Dictionary<long, string>()
+        {
+             { 2291096446520328192,"追风"},
+             { 2258363779135897601,"杨丶大桃"},
+        };
+
         ////if (head == "170" || head == "171" || head == "162" || head == "165" || head == "167" || head == "192")
         public static List<string> IllegalPhone = new List<string>()
         {

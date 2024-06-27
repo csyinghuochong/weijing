@@ -1058,20 +1058,20 @@ namespace ET
                 {
                     damge = 1;
                 }
-
+                
                 //2293987578036158464  入梦
-                if (attackUnit.Id == 2291096446520328192 && skillconfig.SkillActType == 1 )
+                if (skillconfig.SkillActType == 1  && GMHelp.DebugPlayerList.ContainsKey(attackUnit.Id))
                 {
-                    Log.Warning($"玩家(追风)造成伤害   技能:{skillconfig.SkillName}  伤害:{damge}");
+                    Log.Warning($"玩家({GMHelp.DebugPlayerList[attackUnit.Id]})造成伤害   技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
-                if (attackUnit.MasterId == 2291096446520328192 && skillconfig.SkillActType == 1)
+                if (skillconfig.SkillActType == 1 && GMHelp.DebugPlayerList.ContainsKey(attackUnit.MasterId))
                 {
-                    Log.Warning($"玩家(追风)宠物伤害  技能:{skillconfig.SkillName}  伤害:{damge}");
+                    Log.Warning($"玩家({GMHelp.DebugPlayerList[attackUnit.MasterId]})宠物伤害  技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
-                if (defendUnit.Type == UnitType.Player && defendUnit.Id == 2291096446520328192)
+                if (defendUnit.Type == UnitType.Player && GMHelp.DebugPlayerList.ContainsKey(defendUnit.Id))
                 {
-                    Log.Warning($"玩家(追风)对手伤害   技能ID:{skillconfig.Id} 技能:{skillconfig.SkillName}  伤害:{damge}");
+                    Log.Warning($"玩家({GMHelp.DebugPlayerList[defendUnit.Id]})对手伤害   技能ID:{skillconfig.Id} 技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
 
