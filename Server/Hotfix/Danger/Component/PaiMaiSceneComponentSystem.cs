@@ -584,7 +584,7 @@ namespace ET
 
                     if (pro <= 0.5f)
                     {
-                        buyPro = 0.35f;
+                        buyPro = 0.3f;
                     }
                     else if (pro <= 0.75f)
                     {
