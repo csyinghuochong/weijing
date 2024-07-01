@@ -136,7 +136,8 @@ namespace ET
             {
                 return;
             }
-          
+
+            UIHelper.Remove( unit.ZoneScene(), UIType.UIBuffTips );
             if (!SceneConfigHelper.IfCanRevive(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
                 long instanceId = unit.InstanceId;
