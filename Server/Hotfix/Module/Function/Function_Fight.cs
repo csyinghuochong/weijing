@@ -524,6 +524,12 @@ namespace ET
                 //获取重击等级  判定是否触发重击
                 int zhongjiLvValue = numericComponentAttack.GetAsInt(NumericType.Now_ZhongJiLv);
                 float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro) + LvProChange(zhongjiLvValue, attackUnitLv);
+
+                //重击阈值
+                if (zhongJiPro > 0.75f) {
+                    zhongJiPro = 0.75f;
+                }
+
                 if (RandomHelper.RandFloat() <= zhongJiPro)
                 {
                     defValue = 0;
