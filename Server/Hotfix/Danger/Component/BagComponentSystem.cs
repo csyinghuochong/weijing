@@ -581,6 +581,39 @@ namespace ET
             return false;
         }
 
+        public static List<int> GetEquipTianFuIds(this BagComponent self)
+        {
+            List<int> equiptianfuids = new List<int>(); 
+            List<BagInfo> equiplist = new List<BagInfo>();
+            equiplist.AddRange(self.EquipList );
+            equiplist.AddRange(self.EquipList_2);
+            equiplist.AddRange(self.SeasonJingHe);
+
+            for (int i = 0; i < self.EquipList.Count; i++)
+            {
+                if (!ItemConfigCategory.Instance.Contain(self.EquipList[i].ItemID))
+                {
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
+
+                if (!EquipConfigCategory.Instance.Contain(itemConfig.ItemEquipID))
+                {
+                    continue;
+                }
+                EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+                
+
+                if (equipConfig.TianFuId != 0)
+                {
+                    equiptianfuids.Add(equipConfig.TianFuId);
+                }
+            }
+
+            return equiptianfuids;
+        }
+
         public static BagInfo GetJingHeByWeiZhi(this BagComponent self, int subType)
         {
             List<BagInfo> bagInfos = self.GetCurJingHeList();
@@ -639,6 +672,7 @@ namespace ET
 
         public static void OnLogin(this BagComponent self, int robotId)
         {
+
             Unit unit = self.GetParent<Unit>();
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);

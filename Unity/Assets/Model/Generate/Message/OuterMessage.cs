@@ -4741,6 +4741,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int SkillSource { get; set; }
 
+		[ProtoMember(6)]
+		public int ParamId { get; set; }
+
 	}
 
 //通过奖励

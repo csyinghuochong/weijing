@@ -18,6 +18,8 @@ namespace ET
 
         public List<SkillPro> SkillList = new List<SkillPro>();
 
+        public List<SkillPro> SkillListRemove = new List<SkillPro>();   //备份移除的技能
+
         //生命之盾
         public List<LifeShieldInfo> LifeShieldList = new List<LifeShieldInfo>();
 

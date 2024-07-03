@@ -13,6 +13,7 @@ namespace ET
         Proto2CS,
         MergeZone,  //合区
         DeleteZone,   //删档
+        UpdateDB,
     }
     
     public class Options

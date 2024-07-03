@@ -81,6 +81,57 @@ namespace ET
                     //await  MergeZoneHelper.MergeZone(oldzone, newzone);
                     Game.EventSystem.Publish(new EventType.MergeZone(){  oldzone = oldzone, newzone = newzone });
                     break;
+                case AppType.UpdateDB:
+                    List<int> mergezones = ServerMessageHelper.GetAllZone();
+                    for (int i = 0; i < mergezones.Count; i++)
+                    {
+                        var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
+                        Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+                    }
+
+                    for (int zone = 0; zone < mergezones.Count; zone++)
+                    {
+                       
+                        try
+                        {
+                            int number = 0;
+                            int pyzone = StartZoneConfigCategory.Instance.Get(mergezones[zone]).PhysicZone;
+
+                            List<SkillSetComponent> skillsetComponentList = await Game.Scene.GetComponent<DBComponent>().Query<SkillSetComponent>(pyzone, d => d.Id > 0);
+
+                            Console.WriteLine($"UpdateDB1  :{pyzone}  {skillsetComponentList.Count}");
+
+
+                            for (int userinfo = 0; userinfo < skillsetComponentList.Count; userinfo++)
+                            {
+                                SkillSetComponent skillSetComponent = skillsetComponentList[userinfo];
+
+                                List<int> equiptianfuids = new List<int>();
+                                List<BagComponent> bagComponentList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(pyzone, d => d.Id == skillSetComponent.Id);
+                                if (bagComponentList.Count > 0)
+                                {
+                                    equiptianfuids.AddRange(bagComponentList[0].GetEquipTianFuIds());
+                                    equiptianfuids.AddRange(skillSetComponent.TianFuAddition);
+                                }
+
+                                bool change = skillSetComponent.CheckSkillToTalent(equiptianfuids);
+                                if (change)
+                                {
+                                    number++;
+                                    //await Game.Scene.GetComponent<DBComponent>().Save(pyzone, skillSetComponent);
+                                }
+                            }
+
+                            Console.WriteLine($"UpdateDB2  :{mergezones[zone]}  {number}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.ToString());       
+                        }
+                    }
+
+                    Console.WriteLine($"UpdateDB  :End");
+                    break;
                 case AppType.DeleteZone:
                     int delezone = int.Parse(Game.Options.Parameters);
                     await DeleteZoneHelper.DeletionZone(delezone);

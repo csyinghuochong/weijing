@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -208,6 +209,9 @@ namespace ET
 				}
 			}
 		}
+
+
+
 
 		public static void OnSkillIdAdd(this SkillSetComponent self, string[] properInfo, bool add)
 		{
@@ -857,6 +861,115 @@ namespace ET
                 }
             }
 
+			List<int> equiptianfus = self.GetParent<Unit>().GetComponent<BagComponent>().GetEquipTianFuIds();
+			equiptianfus.AddRange( self.TianFuAddition);
+            self.CheckSkillToTalent(equiptianfus);
+
+			//self.UpdateTalentToSkill();
+        }
+
+		public static void UpdateTalentToSkill(this SkillSetComponent self)
+		{
+			List<int> curTianfu = self.TianFuList();
+			List<int> updateTianFu = new List<int> {  };	
+
+            for (int k = self.SkillList.Count - 1; k >= 0; k--)
+            {
+                if (self.SkillList[k].SkillSource != SkillSourceEnum.TianFu)
+                {
+                    continue;
+                }
+
+                if (self.SkillList[k].ParamId != 0)
+                {
+                    continue;
+                }
+                if ( !curTianfu.Contains(self.SkillList[k].ParamId) )
+                {
+                    continue;
+                }
+
+				updateTianFu.Add(self.SkillList[k].ParamId);
+            }
+
+			for (int i = 0; i < updateTianFu.Count; i++)
+			{
+				self.AddTianFuAttribute(updateTianFu[i], true);
+            }
+        }
+
+
+        public static bool CheckSkillToTalent(this SkillSetComponent self, List<int> equipTianfu)
+		{
+			//if (equipTianfu.Count > 0)
+			//{
+            //     Console.WriteLine($"equipTianfu.Count > 0: {self.Id}     {equipTianfu.Count}");
+            //}
+
+			bool change = false;
+			for (int k = self.SkillList.Count - 1; k >= 0; k--)
+			{
+				////这个要确认一下， 是否检测全部
+				if (self.SkillList[k].SkillSource != SkillSourceEnum.TianFu)
+				{
+					continue;
+				}
+
+                if (self.SkillList[k].ParamId != 0)
+                {
+                    continue;
+                }
+
+				List<int> tianfuList = TalentConfigCategory.Instance.GetSkillToTalentId(self.SkillList[k].SkillID);
+				if (tianfuList == null)
+                {
+                    change = false;
+                    self.SkillList[k].ParamId = 0;
+                   
+                    Console.WriteLine($"GetSkillToTalentId==0[no skill]: {self.Id}     {self.SkillList[k].SkillID}");
+                }
+				else
+				{
+                    change = true;
+                    int existTianfu = 0;
+                    for (int tianfu = 0; tianfu < tianfuList.Count; tianfu++)
+                    {
+						if (self.TianFuList.Contains(tianfuList[tianfu]) || self.TianFuList1.Contains(tianfuList[tianfu]) || equipTianfu.Contains(tianfuList[tianfu]))
+						{
+                            existTianfu = tianfuList[tianfu];
+							break;
+                        }
+                    }
+
+                    self.SkillList[k].ParamId = existTianfu;
+                    if (existTianfu == 0)
+					{
+						Console.WriteLine($"GetSkillToTalentId==0[no tianfu]: {self.Id}    {self.SkillList[k].SkillID}   {tianfuList[0]}    {self.TianFuList.Count}   {self.TianFuList1.Count}   {equipTianfu.Count}");
+						self.OnSkillListRemove(self.SkillList[k]);
+                        self.SkillList.RemoveAt(k);	
+                    }
+                }
+               
+            }
+			return change;
+        }
+
+		public static void OnSkillListRemove(this SkillSetComponent self, SkillPro skillPro)
+		{
+			if (self.SkillListRemove == null )
+			{
+				self.SkillListRemove = new List<SkillPro>();
+            }
+
+			for (int i = 0; i < self.SkillListRemove.Count;i++)
+			{
+				if (self.SkillListRemove[i].SkillID == skillPro.SkillID)
+				{
+					return;
+				}
+			}
+
+            self.SkillListRemove.Add(skillPro);
         }
 
         public static void OnChangeEquipIndex(this SkillSetComponent self,  int equipIndex)
