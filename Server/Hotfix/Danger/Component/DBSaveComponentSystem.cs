@@ -55,12 +55,7 @@ namespace ET
 
     public static class DBSaveComponentSystem
     {
-        public static void Activeted(this DBSaveComponent self)
-        {
-            TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.DBSaveTimer, self);
-        }
-
+       
         public static void AddChange(this DBSaveComponent self, Type t)
         {
             self.EntityChangeTypeSet.Add(t);
@@ -250,10 +245,29 @@ namespace ET
             }
         }
 
+        public static void Activeted(this DBSaveComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            long nextTime = TimeHelper.ServerNow() - self.LastDBTime;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(Math.Min(60000, nextTime), TimerType.DBSaveTimer, self);
+        }
+
+        public static void Check_2(this DBSaveComponent self)
+        {
+            if (self.LastDBTime == 0)
+            {
+                return;
+            }
+            if (TimeHelper.ServerNow() - self.LastDBTime >= TimeHelper.Minute)
+            {
+                self.Check();
+            }
+        }
+
         public static bool Check(this DBSaveComponent self)
         {
+            self.LastDBTime = TimeHelper.ServerNow();
             Unit unit = self.GetParent<Unit>();
-
             if (self.NoFindPath >= 50)
             {
                 self.NoFindPath = 0;

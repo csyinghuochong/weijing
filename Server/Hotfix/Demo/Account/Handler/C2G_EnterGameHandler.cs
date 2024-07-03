@@ -247,6 +247,7 @@ namespace ET
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
 						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
+						unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 
                         long unitId = unit.Id;

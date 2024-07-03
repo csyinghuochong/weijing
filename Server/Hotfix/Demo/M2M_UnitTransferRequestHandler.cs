@@ -473,8 +473,11 @@ namespace ET
 
                         break;
 				}
-				unit.GetComponent<DBSaveComponent>().Activeted();
-				if (request.SceneType != SceneTypeEnum.RunRace)
+
+                unit.GetComponent<DBSaveComponent>().Check_2();
+                unit.GetComponent<DBSaveComponent>().Activeted();
+               
+                if (request.SceneType != SceneTypeEnum.RunRace)
 				{
                     unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
                     unit.GetComponent<SkillPassiveComponent>().Reset();
