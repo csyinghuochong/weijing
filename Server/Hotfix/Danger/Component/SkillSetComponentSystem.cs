@@ -899,14 +899,14 @@ namespace ET
         }
 
 
-        public static bool CheckSkillToTalent(this SkillSetComponent self, List<int> equipTianfu)
+        public static int CheckSkillToTalent(this SkillSetComponent self, List<int> equipTianfu)
 		{
 			//if (equipTianfu.Count > 0)
 			//{
             //     Console.WriteLine($"equipTianfu.Count > 0: {self.Id}     {equipTianfu.Count}");
             //}
 
-			bool change = false;
+			int errorcode = 0; //0没有天赋技能  1技能找不到天赋id 2自身丢失天赋 3成功找到天赋
 			for (int k = self.SkillList.Count - 1; k >= 0; k--)
 			{
 				////这个要确认一下， 是否检测全部
@@ -923,14 +923,13 @@ namespace ET
 				List<int> tianfuList = TalentConfigCategory.Instance.GetSkillToTalentId(self.SkillList[k].SkillID);
 				if (tianfuList == null)
                 {
-                    change = false;
+                    errorcode = 1;
                     self.SkillList[k].ParamId = 0;
                    
                     Console.WriteLine($"GetSkillToTalentId==0[no skill]: {self.Id}     {self.SkillList[k].SkillID}");
                 }
 				else
 				{
-                    change = true;
                     int existTianfu = 0;
                     for (int tianfu = 0; tianfu < tianfuList.Count; tianfu++)
                     {
@@ -942,16 +941,22 @@ namespace ET
                     }
 
                     self.SkillList[k].ParamId = existTianfu;
-                    if (existTianfu == 0)
+					if (existTianfu == 0)
 					{
 						Console.WriteLine($"GetSkillToTalentId==0[no tianfu]: {self.Id}    {self.SkillList[k].SkillID}   {tianfuList[0]}    {self.TianFuList.Count}   {self.TianFuList1.Count}   {equipTianfu.Count}");
 						self.OnSkillListRemove(self.SkillList[k]);
-                        self.SkillList.RemoveAt(k);	
+						self.SkillList.RemoveAt(k);
+
+                        errorcode = 2;
+                    }
+					else
+					{
+						errorcode = 3;
                     }
                 }
                
             }
-			return change;
+			return errorcode;
         }
 
 		public static void OnSkillListRemove(this SkillSetComponent self, SkillPro skillPro)

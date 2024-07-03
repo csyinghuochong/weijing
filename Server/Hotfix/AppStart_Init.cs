@@ -94,7 +94,7 @@ namespace ET
                        
                         try
                         {
-                            int number = 0;
+                            int[] number_list = new int[4];
                             int pyzone = StartZoneConfigCategory.Instance.Get(mergezones[zone]).PhysicZone;
 
                             List<SkillSetComponent> skillsetComponentList = await Game.Scene.GetComponent<DBComponent>().Query<SkillSetComponent>(pyzone, d => d.Id > 0);
@@ -114,15 +114,16 @@ namespace ET
                                     equiptianfuids.AddRange(skillSetComponent.TianFuAddition);
                                 }
 
-                                bool change = skillSetComponent.CheckSkillToTalent(equiptianfuids);
-                                if (change)
+                                //0没有天赋技能  1技能找不到天赋id 2自身丢失天赋 3成功找到天赋
+                                int errorcode = skillSetComponent.CheckSkillToTalent(equiptianfuids);
+                                number_list[errorcode]++;
+                                if (errorcode == 3)
                                 {
-                                    number++;
                                     //await Game.Scene.GetComponent<DBComponent>().Save(pyzone, skillSetComponent);
                                 }
                             }
 
-                            Console.WriteLine($"UpdateDB2  :{mergezones[zone]}  {number}");
+                            Console.WriteLine($"UpdateDB2  :{mergezones[zone]}  {number_list[0]}  {number_list[1]}  {number_list[2]}   {number_list[3]}");
                         }
                         catch (Exception ex)
                         {
