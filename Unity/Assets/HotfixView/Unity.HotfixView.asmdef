@@ -7,12 +7,7 @@
         "Unity.ModelView",
         "Unity.Mono",
         "Unity.ThirdParty",
-        "Unity.TextMeshPro",
-        "TapTap.Common.Editor",
-        "TapTap.Login.Editor",
-        "TapTap.TapDB.Editor",
-        "TapTap.UI",
-        "TapTap.UI.Editor"
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

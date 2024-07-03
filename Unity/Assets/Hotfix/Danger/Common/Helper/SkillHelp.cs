@@ -22,6 +22,16 @@ namespace ET
                     {"Act_13", 900 },
         };
 
+
+        /// <summary>
+        /// 不触发被动技能
+        /// </summary>
+        public static List<int> NOPassiveSkill = new List<int>()    
+        {
+            62000004
+        };
+
+
         public static bool IsChongJi(string skillname)
         {
             return skillname.Equals(ChongJiSkill);

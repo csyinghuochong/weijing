@@ -242,20 +242,20 @@ namespace ET
 #endif
 
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             TapSDKHelper.Init();
 #endif
         }
 
-       
-		/// <summary>
-		/// 授权返回
-		/// </summary>
-		/// <param name="reqID"></param>
-		/// <param name="state"></param>
-		/// <param name="type"></param>
-		/// <param name="result"></param>
-		public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
+
+        /// <summary>
+        /// 授权返回
+        /// </summary>
+        /// <param name="reqID"></param>
+        /// <param name="state"></param>
+        /// <param name="type"></param>
+        /// <param name="result"></param>
+        public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
 			if (state != cn.sharesdk.unity3d.ResponseState.Success)

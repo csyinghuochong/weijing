@@ -492,7 +492,7 @@ namespace ET
             }
 
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (weaponSkillConfig.IfStopMove == 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+            if ( !unit.GetComponent<MoveComponent>().IsArrived()) //weaponSkillConfig.IfStopMove == 0 &&
             {
                 unit.Stop(skillcmd.SkillID);
             }
@@ -530,7 +530,7 @@ namespace ET
                 handlerList[i].OnExecute();
                 self.Skills.Add(handlerList[i] );
             }
-            if (zhudong && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
+            if (zhudong && !SkillHelp.NOPassiveSkill.Contains(weaponSkillConfig.Id)  && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
                 if (skillPassiveComponent == null)

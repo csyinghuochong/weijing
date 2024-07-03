@@ -2236,6 +2236,7 @@ message SkillPro
     int32 SkillSetType = 3;	//1技能 2道具 
     int32 Actived = 4;  //0 未学习  1已学习
     int32 SkillSource = 5; //1职业技能 2装备技能 3天赋技能 4 精灵技能 5 套装技能
+	int32 TianFuId = 6;    //1         2天赋ID   
 }
 
 //通过奖励

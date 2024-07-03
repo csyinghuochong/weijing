@@ -529,7 +529,7 @@ namespace ET
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
                 EventType.DataUpdate.Instance.DataParamString = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-                unit.MoveToAsync2(hit.point).Coroutine();
+                unit.MoveToAsync2(hit.point, false).Coroutine();
             }
         }
 

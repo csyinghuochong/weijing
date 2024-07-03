@@ -69,7 +69,7 @@ namespace ET
             if (message.Error > 1)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(message.Error);
-                if (skillConfig.IfStopMove == 0)
+                //if (skillConfig.IfStopMove == 0)
                 {
                     MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
                     moveComponent.SkillStop(unit, skillConfig);
