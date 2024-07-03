@@ -101,3 +101,13 @@ start_1_server7.bat
 start_1_server8.bat
 start_1_server9.bat
 start_merge_zone.bat
+Unity/AllIn1VfxAssmebly.csproj
+Unity/AllIn1VfxDemoScriptAssemblies.csproj
+Unity/AllIn1VfxTexDemoAssembly.csproj
+Unity/AntiAddiction.Editor.csproj
+Unity/TapTap.AntiAddiction.csproj
+Unity/TapTap.Common.Editor.csproj
+Unity/TapTap.Login.Editor.csproj
+Unity/TapTap.TapDB.Editor.csproj
+Unity/TapTap.UI.csproj
+Unity/TapTap.UI.Editor.csproj
