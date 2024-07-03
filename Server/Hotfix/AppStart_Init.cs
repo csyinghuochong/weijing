@@ -119,7 +119,7 @@ namespace ET
                                 number_list[errorcode]++;
                                 if (errorcode == 3)
                                 {
-                                    //await Game.Scene.GetComponent<DBComponent>().Save(pyzone, skillSetComponent);
+                                    await Game.Scene.GetComponent<DBComponent>().Save(pyzone, skillSetComponent);
                                 }
                             }
 
