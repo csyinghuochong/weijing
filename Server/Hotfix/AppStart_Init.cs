@@ -117,7 +117,7 @@ namespace ET
                                 //0没有天赋技能  1技能找不到天赋id 2自身丢失天赋 3成功找到天赋
                                 int errorcode = skillSetComponent.CheckSkillToTalent(equiptianfuids);
                                 number_list[errorcode]++;
-                                if (errorcode == 3)
+                                if (errorcode == 2 ||  errorcode == 3)
                                 {
                                     await Game.Scene.GetComponent<DBComponent>().Save(pyzone, skillSetComponent);
                                 }
