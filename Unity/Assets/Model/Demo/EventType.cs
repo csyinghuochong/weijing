@@ -813,6 +813,12 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TapTapAuther : DisposeObject
+        {
+            public static readonly TapTapAuther Instance = new TapTapAuther();
+            public Scene ZoneScene;
+        }
+
         public class UIOneChallenge : DisposeObject
         {
             public static readonly UIOneChallenge Instance = new UIOneChallenge();

@@ -1168,7 +1168,7 @@ namespace ET
 
             //UploadUserData
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            TapSDKAndroidHelper.UploadUserData(userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
+            TapSDKHelper.UploadUserData(userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
 #endif
         }
 

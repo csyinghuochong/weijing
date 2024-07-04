@@ -217,7 +217,7 @@ namespace ET
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 string serverName = accountInfoComponent.ServerName;
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-                TapSDKAndroidHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
+                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
             }
             catch (Exception ex) {
                 Log.Debug("UIRecharge ex:" + ex);

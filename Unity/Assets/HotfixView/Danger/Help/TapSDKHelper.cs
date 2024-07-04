@@ -14,7 +14,7 @@ namespace ET
 {
 
 #if UNITY_ANDROID
-    public static class TapSDKAndroidHelper
+    public static class TapSDKHelper
     {
 
         //预置事件
@@ -34,19 +34,33 @@ namespace ET
         /// TapDB 会根据 TapConfig 的配置进行自动初始化
         ///device_login	App 启动	调用 SDK 初始化接口时会上报此事件，首次上报一个设备 ID 时将在设备表产生一条记录 
 
+        // 是否已初始化
+        private static bool hasInit = false;
+        public static string clientId = "yfbkmzv4zafmyq8nzb";
+        public static string clientToken = "UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q";
+        public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
+
         public static void Init()
         {
-            ET.Log.ILog.Debug("Tap Bootstrap.Init");
-            var config = new TapConfig.Builder()
-            .ClientID("yfbkmzv4zafmyq8nzb")  // 必须，开发者中心对应 Client ID
-            .ClientToken("UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q")  // 必须，开发者中心对应 Client Token
-            .ServerURL("https://pm0a9qav.cloud.tds1.tapapis.cn")  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
-            .RegionType(RegionType.CN)  // 非必须，CN 表示中国大陆，IO 表示其他国家或地区
-            .TapDBConfig(true, "gameChannel", "gameVersion", true)  // TapDB 会根据 TapConfig 的配置进行自动初始化
-            .ConfigBuilder();
+            if (!hasInit)
+            {
+                hasInit = true;
 
-            TapBootstrap.Init(config);
+                string clientId = "yfbkmzv4zafmyq8nzb";
+
+                ET.Log.ILog.Debug("Tap Bootstrap.Init");
+                var config = new TapConfig.Builder()
+                .ClientID(clientId)  // 必须，开发者中心对应 Client ID
+                .ClientToken(clientToken)  // 必须，开发者中心对应 Client Token
+                .ServerURL(serverUrl)  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
+                .RegionType(RegionType.CN)  // 非必须，CN 表示中国大陆，IO 表示其他国家或地区
+                .TapDBConfig(true, "gameChannel", "gameVersion", true)  // TapDB 会根据 TapConfig 的配置进行自动初始化
+                .ConfigBuilder();
+
+                TapBootstrap.Init(config);
+            }
         }
+
 
         /// <summary>
         /// 在单独使用 TapDB 功能时（即不接登录功能时，不导入 TapBootstrap 包时），可以通过以下方式初始化 TapDB。

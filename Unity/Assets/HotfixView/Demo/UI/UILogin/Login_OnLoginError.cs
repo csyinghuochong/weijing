@@ -33,8 +33,15 @@ namespace ET
             }
             if (args.ErrorCore == ErrorCode.ERR_NotRealName)
             {
-                UI ui = await UIHelper.Create(args.ZoneScene, UIType.UIRealName);
-                ui.GetComponent<UIRealNameComponent>().AccountId = args.AccountId;
+                if (GlobalHelp.GetBigVersion() >= 20)
+                {
+
+                }
+                else
+                {
+                    UI ui = await UIHelper.Create(args.ZoneScene, UIType.UIRealName);
+                    ui.GetComponent<UIRealNameComponent>().AccountId = args.AccountId;
+                }
             }
             if (args.ErrorCore == ErrorCode.ERR_StopServer)
             {
