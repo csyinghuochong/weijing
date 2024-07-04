@@ -924,7 +924,7 @@ namespace ET
                     errorcode = 1;
                     self.SkillList[k].ParamId = 0;
                    
-                    Console.WriteLine($"GetSkillToTalentId==0[no skill]: {self.Id}     {self.SkillList[k].SkillID}");
+                    Console.WriteLine($"[no skill]: {self.Id}     {self.SkillList[k].SkillID}");
                 }
 				else
 				{
@@ -941,7 +941,7 @@ namespace ET
                     self.SkillList[k].ParamId = existTianfu;
 					if (existTianfu == 0)
 					{
-						Console.WriteLine($"GetSkillToTalentId==0[no tianfu]: {self.Id}    {self.SkillList[k].SkillID}   {tianfuList[0]}    {self.TianFuList.Count}   {self.TianFuList1.Count}   {equipTianfu.Count}");
+						Console.WriteLine($"[no tianfu]: {self.Id}    {self.SkillList[k].SkillID}   {tianfuList[0]}    {self.TianFuList.Count}   {self.TianFuList1.Count}   {equipTianfu.Count}");
 						self.OnSkillListRemove(self.SkillList[k]);
 						self.SkillList.RemoveAt(k);
 

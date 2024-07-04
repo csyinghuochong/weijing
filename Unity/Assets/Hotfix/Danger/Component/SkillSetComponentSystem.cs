@@ -118,7 +118,7 @@ namespace ET
 				switch (properInfo[0])
 				{
 					case TianFuProEnum.SkillIdAdd:
-						self.OnSkillIdAdd(properInfo, add);
+						self.OnSkillIdAdd(properInfo, tianfuId, add);
 						break;
 					case TianFuProEnum.SkillPropertyAdd:
 						break;
@@ -136,7 +136,7 @@ namespace ET
 			}
 		}
 
-		public static void OnSkillIdAdd(this SkillSetComponent self, string[] properInfo, bool add)
+		public static void OnSkillIdAdd(this SkillSetComponent self, string[] properInfo, int tianfuid, bool add)
 		{
 			int skillId = int.Parse(properInfo[1]);
 
@@ -150,7 +150,7 @@ namespace ET
 			}
 			if (add && index == -1)
 			{
-				self.SkillList.Add(new SkillPro() { SkillID = skillId, SkillSource = (int)SkillSourceEnum.TianFu });
+				self.SkillList.Add(new SkillPro() { SkillID = skillId, SkillSource = (int)SkillSourceEnum.TianFu, ParamId = tianfuid });
 			}
 			if (!add && index >= 0)
 			{
