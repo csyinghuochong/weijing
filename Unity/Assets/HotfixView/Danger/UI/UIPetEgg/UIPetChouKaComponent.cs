@@ -141,11 +141,11 @@ namespace ET
 #if UNITY_ANDROID
             if (choukaType == 1)
             {
-                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 1);
+                TapSDKAndroidHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 1);
             }
             if (choukaType == 2)
             {
-                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 10);
+                TapSDKAndroidHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 10);
             }
 #endif
         }

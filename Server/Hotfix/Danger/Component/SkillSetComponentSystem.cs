@@ -896,8 +896,9 @@ namespace ET
             }
 
 			for (int i = 0; i < updateTianFu.Count; i++)
-			{
-				self.AddTianFuAttribute(updateTianFu[i], true);
+            {
+                Console.WriteLine($"[updateTianFu]: {updateTianFu[i]}");
+                self.AddTianFuAttribute(updateTianFu[i], true);
             }
         }
 

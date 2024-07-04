@@ -14,7 +14,7 @@ namespace ET
 {
 
 #if UNITY_ANDROID
-    public static class TapSDKHelper
+    public static class TapSDKAndroidHelper
     {
 
         //预置事件
@@ -38,8 +38,8 @@ namespace ET
         {
             ET.Log.ILog.Debug("Tap Bootstrap.Init");
             var config = new TapConfig.Builder()
-            .ClientID("pm0a9qavoyvn0qqmse")  // 必须，开发者中心对应 Client ID
-            .ClientToken("Amv51zGQvweTTsqPKtNdO9GDKPs6FlTcMpbMQ6BW")  // 必须，开发者中心对应 Client Token
+            .ClientID("yfbkmzv4zafmyq8nzb")  // 必须，开发者中心对应 Client ID
+            .ClientToken("UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q")  // 必须，开发者中心对应 Client Token
             .ServerURL("https://pm0a9qav.cloud.tds1.tapapis.cn")  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
             .RegionType(RegionType.CN)  // 非必须，CN 表示中国大陆，IO 表示其他国家或地区
             .TapDBConfig(true, "gameChannel", "gameVersion", true)  // TapDB 会根据 TapConfig 的配置进行自动初始化

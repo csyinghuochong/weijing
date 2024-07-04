@@ -243,7 +243,7 @@ namespace ET
 
 
 #if UNITY_ANDROID 
-            TapSDKHelper.Init();
+            TapSDKAndroidHelper.Init();
 #endif
         }
 

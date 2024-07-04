@@ -398,7 +398,7 @@ namespace ET
             string serverName = accountInfoComponent.ServerName;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 #if UNITY_ANDROID
-            TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 2, times);
+            TapSDKAndroidHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 2, times);
 #endif
 		}
 	}
