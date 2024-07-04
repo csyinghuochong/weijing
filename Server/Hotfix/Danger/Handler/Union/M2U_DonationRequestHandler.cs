@@ -41,10 +41,10 @@ namespace ET
             });
             newrank = rankSceneComponent.GetDonationRank(request.RankingInfo.UserId);
 
-            if (scene.DomainZone() == 5)
-            {
-                Console.WriteLine($"排名对比: {request.RankingInfo.UserId}  {oldrank}   {newrank}");
-            }
+            //if (scene.DomainZone() == 5)
+            //{
+                //Console.WriteLine($"排名对比: {request.RankingInfo.UserId}  {oldrank}   {newrank}");
+            //}
 
             //有变化则通知
             if (oldrank != newrank || newrank <= 20)
@@ -62,10 +62,10 @@ namespace ET
                 long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
                 for (int i = 0; i < userlist.Count; i++)
                 {
-                    if (scene.DomainZone() == 5)
-                    {
-                        Console.WriteLine($"通知排名: {userlist[i]}  {rankSceneComponent.GetDonationRank(userlist[i])}");
-                    }
+                    //if (scene.DomainZone() == 5)
+                    //{
+                    //    Console.WriteLine($"通知排名: {userlist[i]}  {rankSceneComponent.GetDonationRank(userlist[i])}");
+                    //}
 
                     G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                         (gateServerId, new T2G_GateUnitInfoRequest()
