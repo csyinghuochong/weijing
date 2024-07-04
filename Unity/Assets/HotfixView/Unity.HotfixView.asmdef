@@ -7,7 +7,8 @@
         "Unity.ModelView",
         "Unity.Mono",
         "Unity.ThirdParty",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "TapTap.AntiAddiction"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

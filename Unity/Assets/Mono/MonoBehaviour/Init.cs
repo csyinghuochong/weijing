@@ -2,20 +2,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using System.Threading;
+using UnityEngine;
+using TapTap.Bootstrap;
+using TapTap.Common;
+using TapTap.TapDB;
+using TapTap.AntiAddiction;
+using TapTap.AntiAddiction.Model;
+using cn.SMSSDK.Unity;
+
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
 
-using System.Threading;
-using UnityEngine;
-
 #if UNITY_ANDROID
-using TapTap.Bootstrap;
-using TapTap.Common;
-using TapTap.TapDB;
 using UnityEngine.Android;
-using cn.SMSSDK.Unity;
-
 #endif
 
 namespace ET

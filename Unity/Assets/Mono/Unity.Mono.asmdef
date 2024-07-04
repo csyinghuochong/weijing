@@ -6,7 +6,8 @@
         "Unity.TextMeshPro",
         "HybridCLR.Runtime",
         "UnityEngine.Purchasing",
-        "UnityEngine.Purchasing.Stores"
+        "UnityEngine.Purchasing.Stores",
+        "TapTap.AntiAddiction"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
