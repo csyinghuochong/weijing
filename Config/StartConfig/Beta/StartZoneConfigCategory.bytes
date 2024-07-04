@@ -106,5 +106,6 @@
 +hmongodb://localhost:27017/h"	WJBeta104
 +imongodb://localhost:27017/i"	WJBeta105
 +jmongodb://localhost:27017/j"	WJBeta106
++kmongodb://localhost:27017/k"	WJBeta107
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
