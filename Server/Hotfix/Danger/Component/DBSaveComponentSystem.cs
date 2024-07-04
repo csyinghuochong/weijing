@@ -248,8 +248,7 @@ namespace ET
         public static void Activeted(this DBSaveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            long nextTime = TimeHelper.ServerNow() - self.LastDBTime;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(Math.Min(60000, nextTime), TimerType.DBSaveTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.DBSaveTimer, self);
         }
 
         public static void Check_2(this DBSaveComponent self)
