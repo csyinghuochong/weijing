@@ -863,7 +863,7 @@ namespace ET
 			equiptianfus.AddRange( self.TianFuAddition);
             self.CheckSkillToTalent(equiptianfus);
 
-			//self.UpdateTalentToSkill();
+			self.UpdateTalentToSkill();
         }
 
 		public static void UpdateTalentToSkill(this SkillSetComponent self)
@@ -878,7 +878,7 @@ namespace ET
                     continue;
                 }
 
-                if (self.SkillList[k].ParamId != 0)
+                if (self.SkillList[k].ParamId == 0)
                 {
                     continue;
                 }
@@ -886,8 +886,13 @@ namespace ET
                 {
                     continue;
                 }
+				if (TalentConfigCategory.Instance.HaveTalentSkillId(self.SkillList[k].ParamId, self.SkillList[k].SkillID))
+				{
+                    continue;
+                }
 
 				updateTianFu.Add(self.SkillList[k].ParamId);
+				self.SkillList.RemoveAt(k);
             }
 
 			for (int i = 0; i < updateTianFu.Count; i++)
