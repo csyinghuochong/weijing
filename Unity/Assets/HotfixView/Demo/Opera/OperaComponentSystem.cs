@@ -312,6 +312,10 @@ namespace ET
                 }
             }
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+            if (unit == null)
+            {
+                return;
+            }
             if (unit.Type == UnitType.Stall)
             {
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiStall);
