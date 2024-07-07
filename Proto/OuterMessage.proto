@@ -6991,6 +6991,25 @@ message A2C_TikTokVerifyUser // IResponse
 	int32 age_type = 2;	//实名年龄段
 }
 
+
+//ResponseType A2C_TapTapAuther
+message C2A_TapTapAuther // IRequest
+{
+	int32 RpcId = 90;
+
+	string Account = 1;
+	string Password = 2;
+	int LoginType = 3;
+	int age_type = 4;
+}
+
+message A2C_TapTapAuther // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //宠物更新
 message M2C_PetListMessage	// IActorMessage
 {

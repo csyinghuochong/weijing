@@ -785,18 +785,23 @@ namespace ET
 			string account = self.Account.GetComponent<InputField>().text;
 			string password = self.Password.GetComponent<InputField>().text;
 			Log.ILog.Debug($"Login: {account} {password}");
-			self.RequestLogin(account, password, self.LoginType).Coroutine();
+			self.RequestLogin(account, password, self.LoginType);
 		}
 
+
+		/// <summary>
+		/// 实名认证返回
+		/// </summary>
+		/// <param name="self"></param>
 		public static void OnReLogin(this UILoginComponent self)
 		{
 			string account = self.AccountInfoComponent.Account;
 			string password = self.AccountInfoComponent.Password;
 			Log.ILog.Debug($"Login: {account} {password}");
-			self.RequestLogin(account, password, self.AccountInfoComponent.LoginType).Coroutine();
+			self.RequestLogin(account, password, self.AccountInfoComponent.LoginType);
 		}
 
-		public static async ETTask RequestLogin(this UILoginComponent self, string account ,string password, string loginType)
+		public static  void RequestLogin(this UILoginComponent self, string account ,string password, string loginType)
 		{
 			if (self.ServerInfo == null)
 			{
@@ -849,9 +854,8 @@ namespace ET
                     return;
                 }
             }
-
-
-			self.Loading.SetActive(true);
+           
+            self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");
 			self.LastLoginTime = TimeHelper.ClientNow();
@@ -870,34 +874,50 @@ namespace ET
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);
 
-			if (self.LoginType == "3" || self.LoginType == "4")
+			if (GlobalHelp.GetBigVersion() >= 20 && GlobalHelp.GetPlatform() != 5)
 			{
-				password = "3";
-				loginType = "3";
-			}
-			int loginError = await LoginHelper.Login(
-				self.DomainScene(),
-				self.ServerInfo.ServerIp,
-				account,
-				password,
-				false, 
-				string.Empty,
+                EventType.TapTapAuther.Instance.ZoneScene = self.ZoneScene();
+                EventType.TapTapAuther.Instance.Account = account;
+                Game.EventSystem.PublishClass(EventType.TapTapAuther.Instance);
+            }
+			else
+            {
+                if (self.LoginType == "3" || self.LoginType == "4")
+                {
+                    password = "3";
+                    loginType = "3";
+                }
+                self.RequestLoginV20(account, password, loginType).Coroutine();
+            }
+        }
+
+		public static async ETTask RequestLoginV20(this UILoginComponent self, string account, string password, string loginType)
+		{
+           
+            long serverTime = TimeHelper.ServerNow();
+            int loginError = await LoginHelper.Login(
+                self.DomainScene(),
+                self.ServerInfo.ServerIp,
+                account,
+                password,
+                false,
+                string.Empty,
                 loginType);
 
-			if (loginError != ErrorCode.ERR_Success)
-			{
-				self.LoginErrorNumber++;
-				self.Loading?.SetActive(false);
-				self.UIRotateComponent.GameObject.SetActive(false);
-				self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(false);
-			}
-			if (self.LoginErrorNumber >= 50)
-			{
-				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.Minute * 10).ToString());
-			}
-		}
+            if (loginError != ErrorCode.ERR_Success)
+            {
+                self.LoginErrorNumber++;
+                self.Loading?.SetActive(false);
+                self.UIRotateComponent.GameObject.SetActive(false);
+                self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(false);
+            }
+            if (self.LoginErrorNumber >= 50)
+            {
+                PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.Minute * 10).ToString());
+            }
+        }
 
-		public static void OnButton_ShowAgeTip(this UILoginComponent self)
+        public static void OnButton_ShowAgeTip(this UILoginComponent self)
 		{
             self.UIAgeTip.SetActive(true);
         }

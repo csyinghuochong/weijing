@@ -14602,6 +14602,43 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2C_TapTapAuther))]
+	[Message(OuterOpcode.C2A_TapTapAuther)]
+	[ProtoContract]
+	public partial class C2A_TapTapAuther: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Password { get; set; }
+
+		[ProtoMember(3)]
+		public int LoginType { get; set; }
+
+		[ProtoMember(4)]
+		public int age_type { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_TapTapAuther)]
+	[ProtoContract]
+	public partial class A2C_TapTapAuther: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //宠物更新
 	[Message(OuterOpcode.M2C_PetListMessage)]
 	[ProtoContract]

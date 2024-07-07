@@ -30,12 +30,10 @@ namespace ET
                 newAccount.PlayerInfo = new PlayerInfo();
                 newAccount.CreateTime = TimeHelper.ServerNow();
 
-                //抖音账户直接实名
-                if (request.LoginType == LoginTypeEnum.TikTok && request.age_type > 0)
+                //抖音账户 和 v20 直接实名
+                if (request.age_type > 0)
                 {
-                    DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
-                    int year = dateTime.Year - request.age_type;
-                    newAccount.PlayerInfo.Name = "抖音用户";
+                    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
                     newAccount.PlayerInfo.RealName = 1;
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }

@@ -36,8 +36,8 @@ namespace ET
 
         // 是否已初始化
         private static bool hasInit = false;
-        public static string clientId = "pm0a9qavoyvn0qqmse";
-        public static string clientToken = "Amv51zGQvweTTsqPKtNdO9GDKPs6FlTcMpbMQ6BW";
+        public static string clientId = "yfbkmzv4zafmyq8nzb";
+        public static string clientToken = "UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q";
         public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
 
         public static void Init()
