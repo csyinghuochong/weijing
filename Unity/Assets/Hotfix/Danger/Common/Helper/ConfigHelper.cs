@@ -25,6 +25,11 @@ namespace ET
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
 
+
+        public static string clientId = "yfbkmzv4zafmyq8nzb";
+        public static string clientToken = "UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q";
+        public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
+
         /// <summary>
         /// 小龟说话
         /// </summary>

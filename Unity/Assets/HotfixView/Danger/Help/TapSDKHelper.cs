@@ -36,9 +36,7 @@ namespace ET
 
         // 是否已初始化
         private static bool hasInit = false;
-        public static string clientId = "yfbkmzv4zafmyq8nzb";
-        public static string clientToken = "UAmCBcwjj6NPxQbOk2PRxlHWfFaSUblIxXOz7J8Q";
-        public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
+       
 
         public static void Init()
         {
@@ -48,9 +46,9 @@ namespace ET
 
                 ET.Log.ILog.Debug("Tap Bootstrap.Init");
                 var config = new TapConfig.Builder()
-                .ClientID(clientId)  // 必须，开发者中心对应 Client ID
-                .ClientToken(clientToken)  // 必须，开发者中心对应 Client Token
-                .ServerURL(serverUrl)  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
+                .ClientID(ConfigHelper.clientId)  // 必须，开发者中心对应 Client ID
+                .ClientToken(ConfigHelper.clientToken)  // 必须，开发者中心对应 Client Token
+                .ServerURL(ConfigHelper.serverUrl)  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
                 .RegionType(RegionType.CN)  // 非必须，CN 表示中国大陆，IO 表示其他国家或地区
                 .TapDBConfig(true, "gameChannel", "gameVersion", true)  // TapDB 会根据 TapConfig 的配置进行自动初始化
                 .ConfigBuilder();
