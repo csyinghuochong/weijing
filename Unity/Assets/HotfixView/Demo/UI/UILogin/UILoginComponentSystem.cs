@@ -874,7 +874,9 @@ namespace ET
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);
 
-			if (GlobalHelp.GetBigVersion() >= 20 && GlobalHelp.GetPlatform() != 5)
+			if (GlobalHelp.GetBigVersion() >= 20
+				&& GlobalHelp.GetPlatform() != 5
+				&& !GlobalHelp.IsEditorMode)
 			{
                 EventType.TapTapAuther.Instance.ZoneScene = self.ZoneScene();
                 EventType.TapTapAuther.Instance.Account = account;
