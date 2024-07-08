@@ -24,6 +24,7 @@ namespace ET
         //play_game   游玩时长 SDK 会以应用进入前台作为计时起点，置于后台时，上报此时间段的时长
         //charge  用户付费 调用 SDK Charge 接口时会上报此事件，通常情况下建议使用服务端 REST API 进行上报
 
+
         /// <summary>
         /// 在 TapSDK 初始化时，同步初始化 TapDB。
         /// </summary>
