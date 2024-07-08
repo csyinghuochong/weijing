@@ -126,13 +126,17 @@ namespace ET
             {
                 m2C_FubenSettlement.StarInfos = new List<int> { 0,0,0 };
             }
-            if (rankid > 0)
+
+            if (self.MainUnit != null && !self.MainUnit.IsDisposed)
             {
-                self.MainUnit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiRank_309, 0, rankid);
-                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
-                self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
+                if (rankid > 0)
+                {
+                    self.MainUnit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiRank_309, 0, rankid);
+                    self.MainUnit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
+                    self.MainUnit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetTianTiRank_82, 0, rankid);
+                }
+                MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
             }
-            MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
 
         /// <summary>
