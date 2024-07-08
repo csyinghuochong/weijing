@@ -22,7 +22,7 @@ namespace ET
                 return;
             }
 
-            bagComponent.OnCostItemData($"{request.ItemId};1");
+            bagComponent.OnCostItemData($"{request.ItemId};1", ItemLocType.ItemLocBag, ItemGetWay.JiaYuanCost);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(request.ItemId);
             JiaYuanPlant jiaYuanPlant = new JiaYuanPlant()
             {

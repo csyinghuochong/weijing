@@ -1078,6 +1078,7 @@ namespace ET
                 { ItemGetWay.PetExploreReward, "宠物探索" },
                 { ItemGetWay.PetHeXinExplore, " 宠物之核探索" },
                 { ItemGetWay.ActivityNewYear, " 新年活动" },
+                { ItemGetWay.Fashion, " 时装" },
                 { ItemGetWay.Activity, "活动" },
         };
 

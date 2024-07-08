@@ -44,7 +44,7 @@ namespace ET
                 return;
             }
 
-            bagComponent.OnCostItemData(unionKeJiConfig.LearnCost);
+            bagComponent.OnCostItemData(unionKeJiConfig.LearnCost, ItemLocType.ItemLocBag, ItemGetWay.UnionXiuLian);
             userInfoComponent.UserInfo.UnionKeJiList[request.Position] = unionKeJiConfig.NextID;
             response.UnionKeJiList = userInfoComponent.UserInfo.UnionKeJiList;
             reply();

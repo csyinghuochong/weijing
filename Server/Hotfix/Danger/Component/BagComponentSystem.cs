@@ -1418,7 +1418,7 @@ namespace ET
         }
 
         //字符串删除道具
-        public static bool OnCostItemData(this BagComponent self, string rewardItems, ItemLocType itemLocType = ItemLocType.ItemLocBag)
+        public static bool OnCostItemData(this BagComponent self, string rewardItems, ItemLocType itemLocType, int itemGetWay)
         {
             List<RewardItem> costItems = new List<RewardItem>();
             string[] needList = rewardItems.Split('@');
@@ -1433,7 +1433,7 @@ namespace ET
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
-            return self.OnCostItemData(costItems, itemLocType);
+            return self.OnCostItemData(costItems, itemLocType, itemGetWay);
         }
 
         //删除背包道具道具[支持同时添加多个]
@@ -1493,7 +1493,7 @@ namespace ET
         }
 
         //删除背包道具道具[支持同时添加多个]
-        public static bool OnCostItemData(this BagComponent self, List<RewardItem> costItems, ItemLocType itemLocType = ItemLocType.ItemLocBag)
+        public static bool OnCostItemData(this BagComponent self, List<RewardItem> costItems, ItemLocType itemLocType, int itemGetWay)
         {
             for (int i = costItems.Count - 1; i >= 0; i--)
             {
@@ -1521,19 +1521,19 @@ namespace ET
                 if (itemID == (int)UserDataType.Gold)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, ItemGetWay.CostItem);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, itemGetWay);
                     continue;
                 }
                 if (itemID == (int)UserDataType.WeiJingGold)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.WeiJingGold, itemNum.ToString(), true, ItemGetWay.CostItem);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.WeiJingGold, itemNum.ToString(), true, itemGetWay);
                     continue;
                 }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, ItemGetWay.CostItem);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, itemGetWay);
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)

@@ -45,7 +45,7 @@ namespace ET
                 return;
             }
             
-            if (!unit.GetComponent<BagComponent>().OnCostItemData(unionQiangHuaConfig.CostItem))
+            if (!unit.GetComponent<BagComponent>().OnCostItemData(unionQiangHuaConfig.CostItem, ItemLocType.ItemLocBag, ItemGetWay.UnionXiuLian))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();

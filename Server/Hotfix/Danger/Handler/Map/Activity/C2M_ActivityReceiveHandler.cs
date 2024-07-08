@@ -47,7 +47,7 @@ namespace ET
                             return;
                         }
 
-                        if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
+                        if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2, ItemLocType.ItemLocBag, ItemGetWay.Activity))
                         {
                             response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                             reply();
@@ -172,7 +172,7 @@ namespace ET
                             reply();
                             return;
                         }
-                        if (unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
+                        if (unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2, ItemLocType.ItemLocBag, ItemGetWay.Activity))
                         {
                             unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                             unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{97}_{TimeHelper.ServerNow()}");
@@ -262,7 +262,7 @@ namespace ET
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         break;
                     default:
-                        bool success = unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2);
+                        bool success = unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2, ItemLocType.ItemLocBag, ItemGetWay.Activity   );
                         if (success)
                         {
                             unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);

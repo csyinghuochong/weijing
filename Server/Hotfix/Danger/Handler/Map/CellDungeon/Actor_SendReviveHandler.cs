@@ -15,7 +15,7 @@ namespace ET
             if (request.Revive)
             {
                 string reviveCost = GlobalValueConfigCategory.Instance.Get(5).Value;
-                bool success = unit.GetComponent<BagComponent>().OnCostItemData(reviveCost);
+                bool success = unit.GetComponent<BagComponent>().OnCostItemData(reviveCost, ItemLocType.ItemLocBag, ItemGetWay.FubenGetReward  );
                 if (!success)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;

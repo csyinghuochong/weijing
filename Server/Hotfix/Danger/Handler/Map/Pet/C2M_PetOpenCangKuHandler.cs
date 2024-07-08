@@ -23,7 +23,7 @@ namespace ET
             }
 
             unit.GetComponent<PetComponent>().PetCangKuOpen.Add(request.OpenIndex - 1);
-            unit.GetComponent<BagComponent>().OnCostItemData(costitem);
+            unit.GetComponent<BagComponent>().OnCostItemData(costitem, ItemLocType.ItemLocBag, ItemGetWay.PetHeXinExplore);
             reply();
             await ETTask.CompletedTask;
         }

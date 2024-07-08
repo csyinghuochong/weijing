@@ -33,7 +33,7 @@ namespace ET
                 return;
             }
 
-            bagComponent.OnCostItemData(seasonJingHeConfig.Cost);
+            bagComponent.OnCostItemData(seasonJingHeConfig.Cost, ItemLocType.ItemLocBag, ItemGetWay.Season);
             userInfoComponent.UserInfo.OpenJingHeIds.Add(request.JingHeId);
 
             reply();

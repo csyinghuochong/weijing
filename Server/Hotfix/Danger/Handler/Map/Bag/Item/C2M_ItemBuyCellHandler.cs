@@ -26,7 +26,7 @@ namespace ET
                     return;
                 }
                 BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.WarehouseAddedCell[0]];
-                if (!bagComponent.OnCostItemData(buyCellCost.Cost))
+                if (!bagComponent.OnCostItemData(buyCellCost.Cost, ItemLocType.ItemLocBag, ItemGetWay.CostItem))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
@@ -71,7 +71,7 @@ namespace ET
                 
                 int addcell = bagComponent.WarehouseAddedCell[storeindex];
                 BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[(storeindex - 5) * 10 + addcell];
-                if (!bagComponent.OnCostItemData(buyCellCost.Cost))
+                if (!bagComponent.OnCostItemData(buyCellCost.Cost,ItemLocType.ItemLocBag, ItemGetWay.CostItem))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();

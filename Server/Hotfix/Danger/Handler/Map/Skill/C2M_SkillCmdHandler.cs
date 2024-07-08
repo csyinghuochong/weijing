@@ -109,7 +109,7 @@ namespace ET
                 {
                     if (request.ItemId > 0)
                     {
-                        unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
+                        unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1",ItemLocType.ItemLocBag, ItemGetWay.GM);
 
                         if (ConfigHelper.ChengJiuLianJin.Contains(request.ItemId))
                         {

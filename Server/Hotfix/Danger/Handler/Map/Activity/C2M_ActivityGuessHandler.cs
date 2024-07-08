@@ -36,7 +36,7 @@ namespace ET
                 return;
             }
             activityV1Info.GuessIds.Add(request.GuessId);
-            unit.GetComponent<BagComponent>().OnCostItemData(costItem);
+            unit.GetComponent<BagComponent>().OnCostItemData(costItem, ItemLocType.ItemLocBag, ItemGetWay.Activity );
             reply();
             await ETTask.CompletedTask;
         }

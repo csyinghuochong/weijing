@@ -65,7 +65,7 @@ namespace ET
 
                 LogHelper.LogWarning($"家族神秘商人购买道具: {unit.DomainZone()} {unit.Id} {mysteryId}");
                 unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
-                unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
+                unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}", ItemLocType.ItemLocBag, ItemGetWay.UnionXiuLian );
                 unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{1}",
                     $"{ItemGetWay.UnionMysteryBuy}_{TimeHelper.ServerNow()}");
                 reply();

@@ -34,7 +34,7 @@ namespace ET
 
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
 
-            bagComponent.OnCostItemData(fashionConfig.ActiveCost);
+            bagComponent.OnCostItemData(fashionConfig.ActiveCost, ItemLocType.ItemLocBag, 98 );
             bagComponent.FashionActiveIds.Add( request.FashionId );
 
             reply();

@@ -262,7 +262,7 @@ namespace ET
                                 int neednum = int.Parse(duihuanparams[0]);
                                 int newItem = int.Parse(duihuanparams[1]);
 
-                                unit.GetComponent<BagComponent>().OnCostItemData($"{itemConfig.Id};{neednum - 1}");
+                                unit.GetComponent<BagComponent>().OnCostItemData($"{itemConfig.Id};{neednum - 1}", ItemLocType.ItemLocBag, ItemGetWay.DuiHuan);
                                 unit.GetComponent<BagComponent>().OnAddItemData($"{newItem};1", $"{ItemGetWay.ItemBox_8}_{TimeHelper.ServerNow()}");
                                 break;
                             case 9:
@@ -781,7 +781,7 @@ namespace ET
                     {
                         //金币鉴定，扣除金币
                         qulitylv = itemConfig.UseLv.ToString();
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ItemHelper.GetJianDingCoin(itemConfig.UseLv)}");
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ItemHelper.GetJianDingCoin(itemConfig.UseLv)}", ItemLocType.ItemLocBag, ItemGetWay.CostItem);
                     }
                     else
                     {

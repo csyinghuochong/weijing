@@ -32,7 +32,7 @@ namespace ET
             {
                 string needItems = GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[0];
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(110).Value.Split('@')[1]);
-                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems);
+                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems, ItemLocType.ItemLocBag, ItemGetWay.PetHeXinExplore);
                 if (!sucess)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
@@ -49,7 +49,7 @@ namespace ET
                 bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(new List<RewardItem>()
                 {
                     new RewardItem() { ItemID = int.Parse(itemInfo10[0]), ItemNum = (int)(int.Parse(itemInfo10[1]) * discount) }
-                });
+                }, ItemLocType.ItemLocBag, ItemGetWay.PetChouKa);
                 if (!sucess)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;

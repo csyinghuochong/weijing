@@ -75,7 +75,7 @@ namespace ET
                     ifZuanShi = true;
                 }
 
-                bool sucess = bagComponent.OnCostItemData(rewardItems);
+                bool sucess = bagComponent.OnCostItemData(rewardItems, ItemLocType.ItemLocBag, ItemGetWay.ItemXiLian);
                 if (!sucess)
                 {
                     reply();

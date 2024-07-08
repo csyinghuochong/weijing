@@ -42,7 +42,7 @@ namespace ET
 
             List<RewardItem> rewardItems = new List<RewardItem>();  
             DropHelper.DropIDToDropItem_2(dropId, rewardItems);
-            bagComponent.OnCostItemData(ActivityConfigHelper.ChouKaCostItem);
+            bagComponent.OnCostItemData(ActivityConfigHelper.ChouKaCostItem,  ItemLocType.ItemLocBag, ItemGetWay.Activity);
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
 
             reply();

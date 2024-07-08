@@ -96,7 +96,7 @@ namespace ET
             }
             if (removeItems != string.Empty)
             {
-                unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType);
+                unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType, ItemGetWay.GemHeCheng);
             }
 
             List<RewardItem> rewardItems = new List<RewardItem>();

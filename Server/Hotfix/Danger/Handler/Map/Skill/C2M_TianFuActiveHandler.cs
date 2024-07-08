@@ -16,7 +16,7 @@ namespace ET
                 TalentConfig talentConfig = TalentConfigCategory.Instance.Get(request.TianFuId);
                 int num = 50000 + talentConfig.LearnRoseLv * 100;
                 string cost = "1;" + num;
-                if (!unit.GetComponent<BagComponent>().OnCostItemData(cost))
+                if (!unit.GetComponent<BagComponent>().OnCostItemData(cost, ItemLocType.ItemLocBag, ItemGetWay.CostItem))
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();

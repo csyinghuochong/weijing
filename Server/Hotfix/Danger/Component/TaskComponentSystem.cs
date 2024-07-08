@@ -442,7 +442,7 @@ namespace ET
                     return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
-                bagComponent.OnCostItemData($"{needid};{neednumber}");
+                bagComponent.OnCostItemData($"{needid};{neednumber}", ItemLocType.ItemLocBag, ItemGetWay.TaskCountry  );
                 return ErrorCode.ERR_Success;
             }
             //给予任务

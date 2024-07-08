@@ -40,7 +40,7 @@ namespace ET
             {
                 string needItems = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0];
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[1]);
-                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems);
+                bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems, ItemLocType.ItemLocBag, ItemGetWay.PetEggDuiHuan);
                 if (!sucess)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;

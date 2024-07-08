@@ -76,7 +76,7 @@ namespace ET
             {
                 costItems.Add(new RewardItem() { ItemID = costItemId, ItemNum = 1 });
             }
-            bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems);
+            bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems, ItemLocType.ItemLocBag, ItemGetWay.SkillMake);
             if (!success)
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;

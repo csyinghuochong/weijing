@@ -25,7 +25,7 @@ namespace ET
                 return;
             }
 
-            if (!unit.GetComponent<BagComponent>().OnCostItemData($"{config.BuyItemID};{config.BuyPrice}"))
+            if (!unit.GetComponent<BagComponent>().OnCostItemData($"{config.BuyItemID};{config.BuyPrice}", ItemLocType.ItemLocBag, ItemGetWay.LingDiReward))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();

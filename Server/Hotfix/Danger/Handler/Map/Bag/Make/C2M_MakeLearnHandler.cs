@@ -57,7 +57,7 @@ namespace ET
                     int itemNum = int.Parse(itemInfo[1]);
                     costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
                 }
-                bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems);
+                bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems, ItemLocType.ItemLocBag, ItemGetWay.SkillMake);
                 if (success)
                 {
                     unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (equipMakeConfig.LearnGoldValue * -1).ToString(), true, ItemGetWay.SkillMake);

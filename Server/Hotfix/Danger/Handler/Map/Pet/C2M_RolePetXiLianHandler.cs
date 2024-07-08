@@ -174,7 +174,7 @@ namespace ET
 				//扣除道具
 				List<RewardItem> rewardItems = new List<RewardItem>();
 				rewardItems.Add(new RewardItem() { ItemID = bagInfo.ItemID, ItemNum = 1 });
-				unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);		
+				unit.GetComponent<BagComponent>().OnCostItemData(rewardItems,ItemLocType.ItemLocBag, ItemGetWay.PetHeXinExplore);		
 				unit.GetComponent<ChengJiuComponent>().OnPetXiLian(petInfo);		//激活成就
 				unit.GetComponent<TaskComponent>().OnPetXiLian(petInfo);                    //激活任务
 

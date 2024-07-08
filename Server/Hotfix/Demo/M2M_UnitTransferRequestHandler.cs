@@ -385,7 +385,7 @@ namespace ET
                                 }
                                 if (fubenType == TeamFubenType.ShenYuan && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
                                 {
-                                    unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
+                                    unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1", ItemLocType.ItemLocBag, ItemGetWay.FubenGetReward);
                                 }
                                 if (fubenType == TeamFubenType.ShenYuan)
                                 {

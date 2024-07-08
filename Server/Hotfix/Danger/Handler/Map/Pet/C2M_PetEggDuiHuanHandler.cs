@@ -18,7 +18,7 @@ namespace ET
             }
 
             PetEggDuiHuanConfig config = PetEggDuiHuanConfigCategory.Instance.Get(request.ChouKaId);
-            if (unit.GetComponent<BagComponent>().OnCostItemData(config.CostItems))
+            if (unit.GetComponent<BagComponent>().OnCostItemData(config.CostItems, ItemLocType.ItemLocBag, ItemGetWay.PetEggDuiHuan   ))
             {
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 DropHelper.DropIDToDropItem_2(config.DropID, rewardItems);

@@ -122,7 +122,7 @@ namespace ET
                         costItemList.Add( new RewardItem() { ItemID = request.RewardId, ItemNum = 1 } );
                         rewardItem = ActivityConfigHelper.DuiHuanWordReward[request.RewardId];
                     }
-                    if (!bagComponent.OnCostItemData(costItemList))
+                    if (!bagComponent.OnCostItemData(costItemList, ItemLocType.ItemLocBag, ItemGetWay.Activity))
                     {
                         response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
@@ -147,7 +147,7 @@ namespace ET
                     activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split('@');
                     rewardItem = rewardList[rewardIndex];
-                    bagComponent.OnCostItemData($"{ActivityConfigHelper.Chou2CostItem};1");
+                    bagComponent.OnCostItemData($"{ActivityConfigHelper.Chou2CostItem};1", ItemLocType.ItemLocBag, ItemGetWay.Activity);
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     //全部抽完则自动刷新
                     if (activityComponent.ActivityV1Info.ChouKa2RewardIds.Count >= rewardList.Length )
@@ -177,7 +177,7 @@ namespace ET
                         return;
                     }
                     KeyValuePair keyValuePair = ActivityConfigHelper.LiBaoList[request.RewardId];
-                    if (!bagComponent.OnCostItemData(keyValuePair.Value))
+                    if (!bagComponent.OnCostItemData(keyValuePair.Value, ItemLocType.ItemLocBag, ItemGetWay.Activity    ))
                     {
                         response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();

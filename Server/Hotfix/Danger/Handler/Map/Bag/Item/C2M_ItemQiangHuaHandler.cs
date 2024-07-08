@@ -19,7 +19,7 @@ namespace ET
             EquipQiangHuaConfig equipQiangHuaConfig =QiangHuaHelper.GetQiangHuaConfig(request.WeiZhi, bagComponent.QiangHuaLevel[request.WeiZhi]);
             string costItems = equipQiangHuaConfig.CostItem;
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
-            if (!bagComponent.OnCostItemData(costItems))
+            if (!bagComponent.OnCostItemData(costItems, ItemLocType.ItemLocBag, ItemGetWay.CostItem ))
             {
                 response.Error = ErrorCode.ERR_ItemNotExist;
                 reply();

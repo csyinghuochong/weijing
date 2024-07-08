@@ -69,7 +69,7 @@ namespace ET
 
             userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (occupationJueXingConfig.costGold * -1).ToString(), true, ItemGetWay.JueXing);
 
-            bagComponent.OnCostItemData(occupationJueXingConfig.costItem);
+            bagComponent.OnCostItemData(occupationJueXingConfig.costItem, ItemLocType.ItemLocBag, ItemGetWay.JueXing);
 
             //增加技能
             skillSetComponent.OnJueXing(request.JueXingId);

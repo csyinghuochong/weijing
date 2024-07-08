@@ -23,7 +23,7 @@ namespace ET
             }
 
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (!bagComponent.OnCostItemData($"3;200"))
+            if (!bagComponent.OnCostItemData($"3;200", ItemLocType.ItemLocBag, ItemGetWay.FubenGetReward  ))
             {
                 response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();

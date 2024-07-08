@@ -58,7 +58,7 @@ namespace ET
             }
             //unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             //扣除货币添加对应道具
-            unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
+            unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}", ItemLocType.ItemLocBag, ItemGetWay.JiaYuanCost );
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};1",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
             

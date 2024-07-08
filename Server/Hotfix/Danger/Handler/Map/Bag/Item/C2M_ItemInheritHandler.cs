@@ -32,7 +32,7 @@ namespace ET
                 reply();
                 return;
             }
-            unit.GetComponent<BagComponent>().OnCostItemData(costitem);
+            unit.GetComponent<BagComponent>().OnCostItemData(costitem, ItemLocType.ItemLocBag, ItemGetWay.ItemXiLian  );
           
             int subtype = itemConfig.ItemSubType;
             int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, unit.GetComponent<UserInfoComponent>().UserInfo.Occ, unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo);

@@ -30,7 +30,7 @@ namespace ET
             {
                 itemneeds = $"{monsterConfig.Parameter[0]};{monsterConfig.Parameter[1]}";
             }
-            if (itemneeds.Length >2 && !unit.GetComponent<BagComponent>().OnCostItemData(itemneeds))
+            if (itemneeds.Length >2 && !unit.GetComponent<BagComponent>().OnCostItemData(itemneeds, ItemLocType.ItemLocBag, ItemGetWay.ItemBox_6))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();

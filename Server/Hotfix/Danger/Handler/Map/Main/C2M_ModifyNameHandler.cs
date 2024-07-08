@@ -52,7 +52,7 @@ namespace ET
             }
 
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(70);
-            if (unit.GetComponent<BagComponent>().OnCostItemData(globalValueConfig.Value))
+            if (unit.GetComponent<BagComponent>().OnCostItemData(globalValueConfig.Value, ItemLocType.ItemLocBag, ItemGetWay.CostItem))
             {
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Name, request.NewName);
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();

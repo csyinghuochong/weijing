@@ -71,7 +71,7 @@ namespace ET
 
                     sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
-                    bagComponent.OnCostItemData(ChangeOccItem);
+                    bagComponent.OnCostItemData(ChangeOccItem, ItemLocType.ItemLocBag, ItemGetWay.SkillMake);
                     
                     unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(toOcc);
                     unit.GetComponent<SkillSetComponent>().AsyncUpdateSkillSet().Coroutine();

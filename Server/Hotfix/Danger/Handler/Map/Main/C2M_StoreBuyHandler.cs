@@ -89,7 +89,7 @@ namespace ET
                     }
                     else
                     {
-                        unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue * request.SellItemNum}");
+                        unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue * request.SellItemNum}", ItemLocType.ItemLocBag, ItemGetWay.StoreBuy);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                     }
                     break;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -8,6 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_BloodstoneQiangHuaRequest request, M2C_BloodstoneQiangHuaResponse response, Action reply)
         {
+            if (!GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(NumericType.Bloodstone));
 
@@ -28,7 +36,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             string costItems = publicQiangHuaConfig.CostItem;
             costItems += $"@1;{publicQiangHuaConfig.CostGold}";
-            if (!bagComponent.OnCostItemData(costItems))
+            if (!bagComponent.OnCostItemData(costItems, ItemLocType.ItemLocBag, ItemGetWay.UnionXiuLian ))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();

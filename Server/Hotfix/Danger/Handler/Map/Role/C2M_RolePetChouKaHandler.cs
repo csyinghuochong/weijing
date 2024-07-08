@@ -13,7 +13,7 @@ namespace ET
             if (request.ChouKaType == 1)
             {
                 string needItems = GlobalValueConfigCategory.Instance.Get(16).Value;
-                bool  sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems);
+                bool  sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems, ItemLocType.ItemLocBag, ItemGetWay.PetChouKa);
                 if (!sucess)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;

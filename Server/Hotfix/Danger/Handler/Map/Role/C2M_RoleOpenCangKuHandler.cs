@@ -16,7 +16,7 @@ namespace ET
             }
 
             string costItems = GlobalValueConfigCategory.Instance.Get(38).Value;
-            if (!unit.GetComponent<BagComponent>().OnCostItemData(costItems))
+            if (!unit.GetComponent<BagComponent>().OnCostItemData(costItems, ItemLocType.ItemLocBag, ItemGetWay.CostItem))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
