@@ -423,9 +423,9 @@ namespace ET
                     }
                 }
 
-                if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
+                if (ItemViewHelp.PropertyHint.ContainsKey(showList.numericType))
                 {
-                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType],rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name, showList.numericType, rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnBeginDrag(pdata,self.ScrollView1); }, EventTriggerType.BeginDrag);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnDraging(pdata,self.ScrollView1); }, EventTriggerType.Drag);
@@ -524,9 +524,9 @@ namespace ET
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString() + "%";
                     }
                 }
-                if (ConfigHelper.PropertyHint.ContainsKey(showList.numericType))
+                if (ItemViewHelp.PropertyHint.ContainsKey(showList.numericType))
                 {
-                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name,ConfigHelper.PropertyHint[showList.numericType],rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
+                    ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerDown(pdata,showList.name, showList.numericType, rc.Get<GameObject>("Hint")).Coroutine(); }, EventTriggerType.PointerDown);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnPointerUp(pdata); }, EventTriggerType.PointerUp);  
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnBeginDrag(pdata,self.ScrollView2); }, EventTriggerType.BeginDrag);
                     ButtonHelp.AddEventTriggers(rc.Get<GameObject>("Hint"), (PointerEventData pdata) => { self.OnDraging(pdata,self.ScrollView2); }, EventTriggerType.Drag);
@@ -574,7 +574,7 @@ namespace ET
 
         }
 
-        public static async ETTask OnPointerDown(this UIRolePropertyComponent self, PointerEventData pdata, string name ,string des,GameObject go)
+        public static async ETTask OnPointerDown(this UIRolePropertyComponent self, PointerEventData pdata, string name ,int numtype,GameObject go)
         {
             UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UIPropertyHint);
             if (self.IsDisposed)
@@ -586,7 +586,7 @@ namespace ET
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
-            skillTips.GetComponent<UIPropertyHintComponent>().OnUpdateData(new Vector3(localPoint.x, localPoint.y, 0f), name, des);
+            skillTips.GetComponent<UIPropertyHintComponent>().OnUpdateData(new Vector3(localPoint.x, localPoint.y, 0f), name, numtype);
         }
 
         public static void OnPointerUp(this UIRolePropertyComponent self, PointerEventData pdata)
