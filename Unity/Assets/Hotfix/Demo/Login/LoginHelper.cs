@@ -192,7 +192,7 @@ namespace ET
                     Relink = relink,
                     UserID = currentRoleId,
                     DeviceName = devicename,
-                    Version = ComHelp.Version,
+                    Version = OuterOpcode.C2Center_QueryAccountRequest,
                     AccountId = accountId,
                     Platform = plaform,
                     Simulator = accountInfoComponent.Simulator,

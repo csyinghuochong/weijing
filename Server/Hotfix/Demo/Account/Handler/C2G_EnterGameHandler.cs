@@ -33,7 +33,7 @@ namespace ET
 				session.Dispose();
 				return;
 			}
-            if (ComHelp.Version != request.Version)
+            if (OuterOpcode.C2Center_QueryAccountRequest != request.Version)
             {
 				response.Error = ErrorCode.ERR_VersionNoMatch;
                 reply();
