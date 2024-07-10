@@ -197,22 +197,6 @@ namespace ET
             }
         }
 
-        //移除暴击状态的所有buff 
-        public static void OnRemoveBuffCriState(this BuffManagerComponent self)
-        {
-            //移除buff要保持倒序移除
-            int buffcnt = self.m_Buffs.Count;
-            for (int i = buffcnt - 1; i >= 0; i--) 
-            {
-                //判断当前状态是否为暴击状态的buff
-                if (self.m_Buffs[i].mBuffConfig.BuffType == 2 && self.m_Buffs[i].mBuffConfig.buffParameterType==13)
-                {
-                    self.OnRemoveBuffItem(self.m_Buffs[i]);
-                    self.m_Buffs.RemoveAt(i);
-                }
-            }
-        }
-
         public static void OnRevive(this BuffManagerComponent self)
         {
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
@@ -358,22 +342,6 @@ namespace ET
                 return;
             }
 
-            //霸体状态和无敌状态免疫眩晕和沉默的buff
-            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
-            {
-                if (newState == StateTypeEnum.Shackle || newState == StateTypeEnum.Dizziness || newState == StateTypeEnum.Shackle)
-                {
-                    //免疫
-                    M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
-                    m2C_UnitBuffStatus.UnitID = unit.Id;
-                    m2C_UnitBuffStatus.FlyType = 12;
-                    m2C_UnitBuffStatus.BuffID = buffData.BuffId;
-                    //当前场景内的玩家全部广播
-                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
-                    return;
-                }
-            }
-
             //眩晕抵抗
             float now_DizzinessPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Resistance_Dizziness_Pro);
             if (RandomHelper.RandFloat01() <now_DizzinessPro)
@@ -389,6 +357,29 @@ namespace ET
                     MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
                     return;
                 }
+            }
+
+            //霸体状态和无敌状态免疫眩晕和沉默的buff
+            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
+            {
+                if (newState == StateTypeEnum.Shackle || newState == StateTypeEnum.Dizziness)
+                {
+                    //免疫
+                    M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
+                    m2C_UnitBuffStatus.UnitID = unit.Id;
+                    m2C_UnitBuffStatus.FlyType = 12;
+                    m2C_UnitBuffStatus.BuffID = buffData.BuffId;
+                    //当前场景内的玩家全部广播
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
+                    return;
+                }
+            }
+
+            //霸体状态驱散禁锢效果
+            if (newState == StateTypeEnum.BaTi)
+            {
+                self.OnRemoveBuffByState(StateTypeEnum.Shackle);
+                self.OnRemoveBuffByState(StateTypeEnum.Dizziness);
             }
 
             int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
