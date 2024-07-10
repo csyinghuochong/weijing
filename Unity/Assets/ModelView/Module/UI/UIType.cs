@@ -22,7 +22,8 @@ namespace ET
 		public const string UIRole = "Main/Role/UIRole";
 		public const string UIProLucklyExplain = "Main/Role/UIProLucklyExplain";
 		public const string UIOneSellSet = "Main/Role/UIOneSellSet";
-		public const string UIZhuaPu = "Main/Main/UIZhuaPu";
+        public const string UIRoleQiangHuaTip = "Main/Role/UIRoleQiangHuaTip";
+        public const string UIZhuaPu = "Main/Main/UIZhuaPu";
 		public const string UIRoleZodiac = "Main/Role/UIRoleZodiac";
 		public const string UIRoleBagSplit = "Main/Role/UIRoleBagSplit";
 		public const string UITreasureOpen = "Main/Role/UITreasureOpen";
@@ -155,7 +156,7 @@ namespace ET
 		public const string UIRoleXiLianNumReward = "Main/RoleXiLian/UIRoleXiLianNumReward";
 		public const string UIRoleXiLianExplain = "Main/RoleXiLian/UIRoleXiLianExplain";
 		public const string UIRoleXiLianTen = "Main/RoleXiLian/UIRoleXiLianTen";
-		public const string UIEquipmentIncrease = "Main/EquipmentIncrease/UIEquipmentIncrease";
+        public const string UIEquipmentIncrease = "Main/EquipmentIncrease/UIEquipmentIncrease";
 		public const string UILingDi = "Main/LingDi/UILingDi";
 		public const string UILingDiReward = "Main/LingDi/UILingDiReward";
 		public const string UITuZhiMake = "Main/TuZhiMake/UITuZhiMake";

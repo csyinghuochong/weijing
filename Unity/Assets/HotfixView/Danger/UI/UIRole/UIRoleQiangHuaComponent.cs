@@ -161,12 +161,13 @@ namespace ET
                 return;
             }
 
+            long instanceid = self.InstanceId;
             C2M_ItemQiangHuaRequest c2M_ItemQiangHuaRequest = new C2M_ItemQiangHuaRequest()
             { 
                 WeiZhi = self.ItemSubType,
             };
             M2C_ItemQiangHuaResponse m2C_ItemQiangHuaResponse = (M2C_ItemQiangHuaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemQiangHuaRequest);
-            if (m2C_ItemQiangHuaResponse.Error != ErrorCode.ERR_Success)
+            if (instanceid != self.InstanceId || m2C_ItemQiangHuaResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }
@@ -180,6 +181,13 @@ namespace ET
             {
                 bagComponent.QiangHuaLevel[self.ItemSubType] = m2C_ItemQiangHuaResponse.QiangHuaLevel;
                 bagComponent.QiangHuaFails[self.ItemSubType] = 0;
+                UI uitip = await UIHelper.Create(  self.ZoneScene(), UIType.UIRoleQiangHuaTip );
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
+
+                uitip.GetComponent<UIRoleQiangHuaTipComponent>().OnUpdateUI(self.ItemSubType, m2C_ItemQiangHuaResponse.QiangHuaLevel);  
             }
             self.OnUpdateQiangHuaUI(self.ItemSubType);
         }
