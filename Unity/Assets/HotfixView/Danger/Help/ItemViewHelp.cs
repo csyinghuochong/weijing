@@ -220,10 +220,10 @@ namespace ET
             { NumericType.Now_MaxDef, new NumericAttribute(){ Name = "物防", Icon = "PetPro_4" }},
             { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = "魔防", Icon = "PetPro_5" }},
 
-            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty, Threshold = "上限0.05%" }},
+            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty, Threshold = "当此值减去目标的抗暴概率，其上限达到75%便会达到阈值,无法实际增长" }},
             { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = string.Empty }},
             { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = string.Empty }},
-            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty, Threshold = "上限0.15%"  }},
+            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty, Threshold = "当此值减去目标的命中概率，其上限达到75%便会达到阈值,无法实际增长" }},
 
             { NumericType.Base_Luck_Base, new NumericAttribute(){Name = "幸运加成",Icon = string.Empty}},
             
@@ -240,7 +240,7 @@ namespace ET
 
             { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = "伤害加成", Icon = string.Empty }},
             { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = "伤害减免", Icon = string.Empty }},
-            { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = string.Empty }},
+            { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = string.Empty,Threshold = "此值上限值为：10点。" }},
             { NumericType.Now_Speed, new NumericAttribute(){ Name = "移动速度", Icon = string.Empty }},
             { NumericType.Now_CriLv, new NumericAttribute(){ Name = "暴击等级", Icon = string.Empty }},
             { NumericType.Now_ResLv, new NumericAttribute(){ Name = "韧性等级", Icon = string.Empty }},
@@ -250,7 +250,7 @@ namespace ET
             { NumericType.Now_MageDamgeAddPro, new NumericAttribute(){ Name = "魔法伤害加成", Icon = string.Empty }},
             { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = "物理伤害减免", Icon = string.Empty }},
             { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = "魔法伤害减免", Icon = string.Empty }},
-            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = string.Empty }},
+            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = string.Empty,Threshold = "此值上限值为：75%" }},
             { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加", Icon = string.Empty }},
             { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = "攻击穿透", Icon = string.Empty }},
             { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = "魔法穿透", Icon = string.Empty }},
