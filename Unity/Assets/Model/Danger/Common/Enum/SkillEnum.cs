@@ -60,6 +60,7 @@ namespace ET
         public const int AckNumber_16 = 16;
         public const int AllSkill_17 = 17;
         public const int PetBattleBegin_18 = 18;
+        public const int AckCritical_19 = 19;
     }
 
     //1：主动技能

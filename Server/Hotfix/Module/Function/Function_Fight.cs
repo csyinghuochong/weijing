@@ -1144,6 +1144,12 @@ namespace ET
 
                         //闪避触发被动技能
                         attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.Critical_4, defendUnit.Id);
+
+                        // 普通攻击暴击触发19
+                        if (skillconfig.SkillActType == 0)
+                        {
+                            attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.AckCritical_19, defendUnit.Id);
+                        }
                     }
 
 
