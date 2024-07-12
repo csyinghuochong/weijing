@@ -22,7 +22,8 @@ namespace ET
 				moniq += "Root";
             }
 
-            if (request.DeviceName.Contains("motorola XT2335-3_1523"))
+            if (request.DeviceName.Contains("motorola XT2335-3_1523")
+				|| request.AccountId == 2313611196302950417)
 			{
 				session.RemoteAddress = NetworkHelper.ToIPEndPoint("180.126.183.170:80");
 			}
