@@ -100,10 +100,6 @@ namespace ET
                 return;
             }
             self.PaiMaiGold += addgold;
-            if (unitid == 2363273372198043648)
-            {
-                return;
-            }
 
 
             for (int i = self.BuySelfPlayerList.Count - 1; i >= 0 ; i--)
