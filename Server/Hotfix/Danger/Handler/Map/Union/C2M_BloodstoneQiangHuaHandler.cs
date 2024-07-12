@@ -9,13 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_BloodstoneQiangHuaRequest request, M2C_BloodstoneQiangHuaResponse response, Action reply)
         {
-            if (!GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
-            {
-                response.Error = ErrorCode.ERR_ModifyData;
-                reply();
-                return;
-            }
-
+           
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(NumericType.Bloodstone));
 
