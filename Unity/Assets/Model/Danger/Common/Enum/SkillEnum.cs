@@ -37,7 +37,8 @@ namespace ET
     //15: 切换装备
     //16: 普攻攻击次数触发
     //17: 普攻+释放技能触发
-
+    //18: 重复副本开始战斗触发
+    //19: 普攻攻击暴击触发
 
     public static class SkillPassiveTypeEnum
     {
