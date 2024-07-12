@@ -534,6 +534,7 @@ namespace ET
                 {
                     defValue = 0;
                     actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);
+                    DamgeType = 3;
                 }
 
                 //判定是否无视防御
