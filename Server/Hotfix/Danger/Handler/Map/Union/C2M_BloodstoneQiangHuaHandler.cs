@@ -20,6 +20,13 @@ namespace ET
                 return;
             }
 
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 60)
+            {
+                response.Error = ErrorCode.ERR_LevelIsNot;
+                reply();
+                return;
+            }
+
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < publicQiangHuaConfig.UpLvLimit)
             {
                 response.Error = ErrorCode.ERR_LvNoHigh;
