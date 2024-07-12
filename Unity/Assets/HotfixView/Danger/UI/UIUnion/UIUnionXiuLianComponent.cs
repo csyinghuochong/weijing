@@ -59,11 +59,28 @@ namespace ET
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
+
+            uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
         }
     }
 
     public static class UIUnionXiuLianComponentSystem
     {
+
+        public static bool CheckPageButton_1(this UIUnionXiuLianComponent self, int page)
+        {
+            if (page == (int)UnionXiuLianEnum.UnionBloodStone)
+            {
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();   
+                if (userInfoComponent.UserInfo.Lv < 60)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("60级开启血石系统！");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static void OnClickPageButton(this UIUnionXiuLianComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
