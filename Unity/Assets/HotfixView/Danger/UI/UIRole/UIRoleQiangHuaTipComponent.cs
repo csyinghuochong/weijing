@@ -39,7 +39,7 @@ namespace ET
         public static void OnUpdateUI(this UIRoleQiangHuaTipComponent self, int subType, int qianghuaLv)
         {
 
-            string tip = $"µ±Ç°²¿Î»Ç¿»¯ÖÁ{qianghuaLv}¼¶";
+            string tip = $"å½“å‰éƒ¨ä½å¼ºåŒ–è‡³{qianghuaLv}çº§";
             self.Text_Tip.GetComponent<Text>().text = tip ;
             UICommonHelper.DOScale(self.ScaleNode.transform, Vector3.one, 0.5f);
         }
