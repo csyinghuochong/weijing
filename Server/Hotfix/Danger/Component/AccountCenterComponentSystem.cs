@@ -47,7 +47,7 @@ namespace ET
     public static class AccountCenterComponentSystem
     {
 
-        public static int GetSerialKeyId(this AccountCenterComponent self, string serial)
+        public static (int, int) GetSerialKeyId(this AccountCenterComponent self, string serial)
         {
             DBCenterSerialInfo dBCenterSerialInfo = self.DBCenterSerialInfo;
             for (int i = 0; i < dBCenterSerialInfo.SerialList.Count; i++)
@@ -57,9 +57,9 @@ namespace ET
                     continue;
                 }
 
-                return dBCenterSerialInfo.SerialList[i].KeyId ;
+                return (dBCenterSerialInfo.SerialList[i].KeyId, int.Parse(dBCenterSerialInfo.SerialList[i].Value2));
             }
-            return 1;
+            return (0, 0);
         }
 
         public static int GetSerialReward(this AccountCenterComponent self, string serial)

@@ -2532,6 +2532,44 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Center2M_SerialQueryResponse))]
+//序列号查询
+	[Message(InnerOpcode.M2Center_SerialQueryRequest)]
+	[ProtoContract]
+	public partial class M2Center_SerialQueryRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public string SerialNumber { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Center2M_SerialQueryResponse)]
+	[ProtoContract]
+	public partial class Center2M_SerialQueryResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int SerialIndex { get; set; }
+
+		[ProtoMember(2)]
+		public int IsRewarded { get; set; }
+
+	}
+
 	[ResponseType(nameof(E2M_GMEMailSendResponse))]
 	[Message(InnerOpcode.M2E_GMEMailSendRequest)]
 	[ProtoContract]

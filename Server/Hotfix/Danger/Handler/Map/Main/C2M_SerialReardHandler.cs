@@ -28,18 +28,57 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Received, unit.Id))
             {
-                M2Center_SerialReardRequest m2Center_Serial = new M2Center_SerialReardRequest() { SerialNumber = request.SerialNumber };
                 long centerid = DBHelper.GetAccountCenter();
+                M2Center_SerialQueryRequest queryRequest = new M2Center_SerialQueryRequest() { SerialNumber = request.SerialNumber };
+                Center2M_SerialQueryResponse queryResponse = (Center2M_SerialQueryResponse)await ActorMessageSenderComponent.Instance.Call
+                          (centerid, queryRequest);
+
+                if (queryResponse.Error != ErrorCode.ERR_Success)
+                {
+                    response.Error = queryResponse.Error;
+                    reply();
+                    return;
+                }
+
+                int serialIndex = queryResponse.SerialIndex;
+                if (serialIndex <= 0)
+                {
+                    response.Error = ErrorCode.ERR_SerialNoExist;
+                    reply();
+                    return;
+                }
+                if (queryResponse.IsRewarded == 1)
+                {
+                    response.Error = ErrorCode.ERR_AlreadyReceived;
+                    reply();
+                    return;
+                }
+
+               
+                if (unit.GetComponent<UserInfoComponent>().UserInfo.SerialRewards.Contains(serialIndex))
+                {
+                    response.Error = ErrorCode.ERR_AlreadyReceived2;
+                    reply();
+                    return;
+                }
+
+                M2Center_SerialReardRequest m2Center_Serial = new M2Center_SerialReardRequest() { SerialNumber = request.SerialNumber };
                 Center2M_SerialReardResponse m2m_TrasferUnitResponse = (Center2M_SerialReardResponse)await ActorMessageSenderComponent.Instance.Call
                           (centerid, m2Center_Serial);
 
-                response.Error = m2m_TrasferUnitResponse.Error;
-                if (m2m_TrasferUnitResponse.Error == ErrorCode.ERR_Success)
+                if (m2m_TrasferUnitResponse.Error != ErrorCode.ERR_Success)
                 {
-                    int serialIndex = int.Parse(m2m_TrasferUnitResponse.Message);
-                    string reward = ConfigHelper.SerialReward[serialIndex];
-                    unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
-                    numericComponent.ApplyChange( null, NumericType.SerialNumber,  1, 0);
+                    response.Error = m2m_TrasferUnitResponse.Error;
+                    reply();
+                    return;
+                }
+
+                string reward = ConfigHelper.SerialReward[serialIndex];
+                unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
+                numericComponent.ApplyChange(null, NumericType.SerialNumber, 1, 0);
+                if (serialIndex >= 8 && serialIndex <= 11)
+                {
+                    unit.GetComponent<UserInfoComponent>().UserInfo.SerialRewards.Add(serialIndex);
                 }
             }
 

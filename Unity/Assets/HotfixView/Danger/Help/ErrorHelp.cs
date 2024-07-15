@@ -190,6 +190,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.Err_TeamDungeonXieZhu, "帮助副本只能创建比自己等级低10级以上的副本");
 
             ErrorHintList.Add(ErrorCode.ERR_AlreadyReceived, "已经领取过奖励");
+            ErrorHintList.Add(ErrorCode.ERR_AlreadyReceived2, "已经领取过该批奖励");
+            
 
             ErrorHintList.Add(ErrorCode.ERR_TitleNoActived, "称号未激活");
 

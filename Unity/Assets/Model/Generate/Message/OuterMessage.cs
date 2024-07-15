@@ -722,6 +722,9 @@ namespace ET
 		[ProtoMember(65)]
 		public List<int> OccTwoOld = new List<int>();
 
+		[ProtoMember(66)]
+		public List<int> SerialRewards = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -1456,6 +1459,33 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.ServerItem)]
+	[ProtoContract]
+	public partial class ServerItem: Object
+	{
+		[ProtoMember(1)]
+		public int ServerId { get; set; }
+
+		[ProtoMember(2)]
+		public string ServerIp { get; set; }
+
+		[ProtoMember(3)]
+		public string ServerName { get; set; }
+
+		[ProtoMember(4)]
+		public long ServerOpenTime { get; set; }
+
+		[ProtoMember(5)]
+		public int Show { get; set; }
+
+		[ProtoMember(6)]
+		public int New { get; set; }
+
+		[ProtoMember(7)]
+		public List<int> PlatformList = new List<int>();
+
+	}
+
 	[ResponseType(nameof(A2C_ServerList))]
 	[Message(OuterOpcode.C2A_ServerList)]
 	[ProtoContract]
@@ -1496,33 +1526,6 @@ namespace ET
 
 		[ProtoMember(6)]
 		public string RealAndGate { get; set; }
-
-	}
-
-	[Message(OuterOpcode.ServerItem)]
-	[ProtoContract]
-	public partial class ServerItem: Object
-	{
-		[ProtoMember(1)]
-		public int ServerId { get; set; }
-
-		[ProtoMember(2)]
-		public string ServerIp { get; set; }
-
-		[ProtoMember(3)]
-		public string ServerName { get; set; }
-
-		[ProtoMember(4)]
-		public long ServerOpenTime { get; set; }
-
-		[ProtoMember(5)]
-		public int Show { get; set; }
-
-		[ProtoMember(6)]
-		public int New { get; set; }
-
-		[ProtoMember(7)]
-		public List<int> PlatformList = new List<int>();
 
 	}
 

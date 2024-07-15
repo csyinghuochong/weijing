@@ -12,7 +12,7 @@ namespace ET
         {
             AccountCenterComponent accountCenterComponent = scene.GetComponent<AccountCenterComponent>();
             response.Error = accountCenterComponent.GetSerialReward(request.SerialNumber);
-            response.Message = accountCenterComponent.GetSerialKeyId(request.SerialNumber).ToString();
+         
 
             reply();
             await ETTask.CompletedTask;

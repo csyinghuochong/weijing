@@ -1200,6 +1200,25 @@ message Center2M_SerialReardResponse // IActorResponse
     string Message = 92;
 }
 
+//ResponseType Center2M_SerialQueryResponse
+//序列号查询
+message M2Center_SerialQueryRequest // IActorRequest
+{
+    int32 RpcId = 90;
+	int64 ActorId = 93;
+
+    string SerialNumber = 1;
+}
+
+message Center2M_SerialQueryResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+	int SerialIndex = 1;
+	int IsRewarded = 2;
+}
 
 //ResponseType E2M_GMEMailSendResponse
 message M2E_GMEMailSendRequest // IActorRequest

@@ -96,6 +96,7 @@ namespace ET
         public const int ERR_AlreadyReceived = 300204;                              //领取过奖励
         public const int ERR_RealNameFail = 300205;                              //实名认证失败
         public const int ERR_TeamDungeonTimesMax = 300206;                         //副本参与次数已经最大
+        public const int ERR_AlreadyReceived2 = 300207;                              //领取过奖励
 
         public const int ERR_MailFull = 300301;                                     //邮箱已满
         public const int ERR_CreateRoleName = 300302;

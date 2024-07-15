@@ -371,6 +371,8 @@ message UserInfo
 	repeated KeyValuePairInt  BuyStoreItems = 64;
 
 	repeated int32 OccTwoOld = 65;
+
+	repeated int32 SerialRewards = 66;
 }
 
 message KeyValuePair
@@ -713,6 +715,18 @@ message A2C_Thanks // IResponse
 	int32 Error = 92;
 }
 
+
+message ServerItem
+{
+	int32 ServerId = 1;
+	string ServerIp = 2;
+	string ServerName = 3;
+	int64 ServerOpenTime = 4;
+	int32 Show = 5;
+	int32 New = 6;
+	repeated int32 PlatformList = 7;   //不配置或者-1全部显示
+}
+
 //ResponseType A2C_ServerList
 message C2A_ServerList // IRequest
 {
@@ -730,17 +744,6 @@ message A2C_ServerList // IResponse
 	string NoticeText = 4;
 	string AccountCenterIp = 5;
 	string RealAndGate = 6;
-}
-
-message ServerItem
-{
-	 int32 ServerId = 1;
-	 string ServerIp = 2;
-	 string ServerName = 3;
-	 int64 ServerOpenTime = 4;
-	 int32 Show = 5;
-	 int32 New = 6;
-	 repeated int32 PlatformList = 7;   //不配置或者-1全部显示
 }
 
 //ResponseType G2C_CreateRole
