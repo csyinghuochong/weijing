@@ -536,6 +536,11 @@ namespace ET
                     defValue = 0;
                     actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);
                     DamgeType = 3;
+
+                    //重击对于怪物会额外附加一些伤害
+                    if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster) {
+                        actValue =(long)(actValue * 1.2f);
+                    }
                 }
 
                 //判定是否无视防御
