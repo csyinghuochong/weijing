@@ -325,10 +325,8 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 110, ServerIp = $"{ip}:20505", ServerName = "繁花似锦", ServerOpenTime = 1721041200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-
-            //2024/07/19 19:00:00 172138680000 新区 流年不负   111
-            serverItems_1.Add(new ServerItem() { ServerId = 111, ServerIp = $"{ip}:20505", ServerName = "流年不负", ServerOpenTime = 172138680000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
+            //2024/07/19 19:00:00 1721386800000 新区 流年不负   111
+            serverItems_1.Add(new ServerItem() { ServerId = 111, ServerIp = $"{ip}:20515", ServerName = "流年不负", ServerOpenTime = 1721386800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();
