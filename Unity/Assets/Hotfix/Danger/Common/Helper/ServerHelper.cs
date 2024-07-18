@@ -322,10 +322,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 107, ServerIp = $"{ip}:20455", ServerName = "海纳百川", ServerOpenTime = 1720177200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 108, ServerIp = $"{ip}:20465", ServerName = "夏日之歌", ServerOpenTime = 1720436400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 109, ServerIp = $"{ip}:20475", ServerName = "星辰大海", ServerOpenTime = 1720782000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2024/07/15 19:00:00 1721041200000 新区 繁花似锦   110
             serverItems_1.Add(new ServerItem() { ServerId = 110, ServerIp = $"{ip}:20505", ServerName = "繁花似锦", ServerOpenTime = 1721041200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+
+
+
+            //2024/07/19 19:00:00 172138680000 新区 流年不负   111
+            serverItems_1.Add(new ServerItem() { ServerId = 111, ServerIp = $"{ip}:20505", ServerName = "流年不负", ServerOpenTime = 172138680000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
