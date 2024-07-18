@@ -63,7 +63,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_AddQQ, self.OpenAddQQ);
             ButtonHelp.AddListenerEx(self.Button_Taptap, self.OnButton_Taptap);
 
-            self.Button_Taptap.SetActive( GlobalHelp.GetVersion() >= 20 && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Button_Taptap.SetActive( GlobalHelp.GetBigVersion() >= 20 && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Share").gameObject, self.OnTikTokShare);
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Friend").gameObject, self.OnTikTokShare);

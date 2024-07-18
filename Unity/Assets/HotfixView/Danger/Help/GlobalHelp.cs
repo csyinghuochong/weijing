@@ -173,10 +173,10 @@ namespace ET
             GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
         }
 
-        public static int GetVersion()
-        {
-            int versioncode = libx.Versions.LoadVersion(Application.persistentDataPath + '/' + libx.Versions.Filename);
-            return versioncode > 0 ? versioncode : 1;
-        }
+        //public static int GetVersion()
+        //{
+        //    int versioncode = libx.Versions.LoadVersion(Application.persistentDataPath + '/' + libx.Versions.Filename);
+        //    return versioncode > 0 ? versioncode : 1;
+        //}
     }
 }
