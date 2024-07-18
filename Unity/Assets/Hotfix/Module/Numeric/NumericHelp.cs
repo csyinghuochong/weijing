@@ -189,6 +189,8 @@ namespace ET
             { (int)NumericType.Now_PlayerAllDamgeSubPro, 0.5f },
             { (int)NumericType.Now_PlayerCriSubPro, 0.5f },
             { (int)NumericType.Now_PlayerHitSubPro, 0.5f },
+            { (int)NumericType.Now_PlayerCriAddPro, 0.5f },
+            { (int)NumericType.Now_PlayerHitAddPro, 0.5f },
 
             { (int)NumericType.Now_WuShiFangYuPro, 0.5f },
             { (int)NumericType.Now_SkillDodgePro, 0.5f },

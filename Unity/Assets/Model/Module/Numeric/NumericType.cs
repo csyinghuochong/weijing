@@ -932,6 +932,20 @@
         public const int Extra_Buff_GongActAddPro_Add = Now_GongActAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_GongActAddPro_Mul = Now_GongActAddPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_PlayerCriAddPro = 2081;          //增加对玩家暴击的概率
+        public const int Base_PlayerCriAddPro_Base = Now_PlayerCriAddPro * 100 + 1;              //属性累加
+        public const int Base_PlayerCriAddPro_Mul = Now_PlayerCriAddPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerCriAddPro_Add = Now_PlayerCriAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerCriAddPro_Add = Now_PlayerCriAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerCriAddPro_Mul = Now_PlayerCriAddPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PlayerHitAddPro = 2082;          //增加对玩家命中概率的概率
+        public const int Base_PlayerHitAddPro_Base = Now_PlayerHitAddPro * 100 + 1;              //属性累加
+        public const int Base_PlayerHitAddPro_Mul = Now_PlayerHitAddPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerHitAddPro_Add = Now_PlayerHitAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerHitAddPro_Add = Now_PlayerHitAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerHitAddPro_Mul = Now_PlayerHitAddPro * 100 + 12;            //属性Buff附加乘法
+
 
         //----------------抗性-------------
 

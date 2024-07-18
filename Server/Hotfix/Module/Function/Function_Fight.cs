@@ -406,6 +406,7 @@ namespace ET
             if (playerPKStatus)
             {
                 HitPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerHitSubPro);
+                HitPro += numericComponentAttack.GetAsFloat(NumericType.Now_PlayerHitAddPro);
             }
 
             //最低命中
@@ -1104,6 +1105,7 @@ namespace ET
                     if (playerPKStatus)
                     {
                         CriPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerCriSubPro);
+                        CriPro += numericComponentAttack.GetAsFloat(NumericType.Now_PlayerCriAddPro);
                     }
 
                     //根据双方战力调整暴击系数
