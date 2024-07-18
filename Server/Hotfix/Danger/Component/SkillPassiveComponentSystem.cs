@@ -606,6 +606,7 @@ namespace ET
                     case SkillPassiveTypeEnum.EquipIndex_15:
                     case SkillPassiveTypeEnum.AllSkill_17:
                     case SkillPassiveTypeEnum.AckCritical_19:
+                    case SkillPassiveTypeEnum.FanGunCD_20:
                         trigger = skillproValue >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:

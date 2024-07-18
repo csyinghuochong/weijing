@@ -39,6 +39,7 @@ namespace ET
     //17: 普攻+释放技能触发
     //18: 重复副本开始战斗触发
     //19: 普攻攻击暴击触发
+    //20: 前冲进入CD触发
 
     public static class SkillPassiveTypeEnum
     {
@@ -62,6 +63,7 @@ namespace ET
         public const int AllSkill_17 = 17;
         public const int PetBattleBegin_18 = 18;
         public const int AckCritical_19 = 19;
+        public const int FanGunCD_20 = 20;
     }
 
     //1：主动技能

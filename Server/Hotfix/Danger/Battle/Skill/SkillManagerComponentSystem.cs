@@ -849,6 +849,7 @@ namespace ET
                 skillcd.CDEndTime = newTime + 10000;
                 self.SkillCDs.Add(fangunskill, skillcd);
 
+                self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill( SkillPassiveTypeEnum.FanGunCD_20, 0, 0 );
                 //Unit unit = self.GetParent<Unit>();
                 //BuffData buffData_2 = new BuffData();
                 //buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
