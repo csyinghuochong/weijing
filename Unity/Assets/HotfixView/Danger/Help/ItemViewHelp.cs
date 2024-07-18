@@ -183,7 +183,7 @@ namespace ET
             { NumericType.Now_Cri, "本次攻击触发暴击的概率" },
             { NumericType.Now_MageDamgeSubPro, "降低受到魔法类技能的伤害" },
             { NumericType.Now_Res, "抵抗对方暴击的概率和抵抗眩晕等控制类技能" },
-            { NumericType.Now_ZhongJiPro, "攻击有概率使目标的防御降低为0,无视对方防御进行攻击" },
+            { NumericType.Now_ZhongJiPro, "攻击有概率使目标的防御降低为0,无视对方防御进行攻击,对怪物触发会额外增加20%的伤害" },
             { NumericType.Now_Hit, "命中敌人的附加概率，和闪避概率进行抵消" },
             { NumericType.Now_ZhongJi, "触发重击后额外附加的伤害值" },
             { NumericType.Now_Dodge, "受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能" },
