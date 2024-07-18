@@ -755,10 +755,26 @@ namespace ET
 			Log.ILog.Debug("OnFollowFriendResultHandler");
 		}
 
-		/// <summary>
-		/// 支付宝支付
-		/// </summary>
-		public void AliPay(string OrderInfo)
+        /// <summary>
+        /// Tap
+        /// </summary>
+        public void TapTapShare(string OrderInfo)
+        {
+            Log.ILog.Debug("TapTapShare: " + OrderInfo);
+#if UNITY_ANDROID && !UNITY_EDITOR
+			if (javaActive == null)
+			{
+				javaActive = new AndroidJavaObject(javaClassStr);
+			}
+			javaActive.Call("TapTapShare", OrderInfo);
+#endif
+        }
+
+
+        /// <summary>
+        /// 支付宝支付
+        /// </summary>
+        public void AliPay(string OrderInfo)
 		{
 			Log.ILog.Debug("AliPay: " + OrderInfo);
 #if UNITY_ANDROID && !UNITY_EDITOR

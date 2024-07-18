@@ -820,6 +820,13 @@ namespace ET
             public string Account;
         }
 
+        public class TapTapShare : DisposeObject
+        {
+            public static readonly TapTapShare Instance = new TapTapShare();
+            public Scene ZoneScene;
+            public string Content;
+        }
+
         public class UIOneChallenge : DisposeObject
         {
             public static readonly UIOneChallenge Instance = new UIOneChallenge();

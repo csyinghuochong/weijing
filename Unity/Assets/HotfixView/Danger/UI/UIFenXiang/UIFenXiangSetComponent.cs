@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using cn.sharesdk.unity3d;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -14,6 +12,7 @@ namespace ET
         public GameObject FenXiang_QQ;
         public GameObject Button_AddQQ;
         public GameObject FenXiang_TikTok;
+        public GameObject Button_Taptap;
         public string PopularizeCode;
 
         public int ShareType;
@@ -32,6 +31,7 @@ namespace ET
             self.Button_AddQQ = rc.Get<GameObject>("Button_AddQQ");
             self.FenXiang_TikTok = rc.Get<GameObject>("FenXiang_TikTok");
             self.Text_tip1 = rc.Get<GameObject>("Text_tip1");
+            self.Button_Taptap = rc.Get<GameObject>("Button_Taptap");
 
             if (GlobalHelp.GetPlatform() == 5)
             {
@@ -60,7 +60,10 @@ namespace ET
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Share").gameObject, self.OnWeiXinShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Friend").gameObject, self.OnWeChatMoments);
             ButtonHelp.AddListenerEx(self.Button_support, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine(); });
-            ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OpenAddQQ(); });
+            ButtonHelp.AddListenerEx(self.Button_AddQQ, self.OpenAddQQ);
+            ButtonHelp.AddListenerEx(self.Button_Taptap, self.OnButton_Taptap);
+
+            self.Button_Taptap.SetActive( GlobalHelp.GetVersion() >= 20 && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Share").gameObject, self.OnTikTokShare);
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Friend").gameObject, self.OnTikTokShare);
@@ -73,6 +76,13 @@ namespace ET
 
     public static class UIFenXiangSetComponentSystem
     {
+
+        public static void OnButton_Taptap(this UIFenXiangSetComponent self)
+        {
+            EventType.TapTapShare.Instance.ZoneScene = self.ZoneScene();
+            EventType.TapTapShare.Instance.Content = "aa_bb";
+            Game.EventSystem.PublishClass(EventType.TapTapShare.Instance);
+        }
 
         public static void  OpenAddQQ(this UIFenXiangSetComponent self) 
         {
