@@ -110,5 +110,6 @@
 +lmongodb://localhost:27017/l"	WJBeta108
 +mmongodb://localhost:27017/m"	WJBeta109
 +nmongodb://localhost:27017/n"	WJBeta110
++omongodb://localhost:27017/o"	WJBeta111
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
