@@ -101,6 +101,9 @@ namespace ET
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
 
+	  [DllImport("__Internal")]
+     private static extern void FuncTapTapShare( string str1,   string str2);
+
 	 //[DllImport("__Internal")]
   //   private static extern string GetPhoneNum( string str );
 #endif
@@ -245,6 +248,7 @@ namespace ET
         /// </summary>
         public void TapTapShare(string OrderInfo)
         {
+			string[] infos = OrderInfo.Split('&');
             Log.ILog.Debug("TapTapShare: " + OrderInfo);
 
 #if UNITY_EDITOR
@@ -254,8 +258,26 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("TapTapShare", OrderInfo);
 #endif
-		}
 
+#if unity_ip && !UNITY_EDITOR
+			FuncTapTapShare(infos[0], infos[1])
+#endif
+        }
+
+        public void OnTapTapShareHandler(string resultCodestr)
+		{
+			Log.ILog.Debug($"OnTapTapShareHandler:  {resultCodestr}");
+			int resultCode = int.Parse(resultCodestr);	
+            // 0 正常分享  -1未安装 -2不支持
+            if (resultCode == 0)
+			{
+                this.OnShareHandler(8, true);
+            }
+			else
+			{
+                this.OnShareHandler(8, false);
+            }
+        }
 
 
         /// <summary>
