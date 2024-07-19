@@ -241,6 +241,19 @@ namespace ET
         }
 
         /// <summary>
+        /// Tap
+        /// </summary>
+        public void TapTapShare(string OrderInfo)
+        {
+            Log.ILog.Debug("TapTapShare: " + OrderInfo);
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("TapTapShare", OrderInfo);
+#endif
+        }
+
+
+
+        /// <summary>
         ///  由接入方实现，通过游戏服务端向抖音游戏服务端校验用户登录态、获取sdk_open_id，参考服务端接入登录验证部分
         /// </summary>
         /// <param name="access_token"></param>
@@ -755,22 +768,7 @@ namespace ET
 			Log.ILog.Debug("OnFollowFriendResultHandler");
 		}
 
-        /// <summary>
-        /// Tap
-        /// </summary>
-        public void TapTapShare(string OrderInfo)
-        {
-            Log.ILog.Debug("TapTapShare: " + OrderInfo);
-#if UNITY_ANDROID && !UNITY_EDITOR
-			if (javaActive == null)
-			{
-				javaActive = new AndroidJavaObject(javaClassStr);
-			}
-			javaActive.Call("TapTapShare", OrderInfo);
-#endif
-        }
-
-
+     
         /// <summary>
         /// 支付宝支付
         /// </summary>
