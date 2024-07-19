@@ -80,7 +80,7 @@ namespace ET
         public static void OnButton_Taptap(this UIFenXiangSetComponent self)
         {
             EventType.TapTapShare.Instance.ZoneScene = self.ZoneScene();
-            EventType.TapTapShare.Instance.Content = "aa_bb";
+            EventType.TapTapShare.Instance.Content = $"{ConfigHelper.TapTapShareTitle}&{ConfigHelper.TapTapShareContent}";
             Game.EventSystem.PublishClass(EventType.TapTapShare.Instance);
         }
 

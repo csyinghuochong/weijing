@@ -30,6 +30,10 @@ namespace ET
         public static string clientToken = "Amv51zGQvweTTsqPKtNdO9GDKPs6FlTcMpbMQ6BW";
         public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
 
+
+        public static string TapTapShareTitle = "危境火爆公测";
+        public static string TapTapShareContent = "欢迎大家试玩";
+
         /// <summary>
         /// 小龟说话
         /// </summary>
