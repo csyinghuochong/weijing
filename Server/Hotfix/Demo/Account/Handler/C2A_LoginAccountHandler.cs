@@ -158,10 +158,20 @@ namespace ET
                                     Password = request.Password
                                 });
                                 AccountId = saveAccount.AccountId;
+
+                                if (request.AccountName == "7303474616922905355")
+                                {
+                                    Console.WriteLine($"注册新账号:    {request.AccountName}   {AccountId}");
+                                }
                             }
                             else
                             {
                                 AccountId = centerAccount.AccountId;
+
+                                if (request.AccountName == "7303474616922905355")
+                                {
+                                    Console.WriteLine($"已有老账号:    {request.AccountName}   {AccountId}");
+                                }
                             }
                         }
                     }
@@ -229,6 +239,14 @@ namespace ET
                             session.Disconnect().Coroutine();
                             return;
                         }
+
+                        if (request.AccountName == "7303474616922905355" && account != null && centerAccount.AccountId != account.Id)
+                        {
+                            Console.WriteLine($"账号不匹配:    {request.AccountName}   {AccountId}  {account.Id}");
+                            await  Game.Scene.GetComponent<DBComponent>().Remove<DBAccountInfo>(session.DomainZone(), account.Id);
+                            account = null;
+                        }
+
                         if (account == null)
                         {
                             //在该区创建账号信息
