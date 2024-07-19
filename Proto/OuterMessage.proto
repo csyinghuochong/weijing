@@ -7675,6 +7675,23 @@ message R2C_LoginRealmCheck // IResponse
 	string GateAddress = 2;
 }
 
+//ResponseType R2C_LoginGatemCheck
+message C2R_LoginGateCheck // IRequest
+{
+	int32 RpcId = 90;
+	int64 AccountId = 1;
+	string RealmTokenKey = 2;
+}
+
+message R2C_LoginGatemCheck // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string GateSessionKey = 1;
+	string GateAddress = 2;
+}
+
 //ResponseType Center2C_BlackAccountResponse
 message C2Center_QueryAccountRequest // IRequest
 {

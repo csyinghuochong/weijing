@@ -16022,6 +16022,43 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(R2C_LoginGatemCheck))]
+	[Message(OuterOpcode.C2R_LoginGateCheck)]
+	[ProtoContract]
+	public partial class C2R_LoginGateCheck: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(2)]
+		public string RealmTokenKey { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_LoginGatemCheck)]
+	[ProtoContract]
+	public partial class R2C_LoginGatemCheck: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string GateSessionKey { get; set; }
+
+		[ProtoMember(2)]
+		public string GateAddress { get; set; }
+
+	}
+
 	[ResponseType(nameof(Center2C_BlackAccountResponse))]
 	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
 	[ProtoContract]
