@@ -83,7 +83,7 @@ namespace ET
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
-                if (teamDropItem.EndTime == -1)
+                if (teamDropItem.EndTime == -1 || teamDropItem.AllGive)
                 {
                     continue;
                 }
@@ -102,13 +102,15 @@ namespace ET
                     continue;
                 }
 
-                //全部放弃则默认分配
+                //全部放弃 则 可以自由拾取。
                 if (giveIds.Count >= playerCount || needIds.Count == 0)
                 {
-                    for (int allunit = 0; allunit < allunits.Count; allunit++)
-                    {
-                        needIds.Add(allunits[allunit].Id);
-                    }
+                    //for (int allunit = 0; allunit < allunits.Count; allunit++)
+                    //{
+                    //    needIds.Add(allunits[allunit].Id);
+                    //}
+                    teamDropItem.AllGive = true;
+                    continue;
                 }
                 
                 int maxNumber = 0;
@@ -148,6 +150,18 @@ namespace ET
                     //self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                 }
             }
+        }
+
+        public static bool IsAllGiveDrop(this TeamDungeonComponent self, long dropId)
+        {
+            for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
+            {
+                if (self.TeamDropItems[i].DropInfo.UnitId == dropId)
+                {
+                    return self.TeamDropItems[i].AllGive;
+                }
+            }
+            return false;
         }
 
         public static bool IsInTeamDrop(this TeamDungeonComponent self, long dropId)
