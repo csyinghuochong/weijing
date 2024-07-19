@@ -11,8 +11,9 @@ namespace ET
         public static List<string> GmAccount = new List<string>()
         {
             "test01",
-            "18319670288",          //唐
             "18652422521",
+            "18319670288",          //唐
+            "64800138035c4e5736112c0f" , //唐 taptap
         };
 
         public static List<long> BanChatPlayer = new List<long>()
