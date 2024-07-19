@@ -246,10 +246,15 @@ namespace ET
         public void TapTapShare(string OrderInfo)
         {
             Log.ILog.Debug("TapTapShare: " + OrderInfo);
+
+#if UNITY_EDITOR
+			this.OnShareHandler(8, true);
+#endif
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("TapTapShare", OrderInfo);
 #endif
-        }
+		}
 
 
 

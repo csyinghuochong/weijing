@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ShareSucessRequest request, M2C_ShareSucessResponse response, Action reply)
         {
-            if (request.ShareType != 1 && request.ShareType != 2)
+            if (request.ShareType != 1 && request.ShareType != 2 && request.ShareType != 8)
             {
                 reply();
                 return;
@@ -61,8 +61,16 @@ namespace ET
             shareSet = shareSet | (long)request.ShareType;
             numericComponent.ApplyValue(NumericType.FenShangSet, shareSet);
 
-            //给钻石
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd( UserDataType.Diamond, "120", true, ItemGetWay.Share);
+            if (request.ShareType == 8)
+            {
+                //给金币
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, "1", true, ItemGetWay.Share);
+            }
+            else
+            {
+                //给钻石
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, "120", true, ItemGetWay.Share);
+            }
 
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ShareTotalNumber_220, 0, 1);
             reply();

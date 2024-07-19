@@ -79,6 +79,12 @@ namespace ET
 
         public static void OnButton_Taptap(this UIFenXiangSetComponent self)
         {
+            if (self.IsShared(8))
+            {
+                Log.Debug("已经领取过taptap奖励");
+            }
+
+            self.ShareType = 8;
             EventType.TapTapShare.Instance.ZoneScene = self.ZoneScene();
             EventType.TapTapShare.Instance.Content = $"{ConfigHelper.TapTapShareTitle}&{ConfigHelper.TapTapShareContent}";
             Game.EventSystem.PublishClass(EventType.TapTapShare.Instance);
@@ -106,10 +112,10 @@ namespace ET
 
         public static async ETTask OnShareHandler(this UIFenXiangSetComponent self, int pType, bool share)
         {
-            //1 4微信  2 5QQ
+            //1 4微信  2 5QQ     8 taptap
             Log.ILog.Debug($"分享回调：  {pType} {share}");
             int sType = self.ShareType;
-            if (sType != 1 && sType != 2)
+            if (sType != 1 && sType != 2 && sType != 8)
             {
                 return;
             }
