@@ -35,22 +35,18 @@ public sealed class TapSDKV20Helper
         return AntiAddictionUIKit.AgeRange;
     }
 
-    /// <summary>
-    /// ��Ϸʣ��ʱ��
-    /// </summary>
-    /// <returns></returns>
+
     public int GetRemainingTime()
     {
         return AntiAddictionUIKit.RemainingTime;
     }
 
-    // ��Ϸ�� TapTap ���������Ķ�Ӧ�� Client ID
     private string clientId = ConfigHelper.clientId;
 
-    // �Ƿ��ѳ�ʼ��
+
     private bool hasInit = false;
 
-    // �Ƿ���ͨ���Ϲ���֤���
+
     public bool hasCheckedAntiAddiction { get; private set; }
 
     private static readonly Lazy<TapSDKV20Helper> lazy
@@ -61,19 +57,17 @@ public sealed class TapSDKV20Helper
 
     private TapSDKV20Helper() { }
 
-    /// <summary>
-    /// ��ʼ����¼��Ϲ���֤ SDK 
-    /// </summary>
+
     public void InitSDK()
     {
         if (!hasInit)
         {
             hasInit = true;
 
-            // �����Ϲ���֤�ص�
+
             Action<int, string> AntiAddictionCallback = (code, errorMsg) =>
             {
-                // ���ݻص����صĲ��� code ��Ӳ�ͬ����Ĵ���
+               
                 switch (code)
                 {
 

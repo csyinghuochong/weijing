@@ -874,15 +874,15 @@ namespace ET
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);
 
-			if (GlobalHelp.GetBigVersion() >= 20
-				&& GlobalHelp.GetPlatform() != 5
-				&& !GlobalHelp.IsEditorMode)
-			{
-                EventType.TapTapAuther.Instance.ZoneScene = self.ZoneScene();
-                EventType.TapTapAuther.Instance.Account = account;
-                Game.EventSystem.PublishClass(EventType.TapTapAuther.Instance);
-            }
-			else
+			//if (GlobalHelp.GetBigVersion() >= 20
+			//	&& GlobalHelp.GetPlatform() != 5
+			//	&& !GlobalHelp.IsEditorMode)
+			//{
+   //             EventType.TapTapAuther.Instance.ZoneScene = self.ZoneScene();
+   //             EventType.TapTapAuther.Instance.Account = account;
+   //             Game.EventSystem.PublishClass(EventType.TapTapAuther.Instance);
+   //         }
+			//else
             {
                 if (self.LoginType == "3" || self.LoginType == "4")
                 {
