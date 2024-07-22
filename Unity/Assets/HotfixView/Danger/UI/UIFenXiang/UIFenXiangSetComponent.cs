@@ -122,7 +122,7 @@ namespace ET
             if (sType == 8 && !share)
             {
                 Log.ILog.Debug($"分享回调TapTap：  {pType} {share}");
-                FloatTipManager.Instance.ShowFloatTip("TapTap未安装或该版本不支持分享！");
+                FloatTipManager.Instance.ShowFloatTipDi("TapTap未安装或该版本不支持分享！");
                 return;
             }
 
