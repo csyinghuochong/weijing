@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -38,7 +39,16 @@ namespace ET
                     response.Occ = userinfo.UserInfo.Occ;
                     D2G_GetComponent d2GGetUnit_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.PetComponent });
                     PetComponent petComponent = d2GGetUnit_3.Component as PetComponent;
-                    response.RolePetInfos = petComponent.RolePetInfos;
+                    List<RolePetInfo> rolePetInfos = petComponent.RolePetInfos;
+                    for (int pet = rolePetInfos.Count - 1; pet >= 0; pet-- )
+                    {
+                        if (rolePetInfos[pet].PetStatus >= 2)
+                        {
+                            rolePetInfos.RemoveAt(pet);
+                        }
+                    }
+
+                    response.RolePetInfos = rolePetInfos;
                     response.PetSkinList = petComponent.PetSkinList;
 
                     D2G_GetComponent d2GGetUnit_4 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.NumericComponent });
