@@ -120,6 +120,13 @@ namespace ET
                 return;
             }
 
+            if (sType == 8 && !share)
+            {
+                FloatTipManager.Instance.ShowFloatTip("TapTap未安装或该版本不支持分享！");
+                return;
+            }
+
+
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (taskComponent.GetHuoYueDu() < 30)
             {
