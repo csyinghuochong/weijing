@@ -121,10 +121,19 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
 
                 bool teshuItem = itemConfig.ItemQuality >= 4 && itemConfig.ItemType == 2 && itemConfig.ItemSubType == 1;
+
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
-
-                if (teamDungeonComponent.IsAllGiveDrop(unitDrop.Id))
+                //if (unit.DomainZone() == 5)
+                //{
+                //    if (teamDungeonComponent.IsInTeamDrop(unitDrop.Id))
+                //    {
+                //        TeamDropItem teamDropItem = teamDungeonComponent.GetTeamDropItem(unitDrop.Id);
+                //        Console.WriteLine($"teamDropItem:  {teamDropItem}");
+                //    }
+                //}
+                if (drops[i].DropType != 1 && teamDungeonComponent.IsAllGiveDrop(unitDrop.Id)
+                    && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     teamDungeonComponent.ItemFlags[unitDrop.Id] = unit.Id;
                 }

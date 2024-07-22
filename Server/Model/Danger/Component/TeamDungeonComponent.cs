@@ -5,7 +5,7 @@ namespace ET
 {
     public class TeamDropItem : Entity, IAwake
     {
-        public bool AllGive = false;
+        //public bool AllGive = false;
         public long EndTime = 0;   //-1已分配好
         public DropInfo DropInfo; 
         public List<long> NeedPlayers = new List<long>();

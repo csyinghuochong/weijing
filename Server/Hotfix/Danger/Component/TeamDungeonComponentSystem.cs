@@ -83,7 +83,7 @@ namespace ET
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
-                if (teamDropItem.EndTime == -1 || teamDropItem.AllGive)
+                if (teamDropItem.EndTime == -1)   // || teamDropItem.AllGive)
                 {
                     continue;
                 }
@@ -109,7 +109,7 @@ namespace ET
                     //{
                     //    needIds.Add(allunits[allunit].Id);
                     //}
-                    teamDropItem.AllGive = true;
+                    //teamDropItem.AllGive = true;
                     continue;
                 }
                 
@@ -158,7 +158,7 @@ namespace ET
             {
                 if (self.TeamDropItems[i].DropInfo.UnitId == dropId)
                 {
-                    return self.TeamDropItems[i].AllGive;
+                    return self.TeamDropItems[i].EndTime == -1;
                 }
             }
             return false;
@@ -174,6 +174,18 @@ namespace ET
                 }
             }
             return false;
+        }
+
+        public static TeamDropItem GetTeamDropItem(this TeamDungeonComponent self, long dropId)
+        {
+            for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
+            {
+                if (self.TeamDropItems[i].DropInfo.UnitId == dropId)
+                {
+                    return self.TeamDropItems[i];
+                }
+            }
+            return null;
         }
 
         public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self,  DropInfo dropInfo)
