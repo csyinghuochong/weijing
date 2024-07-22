@@ -443,7 +443,6 @@ IL2CPP_EXTERN_C RuntimeClass* Matrix4x4U5BU5D_tE53F71E9C9110DD439281A6AB8B699F9F
 IL2CPP_EXTERN_C RuntimeClass* Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* MemoryProfiler_tA9B2B0C63FB9B28D735A664EB3857D38DAE4DCE6_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* MetaData_t7640D62747628BC99B81A884714CD44D4BC84747_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeClass* NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* NullReferenceException_t44B4F3CDE3111E74591952B8BE8707B28866D724_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var;
@@ -2602,40 +2601,6 @@ public:
 };
 
 
-// Unity.Collections.NativeLeakDetection
-struct NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-struct NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_StaticFields
-{
-public:
-	// System.Int32 Unity.Collections.NativeLeakDetection::s_NativeLeakDetectionMode
-	int32_t ___s_NativeLeakDetectionMode_0;
-
-public:
-	inline static int32_t get_offset_of_s_NativeLeakDetectionMode_0() { return static_cast<int32_t>(offsetof(NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_StaticFields, ___s_NativeLeakDetectionMode_0)); }
-	inline int32_t get_s_NativeLeakDetectionMode_0() const { return ___s_NativeLeakDetectionMode_0; }
-	inline int32_t* get_address_of_s_NativeLeakDetectionMode_0() { return &___s_NativeLeakDetectionMode_0; }
-	inline void set_s_NativeLeakDetectionMode_0(int32_t value)
-	{
-		___s_NativeLeakDetectionMode_0 = value;
-	}
-};
-
-
-// Unity.Collections.LowLevel.Unsafe.NativeSliceUnsafeUtility
-struct NativeSliceUnsafeUtility_tAF290F2A0826662EFE529FF0283F1250FF1D7CAF  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-
 // System.Random
 struct Random_t6C9E9775A149D0ADCFEB4B252C408F03EE870118  : public RuntimeObject
 {
@@ -4387,42 +4352,6 @@ public:
 
 // Unity.Collections.LowLevel.Unsafe.NativeDisableUnsafePtrRestrictionAttribute
 struct NativeDisableUnsafePtrRestrictionAttribute_tEA96E4FE8E1010BE2706F6CEC447E8C55A29DFC0  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
-{
-public:
-
-public:
-};
-
-
-// Unity.Collections.NativeFixedLengthAttribute
-struct NativeFixedLengthAttribute_t73E1BD0509DD77A37CC8FE26A939E20E78959CDD  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
-{
-public:
-
-public:
-};
-
-
-// Unity.Collections.NativeMatchesParallelForLengthAttribute
-struct NativeMatchesParallelForLengthAttribute_tA4250D24E3EBF236BADB63EAD7701F43FC7A329B  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
-{
-public:
-
-public:
-};
-
-
-// Unity.Collections.LowLevel.Unsafe.NativeSetClassTypeToNullOnScheduleAttribute
-struct NativeSetClassTypeToNullOnScheduleAttribute_t513804FA40F876209F5367906826C4BFF9F2ECDB  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
-{
-public:
-
-public:
-};
-
-
-// Unity.Collections.LowLevel.Unsafe.NativeSetThreadIndexAttribute
-struct NativeSetThreadIndexAttribute_t7681C9225114E2B1478DE516F9FE1CD44B3681E8  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
 {
 public:
 
@@ -11591,6 +11520,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Inequality_m212AF0E66AA81FEDC9
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_DestroyImpl_mEB8A57D8CAEAE69F4A4C087782629FE03F873C7D (intptr_t ___mpb0, const RuntimeMethod* method);
 // System.Void System.GC::SuppressFinalize(System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GC_SuppressFinalize_mEE880E988C6AF32AA2F67F2D62715281EAA41555 (RuntimeObject * ___obj0, const RuntimeMethod* method);
+// System.Void UnityEngine.MaterialPropertyBlock::SetFloatImpl(System.Int32,System.Single)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580 (MaterialPropertyBlock_t6C45FC5DE951DA662BBB7A55EEB3DEF33C5431A0 * __this, int32_t ___name0, float ___value1, const RuntimeMethod* method);
 // System.Void UnityEngine.Mathf::CorrelatedColorTemperatureToRGB_Injected(System.Single,UnityEngine.Color&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Mathf_CorrelatedColorTemperatureToRGB_Injected_m8CDBD9CEB8D9AE7F8BDA2E111A7823398DE10F36 (float ___kelvin0, Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659 * ___ret1, const RuntimeMethod* method);
 // System.Double System.Math::Pow(System.Double,System.Double)
@@ -22821,6 +22752,15 @@ IL2CPP_EXTERN_C  bool MaterialEffectPlayable_Equals_mC805BF647B60EA8517040C2C071
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+// System.Void UnityEngine.MaterialPropertyBlock::SetFloatImpl(System.Int32,System.Single)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580 (MaterialPropertyBlock_t6C45FC5DE951DA662BBB7A55EEB3DEF33C5431A0 * __this, int32_t ___name0, float ___value1, const RuntimeMethod* method)
+{
+	typedef void (*MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580_ftn) (MaterialPropertyBlock_t6C45FC5DE951DA662BBB7A55EEB3DEF33C5431A0 *, int32_t, float);
+	static MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.MaterialPropertyBlock::SetFloatImpl(System.Int32,System.Single)");
+	_il2cpp_icall_func(__this, ___name0, ___value1);
+}
 // System.IntPtr UnityEngine.MaterialPropertyBlock::CreateImpl()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t MaterialPropertyBlock_CreateImpl_m2191D3625D35DDD79213E0C8B9115FBB419F9311 (const RuntimeMethod* method)
 {
@@ -22936,6 +22876,18 @@ IL_002e:
 	{
 		IL2CPP_RUNTIME_CLASS_INIT(GC_tD6F0377620BF01385965FD29272CF088A4309C0D_il2cpp_TypeInfo_var);
 		GC_SuppressFinalize_mEE880E988C6AF32AA2F67F2D62715281EAA41555(__this, /*hidden argument*/NULL);
+		return;
+	}
+}
+// System.Void UnityEngine.MaterialPropertyBlock::SetFloat(System.String,System.Single)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_SetFloat_m5AADD8A9BFF5C1DD5A93BF028A2F001681221942 (MaterialPropertyBlock_t6C45FC5DE951DA662BBB7A55EEB3DEF33C5431A0 * __this, String_t* ___name0, float ___value1, const RuntimeMethod* method)
+{
+	{
+		String_t* L_0 = ___name0;
+		int32_t L_1;
+		L_1 = Shader_PropertyToID_m8C1BEBBAC0CC3015B142AF0FA856495D5D239F5F(L_0, /*hidden argument*/NULL);
+		float L_2 = ___value1;
+		MaterialPropertyBlock_SetFloatImpl_mEBFDBFB9842E8EDCD9BA82CDB35582F44F327580(__this, L_1, L_2, /*hidden argument*/NULL);
 		return;
 	}
 }
@@ -35034,68 +34986,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeDisableUnsafePtrRestrictionAttribu
 		return;
 	}
 }
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void Unity.Collections.NativeLeakDetection::Initialize()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeLeakDetection_Initialize_m1A20F4DD5DD1EF32704F40F0B05B0DE021399936 (const RuntimeMethod* method)
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		((NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_StaticFields*)il2cpp_codegen_static_fields_for(NativeLeakDetection_t65BA42B9268B96490C87B2C2E8943D0B88B70DC7_il2cpp_TypeInfo_var))->set_s_NativeLeakDetectionMode_0(1);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif

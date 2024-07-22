@@ -1453,6 +1453,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral9C8693CE7D88AAF366EE179A4BB705613CEBDD81
 IL2CPP_EXTERN_C String_t* _stringLiteral9F2F1003AD681D270AFDD661A98E96EA8A697B9F;
 IL2CPP_EXTERN_C String_t* _stringLiteralA392FB5E31FE22CF5451C4C52C4FDCA87A1EE7FF;
 IL2CPP_EXTERN_C String_t* _stringLiteralA9539B7EE51651AB4FC065B8BC827242FC42613F;
+IL2CPP_EXTERN_C String_t* _stringLiteralA9B75E8A86A0CF8CFD2DEA32136A4B2FEA7B7952;
 IL2CPP_EXTERN_C String_t* _stringLiteralAA22D570E6C4A129777FCFB302C12DD9C8F5BA43;
 IL2CPP_EXTERN_C String_t* _stringLiteralABAE1155CE9EFC0F9A95E89CB74687207B87B365;
 IL2CPP_EXTERN_C String_t* _stringLiteralAD5B8D1C9401E75E664CC0008025E462198BCD3B;
@@ -22951,6 +22952,22 @@ public:
 public:
 };
 
+struct BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_StaticFields
+{
+public:
+	// System.Int32 BuglyInit::PlatForm
+	int32_t ___PlatForm_5;
+
+public:
+	inline static int32_t get_offset_of_PlatForm_5() { return static_cast<int32_t>(offsetof(BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_StaticFields, ___PlatForm_5)); }
+	inline int32_t get_PlatForm_5() const { return ___PlatForm_5; }
+	inline int32_t* get_address_of_PlatForm_5() { return &___PlatForm_5; }
+	inline void set_PlatForm_5(int32_t value)
+	{
+		___PlatForm_5 = value;
+	}
+};
+
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -24202,6 +24219,8 @@ inline void Func_1__ctor_m65891A3FBD17004173437E96E2B62173156842E1 (Func_1_tD09A
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BuglyAgent_SetLogCallbackExtrasHandler_mC559D3026693C8D84BFFDD4E441394C5203B27DD (Func_1_tD09A78FC56F93EFE7415B95421D1D8ECFF66A1B4 * ___handler0, const RuntimeMethod* method);
 // System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_Destroy_m3EEDB6ECD49A541EC826EA8E1C8B599F7AF67D30 (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A * ___obj0, const RuntimeMethod* method);
+// System.Void UnityEngine.Debug::LogWarning(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_LogWarning_m24085D883C9E74D7AB423F0625E13259923960E7 (RuntimeObject * ___message0, const RuntimeMethod* method);
 // System.Int32 UnityEngine.Screen::get_width()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Screen_get_width_m52188F76E8AAF57BE373018CB14083BB74C43C1C (const RuntimeMethod* method);
 // System.Int32 UnityEngine.Screen::get_height()
@@ -24216,14 +24235,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SystemInfo_get_deviceType_mC7A6628167
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SystemInfo_get_deviceUniqueIdentifier_m12CA3C3D8C75E44FBFA73E2E34D9E743AF732B1E (const RuntimeMethod* method);
 // System.Int32 UnityEngine.SystemInfo::get_graphicsDeviceID()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SystemInfo_get_graphicsDeviceID_mF25513D7FC3A94705110FA00673BEC4D8F7E8218 (const RuntimeMethod* method);
+// System.Int32 UnityEngine.SystemInfo::get_graphicsDeviceVendorID()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SystemInfo_get_graphicsDeviceVendorID_mC02AC12730B431B84FE0AA74A9F7FDDBA1EEEF40 (const RuntimeMethod* method);
 // System.String UnityEngine.SystemInfo::get_graphicsDeviceName()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SystemInfo_get_graphicsDeviceName_m25563DB9012D2DB5EC4CB7A29BA4236926F93F33 (const RuntimeMethod* method);
 // System.String UnityEngine.SystemInfo::get_graphicsDeviceVendor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SystemInfo_get_graphicsDeviceVendor_mA70A62E48AF223EA26B119B5428A5B488A4CA136 (const RuntimeMethod* method);
 // System.String UnityEngine.SystemInfo::get_graphicsDeviceVersion()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SystemInfo_get_graphicsDeviceVersion_mA74AFB5D881DB29389D2BB05EB37DE60779BABD9 (const RuntimeMethod* method);
-// System.Int32 UnityEngine.SystemInfo::get_graphicsDeviceVendorID()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SystemInfo_get_graphicsDeviceVendorID_mC02AC12730B431B84FE0AA74A9F7FDDBA1EEEF40 (const RuntimeMethod* method);
 // System.Int32 UnityEngine.SystemInfo::get_graphicsMemorySize()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SystemInfo_get_graphicsMemorySize_m774717D305DC07B669D39485DEB4895500714E40 (const RuntimeMethod* method);
 // System.Int32 UnityEngine.SystemInfo::get_systemMemorySize()
@@ -31888,6 +31907,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Array_Empty_TisRuntimeObject_m1FBC21243DF3542384C523801E8CA8A97606C747_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&BuglyAgent_tF9B16C465EC62A594A717A46882621BBDBA681B4_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&DeviceType_tBE460E2D86295964F19F6708DBDC3568ECCBE9DF_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Dictionary_2__ctor_mA6747E78BD4DF1D09D9091C1B3EBAE0FDB200666_RuntimeMethod_var);
@@ -31905,6 +31925,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9A2D33EE20E51717CDC6859049AB64AAAF108C53);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9C8693CE7D88AAF366EE179A4BB705613CEBDD81);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralA392FB5E31FE22CF5451C4C52C4FDCA87A1EE7FF);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralA9B75E8A86A0CF8CFD2DEA32136A4B2FEA7B7952);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralABAE1155CE9EFC0F9A95E89CB74687207B87B365);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralAD5B8D1C9401E75E664CC0008025E462198BCD3B);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralC5D8AF07339C92C1C8A544FB0AED646C001200E8);
@@ -31914,15 +31935,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 	}
 	int32_t V_0 = 0;
 	{
+		// UnityEngine.Debug.LogWarning("MyLogCallbackExtrasHandler");
+		IL2CPP_RUNTIME_CLASS_INIT(Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m24085D883C9E74D7AB423F0625E13259923960E7(_stringLiteralA9B75E8A86A0CF8CFD2DEA32136A4B2FEA7B7952, /*hidden argument*/NULL);
 		// BuglyAgent.PrintLog (LogSeverity.Log, "extra handler");
 		ObjectU5BU5D_tC1F4EE0DB0B7300255F5FD4AF64FE4C585CF5ADE* L_0;
 		L_0 = Array_Empty_TisRuntimeObject_m1FBC21243DF3542384C523801E8CA8A97606C747_inline(/*hidden argument*/Array_Empty_TisRuntimeObject_m1FBC21243DF3542384C523801E8CA8A97606C747_RuntimeMethod_var);
 		IL2CPP_RUNTIME_CLASS_INIT(BuglyAgent_tF9B16C465EC62A594A717A46882621BBDBA681B4_il2cpp_TypeInfo_var);
 		BuglyAgent_PrintLog_mDDFEF43C3D60CF9E2CD9583B56086A97203C2668(0, _stringLiteral7A21B738582222CA9FACA0509F3CB9B207C50446, L_0, /*hidden argument*/NULL);
-		// Dictionary<string, string> extras = new Dictionary<string, string> ();
+		// Dictionary<string, string> extras = new Dictionary<string, string>();
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_1 = (Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 *)il2cpp_codegen_object_new(Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5_il2cpp_TypeInfo_var);
 		Dictionary_2__ctor_mA6747E78BD4DF1D09D9091C1B3EBAE0FDB200666(L_1, /*hidden argument*/Dictionary_2__ctor_mA6747E78BD4DF1D09D9091C1B3EBAE0FDB200666_RuntimeMethod_var);
-		// extras.Add ("ScreenSolution", string.Format ("{0}x{1}", Screen.width, Screen.height));
+		// extras.Add("ScreenSolution", string.Format("{0}x{1}", Screen.width, Screen.height));
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_2 = L_1;
 		int32_t L_3;
 		L_3 = Screen_get_width_m52188F76E8AAF57BE373018CB14083BB74C43C1C(/*hidden argument*/NULL);
@@ -31936,19 +31960,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		L_9 = String_Format_m8D1CB0410C35E052A53AE957C914C841E54BAB66(_stringLiteralC5D8AF07339C92C1C8A544FB0AED646C001200E8, L_5, L_8, /*hidden argument*/NULL);
 		NullCheck(L_2);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_2, _stringLiteral399424EAA0A270B0E89CD41833FF269CAD6AE3AF, L_9, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("deviceModel", SystemInfo.deviceModel);
+		// extras.Add("deviceModel", SystemInfo.deviceModel);
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_10 = L_2;
 		String_t* L_11;
 		L_11 = SystemInfo_get_deviceModel_m99131C20271BDA64F3A537AA009B252DCEDC5977(/*hidden argument*/NULL);
 		NullCheck(L_10);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_10, _stringLiteral927C07A9A0D4F74C939B952882D32EE98B8C854F, L_11, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("deviceName", SystemInfo.deviceName);
+		// extras.Add("deviceName", SystemInfo.deviceName);
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_12 = L_10;
 		String_t* L_13;
 		L_13 = SystemInfo_get_deviceName_m6F221639891D4A635206A39DB2D65584BB708425(/*hidden argument*/NULL);
 		NullCheck(L_12);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_12, _stringLiteralAD5B8D1C9401E75E664CC0008025E462198BCD3B, L_13, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("deviceType", SystemInfo.deviceType.ToString ());
+		// extras.Add("deviceType", SystemInfo.deviceType.ToString());
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_14 = L_12;
 		int32_t L_15;
 		L_15 = SystemInfo_get_deviceType_mC7A6628167ECFF848FE509510A6E3E2FA0820100(/*hidden argument*/NULL);
@@ -31960,13 +31984,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		V_0 = *(int32_t*)UnBox(L_16);
 		NullCheck(L_14);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_14, _stringLiteral3CC476F25BB96DF3AB48B85C9B4556E3A8EECDDF, L_17, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("deviceUId", SystemInfo.deviceUniqueIdentifier);
+		// extras.Add("deviceUId",  SystemInfo.deviceUniqueIdentifier);
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_18 = L_14;
 		String_t* L_19;
 		L_19 = SystemInfo_get_deviceUniqueIdentifier_m12CA3C3D8C75E44FBFA73E2E34D9E743AF732B1E(/*hidden argument*/NULL);
 		NullCheck(L_18);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_18, _stringLiteralABAE1155CE9EFC0F9A95E89CB74687207B87B365, L_19, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("gDId", string.Format ("{0}", SystemInfo.graphicsDeviceID));
+		// extras.Add("gDId", string.Format("{0}", SystemInfo.graphicsDeviceID));
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_20 = L_18;
 		int32_t L_21;
 		L_21 = SystemInfo_get_graphicsDeviceID_mF25513D7FC3A94705110FA00673BEC4D8F7E8218(/*hidden argument*/NULL);
@@ -31976,36 +32000,36 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		L_24 = String_Format_mB3D38E5238C3164DB4D7D29339D9E225A4496D17(_stringLiteral23114468D04FA2B7A2DA455B545DB914D0A3ED94, L_23, /*hidden argument*/NULL);
 		NullCheck(L_20);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_20, _stringLiteralA392FB5E31FE22CF5451C4C52C4FDCA87A1EE7FF, L_24, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("gDName", SystemInfo.graphicsDeviceName);
-		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_25 = L_20;
-		String_t* L_26;
-		L_26 = SystemInfo_get_graphicsDeviceName_m25563DB9012D2DB5EC4CB7A29BA4236926F93F33(/*hidden argument*/NULL);
-		NullCheck(L_25);
-		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_25, _stringLiteral766520BA122B11639DEA21FD11348396C1DA431F, L_26, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("gDVdr", SystemInfo.graphicsDeviceVendor);
-		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_27 = L_25;
-		String_t* L_28;
-		L_28 = SystemInfo_get_graphicsDeviceVendor_mA70A62E48AF223EA26B119B5428A5B488A4CA136(/*hidden argument*/NULL);
-		NullCheck(L_27);
-		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_27, _stringLiteral7E697F948E1E198164B5B09B250C324F3D1044CB, L_28, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("gDVer", SystemInfo.graphicsDeviceVersion);
-		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_29 = L_27;
-		String_t* L_30;
-		L_30 = SystemInfo_get_graphicsDeviceVersion_mA74AFB5D881DB29389D2BB05EB37DE60779BABD9(/*hidden argument*/NULL);
-		NullCheck(L_29);
-		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_29, _stringLiteral9A2D33EE20E51717CDC6859049AB64AAAF108C53, L_30, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
 		// extras.Add ("gDVdrID", string.Format ("{0}", SystemInfo.graphicsDeviceVendorID));
-		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_31 = L_29;
-		int32_t L_32;
-		L_32 = SystemInfo_get_graphicsDeviceVendorID_mC02AC12730B431B84FE0AA74A9F7FDDBA1EEEF40(/*hidden argument*/NULL);
-		int32_t L_33 = L_32;
-		RuntimeObject * L_34 = Box(Int32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_il2cpp_TypeInfo_var, &L_33);
+		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_25 = L_20;
+		int32_t L_26;
+		L_26 = SystemInfo_get_graphicsDeviceVendorID_mC02AC12730B431B84FE0AA74A9F7FDDBA1EEEF40(/*hidden argument*/NULL);
+		int32_t L_27 = L_26;
+		RuntimeObject * L_28 = Box(Int32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_il2cpp_TypeInfo_var, &L_27);
+		String_t* L_29;
+		L_29 = String_Format_mB3D38E5238C3164DB4D7D29339D9E225A4496D17(_stringLiteral23114468D04FA2B7A2DA455B545DB914D0A3ED94, L_28, /*hidden argument*/NULL);
+		NullCheck(L_25);
+		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_25, _stringLiteral9C8693CE7D88AAF366EE179A4BB705613CEBDD81, L_29, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
+		// extras.Add("gDName", SystemInfo.graphicsDeviceName);
+		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_30 = L_25;
+		String_t* L_31;
+		L_31 = SystemInfo_get_graphicsDeviceName_m25563DB9012D2DB5EC4CB7A29BA4236926F93F33(/*hidden argument*/NULL);
+		NullCheck(L_30);
+		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_30, _stringLiteral766520BA122B11639DEA21FD11348396C1DA431F, L_31, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
+		// extras.Add("gDVdr", SystemInfo.graphicsDeviceVendor);
+		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_32 = L_30;
+		String_t* L_33;
+		L_33 = SystemInfo_get_graphicsDeviceVendor_mA70A62E48AF223EA26B119B5428A5B488A4CA136(/*hidden argument*/NULL);
+		NullCheck(L_32);
+		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_32, _stringLiteral7E697F948E1E198164B5B09B250C324F3D1044CB, L_33, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
+		// extras.Add("gDVer", SystemInfo.graphicsDeviceVersion);
+		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_34 = L_32;
 		String_t* L_35;
-		L_35 = String_Format_mB3D38E5238C3164DB4D7D29339D9E225A4496D17(_stringLiteral23114468D04FA2B7A2DA455B545DB914D0A3ED94, L_34, /*hidden argument*/NULL);
-		NullCheck(L_31);
-		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_31, _stringLiteral9C8693CE7D88AAF366EE179A4BB705613CEBDD81, L_35, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("graphicsMemorySize", string.Format ("{0}", SystemInfo.graphicsMemorySize));
-		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_36 = L_31;
+		L_35 = SystemInfo_get_graphicsDeviceVersion_mA74AFB5D881DB29389D2BB05EB37DE60779BABD9(/*hidden argument*/NULL);
+		NullCheck(L_34);
+		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_34, _stringLiteral9A2D33EE20E51717CDC6859049AB64AAAF108C53, L_35, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
+		// extras.Add("graphicsMemorySize", string.Format("{0}", SystemInfo.graphicsMemorySize));
+		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_36 = L_34;
 		int32_t L_37;
 		L_37 = SystemInfo_get_graphicsMemorySize_m774717D305DC07B669D39485DEB4895500714E40(/*hidden argument*/NULL);
 		int32_t L_38 = L_37;
@@ -32014,7 +32038,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		L_40 = String_Format_mB3D38E5238C3164DB4D7D29339D9E225A4496D17(_stringLiteral23114468D04FA2B7A2DA455B545DB914D0A3ED94, L_39, /*hidden argument*/NULL);
 		NullCheck(L_36);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_36, _stringLiteralC8D209392969C3122523988F0070F12A63316400, L_40, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("systemMemorySize", string.Format ("{0}", SystemInfo.systemMemorySize));
+		// extras.Add("systemMemorySize", string.Format("{0}", SystemInfo.systemMemorySize));
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_41 = L_36;
 		int32_t L_42;
 		L_42 = SystemInfo_get_systemMemorySize_m40E0CFB6034F14C4FF249C0940CBEC3E7F167EF0(/*hidden argument*/NULL);
@@ -32024,7 +32048,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_tDE3227CA5E7A32F5070BD24C69F4220
 		L_45 = String_Format_mB3D38E5238C3164DB4D7D29339D9E225A4496D17(_stringLiteral23114468D04FA2B7A2DA455B545DB914D0A3ED94, L_44, /*hidden argument*/NULL);
 		NullCheck(L_41);
 		Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92(L_41, _stringLiteral137F5DA697E776E7439C5B6BA3A94B1971D4AEA8, L_45, /*hidden argument*/Dictionary_2_Add_mE0EF428186E444BFEAD18AC6810D423EEABB3F92_RuntimeMethod_var);
-		// extras.Add ("UnityVersion", Application.unityVersion);
+		// extras.Add("UnityVersion", Application.unityVersion);
 		Dictionary_2_tDE3227CA5E7A32F5070BD24C69F42204A3ADE9D5 * L_46 = L_41;
 		String_t* L_47;
 		L_47 = Application_get_unityVersion_m96DFC04C06A62DDF3EDC830C1F103D848AC0FDF1(/*hidden argument*/NULL);
@@ -32043,6 +32067,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BuglyInit__ctor_mEFE6306AD89C3BEFEE026AF
 {
 	{
 		MonoBehaviour__ctor_mC0995D847F6A95B1A553652636C38A2AA8B13BED(__this, /*hidden argument*/NULL);
+		return;
+	}
+}
+// System.Void BuglyInit::.cctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BuglyInit__cctor_m05E2F60719814AAD5A9556D07B3CE535E1CB1109 (const RuntimeMethod* method)
+{
+	{
 		return;
 	}
 }

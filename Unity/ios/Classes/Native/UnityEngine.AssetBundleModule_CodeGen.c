@@ -79,27 +79,27 @@ static Il2CppMethodPointer s_methodPointers[21] =
 };
 static const int32_t s_InvokerIndices[21] = 
 {
-	9359,
-	11309,
-	12778,
-	11309,
-	11309,
-	12778,
-	11309,
+	9754,
+	11798,
+	13381,
+	11798,
+	11798,
+	13381,
+	11798,
 	-1,
-	3768,
-	3768,
-	3768,
-	9252,
-	7063,
-	3768,
-	7751,
-	3768,
-	9252,
-	9359,
-	9252,
-	9252,
-	9359,
+	3891,
+	3891,
+	3891,
+	9634,
+	7340,
+	3891,
+	8071,
+	3891,
+	9634,
+	9754,
+	9634,
+	9634,
+	9754,
 };
 static const Il2CppTokenRangePair s_rgctxIndices[1] = 
 {
@@ -107,8 +107,8 @@ static const Il2CppTokenRangePair s_rgctxIndices[1] =
 };
 static const Il2CppRGCTXDefinition s_rgctxValues[2] = 
 {
-	{ (Il2CppRGCTXDataType)1, 73 },
-	{ (Il2CppRGCTXDataType)2, 73 },
+	{ (Il2CppRGCTXDataType)1, 77 },
+	{ (Il2CppRGCTXDataType)2, 77 },
 };
 extern const CustomAttributesCacheGenerator g_UnityEngine_AssetBundleModule_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_AssetBundleModule_CodeGenModule;

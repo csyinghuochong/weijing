@@ -299,6 +299,8 @@ struct GenericInterfaceActionInvoker1
 struct Dictionary_2_t5B8303F2C9869A39ED3E03C0FBB09F817E479402;
 // System.Collections.Generic.Dictionary`2<System.String,System.Globalization.CultureInfo>
 struct Dictionary_2_t0015CBF964B0687CBB5ECFDDE06671A8F3DDE4BC;
+// System.Func`1<System.Boolean>
+struct Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F;
 // UnityEngine.Events.UnityEvent`1<System.Int32>
 struct UnityEvent_1_tB235B5DAD099AC425DC059D10DEB8B97A35E2BBF;
 // UnityEngine.Events.UnityEvent`1<UnityEngine.Networking.PlayerConnection.MessageEventArgs>
@@ -441,6 +443,8 @@ struct WaitForEndOfFrame_t082FDFEAAFF92937632C357C39E55C84B8FD06D4;
 struct WaitForSeconds_t8F9189BE6E467C98C99177038881F8982E0E4013;
 // UnityEngine.WaitForSecondsRealtime
 struct WaitForSecondsRealtime_t04F2884A9814C3E4E415E788AFE56B5928577C40;
+// UnityEngine.WaitUntil
+struct WaitUntil_t2BCFEEF9372AFA754955A9733004060D1F609F21;
 // Unity.Collections.LowLevel.Unsafe.WriteAccessRequiredAttribute
 struct WriteAccessRequiredAttribute_t801D798894A40E3789DE39CC4BE0D3B04B852DCA;
 // UnityEngine.YieldInstruction
@@ -542,6 +546,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteralDA7AEF839C310E50649FABCB16048EC805ED1DCF
 IL2CPP_EXTERN_C String_t* _stringLiteralE7731045AD45AF27C2F5E740C1F6CAF61BFD563E;
 IL2CPP_EXTERN_C String_t* _stringLiteralEB0A157666700D8227FD4B66A26FDC02035E89BF;
 IL2CPP_EXTERN_C String_t* _stringLiteralEC5621377AD9B4098EC3FB34AF35BAA9E6C07B64;
+IL2CPP_EXTERN_C const RuntimeMethod* Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KeyValuePair_2__ctor_mDCF2A49BD99EBDA9819EAB356D5E65CA66F8754E_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* MeshDataArray_ApplyToMeshAndDispose_m387C3268D1678D98A4387A19E3309C53EAB5DB93_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* MeshDataArray_ApplyToMeshesAndDispose_m8C732EB6A9EF32119A0F6AF1C2E157466669E74A_RuntimeMethod_var;
@@ -3380,6 +3385,25 @@ public:
 	inline void set_m_WaitUntilTime_1(float value)
 	{
 		___m_WaitUntilTime_1 = value;
+	}
+};
+
+
+// UnityEngine.WaitUntil
+struct WaitUntil_t2BCFEEF9372AFA754955A9733004060D1F609F21  : public CustomYieldInstruction_t4ED1543FBAA3143362854EB1867B42E5D190A5C7
+{
+public:
+	// System.Func`1<System.Boolean> UnityEngine.WaitUntil::m_Predicate
+	Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * ___m_Predicate_0;
+
+public:
+	inline static int32_t get_offset_of_m_Predicate_0() { return static_cast<int32_t>(offsetof(WaitUntil_t2BCFEEF9372AFA754955A9733004060D1F609F21, ___m_Predicate_0)); }
+	inline Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * get_m_Predicate_0() const { return ___m_Predicate_0; }
+	inline Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F ** get_address_of_m_Predicate_0() { return &___m_Predicate_0; }
+	inline void set_m_Predicate_0(Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * value)
+	{
+		___m_Predicate_0 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___m_Predicate_0), (void*)value);
 	}
 };
 
@@ -7216,6 +7240,24 @@ public:
 };
 
 
+// UnityEngine.Rendering.SplashScreen/StopBehavior
+struct StopBehavior_tA84DAEF30958D41F95D9A751E227594C0B0A8E30 
+{
+public:
+	// System.Int32 UnityEngine.Rendering.SplashScreen/StopBehavior::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(StopBehavior_tA84DAEF30958D41F95D9A751E227594C0B0A8E30, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // UnityEngine.Rendering.SupportedRenderingFeatures/LightmapMixedBakeModes
 struct LightmapMixedBakeModes_t517152ED1576E98EFCB29D358676919D88844F75 
 {
@@ -9195,6 +9237,15 @@ public:
 };
 
 
+// System.Func`1<System.Boolean>
+struct Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F  : public MulticastDelegate_t
+{
+public:
+
+public:
+};
+
+
 // System.ArgumentException
 struct ArgumentException_t505FA8C11E883F2D96C797AD9D396490794DEE00  : public SystemException_tC551B4D6EE3772B5F32C71EE8C719F4B43ECCC62
 {
@@ -9812,6 +9863,8 @@ public:
 };
 
 
+// !0 System.Func`1<System.Boolean>::Invoke()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4_gshared (Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * __this, const RuntimeMethod* method);
 // System.Int32 Unity.Collections.LowLevel.Unsafe.UnsafeUtility::SizeOf<System.IntPtr>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UnsafeUtility_SizeOf_TisIntPtr_t_m898A6587F20939CD34E3E72B3810C7B0280ECD91_gshared (const RuntimeMethod* method);
 // System.Int32 Unity.Collections.LowLevel.Unsafe.UnsafeUtility::AlignOf<System.IntPtr>()
@@ -9975,6 +10028,11 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float WaitForSecondsRealtime_get_
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CustomYieldInstruction__ctor_m01929E3EEB78B751510038B32D889061960DA1BE (CustomYieldInstruction_t4ED1543FBAA3143362854EB1867B42E5D190A5C7 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.WaitForSecondsRealtime::set_waitTime(System.Single)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void WaitForSecondsRealtime_set_waitTime_m241120AEE2F1BDD0DC3077D865C7C3D878448268_inline (WaitForSecondsRealtime_t04F2884A9814C3E4E415E788AFE56B5928577C40 * __this, float ___value0, const RuntimeMethod* method);
+// !0 System.Func`1<System.Boolean>::Invoke()
+inline bool Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4 (Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * __this, const RuntimeMethod* method)
+{
+	return ((  bool (*) (Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F *, const RuntimeMethod*))Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4_gshared)(__this, method);
+}
 // System.Void System.Attribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Attribute__ctor_m5C1862A7DFC2C25A4797A8C5F681FBB5CB53ECE1 (Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71 * __this, const RuntimeMethod* method);
 // System.Void System.Object::.ctor()
@@ -12773,6 +12831,49 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaitForSecondsRealtime_Reset_m6CB6F149A3
 {
 	{
 		__this->set_m_WaitUntilTime_1((-1.0f));
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Boolean UnityEngine.WaitUntil::get_keepWaiting()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool WaitUntil_get_keepWaiting_mA846E5325F23E950FC58FD1FD4FC8829E3C54D88 (WaitUntil_t2BCFEEF9372AFA754955A9733004060D1F609F21 * __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	bool V_0 = false;
+	{
+		Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * L_0 = __this->get_m_Predicate_0();
+		NullCheck(L_0);
+		bool L_1;
+		L_1 = Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4(L_0, /*hidden argument*/Func_1_Invoke_mD0192F3F912E371387CD7B196DF85569553486B4_RuntimeMethod_var);
+		V_0 = (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
+		goto IL_0012;
+	}
+
+IL_0012:
+	{
+		bool L_2 = V_0;
+		return L_2;
+	}
+}
+// System.Void UnityEngine.WaitUntil::.ctor(System.Func`1<System.Boolean>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaitUntil__ctor_m4D825CB1C0570631514BFF24AEF1FB17D646C76F (WaitUntil_t2BCFEEF9372AFA754955A9733004060D1F609F21 * __this, Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * ___predicate0, const RuntimeMethod* method)
+{
+	{
+		CustomYieldInstruction__ctor_m01929E3EEB78B751510038B32D889061960DA1BE(__this, /*hidden argument*/NULL);
+		Func_1_t76FCDA5C58178ED310C472967481FDE5F47DCF0F * L_0 = ___predicate0;
+		__this->set_m_Predicate_0(L_0);
 		return;
 	}
 }
@@ -16771,6 +16872,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ReapplyDrivenProperties_EndInvoke_m89A59
 {
 	il2cpp_codegen_delegate_end_invoke((Il2CppAsyncResult*) ___result0, 0);
 }
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif

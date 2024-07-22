@@ -712,12 +712,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeHeaderAttribute__ctor_m0E83F29C593
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CompilerGeneratedAttribute__ctor_m9DC3E4E2DA76FE93948D44199213E2E924DCBE35 (CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C * __this, const RuntimeMethod* method);
 // System.Void System.Diagnostics.DebuggerBrowsableAttribute::.ctor(System.Diagnostics.DebuggerBrowsableState)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DebuggerBrowsableAttribute__ctor_mAA8BCC1E418754685F320B14A08AC226E76346E5 (DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 * __this, int32_t ___state0, const RuntimeMethod* method);
-// System.Void UnityEngine.Bindings.NativeConditionalAttribute::.ctor(System.String)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeConditionalAttribute__ctor_m2D44C123AE8913373A143BBE663F4DEF8D21DEF9 (NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B * __this, String_t* ___condition0, const RuntimeMethod* method);
 // System.Void UnityEngine.Bindings.NativeMethodAttribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeMethodAttribute__ctor_mB0D8BA2FFA19561CCB4257F8D6D03726514A9E5F (NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.Bindings.NativeMethodAttribute::set_IsThreadSafe(System.Boolean)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeMethodAttribute_set_IsThreadSafe_m965EAB84605EABFD2AE9B84FBE7FF311D1116A56_inline (NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 * __this, bool ___value0, const RuntimeMethod* method);
+// System.Void UnityEngine.Bindings.NativeConditionalAttribute::.ctor(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeConditionalAttribute__ctor_m2D44C123AE8913373A143BBE663F4DEF8D21DEF9 (NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B * __this, String_t* ___condition0, const RuntimeMethod* method);
 // System.Void UnityEngine.Bindings.VisibleToOtherModulesAttribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VisibleToOtherModulesAttribute__ctor_mA193FBBFEBF3CF09151A66AF466D6DA6C35CBD6F (VisibleToOtherModulesAttribute_t7C36871C9AD251C033486E04A2FFCB7CFB830914 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.Bindings.NativeThrowsAttribute::.ctor()
@@ -1409,17 +1409,6 @@ static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttr
 static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttributesCacheGenerator_U3CdisposeDownloadHandlerOnDisposeU3Ek__BackingField(CustomAttributesCache* cache)
 {
 	{
-		CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C * tmp = (CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C *)cache->attributes[0];
-		CompilerGeneratedAttribute__ctor_m9DC3E4E2DA76FE93948D44199213E2E924DCBE35(tmp, NULL);
-	}
-	{
-		DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 * tmp = (DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 *)cache->attributes[1];
-		DebuggerBrowsableAttribute__ctor_mAA8BCC1E418754685F320B14A08AC226E76346E5(tmp, 0LL, NULL);
-	}
-}
-static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttributesCacheGenerator_U3CdisposeUploadHandlerOnDisposeU3Ek__BackingField(CustomAttributesCache* cache)
-{
-	{
 		DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 * tmp = (DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 *)cache->attributes[0];
 		DebuggerBrowsableAttribute__ctor_mAA8BCC1E418754685F320B14A08AC226E76346E5(tmp, 0LL, NULL);
 	}
@@ -1428,16 +1417,27 @@ static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttr
 		CompilerGeneratedAttribute__ctor_m9DC3E4E2DA76FE93948D44199213E2E924DCBE35(tmp, NULL);
 	}
 }
+static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttributesCacheGenerator_U3CdisposeUploadHandlerOnDisposeU3Ek__BackingField(CustomAttributesCache* cache)
+{
+	{
+		CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C * tmp = (CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C *)cache->attributes[0];
+		CompilerGeneratedAttribute__ctor_m9DC3E4E2DA76FE93948D44199213E2E924DCBE35(tmp, NULL);
+	}
+	{
+		DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 * tmp = (DebuggerBrowsableAttribute_t2FA4793AD1982F5150E07D26822ED5953CD90F53 *)cache->attributes[1];
+		DebuggerBrowsableAttribute__ctor_mAA8BCC1E418754685F320B14A08AC226E76346E5(tmp, 0LL, NULL);
+	}
+}
 static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttributesCacheGenerator_UnityWebRequest_GetWebErrorString_m7EC396FAE313B0FDBD7A99A068AB714A953D475C(CustomAttributesCache* cache)
 {
 	{
-		NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B * tmp = (NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B *)cache->attributes[0];
-		NativeConditionalAttribute__ctor_m2D44C123AE8913373A143BBE663F4DEF8D21DEF9(tmp, il2cpp_codegen_string_new_wrapper("\x45\x4E\x41\x42\x4C\x45\x5F\x55\x4E\x49\x54\x59\x57\x45\x42\x52\x45\x51\x55\x45\x53\x54"), NULL);
-	}
-	{
-		NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 * tmp = (NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 *)cache->attributes[1];
+		NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 * tmp = (NativeMethodAttribute_t57F61ACA17BEC1260A06658ACD971B0009CC1866 *)cache->attributes[0];
 		NativeMethodAttribute__ctor_mB0D8BA2FFA19561CCB4257F8D6D03726514A9E5F(tmp, NULL);
 		NativeMethodAttribute_set_IsThreadSafe_m965EAB84605EABFD2AE9B84FBE7FF311D1116A56_inline(tmp, true, NULL);
+	}
+	{
+		NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B * tmp = (NativeConditionalAttribute_t659349956F06958D4D05443BD06FF5CDC767C88B *)cache->attributes[1];
+		NativeConditionalAttribute__ctor_m2D44C123AE8913373A143BBE663F4DEF8D21DEF9(tmp, il2cpp_codegen_string_new_wrapper("\x45\x4E\x41\x42\x4C\x45\x5F\x55\x4E\x49\x54\x59\x57\x45\x42\x52\x45\x51\x55\x45\x53\x54"), NULL);
 	}
 }
 static void UnityWebRequest_tB75B39F6951CA0DBA2D5BEDF85FDCAAC6026A37E_CustomAttributesCacheGenerator_UnityWebRequest_GetHTTPStatusString_m317BB359DAAE3592F55F8C989FC076FEA76BC7C0(CustomAttributesCache* cache)

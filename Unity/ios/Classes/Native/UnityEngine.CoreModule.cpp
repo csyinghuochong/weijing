@@ -14588,30 +14588,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Color32_ToString_m11295D5492D1FB41F
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Byte_ToString_mB5BDCB74BE861E9EB085AAFBE115998B632CEFA8 (uint8_t* __this, String_t* ___format0, RuntimeObject* ___provider1, const RuntimeMethod* method);
 // System.Void UnityEngine.PropertyAttribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PropertyAttribute__ctor_mA13181D93341AEAE429F0615989CB4647F2EB8A7 (PropertyAttribute_t4A352471DF625C56C811E27AC86B7E1CE6444052 * __this, const RuntimeMethod* method);
-// UnityEngine.Mesh UnityEngine.Mesh::FromInstanceID(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * Mesh_FromInstanceID_mA03A2BF8B3B79A9E3C9BE147B4997511A7019AA4 (int32_t ___id0, const RuntimeMethod* method);
-// UnityEngine.Mesh UnityEngine.CombineInstance::get_mesh()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * CombineInstance_get_mesh_mB92C30E87A4B25AEA12DEBFA3EDEC8D3B115E6F4 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method);
 // System.Int32 UnityEngine.Object::GetInstanceID()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Object_GetInstanceID_m7CF962BC1DB5C03F3522F88728CB2F514582B501 (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.CombineInstance::set_mesh(UnityEngine.Mesh)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_mesh_m4188D448CFD58C46FC3824D791572D07905FC824 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * ___value0, const RuntimeMethod* method);
-// System.Int32 UnityEngine.CombineInstance::get_subMeshIndex()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CombineInstance_get_subMeshIndex_m048C64D0A6AEAD0ECBF66DAB73ABE0982E371A3E (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.CombineInstance::set_subMeshIndex(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_subMeshIndex_m9453076541D3A566A4E711E714F69F945379F750 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, int32_t ___value0, const RuntimeMethod* method);
-// UnityEngine.Matrix4x4 UnityEngine.CombineInstance::get_transform()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  CombineInstance_get_transform_m183630FC919CA1D35C5803AC7985E197408468B5 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.CombineInstance::set_transform(UnityEngine.Matrix4x4)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_transform_mF1C28A1BC0733CD0A10481215C4FCB418C7CDA1D (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  ___value0, const RuntimeMethod* method);
-// UnityEngine.Vector4 UnityEngine.CombineInstance::get_lightmapScaleOffset()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_lightmapScaleOffset_mD857CFB24CA8FD0C86CAA7A80501007E3DC8D140 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method);
-// System.Void UnityEngine.CombineInstance::set_lightmapScaleOffset(UnityEngine.Vector4)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_lightmapScaleOffset_mFCEC614AD484500E206CAE0CE1017936F4135A9E (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method);
-// UnityEngine.Vector4 UnityEngine.CombineInstance::get_realtimeLightmapScaleOffset()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_realtimeLightmapScaleOffset_m95086EF47793BD29ABBC8DC4AA4CE603B6CB26DD (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method);
-// System.Void UnityEngine.CombineInstance::set_realtimeLightmapScaleOffset(UnityEngine.Vector4)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_realtimeLightmapScaleOffset_mE79572D3530411673DCA31626317792162BFCB73 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method);
 // System.Void UnityEngine.Rendering.CommandBuffer::Internal_DrawMesh_Injected(UnityEngine.Mesh,UnityEngine.Matrix4x4&,UnityEngine.Material,System.Int32,System.Int32,UnityEngine.MaterialPropertyBlock)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CommandBuffer_Internal_DrawMesh_Injected_mE52B829DE1FA132BC528038FBF1137423B287FAB (CommandBuffer_t25CD231BD3E822660339DB7D0E8F8ED6B7DBEA29 * __this, Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * ___mesh0, Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461 * ___matrix1, Material_t8927C00353A72755313F046D0CE85178AE8218EE * ___material2, int32_t ___submeshIndex3, int32_t ___shaderPass4, MaterialPropertyBlock_t6C45FC5DE951DA662BBB7A55EEB3DEF33C5431A0 * ___properties5, const RuntimeMethod* method);
 // System.Void UnityEngine.Rendering.CommandBuffer::Internal_DrawProcedural_Injected(UnityEngine.Matrix4x4&,UnityEngine.Material,System.Int32,UnityEngine.MeshTopology,System.Int32,System.Int32,UnityEngine.MaterialPropertyBlock)
@@ -30344,32 +30328,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorUsageAttribute__ctor_mB764B17A7C17E
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// UnityEngine.Mesh UnityEngine.CombineInstance::get_mesh()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * CombineInstance_get_mesh_mB92C30E87A4B25AEA12DEBFA3EDEC8D3B115E6F4 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method)
-{
-	Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * V_0 = NULL;
-	{
-		int32_t L_0 = __this->get_m_MeshInstanceID_0();
-		Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * L_1;
-		L_1 = Mesh_FromInstanceID_mA03A2BF8B3B79A9E3C9BE147B4997511A7019AA4(L_0, /*hidden argument*/NULL);
-		V_0 = L_1;
-		goto IL_000f;
-	}
-
-IL_000f:
-	{
-		Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * L_2 = V_0;
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * CombineInstance_get_mesh_mB92C30E87A4B25AEA12DEBFA3EDEC8D3B115E6F4_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * _returnValue;
-	_returnValue = CombineInstance_get_mesh_mB92C30E87A4B25AEA12DEBFA3EDEC8D3B115E6F4(_thisAdjusted, method);
-	return _returnValue;
-}
 // System.Void UnityEngine.CombineInstance::set_mesh(UnityEngine.Mesh)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_mesh_m4188D448CFD58C46FC3824D791572D07905FC824 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Mesh_t2F5992DBA650D5862B43D3823ACD997132A57DA6 * ___value0, const RuntimeMethod* method)
 {
@@ -30423,30 +30381,6 @@ IL2CPP_EXTERN_C  void CombineInstance_set_mesh_m4188D448CFD58C46FC3824D791572D07
 	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
 	CombineInstance_set_mesh_m4188D448CFD58C46FC3824D791572D07905FC824(_thisAdjusted, ___value0, method);
 }
-// System.Int32 UnityEngine.CombineInstance::get_subMeshIndex()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CombineInstance_get_subMeshIndex_m048C64D0A6AEAD0ECBF66DAB73ABE0982E371A3E (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method)
-{
-	int32_t V_0 = 0;
-	{
-		int32_t L_0 = __this->get_m_SubMeshIndex_1();
-		V_0 = L_0;
-		goto IL_000a;
-	}
-
-IL_000a:
-	{
-		int32_t L_1 = V_0;
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  int32_t CombineInstance_get_subMeshIndex_m048C64D0A6AEAD0ECBF66DAB73ABE0982E371A3E_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = CombineInstance_get_subMeshIndex_m048C64D0A6AEAD0ECBF66DAB73ABE0982E371A3E(_thisAdjusted, method);
-	return _returnValue;
-}
 // System.Void UnityEngine.CombineInstance::set_subMeshIndex(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_subMeshIndex_m9453076541D3A566A4E711E714F69F945379F750 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, int32_t ___value0, const RuntimeMethod* method)
 {
@@ -30462,31 +30396,6 @@ IL2CPP_EXTERN_C  void CombineInstance_set_subMeshIndex_m9453076541D3A566A4E711E7
 	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
 	CombineInstance_set_subMeshIndex_m9453076541D3A566A4E711E714F69F945379F750(_thisAdjusted, ___value0, method);
 }
-// UnityEngine.Matrix4x4 UnityEngine.CombineInstance::get_transform()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  CombineInstance_get_transform_m183630FC919CA1D35C5803AC7985E197408468B5 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method)
-{
-	Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  L_0 = __this->get_m_Transform_2();
-		V_0 = L_0;
-		goto IL_000a;
-	}
-
-IL_000a:
-	{
-		Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  L_1 = V_0;
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  CombineInstance_get_transform_m183630FC919CA1D35C5803AC7985E197408468B5_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  _returnValue;
-	_returnValue = CombineInstance_get_transform_m183630FC919CA1D35C5803AC7985E197408468B5(_thisAdjusted, method);
-	return _returnValue;
-}
 // System.Void UnityEngine.CombineInstance::set_transform(UnityEngine.Matrix4x4)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_transform_mF1C28A1BC0733CD0A10481215C4FCB418C7CDA1D (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Matrix4x4_tDE7FF4F2E2EA284F6EFE00D627789D0E5B8B4461  ___value0, const RuntimeMethod* method)
 {
@@ -30501,86 +30410,6 @@ IL2CPP_EXTERN_C  void CombineInstance_set_transform_mF1C28A1BC0733CD0A10481215C4
 	int32_t _offset = 1;
 	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
 	CombineInstance_set_transform_mF1C28A1BC0733CD0A10481215C4FCB418C7CDA1D(_thisAdjusted, ___value0, method);
-}
-// UnityEngine.Vector4 UnityEngine.CombineInstance::get_lightmapScaleOffset()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_lightmapScaleOffset_mD857CFB24CA8FD0C86CAA7A80501007E3DC8D140 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method)
-{
-	Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_0 = __this->get_m_LightmapScaleOffset_3();
-		V_0 = L_0;
-		goto IL_000a;
-	}
-
-IL_000a:
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_1 = V_0;
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_lightmapScaleOffset_mD857CFB24CA8FD0C86CAA7A80501007E3DC8D140_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  _returnValue;
-	_returnValue = CombineInstance_get_lightmapScaleOffset_mD857CFB24CA8FD0C86CAA7A80501007E3DC8D140(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Void UnityEngine.CombineInstance::set_lightmapScaleOffset(UnityEngine.Vector4)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_lightmapScaleOffset_mFCEC614AD484500E206CAE0CE1017936F4135A9E (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method)
-{
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_0 = ___value0;
-		__this->set_m_LightmapScaleOffset_3(L_0);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void CombineInstance_set_lightmapScaleOffset_mFCEC614AD484500E206CAE0CE1017936F4135A9E_AdjustorThunk (RuntimeObject * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	CombineInstance_set_lightmapScaleOffset_mFCEC614AD484500E206CAE0CE1017936F4135A9E(_thisAdjusted, ___value0, method);
-}
-// UnityEngine.Vector4 UnityEngine.CombineInstance::get_realtimeLightmapScaleOffset()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_realtimeLightmapScaleOffset_m95086EF47793BD29ABBC8DC4AA4CE603B6CB26DD (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, const RuntimeMethod* method)
-{
-	Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_0 = __this->get_m_RealtimeLightmapScaleOffset_4();
-		V_0 = L_0;
-		goto IL_000a;
-	}
-
-IL_000a:
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_1 = V_0;
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  CombineInstance_get_realtimeLightmapScaleOffset_m95086EF47793BD29ABBC8DC4AA4CE603B6CB26DD_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  _returnValue;
-	_returnValue = CombineInstance_get_realtimeLightmapScaleOffset_m95086EF47793BD29ABBC8DC4AA4CE603B6CB26DD(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Void UnityEngine.CombineInstance::set_realtimeLightmapScaleOffset(UnityEngine.Vector4)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CombineInstance_set_realtimeLightmapScaleOffset_mE79572D3530411673DCA31626317792162BFCB73 (CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method)
-{
-	{
-		Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  L_0 = ___value0;
-		__this->set_m_RealtimeLightmapScaleOffset_4(L_0);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void CombineInstance_set_realtimeLightmapScaleOffset_mE79572D3530411673DCA31626317792162BFCB73_AdjustorThunk (RuntimeObject * __this, Vector4_tA56A37FC5661BCC89C3DDC24BE12BA5BCB6A02C7  ___value0, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C * _thisAdjusted = reinterpret_cast<CombineInstance_t3ECBD54BBDD018CE04D23414CDFE0F78A447B45C *>(__this + _offset);
-	CombineInstance_set_realtimeLightmapScaleOffset_mE79572D3530411673DCA31626317792162BFCB73(_thisAdjusted, ___value0, method);
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

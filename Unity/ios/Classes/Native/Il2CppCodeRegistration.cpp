@@ -18,11 +18,15 @@ IL2CPP_EXTERN_C const Il2CppMethodPointer g_Il2CppGenericAdjustorThunks[];
 IL2CPP_EXTERN_C const InvokerMethod g_Il2CppInvokerPointers[];
 IL2CPP_EXTERN_C const Il2CppMethodPointer g_UnresolvedVirtualMethodPointers[];
 IL2CPP_EXTERN_C Il2CppInteropData g_Il2CppInteropData[];
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxAssmebly_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxDemoScriptAssemblies_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxTexDemoAssembly_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_CommandLine_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_DOTween_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_HybridCLR_Runtime_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_ICSharpCode_SharpZipLib_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_LC_Newtonsoft_Json_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_MeshBakerCore_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_MeshBakerExamples_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Mono_Security_CodeGenModule;
@@ -30,10 +34,17 @@ IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Purchasing_Common_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Configuration_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Core_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Data_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Net_Http_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Numerics_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Runtime_Serialization_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_ServiceModel_Internals_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Xml_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_System_Xml_Linq_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_TapTap_AntiAddiction_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_TapTap_Common_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_TapTap_Login_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_TapTap_UI_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_UnityEngine_AIModule_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_UnityEngine_AndroidJNIModule_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_UnityEngine_AnimationModule_CodeGenModule;
@@ -89,14 +100,19 @@ IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Unity_RenderPipelines_Universal_Runt
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Unity_TextMeshPro_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Unity_ThirdParty_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_mscorlib_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_zxing_unity_CodeGenModule;
 IL2CPP_EXTERN_C const Il2CppCodeGenModule* g_CodeGenModules[];
-const Il2CppCodeGenModule* g_CodeGenModules[71] = 
+const Il2CppCodeGenModule* g_CodeGenModules[83] = 
 {
+	(&g_AllIn1VfxAssmebly_CodeGenModule),
+	(&g_AllIn1VfxDemoScriptAssemblies_CodeGenModule),
+	(&g_AllIn1VfxTexDemoAssembly_CodeGenModule),
 	(&g_AssemblyU2DCSharp_CodeGenModule),
 	(&g_CommandLine_CodeGenModule),
 	(&g_DOTween_CodeGenModule),
 	(&g_HybridCLR_Runtime_CodeGenModule),
 	(&g_ICSharpCode_SharpZipLib_CodeGenModule),
+	(&g_LC_Newtonsoft_Json_CodeGenModule),
 	(&g_MeshBakerCore_CodeGenModule),
 	(&g_MeshBakerExamples_CodeGenModule),
 	(&g_Mono_Security_CodeGenModule),
@@ -104,10 +120,17 @@ const Il2CppCodeGenModule* g_CodeGenModules[71] =
 	(&g_System_CodeGenModule),
 	(&g_System_Configuration_CodeGenModule),
 	(&g_System_Core_CodeGenModule),
+	(&g_System_Data_CodeGenModule),
 	(&g_System_Net_Http_CodeGenModule),
+	(&g_System_Numerics_CodeGenModule),
 	(&g_System_Runtime_Serialization_CodeGenModule),
 	(&g_System_ServiceModel_Internals_CodeGenModule),
 	(&g_System_Xml_CodeGenModule),
+	(&g_System_Xml_Linq_CodeGenModule),
+	(&g_TapTap_AntiAddiction_CodeGenModule),
+	(&g_TapTap_Common_CodeGenModule),
+	(&g_TapTap_Login_CodeGenModule),
+	(&g_TapTap_UI_CodeGenModule),
 	(&g_UnityEngine_AIModule_CodeGenModule),
 	(&g_UnityEngine_AndroidJNIModule_CodeGenModule),
 	(&g_UnityEngine_AnimationModule_CodeGenModule),
@@ -163,24 +186,25 @@ const Il2CppCodeGenModule* g_CodeGenModules[71] =
 	(&g_Unity_TextMeshPro_CodeGenModule),
 	(&g_Unity_ThirdParty_CodeGenModule),
 	(&g_mscorlib_CodeGenModule),
+	(&g_zxing_unity_CodeGenModule),
 };
 IL2CPP_EXTERN_C const Il2CppCodeRegistration g_CodeRegistration;
 const Il2CppCodeRegistration g_CodeRegistration = 
 {
-	13,
+	14,
 	g_ReversePInvokeWrapperPointers,
-	87965,
+	90741,
 	g_Il2CppGenericMethodPointers,
 	g_Il2CppGenericAdjustorThunks,
-	13158,
+	13847,
 	g_Il2CppInvokerPointers,
-	2285,
+	2343,
 	g_UnresolvedVirtualMethodPointers,
-	681,
+	720,
 	g_Il2CppInteropData,
 	0,
 	NULL,
-	71,
+	83,
 	g_CodeGenModules,
 };
 IL2CPP_EXTERN_C_CONST Il2CppMetadataRegistration g_MetadataRegistration;

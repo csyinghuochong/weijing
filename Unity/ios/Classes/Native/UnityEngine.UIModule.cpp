@@ -2600,6 +2600,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Canvas_get_pixelPerfect_mCAC921FAC61E9B0
 	bool icallRetVal = _il2cpp_icall_func(__this);
 	return icallRetVal;
 }
+// System.Void UnityEngine.Canvas::set_pixelPerfect(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Canvas_set_pixelPerfect_mD477DD1867E742FF7EB7689C6DBAE243E533ED69 (Canvas_t2B7E56B7BDC287962E092755372E214ACB6393EA * __this, bool ___value0, const RuntimeMethod* method)
+{
+	typedef void (*Canvas_set_pixelPerfect_mD477DD1867E742FF7EB7689C6DBAE243E533ED69_ftn) (Canvas_t2B7E56B7BDC287962E092755372E214ACB6393EA *, bool);
+	static Canvas_set_pixelPerfect_mD477DD1867E742FF7EB7689C6DBAE243E533ED69_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Canvas_set_pixelPerfect_mD477DD1867E742FF7EB7689C6DBAE243E533ED69_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Canvas::set_pixelPerfect(System.Boolean)");
+	_il2cpp_icall_func(__this, ___value0);
+}
 // System.Int32 UnityEngine.Canvas::get_renderOrder()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Canvas_get_renderOrder_m6EA8415A6C65D304F973FF07C10E6FA41345B06B (Canvas_t2B7E56B7BDC287962E092755372E214ACB6393EA * __this, const RuntimeMethod* method)
 {
@@ -2726,6 +2735,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Camera_tC44E094BAB53AFC8A014C6F9CFCE11F4FC380
 	_il2cpp_icall_func = (Canvas_get_worldCamera_mFE4C9FDA7996FE20AC5CA3CB45B4190C40122D51_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Canvas::get_worldCamera()");
 	Camera_tC44E094BAB53AFC8A014C6F9CFCE11F4FC38006C * icallRetVal = _il2cpp_icall_func(__this);
 	return icallRetVal;
+}
+// System.Void UnityEngine.Canvas::set_worldCamera(UnityEngine.Camera)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Canvas_set_worldCamera_m799BE7D7EFD04E73CA30D6495DF4082CA7DBCAD0 (Canvas_t2B7E56B7BDC287962E092755372E214ACB6393EA * __this, Camera_tC44E094BAB53AFC8A014C6F9CFCE11F4FC38006C * ___value0, const RuntimeMethod* method)
+{
+	typedef void (*Canvas_set_worldCamera_m799BE7D7EFD04E73CA30D6495DF4082CA7DBCAD0_ftn) (Canvas_t2B7E56B7BDC287962E092755372E214ACB6393EA *, Camera_tC44E094BAB53AFC8A014C6F9CFCE11F4FC38006C *);
+	static Canvas_set_worldCamera_m799BE7D7EFD04E73CA30D6495DF4082CA7DBCAD0_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Canvas_set_worldCamera_m799BE7D7EFD04E73CA30D6495DF4082CA7DBCAD0_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Canvas::set_worldCamera(UnityEngine.Camera)");
+	_il2cpp_icall_func(__this, ___value0);
 }
 // UnityEngine.Material UnityEngine.Canvas::GetDefaultCanvasMaterial()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Material_t8927C00353A72755313F046D0CE85178AE8218EE * Canvas_GetDefaultCanvasMaterial_mDC0AEDDC12EBC11F089168A32C0D9C955DCF1080 (const RuntimeMethod* method)
@@ -2881,6 +2899,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CanvasGroup_get_interactable_m643399D4E2
 	_il2cpp_icall_func = (CanvasGroup_get_interactable_m643399D4E2F8F483C031ADAEEBDCC4A6A4708DA1_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.CanvasGroup::get_interactable()");
 	bool icallRetVal = _il2cpp_icall_func(__this);
 	return icallRetVal;
+}
+// System.Void UnityEngine.CanvasGroup::set_interactable(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CanvasGroup_set_interactable_m139F4C59174EFB13F80AD10837BD0760E0B97835 (CanvasGroup_t6912220105AB4A288A2FD882D163D7218EAA577F * __this, bool ___value0, const RuntimeMethod* method)
+{
+	typedef void (*CanvasGroup_set_interactable_m139F4C59174EFB13F80AD10837BD0760E0B97835_ftn) (CanvasGroup_t6912220105AB4A288A2FD882D163D7218EAA577F *, bool);
+	static CanvasGroup_set_interactable_m139F4C59174EFB13F80AD10837BD0760E0B97835_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (CanvasGroup_set_interactable_m139F4C59174EFB13F80AD10837BD0760E0B97835_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.CanvasGroup::set_interactable(System.Boolean)");
+	_il2cpp_icall_func(__this, ___value0);
 }
 // System.Boolean UnityEngine.CanvasGroup::get_blocksRaycasts()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CanvasGroup_get_blocksRaycasts_m54BEB93C34E4B4ADB35A33679B0D475A0094F3B4 (CanvasGroup_t6912220105AB4A288A2FD882D163D7218EAA577F * __this, const RuntimeMethod* method)

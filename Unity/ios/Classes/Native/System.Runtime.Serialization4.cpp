@@ -18480,7 +18480,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlBinaryWriter_WriteTextNode_m5286D823C
 	}
 	{
 		XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * L_8 = V_1;
-		VirtActionInvoker1< XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * >::Invoke(61 /* System.Void System.Xml.XmlDictionaryWriter::WriteString(System.Xml.XmlDictionaryString) */, __this, L_8);
+		VirtActionInvoker1< XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * >::Invoke(72 /* System.Void System.Xml.XmlDictionaryWriter::WriteString(System.Xml.XmlDictionaryString) */, __this, L_8);
 		goto IL_0084;
 	}
 
@@ -18829,7 +18829,7 @@ IL_01e3:
 		NullCheck(L_91);
 		UniqueId_t4D4CC41BFF89EE5F511CE0FF268E9DC59C3096BF * L_92;
 		L_92 = VirtFuncInvoker0< UniqueId_t4D4CC41BFF89EE5F511CE0FF268E9DC59C3096BF * >::Invoke(116 /* System.Xml.UniqueId System.Xml.XmlDictionaryReader::ReadContentAsUniqueId() */, L_91);
-		VirtActionInvoker1< UniqueId_t4D4CC41BFF89EE5F511CE0FF268E9DC59C3096BF * >::Invoke(68 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.Xml.UniqueId) */, __this, L_92);
+		VirtActionInvoker1< UniqueId_t4D4CC41BFF89EE5F511CE0FF268E9DC59C3096BF * >::Invoke(79 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.Xml.UniqueId) */, __this, L_92);
 		return;
 	}
 
@@ -18852,7 +18852,7 @@ IL_0202:
 		NullCheck(L_97);
 		Guid_t  L_98;
 		L_98 = VirtFuncInvoker0< Guid_t  >::Invoke(117 /* System.Guid System.Xml.XmlDictionaryReader::ReadContentAsGuid() */, L_97);
-		VirtActionInvoker1< Guid_t  >::Invoke(69 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.Guid) */, __this, L_98);
+		VirtActionInvoker1< Guid_t  >::Invoke(80 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.Guid) */, __this, L_98);
 		return;
 	}
 
@@ -18875,7 +18875,7 @@ IL_0221:
 		NullCheck(L_103);
 		TimeSpan_t4F6A0E13E703B65365CFCAB58E05EE0AF3EE6203  L_104;
 		L_104 = VirtFuncInvoker0< TimeSpan_t4F6A0E13E703B65365CFCAB58E05EE0AF3EE6203  >::Invoke(118 /* System.TimeSpan System.Xml.XmlDictionaryReader::ReadContentAsTimeSpan() */, L_103);
-		VirtActionInvoker1< TimeSpan_t4F6A0E13E703B65365CFCAB58E05EE0AF3EE6203  >::Invoke(70 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.TimeSpan) */, __this, L_104);
+		VirtActionInvoker1< TimeSpan_t4F6A0E13E703B65365CFCAB58E05EE0AF3EE6203  >::Invoke(81 /* System.Void System.Xml.XmlDictionaryWriter::WriteValue(System.TimeSpan) */, __this, L_104);
 		return;
 	}
 
@@ -18922,7 +18922,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XmlBinaryWriter_WriteStartArray_m4D04067
 		String_t* L_2 = ___prefix0;
 		XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * L_3 = ___localName1;
 		XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * L_4 = ___namespaceUri2;
-		VirtActionInvoker3< String_t*, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * >::Invoke(55 /* System.Void System.Xml.XmlDictionaryWriter::WriteStartElement(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString) */, __this, L_2, L_3, L_4);
+		VirtActionInvoker3< String_t*, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D * >::Invoke(66 /* System.Void System.Xml.XmlDictionaryWriter::WriteStartElement(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString) */, __this, L_2, L_3, L_4);
 		VirtActionInvoker0::Invoke(11 /* System.Void System.Xml.XmlWriter::WriteEndElement() */, __this);
 		return;
 	}

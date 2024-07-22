@@ -19795,7 +19795,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BooleanArrayHelperWithDictionaryString_W
 		int32_t L_5 = ___offset5;
 		int32_t L_6 = ___count6;
 		NullCheck(L_0);
-		VirtActionInvoker6< String_t*, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, BooleanU5BU5D_tEC7BAF93C44F875016DAADC8696EE3A465644D3C*, int32_t, int32_t >::Invoke(77 /* System.Void System.Xml.XmlDictionaryWriter::WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Boolean[],System.Int32,System.Int32) */, L_0, L_1, L_2, L_3, L_4, L_5, L_6);
+		VirtActionInvoker6< String_t*, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, XmlDictionaryString_t403774CA25470D8CE1F405E9F56AB1848A42E42D *, BooleanU5BU5D_tEC7BAF93C44F875016DAADC8696EE3A465644D3C*, int32_t, int32_t >::Invoke(88 /* System.Void System.Xml.XmlDictionaryWriter::WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Boolean[],System.Int32,System.Int32) */, L_0, L_1, L_2, L_3, L_4, L_5, L_6);
 		return;
 	}
 }
@@ -19865,7 +19865,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BooleanArrayHelperWithString_WriteArray_
 		int32_t L_5 = ___offset5;
 		int32_t L_6 = ___count6;
 		NullCheck(L_0);
-		VirtActionInvoker6< String_t*, String_t*, String_t*, BooleanU5BU5D_tEC7BAF93C44F875016DAADC8696EE3A465644D3C*, int32_t, int32_t >::Invoke(76 /* System.Void System.Xml.XmlDictionaryWriter::WriteArray(System.String,System.String,System.String,System.Boolean[],System.Int32,System.Int32) */, L_0, L_1, L_2, L_3, L_4, L_5, L_6);
+		VirtActionInvoker6< String_t*, String_t*, String_t*, BooleanU5BU5D_tEC7BAF93C44F875016DAADC8696EE3A465644D3C*, int32_t, int32_t >::Invoke(87 /* System.Void System.Xml.XmlDictionaryWriter::WriteArray(System.String,System.String,System.String,System.Boolean[],System.Int32,System.Int32) */, L_0, L_1, L_2, L_3, L_4, L_5, L_6);
 		return;
 	}
 }

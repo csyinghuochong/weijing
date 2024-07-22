@@ -68,10 +68,13 @@ IL2CPP_EXTERN_C RuntimeClass* Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_i
 IL2CPP_EXTERN_C RuntimeClass* ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Type_t_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C String_t* _stringLiteral1A021298794A95A088D89F0DFEE478EB088FC94B;
+IL2CPP_EXTERN_C String_t* _stringLiteral3160C6AD95356DD3966B06032DA2DA34B1DB609C;
 IL2CPP_EXTERN_C String_t* _stringLiteral8B9E56C5D95D7C3EED5199236F70D44573B11813;
 IL2CPP_EXTERN_C String_t* _stringLiteral9149DCC4875937380DD00ED5471A7A1258254B95;
 IL2CPP_EXTERN_C String_t* _stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709;
+IL2CPP_EXTERN_C String_t* _stringLiteralEDFFCA6A5E42419DD7A146DD0AD10F7B20E7DF8B;
 IL2CPP_EXTERN_C String_t* _stringLiteralF3C6C902DBF80139640F6554F0C3392016A8ADF7;
+IL2CPP_EXTERN_C const RuntimeMethod* JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* JsonUtility_FromJson_m81FC2A7DCB9231E8E201EAD8E160F921B1D2E25C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* JsonUtility_ToJson_m624247F6B1FDBD1B02C133B4878E4F3C8CEA30DA_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeType* Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_0_0_0_var;
@@ -824,6 +827,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Type_t * Type_GetTypeFromHandle_m8BB57524FF7F
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m89EAB4C6A96B0E5C3F87300D6BE78D386B9EFC44 (String_t* ___str00, String_t* ___str11, String_t* ___str22, const RuntimeMethod* method);
 // System.Object UnityEngine.JsonUtility::FromJsonInternal(System.String,System.Object,System.Type)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject * JsonUtility_FromJsonInternal_m7353836E98A52C702E713DBE5E9C431BD8EC830A (String_t* ___json0, RuntimeObject * ___objectToOverwrite1, Type_t * ___type2, const RuntimeMethod* method);
+// System.Type System.Object::GetType()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Type_t * Object_GetType_m571FE8360C10B98C23AAF1F066D92C08CC94F45B (RuntimeObject * __this, const RuntimeMethod* method);
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
@@ -1085,6 +1090,122 @@ IL_0067:
 	{
 		RuntimeObject * L_20 = V_1;
 		return L_20;
+	}
+}
+// System.Void UnityEngine.JsonUtility::FromJsonOverwrite(System.String,System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB (String_t* ___json0, RuntimeObject * ___objectToOverwrite1, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	bool V_0 = false;
+	bool V_1 = false;
+	bool V_2 = false;
+	int32_t G_B8_0 = 0;
+	int32_t G_B10_0 = 0;
+	{
+		String_t* L_0 = ___json0;
+		bool L_1;
+		L_1 = String_IsNullOrEmpty_m9AFBB5335B441B94E884B8A9D4A27AD60E3D7F7C(L_0, /*hidden argument*/NULL);
+		V_0 = L_1;
+		bool L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_000d;
+		}
+	}
+	{
+		goto IL_005f;
+	}
+
+IL_000d:
+	{
+		RuntimeObject * L_3 = ___objectToOverwrite1;
+		V_1 = (bool)((((RuntimeObject*)(RuntimeObject *)L_3) == ((RuntimeObject*)(RuntimeObject *)NULL))? 1 : 0);
+		bool L_4 = V_1;
+		if (!L_4)
+		{
+			goto IL_0020;
+		}
+	}
+	{
+		ArgumentNullException_tFB5C4621957BC53A7D1B4FDD5C38B4D6E15DB8FB * L_5 = (ArgumentNullException_tFB5C4621957BC53A7D1B4FDD5C38B4D6E15DB8FB *)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&ArgumentNullException_tFB5C4621957BC53A7D1B4FDD5C38B4D6E15DB8FB_il2cpp_TypeInfo_var)));
+		ArgumentNullException__ctor_m81AB157B93BFE2FBFDB08B88F84B444293042F97(L_5, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteralEDFFCA6A5E42419DD7A146DD0AD10F7B20E7DF8B)), /*hidden argument*/NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_5, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB_RuntimeMethod_var)));
+	}
+
+IL_0020:
+	{
+		RuntimeObject * L_6 = ___objectToOverwrite1;
+		if (!((Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)IsInstClass((RuntimeObject*)L_6, Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var)))
+		{
+			goto IL_0041;
+		}
+	}
+	{
+		RuntimeObject * L_7 = ___objectToOverwrite1;
+		if (((MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A *)IsInstClass((RuntimeObject*)L_7, MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A_il2cpp_TypeInfo_var)))
+		{
+			goto IL_003e;
+		}
+	}
+	{
+		RuntimeObject * L_8 = ___objectToOverwrite1;
+		G_B8_0 = ((((int32_t)((!(((RuntimeObject*)(ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A *)((ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A *)IsInstClass((RuntimeObject*)L_8, ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A_il2cpp_TypeInfo_var))) <= ((RuntimeObject*)(RuntimeObject *)NULL)))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		goto IL_003f;
+	}
+
+IL_003e:
+	{
+		G_B8_0 = 0;
+	}
+
+IL_003f:
+	{
+		G_B10_0 = G_B8_0;
+		goto IL_0042;
+	}
+
+IL_0041:
+	{
+		G_B10_0 = 0;
+	}
+
+IL_0042:
+	{
+		V_2 = (bool)G_B10_0;
+		bool L_9 = V_2;
+		if (!L_9)
+		{
+			goto IL_0051;
+		}
+	}
+	{
+		ArgumentException_t505FA8C11E883F2D96C797AD9D396490794DEE00 * L_10 = (ArgumentException_t505FA8C11E883F2D96C797AD9D396490794DEE00 *)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&ArgumentException_t505FA8C11E883F2D96C797AD9D396490794DEE00_il2cpp_TypeInfo_var)));
+		ArgumentException__ctor_m2D35EAD113C2ADC99EB17B940A2097A93FD23EFC(L_10, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral3160C6AD95356DD3966B06032DA2DA34B1DB609C)), /*hidden argument*/NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_10, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB_RuntimeMethod_var)));
+	}
+
+IL_0051:
+	{
+		String_t* L_11 = ___json0;
+		RuntimeObject * L_12 = ___objectToOverwrite1;
+		RuntimeObject * L_13 = ___objectToOverwrite1;
+		NullCheck(L_13);
+		Type_t * L_14;
+		L_14 = Object_GetType_m571FE8360C10B98C23AAF1F066D92C08CC94F45B(L_13, /*hidden argument*/NULL);
+		RuntimeObject * L_15;
+		L_15 = JsonUtility_FromJsonInternal_m7353836E98A52C702E713DBE5E9C431BD8EC830A(L_11, L_12, L_14, /*hidden argument*/NULL);
+	}
+
+IL_005f:
+	{
+		return;
 	}
 }
 #ifdef __clang__

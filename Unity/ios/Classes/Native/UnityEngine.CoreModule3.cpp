@@ -8138,6 +8138,24 @@ struct WaitHandle_t1D7DD8480FD5DA4E3AF92F569890FB972D9B1842_marshaled_com : publ
 	int32_t ___hasThreadAffinity_5;
 };
 
+// UnityEngine.Rendering.SplashScreen/StopBehavior
+struct StopBehavior_tA84DAEF30958D41F95D9A751E227594C0B0A8E30 
+{
+public:
+	// System.Int32 UnityEngine.Rendering.SplashScreen/StopBehavior::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(StopBehavior_tA84DAEF30958D41F95D9A751E227594C0B0A8E30, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // UnityEngine.Rendering.SupportedRenderingFeatures/LightmapMixedBakeModes
 struct LightmapMixedBakeModes_t517152ED1576E98EFCB29D358676919D88844F75 
 {
@@ -11418,6 +11436,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SphericalHarmonicsL2_Equals_mE2AE9E68662
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SphericalHarmonicsL2_Equals_m6E9BC940742B4EFCC4D5E18E46336499A2E925A1 (SphericalHarmonicsL2_tD2EC2ADCA26B9BE05036C3ABCF3CC049EC73EA64 * __this, RuntimeObject * ___other0, const RuntimeMethod* method);
 // System.Boolean UnityEngine.Rendering.SphericalHarmonicsL2::op_Equality(UnityEngine.Rendering.SphericalHarmonicsL2,UnityEngine.Rendering.SphericalHarmonicsL2)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SphericalHarmonicsL2_op_Equality_m2F59674131CBA6B956AB0ADFF2533BCE60B81024 (SphericalHarmonicsL2_tD2EC2ADCA26B9BE05036C3ABCF3CC049EC73EA64  ___lhs0, SphericalHarmonicsL2_tD2EC2ADCA26B9BE05036C3ABCF3CC049EC73EA64  ___rhs1, const RuntimeMethod* method);
+// System.Void UnityEngine.Rendering.SplashScreen::BeginSplashScreenFade()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7 (const RuntimeMethod* method);
+// System.Void UnityEngine.Rendering.SplashScreen::CancelSplashScreen()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95 (const RuntimeMethod* method);
 // System.String UnityEngine.SystemInfo::get_processorType()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SystemInfo_get_processorType_mA84DD6B72682E1F078486D5D8CAF9CD6E4FB9C4D (const RuntimeMethod* method);
 // System.Boolean System.String::op_Equality(System.String,System.String)
@@ -15558,6 +15580,52 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SplashScreen_get_isFinished_mB35D854292F
 	_il2cpp_icall_func = (SplashScreen_get_isFinished_mB35D854292F16C20280CFEB1E986758073AD4842_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Rendering.SplashScreen::get_isFinished()");
 	bool icallRetVal = _il2cpp_icall_func();
 	return icallRetVal;
+}
+// System.Void UnityEngine.Rendering.SplashScreen::CancelSplashScreen()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95 (const RuntimeMethod* method)
+{
+	typedef void (*SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95_ftn) ();
+	static SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Rendering.SplashScreen::CancelSplashScreen()");
+	_il2cpp_icall_func();
+}
+// System.Void UnityEngine.Rendering.SplashScreen::BeginSplashScreenFade()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7 (const RuntimeMethod* method)
+{
+	typedef void (*SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7_ftn) ();
+	static SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Rendering.SplashScreen::BeginSplashScreenFade()");
+	_il2cpp_icall_func();
+}
+// System.Void UnityEngine.Rendering.SplashScreen::Stop(UnityEngine.Rendering.SplashScreen/StopBehavior)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SplashScreen_Stop_m1FE72C0591193772103454E560FE474D487AA612 (int32_t ___stopBehavior0, const RuntimeMethod* method)
+{
+	bool V_0 = false;
+	{
+		int32_t L_0 = ___stopBehavior0;
+		V_0 = (bool)((((int32_t)L_0) == ((int32_t)1))? 1 : 0);
+		bool L_1 = V_0;
+		if (!L_1)
+		{
+			goto IL_0011;
+		}
+	}
+	{
+		SplashScreen_BeginSplashScreenFade_m00314E36349DEE254C147D7E38177F06DA28D8C7(/*hidden argument*/NULL);
+		goto IL_0017;
+	}
+
+IL_0011:
+	{
+		SplashScreen_CancelSplashScreen_m4C7E6CC881B5B6D70DEE52595E01D2F55671AE95(/*hidden argument*/NULL);
+	}
+
+IL_0017:
+	{
+		return;
+	}
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

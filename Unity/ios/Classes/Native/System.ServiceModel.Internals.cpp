@@ -15782,7 +15782,7 @@ IL_000a:
 			XmlDocument_t513899C58F800C43E8D78C0B72BD18C2C036233F * L_8 = L_7;
 			String_t* L_9 = V_3;
 			NullCheck(L_8);
-			VirtActionInvoker1< String_t* >::Invoke(72 /* System.Void System.Xml.XmlDocument::LoadXml(System.String) */, L_8, L_9);
+			VirtActionInvoker1< String_t* >::Invoke(79 /* System.Void System.Xml.XmlDocument::LoadXml(System.String) */, L_8, L_9);
 			NullCheck(L_8);
 			XPathNavigator_tBA592A54ACCBFC4D6E5A292A72E63435F86A6CA9 * L_10;
 			L_10 = VirtFuncInvoker0< XPathNavigator_tBA592A54ACCBFC4D6E5A292A72E63435F86A6CA9 * >::Invoke(6 /* System.Xml.XPath.XPathNavigator System.Xml.XmlNode::CreateNavigator() */, L_8);

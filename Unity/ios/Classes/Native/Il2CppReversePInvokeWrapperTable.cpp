@@ -199,6 +199,7 @@ public:
 #endif
 
 extern "C" void DEFAULT_CALL ReversePInvokeWrapper_AppleStoreImpl_MessageCallback_mA6FE1905E824EB9681CDFE9B22DD989FB5AFD5B3(char* ___subject0, char* ___payload1, char* ___receipt2, char* ___transactionId3);
+extern "C" void DEFAULT_CALL ReversePInvokeWrapper_BridgeIOS_engineBridgeDelegate_m8912905FBDD43922D6F2D45405C1CF03F884F8F6(char* ___resultJson0);
 extern "C" int32_t CDECL ReversePInvokeWrapper_DeflateStreamNative_UnmanagedRead_m1B817101FEA9D3C28DF3C9192F70557465BDFB25(intptr_t ___buffer0, int32_t ___length1, intptr_t ___data2);
 extern "C" int32_t CDECL ReversePInvokeWrapper_DeflateStreamNative_UnmanagedWrite_m531442C0133AA29BF262DFD21F81CCBE5EA7E086(intptr_t ___buffer0, int32_t ___length1, intptr_t ___data2);
 extern "C" void DEFAULT_CALL ReversePInvokeWrapper_EventProvider_EtwEnableCallBack_m21ADE6DC652B28DDB916AC68B9FC908B18006FFD(Guid_t * ___sourceId0, int32_t ___controlCode1, uint8_t ___setLevel2, int64_t ___anyKeyword3, int64_t ___allKeyword4, EVENT_FILTER_DESCRIPTOR_t59379AB6F16CCEA5C0BDF328FF5AC64040CED05B * ___filterData5, void* ___callbackContext6);
@@ -214,9 +215,10 @@ extern "C" intptr_t CDECL ReversePInvokeWrapper_UnityTlsContext_WriteCallback_m4
 
 
 IL2CPP_EXTERN_C const Il2CppMethodPointer g_ReversePInvokeWrapperPointers[];
-const Il2CppMethodPointer g_ReversePInvokeWrapperPointers[13] = 
+const Il2CppMethodPointer g_ReversePInvokeWrapperPointers[14] = 
 {
 	reinterpret_cast<Il2CppMethodPointer>(ReversePInvokeWrapper_AppleStoreImpl_MessageCallback_mA6FE1905E824EB9681CDFE9B22DD989FB5AFD5B3),
+	reinterpret_cast<Il2CppMethodPointer>(ReversePInvokeWrapper_BridgeIOS_engineBridgeDelegate_m8912905FBDD43922D6F2D45405C1CF03F884F8F6),
 	reinterpret_cast<Il2CppMethodPointer>(ReversePInvokeWrapper_DeflateStreamNative_UnmanagedRead_m1B817101FEA9D3C28DF3C9192F70557465BDFB25),
 	reinterpret_cast<Il2CppMethodPointer>(ReversePInvokeWrapper_DeflateStreamNative_UnmanagedWrite_m531442C0133AA29BF262DFD21F81CCBE5EA7E086),
 	reinterpret_cast<Il2CppMethodPointer>(ReversePInvokeWrapper_EventProvider_EtwEnableCallBack_m21ADE6DC652B28DDB916AC68B9FC908B18006FFD),

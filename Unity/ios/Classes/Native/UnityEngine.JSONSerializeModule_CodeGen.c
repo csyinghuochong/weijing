@@ -23,7 +23,9 @@ extern void JsonUtility_ToJson_m624247F6B1FDBD1B02C133B4878E4F3C8CEA30DA (void);
 // 0x00000005 T UnityEngine.JsonUtility::FromJson(System.String)
 // 0x00000006 System.Object UnityEngine.JsonUtility::FromJson(System.String,System.Type)
 extern void JsonUtility_FromJson_m81FC2A7DCB9231E8E201EAD8E160F921B1D2E25C (void);
-static Il2CppMethodPointer s_methodPointers[6] = 
+// 0x00000007 System.Void UnityEngine.JsonUtility::FromJsonOverwrite(System.String,System.Object)
+extern void JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB (void);
+static Il2CppMethodPointer s_methodPointers[7] = 
 {
 	JsonUtility_ToJsonInternal_mDAAB37A1A4B7452DD48256B6884A11FB8E48B38D,
 	JsonUtility_FromJsonInternal_m7353836E98A52C702E713DBE5E9C431BD8EC830A,
@@ -31,15 +33,17 @@ static Il2CppMethodPointer s_methodPointers[6] =
 	JsonUtility_ToJson_m624247F6B1FDBD1B02C133B4878E4F3C8CEA30DA,
 	NULL,
 	JsonUtility_FromJson_m81FC2A7DCB9231E8E201EAD8E160F921B1D2E25C,
+	JsonUtility_FromJsonOverwrite_mC97C7C909591A29E72361FB5DBC1A58EEE6DBAEB,
 };
-static const int32_t s_InvokerIndices[6] = 
+static const int32_t s_InvokerIndices[7] = 
 {
-	11971,
-	11291,
-	12778,
-	11971,
+	12490,
+	11779,
+	13381,
+	12490,
 	-1,
-	11983,
+	12502,
+	12785,
 };
 static const Il2CppTokenRangePair s_rgctxIndices[1] = 
 {
@@ -47,15 +51,15 @@ static const Il2CppTokenRangePair s_rgctxIndices[1] =
 };
 static const Il2CppRGCTXDefinition s_rgctxValues[2] = 
 {
-	{ (Il2CppRGCTXDataType)1, 484 },
-	{ (Il2CppRGCTXDataType)2, 484 },
+	{ (Il2CppRGCTXDataType)1, 509 },
+	{ (Il2CppRGCTXDataType)2, 509 },
 };
 extern const CustomAttributesCacheGenerator g_UnityEngine_JSONSerializeModule_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_JSONSerializeModule_CodeGenModule;
 const Il2CppCodeGenModule g_UnityEngine_JSONSerializeModule_CodeGenModule = 
 {
 	"UnityEngine.JSONSerializeModule.dll",
-	6,
+	7,
 	s_methodPointers,
 	0,
 	NULL,

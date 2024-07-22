@@ -2746,6 +2746,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Canvas_set_overrideSorting();
 		Register_UnityEngine_Canvas_set_overrideSorting();
 
+		//System.Void UnityEngine.Canvas::set_pixelPerfect(System.Boolean)
+		void Register_UnityEngine_Canvas_set_pixelPerfect();
+		Register_UnityEngine_Canvas_set_pixelPerfect();
+
 		//System.Void UnityEngine.Canvas::set_referencePixelsPerUnit(System.Single)
 		void Register_UnityEngine_Canvas_set_referencePixelsPerUnit();
 		Register_UnityEngine_Canvas_set_referencePixelsPerUnit();
@@ -2761,6 +2765,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Canvas::set_sortingOrder(System.Int32)
 		void Register_UnityEngine_Canvas_set_sortingOrder();
 		Register_UnityEngine_Canvas_set_sortingOrder();
+
+		//System.Void UnityEngine.Canvas::set_worldCamera(UnityEngine.Camera)
+		void Register_UnityEngine_Canvas_set_worldCamera();
+		Register_UnityEngine_Canvas_set_worldCamera();
 
 		//UnityEngine.AdditionalCanvasShaderChannels UnityEngine.Canvas::get_additionalShaderChannels()
 		void Register_UnityEngine_Canvas_get_additionalShaderChannels();
@@ -2809,6 +2817,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.CanvasGroup::set_alpha(System.Single)
 		void Register_UnityEngine_CanvasGroup_set_alpha();
 		Register_UnityEngine_CanvasGroup_set_alpha();
+
+		//System.Void UnityEngine.CanvasGroup::set_interactable(System.Boolean)
+		void Register_UnityEngine_CanvasGroup_set_interactable();
+		Register_UnityEngine_CanvasGroup_set_interactable();
 
 	//End Registrations for type : UnityEngine.CanvasGroup
 
@@ -5262,6 +5274,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_MaterialPropertyBlock_DestroyImpl();
 		Register_UnityEngine_MaterialPropertyBlock_DestroyImpl();
 
+		//System.Void UnityEngine.MaterialPropertyBlock::SetFloatImpl(System.Int32,System.Single)
+		void Register_UnityEngine_MaterialPropertyBlock_SetFloatImpl();
+		Register_UnityEngine_MaterialPropertyBlock_SetFloatImpl();
+
 	//End Registrations for type : UnityEngine.MaterialPropertyBlock
 
 	//Start Registrations for type : UnityEngine.Mathf
@@ -7222,17 +7238,125 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Profiling.Profiler
 
+		//System.Boolean UnityEngine.Profiling.Profiler::GetAreaEnabled(UnityEngine.Profiling.ProfilerArea)
+		void Register_UnityEngine_Profiling_Profiler_GetAreaEnabled();
+		Register_UnityEngine_Profiling_Profiler_GetAreaEnabled();
+
+		//System.Boolean UnityEngine.Profiling.Profiler::SetTempAllocatorRequestedSize(System.UInt32)
+		void Register_UnityEngine_Profiling_Profiler_SetTempAllocatorRequestedSize();
+		Register_UnityEngine_Profiling_Profiler_SetTempAllocatorRequestedSize();
+
+		//System.Boolean UnityEngine.Profiling.Profiler::get_enableAllocationCallstacks()
+		void Register_UnityEngine_Profiling_Profiler_get_enableAllocationCallstacks();
+		Register_UnityEngine_Profiling_Profiler_get_enableAllocationCallstacks();
+
+		//System.Boolean UnityEngine.Profiling.Profiler::get_enableBinaryLog()
+		void Register_UnityEngine_Profiling_Profiler_get_enableBinaryLog();
+		Register_UnityEngine_Profiling_Profiler_get_enableBinaryLog();
+
+		//System.Boolean UnityEngine.Profiling.Profiler::get_enabled()
+		void Register_UnityEngine_Profiling_Profiler_get_enabled();
+		Register_UnityEngine_Profiling_Profiler_get_enabled();
+
+		//System.Boolean UnityEngine.Profiling.Profiler::get_supported()
+		void Register_UnityEngine_Profiling_Profiler_get_supported();
+		Register_UnityEngine_Profiling_Profiler_get_supported();
+
+		//System.Int32 UnityEngine.Profiling.Profiler::get_maxUsedMemory()
+		void Register_UnityEngine_Profiling_Profiler_get_maxUsedMemory();
+		Register_UnityEngine_Profiling_Profiler_get_maxUsedMemory();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetAllocatedMemoryForGraphicsDriver()
+		void Register_UnityEngine_Profiling_Profiler_GetAllocatedMemoryForGraphicsDriver();
+		Register_UnityEngine_Profiling_Profiler_GetAllocatedMemoryForGraphicsDriver();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetMonoHeapSizeLong()
+		void Register_UnityEngine_Profiling_Profiler_GetMonoHeapSizeLong();
+		Register_UnityEngine_Profiling_Profiler_GetMonoHeapSizeLong();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetMonoUsedSizeLong()
+		void Register_UnityEngine_Profiling_Profiler_GetMonoUsedSizeLong();
+		Register_UnityEngine_Profiling_Profiler_GetMonoUsedSizeLong();
+
 		//System.Int64 UnityEngine.Profiling.Profiler::GetRuntimeMemorySizeLong(UnityEngine.Object)
 		void Register_UnityEngine_Profiling_Profiler_GetRuntimeMemorySizeLong();
 		Register_UnityEngine_Profiling_Profiler_GetRuntimeMemorySizeLong();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalAllocatedMemoryLong()
+		void Register_UnityEngine_Profiling_Profiler_GetTotalAllocatedMemoryLong();
+		Register_UnityEngine_Profiling_Profiler_GetTotalAllocatedMemoryLong();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalReservedMemoryLong()
+		void Register_UnityEngine_Profiling_Profiler_GetTotalReservedMemoryLong();
+		Register_UnityEngine_Profiling_Profiler_GetTotalReservedMemoryLong();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::GetTotalUnusedReservedMemoryLong()
+		void Register_UnityEngine_Profiling_Profiler_GetTotalUnusedReservedMemoryLong();
+		Register_UnityEngine_Profiling_Profiler_GetTotalUnusedReservedMemoryLong();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::InternalGetTotalFragmentationInfo(System.IntPtr,System.Int32)
+		void Register_UnityEngine_Profiling_Profiler_InternalGetTotalFragmentationInfo();
+		Register_UnityEngine_Profiling_Profiler_InternalGetTotalFragmentationInfo();
+
+		//System.Int64 UnityEngine.Profiling.Profiler::get_usedHeapSizeLong()
+		void Register_UnityEngine_Profiling_Profiler_get_usedHeapSizeLong();
+		Register_UnityEngine_Profiling_Profiler_get_usedHeapSizeLong();
+
+		//System.String UnityEngine.Profiling.Profiler::get_logFile()
+		void Register_UnityEngine_Profiling_Profiler_get_logFile();
+		Register_UnityEngine_Profiling_Profiler_get_logFile();
+
+		//System.UInt32 UnityEngine.Profiling.Profiler::GetTempAllocatorSize()
+		void Register_UnityEngine_Profiling_Profiler_GetTempAllocatorSize();
+		Register_UnityEngine_Profiling_Profiler_GetTempAllocatorSize();
+
+		//System.Void UnityEngine.Profiling.Profiler::AddFramesFromFile_Internal(System.String,System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_AddFramesFromFile_Internal();
+		Register_UnityEngine_Profiling_Profiler_AddFramesFromFile_Internal();
 
 		//System.Void UnityEngine.Profiling.Profiler::BeginSampleImpl(System.String,UnityEngine.Object)
 		void Register_UnityEngine_Profiling_Profiler_BeginSampleImpl();
 		Register_UnityEngine_Profiling_Profiler_BeginSampleImpl();
 
+		//System.Void UnityEngine.Profiling.Profiler::BeginThreadProfilingInternal(System.String,System.String)
+		void Register_UnityEngine_Profiling_Profiler_BeginThreadProfilingInternal();
+		Register_UnityEngine_Profiling_Profiler_BeginThreadProfilingInternal();
+
 		//System.Void UnityEngine.Profiling.Profiler::EndSample()
 		void Register_UnityEngine_Profiling_Profiler_EndSample();
 		Register_UnityEngine_Profiling_Profiler_EndSample();
+
+		//System.Void UnityEngine.Profiling.Profiler::Internal_EmitGlobalMetaData_Array(System.Void*,System.Int32,System.Int32,System.Array,System.Int32,System.Int32,System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Array();
+		Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Array();
+
+		//System.Void UnityEngine.Profiling.Profiler::Internal_EmitGlobalMetaData_Native(System.Void*,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Native();
+		Register_UnityEngine_Profiling_Profiler_Internal_EmitGlobalMetaData_Native();
+
+		//System.Void UnityEngine.Profiling.Profiler::SetAreaEnabled(UnityEngine.Profiling.ProfilerArea,System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_SetAreaEnabled();
+		Register_UnityEngine_Profiling_Profiler_SetAreaEnabled();
+
+		//System.Void UnityEngine.Profiling.Profiler::set_enableAllocationCallstacks(System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_set_enableAllocationCallstacks();
+		Register_UnityEngine_Profiling_Profiler_set_enableAllocationCallstacks();
+
+		//System.Void UnityEngine.Profiling.Profiler::set_enableBinaryLog(System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_set_enableBinaryLog();
+		Register_UnityEngine_Profiling_Profiler_set_enableBinaryLog();
+
+		//System.Void UnityEngine.Profiling.Profiler::set_enabled(System.Boolean)
+		void Register_UnityEngine_Profiling_Profiler_set_enabled();
+		Register_UnityEngine_Profiling_Profiler_set_enabled();
+
+		//System.Void UnityEngine.Profiling.Profiler::set_logFile(System.String)
+		void Register_UnityEngine_Profiling_Profiler_set_logFile();
+		Register_UnityEngine_Profiling_Profiler_set_logFile();
+
+		//System.Void UnityEngine.Profiling.Profiler::set_maxUsedMemory(System.Int32)
+		void Register_UnityEngine_Profiling_Profiler_set_maxUsedMemory();
+		Register_UnityEngine_Profiling_Profiler_set_maxUsedMemory();
 
 	//End Registrations for type : UnityEngine.Profiling.Profiler
 
@@ -8518,6 +8642,14 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Rendering_SplashScreen_get_isFinished();
 		Register_UnityEngine_Rendering_SplashScreen_get_isFinished();
 
+		//System.Void UnityEngine.Rendering.SplashScreen::BeginSplashScreenFade()
+		void Register_UnityEngine_Rendering_SplashScreen_BeginSplashScreenFade();
+		Register_UnityEngine_Rendering_SplashScreen_BeginSplashScreenFade();
+
+		//System.Void UnityEngine.Rendering.SplashScreen::CancelSplashScreen()
+		void Register_UnityEngine_Rendering_SplashScreen_CancelSplashScreen();
+		Register_UnityEngine_Rendering_SplashScreen_CancelSplashScreen();
+
 	//End Registrations for type : UnityEngine.Rendering.SplashScreen
 
 	//Start Registrations for type : UnityEngine.RenderSettings
@@ -8565,6 +8697,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.RenderSettings::get_subtractiveShadowColor_Injected(UnityEngine.Color&)
 		void Register_UnityEngine_RenderSettings_get_subtractiveShadowColor_Injected();
 		Register_UnityEngine_RenderSettings_get_subtractiveShadowColor_Injected();
+
+		//System.Void UnityEngine.RenderSettings::set_fogColor_Injected(UnityEngine.Color&)
+		void Register_UnityEngine_RenderSettings_set_fogColor_Injected();
+		Register_UnityEngine_RenderSettings_set_fogColor_Injected();
 
 		//UnityEngine.FogMode UnityEngine.RenderSettings::get_fogMode()
 		void Register_UnityEngine_RenderSettings_get_fogMode();
