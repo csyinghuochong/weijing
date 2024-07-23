@@ -38,7 +38,7 @@ const char* jailbreak_tool_pathes[] = {
 // }
 //}
 
-void FuncTapTapShare(const char *p1,const char *p2 )    
+void FuncTapTapShare(const char *p1 )    
 {
     NSString *str = [NSString stringWithFormat:@"%@", 1];
     NSLog(@"###%@",  str);
