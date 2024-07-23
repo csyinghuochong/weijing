@@ -102,7 +102,7 @@ namespace ET
      private static extern void CheckIphoneYueyu( string str );
 
 	  [DllImport("__Internal")]
-     private static extern void FuncTapTapShare( string str1,   string str2);
+     private static extern void FuncTapTapShare( string str );
 
 	 //[DllImport("__Internal")]
   //   private static extern string GetPhoneNum( string str );
@@ -260,7 +260,7 @@ namespace ET
 #endif
 
 #if UNITY_IPHONE && !UNITY_EDITOR
-			FuncTapTapShare(infos[0], infos[1]);
+			FuncTapTapShare(OrderInfo);
 #endif
         }
 
