@@ -7,7 +7,8 @@
 //
 
 #import "IAPInterface.h"
-#import "TapOpenApi.h"
+#import <TapOpenApi/TapOpenApi.h>
+#import <TapOpenApi/TapOpenApi-Swift.h>
 
 @implementation IAPInterface
 
@@ -40,7 +41,32 @@ const char* jailbreak_tool_pathes[] = {
 void FuncTapTapShare(const char *p1,const char *p2 )    
 {
     NSString *str = [NSString stringWithFormat:@"%@", 1];
-    NSLog(@"###%@", str);
+    NSLog(@"###%@",  str);
+    
+    
+    NSString *appId = @"";
+    NSString *title = @"";
+    NSString *contents = @"";
+    NSString *groupLabelId = @"";
+    NSString *hashtagIds = @"";
+    NSArray *footerImages = @[];
+    NSString *failUrl = @"";
+    NSString *backUrl = @"";
+    
+    TapShareObj *obj = [[TapShareObj alloc] initWithAppId:appId
+    title:title
+    contents:contents
+    groupLabelId:groupLabelId
+    hashtagIds:hashtagIds
+    footerImages:footerImages
+    failUrl:failUrl
+    backUrl:backUrl];
+    [TapApi send:obj completion:^(NSInteger result) {
+     // do with result
+        NSLog(@"###%@", "FuncTapTapShare.result:  " +  result);
+        
+    }];
+    
     UnitySendMessage("Global", "OnTapTapShareHandler", [str UTF8String] );
 }
 
