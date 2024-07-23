@@ -260,7 +260,7 @@ namespace ET
 #endif
 
 #if UNITY_IPHONE && !UNITY_EDITOR
-			FuncTapTapShare(infos[0], infos[1])
+			FuncTapTapShare(infos[0], infos[1]);
 #endif
         }
 
