@@ -259,7 +259,7 @@ namespace ET
 			jo.Call("TapTapShare", OrderInfo);
 #endif
 
-#if unity_ip && !UNITY_EDITOR
+#if UNITY_IPHONE && !UNITY_EDITOR
 			FuncTapTapShare(infos[0], infos[1])
 #endif
         }
