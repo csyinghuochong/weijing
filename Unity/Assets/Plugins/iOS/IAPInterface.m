@@ -44,7 +44,7 @@ void FuncTapTapShare(const char *p1 )
     NSLog(@"###%@",  str);
     
     
-    NSString *appId = @"";
+    NSString *appId = @"271100";
     NSString *title = @"";
     NSString *contents = @"";
     NSString *groupLabelId = @"";
