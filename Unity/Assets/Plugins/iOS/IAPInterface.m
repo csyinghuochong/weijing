@@ -41,9 +41,9 @@ const char* jailbreak_tool_pathes[] = {
 void FuncTapTapShare(const char *p1 )    
 {
     NSString *str = [NSString stringWithFormat:@"%@", 1];
-    NSLog(@"###%@",  str);
+    NSLog(@"###%@", "FuncTapTapShare" + str);
     
-    
+    /*
     NSString *appId = @"271100";
     NSString *title = @"";
     NSString *contents = @"";
@@ -67,13 +67,15 @@ void FuncTapTapShare(const char *p1 )
         
     }];
     
-    UnitySendMessage("Global", "OnTapTapShareHandler", [str UTF8String] );
+    UnitySendMessage("Global", "OnTapTapShareHandler", [str UTF8String] );*/
 }
 
 
 void CheckIphoneYueyu(const char *p)
 {
-   
+
+   NSString *str = [NSString stringWithFormat:@"%@", 1];
+    NSLog(@"###%@", "CheckIphoneYueyu:" + str);
     int t1 = 0;
     int t2 = 0;
     int t3 = 0;
