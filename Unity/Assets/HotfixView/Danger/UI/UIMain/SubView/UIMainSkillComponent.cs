@@ -210,7 +210,12 @@ namespace ET
             self.Button_Switch_0.GetComponent<Image>().sprite = sp;
         }
 
-        public static void OnTransform(this UIMainSkillComponent self, int runraceid, int cardmonsterid)
+        public static void OnCardTranfer(this UIMainSkillComponent self, int runraceid)
+        { 
+        
+        }
+
+        public static void OnRunRaceTranfer(this UIMainSkillComponent self, int runraceid)
         {
             //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
             //Normal / Transforms
@@ -242,6 +247,7 @@ namespace ET
                 self.Transforms.SetActive(false);
             }
         }
+
 
         public static void OnUpdateAngle(this UIMainSkillComponent self)
         {

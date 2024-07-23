@@ -51,7 +51,7 @@ namespace ET
                     break;
                 case NumericType.RunRaceTransform:
                     int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceTransform);
-                    args.Unit.GetComponent<GameObjectComponent>()?.OnRunRaceMonster(runraceMonster,0, true);
+                    args.Unit.GetComponent<GameObjectComponent>()?.OnRunRaceTranfer(runraceMonster, true);
                     if (args.Unit.MainHero)
                     {
                         args.Unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(args.Unit.ConfigId, runraceMonster);    
@@ -59,7 +59,11 @@ namespace ET
                     break;
                 case NumericType.CardTransform:
                     int cardMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CardTransform);
-                    args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(0, cardMonster, true);
+                    args.Unit.GetComponent<GameObjectComponent>().OnCardTranfer(cardMonster, true);
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(args.Unit.ConfigId, cardMonster);
+                    }
                     break;
                 case NumericType.HappyCellIndex:
                     if (args.Unit.MainHero)

@@ -110,7 +110,15 @@ namespace ET
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     int runmonsterId = numericComponent.GetAsInt(NumericType.RunRaceTransform);
                     int cardtransform = numericComponent.GetAsInt(NumericType.CardTransform);
-                    self.OnRunRaceMonster(runmonsterId, cardtransform, false);
+
+                    if (cardtransform > 0)
+                    {
+                        self.OnCardTranfer(cardtransform, false);
+                    }
+                    else
+                    {
+                        self.OnRunRaceTranfer(runmonsterId, false);
+                    }
                     //if (runmonsterId > 0)
                     //{
                     //    self.OnRunRaceMonster( runmonsterId, false );  
@@ -1031,7 +1039,7 @@ namespace ET
             }
         }
 
-        public static void OnRunRaceMonster(this GameObjectComponent self, int runraceid, int cardmonsterid,  bool remove)
+        public static void OnTranferHandler(this GameObjectComponent self, int monsterid, bool remove)
         {
             self.RecoverGameObject();
             self.Material = null;
@@ -1047,9 +1055,8 @@ namespace ET
                 unit.RemoveComponent<UIUnitHpComponent>();
             }
 
-            if (runraceid > 0 || cardmonsterid > 0)
+            if (monsterid > 0)
             {
-                int monsterid = runraceid > 0 ? runraceid : cardmonsterid;  
                 MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterid);
                 string path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
                 GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
@@ -1061,12 +1068,32 @@ namespace ET
                 GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                 self.UnitAssetsPath = string.Empty;
             }
+            self.BianShenEffect = unit.MainHero && remove;
+        }
+
+        public static void OnCardTranfer(this GameObjectComponent self, int monsterid, bool remove)
+        {
+            Unit unit = self.GetParent<Unit>();
+            self.OnTranferHandler(monsterid, remove );
+
             if (unit.MainHero)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(runraceid, cardmonsterid);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnCardTranfer(monsterid);
             }
-            self.BianShenEffect = unit.MainHero && remove;
+            
+        }
+
+        public static void OnRunRaceTranfer(this GameObjectComponent self, int monsterid, bool remove)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            self.OnTranferHandler(monsterid, remove);
+            if (unit.MainHero)
+            {
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnRunRaceTranfer(monsterid);
+            }
         }
 
         public static void  OnUnitStallUpdate(this GameObjectComponent self,long stallType)
