@@ -552,7 +552,7 @@ namespace ET
                 }
             }
 
-            if (bagComponent.GetBagLeftCell() + 1 < rewardItems.Count)
+            if (bagComponent.GetBagLeftCell()  < rewardItems.Count)
             {
                 return ErrorCode.ERR_BagIsFull;
             }
@@ -620,7 +620,12 @@ namespace ET
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Exp, TaskExp.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward, taskid.ToString());
             int roleLv = userInfoComponent.UserInfo.Lv;
-            bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            bool taskreward =  bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            if (!taskreward)
+            {
+                Log.Warning($"任务奖励出错: {self.DomainZone()}  {self.Id} {taskConfig.Id}");
+            }
+
             if (taskConfig.TaskType == TaskTypeEnum.Daily)
             {
                 int dailyTaskNumber = numericComponent.GetAsInt(NumericType.DailyTaskNumber) + 1;
