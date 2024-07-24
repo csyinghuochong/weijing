@@ -20234,6 +20234,8 @@ inline MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * GameObject_GetComponen
 }
 // System.Void ET.Init::OnRecvTikTokAccesstoken(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnRecvTikTokAccesstoken_mE7EE3D956F80C3DCBB720A2C30F9A2905E19CB83 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, String_t* ___access_token0, const RuntimeMethod* method);
+// System.Void ET.Init::FuncTapTapShare(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FuncTapTapShare_mB00312C52D6A8FA57BA604F5ACF36F7DC195B188 (String_t* ___str0, const RuntimeMethod* method);
 // System.Void System.Action`2<System.Int32,System.Boolean>::Invoke(!0,!1)
 inline void Action_2_Invoke_m8D5551F5939B700A15161325663C535D9B5C639E (Action_2_t07E89BCBF39ABE1A1E4378C31C5115A5AEEFFD00 * __this, int32_t ___arg10, bool ___arg21, const RuntimeMethod* method)
 {
@@ -21147,7 +21149,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Mathf_Min_mD28BD5C9012619B74E475F204F96
 // System.Void System.ThrowHelper::ThrowArgumentOutOfRangeException()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ThrowHelper_ThrowArgumentOutOfRangeException_m4841366ABC2B2AFA37C10900551D7E07522C0929 (const RuntimeMethod* method);
 IL2CPP_EXTERN_C void DEFAULT_CALL CheckIphoneYueyu(char*);
-IL2CPP_EXTERN_C void DEFAULT_CALL FuncTapTapShare(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL FuncTapTapShare(char*);
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
@@ -28256,29 +28258,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_CheckIphoneYueyu_m182CD9924DC81EC08
 	____str0_marshaled = NULL;
 
 }
-// System.Void ET.Init::FuncTapTapShare(System.String,System.String)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FuncTapTapShare_m40CBBC5CE9111168FFB7EBD9936D138702B14D0B (String_t* ___str10, String_t* ___str21, const RuntimeMethod* method)
+// System.Void ET.Init::FuncTapTapShare(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FuncTapTapShare_mB00312C52D6A8FA57BA604F5ACF36F7DC195B188 (String_t* ___str0, const RuntimeMethod* method)
 {
-	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
 
-	// Marshaling of parameter '___str10' to native representation
-	char* ____str10_marshaled = NULL;
-	____str10_marshaled = il2cpp_codegen_marshal_string(___str10);
-
-	// Marshaling of parameter '___str21' to native representation
-	char* ____str21_marshaled = NULL;
-	____str21_marshaled = il2cpp_codegen_marshal_string(___str21);
+	// Marshaling of parameter '___str0' to native representation
+	char* ____str0_marshaled = NULL;
+	____str0_marshaled = il2cpp_codegen_marshal_string(___str0);
 
 	// Native function invocation
-	reinterpret_cast<PInvokeFunc>(FuncTapTapShare)(____str10_marshaled, ____str21_marshaled);
+	reinterpret_cast<PInvokeFunc>(FuncTapTapShare)(____str0_marshaled);
 
-	// Marshaling cleanup of parameter '___str10' native representation
-	il2cpp_codegen_marshal_free(____str10_marshaled);
-	____str10_marshaled = NULL;
-
-	// Marshaling cleanup of parameter '___str21' native representation
-	il2cpp_codegen_marshal_free(____str21_marshaled);
-	____str21_marshaled = NULL;
+	// Marshaling cleanup of parameter '___str0' native representation
+	il2cpp_codegen_marshal_free(____str0_marshaled);
+	____str0_marshaled = NULL;
 
 }
 // System.Void ET.Init::Awake()
@@ -28656,6 +28650,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TapTapShare_mA9E4670FC7D7F0EA7272BF
 		L_6 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteralA1DC264C575C7CD65A4CC13BF6108D91A333EB05, L_5, /*hidden argument*/NULL);
 		NullCheck(L_4);
 		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_4, L_6);
+		// FuncTapTapShare(OrderInfo);
+		String_t* L_7 = ___OrderInfo0;
+		Init_FuncTapTapShare_mB00312C52D6A8FA57BA604F5ACF36F7DC195B188(L_7, /*hidden argument*/NULL);
 		// }
 		return;
 	}

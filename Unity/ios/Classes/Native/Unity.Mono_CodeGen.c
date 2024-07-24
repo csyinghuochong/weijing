@@ -4421,8 +4421,8 @@ extern void GizmosDebug_OnDrawGizmos_m7287BEAF89C3A9FB034449CD3B094849C149C051 (
 extern void GizmosDebug__ctor_m3B47B65F574F23438FE1BA2036FC3B7B7347034D (void);
 // 0x000008DD System.Void ET.Init::CheckIphoneYueyu(System.String)
 extern void Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222 (void);
-// 0x000008DE System.Void ET.Init::FuncTapTapShare(System.String,System.String)
-extern void Init_FuncTapTapShare_m40CBBC5CE9111168FFB7EBD9936D138702B14D0B (void);
+// 0x000008DE System.Void ET.Init::FuncTapTapShare(System.String)
+extern void Init_FuncTapTapShare_mB00312C52D6A8FA57BA604F5ACF36F7DC195B188 (void);
 // 0x000008DF System.Void ET.Init::Awake()
 extern void Init_Awake_m31D29836728015B65429E4BE3B1B663F45EAFC1F (void);
 // 0x000008E0 System.Void ET.Init::OnLogMessageReceived(System.String,System.String,UnityEngine.LogType)
@@ -6798,7 +6798,7 @@ static Il2CppMethodPointer s_methodPointers[2322] =
 	GizmosDebug_OnDrawGizmos_m7287BEAF89C3A9FB034449CD3B094849C149C051,
 	GizmosDebug__ctor_m3B47B65F574F23438FE1BA2036FC3B7B7347034D,
 	Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222,
-	Init_FuncTapTapShare_m40CBBC5CE9111168FFB7EBD9936D138702B14D0B,
+	Init_FuncTapTapShare_mB00312C52D6A8FA57BA604F5ACF36F7DC195B188,
 	Init_Awake_m31D29836728015B65429E4BE3B1B663F45EAFC1F,
 	Init_OnLogMessageReceived_m32385C4928AF54FE54F0AC9BB3573486BC164A02,
 	Init_TikTokInit_mFFBA06D83F272FFD2B208AE2859E6FEE45C7FEEA,
@@ -9174,7 +9174,7 @@ static const int32_t s_InvokerIndices[2322] =
 	9754,
 	9754,
 	13681,
-	12785,
+	13681,
 	9754,
 	2783,
 	9754,
