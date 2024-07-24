@@ -40,14 +40,22 @@ const char* jailbreak_tool_pathes[] = {
 
 void FuncTapTapShare(const char *p1 )    
 {
-    NSString *str = [NSString stringWithFormat:@"%@", p1];
-     NSLog(@"###%@", "FuncTapTapShare");
-    NSLog(@"###%@", str);
+    //NSString *str = [NSString stringWithFormat:@"%@", p1];
+    //NSLog(@"###%@", "FuncTapTapShare");
+    //NSLog(@"###%@", str);
     
-    /*
+    NSString *messageNSString = [NSString stringWithUTF8String:p1];
+    NSArray *components = [messageNSString componentsSeparatedByString:@"&"];
+    
+    for (NSString *component in components) {
+        NSLog(@"%@", component);
+    }
+    
+    
+    
     NSString *appId = @"271100";
-    NSString *title = @"";
-    NSString *contents = @"";
+    NSString *title = [components objectAtIndex:0];
+    NSString *contents =  [components objectAtIndex:1];
     NSString *groupLabelId = @"";
     NSString *hashtagIds = @"";
     NSArray *footerImages = @[];
@@ -62,22 +70,27 @@ void FuncTapTapShare(const char *p1 )
     footerImages:footerImages
     failUrl:failUrl
     backUrl:backUrl];
-    [TapApi send:obj completion:^(NSInteger result) {
+    [TapApi send:obj completion:^(NSInteger myInteger) {
      // do with result
-        NSLog(@"###%@", "FuncTapTapShare.result:  " +  result);
         
+     
+        NSString *myString = [NSString stringWithFormat:@"%ld", (long)myInteger];
+        // 或者使用 numberWithInt: 方法
+        //NSString *myString = [NSString stringWithInt:myInteger];
+        
+        //NSLog(@"###%@", "FuncTapTapShare.result:  " +  result);
+        UnitySendMessage("Global", "OnTapTapShareHandler", myString.UTF8String );
     }];
     
-    UnitySendMessage("Global", "OnTapTapShareHandler", [str UTF8String] );*/
 }
 
 
 void CheckIphoneYueyu(const char *p)
 {
 
-   NSString *str = [NSString stringWithFormat:@"%@", p];
-     NSLog(@"###%@", "CheckIphoneYueyu");
-    NSLog(@"###%@",  str);
+    //NSString *str = [NSString stringWithFormat:@"%@", p];
+    //NSLog(@"###%@",  "CheckIphoneYueyu");
+    //NSLog(@"###%@",  str);
     int t1 = 0;
     int t2 = 0;
     int t3 = 0;
