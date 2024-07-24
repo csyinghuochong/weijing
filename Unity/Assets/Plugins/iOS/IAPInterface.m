@@ -41,7 +41,8 @@ const char* jailbreak_tool_pathes[] = {
 void FuncTapTapShare(const char *p1 )    
 {
     NSString *str = [NSString stringWithFormat:@"%@", p1];
-    NSLog(@"###%@", "FuncTapTapShare" + str);
+     NSLog(@"###%@", "FuncTapTapShare");
+    NSLog(@"###%@", str);
     
     /*
     NSString *appId = @"271100";
@@ -75,7 +76,8 @@ void CheckIphoneYueyu(const char *p)
 {
 
    NSString *str = [NSString stringWithFormat:@"%@", p];
-    NSLog(@"###%@", "CheckIphoneYueyu:" + str);
+     NSLog(@"###%@", "CheckIphoneYueyu");
+    NSLog(@"###%@",  str);
     int t1 = 0;
     int t2 = 0;
     int t3 = 0;
