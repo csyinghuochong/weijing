@@ -74,7 +74,7 @@ void FuncTapTapShare(const char *p1 )
 void CheckIphoneYueyu(const char *p)
 {
 
-   NSString *str = [NSString stringWithFormat:@"%@", 1];
+   NSString *str = [NSString stringWithFormat:@"%@", p];
     NSLog(@"###%@", "CheckIphoneYueyu:" + str);
     int t1 = 0;
     int t2 = 0;
