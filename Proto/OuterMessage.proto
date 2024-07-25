@@ -2115,6 +2115,7 @@ message RolePetEgg
 {
 	int32 ItemId = 1;
 	int64 EndTime = 2;	//EndTime = 0;  未开始孵化
+	int32 FuLing = 3; //附灵
 }
 
 message RolePetInfo

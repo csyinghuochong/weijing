@@ -495,6 +495,7 @@ namespace ET
                             case 136:
                                 break;
                             case 137:
+
                                 //宠物蛋附灵
                                 long chongwudanId = long.Parse(request.OperatePar);
                                 BagInfo chongwudan = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, chongwudanId);
