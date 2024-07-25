@@ -4456,6 +4456,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long EndTime { get; set; }
 
+		[ProtoMember(3)]
+		public int FuLing { get; set; }
+
 	}
 
 	[Message(OuterOpcode.RolePetInfo)]
