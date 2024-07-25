@@ -326,7 +326,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 111, ServerIp = $"{ip}:20515", ServerName = "流年不负", ServerOpenTime = 1721386800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/07/26 19:00:00 1721991600000 新区 海之王国   112
+            //2024/07/26 19:00:00 1721991600000 新区 海之王国    112
             serverItems_1.Add(new ServerItem() { ServerId = 112, ServerIp = $"{ip}:20525", ServerName = "海之王国", ServerOpenTime = 1721991600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
