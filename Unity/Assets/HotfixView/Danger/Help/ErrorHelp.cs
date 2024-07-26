@@ -159,6 +159,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_Union_HavActive, "只能同时研究一个科技");
             ErrorHintList.Add(ErrorCode.ERR_Union_NotActive, "当前没有正在研究的科技");
             ErrorHintList.Add(ErrorCode.ERR_Already_Guess, "已经竞猜该数字");
+            ErrorHintList.Add(ErrorCode.ERR_Union_NotRemove, "家族还有其他玩家，族长不能离开！");
 
             ErrorHintList.Add(ErrorCode.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyFinish, "活动已经结束");
