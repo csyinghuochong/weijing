@@ -56,7 +56,7 @@ namespace ET
                 self.OnJiaYuanExp(1f);
             }
 
-            if (self.UpdateRankTime > 0)
+            if (self.UpdateRankTime > 0 )
             {
                 self.UpdateRankTime = 0;
                 self.UploadCombat().Coroutine();
@@ -850,6 +850,11 @@ namespace ET
         public static async ETTask UploadCombat(this UserInfoComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.IsRobot())
+            {
+                return;
+            }
+
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();

@@ -163,6 +163,8 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2], false);
                 numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3], false);
                 numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4], false);
+                numericComponent.ApplyValue(NumericType.CombatRankID, 0, false);
+                numericComponent.ApplyValue(NumericType.OccCombatRankID, 0, false);
             }
 
             if (numericComponent.GetAsInt(NumericType.CostTiLi) > 600)
