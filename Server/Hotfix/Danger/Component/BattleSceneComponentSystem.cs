@@ -34,7 +34,7 @@ namespace ET
         {
             self.BattleOpen = true;
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
-            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0 && !ComHelp.IsInnerNet())
+            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0 )  //&& !ComHelp.IsInnerNet())
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
