@@ -18,6 +18,7 @@
         public const int Behaviour_RunRace = 13;
         public const int Behaviour_Demon = 14;
         public const int Behaviour_BaoZang = 15;
+        public const int Behaviour_Retreat = 16;
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute

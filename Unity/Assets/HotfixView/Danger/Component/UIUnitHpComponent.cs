@@ -412,10 +412,6 @@ namespace ET
             {
                 unionname = infoComponent.UnionName;
             }
-            if (unit.IsRobot())
-            {
-                unionname = string.Empty;
-            }
 
             this.Lal_JiaZuName.GetComponent<Text>().text = unionname;
             Vector3 vector3_pos = unionname.Length > 0 ? new Vector3(0f, 100f, 0f) : new Vector3(0f, 75f, 0f);

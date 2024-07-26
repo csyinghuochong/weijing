@@ -62,7 +62,7 @@ namespace ET
         //    return self.MainHero && accountInfoComponent.Password == ComHelp.RobotPassWord;
         //}
 
-        public static bool IsRobot(this Unit self)
+        public static bool IsSelfRobot(this Unit self)
         {
             return self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
         }

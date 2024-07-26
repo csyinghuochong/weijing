@@ -859,7 +859,8 @@ namespace ET
                 }
             }
 
-			List<int> equiptianfus = self.GetParent<Unit>().GetComponent<BagComponent>().GetEquipTianFuIds();
+			Unit unit = self.GetParent<Unit>();
+			List<int> equiptianfus = unit.GetComponent<BagComponent>().GetEquipTianFuIds();
 			equiptianfus.AddRange( self.TianFuAddition);
             self.CheckSkillToTalent(equiptianfus);
 
