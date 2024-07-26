@@ -106,7 +106,8 @@ namespace ET
         public const int PetExploreReward = 95;
         public const int PetHeXinExplore = 96;
         public const int ActivityNewYear = 97;
-        public const int Fashion = 98; 
+        public const int Fashion = 98;
+        public const int PetEggPutOut = 99;
         public const int Activity = 100;                //活动
 
 
