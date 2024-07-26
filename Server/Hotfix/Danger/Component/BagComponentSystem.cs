@@ -1305,6 +1305,13 @@ namespace ET
                         int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
+                    if (getType == ItemGetWay.PetEggPutOut && itemCof.ItemSubType == 102)
+                    {
+                        if (getWayInfo.Length >= 3)
+                        {
+                            useBagInfo.FuLing = int.Parse(getWayInfo[2]);
+                        }
+                    }
                     //食物
                     if (itemCof.ItemType == 1 && itemCof.ItemSubType == 131)
                     {

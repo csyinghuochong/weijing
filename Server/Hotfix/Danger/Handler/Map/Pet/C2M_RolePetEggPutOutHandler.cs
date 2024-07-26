@@ -19,9 +19,10 @@ namespace ET
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetEgg rolePetEgg = petComponent.RolePetEggs[request.Index];
             
-            bagComponent.OnAddItemData($"{rolePetEgg.ItemId};1", $"{ItemGetWay.PetEggDuiHuan}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData($"{rolePetEgg.ItemId};1", $"{ItemGetWay.PetEggPutOut}_{TimeHelper.ServerNow()}_{rolePetEgg.FuLing}");
             rolePetEgg.ItemId = 0;
             rolePetEgg.EndTime = 0;
+            rolePetEgg.FuLing = 0;
             response.RolePetEgg = rolePetEgg;
             reply();
             await ETTask.CompletedTask;
