@@ -106,10 +106,9 @@ namespace ET
         /// <param name="buffHandler"></param>
         public static void AddBuffRecord(this BuffManagerComponent self, int operate, int buffId)
         {
-            if (buffId > 0)
+            if (buffId <= 0)
             {
-                ////先屏蔽掉
-                return;
+                return;////先屏蔽掉
             }
 
             Unit unit = self.GetParent<Unit>();
