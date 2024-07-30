@@ -300,7 +300,9 @@ namespace ET
             { NumericType.Now_MonsterMageIncreaseDamgeSubPro, new NumericAttribute(){ Name = "怪技增伤", Icon = string.Empty}},
             { NumericType.Now_MonsterActReduceDamgeSubPro, new NumericAttribute(){ Name = "怪攻减伤", Icon = string.Empty}},
             { NumericType.Now_MonsterMageReduceDamgeSubPro, new NumericAttribute(){ Name = "怪技减伤", Icon = string.Empty}},
-            
+
+            { NumericType.Now_PuGongAddPro, new NumericAttribute(){ Name = "普通攻击加成", Icon = string.Empty}},
+
             { NumericType.Now_PetAllMageAct, new NumericAttribute(){Name = "宠物全体魔法攻击",Icon = string.Empty}},
             { NumericType.Now_PetAllAct, new NumericAttribute(){Name = "宠物全体攻击",Icon = string.Empty}},
             { NumericType.Now_PetAllDef, new NumericAttribute(){Name = "宠物全体防御",Icon = string.Empty}},
