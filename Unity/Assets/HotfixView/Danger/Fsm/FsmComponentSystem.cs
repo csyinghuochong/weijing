@@ -206,7 +206,7 @@ namespace ET
                 self.Animator.SetBoolValue("Run", false);
                 self.Animator.SetBoolValue("Idle", true);
             }
-            self.Animator.Play(skillConfig.SkillAnimation);
+            self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id);
         }
 
         public static void OnEnterFsmRunState(this FsmComponent self)
@@ -295,14 +295,14 @@ namespace ET
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-                    self.Animator.Play(skillConfig.SkillAnimation);
+                    self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id);
                 }
                 else if (curAckAnimation == String.Empty)
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-                    self.Animator.Play(skillConfig.SkillAnimation);
+                    self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id);
                 }
                 else
                 {
@@ -319,7 +319,7 @@ namespace ET
             }
             else
             {
-                self.Animator.Play(skillConfig.SkillAnimation);
+                self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id);
             }
         }
 

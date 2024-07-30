@@ -28,7 +28,7 @@ namespace ET
 		public float MontionSpeed;
 		public bool isStop;
 		public float stopSpeed;
-
+		public int UnitType;
 		public Animator Animator;
 
 	}
