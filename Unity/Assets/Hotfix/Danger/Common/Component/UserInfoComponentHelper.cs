@@ -137,17 +137,17 @@ namespace ET
             return 0;
         }
 
-        public static void OnTotalUseTimes(this UserInfoComponent self, int itemId)
+        public static void OnTotalUseTimes(this UserInfoComponent self, int itemId, int useNumber = 1)
         {
             for (int i = 0; i < self.UserInfo.TotalUseTimes.Count; i++)
             {
                 if (self.UserInfo.TotalUseTimes[i].KeyId == itemId)
                 {
-                    self.UserInfo.TotalUseTimes[i].Value += 1;
+                    self.UserInfo.TotalUseTimes[i].Value += useNumber;
                     return;
                 }
             }
-            self.UserInfo.TotalUseTimes.Add(new KeyValuePairInt() { KeyId = itemId, Value = 1 });
+            self.UserInfo.TotalUseTimes.Add(new KeyValuePairInt() { KeyId = itemId, Value = useNumber });
         }
 
         public static void AddSceneFubenTimes(this UserInfoComponent self, int sceneId)

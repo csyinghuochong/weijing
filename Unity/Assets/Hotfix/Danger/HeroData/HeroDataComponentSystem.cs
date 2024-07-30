@@ -179,6 +179,13 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PetExploreLuckly, 100, false);
             }
 
+            if (unit.Type == UnitType.Player && numericComponent.GetAsInt(NumericType.PetExtendNumber) > 0)
+            {
+                if (unit.GetComponent<UserInfoComponent>().GetTotalUseTimes(10000134) <= 0)
+                {
+                    unit.GetComponent<UserInfoComponent>().OnTotalUseTimes(10000134, numericComponent.GetAsInt(NumericType.PetExtendNumber));
+                }
+            }
            
             if (numericComponent.GetAsInt(NumericType.SkillMakePlan2) == 0)
             {

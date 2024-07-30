@@ -306,8 +306,17 @@ namespace ET
             //判断当前技能是否再CD状态
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+          
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int errorCode = ErrorCode.ERR_Success;
             string usrPar = "";
+
+            //int addTime = 0;
+            //if (itemConfig.Id == 10000134)
+            //{
+            //    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            //    addTime = numericComponent.GetAsInt(NumericType.PetExtendNumber);
+            //}
 
             if (itemConfig.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemConfig.Id) >= itemConfig.DayUseNum)
             {
@@ -422,7 +431,6 @@ namespace ET
                 int makeNew = int.Parse(itemConfig.ItemUsePar);
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeNew);
 
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int makeType_1 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_1);
                 int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
                 if (makeType_1 != equipMakeConfig.ProficiencyType && makeType_2 != equipMakeConfig.ProficiencyType)
@@ -438,7 +446,6 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 101)
             {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
                     Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.OnCloseTips();
