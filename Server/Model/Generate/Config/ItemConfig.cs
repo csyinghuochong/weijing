@@ -153,6 +153,9 @@ namespace ET
 		/// <summary>每天使用次数</summary>
 		[ProtoMember(26)]
 		public int DayUseNum { get; set; }
+		/// <summary>总共使用次数</summary>
+		[ProtoMember(27)]
+		public int SumUseNum { get; set; }
 
 	}
 }
