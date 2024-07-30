@@ -373,6 +373,9 @@ message UserInfo
 	repeated int32 OccTwoOld = 65;
 
 	repeated int32 SerialRewards = 66;
+
+	//总共使用次数
+	repeated KeyValuePairInt  TotalUseTimes = 67;
 }
 
 message KeyValuePair

@@ -64,6 +64,12 @@ namespace ET
                         reply();
                         return;
                     }
+                    if (itemConfig.SumUseNum > 0 && userInfoComponent.GetTotalUseTimes(itemConfig.Id) >= itemConfig.SumUseNum)
+                    {
+                        response.Error = ErrorCode.ERR_ItemNoUseTime;
+                        reply();
+                        return;
+                    }
 
                     //获取背包数据
                     int costNumber = 1;
@@ -534,6 +540,10 @@ namespace ET
                         if (itemConfig.DayUseNum > 0)
                         {
                             userInfoComponent.OnDayItemUse(itemConfig.Id);
+                        }
+                        if (itemConfig.SumUseNum > 0)
+                        {
+                            userInfoComponent.OnTotalUseTimes(itemConfig.Id);
                         }
                     }
                 }

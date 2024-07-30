@@ -125,6 +125,31 @@ namespace ET
             self.UserInfo.DayItemUse.Add(new KeyValuePairInt() { KeyId = itemId, Value = 1 });
         }
 
+        public static int GetTotalUseTimes(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.TotalUseTimes.Count; i++)
+            {
+                if (self.UserInfo.TotalUseTimes[i].KeyId == mysteryId)
+                {
+                    return (int)self.UserInfo.TotalUseTimes[i].Value;
+                }
+            }
+            return 0;
+        }
+
+        public static void OnTotalUseTimes(this UserInfoComponent self, int itemId)
+        {
+            for (int i = 0; i < self.UserInfo.TotalUseTimes.Count; i++)
+            {
+                if (self.UserInfo.TotalUseTimes[i].KeyId == itemId)
+                {
+                    self.UserInfo.TotalUseTimes[i].Value += 1;
+                    return;
+                }
+            }
+            self.UserInfo.TotalUseTimes.Add(new KeyValuePairInt() { KeyId = itemId, Value = 1 });
+        }
+
         public static void AddSceneFubenTimes(this UserInfoComponent self, int sceneId)
         {
             for (int i = 0; i < self.UserInfo.DayFubenTimes.Count; i++)

@@ -314,6 +314,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNoUseTime]);
                 return;
             }
+            if (itemConfig.SumUseNum > 0 && userInfoComponent.GetTotalUseTimes(itemConfig.Id) >= itemConfig.SumUseNum)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNoUseTime]);
+                return;
+            }
 
             // 增幅卷轴
             if (itemConfig.ItemSubType == 17)

@@ -465,6 +465,14 @@ namespace ET
                 {
                     infoComponent.OnDayItemUse(itemConfig.Id);
                 }
+                if (itemConfig.SumUseNum > 0)
+                {
+                    infoComponent.OnTotalUseTimes(itemConfig.Id);
+
+                    string ussTimesTip = $"当前使用次数{infoComponent.GetTotalUseTimes(itemConfig.Id)}/{itemConfig.SumUseNum}";
+                    HintHelp.GetInstance().ShowHint(ussTimesTip);
+                }
+
 
                 return r2c_roleEquip.Error;
             }

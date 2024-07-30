@@ -725,6 +725,10 @@ namespace ET
 		[ProtoMember(66)]
 		public List<int> SerialRewards = new List<int>();
 
+//总共使用次数
+		[ProtoMember(67)]
+		public List<KeyValuePairInt> TotalUseTimes = new List<KeyValuePairInt>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

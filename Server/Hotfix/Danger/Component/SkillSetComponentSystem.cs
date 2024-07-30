@@ -478,9 +478,10 @@ namespace ET
 				return null;
 
 			List<int> addBuffs = new List<int>();
+			
 			for (int i = 0; i < tianfuids.Count; i++)
 			{
-				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split("@");
+                string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split("@");
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
@@ -492,8 +493,18 @@ namespace ET
 					{
 						continue;
 					}
-					addBuffs.Add(int.Parse(properInfo[2]));
-				}
+                    string addBuffList = properInfo[2];
+
+                    if (!ComHelp.IfNull(addBuffList))
+                    {
+						string[] bufflist = addBuffList.Split(",");
+						for (int buff = 0; buff < bufflist.Length; buff++ )
+						{
+							addBuffs.Add(int.Parse(bufflist[buff]));
+                        }
+                    }
+
+                }
 			}
 			return addBuffs;
 		}
