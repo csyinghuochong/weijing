@@ -293,6 +293,18 @@ namespace ET
         /// <param name="notice"></param>
         public static void OnHourUpdate(this UserInfoComponent self, int hour, bool notice)
         {
+            if (self.LastLoginTime > 0)
+            {
+                DateTime lastdateTime = TimeInfo.Instance.ToDateTime(self.LastLoginTime);
+                DateTime nowdateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                if (lastdateTime.Hour == nowdateTime.Hour)
+                {
+                    Console.WriteLine($"lastdateTime.Hour == nowdateTime.Hour");
+                    return;
+                }
+            }
+           
+
             if (hour == 0 )
             {
                 self.RecoverPiLao(30 + self.GetAddPiLao(self.UserInfo.MakeList.Count), notice);
