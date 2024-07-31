@@ -126,13 +126,12 @@ namespace ET
             self.HurtValue = 0;
             self.OnUpdateHurt(0);
             self.FightTime = 0;
-            self.ResetBossHP();
-
-
+            self.ResetBossHP().Coroutine();
         }
 
-        public static void ResetBossHP(this UITrialMainComponent self)
+        public static async ETTask ResetBossHP(this UITrialMainComponent self)
         {
+            await TimerComponent.Instance.WaitAsync(500);
             UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             ui.GetComponent<UIMainComponent>().UIMainHpBar.BossNode.SetActive(false);
             ui.GetComponent<UIMainComponent>().UIMainHpBar.Img_BossHp.transform.localScale = Vector2.one;
