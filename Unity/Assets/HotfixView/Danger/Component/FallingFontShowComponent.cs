@@ -1,5 +1,7 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace ET
 {
@@ -142,7 +144,7 @@ namespace ET
             self.DamgeFlyTimeSum = self.DamgeFlyTimeSum + Time.deltaTime;
             if (self.Transform != null)
             {
-                if (self.DamgeFlyTimeSum < 0.15f)
+                if (self.DamgeFlyTimeSum < 0.15f)   
                 {
                     self.Transform.localScale = self.DamgeFlyTimeSum < 0.03f ? new Vector3(0.8f, 0.8f, 0.8f): new Vector3(1.5f, 1.5f, 1.5f);
                 }
