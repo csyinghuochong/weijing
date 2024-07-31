@@ -65,7 +65,12 @@ namespace ET
 					unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Lv, (level*-1).ToString());
 					return;
 				}
-				if (message.GMMsg == "#gaoji"
+                if (message.GMMsg == "#jiandian")
+                {
+					unit.GetComponent<BagComponent>().OnAddJianDing();
+                    return;
+                }
+                if (message.GMMsg == "#gaoji"
 					|| message.GMMsg == "#zhongji")
 				{
 					if (!ComHelp.IsBanHaoZone(unit.DomainZone()))
@@ -283,6 +288,9 @@ namespace ET
                             }
                         }
 						break;
+					case 14:
+                        unit.GetComponent<BagComponent>().OnAddJianDing();
+                        break;
 					default:
 						break;
 				}

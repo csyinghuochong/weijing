@@ -804,6 +804,11 @@ namespace ET
             return bagInfo != null ? bagInfo.ItemID : 0;
         }
 
+        public static void OnAddJianDing(this BagComponent self)
+        {
+            self.OnAddItemData( $"11200001;1@11200002;1@11200003;1", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}" );
+        }
+
         //字符串添加道具 
         public static bool OnAddItemData(this BagComponent self, string rewardItems, string getType, bool notice = true)
         {
@@ -1304,6 +1309,11 @@ namespace ET
                         int shulianduNumeric = makePlan == 1 ? NumericType.MakeShuLianDu_1 : NumericType.MakeShuLianDu_2;
                         int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
+
+                        if (getType == ItemGetWay.GM)
+                        {
+                            useBagInfo.ItemPar = "100";
+                        }
                     }
                     if (getType == ItemGetWay.PetEggPutOut && itemCof.ItemSubType == 102)
                     {
@@ -1322,6 +1332,8 @@ namespace ET
                     {
                         useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
                     }
+
+
                     //拾取到橙色装备
                     if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
                     {
