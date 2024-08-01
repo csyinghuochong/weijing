@@ -70,7 +70,10 @@ namespace ET
                     {
                         continue;
                     }
-                    allDefend[defend].GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, (int)keyValuePairLong.KeyId);
+                    if (keyValuePairLong.Value3 == 0)
+                    {
+                        allDefend[defend].GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, (int)keyValuePairLong.KeyId);
+                    }
                     attackUnit.GetComponent<SkillManagerComponent>().TriggerBuffSkill(keyValuePairLong, allDefend[defend].Id, buffNum).Coroutine();
                 }
             }
