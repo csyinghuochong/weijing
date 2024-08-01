@@ -6,6 +6,19 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ET
 {
+    public class KeyValuePairLong4
+    {
+
+        public long KeyId;
+
+        public long Value;
+
+        public long Value2;
+        public long Value3;
+    }
+
+
+
     public class SkillSetComponent : Entity, IAwake, ITransfer, IUnitCache
     {
         public int TianFuPlan = 0;
