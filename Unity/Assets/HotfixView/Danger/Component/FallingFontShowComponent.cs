@@ -86,6 +86,14 @@ namespace ET
                 ObjFlyText = rc.Get<GameObject>("FlyText_Add");
             }
 
+            //恢复暴击/重击
+            if (unit.MainHero == false && type == 1 || type == 3)
+            {
+                //设置字体
+                ObjFlyText = rc.Get<GameObject>("FlyText_Special");
+            }
+
+
             string addStr = "";
             if (targetValue >= 0 && type == 2)
             {

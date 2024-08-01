@@ -757,7 +757,7 @@ namespace ET
                 }
 
                 //获取技能相关系数
-                double actDamge = skillconfig.ActDamge * singingvalue;
+                double actDamge = skillconfig.ActDamge * singingvalue + buffHurtValueAdd;
                 int actDamgeValue = skillconfig.DamgeValue;
                 if (hurtMode == 1)  //持续伤害
                 {
