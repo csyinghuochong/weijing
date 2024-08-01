@@ -85,8 +85,6 @@ namespace ET
                 {
                     defendUnit.GetComponent<BuffManagerComponent>().BuffRemoveByUnit(0, (int)keyValuePairLong.KeyId);
                     buffHurtValueAdd = keyValuePairLong.Value2 * 0.001f * buffNum;
-
-                    singingvalue += buffHurtValueAdd;
                 }
             }
 
