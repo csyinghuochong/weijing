@@ -78,7 +78,7 @@ namespace ET
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
 
             self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
-            ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(3f);  });
+            ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(3f, false);  });
 
             self.Btn_NpcDuiHua = rc.Get<GameObject>("Btn_NpcDuiHua");
             ButtonHelp.AddListenerEx(self.Btn_NpcDuiHua, self.OnBtn_NpcDuiHua);
@@ -418,7 +418,7 @@ namespace ET
             DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
         }
 
-        public static void OnShiquItem(this UIMainSkillComponent self, float distance)
+        public static void OnShiquItem(this UIMainSkillComponent self, float distance, bool guaji)
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <= 0)
             {
@@ -465,6 +465,11 @@ namespace ET
             }
             else
             {
+                if (guaji)
+                {
+                    return;
+                }
+
                 Unit unit = MapHelper.GetNearItem(self.ZoneScene());
                 if (unit != null)
                 {

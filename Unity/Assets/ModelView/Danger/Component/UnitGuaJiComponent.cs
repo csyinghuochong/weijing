@@ -18,6 +18,7 @@ namespace ET
         public List<int> skillXuHaoList;
         public UI UIMain;
         public int XuHaoNum;
+        public long LastShiQu;
 
         public LockTargetComponent LockTargetComponent;
     }

@@ -230,7 +230,6 @@ namespace ET
 
                 //每秒使用一次技能
                 self.UseSkill().Coroutine();
-
             }
 
 
@@ -290,8 +289,14 @@ namespace ET
         public static void ShiQu(this UnitGuaJiComponen self)
         {
 
+            if (TimeHelper.ServerNow() - self.LastShiQu < TimeHelper.Second)
+            {
+                return;
+            }
+            self.LastShiQu = TimeHelper.ServerNow();
+
             //点一下拾取按钮
-            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(10f);
+            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(10f, true);
 
             //判断背包是否满了
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <= 0)
