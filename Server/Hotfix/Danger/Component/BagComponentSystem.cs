@@ -1055,11 +1055,11 @@ namespace ET
                 int userDataType = ItemHelper.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
-                    LogHelper.LogWarning($"[获取金币]UserDataType.Gold  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
+                    Log.Warning($"[获取金币]UserDataType.Gold  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
                 }
                 if (userDataType == UserDataType.Diamond)
                 {
-                    LogHelper.LogWarning($"[获取钻石]UserDataType.Diamond  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
+                    Log.Warning($"[获取钻石]UserDataType.Diamond  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
                 }
                 if (userDataType == UserDataType.PiLao)
                 {
