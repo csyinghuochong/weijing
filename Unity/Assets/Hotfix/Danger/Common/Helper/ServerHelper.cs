@@ -316,7 +316,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 103, ServerIp = $"{ip}:20425", ServerName = "翡翠之光", ServerOpenTime = 1717758000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 104, ServerIp = $"{ip}:20425", ServerName = "琉璃之海", ServerOpenTime = 1718362800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             
-            
+
             serverItems_1.Add(new ServerItem() { ServerId = 105, ServerIp = $"{ip}:20395", ServerName = "锦绣山河", ServerOpenTime = 1718967600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 106, ServerIp = $"{ip}:20415", ServerName = "巨龙之魂", ServerOpenTime = 1719572400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 107, ServerIp = $"{ip}:20455", ServerName = "海纳百川", ServerOpenTime = 1720177200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
@@ -328,8 +328,8 @@ namespace ET
 
 
             //2024/08/02 19:00:00 1722596400000 新区 纵横驰骋    112
-            //2024/08/02 19:00:00 1721991600000 合区 翡翠之光-琉璃之海   103/104
-            //2024/08/02 19:00:00 1721991600000 合区 萤火森林-皓月千里   97/99
+            //2024/08/02 19:00:00 1722596400000 合区 翡翠之光-琉璃之海   103/104
+            //2024/08/02 19:00:00 1722596400000 合区 萤火森林-皓月千里   97/99
             serverItems_1.Add(new ServerItem() { ServerId = 113, ServerIp = $"{ip}:20545", ServerName = "纵横驰骋", ServerOpenTime = 1722596400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
