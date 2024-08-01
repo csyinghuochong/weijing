@@ -96,6 +96,7 @@ namespace ET
             {
                 //addStr = "AJ";  //暴击
                 addStr = "暴击";  //暴击
+                //ObjFlyText.GetComponent<Text>().color = new Color(243, 110, 40);
             }
             if (type == 3)
             {
