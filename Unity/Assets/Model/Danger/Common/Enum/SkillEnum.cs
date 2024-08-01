@@ -3,6 +3,19 @@ using UnityEngine;
 
 namespace ET
 {
+
+    public class KeyValuePairLong4
+    {
+
+        public long KeyId;
+
+        public long Value;
+
+        public long Value2;
+        public long Value3;
+    }
+
+
     public enum BuffState
     {
         /// <summary>

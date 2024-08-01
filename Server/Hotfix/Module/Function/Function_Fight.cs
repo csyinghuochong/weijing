@@ -56,7 +56,7 @@ namespace ET
             ///Buff层数触发技能  buffid 1 技能ID 触发间隔
             if (SkillConfigCategory.Instance.BuffTriggerSkill.ContainsKey(skillconfig.Id))
             {
-                KeyValuePairLong keyValuePairLong = SkillConfigCategory.Instance.BuffTriggerSkill[skillconfig.Id];
+                KeyValuePairLong4 keyValuePairLong = SkillConfigCategory.Instance.BuffTriggerSkill[skillconfig.Id];
                 List<Unit> allDefend = attackUnit.GetParent<UnitComponent>().GetAll();
                 for ( int defend = 0; defend < allDefend.Count; defend++  )
                 {
@@ -78,7 +78,7 @@ namespace ET
             ///Buff层数叠加伤害  buffid 2 层数  附加伤害系数
             if (SkillConfigCategory.Instance.BuffAddHurt.ContainsKey(skillconfig.Id))
             {
-                KeyValuePairLong keyValuePairLong = SkillConfigCategory.Instance.BuffAddHurt[skillconfig.Id];
+                KeyValuePairLong4 keyValuePairLong = SkillConfigCategory.Instance.BuffAddHurt[skillconfig.Id];
                 int buffId = (int)keyValuePairLong.KeyId;
                 int buffNum = defendUnit.GetComponent<BuffManagerComponent>().GetBuffSourceNumber(0, buffId);
                 if(buffNum > 0)

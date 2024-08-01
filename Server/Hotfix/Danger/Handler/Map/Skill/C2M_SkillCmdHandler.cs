@@ -82,8 +82,10 @@ namespace ET
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();   
                 M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
 
+                //可以放二段斩的时候客户端会发送二段技能过来
                 if (skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
                 {
+                    //有对应的buff才能触发二段斩
                     int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillManagerComponent.SkillSecond[request.SkillID]].KeyId;
 
                     List<Unit> allDefend = unit.GetParent<UnitComponent>().GetAll();

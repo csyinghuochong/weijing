@@ -619,7 +619,7 @@ namespace ET
             return skillCd;
         }
 
-        public static async ETTask TriggerBuffSkill(this SkillManagerComponent self,  KeyValuePairLong keyValuePair, long targetId, int buffNum)
+        public static async ETTask TriggerBuffSkill(this SkillManagerComponent self, KeyValuePairLong4 keyValuePair, long targetId, int buffNum)
         {
             for (int i = 0; i < buffNum; i++)
             {
@@ -992,7 +992,8 @@ namespace ET
         /// <param name="skillConfig"></param>
         public static void CheckSkillSecond(this SkillManagerComponent self, SkillHandler skillHandler, long hurtId) 
         {
-            KeyValuePairLong keyValuePairLong = null;
+            KeyValuePairLong4 keyValuePairLong = null;
+            //有二段斩则记录到self.SkillSecond， 无则返回
             SkillConfigCategory.Instance.BuffSecondSkill.TryGetValue(skillHandler.SkillConf.Id, out keyValuePairLong);
             if (keyValuePairLong == null)
             {
