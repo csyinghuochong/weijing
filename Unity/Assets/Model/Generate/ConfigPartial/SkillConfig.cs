@@ -53,9 +53,14 @@ namespace ET
 
                 try
                 {
-                    //97050001,1,77006004,0.3      buffid/类型/技能id/时间
+                    //97050001,1,77006004,0.3,0      buffid/类型/技能id/时间/是否移除之前的buff
                     //释放技能时触发
                     string[] buffInfoParam = buffToSkill.Split(',');
+                    int removebuff = 0;
+                    if (buffInfoParam.Length > 4)
+                    {
+                        removebuff = int.Parse(buffInfoParam[4]);
+                    }
                     if (buffInfoParam[1] == "1")
                     {
                         BuffTriggerSkill.Add(skillconfig.Id, new KeyValuePairLong4()
@@ -63,7 +68,7 @@ namespace ET
                             KeyId = int.Parse(buffInfoParam[0]),                        //受击者 拥有buffid
                             Value = int.Parse(buffInfoParam[2]),                        //攻击者 触发新技能
                             Value2 = (long)(float.Parse(buffInfoParam[3]) * 1000),       //技能间隔
-                            Value3 = int.Parse(buffInfoParam[4])                        //移除受击者Buff
+                            Value3 = removebuff                                         //移除受击者Buff
                         });
                     }
                     //97050001,2,1.5    buffid/类型/伤害系数
