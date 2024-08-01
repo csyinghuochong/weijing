@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -297,13 +296,15 @@ namespace ET
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(self.LastLoginTime);
                 DateTime nowdateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
-                if (lastdateTime.Hour == nowdateTime.Hour)
+                if ( lastdateTime.Hour == nowdateTime.Hour)
                 {
-                    Console.WriteLine($"lastdateTime.Hour == nowdateTime.Hour");
+                    if (self.Id == 2341487098982367232)
+                    {
+                        Console.WriteLine($"刀：lastdateTime.Hour == nowdateTime.Hour  {hour}");
+                    }
                     return;
                 }
             }
-           
 
             if (hour == 0 )
             {
@@ -606,7 +607,7 @@ namespace ET
 
             if (Type == UserDataType.Diamond)
             {
-                Log.Warning($"增加钻石: {unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
+                Log.Warning($"增加钻石: {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
 
             if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)
