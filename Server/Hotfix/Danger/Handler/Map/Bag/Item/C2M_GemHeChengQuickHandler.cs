@@ -18,6 +18,16 @@ namespace ET
                 return;
             }
 
+            int leftCell = 0;
+            if (request.LocType == 0)
+            {
+                leftCell = unit.GetComponent<BagComponent>().GetBagLeftCell();
+            }
+            else
+            {
+                leftCell = unit.GetComponent<BagComponent>().GetHourseLeftCell(request.LocType);
+            }
+
             List<BagInfo> bagItemList = unit.GetComponent<BagComponent>().GetItemByLoc((ItemLocType)request.LocType);
 
             List<BagInfo> gemList = new List<BagInfo>();
@@ -75,6 +85,12 @@ namespace ET
             if (userInfo.Vitality < costvitality)
             {
                 response.Error = ErrorCode.ERR_VitalityNotEnoughError;
+                reply();
+                return;
+            }
+            if (leftCell < addIds.Count)
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

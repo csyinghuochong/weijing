@@ -115,7 +115,8 @@ namespace ET
                 costvitality += (equipMakeConfig.CostVitality * newnumber);
             }
 
-            if (costgold <= 0) {
+            if (costgold <= 0)
+            {
 
                 FloatTipManager.Instance.ShowFloatTip("当前背包暂无可合成宝石");
                 return;
@@ -123,6 +124,8 @@ namespace ET
             //{costvitality}活力
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "合成宝石", $"一键合成消耗{costgold}金币", () =>
             {
+
+
                 self.REquestGemHeCheng().Coroutine();
             }, null).Coroutine();
         }
