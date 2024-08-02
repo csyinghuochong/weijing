@@ -284,7 +284,7 @@ namespace ET
                     self.SkillBuff(self.SkillConf.BuffID[y], uu);
                 }
             }
-            if (!self.OnlyOnceBuffUnitID.Contains(uu.Id) )
+            if (self.SkillConf.OnlyOnceBuffID!= null  &&  !self.OnlyOnceBuffUnitID.Contains(uu.Id) )
             {
                 self.OnlyOnceBuffUnitID.Add(uu.Id);
                 for (int y = 0; y < self.SkillConf.OnlyOnceBuffID.Length; y++)
