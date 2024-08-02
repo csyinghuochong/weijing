@@ -204,77 +204,80 @@ namespace ET
 		/// <summary>释放BUFFID</summary>
 		[ProtoMember(43)]
 		public int[] BuffID { get; set; }
-		/// <summary>施法动作名称</summary>
+		/// <summary>只释放一次buff</summary>
 		[ProtoMember(44)]
+		public int[] OnlyOnceBuffID { get; set; }
+		/// <summary>施法动作名称</summary>
+		[ProtoMember(45)]
 		public string SkillAnimation { get; set; }
 		/// <summary>技能音效</summary>
-		[ProtoMember(45)]
+		[ProtoMember(46)]
 		public string SkillMusic { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(46)]
+		[ProtoMember(47)]
 		public int SkillHitEffectID { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(47)]
+		[ProtoMember(48)]
 		public int[] SkillEffectID { get; set; }
 		/// <summary>脚本名称</summary>
-		[ProtoMember(48)]
+		[ProtoMember(49)]
 		public string GameObjectName { get; set; }
 		/// <summary>每个脚本对应参数</summary>
-		[ProtoMember(49)]
+		[ProtoMember(50)]
 		public string GameObjectParameter { get; set; }
 		/// <summary>所有脚本通用参数</summary>
-		[ProtoMember(50)]
+		[ProtoMember(51)]
 		public string ComObjParameter { get; set; }
 		/// <summary>是否显示</summary>
-		[ProtoMember(51)]
+		[ProtoMember(52)]
 		public int IsShow { get; set; }
 		/// <summary>技能描述</summary>
-		[ProtoMember(52)]
+		[ProtoMember(53)]
 		public string SkillDescribe { get; set; }
 		/// <summary>施法时面对目标时间</summary>
-		[ProtoMember(53)]
+		[ProtoMember(54)]
 		public double IfLookAtTatgetTime { get; set; }
 		/// <summary>触发技能时附带技能</summary>
-		[ProtoMember(54)]
+		[ProtoMember(55)]
 		public int[] AddSkillID { get; set; }
 		/// <summary>技能触发时间</summary>
-		[ProtoMember(55)]
+		[ProtoMember(56)]
 		public double PassiveSkillTriggerTime { get; set; }
 		/// <summary>施法时是否面对目标</summary>
-		[ProtoMember(56)]
+		[ProtoMember(57)]
 		public int IfLookAtTarget { get; set; }
 		/// <summary>怪物技能延迟</summary>
-		[ProtoMember(57)]
+		[ProtoMember(58)]
 		public double MonsterDelayTime { get; set; }
 		/// <summary>宠物互斥ID</summary>
-		[ProtoMember(58)]
+		[ProtoMember(59)]
 		public int HuChiID { get; set; }
 		/// <summary>触发自身拥有技能</summary>
-		[ProtoMember(59)]
+		[ProtoMember(60)]
 		public int[] TriggerSelfSkillID { get; set; }
 		/// <summary>释放技能是否打断移动</summary>
-		[ProtoMember(60)]
+		[ProtoMember(61)]
 		public int IfStopMove { get; set; }
 		/// <summary>技能持续伤害是否触发Buff</summary>
-		[ProtoMember(61)]
+		[ProtoMember(62)]
 		public int DamgeChiXuTrigerBuff { get; set; }
 		/// <summary>技能持续伤害间隔时间</summary>
-		[ProtoMember(62)]
+		[ProtoMember(63)]
 		public int DamgeChiXuInterval { get; set; }
 		/// <summary>技能持续伤害百分比</summary>
-		[ProtoMember(63)]
+		[ProtoMember(64)]
 		public double DamgeChiXuPro { get; set; }
 		/// <summary>技能持续伤害固定值</summary>
-		[ProtoMember(64)]
+		[ProtoMember(65)]
 		public int DamgeChiXuValue { get; set; }
 		/// <summary>是否显示技能指示器字段</summary>
-		[ProtoMember(65)]
+		[ProtoMember(66)]
 		public int IfShowSkillZhiShi { get; set; }
 		/// <summary>结束时技能</summary>
-		[ProtoMember(66)]
+		[ProtoMember(67)]
 		public int EndSkillId { get; set; }
 		/// <summary>Buff触发技能</summary>
-		[ProtoMember(67)]
+		[ProtoMember(68)]
 		public string BuffToSkill { get; set; }
 
 	}

@@ -15,7 +15,7 @@ namespace ET
             self.TheUnitFrom = theUnitFrom;
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
             self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
-
+            self.OnlyOnceBuffUnitID.Clear();    
             self.IsExcuteHurt = false;
             self.SkillFirstHurtTime = 0;
             self.SkillTriggerInvelTime = 0;
@@ -284,6 +284,15 @@ namespace ET
                     self.SkillBuff(self.SkillConf.BuffID[y], uu);
                 }
             }
+            if (!self.OnlyOnceBuffUnitID.Contains(uu.Id) )
+            {
+                self.OnlyOnceBuffUnitID.Add(uu.Id);
+                for (int y = 0; y < self.SkillConf.OnlyOnceBuffID.Length; y++)
+                {
+                    self.SkillBuff(self.SkillConf.OnlyOnceBuffID[y], uu);
+                }
+            }
+
 
             SkillSetComponent skillSetComponent = self.TheUnitFrom.GetComponent<SkillSetComponent>();
             List<int> buffInitAdd = skillSetComponent != null ? skillSetComponent.GetBuffIdAdd(self.SkillConf.Id) : null;
