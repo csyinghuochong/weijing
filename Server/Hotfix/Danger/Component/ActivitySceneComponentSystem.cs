@@ -82,8 +82,8 @@ namespace ET
                 self.NoticeActivityUpdate_Hour(dateTime).Coroutine();
             }
 
-            self.CheckIndex++;
-            if (self.CheckIndex >= 10)
+            self.CheckIndex += 1000;
+            if (self.CheckIndex >= TimeHelper.Minute * 5)
             {
                 self.CheckPetMine();
                 self.SaveDB();
@@ -157,7 +157,7 @@ namespace ET
                     float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexinList);
 
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
-                    int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
+                    int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex * 1f/ TimeHelper.Hour));
 
                     if (!self.DBDayActivityInfo.PetMingChanChu.ContainsKey(petMingPlayers[i].UnitId))
                     {
@@ -215,7 +215,7 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.ActivitySceneTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.ActivitySceneTimer, self);
         }
 
         public static async ETTask OnCheckFuntionButton(this ActivitySceneComponent self)
