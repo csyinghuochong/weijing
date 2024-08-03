@@ -27,7 +27,7 @@ namespace ET
         public GameObject ButtonTiaozhan;
         public Text TextHurt;
 
-        public int Countdown;
+        public long Countdown;
         public long Timer;
         public long LastTiaoZhan;
         public long HurtValue;
@@ -79,7 +79,8 @@ namespace ET
             hurt *= -1;
             self.HurtValue += hurt;
 
-            if (self.FightTime <= 0) {
+            if (self.FightTime <= 0)
+            {
                 self.FightTime = 1;
             }
             self.TextHurt.text = $"伤害总值:{ self.HurtValue}\n伤害秒值:{(int)((float)self.HurtValue / self.FightTime)}";
@@ -88,7 +89,7 @@ namespace ET
         public static void BeginTimer(this UITrialMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Countdown = 60;
+            self.Countdown = TimeHelper.ServerNow() + TimeHelper.Minute;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TrialMainTimer, self);
         }
 
@@ -140,7 +141,8 @@ namespace ET
 
         public static void OnTimer(this UITrialMainComponent self)
         {
-            if (self.Countdown <= 0)
+            int leftTime = Mathf.CeilToInt(( self.Countdown - TimeHelper.ServerNow() ) * 0.001f);
+            if (leftTime <= 0)
             {
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
@@ -150,8 +152,7 @@ namespace ET
                 return;
             }
 
-            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown - 1}";
-            self.Countdown--;
+            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {leftTime - 1}";
             self.FightTime++;
         }
     }
