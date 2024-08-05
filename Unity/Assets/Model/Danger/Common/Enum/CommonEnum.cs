@@ -3,6 +3,13 @@
 namespace ET
 {
 
+    public class HttpGetRouterResponse : Entity
+    {
+        public List<string> Realms = new List<string>();
+        public List<string> Routers = new List<string>();
+    }
+
+
     public sealed class TikTokCode
     {
         public int code;        //返回码

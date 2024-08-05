@@ -398,6 +398,8 @@ namespace ET
 
             self.CheckPopUP();
 
+            self.CheckTapRepCiLiu();
+
             self.RequestChatList().Coroutine();
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -889,6 +891,45 @@ namespace ET
                 Time = TimeHelper.ClientNow(),
                 UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
             });
+
+#if UNITY_ANDROID
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest))
+            {
+                TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 3, addNumber + "").Coroutine();
+            }
+#endif
+        }
+
+        public static  void CheckTapRepCiLiu(this UIMainComponent self)
+        {
+#if UNITY_ANDROID
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (GlobalHelp.GetPlatform() != 1 || string.IsNullOrEmpty(accountInfoComponent.TaprepRequest))
+            {
+                return;
+            }
+
+            string registerTime = PlayerPrefsHelp.GetString( PlayerPrefsHelp.TapRepRegister );
+            if ( string.IsNullOrEmpty(registerTime))
+            {
+                return;
+            }
+            if (PlayerPrefsHelp.GetInt(PlayerPrefsHelp.TapRepCiLiu) == 1)
+            {
+                return;
+            }
+
+            long time1 = long.Parse(registerTime);
+            long time2 = TimeHelper.ServerNow();
+
+            if (ComHelp.GetDayByTime(time2) - ComHelp.GetDayByTime(time1) == 1)
+            {
+                PlayerPrefsHelp.SetInt(PlayerPrefsHelp.TapRepCiLiu, 1);
+                TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 4, string.Empty).Coroutine();
+            }
+
+#endif
         }
 
         public static void OnSettingUpdate(this UIMainComponent self)

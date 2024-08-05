@@ -308,6 +308,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string ThirdLogin { get; set; }
 
+		[ProtoMember(5)]
+		public string DeviceID { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Center2A_CheckAccount)]
@@ -334,6 +337,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public bool StopServer { get; set; }
+
+		[ProtoMember(5)]
+		public string TaprepRequest { get; set; }
 
 	}
 

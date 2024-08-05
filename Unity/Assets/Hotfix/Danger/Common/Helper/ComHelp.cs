@@ -8,6 +8,10 @@ namespace ET
     public static class ComHelp
     {
 
+        public const int TapHttpOuter = 20008;
+        public const int TapHttpIneer = 30300;
+
+
         public const int MaxZone = 1024;
         //版号专区
         public static bool IsBanHaoZone(int zone)

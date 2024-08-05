@@ -219,7 +219,8 @@ namespace ET
                         {
                             AccountName = request.AccountName,
                             Password = request.Password,
-                            ThirdLogin = request.ThirdLogin
+                            ThirdLogin = request.ThirdLogin,
+                            DeviceID = request.DeviceID,
                         });
                         PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
                         IsHoliday = centerAccount.IsHoliday;
@@ -408,6 +409,8 @@ namespace ET
                             
                             response.RoleLists.Add(roleList);
                         }
+
+                        response.TaprepRequest = centerAccount.TaprepRequest;
                         response.PlayerInfo = centerPlayerInfo;
                         response.AccountId = account.Id;
                         response.Token = Token;

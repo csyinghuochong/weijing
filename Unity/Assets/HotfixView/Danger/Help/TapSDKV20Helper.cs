@@ -16,9 +16,7 @@ public sealed class TapSDKV20Helper
     //1100	AGE_LIMIT 当前用户因触发应用设置的年龄限制无法进入游戏
     //1200	INVALID_CLIENT_OR_NETWORK_ERROR 数据请求失败，游戏需检查当前设置的应用信息是否正确及判断当前网络连接是否正常
     //9002	REAL_NAME_STOP 实名过程中点击了关闭实名窗，游戏可重新开始防沉迷认证
-    /// <summary>
-    /// ʵ����֤�ص�
-    /// </summary>
+
     public Action<int, string> AntiAddictionHandler;
 
     /// <summary>
@@ -151,4 +149,8 @@ public sealed class TapSDKV20Helper
         hasCheckedAntiAddiction = false;
         //AntiAddictionUIKit.StartupWithTapTap(userIdentifier);
     }
+
+
+
+
 }

@@ -31,11 +31,10 @@ namespace ET
             }
 
             queueSession.AddComponent<PingComponent>();
-
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink = false, string token = "", string thirdLogin = "")
+        public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink, string token, string thirdLogin)
         {
             Log.ILog.Debug($"login: {account}   {password}    {thirdLogin}");
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
@@ -51,8 +50,17 @@ namespace ET
             {
                 //password = MD5Helper.StringMD5(password);
                 int age_type = zoneScene.GetComponent<AccountInfoComponent>().Age_Type;
+                string deviceid = zoneScene.GetComponent<AccountInfoComponent>().DeviceID;
                 accountSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
-                a2CLoginAccount = (A2C_LoginAccount)await accountSession.Call(new C2A_LoginAccount() { AccountName = account, Password = password, Token = token, ThirdLogin = thirdLogin, Relink = relink,age_type = age_type });
+                a2CLoginAccount = (A2C_LoginAccount)await accountSession.Call(new C2A_LoginAccount() { 
+                    AccountName = account,
+                    Password = password,
+                    Token = token,
+                    ThirdLogin = thirdLogin, 
+                    Relink = relink,
+                    age_type = age_type,
+                    DeviceID = deviceid     
+                });
             }
             catch (Exception e)
             {
@@ -89,6 +97,7 @@ namespace ET
             playerComponent.PlayerInfo = a2CLoginAccount.PlayerInfo;
             playerComponent.CreateRoleList = a2CLoginAccount.RoleLists;
             playerComponent.Token = a2CLoginAccount.Token;
+            playerComponent.TaprepRequest = a2CLoginAccount.TaprepRequest;
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 

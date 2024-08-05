@@ -32,8 +32,11 @@ namespace ET
                     scene.AddComponent<LoginInfoRecordComponent>();
                     break;
                 case SceneType.AccountCenter:
+                    int tapport = ComHelp.IsInnerNet() ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
+
                     scene.AddComponent<FangChenMiComponent>();
                     scene.AddComponent<AccountCenterComponent>();
+                    scene.AddComponent<HttpComponent, string>($"http://*:{tapport}/");
                     scene.AddComponent<NetKcpComponent, IPEndPoint, int>(startSceneConfig.InnerIPOutPort, SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
                     break;
                 case SceneType.Realm:

@@ -192,10 +192,10 @@ namespace ET
 					self.AccountInfoComponent.Root = IPHoneHelper.IsRoot() ? 1 : 0;
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
-				if (GlobalHelp.GetPlatform() != 5)
-				{
-                    self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
-                }
+				//if (GlobalHelp.GetPlatform() != 5)
+				//{
+                   //先注释掉   不知道有什么影响。。。。
+    //            }
                 Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
 
 				//Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
@@ -213,6 +213,9 @@ namespace ET
                 {
                     self.AccountInfoComponent.Age_Type = 100;
                 }
+
+
+                //self.TestTapHttp_2().Coroutine();
 #endif
             }
 
@@ -865,7 +868,8 @@ namespace ET
 			self.AccountInfoComponent.Account = account;
 			self.AccountInfoComponent.Password = password;
 			self.AccountInfoComponent.LoginType = loginType;
-			self.UIRotateComponent.GameObject.SetActive(true);
+			self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
+            self.UIRotateComponent.GameObject.SetActive(true);
 			self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(true);
 
 			PlayerPrefsHelp.SetInt(PlayerPrefsHelp.MyServerID, self.ServerInfo.ServerId);
@@ -893,7 +897,20 @@ namespace ET
             }
         }
 
-		public static async ETTask RequestLoginV20(this UILoginComponent self, string account, string password, string loginType)
+
+        public static async ETTask TestTapHttp_2(this UILoginComponent self)
+        {
+            string taphost = "127.0.0.1";
+            int tapport = !GlobalHelp.IsOutNetMode ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
+			string callback = $"http://{taphost}:{tapport}/wjtaprepcallback";
+            string url = $"http://{taphost}:{tapport}/wjtaprepjiance?idfa=asedfstUfe&time=1605432321&ip=10.33.25.54&anid={SystemInfo.deviceUniqueIdentifier}&game_id=13&game_name=游戏名称&adset_id=132214&adset_net=计划名称&device_brand=苹果&device_model=iPhone3,2&creative_id=131232&conversion_type=TapRep&device=1&OAID=&callback={callback}&tap_track_id=xYTKx4rSFFWx&tap_project_id=13";
+            Log.Debug($"TestTapHttp_2 url : {url}");
+            string routerInfo = await HttpClientHelper.Get(url); 
+            Log.Debug($"TestTapHttp_2 reponse: {routerInfo}");
+            //formjson
+        }
+
+        public static async ETTask RequestLoginV20(this UILoginComponent self, string account, string password, string loginType)
 		{
            
             long serverTime = TimeHelper.ServerNow();
@@ -906,16 +923,34 @@ namespace ET
                 string.Empty,
                 loginType);
 
-            if (loginError != ErrorCode.ERR_Success)
-            {
+			if (loginError == ErrorCode.ERR_Success)
+			{
+
+#if UNITY_ANDROID
+                //登陆成功 ，会自动注册账号
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+				if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)))
+				{
+					PlayerPrefsHelp.SetString(PlayerPrefsHelp.TapRepRegister, TimeHelper.ClientNow() + "");
+					//tapreq 激活
+					await TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 1, string.Empty);
+
+                    //tapreq 注册
+                    await TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 2, string.Empty);
+                }
+#endif
+			}
+			else
+			{
                 self.LoginErrorNumber++;
                 self.Loading?.SetActive(false);
                 self.UIRotateComponent.GameObject.SetActive(false);
                 self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(false);
-            }
-            if (self.LoginErrorNumber >= 50)
-            {
-                PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.Minute * 10).ToString());
+
+                if (self.LoginErrorNumber >= 50)
+                {
+                    PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (serverTime + TimeHelper.Minute * 10).ToString());
+                }
             }
         }
 

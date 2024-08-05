@@ -1164,6 +1164,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int Simulator { get; set; }
 
+		[ProtoMember(11)]
+		public string DeviceID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_LoginAccount)]
@@ -1196,6 +1199,9 @@ namespace ET
 
 		[ProtoMember(9)]
 		public List<CreateRoleInfo> RoleLists = new List<CreateRoleInfo>();
+
+		[ProtoMember(10)]
+		public string TaprepRequest { get; set; }
 
 	}
 
@@ -12472,7 +12478,7 @@ namespace ET
 		public long AuctionPrice { get; set; }
 
 		[ProtoMember(3)]
-		public int AuctionStatus { get; set; }
+		public long AuctionStatus { get; set; }
 
 		[ProtoMember(4)]
 		public int AuctionNumber { get; set; }

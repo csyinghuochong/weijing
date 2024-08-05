@@ -22,15 +22,16 @@ namespace ET
 		public string RealmKey;
 		public string RealmAddress;
 
-		//当前登录角色
-		public int ServerId;
+		public string TaprepRequest;
+
+        //当前登录角色
+        public int ServerId;
 		public string ServerIp;
 		public string Account;
 		public string Password;
 		public string LoginType;
 		public long CurrentRoleId;
 		public string ServerName;
-
 		public long LastTime = 0;
 
 		public string TianQiValue = "1";
