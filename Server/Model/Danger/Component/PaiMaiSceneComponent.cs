@@ -7,14 +7,21 @@ namespace ET
     public class PaiMaiSceneComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
+
+
+        public long AuctionOverTimer;
+
+        /// <summary>
+        /// 0没开始 1当前时间小于该值表示开始 2当前时间大于等于该值表示结束  -1也表示结束
+        /// </summary>
+        public long AuctionStatus;  //结束时间
+
+
         /// <summary>
         /// 拍卖会
         /// </summary>
         public int AuctionItem;
-        /// <summary>
-        /// 0没开始 1开始 2结束
-        /// </summary>
-        public int AuctionStatus;  
+       
         public long AuctionPrice;
         public long AuctionStart;  //起拍价
         public long AuctioUnitId;

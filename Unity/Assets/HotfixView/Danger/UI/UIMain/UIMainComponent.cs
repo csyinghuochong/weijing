@@ -1511,6 +1511,13 @@ namespace ET
                 {
                     endTime += (30 * 60);
                 }
+                if (functonIds[i] == 1040)  //拍卖特惠显示到12点
+                {
+                    int maxTime = 23 * 60 + 58;
+                    int curMinute = dateTime.Hour * 60 + dateTime.Minute;
+                    Log.ILog.Debug($"拍卖特惠剩余显示时间:{maxTime - curMinute}");
+                    endTime += (( maxTime - curMinute ) * 60);
+                }
                 if (functonIds[i] == 1052)
                 {
                     endTime += (10 * 60);

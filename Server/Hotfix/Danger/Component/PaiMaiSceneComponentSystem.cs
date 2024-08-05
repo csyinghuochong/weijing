@@ -20,6 +20,25 @@ namespace ET
         }
     }
 
+    [Timer(TimerType.AuctionOverTimer)]
+    public class AuctionOverTimer : ATimer<PaiMaiSceneComponent>
+    {
+        public override void Run(PaiMaiSceneComponent self)
+        {
+            try
+            {
+
+                self.OnAuctionOver().Coroutine();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    
+
     public class PaiMaiComponentAwakeSystem : AwakeSystem<PaiMaiSceneComponent>
     {
         public override void Awake(PaiMaiSceneComponent self)
@@ -35,6 +54,7 @@ namespace ET
         public override void Destroy(PaiMaiSceneComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance.Remove(ref self.AuctionOverTimer);
         }
     }
 
@@ -42,10 +62,9 @@ namespace ET
     public static class PaiMaiSceneComponentSystem
     {
 
-        public static async ETTask OnAuctionBegin(this PaiMaiSceneComponent self, long time)
+        public static  void OnAuctionBegin(this PaiMaiSceneComponent self, long overlefttime)
         {
             self.AuctionRecords.Clear();
-            self.AuctionStatus = 1;
             //初始化拍卖价格
             self.AuctionPrice = 1000000;
             self.AuctionStart = self.AuctionPrice;
@@ -117,13 +136,40 @@ namespace ET
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
             $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
 
-            LogHelper.LogWarning($"拍卖会开始:  {self.DomainZone()}  {self.AuctioUnitId} {self.AuctionPlayer}", true);
-            await TimerComponent.Instance.WaitAsync(time);
-            self.OnAuctionOver().Coroutine();
+            Log.Warning($"拍卖会开始:  {self.DomainZone()}  {self.AuctioUnitId} {self.AuctionPlayer}");
+            Log.Warning($"拍卖会开始结束时间:  {overlefttime}");
+            self.AuctionStatus = TimeHelper.ServerNow() + overlefttime;
+            TimerComponent.Instance.Remove(ref self.AuctionOverTimer);
+            self.AuctionOverTimer = TimerComponent.Instance.NewOnceTimer(self.AuctionStatus, TimerType.AuctionOverTimer, self );
+        }
+
+        public static void ExtendOverTime(this PaiMaiSceneComponent self)
+        {
+            if (self.AuctionOverTimer <= 0)
+            {
+                return;
+            }
+
+            DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow() );
+            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+            int maxTime = 23 * 60 + 58;
+
+            if (curTime <= maxTime &&  self.AuctionStatus - TimeHelper.ServerNow() < TimeHelper.Minute)
+            {
+                Console.WriteLine($"有人加价 延迟时间！   {self.DomainZone()}");
+                self.AuctionStatus = TimeHelper.ServerNow() + TimeHelper.Minute;
+                TimerComponent.Instance.Remove(ref self.AuctionOverTimer);
+                self.AuctionOverTimer = TimerComponent.Instance.NewOnceTimer(self.AuctionStatus, TimerType.AuctionOverTimer, self);
+            }
+            else
+            { 
+                Console.WriteLine($"有人加价！   {self.DomainZone()}");
+            }
         }
 
         public static async ETTask OnAuctionOver(this PaiMaiSceneComponent self)
         {
+            Console.WriteLine($"拍卖结束！   {self.DomainZone()}");
             long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
 
             if (self.AuctioUnitId != 0)
@@ -225,7 +271,7 @@ namespace ET
 
             //其他玩家退还保证金
             self.AuctionJoinList.Clear();
-            self.AuctionStatus = 2;
+            self.AuctionStatus = -1;
 
             //拍卖会结束
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
@@ -248,11 +294,11 @@ namespace ET
                 await TimerComponent.Instance.WaitAsync((openTime - curTime) * TimeHelper.Second);
                 dateTime = TimeHelper.DateTimeNow();
                 curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-                self.OnAuctionBegin((closeTime - curTime) * 1000).Coroutine();
+                self.OnAuctionBegin((closeTime - curTime) * 1000);
             }
             else if (curTime >= openTime && curTime <= closeTime)
             {
-                self.OnAuctionBegin((closeTime - curTime) * 1000).Coroutine();
+                self.OnAuctionBegin((closeTime - curTime) * 1000);
             }
             else
             {

@@ -23,12 +23,15 @@ namespace ET
                 reply();
                 return;
             }
-            if (paiMaiSceneComponent.AuctionStatus != 1)
+
+            //paiMaiSceneComponent.AuctionStatus == 0 || paiMaiSceneComponent.AuctionStatus == -1
+            if ( TimeHelper.ServerNow() >= paiMaiSceneComponent.AuctionStatus)
             {
                 response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }
+
 
             if (!paiMaiSceneComponent.AuctionJoinList.Contains(request.UnitID))
             {

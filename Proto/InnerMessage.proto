@@ -142,6 +142,7 @@ message A2Center_CheckAccount // IActorRequest
     string AccountName = 1;
     string Password = 2;
     string ThirdLogin = 4;
+	string DeviceID = 5;
 }
 
 message Center2A_CheckAccount // IActorResponse
@@ -153,6 +154,7 @@ message Center2A_CheckAccount // IActorResponse
     int64 AccountId = 2;
 	bool IsHoliday = 3;
 	bool StopServer = 4;
+	string TaprepRequest = 5;
 }
 
 //ResponseType Center2A_SaveAccount

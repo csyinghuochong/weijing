@@ -36,8 +36,8 @@ namespace ET
         public UIItemComponent UICommonItem;
         public GameObject Btn_Record;
 
+        public long AuctionStatus;  //结束时间
         public long AuctionTimer;
-        public long LeftTime;
         public long AuctionStart;   //起拍价
         public bool BaoZhenJin;
 
@@ -83,23 +83,8 @@ namespace ET
             self.Lab_RmbNum = rc.Get<GameObject>("Lab_RmbNum").GetComponent<InputField>();
 
             self.RequestPaiMaiAuction().Coroutine();
-
-            long serverTime = TimeHelper.ServerNow();
-            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute)* 60 + dateTime.Second;
-
-            long openTime = FunctionHelp.GetOpenTime(1040);
-            long closeTime = FunctionHelp.GetCloseTime(1040);
-            if (curTime >= openTime && curTime < closeTime)
-            {
-                self.LeftTime = closeTime - curTime;
-                self.AuctionTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AuctionTimer, self);
-                self.OnAuctionTimer();
-            }
-            else
-            {
-                self.Text_2.GetComponent<Text>().text = "已结束";
-            }
+            self.Text_2.GetComponent<Text>().text = string.Empty;
+            self.AuctionTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AuctionTimer, self);
         }
     }
 
@@ -113,17 +98,20 @@ namespace ET
 
     public static class UIPaiMaiAuctionComponentSystem
     {
-
         public static void OnAuctionTimer(this UIPaiMaiAuctionComponent self)
         {
-            if (self.LeftTime < 0)
+            if (self.AuctionStatus == 0)
+            {
+                return;
+            }
+            if (TimeHelper.ServerNow() >= self.AuctionStatus)
             {
                 self.Text_2.GetComponent<Text>().text = "已结束";
                 TimerComponent.Instance?.Remove(ref self.AuctionTimer);
                 return;
             }
-            self.Text_2.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(self.LeftTime * 1000); 
-            self.LeftTime--;
+            long leftTime = self.AuctionStatus - TimeHelper.ServerNow();
+            self.Text_2.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(leftTime); 
         }
 
         public static void Btn_BuyNum_jia(this UIPaiMaiAuctionComponent self, int add)
@@ -176,8 +164,16 @@ namespace ET
             }
 
 
+            long instanceid = self.InstanceId;
             C2M_PaiMaiAuctionPriceRequest request = new C2M_PaiMaiAuctionPriceRequest() { Price = price };
             M2C_PaiMaiAuctionPriceResponse response = (M2C_PaiMaiAuctionPriceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (instanceid != self.InstanceId || response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            self.RequestPaiMaiAuction().Coroutine();
         }
 
         public static  void OnBtn_CanYu(this UIPaiMaiAuctionComponent self)
@@ -211,16 +207,23 @@ namespace ET
 
         public static async ETTask RequestPaiMaiAuction(this UIPaiMaiAuctionComponent self)
         {
+            long instanceid = self.InstanceId;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             C2P_PaiMaiAuctionInfoRequest  request = new C2P_PaiMaiAuctionInfoRequest() { UnitId = unit.Id };
             P2C_PaiMaiAuctionInfoResponse response = (P2C_PaiMaiAuctionInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.AuctionItem == 0)
+
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            if (TimeHelper.ServerNow() >= response.AuctionStatus)
             {
                 self.Text_2.GetComponent<Text>().text = "已结束";
                 self.Btn_Auction.SetActive(false);
                 self.Btn_CanYu.SetActive(false);
                 return;
             }
+            self.AuctionStatus = response.AuctionStatus;
             self.OnUpdateUI( response.AuctionItem, response.AuctionNumber, response.AuctionPrice );
             self.TextAuctionPlayer.GetComponent<Text>().text = "出价玩家:" + response.AuctionPlayer;
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = response.AuctionNumber.ToString();

@@ -575,6 +575,7 @@ message C2A_LoginAccount // IRequest
 	bool Relink = 5;
 	int32 age_type = 6;
 	int32 Simulator = 7;
+	string DeviceID = 11;
 }
 
 message A2C_LoginAccount // IResponse
@@ -590,6 +591,7 @@ message A2C_LoginAccount // IResponse
 	
 	PlayerInfo PlayerInfo = 8;
 	repeated CreateRoleInfo RoleLists = 9;
+	string TaprepRequest = 10;
 }
 
 message A2C_Disconnect	//IMessage
@@ -5948,7 +5950,7 @@ message P2C_PaiMaiAuctionInfoResponse // IPaiMaiListResponse
 	string Message = 92;
 	int32 AuctionItem = 1;
 	int64 AuctionPrice = 2;
-	int32 AuctionStatus = 3;
+	int64 AuctionStatus = 3;
 	int32 AuctionNumber = 4;
 	string AuctionPlayer = 5; 
 	int64 AuctionStart = 6;
