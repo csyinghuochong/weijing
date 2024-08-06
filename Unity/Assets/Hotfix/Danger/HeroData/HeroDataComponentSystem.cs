@@ -90,6 +90,14 @@ namespace ET
             {
                 numericComponent.Set(NumericType.Bloodstone, 10100);
             }
+            if (numericComponent.GetAsInt(NumericType.UnionAttribute_1) == 0)
+            {
+                numericComponent.Set(NumericType.UnionAttribute_1, 20100);
+            }
+            if (numericComponent.GetAsInt(NumericType.UnionAttribute_2) == 0)
+            {
+                numericComponent.Set(NumericType.UnionAttribute_2, 30100);
+            }
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);

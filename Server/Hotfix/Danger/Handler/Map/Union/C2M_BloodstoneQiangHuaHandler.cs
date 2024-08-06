@@ -11,7 +11,7 @@ namespace ET
         {
            
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(NumericType.Bloodstone));
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(request.QiangHuaType));
 
             if (publicQiangHuaConfig.NextID == 0)
             {
@@ -45,17 +45,36 @@ namespace ET
             }
 
             int level = 0;
-            double addPro = publicQiangHuaConfig.AdditionPro * numericComponent.GetAsInt(NumericType.BloodstoneFail);
+
+            int failType = 0;
+            switch (request.QiangHuaType)
+            {
+                case NumericType.Bloodstone:
+                    failType = NumericType.BloodstoneFail;
+                    break;
+                case NumericType.UnionAttribute_1:
+                    failType = NumericType.UnionAttributeFail_1;
+                    break;
+                case NumericType.UnionAttribute_2:
+                    failType = NumericType.UnionAttributeFail_2;
+                    break;
+                default:
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+            }
+
+            double addPro = publicQiangHuaConfig.AdditionPro * numericComponent.GetAsInt(failType);
             if ((float)publicQiangHuaConfig.SuccessPro + addPro >= RandomHelper.RandFloat01())
             {
                 level = publicQiangHuaConfig.NextID;
-                numericComponent.ApplyValue(NumericType.Bloodstone, level);
-                numericComponent.ApplyValue(NumericType.BloodstoneFail, 0);
+                numericComponent.ApplyValue(request.QiangHuaType, level);
+                numericComponent.ApplyValue(failType, 0);
             }
             else
             {
                 level = publicQiangHuaConfig.Id;
-                numericComponent.ApplyChange(null, NumericType.BloodstoneFail, 1, 0);
+                numericComponent.ApplyChange(null, failType, 1, 0);
             }
 
             response.Level = level;

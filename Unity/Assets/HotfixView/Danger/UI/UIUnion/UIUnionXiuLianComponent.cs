@@ -9,14 +9,16 @@ namespace ET
         UnionRoleXiuLian = 0,
         UnionPetXiuLian = 1,
         UnionBloodStone = 2,
-        
+        UnionAttributeUp = 3,
+
+
         Number,
     }
 
     public class UIUnionXiuLianComponent: Entity, IAwake
     {
 
-        public GameObject Btn_3;
+        public GameObject Btn_4;
 
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -40,15 +42,17 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)UnionXiuLianEnum.UnionRoleXiuLian] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionRoleXiuLian");
             pageViewComponent.UISubViewPath[(int)UnionXiuLianEnum.UnionPetXiuLian] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionPetXiuLian");
             pageViewComponent.UISubViewPath[(int)UnionXiuLianEnum.UnionBloodStone] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionBloodStone");
+            pageViewComponent.UISubViewPath[(int)UnionXiuLianEnum.UnionAttributeUp] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionAttributeUp");
 
             pageViewComponent.UISubViewType[(int)UnionXiuLianEnum.UnionRoleXiuLian] = typeof (UIUnionRoleXiuLianComponent);
             pageViewComponent.UISubViewType[(int)UnionXiuLianEnum.UnionPetXiuLian] = typeof (UIUnionPetXiuLianComponent);
             pageViewComponent.UISubViewType[(int)UnionXiuLianEnum.UnionBloodStone] = typeof (UIUnionBloodStoneComponent);
+            pageViewComponent.UISubViewType[(int)UnionXiuLianEnum.UnionAttributeUp] = typeof(UIUnionAttributeUpComponent);
             self.UIPageView = pageViewComponent;
 
-            self.Btn_3 = rc.Get<GameObject>("Btn_3");
-            self.Btn_3.SetActive(true);
-
+            self.Btn_4 = rc.Get<GameObject>("Btn_3");
+            self.Btn_4.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 

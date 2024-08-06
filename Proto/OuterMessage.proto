@@ -7542,6 +7542,7 @@ message M2C_ItemXiLianNumReward // IActorLocationResponse
 message C2M_BloodstoneQiangHuaRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;		
+	int32 QiangHuaType = 1;
 }
 
 message M2C_BloodstoneQiangHuaResponse // IActorLocationResponse

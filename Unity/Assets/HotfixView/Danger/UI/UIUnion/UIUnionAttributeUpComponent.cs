@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionBloodStoneComponent: Entity, IAwake, IDestroy
+
+    public class UIUnionAttributeUpComponent : Entity, IAwake, IDestroy
     {
-        public GameObject IconLImg;
-        public GameObject NameLText;
-        public GameObject IconRImg;
-        public GameObject NameRText;
+
+        public GameObject ImageSelect;
+        public GameObject attributeItem_0;
+        public GameObject attributeItem_1;
+        public GameObject attributeItem_2;
+
         public GameObject PropertyText;
         public GameObject UICommonItem;
         public GameObject CostItemListNode;
@@ -18,18 +21,28 @@ namespace ET
 
         public List<UIItemComponent> UIItemComponentList = new List<UIItemComponent>();
         public List<string> AssetPath = new List<string>();
+
+        public int SelectType;
     }
 
-    public class UIUnionBloodStoneComponentAwake: AwakeSystem<UIUnionBloodStoneComponent>
+    public class UIUnionAttributeUpComponentAwake : AwakeSystem<UIUnionAttributeUpComponent>
     {
-        public override void Awake(UIUnionBloodStoneComponent self)
+        public override void Awake(UIUnionAttributeUpComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.IconLImg = rc.Get<GameObject>("IconLImg");
-            self.NameLText = rc.Get<GameObject>("NameLText");
-            self.IconRImg = rc.Get<GameObject>("IconRImg");
-            self.NameRText = rc.Get<GameObject>("NameRText");
+            self.ImageSelect = rc.Get<GameObject>("ImageSelect");
+
+            self.attributeItem_0 = rc.Get<GameObject>("attributeItem_0");
+            self.attributeItem_0.transform.Find("Button_IconItem0").GetComponent<Button>().onClick.AddListener(() => { self.OnClickAttributeItem(NumericType.UnionAttribute_1);  });
+
+
+            self.attributeItem_1 = rc.Get<GameObject>("attributeItem_1");
+            self.attributeItem_1.transform.Find("Button_IconItem0").GetComponent<Button>().onClick.AddListener(() => { self.OnClickAttributeItem(NumericType.UnionAttribute_2); });
+
+
+            self.attributeItem_2 = rc.Get<GameObject>("attributeItem_2");
+
             self.PropertyText = rc.Get<GameObject>("PropertyText");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.CostItemListNode = rc.Get<GameObject>("CostItemListNode");
@@ -37,14 +50,16 @@ namespace ET
 
             self.UICommonItem.SetActive(false);
 
+            self.SelectType = NumericType.UnionAttribute_1;
             self.UpBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnUpBtn().Coroutine(); });
-            self.UpdateInfo();
+
+            self.OnClickAttributeItem(NumericType.UnionAttribute_1);
         }
     }
 
-    public class UIUnionBloodStoneComponentDestroy: DestroySystem<UIUnionBloodStoneComponent>
+    public class UIUnionAttributeUpComponentDestroy : DestroySystem<UIUnionAttributeUpComponent>
     {
-        public override void Destroy(UIUnionBloodStoneComponent self)
+        public override void Destroy(UIUnionAttributeUpComponent self)
         {
             for (int i = 0; i < self.AssetPath.Count; i++)
             {
@@ -58,28 +73,28 @@ namespace ET
         }
     }
 
-    public static class UIUnionBloodStoneComponentSystem
+
+    public static class UIUnionAttributeUpComponentSystem
     {
-        public static void UpdateInfo(this UIUnionBloodStoneComponent self)
+
+        public static void OnClickAttributeItem(this UIUnionAttributeUpComponent self, int numbeType)
         {
+            self.SelectType = numbeType;
+
+            UICommonHelper.SetParent(self.ImageSelect, numbeType == NumericType.UnionAttribute_1?self.attributeItem_0: self.attributeItem_1);
+            self.ImageSelect.transform.SetAsFirstSibling();
+
+
+            self.UpdateInfo();
+        }
+
+        public static void UpdateRight(this UIUnionAttributeUpComponent self, GameObject gameitem, int numbeType)
+        {
+            self.UpdateAttributeItem(gameitem, numbeType);
+        
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(NumericType.Bloodstone));
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(numbeType));
 
-            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, publicQiangHuaConfig.Icon);
-            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            if (!self.AssetPath.Contains(path))
-            {
-                self.AssetPath.Add(path);
-            }
-
-            UICommonHelper.SetImageGray(self.IconLImg, publicQiangHuaConfig.QiangHuaLv == 0);
-            UICommonHelper.SetImageGray(self.IconRImg, publicQiangHuaConfig.QiangHuaLv == 0);
-
-            self.IconLImg.GetComponent<Image>().sprite = sp;
-            self.IconRImg.GetComponent<Image>().sprite = sp;
-
-            self.NameLText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
-            self.NameRText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
             if (publicQiangHuaConfig.QiangHuaLv != 0)
             {
                 self.PropertyText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(publicQiangHuaConfig.EquipPropreAdd);
@@ -114,9 +129,9 @@ namespace ET
                 itemComponent.GameObject.SetActive(true);
                 itemComponent.UpdateItem(new BagInfo() { ItemID = itemConfigId }, ItemOperateEnum.None);
                 itemComponent.Label_ItemNum.GetComponent<Text>().text =
-                        itemConfigId == 1? $"{itemNum / 10000f:0.#}万/{havedNum / 10000f:0.#}万" : $"{itemNum}/{havedNum}";
+                        itemConfigId == 1 ? $"{itemNum / 10000f:0.#}万/{havedNum / 10000f:0.#}万" : $"{itemNum}/{havedNum}";
                 itemComponent.Label_ItemNum.GetComponent<Text>().color =
-                        havedNum >= itemNum? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
+                        havedNum >= itemNum ? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
                 num++;
             }
 
@@ -126,10 +141,35 @@ namespace ET
             }
         }
 
-        public static async ETTask OnUpBtn(this UIUnionBloodStoneComponent self)
+        public static void UpdateAttributeItem(this UIUnionAttributeUpComponent self, GameObject gameitem,  int numbeType)
         {
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(NumericType.Bloodstone));
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(numbeType));
+
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, publicQiangHuaConfig.Icon);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+
+            gameitem.transform.Find("Button_IconItem0").GetComponent<Image>().sprite = sp;
+            gameitem.transform.Find("NameLText").GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
+            UICommonHelper.SetImageGray(gameitem.transform.Find("Button_IconItem0").gameObject, publicQiangHuaConfig.QiangHuaLv == 0);
+        }
+
+        public static void UpdateInfo(this UIUnionAttributeUpComponent self)
+        {
+            self.UpdateAttributeItem(self.attributeItem_0, NumericType.UnionAttribute_1 );
+            self.UpdateAttributeItem(self.attributeItem_1, NumericType.UnionAttribute_2);
+
+            self.UpdateRight(self.attributeItem_2, self.SelectType);
+        }
+
+        public static async ETTask OnUpBtn(this UIUnionAttributeUpComponent self)
+        {
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(self.SelectType));
 
             if (publicQiangHuaConfig.NextID == 0)
             {
@@ -150,7 +190,7 @@ namespace ET
                 return;
             }
 
-            C2M_BloodstoneQiangHuaRequest request = new C2M_BloodstoneQiangHuaRequest() { QiangHuaType = NumericType.Bloodstone };
+            C2M_BloodstoneQiangHuaRequest request = new C2M_BloodstoneQiangHuaRequest() { QiangHuaType = self.SelectType };
             M2C_BloodstoneQiangHuaResponse response =
                     (M2C_BloodstoneQiangHuaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
@@ -168,3 +208,4 @@ namespace ET
         }
     }
 }
+
