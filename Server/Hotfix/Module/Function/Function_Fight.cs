@@ -2137,6 +2137,20 @@ namespace ET
                 AddUpdateProDicList(publicqianghuaProList[pro].HideID, publicqianghuaProList[pro].HideValue, UpdateProDicList);
             }
 
+            //家族属性
+            List<int> unionAttributes = new List<int>() {  NumericType.UnionAttribute_1, NumericType.UnionAttribute_2 };
+            for ( int unionattri = 0;  unionattri < unionAttributes.Count; unionattri++ )
+            {
+                int unionattriid = numericComponent.GetAsInt(unionAttributes[unionattri]);
+                PublicQiangHuaConfig publicQiangHuaConfig_2 = PublicQiangHuaConfigCategory.Instance.Get(unionattriid);
+                List<PropertyValue>  publicqianghuaProList_2 = new List<PropertyValue>();
+                NumericHelp.GetProList(publicQiangHuaConfig_2.EquipPropreAdd, publicqianghuaProList_2);
+                for (int pro = 0; pro < publicqianghuaProList_2.Count; pro++)
+                {
+                    AddUpdateProDicList(publicqianghuaProList_2[pro].HideID, publicqianghuaProList_2[pro].HideValue, UpdateProDicList);
+                }
+            }
+
             //宠物修炼属性。 玩家数值
             int pet_xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
             int pet_xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_1);
