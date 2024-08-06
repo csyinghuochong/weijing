@@ -223,7 +223,13 @@ namespace ET
 
                     int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
-                    self.RecoverPiLao(tiliTimes * 30, false);
+
+                    //先只处理晚八点的 
+                    if (tiliTimes >= 1 && hour_1 < 20 && hour_2 >= 20)
+                    {
+                        self.RecoverPiLao(50 +  (tiliTimes - 1) * 30, false);
+                    }
+                  
                     unit.GetComponent<JiaYuanComponent>().OnLoginCheck(hour_1, hour_2);
 
                     float passhour = ((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
