@@ -33,7 +33,8 @@
 			{
                 unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse)
+                if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse
+					|| numericComponent.GetAsInt(NumericType.HorseRide) == no1_horse)
                 {
                     numericComponent.ApplyValue(NumericType.HorseFightID, 0);
                     numericComponent.ApplyValue(NumericType.HorseRide, 0);

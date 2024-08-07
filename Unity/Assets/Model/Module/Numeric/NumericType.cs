@@ -76,8 +76,8 @@
         public const int FubenTimesReset = 3076;                                    //宠物天梯重置
         public const int FenShangSet = 3077;                                           //分享
         public const int CombatRankID = 3078;                                             //排名
-        public const int HorseFightID = 3079;                                       //出战的坐骑
-        public const int HorseRide = 3080;                                          //骑乘状态
+        public const int HorseFightID = 3079;                                       //选择出战的坐骑 不一定骑乘
+        public const int HorseRide = 3080;                                          //骑乘状态 0未骑乘  1骑乘的坐骑id
         public const int TitleID = 3081;                                              //称号
         public const int ArenaNumber = 3082;                                           //角斗场次数
         public const int PetTianTiRankID = 3083;                                          //宠物天梯排名
