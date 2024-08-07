@@ -18,6 +18,8 @@ namespace ET
         }
     }
 
+
+    //https://l.taptap.cn/E2d28678?channel=rep-rep_shn4rnatnaw
     [HttpHandler(SceneType.AccountCenter, "/wjtaprepjiance")]
     public class HttpTaprepJianCeHandler : IHttpHandler
     {

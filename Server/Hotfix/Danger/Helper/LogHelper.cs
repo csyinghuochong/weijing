@@ -334,6 +334,18 @@ namespace ET
 
 
         /// <summary>
+        /// 重要日志， 1神兽
+        /// </summary>
+        /// <param name="log"></param>
+        public static void CoreLogInfo(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_CoreLog.txt";
+            WriteLogList(new List<string>() { log }, filePath);
+        }
+
+
+        /// <summary>
         /// 今日拍卖金币大于一亿 和   充值 100 并且 金币大于5亿
         /// </summary>
         /// <param name="log"></param>

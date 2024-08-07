@@ -1082,6 +1082,18 @@ namespace ET
                     //    Log.Warning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}");
                     //}
                 }
+
+
+                //神兽碎片
+                if (itemCof.Id == 10000136)
+                {
+                    string username = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    string getwayname = string.Empty;
+                        ItemHelper.ItemGetWayNameList.TryGetValue(getType, out getwayname);
+                    string loginfo = $"区服:{unit.DomainZone()} 玩家:id{unit.Id} 名字:{username} 通过:{getType}({getwayname}) 获取神兽碎片X{leftNum}";
+                    LogHelper.CoreLogInfo(loginfo);
+                }
+
                 //10000143 10000152   10010086  10025009
                 if ( ( itemCof.Id == 10000143 || itemCof.Id == 10000152 || itemCof.Id == 10010086 || itemCof.Id == 10025009)
                     && getType == ItemGetWay.PickItem && unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 20)
