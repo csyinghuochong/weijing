@@ -1,7 +1,6 @@
-﻿using Alipay.AopSdk.Core.Domain;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System;
 
 namespace ET
 {

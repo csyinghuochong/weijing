@@ -100,6 +100,7 @@ namespace ET
 
             //检测装备宝石
             bool haveGem = false;
+            bool havezengfu = false;
             string tip = " ";
             for (int i = 0; i < costItems.Count; i++)
             {
@@ -120,6 +121,19 @@ namespace ET
                         break;
                     }
                 }
+
+                if (ItemHelper.IsHaveMovePro(bagInfo))
+                {
+                    havezengfu = true;
+                    break;
+                }
+            }
+
+            if (havezengfu)
+            {
+
+                FloatTipManager.Instance.ShowFloatTip($"制造道具的装备材料中{tip}有传承属性, 无法制作");
+                return;
             }
 
             if (haveGem)

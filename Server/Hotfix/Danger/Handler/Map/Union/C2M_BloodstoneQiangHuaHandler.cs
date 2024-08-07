@@ -13,6 +13,14 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(request.QiangHuaType));
 
+
+            if (!ComHelp.IsInnerNet() && (request.QiangHuaType == 20100 || request.QiangHuaType == 30100) )
+            {
+                response.Error = ErrorCode.ERR_LevelNotOpen;
+                reply();
+                return;
+            }
+
             if (publicQiangHuaConfig.NextID == 0)
             {
                 response.Error = ErrorCode.ERR_UnionXiuLianMax;
