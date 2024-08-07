@@ -41,13 +41,17 @@
                 }
             }
 #else
-            if (args.NewValue == 1) //排行第一
-            {
-                unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
-            }
-            else
-            {
-                unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
+
+			if (args.Defend.MainHero)
+			{
+                if (args.NewValue == 1) //排行第一
+                {
+                    unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+                }
+                else
+                {
+                    unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
+                }
             }
 
             EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
@@ -58,7 +62,7 @@
         }
     }
 
-    [NumericWatcher((int)NumericType.CombatRankID)]
+	[NumericWatcher((int)NumericType.CombatRankID)]
 	public class NumericWatcher_CombatRankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
@@ -81,14 +85,19 @@
 				}
 			}
 #else
-			if (args.NewValue == 1) //排行第一
-			{	
-				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
-			}
-			else
+
+			if (args.Defend.MainHero)
 			{
-				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
-			}
+                if (args.NewValue == 1) //排行第一
+                {
+                    unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+                }
+                else
+                {
+                    unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
+                }
+            }
+			
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
