@@ -4,7 +4,6 @@ using System.Net;
 
 namespace ET
 {
-    //http://39.96.194.143:20008/wjtaprep?idfa={IDFA}&time={TIME}&ip={IP}&game_id={TAP_PROJECT_ID}&game_name={GAME_NAME}&adset_id={ADSET_ID}&adset_net={ADSET_NAME}&device_brand={DEVICE_BRAND}&device_model={DEVICE_MODEL}&creative_id={CREATIVE_ID}&conversion_type={CONVERSION_TYPE}&device={DEVICE}&OAID={OAID}&callback={DEEP_CALLBACK_URL}&tap_track_id={TAP_TRACK_ID}&tap_project_id={TAP_PROJECT_ID}
     [HttpHandler(SceneType.AccountCenter, "/wjtaprepcallback")]
     public class HttpTaprepCallBackHandler : IHttpHandler
     {
@@ -17,7 +16,7 @@ namespace ET
         }
     }
 
-
+    //http://39.96.194.143:20008/wjtaprep?idfa={IDFA}&time={TIME}&ip={IP}&game_id={TAP_PROJECT_ID}&game_name={GAME_NAME}&adset_id={ADSET_ID}&adset_net={ADSET_NAME}&device_brand={DEVICE_BRAND}&device_model={DEVICE_MODEL}&creative_id={CREATIVE_ID}&conversion_type={CONVERSION_TYPE}&device={DEVICE}&OAID={OAID}&callback={DEEP_CALLBACK_URL}&tap_track_id={TAP_TRACK_ID}&tap_project_id={TAP_PROJECT_ID}
     //https://l.taptap.cn/E2d28678?channel=rep-rep_shn4rnatnaw
     [HttpHandler(SceneType.AccountCenter, "/wjtaprepjiance")]
     public class HttpTaprepJianCeHandler : IHttpHandler
