@@ -153,7 +153,7 @@ namespace ET
             self.DamgeFlyTimeSum = self.DamgeFlyTimeSum + Time.deltaTime;
             if (self.Transform != null)
             {
-                if (self.DamgeFlyTimeSum < 0.1f)   
+                if (self.DamgeFlyTimeSum < 0.15f)   
                 {
                     self.Transform.localScale = self.DamgeFlyTimeSum < 0.03f ? new Vector3(0.8f, 0.8f, 0.8f): new Vector3(1.5f, 1.5f, 1.5f);
                 }
@@ -165,7 +165,7 @@ namespace ET
                 self.Transform.localPosition = self.HeadBar.transform.localPosition +  new Vector3(0, 80f +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
-            return self.DamgeFlyTimeSum >= 0.3f || !self.HeadBar.activeSelf;
+            return self.DamgeFlyTimeSum >= 0.5f || !self.HeadBar.activeSelf;
         }
     }
 }
