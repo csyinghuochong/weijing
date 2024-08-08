@@ -42,6 +42,9 @@ namespace ET
             context.Response.ContentEncoding = Encoding.UTF8;
             context.Response.ContentLength64 = bytes.Length;
             context.Response.OutputStream.Write(bytes, 0, bytes.Length);
+            //context.Response.OutputStream.WriteAsync(bytes, 0, bytes.Length);
+            // 关闭输出流
+            //context.Response.OutputStream.Close();
         }
 
 
