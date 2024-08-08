@@ -74,6 +74,7 @@
     <string>False</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
+      <string>taptap</string>
       <string>sinaweibosso</string>
       <string>weibo</string>
       <string>weibosdk</string>
