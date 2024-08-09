@@ -39,9 +39,8 @@ RectTransform:
   - {fileID: 3973616755912980290}
   - {fileID: 8824611493077124421}
   - {fileID: 2025805500861713119}
-  - {fileID: 2177981540673661315}
-  - {fileID: 7591924088007004609}
   - {fileID: 6528206014601711946}
+  - {fileID: 2234281874650818364}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -65,6 +64,10 @@ MonoBehaviour:
   data:
   - key: ButtonGet
     gameObject: {fileID: 8124348241228106010}
+  - key: TapTapShare
+    gameObject: {fileID: 2222055597783618571}
+  - key: ButtonTapTap
+    gameObject: {fileID: 3427933641628797978}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +388,43 @@ MonoBehaviour:
   m_EffectColor: {r: 0.46226418, g: 0.23977838, b: 0.006541462, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!1 &2222055597783618571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2234281874650818364}
+  m_Layer: 5
+  m_Name: TapTapShare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2234281874650818364
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222055597783618571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7591924088007004609}
+  - {fileID: 2177981540673661315}
+  m_Father: {fileID: 22416270}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2423908525396218714
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +689,7 @@ GameObject:
   - component: {fileID: 8462037052566096680}
   - component: {fileID: 7270970487619161809}
   m_Layer: 5
-  m_Name: ButtonGet (1)
+  m_Name: ButtonTapTap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,13 +702,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3427933641628797978}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8349030105909705481}
-  m_Father: {fileID: 22416270}
-  m_RootOrder: 11
+  m_Father: {fileID: 2234281874650818364}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -787,7 +827,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22416270}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2093,8 +2133,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22416270}
-  m_RootOrder: 10
+  m_Father: {fileID: 2234281874650818364}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

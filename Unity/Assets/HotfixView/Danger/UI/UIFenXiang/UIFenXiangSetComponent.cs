@@ -63,7 +63,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_AddQQ, self.OpenAddQQ);
             ButtonHelp.AddListenerEx(self.Button_Taptap, self.OnButton_Taptap);
 
-            self.Button_Taptap.SetActive( GlobalHelp.GetBigVersion() >= 20 && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Button_Taptap.SetActive(false );
 
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Share").gameObject, self.OnTikTokShare);
             ButtonHelp.AddListenerEx(self.FenXiang_TikTok.transform.Find("Button_Friend").gameObject, self.OnTikTokShare);
@@ -79,7 +79,7 @@ namespace ET
 
         public static void OnButton_Taptap(this UIFenXiangSetComponent self)
         {
-            if (self.IsShared(8))
+            if (UnitHelper.IsShared( self.ZoneScene(), 8))
             {
                 Log.Debug("已经领取过taptap奖励");
             }
@@ -146,16 +146,10 @@ namespace ET
 
         public static void OnUpdateUI(this UIFenXiangSetComponent self)
         {
-            self.FenXiang_WeiXin.transform.Find("Image_complete").gameObject.SetActive(self.IsShared(1));
-            self.FenXiang_QQ.transform.Find("Image_complete").gameObject.SetActive(self.IsShared(2));
+            self.FenXiang_WeiXin.transform.Find("Image_complete").gameObject.SetActive(UnitHelper.IsShared(self.ZoneScene(),  1));
+            self.FenXiang_QQ.transform.Find("Image_complete").gameObject.SetActive(UnitHelper.IsShared(self.ZoneScene(), 2));
         }
 
-        public static bool IsShared(this UIFenXiangSetComponent self, int sType)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long shareSet = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.FenShangSet);
-            return (shareSet & sType) > 0;
-        }
 
         public static void FenXiangByType(this UIFenXiangSetComponent self, int shareType)
         {
@@ -198,7 +192,7 @@ namespace ET
         public static void OnWeiXinShare(this UIFenXiangSetComponent self)
         {
             //微信朋友圈
-            if (self.IsShared(1))
+            if (UnitHelper.IsShared(self.ZoneScene(),    1))
             {
                 return;
             }
@@ -214,7 +208,7 @@ namespace ET
         public static void OnQQZone(this UIFenXiangSetComponent self)
         {
             //QQ空间
-            if (self.IsShared(2))
+            if (UnitHelper.IsShared(self.ZoneScene(),   2))
             {
                 return;
             }

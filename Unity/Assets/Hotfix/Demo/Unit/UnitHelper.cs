@@ -12,6 +12,13 @@ namespace ET
             return playerComponent.MyId;    
         }
 
+        public static bool IsShared(Scene zoneScene,  int sType)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            long shareSet = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.FenShangSet);
+            return (shareSet & sType) > 0;
+        }
+
         public static bool IsGmAccount(Scene zoneScene)
         {
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
