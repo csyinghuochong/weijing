@@ -621,7 +621,7 @@ namespace ET
 
             if (Type == UserDataType.Diamond)
             {
-                Log.Warning($"增加钻石: {unit.Id} {getWay} {self.UserInfo.Name} {value}");
+                Log.Warning($"增加钻石: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
 
             if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)
@@ -649,6 +649,11 @@ namespace ET
             {
                 Log.Warning($"扣除货币[大额]:{Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
+            if (Type == UserDataType.Diamond)
+            {
+                Log.Warning($"扣除钻石: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
+            }
+
             unit.GetComponent<DataCollationComponent>().UpdateRoleMoneySub(Type, getWay, gold);
             self.UpdateRoleData(Type, value, notice);
         }
