@@ -90,7 +90,7 @@ namespace ET
             }
             if (leftCell < addIds.Count)
             {
-                response.Error = ErrorCode.ERR_BagIsFull;
+                response.Error = request.LocType == 0 ? ErrorCode.ERR_BagIsFull :  ErrorCode.ERR_WarehouseIsFull;
                 reply();
                 return;
             }
