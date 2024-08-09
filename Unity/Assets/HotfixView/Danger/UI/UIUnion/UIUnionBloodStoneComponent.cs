@@ -93,7 +93,17 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             string[] items1 = new[] { $"1;{publicQiangHuaConfig.CostGold}" };
             string[] items2 = publicQiangHuaConfig.CostItem.Split('@');
-            string[] items = items1.Concat(items2).ToArray();
+
+            string[] items = null;
+            if (publicQiangHuaConfig.CostGold == 0)
+            {
+                items = items2;
+            }
+            else
+            {
+                items = items1.Concat(items2).ToArray();
+            }
+
             int num = 0;
             foreach (string item in items)
             {
