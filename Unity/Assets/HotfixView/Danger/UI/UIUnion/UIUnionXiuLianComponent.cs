@@ -50,7 +50,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)UnionXiuLianEnum.UnionAttributeUp] = typeof(UIUnionAttributeUpComponent);
             self.UIPageView = pageViewComponent;
 
-            self.Btn_4 = rc.Get<GameObject>("Btn_3");
+            self.Btn_4 = rc.Get<GameObject>("Btn_4");
             self.Btn_4.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
             
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
