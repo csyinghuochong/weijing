@@ -31,8 +31,8 @@ namespace ET
         public static string serverUrl = "https://pm0a9qav.cloud.tds1.tapapis.cn";
 
 
-        public static string TapTapShareTitle = "危境火爆公测";
-        public static string TapTapShareContent = "欢迎大家试玩";
+        public static string TapTapShareTitle = "快来和我一起玩危境吧!";
+        public static string TapTapShareContent = "一把木剑，一件布衣,快来和我一起探险吧!";
 
         /// <summary>
         /// 小龟说话
