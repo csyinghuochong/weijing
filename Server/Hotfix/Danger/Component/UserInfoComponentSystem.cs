@@ -225,10 +225,18 @@ namespace ET
                     tiliTimes = Math.Min(tiliTimes, 4);
 
                     //先只处理晚八点的 
-                    if (tiliTimes >= 1 && hour_1 < 20 && hour_2 >= 20)
+                    if (tiliTimes >= 1)
                     {
-                        self.RecoverPiLao(50 +  (tiliTimes - 1) * 30, false);
+                        if (hour_1 < 20 && hour_2 >= 20)
+                        {
+                            self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
+                        }
+                        else
+                        {
+                            self.RecoverPiLao(tiliTimes * 30, false);
+                        }
                     }
+  
                   
                     unit.GetComponent<JiaYuanComponent>().OnLoginCheck(hour_1, hour_2);
 
