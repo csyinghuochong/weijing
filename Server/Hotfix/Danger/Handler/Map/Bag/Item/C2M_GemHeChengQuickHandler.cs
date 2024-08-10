@@ -75,6 +75,7 @@ namespace ET
                 removeids[gemList[i].ItemID] += (neednumber * newnumber);
             }
 
+
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Gold < costgold)
             {
@@ -88,7 +89,20 @@ namespace ET
                 reply();
                 return;
             }
-            if (leftCell < addIds.Count)
+
+
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            foreach ((int itemid, int number) in addIds)
+            {
+                if (number == 0)
+                {
+                    continue;
+                }
+
+                rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
+            }
+
+            if (leftCell < rewardItems.Count)
             {
                 response.Error = request.LocType == 0 ? ErrorCode.ERR_BagIsFull :  ErrorCode.ERR_WarehouseIsFull;
                 reply();
@@ -115,16 +129,7 @@ namespace ET
                 unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType, ItemGetWay.GemHeCheng);
             }
 
-            List<RewardItem> rewardItems = new List<RewardItem>();
-            foreach ((int itemid, int number) in addIds)
-            {
-                if (number == 0)
-                {
-                    continue;
-                }
-
-                rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
-            }
+          
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
                 UseLocType: (ItemLocType)request.LocType);
 
