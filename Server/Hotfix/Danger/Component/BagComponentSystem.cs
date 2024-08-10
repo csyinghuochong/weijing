@@ -370,6 +370,23 @@ namespace ET
             return baginfo;
         }
 
+        public static int GetNeedCell(this BagComponent self, List<RewardItem> itemids, ItemLocType itemLocType)
+        {
+            int needcell = 0;
+            for  ( int i =0; i < itemids.Count; i++ )
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemids[i].ItemID);
+                long curNumber = self.GetItemNumber(itemids[i].ItemID, itemLocType);
+                if (curNumber + itemids[i].ItemNum <= itemConfig.ItemPileSum)
+                {
+                    continue;
+                }
+                needcell++;
+            }
+
+            return needcell;
+        }
+
         //获取某个道具的数量
         public static long GetItemNumber(this BagComponent self, int itemId, ItemLocType itemLocType = ItemLocType.ItemLocBag)
         {

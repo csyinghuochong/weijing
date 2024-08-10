@@ -102,7 +102,16 @@ namespace ET
                 rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
             }
 
-            if (leftCell < rewardItems.Count)
+            int needCell = rewardItems.Count;
+            if (unit.DomainZone() == 5)
+            {
+                needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
+
+                Console.WriteLine($"宝石合成: leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
+            }
+
+
+            if (leftCell < needCell)
             {
                 response.Error = request.LocType == 0 ? ErrorCode.ERR_BagIsFull :  ErrorCode.ERR_WarehouseIsFull;
                 reply();
