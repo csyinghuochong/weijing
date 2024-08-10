@@ -377,7 +377,8 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemids[i].ItemID);
                 long curNumber = self.GetItemNumber(itemids[i].ItemID, itemLocType);
-                if (curNumber + itemids[i].ItemNum <= itemConfig.ItemPileSum)
+
+                if (curNumber > 0 &&  (curNumber + itemids[i].ItemNum <= itemConfig.ItemPileSum))
                 {
                     continue;
                 }

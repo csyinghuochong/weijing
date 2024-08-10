@@ -103,13 +103,13 @@ namespace ET
             }
 
             int needCell = rewardItems.Count;
+            
+            needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
+
             if (unit.DomainZone() == 5)
             {
-                needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
-
                 Console.WriteLine($"宝石合成: leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
             }
-
 
             if (leftCell < needCell)
             {
