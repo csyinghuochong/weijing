@@ -243,6 +243,16 @@ namespace ET
                         NetHelper.SendGetTask(args.Unit.ZoneScene(),newvalue3).Coroutine();
                     }  
                     break;
+                case NumericType.WeeklyTaskId:
+                    int newvalue4 = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.WeeklyTaskId);
+                    if (newvalue4 != 0)
+                    {
+                        NetHelper.SendGetTask(args.Unit.ZoneScene(), newvalue4).Coroutine();
+                    }
+                    break;
+                default:
+                    break;
+
             }
         }
 
