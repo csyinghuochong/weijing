@@ -100,6 +100,7 @@ namespace ET
             }
         }
 
+
         public static int GetTiLiTimes(this UserInfoComponent self, int hour_1, int hour_2)
         {
             int index_1 = self.GetTiLiIndex(hour_1);
@@ -109,6 +110,27 @@ namespace ET
                 return 0;
             }
             return index_2 - index_1;
+        }
+
+        public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
+        {
+            if (hour_1 < 6)
+            {
+                return 1;
+            }
+            if (hour_1 < 12)
+            {
+                return 2;
+            }
+            if (hour_1 < 20)
+            {
+                return 3;
+            }
+            if (hour_1 < 24)
+            {
+                return 4;
+            }
+            return 5;
         }
 
         public static void CheckData(this UserInfoComponent self)
@@ -202,7 +224,17 @@ namespace ET
                     {
                         int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, 24) + self.GetTiLiTimes(0, dateTime.Hour);
                         tiliTimes = Math.Min(tiliTimes, 4);
-                        self.RecoverPiLao(tiliTimes * 30 + self.GetAddPiLao(self.UserInfo.MakeList.Count), false);
+                        if (tiliTimes >= 1)
+                        {
+                            if (tiliTimes >= 2)
+                            {
+                                self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
+                            }
+                            else
+                            {
+                                self.RecoverPiLao(tiliTimes * 30, false);
+                            }
+                        }
                     }
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().CheckWeeklyUpdate(lastLoginTime, currentTime);
@@ -223,15 +255,9 @@ namespace ET
 
                     int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
-
-
                     if (tiliTimes >= 1)
                     {
-                        if ( (hour_1 < 6 || hour_1 > 20) && hour_2 >= 6)
-                        {
-                            self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
-                        }
-                        else if (hour_1 < 20 && hour_2 >= 20)
+                        if (tiliTimes >= 2)
                         {
                             self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
                         }
@@ -269,27 +295,6 @@ namespace ET
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;
             self.ShouLieSendTime = 0;
-        }
-
-        public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
-        {
-            if (hour_1 < 6)
-            {
-                return 1;
-            }
-            if (hour_1 < 12)
-            {
-                return 2;
-            }
-            if (hour_1 < 20)
-            {
-                return 3;
-            }
-            if (hour_1 < 24)
-            {
-                return 4;
-            }
-            return 5;
         }
 
         /// <summary>
