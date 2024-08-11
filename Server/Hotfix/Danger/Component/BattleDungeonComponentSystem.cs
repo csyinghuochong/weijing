@@ -95,6 +95,7 @@ namespace ET
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(winPlayers[i]);
                 if (unit != null)
                 {
+                    Log.Warning($"发送战场任务奖励: {self.DomainZone()} {winPlayers[i]}");
                     unit.GetComponent<TaskComponent>().OnWinCampBattle();
                 }
                 if (unit != null && unit.IsRobot())
@@ -102,7 +103,7 @@ namespace ET
                     continue;
                 }
 
-                Log.Warning($"发送战场奖励: {self.DomainZone()} {winPlayers[i]}");
+                Log.Warning($"发送战场邮件奖励: {self.DomainZone()} {winPlayers[i]}");
                 MailHelp.SendUserMail(self.DomainZone(), winPlayers[i], mailInfo).Coroutine();
             }
         }
