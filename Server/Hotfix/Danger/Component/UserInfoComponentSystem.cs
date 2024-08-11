@@ -224,10 +224,14 @@ namespace ET
                     int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
 
-                    //先只处理晚八点的 
+
                     if (tiliTimes >= 1)
                     {
-                        if (hour_1 < 20 && hour_2 >= 20)
+                        if ( (hour_1 < 6 || hour_1 > 20) && hour_2 >= 6)
+                        {
+                            self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
+                        }
+                        else if (hour_1 < 20 && hour_2 >= 20)
                         {
                             self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
                         }
@@ -345,7 +349,7 @@ namespace ET
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
 
-            //Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {0}  {recoverPiLao}");
+            Log.Warning($"[增加体力] {unit.DomainZone()}    {unit.Id}    {recoverPiLao}");
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);
             self.LastLoginTime = TimeHelper.ServerNow();
         }
