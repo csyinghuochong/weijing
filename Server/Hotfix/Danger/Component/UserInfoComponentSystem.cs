@@ -112,6 +112,59 @@ namespace ET
             return index_2 - index_1;
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="hour_1"></param>
+        /// <param name="hour_2"></param>  0 6 12 20
+        /// <returns></returns>
+        public static List<int> GetTiLiIndexsNew(this UserInfoComponent self, int hour_1, int hour_2)
+        {
+            List<int> indexs = new  List<int>();    
+            if (hour_1 >= hour_2)
+            {
+
+                return indexs;
+            }
+            if (hour_1 < 6 && hour_2 >= 6)
+            {
+                indexs.Add(6);
+            }
+            if (hour_1 < 12 && hour_2 >= 12)
+            {
+                indexs.Add(12);
+            }
+            if (hour_1 < 20 && hour_2 >= 20)
+            {
+                indexs.Add(20);
+            }
+
+            return indexs;
+        }
+
+        public static int GetTiliRecover(this UserInfoComponent self, List<int> indexids)
+        {
+            int totalTili = 0;
+            int totalindex = indexids.Count;
+            if (totalindex >= 1 && indexids.Contains(6))
+            {
+                totalTili += 50;
+                totalindex--;
+            }
+            if (totalindex >= 1 && indexids.Contains(20))
+            {
+                totalTili += 50;
+                totalindex--;
+            }
+            if (totalindex >= 1)
+            {
+                totalTili = totalTili + totalindex * 30;
+                totalindex = 0;
+            }
+            return totalTili;
+        }
+
         public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
         {
             if (hour_1 < 6)
@@ -222,19 +275,26 @@ namespace ET
                     }
                     else
                     {
-                        int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, 24) + self.GetTiLiTimes(0, dateTime.Hour);
-                        tiliTimes = Math.Min(tiliTimes, 4);
-                        if (tiliTimes >= 1)
+
+                        List<int> indexids_1 = self.GetTiLiIndexsNew(lastdateTime.Hour, 23);
+                        List<int> indexids_2 = self.GetTiLiIndexsNew(0, dateTime.Hour);
+                        List<int> indexids = new List<int>();
+                        indexids.Add(0);
+                        indexids.AddRange(indexids_1);
+                        indexids.AddRange(indexids_2);
+                        if (indexids.Count > 0)
                         {
-                            if (tiliTimes >= 2)
+                            int recoverTili = self.GetTiliRecover(indexids);
+                            self.RecoverPiLao(recoverTili, false);
+                            string indexstr = $"two day : hour_1: {lastdateTime.Hour}  hour_2:{dateTime.Hour}   indexs: ";
+                            for (int index = 0; index < indexids.Count; index++)
                             {
-                                self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
+                                indexstr = indexstr + indexids[index].ToString() + "   ";
                             }
-                            else
-                            {
-                                self.RecoverPiLao(tiliTimes * 30, false);
-                            }
+                            indexstr = indexstr + $"recover: {recoverTili}";
+                            Console.WriteLine(indexstr);
                         }
+
                     }
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().CheckWeeklyUpdate(lastLoginTime, currentTime);
@@ -253,23 +313,21 @@ namespace ET
                     hour_1 = lastdateTime.Hour;
                     hour_2 = dateTime.Hour;
 
-                    int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
-                    tiliTimes = Math.Min(tiliTimes, 4);
-                    if (tiliTimes >= 1)
-                    {
-                        if (tiliTimes >= 2)
+                    List<int> indexids = self.GetTiLiIndexsNew(hour_1, hour_2);
+                    if (indexids.Count > 0)
+                    { 
+                        int recoverTili = self.GetTiliRecover(indexids);
+                        self.RecoverPiLao(recoverTili, false);
+                        string indexstr = $"one day  hour_1: {hour_1}  hour_2:{hour_2}   indexs: ";
+                        for (int index = 0; index < indexids.Count; index++)
                         {
-                            self.RecoverPiLao(50 + (tiliTimes - 1) * 30, false);
+                            indexstr = indexstr + indexids[index].ToString() + "   ";
                         }
-                        else
-                        {
-                            self.RecoverPiLao(tiliTimes * 30, false);
-                        }
+                        indexstr = indexstr + $"recover: {recoverTili}";
+                        Console.WriteLine(indexstr);
                     }
   
-                  
                     unit.GetComponent<JiaYuanComponent>().OnLoginCheck(hour_1, hour_2);
-
                     float passhour = ((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
