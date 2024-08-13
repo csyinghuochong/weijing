@@ -113,15 +113,17 @@ namespace ET
         public static async ETTask OnShareHandler(this UIFenXiangSetComponent self, int pType, bool share)
         {
             //1 4微信  2 5QQ     8 taptap
+           
             int sType = self.ShareType;
+            Log.ILog.Debug($"OnShareHandler:  pType: {pType}  sType:{sType}   share:{sType}");
             if (sType != 1 && sType != 2 && sType != 8)
             {
                 return;
             }
-            Log.ILog.Debug($"分享回调：  {pType} {share}");
+
             if (sType == 8 && !share)
             {
-                Log.ILog.Debug($"分享回调TapTap：  {pType} {share}");
+                Log.ILog.Debug($"分享回调TapTap：  pType: {pType}  sType:{sType}   share:{sType}");
                 FloatTipManager.Instance.ShowFloatTipDi("TapTap未安装或该版本不支持分享！");
                 return;
             }
