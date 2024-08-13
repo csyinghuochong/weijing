@@ -115,27 +115,27 @@ namespace ET
             //1 4微信  2 5QQ     8 taptap
            
             int sType = self.ShareType;
-            Log.ILog.Debug($"OnShareHandler:  pType: {pType}  sType:{sType}   share:{sType}");
+            Log.ILog.Debug($"OnShareHandler:  pType: {pType}  sType:{sType}   share:{share}");
             if (sType != 1 && sType != 2 && sType != 8)
             {
                 return;
             }
-
+            Log.ILog.Debug($"OnShareHandler: 111");
             if (sType == 8 && !share)
             {
-                Log.ILog.Debug($"分享回调TapTap：  pType: {pType}  sType:{sType}   share:{sType}");
+                Log.ILog.Debug($"分享回调TapTap：  pType: {pType}  sType:{sType}   share:{share}");
                 FloatTipManager.Instance.ShowFloatTipDi("TapTap未安装或该版本不支持分享！");
                 return;
             }
 
-
+            Log.ILog.Debug($"OnShareHandler: 222");
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (taskComponent.GetHuoYueDu() < 30)
             {
                 FloatTipManager.Instance.ShowFloatTip("活跃度低于30没有奖励！");
                 return;
             }
-
+            Log.ILog.Debug($"OnShareHandler: 333");
             long instanceid = self.InstanceId;
             C2M_ShareSucessRequest c2M_ShareSucessRequest = new C2M_ShareSucessRequest() { ShareType = sType };
             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ShareSucessRequest);
