@@ -105,10 +105,6 @@ namespace ET
 
             int needCell = rewardItems.Count;
             //needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
-            if (needCell < 1)
-            {
-                needCell = 1;
-            }
 
             if (unit.DomainZone() == 5)
             {
