@@ -110,6 +110,10 @@ namespace ET
             {
                 Console.WriteLine($"宝石合成: leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
             }
+            if(needCell < 1)
+            {
+                needCell = 1;
+            }
 
             if (leftCell < needCell)
             {
