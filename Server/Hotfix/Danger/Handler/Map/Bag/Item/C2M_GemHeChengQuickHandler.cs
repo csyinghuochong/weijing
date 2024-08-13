@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog.Fluent;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -103,8 +104,7 @@ namespace ET
             }
 
             int needCell = rewardItems.Count;
-            
-            needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
+            //needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
 
             if (unit.DomainZone() == 5)
             {
@@ -138,9 +138,14 @@ namespace ET
                 unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType, ItemGetWay.GemHeCheng);
             }
 
-          
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
+
+            bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
                 UseLocType: (ItemLocType)request.LocType);
+
+            if (!ret)
+            {
+                Log.Warning($"unitid:{unit.Id}   removeItems:{removeItems}");
+            }
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (costvitality * -1).ToString());
