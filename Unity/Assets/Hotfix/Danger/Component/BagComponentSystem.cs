@@ -930,9 +930,15 @@ namespace ET
             return self.AdditionalCellNum[0] + GlobalValueConfigCategory.Instance.BagInitCapacity + GlobalValueConfigCategory.Instance.Get(84).Value2;
         }
 
-        public static int GetHouseTotalCell(this BagComponent self, int houseId)
+        public static int GetHouseTotalCell(this BagComponent self, int hourseId)
         {
-            return self.WarehouseAddedCell[houseId] + self.AdditionalCellNum[houseId] + GlobalValueConfigCategory.Instance.HourseInitCapacity;
+            int storeCapacity = GlobalValueConfigCategory.Instance.HourseInitCapacity;
+            if (hourseId == (int)ItemLocType.GemWareHouse1)
+            {
+                storeCapacity = GlobalValueConfigCategory.Instance.GemStoreInitCapacity;
+            }
+            return storeCapacity + self.WarehouseAddedCell[hourseId] + self.AdditionalCellNum[hourseId];
+            //return self.WarehouseAddedCell[houseId] + self.AdditionalCellNum[houseId] + GlobalValueConfigCategory.Instance.HourseInitCapacity;
         }
 
         public static int GetHouseShowCell(this BagComponent self, int houseId)
