@@ -124,6 +124,10 @@ namespace ET
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宝石合成成功！"));
             }
+            if (response.Error == ErrorCode.ERR_WarehouseIsFull)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请整理一下仓库！"));
+            }
         }
 
         public static  void OnBtn_ZhengLi(this UIWarehouseGemComponent self)

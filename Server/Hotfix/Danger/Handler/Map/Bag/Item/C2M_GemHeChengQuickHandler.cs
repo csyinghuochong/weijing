@@ -1,5 +1,4 @@
-﻿using NLog.Fluent;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -103,8 +102,7 @@ namespace ET
                 rewardItems.Add(new RewardItem() { ItemID = itemid, ItemNum = number });
             }
 
-            int needCell = rewardItems.Count;
-            //needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
+            int needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
 
             Console.WriteLine($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
 
