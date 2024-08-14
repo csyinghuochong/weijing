@@ -50,6 +50,7 @@ namespace ET
             Dictionary<int, int> removeids  = new Dictionary<int, int>();
             long costgold = 0;
             long costvitality = 0;
+
             for (int i = gemList.Count - 1; i >= 0; i--)
             {
                 KeyValuePairInt keyValuePair = EquipMakeConfigCategory.Instance.GetHeChengList[gemList[i].ItemID];
@@ -103,7 +104,10 @@ namespace ET
             }
 
             int needCell = unit.GetComponent<BagComponent>().GetNeedCell(rewardItems, (ItemLocType)request.LocType);
-
+            if (needCell < 1)
+            {
+                needCell = 1;
+            }
             Console.WriteLine($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
 
             if (leftCell < needCell)
