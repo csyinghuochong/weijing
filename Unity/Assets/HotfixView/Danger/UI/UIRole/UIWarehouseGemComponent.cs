@@ -111,7 +111,7 @@ namespace ET
         public static async ETTask OnButtonHeCheng(this UIWarehouseGemComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetBagLeftCell() < 1)
+            if (bagComponent.GetHourseLeftCell(19) < 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("请至少预留一个格子");
                 return;

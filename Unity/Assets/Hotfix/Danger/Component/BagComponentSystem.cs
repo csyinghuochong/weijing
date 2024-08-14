@@ -940,6 +940,12 @@ namespace ET
             return self.AdditionalCellNum[houseId] + GlobalValueConfigCategory.Instance.HourseInitCapacity + GlobalValueConfigCategory.Instance.Get(85).Value2;
         }
 
+        public static int GetHourseLeftCell(this BagComponent self, int hourseId)
+        {
+            List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
+            return self.GetHouseTotalCell(hourseId) - ItemTypeList.Count;
+        }
+
         public static int GetPetHeXinLeftSpace(this BagComponent self)
         {
             return ComHelp.PetHeXinMax - self.GetItemsByLoc(ItemLocType.ItemPetHeXinBag).Count;
