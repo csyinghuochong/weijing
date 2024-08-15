@@ -47,9 +47,10 @@ namespace ET
 		public int Simulator = 0;
 		public int Root = 0;
 		public string DeviceID = string.Empty;
+        public string OAID = string.Empty;
 
 
-		public int GetRecharge()
+        public int GetRecharge()
 		{
 			int recharge = 0;
 			for (int i = 0; i < PlayerInfo.RechargeInfos.Count; i++ )

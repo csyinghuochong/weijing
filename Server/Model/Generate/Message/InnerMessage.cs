@@ -311,6 +311,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string DeviceID { get; set; }
 
+		[ProtoMember(6)]
+		public string OAID { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Center2A_CheckAccount)]

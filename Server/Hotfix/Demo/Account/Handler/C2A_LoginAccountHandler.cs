@@ -5,35 +5,7 @@ namespace ET
 {
     public class C2A_LoginAccountHandler : AMRpcHandler<C2A_LoginAccount, A2C_LoginAccount>
     {
-        public int CanLogin(string identityCard, bool isHoliday, int age_type)
-        {
-            int age = IDCardHelper.GetBirthdayAgeSex(identityCard, age_type);
-            if (age >= 18)
-            {
-                return ErrorCode.ERR_Success;
-            }
-            if (age < 12)
-            {
-                return ErrorCode.ERR_FangChengMi_Tip6;
-            }
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            if (isHoliday)
-            {
-                if (dateTime.Hour == 20)
-                {
-                    return ErrorCode.ERR_Success;           //允许登录
-                }
-                else
-                {
-                    return ErrorCode.ERR_FangChengMi_Tip7;
-                }
-            }
-            else
-            {
-                return ErrorCode.ERR_FangChengMi_Tip7;
-            }
-        }
-
+        
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
             try
@@ -221,6 +193,7 @@ namespace ET
                             Password = request.Password,
                             ThirdLogin = request.ThirdLogin,
                             DeviceID = request.DeviceID,
+
                         });
                         PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
                         IsHoliday = centerAccount.IsHoliday;
@@ -428,5 +401,35 @@ namespace ET
                 Log.Error(ex.ToString());
             }
         }
+
+        public int CanLogin(string identityCard, bool isHoliday, int age_type)
+        {
+            int age = IDCardHelper.GetBirthdayAgeSex(identityCard, age_type);
+            if (age >= 18)
+            {
+                return ErrorCode.ERR_Success;
+            }
+            if (age < 12)
+            {
+                return ErrorCode.ERR_FangChengMi_Tip6;
+            }
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (isHoliday)
+            {
+                if (dateTime.Hour == 20)
+                {
+                    return ErrorCode.ERR_Success;           //允许登录
+                }
+                else
+                {
+                    return ErrorCode.ERR_FangChengMi_Tip7;
+                }
+            }
+            else
+            {
+                return ErrorCode.ERR_FangChengMi_Tip7;
+            }
+        }
+
     }
 }

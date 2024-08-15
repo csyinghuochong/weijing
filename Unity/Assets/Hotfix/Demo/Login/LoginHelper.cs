@@ -59,7 +59,8 @@ namespace ET
                     ThirdLogin = thirdLogin, 
                     Relink = relink,
                     age_type = age_type,
-                    DeviceID = deviceid     
+                    DeviceID = deviceid,
+
                 });
             }
             catch (Exception e)

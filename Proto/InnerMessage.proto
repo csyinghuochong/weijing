@@ -143,6 +143,7 @@ message A2Center_CheckAccount // IActorRequest
     string Password = 2;
     string ThirdLogin = 4;
 	string DeviceID = 5;
+	string OAID = 6;
 }
 
 message Center2A_CheckAccount // IActorResponse
