@@ -57,6 +57,10 @@ namespace ET
                 dBCenterTaprepRequest.tap_project_id = tap_project_id;
                 dBCenterTaprepRequest.tap_track_id = tap_track_id;
 
+
+                Console.WriteLine($"callback:  {callback}");
+
+
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprepRequest);
                 dBCenterTaprepRequest.Dispose();
                 dBCenterTaprepRequest = null;
