@@ -46,8 +46,9 @@ namespace ET
                 List<DBCenterTaprepRequest> centerTaprepRequests = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterTaprepRequest>(scene.DomainZone(), d => d.anid == request.DeviceID);
                 if (centerTaprepRequests != null && centerTaprepRequests.Count > 0)
                 {
-                    DBCenterTaprepRequest dBCenterTaprep = centerTaprepRequests[0]; 
-                    response.TaprepRequest = $"{dBCenterTaprep.callback}&{dBCenterTaprep.tap_project_id}&{dBCenterTaprep.tap_track_id}";
+                    DBCenterTaprepRequest dBCenterTaprep = centerTaprepRequests[0];
+                    //response.TaprepRequest = $"{dBCenterTaprep.callback}&{dBCenterTaprep.tap_project_id}&{dBCenterTaprep.tap_track_id}";
+                    response.TaprepRequest = dBCenterTaprep.callback;
                 }
             }
 
