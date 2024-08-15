@@ -402,21 +402,22 @@ namespace ET
         //转化事件发生后，开发者/第三方在请求接口后附上回传字段({DEEP_CALLBACK_URL}&tap_project_id=13&tap_track_id=xxxevent_type=xxx&event_timestamp={timestamp}&???=xxx)，并发起 GET 请求，上报给 TapREP。
         public static async ETTask TapReqEvent(string taprepRequest, int eventType, string eventData)
         {
+           
             if (string.IsNullOrEmpty(taprepRequest))
             {
                 return;
             }
 
-            string[] taprepinfo = taprepRequest.Split('&');
-            if (taprepinfo.Length != 3)
-            {
-                return;
-            }
 
             //转化事件发生后，开发者/第三方在请求接口后附上回传字段({DEEP_CALLBACK_URL}&event_type=xxx&event_timestamp={timestamp}&???=xxx)，并发起 GET 请求，上报给 TapREP。
-            string url = $"{taprepinfo[0]}?v={RandomGenerator.RandUInt32()}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()}&amount={eventData}&tap_project_id={taprepinfo[1]}&tap_track_id={taprepinfo[2]}";
-            Log.Debug($"TestTapHttp_1  url: {url}");
+            string url = $"{taprepRequest}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()}&amount={eventData}";
+
+            Log.ILog.Debug($"taprepRequest:{taprepRequest}   {eventType}");
+
+            Log.Debug($"TapReqEvent_1 request  url: {url}");
             string routerInfo = await HttpClientHelper.Get(url);
+            Log.Debug($"TapReqEvent_1 respose  url: {routerInfo}");
+
         }
     }
 #endif

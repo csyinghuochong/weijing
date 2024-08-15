@@ -214,8 +214,7 @@ namespace ET
                     self.AccountInfoComponent.Age_Type = 100;
                 }
 
-
-                self.TestTapHttp_2().Coroutine();
+                //self.TestTapHttp_2().Coroutine();
 #endif
             }
 
@@ -904,7 +903,7 @@ namespace ET
             int tapport = !GlobalHelp.IsOutNetMode ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
 			string callback = $"http://{taphost}:{tapport}/wjtaprepcallback";
 
-            string url = "http://{taphost}:{tapport}/wjtaprepjiance?OAID=58bcedf9-fdff-4333-ce8f-ffeedfef4514&adset_id=&adset_net=&callback=https%3A%2F%2Ftap-op.tapapis.cn%2Frep%2Fbe%2Fv1%2Fopen%2Fconvert_track%2Factive%3Fdevice_code%3D1%26tap_project_id%3D271100%26tap_track_id%3D527087767763576587&conversion_type=&creative_id=&device=1&device_brand=&device_model=&game_id=271100&game_name=&idfa=&ip=&sub_channel=rep&tap_project_id=271100&tap_track_id=527087767763576587&time=1723698391";
+            string url = $"http://{taphost}:{tapport}/wjtaprepjiance?OAID=58bcedf9-fdff-4333-ce8f-ffeedfef4514&adset_id=&adset_net=&callback=https%3A%2F%2Ftap-op.tapapis.cn%2Frep%2Fbe%2Fv1%2Fopen%2Fconvert_track%2Factive%3Fdevice_code%3D1%26tap_project_id%3D271100%26tap_track_id%3D527087767763576587&conversion_type=&creative_id=&device=1&device_brand=&device_model=&game_id=271100&game_name=&idfa=&ip=&sub_channel=rep&tap_project_id=271100&tap_track_id=527087767763576587&time=1723698391";
             //string url = $"http://{taphost}:{tapport}/wjtaprepjiance?idfa=asedfstUfe&time=1605432321&ip=10.33.25.54&anid={SystemInfo.deviceUniqueIdentifier}&game_id=13&game_name=游戏名称&adset_id=132214&adset_net=计划名称&device_brand=苹果&device_model=iPhone3,2&creative_id=131232&conversion_type=TapRep&device=1&OAID=&callback={callback}&tap_track_id=xYTKx4rSFFWx&tap_project_id=13";
             Log.ILog.Debug($"TestTapHttp_2 url : {url}");
             string routerInfo = await HttpClientHelper.Get(url);
@@ -931,7 +930,12 @@ namespace ET
 #if UNITY_ANDROID
                 //登陆成功 ，会自动注册账号
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-				if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)))
+
+				Log.ILog.Debug($"GetPlatform:  {GlobalHelp.GetPlatform()}");
+                Log.ILog.Debug($"TaprepRequest:  {accountInfoComponent.TaprepRequest}");
+                Log.ILog.Debug($"TapRepRegister:  {PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)}");
+
+                if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)))
 				{
 					PlayerPrefsHelp.SetString(PlayerPrefsHelp.TapRepRegister, TimeHelper.ClientNow() + "");
 					//tapreq 激活
