@@ -37,6 +37,8 @@ namespace ET
                 anid = "58bcedf9-fdff-4333-ce8f-ffeedfef4514";
             }
 
+            Console.WriteLine($"anid:  {anid}");
+
             if (!string.IsNullOrEmpty(anid))
             {
                 DBCenterTaprepRequest dBCenterTaprepRequest = null;
