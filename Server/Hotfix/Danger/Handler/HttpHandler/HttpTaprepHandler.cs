@@ -16,7 +16,7 @@ namespace ET
         }
     }
 
-    //http://39.96.194.143:20008/wjtaprep?idfa={IDFA}&time={TIME}&ip={IP}&game_id={TAP_PROJECT_ID}&game_name={GAME_NAME}&adset_id={ADSET_ID}&adset_net={ADSET_NAME}&device_brand={DEVICE_BRAND}&device_model={DEVICE_MODEL}&creative_id={CREATIVE_ID}&conversion_type={CONVERSION_TYPE}&device={DEVICE}&OAID={OAID}&callback={DEEP_CALLBACK_URL}&tap_track_id={TAP_TRACK_ID}&tap_project_id={TAP_PROJECT_ID}
+    //http://39.96.194.143:20008/wjtaprepjiance?idfa={IDFA}&time={TIME}&ip={IP}&game_id={TAP_PROJECT_ID}&game_name={GAME_NAME}&adset_id={ADSET_ID}&adset_net={ADSET_NAME}&device_brand={DEVICE_BRAND}&device_model={DEVICE_MODEL}&creative_id={CREATIVE_ID}&conversion_type={CONVERSION_TYPE}&device={DEVICE}&OAID={OAID}&callback={DEEP_CALLBACK_URL}&tap_track_id={TAP_TRACK_ID}&tap_project_id={TAP_PROJECT_ID}
     //https://l.taptap.cn/E2d28678?channel=rep-rep_shn4rnatnaw
     [HttpHandler(SceneType.AccountCenter, "/wjtaprepjiance")]
     public class HttpTaprepJianCeHandler : IHttpHandler
@@ -27,10 +27,15 @@ namespace ET
 
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
 
-            string anid = queryString["anid"] ?? string.Empty;
+            string anid = queryString["OAID"] ?? string.Empty;
             string callback = queryString["callback"] ?? string.Empty;
             string tap_project_id = queryString["tap_project_id"] ?? string.Empty;
             string tap_track_id = queryString["tap_track_id"] ?? string.Empty;
+
+            if (string.IsNullOrEmpty(anid))
+            {
+                anid = "58bcedf9-fdff-4333-ce8f-ffeedfef4514";
+            }
 
             if (!string.IsNullOrEmpty(anid))
             {
