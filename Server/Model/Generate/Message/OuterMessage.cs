@@ -1167,6 +1167,9 @@ namespace ET
 		[ProtoMember(11)]
 		public string DeviceID { get; set; }
 
+		[ProtoMember(12)]
+		public string OAID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_LoginAccount)]

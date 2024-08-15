@@ -11,6 +11,8 @@ using TapTap.TapDB;
 using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using cn.SMSSDK.Unity;
+using TapTap.Login;
+
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -54,6 +56,7 @@ namespace ET
         public Action<bool> OnApplicationFocusHandler;
 		public Action<string> OnRiskControlInfoHandler;
         public Action<string> OnTikTokAccesstokenHandler;
+		public Action<string> OnGetDeviceOAIDHandler;
         public Action OnApplicationQuitHandler;
 
 		public Action<int> OnGetKeyHandler;
@@ -181,6 +184,7 @@ namespace ET
 #endif
 
 
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
@@ -279,6 +283,24 @@ namespace ET
             }
         }
 
+		public void GetDeviceOAID()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+            if (this.Platform == 1)
+            {
+                jo.Call("GetDeviceOAID", InitHelper.InitKey);
+            }
+#else
+			this.OnGetDeviceOAID(SystemInfo.deviceUniqueIdentifier);
+#endif
+        }
+
+
+        public void OnGetDeviceOAID(string oaid)
+		{
+            Log.ILog.Debug($"OnGetDeviceOAID: {oaid}");
+            this.OnGetDeviceOAIDHandler?.Invoke(oaid);
+        }
 
         /// <summary>
         ///  由接入方实现，通过游戏服务端向抖音游戏服务端校验用户登录态、获取sdk_open_id，参考服务端接入登录验证部分

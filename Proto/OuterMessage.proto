@@ -576,6 +576,7 @@ message C2A_LoginAccount // IRequest
 	int32 age_type = 6;
 	int32 Simulator = 7;
 	string DeviceID = 11;
+	string OAID = 12;
 }
 
 message A2C_LoginAccount // IResponse

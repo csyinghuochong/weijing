@@ -193,7 +193,7 @@ namespace ET
                             Password = request.Password,
                             ThirdLogin = request.ThirdLogin,
                             DeviceID = request.DeviceID,
-
+                            OAID = request.OAID,
                         });
                         PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
                         IsHoliday = centerAccount.IsHoliday;

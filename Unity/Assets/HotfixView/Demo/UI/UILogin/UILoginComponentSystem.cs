@@ -216,10 +216,20 @@ namespace ET
 
                 //self.TestTapHttp_2().Coroutine();
 #endif
+
+#if UNITY_ANDROID
+                if (GlobalHelp.GetBigVersion() >= 20
+					&& GlobalHelp.GetPlatform()  == 1)
+				{
+					Log.ILog.Debug("eventType.TapTapGetOAID.Instance");
+					EventType.TapTapGetOAID.Instance.ZoneScene = self.ZoneScene();
+					Game.EventSystem.PublishClass(EventType.TapTapGetOAID.Instance);
+				}
+#endif
             }
 
 
-			catch (Exception E)
+            catch (Exception E)
 			{
 				Log.Error(E.ToString());
 			}
@@ -867,7 +877,7 @@ namespace ET
 			self.AccountInfoComponent.Account = account;
 			self.AccountInfoComponent.Password = password;
 			self.AccountInfoComponent.LoginType = loginType;
-			self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
+            self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
             self.UIRotateComponent.GameObject.SetActive(true);
 			self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(true);
 
@@ -896,6 +906,11 @@ namespace ET
             }
         }
 
+		public static void OnGetDeviceOAID(this UILoginComponent self, string oaid)
+		{
+			self.AccountInfoComponent.OAID = oaid;
+			Log.ILog.Debug($"OnGetDeviceOAID:{oaid}");
+        }
 
         public static async ETTask TestTapHttp_2(this UILoginComponent self)
         {

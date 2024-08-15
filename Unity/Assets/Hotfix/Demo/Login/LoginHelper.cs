@@ -51,6 +51,7 @@ namespace ET
                 //password = MD5Helper.StringMD5(password);
                 int age_type = zoneScene.GetComponent<AccountInfoComponent>().Age_Type;
                 string deviceid = zoneScene.GetComponent<AccountInfoComponent>().DeviceID;
+                string oaid = zoneScene.GetComponent<AccountInfoComponent>().OAID;
                 accountSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 a2CLoginAccount = (A2C_LoginAccount)await accountSession.Call(new C2A_LoginAccount() { 
                     AccountName = account,
@@ -60,7 +61,7 @@ namespace ET
                     Relink = relink,
                     age_type = age_type,
                     DeviceID = deviceid,
-
+                    OAID = oaid
                 });
             }
             catch (Exception e)

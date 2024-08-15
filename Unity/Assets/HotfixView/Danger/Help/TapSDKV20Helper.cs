@@ -136,7 +136,6 @@ public sealed class TapSDKV20Helper
         ///System.Guid.NewGuid();  ϵͳ��������Ψһid
         // ע��Ψһ��ʶ����ֵ���Ȳ��ܳ��� 64 �ַ�
         //int timestart = (int)Time.time;
-        //string userIdentifier = SystemInfo.deviceUniqueIdentifier + timestart;
         AntiAddictionUIKit.Startup(userid);
     }
 

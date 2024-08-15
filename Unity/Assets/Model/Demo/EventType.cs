@@ -820,6 +820,12 @@ namespace ET
             public string Account;
         }
 
+        public class TapTapGetOAID : DisposeObject
+        {
+            public static readonly TapTapGetOAID Instance = new TapTapGetOAID();
+            public Scene ZoneScene;
+        }
+
         public class TapTapShare : DisposeObject
         {
             public static readonly TapTapShare Instance = new TapTapShare();
