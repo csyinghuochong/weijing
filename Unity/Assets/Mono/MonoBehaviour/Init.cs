@@ -12,7 +12,6 @@ using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using cn.SMSSDK.Unity;
 using TapTap.Login;
-using System.Security.Cryptography;
 
 
 
