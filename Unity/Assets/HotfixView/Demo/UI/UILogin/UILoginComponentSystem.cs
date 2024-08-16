@@ -217,7 +217,7 @@ namespace ET
                 //self.TestTapHttp_2().Coroutine();
 #endif
 
-                Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} ");
+                Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} IsEditorMode:{GlobalHelp.IsEditorMode}");
 
                 if (GlobalHelp.GetBigVersion() >= 21
 					&& GlobalHelp.GetPlatform()  == 1
