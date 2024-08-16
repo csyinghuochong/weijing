@@ -192,12 +192,7 @@ namespace ET
 					self.AccountInfoComponent.Root = IPHoneHelper.IsRoot() ? 1 : 0;
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
-				//if (GlobalHelp.GetPlatform() != 5)
-				//{
-                   //先注释掉   不知道有什么影响。。。。
-    //            }
-                Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
-
+				
 				//Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
 				self.InitLoginType();
@@ -878,7 +873,13 @@ namespace ET
 			self.AccountInfoComponent.Account = account;
 			self.AccountInfoComponent.Password = password;
 			self.AccountInfoComponent.LoginType = loginType;
-            self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
+
+			if (GlobalHelp.GetPlatform() != 5)
+			{
+                self.AccountInfoComponent.DeviceID = SystemInfo.deviceUniqueIdentifier;
+            }
+			Log.ILog.Debug($"DeviceID:{self.AccountInfoComponent.DeviceID}");
+
             self.UIRotateComponent.GameObject.SetActive(true);
 			self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(true);
 
