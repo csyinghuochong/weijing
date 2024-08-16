@@ -1200,8 +1200,8 @@ MonoBehaviour:
   Development: 1
   EditorMode: 1
   OueNetMode: 0
-  BigVersion: 20
-  BigVersionIOS: 20
+  BigVersion: 21
+  BigVersionIOS: 21
   Updater: {fileID: 2018631435}
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}
