@@ -108,7 +108,7 @@ namespace ET
             {
                 needCell = 1;
             }
-            Console.WriteLine($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
+            
 
             if (leftCell < needCell)
             {
@@ -144,6 +144,7 @@ namespace ET
             if (!ret)
             {
                 Log.Warning($"unitid:{unit.Id}   removeItems:{removeItems}");
+                Log.Warning($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
             }
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
