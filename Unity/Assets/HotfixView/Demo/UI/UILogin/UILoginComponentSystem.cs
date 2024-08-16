@@ -217,15 +217,16 @@ namespace ET
                 //self.TestTapHttp_2().Coroutine();
 #endif
 
-#if UNITY_ANDROID
-                if (GlobalHelp.GetBigVersion() >= 20
-					&& GlobalHelp.GetPlatform()  == 1)
+                Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} ");
+
+                if (GlobalHelp.GetBigVersion() >= 21
+					&& GlobalHelp.GetPlatform()  == 1
+					&& !GlobalHelp.IsEditorMode)
 				{
 					Log.ILog.Debug("eventType.TapTapGetOAID.Instance");
 					EventType.TapTapGetOAID.Instance.ZoneScene = self.ZoneScene();
 					Game.EventSystem.PublishClass(EventType.TapTapGetOAID.Instance);
 				}
-#endif
             }
 
 

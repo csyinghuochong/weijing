@@ -12,6 +12,8 @@ using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using cn.SMSSDK.Unity;
 using TapTap.Login;
+using System.Security.Cryptography;
+
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -47,8 +49,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 20;      //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名
-		public int BigVersionIOS = 20;   //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名
+		public int BigVersion = 20;      //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
+		public int BigVersionIOS = 20;   //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -282,8 +284,7 @@ namespace ET
                 this.OnShareHandler(8, false);
             }
         }
-
-		public void GetDeviceOAID()
+        public void GetDeviceOAID()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
             if (this.Platform == 1)
@@ -291,7 +292,7 @@ namespace ET
                 jo.Call("GetDeviceOAID", InitHelper.InitKey);
             }
 #else
-			this.OnGetDeviceOAID(SystemInfo.deviceUniqueIdentifier);
+            this.OnGetDeviceOAID(SystemInfo.deviceUniqueIdentifier);
 #endif
         }
 
