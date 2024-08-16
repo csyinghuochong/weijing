@@ -286,13 +286,13 @@ namespace ET
                         {
                             int recoverTili = self.GetTiliRecover(indexids);
                             self.RecoverPiLao(recoverTili, false);
-                            string indexstr = $"two day : hour_1: {lastdateTime.Hour}  hour_2:{dateTime.Hour}   indexs: ";
+                            string indexstr = $"{unit.Id}  two day : hour_1: {lastdateTime.Hour}  hour_2:{dateTime.Hour}   indexs: ";
                             for (int index = 0; index < indexids.Count; index++)
                             {
                                 indexstr = indexstr + indexids[index].ToString() + "   ";
                             }
                             indexstr = indexstr + $"recover: {recoverTili}";
-                            Console.WriteLine(indexstr);
+                            Log.Debug(indexstr);
                         }
 
                     }
@@ -318,13 +318,13 @@ namespace ET
                     { 
                         int recoverTili = self.GetTiliRecover(indexids);
                         self.RecoverPiLao(recoverTili, false);
-                        string indexstr = $"one day  hour_1: {hour_1}  hour_2:{hour_2}   indexs: ";
+                        string indexstr = $"{unit.Id}  one day  hour_1: {hour_1}  hour_2:{hour_2}   indexs: ";
                         for (int index = 0; index < indexids.Count; index++)
                         {
                             indexstr = indexstr + indexids[index].ToString() + "   ";
                         }
                         indexstr = indexstr + $"recover: {recoverTili}";
-                        Console.WriteLine(indexstr);
+                        Log.Debug(indexstr);
                     }
   
                     unit.GetComponent<JiaYuanComponent>().OnLoginCheck(hour_1, hour_2);
