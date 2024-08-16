@@ -177,12 +177,14 @@ namespace ET
             fenXiangContent.Fenxiangtype = shareType;
             self.ShareType = shareType;
 
-#if UNITY_EDITOR
-            self.OnShareHandler(shareType, true).Coroutine();
-#else
-            GlobalHelp.FenXiang(fenXiangContent);
-#endif
-
+            if (GlobalHelp.IsEditorMode)
+            {
+                self.OnShareHandler(shareType, true).Coroutine();
+            }
+            else
+            {
+                GlobalHelp.FenXiang(fenXiangContent);
+            }
         }
 
         public static void OnQQShare(this UIFenXiangSetComponent self)
