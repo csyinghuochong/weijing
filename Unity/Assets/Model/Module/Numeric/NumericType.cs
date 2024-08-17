@@ -52,7 +52,7 @@
         public const int AcvitiyCamp = 3048;                                             //狩猎阵营
         public const int CangKuNumber = 3049;
         public const int MaoXianExp = 3050;
-        public const int YueKaEndTime = 3051;
+        public const int YueKaEndTime = 3051;                                       //月卡结束时间.  目前用来做一个标记四否可以领取副本月卡箱子，0点清空
         public const int MakeType_1 = 3052;                                       //第一套生活技能
         public const int ExpToGoldTimes = 3053;
         public const int MakeShuLianDu_1 = 3054;                                    //第一套生活技能熟练度
@@ -192,7 +192,7 @@
         public const int UnionAttribute_1 = 3192;
         public const int UnionAttribute_2 = 3193;
         public const int UnionAttributeFail_1 = 3194;
-        public const int UnionAttributeFail_2 = 3195;
+        public const int UnionAttributeFail_2 = 3195;                           
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

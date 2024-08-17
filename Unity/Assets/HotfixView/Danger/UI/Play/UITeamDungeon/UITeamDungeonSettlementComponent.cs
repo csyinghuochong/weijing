@@ -195,7 +195,7 @@ namespace ET
             }
             self.SendGetTime = TimeHelper.ServerNow();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (index >= 3 && !unit.IsYueKaStates())
+            if (index >= 3 && !unit.IsYueKaEndStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启喔！");
                 return;

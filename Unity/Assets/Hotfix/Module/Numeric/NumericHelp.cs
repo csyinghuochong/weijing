@@ -314,14 +314,22 @@ namespace ET
         }
 
         public static bool IsYueKaStates(this Unit self)
-        { 
-            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaRemainTimes) > 0;
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return numericComponent.GetAsInt(NumericType.YueKaRemainTimes) > 0;
+        }
+
+        public static bool IsYueKaEndStates(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return numericComponent.GetAsInt(NumericType.YueKaEndTime) > 0;
         }
 
         public static void UpdateYueKaTimes(this Unit self)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();
             numericComponent.ApplyValue(NumericType.YueKaRemainTimes, 7);
+            numericComponent.ApplyValue(NumericType.YueKaEndTime, 7);
         }
 
         public static int GetTeamDungeonTimes(this Unit self)

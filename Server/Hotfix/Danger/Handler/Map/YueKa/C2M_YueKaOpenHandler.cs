@@ -12,7 +12,7 @@ namespace ET
             //判定是否是月卡用户
             if (unit.IsYueKaStates())
             {
-                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_RoleYueKaRepeat;
                 reply();
                 return;
             }

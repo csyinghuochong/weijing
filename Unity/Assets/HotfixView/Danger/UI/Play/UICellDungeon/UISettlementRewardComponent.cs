@@ -104,7 +104,7 @@ namespace ET
         public static void OnClickItem(this UISettlementRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (self.Index >= 3 && !unit.IsYueKaStates())
+            if (self.Index >= 3 && !unit.IsYueKaEndStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启！");
                 return;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ET
 {
@@ -50,14 +49,7 @@ namespace ET
                 numericComponent.Set(NumericType.JianYuanCangKu, 1, false);
             }
 
-            long yuekeEndTime = numericComponent.GetAsLong(NumericType.YueKaEndTime) - TimeHelper.ServerNow();
-            if (yuekeEndTime > 0)
-            {
-                int leftDay = Mathf.CeilToInt(yuekeEndTime * 1f / ( 24 * 60 * 60 * 1000 ));
-                leftDay = Mathf.Min(7, leftDay);
-                numericComponent.Set(NumericType.YueKaEndTime, 0);
-                numericComponent.Set(NumericType.YueKaRemainTimes, leftDay);
-            }
+
             if (numericComponent.GetAsFloat(NumericType.ChouKaTenTime) == 0)
             {
                 numericComponent.Set(NumericType.ChouKaTenTime, TimeHelper.ServerNow());
@@ -200,6 +192,13 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.MakeType_2, 0, false);
             }
 
+            //月卡次数用完，则清空标志
+            int yuekatimes = numericComponent.GetAsInt(NumericType.YueKaRemainTimes);
+            if (yuekatimes > 0)
+            {
+                numericComponent.ApplyValue(NumericType.YueKaEndTime, yuekatimes, false);
+            }
+
             self.CheckSeasonOver(false);
             self.CheckSeasonOpen(false);
         }
@@ -329,6 +328,10 @@ namespace ET
             numericComponent.ApplyValue(NumericType.PetHeXinExploreNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.ItemXiLianNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.PaiMaiTodayGold, 0, notice);
+
+            //月卡次数用完，则清空标志
+            int yuekatimes = numericComponent.GetAsInt(NumericType.YueKaRemainTimes);
+            numericComponent.ApplyValue(NumericType.YueKaEndTime, yuekatimes, notice);
 
             int lirun =  (int)(numericComponent.GetAsInt(NumericType.InvestTotal) * 0.25f);
             numericComponent.ApplyValue(NumericType.InvestTotal, numericComponent.GetAsInt(NumericType.InvestTotal) + lirun, notice);

@@ -153,7 +153,7 @@ namespace ET
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!self.bottomSelect && unit.IsYueKaStates())
+            if (!self.bottomSelect && unit.IsYueKaEndStates())
             {
                 self.RewardUIList[3].OnClickItem();
             }
@@ -162,7 +162,7 @@ namespace ET
         public static async ETTask OnClickRewardItem(this UICellDungeonSettlementComponent self, int index)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (index >= 3 && !unit.IsYueKaStates())
+            if (index >= 3 && !unit.IsYueKaEndStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启！");
                 return;
