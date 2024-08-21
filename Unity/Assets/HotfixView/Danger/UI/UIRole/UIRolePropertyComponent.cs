@@ -278,10 +278,10 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillDodgePro, "技能闪避", "", 2));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_PuGongAddPro, "普攻加成", "", 2));
             
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossPro, "魔攻领主加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主物攻减免", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossSubPro, "领主魔攻减免", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossPro, "领主普攻加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossPro, "领主技能加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主普攻减免", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossSubPro, "领主技能减免", "", 2));
 
             //抗性属性
             /*

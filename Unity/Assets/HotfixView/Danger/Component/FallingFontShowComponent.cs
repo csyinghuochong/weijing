@@ -95,6 +95,10 @@ namespace ET
 
 
             string addStr = "";
+
+            //初始化,因为是对象池所有之前可能有不同大小的缓存
+            ObjFlyText.GetComponent<Text>().transform.localScale = Vector3.one;
+
             if (targetValue >= 0 && type == 2)
             {
                 addStr = "+";
@@ -104,6 +108,7 @@ namespace ET
             {
                 //addStr = "AJ";  //暴击
                 addStr = "暴击";  //暴击
+                ObjFlyText.GetComponent<Text>().transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
                 //ObjFlyText.GetComponent<Text>().color = new Color(243, 110, 40);
             }
             if (type == 3)
@@ -132,10 +137,11 @@ namespace ET
                 ObjFlyText.GetComponent<Text>().text = StringBuilderHelper.GetFallText(addStr + selfNull, targetValue);
             }
             self.ObjFlyText = ObjFlyText;
-            ObjFlyText.transform.localPosition = Vector3.zero;  
+            ObjFlyText.transform.localPosition = Vector3.zero;
             FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
             FlyFontObj.transform.localScale = Vector3.one;
             FlyFontObj.transform.localPosition = self.HeadBar.transform.localPosition + new Vector3(0, 80f, 0);
+
         }
 
         public static void  OnInitData(this FallingFontShowComponent self, GameObject HeadBar, long targetValue, Unit unit, int type)
@@ -155,7 +161,7 @@ namespace ET
             {
                 if (self.DamgeFlyTimeSum < 0.15f)   
                 {
-                    self.Transform.localScale = self.DamgeFlyTimeSum < 0.03f ? new Vector3(0.8f, 0.8f, 0.8f): new Vector3(1.5f, 1.5f, 1.5f);
+                    self.Transform.localScale = self.DamgeFlyTimeSum < 0.03f ? new Vector3(0.8f, 0.8f, 0.8f) : new Vector3(1.5f, 1.5f, 1.5f);
                 }
                 else
                 {

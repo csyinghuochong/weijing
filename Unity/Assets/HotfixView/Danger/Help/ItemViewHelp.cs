@@ -273,9 +273,9 @@ namespace ET
             { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = "法术强度", Icon = string.Empty }},
 
 
-            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主攻击加成", Icon = string.Empty }},
+            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主普攻加成", Icon = string.Empty }},
             { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = "领主技能加成", Icon = string.Empty }},
-            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主攻击免伤", Icon = string.Empty }},
+            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主普攻免伤", Icon = string.Empty }},
             { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = "领主技能免伤", Icon = string.Empty }},
 
             { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = "致命一击", Icon = string.Empty }},
