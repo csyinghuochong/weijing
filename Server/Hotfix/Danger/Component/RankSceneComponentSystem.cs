@@ -1053,7 +1053,7 @@ namespace ET
 
                 if (i <= 10)
                 {
-                    Log.Warning($"战力奖励: {self.DomainZone()} {rankingInfos[i].UserId}");
+                    Log.Warning($"战力奖励: {self.DomainZone()} {rankingInfos[i].UserId}   {i}");
                 }
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
                 for (int k = 0; k < needList.Length; k++)
