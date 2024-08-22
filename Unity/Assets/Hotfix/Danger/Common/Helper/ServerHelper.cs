@@ -330,7 +330,7 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 115, ServerIp = $"{ip}:20495", ServerName = "九州四海", ServerOpenTime = 1723806000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/08/23 19:00:00 1724410800000 新区 熔火之心 115
+            //2024/08/23 19:00:00 1724410800000 新区 熔火之心 116
             serverItems_1.Add(new ServerItem() { ServerId = 116, ServerIp = $"{ip}:20565", ServerName = "熔火之心", ServerOpenTime = 1724410800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
