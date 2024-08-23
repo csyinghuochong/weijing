@@ -11,15 +11,15 @@ namespace ET
         {
            
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(request.QiangHuaType));
 
-
-            if (!ComHelp.IsInnerNet() && (request.QiangHuaType == 20100 || request.QiangHuaType == 30100) )
+            if (!PublicQiangHuaConfigCategory.Instance.Contain(numericComponent.GetAsInt(request.QiangHuaType)))
             {
-                response.Error = ErrorCode.ERR_LevelNotOpen;
+                Console.WriteLine($"C2M_BloodstoneQiangHuaError: {request.QiangHuaType}   {numericComponent.GetAsInt(request.QiangHuaType)}");
                 reply();
                 return;
             }
+
+            PublicQiangHuaConfig publicQiangHuaConfig = PublicQiangHuaConfigCategory.Instance.Get(numericComponent.GetAsInt(request.QiangHuaType));
 
             if (publicQiangHuaConfig.NextID == 0)
             {

@@ -51,7 +51,7 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.Btn_4 = rc.Get<GameObject>("Btn_4");
-            self.Btn_4.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+            self.Btn_4.SetActive(true);
             
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
