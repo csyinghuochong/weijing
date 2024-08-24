@@ -121,18 +121,23 @@ namespace ET
             response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
 
             List<int> allskill = new List<int>();
+            string repeatskill = string.Empty;  
             for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
             {
                 if (allskill.Contains(skillSetComponent.SkillList[i].SkillID))
                 {
-                    Console.WriteLine($"重复技能ID: {skillSetComponent.SkillList[i].SkillID}");
+                    repeatskill += $"{skillSetComponent.SkillList[i].SkillID}   ";
                 }
                 else
                 {
                     allskill.Add(skillSetComponent.SkillList[i].SkillID);
                 }
             }
-
+            if (!string.IsNullOrEmpty(repeatskill))
+            {
+                Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重复技能ID: {repeatskill}");
+            }
+            
             List<int> tianfulist = new List<int>();
             for (int i = 0; i < skillSetComponent.TianFuList.Count; i++)
             {
