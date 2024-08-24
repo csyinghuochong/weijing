@@ -28,7 +28,14 @@ namespace ET
 				return;
 			}
 
-			UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
+            if (skillSetComponent.GetBySkillID(nextSkillID) != null)
+            {
+                response.Error = ErrorCode.ERR_AlreadyLearn;
+                reply();
+                return;
+            }
+
+            UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
 			int costGoldValue = skillconf.CostGoldValue;
 			int costSPValue = skillconf.CostSPValue;
 			int RoseSP = unitInfoComponent.UserInfo.Sp;
