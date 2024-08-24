@@ -116,12 +116,8 @@ namespace ET
             //    }
             //}
 
-            response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
-            response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
-            response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
-
             List<int> allskill = new List<int>();
-            string repeatskill = string.Empty;  
+            string repeatskill = string.Empty;
             for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
             {
                 if (allskill.Contains(skillSetComponent.SkillList[i].SkillID))
@@ -136,8 +132,25 @@ namespace ET
             if (!string.IsNullOrEmpty(repeatskill))
             {
                 Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重复技能ID: {repeatskill}");
+
+                if (repeatskill.Contains("6102340")) //61023401 
+                {
+                    Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重置技能！！");
+
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    int level = userInfoComponent.UserInfo.Lv;
+                    int sp = userInfoComponent.UserInfo.Sp;
+                    userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString(), false);
+                    unit.GetComponent<SkillSetComponent>().OnSkillReset(false);
+                }
             }
-            
+           
+            response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
+            response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
+            response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
+
+
+
             List<int> tianfulist = new List<int>();
             for (int i = 0; i < skillSetComponent.TianFuList.Count; i++)
             {

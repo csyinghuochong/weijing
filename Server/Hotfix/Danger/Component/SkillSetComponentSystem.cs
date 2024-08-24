@@ -1366,7 +1366,7 @@ namespace ET
 		/// 重置技能点
 		/// </summary>
 		/// <param name="self"></param>
-		public static void OnSkillReset(this SkillSetComponent self)
+		public static void OnSkillReset(this SkillSetComponent self, bool notice)
 		{
 			List<int> skilllist = new List<int>();
 			UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
@@ -1412,7 +1412,10 @@ namespace ET
 				}
 			}
 
-			self.UpdateSkillSet();
+			if (notice)
+			{
+                self.UpdateSkillSet();
+            }
 		}
 
 		public static void UpdateSkillSet(this SkillSetComponent self)
