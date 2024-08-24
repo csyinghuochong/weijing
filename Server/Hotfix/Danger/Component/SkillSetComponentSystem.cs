@@ -604,8 +604,26 @@ namespace ET
 			return HideProList;
 		}
 
-		//转换职业
-		public static void OnChangeOccTwoRequest(this SkillSetComponent self, int occTwo)
+		//移除能量之地，新增能量之地一级
+		public static void ResetNengLiangZhiDi(this SkillSetComponent self)
+		{
+			//61023401  61023406
+			for (int i = self.SkillList.Count - 1; i >=0; i--)
+			{
+				if (self.SkillList[i].SkillID >= 61023401 && self.SkillList[i].SkillID <= 61023406)
+				{
+                    self.SkillList.RemoveAt(i);
+                }
+			}
+            SkillPro skillPro = new SkillPro();
+            skillPro.SkillID = 61023401;
+            skillPro.SkillPosition = 0;
+
+            self.SkillList.Add(skillPro);
+        }
+
+        //转换职业
+        public static void OnChangeOccTwoRequest(this SkillSetComponent self, int occTwo)
 		{
 			if (occTwo == 0)
 			{
@@ -1361,6 +1379,8 @@ namespace ET
 			}
 			return 0;
 		}
+
+
 
 		/// <summary>
 		/// 重置技能点
