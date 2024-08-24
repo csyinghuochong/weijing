@@ -42,7 +42,7 @@ namespace ET
 
         public override void AfterEndInit()
         {
-
+            BaseSkillList.Clear();  
             foreach (SkillConfig skillconfig in this.GetAll().Values)
             {
                 string buffToSkill = skillconfig.BuffToSkill;
