@@ -117,11 +117,13 @@ namespace ET
             //}
 
             List<int> allskill = new List<int>();
+            List<int> repeatlist = new List<int>();
             string repeatskill = string.Empty;
             for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
             {
                 if (allskill.Contains(skillSetComponent.SkillList[i].SkillID))
                 {
+                    repeatlist.Add(skillSetComponent.SkillList[i].SkillID);
                     repeatskill += $"{skillSetComponent.SkillList[i].SkillID}   ";
                 }
                 else
@@ -134,7 +136,7 @@ namespace ET
                 Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重复技能ID: {repeatskill}");
 
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                if (repeatskill.Contains("6102340")  && userInfoComponent.UserInfo.OccTwo == 103) //61023401 
+                if (repeatskill.Contains("6102340") && repeatlist.Count > 2 && userInfoComponent.UserInfo.OccTwo == 103) //61023401 
                 {
                     Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重置技能！！");
                     int level = userInfoComponent.UserInfo.Lv;
