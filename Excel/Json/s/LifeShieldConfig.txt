@@ -205,6 +205,7 @@
 {"_t":"LifeShieldConfig","_id":6030,"ShieldType":6,"ShieldName":"生命之魂30级","ShieldLevel":30,"ShieldExp":2000000,"AddProperty":"100202;0.3@213103;0.3","Des":"生命上限提升+30%,眩晕抵抗概率+30%"},
 {"_t":"LifeShieldConfig","_id":6031,"ShieldType":6,"ShieldName":"生命之魂31级","ShieldLevel":31,"ShieldExp":2500000,"AddProperty":"100202;0.31@213103;0.31","Des":"生命上限提升+31%,眩晕抵抗概率+31%"},
 {"_t":"LifeShieldConfig","_id":6032,"ShieldType":6,"ShieldName":"生命之魂32级","ShieldLevel":32,"ShieldExp":3000000,"AddProperty":"100202;0.32@213103;0.32","Des":"生命上限提升+32%,眩晕抵抗概率+32%"},
+{"_t":"LifeShieldConfig","_id":6033,"ShieldType":6,"ShieldName":"生命之魂33级","ShieldLevel":33,"ShieldExp":4000000,"AddProperty":"100202;0.33@213103;0.33","Des":"生命上限提升+33%,眩晕抵抗概率+33%"},
 {"_t":"LifeShieldConfig","_id":6034,"ShieldType":6,"ShieldName":"生命之魂34级","ShieldLevel":34,"ShieldExp":5000000,"AddProperty":"100202;0.34@213103;0.34","Des":"生命上限提升+34%,眩晕抵抗概率+34%"},
 {"_t":"LifeShieldConfig","_id":6035,"ShieldType":6,"ShieldName":"生命之魂35级","ShieldLevel":35,"ShieldExp":6000000,"AddProperty":"100202;0.35@213103;0.35","Des":"生命上限提升+35%,眩晕抵抗概率+35%"},
 ]}
