@@ -94,7 +94,11 @@ namespace ET
 
 
             //展示角色列表
-            self.UpdateRoleList();
+            if (UIHelper.GetUI(self.ZoneScene(),  UIType.UILobby)== null)
+            {
+                self.UpdateRoleList();
+            }
+
         }
     }
 
