@@ -287,18 +287,6 @@ namespace ET
                 }
             }
             
-            //if (fashonid == 0)
-            //{
-            //    List<string> assets = FashionHelper.FashionBaseTemplate(occ)[subType];
-            //    for (int i = 0; i < assets.Count; i++)
-            //    {
-            //        assetlist.Add(StringBuilderHelper.GetFashionDefault(occ, assets[i]));
-            //    }
-            //}
-            //else
-            //{
-
-            //}
 
             List<string> assets = FashionConfigCategory.Instance.GetModelList(fashonid);
             if (assets != null)
