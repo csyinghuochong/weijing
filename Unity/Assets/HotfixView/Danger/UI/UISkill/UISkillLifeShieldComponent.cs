@@ -273,13 +273,13 @@ namespace ET
             }
 
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            if (self.ShieldType == 6)
+            if (self.ShieldType != 6)   //生命之盾必须要大于其他盾
             {
-                int hplv = skillSetComponent.GetLifeShieldLevel(self.ShieldType);
-                int otlv = skillSetComponent.GetOtherMinLevel();
-                if (otlv <= hplv)
+                int hplv = skillSetComponent.GetLifeShieldLevel(6);
+                int culv = skillSetComponent.GetLifeShieldLevel(self.ShieldType);
+                if (hplv <= culv)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请先升级其他护盾！");
+                    FloatTipManager.Instance.ShowFloatTip("请先升级生命之魂！");
                     return;
                 }
             }

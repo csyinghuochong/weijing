@@ -38,7 +38,7 @@ namespace ET
 
             SkillSetComponent skillsetComponent = unit.GetComponent<SkillSetComponent>();
 
-            //其他盾的等级要大于生命之盾
+            //生命之盾必须要大于其他盾
 
             skillsetComponent.OnShieldAddExp(request.OperateType, addExp);
 
