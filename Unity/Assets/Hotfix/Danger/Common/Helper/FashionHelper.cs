@@ -16,7 +16,11 @@ namespace ET
             {
                 return FashionBaseTemplate_2;
             }
-            return FashionBaseTemplate_3;
+            if (occ == 3)
+            {
+                return FashionBaseTemplate_3;
+            }
+            return FashionBaseTemplate_4;
         }
 
         //1001  头饰
@@ -47,6 +51,14 @@ namespace ET
             { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi" } },
             { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
             { 3001,     new List<string>(){ "Hero_weijin","Hero_shangyi", "Hero_xiashen", "Hero_xiezi" } }
+        };
+
+        //唤魔师
+        public static Dictionary<int, List<string>> FashionBaseTemplate_4 = new Dictionary<int, List<string>>()
+        {
+            { 1001,     new List<string>(){"Hero_toufa", "Hero_fashi", "fashi_fashi2" } },
+            { 2001 ,    new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_yanjing" } },
+            { 3001,     new List<string>(){"Hero_shangyi", "Hero_xiashen", "Hero_xiezi"} }
         };
 
     }

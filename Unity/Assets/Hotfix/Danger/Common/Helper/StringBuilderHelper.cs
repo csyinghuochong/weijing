@@ -56,6 +56,7 @@ namespace ET
         public static string UnitFashionPath_1 = "Assets/Bundles/Unit/Parts/1/";
         public static string UnitFashionPath_2 = "Assets/Bundles/Unit/Parts/2/";
         public static string UnitFashionPath_3 = "Assets/Bundles/Unit/Parts/3/";
+        public static string UnitFashionPath_4 = "Assets/Bundles/Unit/Parts/4/";
         public static string UnitFashionPath = "Assets/Bundles/Unit/Parts/Fashion/";
         public static string UnitPrefab =  ".prefab";
 
@@ -118,6 +119,10 @@ namespace ET
             else if(occ == 3)
             {
                 stringpath = UnitFashionPath_3;
+            }
+            else if (occ == 4)
+            {
+                stringpath = UnitFashionPath_4;
             }
             stringBuilder.Clear();
 
