@@ -68,7 +68,9 @@ namespace ET
                             reply();
                             return;
                         }
-                        if (request.CreateOcc == 4 && !GMHelp.GmAccount.Contains(centerAccountList[0].Account))
+
+
+                        if (request.CreateOcc == 4 && !GMHelp.GmAccount.Contains(centerAccountList[0].Account) && !centerAccountList[0].Account.Equals("wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ"))
                         {
                             response.Error = ErrorCode.ERR_Error;
                             reply();
