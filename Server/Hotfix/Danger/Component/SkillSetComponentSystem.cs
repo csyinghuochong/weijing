@@ -1341,6 +1341,12 @@ namespace ET
 				return;
 			}
 
+
+			if (curLv + 1 >= 21)
+			{
+				Console.WriteLine($"区：{self.DomainZone()}  玩家:{self.Id}  shieldType：{shieldType}    level:{curLv + 1}");
+			}
+
 			//可以升级
 			keyValuePair.Level = (curLv + 1);
 			keyValuePair.Exp = (curExp + addExp - lifeShieldConfig.ShieldExp);
