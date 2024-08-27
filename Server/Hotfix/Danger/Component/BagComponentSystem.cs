@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -378,15 +379,21 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemids[i].ItemID);
                 long curNumber = self.GetItemNumber(itemids[i].ItemID, itemLocType);
 
-                if (curNumber == 0)
+                if (curNumber > 0 && curNumber + itemids[i].ItemNum < itemConfig.ItemPileSum)
                 {
-                    needcell++;
+                    needcell = 0;
                 }
                 else
                 {
-                    if (curNumber + itemids[i].ItemNum >= itemConfig.ItemPileSum)
+                    int temp = 0;
+                    temp += (int)(1f * itemids[i].ItemNum / itemConfig.ItemPileSum);
+                    temp += (itemids[i].ItemNum % itemConfig.ItemPileSum > 0 ? 1 : 0);
+
+                    needcell += temp;
+
+                    if (temp != 1)
                     {
-                        needcell++;
+                        Console.WriteLine($"needcell:{needcell}  ItemNum:{itemids[i].ItemNum}   ItemPileSum:{itemConfig.ItemPileSum}");
                     }
                 }
             }
