@@ -1053,14 +1053,20 @@ namespace ET
             {
                 return true;
             }
-            if (bagCellNumber > self.GetBagLeftCell() && UseLocType == ItemLocType.ItemLocBag)
+
+
+            if (getType != ItemGetWay.GemHeCheng)
             {
-                return false;
+                if (bagCellNumber > self.GetBagLeftCell() && UseLocType == ItemLocType.ItemLocBag)
+                {
+                    return false;
+                }
+                if ((petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax) && UseLocType == ItemLocType.ItemLocBag)
+                {
+                    return false;
+                }
             }
-            if ((petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax) && UseLocType == ItemLocType.ItemLocBag)
-            {
-                return false;
-            }
+
 
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = self.message;

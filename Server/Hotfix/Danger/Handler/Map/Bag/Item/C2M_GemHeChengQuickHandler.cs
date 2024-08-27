@@ -137,16 +137,19 @@ namespace ET
                 unit.GetComponent<BagComponent>().OnCostItemData(removeItems, (ItemLocType)request.LocType, ItemGetWay.GemHeCheng);
             }
 
-
-            bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
+            if (rewardItems.Count > 0)
+            {
+                bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}",
                 UseLocType: (ItemLocType)request.LocType);
 
-            if (!ret)
-            {
-                Log.Warning($"unitid:{unit.Id}   removeItems:{removeItems}");
-                Log.Warning($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
+                if (!ret)
+                {
+                    Log.Warning($"unitid:{unit.Id}   removeItems:{removeItems}");
+                    Log.Warning($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
+                    Console.WriteLine($"宝石合成:  loc:{request.LocType}   leftCell:{leftCell}  rewardItems:{rewardItems.Count}  realneedCell:{needCell}");
+                }
             }
-
+           
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (costvitality * -1).ToString());
 
