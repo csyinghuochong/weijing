@@ -103,6 +103,13 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 
+            int totalrecharge = 0;
+            for (int i = 0; i < a2CLoginAccount.PlayerInfo.RechargeInfos.Count; i++)
+            {
+                totalrecharge += a2CLoginAccount.PlayerInfo.RechargeInfos[i].Amount;
+            }
+            Log.ILog.Debug($"totalrecharge:{totalrecharge}");
+
             if (!relink)
             {
                 EventType.LoginFinish.Instance.ZoneScene = zoneScene;
