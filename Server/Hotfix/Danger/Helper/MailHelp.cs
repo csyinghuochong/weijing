@@ -163,6 +163,7 @@ namespace ET
                 List<MailInfo> mailinfolist = dBMainInfo.MailInfoList;
                 for (int i = mailinfolist.Count - 1; i >= 0; i--)
                 {
+
                     if (mailinfolist[i].ItemList.Count != 1)
                     {
                         continue;
@@ -186,13 +187,6 @@ namespace ET
                     }
 
                     if (mailinfolist[i].ItemList.Count >= 2 && !ItemConfigCategory.Instance.Contain(mailinfolist[i].ItemList[1].ItemID))
-                    {
-                        mailinfolist.RemoveAt(i);
-                        continue;
-                    }
-
-                    //9区夏梦2522676632326569984
-                    if (userID == 2522676632326569984 && mailinfolist[i].ItemList.Count >= 2 && mailinfolist[i].ItemList[1].ItemID == 10010085)
                     {
                         mailinfolist.RemoveAt(i);
                         continue;
