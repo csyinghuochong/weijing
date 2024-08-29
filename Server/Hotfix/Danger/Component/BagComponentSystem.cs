@@ -198,7 +198,9 @@ namespace ET
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
 
 
+            //绑定的
             Dictionary<int, List<BagInfo>> ItemSameList_1 = new Dictionary<int, List<BagInfo>>();
+            //未绑定
             Dictionary<int, List<BagInfo>> ItemSameList_2 = new Dictionary<int, List<BagInfo>>();
             //找出可以堆叠并且格子未放满的道具
             for (int i = 0; i < ItemTypeList.Count; i++)
