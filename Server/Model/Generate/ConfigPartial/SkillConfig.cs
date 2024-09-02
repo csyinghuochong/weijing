@@ -80,7 +80,7 @@ namespace ET
                             Value2 = (long)(float.Parse(buffInfoParam[2]) * 1000)       //受击者 伤害系数加成
                         });
                     }
-                    //97050203,3,77008007  buffid/类型/二段技能0
+                    //97050203,3,77008007  buffid/类型/二段技能0  //'key64014301 buffid95102003,3,二段技能64014701,1
                     if (buffInfoParam[1] == "3")
                     {
                         BuffSecondSkill.Add(skillconfig.Id, new KeyValuePairLong4()

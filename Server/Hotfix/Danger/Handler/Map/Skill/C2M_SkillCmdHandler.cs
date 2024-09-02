@@ -35,6 +35,7 @@ namespace ET
                     return;
                 }
 
+                SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
                 if (request.ItemId > 0)
                 { 
                     if(unit.GetComponent<BagComponent>().GetItemNumber(request.ItemId) <= 0)
@@ -69,7 +70,8 @@ namespace ET
                 {
 
                     if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
-                   && request.SkillID != 60000011 && skillConfig.SkillActType != 0 && request.ItemId == 0)
+                   && request.SkillID != 60000011 && skillConfig.SkillActType != 0 && request.ItemId == 0
+                   && !skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
                     {
                         Console.WriteLine($"request.SkillID==null:  {request.SkillID}   {unit.DomainZone()}  {unit.Id}");
                         response.Error = ErrorCode.ERR_UseSkillError;
@@ -79,7 +81,6 @@ namespace ET
                 }
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
-                SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();   
                 M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
 
                 //可以放二段斩的时候客户端会发送二段技能过来
