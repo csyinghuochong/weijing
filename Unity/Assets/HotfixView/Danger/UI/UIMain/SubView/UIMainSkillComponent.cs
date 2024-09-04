@@ -256,7 +256,7 @@ namespace ET
             bool show_old = self.UISkillJueXing.GameObject.activeSelf;
             bool show_new = numericComponent.GetAsInt(NumericType.JueXingAnger) >= 500;
             self.UISkillJueXing.GameObject.SetActive(show_new);
-            if (!show_old && show_new)
+            if (show_old != show_new)
             {
                 self.UISkillJueXing.RemoveSkillInfoShow();
             }
