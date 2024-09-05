@@ -81,45 +81,45 @@ namespace ET
                 }
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
-                M2C_SkillCmd m2C_SkillCmd = null;
+                M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true); ;
 
                 //可以放二段斩的时候客户端会发送二段技能过来
-                if (skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
-                {
-                    int zhudongindex = 0;
-                    //有对应的buff才能触发二段斩
-                    int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillManagerComponent.SkillSecond[request.SkillID]].KeyId;
+                //if (skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
+                //{
+                //    int zhudongindex = 0;
+                //    //有对应的buff才能触发二段斩
+                //    int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillManagerComponent.SkillSecond[request.SkillID]].KeyId;
 
-                    List<Unit> allDefend = unit.GetParent<UnitComponent>().GetAll();
-                    for (int defend = 0; defend < allDefend.Count; defend++)
-                    {
-                        BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
-                        if (buffManagerComponent == null || allDefend[defend].Id == unit.Id) //|| allDefend[defend].Id == request.TargetID 
-                        {
-                            continue;
-                        }
-                        int buffNum = buffManagerComponent.GetBuffSourceNumber(unit.Id, buffId);
-                        if (buffNum <= 0)
-                        {
-                            continue;
-                        }
-                        zhudongindex++;
-                        request.TargetID = allDefend[defend].Id;
-                        buffManagerComponent.BuffRemoveByUnit(0, buffId);
-                        if (zhudongindex == 1)
-                        {
-                            m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
-                        }
-                        else
-                        {
-                            unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
-                        }
-                    }
-                }
-                else
-                {
-                    m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
-                }
+                //    List<Unit> allDefend = unit.GetParent<UnitComponent>().GetAll();
+                //    for (int defend = 0; defend < allDefend.Count; defend++)
+                //    {
+                //        BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
+                //        if (buffManagerComponent == null || allDefend[defend].Id == unit.Id) //|| allDefend[defend].Id == request.TargetID 
+                //        {
+                //            continue;
+                //        }
+                //        int buffNum = buffManagerComponent.GetBuffSourceNumber(unit.Id, buffId);
+                //        if (buffNum <= 0)
+                //        {
+                //            continue;
+                //        }
+                //        zhudongindex++;
+                //        request.TargetID = allDefend[defend].Id;
+                //        buffManagerComponent.BuffRemoveByUnit(0, buffId);
+                //        if (zhudongindex == 1)
+                //        {
+                //            m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
+                //        }
+                //        else
+                //        {
+                //            unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
+                //}
 
                 if (m2C_SkillCmd!= null && m2C_SkillCmd.Error == ErrorCode.ERR_Success)
                 {

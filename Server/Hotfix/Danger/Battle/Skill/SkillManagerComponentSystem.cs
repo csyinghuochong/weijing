@@ -53,12 +53,49 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             List<SkillInfo> skillInfos = new List<SkillInfo>();
-
             SkillInfo skillInfo = new SkillInfo();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+         
+            if (self.SkillSecond.ContainsKey(skillcmd.SkillID))
+            {
+                //有对应的buff才能触发二段斩
+                int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[self.SkillSecond[skillcmd.SkillID]].KeyId;
 
+                List<Unit> allDefend = unit.GetParent<UnitComponent>().GetAll();
+                for (int defend = 0; defend < allDefend.Count; defend++)
+                {
+                    BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
+                    if (buffManagerComponent == null || allDefend[defend].Id == unit.Id) //|| allDefend[defend].Id == request.TargetID 
+                    {
+                        continue;
+                    }
+                    int buffNum = buffManagerComponent.GetBuffSourceNumber(unit.Id, buffId);
+                    if (buffNum <= 0)
+                    {
+                        continue;
+                    }
+                 
+                    buffManagerComponent.BuffRemoveByUnit(0, buffId);
+                    Vector3 direction = allDefend[defend].Position - unit.Position;
+                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                    skillInfo = new SkillInfo();
+                    skillInfo.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                    Vector3 targetPosition = allDefend[defend].Position;
+                    skillInfo.WeaponSkillID = weaponSkill;
+                    skillInfo.PosX = targetPosition.x;
+                    skillInfo.PosY = targetPosition.y;
+                    skillInfo.PosZ = targetPosition.z;
+                    skillInfo.TargetID = skillcmd.TargetID;
+                    skillInfo.TargetAngle = Mathf.FloorToInt(ange);
+                    skillInfos.Add(skillInfo);
+                }
+
+                return skillInfos;
+            }
+
+
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
             Unit target = unit.GetParent<UnitComponent>().Get(skillcmd.TargetID);
-          
+
             switch (skillConfig.SkillTargetType)
             {
                 case (int)SkillTargetType.SelfPosition:
