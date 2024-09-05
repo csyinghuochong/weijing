@@ -461,6 +461,12 @@ namespace ET
             }
         }
 
+        public static void ResetSkillSecond(this UISkillGridComponent self)
+        {
+            self.SkillSecond = 0;
+            self.SkillSecondCD.gameObject.SetActive(false);
+        }
+
         public static async ETTask ShowSkillSecondCD(this UISkillGridComponent self, int skillId)
         {
             KeyValuePairLong4 keyValuePairLong = null;

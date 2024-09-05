@@ -605,7 +605,7 @@ namespace ET
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 self.UISkillGirdList[i].RemoveSkillInfoShow();
-
+                self.UISkillGirdList[i].ResetSkillSecond();
             }
             self.UISkillJueXing.RemoveSkillInfoShow();
         }
