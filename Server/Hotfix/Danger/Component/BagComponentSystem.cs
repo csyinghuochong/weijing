@@ -169,9 +169,9 @@ namespace ET
                 needGrid += (totalNum % itemCof.ItemPileSum > 0 ? 1 : 0);
                 finalNum = totalNum - (needGrid - 1) * itemCof.ItemPileSum;
 
-                if (needGrid <= 0 || needGrid >= bagInfos.Count)
+                if (needGrid <= 0 || needGrid > bagInfos.Count)
                 {
-                    LogHelper.LogDebug($"RecvItemSortError: {self.GetParent<Unit>().Id} {bagInfos[0].ItemID}   {totalNum}   {needGrid}  {bagInfos.Count}");
+                    Console.WriteLine($"RecvItemSortError: {self.GetParent<Unit>().Id} {bagInfos[0].ItemID}   {totalNum}   {needGrid}  {bagInfos.Count}");
                     continue;
                 }
                 bagInfos[needGrid - 1].ItemNum = finalNum;
