@@ -257,13 +257,19 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 释放二段技能的时候
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillId"></param>
+        /// <param name="secondId"></param>
         public static void AddSkillSecond(this SkillManagerComponent self, int skillId, int secondId)
         {
             if (self.SkillSecond.ContainsKey(secondId))
             {
                 return;
             }
-            self.SkillSecond.Add(secondId, skillId);
+            self.SkillSecond.Add(secondId, skillId); //skillId302  secondId702
         }
 
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, long cdEndTime, long pulicCD)

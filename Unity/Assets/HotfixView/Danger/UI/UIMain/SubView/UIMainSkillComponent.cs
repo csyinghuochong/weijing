@@ -605,6 +605,7 @@ namespace ET
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 self.UISkillGirdList[i].RemoveSkillInfoShow();
+
             }
             self.UISkillJueXing.RemoveSkillInfoShow();
         }
@@ -617,7 +618,6 @@ namespace ET
                 uISkillGridComponent.RemoveSkillInfoShow();
                 uISkillGridComponent.OnUpdate(0,0);
                 uISkillGridComponent.UseSkill = false;
-                uISkillGridComponent.SkillSecond = 0;
             }
             self.UIFangunComponet.OnUpdate(0);
         }

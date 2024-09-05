@@ -81,11 +81,12 @@ namespace ET
                 }
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
-                M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
+                M2C_SkillCmd m2C_SkillCmd = null;
 
                 //可以放二段斩的时候客户端会发送二段技能过来
                 if (skillManagerComponent.SkillSecond.ContainsKey(request.SkillID))
                 {
+                    int zhudongindex = 0;
                     //有对应的buff才能触发二段斩
                     int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[skillManagerComponent.SkillSecond[request.SkillID]].KeyId;
 
@@ -93,7 +94,7 @@ namespace ET
                     for (int defend = 0; defend < allDefend.Count; defend++)
                     {
                         BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
-                        if (buffManagerComponent == null || allDefend[defend].Id == request.TargetID || allDefend[defend].Id == unit.Id)
+                        if (buffManagerComponent == null || allDefend[defend].Id == unit.Id) //|| allDefend[defend].Id == request.TargetID 
                         {
                             continue;
                         }
@@ -102,13 +103,25 @@ namespace ET
                         {
                             continue;
                         }
+                        zhudongindex++;
                         request.TargetID = allDefend[defend].Id;
                         buffManagerComponent.BuffRemoveByUnit(0, buffId);
-                        unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
+                        if (zhudongindex == 1)
+                        {
+                            m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
+                        }
+                        else
+                        {
+                            unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, false);
+                        }
                     }
                 }
+                else
+                {
+                    m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true);
+                }
 
-                if (m2C_SkillCmd.Error == ErrorCode.ERR_Success)
+                if (m2C_SkillCmd!= null && m2C_SkillCmd.Error == ErrorCode.ERR_Success)
                 {
                     if (request.ItemId > 0)
                     {
@@ -127,8 +140,8 @@ namespace ET
                     }
                 }
                 
-                response.Error = m2C_SkillCmd.Error;
-                response.Message = m2C_SkillCmd.Message;
+                response.Error = m2C_SkillCmd!= null ? m2C_SkillCmd.Error : ErrorCode.ERR_UseSkillError;
+                response.Message = m2C_SkillCmd != null ? m2C_SkillCmd.Message: string.Empty;
                 reply();
                 await ETTask.CompletedTask;
             }

@@ -519,7 +519,6 @@ namespace ET
                 int skillid = SkillHelp.GetWeaponSkill(skillpro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList);
                 if (!SkillConfigCategory.Instance.Contain(skillid))
                 {
-                    Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
                     self.SkillPro = null;
                     return;
                 }
@@ -545,7 +544,6 @@ namespace ET
                     if (!SkillConfigCategory.Instance.Contain(skillid))
                     {
                         self.SkillPro = null;
-                        Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
                         return;
                     }
 

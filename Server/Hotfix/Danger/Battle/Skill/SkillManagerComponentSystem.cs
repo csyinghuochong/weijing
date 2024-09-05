@@ -1023,25 +1023,20 @@ namespace ET
             {
                 return;
             }
-            Unit unit = self.GetParent<Unit>();
-            List<long> hurtIds = new List<long>() {  hurtId };
+
 
             ///攻击到目标则暂时清除CD
             SkillCDItem skillCDItem = null;
             self.SkillCDs.TryGetValue(skillHandler.SkillConf.Id, out skillCDItem);
-            if (skillCDItem != null)
+            if (skillCDItem != null && skillCDItem.CDEndTime!= 0)
             {
                 skillCDItem.CDEndTime = 0;
+                //有伤害才同步 打断CD. 只同步一次
+                M2C_SkillSecondResult request = new M2C_SkillSecondResult() { UnitId = self.Id, SkillId = skillHandler.SkillConf.Id, HurtIds = new List<long> { hurtId } };
+                MessageHelper.SendToClient(self.GetParent<Unit>(), request);
             }
 
-            if (!self.SkillSecond.ContainsKey((int)keyValuePairLong.Value2))
-            {
-                self.SkillSecond.Add((int)(keyValuePairLong.Value2), skillHandler.SkillConf.Id );
-            }
-
-            //有伤害才同步 打断CD. 只同步一次
-            M2C_SkillSecondResult request = new M2C_SkillSecondResult() { UnitId = self.Id, SkillId = skillHandler.SkillConf.Id, HurtIds = hurtIds };
-            MessageHelper.SendToClient(self.GetParent<Unit>(), request);
+            self.SkillSecond[(int)(keyValuePairLong.Value2)] =  skillHandler.SkillConf.Id;
         }
 
         public static void CheckEndSkill(this SkillManagerComponent self, int endSkillId)
