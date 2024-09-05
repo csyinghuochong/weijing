@@ -101,7 +101,11 @@ namespace ET
                         continue;
                     }
 
-                    skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
+                    if (skillSetComponent.GetBySkillID(occTwoSkillList[i]) == null)
+                    {
+                        Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   添加技能ID:{occTwoSkillList[i]}");
+                        skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
+                    }
                 }
             }
 
@@ -133,10 +137,10 @@ namespace ET
             }
             if (!string.IsNullOrEmpty(repeatskill))
             {
-                Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重复技能ID: {repeatskill}");
-
                 UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                if (repeatskill.Contains("6102340") && repeatlist.Count > 2 && userInfoComponent.UserInfo.OccTwo == 103) //61023401 
+                Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重复技能ID: {repeatskill}  职业:{userInfoComponent.UserInfo.OccTwo}");
+
+                if (repeatskill.Contains("6102340") && repeatlist.Count >= 2 && userInfoComponent.UserInfo.OccTwo == 103) //61023401 
                 {
                     Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重置技能！！");
                     int level = userInfoComponent.UserInfo.Lv;
