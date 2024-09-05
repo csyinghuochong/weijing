@@ -102,12 +102,12 @@
 +dmongodb://localhost:27017/a"	WJBeta100
 +emongodb://localhost:27017/e"	WJBeta101
 +fmongodb://localhost:27017/e"	WJBeta102
-+gmongodb://localhost:27017/g"	WJBeta103
-+hmongodb://localhost:27017/g"	WJBeta104
++gmongodb://localhost:27017/e"	WJBeta103
++hmongodb://localhost:27017/e"	WJBeta104
 +imongodb://localhost:27017/i"	WJBeta105
-+jmongodb://localhost:27017/j"	WJBeta106
++jmongodb://localhost:27017/i"	WJBeta106
 +kmongodb://localhost:27017/k"	WJBeta107
-+lmongodb://localhost:27017/l"	WJBeta108
++lmongodb://localhost:27017/k"	WJBeta108
 +mmongodb://localhost:27017/m"	WJBeta109
 +nmongodb://localhost:27017/n"	WJBeta110
 +omongodb://localhost:27017/o"	WJBeta111
