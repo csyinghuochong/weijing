@@ -224,9 +224,33 @@ namespace ET
                     skillInfos.Add(skillInfo);
                     break;
                 case (int)SkillTargetType.MulTarget:
-                    int targetNum = int.Parse( skillConfig.GameObjectParameter);
-                    float range = (float)skillConfig.SkillRangeSize;
-                    List<long> targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, targetNum);
+                case (int)SkillTargetType.MulTarget_11:
+
+                    int targetNum = 1;
+                    float range = 1f;
+                    List<long> targetIds = null;
+
+                    if (skillConfig.SkillTargetType == SkillTargetType.MulTarget)
+                    {
+                        targetNum = int.Parse(skillConfig.GameObjectParameter);
+                        range = (float)skillConfig.SkillRangeSize;
+                        targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, targetNum);
+                    }
+                    else
+                    {
+                        if (target == null)
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            string[] targetinfo =  skillConfig.GameObjectParameter.Split(';');
+                            targetNum = int.Parse(targetinfo[0]);
+                            range = float.Parse(targetinfo[1]);
+                            targetIds = AIHelp.GetNearestEnemyByNumber(unit, target.Position, range, targetNum);
+                        }
+                    }
+                    
                     if (!targetIds.Contains(skillcmd.TargetID) && skillcmd.TargetID > 0)
                     {
                         targetIds.Insert(0, skillcmd.TargetID);
@@ -485,7 +509,7 @@ namespace ET
             }
             SkillConfig weaponSkillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
             List<SkillInfo> skillList = self.GetRandomSkills(skillcmd, weaponSkill);
-            if (skillList.Count == 0)
+            if (skillList == null ||  skillList.Count == 0)
             {
                 m2C_Skill.Error = ErrorCode.ERR_UseSkillError;
                 return m2C_Skill;

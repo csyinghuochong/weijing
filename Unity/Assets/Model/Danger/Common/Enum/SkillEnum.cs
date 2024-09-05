@@ -94,7 +94,8 @@ namespace ET
     //7  指定目标
     //8  指定自己
     //9  跟随自己
-    //10 多个目标
+    //10 多个目标(自身为中心随机)
+    //11 多个目标(目标为中心随机)
 
     public static class SkillTargetType
     {
@@ -109,6 +110,7 @@ namespace ET
         public const int SelfOnly = 8;
         public const int SelfFollow = 9;
         public const int MulTarget = 10;
+        public const int MulTarget_11 = 11;
     }
 
     //0：
