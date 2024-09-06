@@ -2422,6 +2422,9 @@ namespace ET
 		[ProtoMember(10)]
 		public int SkillId { get; set; }
 
+		[ProtoMember(11)]
+		public long UnitIdFrom { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_UnitBuffRemove)]

@@ -526,6 +526,21 @@ namespace ET
             }
         }
 
+        public static void CheckSkillSecond(this UIMainSkillComponent self)
+        {
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                if (self.UISkillGirdList[i].SkillPro == null)
+                {
+                    continue;
+                }
+                if (self.UISkillGirdList[i].SkillSecond == 1)
+                {
+                    self.UISkillGirdList[i].CheckSkillSecond();
+                }
+            }
+        }
+
         public static void OnSkillSecond(this UIMainSkillComponent self, M2C_SkillSecondResult message)
         {
             for (int i = 0; i < self.UISkillGirdList.Count; i++)

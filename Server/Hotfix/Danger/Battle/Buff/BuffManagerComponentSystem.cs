@@ -500,6 +500,7 @@ namespace ET
                 m2C_UnitBuffUpdate.UnitType = from.Type;
                 m2C_UnitBuffUpdate.UnitConfigId = from.ConfigId;    
                 m2C_UnitBuffUpdate.SkillId = buffData.SkillId;
+                m2C_UnitBuffUpdate.UnitIdFrom = from.Id;
                 if (unit.GetComponent<AOIEntity>() == null)
                 {
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");

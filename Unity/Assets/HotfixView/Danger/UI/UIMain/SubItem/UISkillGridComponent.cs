@@ -430,6 +430,37 @@ namespace ET
             self.Button_Cancle.SetActive(false);
         }
 
+        public static void CheckSkillSecond(this UISkillGridComponent self)
+        {
+            Unit main = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            //有对应的buff才能触发二段斩
+            int buffId = (int)SkillConfigCategory.Instance.BuffSecondSkill[self.SkillPro.SkillID].KeyId;
+
+            bool havebuff  = false;
+            List<Unit> allDefend = main.GetParent<UnitComponent>().GetAll();
+            for (int defend = 0; defend < allDefend.Count; defend++)
+            {
+                BuffManagerComponent buffManagerComponent = allDefend[defend].GetComponent<BuffManagerComponent>();
+                if (buffManagerComponent == null || allDefend[defend].Id == main.Id) //|| allDefend[defend].Id == request.TargetID 
+                {
+                    continue;
+                }
+                int buffNum = buffManagerComponent.GetBuffSourceNumber(main.Id, buffId);
+                if (buffNum <= 0)
+                {
+                    continue;
+                }
+
+                havebuff = true;
+                break;
+            }
+
+            if (!havebuff)
+            {
+                self.OnSkillSecondResult(null);
+            }
+        }
+
         public static void OnSkillSecondResult(this UISkillGridComponent self, M2C_SkillSecondResult message)
         {
             if (self.SkillPro == null)

@@ -235,6 +235,8 @@ namespace ET
         public int SkillId;
         public int BuffId;
 
+        public long UnitIdFrom;
+
         public Vector3 TargetPostion;
     }
 

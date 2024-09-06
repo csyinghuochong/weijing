@@ -101,6 +101,7 @@ namespace ET
             }
         }
 
+
         #region 添加，移除Buff
         public static void InitBuff(this BuffManagerComponent self)
         {
@@ -182,6 +183,27 @@ namespace ET
             }
             return number;
         }
+
+        public static int GetBuffSourceNumber(this BuffManagerComponent self, long formId, int buffId)
+        {
+            int buffnumber = 0;
+            int bufflist = self.m_Buffs.Count;
+
+            for (int i = bufflist - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].BuffData.BuffId != buffId)
+                {
+                    continue;
+                }
+                if (formId != 0 && formId != self.m_Buffs[i].BuffData.UnitIdFrom)
+                {
+                    continue;
+                }
+                buffnumber++;
+            }
+            return buffnumber;
+        }
+
 
         /// <summary>
         /// 通过标识ID获得Buff
