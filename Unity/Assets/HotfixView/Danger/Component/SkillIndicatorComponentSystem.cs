@@ -159,6 +159,12 @@ namespace ET
                                 scaleList = equipIndex == 0 ? new float[4] { 15f, 15f, 15f, 15f } : new float[4] { 6f, 12f, 6f, 6f };
                             }
                             skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * scaleList[occ - 1];
+
+                            //法师加长
+                            if (occ == 4)
+                            {
+                                scaleList = new float[4] { 12f, 12f, 12f, 12f };
+                            }
                         }
                         break;
                     case SkillZhishiType.Position:
