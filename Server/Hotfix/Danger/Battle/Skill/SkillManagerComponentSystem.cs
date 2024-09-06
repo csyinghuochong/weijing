@@ -1073,7 +1073,7 @@ namespace ET
                 MessageHelper.SendToClient(self.GetParent<Unit>(), request);
             }
 
-            self.SkillSecond[(int)(keyValuePairLong.Value2)] =  skillHandler.SkillConf.Id;
+            self.SkillSecond[(int)(keyValuePairLong.Value2)] =  skillHandler.SkillConf.Id;//702-302
         }
 
         public static void CheckEndSkill(this SkillManagerComponent self, int endSkillId)
