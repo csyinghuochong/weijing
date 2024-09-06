@@ -366,6 +366,11 @@ namespace ET
                 }
             }
 
+            if (uu.GetComponent<BuffManagerComponent>().IsSkillImmune(self.SkillConf.Id))
+            {
+                return false;
+            }
+
             bool ishit =  Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self, hurtMode);
             if (clearnTemporary)
             {

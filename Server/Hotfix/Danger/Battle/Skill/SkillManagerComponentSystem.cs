@@ -1061,6 +1061,17 @@ namespace ET
                 return;
             }
 
+            UnitComponent unitComponent = self.DomainScene().GetComponent<UnitComponent>();
+            Unit target = unitComponent.Get(hurtId);
+            if (target == null)
+            {
+                return;
+            }
+
+            if (target.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                return;
+            }
 
             ///攻击到目标则暂时清除CD
             SkillCDItem skillCDItem = null;

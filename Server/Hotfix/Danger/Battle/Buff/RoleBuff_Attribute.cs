@@ -227,6 +227,9 @@ namespace ET
                         }
                     }
                     break;
+                case 7:
+
+                    break;
                 default: 
                     break; 
             }
@@ -280,6 +283,8 @@ namespace ET
                     break;
                 case 4:
                     this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().RemovePassiveSkill(this.mBuffConfig.buffParameterType);
+                    break;
+                case 7:
                     break;
                 default:
                     break;

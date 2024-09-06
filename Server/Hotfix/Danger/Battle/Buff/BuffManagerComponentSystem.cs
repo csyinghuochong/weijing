@@ -592,6 +592,26 @@ namespace ET
             }
         }
 
+        public static bool IsSkillImmune(this BuffManagerComponent self, int skillid)
+        {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = 0; i < buffcnt; i++)
+            {
+                SkillBuffConfig buffConfig = self.m_Buffs[i].mBuffConfig;
+                if (buffConfig.BuffType != 7)
+                {
+                    continue;
+                }
+                if(buffConfig.buffParameterValue2.Contains(skillid.ToString()))
+                { 
+                    return true;        
+                }
+            }
+
+
+            return false;
+        }
+
         public static int GetBuffSourceNumber(this BuffManagerComponent self, long formId,  int buffId)
         {
             int buffnumber = 0;
