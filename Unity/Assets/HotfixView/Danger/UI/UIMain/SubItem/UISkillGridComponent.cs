@@ -457,7 +457,7 @@ namespace ET
                 self.SkillSecondCD.gameObject.SetActive(false);
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
-                unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + (skillConfig.SkillLiveTime), TimeHelper.ServerNow() + 500);
+                unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + (long)(skillConfig.SkillCD * 1000), TimeHelper.ServerNow() + 500);
             }
         }
 
