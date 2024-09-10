@@ -279,6 +279,9 @@ namespace ET
 		/// <summary>Buff触发技能</summary>
 		[ProtoMember(68)]
 		public string BuffToSkill { get; set; }
+		/// <summary>技能伤害增加</summary>
+		[ProtoMember(69)]
+		public string SkillDamgeAddValue { get; set; }
 
 	}
 }
