@@ -345,7 +345,7 @@ namespace ET
             //2024/09/13 19:00:00 1726225200000 合区 星辰大海-繁花似锦 109-110
             //2024/09/13 19:00:00 1726225200000 合区 流年不负-海之王国 111-112
             //2024/09/13 19:00:00 1726225200000 新区 龙焰平原 119
-            serverItems_1.Add(new ServerItem() { ServerId = 119, ServerIp = $"{ip}:20415", ServerName = "龙焰平原", ServerOpenTime = 1725620400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 119, ServerIp = $"{ip}:20415", ServerName = "龙焰平原", ServerOpenTime = 1726225200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
