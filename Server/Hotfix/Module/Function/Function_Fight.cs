@@ -238,6 +238,10 @@ namespace ET
                     case 3:
                         attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_ActQiangDuAdd);
                         break;
+                    //唤魔者
+                    case 4:
+                        attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_MageQiangDuAdd);
+                        break;
                 }
             }
             //long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
@@ -736,7 +740,14 @@ namespace ET
                     //普攻保留50%
                     if (skillconfig.SkillActType == 0)
                     {
-                        damge = (int)((float)damge * 0.5f);
+                        //猎人保留40%普攻伤害
+                        if (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Occ == 3)
+                        {
+                            damge = (int)((float)damge * 0.4f);
+                        }
+                        else {
+                            damge = (int)((float)damge * 0.5f);
+                        }
                     }
                 }
 
@@ -1331,7 +1342,7 @@ namespace ET
         public static float GetFightValueActProValue(int actFightValue, int defFightValue)
         {
 
-            float addPro = (actFightValue / defFightValue) - 1;
+            float addPro = ((actFightValue / defFightValue) - 1) * 1.5f;
 
             //范围限制
             if (addPro < 0)
@@ -1340,9 +1351,9 @@ namespace ET
             }
 
             //addPro = addPro + 0.05f;
-            if (addPro > 0.5f)
+            if (addPro > 0.75f)
             {
-                addPro = 0.5f;
+                addPro = 0.75f;
             }
 
             return addPro;
@@ -1353,7 +1364,7 @@ namespace ET
         public static float GetFightValueCriAndHitProValue(int actFightValue, int defFightValue)
         {
 
-            float addPro = (actFightValue / defFightValue) - 1;
+            float addPro = ((actFightValue / defFightValue) - 1) * 1.5f;
 
             //范围限制
             if (addPro < 0)
@@ -1937,7 +1948,7 @@ namespace ET
 
                 //职业专精
                 float occMastery = 0f;
-                if (userInfo.OccTwo != 0)
+                if (userInfo.Occ != 0)
                 {
                     //if (OccupationTwoConfigCategory.Instance.Get(userInfo.OccTwo).ArmorMastery == ItemConfigCategory.Instance.Get(equipIDList[i]).EquipType)
                     //{
