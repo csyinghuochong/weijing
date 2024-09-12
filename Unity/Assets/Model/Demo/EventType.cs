@@ -716,6 +716,15 @@ namespace ET
             public Scene ZoneScene;
             public Unit Unit;
         }
+        
+        public class AddBuff : DisposeObject
+        {
+            public static readonly AddBuff Instance = new AddBuff();
+
+            public Scene ZoneScene;
+            public Unit Unit;
+            public int BuffId;
+        }
 
         public class BuffScale : DisposeObject
         {

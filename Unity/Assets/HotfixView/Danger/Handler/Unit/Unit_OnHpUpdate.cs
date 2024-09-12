@@ -60,7 +60,7 @@ namespace ET
                     FallingFontComponent fallingFontComponent = unitDefend.DomainScene().GetComponent<FallingFontComponent>();
 
                     //触发飘字
-                    fallingFontComponent.Play(GameObject, args.ChangeHpValue, unitDefend, args.DamgeType);
+                    fallingFontComponent.PlayBattle(GameObject, unitDefend, args.ChangeHpValue, args.DamgeType);
 
                     //触发受击特效
                     FunctionEffect.GetInstance().PlayHitEffect(unitAttack, unitDefend, args.SkillID);

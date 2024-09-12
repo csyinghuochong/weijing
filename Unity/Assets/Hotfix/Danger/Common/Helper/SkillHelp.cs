@@ -31,6 +31,14 @@ namespace ET
             62000004
         };
 
+        
+        
+        public static Dictionary<int, (string, string)> BuffFallingFont = new Dictionary<int, (string, string)>()
+        {
+            { 100912, ("加速", "减速") },
+            { 100612, ("物防增加", "物防减低") },
+            { 1, (string.Empty, string.Empty) }
+        };
 
         public static bool IsChongJi(string skillname)
         {

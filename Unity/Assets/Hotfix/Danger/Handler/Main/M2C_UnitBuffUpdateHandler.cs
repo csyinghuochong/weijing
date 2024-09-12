@@ -22,7 +22,7 @@ namespace ET
                 case 1: //增加
                     BuffData buffData = new BuffData();
                     buffData.TargetAngle = 0;
-                    buffData.BuffId = (int)message.BuffID;
+                    buffData.BuffId = message.BuffID;
                     buffData.Spellcaster = message.Spellcaster;
                     buffData.BuffEndTime = message.BuffEndTime;
                     buffData.UnitType = message.UnitType;
@@ -31,6 +31,11 @@ namespace ET
                     buffData.UnitIdFrom = message.UnitIdFrom;   
                     buffData.TargetPostion = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2]);
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
+                    
+                    EventType.AddBuff.Instance.ZoneScene = msgUnitBelongTo.ZoneScene();
+                    EventType.AddBuff.Instance.Unit = msgUnitBelongTo;
+                    EventType.AddBuff.Instance.BuffId = message.BuffID;
+                    EventSystem.Instance.PublishClass(EventType.AddBuff.Instance);
                     break;
                 case 2: //移除
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().RemoveBuff(message.BuffID);
