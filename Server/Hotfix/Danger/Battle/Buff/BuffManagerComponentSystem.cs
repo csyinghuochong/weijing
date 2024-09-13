@@ -635,7 +635,7 @@ namespace ET
 
         public static int GetBuffIndexById(this BuffManagerComponent self, BuffHandler buffHandler)
         {
-            int buffindex = -1;
+            int buffindex = 0;
             int bufflist = self.m_Buffs.Count;
 
             for (int i = bufflist - 1; i >= 0; i--)
