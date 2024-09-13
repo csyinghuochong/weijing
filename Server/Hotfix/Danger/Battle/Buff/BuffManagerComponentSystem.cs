@@ -476,9 +476,9 @@ namespace ET
                 {
                     buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
                 }
-               
-                buffHandler.OnInit(buffData, from, unit, skillHandler);
+
                 self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
+                buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.AddTimer();
 
                 self.AddBuffRecord(1, buffHandler.BuffData.BuffId);
@@ -631,6 +631,23 @@ namespace ET
                 buffnumber++;
             }
             return buffnumber;
+        }
+
+        public static int GetBuffIndexById(this BuffManagerComponent self, BuffHandler buffHandler)
+        {
+            int buffindex = -1;
+            int bufflist = self.m_Buffs.Count;
+
+            for (int i = bufflist - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i] != buffHandler)
+                {
+                    continue;
+                }
+                buffindex = i;
+                break;
+            }
+            return buffindex;
         }
 
         public static void Check(this BuffManagerComponent self)

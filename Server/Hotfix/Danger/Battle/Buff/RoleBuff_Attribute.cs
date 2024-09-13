@@ -72,12 +72,27 @@ namespace ET
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
 
             this.IsTrigger = true;
+
+            int buffNumber = 1;
+            int buffindex = 0;
+
+            BuffManagerComponent buffManagerComponent = this.TheUnitBelongto.GetComponent<BuffManagerComponent>();
+            if (this.mBuffConfig.BuffAddSync == 1 &&  this.mBuffConfig.buffParameterType == 3001 )
+            {
+                buffNumber = buffManagerComponent.GetBuffSourceNumber(0, this.mBuffConfig.Id);
+                buffindex = buffManagerComponent.GetBuffIndexById(this);
+                if (buffindex > 0)
+                {
+                    return;
+                }
+            }
+
             switch (this.mBuffConfig.BuffType)
             {
                 //属性类buff
                 case 1:
                     int  NowBuffParameterType = this.mBuffConfig.buffParameterType;
-                    float NowBuffParameterValue = (float)this.mBuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
+                    float NowBuffParameterValue = (float)this.mBuffConfig.buffParameterValue * buffNumber + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
                     int NowBuffParameterValueType = this.mBuffConfig.buffParameterValueType;
                     
                     int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
