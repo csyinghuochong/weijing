@@ -389,7 +389,7 @@ namespace ET
                 }
                 if (occ == 4)
                 {
-                    return ItemEquipType.Wand;
+                    return ItemEquipType.Book;
                 }
                 Log.Error($"{occ} 没有配置此职业的默认武器！");
                 return ItemEquipType.Sword;
