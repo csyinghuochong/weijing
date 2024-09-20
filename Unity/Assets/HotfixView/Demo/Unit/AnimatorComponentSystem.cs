@@ -166,7 +166,7 @@ namespace ET
 			return animatorStateInfo.normalizedTime;
 		}
 
-		public static void Play(this AnimatorComponent self, string motionType, int skillid = 0, float motionSpeed = 1f)
+		public static void Play(this AnimatorComponent self, string motionType, int skillid = 0, float motionSpeed = 1f, bool repteat = false)
 		{
             self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
@@ -190,7 +190,14 @@ namespace ET
 
             if (self.HasParameter(motionType.ToString()))
             {
-				self.Animator.Play(motionType);
+				if (repteat)
+				{
+                    self.Animator.Play(motionType, 0, 0);
+                }
+				else
+				{
+                    self.Animator.Play(motionType);
+                }
 				return;
             }
 

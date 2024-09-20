@@ -206,7 +206,7 @@ namespace ET
                 self.Animator.SetBoolValue("Run", false);
                 self.Animator.SetBoolValue("Idle", true);
             }
-            self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id);
+            self.Animator.Play(skillConfig.SkillAnimation, skillConfig.Id, 1f, true);
         }
 
         public static void OnEnterFsmRunState(this FsmComponent self)
