@@ -569,6 +569,15 @@ namespace ET
                 case 303:
                     itemID = 14000005;
                     break;
+                case 401:
+                    itemID = 14000003;
+                    break;
+                case 402:
+                    itemID = 14000004;
+                    break;
+                case 403:
+                    itemID = 14000004;
+                    break;
             }
 
             if (itemID == 0) {
