@@ -20485,50 +20485,52 @@ public:
 	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___OnRiskControlInfoHandler_14;
 	// System.Action`1<System.String> ET.Init::OnTikTokAccesstokenHandler
 	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___OnTikTokAccesstokenHandler_15;
+	// System.Action`1<System.String> ET.Init::OnGetDeviceOAIDHandler
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___OnGetDeviceOAIDHandler_16;
 	// System.Action ET.Init::OnApplicationQuitHandler
-	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnApplicationQuitHandler_16;
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnApplicationQuitHandler_17;
 	// System.Action`1<System.Int32> ET.Init::OnGetKeyHandler
-	Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * ___OnGetKeyHandler_17;
+	Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * ___OnGetKeyHandler_18;
 	// System.Action ET.Init::OnGetMouseButtonDown_1
-	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnGetMouseButtonDown_1_18;
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnGetMouseButtonDown_1_19;
 	// System.Action ET.Init::OnGetMouseButtonDown_0
-	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnGetMouseButtonDown_0_19;
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___OnGetMouseButtonDown_0_20;
 	// cn.sharesdk.unity3d.ShareSDK ET.Init::ssdk
-	ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * ___ssdk_20;
+	ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * ___ssdk_21;
 	// cn.sharesdk.unity3d.MobSDK ET.Init::mobsdk
-	MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * ___mobsdk_21;
+	MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * ___mobsdk_22;
 	// System.String ET.Init::WXAppID
-	String_t* ___WXAppID_22;
+	String_t* ___WXAppID_23;
 	// System.String ET.Init::WXAppSecret
-	String_t* ___WXAppSecret_23;
+	String_t* ___WXAppSecret_24;
 	// System.String ET.Init::QQAppID
-	String_t* ___QQAppID_24;
+	String_t* ___QQAppID_25;
 	// UnityEngine.AndroidJavaClass ET.Init::jc
-	AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * ___jc_25;
+	AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * ___jc_26;
 	// UnityEngine.AndroidJavaObject ET.Init::jo
-	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___jo_26;
+	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___jo_27;
 	// UnityEngine.AndroidJavaClass ET.Init::javaClass
-	AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * ___javaClass_27;
+	AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * ___javaClass_28;
 	// UnityEngine.AndroidJavaObject ET.Init::javaActive
-	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___javaActive_28;
+	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___javaActive_29;
 	// System.String ET.Init::javaClassStr
-	String_t* ___javaClassStr_29;
+	String_t* ___javaClassStr_30;
 	// System.String ET.Init::javaActiveStr
-	String_t* ___javaActiveStr_30;
+	String_t* ___javaActiveStr_31;
 	// ET.CodeMode ET.Init::CodeMode
-	int32_t ___CodeMode_31;
+	int32_t ___CodeMode_32;
 	// ET.VersionMode ET.Init::VersionMode
-	int32_t ___VersionMode_32;
+	int32_t ___VersionMode_33;
 	// System.Int32 ET.Init::Platform
-	int32_t ___Platform_33;
+	int32_t ___Platform_34;
 	// System.Boolean ET.Init::HotUpdateComplete
-	bool ___HotUpdateComplete_34;
+	bool ___HotUpdateComplete_35;
 	// System.String ET.Init::Apk_Extension
-	String_t* ___Apk_Extension_35;
+	String_t* ___Apk_Extension_36;
 	// System.Int32 ET.Init::IsRoot
-	int32_t ___IsRoot_36;
+	int32_t ___IsRoot_37;
 	// System.Int32 ET.Init::IsEmulator
-	int32_t ___IsEmulator_37;
+	int32_t ___IsEmulator_38;
 
 public:
 	inline static int32_t get_offset_of_Development_4() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Development_4)); }
@@ -20634,196 +20636,205 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)(&___OnTikTokAccesstokenHandler_15), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_OnApplicationQuitHandler_16() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnApplicationQuitHandler_16)); }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnApplicationQuitHandler_16() const { return ___OnApplicationQuitHandler_16; }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnApplicationQuitHandler_16() { return &___OnApplicationQuitHandler_16; }
-	inline void set_OnApplicationQuitHandler_16(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
+	inline static int32_t get_offset_of_OnGetDeviceOAIDHandler_16() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetDeviceOAIDHandler_16)); }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * get_OnGetDeviceOAIDHandler_16() const { return ___OnGetDeviceOAIDHandler_16; }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 ** get_address_of_OnGetDeviceOAIDHandler_16() { return &___OnGetDeviceOAIDHandler_16; }
+	inline void set_OnGetDeviceOAIDHandler_16(Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * value)
 	{
-		___OnApplicationQuitHandler_16 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___OnApplicationQuitHandler_16), (void*)value);
+		___OnGetDeviceOAIDHandler_16 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___OnGetDeviceOAIDHandler_16), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_OnGetKeyHandler_17() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetKeyHandler_17)); }
-	inline Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * get_OnGetKeyHandler_17() const { return ___OnGetKeyHandler_17; }
-	inline Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B ** get_address_of_OnGetKeyHandler_17() { return &___OnGetKeyHandler_17; }
-	inline void set_OnGetKeyHandler_17(Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * value)
+	inline static int32_t get_offset_of_OnApplicationQuitHandler_17() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnApplicationQuitHandler_17)); }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnApplicationQuitHandler_17() const { return ___OnApplicationQuitHandler_17; }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnApplicationQuitHandler_17() { return &___OnApplicationQuitHandler_17; }
+	inline void set_OnApplicationQuitHandler_17(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
 	{
-		___OnGetKeyHandler_17 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___OnGetKeyHandler_17), (void*)value);
+		___OnApplicationQuitHandler_17 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___OnApplicationQuitHandler_17), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_OnGetMouseButtonDown_1_18() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetMouseButtonDown_1_18)); }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnGetMouseButtonDown_1_18() const { return ___OnGetMouseButtonDown_1_18; }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnGetMouseButtonDown_1_18() { return &___OnGetMouseButtonDown_1_18; }
-	inline void set_OnGetMouseButtonDown_1_18(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
+	inline static int32_t get_offset_of_OnGetKeyHandler_18() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetKeyHandler_18)); }
+	inline Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * get_OnGetKeyHandler_18() const { return ___OnGetKeyHandler_18; }
+	inline Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B ** get_address_of_OnGetKeyHandler_18() { return &___OnGetKeyHandler_18; }
+	inline void set_OnGetKeyHandler_18(Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * value)
 	{
-		___OnGetMouseButtonDown_1_18 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___OnGetMouseButtonDown_1_18), (void*)value);
+		___OnGetKeyHandler_18 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___OnGetKeyHandler_18), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_OnGetMouseButtonDown_0_19() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetMouseButtonDown_0_19)); }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnGetMouseButtonDown_0_19() const { return ___OnGetMouseButtonDown_0_19; }
-	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnGetMouseButtonDown_0_19() { return &___OnGetMouseButtonDown_0_19; }
-	inline void set_OnGetMouseButtonDown_0_19(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
+	inline static int32_t get_offset_of_OnGetMouseButtonDown_1_19() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetMouseButtonDown_1_19)); }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnGetMouseButtonDown_1_19() const { return ___OnGetMouseButtonDown_1_19; }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnGetMouseButtonDown_1_19() { return &___OnGetMouseButtonDown_1_19; }
+	inline void set_OnGetMouseButtonDown_1_19(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
 	{
-		___OnGetMouseButtonDown_0_19 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___OnGetMouseButtonDown_0_19), (void*)value);
+		___OnGetMouseButtonDown_1_19 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___OnGetMouseButtonDown_1_19), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_ssdk_20() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___ssdk_20)); }
-	inline ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * get_ssdk_20() const { return ___ssdk_20; }
-	inline ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 ** get_address_of_ssdk_20() { return &___ssdk_20; }
-	inline void set_ssdk_20(ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * value)
+	inline static int32_t get_offset_of_OnGetMouseButtonDown_0_20() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___OnGetMouseButtonDown_0_20)); }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_OnGetMouseButtonDown_0_20() const { return ___OnGetMouseButtonDown_0_20; }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_OnGetMouseButtonDown_0_20() { return &___OnGetMouseButtonDown_0_20; }
+	inline void set_OnGetMouseButtonDown_0_20(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
 	{
-		___ssdk_20 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___ssdk_20), (void*)value);
+		___OnGetMouseButtonDown_0_20 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___OnGetMouseButtonDown_0_20), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_mobsdk_21() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___mobsdk_21)); }
-	inline MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * get_mobsdk_21() const { return ___mobsdk_21; }
-	inline MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 ** get_address_of_mobsdk_21() { return &___mobsdk_21; }
-	inline void set_mobsdk_21(MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * value)
+	inline static int32_t get_offset_of_ssdk_21() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___ssdk_21)); }
+	inline ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * get_ssdk_21() const { return ___ssdk_21; }
+	inline ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 ** get_address_of_ssdk_21() { return &___ssdk_21; }
+	inline void set_ssdk_21(ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * value)
 	{
-		___mobsdk_21 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___mobsdk_21), (void*)value);
+		___ssdk_21 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___ssdk_21), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_WXAppID_22() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___WXAppID_22)); }
-	inline String_t* get_WXAppID_22() const { return ___WXAppID_22; }
-	inline String_t** get_address_of_WXAppID_22() { return &___WXAppID_22; }
-	inline void set_WXAppID_22(String_t* value)
+	inline static int32_t get_offset_of_mobsdk_22() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___mobsdk_22)); }
+	inline MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * get_mobsdk_22() const { return ___mobsdk_22; }
+	inline MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 ** get_address_of_mobsdk_22() { return &___mobsdk_22; }
+	inline void set_mobsdk_22(MobSDK_t56C7268336BB37CB414D7D3AC996318C4A004BD7 * value)
 	{
-		___WXAppID_22 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___WXAppID_22), (void*)value);
+		___mobsdk_22 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___mobsdk_22), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_WXAppSecret_23() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___WXAppSecret_23)); }
-	inline String_t* get_WXAppSecret_23() const { return ___WXAppSecret_23; }
-	inline String_t** get_address_of_WXAppSecret_23() { return &___WXAppSecret_23; }
-	inline void set_WXAppSecret_23(String_t* value)
+	inline static int32_t get_offset_of_WXAppID_23() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___WXAppID_23)); }
+	inline String_t* get_WXAppID_23() const { return ___WXAppID_23; }
+	inline String_t** get_address_of_WXAppID_23() { return &___WXAppID_23; }
+	inline void set_WXAppID_23(String_t* value)
 	{
-		___WXAppSecret_23 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___WXAppSecret_23), (void*)value);
+		___WXAppID_23 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___WXAppID_23), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_QQAppID_24() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___QQAppID_24)); }
-	inline String_t* get_QQAppID_24() const { return ___QQAppID_24; }
-	inline String_t** get_address_of_QQAppID_24() { return &___QQAppID_24; }
-	inline void set_QQAppID_24(String_t* value)
+	inline static int32_t get_offset_of_WXAppSecret_24() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___WXAppSecret_24)); }
+	inline String_t* get_WXAppSecret_24() const { return ___WXAppSecret_24; }
+	inline String_t** get_address_of_WXAppSecret_24() { return &___WXAppSecret_24; }
+	inline void set_WXAppSecret_24(String_t* value)
 	{
-		___QQAppID_24 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___QQAppID_24), (void*)value);
+		___WXAppSecret_24 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___WXAppSecret_24), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_jc_25() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___jc_25)); }
-	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * get_jc_25() const { return ___jc_25; }
-	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 ** get_address_of_jc_25() { return &___jc_25; }
-	inline void set_jc_25(AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * value)
+	inline static int32_t get_offset_of_QQAppID_25() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___QQAppID_25)); }
+	inline String_t* get_QQAppID_25() const { return ___QQAppID_25; }
+	inline String_t** get_address_of_QQAppID_25() { return &___QQAppID_25; }
+	inline void set_QQAppID_25(String_t* value)
 	{
-		___jc_25 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___jc_25), (void*)value);
+		___QQAppID_25 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___QQAppID_25), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_jo_26() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___jo_26)); }
-	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * get_jo_26() const { return ___jo_26; }
-	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E ** get_address_of_jo_26() { return &___jo_26; }
-	inline void set_jo_26(AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * value)
+	inline static int32_t get_offset_of_jc_26() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___jc_26)); }
+	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * get_jc_26() const { return ___jc_26; }
+	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 ** get_address_of_jc_26() { return &___jc_26; }
+	inline void set_jc_26(AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * value)
 	{
-		___jo_26 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___jo_26), (void*)value);
+		___jc_26 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___jc_26), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaClass_27() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClass_27)); }
-	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * get_javaClass_27() const { return ___javaClass_27; }
-	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 ** get_address_of_javaClass_27() { return &___javaClass_27; }
-	inline void set_javaClass_27(AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * value)
+	inline static int32_t get_offset_of_jo_27() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___jo_27)); }
+	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * get_jo_27() const { return ___jo_27; }
+	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E ** get_address_of_jo_27() { return &___jo_27; }
+	inline void set_jo_27(AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * value)
 	{
-		___javaClass_27 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaClass_27), (void*)value);
+		___jo_27 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___jo_27), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaActive_28() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActive_28)); }
-	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * get_javaActive_28() const { return ___javaActive_28; }
-	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E ** get_address_of_javaActive_28() { return &___javaActive_28; }
-	inline void set_javaActive_28(AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * value)
+	inline static int32_t get_offset_of_javaClass_28() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClass_28)); }
+	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * get_javaClass_28() const { return ___javaClass_28; }
+	inline AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 ** get_address_of_javaClass_28() { return &___javaClass_28; }
+	inline void set_javaClass_28(AndroidJavaClass_t52E934B16476D72AA6E4B248F989F2F825EB62D4 * value)
 	{
-		___javaActive_28 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaActive_28), (void*)value);
+		___javaClass_28 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaClass_28), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaClassStr_29() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_29)); }
-	inline String_t* get_javaClassStr_29() const { return ___javaClassStr_29; }
-	inline String_t** get_address_of_javaClassStr_29() { return &___javaClassStr_29; }
-	inline void set_javaClassStr_29(String_t* value)
+	inline static int32_t get_offset_of_javaActive_29() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActive_29)); }
+	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * get_javaActive_29() const { return ___javaActive_29; }
+	inline AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E ** get_address_of_javaActive_29() { return &___javaActive_29; }
+	inline void set_javaActive_29(AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * value)
 	{
-		___javaClassStr_29 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_29), (void*)value);
+		___javaActive_29 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaActive_29), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaActiveStr_30() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_30)); }
-	inline String_t* get_javaActiveStr_30() const { return ___javaActiveStr_30; }
-	inline String_t** get_address_of_javaActiveStr_30() { return &___javaActiveStr_30; }
-	inline void set_javaActiveStr_30(String_t* value)
+	inline static int32_t get_offset_of_javaClassStr_30() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_30)); }
+	inline String_t* get_javaClassStr_30() const { return ___javaClassStr_30; }
+	inline String_t** get_address_of_javaClassStr_30() { return &___javaClassStr_30; }
+	inline void set_javaClassStr_30(String_t* value)
 	{
-		___javaActiveStr_30 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_30), (void*)value);
+		___javaClassStr_30 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_30), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_CodeMode_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_31)); }
-	inline int32_t get_CodeMode_31() const { return ___CodeMode_31; }
-	inline int32_t* get_address_of_CodeMode_31() { return &___CodeMode_31; }
-	inline void set_CodeMode_31(int32_t value)
+	inline static int32_t get_offset_of_javaActiveStr_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_31)); }
+	inline String_t* get_javaActiveStr_31() const { return ___javaActiveStr_31; }
+	inline String_t** get_address_of_javaActiveStr_31() { return &___javaActiveStr_31; }
+	inline void set_javaActiveStr_31(String_t* value)
 	{
-		___CodeMode_31 = value;
+		___javaActiveStr_31 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_31), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_VersionMode_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_32)); }
-	inline int32_t get_VersionMode_32() const { return ___VersionMode_32; }
-	inline int32_t* get_address_of_VersionMode_32() { return &___VersionMode_32; }
-	inline void set_VersionMode_32(int32_t value)
+	inline static int32_t get_offset_of_CodeMode_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_32)); }
+	inline int32_t get_CodeMode_32() const { return ___CodeMode_32; }
+	inline int32_t* get_address_of_CodeMode_32() { return &___CodeMode_32; }
+	inline void set_CodeMode_32(int32_t value)
 	{
-		___VersionMode_32 = value;
+		___CodeMode_32 = value;
 	}
 
-	inline static int32_t get_offset_of_Platform_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_33)); }
-	inline int32_t get_Platform_33() const { return ___Platform_33; }
-	inline int32_t* get_address_of_Platform_33() { return &___Platform_33; }
-	inline void set_Platform_33(int32_t value)
+	inline static int32_t get_offset_of_VersionMode_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_33)); }
+	inline int32_t get_VersionMode_33() const { return ___VersionMode_33; }
+	inline int32_t* get_address_of_VersionMode_33() { return &___VersionMode_33; }
+	inline void set_VersionMode_33(int32_t value)
 	{
-		___Platform_33 = value;
+		___VersionMode_33 = value;
 	}
 
-	inline static int32_t get_offset_of_HotUpdateComplete_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_34)); }
-	inline bool get_HotUpdateComplete_34() const { return ___HotUpdateComplete_34; }
-	inline bool* get_address_of_HotUpdateComplete_34() { return &___HotUpdateComplete_34; }
-	inline void set_HotUpdateComplete_34(bool value)
+	inline static int32_t get_offset_of_Platform_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_34)); }
+	inline int32_t get_Platform_34() const { return ___Platform_34; }
+	inline int32_t* get_address_of_Platform_34() { return &___Platform_34; }
+	inline void set_Platform_34(int32_t value)
 	{
-		___HotUpdateComplete_34 = value;
+		___Platform_34 = value;
 	}
 
-	inline static int32_t get_offset_of_Apk_Extension_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_35)); }
-	inline String_t* get_Apk_Extension_35() const { return ___Apk_Extension_35; }
-	inline String_t** get_address_of_Apk_Extension_35() { return &___Apk_Extension_35; }
-	inline void set_Apk_Extension_35(String_t* value)
+	inline static int32_t get_offset_of_HotUpdateComplete_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_35)); }
+	inline bool get_HotUpdateComplete_35() const { return ___HotUpdateComplete_35; }
+	inline bool* get_address_of_HotUpdateComplete_35() { return &___HotUpdateComplete_35; }
+	inline void set_HotUpdateComplete_35(bool value)
 	{
-		___Apk_Extension_35 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_35), (void*)value);
+		___HotUpdateComplete_35 = value;
 	}
 
-	inline static int32_t get_offset_of_IsRoot_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_36)); }
-	inline int32_t get_IsRoot_36() const { return ___IsRoot_36; }
-	inline int32_t* get_address_of_IsRoot_36() { return &___IsRoot_36; }
-	inline void set_IsRoot_36(int32_t value)
+	inline static int32_t get_offset_of_Apk_Extension_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_36)); }
+	inline String_t* get_Apk_Extension_36() const { return ___Apk_Extension_36; }
+	inline String_t** get_address_of_Apk_Extension_36() { return &___Apk_Extension_36; }
+	inline void set_Apk_Extension_36(String_t* value)
 	{
-		___IsRoot_36 = value;
+		___Apk_Extension_36 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_36), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_IsEmulator_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_37)); }
-	inline int32_t get_IsEmulator_37() const { return ___IsEmulator_37; }
-	inline int32_t* get_address_of_IsEmulator_37() { return &___IsEmulator_37; }
-	inline void set_IsEmulator_37(int32_t value)
+	inline static int32_t get_offset_of_IsRoot_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_37)); }
+	inline int32_t get_IsRoot_37() const { return ___IsRoot_37; }
+	inline int32_t* get_address_of_IsRoot_37() { return &___IsRoot_37; }
+	inline void set_IsRoot_37(int32_t value)
 	{
-		___IsEmulator_37 = value;
+		___IsRoot_37 = value;
+	}
+
+	inline static int32_t get_offset_of_IsEmulator_38() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_38)); }
+	inline int32_t get_IsEmulator_38() const { return ___IsEmulator_38; }
+	inline int32_t* get_address_of_IsEmulator_38() { return &___IsEmulator_38; }
+	inline void set_IsEmulator_38(int32_t value)
+	{
+		___IsEmulator_38 = value;
 	}
 };
 
@@ -40372,7 +40383,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UIYinSi_ShowTextList_mFE7339600645DEC051
 		Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * L_1;
 		L_1 = GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D(L_0, /*hidden argument*/GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D_RuntimeMethod_var);
 		NullCheck(L_1);
-		int32_t L_2 = L_1->get_Platform_33();
+		int32_t L_2 = L_1->get_Platform_34();
 		V_0 = L_2;
 		// string pageHtml = GetYingSiText(platform);
 		int32_t L_3 = V_0;
@@ -41733,7 +41744,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Updater_Start_mA76C5B934C7EF1685B7CD3959
 		Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * L_1;
 		L_1 = GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D(L_0, /*hidden argument*/GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D_RuntimeMethod_var);
 		NullCheck(L_1);
-		int32_t L_2 = L_1->get_VersionMode_32();
+		int32_t L_2 = L_1->get_VersionMode_33();
 		V_0 = L_2;
 		// string dlcPath = "";
 		V_1 = _stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709;
