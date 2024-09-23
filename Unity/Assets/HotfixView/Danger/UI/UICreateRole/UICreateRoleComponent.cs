@@ -79,8 +79,7 @@ namespace ET
 
 
             self.Btn_Occ4 = rc.Get<GameObject>("Btn_Occ4");
-            self.Btn_Occ4.SetActive(self.ZoneScene().GetComponent<AccountInfoComponent>().Account.Equals("wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ")
-               || GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account )   );
+            self.Btn_Occ4.SetActive( true );
 
             self.Icon_4_2 = rc.Get<GameObject>("Icon_4_2");
             self.Icon_4_1 = rc.Get<GameObject>("Icon_4_1");
