@@ -55,6 +55,7 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject, () => { self.OnBtn_ZhuCe(); });
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_iPhone").gameObject, () => { self.OnBtn_iPhone(); });
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_TapTap").gameObject, () => { self.OnBtn_TapTap(); });
+                ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_Apple").gameObject, () => { self.OnBtn_Apple(); });
                 self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
 				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
@@ -64,7 +65,7 @@ namespace ET
 #if UNITY_ANDROID
                 taptap = bigversion >= 15 && GlobalHelp.GetPlatform() == 1;
 #endif 
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
+               
                 self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
@@ -78,6 +79,10 @@ namespace ET
 				self.AccountText.GetComponent<Text>().text = "注册账号";
 #endif
 				}
+
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
+                self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(GlobalHelp.GetPlatform() == 20001);
+                
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
 				self.IPhone = rc.Get<GameObject>("IPhone");
@@ -250,7 +255,7 @@ namespace ET
 #endif
 
 
-#if UNITY_ANDROID 
+#if UNITY_ANDROID
             TapSDKHelper.Init();
 #endif
         }
@@ -447,7 +452,10 @@ namespace ET
 					//	self.OnButtonYiJianLogin();
 					//}
 					break;
-			}
+                case LoginTypeEnum.Apple:
+
+                    break;
+            }
 		}
 		
 		public static string GetPhoneZone(this UILoginComponent self)
@@ -593,6 +601,17 @@ namespace ET
 			self.LoginType = LoginTypeEnum.QQLogin.ToString();
 			self.UpdateLoginType();
 		}
+
+		public static void OnBtn_Apple(this UILoginComponent self)
+		{
+            if (!self.YinSiToggle2.GetComponent<Toggle>().isOn)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
+                return;
+            }
+            self.LoginType = LoginTypeEnum.Apple.ToString();
+            self.UpdateLoginType();
+        }
 
         public static void OnBtn_TapTap(this UILoginComponent self)
         {

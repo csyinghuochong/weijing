@@ -137,6 +137,7 @@ namespace ET
         public const int PhoneNumLogin = 4;        //手机号登录
         public const int TapTap = 5;                //taptap登录
         public const int TikTok = 6;                //抖音登录
+        public const int Apple = 7;                 //Apple登录
     }
 
     public static class PayTypeEnum
