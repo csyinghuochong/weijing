@@ -64,7 +64,7 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 #if UNITY_ANDROID
-                taptap = bigversion >= 15 && GlobalHelp.GetPlatform() == 1;
+                taptap = bigversion >= 15 && platform == 1;
 #endif 
                
                 self.AccountText = rc.Get<GameObject>("AccountText");
@@ -72,8 +72,8 @@ namespace ET
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
 				Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}");
-				Log.ILog.Debug($"self.GetBigVersion:  {GlobalHelp.GetBigVersion()}");
-				if (self.IOSReview && GlobalHelp.GetBigVersion() == 21)
+				Log.ILog.Debug($"self.GetBigVersion:  {bigversion}");
+				if (self.IOSReview && bigversion == 21)
 				{
 #if UNITY_IPHONE || UNITY_IOS
 				self.DeleteAccountBtn.SetActive(true);
@@ -82,7 +82,7 @@ namespace ET
 				}
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
-                self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(GlobalHelp.GetPlatform() == 20001);
+                self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
                 
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
