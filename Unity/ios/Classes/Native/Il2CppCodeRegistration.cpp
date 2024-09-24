@@ -21,6 +21,7 @@ IL2CPP_EXTERN_C Il2CppInteropData g_Il2CppInteropData[];
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxAssmebly_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxDemoScriptAssemblies_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AllIn1VfxTexDemoAssembly_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AppleAuth_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_CommandLine_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_DOTween_CodeGenModule;
@@ -102,11 +103,12 @@ IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Unity_ThirdParty_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_mscorlib_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_zxing_unity_CodeGenModule;
 IL2CPP_EXTERN_C const Il2CppCodeGenModule* g_CodeGenModules[];
-const Il2CppCodeGenModule* g_CodeGenModules[83] = 
+const Il2CppCodeGenModule* g_CodeGenModules[84] = 
 {
 	(&g_AllIn1VfxAssmebly_CodeGenModule),
 	(&g_AllIn1VfxDemoScriptAssemblies_CodeGenModule),
 	(&g_AllIn1VfxTexDemoAssembly_CodeGenModule),
+	(&g_AppleAuth_CodeGenModule),
 	(&g_AssemblyU2DCSharp_CodeGenModule),
 	(&g_CommandLine_CodeGenModule),
 	(&g_DOTween_CodeGenModule),
@@ -191,20 +193,20 @@ const Il2CppCodeGenModule* g_CodeGenModules[83] =
 IL2CPP_EXTERN_C const Il2CppCodeRegistration g_CodeRegistration;
 const Il2CppCodeRegistration g_CodeRegistration = 
 {
-	14,
+	15,
 	g_ReversePInvokeWrapperPointers,
-	90741,
+	90744,
 	g_Il2CppGenericMethodPointers,
 	g_Il2CppGenericAdjustorThunks,
-	13847,
+	13852,
 	g_Il2CppInvokerPointers,
-	2343,
+	2345,
 	g_UnresolvedVirtualMethodPointers,
-	720,
+	723,
 	g_Il2CppInteropData,
 	0,
 	NULL,
-	83,
+	84,
 	g_CodeGenModules,
 };
 IL2CPP_EXTERN_C_CONST Il2CppMetadataRegistration g_MetadataRegistration;

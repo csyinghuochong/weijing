@@ -62,21 +62,21 @@ static Il2CppMethodPointer s_methodPointers[15] =
 };
 static const int32_t s_InvokerIndices[15] = 
 {
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	9754,
-	8150,
-	8150,
-	9754,
-	9754,
-	9754,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	9756,
+	8152,
+	8152,
+	9756,
+	9756,
+	9756,
 };
 extern const CustomAttributesCacheGenerator g_AllIn1VfxTexDemoAssembly_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AllIn1VfxTexDemoAssembly_CodeGenModule;
