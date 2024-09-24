@@ -454,7 +454,6 @@ namespace ET
 					//}
 					break;
                 case LoginTypeEnum.Apple:
-					Log.ILog.Debug("EventSystem.Instance.PublishClass(EventType.AppleSignIn.Instance)");
                     EventType.AppleSignIn.Instance.ZoneScene = self.ZoneScene();
                     EventType.AppleSignIn.Instance.AppleSignInHandler = (string text) => { self.OnGetAppleSignInfo(text); };
                     EventSystem.Instance.PublishClass(EventType.AppleSignIn.Instance);

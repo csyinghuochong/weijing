@@ -492,7 +492,12 @@ namespace ET
 
 		private void Update()
 		{
-			if (HotUpdateComplete)
+            if (this.appleAuthManager != null)
+            {
+                this.appleAuthManager.Update();
+            }
+
+            if (HotUpdateComplete)
 			{
                 CodeLoader.Instance.Update();
                 this.CheckMouseInput();
