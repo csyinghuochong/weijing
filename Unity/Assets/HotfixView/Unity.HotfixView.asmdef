@@ -8,7 +8,8 @@
         "Unity.Mono",
         "Unity.ThirdParty",
         "Unity.TextMeshPro",
-        "TapTap.AntiAddiction"
+        "TapTap.AntiAddiction",
+        "AppleAuth"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

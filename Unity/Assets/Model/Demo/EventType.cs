@@ -842,6 +842,14 @@ namespace ET
             public string Content;
         }
 
+        public class AppleSignIn : DisposeObject
+        {
+            public static readonly AppleSignIn Instance = new AppleSignIn();
+            public Action<string> AppleSignInHandler;
+            public Scene ZoneScene;
+            public string Account;
+        }
+
         public class UIOneChallenge : DisposeObject
         {
             public static readonly UIOneChallenge Instance = new UIOneChallenge();

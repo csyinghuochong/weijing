@@ -1,4 +1,5 @@
 ﻿using cn.sharesdk.unity3d;
+using ET.EventType;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -453,7 +454,10 @@ namespace ET
 					//}
 					break;
                 case LoginTypeEnum.Apple:
-
+					Log.ILog.Debug("EventSystem.Instance.PublishClass(EventType.AppleSignIn.Instance)");
+                    EventType.AppleSignIn.Instance.ZoneScene = self.ZoneScene();
+                    EventType.AppleSignIn.Instance.AppleSignInHandler = (string text) => { self.OnGetAppleSignInfo(text); };
+                    EventSystem.Instance.PublishClass(EventType.AppleSignIn.Instance);
                     break;
             }
 		}
@@ -690,6 +694,25 @@ namespace ET
 
 			self.AccountReversal = StringBuilderHelper.Encrypt(platinfo);
             self.Account.GetComponent<InputField>().text = platinfo;
+            self.Password.GetComponent<InputField>().text = self.LoginType;
+            self.ZhuCe.SetActive(false);
+            self.YiJianDengLu.SetActive(false);
+            self.ThirdLoginBg.SetActive(false);
+            self.Account.SetActive(false);
+            self.Password.SetActive(false);
+            self.HideNode.SetActive(true);
+        }
+
+		public static void OnGetAppleSignInfo(this UILoginComponent self,  string appuserinfo)
+		{
+			if (string.IsNullOrEmpty(appuserinfo))
+			{
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
+                return;
+            }
+
+            self.LoginType = LoginTypeEnum.Apple.ToString();
+            self.Account.GetComponent<InputField>().text = appuserinfo;
             self.Password.GetComponent<InputField>().text = self.LoginType;
             self.ZhuCe.SetActive(false);
             self.YiJianDengLu.SetActive(false);

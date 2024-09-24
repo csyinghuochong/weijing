@@ -12,7 +12,8 @@ using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using cn.SMSSDK.Unity;
 using TapTap.Login;
-
+using AppleAuth;
+using AppleAuth.Native;
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -48,8 +49,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 21;      //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
-		public int BigVersionIOS = 21;   //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
+		public int BigVersion = 21;      //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id 
+		public int BigVersionIOS = 21;   //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -82,9 +83,11 @@ namespace ET
 		public AndroidJavaClass javaClass;
 		public AndroidJavaObject javaActive;
 
-		//"com.mafeng.alinewsdk.AliSDKActivity"是2018.11.01日更新的版本 对应安卓工程中的alinewsdk Module
-		//而"com.mafeng.aliopensdk.AliSDKActivity"是之前的版本 对应安卓工程中的aliopensdk Module
-		public string javaClassStr = "com.example.alinewsdk.AliSDKActivity";  //"com.mafeng.aliopensdk.AliSDKActivity";
+		public AppleAuthManager appleAuthManager;
+
+        //"com.mafeng.alinewsdk.AliSDKActivity"是2018.11.01日更新的版本 对应安卓工程中的alinewsdk Module
+        //而"com.mafeng.aliopensdk.AliSDKActivity"是之前的版本 对应安卓工程中的aliopensdk Module
+        public string javaClassStr = "com.example.alinewsdk.AliSDKActivity";  //"com.mafeng.aliopensdk.AliSDKActivity";
 		public string javaActiveStr = "currentActivity";
 
 		public CodeMode CodeMode = CodeMode.Mono;
@@ -184,6 +187,19 @@ namespace ET
 			this.Platform = 20001;
 #endif
 
+			if (AppleAuthManager.IsCurrentPlatformSupported)
+			{
+				// Creates a default JSON deserializer, to transform JSON Native responses to C# instances
+				var deserializer = new PayloadDeserializer();
+				// Creates an Apple Authentication manager with the deserializer
+				this.appleAuthManager = new AppleAuthManager(deserializer);
+
+				Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported true");
+			}
+			else
+			{
+                Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported false");
+            }
 
 
 #if UNITY_ANDROID && !UNITY_EDITOR
