@@ -178,7 +178,6 @@ namespace ET
 			this.Platform = 100;
 			this.Apk_Extension = "qudao";
 #else
-            Log.ILog.Debug("unity111  this.Platform = 0");
 			this.Apk_Extension = "taptap";
 #endif
 
@@ -187,7 +186,9 @@ namespace ET
 			this.Platform = 20001;
 #endif
 
-			if (AppleAuthManager.IsCurrentPlatformSupported)
+            Log.ILog.Debug($"unity111  this.Platform = {this.Platform}");
+
+            if (AppleAuthManager.IsCurrentPlatformSupported)
 			{
 				// Creates a default JSON deserializer, to transform JSON Native responses to C# instances
 				var deserializer = new PayloadDeserializer();

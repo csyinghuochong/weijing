@@ -21,8 +21,6 @@ namespace ET
 		{
 			try
 			{
-                Log.ILog.Debug($"UILoginComponent  111");
-
                 bool taptap = false;
                 int bigversion = GlobalHelp.GetBigVersion();
 				int platform = GlobalHelp.GetPlatform();
@@ -71,8 +69,7 @@ namespace ET
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
-				Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}");
-				Log.ILog.Debug($"self.GetBigVersion:  {bigversion}");
+				
 				if (self.IOSReview && bigversion == 21)
 				{
 #if UNITY_IPHONE || UNITY_IOS
@@ -83,7 +80,10 @@ namespace ET
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
-                
+
+                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}");
+                Log.ILog.Debug($"UILoginComponent  bigversion:{bigversion}   platform:{platform}");
+
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
 				self.IPhone = rc.Get<GameObject>("IPhone");
