@@ -20517,24 +20517,26 @@ public:
 	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___javaActive_29;
 	// AppleAuth.AppleAuthManager ET.Init::appleAuthManager
 	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * ___appleAuthManager_30;
+	// System.Action`1<System.String> ET.Init::AppleSignInHandler
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___AppleSignInHandler_31;
 	// System.String ET.Init::javaClassStr
-	String_t* ___javaClassStr_31;
+	String_t* ___javaClassStr_32;
 	// System.String ET.Init::javaActiveStr
-	String_t* ___javaActiveStr_32;
+	String_t* ___javaActiveStr_33;
 	// ET.CodeMode ET.Init::CodeMode
-	int32_t ___CodeMode_33;
+	int32_t ___CodeMode_34;
 	// ET.VersionMode ET.Init::VersionMode
-	int32_t ___VersionMode_34;
+	int32_t ___VersionMode_35;
 	// System.Int32 ET.Init::Platform
-	int32_t ___Platform_35;
+	int32_t ___Platform_36;
 	// System.Boolean ET.Init::HotUpdateComplete
-	bool ___HotUpdateComplete_36;
+	bool ___HotUpdateComplete_37;
 	// System.String ET.Init::Apk_Extension
-	String_t* ___Apk_Extension_37;
+	String_t* ___Apk_Extension_38;
 	// System.Int32 ET.Init::IsRoot
-	int32_t ___IsRoot_38;
+	int32_t ___IsRoot_39;
 	// System.Int32 ET.Init::IsEmulator
-	int32_t ___IsEmulator_39;
+	int32_t ___IsEmulator_40;
 
 public:
 	inline static int32_t get_offset_of_Development_4() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Development_4)); }
@@ -20775,79 +20777,88 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)(&___appleAuthManager_30), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaClassStr_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_31)); }
-	inline String_t* get_javaClassStr_31() const { return ___javaClassStr_31; }
-	inline String_t** get_address_of_javaClassStr_31() { return &___javaClassStr_31; }
-	inline void set_javaClassStr_31(String_t* value)
+	inline static int32_t get_offset_of_AppleSignInHandler_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___AppleSignInHandler_31)); }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * get_AppleSignInHandler_31() const { return ___AppleSignInHandler_31; }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 ** get_address_of_AppleSignInHandler_31() { return &___AppleSignInHandler_31; }
+	inline void set_AppleSignInHandler_31(Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * value)
 	{
-		___javaClassStr_31 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_31), (void*)value);
+		___AppleSignInHandler_31 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___AppleSignInHandler_31), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaActiveStr_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_32)); }
-	inline String_t* get_javaActiveStr_32() const { return ___javaActiveStr_32; }
-	inline String_t** get_address_of_javaActiveStr_32() { return &___javaActiveStr_32; }
-	inline void set_javaActiveStr_32(String_t* value)
+	inline static int32_t get_offset_of_javaClassStr_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_32)); }
+	inline String_t* get_javaClassStr_32() const { return ___javaClassStr_32; }
+	inline String_t** get_address_of_javaClassStr_32() { return &___javaClassStr_32; }
+	inline void set_javaClassStr_32(String_t* value)
 	{
-		___javaActiveStr_32 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_32), (void*)value);
+		___javaClassStr_32 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_32), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_CodeMode_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_33)); }
-	inline int32_t get_CodeMode_33() const { return ___CodeMode_33; }
-	inline int32_t* get_address_of_CodeMode_33() { return &___CodeMode_33; }
-	inline void set_CodeMode_33(int32_t value)
+	inline static int32_t get_offset_of_javaActiveStr_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_33)); }
+	inline String_t* get_javaActiveStr_33() const { return ___javaActiveStr_33; }
+	inline String_t** get_address_of_javaActiveStr_33() { return &___javaActiveStr_33; }
+	inline void set_javaActiveStr_33(String_t* value)
 	{
-		___CodeMode_33 = value;
+		___javaActiveStr_33 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_33), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_VersionMode_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_34)); }
-	inline int32_t get_VersionMode_34() const { return ___VersionMode_34; }
-	inline int32_t* get_address_of_VersionMode_34() { return &___VersionMode_34; }
-	inline void set_VersionMode_34(int32_t value)
+	inline static int32_t get_offset_of_CodeMode_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_34)); }
+	inline int32_t get_CodeMode_34() const { return ___CodeMode_34; }
+	inline int32_t* get_address_of_CodeMode_34() { return &___CodeMode_34; }
+	inline void set_CodeMode_34(int32_t value)
 	{
-		___VersionMode_34 = value;
+		___CodeMode_34 = value;
 	}
 
-	inline static int32_t get_offset_of_Platform_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_35)); }
-	inline int32_t get_Platform_35() const { return ___Platform_35; }
-	inline int32_t* get_address_of_Platform_35() { return &___Platform_35; }
-	inline void set_Platform_35(int32_t value)
+	inline static int32_t get_offset_of_VersionMode_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_35)); }
+	inline int32_t get_VersionMode_35() const { return ___VersionMode_35; }
+	inline int32_t* get_address_of_VersionMode_35() { return &___VersionMode_35; }
+	inline void set_VersionMode_35(int32_t value)
 	{
-		___Platform_35 = value;
+		___VersionMode_35 = value;
 	}
 
-	inline static int32_t get_offset_of_HotUpdateComplete_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_36)); }
-	inline bool get_HotUpdateComplete_36() const { return ___HotUpdateComplete_36; }
-	inline bool* get_address_of_HotUpdateComplete_36() { return &___HotUpdateComplete_36; }
-	inline void set_HotUpdateComplete_36(bool value)
+	inline static int32_t get_offset_of_Platform_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_36)); }
+	inline int32_t get_Platform_36() const { return ___Platform_36; }
+	inline int32_t* get_address_of_Platform_36() { return &___Platform_36; }
+	inline void set_Platform_36(int32_t value)
 	{
-		___HotUpdateComplete_36 = value;
+		___Platform_36 = value;
 	}
 
-	inline static int32_t get_offset_of_Apk_Extension_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_37)); }
-	inline String_t* get_Apk_Extension_37() const { return ___Apk_Extension_37; }
-	inline String_t** get_address_of_Apk_Extension_37() { return &___Apk_Extension_37; }
-	inline void set_Apk_Extension_37(String_t* value)
+	inline static int32_t get_offset_of_HotUpdateComplete_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_37)); }
+	inline bool get_HotUpdateComplete_37() const { return ___HotUpdateComplete_37; }
+	inline bool* get_address_of_HotUpdateComplete_37() { return &___HotUpdateComplete_37; }
+	inline void set_HotUpdateComplete_37(bool value)
 	{
-		___Apk_Extension_37 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_37), (void*)value);
+		___HotUpdateComplete_37 = value;
 	}
 
-	inline static int32_t get_offset_of_IsRoot_38() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_38)); }
-	inline int32_t get_IsRoot_38() const { return ___IsRoot_38; }
-	inline int32_t* get_address_of_IsRoot_38() { return &___IsRoot_38; }
-	inline void set_IsRoot_38(int32_t value)
+	inline static int32_t get_offset_of_Apk_Extension_38() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_38)); }
+	inline String_t* get_Apk_Extension_38() const { return ___Apk_Extension_38; }
+	inline String_t** get_address_of_Apk_Extension_38() { return &___Apk_Extension_38; }
+	inline void set_Apk_Extension_38(String_t* value)
 	{
-		___IsRoot_38 = value;
+		___Apk_Extension_38 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_38), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_IsEmulator_39() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_39)); }
-	inline int32_t get_IsEmulator_39() const { return ___IsEmulator_39; }
-	inline int32_t* get_address_of_IsEmulator_39() { return &___IsEmulator_39; }
-	inline void set_IsEmulator_39(int32_t value)
+	inline static int32_t get_offset_of_IsRoot_39() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_39)); }
+	inline int32_t get_IsRoot_39() const { return ___IsRoot_39; }
+	inline int32_t* get_address_of_IsRoot_39() { return &___IsRoot_39; }
+	inline void set_IsRoot_39(int32_t value)
 	{
-		___IsEmulator_39 = value;
+		___IsRoot_39 = value;
+	}
+
+	inline static int32_t get_offset_of_IsEmulator_40() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_40)); }
+	inline int32_t get_IsEmulator_40() const { return ___IsEmulator_40; }
+	inline int32_t* get_address_of_IsEmulator_40() { return &___IsEmulator_40; }
+	inline void set_IsEmulator_40(int32_t value)
+	{
+		___IsEmulator_40 = value;
 	}
 };
 
@@ -40396,7 +40407,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UIYinSi_ShowTextList_mFE7339600645DEC051
 		Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * L_1;
 		L_1 = GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D(L_0, /*hidden argument*/GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D_RuntimeMethod_var);
 		NullCheck(L_1);
-		int32_t L_2 = L_1->get_Platform_35();
+		int32_t L_2 = L_1->get_Platform_36();
 		V_0 = L_2;
 		// string pageHtml = GetYingSiText(platform);
 		int32_t L_3 = V_0;
@@ -41757,7 +41768,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Updater_Start_mA76C5B934C7EF1685B7CD3959
 		Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * L_1;
 		L_1 = GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D(L_0, /*hidden argument*/GameObject_GetComponent_TisInit_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D_m3014E9459EECC0C002F9748767780B970A71FA0D_RuntimeMethod_var);
 		NullCheck(L_1);
-		int32_t L_2 = L_1->get_VersionMode_34();
+		int32_t L_2 = L_1->get_VersionMode_35();
 		V_0 = L_2;
 		// string dlcPath = "";
 		V_1 = _stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709;

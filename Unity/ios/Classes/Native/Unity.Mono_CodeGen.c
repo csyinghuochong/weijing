@@ -4509,29 +4509,51 @@ extern void Init_OnRecvPhoneNum_mFA44AB86943DE2B49C3E77E3C8A26B792F8D1E0B (void)
 extern void Init_OnRecvRoot_m20C7A6EA908E0828C4CD43BA30D84A354632804B (void);
 // 0x00000909 System.Void ET.Init::OnRecvEmulator(System.String)
 extern void Init_OnRecvEmulator_m028DA544F2C75E2C5F512C4B67D524680327CE1F (void);
-// 0x0000090A System.Void ET.Init::.ctor()
+// 0x0000090A System.Void ET.Init::InitializeLoginMenu()
+extern void Init_InitializeLoginMenu_m724B45381DB9DA56BCCA859092CD229CFA6C683F (void);
+// 0x0000090B System.Void ET.Init::CheckCredentialStatusForUserId(System.String)
+extern void Init_CheckCredentialStatusForUserId_m89BA6B6D2E0A1253F4772CFA3C5157B3DF78752D (void);
+// 0x0000090C System.Void ET.Init::AttemptQuickLogin()
+extern void Init_AttemptQuickLogin_mADAFD69007791D9074D503A83F0C4AA38C1742A3 (void);
+// 0x0000090D System.Void ET.Init::SignInWithApple(System.String)
+extern void Init_SignInWithApple_mD9ABF7F827AF2ABB55D7F4526AB13AFF90394D58 (void);
+// 0x0000090E System.Void ET.Init::.ctor()
 extern void Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30 (void);
-// 0x0000090B System.Void ET.Init/<>c::.cctor()
+// 0x0000090F System.Void ET.Init::<SignInWithApple>b__86_0(AppleAuth.Interfaces.ICredential)
+extern void Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4 (void);
+// 0x00000910 System.Void ET.Init::<SignInWithApple>b__86_1(AppleAuth.Interfaces.IAppleError)
+extern void Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B (void);
+// 0x00000911 System.Void ET.Init/<>c::.cctor()
 extern void U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3 (void);
-// 0x0000090C System.Void ET.Init/<>c::.ctor()
+// 0x00000912 System.Void ET.Init/<>c::.ctor()
 extern void U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773 (void);
-// 0x0000090D System.Void ET.Init/<>c::<Awake>b__38_0(System.Object,System.UnhandledExceptionEventArgs)
-extern void U3CU3Ec_U3CAwakeU3Eb__38_0_m1E96DDDB9CBFF45DC5E24BED6201F7CB90FB6429 (void);
-// 0x0000090E System.Void ET.Init/<TapTapLogin>d__51::MoveNext()
-extern void U3CTapTapLoginU3Ed__51_MoveNext_mB474C27629BE42A6B7CBEF8F6795B0F773A56A76 (void);
-// 0x0000090F System.Void ET.Init/<TapTapLogin>d__51::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-extern void U3CTapTapLoginU3Ed__51_SetStateMachine_m706899775D293D8691B01E9DF7B97EF267105021 (void);
-// 0x00000910 System.Void ET.Init/<TapTapLogoutAsync>d__52::MoveNext()
-extern void U3CTapTapLogoutAsyncU3Ed__52_MoveNext_mEF8A00C7C6632A59677306494F1C32B8EC392E65 (void);
-// 0x00000911 System.Void ET.Init/<TapTapLogoutAsync>d__52::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-extern void U3CTapTapLogoutAsyncU3Ed__52_SetStateMachine_mDDE4F39D2BCF12D347900463B0006EB5B9F8DD8E (void);
-// 0x00000912 System.Void ET.InitHelper::.cctor()
+// 0x00000913 System.Void ET.Init/<>c::<Awake>b__39_0(System.Object,System.UnhandledExceptionEventArgs)
+extern void U3CU3Ec_U3CAwakeU3Eb__39_0_m605BDA62B23AD4457F15C40CE10B79ED97293AF1 (void);
+// 0x00000914 System.Void ET.Init/<>c::<InitializeLoginMenu>b__83_0(System.String)
+extern void U3CU3Ec_U3CInitializeLoginMenuU3Eb__83_0_mB81581AF69277E107CD63F0908AC349F1152550B (void);
+// 0x00000915 System.Void ET.Init/<>c::<CheckCredentialStatusForUserId>b__84_0(AppleAuth.Enums.CredentialState)
+extern void U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_0_mA66BEFA92089052D758F0A80595616C4F0376BED (void);
+// 0x00000916 System.Void ET.Init/<>c::<CheckCredentialStatusForUserId>b__84_1(AppleAuth.Interfaces.IAppleError)
+extern void U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_1_mBFB190B6CFB0A1150DF6B8A5A3E4CF1D2272744C (void);
+// 0x00000917 System.Void ET.Init/<>c::<AttemptQuickLogin>b__85_0(AppleAuth.Interfaces.ICredential)
+extern void U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_0_m45361BFA754433DF89468DBE89BA123C4E0B25AD (void);
+// 0x00000918 System.Void ET.Init/<>c::<AttemptQuickLogin>b__85_1(AppleAuth.Interfaces.IAppleError)
+extern void U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_1_mD5A9CC838FA2CB217C33FD4A16C4B6C616BDC67C (void);
+// 0x00000919 System.Void ET.Init/<TapTapLogin>d__52::MoveNext()
+extern void U3CTapTapLoginU3Ed__52_MoveNext_m0CE270974417B0799A0287E39D2CFD769E637AF3 (void);
+// 0x0000091A System.Void ET.Init/<TapTapLogin>d__52::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CTapTapLoginU3Ed__52_SetStateMachine_mA791C1F890E0C93EF437B7CE72446F223D65FFB8 (void);
+// 0x0000091B System.Void ET.Init/<TapTapLogoutAsync>d__53::MoveNext()
+extern void U3CTapTapLogoutAsyncU3Ed__53_MoveNext_mF70A08E6CD092B9C68948A9E2866C58802FF0D41 (void);
+// 0x0000091C System.Void ET.Init/<TapTapLogoutAsync>d__53::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+extern void U3CTapTapLogoutAsyncU3Ed__53_SetStateMachine_m780623400432B875056B5CAB16409D1FE0D7B61F (void);
+// 0x0000091D System.Void ET.InitHelper::.cctor()
 extern void InitHelper__cctor_m9373245AF62417E1B024A15E1E4E8B6E9F3B7EDD (void);
-// 0x00000913 System.Void ET.PoolObject::.ctor()
+// 0x0000091E System.Void ET.PoolObject::.ctor()
 extern void PoolObject__ctor_m8627956962541B3E37B10117846CDA24C612F747 (void);
-// 0x00000914 System.Void ET.UILayerScript::.ctor()
+// 0x0000091F System.Void ET.UILayerScript::.ctor()
 extern void UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1 (void);
-static Il2CppMethodPointer s_methodPointers[2324] = 
+static Il2CppMethodPointer s_methodPointers[2335] = 
 {
 	AI_1__ctor_m7A61848F87B7120517CC12FC55771BC21F0894A3,
 	AdditiveHide_Awake_mA7FAB21E49A8C68CA65ED6EEB5773B03301CFB6E,
@@ -6846,14 +6868,25 @@ static Il2CppMethodPointer s_methodPointers[2324] =
 	Init_OnRecvPhoneNum_mFA44AB86943DE2B49C3E77E3C8A26B792F8D1E0B,
 	Init_OnRecvRoot_m20C7A6EA908E0828C4CD43BA30D84A354632804B,
 	Init_OnRecvEmulator_m028DA544F2C75E2C5F512C4B67D524680327CE1F,
+	Init_InitializeLoginMenu_m724B45381DB9DA56BCCA859092CD229CFA6C683F,
+	Init_CheckCredentialStatusForUserId_m89BA6B6D2E0A1253F4772CFA3C5157B3DF78752D,
+	Init_AttemptQuickLogin_mADAFD69007791D9074D503A83F0C4AA38C1742A3,
+	Init_SignInWithApple_mD9ABF7F827AF2ABB55D7F4526AB13AFF90394D58,
 	Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30,
+	Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4,
+	Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B,
 	U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3,
 	U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773,
-	U3CU3Ec_U3CAwakeU3Eb__38_0_m1E96DDDB9CBFF45DC5E24BED6201F7CB90FB6429,
-	U3CTapTapLoginU3Ed__51_MoveNext_mB474C27629BE42A6B7CBEF8F6795B0F773A56A76,
-	U3CTapTapLoginU3Ed__51_SetStateMachine_m706899775D293D8691B01E9DF7B97EF267105021,
-	U3CTapTapLogoutAsyncU3Ed__52_MoveNext_mEF8A00C7C6632A59677306494F1C32B8EC392E65,
-	U3CTapTapLogoutAsyncU3Ed__52_SetStateMachine_mDDE4F39D2BCF12D347900463B0006EB5B9F8DD8E,
+	U3CU3Ec_U3CAwakeU3Eb__39_0_m605BDA62B23AD4457F15C40CE10B79ED97293AF1,
+	U3CU3Ec_U3CInitializeLoginMenuU3Eb__83_0_mB81581AF69277E107CD63F0908AC349F1152550B,
+	U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_0_mA66BEFA92089052D758F0A80595616C4F0376BED,
+	U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_1_mBFB190B6CFB0A1150DF6B8A5A3E4CF1D2272744C,
+	U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_0_m45361BFA754433DF89468DBE89BA123C4E0B25AD,
+	U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_1_mD5A9CC838FA2CB217C33FD4A16C4B6C616BDC67C,
+	U3CTapTapLoginU3Ed__52_MoveNext_m0CE270974417B0799A0287E39D2CFD769E637AF3,
+	U3CTapTapLoginU3Ed__52_SetStateMachine_mA791C1F890E0C93EF437B7CE72446F223D65FFB8,
+	U3CTapTapLogoutAsyncU3Ed__53_MoveNext_mF70A08E6CD092B9C68948A9E2866C58802FF0D41,
+	U3CTapTapLogoutAsyncU3Ed__53_SetStateMachine_m780623400432B875056B5CAB16409D1FE0D7B61F,
 	InitHelper__cctor_m9373245AF62417E1B024A15E1E4E8B6E9F3B7EDD,
 	PoolObject__ctor_m8627956962541B3E37B10117846CDA24C612F747,
 	UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1,
@@ -6878,10 +6911,10 @@ extern void U3CStartRecvU3Ed__17_MoveNext_m99A96D91E71703A4B7769BEF21B9501C6701F
 extern void U3CStartRecvU3Ed__17_SetStateMachine_mDFAFE34FF168AE8E3424749DAE476EF91B653303_AdjustorThunk (void);
 extern void U3CStartAcceptU3Ed__12_MoveNext_mBF535DCEC52A35459F64CF39C14B0B8685F2110D_AdjustorThunk (void);
 extern void U3CStartAcceptU3Ed__12_SetStateMachine_m2F77662D5C4721760033BC3F3516F52987470B67_AdjustorThunk (void);
-extern void U3CTapTapLoginU3Ed__51_MoveNext_mB474C27629BE42A6B7CBEF8F6795B0F773A56A76_AdjustorThunk (void);
-extern void U3CTapTapLoginU3Ed__51_SetStateMachine_m706899775D293D8691B01E9DF7B97EF267105021_AdjustorThunk (void);
-extern void U3CTapTapLogoutAsyncU3Ed__52_MoveNext_mEF8A00C7C6632A59677306494F1C32B8EC392E65_AdjustorThunk (void);
-extern void U3CTapTapLogoutAsyncU3Ed__52_SetStateMachine_mDDE4F39D2BCF12D347900463B0006EB5B9F8DD8E_AdjustorThunk (void);
+extern void U3CTapTapLoginU3Ed__52_MoveNext_m0CE270974417B0799A0287E39D2CFD769E637AF3_AdjustorThunk (void);
+extern void U3CTapTapLoginU3Ed__52_SetStateMachine_mA791C1F890E0C93EF437B7CE72446F223D65FFB8_AdjustorThunk (void);
+extern void U3CTapTapLogoutAsyncU3Ed__53_MoveNext_mF70A08E6CD092B9C68948A9E2866C58802FF0D41_AdjustorThunk (void);
+extern void U3CTapTapLogoutAsyncU3Ed__53_SetStateMachine_m780623400432B875056B5CAB16409D1FE0D7B61F_AdjustorThunk (void);
 static Il2CppTokenAdjustorThunkPair s_adjustorThunks[24] = 
 {
 	{ 0x060005E4, U3CNoRunU3Ed__21_MoveNext_mDFD3098E063387D2794E21A714C9F16E18A0EB07_AdjustorThunk },
@@ -6904,12 +6937,12 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[24] =
 	{ 0x060008C5, U3CStartRecvU3Ed__17_SetStateMachine_mDFAFE34FF168AE8E3424749DAE476EF91B653303_AdjustorThunk },
 	{ 0x060008D2, U3CStartAcceptU3Ed__12_MoveNext_mBF535DCEC52A35459F64CF39C14B0B8685F2110D_AdjustorThunk },
 	{ 0x060008D3, U3CStartAcceptU3Ed__12_SetStateMachine_m2F77662D5C4721760033BC3F3516F52987470B67_AdjustorThunk },
-	{ 0x0600090E, U3CTapTapLoginU3Ed__51_MoveNext_mB474C27629BE42A6B7CBEF8F6795B0F773A56A76_AdjustorThunk },
-	{ 0x0600090F, U3CTapTapLoginU3Ed__51_SetStateMachine_m706899775D293D8691B01E9DF7B97EF267105021_AdjustorThunk },
-	{ 0x06000910, U3CTapTapLogoutAsyncU3Ed__52_MoveNext_mEF8A00C7C6632A59677306494F1C32B8EC392E65_AdjustorThunk },
-	{ 0x06000911, U3CTapTapLogoutAsyncU3Ed__52_SetStateMachine_mDDE4F39D2BCF12D347900463B0006EB5B9F8DD8E_AdjustorThunk },
+	{ 0x06000919, U3CTapTapLoginU3Ed__52_MoveNext_m0CE270974417B0799A0287E39D2CFD769E637AF3_AdjustorThunk },
+	{ 0x0600091A, U3CTapTapLoginU3Ed__52_SetStateMachine_mA791C1F890E0C93EF437B7CE72446F223D65FFB8_AdjustorThunk },
+	{ 0x0600091B, U3CTapTapLogoutAsyncU3Ed__53_MoveNext_mF70A08E6CD092B9C68948A9E2866C58802FF0D41_AdjustorThunk },
+	{ 0x0600091C, U3CTapTapLogoutAsyncU3Ed__53_SetStateMachine_m780623400432B875056B5CAB16409D1FE0D7B61F_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[2324] = 
+static const int32_t s_InvokerIndices[2335] = 
 {
 	9756,
 	9756,
@@ -9225,9 +9258,20 @@ static const int32_t s_InvokerIndices[2324] =
 	8180,
 	8180,
 	9756,
+	8180,
+	9756,
+	8180,
+	9756,
+	8180,
+	8180,
 	13815,
 	9756,
 	4887,
+	8180,
+	8152,
+	8180,
+	8180,
+	8180,
 	9756,
 	8180,
 	9756,
@@ -9280,16 +9324,16 @@ static const Il2CppTokenRangePair s_rgctxIndices[34] =
 };
 static const Il2CppRGCTXDefinition s_rgctxValues[215] = 
 {
-	{ (Il2CppRGCTXDataType)2, 15738 },
+	{ (Il2CppRGCTXDataType)2, 15741 },
 	{ (Il2CppRGCTXDataType)2, 2101 },
 	{ (Il2CppRGCTXDataType)3, 93377 },
 	{ (Il2CppRGCTXDataType)2, 894 },
 	{ (Il2CppRGCTXDataType)3, 101757 },
-	{ (Il2CppRGCTXDataType)2, 15734 },
+	{ (Il2CppRGCTXDataType)2, 15737 },
 	{ (Il2CppRGCTXDataType)2, 2099 },
 	{ (Il2CppRGCTXDataType)1, 2099 },
 	{ (Il2CppRGCTXDataType)3, 103387 },
-	{ (Il2CppRGCTXDataType)2, 12997 },
+	{ (Il2CppRGCTXDataType)2, 13000 },
 	{ (Il2CppRGCTXDataType)3, 47282 },
 	{ (Il2CppRGCTXDataType)3, 47285 },
 	{ (Il2CppRGCTXDataType)3, 47286 },
@@ -9301,9 +9345,9 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 47234 },
 	{ (Il2CppRGCTXDataType)3, 47235 },
 	{ (Il2CppRGCTXDataType)3, 47233 },
-	{ (Il2CppRGCTXDataType)2, 6698 },
+	{ (Il2CppRGCTXDataType)2, 6701 },
 	{ (Il2CppRGCTXDataType)3, 15312 },
-	{ (Il2CppRGCTXDataType)2, 6739 },
+	{ (Il2CppRGCTXDataType)2, 6742 },
 	{ (Il2CppRGCTXDataType)3, 15513 },
 	{ (Il2CppRGCTXDataType)3, 15313 },
 	{ (Il2CppRGCTXDataType)3, 15514 },
@@ -9313,11 +9357,11 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 15319 },
 	{ (Il2CppRGCTXDataType)3, 4297 },
 	{ (Il2CppRGCTXDataType)3, 29886 },
-	{ (Il2CppRGCTXDataType)2, 7627 },
-	{ (Il2CppRGCTXDataType)2, 13006 },
+	{ (Il2CppRGCTXDataType)2, 7630 },
+	{ (Il2CppRGCTXDataType)2, 13009 },
 	{ (Il2CppRGCTXDataType)3, 47304 },
 	{ (Il2CppRGCTXDataType)3, 15521 },
-	{ (Il2CppRGCTXDataType)2, 13050 },
+	{ (Il2CppRGCTXDataType)2, 13053 },
 	{ (Il2CppRGCTXDataType)3, 47439 },
 	{ (Il2CppRGCTXDataType)2, 1778 },
 	{ (Il2CppRGCTXDataType)2, 3176 },
@@ -9332,11 +9376,11 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 15519 },
 	{ (Il2CppRGCTXDataType)3, 15315 },
 	{ (Il2CppRGCTXDataType)3, 15516 },
-	{ (Il2CppRGCTXDataType)1, 9594 },
-	{ (Il2CppRGCTXDataType)2, 9594 },
-	{ (Il2CppRGCTXDataType)3, 38435 },
+	{ (Il2CppRGCTXDataType)1, 9597 },
+	{ (Il2CppRGCTXDataType)2, 9597 },
 	{ (Il2CppRGCTXDataType)3, 38456 },
-	{ (Il2CppRGCTXDataType)2, 9600 },
+	{ (Il2CppRGCTXDataType)3, 38455 },
+	{ (Il2CppRGCTXDataType)2, 9603 },
 	{ (Il2CppRGCTXDataType)1, 222 },
 	{ (Il2CppRGCTXDataType)1, 223 },
 	{ (Il2CppRGCTXDataType)2, 223 },
@@ -9346,47 +9390,47 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 45360 },
 	{ (Il2CppRGCTXDataType)3, 4294 },
 	{ (Il2CppRGCTXDataType)3, 29881 },
-	{ (Il2CppRGCTXDataType)2, 7624 },
+	{ (Il2CppRGCTXDataType)2, 7627 },
 	{ (Il2CppRGCTXDataType)3, 38430 },
 	{ (Il2CppRGCTXDataType)3, 27662 },
 	{ (Il2CppRGCTXDataType)3, 3637 },
 	{ (Il2CppRGCTXDataType)3, 27661 },
-	{ (Il2CppRGCTXDataType)2, 7577 },
+	{ (Il2CppRGCTXDataType)2, 7580 },
 	{ (Il2CppRGCTXDataType)3, 79494 },
 	{ (Il2CppRGCTXDataType)3, 29884 },
 	{ (Il2CppRGCTXDataType)3, 45361 },
 	{ (Il2CppRGCTXDataType)3, 45362 },
 	{ (Il2CppRGCTXDataType)3, 4295 },
 	{ (Il2CppRGCTXDataType)3, 29883 },
-	{ (Il2CppRGCTXDataType)2, 7625 },
+	{ (Il2CppRGCTXDataType)2, 7628 },
 	{ (Il2CppRGCTXDataType)3, 79492 },
 	{ (Il2CppRGCTXDataType)3, 29874 },
 	{ (Il2CppRGCTXDataType)3, 45351 },
 	{ (Il2CppRGCTXDataType)3, 45352 },
 	{ (Il2CppRGCTXDataType)3, 4292 },
 	{ (Il2CppRGCTXDataType)3, 29873 },
-	{ (Il2CppRGCTXDataType)2, 7620 },
+	{ (Il2CppRGCTXDataType)2, 7623 },
 	{ (Il2CppRGCTXDataType)3, 79493 },
 	{ (Il2CppRGCTXDataType)3, 29878 },
 	{ (Il2CppRGCTXDataType)3, 45355 },
 	{ (Il2CppRGCTXDataType)3, 45356 },
 	{ (Il2CppRGCTXDataType)3, 36421 },
 	{ (Il2CppRGCTXDataType)3, 29877 },
-	{ (Il2CppRGCTXDataType)2, 7622 },
+	{ (Il2CppRGCTXDataType)2, 7625 },
 	{ (Il2CppRGCTXDataType)3, 15290 },
 	{ (Il2CppRGCTXDataType)3, 29876 },
 	{ (Il2CppRGCTXDataType)3, 45353 },
 	{ (Il2CppRGCTXDataType)3, 45354 },
 	{ (Il2CppRGCTXDataType)3, 4293 },
 	{ (Il2CppRGCTXDataType)3, 29875 },
-	{ (Il2CppRGCTXDataType)2, 7621 },
+	{ (Il2CppRGCTXDataType)2, 7624 },
 	{ (Il2CppRGCTXDataType)3, 15291 },
 	{ (Il2CppRGCTXDataType)3, 29880 },
 	{ (Il2CppRGCTXDataType)3, 45357 },
 	{ (Il2CppRGCTXDataType)3, 45358 },
 	{ (Il2CppRGCTXDataType)3, 36422 },
 	{ (Il2CppRGCTXDataType)3, 29879 },
-	{ (Il2CppRGCTXDataType)2, 7623 },
+	{ (Il2CppRGCTXDataType)2, 7626 },
 	{ (Il2CppRGCTXDataType)3, 47260 },
 	{ (Il2CppRGCTXDataType)3, 47261 },
 	{ (Il2CppRGCTXDataType)3, 47257 },
@@ -9403,24 +9447,24 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 27664 },
 	{ (Il2CppRGCTXDataType)3, 47262 },
 	{ (Il2CppRGCTXDataType)3, 27663 },
-	{ (Il2CppRGCTXDataType)2, 7578 },
+	{ (Il2CppRGCTXDataType)2, 7581 },
 	{ (Il2CppRGCTXDataType)3, 47266 },
 	{ (Il2CppRGCTXDataType)3, 47272 },
 	{ (Il2CppRGCTXDataType)3, 27666 },
 	{ (Il2CppRGCTXDataType)2, 987 },
 	{ (Il2CppRGCTXDataType)3, 27665 },
-	{ (Il2CppRGCTXDataType)2, 7579 },
+	{ (Il2CppRGCTXDataType)2, 7582 },
 	{ (Il2CppRGCTXDataType)2, 985 },
 	{ (Il2CppRGCTXDataType)2, 986 },
 	{ (Il2CppRGCTXDataType)3, 104073 },
-	{ (Il2CppRGCTXDataType)1, 12919 },
-	{ (Il2CppRGCTXDataType)2, 12919 },
+	{ (Il2CppRGCTXDataType)1, 12922 },
+	{ (Il2CppRGCTXDataType)2, 12922 },
 	{ (Il2CppRGCTXDataType)3, 47326 },
 	{ (Il2CppRGCTXDataType)3, 47324 },
-	{ (Il2CppRGCTXDataType)2, 13012 },
+	{ (Il2CppRGCTXDataType)2, 13015 },
 	{ (Il2CppRGCTXDataType)3, 15375 },
 	{ (Il2CppRGCTXDataType)3, 15527 },
-	{ (Il2CppRGCTXDataType)2, 6741 },
+	{ (Il2CppRGCTXDataType)2, 6744 },
 	{ (Il2CppRGCTXDataType)3, 15522 },
 	{ (Il2CppRGCTXDataType)3, 15378 },
 	{ (Il2CppRGCTXDataType)3, 15523 },
@@ -9430,41 +9474,41 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 15524 },
 	{ (Il2CppRGCTXDataType)3, 15525 },
 	{ (Il2CppRGCTXDataType)3, 15344 },
-	{ (Il2CppRGCTXDataType)2, 6709 },
-	{ (Il2CppRGCTXDataType)3, 79556 },
-	{ (Il2CppRGCTXDataType)1, 13051 },
-	{ (Il2CppRGCTXDataType)2, 13051 },
+	{ (Il2CppRGCTXDataType)2, 6712 },
+	{ (Il2CppRGCTXDataType)3, 79560 },
+	{ (Il2CppRGCTXDataType)1, 13054 },
+	{ (Il2CppRGCTXDataType)2, 13054 },
 	{ (Il2CppRGCTXDataType)3, 47442 },
-	{ (Il2CppRGCTXDataType)3, 79528 },
+	{ (Il2CppRGCTXDataType)3, 79558 },
 	{ (Il2CppRGCTXDataType)3, 47441 },
 	{ (Il2CppRGCTXDataType)3, 47444 },
 	{ (Il2CppRGCTXDataType)3, 47446 },
 	{ (Il2CppRGCTXDataType)3, 58599 },
-	{ (Il2CppRGCTXDataType)3, 79532 },
-	{ (Il2CppRGCTXDataType)2, 18775 },
+	{ (Il2CppRGCTXDataType)3, 79559 },
+	{ (Il2CppRGCTXDataType)2, 18778 },
 	{ (Il2CppRGCTXDataType)3, 47445 },
 	{ (Il2CppRGCTXDataType)3, 47447 },
 	{ (Il2CppRGCTXDataType)3, 47443 },
 	{ (Il2CppRGCTXDataType)3, 47440 },
-	{ (Il2CppRGCTXDataType)3, 79560 },
-	{ (Il2CppRGCTXDataType)2, 15781 },
-	{ (Il2CppRGCTXDataType)3, 79523 },
-	{ (Il2CppRGCTXDataType)2, 9607 },
+	{ (Il2CppRGCTXDataType)3, 79557 },
+	{ (Il2CppRGCTXDataType)2, 15784 },
+	{ (Il2CppRGCTXDataType)3, 79527 },
+	{ (Il2CppRGCTXDataType)2, 9610 },
 	{ (Il2CppRGCTXDataType)3, 38490 },
-	{ (Il2CppRGCTXDataType)3, 79495 },
+	{ (Il2CppRGCTXDataType)3, 79525 },
 	{ (Il2CppRGCTXDataType)3, 38491 },
 	{ (Il2CppRGCTXDataType)3, 38493 },
 	{ (Il2CppRGCTXDataType)3, 38494 },
-	{ (Il2CppRGCTXDataType)3, 79499 },
-	{ (Il2CppRGCTXDataType)2, 18774 },
+	{ (Il2CppRGCTXDataType)3, 79526 },
+	{ (Il2CppRGCTXDataType)2, 18777 },
 	{ (Il2CppRGCTXDataType)3, 102781 },
 	{ (Il2CppRGCTXDataType)3, 102450 },
 	{ (Il2CppRGCTXDataType)3, 38492 },
-	{ (Il2CppRGCTXDataType)3, 79527 },
-	{ (Il2CppRGCTXDataType)2, 15780 },
+	{ (Il2CppRGCTXDataType)3, 79524 },
+	{ (Il2CppRGCTXDataType)2, 15783 },
 	{ (Il2CppRGCTXDataType)3, 15493 },
-	{ (Il2CppRGCTXDataType)1, 13055 },
-	{ (Il2CppRGCTXDataType)2, 13055 },
+	{ (Il2CppRGCTXDataType)1, 13058 },
+	{ (Il2CppRGCTXDataType)2, 13058 },
 	{ (Il2CppRGCTXDataType)3, 47454 },
 	{ (Il2CppRGCTXDataType)3, 15496 },
 	{ (Il2CppRGCTXDataType)3, 47453 },
@@ -9477,9 +9521,9 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 47455 },
 	{ (Il2CppRGCTXDataType)3, 47452 },
 	{ (Il2CppRGCTXDataType)3, 15462 },
-	{ (Il2CppRGCTXDataType)2, 6716 },
+	{ (Il2CppRGCTXDataType)2, 6719 },
 	{ (Il2CppRGCTXDataType)3, 15458 },
-	{ (Il2CppRGCTXDataType)2, 9609 },
+	{ (Il2CppRGCTXDataType)2, 9612 },
 	{ (Il2CppRGCTXDataType)3, 38495 },
 	{ (Il2CppRGCTXDataType)3, 15461 },
 	{ (Il2CppRGCTXDataType)3, 38496 },
@@ -9491,9 +9535,9 @@ static const Il2CppRGCTXDefinition s_rgctxValues[215] =
 	{ (Il2CppRGCTXDataType)3, 29893 },
 	{ (Il2CppRGCTXDataType)3, 45394 },
 	{ (Il2CppRGCTXDataType)3, 29892 },
-	{ (Il2CppRGCTXDataType)2, 7632 },
+	{ (Il2CppRGCTXDataType)2, 7635 },
 	{ (Il2CppRGCTXDataType)3, 15426 },
-	{ (Il2CppRGCTXDataType)2, 6715 },
+	{ (Il2CppRGCTXDataType)2, 6718 },
 	{ (Il2CppRGCTXDataType)3, 105312 },
 };
 extern const CustomAttributesCacheGenerator g_Unity_Mono_AttributeGenerators[];
@@ -9501,7 +9545,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule;
 const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule = 
 {
 	"Unity.Mono.dll",
-	2324,
+	2335,
 	s_methodPointers,
 	24,
 	s_adjustorThunks,

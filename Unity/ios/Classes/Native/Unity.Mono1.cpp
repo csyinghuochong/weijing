@@ -98,6 +98,17 @@ struct InterfaceFuncInvoker3
 		return ((Func)invokeData.methodPtr)(obj, p1, p2, p3, invokeData.method);
 	}
 };
+template <typename R>
+struct InterfaceFuncInvoker0
+{
+	typedef R (*Func)(void*, const RuntimeMethod*);
+
+	static inline R Invoke (Il2CppMethodSlot slot, RuntimeClass* declaringInterface, RuntimeObject* obj)
+	{
+		const VirtualInvokeData& invokeData = il2cpp_codegen_get_interface_invoke_data(slot, obj, declaringInterface);
+		return ((Func)invokeData.methodPtr)(obj, invokeData.method);
+	}
+};
 template <typename R, typename T1>
 struct InterfaceFuncInvoker1
 {
@@ -114,10 +125,18 @@ struct InterfaceFuncInvoker1
 struct ABSTweenPlugin_3_t386D9A789641A64FBE9159E47534C6F504DF6BDD;
 // System.Action`1<System.Boolean>
 struct Action_1_tCE2D770918A65CAD277C08C4E8C05385EA267E83;
+// System.Action`1<AppleAuth.Enums.CredentialState>
+struct Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178;
 // System.Action`1<System.Exception>
 struct Action_1_t34F00247DCE829C59C4C5AAECAE03F05F060DD90;
+// System.Action`1<AppleAuth.Interfaces.IAppleError>
+struct Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F;
+// System.Action`1<AppleAuth.Interfaces.ICredential>
+struct Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA;
 // System.Action`1<System.Int32>
 struct Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B;
+// System.Action`1<System.Int32Enum>
+struct Action_1_tF0FD284A49EB7135379250254D6B49FA84383C09;
 // System.Action`1<System.Object>
 struct Action_1_tD9663D9715FAA4E62035CFCF1AD4D094EE7872DC;
 // System.Action`1<System.String>
@@ -564,6 +583,8 @@ struct HorizontalOrVerticalLayoutGroup_tAEE7FC9DCA8F7E95D4DE560305B3A219008A8108
 struct HotVersion_t3D68ABA3BB270FB7ADF8EF6011C4802CCA11943C;
 // System.Net.Http.HttpClient
 struct HttpClient_t6C591CE801CCF126E2F8770F513BFA7DB2800A20;
+// AppleAuth.Interfaces.IAppleError
+struct IAppleError_t67DF74DC018430779145EFC48504E9D023F98602;
 // System.IAsyncResult
 struct IAsyncResult_tC9F97BF36FCF122D29D3101D80642278297BF370;
 // ET.IAsyncStateMachineClassInheritanceAdaptor
@@ -572,6 +593,8 @@ struct IAsyncStateMachineClassInheritanceAdaptor_t27AE1FF62C1036CCF9682235FC45EE
 struct ICanvasElement_t604A7C95E46ABA335897B34A28DC8E542DA787E9;
 // System.Collections.ICollection
 struct ICollection_tC1E1DED86C0A66845675392606B302452210D5DA;
+// AppleAuth.Interfaces.ICredential
+struct ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B;
 // ET.ICriticalNotifyCompletionAdapter
 struct ICriticalNotifyCompletionAdapter_tDFF3259CFAEE345974C805E80407735B6663A7DF;
 // ILRuntime.Runtime.Intepreter.IDelegateAdapter
@@ -843,12 +866,17 @@ struct GetWXRequestTokenHanlerEvent_t792EC18BE6692538C45A3442E483D41F0E557AE0;
 // System.IO.Stream/ReadWriteTask
 struct ReadWriteTask_t32CD2C230786712954C1DB518DBE420A1F4C7974;
 
+IL2CPP_EXTERN_C RuntimeClass* Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Action_1_t34F00247DCE829C59C4C5AAECAE03F05F060DD90_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Action_2_t9444326B9F179A6814807A6942C9A6086471ABDA_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Adapter_t23C8FD31F3704AE563896B134ECCFB6E675E9CE8_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Adapter_t8A44B4DA4F60ECEA176D05469138D50726075A47_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* ArgumentOutOfRangeException_tFAF23713820951D4A09ABBFE5CC091E445A6F3D8_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* AuthorizationErrorCode_t39345506E8A14B87DC20E75D12142CE1804DF557_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* BitConverter_t8DCBA24B909F1B221372AF2B37C76DCF614BA654_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Boolean_t07D1E3F34E4813023D64F584DFF7B34C9D922F37_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_il2cpp_TypeInfo_var;
@@ -882,6 +910,7 @@ IL2CPP_EXTERN_C RuntimeClass* Graphics_t97FAEBE964F3F622D4865E7EC62717FE94D1F56D
 IL2CPP_EXTERN_C RuntimeClass* HashSet_1_t2D571AE6BEFA0C2026CFD5B271FABF87AE822A07_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* IAsyncStateMachineAdaptor_tCDEAE4CC6DF10DE535C4936460E1D8DC86B7AF6F_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* IAsyncStateMachineClassInheritanceAdaptor_t27AE1FF62C1036CCF9682235FC45EE0B21D031E8_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* IDictionary_t99871C56B8EC2452AC5C4CF3831695E617B89D3A_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* IDisposableAdapter_tEE063BC0431B1AD9843227C6714DB120E8778037_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* ILHelper_t55F4F720B2055C430F9CDAADB705B84EBBB33F23_il2cpp_TypeInfo_var;
@@ -975,11 +1004,13 @@ IL2CPP_EXTERN_C String_t* _stringLiteral1477600345DA2C418D511AFDA86564D13C5D1264
 IL2CPP_EXTERN_C String_t* _stringLiteral1539DDE5E9E778A1924F70124656B20B594FB63F;
 IL2CPP_EXTERN_C String_t* _stringLiteral15D3DFBB8551CEB73719C209C6298F904F7DC0AB;
 IL2CPP_EXTERN_C String_t* _stringLiteral1650FED0F961CC65E2FD2CD0206F0DABCE9E8E14;
+IL2CPP_EXTERN_C String_t* _stringLiteral17F69BD9415AEEFF5AF120DF2D45F20433804764;
 IL2CPP_EXTERN_C String_t* _stringLiteral1B6407152EDD41BC94E741F9C1A693B30A08C16D;
 IL2CPP_EXTERN_C String_t* _stringLiteral1BD60E032E85858E27EFB41CB528EAF921E06DFC;
 IL2CPP_EXTERN_C String_t* _stringLiteral1F52B381A5505A89BE9737433B5D3B68854EE77C;
 IL2CPP_EXTERN_C String_t* _stringLiteral2073506708A64B71622A24E002DE172DCE3BC819;
 IL2CPP_EXTERN_C String_t* _stringLiteral21ED4C7AF50D987589A9029FC0422151BE3A0FC2;
+IL2CPP_EXTERN_C String_t* _stringLiteral2386E77CF610F786B06A91AF2C1B3FD2282D2745;
 IL2CPP_EXTERN_C String_t* _stringLiteral24E14C88BA51C9F0AFC344F7720D59B34D45F33B;
 IL2CPP_EXTERN_C String_t* _stringLiteral25C58BD25DAD7D3E7E76D6797195CE71B89D1325;
 IL2CPP_EXTERN_C String_t* _stringLiteral27A00438CBDD16313E46CD66F5624D1044452FC9;
@@ -1023,6 +1054,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral544ABC3A1F3DF894B6EB5785616C9FF24493BDFB
 IL2CPP_EXTERN_C String_t* _stringLiteral549018C77A5F9E3D85A49E1BB5DC2503F053148F;
 IL2CPP_EXTERN_C String_t* _stringLiteral54BCA388B1C4035019F447FBBE662C6BFC12F7E8;
 IL2CPP_EXTERN_C String_t* _stringLiteral5A09DE37AB9B3D0EFF9E16EDCF6277E8C09416E2;
+IL2CPP_EXTERN_C String_t* _stringLiteral5AA6B223FC8FD1DB0C31046F719C542F42EEA85B;
 IL2CPP_EXTERN_C String_t* _stringLiteral5B3A4EC804EB32E704E8E3F1498B2DD428761F00;
 IL2CPP_EXTERN_C String_t* _stringLiteral5CC9FA0F0C55477694B0FADA6C3917738AB6E48A;
 IL2CPP_EXTERN_C String_t* _stringLiteral6790F5A313E4F3D7D9EE743046C665DE8D5FE0F2;
@@ -1044,6 +1076,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral802BE1E241896FE18EC90B8966C6FBD048B1DD88
 IL2CPP_EXTERN_C String_t* _stringLiteral83AB61D63399D1CFAD985BE8DDA47BE4E156BF45;
 IL2CPP_EXTERN_C String_t* _stringLiteral83DEED0C06C8773D8D3C6EECEEE4BE12C6BDE399;
 IL2CPP_EXTERN_C String_t* _stringLiteral8631B65ABB19240CE70884C8CE85B9E6D63D4FEE;
+IL2CPP_EXTERN_C String_t* _stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA;
 IL2CPP_EXTERN_C String_t* _stringLiteral8B72CB5376A1BBCD648CB38723EE48F59EEF1C9B;
 IL2CPP_EXTERN_C String_t* _stringLiteral8E752B76D455A50FE476984D4B09A7CDBF2A753E;
 IL2CPP_EXTERN_C String_t* _stringLiteral946BD80B231F5776B5307B385889C9ABB57D3D53;
@@ -1052,6 +1085,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral97614D53844E916216187AE8D4BF35DC7004C3B9
 IL2CPP_EXTERN_C String_t* _stringLiteral988071B59AFEF3243ABE1C7BF17F12A167B769E1;
 IL2CPP_EXTERN_C String_t* _stringLiteral99A1E2126FB77FD5490A4BE31B7A98FEB3BB20AA;
 IL2CPP_EXTERN_C String_t* _stringLiteral9A314C0157A26DD9335D508091919DB9C2A24043;
+IL2CPP_EXTERN_C String_t* _stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E;
 IL2CPP_EXTERN_C String_t* _stringLiteral9D738EC5861BA175AB61EF793E7D9F6E44834266;
 IL2CPP_EXTERN_C String_t* _stringLiteral9FA7C46673E76BFF85892E3E5960CFF57FADA588;
 IL2CPP_EXTERN_C String_t* _stringLiteralA1DC264C575C7CD65A4CC13BF6108D91A333EB05;
@@ -1080,6 +1114,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteralCCCDD19BAC8E228E10128C1D017E557BF3B69BEA
 IL2CPP_EXTERN_C String_t* _stringLiteralCD45D9C4CC1AA1A1820A9C48EAA27A6A497838BE;
 IL2CPP_EXTERN_C String_t* _stringLiteralCE06D6F7F988E9207F0F4D0DB3BDA4E8193E2B59;
 IL2CPP_EXTERN_C String_t* _stringLiteralD70F8B30B15D5676FC287C1C77900A58247C41C3;
+IL2CPP_EXTERN_C String_t* _stringLiteralD87F7C92A7F7D3669A91FE9168D7AFD8D477E064;
 IL2CPP_EXTERN_C String_t* _stringLiteralD981FF07FBC9F7FDE5695460CE9A8A8A9F077CE2;
 IL2CPP_EXTERN_C String_t* _stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709;
 IL2CPP_EXTERN_C String_t* _stringLiteralDA9C0E6D06F7A83F07185F4139FFC743871435A1;
@@ -1089,6 +1124,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteralE091B14E55828806F47628980B33859E8DA0CADD
 IL2CPP_EXTERN_C String_t* _stringLiteralE1928E552A1F0E05511023F103618F1FF35D92F8;
 IL2CPP_EXTERN_C String_t* _stringLiteralE4E63BD62A68C07F1FA1CC544ECE509F5BB6927A;
 IL2CPP_EXTERN_C String_t* _stringLiteralE6288AFF8722EDBB47EB42ADF31A9E275D83358F;
+IL2CPP_EXTERN_C String_t* _stringLiteralE6E688F2230AF04C63CEC828E6D0FFDFC503FD1A;
 IL2CPP_EXTERN_C String_t* _stringLiteralE91FE173F59B063D620A934CE1A010F2B114C1F3;
 IL2CPP_EXTERN_C String_t* _stringLiteralEA06B3FAEB1638A5812A56A07DEFB21D6AB902DB;
 IL2CPP_EXTERN_C String_t* _stringLiteralEBBB6D6D36829BC5847DD85A830DABFA3E8D8980;
@@ -1097,10 +1133,15 @@ IL2CPP_EXTERN_C String_t* _stringLiteralF79DFB0DF5CA40197ECC83BBCB1EB6A2501E5938
 IL2CPP_EXTERN_C String_t* _stringLiteralF98C092888348622DD8E267EBFB0E9198E85C6A1;
 IL2CPP_EXTERN_C String_t* _stringLiteralFB4AE4F77150C3A8E8E4F8B23E734E0C7277B7D9;
 IL2CPP_EXTERN_C String_t* _stringLiteralFE4565671C8ACE7AE2F38375F5C2CECF2A6E1E20;
+IL2CPP_EXTERN_C String_t* _stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_1_Invoke_m95E5C9FC67F7B0BDC3CD5E00AC5D4C8A00C97AC5_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_1_Invoke_mF082D8233F09827A1AAEFE88C2D470BA1C0DF301_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Action_1__ctor_m090CD607C7652B994D986F12CB18450A24FD8161_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_1__ctor_m36C6688B253977218074ACFD83304E717384FDE6_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Action_1__ctor_mD92294DB4B899A98E5381800C1CA1E09790B2300_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_2_Invoke_m8D5551F5939B700A15161325663C535D9B5C639E_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_2_Invoke_mC3E283AF30B5CD40D7A015F118015648940893E6_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Action_2__ctor_mEF529AE864C800525173EADF5CE7772B9BEDBBA9_RuntimeMethod_var;
@@ -1179,10 +1220,10 @@ IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_get_Item_m1E2AAF5B30446A5A5A65
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_get_Keys_mD5EC7FF2BC5BCDFE0CE61DA0EE5201DD82C582A1_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_set_Item_m442F0B581DE3CCBEC72B685A75063BA2A9EB4A58_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_1_Create_mAE693AE63A376109E4909F310615DF4BD3E74BB6_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_mD0F01E9D01BAD032FEA654281E218A7CC5F2B6CE_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mA827BB1ABD2094D0867CF924283C7F3D89E3C405_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_1_get_Task_mF58AA79C32AE485FC41F087FDBF1AFE25340A54B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_Start_TisU3CInitPoolFormGamObjectAsyncU3Ed__2_t0C57AEFECBB29CDE378E9DDCD7CF71F1CE6F4587_mED4B4BA458C6A026A6A39C26BA3F17225EEF3123_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_ToArray_TisInt64_t378EE0D608BD3107E77238E85F30D2BBD46981F3_mEEE19D130114BC82A2404B7BF60BF28B3CB02BD1_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_Dispose_m251AA253F0D9A3D8BE754451CB55A6E533330CE4_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_Dispose_m267EB0178CA404F0723760F960C91C1309D4416F_RuntimeMethod_var;
@@ -1221,6 +1262,8 @@ IL2CPP_EXTERN_C const RuntimeMethod* Init_OnFollowFriendResultHandler_m0B7C58BFF
 IL2CPP_EXTERN_C const RuntimeMethod* Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Init_OnLogMessageReceived_m32385C4928AF54FE54F0AC9BB3573486BC164A02_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KChannel_Send_mA6D8239A337F275156D1CA57B4D15E147806F260_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KService_KcpOutput_m12BC49EC767C96EA0CDBC39D3962340BBDD27B25_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KeyCollection_GetEnumerator_m122564F8387644F02AD2B8852FE81ECCE40C383A_RuntimeMethod_var;
@@ -1266,7 +1309,11 @@ IL2CPP_EXTERN_C const RuntimeMethod* Stack_1_get_Count_mA436F225B080AE5FAB945178
 IL2CPP_EXTERN_C const RuntimeMethod* TweenSettingsExtensions_SetEase_TisTweenerCore_3_tEF2398744853D982DB885085C5B9A3AD4B0F84A4_mF0DA0120CEA2C163098E706FECA34869CC6E76D4_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* TweenSettingsExtensions_SetUpdate_TisTweenerCore_3_tEF2398744853D982DB885085C5B9A3AD4B0F84A4_m1A183AA4B42CCAEAFAB967CE004987CDCD20F5B7_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Type_GetType_m2D692327E10692E11116805CC604CD47F144A9E4_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CAwakeU3Eb__38_0_m1E96DDDB9CBFF45DC5E24BED6201F7CB90FB6429_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_0_m45361BFA754433DF89468DBE89BA123C4E0B25AD_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_1_mD5A9CC838FA2CB217C33FD4A16C4B6C616BDC67C_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CAwakeU3Eb__39_0_m605BDA62B23AD4457F15C40CE10B79ED97293AF1_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_0_mA66BEFA92089052D758F0A80595616C4F0376BED_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_1_mBFB190B6CFB0A1150DF6B8A5A3E4CF1D2272744C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_0_mEAD5C0E940CDD3F6328C24507BAC326BF5AD9F49_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_1_mAA15275E7957A696DAFD4957884A99B94BFB4CD4_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_2_m4BEF9C05F906B8D551A600A228CD9D2CEDBDB73B_RuntimeMethod_var;
@@ -1276,6 +1323,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_5_m53E73BC6
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_6_m6B64F3496878BA9C106B7A7F00EFC16BB0B70C82_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_7_mC1F3E52808ABD37B1D0B73FEFE9A498699A6E3EC_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitILRuntimeU3Eb__1_8_m982A697E654355883FBB9DC80E0D374FF273EC8D_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CU3Ec_U3CInitializeLoginMenuU3Eb__83_0_mB81581AF69277E107CD63F0908AC349F1152550B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* UnityAction_1__ctor_m8CACADCAC18230FB18DF7A6BEC3D9EAD93FEDC3B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* UnityEvent_1_AddListener_mA73838FBF3836695F5183B32B797E9499BA5E59C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* UnityEvent_1_Invoke_mB4A40E66B8302949068CCFA2E3E1C15F625EA1CD_RuntimeMethod_var;
@@ -4558,8 +4606,18 @@ struct U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields
 public:
 	// ET.Init/<>c ET.Init/<>c::<>9
 	U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * ___U3CU3E9_0;
-	// System.UnhandledExceptionEventHandler ET.Init/<>c::<>9__38_0
-	UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * ___U3CU3E9__38_0_1;
+	// System.UnhandledExceptionEventHandler ET.Init/<>c::<>9__39_0
+	UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * ___U3CU3E9__39_0_1;
+	// System.Action`1<System.String> ET.Init/<>c::<>9__83_0
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___U3CU3E9__83_0_2;
+	// System.Action`1<AppleAuth.Enums.CredentialState> ET.Init/<>c::<>9__84_0
+	Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * ___U3CU3E9__84_0_3;
+	// System.Action`1<AppleAuth.Interfaces.IAppleError> ET.Init/<>c::<>9__84_1
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * ___U3CU3E9__84_1_4;
+	// System.Action`1<AppleAuth.Interfaces.ICredential> ET.Init/<>c::<>9__85_0
+	Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * ___U3CU3E9__85_0_5;
+	// System.Action`1<AppleAuth.Interfaces.IAppleError> ET.Init/<>c::<>9__85_1
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * ___U3CU3E9__85_1_6;
 
 public:
 	inline static int32_t get_offset_of_U3CU3E9_0() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9_0)); }
@@ -4571,13 +4629,58 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9_0), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_U3CU3E9__38_0_1() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__38_0_1)); }
-	inline UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * get_U3CU3E9__38_0_1() const { return ___U3CU3E9__38_0_1; }
-	inline UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 ** get_address_of_U3CU3E9__38_0_1() { return &___U3CU3E9__38_0_1; }
-	inline void set_U3CU3E9__38_0_1(UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * value)
+	inline static int32_t get_offset_of_U3CU3E9__39_0_1() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__39_0_1)); }
+	inline UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * get_U3CU3E9__39_0_1() const { return ___U3CU3E9__39_0_1; }
+	inline UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 ** get_address_of_U3CU3E9__39_0_1() { return &___U3CU3E9__39_0_1; }
+	inline void set_U3CU3E9__39_0_1(UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * value)
 	{
-		___U3CU3E9__38_0_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__38_0_1), (void*)value);
+		___U3CU3E9__39_0_1 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__39_0_1), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CU3E9__83_0_2() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__83_0_2)); }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * get_U3CU3E9__83_0_2() const { return ___U3CU3E9__83_0_2; }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 ** get_address_of_U3CU3E9__83_0_2() { return &___U3CU3E9__83_0_2; }
+	inline void set_U3CU3E9__83_0_2(Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * value)
+	{
+		___U3CU3E9__83_0_2 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__83_0_2), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CU3E9__84_0_3() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__84_0_3)); }
+	inline Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * get_U3CU3E9__84_0_3() const { return ___U3CU3E9__84_0_3; }
+	inline Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 ** get_address_of_U3CU3E9__84_0_3() { return &___U3CU3E9__84_0_3; }
+	inline void set_U3CU3E9__84_0_3(Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * value)
+	{
+		___U3CU3E9__84_0_3 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__84_0_3), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CU3E9__84_1_4() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__84_1_4)); }
+	inline Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * get_U3CU3E9__84_1_4() const { return ___U3CU3E9__84_1_4; }
+	inline Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F ** get_address_of_U3CU3E9__84_1_4() { return &___U3CU3E9__84_1_4; }
+	inline void set_U3CU3E9__84_1_4(Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * value)
+	{
+		___U3CU3E9__84_1_4 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__84_1_4), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CU3E9__85_0_5() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__85_0_5)); }
+	inline Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * get_U3CU3E9__85_0_5() const { return ___U3CU3E9__85_0_5; }
+	inline Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA ** get_address_of_U3CU3E9__85_0_5() { return &___U3CU3E9__85_0_5; }
+	inline void set_U3CU3E9__85_0_5(Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * value)
+	{
+		___U3CU3E9__85_0_5 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__85_0_5), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_U3CU3E9__85_1_6() { return static_cast<int32_t>(offsetof(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields, ___U3CU3E9__85_1_6)); }
+	inline Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * get_U3CU3E9__85_1_6() const { return ___U3CU3E9__85_1_6; }
+	inline Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F ** get_address_of_U3CU3E9__85_1_6() { return &___U3CU3E9__85_1_6; }
+	inline void set_U3CU3E9__85_1_6(Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * value)
+	{
+		___U3CU3E9__85_1_6 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E9__85_1_6), (void*)value);
 	}
 };
 
@@ -5472,6 +5575,48 @@ public:
 public:
 };
 
+
+// AppleAuth.AppleAuthQuickLoginArgs
+struct AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE 
+{
+public:
+	// System.String AppleAuth.AppleAuthQuickLoginArgs::Nonce
+	String_t* ___Nonce_0;
+	// System.String AppleAuth.AppleAuthQuickLoginArgs::State
+	String_t* ___State_1;
+
+public:
+	inline static int32_t get_offset_of_Nonce_0() { return static_cast<int32_t>(offsetof(AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE, ___Nonce_0)); }
+	inline String_t* get_Nonce_0() const { return ___Nonce_0; }
+	inline String_t** get_address_of_Nonce_0() { return &___Nonce_0; }
+	inline void set_Nonce_0(String_t* value)
+	{
+		___Nonce_0 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___Nonce_0), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_State_1() { return static_cast<int32_t>(offsetof(AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE, ___State_1)); }
+	inline String_t* get_State_1() const { return ___State_1; }
+	inline String_t** get_address_of_State_1() { return &___State_1; }
+	inline void set_State_1(String_t* value)
+	{
+		___State_1 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___State_1), (void*)value);
+	}
+};
+
+// Native definition for P/Invoke marshalling of AppleAuth.AppleAuthQuickLoginArgs
+struct AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE_marshaled_pinvoke
+{
+	char* ___Nonce_0;
+	char* ___State_1;
+};
+// Native definition for COM marshalling of AppleAuth.AppleAuthQuickLoginArgs
+struct AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE_marshaled_com
+{
+	Il2CppChar* ___Nonce_0;
+	Il2CppChar* ___State_1;
+};
 
 // UnityEngine.EventSystems.BaseEventData
 struct BaseEventData_t722C48843CF21B50E06CC0E2E679415E38A7444E  : public AbstractEventData_tA0B5065DE3430C0031ADE061668E1C7073D718DF
@@ -7750,6 +7895,24 @@ public:
 };
 
 
+// AppleAuth.Enums.AuthorizationErrorCode
+struct AuthorizationErrorCode_t39345506E8A14B87DC20E75D12142CE1804DF557 
+{
+public:
+	// System.Int32 AppleAuth.Enums.AuthorizationErrorCode::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(AuthorizationErrorCode_t39345506E8A14B87DC20E75D12142CE1804DF557, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // ET.AwaiterStatus
 struct AwaiterStatus_t7D3338F8A73065C16378C11C75AD725451810A2C 
 {
@@ -8205,6 +8368,24 @@ struct Coroutine_t899D5232EF542CB8BA70AF9ECEECA494FAA9CCB7_marshaled_com : publi
 {
 	intptr_t ___m_Ptr_0;
 };
+
+// AppleAuth.Enums.CredentialState
+struct CredentialState_tB6FBBF4767DBDA30410372D655B7E7B53FDA1964 
+{
+public:
+	// System.Int32 AppleAuth.Enums.CredentialState::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(CredentialState_tB6FBBF4767DBDA30410372D655B7E7B53FDA1964, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
 
 // UnityEngine.CubemapFace
 struct CubemapFace_t74FBCA71A21252C2E10E256E61FE0B1E09D7B9E5 
@@ -9508,6 +9689,24 @@ public:
 };
 
 
+// AppleAuth.Enums.LoginOptions
+struct LoginOptions_tA6B67F9BBFE55877449C94CF3938C3F10459BAB6 
+{
+public:
+	// System.Int32 AppleAuth.Enums.LoginOptions::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(LoginOptions_tA6B67F9BBFE55877449C94CF3938C3F10459BAB6, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
 // DG.Tweening.LoopType
 struct LoopType_tF807A5805F6A83F5228BE7D4E633B2572B1B859A 
 {
@@ -10670,19 +10869,19 @@ public:
 };
 
 
-// ET.Init/<TapTapLogin>d__51
-struct U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5 
+// ET.Init/<TapTapLogin>d__52
+struct U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63 
 {
 public:
-	// System.Int32 ET.Init/<TapTapLogin>d__51::<>1__state
+	// System.Int32 ET.Init/<TapTapLogin>d__52::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// ET.ETAsyncTaskMethodBuilder`1<System.String> ET.Init/<TapTapLogin>d__51::<>t__builder
+	// ET.ETAsyncTaskMethodBuilder`1<System.String> ET.Init/<TapTapLogin>d__52::<>t__builder
 	ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  ___U3CU3Et__builder_1;
-	// ET.ETTaskCompleted ET.Init/<TapTapLogin>d__51::<>u__1
+	// ET.ETTaskCompleted ET.Init/<TapTapLogin>d__52::<>u__1
 	ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  ___U3CU3Eu__1_2;
 
 public:
-	inline static int32_t get_offset_of_U3CU3E1__state_0() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5, ___U3CU3E1__state_0)); }
+	inline static int32_t get_offset_of_U3CU3E1__state_0() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63, ___U3CU3E1__state_0)); }
 	inline int32_t get_U3CU3E1__state_0() const { return ___U3CU3E1__state_0; }
 	inline int32_t* get_address_of_U3CU3E1__state_0() { return &___U3CU3E1__state_0; }
 	inline void set_U3CU3E1__state_0(int32_t value)
@@ -10690,7 +10889,7 @@ public:
 		___U3CU3E1__state_0 = value;
 	}
 
-	inline static int32_t get_offset_of_U3CU3Et__builder_1() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5, ___U3CU3Et__builder_1)); }
+	inline static int32_t get_offset_of_U3CU3Et__builder_1() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63, ___U3CU3Et__builder_1)); }
 	inline ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  get_U3CU3Et__builder_1() const { return ___U3CU3Et__builder_1; }
 	inline ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF * get_address_of_U3CU3Et__builder_1() { return &___U3CU3Et__builder_1; }
 	inline void set_U3CU3Et__builder_1(ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  value)
@@ -10699,7 +10898,7 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)&(((&___U3CU3Et__builder_1))->___tcs_0), (void*)NULL);
 	}
 
-	inline static int32_t get_offset_of_U3CU3Eu__1_2() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5, ___U3CU3Eu__1_2)); }
+	inline static int32_t get_offset_of_U3CU3Eu__1_2() { return static_cast<int32_t>(offsetof(U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63, ___U3CU3Eu__1_2)); }
 	inline ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  get_U3CU3Eu__1_2() const { return ___U3CU3Eu__1_2; }
 	inline ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20 * get_address_of_U3CU3Eu__1_2() { return &___U3CU3Eu__1_2; }
 	inline void set_U3CU3Eu__1_2(ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  value)
@@ -10709,19 +10908,19 @@ public:
 };
 
 
-// ET.Init/<TapTapLogoutAsync>d__52
-struct U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F 
+// ET.Init/<TapTapLogoutAsync>d__53
+struct U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8 
 {
 public:
-	// System.Int32 ET.Init/<TapTapLogoutAsync>d__52::<>1__state
+	// System.Int32 ET.Init/<TapTapLogoutAsync>d__53::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// ET.ETAsyncTaskMethodBuilder ET.Init/<TapTapLogoutAsync>d__52::<>t__builder
+	// ET.ETAsyncTaskMethodBuilder ET.Init/<TapTapLogoutAsync>d__53::<>t__builder
 	ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F  ___U3CU3Et__builder_1;
-	// ET.ETTaskCompleted ET.Init/<TapTapLogoutAsync>d__52::<>u__1
+	// ET.ETTaskCompleted ET.Init/<TapTapLogoutAsync>d__53::<>u__1
 	ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  ___U3CU3Eu__1_2;
 
 public:
-	inline static int32_t get_offset_of_U3CU3E1__state_0() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F, ___U3CU3E1__state_0)); }
+	inline static int32_t get_offset_of_U3CU3E1__state_0() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8, ___U3CU3E1__state_0)); }
 	inline int32_t get_U3CU3E1__state_0() const { return ___U3CU3E1__state_0; }
 	inline int32_t* get_address_of_U3CU3E1__state_0() { return &___U3CU3E1__state_0; }
 	inline void set_U3CU3E1__state_0(int32_t value)
@@ -10729,7 +10928,7 @@ public:
 		___U3CU3E1__state_0 = value;
 	}
 
-	inline static int32_t get_offset_of_U3CU3Et__builder_1() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F, ___U3CU3Et__builder_1)); }
+	inline static int32_t get_offset_of_U3CU3Et__builder_1() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8, ___U3CU3Et__builder_1)); }
 	inline ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F  get_U3CU3Et__builder_1() const { return ___U3CU3Et__builder_1; }
 	inline ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * get_address_of_U3CU3Et__builder_1() { return &___U3CU3Et__builder_1; }
 	inline void set_U3CU3Et__builder_1(ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F  value)
@@ -10738,7 +10937,7 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)&(((&___U3CU3Et__builder_1))->___tcs_0), (void*)NULL);
 	}
 
-	inline static int32_t get_offset_of_U3CU3Eu__1_2() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F, ___U3CU3Eu__1_2)); }
+	inline static int32_t get_offset_of_U3CU3Eu__1_2() { return static_cast<int32_t>(offsetof(U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8, ___U3CU3Eu__1_2)); }
 	inline ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  get_U3CU3Eu__1_2() const { return ___U3CU3Eu__1_2; }
 	inline ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20 * get_address_of_U3CU3Eu__1_2() { return &___U3CU3Eu__1_2; }
 	inline void set_U3CU3Eu__1_2(ETTaskCompleted_t5E4B9F0084EB0DCF4747C04873552751961AFB20  value)
@@ -11205,6 +11404,60 @@ public:
 	}
 };
 
+
+// AppleAuth.AppleAuthLoginArgs
+struct AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE 
+{
+public:
+	// AppleAuth.Enums.LoginOptions AppleAuth.AppleAuthLoginArgs::Options
+	int32_t ___Options_0;
+	// System.String AppleAuth.AppleAuthLoginArgs::Nonce
+	String_t* ___Nonce_1;
+	// System.String AppleAuth.AppleAuthLoginArgs::State
+	String_t* ___State_2;
+
+public:
+	inline static int32_t get_offset_of_Options_0() { return static_cast<int32_t>(offsetof(AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE, ___Options_0)); }
+	inline int32_t get_Options_0() const { return ___Options_0; }
+	inline int32_t* get_address_of_Options_0() { return &___Options_0; }
+	inline void set_Options_0(int32_t value)
+	{
+		___Options_0 = value;
+	}
+
+	inline static int32_t get_offset_of_Nonce_1() { return static_cast<int32_t>(offsetof(AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE, ___Nonce_1)); }
+	inline String_t* get_Nonce_1() const { return ___Nonce_1; }
+	inline String_t** get_address_of_Nonce_1() { return &___Nonce_1; }
+	inline void set_Nonce_1(String_t* value)
+	{
+		___Nonce_1 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___Nonce_1), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_State_2() { return static_cast<int32_t>(offsetof(AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE, ___State_2)); }
+	inline String_t* get_State_2() const { return ___State_2; }
+	inline String_t** get_address_of_State_2() { return &___State_2; }
+	inline void set_State_2(String_t* value)
+	{
+		___State_2 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___State_2), (void*)value);
+	}
+};
+
+// Native definition for P/Invoke marshalling of AppleAuth.AppleAuthLoginArgs
+struct AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE_marshaled_pinvoke
+{
+	int32_t ___Options_0;
+	char* ___Nonce_1;
+	char* ___State_2;
+};
+// Native definition for COM marshalling of AppleAuth.AppleAuthLoginArgs
+struct AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE_marshaled_com
+{
+	int32_t ___Options_0;
+	Il2CppChar* ___Nonce_1;
+	Il2CppChar* ___State_2;
+};
 
 // ET.CodeLoader
 struct CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67  : public RuntimeObject
@@ -13442,8 +13695,35 @@ public:
 };
 
 
+// System.Action`1<AppleAuth.Enums.CredentialState>
+struct Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178  : public MulticastDelegate_t
+{
+public:
+
+public:
+};
+
+
 // System.Action`1<System.Exception>
 struct Action_1_t34F00247DCE829C59C4C5AAECAE03F05F060DD90  : public MulticastDelegate_t
+{
+public:
+
+public:
+};
+
+
+// System.Action`1<AppleAuth.Interfaces.IAppleError>
+struct Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F  : public MulticastDelegate_t
+{
+public:
+
+public:
+};
+
+
+// System.Action`1<AppleAuth.Interfaces.ICredential>
+struct Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA  : public MulticastDelegate_t
 {
 public:
 
@@ -16013,24 +16293,26 @@ public:
 	AndroidJavaObject_t10188D5695DCD09C9F621B44B0A8C93A2281236E * ___javaActive_29;
 	// AppleAuth.AppleAuthManager ET.Init::appleAuthManager
 	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * ___appleAuthManager_30;
+	// System.Action`1<System.String> ET.Init::AppleSignInHandler
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___AppleSignInHandler_31;
 	// System.String ET.Init::javaClassStr
-	String_t* ___javaClassStr_31;
+	String_t* ___javaClassStr_32;
 	// System.String ET.Init::javaActiveStr
-	String_t* ___javaActiveStr_32;
+	String_t* ___javaActiveStr_33;
 	// ET.CodeMode ET.Init::CodeMode
-	int32_t ___CodeMode_33;
+	int32_t ___CodeMode_34;
 	// ET.VersionMode ET.Init::VersionMode
-	int32_t ___VersionMode_34;
+	int32_t ___VersionMode_35;
 	// System.Int32 ET.Init::Platform
-	int32_t ___Platform_35;
+	int32_t ___Platform_36;
 	// System.Boolean ET.Init::HotUpdateComplete
-	bool ___HotUpdateComplete_36;
+	bool ___HotUpdateComplete_37;
 	// System.String ET.Init::Apk_Extension
-	String_t* ___Apk_Extension_37;
+	String_t* ___Apk_Extension_38;
 	// System.Int32 ET.Init::IsRoot
-	int32_t ___IsRoot_38;
+	int32_t ___IsRoot_39;
 	// System.Int32 ET.Init::IsEmulator
-	int32_t ___IsEmulator_39;
+	int32_t ___IsEmulator_40;
 
 public:
 	inline static int32_t get_offset_of_Development_4() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Development_4)); }
@@ -16271,79 +16553,88 @@ public:
 		Il2CppCodeGenWriteBarrier((void**)(&___appleAuthManager_30), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaClassStr_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_31)); }
-	inline String_t* get_javaClassStr_31() const { return ___javaClassStr_31; }
-	inline String_t** get_address_of_javaClassStr_31() { return &___javaClassStr_31; }
-	inline void set_javaClassStr_31(String_t* value)
+	inline static int32_t get_offset_of_AppleSignInHandler_31() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___AppleSignInHandler_31)); }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * get_AppleSignInHandler_31() const { return ___AppleSignInHandler_31; }
+	inline Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 ** get_address_of_AppleSignInHandler_31() { return &___AppleSignInHandler_31; }
+	inline void set_AppleSignInHandler_31(Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * value)
 	{
-		___javaClassStr_31 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_31), (void*)value);
+		___AppleSignInHandler_31 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___AppleSignInHandler_31), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_javaActiveStr_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_32)); }
-	inline String_t* get_javaActiveStr_32() const { return ___javaActiveStr_32; }
-	inline String_t** get_address_of_javaActiveStr_32() { return &___javaActiveStr_32; }
-	inline void set_javaActiveStr_32(String_t* value)
+	inline static int32_t get_offset_of_javaClassStr_32() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaClassStr_32)); }
+	inline String_t* get_javaClassStr_32() const { return ___javaClassStr_32; }
+	inline String_t** get_address_of_javaClassStr_32() { return &___javaClassStr_32; }
+	inline void set_javaClassStr_32(String_t* value)
 	{
-		___javaActiveStr_32 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_32), (void*)value);
+		___javaClassStr_32 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaClassStr_32), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_CodeMode_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_33)); }
-	inline int32_t get_CodeMode_33() const { return ___CodeMode_33; }
-	inline int32_t* get_address_of_CodeMode_33() { return &___CodeMode_33; }
-	inline void set_CodeMode_33(int32_t value)
+	inline static int32_t get_offset_of_javaActiveStr_33() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___javaActiveStr_33)); }
+	inline String_t* get_javaActiveStr_33() const { return ___javaActiveStr_33; }
+	inline String_t** get_address_of_javaActiveStr_33() { return &___javaActiveStr_33; }
+	inline void set_javaActiveStr_33(String_t* value)
 	{
-		___CodeMode_33 = value;
+		___javaActiveStr_33 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___javaActiveStr_33), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_VersionMode_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_34)); }
-	inline int32_t get_VersionMode_34() const { return ___VersionMode_34; }
-	inline int32_t* get_address_of_VersionMode_34() { return &___VersionMode_34; }
-	inline void set_VersionMode_34(int32_t value)
+	inline static int32_t get_offset_of_CodeMode_34() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___CodeMode_34)); }
+	inline int32_t get_CodeMode_34() const { return ___CodeMode_34; }
+	inline int32_t* get_address_of_CodeMode_34() { return &___CodeMode_34; }
+	inline void set_CodeMode_34(int32_t value)
 	{
-		___VersionMode_34 = value;
+		___CodeMode_34 = value;
 	}
 
-	inline static int32_t get_offset_of_Platform_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_35)); }
-	inline int32_t get_Platform_35() const { return ___Platform_35; }
-	inline int32_t* get_address_of_Platform_35() { return &___Platform_35; }
-	inline void set_Platform_35(int32_t value)
+	inline static int32_t get_offset_of_VersionMode_35() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___VersionMode_35)); }
+	inline int32_t get_VersionMode_35() const { return ___VersionMode_35; }
+	inline int32_t* get_address_of_VersionMode_35() { return &___VersionMode_35; }
+	inline void set_VersionMode_35(int32_t value)
 	{
-		___Platform_35 = value;
+		___VersionMode_35 = value;
 	}
 
-	inline static int32_t get_offset_of_HotUpdateComplete_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_36)); }
-	inline bool get_HotUpdateComplete_36() const { return ___HotUpdateComplete_36; }
-	inline bool* get_address_of_HotUpdateComplete_36() { return &___HotUpdateComplete_36; }
-	inline void set_HotUpdateComplete_36(bool value)
+	inline static int32_t get_offset_of_Platform_36() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Platform_36)); }
+	inline int32_t get_Platform_36() const { return ___Platform_36; }
+	inline int32_t* get_address_of_Platform_36() { return &___Platform_36; }
+	inline void set_Platform_36(int32_t value)
 	{
-		___HotUpdateComplete_36 = value;
+		___Platform_36 = value;
 	}
 
-	inline static int32_t get_offset_of_Apk_Extension_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_37)); }
-	inline String_t* get_Apk_Extension_37() const { return ___Apk_Extension_37; }
-	inline String_t** get_address_of_Apk_Extension_37() { return &___Apk_Extension_37; }
-	inline void set_Apk_Extension_37(String_t* value)
+	inline static int32_t get_offset_of_HotUpdateComplete_37() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___HotUpdateComplete_37)); }
+	inline bool get_HotUpdateComplete_37() const { return ___HotUpdateComplete_37; }
+	inline bool* get_address_of_HotUpdateComplete_37() { return &___HotUpdateComplete_37; }
+	inline void set_HotUpdateComplete_37(bool value)
 	{
-		___Apk_Extension_37 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_37), (void*)value);
+		___HotUpdateComplete_37 = value;
 	}
 
-	inline static int32_t get_offset_of_IsRoot_38() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_38)); }
-	inline int32_t get_IsRoot_38() const { return ___IsRoot_38; }
-	inline int32_t* get_address_of_IsRoot_38() { return &___IsRoot_38; }
-	inline void set_IsRoot_38(int32_t value)
+	inline static int32_t get_offset_of_Apk_Extension_38() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___Apk_Extension_38)); }
+	inline String_t* get_Apk_Extension_38() const { return ___Apk_Extension_38; }
+	inline String_t** get_address_of_Apk_Extension_38() { return &___Apk_Extension_38; }
+	inline void set_Apk_Extension_38(String_t* value)
 	{
-		___IsRoot_38 = value;
+		___Apk_Extension_38 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___Apk_Extension_38), (void*)value);
 	}
 
-	inline static int32_t get_offset_of_IsEmulator_39() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_39)); }
-	inline int32_t get_IsEmulator_39() const { return ___IsEmulator_39; }
-	inline int32_t* get_address_of_IsEmulator_39() { return &___IsEmulator_39; }
-	inline void set_IsEmulator_39(int32_t value)
+	inline static int32_t get_offset_of_IsRoot_39() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsRoot_39)); }
+	inline int32_t get_IsRoot_39() const { return ___IsRoot_39; }
+	inline int32_t* get_address_of_IsRoot_39() { return &___IsRoot_39; }
+	inline void set_IsRoot_39(int32_t value)
 	{
-		___IsEmulator_39 = value;
+		___IsRoot_39 = value;
+	}
+
+	inline static int32_t get_offset_of_IsEmulator_40() { return static_cast<int32_t>(offsetof(Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D, ___IsEmulator_40)); }
+	inline int32_t get_IsEmulator_40() const { return ___IsEmulator_40; }
+	inline int32_t* get_address_of_IsEmulator_40() { return &___IsEmulator_40; }
+	inline void set_IsEmulator_40(int32_t value)
+	{
+		___IsEmulator_40 = value;
 	}
 };
 
@@ -19296,16 +19587,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2_Invoke_m8D5551F5939B700A1516132
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1_Invoke_m587509C88BB83721D7918D89DF07606BB752D744_gshared (Action_1_tD9663D9715FAA4E62035CFCF1AD4D094EE7872DC * __this, RuntimeObject * ___obj0, const RuntimeMethod* method);
 // ET.ETAsyncTaskMethodBuilder`1<!0> ET.ETAsyncTaskMethodBuilder`1<System.Object>::Create()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ETAsyncTaskMethodBuilder_1_tE1A498F2F43F7308B682E8A5F6E94FF041B85974  ETAsyncTaskMethodBuilder_1_Create_mD81FFE6F15662CD8B164043A54B842099C42C2EA_gshared (const RuntimeMethod* method);
-// System.Void ET.ETAsyncTaskMethodBuilder`1<System.Object>::Start<ET.Init/<TapTapLogin>d__51>(!!0&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_m11C33C82A888AEB2E4A9750A5BDFDEDFD6BD9080_gshared (ETAsyncTaskMethodBuilder_1_tE1A498F2F43F7308B682E8A5F6E94FF041B85974 * __this, U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5 * ___stateMachine0, const RuntimeMethod* method);
+// System.Void ET.ETAsyncTaskMethodBuilder`1<System.Object>::Start<ET.Init/<TapTapLogin>d__52>(!!0&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mAFE97F6CDF549822EA9ECCD2591567C660710978_gshared (ETAsyncTaskMethodBuilder_1_tE1A498F2F43F7308B682E8A5F6E94FF041B85974 * __this, U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63 * ___stateMachine0, const RuntimeMethod* method);
 // ET.ETTask`1<!0> ET.ETAsyncTaskMethodBuilder`1<System.Object>::get_Task()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ETTask_1_t1831C1079B7DFE47336329DDE0A93C9494BC1A75 * ETAsyncTaskMethodBuilder_1_get_Task_mAFE60BE5004C5BA11ABD1EB2ACB505FE93DF2E09_gshared_inline (ETAsyncTaskMethodBuilder_1_tE1A498F2F43F7308B682E8A5F6E94FF041B85974 * __this, const RuntimeMethod* method);
-// System.Void ET.ETAsyncTaskMethodBuilder::Start<ET.Init/<TapTapLogoutAsync>d__52>(!!0&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31_gshared (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * __this, U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F * ___stateMachine0, const RuntimeMethod* method);
+// System.Void ET.ETAsyncTaskMethodBuilder::Start<ET.Init/<TapTapLogoutAsync>d__53>(!!0&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2_gshared (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * __this, U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8 * ___stateMachine0, const RuntimeMethod* method);
 // System.Void System.Action`1<System.Int32>::Invoke(!0)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1_Invoke_mF082D8233F09827A1AAEFE88C2D470BA1C0DF301_gshared (Action_1_t080BA8EFA9616A494EBB4DD352BFEF943792E05B * __this, int32_t ___obj0, const RuntimeMethod* method);
 // System.Void System.Action`1<System.Boolean>::Invoke(!0)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1_Invoke_m95E5C9FC67F7B0BDC3CD5E00AC5D4C8A00C97AC5_gshared (Action_1_tCE2D770918A65CAD277C08C4E8C05385EA267E83 * __this, bool ___obj0, const RuntimeMethod* method);
+// System.Void System.Action`1<System.Int32Enum>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m5A0949EFB73F1BDBEBE3CB814917A79FBF9B3DEA_gshared (Action_1_tF0FD284A49EB7135379250254D6B49FA84383C09 * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method);
 // System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<System.Object>::GetEnumerator()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tB6009981BD4E3881E3EC83627255A24198F902D6  List_1_GetEnumerator_m1739A5E25DF502A6984F9B98CFCAC2D3FABCF233_gshared (List_1_t3F94120C77410A62EAE48421CF166B83AB95A2F5 * __this, const RuntimeMethod* method);
 // !0 System.Collections.Generic.List`1/Enumerator<System.Object>::get_Current()
@@ -20296,6 +20589,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AppleAuthManager_get_IsCurrentPlatformSu
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PayloadDeserializer__ctor_m7CC545A1B00832CD537687155732E0832BEB35E6 (PayloadDeserializer_t600547BA2304A4FA88803CCFEDE89EC5D9FBAD14 * __this, const RuntimeMethod* method);
 // System.Void AppleAuth.AppleAuthManager::.ctor(AppleAuth.Interfaces.IPayloadDeserializer)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager__ctor_m71500AFEB804B05281F27D5A34885E55FB7ED81F (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, RuntimeObject* ___payloadDeserializer0, const RuntimeMethod* method);
+// System.Void ET.Init::InitializeLoginMenu()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_InitializeLoginMenu_m724B45381DB9DA56BCCA859092CD229CFA6C683F (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, const RuntimeMethod* method);
 // System.Void ET.Init::CheckIphoneYueyu(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222 (String_t* ___str0, const RuntimeMethod* method);
 // !!0 UnityEngine.GameObject::GetComponent<cn.sharesdk.unity3d.ShareSDK>()
@@ -20333,23 +20628,25 @@ inline ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  ETA
 {
 	return ((  ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  (*) (const RuntimeMethod*))ETAsyncTaskMethodBuilder_1_Create_mD81FFE6F15662CD8B164043A54B842099C42C2EA_gshared)(method);
 }
-// System.Void ET.ETAsyncTaskMethodBuilder`1<System.String>::Start<ET.Init/<TapTapLogin>d__51>(!!0&)
-inline void ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_mD0F01E9D01BAD032FEA654281E218A7CC5F2B6CE (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF * __this, U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5 * ___stateMachine0, const RuntimeMethod* method)
+// System.Void ET.ETAsyncTaskMethodBuilder`1<System.String>::Start<ET.Init/<TapTapLogin>d__52>(!!0&)
+inline void ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mA827BB1ABD2094D0867CF924283C7F3D89E3C405 (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF * __this, U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63 * ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *, U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5 *, const RuntimeMethod*))ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_m11C33C82A888AEB2E4A9750A5BDFDEDFD6BD9080_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *, U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63 *, const RuntimeMethod*))ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mAFE97F6CDF549822EA9ECCD2591567C660710978_gshared)(__this, ___stateMachine0, method);
 }
 // ET.ETTask`1<!0> ET.ETAsyncTaskMethodBuilder`1<System.String>::get_Task()
 inline ETTask_1_t8A4D4F02FB7594466C505394B628071E10286530 * ETAsyncTaskMethodBuilder_1_get_Task_mF58AA79C32AE485FC41F087FDBF1AFE25340A54B_inline (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF * __this, const RuntimeMethod* method)
 {
 	return ((  ETTask_1_t8A4D4F02FB7594466C505394B628071E10286530 * (*) (ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *, const RuntimeMethod*))ETAsyncTaskMethodBuilder_1_get_Task_mAFE60BE5004C5BA11ABD1EB2ACB505FE93DF2E09_gshared_inline)(__this, method);
 }
-// System.Void ET.ETAsyncTaskMethodBuilder::Start<ET.Init/<TapTapLogoutAsync>d__52>(!!0&)
-inline void ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31 (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * __this, U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F * ___stateMachine0, const RuntimeMethod* method)
+// System.Void ET.ETAsyncTaskMethodBuilder::Start<ET.Init/<TapTapLogoutAsync>d__53>(!!0&)
+inline void ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2 (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * __this, U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8 * ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F *, U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F *, const RuntimeMethod*))ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F *, U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8 *, const RuntimeMethod*))ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2_gshared)(__this, ___stateMachine0, method);
 }
 // System.Void ET.CodeLoader::Start()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CodeLoader_Start_m88AA88F0E162B1802572781D3D939FA11104FF85 (CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67 * __this, const RuntimeMethod* method);
+// System.Void AppleAuth.AppleAuthManager::Update()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager_Update_m1F9CC97AE702FC1FD826266963D3DD6402D627B7 (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, const RuntimeMethod* method);
 // System.Void ET.Init::CheckMouseInput()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_CheckMouseInput_m6AF397B96CA71BA757D2326FE8188EBC1B147758 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, const RuntimeMethod* method);
 // System.Boolean ET.InputHelper::GetKey(System.Int32)
@@ -20412,6 +20709,46 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShareContent_SetShareType_m67554A36461BC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * ___content0, int32_t ___fenxiangtype1, const RuntimeMethod* method);
 // System.Int32 cn.sharesdk.unity3d.ShareSDK::ShareContent(cn.sharesdk.unity3d.PlatformType,cn.sharesdk.unity3d.ShareContent)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB (ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * __this, int32_t ___platform0, ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * ___content1, const RuntimeMethod* method);
+// System.Void System.Action`1<System.String>::.ctor(System.Object,System.IntPtr)
+inline void Action_1__ctor_m090CD607C7652B994D986F12CB18450A24FD8161 (Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method)
+{
+	((  void (*) (Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 *, RuntimeObject *, intptr_t, const RuntimeMethod*))Action_1__ctor_mA671E933C9D3DAE4E3F71D34FDDA971739618158_gshared)(__this, ___object0, ___method1, method);
+}
+// System.Void AppleAuth.AppleAuthManager::SetCredentialsRevokedCallback(System.Action`1<System.String>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager_SetCredentialsRevokedCallback_m91B3771189CB3EF4F263D4F4C03A1FBE17ECA9E4 (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___credentialsRevokedCallback0, const RuntimeMethod* method);
+// System.Boolean UnityEngine.PlayerPrefs::HasKey(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool PlayerPrefs_HasKey_m48BE5886380B51AB495B91C9A26115B7CB958A92 (String_t* ___key0, const RuntimeMethod* method);
+// System.String UnityEngine.PlayerPrefs::GetString(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* PlayerPrefs_GetString_mE7654C1031622A56CD8F248F53714B105A35A159 (String_t* ___key0, const RuntimeMethod* method);
+// System.Void ET.Init::CheckCredentialStatusForUserId(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_CheckCredentialStatusForUserId_m89BA6B6D2E0A1253F4772CFA3C5157B3DF78752D (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, String_t* ___appleUserId0, const RuntimeMethod* method);
+// System.Void System.Action`1<AppleAuth.Enums.CredentialState>::.ctor(System.Object,System.IntPtr)
+inline void Action_1__ctor_mD92294DB4B899A98E5381800C1CA1E09790B2300 (Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method)
+{
+	((  void (*) (Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 *, RuntimeObject *, intptr_t, const RuntimeMethod*))Action_1__ctor_m5A0949EFB73F1BDBEBE3CB814917A79FBF9B3DEA_gshared)(__this, ___object0, ___method1, method);
+}
+// System.Void System.Action`1<AppleAuth.Interfaces.IAppleError>::.ctor(System.Object,System.IntPtr)
+inline void Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC (Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method)
+{
+	((  void (*) (Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F *, RuntimeObject *, intptr_t, const RuntimeMethod*))Action_1__ctor_mA671E933C9D3DAE4E3F71D34FDDA971739618158_gshared)(__this, ___object0, ___method1, method);
+}
+// System.Void AppleAuth.AppleAuthManager::GetCredentialState(System.String,System.Action`1<AppleAuth.Enums.CredentialState>,System.Action`1<AppleAuth.Interfaces.IAppleError>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager_GetCredentialState_mBA1ECA7B6EE84C2675632FA01306869C53D1422F (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, String_t* ___userId0, Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * ___successCallback1, Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * ___errorCallback2, const RuntimeMethod* method);
+// System.Void System.Action`1<AppleAuth.Interfaces.ICredential>::.ctor(System.Object,System.IntPtr)
+inline void Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3 (Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method)
+{
+	((  void (*) (Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA *, RuntimeObject *, intptr_t, const RuntimeMethod*))Action_1__ctor_mA671E933C9D3DAE4E3F71D34FDDA971739618158_gshared)(__this, ___object0, ___method1, method);
+}
+// System.Void AppleAuth.AppleAuthManager::QuickLogin(AppleAuth.AppleAuthQuickLoginArgs,System.Action`1<AppleAuth.Interfaces.ICredential>,System.Action`1<AppleAuth.Interfaces.IAppleError>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager_QuickLogin_mA0443BF145CB62FB998A8828916F03EDE7B7BC35 (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  ___quickLoginArgs0, Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * ___successCallback1, Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * ___errorCallback2, const RuntimeMethod* method);
+// System.Void AppleAuth.AppleAuthLoginArgs::.ctor(AppleAuth.Enums.LoginOptions,System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthLoginArgs__ctor_m39DCEE4E48A1245B936703CB9AF4B032C4D4E4C3 (AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE * __this, int32_t ___options0, String_t* ___nonce1, String_t* ___state2, const RuntimeMethod* method);
+// System.Void AppleAuth.AppleAuthManager::LoginWithAppleId(AppleAuth.AppleAuthLoginArgs,System.Action`1<AppleAuth.Interfaces.ICredential>,System.Action`1<AppleAuth.Interfaces.IAppleError>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AppleAuthManager_LoginWithAppleId_m43E256001A4940AEECC68F522CBE417BD17103D2 (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * __this, AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE  ___loginArgs0, Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * ___successCallback1, Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * ___errorCallback2, const RuntimeMethod* method);
+// System.Void UnityEngine.PlayerPrefs::SetString(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_SetString_m94CD8FF45692553A5726DFADF74935F7E1D1C633 (String_t* ___key0, String_t* ___value1, const RuntimeMethod* method);
+// AppleAuth.Enums.AuthorizationErrorCode AppleAuth.Extensions.AppleErrorExtensions::GetAuthorizationErrorCode(AppleAuth.Interfaces.IAppleError)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AppleErrorExtensions_GetAuthorizationErrorCode_m18C2F50BA8124CE8CD3A68D2E1868E01D63AF561 (RuntimeObject* ___error0, const RuntimeMethod* method);
 // System.Void InitHybridCLR::LoadMetadataForAOTAssembly()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InitHybridCLR_LoadMetadataForAOTAssembly_mFFD86CFB3BC9AB04A92FEFC0946C379230F4E0F0 (const RuntimeMethod* method);
 // System.Void System.Collections.Generic.List`1<System.String>::.ctor()
@@ -28385,7 +28722,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_Awake_m31D29836728015B65429E4BE3B1B
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&PayloadDeserializer_t600547BA2304A4FA88803CCFEDE89EC5D9FBAD14_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&String_t_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ThreadSynchronizationContext_tF420C4E811585DBD12B49A48FCD46C8F6EBE208C_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CAwakeU3Eb__38_0_m1E96DDDB9CBFF45DC5E24BED6201F7CB90FB6429_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CAwakeU3Eb__39_0_m605BDA62B23AD4457F15C40CE10B79ED97293AF1_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&UnityLogger_t2294DE2C7251DE37ACA3D8D429F55EBBAACB03C2_il2cpp_TypeInfo_var);
@@ -28421,7 +28758,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_Awake_m31D29836728015B65429E4BE3B1B
 		AppDomain_tBEB6322D51DCB12C09A56A49886C2D09BA1C1A8A * L_0;
 		L_0 = AppDomain_get_CurrentDomain_mC2FE307811914289CBBDEFEFF6175FCE2E96A55E(/*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
-		UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * L_1 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__38_0_1();
+		UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * L_1 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__39_0_1();
 		UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * L_2 = L_1;
 		G_B1_0 = L_2;
 		G_B1_1 = L_0;
@@ -28436,9 +28773,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_Awake_m31D29836728015B65429E4BE3B1B
 		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
 		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_3 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
 		UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * L_4 = (UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 *)il2cpp_codegen_object_new(UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64_il2cpp_TypeInfo_var);
-		UnhandledExceptionEventHandler__ctor_mE6B0B21833515D1B7627DB2DCB6CF045E5E1B691(L_4, L_3, (intptr_t)((intptr_t)U3CU3Ec_U3CAwakeU3Eb__38_0_m1E96DDDB9CBFF45DC5E24BED6201F7CB90FB6429_RuntimeMethod_var), /*hidden argument*/NULL);
+		UnhandledExceptionEventHandler__ctor_mE6B0B21833515D1B7627DB2DCB6CF045E5E1B691(L_4, L_3, (intptr_t)((intptr_t)U3CU3Ec_U3CAwakeU3Eb__39_0_m605BDA62B23AD4457F15C40CE10B79ED97293AF1_RuntimeMethod_var), /*hidden argument*/NULL);
 		UnhandledExceptionEventHandler_t1DF125A860ED9B70F24ADFA6CB0781533A23DA64 * L_5 = L_4;
-		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__38_0_1(L_5);
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__39_0_1(L_5);
 		G_B2_0 = L_5;
 		G_B2_1 = G_B1_1;
 	}
@@ -28494,7 +28831,7 @@ IL_0024:
 		// CodeLoader.Instance.CodeMode = this.CodeMode;
 		IL2CPP_RUNTIME_CLASS_INIT(CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_il2cpp_TypeInfo_var);
 		CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67 * L_18 = ((CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_StaticFields*)il2cpp_codegen_static_fields_for(CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_il2cpp_TypeInfo_var))->get_Instance_0();
-		int32_t L_19 = __this->get_CodeMode_33();
+		int32_t L_19 = __this->get_CodeMode_34();
 		NullCheck(L_18);
 		CodeLoader_set_CodeMode_m9D39039A4BBF0B1F8E2295FEC4F9FC1018ADD4DB_inline(L_18, L_19, /*hidden argument*/NULL);
 		// Options.Instance.Develop =  OueNetMode ? 0 : 1;
@@ -28568,13 +28905,13 @@ IL_00f0:
 		// Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen_set_sleepTimeout_mE9A766E696E76AC77EAADB4CA6412454577FCBB3((-1), /*hidden argument*/NULL);
 		// this.Apk_Extension = "taptap";
-		__this->set_Apk_Extension_37(_stringLiteral69BDFCE2E8A9B0A5F56298EBA4983ACF0A1F894B);
+		__this->set_Apk_Extension_38(_stringLiteral69BDFCE2E8A9B0A5F56298EBA4983ACF0A1F894B);
 		// this.Platform = 20001;
-		__this->set_Platform_35(((int32_t)20001));
+		__this->set_Platform_36(((int32_t)20001));
 		// Log.ILog.Debug($"unity111  this.Platform = {this.Platform}");
 		RuntimeObject* L_28;
 		L_28 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
-		int32_t L_29 = __this->get_Platform_35();
+		int32_t L_29 = __this->get_Platform_36();
 		int32_t L_30 = L_29;
 		RuntimeObject * L_31 = Box(Int32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_il2cpp_TypeInfo_var, &L_30);
 		String_t* L_32;
@@ -28587,7 +28924,7 @@ IL_00f0:
 		L_33 = AppleAuthManager_get_IsCurrentPlatformSupported_m01CEEEA3918FF1E3DFD7DC78E385BE2C8CB8807E(/*hidden argument*/NULL);
 		if (!L_33)
 		{
-			goto IL_0182;
+			goto IL_0188;
 		}
 	}
 	{
@@ -28600,16 +28937,18 @@ IL_00f0:
 		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_36 = (AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 *)il2cpp_codegen_object_new(AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48_il2cpp_TypeInfo_var);
 		AppleAuthManager__ctor_m71500AFEB804B05281F27D5A34885E55FB7ED81F(L_36, L_35, /*hidden argument*/NULL);
 		__this->set_appleAuthManager_30(L_36);
+		// this.InitializeLoginMenu();
+		Init_InitializeLoginMenu_m724B45381DB9DA56BCCA859092CD229CFA6C683F(__this, /*hidden argument*/NULL);
 		// Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported true");
 		RuntimeObject* L_37;
 		L_37 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
 		NullCheck(L_37);
 		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_37, _stringLiteral09A83346692E93B87148B9DBC325D3710F924D77);
 		// }
-		goto IL_0191;
+		goto IL_0197;
 	}
 
-IL_0182:
+IL_0188:
 	{
 		// Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported false");
 		RuntimeObject* L_38;
@@ -28618,13 +28957,13 @@ IL_0182:
 		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_38, _stringLiteral35E9A21A0EE01A7C407D6C6FF3D0790D435D5952);
 	}
 
-IL_0191:
+IL_0197:
 	{
 		// CheckIphoneYueyu( string.Empty );
 		String_t* L_39 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
 		Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222(L_39, /*hidden argument*/NULL);
 		// BuglyInit.PlatForm = this.Platform;
-		int32_t L_40 = __this->get_Platform_35();
+		int32_t L_40 = __this->get_Platform_36();
 		IL2CPP_RUNTIME_CLASS_INIT(BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_il2cpp_TypeInfo_var);
 		((BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_StaticFields*)il2cpp_codegen_static_fields_for(BuglyInit_t774B148925095875F86DA2EC59A2F86742F168B8_il2cpp_TypeInfo_var))->set_PlatForm_5(L_40);
 		// GameObject sharesdk = GameObject.Find("Global");
@@ -28718,7 +29057,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TikTokInit_mFFBA06D83F272FFD2B208AE
 {
 	{
 		// if (this.Platform != 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		// return;
 		return;
 	}
@@ -28734,7 +29073,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TikTokLogin_m976814E5CC9E823728314E
 	}
 	{
 		// if (this.Platform != 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		if ((((int32_t)L_0) == ((int32_t)5)))
 		{
 			goto IL_000a;
@@ -28955,7 +29294,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TikTokRiskControlInfo_mFA82BEEEA213
 	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B3_0 = NULL;
 	{
 		// if (this.Platform != 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		if ((((int32_t)L_0) == ((int32_t)5)))
 		{
 			goto IL_000a;
@@ -29033,7 +29372,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TikTokPay_m8C370A67E97469ED2E118254
 {
 	{
 		// if (this.Platform != 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		// return;
 		return;
 	}
@@ -29043,7 +29382,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_TikTokShareImage_mF8F6703BC75A65F1F
 {
 	{
 		// if (this.Platform != 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		// return;
 		return;
 	}
@@ -29055,11 +29394,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ETTask_1_t8A4D4F02FB7594466C505394B628071E102
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_1_Create_mAE693AE63A376109E4909F310615DF4BD3E74BB6_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_mD0F01E9D01BAD032FEA654281E218A7CC5F2B6CE_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mA827BB1ABD2094D0867CF924283C7F3D89E3C405_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_1_get_Task_mF58AA79C32AE485FC41F087FDBF1AFE25340A54B_RuntimeMethod_var);
 		s_Il2CppMethodInitialized = true;
 	}
-	U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5  V_0;
+	U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63  V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  V_1;
 	memset((&V_1), 0, sizeof(V_1));
@@ -29068,10 +29407,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ETTask_1_t8A4D4F02FB7594466C505394B628071E102
 		L_0 = ETAsyncTaskMethodBuilder_1_Create_mAE693AE63A376109E4909F310615DF4BD3E74BB6(/*hidden argument*/ETAsyncTaskMethodBuilder_1_Create_mAE693AE63A376109E4909F310615DF4BD3E74BB6_RuntimeMethod_var);
 		(&V_0)->set_U3CU3Et__builder_1(L_0);
 		(&V_0)->set_U3CU3E1__state_0((-1));
-		U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5  L_1 = V_0;
+		U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63  L_1 = V_0;
 		ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF  L_2 = L_1.get_U3CU3Et__builder_1();
 		V_1 = L_2;
-		ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_mD0F01E9D01BAD032FEA654281E218A7CC5F2B6CE((ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *)(&V_1), (U3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5 *)(&V_0), /*hidden argument*/ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__51_t89506AE6091904624371A9402B3FDE1A2E9375B5_mD0F01E9D01BAD032FEA654281E218A7CC5F2B6CE_RuntimeMethod_var);
+		ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mA827BB1ABD2094D0867CF924283C7F3D89E3C405((ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *)(&V_1), (U3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63 *)(&V_0), /*hidden argument*/ETAsyncTaskMethodBuilder_1_Start_TisU3CTapTapLoginU3Ed__52_t552A9CDDAD45F90A269B6361DCA1A93147F60E63_mA827BB1ABD2094D0867CF924283C7F3D89E3C405_RuntimeMethod_var);
 		ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF * L_3 = (&V_0)->get_address_of_U3CU3Et__builder_1();
 		ETTask_1_t8A4D4F02FB7594466C505394B628071E10286530 * L_4;
 		L_4 = ETAsyncTaskMethodBuilder_1_get_Task_mF58AA79C32AE485FC41F087FDBF1AFE25340A54B_inline((ETAsyncTaskMethodBuilder_1_tA3F404FECB175D085F0820DA8B7F56F62C4F59CF *)L_3, /*hidden argument*/ETAsyncTaskMethodBuilder_1_get_Task_mF58AA79C32AE485FC41F087FDBF1AFE25340A54B_RuntimeMethod_var);
@@ -29084,10 +29423,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ETTask_t7CE21662325DB4B000542DA47BE4D092D95C4
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2_RuntimeMethod_var);
 		s_Il2CppMethodInitialized = true;
 	}
-	U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F  V_0;
+	U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8  V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F  V_1;
 	memset((&V_1), 0, sizeof(V_1));
@@ -29096,10 +29435,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ETTask_t7CE21662325DB4B000542DA47BE4D092D95C4
 		L_0 = ETAsyncTaskMethodBuilder_Create_m0655DF3670262D22408DDBDEE7311D4949801399(/*hidden argument*/NULL);
 		(&V_0)->set_U3CU3Et__builder_1(L_0);
 		(&V_0)->set_U3CU3E1__state_0((-1));
-		U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F  L_1 = V_0;
+		U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8  L_1 = V_0;
 		ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F  L_2 = L_1.get_U3CU3Et__builder_1();
 		V_1 = L_2;
-		ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31((ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F *)(&V_1), (U3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F *)(&V_0), /*hidden argument*/ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__52_t4D9E428267105F2AEF423B6C6DF4E01646C8E57F_m0FE186264707F89146E433B0C4F06B9BD4638B31_RuntimeMethod_var);
+		ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2((ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F *)(&V_1), (U3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8 *)(&V_0), /*hidden argument*/ETAsyncTaskMethodBuilder_Start_TisU3CTapTapLogoutAsyncU3Ed__53_t803B875A734C646C26FD287F1B3FCAAA33EC8AC8_m1E45D6E30DA3D4C94F54932BA27C68CA5F65CED2_RuntimeMethod_var);
 		ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F * L_3 = (&V_0)->get_address_of_U3CU3Et__builder_1();
 		ETTask_t7CE21662325DB4B000542DA47BE4D092D95C48EF * L_4;
 		L_4 = ETAsyncTaskMethodBuilder_get_Task_m1B0BD51F8291C428443078420703D0937870BCC3_inline((ETAsyncTaskMethodBuilder_tFC2F55F328E847ABB765AE06AEA87D67286DBD4F *)L_3, /*hidden argument*/NULL);
@@ -29181,7 +29520,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OpenBuglyAgent_m1DEFE9309F42ABDD664
 {
 	{
 		// if (this.Platform == 5)
-		int32_t L_0 = __this->get_Platform_35();
+		int32_t L_0 = __this->get_Platform_36();
 		// return;
 		return;
 	}
@@ -29198,7 +29537,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnHotUpdateComplete_m7D783E9DDB6D3E
 	}
 	{
 		// HotUpdateComplete = true;
-		__this->set_HotUpdateComplete_36((bool)1);
+		__this->set_HotUpdateComplete_37((bool)1);
 		// GameObject.Find("Global/UI/Hidden/UIYinSi").SetActive(false);
 		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_0;
 		L_0 = GameObject_Find_m20157C941F1A9DA0E33E0ACA1324FAA41C2B199B(_stringLiteralEC9E8B872E504E0CD56D01DBFE327C7DBCC081D2, /*hidden argument*/NULL);
@@ -29223,26 +29562,42 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_Update_m7DBEB89E0EE7B4E6CD40D961E9B
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// if (HotUpdateComplete)
-		bool L_0 = __this->get_HotUpdateComplete_36();
+		// if (this.appleAuthManager != null)
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_0 = __this->get_appleAuthManager_30();
 		if (!L_0)
 		{
-			goto IL_001d;
+			goto IL_0013;
+		}
+	}
+	{
+		// this.appleAuthManager.Update();
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_1 = __this->get_appleAuthManager_30();
+		NullCheck(L_1);
+		AppleAuthManager_Update_m1F9CC97AE702FC1FD826266963D3DD6402D627B7(L_1, /*hidden argument*/NULL);
+	}
+
+IL_0013:
+	{
+		// if (HotUpdateComplete)
+		bool L_2 = __this->get_HotUpdateComplete_37();
+		if (!L_2)
+		{
+			goto IL_0030;
 		}
 	}
 	{
 		// CodeLoader.Instance.Update();
 		IL2CPP_RUNTIME_CLASS_INIT(CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_il2cpp_TypeInfo_var);
-		CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67 * L_1 = ((CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_StaticFields*)il2cpp_codegen_static_fields_for(CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_il2cpp_TypeInfo_var))->get_Instance_0();
-		NullCheck(L_1);
-		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_2 = L_1->get_Update_1();
-		NullCheck(L_2);
-		Action_Invoke_m3FFA5BE3D64F0FF8E1E1CB6F953913FADB5EB89E(L_2, /*hidden argument*/NULL);
+		CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67 * L_3 = ((CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_StaticFields*)il2cpp_codegen_static_fields_for(CodeLoader_tC402E96B8BF41F887B40885B24475BCAD062BB67_il2cpp_TypeInfo_var))->get_Instance_0();
+		NullCheck(L_3);
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_4 = L_3->get_Update_1();
+		NullCheck(L_4);
+		Action_Invoke_m3FFA5BE3D64F0FF8E1E1CB6F953913FADB5EB89E(L_4, /*hidden argument*/NULL);
 		// this.CheckMouseInput();
 		Init_CheckMouseInput_m6AF397B96CA71BA757D2326FE8188EBC1B147758(__this, /*hidden argument*/NULL);
 	}
 
-IL_001d:
+IL_0030:
 	{
 		// }
 		return;
@@ -29531,7 +29886,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_LateUpdate_m57C13CF167573F967345A8A
 	}
 	{
 		// if (HotUpdateComplete)
-		bool L_0 = __this->get_HotUpdateComplete_36();
+		bool L_0 = __this->get_HotUpdateComplete_37();
 		if (!L_0)
 		{
 			goto IL_0017;
@@ -29566,7 +29921,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnApplicationQuit_m84687EA90D87BA20
 	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * G_B2_0 = NULL;
 	{
 		// if (HotUpdateComplete)
-		bool L_0 = __this->get_HotUpdateComplete_36();
+		bool L_0 = __this->get_HotUpdateComplete_37();
 		if (!L_0)
 		{
 			goto IL_0032;
@@ -30827,7 +31182,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnRecvRoot_m20C7A6EA908E0828C4CD43B
 		String_t* L_0 = ___root0;
 		int32_t L_1;
 		L_1 = Int32_Parse_mE5D220FEA7F0BFB1B220B2A30797D7DD83ACF22C(L_0, /*hidden argument*/NULL);
-		__this->set_IsRoot_38(L_1);
+		__this->set_IsRoot_39(L_1);
 		// Log.ILog.Debug($"OnRecvRoot:  {root}");
 		RuntimeObject* L_2;
 		L_2 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
@@ -30855,7 +31210,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnRecvEmulator_m028DA544F2C75E2C5F5
 		String_t* L_0 = ___emulator0;
 		int32_t L_1;
 		L_1 = Int32_Parse_mE5D220FEA7F0BFB1B220B2A30797D7DD83ACF22C(L_0, /*hidden argument*/NULL);
-		__this->set_IsEmulator_39(L_1);
+		__this->set_IsEmulator_40(L_1);
 		// Log.ILog.Debug($"OnRecvEmulator:  {emulator}");
 		RuntimeObject* L_2;
 		L_2 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
@@ -30864,6 +31219,498 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_OnRecvEmulator_m028DA544F2C75E2C5F5
 		L_4 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteralFE4565671C8ACE7AE2F38375F5C2CECF2A6E1E20, L_3, /*hidden argument*/NULL);
 		NullCheck(L_2);
 		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_2, L_4);
+		// }
+		return;
+	}
+}
+// System.Void ET.Init::InitializeLoginMenu()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_InitializeLoginMenu_m724B45381DB9DA56BCCA859092CD229CFA6C683F (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m090CD607C7652B994D986F12CB18450A24FD8161_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CInitializeLoginMenuU3Eb__83_0_mB81581AF69277E107CD63F0908AC349F1152550B_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66);
+		s_Il2CppMethodInitialized = true;
+	}
+	String_t* V_0 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B4_0 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B4_1 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B3_0 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B3_1 = NULL;
+	{
+		// if (this.appleAuthManager == null)
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_0 = __this->get_appleAuthManager_30();
+		if (L_0)
+		{
+			goto IL_0009;
+		}
+	}
+	{
+		// return;
+		return;
+	}
+
+IL_0009:
+	{
+		// this.appleAuthManager.SetCredentialsRevokedCallback(result =>
+		// {
+		//     Debug.Log("Received revoked callback " + result);
+		//     PlayerPrefs.DeleteKey(AppleUserIdKey);
+		// });
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_1 = __this->get_appleAuthManager_30();
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_2 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__83_0_2();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_3 = L_2;
+		G_B3_0 = L_3;
+		G_B3_1 = L_1;
+		if (L_3)
+		{
+			G_B4_0 = L_3;
+			G_B4_1 = L_1;
+			goto IL_002e;
+		}
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_4 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_5 = (Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 *)il2cpp_codegen_object_new(Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3_il2cpp_TypeInfo_var);
+		Action_1__ctor_m090CD607C7652B994D986F12CB18450A24FD8161(L_5, L_4, (intptr_t)((intptr_t)U3CU3Ec_U3CInitializeLoginMenuU3Eb__83_0_mB81581AF69277E107CD63F0908AC349F1152550B_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m090CD607C7652B994D986F12CB18450A24FD8161_RuntimeMethod_var);
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_6 = L_5;
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__83_0_2(L_6);
+		G_B4_0 = L_6;
+		G_B4_1 = G_B3_1;
+	}
+
+IL_002e:
+	{
+		NullCheck(G_B4_1);
+		AppleAuthManager_SetCredentialsRevokedCallback_m91B3771189CB3EF4F263D4F4C03A1FBE17ECA9E4(G_B4_1, G_B4_0, /*hidden argument*/NULL);
+		// if (PlayerPrefs.HasKey(AppleUserIdKey))
+		bool L_7;
+		L_7 = PlayerPrefs_HasKey_m48BE5886380B51AB495B91C9A26115B7CB958A92(_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66, /*hidden argument*/NULL);
+		if (!L_7)
+		{
+			goto IL_0051;
+		}
+	}
+	{
+		// var storedAppleUserId = PlayerPrefs.GetString(AppleUserIdKey);
+		String_t* L_8;
+		L_8 = PlayerPrefs_GetString_mE7654C1031622A56CD8F248F53714B105A35A159(_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66, /*hidden argument*/NULL);
+		V_0 = L_8;
+		// this.CheckCredentialStatusForUserId(storedAppleUserId);
+		String_t* L_9 = V_0;
+		Init_CheckCredentialStatusForUserId_m89BA6B6D2E0A1253F4772CFA3C5157B3DF78752D(__this, L_9, /*hidden argument*/NULL);
+	}
+
+IL_0051:
+	{
+		// }
+		return;
+	}
+}
+// System.Void ET.Init::CheckCredentialStatusForUserId(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_CheckCredentialStatusForUserId_m89BA6B6D2E0A1253F4772CFA3C5157B3DF78752D (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, String_t* ___appleUserId0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_mD92294DB4B899A98E5381800C1CA1E09790B2300_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_0_mA66BEFA92089052D758F0A80595616C4F0376BED_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_1_mBFB190B6CFB0A1150DF6B8A5A3E4CF1D2272744C_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * G_B4_0 = NULL;
+	String_t* G_B4_1 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B4_2 = NULL;
+	Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * G_B3_0 = NULL;
+	String_t* G_B3_1 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B3_2 = NULL;
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * G_B6_0 = NULL;
+	Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * G_B6_1 = NULL;
+	String_t* G_B6_2 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B6_3 = NULL;
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * G_B5_0 = NULL;
+	Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * G_B5_1 = NULL;
+	String_t* G_B5_2 = NULL;
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B5_3 = NULL;
+	{
+		// if (this.appleAuthManager == null)
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_0 = __this->get_appleAuthManager_30();
+		if (L_0)
+		{
+			goto IL_0009;
+		}
+	}
+	{
+		// return;
+		return;
+	}
+
+IL_0009:
+	{
+		// this.appleAuthManager.GetCredentialState(
+		//     appleUserId,
+		//     state =>
+		//     {
+		//         switch (state)
+		//         {
+		//             // If it's authorized, login with that user id
+		//             case CredentialState.Authorized:
+		//                 return;
+		// 
+		//             // If it was revoked, or not found, we need a new sign in with apple attempt
+		//             // Discard previous apple user id
+		//             case CredentialState.Revoked:
+		//             case CredentialState.NotFound:
+		//                 PlayerPrefs.DeleteKey(AppleUserIdKey);
+		//                 return;
+		//         }
+		//     },
+		//     error =>
+		//     {
+		//         var authorizationErrorCode = error.GetAuthorizationErrorCode();
+		//         Debug.LogWarning("Error while trying to get credential state " + authorizationErrorCode.ToString() + " " + error.ToString());
+		//     });
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_1 = __this->get_appleAuthManager_30();
+		String_t* L_2 = ___appleUserId0;
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * L_3 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__84_0_3();
+		Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * L_4 = L_3;
+		G_B3_0 = L_4;
+		G_B3_1 = L_2;
+		G_B3_2 = L_1;
+		if (L_4)
+		{
+			G_B4_0 = L_4;
+			G_B4_1 = L_2;
+			G_B4_2 = L_1;
+			goto IL_002f;
+		}
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_5 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
+		Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * L_6 = (Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 *)il2cpp_codegen_object_new(Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178_il2cpp_TypeInfo_var);
+		Action_1__ctor_mD92294DB4B899A98E5381800C1CA1E09790B2300(L_6, L_5, (intptr_t)((intptr_t)U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_0_mA66BEFA92089052D758F0A80595616C4F0376BED_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_mD92294DB4B899A98E5381800C1CA1E09790B2300_RuntimeMethod_var);
+		Action_1_tF4E3983AC72DD1D0DAC6510689E80775A254E178 * L_7 = L_6;
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__84_0_3(L_7);
+		G_B4_0 = L_7;
+		G_B4_1 = G_B3_1;
+		G_B4_2 = G_B3_2;
+	}
+
+IL_002f:
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_8 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__84_1_4();
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_9 = L_8;
+		G_B5_0 = L_9;
+		G_B5_1 = G_B4_0;
+		G_B5_2 = G_B4_1;
+		G_B5_3 = G_B4_2;
+		if (L_9)
+		{
+			G_B6_0 = L_9;
+			G_B6_1 = G_B4_0;
+			G_B6_2 = G_B4_1;
+			G_B6_3 = G_B4_2;
+			goto IL_004e;
+		}
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_10 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_11 = (Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F *)il2cpp_codegen_object_new(Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC(L_11, L_10, (intptr_t)((intptr_t)U3CU3Ec_U3CCheckCredentialStatusForUserIdU3Eb__84_1_mBFB190B6CFB0A1150DF6B8A5A3E4CF1D2272744C_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_12 = L_11;
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__84_1_4(L_12);
+		G_B6_0 = L_12;
+		G_B6_1 = G_B5_1;
+		G_B6_2 = G_B5_2;
+		G_B6_3 = G_B5_3;
+	}
+
+IL_004e:
+	{
+		NullCheck(G_B6_3);
+		AppleAuthManager_GetCredentialState_mBA1ECA7B6EE84C2675632FA01306869C53D1422F(G_B6_3, G_B6_2, G_B6_1, G_B6_0, /*hidden argument*/NULL);
+		// }
+		return;
+	}
+}
+// System.Void ET.Init::AttemptQuickLogin()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_AttemptQuickLogin_mADAFD69007791D9074D503A83F0C4AA38C1742A3 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_0_m45361BFA754433DF89468DBE89BA123C4E0B25AD_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_1_mD5A9CC838FA2CB217C33FD4A16C4B6C616BDC67C_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * G_B4_0 = NULL;
+	AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  G_B4_1;
+	memset((&G_B4_1), 0, sizeof(G_B4_1));
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B4_2 = NULL;
+	Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * G_B3_0 = NULL;
+	AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  G_B3_1;
+	memset((&G_B3_1), 0, sizeof(G_B3_1));
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B3_2 = NULL;
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * G_B6_0 = NULL;
+	Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * G_B6_1 = NULL;
+	AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  G_B6_2;
+	memset((&G_B6_2), 0, sizeof(G_B6_2));
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B6_3 = NULL;
+	Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * G_B5_0 = NULL;
+	Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * G_B5_1 = NULL;
+	AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  G_B5_2;
+	memset((&G_B5_2), 0, sizeof(G_B5_2));
+	AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * G_B5_3 = NULL;
+	{
+		// if (this.appleAuthManager == null)
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_0 = __this->get_appleAuthManager_30();
+		if (L_0)
+		{
+			goto IL_0009;
+		}
+	}
+	{
+		// return;
+		return;
+	}
+
+IL_0009:
+	{
+		// var quickLoginArgs = new AppleAuthQuickLoginArgs();
+		il2cpp_codegen_initobj((&V_0), sizeof(AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE ));
+		// this.appleAuthManager.QuickLogin(
+		//     quickLoginArgs,
+		//     credential =>
+		//     {
+		//         // If it's an Apple credential, save the user ID, for later logins
+		//         var appleIdCredential = credential as IAppleIDCredential;
+		//         if (appleIdCredential != null)
+		//         {
+		//             PlayerPrefs.SetString(AppleUserIdKey, credential.User);
+		//         }
+		//     },
+		//     error =>
+		//     {
+		//         // If Quick Login fails, we should show the normal sign in with apple menu, to allow for a normal Sign In with apple
+		//         var authorizationErrorCode = error.GetAuthorizationErrorCode();
+		//         Debug.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+		//     });
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_1 = __this->get_appleAuthManager_30();
+		AppleAuthQuickLoginArgs_tB4EBA8537306E44BEEDC145F62F83CA0E0864DAE  L_2 = V_0;
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * L_3 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__85_0_5();
+		Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * L_4 = L_3;
+		G_B3_0 = L_4;
+		G_B3_1 = L_2;
+		G_B3_2 = L_1;
+		if (L_4)
+		{
+			G_B4_0 = L_4;
+			G_B4_1 = L_2;
+			G_B4_2 = L_1;
+			goto IL_0037;
+		}
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_5 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
+		Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * L_6 = (Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA *)il2cpp_codegen_object_new(Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA_il2cpp_TypeInfo_var);
+		Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3(L_6, L_5, (intptr_t)((intptr_t)U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_0_m45361BFA754433DF89468DBE89BA123C4E0B25AD_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3_RuntimeMethod_var);
+		Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * L_7 = L_6;
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__85_0_5(L_7);
+		G_B4_0 = L_7;
+		G_B4_1 = G_B3_1;
+		G_B4_2 = G_B3_2;
+	}
+
+IL_0037:
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_8 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9__85_1_6();
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_9 = L_8;
+		G_B5_0 = L_9;
+		G_B5_1 = G_B4_0;
+		G_B5_2 = G_B4_1;
+		G_B5_3 = G_B4_2;
+		if (L_9)
+		{
+			G_B6_0 = L_9;
+			G_B6_1 = G_B4_0;
+			G_B6_2 = G_B4_1;
+			G_B6_3 = G_B4_2;
+			goto IL_0056;
+		}
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var);
+		U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D * L_10 = ((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->get_U3CU3E9_0();
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_11 = (Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F *)il2cpp_codegen_object_new(Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC(L_11, L_10, (intptr_t)((intptr_t)U3CU3Ec_U3CAttemptQuickLoginU3Eb__85_1_mD5A9CC838FA2CB217C33FD4A16C4B6C616BDC67C_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_12 = L_11;
+		((U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_StaticFields*)il2cpp_codegen_static_fields_for(U3CU3Ec_t93C48941AE97E871B44AB96C5FC43569E60B881D_il2cpp_TypeInfo_var))->set_U3CU3E9__85_1_6(L_12);
+		G_B6_0 = L_12;
+		G_B6_1 = G_B5_1;
+		G_B6_2 = G_B5_2;
+		G_B6_3 = G_B5_3;
+	}
+
+IL_0056:
+	{
+		NullCheck(G_B6_3);
+		AppleAuthManager_QuickLogin_mA0443BF145CB62FB998A8828916F03EDE7B7BC35(G_B6_3, G_B6_2, G_B6_1, G_B6_0, /*hidden argument*/NULL);
+		// }
+		return;
+	}
+}
+// System.Void ET.Init::SignInWithApple(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_SignInWithApple_mD9ABF7F827AF2ABB55D7F4526AB13AFF90394D58 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, String_t* ___oldaccount0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral17F69BD9415AEEFF5AF120DF2D45F20433804764);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral5AA6B223FC8FD1DB0C31046F719C542F42EEA85B);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralE6E688F2230AF04C63CEC828E6D0FFDFC503FD1A);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66);
+		s_Il2CppMethodInitialized = true;
+	}
+	AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE  V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	String_t* V_1 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B6_0 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B5_0 = NULL;
+	{
+		// Log.ILog.Debug($"SignInWithApple Begin");
+		RuntimeObject* L_0;
+		L_0 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
+		NullCheck(L_0);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_0, _stringLiteral5AA6B223FC8FD1DB0C31046F719C542F42EEA85B);
+		// var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
+		AppleAuthLoginArgs__ctor_m39DCEE4E48A1245B936703CB9AF4B032C4D4E4C3((AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE *)(&V_0), 3, (String_t*)NULL, (String_t*)NULL, /*hidden argument*/NULL);
+		// string appkey = PlayerPrefs.GetString(AppleUserIdKey);
+		String_t* L_1;
+		L_1 = PlayerPrefs_GetString_mE7654C1031622A56CD8F248F53714B105A35A159(_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66, /*hidden argument*/NULL);
+		V_1 = L_1;
+		// Log.ILog.Debug($"SignInWithApple Begin:  {appkey}   {oldaccount}");
+		RuntimeObject* L_2;
+		L_2 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
+		String_t* L_3 = V_1;
+		String_t* L_4 = ___oldaccount0;
+		String_t* L_5;
+		L_5 = String_Concat_m37A5BF26F8F8F1892D60D727303B23FB604FEE78(_stringLiteralE6E688F2230AF04C63CEC828E6D0FFDFC503FD1A, L_3, _stringLiteral17F69BD9415AEEFF5AF120DF2D45F20433804764, L_4, /*hidden argument*/NULL);
+		NullCheck(L_2);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_2, L_5);
+		// if (string.IsNullOrEmpty(oldaccount) || string.IsNullOrEmpty(appkey)  || !appkey.Equals(oldaccount))
+		String_t* L_6 = ___oldaccount0;
+		bool L_7;
+		L_7 = String_IsNullOrEmpty_m9AFBB5335B441B94E884B8A9D4A27AD60E3D7F7C(L_6, /*hidden argument*/NULL);
+		if (L_7)
+		{
+			goto IL_0058;
+		}
+	}
+	{
+		String_t* L_8 = V_1;
+		bool L_9;
+		L_9 = String_IsNullOrEmpty_m9AFBB5335B441B94E884B8A9D4A27AD60E3D7F7C(L_8, /*hidden argument*/NULL);
+		if (L_9)
+		{
+			goto IL_0058;
+		}
+	}
+	{
+		String_t* L_10 = V_1;
+		String_t* L_11 = ___oldaccount0;
+		NullCheck(L_10);
+		bool L_12;
+		L_12 = String_Equals_m8A062B96B61A7D652E7D73C9B3E904F6B0E5F41D(L_10, L_11, /*hidden argument*/NULL);
+		if (L_12)
+		{
+			goto IL_007d;
+		}
+	}
+
+IL_0058:
+	{
+		//  this.appleAuthManager.LoginWithAppleId(
+		// loginArgs,
+		// credential =>
+		// {
+		//     // If a sign in with apple succeeds, we should have obtained the credential with the user id, name, and email, save it
+		//     PlayerPrefs.SetString(AppleUserIdKey, credential.User);
+		//     //this.SetupGameMenu(credential.User, credential);
+		// 
+		//     Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+		//     this.AppleSignInHandler?.Invoke(credential.User);
+		// },
+		// error =>
+		// {
+		//     this.AppleSignInHandler?.Invoke(string.Empty);
+		//     var authorizationErrorCode = error.GetAuthorizationErrorCode();
+		//     Log.ILog.Debug("SignInWithApple failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+		// });
+		AppleAuthManager_t37260D6B2591162187A8CD664740F73A58B50C48 * L_13 = __this->get_appleAuthManager_30();
+		AppleAuthLoginArgs_tFD2D54DC8A95B45AC97FC9C21BB0A0C1BB32A2DE  L_14 = V_0;
+		Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA * L_15 = (Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA *)il2cpp_codegen_object_new(Action_1_t348A28FBF846AED62F05CF204456E80D591E54AA_il2cpp_TypeInfo_var);
+		Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3(L_15, __this, (intptr_t)((intptr_t)Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m894194B947A10276826DF574BC9F1FE54C99ABD3_RuntimeMethod_var);
+		Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F * L_16 = (Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F *)il2cpp_codegen_object_new(Action_1_t606C72DCC04AF289F9A814871ED55B87EF37A52F_il2cpp_TypeInfo_var);
+		Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC(L_16, __this, (intptr_t)((intptr_t)Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B_RuntimeMethod_var), /*hidden argument*/Action_1__ctor_m989436F8A1AD41FBEFDED8AD6A9C7DF0319595BC_RuntimeMethod_var);
+		NullCheck(L_13);
+		AppleAuthManager_LoginWithAppleId_m43E256001A4940AEECC68F522CBE417BD17103D2(L_13, L_14, L_15, L_16, /*hidden argument*/NULL);
+		// }
+		return;
+	}
+
+IL_007d:
+	{
+		// this.AppleSignInHandler?.Invoke(appkey);
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_17 = __this->get_AppleSignInHandler_31();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_18 = L_17;
+		G_B5_0 = L_18;
+		if (L_18)
+		{
+			G_B6_0 = L_18;
+			goto IL_0088;
+		}
+	}
+	{
+		return;
+	}
+
+IL_0088:
+	{
+		String_t* L_19 = V_1;
+		NullCheck(G_B6_0);
+		Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6(G_B6_0, L_19, /*hidden argument*/Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
 		// }
 		return;
 	}
@@ -30894,15 +31741,145 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init__ctor_mB2E83C132074BA8C2F2CDD17A603
 		// public string QQAppID = "1105893765";
 		__this->set_QQAppID_25(_stringLiteralAB7AB150D23418BB8090C53F85D8E4316BB4B197);
 		// public string javaClassStr = "com.example.alinewsdk.AliSDKActivity";  //"com.mafeng.aliopensdk.AliSDKActivity";
-		__this->set_javaClassStr_31(_stringLiteral43AC5D0138033AC7952034B226341EA89D1D617C);
+		__this->set_javaClassStr_32(_stringLiteral43AC5D0138033AC7952034B226341EA89D1D617C);
 		// public string javaActiveStr = "currentActivity";
-		__this->set_javaActiveStr_32(_stringLiteralFB4AE4F77150C3A8E8E4F8B23E734E0C7277B7D9);
+		__this->set_javaActiveStr_33(_stringLiteralFB4AE4F77150C3A8E8E4F8B23E734E0C7277B7D9);
 		// public CodeMode CodeMode = CodeMode.Mono;
-		__this->set_CodeMode_33(1);
+		__this->set_CodeMode_34(1);
 		// public string Apk_Extension = string.Empty;
 		String_t* L_0 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
-		__this->set_Apk_Extension_37(L_0);
+		__this->set_Apk_Extension_38(L_0);
 		MonoBehaviour__ctor_mC0995D847F6A95B1A553652636C38A2AA8B13BED(__this, /*hidden argument*/NULL);
+		return;
+	}
+}
+// System.Void ET.Init::<SignInWithApple>b__86_0(AppleAuth.Interfaces.ICredential)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_U3CSignInWithAppleU3Eb__86_0_m937D37F111FD2606BD5F7E56757AFD2E2B865ED4 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, RuntimeObject* ___credential0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66);
+		s_Il2CppMethodInitialized = true;
+	}
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B2_0 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B1_0 = NULL;
+	{
+		// PlayerPrefs.SetString(AppleUserIdKey, credential.User);
+		RuntimeObject* L_0 = ___credential0;
+		NullCheck(L_0);
+		String_t* L_1;
+		L_1 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_0);
+		PlayerPrefs_SetString_m94CD8FF45692553A5726DFADF74935F7E1D1C633(_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66, L_1, /*hidden argument*/NULL);
+		// Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+		RuntimeObject* L_2;
+		L_2 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
+		RuntimeObject* L_3 = ___credential0;
+		NullCheck(L_3);
+		String_t* L_4;
+		L_4 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_3);
+		RuntimeObject* L_5 = ___credential0;
+		NullCheck(L_5);
+		String_t* L_6;
+		L_6 = VirtFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, L_5);
+		String_t* L_7;
+		L_7 = String_Concat_m37A5BF26F8F8F1892D60D727303B23FB604FEE78(_stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E, L_4, _stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA, L_6, /*hidden argument*/NULL);
+		NullCheck(L_2);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_2, L_7);
+		// this.AppleSignInHandler?.Invoke(credential.User);
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_8 = __this->get_AppleSignInHandler_31();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_9 = L_8;
+		G_B1_0 = L_9;
+		if (L_9)
+		{
+			G_B2_0 = L_9;
+			goto IL_0040;
+		}
+	}
+	{
+		return;
+	}
+
+IL_0040:
+	{
+		RuntimeObject* L_10 = ___credential0;
+		NullCheck(L_10);
+		String_t* L_11;
+		L_11 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_10);
+		NullCheck(G_B2_0);
+		Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6(G_B2_0, L_11, /*hidden argument*/Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+		// },
+		return;
+	}
+}
+// System.Void ET.Init::<SignInWithApple>b__86_1(AppleAuth.Interfaces.IAppleError)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_U3CSignInWithAppleU3Eb__86_1_mBCB902E38BAFD88F01F87A54DD2B64B672375E1B (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, RuntimeObject* ___error0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AuthorizationErrorCode_t39345506E8A14B87DC20E75D12142CE1804DF557_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&String_t_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2386E77CF610F786B06A91AF2C1B3FD2282D2745);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralD87F7C92A7F7D3669A91FE9168D7AFD8D477E064);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B2_0 = NULL;
+	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * G_B1_0 = NULL;
+	{
+		// this.AppleSignInHandler?.Invoke(string.Empty);
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_0 = __this->get_AppleSignInHandler_31();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_1 = L_0;
+		G_B1_0 = L_1;
+		if (L_1)
+		{
+			G_B2_0 = L_1;
+			goto IL_000c;
+		}
+	}
+	{
+		goto IL_0016;
+	}
+
+IL_000c:
+	{
+		String_t* L_2 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(String_t_il2cpp_TypeInfo_var))->get_Empty_5();
+		NullCheck(G_B2_0);
+		Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6(G_B2_0, L_2, /*hidden argument*/Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+	}
+
+IL_0016:
+	{
+		// var authorizationErrorCode = error.GetAuthorizationErrorCode();
+		RuntimeObject* L_3 = ___error0;
+		int32_t L_4;
+		L_4 = AppleErrorExtensions_GetAuthorizationErrorCode_m18C2F50BA8124CE8CD3A68D2E1868E01D63AF561(L_3, /*hidden argument*/NULL);
+		V_0 = L_4;
+		// Log.ILog.Debug("SignInWithApple failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+		RuntimeObject* L_5;
+		L_5 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
+		RuntimeObject * L_6 = Box(AuthorizationErrorCode_t39345506E8A14B87DC20E75D12142CE1804DF557_il2cpp_TypeInfo_var, (&V_0));
+		NullCheck(L_6);
+		String_t* L_7;
+		L_7 = VirtFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, L_6);
+		V_0 = *(int32_t*)UnBox(L_6);
+		RuntimeObject* L_8 = ___error0;
+		NullCheck(L_8);
+		String_t* L_9;
+		L_9 = VirtFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, L_8);
+		String_t* L_10;
+		L_10 = String_Concat_m37A5BF26F8F8F1892D60D727303B23FB604FEE78(_stringLiteralD87F7C92A7F7D3669A91FE9168D7AFD8D477E064, L_7, _stringLiteral2386E77CF610F786B06A91AF2C1B3FD2282D2745, L_9, /*hidden argument*/NULL);
+		NullCheck(L_5);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_5, L_10);
+		// });
 		return;
 	}
 }

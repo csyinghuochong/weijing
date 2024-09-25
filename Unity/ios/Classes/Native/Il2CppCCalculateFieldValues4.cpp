@@ -14708,6 +14708,44 @@ public:
 };
 
 
+// Unity.Collections.NativeArray`1<UnityEngine.Rendering.VisibleLight>
+struct NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD 
+{
+public:
+	// System.Void* Unity.Collections.NativeArray`1::m_Buffer
+	void* ___m_Buffer_0;
+	// System.Int32 Unity.Collections.NativeArray`1::m_Length
+	int32_t ___m_Length_1;
+	// Unity.Collections.Allocator Unity.Collections.NativeArray`1::m_AllocatorLabel
+	int32_t ___m_AllocatorLabel_2;
+
+public:
+	inline static int32_t get_offset_of_m_Buffer_0() { return static_cast<int32_t>(offsetof(NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD, ___m_Buffer_0)); }
+	inline void* get_m_Buffer_0() const { return ___m_Buffer_0; }
+	inline void** get_address_of_m_Buffer_0() { return &___m_Buffer_0; }
+	inline void set_m_Buffer_0(void* value)
+	{
+		___m_Buffer_0 = value;
+	}
+
+	inline static int32_t get_offset_of_m_Length_1() { return static_cast<int32_t>(offsetof(NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD, ___m_Length_1)); }
+	inline int32_t get_m_Length_1() const { return ___m_Length_1; }
+	inline int32_t* get_address_of_m_Length_1() { return &___m_Length_1; }
+	inline void set_m_Length_1(int32_t value)
+	{
+		___m_Length_1 = value;
+	}
+
+	inline static int32_t get_offset_of_m_AllocatorLabel_2() { return static_cast<int32_t>(offsetof(NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD, ___m_AllocatorLabel_2)); }
+	inline int32_t get_m_AllocatorLabel_2() const { return ___m_AllocatorLabel_2; }
+	inline int32_t* get_address_of_m_AllocatorLabel_2() { return &___m_AllocatorLabel_2; }
+	inline void set_m_AllocatorLabel_2(int32_t value)
+	{
+		___m_AllocatorLabel_2 = value;
+	}
+};
+
+
 // Unity.Collections.NativeArray`1<UnityEngine.Rendering.Universal.Internal.DeferredTiler/PrePunctualLight>
 struct NativeArray_1_tD88DD90821BE793C67689A7EA613AF5701123AA7 
 {
@@ -18066,6 +18104,94 @@ public:
 	}
 };
 
+
+// UnityEngine.Rendering.Universal.LightData
+struct LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA 
+{
+public:
+	// System.Int32 UnityEngine.Rendering.Universal.LightData::mainLightIndex
+	int32_t ___mainLightIndex_0;
+	// System.Int32 UnityEngine.Rendering.Universal.LightData::additionalLightsCount
+	int32_t ___additionalLightsCount_1;
+	// System.Int32 UnityEngine.Rendering.Universal.LightData::maxPerObjectAdditionalLightsCount
+	int32_t ___maxPerObjectAdditionalLightsCount_2;
+	// Unity.Collections.NativeArray`1<UnityEngine.Rendering.VisibleLight> UnityEngine.Rendering.Universal.LightData::visibleLights
+	NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD  ___visibleLights_3;
+	// System.Boolean UnityEngine.Rendering.Universal.LightData::shadeAdditionalLightsPerVertex
+	bool ___shadeAdditionalLightsPerVertex_4;
+	// System.Boolean UnityEngine.Rendering.Universal.LightData::supportsMixedLighting
+	bool ___supportsMixedLighting_5;
+
+public:
+	inline static int32_t get_offset_of_mainLightIndex_0() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___mainLightIndex_0)); }
+	inline int32_t get_mainLightIndex_0() const { return ___mainLightIndex_0; }
+	inline int32_t* get_address_of_mainLightIndex_0() { return &___mainLightIndex_0; }
+	inline void set_mainLightIndex_0(int32_t value)
+	{
+		___mainLightIndex_0 = value;
+	}
+
+	inline static int32_t get_offset_of_additionalLightsCount_1() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___additionalLightsCount_1)); }
+	inline int32_t get_additionalLightsCount_1() const { return ___additionalLightsCount_1; }
+	inline int32_t* get_address_of_additionalLightsCount_1() { return &___additionalLightsCount_1; }
+	inline void set_additionalLightsCount_1(int32_t value)
+	{
+		___additionalLightsCount_1 = value;
+	}
+
+	inline static int32_t get_offset_of_maxPerObjectAdditionalLightsCount_2() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___maxPerObjectAdditionalLightsCount_2)); }
+	inline int32_t get_maxPerObjectAdditionalLightsCount_2() const { return ___maxPerObjectAdditionalLightsCount_2; }
+	inline int32_t* get_address_of_maxPerObjectAdditionalLightsCount_2() { return &___maxPerObjectAdditionalLightsCount_2; }
+	inline void set_maxPerObjectAdditionalLightsCount_2(int32_t value)
+	{
+		___maxPerObjectAdditionalLightsCount_2 = value;
+	}
+
+	inline static int32_t get_offset_of_visibleLights_3() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___visibleLights_3)); }
+	inline NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD  get_visibleLights_3() const { return ___visibleLights_3; }
+	inline NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD * get_address_of_visibleLights_3() { return &___visibleLights_3; }
+	inline void set_visibleLights_3(NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD  value)
+	{
+		___visibleLights_3 = value;
+	}
+
+	inline static int32_t get_offset_of_shadeAdditionalLightsPerVertex_4() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___shadeAdditionalLightsPerVertex_4)); }
+	inline bool get_shadeAdditionalLightsPerVertex_4() const { return ___shadeAdditionalLightsPerVertex_4; }
+	inline bool* get_address_of_shadeAdditionalLightsPerVertex_4() { return &___shadeAdditionalLightsPerVertex_4; }
+	inline void set_shadeAdditionalLightsPerVertex_4(bool value)
+	{
+		___shadeAdditionalLightsPerVertex_4 = value;
+	}
+
+	inline static int32_t get_offset_of_supportsMixedLighting_5() { return static_cast<int32_t>(offsetof(LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA, ___supportsMixedLighting_5)); }
+	inline bool get_supportsMixedLighting_5() const { return ___supportsMixedLighting_5; }
+	inline bool* get_address_of_supportsMixedLighting_5() { return &___supportsMixedLighting_5; }
+	inline void set_supportsMixedLighting_5(bool value)
+	{
+		___supportsMixedLighting_5 = value;
+	}
+};
+
+// Native definition for P/Invoke marshalling of UnityEngine.Rendering.Universal.LightData
+struct LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA_marshaled_pinvoke
+{
+	int32_t ___mainLightIndex_0;
+	int32_t ___additionalLightsCount_1;
+	int32_t ___maxPerObjectAdditionalLightsCount_2;
+	NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD  ___visibleLights_3;
+	int32_t ___shadeAdditionalLightsPerVertex_4;
+	int32_t ___supportsMixedLighting_5;
+};
+// Native definition for COM marshalling of UnityEngine.Rendering.Universal.LightData
+struct LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA_marshaled_com
+{
+	int32_t ___mainLightIndex_0;
+	int32_t ___additionalLightsCount_1;
+	int32_t ___maxPerObjectAdditionalLightsCount_2;
+	NativeArray_1_t1F0A88FF8A7D4163044A82215D16B30E7050C4FD  ___visibleLights_3;
+	int32_t ___shadeAdditionalLightsPerVertex_4;
+	int32_t ___supportsMixedLighting_5;
+};
 
 // UnityEngine.PostProcessing.PostProcessingProfile
 struct PostProcessingProfile_t40876A4AEC07889C7A53D5BAF6EC4CBDF97294CA  : public ScriptableObject_t4361E08CEBF052C650D3666C7CEC37EB31DE116A
@@ -32509,6 +32635,15 @@ public:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable12888[6] = 
+{
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_mainLightIndex_0() + static_cast<int32_t>(sizeof(RuntimeObject)),
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_additionalLightsCount_1() + static_cast<int32_t>(sizeof(RuntimeObject)),
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_maxPerObjectAdditionalLightsCount_2() + static_cast<int32_t>(sizeof(RuntimeObject)),
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_visibleLights_3() + static_cast<int32_t>(sizeof(RuntimeObject)),
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_shadeAdditionalLightsPerVertex_4() + static_cast<int32_t>(sizeof(RuntimeObject)),
+	LightData_t03172A543E2E5DCB2281C1A952BB7959B06F26EA::get_offset_of_supportsMixedLighting_5() + static_cast<int32_t>(sizeof(RuntimeObject)),
+};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable12889[31] = 
 {
 	CameraData_t8ADA6CF1D4D9FDF4D3C33F5C66800E87D1BC20F7::get_offset_of_m_ViewMatrix_0() + static_cast<int32_t>(sizeof(RuntimeObject)),
