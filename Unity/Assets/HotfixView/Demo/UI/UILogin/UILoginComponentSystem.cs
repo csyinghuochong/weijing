@@ -455,6 +455,7 @@ namespace ET
 					break;
                 case LoginTypeEnum.Apple:
                     EventType.AppleSignIn.Instance.ZoneScene = self.ZoneScene();
+					EventType.AppleSignIn.Instance.Account = lastAccount;
                     EventType.AppleSignIn.Instance.AppleSignInHandler = (string text) => { self.OnGetAppleSignInfo(text); };
                     EventSystem.Instance.PublishClass(EventType.AppleSignIn.Instance);
                     break;

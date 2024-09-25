@@ -14,6 +14,12 @@ using cn.SMSSDK.Unity;
 using TapTap.Login;
 using AppleAuth;
 using AppleAuth.Native;
+using AppleAuth.Enums;
+using AppleAuth.Interfaces;
+using System.Text;
+using AppleAuth.Extensions;
+using System.Net;
+
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -84,6 +90,7 @@ namespace ET
 		public AndroidJavaObject javaActive;
 
 		public AppleAuthManager appleAuthManager;
+        public Action<string> AppleSignInHandler;
 
         //"com.mafeng.alinewsdk.AliSDKActivity"是2018.11.01日更新的版本 对应安卓工程中的alinewsdk Module
         //而"com.mafeng.aliopensdk.AliSDKActivity"是之前的版本 对应安卓工程中的aliopensdk Module
@@ -194,8 +201,8 @@ namespace ET
 				var deserializer = new PayloadDeserializer();
 				// Creates an Apple Authentication manager with the deserializer
 				this.appleAuthManager = new AppleAuthManager(deserializer);
-
-				Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported true");
+				this.InitializeLoginMenu();
+                Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported true");
 			}
 			else
 			{
@@ -947,6 +954,128 @@ namespace ET
         {
 			this.IsEmulator = int.Parse(emulator);
             Log.ILog.Debug($"OnRecvEmulator:  {emulator}");
+        }
+
+
+        private const string AppleUserIdKey = "AppleUserId";
+
+
+        private void InitializeLoginMenu()
+        {
+			if (this.appleAuthManager == null)
+			{
+				return;
+			}
+
+            // If at any point we receive a credentials revoked notification, we delete the stored User ID, and go back to login
+            this.appleAuthManager.SetCredentialsRevokedCallback(result =>
+            {
+                Debug.Log("Received revoked callback " + result);
+                PlayerPrefs.DeleteKey(AppleUserIdKey);
+            });
+
+            // If we have an Apple User Id available, get the credential status for it
+            if (PlayerPrefs.HasKey(AppleUserIdKey))
+            {
+                var storedAppleUserId = PlayerPrefs.GetString(AppleUserIdKey);
+                this.CheckCredentialStatusForUserId(storedAppleUserId);
+            }
+            // If we do not have an stored Apple User Id, attempt a quick login
+           
+        }
+
+        private void CheckCredentialStatusForUserId(string appleUserId)
+        {
+            if (this.appleAuthManager == null)
+            {
+                return;
+            }
+            // If there is an apple ID available, we should check the credential state
+            this.appleAuthManager.GetCredentialState(
+                appleUserId,
+                state =>
+                {
+                    switch (state)
+                    {
+                        // If it's authorized, login with that user id
+                        case CredentialState.Authorized:
+                            return;
+
+                        // If it was revoked, or not found, we need a new sign in with apple attempt
+                        // Discard previous apple user id
+                        case CredentialState.Revoked:
+                        case CredentialState.NotFound:
+                            PlayerPrefs.DeleteKey(AppleUserIdKey);
+                            return;
+                    }
+                },
+                error =>
+                {
+                    var authorizationErrorCode = error.GetAuthorizationErrorCode();
+                    Debug.LogWarning("Error while trying to get credential state " + authorizationErrorCode.ToString() + " " + error.ToString());
+                });
+        }
+
+        private void AttemptQuickLogin()
+        {
+            if (this.appleAuthManager == null)
+            {
+                return;
+            }
+
+            var quickLoginArgs = new AppleAuthQuickLoginArgs();
+
+            // Quick login should succeed if the credential was authorized before and not revoked
+            this.appleAuthManager.QuickLogin(
+                quickLoginArgs,
+                credential =>
+                {
+                    // If it's an Apple credential, save the user ID, for later logins
+                    var appleIdCredential = credential as IAppleIDCredential;
+                    if (appleIdCredential != null)
+                    {
+                        PlayerPrefs.SetString(AppleUserIdKey, credential.User);
+                    }
+                },
+                error =>
+                {
+                    // If Quick Login fails, we should show the normal sign in with apple menu, to allow for a normal Sign In with apple
+                    var authorizationErrorCode = error.GetAuthorizationErrorCode();
+                    Debug.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+                });
+        }
+
+        public void SignInWithApple(string oldaccount)
+        {
+			Log.ILog.Debug($"SignInWithApple Begin");
+            var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
+
+			string appkey = PlayerPrefs.GetString(AppleUserIdKey);
+
+			if (string.IsNullOrEmpty(oldaccount) || string.IsNullOrEmpty(appkey)  || !appkey.Equals(oldaccount))
+			{
+				this.appleAuthManager.LoginWithAppleId(
+			   loginArgs,
+			   credential =>
+			   {
+				   // If a sign in with apple succeeds, we should have obtained the credential with the user id, name, and email, save it
+				   PlayerPrefs.SetString(AppleUserIdKey, credential.User);
+				   //this.SetupGameMenu(credential.User, credential);
+
+				   Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+				   this.AppleSignInHandler?.Invoke(credential.User);
+			   },
+			   error =>
+			   {
+				   this.AppleSignInHandler?.Invoke(string.Empty);
+				   var authorizationErrorCode = error.GetAuthorizationErrorCode();
+				   Log.ILog.Debug("SignInWithApple failed " + authorizationErrorCode.ToString() + " " + error.ToString());
+			   });
+			}
+			else
+			{
+                this.AppleSignInHandler?.Invoke(appkey);
+            }
         }
     }
 }
