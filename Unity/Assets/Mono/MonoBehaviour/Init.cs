@@ -1064,7 +1064,7 @@ namespace ET
 				   PlayerPrefs.SetString(AppleUserIdKey, credential.User);
 				   //this.SetupGameMenu(credential.User, credential);
 
-				   Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+				   Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}");
 				   this.AppleSignInHandler?.Invoke(credential.User);
 			   },
 			   error =>
