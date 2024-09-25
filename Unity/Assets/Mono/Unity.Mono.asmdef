@@ -8,8 +8,7 @@
         "UnityEngine.Purchasing",
         "UnityEngine.Purchasing.Stores",
         "TapTap.AntiAddiction",
-        "AppleAuth",
-        "AppleAuth.Editor"
+        "AppleAuth"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

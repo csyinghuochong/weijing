@@ -5,7 +5,8 @@
         "Unity.Mono",
         "Unity.ThirdParty",
         "Unity.TextMeshPro",
-        "HybridCLR.Editor"
+        "HybridCLR.Editor",
+        "AppleAuth.Editor"
     ],
     "includePlatforms": [
         "Editor"
