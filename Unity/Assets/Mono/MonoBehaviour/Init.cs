@@ -1052,7 +1052,9 @@ namespace ET
 
 			string appkey = PlayerPrefs.GetString(AppleUserIdKey);
 
-			if (string.IsNullOrEmpty(oldaccount) || string.IsNullOrEmpty(appkey)  || !appkey.Equals(oldaccount))
+            Log.ILog.Debug($"SignInWithApple Begin:  {appkey}   {oldaccount}");
+
+            if (string.IsNullOrEmpty(oldaccount) || string.IsNullOrEmpty(appkey)  || !appkey.Equals(oldaccount))
 			{
 				this.appleAuthManager.LoginWithAppleId(
 			   loginArgs,
