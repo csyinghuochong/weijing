@@ -1076,7 +1076,6 @@ IL2CPP_EXTERN_C String_t* _stringLiteral802BE1E241896FE18EC90B8966C6FBD048B1DD88
 IL2CPP_EXTERN_C String_t* _stringLiteral83AB61D63399D1CFAD985BE8DDA47BE4E156BF45;
 IL2CPP_EXTERN_C String_t* _stringLiteral83DEED0C06C8773D8D3C6EECEEE4BE12C6BDE399;
 IL2CPP_EXTERN_C String_t* _stringLiteral8631B65ABB19240CE70884C8CE85B9E6D63D4FEE;
-IL2CPP_EXTERN_C String_t* _stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA;
 IL2CPP_EXTERN_C String_t* _stringLiteral8B72CB5376A1BBCD648CB38723EE48F59EEF1C9B;
 IL2CPP_EXTERN_C String_t* _stringLiteral8E752B76D455A50FE476984D4B09A7CDBF2A753E;
 IL2CPP_EXTERN_C String_t* _stringLiteral946BD80B231F5776B5307B385889C9ABB57D3D53;
@@ -31669,7 +31668,7 @@ IL_0058:
 		//     PlayerPrefs.SetString(AppleUserIdKey, credential.User);
 		//     //this.SetupGameMenu(credential.User, credential);
 		// 
-		//     Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+		//     Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}");
 		//     this.AppleSignInHandler?.Invoke(credential.User);
 		// },
 		// error =>
@@ -31762,7 +31761,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_U3CSignInWithAppleU3Eb__86_0_m937D3
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66);
 		s_Il2CppMethodInitialized = true;
@@ -31776,43 +31774,39 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_U3CSignInWithAppleU3Eb__86_0_m937D3
 		String_t* L_1;
 		L_1 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_0);
 		PlayerPrefs_SetString_m94CD8FF45692553A5726DFADF74935F7E1D1C633(_stringLiteralFF3F488A872A8C2318F50678088ADA9C2884BD66, L_1, /*hidden argument*/NULL);
-		// Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}  {credential.ToString()}");
+		// Log.ILog.Debug($"SignInWithApple Sucess :  {credential.User}");
 		RuntimeObject* L_2;
 		L_2 = Log_get_ILog_mD83FF9E4FE4DFA85E732BDF4E1E2037B57C0A227_inline(/*hidden argument*/NULL);
 		RuntimeObject* L_3 = ___credential0;
 		NullCheck(L_3);
 		String_t* L_4;
 		L_4 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_3);
-		RuntimeObject* L_5 = ___credential0;
-		NullCheck(L_5);
-		String_t* L_6;
-		L_6 = VirtFuncInvoker0< String_t* >::Invoke(3 /* System.String System.Object::ToString() */, L_5);
-		String_t* L_7;
-		L_7 = String_Concat_m37A5BF26F8F8F1892D60D727303B23FB604FEE78(_stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E, L_4, _stringLiteral8A8EFDA91C6C257127F8C8D526FAD7E7552766AA, L_6, /*hidden argument*/NULL);
+		String_t* L_5;
+		L_5 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteral9CBF6621099F8D13A5663837D7FD3F14B89FE19E, L_4, /*hidden argument*/NULL);
 		NullCheck(L_2);
-		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_2, L_7);
+		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_2, L_5);
 		// this.AppleSignInHandler?.Invoke(credential.User);
-		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_8 = __this->get_AppleSignInHandler_31();
-		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_9 = L_8;
-		G_B1_0 = L_9;
-		if (L_9)
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_6 = __this->get_AppleSignInHandler_31();
+		Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * L_7 = L_6;
+		G_B1_0 = L_7;
+		if (L_7)
 		{
-			G_B2_0 = L_9;
-			goto IL_0040;
+			G_B2_0 = L_7;
+			goto IL_0035;
 		}
 	}
 	{
 		return;
 	}
 
-IL_0040:
+IL_0035:
 	{
-		RuntimeObject* L_10 = ___credential0;
-		NullCheck(L_10);
-		String_t* L_11;
-		L_11 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_10);
+		RuntimeObject* L_8 = ___credential0;
+		NullCheck(L_8);
+		String_t* L_9;
+		L_9 = InterfaceFuncInvoker0< String_t* >::Invoke(0 /* System.String AppleAuth.Interfaces.ICredential::get_User() */, ICredential_t45C23521279A83E4D31DB0FCFFCB0E8B5AF8759B_il2cpp_TypeInfo_var, L_8);
 		NullCheck(G_B2_0);
-		Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6(G_B2_0, L_11, /*hidden argument*/Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
+		Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6(G_B2_0, L_9, /*hidden argument*/Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6_RuntimeMethod_var);
 		// },
 		return;
 	}
