@@ -613,6 +613,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
                 return;
             }
+            PlayerPrefs.DeleteKey("AppleUserId");
             self.LoginType = LoginTypeEnum.Apple.ToString();
             self.UpdateLoginType();
         }
