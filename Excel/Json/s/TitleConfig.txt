@@ -10,6 +10,6 @@
 {"_t":"TitleConfig","_id":10009,"Name":"独孤求败","Icon":10009,"AddProperty":"100403;600","AnimatorAsset":"10009","AnimatorNumber":11,"ValidityTime":-1,"Des":"攻击+600","size":2,"MoveX":0,"MoveY":0,"GetDes":"令牌系统获取"},
 {"_t":"TitleConfig","_id":10011,"Name":"九霄风云","Icon":10011,"AddProperty":"203003;0.1@203103;0.1","AnimatorAsset":"10011","AnimatorNumber":10,"ValidityTime":-1,"Des":"对领主怪物伤害额外提升10%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
 {"_t":"TitleConfig","_id":10013,"Name":"名震八方","Icon":10013,"AddProperty":"200303;0.03","AnimatorAsset":"10013","AnimatorNumber":11,"ValidityTime":-1,"Des":"闪避率+3%","size":2,"MoveX":0,"MoveY":0,"GetDes":"签到系统获取"},
-{"_t":"TitleConfig","_id":10014,"Name":"世人笑我太疯癫","Icon":10014,"AddProperty":"100402;0.05@203003;0.05@203103;0.05","AnimatorAsset":"10014","AnimatorNumber":9,"ValidityTime":-1,"Des":"攻击提升5%,对怪伤害+5%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
-{"_t":"TitleConfig","_id":10015,"Name":"一刃横天","Icon":10015,"AddProperty":"100402;0.03@200103;0.03@203003;0.05@203103;0.05","AnimatorAsset":"10015","AnimatorNumber":10,"ValidityTime":-1,"Des":"攻击提升3%,暴击率+3%,对怪伤害+5%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
+{"_t":"TitleConfig","_id":10014,"Name":"世人笑我太疯癫","Icon":10014,"AddProperty":"100402;0.05@203003;0.1@203103;0.1","AnimatorAsset":"10014","AnimatorNumber":9,"ValidityTime":-1,"Des":"攻击提升5%,对怪伤害+10%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
+{"_t":"TitleConfig","_id":10015,"Name":"一刃横天","Icon":10015,"AddProperty":"100402;0.03@200103;0.03@203003;0.1@203103;0.1","AnimatorAsset":"10015","AnimatorNumber":10,"ValidityTime":-1,"Des":"攻击提升3%,暴击率+3%,对怪伤害+10%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
 ]}
