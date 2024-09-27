@@ -190,7 +190,7 @@ namespace ET
 
                         if (!string.IsNullOrEmpty(request.OAID))
                         {
-                            Console.WriteLine($"account:{request.AccountName}    oaid:{request.OAID}");
+                            //Console.WriteLine($"account:{request.AccountName}    oaid:{request.OAID}");
                         }
 
                         Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount()

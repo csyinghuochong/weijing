@@ -251,7 +251,7 @@ namespace ET
             KeyValuePairLong seasonOpenTime = SeasonHelper.GetOpenSeason(userInfoComponent.UserInfo.Lv);
             if (numericComponent.GetAsLong(NumericType.SeasonOpenTime) == 0 && seasonOpenTime != null)
             {
-                Console.WriteLine($"赛季开启: {unit.DomainZone()}  {unit.Id}  {seasonOpenTime.KeyId}");
+                //Console.WriteLine($"赛季开启: {unit.DomainZone()}  {unit.Id}  {seasonOpenTime.KeyId}");
 
                 //刷新boss
                 numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv), notice);
