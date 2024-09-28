@@ -324,8 +324,9 @@ namespace ET
 
         public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu, int hurtMode = 0)
         {
+
             //技能伤害为0不执行
-            if (hurtMode == 0 && self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
+            if (hurtMode == 0 && self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0)
             {
                 return true;
             }
@@ -477,11 +478,21 @@ namespace ET
                 return;
             }
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffID);
+
+
             bool teshui = uu.Type == UnitType.JingLing && skillBuffConfig.TargetType == 1;
             if (!uu.IsCanBeAttack() && !teshui)
             {
                 return;
             }
+
+            if (skillBuffConfig.BuffBenefitType == 2
+               && uu.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
+            {
+                //有无敌 
+                return;
+            }
+
 
             //检测类型
             //if (skillBuffConfig.BuffTargetType != 0 && skillBuffConfig.BuffTargetType != uu.Type)
