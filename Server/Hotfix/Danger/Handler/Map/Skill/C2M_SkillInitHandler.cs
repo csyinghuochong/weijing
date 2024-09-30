@@ -70,6 +70,12 @@ namespace ET
                 for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
                 {
                     int initskillid = SkillConfigCategory.Instance.GetInitSkill(skillSetComponent.SkillList[i].SkillID);
+
+                    if (skillSetComponent.SkillList[i].SkillID >= 64015201 && skillSetComponent.SkillList[i].SkillID <= 64015206)
+                    {
+                        Console.WriteLine($"initskillid: {skillSetComponent.SkillList[i].SkillID}   {initskillid}");
+                    }
+
                     if (initskillid == 0)
                     {
                         continue;
@@ -104,7 +110,8 @@ namespace ET
                     if (skillSetComponent.GetBySkillID(occTwoSkillList[i]) == null)
                     {
                         Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   添加技能ID:{occTwoSkillList[i]}");
-                        skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
+
+                        //skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
                     }
                 }
             }

@@ -69,7 +69,17 @@ namespace ET
         /// <returns></returns>
         public static bool IsQiangHuaSkill(int occ, int skillId)
         {
-            int baseskill = SkillConfigCategory.Instance.GetInitSkill(skillId);
+            int baseskill = SkillConfigCategory.Instance.GetInitSkill(skillId); ;
+
+            //if (skillId >= 64015201 && 64015201 <= 64015206)
+            //{
+            //    baseskill = 64015201;
+            //}
+            //else
+            //{
+            //    baseskill = SkillConfigCategory.Instance.GetInitSkill(skillId);
+            //}
+            
             if (baseskill == 0)
             {
                 return false;
