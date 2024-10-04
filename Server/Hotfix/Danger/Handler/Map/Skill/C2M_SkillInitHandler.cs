@@ -71,10 +71,10 @@ namespace ET
                 {
                     int initskillid = SkillConfigCategory.Instance.GetInitSkill(skillSetComponent.SkillList[i].SkillID);
 
-                    if (skillSetComponent.SkillList[i].SkillID >= 64015201 && skillSetComponent.SkillList[i].SkillID <= 64015206)
-                    {
-                        Console.WriteLine($"initskillid: {skillSetComponent.SkillList[i].SkillID}   {initskillid}");
-                    }
+                    //if (skillSetComponent.SkillList[i].SkillID >= 64015201 && skillSetComponent.SkillList[i].SkillID <= 64015206)
+                    //{
+                    //    Console.WriteLine($"initskillid: {skillSetComponent.SkillList[i].SkillID}   {initskillid}");
+                    //}
 
                     if (initskillid == 0)
                     {
