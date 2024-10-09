@@ -38,11 +38,11 @@ namespace ET
 		 public const ushort M2C_CreateMyUnit = 10035;
 		 public const ushort M2C_StartSceneChange = 10036;
 		 public const ushort M2C_RemoveUnits = 10037;
-		 public const ushort C2M_PathfindingResult = 10038;
+		 public const ushort C2M_PathfindingRequest = 10038;
 		 public const ushort C2M_Stop = 10039;
 		 public const ushort C2M_StopTest = 10040;
-		 public const ushort M2C_PathfindingResult = 10041;
-		 public const ushort M2C_PathfindingListResult = 10042;
+		 public const ushort M2C_PathfindingRequest = 10041;
+		 public const ushort M2C_PathfindingListRequest = 10042;
 		 public const ushort M2C_Stop = 10043;
 		 public const ushort C2G_Ping = 10044;
 		 public const ushort G2C_Ping = 10045;

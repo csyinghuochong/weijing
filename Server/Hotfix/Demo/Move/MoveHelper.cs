@@ -7,7 +7,7 @@ namespace ET
     {
 
         public static M2C_Stop m2C_Stop = new M2C_Stop();   
-        public static M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+        public static M2C_PathfindingRequest m2CPathfindingRequest = new M2C_PathfindingRequest();
 
         // 可以多次调用，多次调用的话会取消上一次的协程
         public static async ETTask<int> FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
@@ -56,7 +56,7 @@ namespace ET
                 }
 
                 // 广播寻路路径
-                M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+                M2C_PathfindingRequest m2CPathfindingResult = new M2C_PathfindingRequest();
                 m2CPathfindingResult.Id = unit.Id;
                 for (int i = 0; i < list.Count; ++i)
                 {
@@ -110,7 +110,7 @@ namespace ET
 
             // 广播寻路路径
             Vector3 lastvector = new Vector3(-100f, -100f, -100f);
-            M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+            M2C_PathfindingRequest m2CPathfindingResult = new M2C_PathfindingRequest();
             m2CPathfindingResult.Id = unit.Id;
             for (int i = 0; i < list.Count; ++i)
             {

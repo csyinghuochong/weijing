@@ -3,9 +3,9 @@
 namespace ET
 {
 	[ActorMessageHandler]
-	public class C2M_PathfindingResultHandler : AMActorLocationHandler<Unit, C2M_PathfindingResult>
+	public class C2M_PathfindingRequestHandler : AMActorLocationHandler<Unit, C2M_PathfindingRequest>
 	{
-		protected override async ETTask Run(Unit unit, C2M_PathfindingResult message)
+		protected override async ETTask Run(Unit unit, C2M_PathfindingRequest message)
 		{
 			SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (skillManagerComponent.HaveChongJi())

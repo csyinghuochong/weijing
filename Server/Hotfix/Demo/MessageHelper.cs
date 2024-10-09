@@ -169,12 +169,12 @@ namespace ET
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="message"></param>
-        public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingResult message)
+        public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingRequest message)
         {
             //这里是否可以增加宠物？
             if (unit.Type == UnitType.Player)
             {
-                Dictionary<long, M2C_PathfindingResult> MoveMessageList = mapComponent.MoveMessageList;
+                Dictionary<long, M2C_PathfindingRequest> MoveMessageList = mapComponent.MoveMessageList;
                 if (MoveMessageList.ContainsKey(unit.Id))
                 {
                     MoveMessageList[unit.Id] = message;

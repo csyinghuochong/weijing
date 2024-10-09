@@ -3,9 +3,9 @@
 namespace ET
 {
 	[MessageHandler]
-	public class M2C_PathfindingResultHandler : AMHandler<M2C_PathfindingResult>
+	public class M2C_PathfindingRequestHandler : AMHandler<M2C_PathfindingRequest>
 	{
-		protected override void Run(Session session, M2C_PathfindingResult message)
+		protected override void Run(Session session, M2C_PathfindingRequest message)
 		{
 			Unit unit = session.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(message.Id);
 			if (unit == null)

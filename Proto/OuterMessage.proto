@@ -469,7 +469,7 @@ message M2C_RemoveUnits // IActorMessage
 	repeated int64 Units = 2;
 }
 
-message C2M_PathfindingResult // IActorLocationMessage
+message C2M_PathfindingRequest // IActorLocationMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -495,7 +495,7 @@ message C2M_StopTest // IActorLocationMessage
 	int64 ActorId = 93;
 }
 
-message M2C_PathfindingResult // IActorMessage
+message M2C_PathfindingRequest // IActorMessage
 {
 	int64 ActorId = 93;
 	int64 Id = 1;
@@ -508,9 +508,9 @@ message M2C_PathfindingResult // IActorMessage
 	repeated float Zs = 7;
 }
 
-message M2C_PathfindingListResult // IActorMessage
+message M2C_PathfindingListRequest // IActorMessage
 {
-	repeated M2C_PathfindingResult PathList = 1;
+	repeated M2C_PathfindingRequest PathList = 1;
 }
 
 message M2C_Stop // IActorMessage

@@ -935,9 +935,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.C2M_PathfindingResult)]
+	[Message(OuterOpcode.C2M_PathfindingRequest)]
 	[ProtoContract]
-	public partial class C2M_PathfindingResult: Object, IActorLocationMessage
+	public partial class C2M_PathfindingRequest: Object, IActorLocationMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -992,9 +992,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_PathfindingResult)]
+	[Message(OuterOpcode.M2C_PathfindingRequest)]
 	[ProtoContract]
-	public partial class M2C_PathfindingResult: Object, IActorMessage
+	public partial class M2C_PathfindingRequest: Object, IActorMessage
 	{
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
@@ -1022,12 +1022,12 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_PathfindingListResult)]
+	[Message(OuterOpcode.M2C_PathfindingListRequest)]
 	[ProtoContract]
-	public partial class M2C_PathfindingListResult: Object, IActorMessage
+	public partial class M2C_PathfindingListRequest: Object, IActorMessage
 	{
 		[ProtoMember(1)]
-		public List<M2C_PathfindingResult> PathList = new List<M2C_PathfindingResult>();
+		public List<M2C_PathfindingRequest> PathList = new List<M2C_PathfindingRequest>();
 
 	}
 

@@ -5,7 +5,7 @@ namespace ET
 {
     public static class MoveHelper
     {
-        public static C2M_PathfindingResult c2M_PathfindingResult = new C2M_PathfindingResult();
+        public static C2M_PathfindingRequest c2M_PathfindingRequest = new C2M_PathfindingRequest();
 
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace ET
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.MoveWait = false;
             moveComponent.YaoganMove = true;
-            C2M_PathfindingResult msg = c2M_PathfindingResult;
+            C2M_PathfindingRequest msg = c2M_PathfindingRequest;
           
             msg.YaoGan = true;
             msg.UnitId = unit.Id;
@@ -84,7 +84,7 @@ namespace ET
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.MoveWait = false;
             moveComponent.YaoganMove = yangan;
-            C2M_PathfindingResult msg = c2M_PathfindingResult;
+            C2M_PathfindingRequest msg = c2M_PathfindingRequest;
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;    
@@ -115,7 +115,7 @@ namespace ET
         // 可以多次调用，多次调用的话会取消上一次的协程
         public static async ETTask<int> MoveToAsync(this Unit unit, Vector3 targetPos, ETCancellationToken cancellationToken = null)
         {
-            C2M_PathfindingResult msg = c2M_PathfindingResult;
+            C2M_PathfindingRequest msg = c2M_PathfindingRequest;
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;

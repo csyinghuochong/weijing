@@ -3,15 +3,15 @@ using UnityEngine;
 namespace ET
 {
     [MessageHandler]
-    public class M2C_PathfindingListResultHandler : AMHandler<M2C_PathfindingListResult>
+    public class M2C_PathfindingListRequestHandler : AMHandler<M2C_PathfindingListRequest>
     {
-        protected override void Run(Session session, M2C_PathfindingListResult messagelist)
+        protected override void Run(Session session, M2C_PathfindingListRequest messagelist)
         {
             UnitComponent unitComponent = session.ZoneScene().CurrentScene().GetComponent<UnitComponent>();
 
             for(int p = 0; p < messagelist.PathList.Count; p++)
             {
-                M2C_PathfindingResult message = messagelist.PathList[p];
+                M2C_PathfindingRequest message = messagelist.PathList[p];
                 Unit unit = unitComponent.Get(message.Id);
                 if (unit == null)
                 {

@@ -69,7 +69,7 @@ namespace ET
             var watch = Stopwatch.StartNew();
 
             ///移动的玩家
-            Dictionary<long, M2C_PathfindingResult> MoveMessageList = self.MoveMessageList;
+            Dictionary<long, M2C_PathfindingRequest> MoveMessageList = self.MoveMessageList;
             if (MoveMessageList.Count == 0)
             {
                 return;
@@ -139,7 +139,7 @@ namespace ET
                     continue;
                 }
 
-                List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
+                List<M2C_PathfindingRequest> m2C_Pathfindings = new List<M2C_PathfindingRequest>();
 
                 //获取当前玩家对应的视野内的玩家
                 Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
@@ -170,7 +170,7 @@ namespace ET
                 //一次N个移动包,发送给对应的玩家
                 while (m2C_Pathfindings.Count > 0)
                 {
-                    M2C_PathfindingListResult message = new M2C_PathfindingListResult();
+                    M2C_PathfindingListRequest message = new M2C_PathfindingListRequest();
 
                     int maxnumber = Math.Min(100, m2C_Pathfindings.Count);
 
