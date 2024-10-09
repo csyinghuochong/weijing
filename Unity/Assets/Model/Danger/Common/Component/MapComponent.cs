@@ -12,15 +12,5 @@ namespace ET
         public bool OldNavMesh = true;
         public int FubenDifficulty = 0;
 
-#if SERVER
-        public long Timer;
-        public Dictionary<long, M2C_PathfindingRequest> MoveMessageList = new Dictionary<long, M2C_PathfindingRequest>();
-
-        //临时
-        public long num;
-        public long timechar;
-        public long messagelenght;
-
-#endif
     }
 }

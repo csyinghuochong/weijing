@@ -13,7 +13,6 @@ namespace ET
 		public override void Awake(MapComponent self)
 		{
 #if SERVER
-			self.MoveMessageList.Clear();
 			self.InitMapInfo();
 #endif
 		}
@@ -24,189 +23,15 @@ namespace ET
     {
         public override void Destroy(MapComponent self)
         {
-#if SERVER
-            self.StopTimer();
-#endif
         }
     }
 
-#if SERVER
-    [Timer(TimerType.BroadcastTimer)]
-    public class BroadcastTimer : ATimer<MapComponent>
-    {
-        public override void Run(MapComponent self)
-        {
-            try
-            {
-                self.OnTimer();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-#endif
 
     public static class MapComponentSystem
 	{
 
 #if SERVER
-        public static void BeginTimer(this MapComponent self)
-        {
-            TimerComponent.Instance.Remove(ref self.Timer);
-            //self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BroadcastTimer, self);       //10秒发送同步一次数据
-        }
-
-        public static void StopTimer(this MapComponent self)
-        {
-            TimerComponent.Instance.Remove( ref self.Timer);
-        }
-
-        public static async void  OnTimer(this MapComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            var watch = Stopwatch.StartNew();
-
-            ///移动的玩家
-            Dictionary<long, M2C_PathfindingRequest> MoveMessageList = self.MoveMessageList;
-            if (MoveMessageList.Count == 0)
-            {
-                return;
-            }
-
-            //第二最省模式
-            /*
-            int numSheng = Math.Min(1, self.MoveMessageList.Count);
-            int numShengInt = 0;
-
-            List<M2C_PathfindingResult> m2C_PathfindingsSheng = new List<M2C_PathfindingResult>();
-
-            foreach (M2C_PathfindingResult m2cPathfindingResult in MoveMessageList.Values) {
-                m2C_PathfindingsSheng.Add(m2cPathfindingResult);
-                if (numShengInt >= numSheng) {
-                    break;
-                }
-                numShengInt++;
-            }
-
-            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch111耗时:" + watch.ElapsedMilliseconds + "毫秒");
-
-            M2C_PathfindingListResult messageSheng = new M2C_PathfindingListResult();
-            messageSheng.PathList.AddRange(m2C_PathfindingsSheng.GetRange(0, numSheng)); //添加对应序号的包
-
-            (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(messageSheng);
-
-            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch222耗时:" + watch.ElapsedMilliseconds + "毫秒");
-
-            int AoiNum = 0;
-            int AoiNumShiJi = 0;
-            //获取当前场景所有的玩家
-            List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333耗时:" + watch.ElapsedMilliseconds + "毫秒");
-            for (int i = allplayers.Count - 1; i >= 0; i--)
-            {
-                if (allplayers[i].IsDisposed)
-                {
-                    continue;
-                }
-
-                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333aaa耗时:" + watch.ElapsedMilliseconds + "毫秒");
-                MessageHelper.SendToClientNew(allplayers[i], messageSheng, opcode, stream);
-                //MessageHelper.SendToClient(allplayers[i], messageSheng);
-                await TimerComponent.Instance.WaitFrameAsync();
-                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333bbb耗时:" + watch.ElapsedMilliseconds + "毫秒");
-                //showMovePlayerNum++;
-
-                //临时计数显示
-                self.num++;
-                self.messagelenght += MongoHelper.ToBson(messageSheng).Length;
-                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333ccc耗时:" + watch.ElapsedMilliseconds + "毫秒");
-            }
-
-            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch4444耗时:" + watch.ElapsedMilliseconds + "毫秒");
-            */
-            
-            //第一种模式
-            int AoiNum = 0;
-            int AoiNumShiJi = 0;
-            //获取当前场景所有的玩家
-            List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-            for (int i = allplayers.Count - 1; i >= 0; i--)
-            {
-                if (allplayers[i].IsDisposed)
-                {
-                    continue;
-                }
-
-                List<M2C_PathfindingRequest> m2C_Pathfindings = new List<M2C_PathfindingRequest>();
-
-                //获取当前玩家对应的视野内的玩家
-                Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
-
-                //获取该玩家视野内的移动包,把视野内的移动包都存在一起
-                int aoiMaxNum = 0;
-                foreach (AOIEntity u in dict.Values)
-                {
-                    if (u.Unit.Id != allplayers[i].Id && MoveMessageList.ContainsKey(u.Unit.Id))
-                    {
-                        m2C_Pathfindings.Add(MoveMessageList[u.Unit.Id]);
-
-                        //周围超过30个人直接不显示其他人的移动数据
-                        if (aoiMaxNum >= 30) {
-                            break;
-                        }
-
-                        aoiMaxNum++;
-                    }
-                }
-
-
-
-                AoiNum += dict.Count;
-                AoiNumShiJi += aoiMaxNum;
-
-                int showMovePlayerNum = 0;
-                //一次N个移动包,发送给对应的玩家
-                while (m2C_Pathfindings.Count > 0)
-                {
-                    M2C_PathfindingListRequest message = new M2C_PathfindingListRequest();
-
-                    int maxnumber = Math.Min(100, m2C_Pathfindings.Count);
-
-                    message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber)); //添加对应序号的包
-                    m2C_Pathfindings.RemoveRange(0, maxnumber); //移除对应序号的包
-
-                    MessageHelper.SendToClient(allplayers[i], message);
-
-                    //给100个人发送数据直接退
-                    if (showMovePlayerNum >= 100) {
-                        break;
-                    }
-
-                    showMovePlayerNum++;
-
-                    //临时计数显示
-                    self.num++;
-                    self.messagelenght += MongoHelper.ToBson(message).Length;
-
-
-                }
-
-                await TimerComponent.Instance.WaitFrameAsync();
-            }
-
-            TimeSpan timeS = TimeHelper.DateTimeNow() - dateTime;
-            //timeS.Ticks
-            watch.Stop();
-            Log.Console(TimeHelper.DateTimeNow().ToString() + " 耗时:" + timeS.Milliseconds + "毫秒"+ "watch耗时:" + watch.ElapsedMilliseconds + "毫秒 10秒move数据:" + self.messagelenght + " num:" + self.num + " allplayers:" + allplayers.Count + " AoiNum:" + AoiNum + " AoiNumShiJi:" + AoiNumShiJi + " 对应:" + ((int)(AoiNum/ allplayers.Count)).ToString());
-            self.messagelenght = 0;
-            self.num = 0;
-
-            MoveMessageList.Clear();
-        }
-
-
+     
         public static void InitMapInfo(this MapComponent self, StartSceneConfig startSceneConfig=null)
 		{
 			Scene scene = self.DomainScene();
@@ -222,8 +47,6 @@ namespace ET
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, sceneConfig.MapID, 0);
 				self.NavMeshId = sceneConfig.MapID;
-
-                self.BeginTimer();
             }
 			else
 			{

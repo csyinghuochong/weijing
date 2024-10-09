@@ -118,7 +118,6 @@ namespace ET
         }
 
 
-
         public static void BroadcastBuff(Unit unit, IActorMessage message, SkillBuffConfig buffConfig, int sceneType)
         {
             //主城只给自己广播
@@ -160,43 +159,6 @@ namespace ET
                     num++;
                     messagelenght += stream.Length;
                 } 
-            }
-        }
-
-
-        /// <summary>
-        /// 只广播自己的
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="message"></param>
-        public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingRequest message)
-        {
-            //这里是否可以增加宠物？
-            if (unit.Type == UnitType.Player)
-            {
-                Dictionary<long, M2C_PathfindingRequest> MoveMessageList = mapComponent.MoveMessageList;
-                if (MoveMessageList.ContainsKey(unit.Id))
-                {
-                    MoveMessageList[unit.Id] = message;
-                }
-                else
-                {
-                    MoveMessageList.Add(unit.Id, message);
-                }
-
-                //给自己发送移动数据,实时同步
-                SendToClientMove(unit, message);
-            }
-            else
-            {
-                //非怪物正常发送移动数据
-                Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-                (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
-
-                foreach (AOIEntity u in dict.Values)
-                {
-                    SendToClientNew(u.Unit, message, opcode, stream);
-                }
             }
         }
 
