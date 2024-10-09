@@ -968,6 +968,106 @@ namespace ET
 
 	}
 
+///客户端寻路...
+	[Message(OuterOpcode.C2M_PathfindingResult)]
+	[ProtoContract]
+	public partial class C2M_PathfindingResult: Object, IActorLocationMessage
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(5)]
+		public List<float> Xs = new List<float>();
+
+		[ProtoMember(6)]
+		public List<float> Ys = new List<float>();
+
+		[ProtoMember(7)]
+		public List<float> Zs = new List<float>();
+
+	}
+
+	[Message(OuterOpcode.M2C_PathfindingResult)]
+	[ProtoContract]
+	public partial class M2C_PathfindingResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long Id { get; set; }
+
+		[ProtoMember(4)]
+		public bool YaoGan { get; set; }
+
+		[ProtoMember(5)]
+		public List<float> Xs = new List<float>();
+
+		[ProtoMember(6)]
+		public List<float> Ys = new List<float>();
+
+		[ProtoMember(7)]
+		public List<float> Zs = new List<float>();
+
+		[ProtoMember(8)]
+		public float X { get; set; }
+
+		[ProtoMember(9)]
+		public float Y { get; set; }
+
+		[ProtoMember(10)]
+		public float Z { get; set; }
+
+	}
+
+	[Message(OuterOpcode.C2M_StopResult)]
+	[ProtoContract]
+	public partial class C2M_StopResult: Object, IActorLocationMessage
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public float X { get; set; }
+
+		[ProtoMember(3)]
+		public float Y { get; set; }
+
+		[ProtoMember(4)]
+		public float Z { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_StopResult)]
+	[ProtoContract]
+	public partial class M2C_StopResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public long Id { get; set; }
+
+		[ProtoMember(3)]
+		public float X { get; set; }
+
+		[ProtoMember(4)]
+		public float Y { get; set; }
+
+		[ProtoMember(5)]
+		public float Z { get; set; }
+
+		[ProtoMember(6)]
+		public float A { get; set; }
+
+		[ProtoMember(7)]
+		public float B { get; set; }
+
+		[ProtoMember(8)]
+		public float C { get; set; }
+
+		[ProtoMember(9)]
+		public float W { get; set; }
+
+	}
+
 	[Message(OuterOpcode.C2M_Stop)]
 	[ProtoContract]
 	public partial class C2M_Stop: Object, IActorLocationMessage

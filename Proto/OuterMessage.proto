@@ -483,6 +483,54 @@ message C2M_PathfindingRequest // IActorLocationMessage
 	float Distance = 7;
 }
 
+///客户端寻路...
+message C2M_PathfindingResult // IActorLocationMessage
+{
+	int32 RpcId = 1;
+    
+	repeated float Xs = 5;
+	repeated float Ys = 6;
+	repeated float Zs = 7;
+}
+
+message M2C_PathfindingResult // IActorMessage
+{
+	int64 Id = 1;
+
+	bool YaoGan = 4;
+
+	repeated float Xs = 5;
+	repeated float Ys = 6;
+	repeated float Zs = 7;
+
+	float X = 8;
+	float Y = 9;
+	float Z = 10;
+}
+
+message C2M_StopResult // IActorLocationMessage
+{
+	int32 RpcId = 1;
+	float X = 2;
+	float Y = 3;
+	float Z = 4;
+}
+
+message M2C_StopResult // IActorMessage
+{
+	int32 Error = 1;
+	int64 Id = 2;
+
+	float X = 3;
+	float Y = 4;
+	float Z = 5;
+
+	float A = 6;
+	float B = 7;
+	float C = 8;
+	float W = 9;
+}
+
 message C2M_Stop // IActorLocationMessage
 {    
 	int32 RpcId = 90;
