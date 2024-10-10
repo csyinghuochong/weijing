@@ -303,16 +303,16 @@ namespace ET
                 if (obstruct != 0)
                 {
                     self.ShowObstructTip(obstruct);
-                    if (SettingHelper.MoveMode == 0)
-                    {
-                        unit.Stop();
-                    }
-                    else
+                    if (SettingHelper.MoveMode == 1)
                     {
                         EventType.MoveStart.Instance.Unit = unit;
                         Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
                         unit.Rotation = Quaternion.Euler(0, self.direction, 0);
                         unit.StopResult();
+                    }
+                    else
+                    {
+                        unit.Stop();
                     }
                     return;
                 }
@@ -339,24 +339,7 @@ namespace ET
             float distance;
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
-            if (SettingHelper.MoveMode == 0)
-            {
-                distance = self.CanMoveDistance(unit, rotation);
-                distance = Mathf.Max(distance, 2f);
-
-                if (self.noCheckTime < clientNow)
-                {
-                    float needtime = distance / speed;
-                    self.checkTime = (int)(1000 * needtime) - 200;
-                }
-                else
-                {
-                    self.checkTime = 100;
-                }
-                newv3 = unit.Position + rotation * Vector3.forward * distance;
-                unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
-            }
-            else
+            if (SettingHelper.MoveMode == 1)
             {
                 List<Vector3> pathfind = new List<Vector3>();
                 newv3 = self.CanMovePosition(unit, rotation, pathfind);
@@ -412,6 +395,23 @@ namespace ET
 
                 unit.MoveResultToAsync(pathfind_2, null).Coroutine();
                 unit.GetComponent<MoveComponent>().MoveToAsync(pathfind_2, speed).Coroutine();
+            }
+            else
+            {
+                distance = self.CanMoveDistance(unit, rotation);
+                distance = Mathf.Max(distance, 2f);
+
+                if (self.noCheckTime < clientNow)
+                {
+                    float needtime = distance / speed;
+                    self.checkTime = (int)(1000 * needtime) - 200;
+                }
+                else
+                {
+                    self.checkTime = 100;
+                }
+                newv3 = unit.Position + rotation * Vector3.forward * distance;
+                unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
             }
 
 
@@ -609,13 +609,13 @@ namespace ET
 
             //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
 
-            if (SettingHelper.MoveMode == 0)
+            if (SettingHelper.MoveMode == 1)
             {
-                unit.Stop();
+                unit.StopResult();
             }
             else
             {
-                unit.StopResult();
+                unit.Stop();
             }
         }
     }
