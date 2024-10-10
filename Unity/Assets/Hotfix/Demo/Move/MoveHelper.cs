@@ -15,7 +15,6 @@ namespace ET
             if (ErrorCode.ERR_Success != errorCode)
             {
                 stateComponent.CheckSilence();
-                return -1;
             }
 
             return errorCode;
