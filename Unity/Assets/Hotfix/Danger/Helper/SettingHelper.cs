@@ -66,6 +66,12 @@ namespace ET
         public static bool UsePool = true;
 
 
-        public static bool ShowNoMoving = false; 
+        public static bool ShowNoMoving = false;
+
+
+        /// <summary>
+        /// 0 服务器寻路   1 客户端寻路
+        /// </summary>
+        public static int MoveMode = 0;
     }
 }

@@ -9,12 +9,6 @@ namespace ET
         // 可以多次调用，多次调用的话会取消上一次的协程
         public static async ETTask<int> FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
         {
-            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-            if (speed < 0.01)
-            {
-                return -1;
-            }
-
             ///以防止怪物再引力波的作用下不移动
             if (unit.GetComponent<StateComponent>().ServerCanMove()!= ErrorCode.ERR_Success)
             {
@@ -77,6 +71,7 @@ namespace ET
                     MessageHelper.Broadcast(unit, m2CPathfindingResult);
                 }
 
+                float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
                 MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
                 bool ret = await moveComponent.MoveToAsync(path, speed, 0, cancellationToken);
                 if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
@@ -86,6 +81,19 @@ namespace ET
                 }
                 return -1;
             }
+        }
+
+
+        public static async ETTask FindPathResultToAsync(this Unit unit, List<Vector3> positonsss)
+        {
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(positonsss, speed);
+            if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
+            {
+                //Console.WriteLine($"PathResultToAsync  unit.SendStop(0):  {TimeHelper.ServerNow()}");
+                //unit.SendStop(0);
+            }
+            await ETTask.CompletedTask;
         }
 
         // 可以多次调用，多次调用的话会取消上一次的协程
@@ -125,6 +133,24 @@ namespace ET
                 return 0;
             }
             return -1;
+        }
+
+        public static void StopResult(this Unit unit, Vector3 position, int error)
+        {
+            unit.GetComponent<MoveComponent>().Stop();
+            unit.Position = position;
+            M2C_StopResult m2CStop = new  M2C_StopResult();
+            m2CStop.Error = error;
+            m2CStop.Id = unit.Id;
+            m2CStop.X = position.x;
+            m2CStop.Y = position.y;
+            m2CStop.Z = position.z;
+
+            m2CStop.A = unit.Rotation.x;
+            m2CStop.B = unit.Rotation.y;
+            m2CStop.C = unit.Rotation.z;
+            m2CStop.W = unit.Rotation.w;
+            MessageHelper.Broadcast(unit, m2CStop);
         }
 
         public static void Stop(this Unit unit, int error)

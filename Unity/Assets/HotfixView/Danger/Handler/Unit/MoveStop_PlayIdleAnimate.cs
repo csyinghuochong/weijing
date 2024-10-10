@@ -12,15 +12,17 @@ namespace ET
             {
                 return;
             }
-            int unitType = args.Unit.Type;
-            if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().ObstructStatus == 1)
-            {
-                args.Unit.GetComponent<StateComponent>().ObstructStatus = 0;
-            }
-            else
-            {
-                args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
-            }
+            //int unitType = args.Unit.Type;
+            //if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().ObstructStatus == 1)
+            //{
+            //    args.Unit.GetComponent<StateComponent>().ObstructStatus = 0;
+            //}
+            //else
+            //{
+            //    args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
+            //}
+
+            args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
 
             //播放移动特效
             HeroTransformComponent heroTransformComponent = args.Unit.GetComponent<HeroTransformComponent>();

@@ -15,8 +15,6 @@ namespace ET
 
         public long NetWaitEndTime;
 
-        public int ObstructStatus;
-
 #if !SERVER
 
         public C2M_UnitStateUpdate c2M_UnitStateUpdate = null;

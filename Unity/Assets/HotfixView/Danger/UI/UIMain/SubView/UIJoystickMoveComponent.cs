@@ -55,9 +55,11 @@ namespace ET
 
         public int ObstructLayer;
         public int BuildingLayer;
+        public int MapLayer;
         public long Timer;
 
         public int OperateMode;
+        public int SceneTypeEnum;
     }
 
 
@@ -108,6 +110,7 @@ namespace ET
 
             self.ObstructLayer = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
             self.BuildingLayer = (1 << LayerMask.NameToLayer(LayerEnum.Building.ToString()));
+            self.MapLayer = (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
 
             self.ResetUI();
             self.AfterEnterScene();
@@ -217,6 +220,13 @@ namespace ET
             self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
+
+            if (SettingHelper.MoveMode == 1)
+            {
+                EventType.MoveStart.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
+                unit.Rotation = Quaternion.Euler(0, self.direction, 0);
+            }
         }
 
         public static GameObject GetYaoGanDi(this UIJoystickMoveComponent self)
@@ -245,6 +255,7 @@ namespace ET
 
             Vector2 indicator = self.NewPoint - self.OldPoint;
             int angle = 90 - (int)(Mathf.Atan2(indicator.y, indicator.x) * Mathf.Rad2Deg) + (int)self.MainCamera.transform.eulerAngles.y;
+            angle = (angle - angle % 15);
             return angle;
         }
 
@@ -282,6 +293,31 @@ namespace ET
             {
                 return;
             }
+
+            Unit unit = self.MainUnit;
+            Quaternion rotation = Quaternion.Euler(0, direction, 0);
+            if (self.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                //检测光墙
+                int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);
+                if (obstruct != 0)
+                {
+                    self.ShowObstructTip(obstruct);
+                    if (SettingHelper.MoveMode == 0)
+                    {
+                        unit.Stop();
+                    }
+                    else
+                    {
+                        EventType.MoveStart.Instance.Unit = unit;
+                        Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
+                        unit.Rotation = Quaternion.Euler(0, self.direction, 0);
+                        unit.StopResult();
+                    }
+                    return;
+                }
+            }
+
             if (clientNow - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
@@ -291,40 +327,98 @@ namespace ET
                 return;
             }
 
-            Unit unit = self.MainUnit;
-            Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            float distance = self.CanMoveDistance(unit, rotation);
-            distance = Mathf.Max(distance, 2f);
 
-            if (self.noCheckTime < clientNow)
+            int errorCode = MoveHelper.IfCanMove(unit);
+            if (errorCode != ErrorCode.ERR_Success)
             {
-                float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
-                speed = Mathf.Max(speed, 4f);
-                float needtime = distance / speed;
-                self.checkTime = (int)(1000 * needtime) - 200;
+                HintHelp.GetInstance().ShowHintError( errorCode, self.ZoneScene());
+                return;
+            }
+
+            Vector3 newv3;
+            float distance;
+            float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
+            speed = Mathf.Max(speed, 4f);
+            if (SettingHelper.MoveMode == 0)
+            {
+                distance = self.CanMoveDistance(unit, rotation);
+                distance = Mathf.Max(distance, 2f);
+
+                if (self.noCheckTime < clientNow)
+                {
+                    float needtime = distance / speed;
+                    self.checkTime = (int)(1000 * needtime) - 200;
+                }
+                else
+                {
+                    self.checkTime = 100;
+                }
+                newv3 = unit.Position + rotation * Vector3.forward * distance;
+                unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
             }
             else
             {
-                self.checkTime = 100;
-            }
-            //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
-            //移动速度最低发送间隔
+                List<Vector3> pathfind = new List<Vector3>();
+                newv3 = self.CanMovePosition(unit, rotation, pathfind);
+                if (pathfind.Count < 2)
+                {
+                    EventType.MoveStart.Instance.Unit = unit;
+                    Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
+                    unit.Rotation = Quaternion.Euler(0, self.direction, 0);
+                    return;
+                }
 
-            //检测光墙
-            int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);
-            if (obstruct!= 0)
-            {
-                unit.GetComponent<StateComponent>().ObstructStatus = 1;
-                self.ShowObstructTip(obstruct);
-                return;
+                Vector3 initpos = pathfind[0];
+                List<Vector3> pathfind_2 = new List<Vector3>();
+                pathfind_2.Add(initpos);
+
+                for (int i = 1; i < pathfind.Count; i++)
+                {
+                    //if (!pathfind[i].y.Equals(pathfind[i-1].y))
+                    if (Math.Abs(pathfind[i].y - pathfind[i - 1].y) > 0.05f)
+                    {
+                        pathfind_2.Add(pathfind[i]);
+                    }
+                }
+
+                if (pathfind_2.Count > 2)
+                {
+                    int distance_init = 0;
+                    for (int i = 1; i < pathfind_2.Count;)
+                    {
+                        float distance_cur = Vector3.Distance(pathfind_2[i], pathfind_2[distance_init]);
+                        if (distance_cur < 0.5f)
+                        {
+                            pathfind_2.RemoveAt(i);
+                        }
+                        else
+                        {
+                            distance_init = i;
+                            i++;
+                        }
+                    }
+                }
+                /////////--------------------------------
+
+                if (pathfind_2.Count < 2)
+                {
+                    pathfind_2.Add(pathfind[pathfind.Count - 1]);
+                }
+
+                newv3 = pathfind_2[pathfind_2.Count - 1];
+                distance = Vector3.Distance(newv3, unit.Position);
+                float needTime = distance / speed;
+                self.checkTime = (long)(1000 * needTime) - 200;
+
+                unit.MoveResultToAsync(pathfind_2, null).Coroutine();
+                unit.GetComponent<MoveComponent>().MoveToAsync(pathfind_2, speed).Coroutine();
             }
+
+
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             EventType.DataUpdate.Instance.DataParamString = string.Empty;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-
-            //MapHelper.LogMoveInfo($"移动发送请求: {TimeHelper.ServerNow()}");
-            unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
+          
             self.lastSendTime = clientNow;
             self.lastDirection = direction;
         }
@@ -338,6 +432,46 @@ namespace ET
             self.LastShowTip = Time.time;
             string monsterName = MonsterConfigCategory.Instance.Get(monsterId).MonsterName;
             FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
+        }
+
+        public  static Vector3 CanMovePosition(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation, List<Vector3> pathfind)
+        {
+            Vector3 targetPosi = unit.Position;
+            for (int i = 0; i < 30; i++)
+            {
+                targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
+                RaycastHit hit;
+
+                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+                if (hit.collider != null)
+                {
+                    break;
+                }
+
+                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+                if (hit.collider == null)
+                {
+                    // if (i == 0)
+                    // {
+                    //     targetpositon = target;
+                    // }
+                    break;
+                }
+                else
+                {
+                    if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        targetPosi = hit.point;
+                        pathfind.Add(targetPosi);
+                    }
+                }
+            }
+
+            return targetPosi;
         }
 
 
@@ -375,9 +509,8 @@ namespace ET
 
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
         {
-
             RaycastHit hit;
-            Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
+            Physics.Raycast(target + new Vector3(0f, 100f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
             if (hit.collider == null)
             {
                 return 0;
@@ -444,54 +577,46 @@ namespace ET
         {
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.NumericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            self.SceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
         }
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            Unit unit = self.MainUnit;
+            if (unit == null || unit.IsDisposed)
+            {
+                return;
+            }
+
+            if (SettingHelper.MoveMode == 1)
+            {
+                EventType.MoveStop.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
+            }
+             
+
             long lastTimer = self.Timer;
             self.ResetUI();
             if (lastTimer == 0)
             {
                 return;
             }
-            Unit unit = self.MainUnit;
-            if (unit == null || unit.IsDisposed)
-            {
-                return;
-            }
+            
             if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
             {
                 return;
             }
 
             //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-        }
 
-        public static void EndDrag_Old(this UIJoystickMoveComponent self, PointerEventData pdata)
-        {
-            if (!self.YaoGanDiFix.activeSelf)
+            if (SettingHelper.MoveMode == 0)
             {
-                return;
+                unit.Stop();
             }
-
-            self.ResetUI();
-            Unit unit = self.MainUnit;  
-            if (unit == null || unit.IsDisposed)
+            else
             {
-                return;
+                unit.StopResult();
             }
-            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
-            {
-                return;
-            }
-            if (unit.GetComponent<MoveComponent>().IsArrived())
-            {
-                return;
-            }
-
-            //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
     }
 }
