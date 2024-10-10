@@ -510,7 +510,7 @@ namespace ET
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
         {
             RaycastHit hit;
-            Physics.Raycast(target + new Vector3(0f, 100f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
+            Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
             if (hit.collider == null)
             {
                 return 0;
