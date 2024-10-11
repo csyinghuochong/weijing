@@ -111,10 +111,11 @@ namespace ET
             GameObjectPoolComponent.Instance.AddLoadQueue(uIBattleFly, self.InstanceId, self.OnLoadGameObject);
         }
 
+
         public static bool LateUpdate(this FallingFontShowComponent self)
         {
             self.DamgeFlyTimeSum = self.DamgeFlyTimeSum + Time.deltaTime;
-            if (self.Transform != null)
+            if (self.Transform != null && self.HeadBar!= null)
             {
                 if (self.DamgeFlyTimeSum < 0.15f)   
                 {
