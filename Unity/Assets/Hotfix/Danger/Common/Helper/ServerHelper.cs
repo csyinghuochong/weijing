@@ -346,8 +346,8 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 122, ServerIp = $"{ip}:20505", ServerName = "欢度国庆", ServerOpenTime = 1728039600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
-            //2024/10/11 19:00:00 1728644400000 新区 新区新区 123
-            serverItems_1.Add(new ServerItem() { ServerId = 123, ServerIp = $"{ip}:20525", ServerName = "新区新区", ServerOpenTime = 1728644400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            //2024/10/11 19:00:00 1728644400000 新区 春花秋月 123
+            serverItems_1.Add(new ServerItem() { ServerId = 123, ServerIp = $"{ip}:20525", ServerName = "春花秋月", ServerOpenTime = 1728644400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
