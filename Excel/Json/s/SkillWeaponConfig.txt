@@ -6,6 +6,7 @@
 {"_t":"SkillWeaponConfig","_id":50000301,"Name":"普通攻击","InitSkillID":60000501,"InitSkillID_1":60000201,"InitSkillID_2":0,"InitSkillID_3":0,"InitSkillID_4":0,"InitSkillID_5":60000501},
 {"_t":"SkillWeaponConfig","_id":50000302,"Name":"普通攻击","InitSkillID":60000502,"InitSkillID_1":60000202,"InitSkillID_2":0,"InitSkillID_3":0,"InitSkillID_4":0,"InitSkillID_5":60000502},
 {"_t":"SkillWeaponConfig","_id":50000401,"Name":"普通攻击","InitSkillID":60000701,"InitSkillID_1":0,"InitSkillID_2":0,"InitSkillID_3":60000601,"InitSkillID_4":60000701,"InitSkillID_5":0},
+{"_t":"SkillWeaponConfig","_id":50000402,"Name":"普通攻击","InitSkillID":60000701,"InitSkillID_1":0,"InitSkillID_2":0,"InitSkillID_3":60000601,"InitSkillID_4":60000701,"InitSkillID_5":0},
 {"_t":"SkillWeaponConfig","_id":51011101,"Name":"技能1","InitSkillID":61012101,"InitSkillID_1":61012101,"InitSkillID_2":61011101,"InitSkillID_3":0,"InitSkillID_4":0,"InitSkillID_5":0},
 {"_t":"SkillWeaponConfig","_id":51011102,"Name":"技能1","InitSkillID":61012102,"InitSkillID_1":61012102,"InitSkillID_2":61011102,"InitSkillID_3":0,"InitSkillID_4":0,"InitSkillID_5":0},
 {"_t":"SkillWeaponConfig","_id":51011103,"Name":"技能1","InitSkillID":61012103,"InitSkillID_1":61012103,"InitSkillID_2":61011103,"InitSkillID_3":0,"InitSkillID_4":0,"InitSkillID_5":0},
