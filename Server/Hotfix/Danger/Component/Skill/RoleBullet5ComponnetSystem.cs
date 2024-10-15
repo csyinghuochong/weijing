@@ -78,15 +78,14 @@ namespace ET
                     continue;
                 }
 
+                if (self.SkillHandler.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
                 if (!self.SkillHandler.CheckShape(uu.Position))
                 {
                     continue;
                 }
-
-                //if (MongoHelper.WuDiBullet && !ComHelp.IsInnerNet())
-                //{
-                //    continue;
-                //}
 
                 if (!uu.IsCanBeAttack())
                 {
@@ -98,9 +97,9 @@ namespace ET
                     continue;
                 }
 
-                if (!self.SkillHandler.HurtIds.Contains(uu.Id))
+                if (!self.SkillHandler.IfHaveHurtId(uu.Id))
                 {
-                    self.SkillHandler.HurtIds.Add(uu.Id);
+                    self.SkillHandler.OnAddHurtIds(uu.Id);
                 }
 
                 Skill_ComTargetMove_RangDamge_5 handler = self.SkillHandler as Skill_ComTargetMove_RangDamge_5;

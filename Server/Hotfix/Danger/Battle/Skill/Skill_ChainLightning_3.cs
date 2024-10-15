@@ -58,7 +58,7 @@ namespace ET
                     return;
                 }
 
-                this.HurtIds.Add(this.TheUnitTarget.Id);
+                this.OnAddHurtIds(this.TheUnitTarget.Id);
                 this.BroadcastSkill(this.TheUnitFrom.Id, this.TheUnitTarget.Id, 0f, 0f, 0f);
                 this.TargetPosition = this.TheUnitTarget.Position;
                 this.TargetPosition.y = this.TheUnitTarget.Position.y + SkillHelp.GetCenterHigh(this.TheUnitTarget.Type, this.TheUnitTarget.ConfigId);
@@ -103,7 +103,7 @@ namespace ET
             this.TargetPosition = this.TheUnitTarget.Position;
             this.TargetPosition.y = this.TheUnitTarget.Position.y + SkillHelp.GetCenterHigh(this.TheUnitTarget.Type, this.TheUnitTarget.ConfigId);
 
-            this.HurtIds.Add(this.TheUnitTarget.Id);
+            this.OnAddHurtIds(this.TheUnitTarget.Id);
             this.BroadcastSkill(lastTarget.Id, this.TheUnitTarget.Id, 0f, 0f, 0f);
             this.OnCollisionUnit(lastTarget);
         }

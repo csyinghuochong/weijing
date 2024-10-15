@@ -14,8 +14,8 @@ namespace ET
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             self.TheUnitFrom = theUnitFrom;
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
-            self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
-            self.OnlyOnceBuffUnitID.Clear();    
+            self.TianfuProAdd = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID) : null;
+            self.OnlyOnceBuffUnitID.Clear();
             self.IsExcuteHurt = false;
             self.SkillFirstHurtTime = 0;
             self.SkillTriggerInvelTime = 0;
@@ -24,13 +24,13 @@ namespace ET
             self.SkillBeginTime = TimeHelper.ServerNow();
             self.DamgeChiXuLastTime = TimeHelper.ServerNow();
             self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
-            self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000* self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
+            self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000 * self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
             self.ICheckShape = new List<Shape>() { self.CreateCheckShape(self.SkillInfo.TargetAngle) };
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
             self.SkillParValueHpUpAct.Clear();
             self.ActTargetAddPro = 0f;
-            self.HurtAddPro = 0f;   
+            self.HurtAddPro = 0f;
 
             //获取通用脚本参数
             if (ComHelp.IfNull(self.SkillConf.ComObjParameter) == false)
@@ -61,7 +61,7 @@ namespace ET
                         case "3":
                             float defendUnitHpPro = (float)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) / (float)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                             if (defendUnitHpPro <= float.Parse(parList[1]))
-                                self.ActTargetAddPro= float.Parse(parList[2]);
+                                self.ActTargetAddPro = float.Parse(parList[2]);
                             break;
                     }
                 }
@@ -91,7 +91,7 @@ namespace ET
                 return;
             }
 
-            if (self.SkillConf.InitBuffID!= null &&self.SkillConf.InitBuffID[0] != 0)
+            if (self.SkillConf.InitBuffID != null && self.SkillConf.InitBuffID[0] != 0)
             {
                 for (int y = 0; y < self.SkillConf.InitBuffID.Length; y++)
                 {
@@ -99,7 +99,7 @@ namespace ET
                 }
             }
             SkillSetComponent skillSetComponent = self.TheUnitFrom.GetComponent<SkillSetComponent>();
-            List<int> buffInitAdd = skillSetComponent!=null ? skillSetComponent.GetBuffInitIdAdd(self.SkillConf.Id):null;
+            List<int> buffInitAdd = skillSetComponent != null ? skillSetComponent.GetBuffInitIdAdd(self.SkillConf.Id) : null;
             if (buffInitAdd != null)
             {
                 for (int i = 0; i < buffInitAdd.Count; i++)
@@ -141,7 +141,7 @@ namespace ET
                     {
                         self.OnCollisionUnit(targetUnit);
                     }
-                    if (targetUnit != null && self.SkillConf.SkillActType ==  0 && self.CheckShape(targetUnit.Position))
+                    if (targetUnit != null && self.SkillConf.SkillActType == 0 && self.CheckShape(targetUnit.Position))
                     {
                         self.OnCollisionUnit(targetUnit);
                     }
@@ -149,7 +149,7 @@ namespace ET
                 else if (self.SkillConf.SkillTargetType == (int)SkillTargetType.SelfOnly)
                 {
                     self.OnCollisionUnit(self.TheUnitFrom);
-                }   
+                }
                 else
                 {
                     self.ExcuteSkillAction();
@@ -177,7 +177,12 @@ namespace ET
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Unit uu = entities[i];
-                if (self.HurtIds.Contains(uu.Id))
+
+                if (self.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
+                if (self.IfHaveHurtId(uu.Id))
                 {
                     continue;
                 }
@@ -188,9 +193,30 @@ namespace ET
                     continue;
                 }
 
-                self.HurtIds.Add(uu.Id);
+                self.OnAddHurtIds(uu.Id);
                 self.OnCollisionUnit(uu);
             }
+        }
+
+        public static bool IfHaveHurtId(this SkillHandler self, long unitid)
+        {
+            return self.HurtIds.Contains(unitid);
+        }
+
+        public static void OnAddHurtIds(this SkillHandler self, long unitid)
+        {
+            self.HurtIds.Add(unitid);
+        }
+
+        public static bool CheckMaxAttackNumber(this SkillHandler self, long unitid)
+        {
+            //MaxAttackNumber ==0 || -1不限制
+            int MaxAttackNumber = self.SkillConf.MaxAttackNumber;
+            if (MaxAttackNumber > 0 && self.HurtIds.Count >= MaxAttackNumber && !self.HurtIds.Contains(unitid))
+            {
+                return true;
+            }
+            return false;    
         }
 
         public static void OnCollisionUnit(this SkillHandler self, Unit uu)
@@ -234,6 +260,11 @@ namespace ET
             {
                 Unit uu = entities[i];
                 //检测目标是否在技能范围
+
+                if (self.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
                 if (!self.CheckShape(uu.Position))
                 {
                     continue;
@@ -277,14 +308,14 @@ namespace ET
         public static void TriggerSkillBuff(this SkillHandler self, Unit uu)
         {
             //触发Buff
-            if (self.SkillConf.BuffID!=null && self.SkillConf.BuffID[0] != 0)
+            if (self.SkillConf.BuffID != null && self.SkillConf.BuffID[0] != 0)
             {
                 for (int y = 0; y < self.SkillConf.BuffID.Length; y++)
                 {
                     self.SkillBuff(self.SkillConf.BuffID[y], uu);
                 }
             }
-            if (self.SkillConf.OnlyOnceBuffID!= null  &&  !self.OnlyOnceBuffUnitID.Contains(uu.Id) )
+            if (self.SkillConf.OnlyOnceBuffID != null && !self.OnlyOnceBuffUnitID.Contains(uu.Id))
             {
                 self.OnlyOnceBuffUnitID.Add(uu.Id);
                 for (int y = 0; y < self.SkillConf.OnlyOnceBuffID.Length; y++)
@@ -322,9 +353,8 @@ namespace ET
             return false;
         }
 
-        public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu, int hurtMode = 0)
+        public static bool TriggeSkillHurt(this SkillHandler self, Unit uu, int hurtMode = 0)
         {
-
             //技能伤害为0不执行
             if (hurtMode == 0 && self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0)
             {
@@ -340,15 +370,15 @@ namespace ET
             }
 
             bool clearnTemporary = false;
-            if (self.SkillParValueHpUpAct!=null)
+            if (self.SkillParValueHpUpAct != null)
             {
                 foreach (SkillParValue_HpUpAct now in self.SkillParValueHpUpAct)
                 {
                     float defendUnitHpPro = (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) / (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                     //血量低于
-                    if (now.type == 1) 
+                    if (now.type == 1)
                     {
-                        if (defendUnitHpPro <= now.hpNeedPro) 
+                        if (defendUnitHpPro <= now.hpNeedPro)
                         {
                             self.ActTargetTemporaryAddPro = now.actAddPro;
                             clearnTemporary = true;
@@ -372,12 +402,12 @@ namespace ET
                 return false;
             }
 
-            bool ishit =  Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self, hurtMode);
+            bool ishit = Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self, hurtMode);
             if (clearnTemporary)
             {
                 self.ActTargetTemporaryAddPro = 0;      //清空
             }
-            if (ishit) 
+            if (ishit)
             {
                 self.SkillFirstHurtTime = TimeHelper.ServerNow();
                 self.TheUnitFrom.GetComponent<SkillManagerComponent>().CheckSkillSecond(self, uu.Id);
@@ -406,8 +436,8 @@ namespace ET
                     ishape = new Rectangle();
                     (ishape as Rectangle).s_position = self.TargetPosition;
                     (ishape as Rectangle).s_forward = (Quaternion.Euler(0, targetAngle, 0) * Vector3.forward).normalized;
-                    (ishape as Rectangle).x_range = (float)(self.SkillConf.DamgeRange[0] ) * 0.5f;
-                    (ishape as Rectangle).z_range = (float)(self.SkillConf.DamgeRange[1]  + addRange);
+                    (ishape as Rectangle).x_range = (float)(self.SkillConf.DamgeRange[0]) * 0.5f;
+                    (ishape as Rectangle).z_range = (float)(self.SkillConf.DamgeRange[1] + addRange);
                     break;
                 case 3:
                     ishape = new Fan();
@@ -426,7 +456,7 @@ namespace ET
             if (self.ICheckShape == null || self.ICheckShape.Count == 0)
             {
                 //Log.Debug($"self.ICheckShape == null: {self.SkillConf.SkillName}");
-                self.SetSkillState( SkillState.Finished );
+                self.SetSkillState(SkillState.Finished);
                 return;
             }
 
@@ -503,11 +533,11 @@ namespace ET
             int[] buffTargetTypes = skillBuffConfig.BuffTargetType;
             if (buffTargetTypes != null)
             {
-                for (int i = 0; i < buffTargetTypes.Length;i++)
+                for (int i = 0; i < buffTargetTypes.Length; i++)
                 {
                     if (buffTargetTypes[i] == 0 || buffTargetTypes[i] == uu.Type)
-                    { 
-                        triggerbuff = true; 
+                    {
+                        triggerbuff = true;
                     }
                 }
             }
@@ -539,7 +569,7 @@ namespace ET
                     }
                     break;
                 case 2:
-                    PetComponent petComponent = self.TheUnitFrom.GetComponent<PetComponent>();  
+                    PetComponent petComponent = self.TheUnitFrom.GetComponent<PetComponent>();
                     canBuff = self.TheUnitFrom.IsSameTeam(uu) || self.TheUnitFrom.IsMasterOrPet(uu, petComponent);
                     //if (canBuff && skillBuffConfig.Id == 92000032 && uu.Type == UnitType.Monster)
                     //{
@@ -563,15 +593,16 @@ namespace ET
                 case 7://// 7: 己方召唤兽，包含宠物
                     canBuff = uu.MasterId == self.TheUnitFrom.Id;
                     break;
-                    default
-                    : break;    
+                default
+                    :
+                    break;
             }
 
             if (!canBuff)
             {
                 return;
             }
-            
+
             BuffData buffData = new BuffData();
             buffData.SkillId = self.SkillConf.Id;
             buffData.BuffId = skillBuffConfig.Id;

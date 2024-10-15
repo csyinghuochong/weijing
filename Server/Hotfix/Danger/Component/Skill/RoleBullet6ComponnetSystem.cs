@@ -78,6 +78,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (self.SkillHandler.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
 
                 if (!self.SkillHandler.CheckShape(uu.Position))
                 {
@@ -94,9 +98,9 @@ namespace ET
                     continue;
                 }
 
-                if (!self.SkillHandler.HurtIds.Contains(uu.Id))
+                if (!self.SkillHandler.IfHaveHurtId(uu.Id))
                 {
-                    self.SkillHandler.HurtIds.Add(uu.Id);
+                    self.SkillHandler.OnAddHurtIds(uu.Id);
                 }
 
                 if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu))

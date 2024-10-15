@@ -74,6 +74,10 @@ namespace ET
             {
                 Unit uu = entities[i];
                 //检测目标是否在技能范围
+                if (self.SkillHandler.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
                 if (!self.SkillHandler.CheckShape(uu.Position))
                 {
                     continue;
@@ -112,7 +116,12 @@ namespace ET
                 {
                     continue;
                 }
-                if (self.SkillHandler.HurtIds.Contains(uu.Id))
+
+                if (self.SkillHandler.IfHaveHurtId(uu.Id))
+                {
+                    continue;
+                }
+                if (self.SkillHandler.CheckMaxAttackNumber(uu.Id))
                 {
                     continue;
                 }
@@ -132,7 +141,7 @@ namespace ET
                 }
 
                 //监测到对应碰撞体触发伤害
-                self.SkillHandler.HurtIds.Add(uu.Id);
+                self.SkillHandler.OnAddHurtIds(uu.Id);
                 self.SkillHandler.OnCollisionUnit(uu);
             }
         }

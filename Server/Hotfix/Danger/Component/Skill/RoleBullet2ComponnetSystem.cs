@@ -61,6 +61,17 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.RoleBullet2Timer, self);
         }
 
+        public static bool CheckMaxAttackNumber(this RoleBullet2Componnet self, long unitid)
+        {
+            //MaxAttackNumber ==0 || -1不限制
+            int MaxAttackNumber = self.SkillHandler.SkillConf.MaxAttackNumber;
+            if (MaxAttackNumber > 0 && MaxAttackNumber >= self.HurtIds.Count && !self.HurtIds.Contains(unitid))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static void OnUpdate(this RoleBullet2Componnet self)
         {
             self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
@@ -102,6 +113,11 @@ namespace ET
                 {
                     continue;
                 }
+                if (self.CheckMaxAttackNumber(uu.Id))
+                {
+                    continue;
+                }
+
                 //检测目标是否在技能范围
                 float dic = Vector3.Distance(unit.Position, uu.Position);
                 if (dic > self.DamageRange)

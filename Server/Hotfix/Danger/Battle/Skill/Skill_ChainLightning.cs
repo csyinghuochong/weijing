@@ -67,7 +67,7 @@
 
             if (lastTarget != null && target != null)
             {
-                this.HurtIds.Add(target.Id);
+                this.OnAddHurtIds(target.Id);
                 this.OnCollisionUnit(target);
                 this.BroadcastSkill(lastTarget.Id, target.Id, 0f,0f,0f);
             }
