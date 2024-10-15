@@ -282,6 +282,9 @@ namespace ET
 		/// <summary>技能伤害增加</summary>
 		[ProtoMember(69)]
 		public string SkillDamgeAddValue { get; set; }
+		/// <summary>技能最多攻击人数</summary>
+		[ProtoMember(70)]
+		public int MaxAttackNumber { get; set; }
 
 	}
 }
