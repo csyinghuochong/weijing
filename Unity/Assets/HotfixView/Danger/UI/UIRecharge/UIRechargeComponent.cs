@@ -13,6 +13,7 @@ namespace ET
         public GameObject ImageSelect1;
         public GameObject ButtonAliPay;
         public GameObject ButtonWeiXin;
+        public GameObject ButtonIOSTest;
 
         public GameObject ImageButton;
         public GameObject RechargeList;
@@ -73,7 +74,13 @@ namespace ET
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
             self.PayType = PayTypeEnum.AliPay;
 
-            self.InitRechargeList().Coroutine();
+            self.ButtonIOSTest = rc.Get<GameObject>("ButtonIOSTest");
+            self.ButtonIOSTest.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonIOSTest(); });
+            self.ButtonIOSTest.SetActive(false);
+#if UNITY_IPHONE
+             self.ButtonIOSTest.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+#endif
+             self.InitRechargeList().Coroutine();
 
             if (GlobalHelp.GetPlatform() == 5)
             {
@@ -100,7 +107,7 @@ namespace ET
         {
             long instanceid = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Main/Recharge/UIRechargeItem");
-            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -108,6 +115,11 @@ namespace ET
             self.AssetPath = path;
             foreach (var item in ConfigHelper.RechargeGive)
             {
+                if (item.Key == 1)
+                {
+                    continue;
+                }
+
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(skillItem, self.RechargeList);
                 UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
@@ -117,7 +129,7 @@ namespace ET
             }
         }
 
-        public static  void OnGetRiskControlInfo(this UIRechargeComponent self, string riskControl)
+        public static void OnGetRiskControlInfo(this UIRechargeComponent self, string riskControl)
         {
             Log.ILog.Debug($"OnGetRiskControlInfo: {riskControl}");
             self.RequestRecharge(riskControl).Coroutine();
@@ -182,7 +194,7 @@ namespace ET
                     tips = $"{ErrorHelp.Instance.ErrorHintList[code]} 你本月已充值{fangChenMiComponent.GetMouthTotal()}元";
                 }
 
-                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(),"防沉迷提示", tips, () => { }).Coroutine();
+                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "防沉迷提示", tips, () => { }).Coroutine();
                 return;
             }
             self.ReChargeNumber = chargetNumber;
@@ -226,6 +238,16 @@ namespace ET
 #endif
 
             await ETTask.CompletedTask;
+        }
+
+        public static void OnButtonIOSTest(this UIRechargeComponent self)
+        {
+            string account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
+            if (!GMHelp.GmAccount.Contains(account))
+            {
+                return;
+            }
+            GlobalHelp.OnIOSPurchaseTest();
         }
 
         public static void OnBtn_Close(this UIRechargeComponent self)

@@ -158,6 +158,13 @@ namespace ET
             GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
         }
 
+        //testpay1  商品ID
+        public static void OnIOSPurchaseTest( )
+        {
+            string product = "testpay1";
+            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
+        }
+
         public static void InitIOSPurchase( )
         {
             //builder.AddProduct("6WJ", ProductType.Consumable);
@@ -169,7 +176,7 @@ namespace ET
             //builder.AddProduct("488WJ", ProductType.Consumable);
             //builder.AddProduct("488SG", ProductType.Consumable);
             //builder.AddProduct("648WJ", ProductType.Consumable);
-            string products = "6WJ_30WJ_50WJ_98WJ_198WJ_298WJ_488WJ_488SG_648WJ";
+            string products = "6WJ_30WJ_50WJ_98WJ_198WJ_298WJ_488WJ_488SG_648WJ_testpay1";
             GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
         }
 

@@ -123,7 +123,8 @@ namespace ET
         };
 
         //赠送钻石数量
-        public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(8){
+        public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(9){
+            { 1,        0},
             { 6,        0},
             { 30,       300},
             { 50,       600},
