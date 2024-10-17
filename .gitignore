@@ -112,3 +112,5 @@ Unity/TapTap.Login.Editor.csproj
 Unity/TapTap.TapDB.Editor.csproj
 Unity/TapTap.UI.csproj
 Unity/TapTap.UI.Editor.csproj
+Unity/Assets/Res/Shader/Custom_Color_Test.shader
+Unity/Assets/Res/Shader/Custom_Color_Test.shader.meta
