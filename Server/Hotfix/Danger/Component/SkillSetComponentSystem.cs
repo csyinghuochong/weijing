@@ -1164,7 +1164,7 @@ namespace ET
 		public static void OnChangeJueXing(this SkillSetComponent self, int occOld, int occNew)
 		{
 			Unit unit = self.GetParent<Unit>();
-			Console.WriteLine($"OnChangeJueXing:  {unit.Id}  {occOld}  {occNew}");
+			//Console.WriteLine($"OnChangeJueXing:  {unit.Id}  {occOld}  {occNew}");
 
 			if (occOld == occNew || occOld == 0 || occNew == 0)
 			{

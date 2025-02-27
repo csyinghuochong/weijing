@@ -21,6 +21,7 @@ Opt/
 bin/
 Bin/
 obj/
+publish/
 Release/
 _ReSharper.CSharp/
 *.opensdf
