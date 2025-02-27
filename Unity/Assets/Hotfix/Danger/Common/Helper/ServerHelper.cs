@@ -385,14 +385,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 140, ServerIp = $"{ip}:20505", ServerName = "新年快乐", ServerOpenTime = 1738321200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 141, ServerIp = $"{ip}:20525", ServerName = "恭喜发财", ServerOpenTime = 1738926000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 142, ServerIp = $"{ip}:20565", ServerName = "元宵佳节", ServerOpenTime = 1739530800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2025/02/21 19:00:00 1740135600000 合区 断桥残雪-璀璨梦境 125/127
-            //2025/02/21 19:00:00 1740135600000 合区 花满楼-奇迹之光   131/133
-            //2025/02/21 19:00:00 1740135600000 合区 永恒之境-烽火狼烟 135/136
-            //2025/02/21 19:00:00 1740135600000 合区 千山万水-凤凰于飞 137/138
-            //2025/02/21 19:00:00 1740135600000 新区 湖光月色 143
             serverItems_1.Add(new ServerItem() { ServerId = 143, ServerIp = $"{ip}:20575", ServerName = "湖光月色", ServerOpenTime = 1740135600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+
+
+            //2025/02/28 19:00:00 1740740400000 合区 xx-xx xx/xx
+            //2025/02/28 19:00:00 1740740400000 新区 无尽王国 144
+            serverItems_1.Add(new ServerItem() { ServerId = 144, ServerIp = $"{ip}:20415", ServerName = "无尽王国", ServerOpenTime = 1740740400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
