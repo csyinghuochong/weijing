@@ -201,11 +201,11 @@ namespace ET
 			}
 
 			//学习规则是随机顶掉当前宠物的一个技能
-			if (petinfo.PetSkill.Count > 1 )
+			if (petinfo.PetSkill.Count > 1)
 			{
 				bool delStatus = false;
 				//2技能打3技能
-				if (petinfo.PetSkill.Count < 3) 
+				if (petinfo.PetSkill.Count < 3)
 				{
 					if (RandomHelper.RandFloat01() < 0.4f) {
 						//不删技能
@@ -214,45 +214,67 @@ namespace ET
 				}
 
 				//3技能打4技能
-                if (petinfo.PetSkill.Count == 3)
-                {
-                    if (RandomHelper.RandFloat01() < 0.2f)
-                    {
-                        //不删技能
-                        delStatus = true;
-                    }
-                }
-
-                //随机获取替换的技能ID序号
-                if (!delStatus)
+				if (petinfo.PetSkill.Count == 3)
 				{
-					//int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
+					if (RandomHelper.RandFloat01() < 0.2f)
+					{
+						//不删技能
+						delStatus = true;
+					}
+				}
+
+				//随机获取替换的技能ID序号
+				if (!delStatus)
+				{
+                    //int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
                     //petinfo.PetSkill.RemoveAt(tihuanNum);
-				    using	ListComponent<int> canRemoveSkil = ListComponent<int>.Create();
-					for (int i = 0; i < petinfo.PetSkill.Count; i++)
+                    List<int> canRemoveSkil = new List<int>();	
+                    for (int i = 0; i < petinfo.PetSkill.Count; i++)
 					{
 						if (!petinfo.LockSkill.Contains(petinfo.PetSkill[i]))
 						{
-                            canRemoveSkil.Add(petinfo.PetSkill[i]);
-                        }
+							canRemoveSkil.Add(petinfo.PetSkill[i]);
+						}
 					}
 					//从没有锁定的技能随机删除一个
 					if (canRemoveSkil.Count > 0)
 					{
-                        int tihuanNum = RandomHelper.RandomNumber(0, canRemoveSkil.Count);
-						petinfo.PetSkill.Remove(canRemoveSkil[tihuanNum]);
+						int tihuanNum = RandomHelper.RandomNumber(0, canRemoveSkil.Count);
+						int removeSkill = canRemoveSkil[tihuanNum];
+
+                        petinfo.PetSkill.Remove(removeSkill);
+
+                        for (int i = 0; i < petinfo.LockSkill.Count; i++)
+                        {
+                            Console.WriteLine($"锁定技能: {unit.Id}  {petinfo.LockSkill[i]}  ");
+                        }
+
+                        Console.WriteLine($"移除技能: {unit.Id}  {removeSkill} ");
+                        Console.WriteLine($"添加技能: {unit.Id}  {addSkillID} ");
                     }
 					else
 					{
 						Log.Error($"技能全锁定： {unit.Id} {petinfo.Id}");
 					}
+
 				}
 			}
 
 			petinfo.PetSkill.Add(addSkillID);
 
+            for (int i = 0; i < petinfo.PetSkill.Count; i++)
+            {
+                Console.WriteLine($"最终技能: {unit.Id}   {petinfo.PetSkill[i]}  ");
+            }
 
-			return true;
+			int lockskill = petinfo.LockSkill.Count > 0 ? petinfo.LockSkill[0] : 0;
+			if (lockskill > 0 && !petinfo.PetSkill.Contains(lockskill))
+			{
+                Console.WriteLine($"技能锁定Error  {unit.Id}  {lockskill}");
+			}
+			Console.WriteLine("");
+
+            return true;
 		}
 
 		//宠物自身洗炼
