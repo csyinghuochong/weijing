@@ -59,7 +59,7 @@ namespace ET
                 {
                     //if (request.ThirdLogin == "3" || request.ThirdLogin == "4")
                     response.Error = ErrorCode.ERR_LoginInfoExpire;
-                    Console.WriteLine($"无效设备id:  {dBCenterAccountInfo.Account}  {request.DeviceID}");
+                    //Console.WriteLine($"无效设备id:  {dBCenterAccountInfo.Account}  {request.DeviceID}");
                 }
                 if (dBCenterAccountInfo != null && !string.IsNullOrEmpty(request.DeviceID) && dBCenterAccountInfo.DeviceID != request.DeviceID)
                 {

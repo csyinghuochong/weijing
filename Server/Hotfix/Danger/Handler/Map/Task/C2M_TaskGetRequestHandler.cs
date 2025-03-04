@@ -96,7 +96,7 @@ namespace ET
                 if (taskConfig.TaskType == TaskTypeEnum.Treasure && error == ErrorCode.ERR_Success
                     && mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon && taskPro.FubenId == mapComponent.SceneId)
                 {
-                    Console.WriteLine("副本内接取藏宝图任务！");
+                    //Console.WriteLine("副本内接取藏宝图任务！");
                     
                     int wave = taskPro.WaveId;             //第几波
                     int monsterid = taskConfig.Target[0];       //怪物

@@ -264,7 +264,7 @@ namespace ET
 
             for (int i = 0; i < petinfo.PetSkill.Count; i++)
             {
-                Console.WriteLine($"最终技能: {unit.Id}   {petinfo.PetSkill[i]}  ");
+                Console.WriteLine($"最终技能: {unit.Id}   {petinfo.PetSkill[i]}  {TimeHelper.ServerNow()}");
             }
 
 			int lockskill = petinfo.LockSkill.Count > 0 ? petinfo.LockSkill[0] : 0;
