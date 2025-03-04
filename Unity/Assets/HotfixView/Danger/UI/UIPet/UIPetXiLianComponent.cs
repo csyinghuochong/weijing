@@ -34,7 +34,7 @@ namespace ET
             self.UIPetInfo1 = rc.Get<GameObject>("UIPetInfo1");
          
             self.Btn_XiLian = rc.Get<GameObject>("Btn_XiLian");
-            self.Btn_XiLian.GetComponent<Button>().onClick.AddListener(() => { self.OnClickXiLian().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_XiLian, () => { self.OnClickXiLian().Coroutine(); });
 
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.UIPetInfoShowComponent = null;
