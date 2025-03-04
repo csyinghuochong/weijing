@@ -115,8 +115,8 @@ namespace ET
                         unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                         unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
+                        petInfo.LockSkill.Clear();
                     }
-					petInfo.LockSkill.Clear();
                     response.rolePetInfo = petInfo;
 					ifCost = ifok;
 					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCode.ERR_Pet_AddSkillSame;

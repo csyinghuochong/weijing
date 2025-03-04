@@ -26,7 +26,8 @@ namespace ET
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
 
-            self.LockBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnLockBtn().Coroutine(); });
+            //self.LockBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnLockBtn().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.LockBtn, () => { self.OnLockBtn().Coroutine(); } );
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
         }
     }
