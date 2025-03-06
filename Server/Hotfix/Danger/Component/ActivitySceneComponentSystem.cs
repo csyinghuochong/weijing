@@ -213,6 +213,7 @@ namespace ET
                 self.InitPetMineExtend();
             }
             self.SaveDB();
+            self.CreateRobot(openServerDay).Coroutine();
 
             //每日活动
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.ActivitySceneTimer, self);
@@ -368,6 +369,35 @@ namespace ET
             return ErrorCode.ERR_ItemNotEnoughError;
         }
 
+        private static async ETTask CreateRobot(this ActivitySceneComponent self, int openServerDay)
+        {
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+
+            int createRobotNumber = 0;
+            if (openServerDay >= 30)
+            {
+                createRobotNumber = 10;
+            }
+            else if (openServerDay >= 20)
+            {
+                createRobotNumber = 15;
+            }
+            else if (openServerDay >= 15)
+            {
+                createRobotNumber = 20;
+            }
+            else if (openServerDay >= 10)
+            {
+                createRobotNumber = 25;
+            }
+            else
+            {
+                createRobotNumber = 30;
+            }
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot, Message = $"1001#{createRobotNumber}" });
+        }
+
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DateTime dateTime)
         {
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
@@ -397,32 +427,10 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = hour });
             }
-            if (!ComHelp.IsInnerNet() && self.DomainZone() != 3 && hour == 6)
+            if (/*!ComHelp.IsInnerNet() &&*/ self.DomainZone() != 3 && hour == 6)
             {
                 Log.Warning($"刷新机器人: {self.DomainZone()}");
-                int createRobotNumber = 0;
-                if (openServerDay >= 30)
-                {
-                    createRobotNumber = 10;
-                }
-                else if (openServerDay >= 20)
-                {
-                    createRobotNumber = 15;
-                }
-                else if (openServerDay >= 15)
-                {
-                    createRobotNumber = 20;
-                }
-                else if (openServerDay >= 10)
-                {
-                    createRobotNumber = 25;
-                }
-                else
-                {
-                    createRobotNumber = 30;
-                }
-                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot, Message = $"1001#{createRobotNumber}" });
+                self.CreateRobot(openServerDay).Coroutine();
             }
 
             if (ActivityConfigHelper.GuessRewardList.ContainsKey(hour))

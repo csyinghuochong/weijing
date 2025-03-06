@@ -116,6 +116,7 @@ namespace ET
                         unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                         unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.PetUseSkillBook_36, 0, 1);
                         petInfo.LockSkill.Clear();
+
                     }
                     response.rolePetInfo = petInfo;
 					ifCost = ifok;
@@ -246,11 +247,11 @@ namespace ET
 
                         for (int i = 0; i < petinfo.LockSkill.Count; i++)
                         {
-                            Console.WriteLine($"锁定技能: {unit.Id}  {petinfo.LockSkill[i]}  ");
+                            //Console.WriteLine($"锁定技能: {unit.Id}  {petinfo.LockSkill[i]}  ");
                         }
 
-                        Console.WriteLine($"移除技能: {unit.Id}  {removeSkill} ");
-                        Console.WriteLine($"添加技能: {unit.Id}  {addSkillID} ");
+                        //Console.WriteLine($"移除技能: {unit.Id}  {removeSkill} ");
+                        //Console.WriteLine($"添加技能: {unit.Id}  {addSkillID} ");
                     }
 					else
 					{
@@ -262,17 +263,17 @@ namespace ET
 
 			petinfo.PetSkill.Add(addSkillID);
 
-            for (int i = 0; i < petinfo.PetSkill.Count; i++)
-            {
-                Console.WriteLine($"最终技能: {unit.Id}   {petinfo.PetSkill[i]}  {TimeHelper.ServerNow()}");
-            }
+   //         for (int i = 0; i < petinfo.PetSkill.Count; i++)
+   //         {
+   //             Console.WriteLine($"最终技能: {unit.Id}   {petinfo.PetSkill[i]}  {TimeHelper.ServerNow()}");
+   //         }
 
-			int lockskill = petinfo.LockSkill.Count > 0 ? petinfo.LockSkill[0] : 0;
-			if (lockskill > 0 && !petinfo.PetSkill.Contains(lockskill))
-			{
-                Console.WriteLine($"技能锁定Error  {unit.Id}  {lockskill}");
-			}
-			Console.WriteLine("");
+			//int lockskill = petinfo.LockSkill.Count > 0 ? petinfo.LockSkill[0] : 0;
+			//if (lockskill > 0 && !petinfo.PetSkill.Contains(lockskill))
+			//{
+   //             Console.WriteLine($"技能锁定Error  {unit.Id}  {lockskill}");
+			//}
+			//Console.WriteLine("");
 
             return true;
 		}
