@@ -473,7 +473,7 @@ namespace ET
                         break;
 				}
 
-                unit.GetComponent<DBSaveComponent>().Check_2();
+                //unit.GetComponent<DBSaveComponent>().Check_2();
                 unit.GetComponent<DBSaveComponent>().Activeted();
                
                 if (request.SceneType != SceneTypeEnum.RunRace)

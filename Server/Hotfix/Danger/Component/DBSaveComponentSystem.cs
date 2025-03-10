@@ -9,7 +9,7 @@ namespace ET
         {
             try
             {
-                self.Check();
+                self.SceondCheck();
             }
             catch (Exception e)
             {
@@ -248,26 +248,39 @@ namespace ET
         public static void Activeted(this DBSaveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.DBSaveTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.DBSaveTimer, self);
+
+            Console.WriteLine($" self.SceondIndex: {self.SceondIndex} ");
         }
 
-        public static void Check_2(this DBSaveComponent self)
+        //public static void Check_2(this DBSaveComponent self)
+        //{
+        //    if (self.LastDBTime == 0)
+        //    {
+        //        return;
+        //    }
+        //    if (TimeHelper.ServerNow() - self.LastDBTime >= TimeHelper.Minute)
+        //    {
+        //        self.Check();
+        //    }
+        //}
+
+        public static void SceondCheck(this DBSaveComponent self)
         {
-            if (self.LastDBTime == 0)
-            {
-                return;
-            }
-            if (TimeHelper.ServerNow() - self.LastDBTime >= TimeHelper.Minute)
-            {
-                self.Check();
+            self.SceondIndex++;
+            if (self.SceondIndex >= 60)
+            { 
+                self.SceondIndex = 0;
+
+                self.MinuteCheck();
             }
         }
 
-        public static bool Check(this DBSaveComponent self)
+        public static bool MinuteCheck(this DBSaveComponent self)
         {
-            self.LastDBTime = TimeHelper.ServerNow();
+            //self.LastDBTime = TimeHelper.ServerNow();
             Unit unit = self.GetParent<Unit>();
-            if (self.NoFindPath >= 50)
+            if (self.NoFindPath >= 60)
             {
                 self.NoFindPath = 0;
                 M2C_KickPlayerMessage m2C_KickPlayer = new M2C_KickPlayerMessage();
