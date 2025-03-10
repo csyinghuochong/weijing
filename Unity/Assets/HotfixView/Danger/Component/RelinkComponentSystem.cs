@@ -235,6 +235,12 @@ namespace ET
                 EventType.UnitDead.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
             }
+
+            UI uiFenxiang = UIHelper.GetUI(zoneScene, UIType.UIFenXiang);
+            if (uiFenxiang != null) 
+            {
+                uiFenxiang.GetComponent<UIFenXiangComponent>().OnShareSucess();
+            }
         }
 
         /// <summary>

@@ -155,6 +155,16 @@ namespace ET
             return true;
         }
 
+        public static void OnShareSucess(this UIFenXiangComponent self)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)FenXiangPageEnum.Set];
+            if (ui == null)
+            {
+                return;
+            }
+            ui.GetComponent<UIFenXiangSetComponent>().OnShareSucess();
+        }
+
         public static void OnClickPageButton(this UIFenXiangComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

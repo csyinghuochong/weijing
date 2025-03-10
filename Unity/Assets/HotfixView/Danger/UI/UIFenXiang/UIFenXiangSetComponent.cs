@@ -16,6 +16,8 @@ namespace ET
         public string PopularizeCode;
 
         public int ShareType;
+
+        public bool ShareSucess = false;
     }
 
 
@@ -78,6 +80,7 @@ namespace ET
     public static class UIFenXiangSetComponentSystem
     {
 
+
         public static void OnButton_Taptap(this UIFenXiangSetComponent self)
         {
             if (UnitHelper.IsShared( self.ZoneScene(), 8))
@@ -111,6 +114,16 @@ namespace ET
             Log.Debug($"self.PopularizeCode :{self.PopularizeCode}");
         }
 
+        public static void OnShareSucess(this UIFenXiangSetComponent self)
+        {
+            if (!self.ShareSucess)
+            {
+                return;
+            }
+            self.ShareSucess = false;
+            self.OnShareHandler(  self.ShareType, true ).Coroutine();
+        }
+
         public static async ETTask OnShareHandler(this UIFenXiangSetComponent self, int pType, bool share)
         {
             //1 4微信  2 5QQ     8 taptap
@@ -138,14 +151,31 @@ namespace ET
             }
             Log.ILog.Debug($"OnShareHandler: 333");
             long instanceid = self.InstanceId;
+
+            SessionComponent sessionComponent = self.ZoneScene().GetComponent<SessionComponent>();
+            if (sessionComponent == null)
+            {
+                self.ShareSucess = true;
+                return;
+            }
+
+            if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
+            {
+                self.ShareSucess = true;
+                return;
+            }
+
             C2M_ShareSucessRequest c2M_ShareSucessRequest = new C2M_ShareSucessRequest() { ShareType = sType };
-            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ShareSucessRequest);
+            await sessionComponent.Session.Call(c2M_ShareSucessRequest);
             if (instanceid != self.InstanceId)
             {
+                self.ShareSucess = true;
                 return;
             }
             self.OnUpdateUI();
         }
+
+
 
         public static void OnUpdateUI(this UIFenXiangSetComponent self)
         {
