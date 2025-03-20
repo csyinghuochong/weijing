@@ -250,7 +250,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.DBSaveTimer, self);
 
-            Console.WriteLine($" self.SceondIndex: {self.SceondIndex} ");
+            //Console.WriteLine($" self.SceondIndex: {self.SceondIndex} ");
         }
 
         //public static void Check_2(this DBSaveComponent self)
