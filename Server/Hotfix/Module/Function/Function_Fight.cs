@@ -1545,6 +1545,27 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
 
+            Dictionary<int, long> allprodic = numericComponent.NumericDic;
+            foreach (int key in allprodic.Keys)
+            {
+                //这个范围内的属性为特殊属性不进行重置
+                if (key >= NumericType.Now_Hp && key < NumericType.Max)
+                {
+                    continue;
+                }
+
+                //buff属性重新计算
+                int yushu = key % 100;
+                //203011, 206511
+                if (key == 203011 || key == 206511)  ///暂时先处理这两个
+                ///if (yushu == 11 || yushu == 12)
+                {
+                    long ovalue = allprodic[key];
+                    numericComponent.Set(key, 0, false);
+                    numericComponent.Set(key, ovalue, false);
+                }
+            }
+
             //缓存列表
             Dictionary<int, long> UpdateProDicList = new Dictionary<int, long>();
 
@@ -2691,7 +2712,10 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
 
             // 移除鉴定技能后，因为在技能列表中不存在了，技能改变的属性不会触发通知客户端，所以在这重新触发下这些属性，通知一下客户端
-            List<int> jianDingPro = new List<int>() { 200503, 200703, 200603, 200803, 203603, 100902, 105101, 105201, 105301, 105401, 105501 };
+            List<int> jianDingPro = new List<int>() { 
+                200503, 200703, 200603, 200803, 203603, 100902, 
+                105101, 105201, 105301, 105401, 105501,
+            };
 
             for (int i = 0; i < jianDingPro.Count; i++)
             {
