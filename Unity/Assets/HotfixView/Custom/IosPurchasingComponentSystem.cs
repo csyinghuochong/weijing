@@ -77,19 +77,19 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS  {info}");
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info}");
 
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
 
             //客户端效验
-            FloatTipManager.Instance.ShowFloatTipDi("SendIOS  BBBB");
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .receipt.Payload  {receipt.Payload}");
 
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr = await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
-            HintHelp.GetInstance().ShowHint("SendIOS  CCCC");
+            HintHelp.GetInstance().ShowHint($"SendIOS.postReturnStr  {postReturnStr}");
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {
