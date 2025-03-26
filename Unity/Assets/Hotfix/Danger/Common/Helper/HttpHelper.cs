@@ -77,11 +77,11 @@ namespace ET
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 HttpResponseMessage response = await httpClient.PostAsync(url, httpContent);
                 response.EnsureSuccessStatusCode();//用来抛异常的
-                result = await response.Content.ReadAsStringAsync();
+                result = await response.Content.ReadAsStringAsync(); 
             }
             catch (Exception ex)
             {
-                Log.Info($"Exception ex: {ex}");
+                Log.Error($"Exception ex: {ex}");
                 return "";
             }
             return result;//读取微信返回的数据

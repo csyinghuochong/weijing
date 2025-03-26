@@ -257,7 +257,7 @@ namespace ET
             F2C_FriendBlacklistResponse f2C_FriendApplyResponse = (F2C_FriendBlacklistResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
         }
 
-        public static async ETTask SendIOSPayVerifyRequest(Scene zoneScene, string info)
+        public static async ETTask<string> SendIOSPayVerifyRequest(Scene zoneScene, string info)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
@@ -269,7 +269,7 @@ namespace ET
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
-            HintHelp.GetInstance().ShowHint(postReturnStr);
+            HintHelp.GetInstance().ShowHint($"IOS支付返回:  {postReturnStr}！");
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {   UnitId = unit.Id, 
@@ -277,8 +277,8 @@ namespace ET
                 UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
             };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
-
-            await ETTask.CompletedTask;
+            Log.Error("11111:   " + postReturnStr);
+            return postReturnStr;
         }
 
         public static async ETTask<int> RequestSkillXuanZhuan(Scene zoneScene, int angle)
