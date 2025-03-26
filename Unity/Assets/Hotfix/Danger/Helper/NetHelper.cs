@@ -260,16 +260,20 @@ namespace ET
         public static async ETTask<string> SendIOSPayVerifyRequest(Scene zoneScene, string info)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+
+            HintHelp.GetInstance().ShowHint("SendIOSPayVerifyRequest  AAAA");
+
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
 
             //客户端效验
+            HintHelp.GetInstance().ShowHint("SendIOSPayVerifyRequest  BBBB");
+
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
-
-            HintHelp.GetInstance().ShowHint("SendIOSPayVerifyRequest");
+            HintHelp.GetInstance().ShowHint("SendIOSPayVerifyRequest  CCCC");
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {   UnitId = unit.Id, 
