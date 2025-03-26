@@ -264,7 +264,6 @@ namespace ET
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
 
             //客户端效验
-
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);

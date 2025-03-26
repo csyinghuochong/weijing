@@ -180,13 +180,13 @@ namespace ET
         public static async ETTask OnClickRechargeItem(this UIRechargeComponent self, int chargetNumber)
         {
  #if UNITY_IPHONE
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
-            if (!gm)
-            {
-                FloatTipManager.Instance.ShowFloatTip("苹果平台暂时不能充值！");
-                return;
-            }
+            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            //if (!gm)
+            //{
+            //    FloatTipManager.Instance.ShowFloatTip("苹果平台暂时不能充值！");
+            //    return;
+            //}
 #endif
 
             FangChenMiComponent fangChenMiComponent = self.ZoneScene().GetComponent<FangChenMiComponent>();
