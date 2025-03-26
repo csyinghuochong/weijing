@@ -73,10 +73,6 @@ namespace ET
             //};
             //session.Call(request).Coroutine();
 
-
-            Scene zoneScene = self.ZoneScene();
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-
             FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info.Length}");
 
             Receipt receipt = null;
@@ -105,12 +101,12 @@ namespace ET
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {
-                UnitId = unit.Id,
+                UnitId = UnitHelper.GetMyUnitId(ZoneScene),
                 payMessage = receipt.Payload,
                 //UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
                 UnitName = postReturnStr,
             };
-            zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+            ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
 
             //NetHelper.SendIOSPayVerifyRequest(self.ZoneScene(), info).Coroutine();
             Log.Error("xxxxx: " + info);
