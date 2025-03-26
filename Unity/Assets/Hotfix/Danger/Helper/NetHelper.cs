@@ -269,15 +269,14 @@ namespace ET
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
-            HintHelp.GetInstance().ShowHint($"IOS支付返回:  {postReturnStr}！");
-
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {   UnitId = unit.Id, 
                 payMessage = receipt.Payload,
-                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+                //UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+                UnitName = postReturnStr,
             };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
-            Log.Error("11111:   " + postReturnStr);
+
             return postReturnStr;
         }
 
