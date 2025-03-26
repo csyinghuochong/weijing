@@ -61,12 +61,13 @@ namespace ET
                 return;
             }
 
-            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
-            Log.Debug("payload[内购成功]:" + receipt.Payload);
+            //Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+           // Log.Debug("payload[内购成功]:" + receipt.Payload);
+            //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            //C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
+            //session.Call(request).Coroutine();
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
-            session.Call(request).Coroutine();
+            NetHelper.SendIOSPayVerifyRequest(self.ZoneScene(), info).Coroutine();
 
             UI uirecharget = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
             if (uirecharget != null)
@@ -208,7 +209,7 @@ namespace ET
             string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());
             if (!string.IsNullOrEmpty(info))
             {
-                NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
+                NetHelper.SendIOSPayVerifyRequest(zoneScene, info).Coroutine();
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
                 FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
             }
