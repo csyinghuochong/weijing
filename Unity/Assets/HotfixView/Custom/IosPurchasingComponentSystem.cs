@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -77,13 +78,22 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info}");
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info.Length}");
 
-            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
-            ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
+            Receipt receipt = null;
 
+            try
+            {
+                receipt = JsonHelper.FromJson<Receipt>(info);
+            }
+            catch (Exception ex)
+            {
+                FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. Exception11  {ex.Message}");
+                return;
+            }
+           
             //客户端效验
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .receipt.Payload  {receipt.Payload}");
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .receipt.Payload  {receipt.Payload.Length}");
 
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
