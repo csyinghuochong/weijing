@@ -73,7 +73,6 @@ namespace ET
             //};
             //session.Call(request).Coroutine();
 
-            FloatTipManager.Instance.ShowFloatTipDi($"ios支付返回44:{info}");
 
             Scene zoneScene = self.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
@@ -97,9 +96,12 @@ namespace ET
 
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
+
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .sendStr  {sendStr.Length}");
+
             string postReturnStr = await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
-            HintHelp.GetInstance().ShowHint($"SendIOS.postReturnStr  {postReturnStr}");
+            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS.postReturnStr  {postReturnStr.Length}");
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {
