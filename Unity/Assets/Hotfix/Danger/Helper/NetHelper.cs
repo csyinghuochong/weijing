@@ -268,6 +268,9 @@ namespace ET
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
+
+            HintHelp.GetInstance().ShowHint("SendIOSPayVerifyRequest");
+
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {   UnitId = unit.Id, 
                 payMessage = receipt.Payload,
