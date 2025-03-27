@@ -386,8 +386,8 @@ namespace ET
 
             //2025/03/28 19:00:00 1743159600000 合区 恭喜发财-元宵佳节 141/142
             serverItems_1.Add(new ServerItem() { ServerId = 141, ServerIp = $"{ip}:20525", ServerName = "恭喜发财", ServerOpenTime = 1738926000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-            serverItems_1.Add(new ServerItem() { ServerId = 142, ServerIp = $"{ip}:20565", ServerName = "元宵佳节", ServerOpenTime = 1739530800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
+            serverItems_1.Add(new ServerItem() { ServerId = 142, ServerIp = $"{ip}:20525", ServerName = "元宵佳节", ServerOpenTime = 1739530800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            
 
             serverItems_1.Add(new ServerItem() { ServerId = 143, ServerIp = $"{ip}:20575", ServerName = "湖光月色", ServerOpenTime = 1740135600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 144, ServerIp = $"{ip}:20415", ServerName = "无尽王国", ServerOpenTime = 1740740400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
