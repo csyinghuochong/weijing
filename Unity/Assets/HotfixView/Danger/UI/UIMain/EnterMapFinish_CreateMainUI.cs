@@ -26,7 +26,7 @@ namespace ET
 			string info = PlayerPrefsHelp.GetString("IOS_" + roleId.ToString());
 			if (!string.IsNullOrEmpty(info))
 			{
-				NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
+				NetHelper.SendIOSPayVerifyRequest(zoneScene, info).Coroutine();
 				PlayerPrefsHelp.SetString("IOS_" + roleId.ToString(), string.Empty);
 				FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
 			}

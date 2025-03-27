@@ -109,8 +109,6 @@ namespace ET
             ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
 
             //NetHelper.SendIOSPayVerifyRequest(self.ZoneScene(), info).Coroutine();
-            Log.Error("xxxxx: " + info);
-
             UI uirecharget = UIHelper.GetUI(ZoneScene, UIType.UIRecharge);
             if (uirecharget != null)
             {
