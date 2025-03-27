@@ -136,12 +136,12 @@
 -Ümongodb://localhost:27017/É"	WJBeta134
 -ámongodb://localhost:27017/á"	WJBeta135
 -àmongodb://localhost:27017/á"	WJBeta136
--âmongodb://localhost:27017/â"	WJBeta137
--ämongodb://localhost:27017/â"	WJBeta138
+-âmongodb://localhost:27017/á"	WJBeta137
+-ämongodb://localhost:27017/á"	WJBeta138
 -ãmongodb://localhost:27017/ã"	WJBeta139
--åmongodb://localhost:27017/å"	WJBeta140
+-åmongodb://localhost:27017/ã"	WJBeta140
 -çmongodb://localhost:27017/ç"	WJBeta141
--émongodb://localhost:27017/é"	WJBeta142
+-émongodb://localhost:27017/ç"	WJBeta142
 -èmongodb://localhost:27017/è"	WJBeta143
 -êmongodb://localhost:27017/ê"	WJBeta144
 -ëmongodb://localhost:27017/ë"	WJBeta145
