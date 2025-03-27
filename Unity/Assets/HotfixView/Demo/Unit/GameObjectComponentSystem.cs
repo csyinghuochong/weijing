@@ -335,6 +335,7 @@ namespace ET
         {
             if (self.GameObject == null)
             {
+                //GameObject.Destroy(go);
                 return;
             }
             Unit unit = self.GetParent<Unit>();
