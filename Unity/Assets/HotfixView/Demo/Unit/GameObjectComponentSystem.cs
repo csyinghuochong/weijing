@@ -283,17 +283,22 @@ namespace ET
 
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
+            if (self.ObjectHorse != null)
+            {
+                GameObject.Destroy(self.ObjectHorse);
+                self.ObjectHorse = null;
+            }
+
+            if (go == null)
+            {
+                return;
+            }
             if (self.IsDisposed || self.InstanceId != formId)
             {
                 GameObject.Destroy(go);
                 return;
             }
-            if (go == null)
-            {
-                return;
-            }
-
-            self.ObjectHorse = go;
+           
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.RunRaceTransform) > 0
@@ -335,9 +340,11 @@ namespace ET
         {
             if (self.GameObject == null)
             {
-                //GameObject.Destroy(go);
+                GameObject.Destroy(go);
                 return;
             }
+
+            self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
             go.SetActive(true);
@@ -367,17 +374,39 @@ namespace ET
 
         public static void OnXiaMa(this GameObjectComponent self)
         {
+            self.RecoverHorse();
             if (self.GameObject == null)
             {
                 return;
             }
-            self.RecoverHorse();
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.UnitPlayer.gameObject);
             self.UpdatePositon(self.GetParent<Unit>().Position);
             unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(self.GameObject);
             self.ShowRoleDi(true);
             self.CheckRunState();
+        }
+
+        private static async ETTask RandomSetHorse(this GameObjectComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            long instanceid = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 200));
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            numericComponent.ApplyValue(NumericType.HorseRide, 0);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 200));
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            numericComponent.ApplyValue(NumericType.HorseRide, RandomHelper.RandomNumber(10001, 10012));
         }
 
         public static void OnUpdateHorse(this GameObjectComponent self)
@@ -398,6 +427,8 @@ namespace ET
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
+                self.RecoverHorse();
+
                 MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                 if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
                 {
@@ -495,6 +526,7 @@ namespace ET
                     unit.AddComponent<UIUnitHpComponent>();
 
                     self.OnUpdateHorse();
+                    //self.RandomSetHorse().Coroutine();
                     unit.GetComponent<BuffManagerComponent>()?.InitBuff();
                     unit.GetComponent<SkillManagerComponent>()?.InitSkill();
 

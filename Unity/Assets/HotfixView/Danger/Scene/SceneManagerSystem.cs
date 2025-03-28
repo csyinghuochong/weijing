@@ -53,7 +53,7 @@ namespace ET
             uimain.AfterEnterScene(sceneTypeEnum);
         }
 
-        public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum,int lastScene, int chapterId)
+        public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, int lastScene, int chapterId)
         {
             string paramss = "";
             switch (sceneTypeEnum)
@@ -83,6 +83,14 @@ namespace ET
 
             int sousceneid = scene.GetComponent<MapComponent>().SonSceneId;
             GameObjectPoolComponent.Instance.DisposeAll();
+
+            //unit节点需要全部清空
+            int ccnumber = GlobalComponent.Instance.UnitPlayer.childCount;
+            for (int i = 0; i < ccnumber; i++)
+            {
+                GameObject gggg = GlobalComponent.Instance.UnitPlayer.GetChild(i).gameObject;
+                gggg.SetActive(false);
+            }
 
             await ResourcesComponent.Instance.LoadEmptyScene(ABPathHelper.GetScenePath("Empty"));
             await TimerComponent.Instance.WaitFrameAsync();
