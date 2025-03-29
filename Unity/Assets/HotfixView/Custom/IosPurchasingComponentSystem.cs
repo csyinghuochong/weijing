@@ -93,7 +93,9 @@ namespace ET
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
 
-            string postReturnStr = await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
+            bool gm = GMHelp.GmAccount.Contains(ZoneScene.GetComponent<AccountInfoComponent>().Account);
+            string uurl = gm ? "https://sandbox.itunes.apple.com/verifyReceipt" : "https://buy.itunes.apple.com/verifyReceipt";
+            string postReturnStr = await HttpHelper.GetIosPayParameter(uurl, sendStr);
 
             FloatTipManager.Instance.ShowFloatTipDi($"SendIOS.postReturnStr  {postReturnStr.Length}");
 

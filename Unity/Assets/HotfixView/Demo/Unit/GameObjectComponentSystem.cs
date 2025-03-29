@@ -391,7 +391,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-
+            numericComponent.NumericDic[NumericType.HorseFightID] = 10001;
             long instanceid = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 200));
             if (instanceid != self.InstanceId)
@@ -399,13 +399,13 @@ namespace ET
                 return;
             }
 
-            numericComponent.ApplyValue(NumericType.HorseRide, 0);
+            numericComponent.ApplyValue(NumericType.HorseRide, RandomHelper.RandomNumber(10001, 10012));
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 200));
             if (instanceid != self.InstanceId)
             {
                 return;
             }
-
+            numericComponent.ApplyValue(NumericType.HorseRide, 0);
             numericComponent.ApplyValue(NumericType.HorseRide, RandomHelper.RandomNumber(10001, 10012));
         }
 
