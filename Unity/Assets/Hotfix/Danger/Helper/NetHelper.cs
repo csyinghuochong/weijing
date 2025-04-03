@@ -264,20 +264,19 @@ namespace ET
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
 
             //客户端效验
-            string payLoad = receipt.Payload;
-            string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
-            string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
+            //string payLoad = receipt.Payload;
+            //string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
+            //string postReturnStr =  await HttpHelper.GetIosPayParameter("https://buy.itunes.apple.com/verifyReceipt", sendStr);
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {   
                 UnitId = unit.Id, 
                 payMessage = receipt.Payload,
-                //UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
-                UnitName = postReturnStr,
+                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
             };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
-
-            return postReturnStr;
+            await ETTask.CompletedTask;
+            return string.Empty;
         }
 
         public static async ETTask<int> RequestSkillXuanZhuan(Scene zoneScene, int angle)

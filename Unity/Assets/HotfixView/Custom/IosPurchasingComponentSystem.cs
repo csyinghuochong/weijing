@@ -44,17 +44,12 @@ namespace ET
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
                 return;
             }
-
-            FloatTipManager.Instance.ShowFloatTipDi("ios支付返回22");
-
             Session session = sessionComponent.Session;
             if (session == null || session.IsDisposed)
             {
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
                 return;
             }
-
-            FloatTipManager.Instance.ShowFloatTipDi("ios支付返回33");
 
             MapComponent mapComponent = ZoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum < (int)SceneTypeEnum.MainCityScene)
@@ -72,8 +67,7 @@ namespace ET
             //    UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name,   
             //};
             //session.Call(request).Coroutine();
-
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info.Length}");
+            //FloatTipManager.Instance.ShowFloatTipDi($"SendIOS. info  {info.Length}");
 
             Receipt receipt = null;
 
@@ -88,23 +82,21 @@ namespace ET
             }
            
             //客户端效验
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .receipt.Payload  {receipt.Payload.Length}");
+            //FloatTipManager.Instance.ShowFloatTipDi($"SendIOS .receipt.Payload  {receipt.Payload.Length}");
 
             string payLoad = receipt.Payload;
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
 
-            bool gm = GMHelp.GmAccount.Contains(ZoneScene.GetComponent<AccountInfoComponent>().Account);
-            string uurl = gm ? "https://sandbox.itunes.apple.com/verifyReceipt" : "https://buy.itunes.apple.com/verifyReceipt";
-            string postReturnStr = await HttpHelper.GetIosPayParameter(uurl, sendStr);
-
-            FloatTipManager.Instance.ShowFloatTipDi($"SendIOS.postReturnStr  {postReturnStr.Length}");
+            //bool gm = GMHelp.GmAccount.Contains(ZoneScene.GetComponent<AccountInfoComponent>().Account);
+            // string uurl = gm ? "https://sandbox.itunes.apple.com/verifyReceipt" : "https://buy.itunes.apple.com/verifyReceipt";
+            //string uurl ="https://buy.itunes.apple.com/verifyReceipt";
+            //string postReturnStr = await HttpHelper.GetIosPayParameter(uurl, sendStr);
 
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
             {
                 UnitId = UnitHelper.GetMyUnitId(ZoneScene),
                 payMessage = receipt.Payload,
-                //UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
-                UnitName = postReturnStr,
+                UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
             };
             ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
 
