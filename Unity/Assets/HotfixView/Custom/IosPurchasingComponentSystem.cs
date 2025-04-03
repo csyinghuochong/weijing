@@ -106,6 +106,7 @@ namespace ET
             {
                 uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
             }
+            await ETTask.CompletedTask;
         }
 
         public static void OnIosPayFailCallback(this IosPurchasingComponent self)
