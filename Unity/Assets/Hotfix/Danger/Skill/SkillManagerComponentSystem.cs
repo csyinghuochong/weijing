@@ -461,6 +461,19 @@ namespace ET
             return false;
         }
 
+        public static bool HaveSkillById(this SkillManagerComponent self, int skillId)
+        {
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
+            {
+                if (self.Skills[i].SkillConf.Id == skillId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
         {
             Unit unit = self.GetParent<Unit>();

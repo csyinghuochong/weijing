@@ -384,7 +384,17 @@ namespace ET
                 {
                     grid = self.skillXuHaoList[self.XuHaoNum];
                     useSkillID = uIMainSkillComponent.UISkillGirdList[grid].GetSkillId();
-                    if (skillManagerComponent.CanUseSkill(0, useSkillID) == 0)
+
+
+                    bool canuse = true;
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(useSkillID);
+                    //如果为可打断技能 则判断当前是否存在该技能
+                    if (SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 1) && skillManagerComponent.HaveSkillById(useSkillID))
+                    {
+                        canuse = false;
+                    }
+
+                    if (canuse && skillManagerComponent.CanUseSkill(0, useSkillID) == 0)
                     {
                         break;
                     }
