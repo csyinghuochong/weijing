@@ -363,6 +363,13 @@ namespace ET
             WriteLogList(new List<string>() { log }, filePath, true);
         }
 
+        public static void RelinkInfo(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_Relink.txt";
+            WriteLogList(new List<string>() { log }, filePath, true);
+        }
+
         public static void GongZuoShi(string log)
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;

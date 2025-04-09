@@ -403,6 +403,8 @@ namespace ET
 
             self.RequestChatList().Coroutine();
 
+            self.SendRelinkRecord().Coroutine();
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
             if (userInfo.Lv == 1 || guideid > 0)
@@ -554,6 +556,24 @@ namespace ET
         {
             Vector3 offsetposition = self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().OffsetPostion;
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.CameraParams, $"{offsetposition.x}_{offsetposition.y}_{offsetposition.z}");
+        }
+
+        public static async ETTask SendRelinkRecord(this UIMainComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (!ConfigHelper.RelinkRecordUsers.Contains(userInfo.UserId))
+            {
+                return;
+            }
+            string relinkmsg =  PlayerPrefsHelp.GetString($"{PlayerPrefsHelp.RelinkRecord}_{userInfo.UserId}");
+            if (string.IsNullOrEmpty(relinkmsg))
+            {
+                return;
+            }
+            C2M_RelinkRecordRequest recordRequest = new C2M_RelinkRecordRequest();
+            recordRequest.MessageValue = relinkmsg;
+            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(recordRequest);
+            PlayerPrefsHelp.SetString($"{PlayerPrefsHelp.RelinkRecord}_{userInfo.UserId}", string.Empty);
         }
 
         public static async ETTask RequestChatList(this UIMainComponent self)

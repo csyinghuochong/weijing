@@ -44,6 +44,9 @@ namespace ET
             { 2, new List<string>(){ "我好累,妈妈说累了就可以歇一歇", "好饱啊,我要停下来歇一歇。","唉呀,谁用石头丢了我一下,头好晕哦" } }
         };
 
+
+        public static List<long> RelinkRecordUsers = new List<long>() { 2850615598386315264 };
+
         /// <summary>
         /// 小龟选手 npcconfig
         /// </summary>

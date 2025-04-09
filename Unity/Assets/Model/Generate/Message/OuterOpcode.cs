@@ -896,5 +896,7 @@ namespace ET
 		 public const ushort Center2C_QueryAccountResponse = 10893;
 		 public const ushort C2M_ChangeOccRequest = 10894;
 		 public const ushort M2C_ChangeOccResponse = 10895;
+		 public const ushort C2M_RelinkRecordRequest = 10896;
+		 public const ushort M2C_RelinkRecordResponse = 10897;
 	}
 }

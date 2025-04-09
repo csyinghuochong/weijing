@@ -7809,3 +7809,17 @@ message M2C_ChangeOccResponse	// IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_RelinkRecordResponse
+message C2M_RelinkRecordRequest		// IActorLocationRequest
+{
+	int32 RpcId = 90;
+	string MessageValue = 1;
+}
+
+message M2C_RelinkRecordResponse	// IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
