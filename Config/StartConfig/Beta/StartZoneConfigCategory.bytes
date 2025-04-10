@@ -124,12 +124,12 @@
 +zmongodb://localhost:27017/y"	WJBeta122
 +{mongodb://localhost:27017/y"	WJBeta123
 +|mongodb://localhost:27017/y"	WJBeta124
-+}mongodb://localhost:27017/}"	WJBeta125
-+~mongodb://localhost:27017/}"	WJBeta126
-+mongodb://localhost:27017/}"	WJBeta127
++}mongodb://localhost:27017/y"	WJBeta125
++~mongodb://localhost:27017/y"	WJBeta126
++mongodb://localhost:27017/y"	WJBeta127
 -Ämongodb://localhost:27017/Ä"	WJBeta128
-,Åmongodb://localhost:27017/}"	WJBeta129
-,Çmongodb://localhost:27017/}"	WJBeta130
+,Åmongodb://localhost:27017/y"	WJBeta129
+,Çmongodb://localhost:27017/y"	WJBeta130
 -Émongodb://localhost:27017/É"	WJBeta131
 -Ñmongodb://localhost:27017/É"	WJBeta132
 -Ömongodb://localhost:27017/É"	WJBeta133
@@ -143,11 +143,12 @@
 -çmongodb://localhost:27017/ç"	WJBeta141
 -émongodb://localhost:27017/ç"	WJBeta142
 -èmongodb://localhost:27017/è"	WJBeta143
--êmongodb://localhost:27017/ê"	WJBeta144
+-êmongodb://localhost:27017/è"	WJBeta144
 -ëmongodb://localhost:27017/ë"	WJBeta145
--ímongodb://localhost:27017/í"	WJBeta146
+-ímongodb://localhost:27017/ë"	WJBeta146
 -ìmongodb://localhost:27017/ì"	WJBeta147
 -îmongodb://localhost:27017/î"	WJBeta148
 -ïmongodb://localhost:27017/ï"	WJBeta149
+-ñmongodb://localhost:27017/ñ"	WJBeta150
 5 mongodb://localhost:27017/ "WJBeta202(center)
 4Àmongodb://localhost:27017/À"WJBeta203(robot)
