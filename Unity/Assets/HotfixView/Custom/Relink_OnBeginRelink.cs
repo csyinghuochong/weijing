@@ -16,7 +16,7 @@
                 return;
             }
 
-            PlayerPrefsHelp.RecordRelinkMessage($"Session断开准备重连！！");
+            PlayerPrefsHelp.RecordRelinkMessage($"Session断开准备重连.SesszionError.{args.ErrorCode}！！");
             args.ZoneScene.GetComponent<RelinkComponent>().CheckRelink().Coroutine();
         }
     }

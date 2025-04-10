@@ -106,6 +106,7 @@ namespace ET
         {
             public static readonly BeginRelink Instance = new BeginRelink();
             public Scene ZoneScene;
+            public int ErrorCode;
         }
 
         public class RelinkSucess : DisposeObject

@@ -73,7 +73,14 @@ namespace ET
             if (self.DisconnectType == 0 && mapComponent.SceneTypeEnum >= SceneTypeEnum.MainCityScene)
             {
                 Log.ILog.Debug($"PingComponent: {self.DisconnectType} Destroy:BeginRelink");
+
                 EventType.BeginRelink.Instance.ZoneScene = self.DomainScene();
+                EventType.BeginRelink.Instance.ErrorCode = 0;
+                if (self.GetParent<Session>() != null)
+                {
+                    Log.Debug("self.GetParent<Session>() != null");
+                    EventType.BeginRelink.Instance.ErrorCode = self.GetParent<Session>().Error;
+                }
                 Game.EventSystem.PublishClass(EventType.BeginRelink.Instance);
             }
             else
