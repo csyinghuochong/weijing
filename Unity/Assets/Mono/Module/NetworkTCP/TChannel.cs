@@ -5,10 +5,10 @@ using System.Net.Sockets;
 
 namespace ET
 {
-	/// <summary>
-	/// 封装Socket,将回调push到主线程处理
-	/// </summary>
-	public sealed class TChannel: AChannel
+    /// <summary>
+    /// 封装Socket,将回调push到主线程处理
+    /// </summary>
+    public sealed class TChannel: AChannel
 	{
 		private readonly TService Service;
 		private Socket socket;
@@ -55,6 +55,7 @@ namespace ET
 			this.Id = id;
 			this.Service = service;
 			this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
 			this.socket.NoDelay = true;
 			this.parser = new PacketParser(this.recvBuffer, this.Service);
 			this.innArgs.Completed += this.OnComplete;
@@ -63,27 +64,29 @@ namespace ET
 			this.RemoteAddress = ipEndPoint;
 			this.isConnected = false;
 			this.isSending = false;
+            Log.Debug($"TChannel.this.socket111_a:   {id}   RemoteAddress: {this.RemoteAddress.ToString()}");
+            this.Service.ThreadSynchronizationContext.PostNext(this.ConnectAsync);
+            
+        }
 
-			this.Service.ThreadSynchronizationContext.PostNext(this.ConnectAsync);
-		}
-		
-		public TChannel(long id, Socket socket, TService service)
+        public TChannel(long id, Socket socket, TService service)
 		{
 			this.ChannelType = ChannelType.Accept;
 			this.Id = id;
 			this.Service = service;
 			this.socket = socket;
-			this.socket.NoDelay = true;
+        
+            this.socket.NoDelay = true;
 			this.parser = new PacketParser(this.recvBuffer, this.Service);
 			this.innArgs.Completed += this.OnComplete;
 			this.outArgs.Completed += this.OnComplete;
 
 			this.RemoteAddress = (IPEndPoint)socket.RemoteEndPoint;
-			this.isConnected = true;
+            this.isConnected = true;
 			this.isSending = false;
-			
-			// 下一帧再开始读写
-			this.Service.ThreadSynchronizationContext.PostNext(() =>
+            Log.Debug($"TChannel.this.socket222:   {id}  LocalEndPoint:{this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
+            // 下一帧再开始读写
+            this.Service.ThreadSynchronizationContext.PostNext(() =>
 			{
 				this.StartRecv();
 				this.StartSend();
@@ -163,9 +166,11 @@ namespace ET
 			this.outArgs.RemoteEndPoint = this.RemoteAddress;
 			if (this.socket.ConnectAsync(this.outArgs))
 			{
-				return;
+                Log.Debug($"TChannel.this.socket111_b:   {this.Id}   LocalEndPoint:{(IPEndPoint)this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
+                return;
 			}
-			OnConnectComplete(this.outArgs);
+          
+            OnConnectComplete(this.outArgs);
 		}
 
 		private void OnConnectComplete(object o)
@@ -407,7 +412,7 @@ namespace ET
 			
 			this.Service.Remove(channelId);
 			
-			this.Service.OnError(channelId, error);
+            this.Service.OnError(channelId, error);
 		}
 
 #endregion
