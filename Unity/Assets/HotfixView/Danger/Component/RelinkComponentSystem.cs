@@ -124,6 +124,7 @@ namespace ET
                 }
                 if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
                 {
+                    PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} 切换到前台发现掉线准备重连！！");
                     self.CheckRelink().Coroutine();
                 }
             }
@@ -258,11 +259,14 @@ namespace ET
                         PlayerComponent.ServerIp,
                         PlayerComponent.Account,
                         PlayerComponent.Password, true, string.Empty, PlayerComponent.LoginType);
+
+            PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} 重连LoginHelper.Login  {code}！！");
             if (code != ErrorCode.ERR_Success)
             {
                 return code;
             }
             code = await LoginHelper.GetRealmKey(self.DomainScene());
+            PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} 重连LoginHelper.GetRealmKey  {code}！！");
             if (code != ErrorCode.ERR_Success)
             {
                 return code;
@@ -280,6 +284,7 @@ namespace ET
             string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
 #endif
             code = await LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, true, GlobalHelp.GetPlatform());
+            PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} 重连LoginHelper.EnterGame  {code}！！");
             return code;
         }
 

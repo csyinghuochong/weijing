@@ -15,6 +15,8 @@
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
                 return;
             }
+
+            PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} Session断开准备重连！！");
             args.ZoneScene.GetComponent<RelinkComponent>().CheckRelink().Coroutine();
         }
     }

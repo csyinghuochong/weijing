@@ -560,19 +560,19 @@ namespace ET
 
         public static async ETTask SendRelinkRecord(this UIMainComponent self)
         {
-            string userInfo = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
-            if (!ConfigHelper.RelinkRecordUsers.Contains(userInfo))
-            {
-                return;
-            }
             string relinkmsg =  PlayerPrefsHelp.GetString(PlayerPrefsHelp.RelinkRecord);
             if (string.IsNullOrEmpty(relinkmsg))
             {
                 return;
             }
-            C2M_RelinkRecordRequest recordRequest = new C2M_RelinkRecordRequest();
-            recordRequest.MessageValue = relinkmsg;
-            await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(recordRequest);
+
+            string account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
+            if (ConfigHelper.RelinkRecordUsers.Contains(account))
+            {
+                C2M_RelinkRecordRequest recordRequest = new C2M_RelinkRecordRequest();
+                recordRequest.MessageValue = relinkmsg;
+                await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(recordRequest);
+            }
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.RelinkRecord, string.Empty);
         }
 

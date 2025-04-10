@@ -148,7 +148,7 @@ namespace ET
             {
                 oldmsg += "&" + message;
             }
-            SetString(RelinkRecord, message);
+            SetString(RelinkRecord, oldmsg);
         }
 
         public static void SetChapterDifficulty(string chapterid, int difficulty)
