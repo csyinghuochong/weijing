@@ -16,7 +16,7 @@
                 return;
             }
 
-            PlayerPrefsHelp.RecordRelinkMessage($"{TimeHelper.ServerNow()} Session断开准备重连！！");
+            PlayerPrefsHelp.RecordRelinkMessage($"Session断开准备重连！！");
             args.ZoneScene.GetComponent<RelinkComponent>().CheckRelink().Coroutine();
         }
     }

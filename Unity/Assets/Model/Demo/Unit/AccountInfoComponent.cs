@@ -26,6 +26,8 @@ namespace ET
 
 		public int TodayCreateRole;
 
+		public int RelinkRecord;
+
         //当前登录角色
         public int ServerId;
 		public string ServerIp;

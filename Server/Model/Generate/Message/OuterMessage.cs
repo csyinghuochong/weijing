@@ -1312,6 +1312,9 @@ namespace ET
 		[ProtoMember(13)]
 		public int TodayCreateRole { get; set; }
 
+		[ProtoMember(14)]
+		public int RelinkRecord { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_Disconnect)]

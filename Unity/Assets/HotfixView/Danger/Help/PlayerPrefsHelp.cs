@@ -139,6 +139,9 @@ namespace ET
 
         public static void RecordRelinkMessage(string message)
         {
+            string timenow = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString();
+            message = timenow + "  " + message;
+
             string oldmsg = GetString(RelinkRecord);
             if (string.IsNullOrEmpty(oldmsg))
             {

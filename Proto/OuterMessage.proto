@@ -643,6 +643,7 @@ message A2C_LoginAccount // IResponse
 	repeated CreateRoleInfo RoleLists = 9;
 	string TaprepRequest = 10;
 	int32 TodayCreateRole = 13;
+	int32 RelinkRecord = 14;
 }
 
 message A2C_Disconnect	//IMessage

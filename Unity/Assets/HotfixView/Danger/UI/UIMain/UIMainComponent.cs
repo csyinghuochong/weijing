@@ -566,8 +566,8 @@ namespace ET
                 return;
             }
 
-            string account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
-            if (ConfigHelper.RelinkRecordUsers.Contains(account))
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (accountInfoComponent.RelinkRecord == 1)
             {
                 C2M_RelinkRecordRequest recordRequest = new C2M_RelinkRecordRequest();
                 recordRequest.MessageValue = relinkmsg;
@@ -2409,7 +2409,8 @@ namespace ET
 
         public static void OnBtn_Friend(this UIMainComponent self)
         {
-            UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
+            //UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Dispose();
         }
 
         public static void OnButton_HongBao(this UIMainComponent self)

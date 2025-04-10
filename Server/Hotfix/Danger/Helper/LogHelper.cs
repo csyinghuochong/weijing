@@ -365,7 +365,7 @@ namespace ET
 
         public static void RelinkInfo(string log)
         {
-            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            //log = TimeHelper.DateTimeNow().ToString() + " " + log;
             string filePath = "../Logs/WJ_Relink.txt";
             WriteLogList(new List<string>() { log }, filePath, true);
         }
