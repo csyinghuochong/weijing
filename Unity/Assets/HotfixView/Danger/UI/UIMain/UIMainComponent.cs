@@ -560,12 +560,12 @@ namespace ET
 
         public static async ETTask SendRelinkRecord(this UIMainComponent self)
         {
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (!ConfigHelper.RelinkRecordUsers.Contains(userInfo.UserId))
+            string userInfo = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
+            if (!ConfigHelper.RelinkRecordUsers.Contains(userInfo))
             {
                 return;
             }
-            string relinkmsg =  PlayerPrefsHelp.GetString($"{PlayerPrefsHelp.RelinkRecord}_{userInfo.UserId}");
+            string relinkmsg =  PlayerPrefsHelp.GetString(PlayerPrefsHelp.RelinkRecord);
             if (string.IsNullOrEmpty(relinkmsg))
             {
                 return;
@@ -573,7 +573,7 @@ namespace ET
             C2M_RelinkRecordRequest recordRequest = new C2M_RelinkRecordRequest();
             recordRequest.MessageValue = relinkmsg;
             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(recordRequest);
-            PlayerPrefsHelp.SetString($"{PlayerPrefsHelp.RelinkRecord}_{userInfo.UserId}", string.Empty);
+            PlayerPrefsHelp.SetString(PlayerPrefsHelp.RelinkRecord, string.Empty);
         }
 
         public static async ETTask RequestChatList(this UIMainComponent self)

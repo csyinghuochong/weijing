@@ -137,6 +137,20 @@ namespace ET
             return 1;
         }
 
+        public static void RecordRelinkMessage(string message)
+        {
+            string oldmsg = GetString(RelinkRecord);
+            if (string.IsNullOrEmpty(oldmsg))
+            {
+                oldmsg = message;
+            }
+            else
+            {
+                oldmsg += "&" + message;
+            }
+            SetString(RelinkRecord, message);
+        }
+
         public static void SetChapterDifficulty(string chapterid, int difficulty)
         {
             string difficultyinfo = GetString(ChapterDifficulty);

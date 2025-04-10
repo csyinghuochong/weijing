@@ -45,7 +45,7 @@ namespace ET
         };
 
 
-        public static List<long> RelinkRecordUsers = new List<long>() { 2850615598386315264 };
+        public static List<string> RelinkRecordUsers = new List<long>() { "67d1a1ef49588a937968b1fe" };
 
         /// <summary>
         /// 小龟选手 npcconfig
