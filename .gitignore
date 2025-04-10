@@ -76,7 +76,6 @@ Unity2/
 /Unity/Assembly-CSharp.csproj
 /Unity/Packages/packages-lock.json
 /Excel/~$*.xlsx
-Tools/App/Apps/
 /.vscode
 SampleClass.cs
 Unity/UnityProject.zip
