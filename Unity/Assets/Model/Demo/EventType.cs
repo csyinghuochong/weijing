@@ -362,6 +362,23 @@ namespace ET
             public int errorValue;
         }
 
+        public class SessionCreate : DisposeObject
+        {
+            public static readonly SessionCreate Instance = new SessionCreate();
+            public Scene ZoneScene;
+            public string RemoteAddress;
+            public long SessionId;
+        }
+
+        public class SessionDispose : DisposeObject
+        {
+            public static readonly SessionDispose Instance = new SessionDispose();
+            public Scene ZoneScene;
+            public string RemoteAddress;
+            public long SessionId;
+            public int ErrorCode;
+        }
+
         /// <summary>
         /// 好友申请
         /// </summary>

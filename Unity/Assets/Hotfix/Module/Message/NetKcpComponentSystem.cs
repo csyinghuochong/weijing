@@ -97,6 +97,13 @@ namespace ET
             
             self.Service.GetOrCreate(session.Id, realIPEndPoint);
 
+#if !NOT_UNITY
+            EventType.SessionCreate.Instance.ZoneScene = self.DomainScene();
+            EventType.SessionCreate.Instance.RemoteAddress = realIPEndPoint.ToString();
+            EventType.SessionCreate.Instance.SessionId = channelId;
+           EventSystem.Instance.PublishClass(EventType.SessionCreate.Instance);
+#endif
+
             return session;
         }
     }

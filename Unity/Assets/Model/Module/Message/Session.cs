@@ -42,6 +42,15 @@ namespace ET
         {
             public override void Destroy(Session self)
             {
+
+#if !NOT_UNITY
+                EventType.SessionDispose.Instance.ZoneScene = self.DomainScene();
+                EventType.SessionDispose.Instance.RemoteAddress = self.RemoteAddress.ToString();
+                EventType.SessionDispose.Instance.SessionId = self.Id;
+                EventType.SessionDispose.Instance.ErrorCode = self.Error;
+                EventSystem.Instance.PublishClass(EventType.SessionDispose.Instance);
+#endif
+
                 self.AService.RemoveChannel(self.Id);
             
                 foreach (RpcInfo responseCallback in self.requestCallbacks.Values.ToArray())

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using UnityEngine;
 
 namespace ET
@@ -108,6 +109,20 @@ namespace ET
             }
         }
 
+        static string GetLocalIp()
+        {
+            string addressIP = string.Empty;
+            foreach (IPAddress ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if (ipAddress.AddressFamily.ToString() == "InterNetwork")
+                {
+                    addressIP = ipAddress.ToString();
+                    break;
+                }
+            }
+            return addressIP;
+        }
+
         public static void OnApplicationFocusHandler(this RelinkComponent self, bool value)
         {
             if (value)
@@ -124,7 +139,10 @@ namespace ET
                 }
                 if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
                 {
-                    PlayerPrefsHelp.RecordRelinkMessage($"切换到前台发现掉线准备重连！！");
+
+
+
+                    PlayerPrefsHelp.RecordRelinkMessage($"切换到前台发现掉线准备重连  {GetLocalIp()}！！");
                     self.CheckRelink().Coroutine();
                 }
             }
