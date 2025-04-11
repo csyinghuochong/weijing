@@ -27,6 +27,17 @@ namespace ET
                 return;
             }
 
+            //有人做作弊器修改了客户端时间 ，战斗时间超过一分钟则判定失败。
+            long usetime = TimeHelper.ServerNow() - self.BeginTime;
+            if (usetime <= 0 || usetime > TimeHelper.Second * 70)
+            {
+                Console.WriteLine($"TrialDungeon  usetime <= 0 || usetime > TimeHelper.Second * 70");
+                M2C_FubenSettlement m2C_FubenSettlement_0 = new M2C_FubenSettlement();
+                m2C_FubenSettlement_0.BattleResult = CombatResultEnum.Fail;
+                MessageHelper.SendToClient(players[0], m2C_FubenSettlement_0);
+                return;
+            }
+
             self.UploadHurtValue().Coroutine();
 
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
