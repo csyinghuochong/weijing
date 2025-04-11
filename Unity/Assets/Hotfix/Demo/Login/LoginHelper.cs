@@ -68,6 +68,13 @@ namespace ET
             {
                 accountSession?.Dispose();
                 Log.Error(e.ToString());
+
+#if !NOT_UNITY
+                EventType.LoginException.Instance.ZoneScene = zoneScene;
+                EventType.LoginException.Instance.Exception = e.ToString();
+                EventSystem.Instance.PublishClass(EventType.LoginException.Instance);
+#endif
+
                 return ErrorCode.ERR_NetWorkError;
             }
 

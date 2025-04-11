@@ -22,7 +22,17 @@ namespace ET
             EventType.SessionDispose args = cls as EventType.SessionDispose;
             PlayerPrefsHelp.RecordRelinkMessage($"SessionDispose : {args.SessionId}   {args.RemoteAddress}£¡£¡");
         }
+    }
 
+    [Event]
+    public class Session_LoginException : AEventClass<EventType.LoginException>
+    {
+
+        protected override void Run(object cls)
+        {
+            EventType.LoginException args = cls as EventType.LoginException;
+            PlayerPrefsHelp.RecordRelinkMessage($"LoginException :    {args.Exception}£¡£¡");
+        }
     }
 }
 

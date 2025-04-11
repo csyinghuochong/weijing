@@ -139,9 +139,6 @@ namespace ET
                 }
                 if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
                 {
-
-
-
                     PlayerPrefsHelp.RecordRelinkMessage($"切换到前台发现掉线准备重连  {GetLocalIp()}！！");
                     self.CheckRelink().Coroutine();
                 }
@@ -165,6 +162,7 @@ namespace ET
             self.Relink = true;
             Log.ILog.Debug($"重连请求！！");
             UIHelper.Create(self.DomainScene(), UIType.UIRelink).Coroutine();
+            PlayerPrefsHelp.RecordRelinkMessage($"开始重连！！");
             for (int i = 0; i < 5; i++)
             {
                 long instanceid = self.InstanceId;
@@ -174,7 +172,7 @@ namespace ET
                     break;
                 }
 
-                await TimerComponent.Instance.WaitAsync(3000);
+                await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
@@ -184,7 +182,7 @@ namespace ET
                     break;
                 }
                 Log.ILog.Debug($"重连请求22！！ {self.Relink}");
-                self.SendLogin().Coroutine();
+                await self.SendLogin();
                 if(i == 4)
                 {
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);

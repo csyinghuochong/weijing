@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Net;
+
+namespace ET
 {
 
     [Event]
@@ -16,8 +18,22 @@
                 return;
             }
 
-            PlayerPrefsHelp.RecordRelinkMessage($"Session断开准备重连.SesszionError.{args.ErrorCode}！！");
+            PlayerPrefsHelp.RecordRelinkMessage($"Session断开准备重连.SesszionError.{GetLocalIp()} {args.ErrorCode}！！");
             args.ZoneScene.GetComponent<RelinkComponent>().CheckRelink().Coroutine();
+        }
+
+        static string GetLocalIp()
+        {
+            string addressIP = string.Empty;
+            foreach (IPAddress ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if (ipAddress.AddressFamily.ToString() == "InterNetwork")
+                {
+                    addressIP = ipAddress.ToString();
+                    break;
+                }
+            }
+            return addressIP;
         }
     }
 }

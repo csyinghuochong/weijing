@@ -379,6 +379,13 @@ namespace ET
             public int ErrorCode;
         }
 
+        public class LoginException : DisposeObject
+        {
+            public static readonly LoginException Instance = new LoginException();
+            public Scene ZoneScene;
+            public string Exception;
+        }
+
         /// <summary>
         /// 好友申请
         /// </summary>
