@@ -778,7 +778,24 @@ namespace ET
                 self.SkillCDs.Add(skillId, skillcd);
             }
             skillcd.SkillID = skillId;
-            skillcd.CDEndTime = TimeHelper.ServerNow() + 400;
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
+            int EquipType = UnitHelper.GetEquipType(unit);
+            List<int> normalskillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 1000, 1000 } : new List<int>() { 700, 700, 700 };
+            for (int i = 0; i < normalskillCDs.Count; i++)
+            {
+                normalskillCDs[i] = (int)(normalskillCDs[i] / attackSpped);
+            }
+
+            int comindex = 0;
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            if (skillConfig.ComboSkillID > 0)
+            {
+                comindex = (weaponSkill % 10) - 1;
+            }
+            comindex = Math.Clamp(comindex, 0, normalskillCDs.Count - 1);
+            skillcd.CDEndTime = TimeHelper.ServerNow() + normalskillCDs[comindex] ;
 
             return null;
         }
