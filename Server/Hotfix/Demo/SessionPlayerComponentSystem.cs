@@ -26,6 +26,7 @@ namespace ET
 					Log.Debug($"SessionPlayerComponent  player == null {self.AccountId}");
 					return;
 				}
+
 				Log.Debug($"SessionPlayerDestroy zone: {self.DomainZone()} self.isLoginAgain = {self.isLoginAgain}: player.Id:{player.Id} player.InstanceId:{player.InstanceId}");
 				ActorLocationSenderComponent.Instance.Send(self.PlayerId, new G2M_SessionDisconnect());
 				player.RemoveComponent<PlayerOfflineOutTimeComponent>();

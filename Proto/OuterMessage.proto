@@ -7778,22 +7778,6 @@ message R2C_LoginGatemCheck // IResponse
 	string GateAddress = 2;
 }
 
-//ResponseType Center2C_BlackAccountResponse
-message C2Center_QueryAccountRequest // IRequest
-{
-	int32 RpcId = 90;
-	string UserName = 1;
-}
-
-message Center2C_QueryAccountResponse // IResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string Account = 1;
-	string Password = 2;
-}
-
 //ResponseType M2C_ChangeOccResponse
 //转换第一职业
 message C2M_ChangeOccRequest		// IActorLocationRequest
@@ -7823,4 +7807,23 @@ message M2C_RelinkRecordResponse	// IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+}
+
+/////////////////////
+
+//#################一定要放在最后
+//ResponseType Center2C_BlackAccountResponse
+message C2Center_QueryAccountRequest // IRequest
+{
+	int32 RpcId = 90;
+	string UserName = 1;
+}
+
+message Center2C_QueryAccountResponse // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string Account = 1;
+	string Password = 2;
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-	public class C2G_EnterGameHandler : AMRpcHandler<C2G_EnterGame, G2C_EnterGame>
+    public class C2G_EnterGameHandler : AMRpcHandler<C2G_EnterGame, G2C_EnterGame>
 	{
 		protected override async ETTask Run(Session session, C2G_EnterGame request, G2C_EnterGame response, Action reply)
 		{
@@ -145,7 +145,7 @@ namespace ET
 					Log.Warning($"账号登录(EnterGame):{session.DomainZone()} {accountInfoList[0].Account} {request.UserID} {request.DeviceName} {moniq}");
                     if (instanceId != session.InstanceId || player.IsDisposed)
 					{
-						LogHelper.LogDebug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
+                        Log.Debug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
 						response.Error = ErrorCode.ERR_PlayerSessionError;
 						reply();
 						return;
@@ -155,7 +155,7 @@ namespace ET
 					if (session.GetComponent<SessionStateComponent>() != null
 						&& session.GetComponent<SessionStateComponent>().State == SessionState.Game)
 					{
-						LogHelper.LogDebug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
+						Log.Debug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
 						response.Error = ErrorCode.ERR_SessionStateError;
 						reply();
 						return;
@@ -180,7 +180,7 @@ namespace ET
 						try
 						{
                             //重连 [二次登录不成功可能导致Unit没移除]
-                            LogHelper.LogDebug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            Log.Debug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.GetActorId(), new G2M_RequestEnterGameState()
 							{
@@ -188,7 +188,7 @@ namespace ET
 							});
                             if (reqEnter.Error == ErrorCode.ERR_Success)
                             {
-								LogHelper.LogDebug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
+                                Log.Debug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
                                 reply();
                                 return;
                             }
@@ -260,7 +260,7 @@ namespace ET
 
                         if (session.DomainZone() == 0)
                         {
-                            LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            Log.Debug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
                             response.Error = ErrorCode.ERR_SessionStateError;
                             reply();
                             return;
