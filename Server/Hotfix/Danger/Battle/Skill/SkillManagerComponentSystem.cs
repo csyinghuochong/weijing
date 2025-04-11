@@ -766,11 +766,39 @@ namespace ET
             }
         }
 
+        private static int GetFirstComSkill(this SkillManagerComponent self, int skillId, int comskill)
+        {
+
+            while (true)
+            {
+                if (!SkillConfigCategory.Instance.Contain(skillId - 1))
+                {
+                    break;
+                }
+                if (SkillConfigCategory.Instance.Get(skillId - 1).ComboSkillID != skillId)
+                {
+                    break;
+                }
+
+                skillId--;
+            }
+
+            return skillId;
+        }
+
         public static SkillCDItem UpdateNormalCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool zhudong)
         {
             Unit unit = self.GetParent<Unit>();
             //int equipType = UnitHelper.GetEquipType(unit);
             SkillCDItem skillcd = null;
+
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.ComboSkillID > 0)
+            {
+                skillId = self.GetFirstComSkill(skillId, skillConfig.ComboSkillID);
+            }
+
+
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
@@ -789,14 +817,13 @@ namespace ET
             }
 
             int comindex = 0;
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
             if (skillConfig.ComboSkillID > 0)
             {
-                comindex = (weaponSkill % 10) - 1;
+                comindex = (skillId % 10) - 1;
             }
             comindex = Math.Clamp(comindex, 0, normalskillCDs.Count - 1);
             skillcd.CDEndTime = TimeHelper.ServerNow() + normalskillCDs[comindex] ;
-
+            //Console.WriteLine($"add cd {skillId}   {skillcd.CDEndTime}");
             return null;
         }
 
@@ -960,6 +987,11 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
 
+            if (skillConfig.ComboSkillID > 0)
+            {
+                nowSkillID = self.GetFirstComSkill(nowSkillID, skillConfig.ComboSkillID);
+            }
+
             //判断技能是否再冷却中
             long serverNow = TimeHelper.ServerNow();
             SkillCDItem skillCDItem = null;
@@ -969,11 +1001,24 @@ namespace ET
             {
                 return ErrorCode.ERR_UseSkillInCD4;
             }
+
             //主动技能触发冷却CD
             if (zhudong && skillCDItem != null && serverNow < skillCDItem.CDEndTime)
             {
+                //Console.WriteLine($"check cd {nowSkillID}   {skillCDItem.CDEndTime}  {serverNow}   false");
                 return ErrorCode.ERR_UseSkillInCD3;
             }
+
+            //if (skillCDItem == null)
+            //{
+            //    Console.WriteLine($"check cd {nowSkillID}   skillCDItem == null");
+            //}
+            //else
+            //{
+
+            //    Console.WriteLine($"check cd {nowSkillID}   {skillCDItem.CDEndTime}  {serverNow}   true");
+
+            //}
 
             if (unit.Type == UnitType.Monster)
             {
