@@ -225,6 +225,12 @@ namespace ET
             Vector2 vector2 = Vector2.zero;
             self.StartIndicator = vector2;
 
+            bool recordskill = self.mSkillConfig.SkillName.Equals("唤魔之击");
+            if (recordskill)
+            {
+                recordskill = self.ZoneScene().GetComponent<AccountInfoComponent>().RelinkRecord == 1;
+            }
+
             if (self.mSkillConfig.SkillZhishiTargetType == 0 && target != null)
             {
                 float distance = PositionHelper.Distance2D(target.Position, unit.Position);
@@ -235,6 +241,8 @@ namespace ET
                 vector2.y = direction.z;
                 vector2 = vector2.normalized * 120f * rate;
                 self.OnMouseDrag(vector2);
+
+                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown  {targetId}  target != null   1");
             }
             else if (self.mSkillConfig.SkillZhishiTargetType == 2)
             {
@@ -245,6 +253,8 @@ namespace ET
                 vector2.y = postition.z;
                 vector2 = vector2.normalized * 120f * 1f;
                 self.OnMouseDrag(vector2);
+
+                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown   {targetId}  target == null  2");
             }
             else if (self.mSkillConfig.SkillZhishiType != 0)
             {
@@ -254,6 +264,8 @@ namespace ET
                 vector2.x = postition.x;
                 vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
+
+                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  3");
             }
             else
             {
@@ -263,6 +275,8 @@ namespace ET
                 //vector2.x = postition.x;
                 //vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
+
+                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  4");
             }
         }
 

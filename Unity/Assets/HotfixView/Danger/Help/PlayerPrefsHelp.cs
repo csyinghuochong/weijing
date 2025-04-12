@@ -139,6 +139,23 @@ namespace ET
 
         public static void RecordRelinkMessage(string message)
         {
+            //string timenow = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString();
+            //message = timenow + "  " + message;
+
+            //string oldmsg = GetString(RelinkRecord);
+            //if (string.IsNullOrEmpty(oldmsg))
+            //{
+            //    oldmsg = message;
+            //}
+            //else
+            //{
+            //    oldmsg += "&" + message;
+            //}
+            //SetString(RelinkRecord, oldmsg);
+        }
+
+        public static void RecordRelinkMessage_Skill(string message)
+        {
             string timenow = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString();
             message = timenow + "  " + message;
 
@@ -151,6 +168,12 @@ namespace ET
             {
                 oldmsg += "&" + message;
             }
+
+            if (oldmsg.Length >= 1000)
+            {
+                return;
+            }
+
             SetString(RelinkRecord, oldmsg);
         }
 

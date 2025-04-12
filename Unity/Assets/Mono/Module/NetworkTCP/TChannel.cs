@@ -64,7 +64,7 @@ namespace ET
 			this.RemoteAddress = ipEndPoint;
 			this.isConnected = false;
 			this.isSending = false;
-            Log.Debug($"TChannel.this.socket111_a:   {id}   RemoteAddress: {this.RemoteAddress.ToString()}");
+            //Log.Debug($"TChannel.this.socket111_a:   {id}   RemoteAddress: {this.RemoteAddress.ToString()}");
             this.Service.ThreadSynchronizationContext.PostNext(this.ConnectAsync);
             
         }
@@ -84,7 +84,7 @@ namespace ET
 			this.RemoteAddress = (IPEndPoint)socket.RemoteEndPoint;
             this.isConnected = true;
 			this.isSending = false;
-            Log.Debug($"TChannel.this.socket222:   {id}  LocalEndPoint:{this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
+            //Log.Debug($"TChannel.this.socket222:   {id}  LocalEndPoint:{this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
             // 下一帧再开始读写
             this.Service.ThreadSynchronizationContext.PostNext(() =>
 			{
@@ -166,7 +166,7 @@ namespace ET
 			this.outArgs.RemoteEndPoint = this.RemoteAddress;
 			if (this.socket.ConnectAsync(this.outArgs))
 			{
-                Log.Debug($"TChannel.this.socket111_b:   {this.Id}   LocalEndPoint:{(IPEndPoint)this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
+                //Log.Debug($"TChannel.this.socket111_b:   {this.Id}   LocalEndPoint:{(IPEndPoint)this.socket.LocalEndPoint}  RemoteAddress:{this.RemoteAddress.ToString()}");
                 return;
 			}
           
