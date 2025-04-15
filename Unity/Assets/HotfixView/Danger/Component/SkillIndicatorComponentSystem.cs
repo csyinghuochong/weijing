@@ -242,7 +242,10 @@ namespace ET
                 vector2 = vector2.normalized * 120f * rate;
                 self.OnMouseDrag(vector2);
 
-                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown  {targetId}  target != null   1");
+                if (recordskill)
+                {
+                    PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown  {targetId}  target != null   1");
+                }
             }
             else if (self.mSkillConfig.SkillZhishiTargetType == 2)
             {
@@ -254,7 +257,10 @@ namespace ET
                 vector2 = vector2.normalized * 120f * 1f;
                 self.OnMouseDrag(vector2);
 
-                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown   {targetId}  target == null  2");
+                if (recordskill)
+                {
+                    PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown   {targetId}  target == null  2");
+                }
             }
             else if (self.mSkillConfig.SkillZhishiType != 0)
             {
@@ -265,7 +271,10 @@ namespace ET
                 vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
 
-                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  3");
+                if (recordskill)
+                {
+                    PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  3");
+                }
             }
             else
             {
@@ -276,7 +285,10 @@ namespace ET
                 //vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
 
-                PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  4");
+                if (recordskill)
+                {
+                    PlayerPrefsHelp.RecordRelinkMessage_Skill($"唤魔之击.OnMouseDown    {targetId}  target == null  4");
+                }
             }
         }
 

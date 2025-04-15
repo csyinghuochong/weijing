@@ -41,11 +41,11 @@ namespace ET
    
                 string[] fileInfo = path.Split('/');
                 string formPath = path.Replace("Assets", Application.dataPath);
-                string toPath = "H:/TempFile/" + fileInfo[fileInfo.Length - 1];
+                string toPath = "F:/TempFile/" + fileInfo[fileInfo.Length - 1];
                 CopyDirectory(formPath, toPath);
 
                 string formPathMeta = path.Replace("Assets", Application.dataPath) + ".meta"; 
-                string toPathMata = "H:/TempFile/" + fileInfo[fileInfo.Length - 1] + ".meta";
+                string toPathMata = "F:/TempFile/" + fileInfo[fileInfo.Length - 1] + ".meta";
 
                 CopyDirectory(formPathMeta, toPathMata);
             }
