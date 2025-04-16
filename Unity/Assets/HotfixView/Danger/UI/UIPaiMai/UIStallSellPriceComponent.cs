@@ -186,7 +186,7 @@ namespace ET
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             UI uipaimaisell = uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.StallSell];
-            if (uipaimaisell != null)
+            if (uipaimaisell != null && m2CStallSellResponse.PaiMaiItemInfo!= null)
             {
                 UIStallSellComponent uIPaiMaiSellComponent = uipaimaisell.GetComponent<UIStallSellComponent>();
                 uIPaiMaiSellComponent?.OnPaiBuyShangJia(m2CStallSellResponse.PaiMaiItemInfo);
