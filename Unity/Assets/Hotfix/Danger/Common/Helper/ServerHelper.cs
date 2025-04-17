@@ -399,13 +399,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 147, ServerIp = $"{ip}:20495", ServerName = "紫禁之巅", ServerOpenTime = 1742554800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 148, ServerIp = $"{ip}:20585", ServerName = "威震天下", ServerOpenTime = 1743159600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 149, ServerIp = $"{ip}:20445", ServerName = "春暖花开", ServerOpenTime = 1743764400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
-
-
-            //2025/04/11 19:00:00 1744369200000 合区 太平盛世-断桥残雪 121/125
-            //2025/04/11 19:00:00 1744369200000 合区 湖光月色-无尽王国 143/144
-            //2025/04/11 19:00:00 1744369200000 合区 一统山河-星辰坠落 145/146
-            //2025/04/11 19:00:00 1744369200000 新区 破晓之战 150
             serverItems_1.Add(new ServerItem() { ServerId = 150, ServerIp = $"{ip}:20505", ServerName = "破晓之战", ServerOpenTime = 1744369200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+
+
+            //2025/04/18 19:00:00 1744974000000 合区 xx-xx xx/xx
+            //2025/04/18 19:00:00 1744974000000 新区 龙裔国度 151
+            serverItems_1.Add(new ServerItem() { ServerId = 151, ServerIp = $"{ip}:20415", ServerName = "龙裔国度", ServerOpenTime = 1744974000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
