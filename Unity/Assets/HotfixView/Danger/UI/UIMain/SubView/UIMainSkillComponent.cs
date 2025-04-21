@@ -640,16 +640,17 @@ namespace ET
         public static void OnLockTargetUnit(this UIMainSkillComponent self)
         {
             LockTargetComponent lockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
-            if (Time.time - self.LastLockTime > 5)
-            {
-                lockTargetComponent.LastLockId = 0;
-                lockTargetComponent.LockTargetUnit();
-                self.LastLockTime = Time.time;
-            }
-            else
-            {
-                lockTargetComponent.LockTargetUnit(true);
-            }
+            //if (Time.time - self.LastLockTime > 5)
+            //{
+            //    lockTargetComponent.LastLockId = 0;
+            //    lockTargetComponent.LockTargetUnit();
+            //    self.LastLockTime = Time.time;
+            //}
+            //else
+            //{
+            //    lockTargetComponent.LockTargetUnit(true);
+            //}
+            lockTargetComponent.RandomLockTargetUnit();
         }
 
         public static void ShowCancelButton(this UIMainSkillComponent self, bool show)

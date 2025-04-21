@@ -163,6 +163,100 @@ namespace ET
             }
         }
 
+        public static long RandomLockTargetUnit(this LockTargetComponent self)
+        {
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+           
+            float distance = 10f;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+
+                if (self.IsGuaJi)
+                {
+                    if (!main.IsCanAttackUnit(unit))
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    ///非挂机状态下可以选中精灵
+                    if (!main.IsCanAttackUnit(unit) && !unit.IsJingLingMonster())
+                    {
+                        continue;
+                    }
+                }
+
+
+                StateComponent stateComponent = units[i].GetComponent<StateComponent>();
+                if (stateComponent.StateTypeGet(StateTypeEnum.Stealth) || stateComponent.StateTypeGet(StateTypeEnum.Hide))
+                {
+                    continue;
+                }
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd < distance)
+                {
+                    UnitLockRanges.Add(new UnitLockRange() { Id = unit.Id, Range = (int)(dd * 100), Type = unit.Type });
+                }
+            }
+
+            UnitLockRanges.Sort((a, b) => a.Range - b.Range);
+
+            if (UnitLockRanges.Count == 0)
+            {
+                //取消锁定
+                self.LastLockIndex = -1;
+                self.LastLockId = 0;
+            }
+            else
+            {
+                bool attackedPlayer = false; // 是否锁定了玩家
+                if (self.SkillAttackPlayerFirst == 1)
+                {
+                    self.LastLockIndex++;
+
+                    for (int i = self.LastLockIndex; i < UnitLockRanges.Count; i++)
+                    {
+                        if (UnitLockRanges[i].Type != UnitType.Player)
+                        {
+                            continue;
+                        }
+
+                        attackedPlayer = true;
+                        self.LastLockIndex = i;
+                        self.LastLockId = UnitLockRanges[i].Id;
+                        break;
+                    }
+                }
+
+                if (!attackedPlayer)
+                {
+                    self.LastLockIndex++;
+                    if (self.LastLockIndex >= UnitLockRanges.Count)
+                    {
+                        self.LastLockIndex = 0;
+                    }
+
+                    if (self.LastLockId != 0 && UnitLockRanges[self.LastLockIndex].Id == self.LastLockId)
+                    {
+                        self.LastLockIndex++;
+                    }
+
+                    if (self.LastLockIndex >= UnitLockRanges.Count)
+                    {
+                        self.LastLockIndex = 0;
+                    }
+
+                    self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
+                }
+            }
+            self.LockTargetUnitId(self.LastLockId);
+            return self.LastLockId;
+        }
+
         /// <summary>
         /// nearest 最近
         /// </summary>
