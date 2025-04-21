@@ -26,6 +26,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlibabaCloud.SDK.Dypnsapi20170525" Version="1.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Model\Server.Model.csproj" />
   </ItemGroup>
 
