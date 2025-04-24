@@ -802,7 +802,42 @@ message A2C_ServerList // IResponse
 	string NoticeText = 4;
 	string AccountCenterIp = 5;
 	string RealAndGate = 6;
+	int SmsVerifyType = 7;  //0 mob  1 aliyun
 }
+
+//ResponseType A2C_SendSmsVerifyCode
+message C2A_SendSmsVerifyCode // IRequest
+{
+	int32 RpcId = 90;
+	string Message = 91;
+
+	string PhoneNumber = 1;
+}
+
+message A2C_SendSmsVerifyCode // IResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+//ResponseType A2C_CheckSmsVerifyCode
+message C2A_CheckSmsVerifyCode // IRequest
+{
+	int32 RpcId = 90;
+	string Message = 91;
+
+	string PhoneNumber = 1;
+	string Code = 2;
+}
+
+message A2C_CheckSmsVerifyCode // IResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
 
 //ResponseType G2C_CreateRole
 message C2G_CreateRole // IRequest
