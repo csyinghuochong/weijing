@@ -785,41 +785,75 @@ namespace ET
 			//Log.ILog.Debug($"Login: {planids[0]} {self.LoginType}");
 		}
 
-		public static void OnButtonCommitCode(this UILoginComponent self)
-		{
-            string phone = self.PhoneNumber.GetComponent<InputField>().text;
-            string code = self.TextPhoneCode.GetComponent<InputField>().text;
-            if (GlobalHelp.IsEditorMode)
-			{
-#if UNITY_EDITOR
-				self.OnCommitCodeHandler(phone);
+
+        public static void OnButtonGetCode(this UILoginComponent self)
+        {
+            string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
+            if (string.IsNullOrEmpty(phoneNum) || phoneNum.Length < 3)
+            {
                 return;
-#endif
-			}
-
-            GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phone, code);
-		}
-
-		public static void OnButtonGetCode(this UILoginComponent self)
-		{ 
-			string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
-			if (string.IsNullOrEmpty(phoneNum)|| phoneNum.Length < 3)
-			{
-				return;
-			}
+            }
 
             string head = phoneNum.Substring(0, 3);
             if (GMHelp.IllegalPhone.Contains(head))
-			{
-				FloatTipManager.Instance.ShowFloatTip("此号码不支持注册,请使用其他方式登录游戏！");
-				return;
-			}
+            {
+                FloatTipManager.Instance.ShowFloatTip("此号码不支持注册,请使用其他方式登录游戏！");
+                return;
+            }
 
-			GlobalHelp.OnButtonGetCode(phoneNum);
-			self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
-			self.SendYanzheng.SetActive(false);
-			self.YanZheng.SetActive(true);
+            if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
+            {
+                GlobalHelp.OnButtonGetCode(phoneNum);
+            }
+            else
+            {
+                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode,  GlobalHelp.VersionMode, phoneNum).Coroutine();
+            }
+
+            self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
+            self.SendYanzheng.SetActive(false);
+            self.YanZheng.SetActive(true);
+        }
+
+        public static void OnButtonCommitCode(this UILoginComponent self)
+		{
+            string phone = self.PhoneNumber.GetComponent<InputField>().text;
+            string code = self.TextPhoneCode.GetComponent<InputField>().text;
+
+			if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
+			{
+				if (GlobalHelp.IsEditorMode)
+				{
+#if UNITY_EDITOR
+					self.OnCommitCodeHandler(phone);
+					return;
+#endif
+				}
+				else
+				{
+					GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phone, code);
+				}
+			}
+			else
+			{
+				self.CheckSmsVerifyCode(phone, code).Coroutine();
+            }
 		}
+
+		private static async ETTask CheckSmsVerifyCode(this UILoginComponent self, string phone, string code)
+        {
+			int errorcode = await LoginHelper.CheckSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phone, code);
+			if (errorcode == ErrorCode.ERR_Success)
+			{
+                self.LoginType = LoginTypeEnum.PhoneCodeLogin.ToString();
+                self.Account.GetComponent<InputField>().text = phone;
+                self.Password.GetComponent<InputField>().text = self.LoginType;
+                self.IPhone.SetActive(false);
+                self.ThirdLoginBg.SetActive(false);
+                self.ZhuCe.SetActive(false);
+                self.HideNode.SetActive(true);
+            }
+        }
 
 		public static void OnCommitCodeHandler(this UILoginComponent self, string phone)
 		{

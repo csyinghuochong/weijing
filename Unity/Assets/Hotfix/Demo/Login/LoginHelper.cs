@@ -432,6 +432,71 @@ namespace ET
             return 20325;
         }
 
+        public static async ETTask<int> SendSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode,  string phoneNum)
+        {
+            try
+            {
+                string address = string.Empty;
+                if (innerNet)
+                {
+                    address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
+                }
+                else
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
+                    address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
+                }
+                
+ 
+                Log.Debug($"address: {address}");
+
+                A2C_SendSmsVerifyCode r2CSelectServer;
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
+                {
+                    r2CSelectServer = (A2C_SendSmsVerifyCode)await session.Call(new C2A_SendSmsVerifyCode() { PhoneNumber = phoneNum });
+                }
+                session.Dispose();
+                return r2CSelectServer.Error;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCode.ERR_NetWorkError;
+            }
+        }
+
+        public static async ETTask<int> CheckSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode, string phoneNum, string code)
+        {
+            try
+            {
+                string address = string.Empty;
+                if (innerNet)
+                {
+                    address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
+                }
+                else
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
+                    address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
+                }
+                //IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
+                //string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
+
+                A2C_CheckSmsVerifyCode r2CSelectServer;
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
+                {
+                    r2CSelectServer = (A2C_CheckSmsVerifyCode)await session.Call(new C2A_CheckSmsVerifyCode() { PhoneNumber = phoneNum, Code =code });
+                }
+                session.Dispose();
+                return r2CSelectServer.Error;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCode.ERR_NetWorkError;
+            }
+        }
+
         //请求服务器列表【外网】
         public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode, string account)
         {
@@ -505,6 +570,7 @@ namespace ET
             accountInfoComponent.AllServerList = r2CSelectServer.ServerItems;
             accountInfoComponent.NoticeVersion = r2CSelectServer.NoticeVersion;
             accountInfoComponent.NoticeText = r2CSelectServer.NoticeText;
+            accountInfoComponent.SmsVerifyType = r2CSelectServer.SmsVerifyType;
         }
 
         public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode, string account)
