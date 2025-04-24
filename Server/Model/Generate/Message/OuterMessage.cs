@@ -1652,6 +1652,74 @@ namespace ET
 		[ProtoMember(6)]
 		public string RealAndGate { get; set; }
 
+		[ProtoMember(7)]
+		public int SmsVerifyType { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2C_SendSmsVerifyCode))]
+	[Message(OuterOpcode.C2A_SendSmsVerifyCode)]
+	[ProtoContract]
+	public partial class C2A_SendSmsVerifyCode: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string PhoneNumber { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_SendSmsVerifyCode)]
+	[ProtoContract]
+	public partial class A2C_SendSmsVerifyCode: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2C_CheckSmsVerifyCode))]
+	[Message(OuterOpcode.C2A_CheckSmsVerifyCode)]
+	[ProtoContract]
+	public partial class C2A_CheckSmsVerifyCode: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string PhoneNumber { get; set; }
+
+		[ProtoMember(2)]
+		public string Code { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_CheckSmsVerifyCode)]
+	[ProtoContract]
+	public partial class A2C_CheckSmsVerifyCode: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_CreateRole))]
@@ -16245,40 +16313,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(Center2C_BlackAccountResponse))]
-	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
-	[ProtoContract]
-	public partial class C2Center_QueryAccountRequest: Object, IRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(1)]
-		public string UserName { get; set; }
-
-	}
-
-	[Message(OuterOpcode.Center2C_QueryAccountResponse)]
-	[ProtoContract]
-	public partial class Center2C_QueryAccountResponse: Object, IResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-		[ProtoMember(1)]
-		public string Account { get; set; }
-
-		[ProtoMember(2)]
-		public string Password { get; set; }
-
-	}
-
 	[ResponseType(nameof(M2C_ChangeOccResponse))]
 //转换第一职业
 	[Message(OuterOpcode.C2M_ChangeOccRequest)]
@@ -16339,6 +16373,42 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+	}
+
+/////////////////////
+//#################一定要放在最后
+	[ResponseType(nameof(Center2C_BlackAccountResponse))]
+	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
+	[ProtoContract]
+	public partial class C2Center_QueryAccountRequest: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string UserName { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Center2C_QueryAccountResponse)]
+	[ProtoContract]
+	public partial class Center2C_QueryAccountResponse: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Password { get; set; }
 
 	}
 

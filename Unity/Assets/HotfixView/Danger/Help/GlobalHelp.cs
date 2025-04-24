@@ -44,6 +44,11 @@ namespace ET
             get { return GameObject.Find("Global").GetComponent<Init>().OueNetMode; }
         }
 
+        public static bool IsInnerNetMode
+        {
+            get { return GameObject.Find("Global").GetComponent<Init>().OueNetMode ==false; }
+        }
+
         public static VersionMode VersionMode
         {
             get { return GameObject.Find("Global").GetComponent<Init>().VersionMode; }

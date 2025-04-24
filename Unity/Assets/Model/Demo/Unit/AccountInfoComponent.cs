@@ -43,7 +43,9 @@ namespace ET
 		public string NoticeVersion = string.Empty;
 		public string NoticeText = string.Empty;
 
-		public int SerialErrorTime = 0;
+		public int SmsVerifyType = 0;  //0 mob  1 aliyun
+
+        public int SerialErrorTime = 0;
 
 		public int IsPopUp = 0;
 		public string PopUpInfo = string.Empty;
