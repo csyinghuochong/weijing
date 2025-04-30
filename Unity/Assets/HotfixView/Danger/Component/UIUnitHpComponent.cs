@@ -523,10 +523,12 @@ namespace ET
             TimerComponent.Instance.Remove(ref this.Timer);
             if (this.GetParent<Unit>().Type == UnitType.Monster)
             {
-                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
-                rc.Get<GameObject>("Alive").SetActive(true);
-                rc.Get<GameObject>("Dead").SetActive(false);
-                rc.Get<GameObject>("ReviveTime").SetActive(false);
+                //ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
+                //rc.Get<GameObject>("Alive").SetActive(true);
+                //rc.Get<GameObject>("Dead").SetActive(false);
+                //rc.Get<GameObject>("ReviveTime").SetActive(false);
+
+                this.OnLoadGameObject(this.GameObject, this.InstanceId);
             } 
             UpdateBlood();
         }

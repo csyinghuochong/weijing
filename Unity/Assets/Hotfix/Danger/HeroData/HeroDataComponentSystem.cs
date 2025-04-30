@@ -404,6 +404,11 @@ namespace ET
                 return 0;
             }
 
+            if (unit.MasterId > 0)
+            {
+                return 0;
+            }
+
             if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
             {
                 if (ComHelp.IsZhuBoZone(self.DomainZone()))

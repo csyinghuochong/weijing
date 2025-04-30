@@ -101,6 +101,10 @@ namespace ET
                 mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
                 revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime(monsterConfig.Id);
             }
+            if (unit.MasterId > 0)
+            {
+                revetime = 0;
+            }
 
             if (monsterConfig.DeathTime > 0)
             {
