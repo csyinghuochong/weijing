@@ -969,6 +969,9 @@ namespace ET
 		[ProtoMember(7)]
 		public float Distance { get; set; }
 
+		[ProtoMember(8)]
+		public int TaskId { get; set; }
+
 	}
 
 ///客户端寻路...

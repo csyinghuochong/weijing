@@ -84,7 +84,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=true, ETCancellationToken cancellationToken = null, int direction = 0)
+        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan = true, ETCancellationToken cancellationToken = null, int direction = 0, int taskId = 0)
         {
             int errorCode = MoveHelper.IfCanMove(unit);
             if (errorCode != ErrorCode.ERR_Success)
@@ -104,6 +104,7 @@ namespace ET
             msg.UnitId = direction;
             msg.Direction = 0;
             msg.Distance = 0;
+            msg.TaskId = taskId;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
