@@ -26,7 +26,7 @@ namespace ET
 
                 using (session.AddComponent<SessionLockingComponent>())
                 {
-                    response.Error = CheckSmsVerifyCode.Check(request.PhoneNumber, request.Code);
+                    response.Error = CheckSmsVerifyCode.Check(request.PhoneNumber, request.Code, string.Empty);
                     reply();
                 }
             }

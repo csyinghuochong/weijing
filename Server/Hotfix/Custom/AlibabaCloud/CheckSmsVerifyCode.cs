@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Tea;
 using Tea.Utils;
+using ET;
 
 
 namespace AlibabaCloud.SDK.Sample
@@ -33,21 +34,39 @@ namespace AlibabaCloud.SDK.Sample
             AlibabaCloud.OpenApiClient.Models.Config config = new AlibabaCloud.OpenApiClient.Models.Config
             {
                 Credential = credential,
+                // 您的AccessKey ID
+                AccessKeyId = Environment.GetEnvironmentVariable("access_key_id"),
+                // 您的AccessKey Secret
+                AccessKeySecret = Environment.GetEnvironmentVariable("access_key_secret"),
             };
             // Endpoint 请参考 https://api.aliyun.com/product/Dypnsapi
             config.Endpoint = "dypnsapi.aliyuncs.com";
             return new AlibabaCloud.SDK.Dypnsapi20170525.Client(config);
         }
 
-        public static void Main(string[] args)
+        public static int Check(string phoneNum, string code, string outid)
         {
             AlibabaCloud.SDK.Dypnsapi20170525.Client client = CreateClient();
-            AlibabaCloud.SDK.Dypnsapi20170525.Models.CheckSmsVerifyCodeRequest checkSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.CheckSmsVerifyCodeRequest();
+            AlibabaCloud.SDK.Dypnsapi20170525.Models.CheckSmsVerifyCodeRequest checkSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.CheckSmsVerifyCodeRequest()
+            {
+                PhoneNumber = phoneNum,
+                VerifyCode = code   ,
+                OutId = outid,
+            };
             AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
             try
             {
                 // 复制代码运行请自行打印 API 的返回值
-                client.CheckSmsVerifyCodeWithOptions(checkSmsVerifyCodeRequest, runtime);
+                var response = client.CheckSmsVerifyCodeWithOptions(checkSmsVerifyCodeRequest, runtime);
+                if (response != null)
+                {
+                    // 打印返回结果的 JSON 字符串
+                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(response));
+                    // 你可以根据具体的返回类型和需求，访问返回对象的属性
+                    // 例如：Console.WriteLine(response.Body.SomeProperty);
+                    return 0;
+                }
+                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
             }
             catch (TeaException error)
             {
@@ -57,6 +76,7 @@ namespace AlibabaCloud.SDK.Sample
                 // 诊断地址
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
+                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
             }
             catch (Exception _error)
             {
@@ -70,9 +90,9 @@ namespace AlibabaCloud.SDK.Sample
                 // 诊断地址
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
+                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
             }
         }
-
 
     }
 }

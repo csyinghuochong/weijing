@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-
+using ET;
 using Tea;
 using Tea.Utils;
 
@@ -35,27 +35,66 @@ namespace AlibabaCloud.SDK.Sample
             AlibabaCloud.OpenApiClient.Models.Config config = new AlibabaCloud.OpenApiClient.Models.Config
             {
                 Credential = credential,
+                // 您的AccessKey ID
+                AccessKeyId = Environment.GetEnvironmentVariable("access_key_id"),
+                // 您的AccessKey Secret
+                AccessKeySecret = Environment.GetEnvironmentVariable("access_key_secret"),
             };
             // Endpoint 请参考 https://api.aliyun.com/product/Dypnsapi
             config.Endpoint = "dypnsapi.aliyuncs.com";
             return new AlibabaCloud.SDK.Dypnsapi20170525.Client(config);
         }
 
-        public static void Main(string[] args)
+        public static int Send(string phoneNum)
         {
+
+            //短信模板变量填写的参数值。验证码位置使用"##code##"替代。
+
+            //示例：如模板内容为：“您的验证码是${ authCode}，5 分钟内有效，请勿告诉他人。”。此时，该字段传入：{ "authCode":"##code##"}
+
             AlibabaCloud.SDK.Dypnsapi20170525.Client client = CreateClient();
             AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
             {
-                PhoneNumber = "18319670288",
-                TemplateCode = "azsq_*****",
+                PhoneNumber = phoneNum,
+                TemplateCode = "SMS_317195299",
+                //TemplateParam = "{\"code\":\"##code##\"}",
+                // TemplateParam = "您的验证码为：${code}，请勿泄露于他人！",
                 TemplateParam = "{\"code\":\"##code##\"}",
-                SignName = "{\"code\":\"##code##\"}",
+                SignName = "烟台贺寒信息科技",
+                Interval = 10,
+                OutId = TimeHelper.ServerNow().ToString(),
+                CodeType = 1,
+                CodeLength = 4,
+                ReturnVerifyCode = true,
             };
+            //AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
+            //{
+            //    PhoneNumber = phoneNum,
+            //    TemplateCode = "SMS_154950909",
+            //    //TemplateParam = "{\"code\":\"##code##\"}",
+            //    // TemplateParam = "您的验证码为：${code}，请勿泄露于他人！",
+            //    TemplateParam = "{\"code\":\"##code##\"}",
+            //    SignName = "阿里云短信测试",
+            //    Interval = 10,
+            //    OutId = TimeHelper.ServerNow().ToString(),
+            //    CodeType = 1,
+            //    CodeLength = 4,
+            //    ReturnVerifyCode = true,
+            //};
             AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
             try
             {
                 // 复制代码运行请自行打印 API 的返回值
-                client.SendSmsVerifyCodeWithOptions(sendSmsVerifyCodeRequest, runtime);
+                var response =  client.SendSmsVerifyCodeWithOptions(sendSmsVerifyCodeRequest, runtime);
+                if (response != null)
+                {
+                    // 打印返回结果的 JSON 字符串
+                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(response));
+                    // 你可以根据具体的返回类型和需求，访问返回对象的属性
+                    // 例如：Console.WriteLine(response.Body.SomeProperty);
+                    return 0;
+                }
+                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
             }
             catch (TeaException error)
             {
@@ -79,6 +118,7 @@ namespace AlibabaCloud.SDK.Sample
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
             }
+            return 0;
         }
 
 
