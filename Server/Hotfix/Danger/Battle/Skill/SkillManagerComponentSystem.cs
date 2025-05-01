@@ -571,6 +571,7 @@ namespace ET
             {
                 skillList[i].SingValue = skillcmd.SingValue;
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
+                skillAction.OriginalSkill = skillcmd.SkillID;
                 skillList[i].SkillBeginTime = skillAction.SkillBeginTime;
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
                 handlerList.Add(skillAction);
@@ -1141,11 +1142,7 @@ namespace ET
                 return;
             }
 
-            int cdskillid = skillHandler.SkillConf.Id;
-            if (cdskillid == 64014304)
-            {
-                cdskillid = 64014303;
-            }
+            int cdskillid = skillHandler.OriginalSkill > 0 ? skillHandler.OriginalSkill : skillHandler.SkillConf.Id;
 
             ///攻击到目标则暂时清除CD
             SkillCDItem skillCDItem = null;
@@ -1233,6 +1230,7 @@ namespace ET
                 
                 //Unit from = self.GetParent<Unit>();
                 SkillHandler skillAction = self.SkillFactory(skillInfo, self.SelfUnit);
+                skillAction.OriginalSkill = skillInfo.SkillID;
                 skillInfo.SkillBeginTime = skillAction.SkillBeginTime;
                 skillInfo.SkillEndTime = skillAction.SkillEndTime;
                 self.Skills.Add(skillAction);

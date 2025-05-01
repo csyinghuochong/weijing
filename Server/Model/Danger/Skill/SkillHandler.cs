@@ -22,6 +22,8 @@ namespace ET
 
         public SkillConfig SkillConf;
 
+        public int OriginalSkill;
+
         public long SkillBeginTime;    
         public long SkillEndTime;
         /// <summary>
