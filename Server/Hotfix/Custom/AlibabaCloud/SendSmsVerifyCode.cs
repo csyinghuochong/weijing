@@ -85,13 +85,17 @@ namespace AlibabaCloud.SDK.Sample
             {
                 // 复制代码运行请自行打印 API 的返回值
                 var response =  client.SendSmsVerifyCodeWithOptions(sendSmsVerifyCodeRequest, runtime);
-                if (response != null)
+                if (response != null && response.Body!=null)
                 {
                     // 打印返回结果的 JSON 字符串
                     Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(response));
                     // 你可以根据具体的返回类型和需求，访问返回对象的属性
                     // 例如：Console.WriteLine(response.Body.SomeProperty);
-                    return 0;
+                    if (response.Body.Success == true && response.Body.Code == "OK" )
+                    {
+                        return 0;
+                    }
+                    return ErrorCode.MOBILE_NUMBER_ILLEGAL;
                 }
                 return ErrorCode.MOBILE_NUMBER_ILLEGAL;
             }
@@ -117,7 +121,7 @@ namespace AlibabaCloud.SDK.Sample
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
             }
-            return 0;
+            return ErrorCode.MOBILE_NUMBER_ILLEGAL;
         }
 
 

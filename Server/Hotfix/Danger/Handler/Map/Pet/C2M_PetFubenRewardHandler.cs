@@ -24,7 +24,11 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
+            bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
+            if (!ret)
+            {
+                Log.Debug($"C2M_PetFubenRewardHandler false : {unit.Id}");
+            }
             unit.GetComponent<PetComponent>().PetFubeRewardId = rewardId;
 
             reply();
