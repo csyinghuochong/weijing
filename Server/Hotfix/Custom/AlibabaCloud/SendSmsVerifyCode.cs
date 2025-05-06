@@ -51,22 +51,6 @@ namespace AlibabaCloud.SDK.Sample
             //短信模板变量填写的参数值。验证码位置使用"##code##"替代。
 
             //示例：如模板内容为：“您的验证码是${ authCode}，5 分钟内有效，请勿告诉他人。”。此时，该字段传入：{ "authCode":"##code##"}
-
-            AlibabaCloud.SDK.Dypnsapi20170525.Client client = CreateClient();
-            AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
-            {
-                PhoneNumber = phoneNum,
-                TemplateCode = "SMS_317195299",
-                //TemplateParam = "{\"code\":\"##code##\"}",
-                // TemplateParam = "您的验证码为：${code}，请勿泄露于他人！",
-                TemplateParam = "{\"code\":\"##code##\"}",
-                SignName = "烟台贺寒信息科技",
-                Interval = 10,
-                OutId = TimeHelper.ServerNow().ToString(),
-                CodeType = 1,
-                CodeLength = 4,
-                ReturnVerifyCode = true,
-            };
             //AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
             //{
             //    PhoneNumber = phoneNum,
@@ -81,6 +65,21 @@ namespace AlibabaCloud.SDK.Sample
             //    CodeLength = 4,
             //    ReturnVerifyCode = true,
             //};
+
+
+            AlibabaCloud.SDK.Dypnsapi20170525.Client client = CreateClient();
+            AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
+            {
+                PhoneNumber = phoneNum,
+                TemplateCode = "100001",
+                TemplateParam = "{\"code\":\"##code##\",\"min\":10}",
+                SignName = "云渚科技验证平台",
+                Interval = 10,
+                OutId = TimeHelper.ServerNow().ToString(),
+                CodeType = 1,
+                CodeLength = 4,
+                ReturnVerifyCode = true,
+            };
             AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
             try
             {
