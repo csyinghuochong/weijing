@@ -99,6 +99,7 @@
         public const int DialogTimer = 1112;
         public const int SeasonTowerTimer = 1113;
         public const int AuctionOverTimer = 1114;
+        public const int PetEquipSetItemTimer = 1115;
         // 不能超过10000
     }
 }

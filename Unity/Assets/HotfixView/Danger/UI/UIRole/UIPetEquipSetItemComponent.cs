@@ -1,10 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
 {
+    [Timer(TimerType.PetEquipSetItemTimer)]
+    public class PetEquipSetItemTimer : ATimer<UIPetEquipSetItemComponent>
+    {
+        public override void Run(UIPetEquipSetItemComponent self)
+        {
+            try
+            {
+                self.ShowEquipItemTips();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+
     public class UIPetEquipSetItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Img_EquipBack;
@@ -15,6 +33,8 @@ namespace ET
         public List<BagInfo> EquipIdList = new List<BagInfo>();
         public GameObject GameObject;
         public BagInfo BagInfo;
+        public long PointDownTime;
+        public bool ShowEquiTip;
 
         public Action<int> OnClickAction;
 
@@ -33,7 +53,13 @@ namespace ET
             self.Img_EquipQuality = tf.Find("Img_EquipQuality").gameObject;
             self.Img_EquipBangDing = tf.Find("Img_BangDing").gameObject;
             self.Img_EquipBack = tf.Find("Img_EquipBack").gameObject;
-            self.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnClickEquip(); });
+            //self.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnClickEquip(); });
+
+            //ButtonHelp.AddEventTriggers(self.Btn_Equip, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
+            //ButtonHelp.AddEventTriggers(self.Btn_Equip, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
+            //ButtonHelp.AddEventTriggers(self.Btn_Equip, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
+            ButtonHelp.AddEventTriggers(self.Btn_Equip, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.Btn_Equip, (PointerEventData pdata) => { self.PointerUp(pdata); }, EventTriggerType.PointerUp);
         }
     }
 
@@ -53,8 +79,39 @@ namespace ET
         }
     }
 
+
     public static class UIPetEquipSetItemComponentSystem
     {
+        public static void PointerDown(this UIPetEquipSetItemComponent self, PointerEventData pdata)
+        {
+            self.ShowEquiTip = true;
+            TimerComponent.Instance.Remove(ref self.PointDownTime);
+            self.PointDownTime = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 300, TimerType.PetEquipSetItemTimer, self);
+            self.OnClickEquip();
+        }
+
+
+        public static void ShowEquipItemTips(this UIPetEquipSetItemComponent self)
+        {
+            self.ShowEquiTip = false;
+
+            if (self.BagInfo == null)
+                return;
+            //弹出Tips
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = self.BagInfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void PointerUp(this UIPetEquipSetItemComponent self, PointerEventData pdata)
+        {
+            self.ShowEquiTip = false;
+            TimerComponent.Instance.Remove(ref self.PointDownTime);
+        }
+
         public static void OnClickEquip(this UIPetEquipSetItemComponent self)
         {
             if (self.BagInfo == null)
