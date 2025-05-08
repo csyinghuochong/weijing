@@ -184,6 +184,14 @@ namespace ET
         {
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
 
+            string reward = ConfigHelper.WelfareTaskReward[self.Day];
+            int needcell = ItemHelper.GetNeedCell(reward);
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+
             bool canget = TaskHelper.IsDayTaskComplete(taskComponent.RoleComoleteTaskList, self.Day);
             if (!canget)
             {
@@ -196,6 +204,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
                 return;
             }
+           
 
             C2M_WelfareTaskRewardRequest request = new C2M_WelfareTaskRewardRequest() { day = self.Day };
             M2C_WelfareTaskRewardResponse response =
@@ -203,8 +212,9 @@ namespace ET
 
             if (response.Error != ErrorCode.ERR_Success)
             {
-                userInfoComponent.UserInfo.WelfareTaskRewards.Add(self.Day);
+                return;
             }
+            userInfoComponent.UserInfo.WelfareTaskRewards.Add(self.Day);
             self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareTask);
             self.UpdateInfo(self.Day);
         }
