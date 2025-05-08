@@ -770,6 +770,11 @@ namespace ET
                 textEquipType = self.GetEquipShengXiaoType(itemconf.ItemSubType%100);
                 textEquipTypeSon = GameSettingLanguge.LoadLocalization("生肖");
             }
+            if (itemconf.EquipType == 301)
+            {
+                textEquipType = self.GetPetEquipType(itemconf.ItemSubType);
+                textEquipTypeSon = GameSettingLanguge.LoadLocalization("宠物装备");
+            }
 
             string langStr = GameSettingLanguge.LoadLocalization("强化");
             int qianghuaLevel = self.BagComponent.GetQiangHuaLevel(itemconf.ItemSubType);
@@ -786,7 +791,7 @@ namespace ET
             }
 
             //生肖和晶核不显示强化
-            if (itemconf.ItemType == 3 && (itemconf.EquipType == 101 || itemconf.EquipType == 201)) {
+            if (itemconf.ItemType == 3 && (itemconf.EquipType == 101 || itemconf.EquipType == 201 || itemconf.EquipType == 301)) {
                 self.Obj_Lab_EquipQiangHua.SetActive(false);
             }
 
@@ -835,6 +840,9 @@ namespace ET
 
             langStr = GameSettingLanguge.LoadLocalization("部位");
             self.Lab_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
+
+
+
             langStr = GameSettingLanguge.LoadLocalization("类型");
             self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
 
@@ -1150,6 +1158,30 @@ namespace ET
                     return "无限制";
             }
 
+            return "";
+        }
+
+        //获取宠物装备类型名称
+        //3001 项圈
+        //3002 铠甲
+        //3003 护腕
+
+        public static string GetPetEquipType(this UIEquipTipsComponent self, int type)
+        {
+
+            switch (type)
+            {
+
+                case 3001:
+                    return "项圈";
+
+                case 3002:
+                    return "铠甲";
+
+                case 3003:
+                    return "护腕";
+
+            }
             return "";
         }
 
