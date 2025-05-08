@@ -1014,15 +1014,15 @@ namespace ET
                     continue;
                 }
 
-                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.PetLocEquip, baginfoId);
-                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                BagInfo userBagInfo = bagComponent.GetItemByLoc(ItemLocType.PetLocEquip, baginfoId);
+                if (userBagInfo == null || !ItemConfigCategory.Instance.Contain(userBagInfo.ItemID))
                 {
                     continue;
                 }
 
-                for (int skill = 0; skill < bagInfo.HideSkillLists.Count; skill++)
+                for (int skill = 0; skill < userBagInfo.HideSkillLists.Count; skill++)
                 { 
-                    int skillId = bagInfo.HideSkillLists[skill];
+                    int skillId = userBagInfo.HideSkillLists[skill];
                     if (!hideSkillId.ContainsKey(skillId))
                     {
                         hideSkillId.Add(skillId, 0);
@@ -1030,9 +1030,112 @@ namespace ET
                     hideSkillId[skillId]++;
                 }
 
-                ///宠物装备属性
+
+                //存储装备ID
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
+
+                //存储洗炼数值
+                if (userBagInfo.XiLianHideProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.XiLianHideProLists.Count; y++)
+                    {
+                        HideProList hidePro = userBagInfo.XiLianHideProLists[y];
+                        Function_Fight.AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, attriDic);
+                    }
+                }
+
+                //存储洗炼数值
+                if (userBagInfo.XiLianHideTeShuProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.XiLianHideTeShuProLists.Count; y++)
+                    {
+                        HideProList hidePro = userBagInfo.XiLianHideTeShuProLists[y];
+                        HideProListConfig hideproCof = HideProListConfigCategory.Instance.Get(hidePro.HideID);
+                        Function_Fight.AddUpdateProDicList(hideproCof.PropertyType, hidePro.HideValue, attriDic);
+                    }
+                }
+
+                //存储附魔属性
+                if (userBagInfo.FumoProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.FumoProLists.Count; y++)
+                    {
+                        HideProList hidePro = userBagInfo.FumoProLists[y];
+                        Function_Fight.AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, attriDic);
+                    }
+                }
+
+                // 存储增幅属性
+                if (userBagInfo.IncreaseProLists != null && userBagInfo.IncreaseProLists.Count > 0)
+                {
+                    for (int j = 0; j < userBagInfo.IncreaseProLists.Count; j++)
+                    {
+                        HideProList hideProList = userBagInfo.IncreaseProLists[j];
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideProList.HideID);
+                        Function_Fight.AddUpdateProDicList(hideProListConfig.PropertyType, hideProList.HideValue, attriDic);
+                    }
+                }
+                //.InheritSkills //传承技能
+                // 存储增幅技能属性
+                if (userBagInfo.IncreaseSkillLists != null && userBagInfo.IncreaseSkillLists.Count > 0)
+                {
+                    for (int s = 0; s < userBagInfo.IncreaseSkillLists.Count; s++)
+                    {
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(userBagInfo.IncreaseSkillLists[s]);
+                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
+
+                        if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkill)
+                        {
+                            continue;
+                        }
+
+                        string GameObjectParameter = skillConfig.GameObjectParameter;
+                        if (ComHelp.IfNull(GameObjectParameter))
+                        {
+                            continue;
+                        }
+
+                        string[] addProList = GameObjectParameter.Split(";");
+                        for (int p = 0; p < addProList.Length; p++)
+                        {
+                            string[] addPro = addProList[p].Split(",");
+                            if (addPro.Length < 2)
+                            {
+                                break;
+                            }
+                            int key = int.Parse(addPro[0]);
+                            try
+                            {
+                                if (NumericHelp.GetNumericValueType(key) == 1)
+                                {
+                                    Function_Fight.AddUpdateProDicList(key, long.Parse(addPro[1]), attriDic);
+                                }
+                                else
+                                {
+                                    Function_Fight.AddUpdateProDicList(key, (int)(float.Parse(addPro[1]) * 10000), attriDic);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error($"{ex.ToString()} {GameObjectParameter}");
+                            }
+                        }
+                    }
+                }
+
+
+                EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
+
+                for (int y = 0; y < mEquipCon.AddPropreListType.Length; y++)
+                {
+                    if (mEquipCon.AddPropreListType[y] != 0 && mEquipCon.AddPropreListValue.Length > y)
+                    {
+                        //记录属性
+                        Function_Fight.AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], attriDic);
+                    }
+                }
             }
-        
+
             foreach ( (int skillId, int skillNum) in hideSkillId)
             {
                 int hideId = HideProListConfigCategory.Instance.PetSkillToHideProId[skillId];
@@ -1181,8 +1284,6 @@ namespace ET
                 }
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
-
-
 
             int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
             if (pingfenIndex != -1)

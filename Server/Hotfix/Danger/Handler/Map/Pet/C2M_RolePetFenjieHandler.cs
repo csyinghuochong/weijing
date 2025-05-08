@@ -43,7 +43,7 @@ namespace ET
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length > 2)
 			{
-				unit.GetComponent<BagComponent>().OnAddItemData($petCof.ReleaseReward, $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+				unit.GetComponent<BagComponent>().OnAddItemData(petCof.ReleaseReward, $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
 			}
 
 			if (petType == 1)
