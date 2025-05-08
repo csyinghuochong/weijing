@@ -233,7 +233,7 @@ namespace ET
 		public int SelectSize { get; set; }
 		/// <summary>放生奖励</summary>
 		[ProtoMember(53)]
-		public int[] ReleaseReward { get; set; }
+		public string ReleaseReward { get; set; }
 		/// <summary>专注技能</summary>
 		[ProtoMember(54)]
 		public string ZhuanZhuSkillID { get; set; }
