@@ -568,15 +568,15 @@ namespace ET
                 */
 
                 float randValue = RandomHelper.RandFloat01();
-              
+                int hintProListID = HideProHelper.GetInitProId(itemConfig);
                 //Log.Info("randValue = " + randValue + " equipJiPinPro = " + equipJiPinPro);
-                if (randValue <= equipJiPinPro)
+                if (hintProListID > 0 && randValue <= equipJiPinPro)
                 {
                     int nextID = 0;
                     //获取隐藏条最大目数
                     int hintJiPinMaxNum = 3;
                     int hintJiPinMaxNumSum = 0;
-                    int hintProListID = HideProHelper.GetInitProId(itemConfig);
+                    
 
                     /*
                     if (hidePetEquipStatus)
@@ -710,11 +710,11 @@ namespace ET
                 }
                 */
 
-                bool ishaveSkill = false;
-                if (RandomHelper.RandFloat01() <= equipJiPinSkillPro || ishaveSkill)
+                int hintSkillListID = HideProHelper.GetInitSkillId(itemConfig);
+                if (hintSkillListID > 0 &&( RandomHelper.RandFloat01() <= equipJiPinSkillPro))
                 {
                     int nextID = 0;
-                    int hintProListID = HideProHelper.GetInitSkillId(itemConfig);
+                   
                     //获取隐藏条最大目数
                     int hintJiPinMaxNum = 1;
                     int hintJiPinMaxNumSum = 0;
@@ -731,7 +731,7 @@ namespace ET
                     do
                     {
                         //获取单条触发概率
-                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hintProListID);
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hintSkillListID);
 
                         //获取当前洗炼家等级 洗炼家等级不满足直接跳出
                         int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
@@ -781,7 +781,7 @@ namespace ET
                         }
 
                         nextID = hideProListConfig.NtxtID;
-                        hintProListID = nextID;
+                        hintSkillListID = nextID;
                         /*
                         if (teShuHintProListID != 0)
                         {
