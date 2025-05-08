@@ -37,6 +37,14 @@ namespace ET
                 {
                     continue;
                 }
+
+
+                if (!ComHelp.IsInnerNet() && npcs[i] == 20000043)
+                {
+                    continue;
+                }
+
+
                 UnitFactory.CreateNpc(self.DomainScene(), npcs[i]);									
             }
         }

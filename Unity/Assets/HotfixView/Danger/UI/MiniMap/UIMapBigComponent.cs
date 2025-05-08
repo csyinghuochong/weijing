@@ -438,6 +438,12 @@ namespace ET
                     {
                         continue;
                     }
+
+                    if (npcList[i] == 20000043)
+                    {
+                        continue;
+                    }
+
                     if (npcList[i] == 20000040)
                     {
                         PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
