@@ -824,7 +824,7 @@ namespace ET
                 //}
             }
 
-            if (xilianType == 0|| xilianType == 2) //普通掉落和打造
+            if (itemConfig.EquipType!= 301 &&(  xilianType == 0|| xilianType == 2) )//普通掉落和打造
             {
                 bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv, xilianType);
             }
