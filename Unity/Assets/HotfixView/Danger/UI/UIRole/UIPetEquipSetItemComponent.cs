@@ -67,6 +67,7 @@ namespace ET
     {
         public override void Destroy(UIPetEquipSetItemComponent self)
         {
+            TimerComponent.Instance.Remove(ref self.PointDownTime);
             for (int i = 0; i < self.AssetPath.Count; i++)
             {
                 if (!string.IsNullOrEmpty(self.AssetPath[i]))
