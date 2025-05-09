@@ -26,7 +26,7 @@ namespace ET
                     continue;
                 }
                 fightNum = fightNum + rolePetInfoNow.PetPingFen;
-                if (i == (self.PetShouHuActive -1)) 
+                if (i == (self.PetShouHuActive - 1))
                 {
                     //获取当前守护
                     nowNum = rolePetInfoNow.PetPingFen;
@@ -34,7 +34,7 @@ namespace ET
             }
 
             //增加属性
-            float addFloat = ComHelp.GetPetShouHuPro(nowNum,fightNum);
+            float addFloat = ComHelp.GetPetShouHuPro(nowNum, fightNum);
             PropertyValue hide = new PropertyValue();
             hide.HideID = int.Parse(ConfigHelper.PetShouHuAttri[self.PetShouHuActive - 1].Value2);
             hide.HideValue = (long)(addFloat * 10000);
@@ -46,15 +46,15 @@ namespace ET
 
         public static void CheckPetList(this PetComponent self, List<long> petList)
         {
-            List <long> ids = new List<long>();
+            List<long> ids = new List<long>();
 
             for (int i = petList.Count - 1; i >= 0; i--)
             {
-                if (petList[i]!= 0 && (self.GetPetInfo(petList[i]) == null) || ids.Contains(petList[i]))
+                if (petList[i] != 0 && (self.GetPetInfo(petList[i]) == null) || ids.Contains(petList[i]))
                 {
                     petList[i] = 0;
                 }
-                
+
                 if (petList[i] != 0 && ids.Contains(petList[i]))
                 {
                     ids.Add(petList[i]);
@@ -66,7 +66,7 @@ namespace ET
         {
             if (!self.PetCangKuOpen.Contains(0))
             {
-                self.PetCangKuOpen.Add(0);  
+                self.PetCangKuOpen.Add(0);
             }
             if (self.RolePetEggs.Count == 0)
             {
@@ -91,7 +91,7 @@ namespace ET
                     self.TeamPetList.Add(0);
                 }
             }
-            if ( self.PetShouHuList.Count != 4)
+            if (self.PetShouHuList.Count != 4)
             {
                 self.PetShouHuList.Clear();
                 for (int i = 0; i < 4; i++)
@@ -182,7 +182,7 @@ namespace ET
                     rolePetInfo.ShouHuPos = 5;
                 }
 
-                if (rolePetInfo.PetLv > maxLv && !ExpConfigCategory.Instance.Contain(rolePetInfo.PetLv) )
+                if (rolePetInfo.PetLv > maxLv && !ExpConfigCategory.Instance.Contain(rolePetInfo.PetLv))
                 {
                     rolePetInfo.PetLv = maxLv;
                 }
@@ -203,7 +203,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo ,2, 0, 0);
+                        self.PetXiLian(rolePetInfo, 2, 0, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -211,7 +211,7 @@ namespace ET
                 skill8Number = Math.Min(5, skill8Number);
                 if (skill8Number > 0)
                 {
-                    unit.GetComponent<BagComponent>().OnAddItemData($"10010097;{skill8Number}",$"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData($"10010097;{skill8Number}", $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
                 }
             }
         }
@@ -306,7 +306,7 @@ namespace ET
                 int zishi = 0;
                 switch (zizhiType)
                 {
-                   
+
                     case 1: //="获得宠物生命资质超过"&K386&"点"
                         zishi = self.RolePetInfos[i].ZiZhi_Hp;
                         break;
@@ -372,7 +372,7 @@ namespace ET
             for (int i = 0; i < self.TeamPetList.Count; i++)
             {
                 RolePetInfo rolePetInfo = self.GetPetInfo(self.TeamPetList[i]);
-                if (rolePetInfo!= null)
+                if (rolePetInfo != null)
                 {
                     pingfen_1 += rolePetInfo.PetPingFen;
                 }
@@ -396,7 +396,7 @@ namespace ET
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType, int itemId, int fuling)
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo, int XiLianType, int itemId, int fuling)
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -423,11 +423,11 @@ namespace ET
             rolePetInfo.ZiZhi_MageAct = RandomHelper.RandomNumber(petConfig.ZiZhi_MageAct_Min, petConfig.ZiZhi_MageAct_Max + addValue);
             rolePetInfo.ZiZhi_Def = RandomHelper.RandomNumber(petConfig.ZiZhi_Def_Min, petConfig.ZiZhi_Def_Max + addValue);
             rolePetInfo.ZiZhi_Adf = RandomHelper.RandomNumber(petConfig.ZiZhi_Adf_Min, petConfig.ZiZhi_Adf_Max + addValue);
-            rolePetInfo.ZiZhi_ActSpeed = RandomHelper.RandomNumber(petConfig.ZiZhi_ActSpeed_Min, petConfig.ZiZhi_ActSpeed_Max+ addValue);
+            rolePetInfo.ZiZhi_ActSpeed = RandomHelper.RandomNumber(petConfig.ZiZhi_ActSpeed_Min, petConfig.ZiZhi_ActSpeed_Max + addValue);
             rolePetInfo.ZiZhi_ChengZhang = self.RandomNumberFloatKeep2((float)petConfig.ZiZhi_ChengZhang_Min, (float)petConfig.ZiZhi_ChengZhang_Max);
 
             //表示出生创建
-            if (XiLianType == 1)    
+            if (XiLianType == 1)
             {
                 int minStart = petConfig.InitStartNum[0];
                 int maxStart = petConfig.InitStartNum[1];
@@ -473,7 +473,8 @@ namespace ET
             //增加宠物随机技能
             string randomSkillID = petConfig.RandomSkillID;
             float randomAddPro = 1;
-            if (fulingStatus) {
+            if (fulingStatus)
+            {
                 randomAddPro = 2.5f;
             }
             //80001010,01;80001014,0.1;80001015.1
@@ -555,7 +556,7 @@ namespace ET
                 m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
             }
-            
+
             //如果有皮肤的话更新一次角色属性
             Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
             return newpet;
@@ -600,7 +601,7 @@ namespace ET
 
             if (rolePetInfo.ZiZhi_Hp < petConfig.ZiZhi_Hp_Max)
             {
-                rolePetInfo.ZiZhi_Hp +=  RandomHelper.RandomNumber(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]));
+                rolePetInfo.ZiZhi_Hp += RandomHelper.RandomNumber(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]));
                 rolePetInfo.ZiZhi_Hp = Math.Min(rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
             }
 
@@ -625,12 +626,12 @@ namespace ET
             if (rolePetInfo.ZiZhi_MageAct < petConfig.ZiZhi_MageAct_Max)
             {
                 rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1]));
-                rolePetInfo.ZiZhi_MageAct = Math.Min(rolePetInfo.ZiZhi_MageAct,petConfig.ZiZhi_MageAct_Max);
+                rolePetInfo.ZiZhi_MageAct = Math.Min(rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
             }
         }
 
         //宠物进化
-        public static void UpdatePetStage(this PetComponent self, RolePetInfo rolePetInfo,int pingfen)
+        public static void UpdatePetStage(this PetComponent self, RolePetInfo rolePetInfo, int pingfen)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
@@ -641,7 +642,7 @@ namespace ET
             minZiZhi = (int)((float)minZiZhi * floatPro);
             maxZiZhi = (int)((float)maxZiZhi * floatPro);
 
-            if (minZiZhi < 5) 
+            if (minZiZhi < 5)
             {
                 minZiZhi = 5;
             }
@@ -656,7 +657,7 @@ namespace ET
                 maxZiZhi = 20;
             }
 
-            if (maxZiZhi > 30) 
+            if (maxZiZhi > 30)
             {
                 maxZiZhi = 30;
             }
@@ -674,10 +675,10 @@ namespace ET
             int oldZiZhiMageAct = rolePetInfo.ZiZhi_MageAct;
 
             rolePetInfo.ZiZhi_Hp += RandomHelper.RandomNumber(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]) + 1);
-            rolePetInfo.ZiZhi_Act += RandomHelper.RandomNumber(int.Parse(ZiZhi_Act[0]), int.Parse(ZiZhi_Act[1])+1);
-            rolePetInfo.ZiZhi_Def += RandomHelper.RandomNumber(int.Parse(ZiZhi_Def[0]), int.Parse(ZiZhi_Def[1])+1);
-            rolePetInfo.ZiZhi_Adf += RandomHelper.RandomNumber(int.Parse(ZiZhi_Adf[0]), int.Parse(ZiZhi_Adf[1])+1);
-            rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1])+1);
+            rolePetInfo.ZiZhi_Act += RandomHelper.RandomNumber(int.Parse(ZiZhi_Act[0]), int.Parse(ZiZhi_Act[1]) + 1);
+            rolePetInfo.ZiZhi_Def += RandomHelper.RandomNumber(int.Parse(ZiZhi_Def[0]), int.Parse(ZiZhi_Def[1]) + 1);
+            rolePetInfo.ZiZhi_Adf += RandomHelper.RandomNumber(int.Parse(ZiZhi_Adf[0]), int.Parse(ZiZhi_Adf[1]) + 1);
+            rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1]) + 1);
 
             rolePetInfo.ZiZhi_Hp = Math.Min(rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
             rolePetInfo.ZiZhi_Act = Math.Min(rolePetInfo.ZiZhi_Act, petConfig.ZiZhi_Act_Max);
@@ -719,7 +720,8 @@ namespace ET
 
             if (RandomHelper.RandFloat01() < addSkillPro)
             {
-                if (RandomHelper.RandFloat01() <= 0.7f) {
+                if (RandomHelper.RandFloat01() <= 0.7f)
+                {
                     //低级技能概率70%
                     int add = RandomHelper.RandomNumber(1, 28);
                     addSkillID = 80001000 + add;
@@ -739,13 +741,16 @@ namespace ET
             }
 
             //检查互斥ID
-            if (addSkillID != 0) {
+            if (addSkillID != 0)
+            {
 
                 int jianchaSkillID = 0;
-                if (addSkillID >= 80002000) {
+                if (addSkillID >= 80002000)
+                {
                     jianchaSkillID = addSkillID - 1000;
                 }
-                else {
+                else
+                {
                     jianchaSkillID = addSkillID - 1000;
                 }
 
@@ -780,7 +785,7 @@ namespace ET
         //重置属性点
         public static void OnResetPoint(this PetComponent self, RolePetInfo rolePetInfo)
         {
-            rolePetInfo.AddPropretyNum =( rolePetInfo.PetLv - 1 ) * 5;
+            rolePetInfo.AddPropretyNum = (rolePetInfo.PetLv - 1) * 5;
             rolePetInfo.AddPropretyValue = ItemHelper.DefaultGem;
             self.UpdatePetAttribute(rolePetInfo, false);
         }
@@ -863,7 +868,7 @@ namespace ET
                 self.PetAddLv(rolePetInfo, 1);
                 newExp -= xiulianconf1.PetUpExp;
             }
-          
+
             rolePetInfo.PetExp = newExp;
 
             //通知客户端
@@ -925,51 +930,55 @@ namespace ET
             ///rolePetInfo.Vs.Add(hp_Now * (1 + now_SummonAddPro));
             float now_SummonAddPro = numericComponent.GetAsFloat(NumericType.Now_SummonAddPro);
 
+            //宠物之核
+            List<int> petheXinLv = new List<int>();
+
+            Dictionary<int, long> attriDic = new Dictionary<int, long>();
+
+
             //存储数据
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
 
-            Dictionary<int, long> attriDic = new Dictionary<int, long>();
 
-            rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
-            rolePetInfo.Vs.Add(hp_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
+            //rolePetInfo.Vs.Add(hp_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.PetSkin);
+            //rolePetInfo.Vs.Add(rolePetInfo.SkinId);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
+            //rolePetInfo.Vs.Add((long)speed * 10000);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxHp_Base);
+            //rolePetInfo.Vs.Add(hp_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxAct_Base);
+            //rolePetInfo.Vs.Add(act_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Mage_Base);
+            //rolePetInfo.Vs.Add(mage_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxDef_Base);
+            //rolePetInfo.Vs.Add(def_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxAdf_Base);
+            //rolePetInfo.Vs.Add(adf_Now);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Cri_Base);
+            //rolePetInfo.Vs.Add(0);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Res_Base);
+            //rolePetInfo.Vs.Add(0);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Hit_Base);
+            //rolePetInfo.Vs.Add(0);
+            //rolePetInfo.Ks.Add((int)NumericType.Base_Dodge_Base);
+            //rolePetInfo.Vs.Add(0);
 
-            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
-            rolePetInfo.Vs.Add(rolePetInfo.SkinId);
+            Function_Fight.AddUpdateProDicList(NumericType.Now_Hp, hp_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.PetSkin, rolePetInfo.SkinId, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Speed_Base, (long)speed * 10000, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxHp_Base, hp_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAct_Base, act_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Mage_Base, mage_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxDef_Base, def_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAdf_Base, adf_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Cri_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Res_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Hit_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Dodge_Base, 0, attriDic);
 
-            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
-            rolePetInfo.Vs.Add((long)speed * 10000);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_MaxHp_Base);
-            rolePetInfo.Vs.Add(hp_Now);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_MaxAct_Base);
-            rolePetInfo.Vs.Add(act_Now);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Mage_Base);
-            rolePetInfo.Vs.Add(mage_Now);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_MaxDef_Base);
-            rolePetInfo.Vs.Add(def_Now);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_MaxAdf_Base);
-            rolePetInfo.Vs.Add(adf_Now);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Cri_Base);
-            rolePetInfo.Vs.Add(0);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Res_Base);
-            rolePetInfo.Vs.Add(0);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Hit_Base);
-            rolePetInfo.Vs.Add(0);
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Dodge_Base);
-            rolePetInfo.Vs.Add(0);
-
-            //宠物之核
-            List<int> petheXinLv = new List<int>();
-            
 
             for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
             {
@@ -984,7 +993,7 @@ namespace ET
                 {
                     continue;
                 }
-               
+
                 //100203;790
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 petheXinLv.Add(itemConfig.UseLv);
@@ -1023,7 +1032,7 @@ namespace ET
                 }
 
                 for (int skill = 0; skill < userBagInfo.HideSkillLists.Count; skill++)
-                { 
+                {
                     int skillId = userBagInfo.HideSkillLists[skill];
                     if (!hideSkillId.ContainsKey(skillId))
                     {
@@ -1138,13 +1147,13 @@ namespace ET
                 }
             }
 
-            foreach ( (int skillId, int skillNum) in hideSkillId)
+            foreach ((int skillId, int skillNum) in hideSkillId)
             {
                 int hideId = HideProListConfigCategory.Instance.PetSkillToHideProId[skillId];
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideId);
                 if (skillNum >= hideProListConfig.NeedNumber)
                 {
-                    rolePetInfo.PetSkill.Add ( hideProListConfig.PropertyType );
+                    rolePetInfo.PetSkill.Add(hideProListConfig.PropertyType);
                 }
             }
 
@@ -1194,7 +1203,7 @@ namespace ET
 
             if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
             {
-                rolePetInfo.SkinId = petCof.Skin.Length>=2 ? petCof.Skin[1] : petCof.Skin[0];
+                rolePetInfo.SkinId = petCof.Skin.Length >= 2 ? petCof.Skin[1] : petCof.Skin[0];
                 Log.Warning($"rolePetInfo.SkinId:  {rolePetInfo.SkinId}");
             }
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
@@ -1278,7 +1287,7 @@ namespace ET
             {
                 int numericType = item.Key;
                 int attriIndex = rolePetInfo.Ks.IndexOf(numericType);
-                if (attriIndex == -1 )
+                if (attriIndex == -1)
                 {
                     rolePetInfo.Ks.Add(numericType);
                     rolePetInfo.Vs.Add(item.Value);
@@ -1296,7 +1305,7 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
             rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
 
-            PetHelper.UpdatePetNumeric( rolePetInfo );
+            PetHelper.UpdatePetNumeric(rolePetInfo);
         }
 
         public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, BagInfo bagInfo)
@@ -1310,11 +1319,11 @@ namespace ET
             }
         }
 
-        public static void UpdatePetAttribute(this PetComponent self,  RolePetInfo rolePetInfo, bool updateUnit)
+        public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, bool updateUnit)
         {
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            self.UpdatePetAttributeWithData( bagComponent, numericComponent, rolePetInfo, updateUnit );
+            self.UpdatePetAttributeWithData(bagComponent, numericComponent, rolePetInfo, updateUnit);
 
             //如果是出战的宠物。再广播一下属性
             if (updateUnit == false)
@@ -1337,19 +1346,22 @@ namespace ET
         }
 
         //根据资质换算出当前系数
-        private static float GetZiZhiAddPro(this PetComponent self, int type ,int value) {
+        private static float GetZiZhiAddPro(this PetComponent self, int type, int value)
+        {
 
             float pro = 0.8f;
 
-            if (type == 1) {
+            if (type == 1)
+            {
                 if (value >= 1200)
                 {
                     //超出算法
-                    pro = 0.8f + ((value-1200) / 600.0f);
+                    pro = 0.8f + ((value - 1200) / 600.0f);
                 }
-                else {
+                else
+                {
                     //低出算法
-                    pro = (float)value/1500.0f;
+                    pro = (float)value / 1500.0f;
                 }
             }
 
@@ -1374,7 +1386,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            for (int i = self.RolePetInfos.Count - 1; i>= 0; i--)
+            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
                 if (self.RolePetInfos[i].Id == petId)
                 {
@@ -1494,10 +1506,10 @@ namespace ET
                 self.UpdatePetAttribute(self.RolePetInfos[i], false);
             }
 
-            M2C_PetListMessage  m2C_PetListMessage = new M2C_PetListMessage();
+            M2C_PetListMessage m2C_PetListMessage = new M2C_PetListMessage();
             m2C_PetListMessage.PetList = self.RolePetInfos;
             m2C_PetListMessage.RemovePetId = petId;
-            MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_PetListMessage );
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_PetListMessage);
         }
 
         public static int GetMaxSkillNumber(this PetComponent self)
@@ -1532,7 +1544,7 @@ namespace ET
             int shenshouNumber = 0;
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
-                if (PetHelper.IsShenShou(self.RolePetInfos[i].ConfigId) )
+                if (PetHelper.IsShenShou(self.RolePetInfos[i].ConfigId))
                 {
                     shenshouNumber++;
                 }
@@ -1579,7 +1591,7 @@ namespace ET
             string[] petskininfo = skininfo.Split(';');
             int petId = int.Parse(petskininfo[0]);
             int skinId = int.Parse(petskininfo[1]);
-        
+
             for (int p = 0; p < self.PetSkinList.Count; p++)
             {
                 if (self.PetSkinList[p].KeyId != petId)
@@ -1621,7 +1633,7 @@ namespace ET
                 }
             }
 
-            return maxid;   
+            return maxid;
         }
 
         public static void OnPassPetFuben(this PetComponent self, int petfubenId, int star)
@@ -1634,7 +1646,7 @@ namespace ET
                     return;
                 }
             }
-            self.PetFubenInfos.Add( new PetFubenInfo() { PetFubenId = petfubenId, Star = star, Reward = 0 } );
+            self.PetFubenInfos.Add(new PetFubenInfo() { PetFubenId = petfubenId, Star = star, Reward = 0 });
         }
 
         public static void OnPetMingRecord(this PetComponent self, PetMingRecord record)
@@ -1643,12 +1655,12 @@ namespace ET
             {
                 self.PetMingRecordList.RemoveAt(0);
             }
-            self.PetMingRecordList.Add( record );
+            self.PetMingRecordList.Add(record);
         }
 
         public static void OnGmGaoJi(this PetComponent self)
         {
- 
+
             //每个宠物附带满级的宠物之核,并进化
             List<int> itemids = new List<int>()
             {
@@ -1657,13 +1669,13 @@ namespace ET
 
             for (int i = 0; i < itemids.Count; i++)
             {
-                string itempar = ItemConfigCategory.Instance.Get(itemids[i] ).ItemUsePar;
-                int petid = int.Parse( itempar );
+                string itempar = ItemConfigCategory.Instance.Get(itemids[i]).ItemUsePar;
+                int petid = int.Parse(itempar);
                 if (self.HavePetConfigId(petid))
                 {
                     continue;
                 }
-                self.OnGmAddPet( petid );
+                self.OnGmAddPet(petid);
             }
         }
 
@@ -1672,8 +1684,8 @@ namespace ET
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
                 if (self.RolePetInfos[i].ConfigId == configId)
-                { 
-                    return true;    
+                {
+                    return true;
                 }
             }
             return false;
@@ -1705,14 +1717,14 @@ namespace ET
             unit.GetComponent<ChengJiuComponent>().OnGetPet(newpet);
             unit.GetComponent<TaskComponent>().OnGetPet(newpet);
 
-            self.OnGmPetEquip(10060230 , newpet);
+            self.OnGmPetEquip(10060230, newpet);
             self.OnGmPetEquip(10060430, newpet);
             self.OnGmPetEquip(10060130, newpet);
 
             self.RolePetInfos.Add(newpet);
         }
 
-        public static void OnGmPetEquip(this PetComponent self, int itemid,  RolePetInfo rolePetInfo)
+        public static void OnGmPetEquip(this PetComponent self, int itemid, RolePetInfo rolePetInfo)
         {
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             bagComponent.OnAddItemData($"{itemid};1", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}");
@@ -1737,7 +1749,7 @@ namespace ET
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }
