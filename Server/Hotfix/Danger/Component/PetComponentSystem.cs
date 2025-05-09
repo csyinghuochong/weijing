@@ -929,6 +929,8 @@ namespace ET
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
 
+            Dictionary<int, long> attriDic = new Dictionary<int, long>();
+
             rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
             rolePetInfo.Vs.Add(hp_Now);
 
@@ -967,7 +969,7 @@ namespace ET
 
             //宠物之核
             List<int> petheXinLv = new List<int>();
-            Dictionary<int, long> attriDic = new Dictionary<int, long>();
+            
 
             for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
             {
