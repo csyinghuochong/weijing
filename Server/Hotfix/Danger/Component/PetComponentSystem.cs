@@ -894,7 +894,11 @@ namespace ET
 
         public static void UpdatePetAttributeWithData(this PetComponent self, BagComponent bagComponent, NumericComponent numericComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
-            rolePetInfo.PetPingFen = PetHelper.PetPingJia(rolePetInfo);
+            //存储数据
+            rolePetInfo.Ks.Clear();
+            rolePetInfo.Vs.Clear();
+
+
             //获取宠物资质
             float actPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Act);
             float magePro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_MageAct);
@@ -935,37 +939,7 @@ namespace ET
 
             Dictionary<int, long> attriDic = new Dictionary<int, long>();
 
-
-            //存储数据
-            rolePetInfo.Ks.Clear();
-            rolePetInfo.Vs.Clear();
-
-
-            //rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
-            //rolePetInfo.Vs.Add(hp_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.PetSkin);
-            //rolePetInfo.Vs.Add(rolePetInfo.SkinId);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
-            //rolePetInfo.Vs.Add((long)speed * 10000);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxHp_Base);
-            //rolePetInfo.Vs.Add(hp_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxAct_Base);
-            //rolePetInfo.Vs.Add(act_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Mage_Base);
-            //rolePetInfo.Vs.Add(mage_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxDef_Base);
-            //rolePetInfo.Vs.Add(def_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_MaxAdf_Base);
-            //rolePetInfo.Vs.Add(adf_Now);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Cri_Base);
-            //rolePetInfo.Vs.Add(0);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Res_Base);
-            //rolePetInfo.Vs.Add(0);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Hit_Base);
-            //rolePetInfo.Vs.Add(0);
-            //rolePetInfo.Ks.Add((int)NumericType.Base_Dodge_Base);
-            //rolePetInfo.Vs.Add(0);
-
+            
             Function_Fight.AddUpdateProDicList(NumericType.Now_Hp, hp_Now, attriDic);
             Function_Fight.AddUpdateProDicList(NumericType.PetSkin, rolePetInfo.SkinId, attriDic);
             Function_Fight.AddUpdateProDicList(NumericType.Base_Speed_Base, (long)speed * 10000, attriDic);
@@ -1292,11 +1266,10 @@ namespace ET
             }
 
 
-
-
+            int pingfen = PetHelper.PetPingJia(rolePetInfo);
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
-            rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
-
+            rolePetInfo.Vs.Add(pingfen);
+            rolePetInfo.PetPingFen = pingfen;   
             PetHelper.UpdatePetNumeric(rolePetInfo);
         }
 
