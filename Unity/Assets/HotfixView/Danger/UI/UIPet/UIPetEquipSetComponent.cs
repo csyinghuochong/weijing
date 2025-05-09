@@ -9,11 +9,9 @@ namespace ET
     {
         public GameObject GameObject;
         public GameObject ButtonEquipXieXia;
-        public GameObject ButtonHeXinHeCheng;
         public GameObject TextAttributeItem;
         public GameObject ImageIcon;
         public GameObject PetHeXinListNode;
-        public GameObject ButtonEquipHeXin;
         public GameObject AttributeListNode;
         public GameObject TextLevel;
         public GameObject TextName;
@@ -40,9 +38,7 @@ namespace ET
 
             self.ButtonEquipXieXia = rc.Get<GameObject>("ButtonEquipXieXia");
             self.PetHeXinListNode = rc.Get<GameObject>("PetHeXinListNode");
-            self.ButtonEquipHeXin = rc.Get<GameObject>("ButtonEquipHeXin");
             self.AttributeListNode = rc.Get<GameObject>("AttributeListNode");
-            self.ButtonHeXinHeCheng = rc.Get<GameObject>("ButtonHeXinHeCheng");
             self.TextLevel = rc.Get<GameObject>("TextLevel");
             self.TextName = rc.Get<GameObject>("TextName");
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
@@ -78,10 +74,9 @@ namespace ET
 
         public static void UpdatePetEquipItem(this UIPetEquipSetComponent self, List<BagInfo> bagInfos)
         {
-            self.ButtonHeXinHeCheng.SetActive(false);
             self.ButtonEquipXieXia.GetComponent<Button>().onClick.RemoveAllListeners();
             ButtonHelp.AddListenerEx(self.ButtonEquipXieXia, () => { self.OnButtonEquipXieXia().Coroutine(); });
-            List<string> TypeNames = new List<string>() { "项圈", "铠甲", "护腕" };
+            List<string> TypeNames = new List<string>() { "头饰", "项圈", "护腕" };
             self.TextType.GetComponent<Text>().text = TypeNames[self.Position];
 
             UICommonHelper.DestoryChild(self.AttributeListNode);

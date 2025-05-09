@@ -17,6 +17,8 @@ namespace ET
         public GameObject AttributeNode;
         public GameObject ButtonCloseHexin;
 
+        public GameObject ButtonCloseEquip;
+
         public GameObject[] PetHeXinItemList;
 
         public GameObject ButtonAddPoint;
@@ -176,7 +178,7 @@ namespace ET
                 UIPetEquipSetItemComponent uiitem = self.AddChild<UIPetEquipSetItemComponent, GameObject>(go);
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.RemoveAllListeners();
                 int i1 = i;
-                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(2); });
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(4); });
                 uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonPetEquipItem(i1); });
                 uiitem.InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
                 self.EquipList.Add(uiitem);
@@ -189,10 +191,14 @@ namespace ET
             GameObject PetHeXinSet = rc.Get<GameObject>("PetHeXinSet");
             self.PetHeXinSetComponent = self.AddChild<UIPetHeXinSetComponent, GameObject>(PetHeXinSet);
             self.PetHeXinSetComponent.GameObject.SetActive(false);
-            self.PetEquipSetComponent = self.AddChild<UIPetEquipSetComponent, GameObject>(PetHeXinSet);
+            GameObject PetEquipSet = rc.Get<GameObject>("PetEquipSet");
+            self.PetEquipSetComponent = self.AddChild<UIPetEquipSetComponent, GameObject>(PetEquipSet);
             self.ButtonCloseHexin = rc.Get<GameObject>("ButtonCloseHexin");
             self.ButtonCloseHexin.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(1); });
 
+            self.ButtonCloseEquip = rc.Get<GameObject>("ButtonCloseEquip");
+            self.ButtonCloseEquip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(1); });
+            
             GameObject petHeXinItem0 = rc.Get<GameObject>("PetHeXinItem0");
             ButtonHelp.AddListenerEx(petHeXinItem0.transform.Find("Node_1/ButtonAdd").gameObject, () =>
             {
@@ -271,7 +277,7 @@ namespace ET
     public static class UIPetListComponentSystem
     {
         /// <summary>
-        ///  //1 属性 2 宠物之核 3 加点
+        ///  //1 属性 2 宠物之核 3 加点 4 宠物装备
         /// </summary>
         /// <param name="self"></param>
         /// <param name="nodetype"></param>
@@ -281,6 +287,7 @@ namespace ET
             self.AttributeNode.SetActive(nodetype == 1);
             self.PetHeXinSetComponent.GameObject.SetActive(nodetype == 2);
             self.PetAddPointComponent.GameObject.SetActive(nodetype == 3);
+            self.PetEquipSetComponent.GameObject.SetActive(nodetype == 4);
         }
 
         public static void OnButtonAddPoint(this UIPetListComponent self)
