@@ -1283,25 +1283,17 @@ namespace ET
                     }
                 }
             }
+
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;
-                int attriIndex = rolePetInfo.Ks.IndexOf(numericType);
-                if (attriIndex == -1)
-                {
-                    rolePetInfo.Ks.Add(numericType);
-                    rolePetInfo.Vs.Add(item.Value);
-                    continue;
-                }
-                rolePetInfo.Vs[attriIndex] += item.Value;
+                rolePetInfo.Ks.Add(numericType);
+                rolePetInfo.Vs.Add(item.Value);
             }
 
-            int pingfenIndex = rolePetInfo.Ks.IndexOf(NumericType.PetPinFen);
-            if (pingfenIndex != -1)
-            {
-                rolePetInfo.Ks.RemoveAt(pingfenIndex);
-                rolePetInfo.Vs.RemoveAt(pingfenIndex);
-            }
+
+
+
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
             rolePetInfo.Vs.Add(PetHelper.PetPingJia(rolePetInfo));
 
