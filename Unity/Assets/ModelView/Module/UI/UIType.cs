@@ -181,6 +181,7 @@ namespace ET
 		public const string UIWorldLv = "Main/WorldLv/UIWorldLv";
 		public const string UIAppraisalSelect = "Main/Appraisal/UIAppraisalSelect";
 		public const string UIGemMake = "Main/Make/UIGemMake";
+		public const string UIPetEquipMake = "Main/Make/UIPetEquipMake";
 		public const string UIShenQiMake = "Main/Make/UIShenQiMake";
         public const string UIPetSet = "Main/PetSet/UIPetSet";
 		public const string UIPetFormation = "Main/PetSet/UIPetFormation";
