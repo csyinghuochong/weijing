@@ -140,18 +140,18 @@ namespace ET
             self.Img_EquipQuality.SetActive(false);
             self.Img_EquipBangDing.SetActive(false);
 
-            if (subType < 100)
-            {
-                string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
-                string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName);
-                Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                if (!self.AssetPath.Contains(path))
-                {
-                    self.AssetPath.Add(path);
-                }
-
-                self.Img_EquipBack.GetComponent<Image>().sprite = sp;
-            }
+            // if (subType < 100)
+            // {
+            //     string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
+            //     string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName);
+            //     Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            //     if (!self.AssetPath.Contains(path))
+            //     {
+            //         self.AssetPath.Add(path);
+            //     }
+            //
+            //     self.Img_EquipBack.GetComponent<Image>().sprite = sp;
+            // }
         }
 
         public static void UpdateData(this UIPetEquipSetItemComponent self, BagInfo bagInfo, ItemOperateEnum itemOperateEnum,
