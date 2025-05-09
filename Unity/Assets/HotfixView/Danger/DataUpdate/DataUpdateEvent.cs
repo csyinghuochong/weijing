@@ -493,6 +493,12 @@ namespace ET
                 {
                     uiUnionMysteryBComponent.UpdateItemNum();
                 }
+                
+                if (component is UIPetListComponent uiPetListComponent)
+                {
+                    uiPetListComponent.OnUpdatePetEquipItemList();
+                    continue;
+                }
             }
         }
 

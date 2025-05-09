@@ -98,6 +98,8 @@ namespace ET
     {
         public override void Destroy(UIPetListComponent self)
         {
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            
             for (int i = 0; i < self.AssetPath.Count; i++)
             {
                 if (!string.IsNullOrEmpty(self.AssetPath[i]))
@@ -271,6 +273,8 @@ namespace ET
             self.SkinModelShowComponent = null;
             self.InitModelShowView_1().Coroutine();
             self.InitModelShowView_2().Coroutine();
+            
+            DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
         }
     }
 
@@ -1403,6 +1407,12 @@ namespace ET
             self.PetEquipSetComponent.RolePetInfo = self.LastSelectItem;
             self.PetEquipSetComponent.SelectItemHandlder(null);
             self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
+            self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
+        }
+
+        public static void OnUpdatePetEquipItemList(this UIPetListComponent self)
+        {
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemLocBag);
             self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
         }
 
