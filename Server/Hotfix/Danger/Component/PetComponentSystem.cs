@@ -1247,11 +1247,18 @@ namespace ET
             //所有的属性都在attriDic
             /////以下代码为测试代码##################
             ///示列：：： 体质会影响攻击属性
+            ///
+
+            self.UpdatePetNumeric(attriDic);
             int PointLiLiang = self.GetAsInt(NumericType.Now_Power, attriDic);
             int PointZhiLi = self.GetAsInt(NumericType.Now_Intellect, attriDic);
             int PointTiZhi = self.GetAsInt(NumericType.Now_Constitution, attriDic);
             int PointNaiLi = self.GetAsInt(NumericType.Now_Stamina, attriDic);
             int PointMinJie = self.GetAsInt(NumericType.Now_Agility, attriDic);
+
+
+
+
             //宠物装备包含体质：：：：
 
             /////以上代码为测试代码##################
