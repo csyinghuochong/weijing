@@ -1246,8 +1246,7 @@ namespace ET
             //属性交互：
             //所有的属性都在attriDic
             /////以下代码为测试代码##################
-            ///示列：：： 体质会影响攻击属性
-            ///
+      
 
             self.UpdatePetNumeric(attriDic);
             int PointLiLiang = self.GetAsInt(NumericType.Now_Power, attriDic);
@@ -1257,10 +1256,8 @@ namespace ET
             int PointMinJie = self.GetAsInt(NumericType.Now_Agility, attriDic);
 
 
-
-
-            //宠物装备包含体质：：：：
-
+            //示列：：： 体质会影响攻击属性
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAct_Base, PointLiLiang, attriDic);
             /////以上代码为测试代码##################
 
 
@@ -1337,6 +1334,10 @@ namespace ET
 
         public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, BagInfo bagInfo)
         {
+            if (bagInfo == null)
+            {
+                return;
+            }
             for (int i = rolePetInfom.PetSkill.Count - 1; i >= 0; i--)
             {
                 if (bagInfo.HideSkillLists.Contains(rolePetInfom.PetSkill[i]))
