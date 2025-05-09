@@ -1386,6 +1386,7 @@ namespace ET
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
+            self.PetHeXinSetComponent.RolePetInfo = self.LastSelectItem;
             self.PetHeXinSetComponent.SelectItemHandlder(null);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
@@ -1399,6 +1400,7 @@ namespace ET
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
             self.UpdateSkillList(self.LastSelectItem);
+            self.PetEquipSetComponent.RolePetInfo = self.LastSelectItem;
             self.PetEquipSetComponent.SelectItemHandlder(null);
             self.PetEquipSetComponent.UpdatePetEquipItem(eqipInfos);
             self.PetEquipSetComponent.OnUpdateItemList(bagInfos);
