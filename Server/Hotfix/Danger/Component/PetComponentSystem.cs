@@ -875,23 +875,7 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Exp, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetExp.ToString() });
         }
 
-        public static long GetByKey(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
-        {
-            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
-            {
-                if (rolePetInfo.Ks[i] == numericType)
-                {
-                    return rolePetInfo.Vs[i];
-                }
-            }
-            return 0;
-        }
-
-        public static float GetAsFloat(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
-        {
-            return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
-        }
-
+       
         public static void UpdatePetAttributeWithData(this PetComponent self, BagComponent bagComponent, NumericComponent numericComponent, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             //存储数据
@@ -1258,6 +1242,23 @@ namespace ET
                 }
             }
 
+
+            //属性交互：
+            //所有的属性都在attriDic
+            /////以下代码为测试代码##################
+            ///示列：：： 体质会影响攻击属性
+            int PointLiLiang = self.GetAsInt(NumericType.Now_Power, attriDic);
+            int PointZhiLi = self.GetAsInt(NumericType.Now_Intellect, attriDic);
+            int PointTiZhi = self.GetAsInt(NumericType.Now_Constitution, attriDic);
+            int PointNaiLi = self.GetAsInt(NumericType.Now_Stamina, attriDic);
+            int PointMinJie = self.GetAsInt(NumericType.Now_Agility, attriDic);
+            //宠物装备包含体质：：：：
+
+            /////以上代码为测试代码##################
+
+
+            //刷新一下属性attriDic  赋值给rolePetInfo.Ks rolePetInfo.Vs
+            self.UpdatePetNumeric(attriDic);
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;
@@ -1265,12 +1266,66 @@ namespace ET
                 rolePetInfo.Vs.Add(item.Value);
             }
 
-
             int pingfen = PetHelper.PetPingJia(rolePetInfo);
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
             rolePetInfo.Vs.Add(pingfen);
-            rolePetInfo.PetPingFen = pingfen;   
-            PetHelper.UpdatePetNumeric(rolePetInfo);
+            rolePetInfo.PetPingFen = pingfen;
+        }
+
+        public static void UpdatePetNumeric(this PetComponent self, Dictionary<int, long> attriDic)
+        {
+            List<int> keylist = attriDic.Keys.ToList();
+            for (int i = 0; i < keylist.Count; i++)
+            {
+                self.Update(keylist[i], attriDic);
+            }
+        }
+
+        public static void Update(this PetComponent self,  int numericType, Dictionary<int, long> attriDic)
+        {
+            if (numericType < (int)NumericType.Max)
+            {
+                return;
+            }
+
+            int nowValue = (int)numericType / 100;
+
+            int add = nowValue * 100 + 1;
+            int mul = nowValue * 100 + 2;
+            int finalAdd = nowValue * 100 + 3;
+            int buffAdd = nowValue * 100 + 11;
+            int buffMul = nowValue * 100 + 12;
+            long old = self.GetByKey( nowValue, attriDic);
+            long nowPropertyValue = (long)
+            (
+                (self.GetByKey( add, attriDic) * (1 + self.GetAsFloat( mul, attriDic)) + self.GetByKey( finalAdd, attriDic)) *
+                (1 + self.GetAsFloat( buffMul, attriDic))
+                + self.GetByKey( buffAdd, attriDic)
+            );
+
+            attriDic[nowValue] = nowPropertyValue;
+        }
+
+        public static long GetAsLong(this PetComponent self, int numericType, Dictionary<int, long> attriDic)
+        {
+            return self.GetByKey(numericType, attriDic);
+        }
+
+        public static int GetAsInt(this PetComponent self, int numericType, Dictionary<int, long> attriDic)
+        {
+            return (int)self.GetByKey(numericType, attriDic);
+        }
+
+        public static float GetAsFloat(this PetComponent self, int numericType, Dictionary<int, long> attriDic)
+        {
+            return (float)self.GetByKey(numericType, attriDic) / 10000;
+        }
+
+        public static long GetByKey(this PetComponent self,  int numericType, Dictionary<int, long> attriDic)
+        {
+            long value = 0;
+            attriDic.TryGetValue(numericType, out value);
+            return value;
         }
 
         public static void RemoveEquipSkill(this PetComponent self, RolePetInfo rolePetInfom, BagInfo bagInfo)
