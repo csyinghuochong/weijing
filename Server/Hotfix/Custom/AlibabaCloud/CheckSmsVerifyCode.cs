@@ -68,9 +68,9 @@ namespace AlibabaCloud.SDK.Sample
                     {
                         return 0;
                     }
-                    return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                    return ErrorCode.MOBILE_CHECK_ILLEGAL;
                 }
-                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                return ErrorCode.MOBILE_CHECK_ILLEGAL;
             }
             catch (TeaException error)
             {
@@ -80,7 +80,7 @@ namespace AlibabaCloud.SDK.Sample
                 // 诊断地址
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
-                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                return ErrorCode.MOBILE_CHECK_ILLEGAL;
             }
             catch (Exception _error)
             {
@@ -94,7 +94,7 @@ namespace AlibabaCloud.SDK.Sample
                 // 诊断地址
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
-                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                return ErrorCode.MOBILE_CHECK_ILLEGAL;
             }
         }
 

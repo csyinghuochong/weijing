@@ -95,9 +95,9 @@ namespace AlibabaCloud.SDK.Sample
                     {
                         return 0;
                     }
-                    return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                    return ErrorCode.MOBILE_SEND_ILLEGAL;
                 }
-                return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+                return ErrorCode.MOBILE_SEND_ILLEGAL;
             }
             catch (TeaException error)
             {
@@ -121,7 +121,7 @@ namespace AlibabaCloud.SDK.Sample
                 Console.WriteLine(error.Data["Recommend"]);
                 AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
             }
-            return ErrorCode.MOBILE_NUMBER_ILLEGAL;
+            return ErrorCode.MOBILE_SEND_ILLEGAL;
         }
 
 
