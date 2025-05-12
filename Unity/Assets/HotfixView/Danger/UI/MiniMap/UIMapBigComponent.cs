@@ -430,7 +430,6 @@ namespace ET
             }
             
             GameObject mapCamera = self.MapCamera;
-            bool gm = GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account );
             if (npcList != null)
             {
                 for (int i = 0; i < npcList.Length; i++)
@@ -440,10 +439,6 @@ namespace ET
                         continue;
                     }
 
-                    if (npcList[i] == 20000043 && !gm)
-                    {
-                        continue;
-                    }
 
                     if (npcList[i] == 20000040)
                     {
