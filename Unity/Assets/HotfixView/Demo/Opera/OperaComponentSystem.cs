@@ -451,7 +451,7 @@ namespace ET
 
             self.NpcId = npcid;
             newTarget.y = unit.Position.y;
-            Vector3 dir = (unit.Position - newTarget).normalized;
+            
             self.UnitStartPosition = unit.Position;
 
             if (PositionHelper.Distance2D(unit.Position, newTarget) <= TaskHelper.NpcSpeakDistance + 1f)
@@ -461,7 +461,11 @@ namespace ET
                 return;
             }
 
-            newTarget += dir * TaskHelper.NpcSpeakDistance;
+            //Vector3 dir = (unit.Position - newTarget).normalized;
+            //newTarget += dir * TaskHelper.NpcSpeakDistance;
+            Quaternion rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+            newTarget += rotation * Vector3.forward * TaskHelper.NpcSpeakDistance;
+            
             if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
             {
                 return;
