@@ -34,8 +34,15 @@ namespace ET
                     reply();
                     return;
                 }
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (rolePetInfo.PetLv < itemConfig.UseLv)
+                {
+                    response.Error = ErrorCode.ERR_LevelIsNot;
+                    reply();
+                    return;
+                }
 
-                int itemSubType = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemSubType;
+                int itemSubType = itemConfig.ItemSubType;
                 for (int i = rolePetInfo.PetEquipList.Count - 1; i >= 0; i--)
                 { 
                     BagInfo petequipInfo = bagComponent.GetItemByLoc(ItemLocType.PetLocEquip, rolePetInfo.PetEquipList[i]);

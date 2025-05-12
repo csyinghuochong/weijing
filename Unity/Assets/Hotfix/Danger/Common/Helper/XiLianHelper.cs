@@ -666,7 +666,7 @@ namespace ET
                                 {
                                     hintProVlaue = propertyValueMin;
                                 }
-                                Console.WriteLine($"type: {hideProListConfig.PropertyType}  整数:    {propertyValueMin}    {propertyValueMax}");
+                                //Console.WriteLine($"type: {hideProListConfig.PropertyType}  整数:    {propertyValueMin}    {propertyValueMax}");
                             }
                             else
                             {
@@ -676,7 +676,7 @@ namespace ET
                                 {
                                     hintProVlaue = propertyValueMin;
                                 }
-                                Console.WriteLine($"type: {hideProListConfig.PropertyType}  浮点数:  {propertyValueMin}  {propertyValueMax}");
+                                //Console.WriteLine($"type: {hideProListConfig.PropertyType}  浮点数:  {propertyValueMin}  {propertyValueMax}");
                             }
 
                             //取随机值

@@ -1035,7 +1035,7 @@ namespace ET
             long Intellect_value = Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);       //智力
             long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);           //耐力
             long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);         //体质
-            Console.WriteLine($"Power_value: {Power_value} {Agility_value} {Intellect_value} {Stamina_value}  {Constitution_value}");
+            //Console.WriteLine($"Power_value: {Power_value} {Agility_value} {Intellect_value} {Stamina_value}  {Constitution_value}");
 
 
             //获取加点属性

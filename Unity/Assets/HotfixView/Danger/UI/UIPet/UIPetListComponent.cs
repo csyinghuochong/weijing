@@ -173,7 +173,7 @@ namespace ET
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
 
             self.EquipSet = rc.Get<GameObject>("EquipSet");
-            self.EquipSet.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.EquipSet.SetActive(true);/// GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             for (int i = 0; i <= 2; i++)
             {
                 GameObject go = self.EquipSet.transform.Find("Equip_" + i).gameObject;

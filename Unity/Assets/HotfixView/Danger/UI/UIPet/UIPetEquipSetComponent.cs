@@ -282,6 +282,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("孔位不符！");
                 return -1;
             }
+            if (self.RolePetInfo.PetLv < itemConfig.UseLv)
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物等级不足！");
+                return -1;
+            }
 
             long instanceid = self.InstanceId;
 
