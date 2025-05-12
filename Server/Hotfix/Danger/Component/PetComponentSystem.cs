@@ -1028,12 +1028,13 @@ namespace ET
                 }
             }
 
+            //获取宠物身上属性
             self.UpdatePetNumeric(attriDic);
-            long Power_value = Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);
-            long Agility_value = Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);
-            long Intellect_value = Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);
-            long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);
-            long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);
+            long Power_value = Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);           //力量
+            long Agility_value = Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);       //敏捷
+            long Intellect_value = Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);       //智力
+            long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);           //耐力
+            long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);         //体质
             Console.WriteLine($"Power_value: {Power_value} {Agility_value} {Intellect_value} {Stamina_value}  {Constitution_value}");
 
 
@@ -1045,11 +1046,11 @@ namespace ET
             int PointNaiLi = int.Parse(attributeinfos[3]);            //耐力
 
 
-            int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + PointLiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
-            int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + PointZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
-            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + PointTiZhi * 100 + PointNaiLi * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);      //给额外血宠的属性
-            int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + PointNaiLi * 8) * defPro * rolePetInfo.ZiZhi_ChengZhang);
-            int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + PointNaiLi * 8) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
+            int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + (PointLiLiang + Power_value) * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
+            int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + (PointZhiLi + Intellect_value) * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
+            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + (PointTiZhi + Constitution_value) * 100 + (PointNaiLi+ Stamina_value) * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);      //给额外血宠的属性
+            int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + (PointNaiLi + Stamina_value) * 8) * defPro * rolePetInfo.ZiZhi_ChengZhang);
+            int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + (PointNaiLi + Stamina_value) * 8) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
 
             float speed = petCof.Base_MoveSpeed;
             //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
@@ -1076,7 +1077,6 @@ namespace ET
             Function_Fight.AddUpdateProDicList(NumericType.Base_Res_Base, 0, attriDic);
             Function_Fight.AddUpdateProDicList(NumericType.Base_Hit_Base, 0, attriDic);
             Function_Fight.AddUpdateProDicList(NumericType.Base_Dodge_Base, 0, attriDic);
-
 
             for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
             {
