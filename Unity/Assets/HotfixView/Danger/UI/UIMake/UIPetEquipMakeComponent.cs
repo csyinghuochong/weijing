@@ -6,6 +6,22 @@ using System.Collections.Generic;
 
 namespace ET
 {
+    [Timer(TimerType.PetEquipMakeTimer)]
+    public class PetEquipMakeTimer : ATimer<UIPetEquipMakeComponent>
+    {
+        public override void Run(UIPetEquipMakeComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+    
     public class UIPetEquipMakeComponent: Entity, IAwake, IDestroy
     {
         public GameObject TextVitality;
@@ -20,18 +36,18 @@ namespace ET
         public GameObject MakeListNode;
         public GameObject Lab_MakeCDTime;
 
-        public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
+        public List<UIPetEquipMakeChapterComponent> ChapterListUI = new List<UIPetEquipMakeChapterComponent>();
         public UIItemComponent MakeItemUI;
         public int MakeId;
-        // public long Timer;
+        public long Timer;
     }
 
     public class UIPetEquipMakeComponentDestroySystem: DestroySystem<UIPetEquipMakeComponent>
     {
         public override void Destroy(UIPetEquipMakeComponent self)
         {
-            // TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
@@ -42,7 +58,7 @@ namespace ET
             self.MakeId = 0;
             self.MakeItemUI = null;
             self.NeedListUI.Clear();
-            self.MakeListUI.Clear();
+            self.ChapterListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
@@ -65,7 +81,7 @@ namespace ET
 
             self.OnInitUI();
             // int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
-            self.UpdateMakeList(9).Coroutine();
+            self.InitMakeList(9).Coroutine();
         }
     }
     
@@ -185,73 +201,69 @@ namespace ET
             }
         }
 
-        // public static void OnUpdate(this UIPetEquipMakeComponent self)
-        // {
-        //     int makeId = self.MakeId;
-        //     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-        //     long cdEndTime = userInfoComponent.GetMakeTime(makeId);
-        //     if (cdEndTime <= TimeHelper.ServerNow())
-        //     {
-        //         self.Lab_MakeCDTime.SetActive(false);
-        //         TimerComponent.Instance?.Remove(ref self.Timer);
-        //         return;
-        //     }
-        //     self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow());
-        // }
-        //
-        // public static void ShowCDTime(this UIPetEquipMakeComponent self)
-        // {
-        //     self.Lab_MakeCDTime.SetActive(false);
-        //     TimerComponent.Instance?.Remove(ref self.Timer);
-        //     int makeId = self.MakeId;
-        //     if (makeId == 0)
-        //     {
-        //         return;
-        //     }
-        //     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-        //     long cdEndTime = userInfoComponent.GetMakeTime(makeId);
-        //     if (cdEndTime <= TimeHelper.ServerNow())
-        //     {
-        //         return;
-        //     }
-        //     self.Lab_MakeCDTime.SetActive(true);
-        //     self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MakeCDTimer, self);
-        //     self.OnUpdate();
-        // }
-
+        public static void OnUpdate(this UIPetEquipMakeComponent self)
+        {
+            int makeId = self.MakeId;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                self.Lab_MakeCDTime.SetActive(false);
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
+            }
+            self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow());
+        }
+        
+        public static void ShowCDTime(this UIPetEquipMakeComponent self)
+        {
+            self.Lab_MakeCDTime.SetActive(false);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            int makeId = self.MakeId;
+            if (makeId == 0)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                return;
+            }
+            self.Lab_MakeCDTime.SetActive(true);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.PetEquipMakeTimer, self);
+            self.OnUpdate();
+        }
 
         public static void OnSelectMakeItem(this UIPetEquipMakeComponent self, int makeid)
         {
             self.MakeId = makeid;
-            self.MakeINeedNode.SetActive(makeid!=0);
-            // self.ShowCDTime();
+            self.MakeINeedNode.SetActive(makeid != 0);
+            self.ShowCDTime();
             self.UpateMakeItemUI();
             self.OnCostItemUpdate().Coroutine();
 
             //设置选中框
-            for (int k = 0; k < self.MakeListUI.Count; k++)
+            for (int k = 0; k < self.ChapterListUI.Count; k++)
             {
-                if (self.MakeListUI[k].MakeID == makeid)
-                {
-                    self.ImageSelect.SetActive(true);
-                    UICommonHelper.SetParent(self.ImageSelect, self.MakeListUI[k].GameObject);
-                    self.ImageSelect.transform.localPosition = new Vector3(0f, 12f, 0f);
-                    break;
-                }
+                self.ChapterListUI[k].OnSelectMakeItem(makeid);
             }
         }
 
-        public static async ETTask UpdateMakeList(this UIPetEquipMakeComponent self, int makeType)
+        public static async ETTask InitMakeList(this UIPetEquipMakeComponent self, int makeType)
         {
-            int number = 0;
-            var path = ABPathHelper.GetUGUIPath("Main/Make/UIMakeItem");
+            long instanceid = self.InstanceId;
+            var path = ABPathHelper.GetUGUIPath("Main/Make/UIPetEquipMakeChapter");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<EquipMakeConfig> makeList = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
-
-            for (int k = 0; k < self.MakeListUI.Count; k++)
+            if (instanceid != self.InstanceId)
             {
-                self.MakeListUI[k].GameObject.SetActive(false);
+                return;
             }
+
+            List<EquipMakeConfig> makeList = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
+            Dictionary<int, List<int>> chapterMakeids = new Dictionary<int, List<int>>();
+
+            int firstLv = 0;
             for (int i = 0; i < makeList.Count; i++)
             {
                 EquipMakeConfig equipMakeConfig = makeList[i];
@@ -259,26 +271,38 @@ namespace ET
                 {
                     continue;
                 }
-                UIMakeItemComponent ui_2 = null;
-                if (i < self.MakeListUI.Count)
-                {
-                    ui_2 = self.MakeListUI[number];
-                    ui_2.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
-                    itemSpace.SetActive(true);
-                    UICommonHelper.SetParent(itemSpace, self.MakeListNode);
-                    ui_2 = self.AddChild<UIMakeItemComponent, GameObject>(itemSpace);
-                    ui_2.SetClickAction((int itemid) => { self.OnSelectMakeItem(itemid); });
-                    self.MakeListUI.Add(ui_2);
-                }
-                number++;
-                ui_2.OnUpdateUI(equipMakeConfig.Id);
-            }
 
-            self.OnSelectMakeItem(number == 0 ? 0 : self.MakeListUI[0].MakeID);
+                if (firstLv == 0)
+                {
+                    firstLv = equipMakeConfig.LearnLv;
+                }
+                
+                if (!chapterMakeids.ContainsKey(equipMakeConfig.LearnLv))
+                {
+                    chapterMakeids[equipMakeConfig.LearnLv] = new List<int>();
+                }
+
+                chapterMakeids[equipMakeConfig.LearnLv].Add(equipMakeConfig.Id);
+            };
+
+            foreach (var item in chapterMakeids)
+            {
+                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, self.MakeListNode);
+                UIPetEquipMakeChapterComponent ui_2 = self.AddChild<UIPetEquipMakeChapterComponent, GameObject>(itemSpace);
+                ui_2.SetClickAction(self.OnSelectMakeItem);
+
+                string str = $"{item.Key}级";
+                ui_2.OnInitUI(str, item.Value);
+                if (item.Key == firstLv)
+                {
+                    ui_2.SelectFirst();
+                }
+                self.ChapterListUI.Add(ui_2);
+
+                await TimerComponent.Instance.WaitFrameAsync();
+            }
         }
     }
 }

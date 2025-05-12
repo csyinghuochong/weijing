@@ -100,6 +100,7 @@
         public const int SeasonTowerTimer = 1113;
         public const int AuctionOverTimer = 1114;
         public const int PetEquipSetItemTimer = 1115;
+        public const int PetEquipMakeTimer = 1116;
         // 不能超过10000
     }
 }
