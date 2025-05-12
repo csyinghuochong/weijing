@@ -112,6 +112,14 @@ namespace ET
                 return;
             }
 
+            if (itemConfig_0.EquipType == 201 || itemConfig_0.EquipType == 301 
+                || itemConfig_1.EquipType == 201 || itemConfig_1.EquipType == 301)
+            {
+                FloatTipManager.Instance.ShowFloatTip("该装备不能转移！");
+                return;
+            }
+
+
             //绑定装备无法转移
             if (self.BagInfo_Transfer[0].isBinging == true && self.BagInfo_Transfer[1].isBinging == false && itemConfig_1.ItemQuality == 4)
             {
@@ -195,7 +203,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (itemconf.EquipType == 201)
+                if (itemconf.EquipType == 201 || itemconf.EquipType == 301)
                 {
                     continue;
                 }
