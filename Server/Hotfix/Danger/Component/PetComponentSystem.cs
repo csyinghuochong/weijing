@@ -901,7 +901,7 @@ namespace ET
             int PointZhiLi = int.Parse(attributeinfos[1]);            //智力
             int PointTiZhi = int.Parse(attributeinfos[2]);            //体制
             int PointNaiLi = int.Parse(attributeinfos[3]);            //耐力
-            int PointMinJie = 0;
+
 
             int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + PointLiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
             int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + PointZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
@@ -1106,6 +1106,15 @@ namespace ET
                 }
             }
 
+
+            self.UpdatePetNumeric(attriDic);
+            long Power_value = Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);
+            long Agility_value = Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);
+            long Intellect_value = Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);
+            long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);
+            long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);
+            Console.WriteLine($"Power_value: {Power_value} {Agility_value} {Intellect_value} {Stamina_value}  {Constitution_value}");
+
             foreach ((int skillId, int skillNum) in hideSkillId)
             {
                 int hideId = HideProListConfigCategory.Instance.PetSkillToHideProId[skillId];
@@ -1243,177 +1252,6 @@ namespace ET
                 }
             }
 
-            self.UpdatePetNumeric(attriDic);
-
-            //属性交互  所有的属性都在  attriDic
-            /////以下代码为测试代码##################
-            #region  
-
-            bool use_addpro = true;
-            if (use_addpro)
-            {
-                //缓存一级属性
-                long Power_value = Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);
-                long Agility_value = Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);
-                long Intellect_value = Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);
-                long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);
-                long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);
-
-                //属性点加成
-                //二次计算暴击等属性
-                long criLv = self.GetAsLong(NumericType.Now_CriLv, attriDic);
-                long hitLv = self.GetAsLong(NumericType.Now_HitLv, attriDic);
-                long dodgeLv = self.GetAsLong(NumericType.Now_DodgeLv, attriDic);
-                long resLv = self.GetAsLong(NumericType.Now_ResLv, attriDic);
-                long zhongjiLv = self.GetAsLong(NumericType.Now_ZhongJiLv, attriDic); ;
-
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_CriLv_Add, criLv, attriDic);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HitLv_Add, hitLv, attriDic);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_DodgeLv_Add, dodgeLv, attriDic);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, attriDic);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_ZhongJiPro_Add, zhongjiLv, attriDic);
-
-                long Power_value_add = 0;
-                long Intellect_value_add = 0;
-                long Agility_value_add = 0;
-                long Stamina_value_add = 0;
-                long Constitution_value_add = 0;
-
-                int roleLv = rolePetInfo.PetLv;
-
-                //力量加物理穿透
-                int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
-                float adddWuLiChuanTou = Function_Fight.LvProChange(wuliChuanTouLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), attriDic);
-
-                //智力加魔法穿透
-                int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 5;
-                float adddMageChuanTou = Function_Fight.LvProChange(mageChuanTouLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), attriDic);
-
-                //敏捷冷却时间
-                int cdTimeLv = (PointMinJie + (int)Agility_value + (int)Agility_value_add) * 2;
-                float addMinJie = Function_Fight.LvProChange(cdTimeLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), attriDic);
-
-                //耐力
-                int huixueLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, attriDic);
-
-                //体力
-                int damgeProCostLv = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
-                float damgeProCost = Function_Fight.LvProChange(damgeProCostLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), attriDic);
-
-
-                //缓存一级属性
-                Power_value_add += Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);
-                Agility_value_add += Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);
-                Intellect_value_add += Function_Fight.GetOnePro(NumericType.Now_Intellect, attriDic);
-                Stamina_value_add += Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);
-                Constitution_value_add += Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);
-
-
-                //---加点属性---  加点和1级属性战力做平均
-                //力量换算
-                if (Power_value > 0 || PointLiLiang > 0)
-                {
-                    long value = Power_value + PointLiLiang + Power_value_add;
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 5, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 1, attriDic);
-
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 2, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 1, attriDic);
-                    //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
-                }
-
-                //敏捷换算
-                if (Agility_value > 0 || PointMinJie > 0)
-                {
-                    long value = Agility_value + PointMinJie + Agility_value_add;
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 5, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 2, attriDic);
-
-                    //额外战力附加(因为冷却CD附加的战力少)
-                }
-
-                //智力换算
-                if (Intellect_value > 0 || PointZhiLi > 0)
-                {
-                    long value = Intellect_value + PointZhiLi + Intellect_value_add;
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_Mage_Base, value * 10, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 2, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 1, attriDic);
-                }
-
-                //耐力换算
-                if (Stamina_value > 0 || PointNaiLi > 0)
-                {
-                    long value = Stamina_value + PointNaiLi + Stamina_value_add;
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 4, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 4, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 2, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 2, attriDic);
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_GeDang_Base, value * 3, attriDic);
-                }
-
-                //体质换算
-                if (Constitution_value > 0 || PointTiZhi > 0)
-                {
-                    long value = Constitution_value + PointTiZhi + Constitution_value_add;
-                    Function_Fight.AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 72, attriDic);
-                }
-
-                //更新属性的额外加点属性
-                //力量加攻速
-                int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 2;
-                float actSpeedChuanTou = Function_Fight.LvProChange(actSpeedTouLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou * 10000), attriDic);
-
-                //敏捷加攻速
-                int actSpeedTouLv2 = (PointLiLiang + (int)Agility_value + (int)Agility_value_add) * 2;
-                float actSpeedChuanTou2 = Function_Fight.LvProChange(actSpeedTouLv2, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou2 * 10000), attriDic);
-
-                //耐力加抗暴
-                int kangbaoLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add) * 4;
-                float kangbaoPro = Function_Fight.LvProChange(kangbaoLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_Res_Add, (int)(kangbaoPro * 10000), attriDic);
-
-                //体力加闪避
-                int dodgeLv2 = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
-                float dodgePro = Function_Fight.LvProChange(dodgeLv2, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_Dodge_Add, (int)(dodgePro * 10000), attriDic);
-
-                //更新基础强化属性
-                //攻击加物理穿透
-                wuliChuanTouLv = (int)Power_value_add * 5;
-                adddWuLiChuanTou = Function_Fight.LvProChange(wuliChuanTouLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), attriDic);
-
-                //智力加魔法穿透
-                mageChuanTouLv = (int)Intellect_value_add * 5;
-                adddMageChuanTou = Function_Fight.LvProChange(mageChuanTouLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), attriDic);
-
-                //敏捷冷却时间
-                cdTimeLv = (int)Agility_value_add * 2;
-                addMinJie = Function_Fight.LvProChange(cdTimeLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), attriDic);
-
-                //耐力
-                huixueLv = (int)Stamina_value_add;
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, attriDic);
-
-                //体力
-                damgeProCostLv = (int)Constitution_value_add * 2;
-                damgeProCost = Function_Fight.LvProChange(damgeProCostLv, roleLv);
-                Function_Fight.AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), attriDic);
-            }
-
-            
-            #endregion    
-            /////以上代码为测试代码##################
 
             //刷新一下属性attriDic  赋值给rolePetInfo.Ks rolePetInfo.Vs
             self.UpdatePetNumeric(attriDic);
