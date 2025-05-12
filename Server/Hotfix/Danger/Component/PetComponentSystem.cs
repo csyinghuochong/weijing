@@ -1192,6 +1192,7 @@ namespace ET
             }
 
 
+
             //互斥技能处理
             List<int> huchiList = new List<int>();
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
