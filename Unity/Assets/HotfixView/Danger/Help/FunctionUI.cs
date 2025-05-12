@@ -78,7 +78,7 @@ namespace ET
             }
 
             bool gm = GMHelp.GmAccount.Contains(zoneScene.GetComponent<AccountInfoComponent>().Account);
-            if (!gm && (functionid == 1048 || functionid == 1073))
+            if (!gm && (functionid == 1048 ))
             {
                 return false;
             }
