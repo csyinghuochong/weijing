@@ -638,7 +638,8 @@ namespace ET
                             if (ifEquipLvUp == 1)
                             {
                                 //获取等级
-                                int itemlv = 1;
+                                //int itemlv = 1;
+                                int itemlv = itemConfig.UseLv;
                                 if (itemlv < 10)
                                 {
                                     itemlv = 10;
@@ -650,7 +651,8 @@ namespace ET
                                     itemNum = 1;
                                 }
                                 //获取属性
-                                propertyValueMax = propertyValueMax + propertyValueMax / 2 * itemNum;
+                                //propertyValueMax = propertyValueMax + propertyValueMax / 2 * itemNum;
+                                propertyValueMax = propertyValueMax * itemNum;
                             }
                            ;
                             //隐藏属性值得类型
