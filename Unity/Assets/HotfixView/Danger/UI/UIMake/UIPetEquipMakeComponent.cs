@@ -47,7 +47,7 @@ namespace ET
     {
         public override void Destroy(UIPetEquipMakeComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
