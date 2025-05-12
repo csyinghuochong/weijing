@@ -882,6 +882,7 @@ namespace ET
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
 
+            Dictionary<int, long> attriDic = new Dictionary<int, long>();
 
             //获取宠物资质
             float actPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Act);
@@ -894,85 +895,6 @@ namespace ET
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
             PetHelper.CheckPropretyPoint(rolePetInfo);
-
-            //获取加点属性
-            string[] attributeinfos = rolePetInfo.AddPropretyValue.Split('_');
-            int PointLiLiang = int.Parse(attributeinfos[0]);          //力量
-            int PointZhiLi = int.Parse(attributeinfos[1]);            //智力
-            int PointTiZhi = int.Parse(attributeinfos[2]);            //体制
-            int PointNaiLi = int.Parse(attributeinfos[3]);            //耐力
-
-
-            int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + PointLiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
-            int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + PointZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
-            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + PointTiZhi * 100 + PointNaiLi * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);      //给额外血宠的属性
-            int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + PointNaiLi * 8) * defPro * rolePetInfo.ZiZhi_ChengZhang);
-            int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + PointNaiLi * 8) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
-
-            float speed = petCof.Base_MoveSpeed;
-            //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-
-
-            ///传承鉴定：你的召唤物属性提升10%
-            ///宠物如有需要 ，在此处加上
-            ///rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
-            ///rolePetInfo.Vs.Add(hp_Now * (1 + now_SummonAddPro));
-            float now_SummonAddPro = numericComponent.GetAsFloat(NumericType.Now_SummonAddPro);
-
-            //宠物之核
-            List<int> petheXinLv = new List<int>();
-
-            Dictionary<int, long> attriDic = new Dictionary<int, long>();
-
-            
-            Function_Fight.AddUpdateProDicList(NumericType.Now_Hp, hp_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.PetSkin, rolePetInfo.SkinId, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Speed_Base, (long)speed * 10000, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxHp_Base, hp_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAct_Base, act_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Mage_Base, mage_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxDef_Base, def_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAdf_Base, adf_Now, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Cri_Base, 0, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Res_Base, 0, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Hit_Base, 0, attriDic);
-            Function_Fight.AddUpdateProDicList(NumericType.Base_Dodge_Base, 0, attriDic);
-
-
-            for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
-            {
-                long baginfoId = rolePetInfo.PetHeXinList[i];
-                if (baginfoId == 0)
-                {
-                    continue;
-                }
-
-                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
-                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
-                {
-                    continue;
-                }
-
-                //100203;790
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                petheXinLv.Add(itemConfig.UseLv);
-
-                string attriStr = itemConfig.ItemUsePar;
-                string[] attriList = attriStr.Split('@');
-                for (int a = 0; a < attriList.Length; a++)
-                {
-                    try
-                    {
-                        string[] attriItem = attriList[a].Split(';');
-                        int typeId = int.Parse(attriItem[0]);
-                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
-                    }
-                }
-            }
 
             //宠物装备(三个一个的属性激活新技能  添加到rolePetInfo.PetSkill, 防止技能重复添加，脱装备的时候直接C2M_PetEquipRequest去掉装备技能 )
             Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
@@ -1106,7 +1028,6 @@ namespace ET
                 }
             }
 
-
             self.UpdatePetNumeric(attriDic);
             long Power_value = Function_Fight.GetOnePro(NumericType.Now_Power, attriDic);
             long Agility_value = Function_Fight.GetOnePro(NumericType.Now_Agility, attriDic);
@@ -1114,6 +1035,83 @@ namespace ET
             long Stamina_value = Function_Fight.GetOnePro(NumericType.Now_Stamina, attriDic);
             long Constitution_value = Function_Fight.GetOnePro(NumericType.Now_Constitution, attriDic);
             Console.WriteLine($"Power_value: {Power_value} {Agility_value} {Intellect_value} {Stamina_value}  {Constitution_value}");
+
+
+            //获取加点属性
+            string[] attributeinfos = rolePetInfo.AddPropretyValue.Split('_');
+            int PointLiLiang = int.Parse(attributeinfos[0]);          //力量
+            int PointZhiLi = int.Parse(attributeinfos[1]);            //智力
+            int PointTiZhi = int.Parse(attributeinfos[2]);            //体制
+            int PointNaiLi = int.Parse(attributeinfos[3]);            //耐力
+
+
+            int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + PointLiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
+            int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + PointZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);
+            int hp_Now = (int)((petCof.Base_Hp + rolePetInfo.PetLv * petCof.Lv_Hp + PointTiZhi * 100 + PointNaiLi * 30) * hpPro * rolePetInfo.ZiZhi_ChengZhang);      //给额外血宠的属性
+            int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + PointNaiLi * 8) * defPro * rolePetInfo.ZiZhi_ChengZhang);
+            int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + PointNaiLi * 8) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
+
+            float speed = petCof.Base_MoveSpeed;
+            //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+
+
+            ///传承鉴定：你的召唤物属性提升10%
+            ///宠物如有需要 ，在此处加上
+            ///rolePetInfo.Ks.Add((int)NumericType.Now_Hp);
+            ///rolePetInfo.Vs.Add(hp_Now * (1 + now_SummonAddPro));
+            float now_SummonAddPro = numericComponent.GetAsFloat(NumericType.Now_SummonAddPro);
+
+            //宠物之核
+            List<int> petheXinLv = new List<int>();
+
+            Function_Fight.AddUpdateProDicList(NumericType.Now_Hp, hp_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.PetSkin, rolePetInfo.SkinId, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Speed_Base, (long)speed * 10000, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxHp_Base, hp_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAct_Base, act_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Mage_Base, mage_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxDef_Base, def_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_MaxAdf_Base, adf_Now, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Cri_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Res_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Hit_Base, 0, attriDic);
+            Function_Fight.AddUpdateProDicList(NumericType.Base_Dodge_Base, 0, attriDic);
+
+
+            for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
+            {
+                long baginfoId = rolePetInfo.PetHeXinList[i];
+                if (baginfoId == 0)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
+                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                {
+                    continue;
+                }
+
+                //100203;790
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                petheXinLv.Add(itemConfig.UseLv);
+
+                string attriStr = itemConfig.ItemUsePar;
+                string[] attriList = attriStr.Split('@');
+                for (int a = 0; a < attriList.Length; a++)
+                {
+                    try
+                    {
+                        string[] attriItem = attriList[a].Split(';');
+                        int typeId = int.Parse(attriItem[0]);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
+                    }
+                }
+            }
 
             foreach ((int skillId, int skillNum) in hideSkillId)
             {
