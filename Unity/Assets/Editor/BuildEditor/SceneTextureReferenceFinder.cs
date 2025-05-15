@@ -15,6 +15,84 @@ namespace ET
         private static readonly string scenesPath = "Assets/Scenes";
         private static readonly string outputPath = "Assets/场景中引用的贴图.txt";
 
+
+        [MenuItem("Tools/检测场景顶点数")]
+        static void CalculateVertices()
+        {
+            int totalVertices = 0;
+            var renderers = FindObjectsOfType<Renderer>(true); // 包含隐藏对象
+
+            List<(int KeyId, string Value, string Value2)> bigname = new List<(int KeyId, string Value, string Value2)>();
+
+            int vertextdebug = 100;
+
+            foreach (var renderer in renderers)
+            {
+                if (renderer is MeshRenderer meshRenderer)
+                {
+                    var meshFilter = meshRenderer.GetComponent<MeshFilter>();
+                    if (meshFilter != null && meshFilter.sharedMesh != null)
+                    {
+                        if (meshFilter.sharedMesh.vertexCount > vertextdebug)
+                        {
+                            //Log.Debug($"统计场景顶点数:  vertexCount: {meshFilter.sharedMesh.vertexCount}   {renderer.gameObject.name}");
+
+
+                            var keyValuePair = bigname.FirstOrDefault(p => p.Value.Equals(renderer.gameObject.name));
+                            if ( keyValuePair.Value2 == String.Empty)
+                            {
+                                bigname.Add(( 1,  meshFilter.sharedMesh.vertexCount.ToString(),  renderer.gameObject.name ));
+                            }
+                            else
+                            {
+                                keyValuePair.KeyId++;
+                            }
+                        }
+
+                        totalVertices += meshFilter.sharedMesh.vertexCount;
+                    }
+                }
+                else if (renderer is SkinnedMeshRenderer skinnedMeshRenderer)
+                {
+                    if (skinnedMeshRenderer.sharedMesh != null)
+                    {
+                        if (skinnedMeshRenderer.sharedMesh.vertexCount > vertextdebug)
+                        {
+                            //Log.Debug($"统计场景顶点数:  vertexCount: {skinnedMeshRenderer.sharedMesh.vertexCount}  {renderer.gameObject.name}");
+                            var keyValuePair = bigname.FirstOrDefault(p => p.Value2.Equals(renderer.gameObject.name));
+                            if ( keyValuePair.Value2 == String.Empty)
+                            {
+                                bigname.Add((  1,  skinnedMeshRenderer.sharedMesh.vertexCount.ToString(), renderer.gameObject.name ));
+                            }
+                            else
+                            {
+                                keyValuePair.KeyId++;
+                            }
+                        }
+
+                        totalVertices += skinnedMeshRenderer.sharedMesh.vertexCount;
+                    }
+                }
+            }
+
+            var biglist = bigname.OrderByDescending(p => p.KeyId);
+            foreach (var VARIABLE in biglist)
+            {
+                if ((int.Parse(VARIABLE.Value) > 100 && VARIABLE.KeyId >= 200)
+                    || (int.Parse(VARIABLE.Value) > 1000 && VARIABLE.KeyId >= 30)
+                    || (int.Parse(VARIABLE.Value) > 2000 && VARIABLE.KeyId >= 15)
+                    || (int.Parse(VARIABLE.Value) > 5000 && VARIABLE.KeyId >= 5)
+                    || (int.Parse(VARIABLE.Value) > 10000 && VARIABLE.KeyId >= 2))
+                {
+                    Log.Error($"统计场景顶点数>5000:  {VARIABLE.Value2}  数量:{VARIABLE.KeyId}  顶点：{VARIABLE.Value}   总顶点数：{VARIABLE.KeyId * int.Parse(VARIABLE.Value)}");
+                }
+            }
+
+            EditorUtility.DisplayDialog("顶点统计",
+                $"场景顶点总数: {totalVertices}", "确定");
+        }
+
+
         [MenuItem("Tools/检测场景中引用的贴图")]
         public static void FindTextureReferences()
         {
