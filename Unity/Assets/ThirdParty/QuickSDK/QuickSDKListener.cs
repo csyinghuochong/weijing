@@ -32,13 +32,21 @@ namespace quicksdk
 
         public abstract void onExitSuccess();
 
+        public abstract void onPrivaceAgree();
+        public abstract void onPrivaceRefuse();
+
+        public abstract void onCallbackSuccess(string msg);
+        public abstract void onCallbackFaild(string msg);
+
+
 
         //callback end
 
 
-		public void onInitSuccess(string msg)
+        public void onInitSuccess(string msg)
 		{
-			onInitSuccess();
+            Debug.Log("QuickSdkListener  onInitSuccess");
+            onInitSuccess();
 		}
 
 		public void onInitFailed(string msg)
@@ -125,6 +133,7 @@ namespace quicksdk
 
         public void onExitSuccess(string msg)
         {
+            Debug.Log("QuickSdkListener  onExitSuccess");
             onExitSuccess();
         }
 		
@@ -136,6 +145,27 @@ namespace quicksdk
         public void onFail(string msg)
         {
             onFailed(msg);
+        }
+
+        public void onPrivaceAgree(string msg)
+        {
+            onPrivaceAgree();
+        }
+        public void onPrivaceRefuse(string msg)
+        {
+            onPrivaceRefuse();
+        }
+
+
+        public void onBaseCallbackSuccess(string msg)
+        {
+            Debug.Log("onBaseCallbackSuccess "+ msg);
+            onCallbackSuccess(msg);
+        }
+        public void onBaseCallbackFaild(string msg)
+        {
+            Debug.Log("onBaseCallbackFaild " + msg);
+            onCallbackFaild(msg);
         }
 
     }
