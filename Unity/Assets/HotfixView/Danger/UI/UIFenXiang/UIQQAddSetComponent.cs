@@ -38,7 +38,8 @@ namespace ET
     {
         public static void OnButton_AddQQ(this UIQQAddSetComponent self)
         {
-            Application.OpenURL("https://qm.qq.com/q/UaV8WFeN6G");
+            ///同时要修改UIFenXiangSetComponent
+            Application.OpenURL("https://qm.qq.com/q/NYo62GmJSc");
         }
     }
 }
