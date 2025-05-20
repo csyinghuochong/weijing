@@ -50,7 +50,8 @@ namespace ET
             model.UnitName = request.UnitName;  
             self.orderDic.Add(dingDanID, model);
             string toClientStr = model.objID + "," + dingDanID;
-            return toClientStr;
+            //return toClientStr
+                return dingDanID;
         }
 
         public  static void ListenerAliPayResult(this ReChargeQDComponent self)

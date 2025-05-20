@@ -19,9 +19,9 @@ namespace ET
 
     public class ReChargeQDComponent : Entity, IAwake
     {
-        public string callbackkey = "94075752170876077849092058904924";
-        public string md5Key = "rgcy2meduf2gu3zhvudzpq0xfzx9xdyo";
-        public string httpListenerUrl = @"http://172.17.94.24:20004/";
+        public string callbackkey = "79732310199972304452069037663031";
+        public string md5Key = "16ujpemxehsnxls0eyijzgos41xn6ru7";
+        public string httpListenerUrl = @"http://172.17.94.24:20004/"; 
         public HttpListener httpListener;
         public object listenLocker = new object();
 

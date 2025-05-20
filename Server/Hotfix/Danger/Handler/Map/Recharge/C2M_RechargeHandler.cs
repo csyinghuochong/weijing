@@ -72,6 +72,12 @@ namespace ET
                     Log.Console($"支付订单[TikTok]拉起: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                 }
 
+                if (request.PayType == PayTypeEnum.QuDaoPay)
+                {
+                    Log.Warning($"支付订单[QuDaoPay]拉起: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}");
+                    Log.Console($"支付订单[QuDaoPay]拉起: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                }
+
                 long rechareId = DBHelper.GetRechargeCenter();
               
                 R2M_RechargeResponse r2M_RechargeResponse = (R2M_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(rechareId, new M2R_RechargeRequest()
