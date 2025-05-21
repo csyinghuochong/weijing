@@ -103,6 +103,13 @@ namespace ET
                 }
 
                 Skill_ComTargetMove_RangDamge_5 handler = self.SkillHandler as Skill_ComTargetMove_RangDamge_5;
+                if (handler == null)
+                {
+                    unitComponent.Remove(bullet.Id);
+                    self.BuffState = BuffState.Finished;
+                    return;
+                }
+
                 if (!self.SkillHandler.LastHurtTimes.ContainsKey(uu.Id))
                 {
                     // 第一次伤害

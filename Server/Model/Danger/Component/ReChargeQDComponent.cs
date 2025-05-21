@@ -21,7 +21,7 @@ namespace ET
     {
         public string callbackkey = "79732310199972304452069037663031";
         public string md5Key = "16ujpemxehsnxls0eyijzgos41xn6ru7";
-        public string httpListenerUrl = @"http://172.17.94.24:20004/"; 
+        public string httpListenerUrl = @"http://172.17.94.24:20004/";  //39.96.194.143
         public HttpListener httpListener;
         public object listenLocker = new object();
 
