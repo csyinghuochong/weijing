@@ -6,8 +6,7 @@
     {
         public override void Awake(RechargeSceneComponent self)
         {
-            Scene scene = self.DomainScene();
-            Game.EventSystem.Publish(new EventType.RechargeScene() { DomainScene = scene });
+
         }
     }
 

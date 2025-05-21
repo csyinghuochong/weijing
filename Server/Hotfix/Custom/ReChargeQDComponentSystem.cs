@@ -233,7 +233,7 @@ namespace ET
                                                                                          //将传入的数据进行解码
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息                                                                       
 
-                Console.WriteLine("CheckQudaoPayResult   " + pay_notice);
+                Console.WriteLine("CheckQudaoPayResultxxx   " + pay_notice);
 
 
                 if ( string.IsNullOrEmpty(pay_notice))
@@ -245,6 +245,12 @@ namespace ET
                 string nt_data = pay_value1[0].Split('=')[1];
 
                 Dictionary<string, string> payResults = self.ParsePayResult(nt_data);
+
+                foreach (var payvalueee in payResults)
+                {
+                    Console.WriteLine("payResults:    " + payvalueee.Key + "   " + payvalueee.Value);
+                }
+
                 if (payResults.ContainsKey("game_order"))
                 {
                     string dingdanid = payResults["game_order"];

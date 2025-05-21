@@ -101,6 +101,11 @@ namespace ET
                     break;
                 case SceneType.ReCharge:
                     scene.AddComponent<RechargeSceneComponent>();
+                    scene.AddComponent<ReChargeWXComponent>();
+                    scene.AddComponent<ReChargeQDComponent>();
+                    scene.AddComponent<ReChargeAliComponent>();
+                    scene.AddComponent<ReChargeIOSComponent>();
+                    scene.AddComponent<ReChargeTikTokComponent>();
                     break;
                 case SceneType.Happy:
                     scene.AddComponent<HappySceneComponent>();

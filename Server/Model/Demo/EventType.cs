@@ -100,10 +100,7 @@ namespace ET
             public Scene AccountCenterScene;
         }
 
-        public struct RechargeScene
-        {
-            public Scene DomainScene;
-        }
+
 
         public class ChangePosition : DisposeObject
 		{

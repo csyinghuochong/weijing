@@ -17,6 +17,9 @@ namespace ET
     {
         public override void Awake(ReChargeWXComponent self)
         {
+
+            Console.WriteLine($"ReChargeWXComponent.{self.DomainScene().Name}  {self.DomainScene().Id}  {self.DomainScene().InstanceId}");
+
             Log.Console($"ReChargeWXComponent.Awake");
             self.WeChatPayResultListener();
         }
