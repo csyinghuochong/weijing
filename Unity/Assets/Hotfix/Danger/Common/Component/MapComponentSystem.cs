@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using System.IO;
 
 namespace ET
 {
@@ -108,13 +106,18 @@ namespace ET
                 }
                 tmm = next;
             }
+
+            if (self.SceneId == 6000001 && tmm.x >= 22f)
+            {
+                Console.WriteLine($"角斗场target3.x >= 22f:  start:{start.x} {start.z}    target:{target.x}  {target.z}");
+            }
             return tmm;
         }
 
 		public static Vector3 GetCanReachPath(this MapComponent self, Vector3 start, Vector3 target)
 		{
-			using var list = ListComponent<Vector3>.Create();
-			Vector3 dir = (start - target).normalized;
+            using var list = ListComponent<Vector3>.Create();
+            Vector3 dir = (start - target).normalized;
             while (true)
             {
                 Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, target, list, 2);
@@ -129,8 +132,13 @@ namespace ET
                 }
                 target = target + (0.5f * dir);
             }
+
+            if (self.SceneId == 6000001 && target.x >= 22f)
+            {
+                Console.WriteLine($"角斗场target3.x >= 22f:  start:{start.x} {start.z}    target:{target.x}  {target.z}");
+            }
             return target;
-		}
+        }
 
 		public static void SearchPath(this MapComponent self, Unit unit, Vector3 target, List<Vector3> result)
 		{

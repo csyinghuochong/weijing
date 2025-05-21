@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene session, G2A_Reload request, A2G_Reload response, Action reply)
         {
-            Log.Console("C2M_Reload_b: " + session.Name);
+            Console.WriteLine("C2M_Reload_b: " + session.Name);
             Log.Warning("C2M_Reload_b: " + session.Name);
             Log.Warning("C2M_Reload_b: 测试热重载, 消息分发！");
             OpcodeHelper.OneTotalNumber = 20000;
