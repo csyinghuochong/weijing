@@ -18,7 +18,7 @@ namespace ET
                 UI uilogin = UIHelper.GetUI( args.ZoneScene, UIType.UILogin );
                 if (uilogin!=null)
                 {
-                    uilogin.GetComponent<UILoginComponent>().OnRegister();
+                    uilogin.GetComponent<UILoginComponent>().OnLoginInfoExpire();
                 }
             }
             if (args.ErrorCore == ErrorCode.ERR_FangChengMi_Tip1)

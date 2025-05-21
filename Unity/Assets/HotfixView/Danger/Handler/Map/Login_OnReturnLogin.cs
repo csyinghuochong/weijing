@@ -26,6 +26,12 @@ namespace ET
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
 
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                EventType.QuDaoLoginout.Instance.ZoneScene = args.ZoneScene;
+                Game.EventSystem.PublishClass(EventType.QuDaoLoginout.Instance);
+            }
+
             //reload dll
             //GameObjectPoolComponent.Instance.DisposeAll();
             //GameObject.Destroy(GameObject.Find("Global"));

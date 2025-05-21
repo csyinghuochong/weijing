@@ -825,6 +825,53 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class QuDaoOnPay : DisposeObject
+        {
+            public static readonly QuDaoOnPay Instance = new QuDaoOnPay();
+            public string PayInfo;
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoSdkExit : DisposeObject
+        {
+            public static readonly QuDaoSdkExit Instance = new QuDaoSdkExit();
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoLoginout : DisposeObject
+        {
+            public static readonly QuDaoLoginout Instance = new QuDaoLoginout();
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoLoginRequest : DisposeObject
+        {
+            public static readonly QuDaoLoginRequest Instance = new QuDaoLoginRequest();
+            public Action<string> AccesstokenHandler;
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoCreateRole : DisposeObject
+        {
+            public static readonly QuDaoCreateRole Instance = new QuDaoCreateRole();
+            public string CreateRoleInfo;
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoEnterGame : DisposeObject
+        {
+            public static readonly QuDaoEnterGame Instance = new QuDaoEnterGame();
+            public string EnterGameInfo;
+            public Scene ZoneScene;
+        }
+
+        public class QuDaoUpdateRole : DisposeObject
+        {
+            public static readonly QuDaoUpdateRole Instance = new QuDaoUpdateRole();
+            public string UpdateRoleInfo;
+            public Scene ZoneScene;
+        }
+
         public class TikTokGetAccesstoken : DisposeObject
         {
             public static readonly TikTokGetAccesstoken Instance = new TikTokGetAccesstoken();

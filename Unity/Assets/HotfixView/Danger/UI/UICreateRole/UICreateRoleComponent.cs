@@ -225,8 +225,19 @@ namespace ET
                 return;
             }
 
-            self.DomainScene().GetComponent<AccountInfoComponent>().CreateRoleList.Add(g2cCreateRole.createRoleInfo);
-            self.ZoneScene().GetComponent<AccountInfoComponent>().TodayCreateRole++;
+            CreateRoleInfo createRoleInfo = g2cCreateRole.createRoleInfo;
+            AccountInfoComponent accountInfoComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(createRoleInfo.PlayerOcc);
+
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                EventType.QuDaoCreateRole.Instance.ZoneScene = self.ZoneScene();
+                EventType.QuDaoCreateRole.Instance.CreateRoleInfo = $"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{occupationConfig.OccupationName}";
+                EventSystem.Instance.PublishClass(EventType.QuDaoCreateRole.Instance);
+            }
+
+            accountInfoComponent.CreateRoleList.Add(g2cCreateRole.createRoleInfo);
+            accountInfoComponent.TodayCreateRole++;
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UILobby);
             uI.GetComponent<UILobbyComponent>().OnCreateRoleData(g2cCreateRole.createRoleInfo, self.PageIndex);
 

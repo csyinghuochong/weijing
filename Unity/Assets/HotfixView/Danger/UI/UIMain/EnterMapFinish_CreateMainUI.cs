@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -33,6 +34,15 @@ namespace ET
 
 			ShareSdkHelper.MobPushOperate(1);
 #endif
+
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                CreateRoleInfo createRoleInfo = accountInfoComponent.CreateRoleList.FirstOrDefault(p => p.UserID == accountInfoComponent.CurrentRoleId);
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(createRoleInfo.PlayerOcc);
+                EventType.QuDaoEnterGame.Instance.ZoneScene = zoneScene;
+                EventType.QuDaoEnterGame.Instance.EnterGameInfo = $"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{occupationConfig.OccupationName}";
+                EventSystem.Instance.PublishClass(EventType.QuDaoEnterGame.Instance);
+            }
 
 #if UNITY_ANDROID
             TapSDKHelper.SetUser(roleId.ToString());

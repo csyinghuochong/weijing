@@ -56,9 +56,9 @@ namespace ET
 		public bool EditorMode;
 		public bool OueNetMode;
 		public int BigVersion = 21;      
-		//17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路
+		//17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包
 		public int BigVersionIOS = 21;
-        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -183,7 +183,7 @@ namespace ET
 			this.Platform = 6;
 			this.Apk_Extension = "tiktok";
 #elif QuDao
-			Log.ILog.Debug("unity111  TikTokMuBao6=true");
+			Log.ILog.Debug("unity111  QuDaoMuBao=true");
 			this.Platform = 100;
 			this.Apk_Extension = "qudao";
 #else

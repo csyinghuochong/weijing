@@ -134,7 +134,7 @@ namespace ET
 
                 self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
 				self.registerBtn.GetComponent<Button>().onClick.AddListener(self.OnRegister);
-                self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5);
+                self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5 && GlobalHelp.GetPlatform() != 100);
 
 
                 self.UIAgeTip = rc.Get<GameObject>("UIAgeTip");
@@ -371,11 +371,29 @@ namespace ET
             {
 #if UNITY_ANDROID
                 self.LoginType = LoginTypeEnum.TikTok.ToString();
-#endif
 
+                //self.ThirdLoginBg.SetActive(false);
+                //self.ZhuCe.SetActive(false);
+                //self.YiJianDengLu.SetActive(true);
+                //self.Account.SetActive(true);
+                //self.Password.SetActive(true);
+                //self.HideNode.SetActive(false);
+#endif
+            }
+			if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 100)
+			{
+                self.LoginType = LoginTypeEnum.QuDao.ToString();
+
+                self.ThirdLoginBg.SetActive(false);
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+                self.HideNode.SetActive(true);
             }
 
-            Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
+
+            Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}  {GlobalHelp.GetBigVersion()}  {GlobalHelp.GetPlatform()}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
 			self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
@@ -426,9 +444,18 @@ namespace ET
 #endif
 
                     break;
+				case LoginTypeEnum.QuDao:
+                    self.ThirdLoginBg.SetActive(false);
+#if !UNITY_EDITOR
+                    EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
+                    EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string text) => { self.OnRecvQuDaoUid(text).Coroutine(); };
+                    EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
+#else
+                    self.OnRecvQuDaoUid("0_tangchunguang").Coroutine();
+#endif
+                    break;
 				case LoginTypeEnum.TikTok:
                     self.ThirdLoginBg.SetActive(false);
-
 #if !UNITY_EDITOR
 					EventType.TikTokGetAccesstoken.Instance.ZoneScene = self.ZoneScene();
                     EventType.TikTokGetAccesstoken.Instance.AccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
@@ -1083,6 +1110,15 @@ namespace ET
 			self.UIAgeTip.SetActive(false);
 		}
 
+		public static void OnLoginInfoExpire(this UILoginComponent self)
+		{
+			self.OnRegister();
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 100)
+            {
+                self.UpdateLoginType();
+            }
+        }
+
         public static void OnRegister(this UILoginComponent self)
 		{
 			Log.ILog.Debug("OnButtonOtherLogin");
@@ -1123,6 +1159,7 @@ namespace ET
 			self.ResetPlayerPrefs(LoginTypeEnum.PhoneNumLogin.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.TapTap.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.TikTok.ToString());
+            self.ResetPlayerPrefs(LoginTypeEnum.QuDao.ToString());
             self.InitLoginType();
 		}
 

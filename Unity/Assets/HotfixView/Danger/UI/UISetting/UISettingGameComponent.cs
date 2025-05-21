@@ -534,7 +534,20 @@ namespace ET
 
         public static void OnCloseGame(this UISettingGameComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "设置", "是否退出游戏?", () => { Application.Quit(); }).Coroutine();
+
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "设置", "是否退出游戏?", () => 
+            {
+                if (GlobalHelp.GetPlatform() == 100)
+                {
+                    EventType.QuDaoSdkExit.Instance.ZoneScene = self.ZoneScene();
+                    Game.EventSystem.PublishClass(EventType.QuDaoSdkExit.Instance);
+                }
+                else
+                {
+                    Application.Quit();
+                }
+            
+            }).Coroutine();
         }
 
         public static void OnReturnLogin(this UISettingGameComponent self)

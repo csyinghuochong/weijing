@@ -90,6 +90,14 @@ namespace ET
                 self.ButtonAliPay.SetActive(false);
                 self.ButtonWeiXin.SetActive(false);
             }
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                self.PayType = PayTypeEnum.QuDaoPay;
+                self.ImageSelect1.SetActive(false);
+                self.ImageSelect2.SetActive(false);
+                self.ButtonAliPay.SetActive(false);
+                self.ButtonWeiXin.SetActive(false);
+            }
 #if UNITY_IPHONE && !UNITY_EDITOR
             self.ImageSelect1.SetActive(false);
             self.ImageSelect2.SetActive(false);
@@ -97,7 +105,7 @@ namespace ET
             self.ButtonWeiXin.SetActive(false);    
 #endif
 
-           
+
         }
     }
 
@@ -137,10 +145,11 @@ namespace ET
 
         public static async ETTask RequestRecharge(this UIRechargeComponent self, string riskControl = "")
         {
+            int rechargeNumber = self.ReChargeNumber;
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest()
             {
                 RiskControlInfo = riskControl,
-                RechargeNumber = self.ReChargeNumber,
+                RechargeNumber = rechargeNumber,
                 PayType = self.PayType
             };
 
@@ -174,6 +183,15 @@ namespace ET
                     EventSystem.Instance.PublishClass(EventType.TikTokPayRequest.Instance);
 #endif
                 }
+            }
+            if (self.PayType == PayTypeEnum.QuDaoPay)
+            {
+                EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                string payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}"; 
+                EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
+                EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
             }
         }
 
@@ -215,17 +233,13 @@ namespace ET
             self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
 #else
 
-            if (GlobalHelp.GetPlatform() == 5)
+            if (GlobalHelp.GetPlatform() == 5 && GlobalHelp.GetBigVersion() >= 17)
             {
-                if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
-                {
 #if UNITY_ANDROID
-                    EventType.TikTokRiskControlInfo.Instance.ZoneScene = self.ZoneScene();
-                    EventType.TikTokRiskControlInfo.Instance.RiskControlInfoHandler = (string text) => { self.OnGetRiskControlInfo(text); };
-                    EventSystem.Instance.PublishClass(EventType.TikTokRiskControlInfo.Instance);
+                EventType.TikTokRiskControlInfo.Instance.ZoneScene = self.ZoneScene();
+                EventType.TikTokRiskControlInfo.Instance.RiskControlInfoHandler = (string text) => { self.OnGetRiskControlInfo(text); };
+                EventSystem.Instance.PublishClass(EventType.TikTokRiskControlInfo.Instance);
 #endif
-                }
-
             }
             else
             {

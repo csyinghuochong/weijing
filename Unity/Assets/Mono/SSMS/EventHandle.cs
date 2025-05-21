@@ -3,17 +3,18 @@ using System.Collections;
 using UnityEngine.UI;
 using quicksdk;
 using System;
+using ET;
 
 
 /// <summary>
-/// 避免冲突 都+100
+/// 避免冲突 
 /// </summary>
 public enum ChannelIdEnum
 { 
-	XiaoMi = 100 + 15,
-	ViVo = 100 + 17,
-	OPPO = 100 + 23,
-	HuaWei = 100 + 24,
+	XiaoMi = 15,
+	ViVo =  17,
+	OPPO =  23,
+	HuaWei =  24,
 }
 
 public class EventHandle : QuickSDKListener
@@ -21,7 +22,7 @@ public class EventHandle : QuickSDKListener
 
 	public GameObject mExitDialogCanvas;
 
-	public Action onLoginSuccessAction;
+	public Action<string> onLoginSuccessAction;
 	public Action onLoginFailAction;
 	public Action onInitSuccessAction;
 
@@ -38,9 +39,10 @@ public class EventHandle : QuickSDKListener
         if (!EventHandle.IsQudaoPackage())
             return;
         QuickSDK.getInstance().setListener(this);
-        mExitDialogCanvas?.SetActive(false);
+        //mExitDialogCanvas?.SetActive(false);
     }
 
+    //隐私
     public void callShowPrivace()
     {
         QuickSDK.getInstance().showPrivace();
@@ -49,8 +51,7 @@ public class EventHandle : QuickSDKListener
     //init 已经在安卓层调用了
     public static void reInit()
     {
-        if (!EventHandle.IsQudaoPackage())
-            return;
+        Log.ILog.Debug("QuickSDK.getInstance().reInit");
         QuickSDK.getInstance().reInit();
     }
 
@@ -59,6 +60,9 @@ public class EventHandle : QuickSDKListener
 	 */
     public void onLogin()
     {
+        bool qudao = EventHandle.IsQudaoPackage();
+        int qudaotype = onChannelType();
+        Log.ILog.Debug($"onLogin {qudao}  {qudaotype}");
         if (!EventHandle.IsQudaoPackage())
             return;
         QuickSDK.getInstance().login();
@@ -94,43 +98,36 @@ public class EventHandle : QuickSDKListener
     ///goodsName:元宝 goodsName:月卡
     ///goodsName产品名称以“月卡”、“钻石”、“元宝”的形式传入，不带数量；
     /// </summary>
-    public void onPay(string[] parameter)
+    public void onPay(string info)
     {
         //model.amount + "," + dingDanID;
-        string zhanghaoID = parameter[3];
-        string name = parameter[4];
+        showLog("onPay", info);
+        string[] infolist = info.Split('_');
 
         OrderInfo orderInfo = new OrderInfo();
         GameRoleInfo gameRoleInfo = new GameRoleInfo();
-        //orderInfo.callbackUrl
-        orderInfo.goodsID = "1";
-        orderInfo.goodsName = "钻石";
-        orderInfo.goodsDesc = "钻石";
-        orderInfo.quantifier = "个";
-        orderInfo.extrasParams = "extparma";
-        orderInfo.count = 1;
-        orderInfo.amount = double.Parse(parameter[1]);
-        orderInfo.price = double.Parse(parameter[1]);
-        orderInfo.callbackUrl = "";
-        orderInfo.cpOrderID = parameter[2];
-        gameRoleInfo.gameRoleBalance = "0";
-        gameRoleInfo.gameRoleID = zhanghaoID;
-        gameRoleInfo.gameRoleLevel = "1";
-        gameRoleInfo.gameRoleName = name;
-        gameRoleInfo.partyName = "同济会";
-        gameRoleInfo.serverID = "1";
-        gameRoleInfo.serverName = "火星服务器";
-        gameRoleInfo.vipLevel = "1";
-        gameRoleInfo.roleCreateTime = "roleCreateTime";
 
-        string userId = QuickSDK.getInstance().userId();
-        Debug.Log("userId:  " + userId);
+        orderInfo.goodsID = "1";       //产品ID，用来识别购买的产品
+        orderInfo.goodsName = "钻石";  //产品名称
+        orderInfo.goodsDesc = "钻石";
+        orderInfo.quantifier = "个"; 
+        orderInfo.extrasParams = "extparma";   //透传参数  服务器发送异步通知时原样回传(需要传纯字符串，不能传json格式)
+        orderInfo.count = 1;            //购买数量
+        orderInfo.amount = double.Parse(infolist[0]);            //支付总额（元）
+        orderInfo.price = double.Parse(infolist[0]);            //价格(可跟amount传一样的值)
+        orderInfo.callbackUrl = "";     //游戏支付回调地址，如后台也有配置，则优先通知后台设置的地址
+        orderInfo.cpOrderID = infolist[6];  //产品订单号（游戏方的订单号）
+
+        gameRoleInfo.gameRoleBalance = "0";
+        gameRoleInfo.gameRoleID = infolist[1];
+        gameRoleInfo.gameRoleLevel = infolist[2];
+        gameRoleInfo.gameRoleName = infolist[3];
+        gameRoleInfo.partyName = "0";
+        gameRoleInfo.serverID = infolist[4];
+        gameRoleInfo.serverName = infolist[5];
+        gameRoleInfo.vipLevel = "1";
+        gameRoleInfo.roleCreateTime = TimeHelper.ServerNow().ToString();
         QuickSDK.getInstance().pay(orderInfo, gameRoleInfo);
-    }
-    public static void SendPay(string[] parameter)
-    {
-        EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
-        eventHandle.onPay(parameter);
     }
 
     public void onEnterYunKeFuCenter()
@@ -168,53 +165,31 @@ public class EventHandle : QuickSDKListener
     public void onCreatRole(string info)
     {
         //注：GameRoleInfo的字段，如果游戏有的参数必须传，没有则不用传
+        showLog("onCreatRole", info);
         string[] infolist = info.Split('_');
-        string zhanghaoID = infolist[0];
-        ; string name = infolist[1];
 
         GameRoleInfo gameRoleInfo = new GameRoleInfo();
         gameRoleInfo.gameRoleBalance = "0";
-        gameRoleInfo.gameRoleID = zhanghaoID;
+        gameRoleInfo.gameRoleID = infolist[0];
         gameRoleInfo.gameRoleLevel = "1";
-        gameRoleInfo.gameRoleName = name;
+        gameRoleInfo.gameRoleName = infolist[1];
         gameRoleInfo.partyName = "同济会";
-        gameRoleInfo.serverID = "1";
-        gameRoleInfo.serverName = "火星服务器";
+        gameRoleInfo.serverID = infolist[2];
+        gameRoleInfo.serverName = infolist[3];
         gameRoleInfo.vipLevel = "1";
-        gameRoleInfo.roleCreateTime = GetTimeStamp(true);//UC与1881渠道必传，值为10位数时间戳
-        gameRoleInfo.gameRoleGender = "男";//360渠道参数
-        gameRoleInfo.gameRolePower = "38";//360渠道参数，设置角色战力，必须为整型字符串
-        gameRoleInfo.partyId = "1100";//360渠道参数，设置帮派id，必须为整型字符串
-        gameRoleInfo.professionId = "11";//360渠道参数，设置角色职业id，必须为整型字符串
-        gameRoleInfo.profession = "法师";//360渠道参数，设置角色职业名称
-        gameRoleInfo.partyRoleId = "1";//360渠道参数，设置角色在帮派中的id
-        gameRoleInfo.partyRoleName = "帮主"; //360渠道参数，设置角色在帮派中的名称
-        gameRoleInfo.friendlist = "无";//360渠道参数，设置好友关系列表，格式请参考：http://open.quicksdk.net/help/detail/aid/190
+        gameRoleInfo.roleCreateTime = TimeHelper.ServerNow().ToString();//值为10位数时间戳
+        gameRoleInfo.gameRoleGender = "男";
+        gameRoleInfo.gameRolePower = "38";//设置角色战力，必须为整型字符串
+        gameRoleInfo.partyId = "0";//设置帮派id，必须为整型字符串
+        gameRoleInfo.professionId = infolist[4];//设置角色职业id，必须为整型字符串
+        gameRoleInfo.profession = infolist[5];//设置角色职业名称
+        gameRoleInfo.partyRoleId = "0";//设置角色在帮派中的id
+        gameRoleInfo.partyRoleName = "0"; //设置角色在帮派中的名称
+        gameRoleInfo.friendlist = "无";//设置好友关系列表，格式请参考：http://open.quicksdk.net/help/detail/aid/190
 
         QuickSDK.getInstance().createRole(gameRoleInfo);//创建角色
     }
 
-    public static void SendCreateRole(string info)
-    {
-        Debug.Log("SendCreateRole(): ");
-        EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
-        eventHandle.onCreatRole(info);
-    }
-    public static void CheckCreateRole(string zhanghao, string name)
-    {
-        if (!EventHandle.IsQudaoPackage())
-        {
-            return;
-        }
-        int channeltype = EventHandle.onChannelType();
-        string roleKey = channeltype.ToString() + "_" + zhanghao;
-        if (PlayerPrefs.GetInt(roleKey) != 1)
-        {
-            PlayerPrefs.SetInt(roleKey, 1);
-            EventHandle.SendCreateRole($"{zhanghao}_{name}");
-        }
-        //EventHandle.SendEnterGame( );
-    }
 
     /// <summary>
     /// 进入游戏时上传
@@ -222,37 +197,34 @@ public class EventHandle : QuickSDKListener
     /// </summary>
     public void onEnterGame(string info)
     {
-        string[] infos = info.Split('_');
-        string zhanghaoID = infos[0];
-        string name = infos[1];
+        showLog("onEnterGame", info);
+        string[] infolist = info.Split('_');
 
         QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_REAL_NAME_REGISTER);
         //注：GameRoleInfo的字段，如果游戏有的参数必须传，没有则不用传
         GameRoleInfo gameRoleInfo = new GameRoleInfo();
 
         gameRoleInfo.gameRoleBalance = "0";
-        gameRoleInfo.gameRoleID = zhanghaoID;
+        gameRoleInfo.gameRoleID = infolist[0];
         gameRoleInfo.gameRoleLevel = "1";
-        gameRoleInfo.gameRoleName = name;
+        gameRoleInfo.gameRoleName = infolist[1];
         gameRoleInfo.partyName = "同济会";
-        gameRoleInfo.serverID = "1";
-        gameRoleInfo.serverName = "火星服务器";
+        gameRoleInfo.serverID = infolist[2];
+        gameRoleInfo.serverName = infolist[3];
         gameRoleInfo.vipLevel = "1";
-        gameRoleInfo.roleCreateTime = GetTimeStamp(true);//UC与1881渠道必传，值为10位数时间戳
+        gameRoleInfo.roleCreateTime = TimeHelper.ServerNow().ToString();//UC与1881渠道必传，值为10位数时间戳
 
         gameRoleInfo.gameRoleGender = "男";//360渠道参数
         gameRoleInfo.gameRolePower = "38";//360渠道参数，设置角色战力，必须为整型字符串
-        gameRoleInfo.partyId = "1100";//360渠道参数，设置帮派id，必须为整型字符串
+        gameRoleInfo.partyId = "0";//360渠道参数，设置帮派id，必须为整型字符串
 
-        gameRoleInfo.professionId = "11";//360渠道参数，设置角色职业id，必须为整型字符串
-        gameRoleInfo.profession = "法师";//360渠道参数，设置角色职业名称
+        gameRoleInfo.professionId = infolist[4];//360渠道参数，设置角色职业id，必须为整型字符串
+        gameRoleInfo.profession = infolist[5];//360渠道参数，设置角色职业名称
         gameRoleInfo.partyRoleId = "1";//360渠道参数，设置角色在帮派中的id
-        gameRoleInfo.partyRoleName = "帮主"; //360渠道参数，设置角色在帮派中的名称
+        gameRoleInfo.partyRoleName = "0"; //360渠道参数，设置角色在帮派中的名称
         gameRoleInfo.friendlist = "无";//360渠道参数，设置好友关系列表，格式请参考：http://open.quicksdk.net/help/detail/aid/190
 
         QuickSDK.getInstance().enterGame(gameRoleInfo);//开始游戏
-
-        //Application.LoadLevel("scene4");
     }
 
     /// <summary>
@@ -263,33 +235,36 @@ public class EventHandle : QuickSDKListener
     /// </summary>
     public void onUpdateRoleInfo(string info)
     {
-        string[] infos = info.Split('_');
-        string zhanghaoID = infos[0];
-        string name = infos[1];
+        showLog("onUpdateRoleInfo", info);
+        string[] infolist = info.Split('_');
         //注：GameRoleInfo的字段，如果游戏有的参数必须传，没有则不用传
         GameRoleInfo gameRoleInfo = new GameRoleInfo();
 
         gameRoleInfo.gameRoleBalance = "0";
-        gameRoleInfo.gameRoleID = zhanghaoID;
-        gameRoleInfo.gameRoleLevel = "1";
-        gameRoleInfo.gameRoleName = name;
-        gameRoleInfo.partyName = "同济会";
-        gameRoleInfo.serverID = "1";
-        gameRoleInfo.serverName = "火星服务器";
+        gameRoleInfo.gameRoleID = infolist[0];
+        gameRoleInfo.gameRoleLevel = infolist[1];
+        gameRoleInfo.gameRoleName = infolist[2];
+        gameRoleInfo.partyName = "0";
+        gameRoleInfo.serverID = infolist[3];
+        gameRoleInfo.serverName = infolist[4];
         gameRoleInfo.vipLevel = "1";
-        gameRoleInfo.roleCreateTime = GetTimeStamp(true);//UC与1881渠道必传，值为10位数时间戳
+        gameRoleInfo.roleCreateTime = TimeHelper.ServerNow().ToString();//UC与1881渠道必传，值为10位数时间戳
 
         gameRoleInfo.gameRoleGender = "男";//360渠道参数
         gameRoleInfo.gameRolePower = "38";//360渠道参数，设置角色战力，必须为整型字符串
-        gameRoleInfo.partyId = "1100";//360渠道参数，设置帮派id，必须为整型字符串
+        gameRoleInfo.partyId = "0";//360渠道参数，设置帮派id，必须为整型字符串
 
-        gameRoleInfo.professionId = "11";//360渠道参数，设置角色职业id，必须为整型字符串
-        gameRoleInfo.profession = "法师";//360渠道参数，设置角色职业名称
-        gameRoleInfo.partyRoleId = "1";//360渠道参数，设置角色在帮派中的id
-        gameRoleInfo.partyRoleName = "帮主"; //360渠道参数，设置角色在帮派中的名称
+        gameRoleInfo.professionId = infolist[5];//360渠道参数，设置角色职业id，必须为整型字符串
+        gameRoleInfo.profession = infolist[6];//360渠道参数，设置角色职业名称
+        gameRoleInfo.partyRoleId = "0";//360渠道参数，设置角色在帮派中的id
+        gameRoleInfo.partyRoleName = "0"; //360渠道参数，设置角色在帮派中的名称
         gameRoleInfo.friendlist = "无";//360渠道参数，设置好友关系列表，格式请参考：http://open.quicksdk.net/help/detail/aid/190
 
         QuickSDK.getInstance().updateRole(gameRoleInfo);
+
+
+        showLog("test", "QuickSDK.getInstance().callExtendFunction(105);");
+        QuickSDK.getInstance().callExtendFunction(105);
     }
 
     public void onNext()
@@ -322,10 +297,12 @@ public class EventHandle : QuickSDKListener
         {
             //游戏调用自身的退出对话框，点击确定后，调用QuickSDK的exit()方法
             //mExitDialogCanvas.SetActive(true);
-            QuickSDK.getInstance().exit();
+            // QuickSDK.getInstance().exit();
+            Application.Quit();
         }
     }
 
+    //退出游戏 【取消】
     public void onExitCancel()
     {
         if (!EventHandle.IsQudaoPackage())
@@ -333,6 +310,7 @@ public class EventHandle : QuickSDKListener
         mExitDialogCanvas?.SetActive(false);
     }
 
+    //退出游戏 【确定】
     public void onExitConfirm()
     {
         if (!EventHandle.IsQudaoPackage())
@@ -406,7 +384,7 @@ public class EventHandle : QuickSDKListener
     public static int onChannelType()
 	{
 #if QuDao
-		return QuickSDK.getInstance().channelType() + 100;
+		return QuickSDK.getInstance().channelType();
 #else
         return -1;
 #endif
@@ -446,19 +424,10 @@ public class EventHandle : QuickSDKListener
 	//初始化成功的回调
 	public override void onInitSuccess()
 	{
-		showLog("onInitSuccess", "onInitSuccess");
+		showLog("onInitSuccess", "onInitSuccess....QuickSDK");
 
 		string channelid = EventHandle.onChannelType().ToString();
 		this.ChannelId = channelid;
-
-		if (IsHuiWeiChannel())
-		{
-			showLog("callFunction[channelid]: ", "huawei");
-		}
-		else
-		{
-			showLog("callFunction[channelid]: ", "not huawei");
-		}
 
 		onInitSuccessAction?.Invoke();
         //QuickSDK.getInstance ().login (); //如果游戏需要启动时登录，需要在初始化成功之后调用
@@ -474,24 +443,29 @@ public class EventHandle : QuickSDKListener
 	public override void onLoginSuccess(UserInfo userInfo)
 	{
         String code = QuickSDK.getInstance().callFunctionWithResult(0);
+        showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
         Debug.Log("callFunctionWithResult is " + code);
 
         //登录成功的回调
-        if (EventHandle.IsHuiWeiChannel())
-		{
-			onEnterGame($"{userInfo.uid}_{userInfo.userName}");
-		}
-		else
-		{
-			//其他渠道不需要处理实名，直接返回
-			onLoginSuccessAction?.Invoke();
-		}
+        //      if (EventHandle.IsHuiWeiChannel())
+        //{
+        //	onEnterGame($"{userInfo.uid}_{userInfo.userName}");
+        //}
+        //else
+        //{
+        //	//其他渠道不需要处理实名，直接返回
+        //	onLoginSuccessAction?.Invoke();
+        //}
+        
+        onLoginSuccessAction?.Invoke(code + "_" + userInfo.uid);
     }
 
 	public override void onSwitchAccountSuccess(UserInfo userInfo)
 	{
 		//切换账号成功，清除原来的角色信息，使用获取到新的用户信息，回到进入游戏的界面，不需要再次调登录
-		showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
+        // 切换账号成功的回调
+        //一些渠道在悬浮框有切换账号的功能，此回调即切换成功后的回调。游戏应清除当前的游戏角色信息。在切换账号成功后回到选择服务器界面，请不要再次调用登录接口。
+        showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
 		//Application.LoadLevel("scene2");
 	}
 
@@ -547,7 +521,7 @@ public class EventHandle : QuickSDKListener
 	public override void onSucceed(string infos)
 	{
 		//华为渠道。 目前只有华为有返回！！！
-		showLog("onSucceed", infos);
+		showLog("onSucceed 222222", infos);
 
 		LitJson.JsonData jo = LitJson.JsonMapper.ToObject(infos);
 		//{ "uid":"1178471402501092","age":20,"realName":true,"resumeGame":true,"other":"","FunctionType":105}
@@ -569,7 +543,7 @@ public class EventHandle : QuickSDKListener
 				showLog("年龄[SetInt]: ", age.ToString());
 			}
 
-			onLoginSuccessAction?.Invoke();
+			//onLoginSuccessAction?.Invoke();
 		}
 		else
 		{
@@ -640,7 +614,7 @@ public class EventHandle : QuickSDKListener
     public static bool IsQudaoPackage()
     {
         int type = onChannelType();
-        return type > 0;
+        return type >= 0;
     }
 
     /// <summary>

@@ -138,6 +138,7 @@ namespace ET
         public const int TapTap = 5;                //taptap登录
         public const int TikTok = 6;                //抖音登录
         public const int Apple = 7;                 //Apple登录
+        public const int QuDao = 8;
     }
 
     public static class PayTypeEnum

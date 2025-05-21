@@ -78,6 +78,10 @@ namespace ET
         /// <param name="userId"></param>
         public static void SetUser(string userId)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             ET.Log.ILog.Debug("Tab SetUser.Init");
             TapDB.SetUser(userId);
         }
@@ -93,6 +97,10 @@ namespace ET
         //mau_user 账号当月首次登录    账号每月首次上报 user_login 时触发，可用于快速查询账号 MAU
         public static void ClearUser()
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.ClearUser();
         }
 
@@ -102,6 +110,10 @@ namespace ET
         /// <param name="name"></param>
         public static void SetName(string name)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.SetName("Tarara");
         }
 
@@ -112,6 +124,10 @@ namespace ET
         /// <param name="level"></param>
         public static void SetLevel(int level)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.SetLevel(5);
         }
 
@@ -121,6 +137,10 @@ namespace ET
         /// <param name="server"></param>
         public static void SetServer(string server)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.SetServer("1 区");
         }
 
@@ -136,6 +156,10 @@ namespace ET
         public static void OnCharge(string orderId, string product, long amount, string currencyType, string payment,
             string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.OnCharge("0xueiEns", "轩辕剑", 100, "CNY", "wechat", "{\"on_sell\":true}");
         }
 
@@ -179,12 +203,20 @@ namespace ET
         //事件属性传入预置属性时，SDK 默认采集的预置属性将被覆盖
         public static void TestTrackEvent(string eventName, string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             ET.Log.ILog.Debug("Tap TrackEvent");
             TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"3\"}");
         }
 
         public static void TrackEvent(string eventName, string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.TrackEvent(eventName, properties);
         }
 
@@ -195,6 +227,10 @@ namespace ET
         /// <param name="staticProperties">静态通用事件属性字典</param>
         public static void RegisterStaticProperties(string staticProperties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             //当设置了静态通用事件属性 #current_channel，值固定为 TapDB 后使用事件上报时，等效于在事件属性中添加了 #current_channel
             TapDB.RegisterStaticProperties(staticProperties);
         }
@@ -205,6 +241,10 @@ namespace ET
         /// <param name="propertyName">静态通用属性名</param>
         public static void UnregisterStaticProperty(string propertyName)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.UnregisterStaticProperty("#current_channel");
         }
 
@@ -213,6 +253,10 @@ namespace ET
         /// </summary>
         public static void ClearStaticProperties()
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.ClearStaticProperties();
         }
 
@@ -223,7 +267,10 @@ namespace ET
         /// <param name="properties">动态通用事件属性计算回调</param>
         public static void RegisterDynamicProperties(IDynamicProperties properties)
         {
-           
+            if (!hasInit)
+            {
+                return;
+            }
         }
 
         /// <summary>
@@ -235,6 +282,10 @@ namespace ET
         /// <param name="properties">属性字典</param>
         public static void DeviceInitialize(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             properties = "{\"firstActiveServer\":\"server1\"}";
             TapDB.DeviceInitialize(properties);
             // 此时设备表的 "#firstActiveServer" 字段值为 "server1"
@@ -250,6 +301,10 @@ namespace ET
         /// <param name="properties">属性字典</param>
         public static void DeviceUpdate(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             properties = "{\"currentPoints\":10}";
             TapDB.DeviceUpdate(properties);
             // 此时设备表的 "currentPoints" 字段值为 10
@@ -265,6 +320,10 @@ namespace ET
         /// <param name="properties">属性字典，value 仅支持数值类型</param>
         public static void DeviceAdd(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             properties = "{\"totalPoints\":10}";
             TapDB.DeviceAdd(properties);
             // 此时设备表的 "totalPoints" 字段值为 10
@@ -277,6 +336,10 @@ namespace ET
         //上传玩家数据
         public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername, int serverid,int occ,int occtwo)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             ET.Log.ILog.Debug("Tap TrackEvent");
             TapDB.TrackEvent("#userdata", "{\"#userid\":\""+ userid + "\"}");
             TapDB.TrackEvent("#userdata", "{\"#rolename\":\"" + rolename + "\"}");
@@ -291,6 +354,10 @@ namespace ET
 
         public static void InitUserData_2(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
             TapDB.UserInitialize(properties);
@@ -321,6 +388,10 @@ namespace ET
 
         public static void UploadUserData(string rolename, int level, int combat, int rechargeNumber, string servername)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
             TapDB.UserUpdate(properties);
@@ -346,7 +417,12 @@ namespace ET
         /// <param name="servername"></param>
         /// <param name="eventType">  1.十连抽次数  2 洗炼次数  3 宠物抽奖次数 4 充值 5被杀记录</param>   
         /// <param name="eventVlue"></param>
-        public static void UpLoadPlayEvent(string rolename, string servername, int level, int eventType, int eventVlue) {
+        public static void UpLoadPlayEvent(string rolename, string servername, int level, int eventType, int eventVlue)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.TrackEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
             TapDB.TrackEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
             TapDB.TrackEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
@@ -362,6 +438,10 @@ namespace ET
         /// <param name="properties"></param>
         public static void UserInitialize(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.UserInitialize(properties);
         }
 
@@ -373,6 +453,10 @@ namespace ET
         /// <param name="properties"></param>
         public static void UserInitialize(Dictionary<string, object> properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.UserInitialize(properties);
         }
 
@@ -382,6 +466,10 @@ namespace ET
         /// <param name="properties"></param>
         public static void UserUpdate(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.UserUpdate(properties);
         }
 
@@ -391,6 +479,10 @@ namespace ET
         /// <param name="properties"></param>
         public static void UserAdd(string properties)
         {
+            if (!hasInit)
+            {
+                return;
+            }
             TapDB.UserAdd(properties);
         }
 
@@ -402,7 +494,10 @@ namespace ET
         //转化事件发生后，开发者/第三方在请求接口后附上回传字段({DEEP_CALLBACK_URL}&tap_project_id=13&tap_track_id=xxxevent_type=xxx&event_timestamp={timestamp}&???=xxx)，并发起 GET 请求，上报给 TapREP。
         public static async ETTask TapReqEvent(string taprepRequest, int eventType, string eventData)
         {
-           
+            if (!hasInit)
+            {
+                return;
+            }
             if (string.IsNullOrEmpty(taprepRequest))
             {
                 return;

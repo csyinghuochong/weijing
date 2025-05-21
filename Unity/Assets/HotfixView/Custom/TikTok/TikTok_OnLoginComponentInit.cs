@@ -26,6 +26,14 @@ namespace ET
             self.OnGetTapUserInfo(tatapid);
         }
 
+        public static async ETTask OnRecvQuDaoUid(this UILoginComponent self, string access_token)
+        {
+            Log.ILog.Debug($"OnRecvQuDaoUid:{access_token} ");
+            self.Account.GetComponent<InputField>().text = access_token;
+            self.Password.GetComponent<InputField>().text = LoginTypeEnum.QuDao.ToString();
+            await ETTask.CompletedTask;
+        }
+
         public static async ETTask OnRecvTikTokAccesstoken(this UILoginComponent self, string access_token)
         {
             if (TikTokHelper.UseOldLogin)
@@ -169,6 +177,101 @@ namespace ET
         }
     }
 
+
+    [Event]
+    public class QuDao_QuDaoEnterGame : AEventClass<EventType.QuDaoEnterGame>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoEnterGame args = a as EventType.QuDaoEnterGame;
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onEnterGame(args.EnterGameInfo);
+        }
+    }
+
+    [Event]
+    public class QuDao_QuDaoUpdateRole : AEventClass<EventType.QuDaoUpdateRole>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoUpdateRole args = a as EventType.QuDaoUpdateRole;
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onUpdateRoleInfo(args.UpdateRoleInfo);
+        }
+    }
+
+    [Event]
+    public class QuDao_QuDaoCreateRole : AEventClass<EventType.QuDaoCreateRole>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoCreateRole args = a as EventType.QuDaoCreateRole;
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onCreatRole(args.CreateRoleInfo);
+        }
+    }
+
+    [Event]
+    public class QuDao_QuDaoOnPay : AEventClass<EventType.QuDaoOnPay>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoOnPay args = a as EventType.QuDaoOnPay;
+
+            Log.ILog.Debug("QuDaoOnPay: ");
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onPay(args.PayInfo);
+        }
+    }
+
+    [Event]
+    public class QuDao_QuDaoSdkExit : AEventClass<EventType.QuDaoSdkExit>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoSdkExit args = a as EventType.QuDaoSdkExit;
+
+            Log.ILog.Debug("QuDaoExit: ");
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onExit();
+        }
+    }
+
+
+    [Event]
+    public class QuDao_QuDaoLoginout : AEventClass<EventType.QuDaoLoginout>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoLoginout args = a as EventType.QuDaoLoginout;
+
+            Log.ILog.Debug("QuDaoLoginout: ");
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onLogout();
+        }
+    }
+
+    [Event]
+    public class QuDao_QuDaoLoginRequest : AEventClass<EventType.QuDaoLoginRequest>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoLoginRequest args = a as EventType.QuDaoLoginRequest;
+
+            Log.ILog.Debug("QuDaoLoginRequest: ");
+
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onLoginSuccessAction = args.AccesstokenHandler;
+            eventHandle.onLogin();
+        }
+    }
 
     [Event]
     public class TikTok_TikTokGetAccesstoken : AEventClass<EventType.TikTokGetAccesstoken>
