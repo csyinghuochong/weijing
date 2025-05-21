@@ -26,11 +26,16 @@ namespace ET
             self.OnGetTapUserInfo(tatapid);
         }
 
-        public static async ETTask OnRecvQuDaoUid(this UILoginComponent self, string access_token)
+        public static async ETTask OnRecvQuDaoUid(this UILoginComponent self, string access_token, string uid)
         {
-            Log.ILog.Debug($"OnRecvQuDaoUid:{access_token} ");
-            self.Account.GetComponent<InputField>().text = access_token;
+            Log.ILog.Debug($"OnRecvQuDaoUid:{uid} ");
+            self.Account.GetComponent<InputField>().text = uid;
             self.Password.GetComponent<InputField>().text = LoginTypeEnum.QuDao.ToString();
+
+            C2A_QuDaoCheckUserInfor c2A_QuDao = new C2A_QuDaoCheckUserInfor() { token = access_token, uid = uid };
+            Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+            A2C_QuDaoCheckUserInfor a2C_TikTokVerifyUser = (A2C_QuDaoCheckUserInfor)await accountSession.Call(c2A_QuDao);
+
             await ETTask.CompletedTask;
         }
 

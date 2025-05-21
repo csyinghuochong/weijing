@@ -379,6 +379,7 @@ namespace ET
                 "18319670288",
                 "qq1DCADAC180C577AEDE05D15B788AE770",   //唐 qq
                 "64800138035c4e5736112c0f",
+                "0_tangchunguang",
             };
             self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));

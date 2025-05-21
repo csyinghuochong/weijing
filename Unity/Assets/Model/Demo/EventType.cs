@@ -847,7 +847,7 @@ namespace ET
         public class QuDaoLoginRequest : DisposeObject
         {
             public static readonly QuDaoLoginRequest Instance = new QuDaoLoginRequest();
-            public Action<string> AccesstokenHandler;
+            public Action<string, string> AccesstokenHandler;
             public Scene ZoneScene;
         }
 

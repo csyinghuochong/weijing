@@ -22,7 +22,7 @@ public class EventHandle : QuickSDKListener
 
 	public GameObject mExitDialogCanvas;
 
-	public Action<string> onLoginSuccessAction;
+	public Action<string, string> onLoginSuccessAction;
 	public Action onLoginFailAction;
 	public Action onInitSuccessAction;
 
@@ -457,7 +457,7 @@ public class EventHandle : QuickSDKListener
         //	onLoginSuccessAction?.Invoke();
         //}
         
-        onLoginSuccessAction?.Invoke(code + "_" + userInfo.uid);
+        onLoginSuccessAction?.Invoke(userInfo.token, code + "_" + userInfo.uid);
     }
 
 	public override void onSwitchAccountSuccess(UserInfo userInfo)

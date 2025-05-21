@@ -7116,6 +7116,25 @@ message A2C_TikTokVerifyUser // IResponse
 }
 
 
+//ResponseType A2C_QuDaoCheckUserInfor
+message C2A_QuDaoCheckUserInfor // IRequest
+{
+	int32 RpcId = 90;
+
+	string token = 2;
+	string uid = 3;
+	string product_code  = 4; 
+	string channel_code   = 5; 
+}
+
+message A2C_QuDaoCheckUserInfor // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+}
+
 //ResponseType A2C_TapTapAuther
 message C2A_TapTapAuther // IRequest
 {
