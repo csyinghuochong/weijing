@@ -1191,13 +1191,19 @@ namespace ET
                     return;
                 }
 
-                self.Skills[i].OnUpdate();
-
-                int skillcnt_2 = self.Skills.Count;
-                if (skillcnt_2 == 0  ||  i >= skillcnt_2)
+                if (i >= self.Skills.Count)
                 {
                     Unit unit = self.GetParent<Unit>();
-                    Log.Warning($"SkillManagerComponentError:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    Log.Warning($"SkillManagerComponentError11:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    break;
+                }
+
+                self.Skills[i].OnUpdate();
+
+                if ( i >= self.Skills.Count)
+                {
+                    Unit unit = self.GetParent<Unit>();
+                    Log.Warning($"SkillManagerComponentError22:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
 
