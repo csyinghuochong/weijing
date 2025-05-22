@@ -293,7 +293,7 @@ namespace ET
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             EventType.DataUpdate.Instance.DataParamString = string.Empty;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-            unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
+            unit.MoveToAsync2(gameObject.transform.position, true, null, 0,0, true).Coroutine();
         }
 
         public bool GeToOtherFuben(Scene zoneScene, int fubenId, int curdungeonid)
@@ -321,18 +321,21 @@ namespace ET
             targetPos = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             long instanceid = unit.InstanceId;
-            targetPos.y = unit.Position.y;
+            //targetPos.y = unit.Position.y;
 
             int ret = 0;
             if (Vector3.Distance(unit.Position, targetPos) > TaskHelper.NpcSpeakDistance + 0.1f)
             {
-                Vector3 dir = (unit.Position - targetPos).normalized;
-                targetPos += dir * TaskHelper.NpcSpeakDistance;
+                //Vector3 dir = (unit.Position - targetPos).normalized;
+                //targetPos += dir * TaskHelper.NpcSpeakDistance;
+                Quaternion rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+                targetPos += rotation * Vector3.forward * TaskHelper.NpcSpeakDistance;
+
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
                 EventType.DataUpdate.Instance.DataParamString = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
 
-                ret = await unit.MoveToAsync2(targetPos, false);
+                ret = await unit.MoveToAsync2(targetPos, true, null, 0, 0, true);
             }
             if (instanceid != unit.InstanceId || Vector3.Distance(unit.Position, targetPos) > TaskHelper.NpcSpeakDistance)
             {

@@ -125,7 +125,7 @@ namespace ET
                     return;
                 }
                 Vector3 target = dir * 2f + self.MainUnit.Position;
-                self.MoveToPosition(target, true).Coroutine();
+                self.MoveToPosition(target).Coroutine();
                 self.LastSendTime = Time.time;
                 return;
             }
@@ -192,7 +192,7 @@ namespace ET
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 1000, self.mapMask))
             {
-                self.MoveToPosition(hit.point, true).Coroutine();
+                self.MoveToPosition(hit.point).Coroutine();
                 return true;
             }
             else
@@ -245,7 +245,7 @@ namespace ET
             Vector3 dir = (unit.Position - position).normalized;
             position += dir * 2f;
 
-            int ret = await self.MoveToPosition(position, true);
+            int ret = await self.MoveToPosition(position);
             if (ret != 0)
             {
                 return;
@@ -450,7 +450,7 @@ namespace ET
             }
 
             self.NpcId = npcid;
-            newTarget.y = unit.Position.y;
+            //newTarget.y = unit.Position.y;
             
             self.UnitStartPosition = unit.Position;
 
@@ -476,7 +476,7 @@ namespace ET
                 return;
             }
 
-            int ret = await self.MoveToPosition(newTarget, false, operatetype);
+            int ret = await self.MoveToPosition(newTarget, operatetype);
             if (ret != 0)
             {
                 return;
@@ -585,7 +585,7 @@ namespace ET
             return 0;
         }
 
-        public static async ETTask<int> MoveToPosition(this OperaComponent self, Vector3 position, bool yanGan = false, string operatetype = "0")
+        public static async ETTask<int> MoveToPosition(this OperaComponent self, Vector3 position,  string operatetype = "0")
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int obstruct = self.CheckObstruct(unit.Position, position);
@@ -598,7 +598,7 @@ namespace ET
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             EventType.DataUpdate.Instance.DataParamString = operatetype;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-            int ret = await unit.MoveToAsync2(position, yanGan);
+            int ret = await unit.MoveToAsync2(position, true, null,0, 0, operatetype == "1");
             return ret;
         }
 
