@@ -356,7 +356,7 @@ namespace ET
             {
                 return;
             }
-            MoveHelper.MoveToAsync2(unit, self.TargetPosition, self.YaoganMove).Coroutine();
+            MoveHelper.MoveToAsync2(unit, self.TargetPosition, true, null, 0, 0, self.YaoganMove).Coroutine();
         }
 #endif
     }
