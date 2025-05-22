@@ -31,7 +31,7 @@ namespace ET
         {
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.WaitMove = false;
-            moveComponent.WaitMode = true;
+            moveComponent.WaitMode = false;
             C2M_PathfindingRequest msg = c2M_PathfindingRequest;
           
             msg.YaoGan = true;
@@ -84,7 +84,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan = true, ETCancellationToken cancellationToken = null, int direction = 0, int taskId = 0, bool waitmode = true)
+        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan = true, ETCancellationToken cancellationToken = null, int direction = 0, int taskId = 0, bool waitmode = false)
         {
             int errorCode = MoveHelper.IfCanMove(unit);
             if (errorCode != ErrorCode.ERR_Success)

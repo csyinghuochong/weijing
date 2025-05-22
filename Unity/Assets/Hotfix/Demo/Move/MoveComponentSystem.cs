@@ -332,7 +332,7 @@ namespace ET
             {
                 return;
             }
-            if (!unit.MainHero || self.WaitMode)
+            if (!unit.MainHero || !self.WaitMode)
             {
                 return;
             }
