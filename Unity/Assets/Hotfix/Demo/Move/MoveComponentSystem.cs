@@ -326,13 +326,13 @@ namespace ET
         /// 1:不中断
         public static async void SkillStop(this MoveComponent self, Unit unit, SkillConfig skillConfig)
         {
-            self.MoveWait = false;
+            self.WaitMove = false;
             int targetCount = self.Targets.Count;
             if (self.IsArrived() || targetCount == 0)
             {
                 return;
             }
-            if (!unit.MainHero || self.YaoganMove)
+            if (!unit.MainHero || self.WaitMode)
             {
                 return;
             }
@@ -347,16 +347,16 @@ namespace ET
                 return;
             }
 
-            self.MoveWait = true;
+            self.WaitMove = true;
             self.TargetPosition = self.Targets[targetCount - 1];
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
             await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000));
-            if (unit.IsDisposed || !self.MoveWait)
+            if (unit.IsDisposed || !self.WaitMove)
             {
                 return;
             }
-            MoveHelper.MoveToAsync2(unit, self.TargetPosition, true, null, 0, 0, self.YaoganMove).Coroutine();
+            MoveHelper.MoveToAsync2(unit, self.TargetPosition, true, null, 0, 0, self.WaitMode).Coroutine();
         }
 #endif
     }

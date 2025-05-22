@@ -80,8 +80,8 @@ namespace ET
         public Quaternion To;
 
         //0 摇杆移动 1点击移动
-        public bool MoveWait;
-        public bool YaoganMove;
+        public bool WaitMove;
+        public bool WaitMode;
         public Vector3 TargetPosition;
     }
 }

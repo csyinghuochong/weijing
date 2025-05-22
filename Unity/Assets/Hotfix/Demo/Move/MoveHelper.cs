@@ -30,8 +30,8 @@ namespace ET
         public static async ETTask<int> MoveByYaoGan(this Unit unit, Vector3 targetPos, int direction, float distance,  ETCancellationToken cancellationToken = null)
         {
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            moveComponent.MoveWait = false;
-            moveComponent.YaoganMove = true;
+            moveComponent.WaitMove = false;
+            moveComponent.WaitMode = true;
             C2M_PathfindingRequest msg = c2M_PathfindingRequest;
           
             msg.YaoGan = true;
@@ -84,7 +84,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan = true, ETCancellationToken cancellationToken = null, int direction = 0, int taskId = 0, bool YaoganMove = true)
+        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan = true, ETCancellationToken cancellationToken = null, int direction = 0, int taskId = 0, bool waitmode = true)
         {
             int errorCode = MoveHelper.IfCanMove(unit);
             if (errorCode != ErrorCode.ERR_Success)
@@ -94,8 +94,8 @@ namespace ET
             }
 
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            moveComponent.MoveWait = false;
-            moveComponent.YaoganMove = YaoganMove;
+            moveComponent.WaitMove = false;
+            moveComponent.WaitMode = waitmode;
             C2M_PathfindingRequest msg = c2M_PathfindingRequest;
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
