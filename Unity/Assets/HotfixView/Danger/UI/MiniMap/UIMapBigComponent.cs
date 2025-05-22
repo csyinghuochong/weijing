@@ -492,7 +492,7 @@ namespace ET
             }
             else
             {
-                unit.MoveToAsync2(self.BossList[configid], true).Coroutine();
+                unit.MoveToAsync2(self.BossList[configid], true, null, 0, 0, false).Coroutine();
             }
         }
 
@@ -531,7 +531,7 @@ namespace ET
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
                 EventType.DataUpdate.Instance.DataParamString = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-                unit.MoveToAsync2(hit.point, true).Coroutine();
+                unit.MoveToAsync2(hit.point, true, null, 0, 0, false).Coroutine();
             }
         }
 
