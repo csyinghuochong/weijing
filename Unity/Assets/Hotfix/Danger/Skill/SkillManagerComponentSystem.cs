@@ -368,14 +368,17 @@ namespace ET
 
 
             //播放对应攻击动作
-            if (skillConfig.IfStopMove == 1)
+            //if (skillConfig.IfStopMove == 1)
+            //{
+            //    EventType.PlayAnimator.Instance.Unit = unit;
+            //    EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
+            //    Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
+            //    Log.Debug($"waitmove  skillConfig.IfStopMove == 1 {skillConfig.Id} 播放攻击动作");
+            //}
+            //else
             {
-                EventType.PlayAnimator.Instance.Unit = unit;
-                EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
-                Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
-            }
-            else
-            {
+                //Log.Debug($"waitmove  skillConfig.IfStopMove == 0 {skillConfig.Id} 切换攻击状态");
+
                 bool noMoveSkill = skillConfig.GameObjectName.Equals("Skill_Other_XuanFengZhan_1");
                 if (noMoveSkill && skillConfig.SkillType == 1)
                 {

@@ -351,11 +351,16 @@ namespace ET
             self.TargetPosition = self.Targets[targetCount - 1];
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
-            await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000));
+            await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000 ));
             if (unit.IsDisposed || !self.WaitMove)
             {
                 return;
             }
+
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = "1";
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            //Log.Debug($"waitmove  skillConfig.IfStopMove == 1 {skillConfig.Id} 开始继续寻路");
             MoveHelper.MoveToAsync2(unit, self.TargetPosition, true, null, 0, 0, self.WaitMode).Coroutine();
         }
 #endif

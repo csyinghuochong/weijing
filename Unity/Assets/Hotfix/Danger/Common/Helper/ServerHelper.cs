@@ -392,7 +392,7 @@ namespace ET
 
 
             //2025/04/11 19:00:00 1744369200000 合区 一统山河-星辰坠落 145/146
-            serverItems_1.Add(new ServerItem() { ServerId = 145, ServerIp = $"{ip}:20375", ServerName = "一统山河", ServerOpenTime = 1741345200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 145, ServerIp = $"{ip}:20375", ServerName = "一统山河", ServerOpenTime = 1741345200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6,100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 146, ServerIp = $"{ip}:20375", ServerName = "星辰坠落", ServerOpenTime = 1741950000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             
             
