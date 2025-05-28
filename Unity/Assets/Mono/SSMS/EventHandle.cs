@@ -62,7 +62,7 @@ public class EventHandle : QuickSDKListener
     {
         bool qudao = EventHandle.IsQudaoPackage();
         int qudaotype = onChannelType();
-        Log.ILog.Debug($"onLogin {qudao}  {qudaotype}");
+        Log.ILog.Debug($"quicksdk onLogin.. qudaotype: {qudaotype}");
         if (!EventHandle.IsQudaoPackage())
             return;
         QuickSDK.getInstance().login();
@@ -443,8 +443,9 @@ public class EventHandle : QuickSDKListener
 	public override void onLoginSuccess(UserInfo userInfo)
 	{
         String code = QuickSDK.getInstance().callFunctionWithResult(0);
-        showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
-        Debug.Log("callFunctionWithResult is " + code);
+        int qudaotype =  onChannelType();
+        showLog("onLoginSuccess", "code: " + code +   "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
+        Debug.Log("callFunctionWithResult is " + qudaotype);
 
         //登录成功的回调
         //      if (EventHandle.IsHuiWeiChannel())

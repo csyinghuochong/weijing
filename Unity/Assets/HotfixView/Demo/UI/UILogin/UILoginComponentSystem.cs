@@ -1141,8 +1141,13 @@ namespace ET
 			}
 			else
 			{
-				GlobalHelp.PemoveAccount("1");
-				GlobalHelp.PemoveAccount("2");
+				int platform = GlobalHelp.GetPlatform();
+				//抖音和渠道包不可能有微信qq登陆 所以不需要移除
+				if (platform!=5 && platform!=100)
+				{
+                    GlobalHelp.PemoveAccount("1");
+                    GlobalHelp.PemoveAccount("2");
+                }
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
 				self.ThirdLoginBg.SetActive(true);
 				self.ZhuCe.SetActive(true);
