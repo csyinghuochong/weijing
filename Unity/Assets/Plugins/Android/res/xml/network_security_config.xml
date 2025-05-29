@@ -7,5 +7,6 @@
 		<domain includeSubdomains="true">logs.quickapi.net</domain>
 		<domain includeSubdomains="true">sdkapi03.sdkserver.com</domain>
 		<domain includeSubdomains="true">sdkreport.quickapi.net</domain>
+		<domain includeSubdomains="true">serverip.quickapi.net</domain>
 	</domain-config>
 </network-security-config>
