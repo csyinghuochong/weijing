@@ -11,8 +11,6 @@ public class MulLanguageEditor : Editor
 {
 	//UIPrefab文件夹目录
 	private static string UIPrefabPath = Application.dataPath + "/Bundles/UI";
-	//脚本的文件夹目录
-	private static string ScriptPath = Application.dataPath + "/Codes";
 	//导出的中文KEY路径
 	private static string OutPath = Application.dataPath + "/out.txt";
 
@@ -30,10 +28,10 @@ public class MulLanguageEditor : Editor
 
 		//提取CS中的中文
 		staticWriteText += "----------------Script----------------------\n";
-
-		ScriptPath = Application.dataPath.Substring(0, Application.dataPath.Length - 6);
-		ScriptPath  = ScriptPath + "Codes";
-		LoadDiectoryCS(new DirectoryInfo(ScriptPath));
+		LoadDiectoryCS(new DirectoryInfo(Application.dataPath + "/Hotfix"));
+		LoadDiectoryCS(new DirectoryInfo(Application.dataPath + "/HotfixView"));
+		LoadDiectoryCS(new DirectoryInfo(Application.dataPath + "/Model"));
+		LoadDiectoryCS(new DirectoryInfo(Application.dataPath + "/ModelView"));
 
 
 		//最终把提取的中文生成出来
@@ -71,28 +69,27 @@ public class MulLanguageEditor : Editor
 	//递归所有C#代码
 	static public void LoadDiectoryCS(DirectoryInfo dictoryInfo)
 	{
-
 		if (!dictoryInfo.Exists) return;
-		FileInfo[] fileInfos = dictoryInfo.GetFiles("*.cs", SearchOption.AllDirectories);
-		foreach (FileInfo files in fileInfos)
-		{
-			string path = files.FullName;
-			//string assetPath = path.Substring(path.IndexOf("Assets/"));
-			//int index = Application.dataPath.Length - 6; //path.IndexOf("Assets");
-			//string assetPath = path.Substring(index);
-			//TextAsset textAsset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(TextAsset)) as TextAsset;
-			string text = File.ReadAllText(path); // textAsset.text;
 
-			//用正则表达式把代码里面两种字符串中间的字符串提取出来。
-			Regex reg = new Regex("(?<=StrUtil.GetText\\s*\\(\\s*\"\\s*)[\\s\\S]*?(?=\\s*\")");
-			MatchCollection mc = reg.Matches(text);
-			foreach (Match m in mc)
+		FileInfo[] fileInfos = dictoryInfo.GetFiles("*.cs", SearchOption.AllDirectories);
+		Regex reg = new Regex("\"(.*?)\"", RegexOptions.Compiled);
+		Regex chineseCharRegex = new Regex("[\u4e00-\u9fa5]", RegexOptions.Compiled);
+
+		foreach (FileInfo file in fileInfos)
+		{
+			string text = File.ReadAllText(file.FullName);
+			MatchCollection matches = reg.Matches(text);
+
+			foreach (Match match in matches)
 			{
-				string format = m.Value;
-				if (!Localization.Contains(format) && !string.IsNullOrEmpty(format))
+				string content = match.Groups[1].Value;
+				if (chineseCharRegex.IsMatch(content))
 				{
-					Localization.Add(format);
-					staticWriteText += format + "\n";
+					if (!Localization.Contains(content) && !string.IsNullOrEmpty(content))
+					{
+						Localization.Add(content);
+						staticWriteText += content + "\n";
+					}
 				}
 			}
 		}
