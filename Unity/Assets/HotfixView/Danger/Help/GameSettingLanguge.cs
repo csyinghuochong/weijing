@@ -14,7 +14,7 @@ namespace ET
         public string[] randomName_name;
         public bool langLoadStatus;             //本地化语言加载状态 
 
-        public static bool Chinese = false;
+        public static int Language = 0;
 
         public struct LangugeType
         {
@@ -36,8 +36,9 @@ namespace ET
             base.InternalInit();
         }
 
-        public async ETTask InitRandomName() 
+        public async ETTask InitRandomName()
         {
+            Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language);
             if (randomName_xing == null)
             {
                 var path_1 = ABPathHelper.GetTextPath("RandName_Xing");
@@ -188,7 +189,7 @@ namespace ET
 
         public static void TransformText(Transform root)
         {
-            if (Chinese)
+            if (Language == 0)
             {
                 return;
             }
@@ -213,34 +214,35 @@ namespace ET
 
         public static void TransformImage(Transform root)
         {
-            if (Chinese)
+            if (Language == 0)
             {
                 return;
             }
-            foreach (Transform chind in root)
-            {
-                Image image = chind.GetComponent<Image>();
-                if (image != null && image.sprite!=null)
-                {
-                    string text = image.sprite.name;
-                    var path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MulLanguageIcon, text + "_en");
-                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                    if (sp!=null)
-                    {
-                        image.sprite = sp;
-                    }
-                }
-                if (chind.childCount > 0)
-                {
-                    TransformImage(chind);
-                }
-            }
+            // 有点慢，先屏蔽
+            // foreach (Transform chind in root)
+            // {
+            //     Image image = chind.GetComponent<Image>();
+            //     if (image != null && image.sprite!=null)
+            //     {
+            //         string text = image.sprite.name;
+            //         var path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MulLanguageIcon, text + "_en");
+            //         Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            //         if (sp!=null)
+            //         {
+            //             image.sprite = sp;
+            //         }
+            //     }
+            //     if (chind.childCount > 0)
+            //     {
+            //         TransformImage(chind);
+            //     }
+            // }
         }
 
         public  static string GetText(string text)
         {
             //通过传进来的中文KEY 去数据表里面读对应替换的多语言文字
-            if (Chinese)
+            if (Language == 0)
             {
                 return text;
             }

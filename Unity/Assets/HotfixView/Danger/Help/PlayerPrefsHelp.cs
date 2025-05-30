@@ -26,6 +26,7 @@ namespace ET
         public static string TapRepCiLiu = "TapRepCiLiu";
         public static string CameraParams = "WJa_CameraParams";
         public static string RelinkRecord = "RelinkRecord";
+        public static string Language = "WJa_Language";
 
         public static string LastAccount(string loginType)
         {

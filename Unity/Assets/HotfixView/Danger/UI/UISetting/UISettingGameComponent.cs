@@ -9,6 +9,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject LanguageSet;
         public GameObject ZhuBoSet;
         public GameObject ReSetCameraBtn;
         public GameObject RotaAngleSet;
@@ -102,6 +103,11 @@ namespace ET
             self.ZhuBoSet = rc.Get<GameObject>("ZhuBoSet");
             self.ZhuBoSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhuBo);
             self.ZhuBoSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
+            
+            self.LanguageSet = rc.Get<GameObject>("LanguageSet");
+            self.LanguageSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(0); });
+            self.LanguageSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(1); });
+            self.LanguageSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
             
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
@@ -308,6 +314,22 @@ namespace ET
             self.SaveSettings(GameSettingEnum.OneSellSet, value);
         }
 
+        public static void OnBtn_LanguageSet(this UISettingGameComponent self, int index)
+        {
+            int oldIndex = GameSettingLanguge.Language;
+            GameSettingLanguge.Language = index;
+
+            PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, index);
+            
+            self.LanguageSet.transform.Find("Image_Click_0").gameObject.SetActive(index == 0);
+            self.LanguageSet.transform.Find("Image_Click_1").gameObject.SetActive(index == 1);
+
+            if (oldIndex != index)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请重启游戏");
+            }
+        }
+
         public static void OnBtn_PickSet(this UISettingGameComponent self, int index)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet);
@@ -459,6 +481,9 @@ namespace ET
             {
                 self.OneSellSet.transform.Find("Image_Click_3").gameObject.SetActive(setvalues[3] == "1");
             }
+            
+            self.LanguageSet.transform.Find("Image_Click_0").gameObject.SetActive(GameSettingLanguge.Language == 0);
+            self.LanguageSet.transform.Find("Image_Click_1").gameObject.SetActive(GameSettingLanguge.Language == 1);
             
             string value2 = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet);
             string[] setvalues2 = value2.Split('@');
