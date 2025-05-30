@@ -218,7 +218,7 @@ namespace ET
             {
                 return;
             }
-            // 有点慢，先屏蔽
+            // 有点慢，先屏蔽 方案1
             // foreach (Transform chind in root)
             // {
             //     Image image = chind.GetComponent<Image>();
@@ -237,6 +237,32 @@ namespace ET
             //         TransformImage(chind);
             //     }
             // }
+            
+            // 速度快点 方案2 在原图片下挂上不同图片
+            foreach (Transform chind in root)
+            {
+                Image image = chind.GetComponent<Image>();
+                if (image != null && image.sprite != null)
+                {
+                    if (image.transform.childCount > 0)
+                    {
+                        for (int i = 0; i < image.transform.childCount; i++)
+                        {
+                            GameObject child = image.transform.GetChild(i).gameObject;
+                            if (child.name == "_en")
+                            {
+                                image.enabled = false;
+                                child.gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                }
+
+                if (chind.childCount > 0)
+                {
+                    TransformImage(chind);
+                }
+            }
         }
 
         public  static string GetText(string text)
