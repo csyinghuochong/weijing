@@ -1527,7 +1527,7 @@ namespace ET
             self.ZoneScene().CurrentScene().GetComponent<CameraComponent>().LenDepth = lenDepth <= 0? 1 : lenDepth;
             
             self.DragPanel.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle) == 1);
-
+          
             userInfoComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
 
             self.CheckRechargeRewardButton();
@@ -2012,6 +2012,7 @@ namespace ET
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.ShrinkBtn.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
+            self.DragPanel.transform.SetAsFirstSibling();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom);
             if (value=="1")
