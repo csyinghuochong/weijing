@@ -21,16 +21,11 @@ public class MulLanguageEditor : Editor
 		ResultMap = new Dictionary<string, List<string>>();
 
 		StringBuilder sb = new StringBuilder();
-		sb.AppendLine("=========== 多语言提取报告 ===========");
-		sb.AppendLine($"导出时间: {System.DateTime.Now}");
-		sb.AppendLine("---------------------------------------\n");
 
 		// 提取 Prefab 中文
-		sb.AppendLine("【Prefab 中的中文】");
 		LoadDirectoryPrefab(new DirectoryInfo(UIPrefabPath));
 
 		// 提取脚本中的中文
-		sb.AppendLine("\n【Script 中的中文】");
 		LoadDirectoryCS(new DirectoryInfo(Application.dataPath + "/Hotfix"));
 		LoadDirectoryCS(new DirectoryInfo(Application.dataPath + "/HotfixView"));
 		LoadDirectoryCS(new DirectoryInfo(Application.dataPath + "/Model"));
