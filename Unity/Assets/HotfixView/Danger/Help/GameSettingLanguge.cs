@@ -14,7 +14,7 @@ namespace ET
         public string[] randomName_name;
         public bool langLoadStatus;             //本地化语言加载状态 
 
-        public static bool Chinese = true;
+        public static bool Chinese = false;
 
         public struct LangugeType
         {
@@ -223,7 +223,8 @@ namespace ET
                 if (image != null && image.sprite!=null)
                 {
                     string text = image.sprite.name;
-                    Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.MulLanguageIcon, text + "_en");
+                    var path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MulLanguageIcon, text + "_en");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                     if (sp!=null)
                     {
                         image.sprite = sp;

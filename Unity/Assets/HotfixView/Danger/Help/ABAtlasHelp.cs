@@ -24,21 +24,4 @@ namespace ET
         public const string ChengHaoIcon = "ChengHaoIcon";
         public const string MulLanguageIcon = "MulLanguageIcon";
     }
-
-    public static class ABAtlasHelp
-    {
-
-        /// <summary>
-        /// 全部修改完之后移除此方法
-        /// </summary>
-        /// <param name="types"></param>
-        /// <param name="icon"></param>
-        /// <returns></returns>
-        public static Sprite GetIconSprite(string types, string icon)
-        {
-            var path = ABPathHelper.GetAtlasPath_2(types, icon);
-            Sprite prefab =  ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            return prefab;
-        }
-    }
 }
