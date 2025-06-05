@@ -272,6 +272,12 @@ namespace ET
             {
                 return text;
             }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
+            
             if (MulLanguge.ContainsKey(text))
             {
                 return MulLanguge[text];
