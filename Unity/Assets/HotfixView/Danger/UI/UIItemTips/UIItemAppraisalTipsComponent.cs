@@ -561,7 +561,7 @@ namespace ET
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
 
             //显示道具信息
-            self.Lab_ItemName.GetComponent<Text>().text =  itemconf.ItemName;
+            self.Lab_ItemName.GetComponent<Text>().text =  GameSettingLanguge.LoadLocalization(itemconf.ItemName);
             self.Lab_ItemSubType.GetComponent<Text>().text = equipType;
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;

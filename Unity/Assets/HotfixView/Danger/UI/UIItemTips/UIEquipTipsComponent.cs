@@ -829,7 +829,7 @@ namespace ET
             self.Obj_EquipQuality.GetComponent<Image>().sprite = sp;
 
             //显示基础信息
-            self.Obj_EquipName.GetComponent<Text>().text = equipName;
+            self.Obj_EquipName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(equipName);
             self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
             //self.Lab_EquipType.GetComponent<Text>().text = "类型" + " : " + textEquipType;
             float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
