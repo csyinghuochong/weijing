@@ -445,7 +445,7 @@ public class EventHandle : QuickSDKListener
         String code = QuickSDK.getInstance().callFunctionWithResult(0);
         int qudaotype =  onChannelType();
         showLog("onLoginSuccess", "code: " + code +   "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
-        Debug.Log("callFunctionWithResult is " + qudaotype);
+        showLog("callFunctionWithResult is " + qudaotype);
 
         //登录成功的回调
         //      if (EventHandle.IsHuiWeiChannel())
@@ -458,7 +458,7 @@ public class EventHandle : QuickSDKListener
         //	onLoginSuccessAction?.Invoke();
         //}
         
-        onLoginSuccessAction?.Invoke(userInfo.token, code + "_" + userInfo.uid);
+        onLoginSuccessAction?.Invoke(userInfo.token, qudaotype + "_" + userInfo.uid);
     }
 
 	public override void onSwitchAccountSuccess(UserInfo userInfo)
