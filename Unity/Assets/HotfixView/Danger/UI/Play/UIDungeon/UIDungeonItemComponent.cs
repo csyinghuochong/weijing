@@ -69,7 +69,7 @@ namespace ET
             if (selfLv < openlv)
             {
                 self.UnLock.SetActive(true);
-                self.Text_UnlockLevel.GetComponent<Text>().text = $"{openlv}级解锁";
+                self.Text_UnlockLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级解锁"), openlv);
             }
             else
             {

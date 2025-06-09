@@ -105,7 +105,7 @@ namespace ET
         {
             self.ChengJiuTypeId = typeId;
 
-            self.TaskTypeName.GetComponent<Text>().text = ChengJiuHelper.Instance.ChengJiuTypeText[typeId];
+            self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ChengJiuHelper.Instance.ChengJiuTypeText[typeId]);
         }
 
         public static void SetClickSubTypeHandler(this UIChengJiuTypeComponent self, Action<int, int> action)

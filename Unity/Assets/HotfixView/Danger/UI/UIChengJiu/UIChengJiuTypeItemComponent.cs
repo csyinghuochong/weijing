@@ -56,7 +56,7 @@ namespace ET
             }
 
             self.Lab_TaskNum.GetComponent<Text>().text = string.Format(" ({0}/{1})", number, ids.Count);
-            self.Lab_TaskName.GetComponent<Text>().text = ChengJiuHelper.Instance.ChapterIndexText[subType];
+            self.Lab_TaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ChengJiuHelper.Instance.ChapterIndexText[subType]);
             self.Ima_Progress.transform.localScale = new Vector3(number*1f / ids.Count,1f, 1f);
             self.Ima_CompleteTask.SetActive(number >= ids.Count);
         }

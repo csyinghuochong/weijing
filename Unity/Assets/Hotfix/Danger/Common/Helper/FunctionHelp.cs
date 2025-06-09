@@ -220,12 +220,12 @@ namespace ET
                         break;
                     case FunctionContionEnum.PlayerLv:
                         open = CheckPlayerLv(zongScene, triggerValue);
-                        tip = $"请提升等级至: {triggerValue}";
+                        tip = string.Format("请提升等级至: {0}", triggerValue);
                         break;
                     case FunctionContionEnum.TaskId:
                         open = CheckTaskID(zongScene, triggerValue);
                         TaskConfig taskConfig = TaskConfigCategory.Instance.Get(triggerValue);
-                        tip = $"请完成任务: {taskConfig.TaskName}";
+                        tip = string.Format("请完成任务: {0}", taskConfig.TaskName);
                         break;
                 }
                 if (!open)
