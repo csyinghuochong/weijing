@@ -444,8 +444,8 @@ public class EventHandle : QuickSDKListener
 	{
         String code = QuickSDK.getInstance().callFunctionWithResult(0);
         int qudaotype =  onChannelType();
-        showLog("onLoginSuccess", "code: " + code +   "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
-        showLog("callFunctionWithResult is " + qudaotype);
+        showLog("onLoginSuccess", "code: " + code +   "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg  + "  qudaotype" + qudaotype);
+
 
         //登录成功的回调
         //      if (EventHandle.IsHuiWeiChannel())
