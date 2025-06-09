@@ -238,22 +238,21 @@ namespace ET
             //     }
             // }
             
-            // 速度快点 方案2 在原图片下挂上不同图片
+            // 方案2
             foreach (Transform chind in root)
             {
                 Image image = chind.GetComponent<Image>();
                 if (image != null && image.sprite != null)
                 {
-                    if (image.transform.childCount > 0)
+                    string text = image.sprite.name;
+                    
+                    ReferenceCollector re = chind.GetComponent<ReferenceCollector>();
+                    if (re != null)
                     {
-                        for (int i = 0; i < image.transform.childCount; i++)
+                        Sprite sp_EN = re.Get<Sprite>(text + "_EN");
+                        if (sp_EN != null)
                         {
-                            GameObject child = image.transform.GetChild(i).gameObject;
-                            if (child.name == "_en")
-                            {
-                                image.enabled = false;
-                                child.gameObject.SetActive(true);
-                            }
+                            image.sprite = sp_EN;
                         }
                     }
                 }

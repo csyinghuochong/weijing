@@ -15530,6 +15530,7 @@ GameObject:
   - component: {fileID: 3055922815177687959}
   - component: {fileID: 3055922815177687958}
   - component: {fileID: 3055922815177687961}
+  - component: {fileID: 4445623195582622473}
   m_Layer: 5
   m_Name: Btn_Pet
   m_TagString: Untagged
@@ -15668,6 +15669,21 @@ MonoBehaviour:
             m_StringArgument: OpenPet
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4445623195582622473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055922815177687956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_2_EN
+    gameObject: {fileID: 21300000, guid: 4952fc145c9378748b7046f937d55c0d, type: 3}
 --- !u!1 &3055922815191896423
 GameObject:
   m_ObjectHideFlags: 0
@@ -16897,6 +16913,7 @@ GameObject:
   - component: {fileID: 3055922815399829639}
   - component: {fileID: 3055922815399829638}
   - component: {fileID: 3055922815399829637}
+  - component: {fileID: 5601307886077872506}
   m_Layer: 5
   m_Name: Btn_ChengJiu
   m_TagString: Untagged
@@ -17018,6 +17035,21 @@ MonoBehaviour:
           m_StringArgument: OpenRoseChengJiu
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5601307886077872506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055922815399829635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_6_EN
+    gameObject: {fileID: 21300000, guid: 485f1b1b9f94efa40a98356e1abce508, type: 3}
 --- !u!1 &3055922815417498185
 GameObject:
   m_ObjectHideFlags: 0
@@ -17257,6 +17289,7 @@ GameObject:
   - component: {fileID: 3055922815508021034}
   - component: {fileID: 3055922815508021033}
   - component: {fileID: 3055922815508021032}
+  - component: {fileID: 6782710425218679379}
   m_Layer: 5
   m_Name: Btn_RoseEquip
   m_TagString: Untagged
@@ -17396,6 +17429,21 @@ MonoBehaviour:
             m_StringArgument: OpenBag
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6782710425218679379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055922815508021030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_1_EN
+    gameObject: {fileID: 21300000, guid: 4208b4e8d40c1b7449052f3a8dfc83bd, type: 3}
 --- !u!1 &3055922815535232584
 GameObject:
   m_ObjectHideFlags: 0
@@ -18814,6 +18862,7 @@ GameObject:
   - component: {fileID: 3055922816046233626}
   - component: {fileID: 3055922816046233625}
   - component: {fileID: 3055922816046233624}
+  - component: {fileID: 7319275294453943281}
   m_Layer: 5
   m_Name: Btn_RoseSkill
   m_TagString: Untagged
@@ -18953,6 +19002,21 @@ MonoBehaviour:
             m_StringArgument: OnOpenSkill
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &7319275294453943281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055922816046233622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_3_EN
+    gameObject: {fileID: 21300000, guid: a511918591f778245af58c70cbf921eb, type: 3}
 --- !u!1 &3055922816087466797
 GameObject:
   m_ObjectHideFlags: 0
@@ -33522,6 +33586,7 @@ GameObject:
   - component: {fileID: 2537019007110524097}
   - component: {fileID: 3125529997357475766}
   - component: {fileID: 146142728401177132}
+  - component: {fileID: 2935320756579149477}
   m_Layer: 5
   m_Name: Btn_Friend
   m_TagString: Untagged
@@ -33644,6 +33709,21 @@ MonoBehaviour:
           m_StringArgument: OpenRoseChengJiu
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2935320756579149477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5298138021557642435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_5_EN
+    gameObject: {fileID: 21300000, guid: 8778e7dd8eb3bda42be7f24794a733d5, type: 3}
 --- !u!1 &5298818047127881660
 GameObject:
   m_ObjectHideFlags: 0
@@ -38031,6 +38111,7 @@ GameObject:
   - component: {fileID: 1278445527359852246}
   - component: {fileID: 7081240011682515516}
   - component: {fileID: 3982940103538280683}
+  - component: {fileID: 8265123552149698458}
   m_Layer: 5
   m_Name: Btn_Task
   m_TagString: Untagged
@@ -38169,6 +38250,21 @@ MonoBehaviour:
             m_StringArgument: OnOpenSkill
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &8265123552149698458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114267870108803981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Btn_4_EN
+    gameObject: {fileID: 21300000, guid: 81e59c6081958b942ad2eae462a2bdf4, type: 3}
 --- !u!1 &6128170162121316906
 GameObject:
   m_ObjectHideFlags: 0
