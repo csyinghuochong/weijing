@@ -88,16 +88,16 @@ namespace ET
             DateTime endTime = TimeInfo.Instance.ToDateTime(seasonOpenTime.Value2);
 
             self.SeasonTimeText.GetComponent<Text>().text =
-                    $"赛季时间:{startTime.Year}.{startTime.Month}.{startTime.Day}-{endTime.Year}.{endTime.Month}.{endTime.Day}";
+                    string.Format(GameSettingLanguge.LoadLocalization("赛季时间:{0}.{1}.{2}-{3}.{4}.{5}"), startTime.Year, startTime.Month, startTime.Day, endTime.Year, endTime.Month, endTime.Day);
 
 
             if (seasonOpenTime.KeyId == 4)
             {
-                self.SeasonText.GetComponent<Text>().text = "2025第一赛季";
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2025第一赛季");
             }
             if (seasonOpenTime.KeyId == 5)
             {
-                self.SeasonText.GetComponent<Text>().text = "2025第二赛季";
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2025第二赛季");
             }
 
             int seasonExp = userInfo.SeasonExp;
@@ -108,7 +108,7 @@ namespace ET
                 seasonExp = seasonLevelConfig.UpExp;
             }
 
-            self.SeasonExperienceText.GetComponent<Text>().text = $"赛季经验:{seasonExp}/{seasonLevelConfig.UpExp}";
+            self.SeasonExperienceText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("赛季经验:{0}/{1}"), seasonExp, seasonLevelConfig.UpExp);
             self.SeasonExperienceImg.GetComponent<Image>().fillAmount = 1f * seasonExp / seasonLevelConfig.UpExp;
 
             self.SeasonLvText.GetComponent<Text>().text = userInfo.SeasonLevel.ToString();
@@ -130,12 +130,12 @@ namespace ET
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             if (fubenid == 0)
             {
-                self.MonsterPositionText.GetComponent<Text>().text = "未刷新";
+                self.MonsterPositionText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未刷新");
             }
             else
             {
                 DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
-                self.MonsterPositionText.GetComponent<Text>().text = $"出现位置:{dungeonConfig.ChapterName}";
+                self.MonsterPositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("出现位置:{0}"), dungeonConfig.ChapterName);
             }
            
 
@@ -162,7 +162,7 @@ namespace ET
                 self.GetBtn.SetActive(true);
             }
 
-            self.SeasonRewardText.GetComponent<Text>().text = $"{nowReward}级赛季奖励";
+            self.SeasonRewardText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级赛季奖励"), nowReward);
             UICommonHelper.DestoryChild(self.RewardsListNode);
             UICommonHelper.ShowItemList(SeasonLevelConfigCategory.Instance.Get(nowReward).Reward, self.RewardsListNode, self, 0.9f);
         }
@@ -181,11 +181,11 @@ namespace ET
                     DateTime nowTime = TimeInfo.Instance.ToDateTime(now);
                     DateTime endTime = TimeInfo.Instance.ToDateTime(end);
                     TimeSpan ts = endTime - nowTime;
-                    self.MonsterRefreshTimeText.text = $"刷新时间:{ts.Days}天{ts.Hours}小时{ts.Minutes}分";
+                    self.MonsterRefreshTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("刷新时间:{0}天{1}小时{2}分"), ts.Days, ts.Hours, ts.Minutes);
                 }
                 else
                 {
-                    self.MonsterRefreshTimeText.text = "赛季领主已刷新!!";
+                    self.MonsterRefreshTimeText.text = GameSettingLanguge.LoadLocalization("赛季领主已刷新!!");
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);
@@ -200,7 +200,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 5)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -214,7 +214,7 @@ namespace ET
             {
                 if (nowReward > userInfo.SeasonLevel)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("未到领取等级！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未到领取等级！"));
                     return;
                 }
 

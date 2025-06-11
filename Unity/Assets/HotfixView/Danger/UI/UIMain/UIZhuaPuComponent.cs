@@ -129,7 +129,7 @@ namespace ET
             long leftnumber = self.BagComponent.GetItemNumber(bagInfo.ItemID);
             if (leftnumber <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 
@@ -165,7 +165,7 @@ namespace ET
             }
 
             int gailv = ComHelp.GetZhuPuGaiLv(self.MonsterId, self.ItemId, 1);
-            self.TextGaiLv.GetComponent<Text>().text = $"抓捕成功率： {gailv*0.01f}%";
+            self.TextGaiLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("抓捕成功率： {0}%"), gailv*0.01f);
         }
 
         public static void OnInitUI(this UIZhuaPuComponent self, Unit unitmonster)
@@ -195,7 +195,7 @@ namespace ET
                 int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
                 if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("宠物格子不足！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物格子不足！"));
                     return;
                 }
             }
@@ -207,14 +207,14 @@ namespace ET
             M2C_JingLingCatchResponse response = (M2C_JingLingCatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == ErrorCode.ERR_Success && response.Message != "1")
             {
-                FloatTipManager.Instance.ShowFloatTip("恭喜你,抓捕成功！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜你,抓捕成功！"));
             }
 
             if (response.Error == ErrorCode.ERR_ZhuaBuFail)
             {
                 List<string> strList = new List<string>();
-                strList.Add("它趁你不注意,偷偷的溜走了!");
-                strList.Add("抓铺的动作太大,被他发现后马上的逃走了!");
+                strList.Add(GameSettingLanguge.LoadLocalization("它趁你不注意,偷偷的溜走了!"));
+                strList.Add(GameSettingLanguge.LoadLocalization("抓铺的动作太大,被他发现后马上的逃走了!"));
 
                 int randInt = RandomHelper.RandomNumber(0, strList.Count);
                 FloatTipManager.Instance.ShowFloatTip(strList[randInt]);

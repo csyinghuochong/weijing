@@ -165,7 +165,7 @@ namespace ET
         public static void  UpdateReardShowList(this UIChouKaComponent self)
         {
             int cindex = self.TakeCardId % 1000;
-            self.Text_Chapter.GetComponent<Text>().text = string.Format("第{0}章探宝", cindex);
+            self.Text_Chapter.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}章探宝"), cindex);
             UICommonHelper.DestoryChild(self.chouKaShowItemNode);
 
             TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(self.TakeCardId);
@@ -261,7 +261,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int totalTimes = numericComponent.GetAsInt(NumericType.ChouKa);
-            self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
+            self.Text_TotalNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日累计次数：{0}"), totalTimes);
         }
 
         public static void OnUpdateMianFeiTime(this UIChouKaComponent self)
@@ -273,8 +273,8 @@ namespace ET
             long passTime_2 = curTime - numericComponent.GetAsLong(NumericType.ChouKaTenTime);
             long cdTime_1 = long.Parse(GlobalValueConfigCategory.Instance.Get(35).Value) * 1000;
             long cdTime_2 = long.Parse(GlobalValueConfigCategory.Instance.Get(36).Value) * 1000;
-            self.Text_MianFeiTime_1.GetComponent<Text>().text = passTime_1 > cdTime_1 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_1 - passTime_1);
-            self.Text_MianFeiTime_2.GetComponent<Text>().text = passTime_2 > cdTime_2 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_2 - passTime_2);
+            self.Text_MianFeiTime_1.GetComponent<Text>().text = passTime_1 > cdTime_1 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_1 - passTime_1);
+            self.Text_MianFeiTime_2.GetComponent<Text>().text = passTime_2 > cdTime_2 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_2 - passTime_2);
         }
 
         public static void OnUpdateUI(this UIChouKaComponent self)

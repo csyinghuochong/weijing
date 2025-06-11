@@ -117,8 +117,8 @@ namespace ET
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
-                $"是否花费{needGold}金币重置技能点",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("技能点重置"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}金币重置技能点"), needGold),
                 () =>
                 {
                     self.RequestReset(operation).Coroutine();
@@ -390,12 +390,12 @@ namespace ET
             {
                 SkillConfig skillNextConfig = SkillConfigCategory.Instance.Get(skillConfig.NextSkillID);
                 self.NextText.GetComponent<Text>().text = skillNextConfig.SkillDescribe;
-                self.ConsumeText.GetComponent<Text>().text = $"消耗技能点:{skillConfig.CostSPValue}";
+                self.ConsumeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗技能点:{0}"), skillConfig.CostSPValue);
             }
             else
             {
                 self.NextText.GetComponent<Text>().text = "";
-                self.ConsumeText.GetComponent<Text>().text = $"达到最大级";
+                self.ConsumeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("达到最大级");
             }
         }
 
@@ -411,17 +411,17 @@ namespace ET
             int playerLv = userInfo.Lv;
             if (userInfo.Sp < skillConfig.CostSPValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("技能点不足！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("技能点不足！!"));
                 return;
             }
             if (playerLv < skillConfig.LearnRoseLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
             if (skillConfig.NextSkillID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已满级！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已满级！"));
                 return;
             }
             self.ZoneScene().GetComponent<SkillSetComponent>().ActiveSkillID(self.SkillPro.SkillID).Coroutine();
@@ -440,7 +440,7 @@ namespace ET
         public static void UpdateLeftSp(this UISkillLearnComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            self.Text_LeftSp.GetComponent<Text>().text = $"剩余技能点: {userInfo.Sp}";
+            self.Text_LeftSp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("剩余技能点: {0}"), userInfo.Sp);
         }
 
         public static void OnSkillUpgrade(this UISkillLearnComponent self, string dataparams)

@@ -118,14 +118,14 @@ namespace ET
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.MakeId);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold < equipMakeConfig.MakeNeedGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("金币不足！"));
                 return;
             }
 
             bool success = self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(equipMakeConfig.NeedItems);
             if (!success)
             {
-                FloatTipManager.Instance.ShowFloatTip("材料不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
                 return;
             }
 
@@ -170,7 +170,7 @@ namespace ET
 
             //显示消耗活力
             self.TextVitality.GetComponent<Text>().text = equipMakeConfig.MakeNeedGold.ToString();
-            self.Text_Current.GetComponent<Text>().text = $"当前金币:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold}";
+            self.Text_Current.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前金币:  {0}"), self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold);
 
             for (int i = 0; i < itemsList.Length; i++)
             {

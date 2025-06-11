@@ -84,13 +84,13 @@ namespace ET
             switch (tianqi)
             {
                 case "1":
-                    self.Lab_TianQi.GetComponent<Text>().text = "晴天";
+                    self.Lab_TianQi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("晴天");
                     break;
                 case "2":
-                    self.Lab_TianQi.GetComponent<Text>().text = "雨天";
+                    self.Lab_TianQi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("雨天");
                     break;
                 default:
-                    self.Lab_TianQi.GetComponent<Text>().text = "晴天";
+                    self.Lab_TianQi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("晴天");
                     break;
             }
         }
@@ -286,42 +286,42 @@ namespace ET
                     string str = string.Empty;
                     if (difficulty == FubenDifficulty.Normal)
                     {
-                        str = "(普通)";
+                        str = GameSettingLanguge.LoadLocalization("(普通)");
                     }
                     if (difficulty == FubenDifficulty.TiaoZhan)
                     {
-                        str = "(挑战)";
+                        str = GameSettingLanguge.LoadLocalization("(挑战)");
                     }
                     if (difficulty == FubenDifficulty.DiYu)
                     {
-                        str = "(地狱)";
+                        str = GameSettingLanguge.LoadLocalization("(地狱)");
                     }
                     if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
                     {
                         str = string.Empty;
                     }
 
-                    self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName + str;
+                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(sceneId).ChapterName) + str;
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
                     str = "";
                     if (difficulty == TeamFubenType.XieZhu)
                     {
-                        str = "(协助)";
+                        str = GameSettingLanguge.LoadLocalization("(协助)");
                     }
                     if (difficulty == TeamFubenType.ShenYuan)
                     {
-                        str = "(深渊)";
+                        str = GameSettingLanguge.LoadLocalization("(深渊)");
                     }
-                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name + str;
+                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(sceneId).Name) + str;
                     break;
                 case SceneTypeEnum.Union:
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                    self.Lab_MapName.GetComponent<Text>().text = $"{userInfoComponent.UserInfo.UnionName} 家族地图";
+                    self.Lab_MapName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 家族地图"), userInfoComponent.UserInfo.UnionName);
                     break;
                 default:
                     //显示地图名称
-                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
+                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(sceneId).Name);
                     break;
             }
 

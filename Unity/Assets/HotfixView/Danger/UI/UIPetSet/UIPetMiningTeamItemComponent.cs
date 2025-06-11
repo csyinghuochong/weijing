@@ -79,13 +79,13 @@ namespace ET
         public static void OnInitUI(this UIPetMiningTeamItemComponent self,  int position)
         { 
             self.TeamId = position;
-            self.TextTip11.GetComponent<Text>().text = $"{position + 1}队";
+            self.TextTip11.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}队"), position + 1);
 
             int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int openLv = ConfigHelper.PetMiningTeamOpenLevel[position];
             if (playerLv < openLv)
             {
-                self.TextTip12.GetComponent<Text>().text = $"{openLv}级开启";
+                self.TextTip12.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), openLv);
             }
             else
             {

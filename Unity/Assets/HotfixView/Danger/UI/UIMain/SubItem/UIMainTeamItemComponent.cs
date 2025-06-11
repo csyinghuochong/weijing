@@ -45,9 +45,9 @@ namespace ET
             long value = teamPlayerInfo.Damage;
             string str = value.ToString();
             if (value >= 10000) {
-                str = ((float)value / 10000.0f).ToString("F2") + "万";
+                str = ((float)value / 10000.0f).ToString("F2") + GameSettingLanguge.LoadLocalization("万");
             }
-            self.DamageValue.GetComponent<Text>().text = "输出:" + str;
+            self.DamageValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("输出:") + str;
         }
 
         public static void OnReset(this UIMainTeamItemComponent self)
@@ -78,7 +78,7 @@ namespace ET
             self.TeamPlayerInfo = teamPlayerInfo;
             self.UnitId = teamPlayerInfo.UserID;
             self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
-            self.PlayerLv.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
+            self.PlayerLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), teamPlayerInfo.PlayerLv);
             self.OnUpdateDamage(teamPlayerInfo);
             UICommonHelper.ShowOccIcon(self.ImageHead, teamPlayerInfo.Occ);
         }

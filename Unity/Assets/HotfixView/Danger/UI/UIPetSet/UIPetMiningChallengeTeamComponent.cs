@@ -79,12 +79,12 @@ namespace ET
         {
             if (self.PetNumber == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("出战队伍不能为空！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战队伍不能为空！"));
                 return;
             }
             if (self.Defend)
             {
-                FloatTipManager.Instance.ShowFloatTip("抢矿后原占有矿会变成无人看守的矿！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("抢矿后原占有矿会变成无人看守的矿！"));
             }
             self.SelectHandler.Invoke(self.TeamId);
         }
@@ -95,7 +95,7 @@ namespace ET
 
             int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int openLv = ConfigHelper.PetMiningTeamOpenLevel[self.TeamId];
-            self.TextTip12.GetComponent<Text>().text = $"{openLv}级开启";
+            self.TextTip12.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), openLv);
 
             bool isopen = playerLv >= openLv;
 

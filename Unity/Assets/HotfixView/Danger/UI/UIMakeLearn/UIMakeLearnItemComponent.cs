@@ -79,7 +79,7 @@ namespace ET
             self.MakeId = makeid;
 
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
-            self.Label_LearnLv.GetComponent<Text>().text = string.Format("学习等级:{0}级", equipMakeConfig.LearnLv);
+            self.Label_LearnLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("学习等级:{0}级"), equipMakeConfig.LearnLv);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
             self.Label_ItemName.GetComponent<Text>().text = itemConfig.ItemName;

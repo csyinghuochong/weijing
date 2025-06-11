@@ -109,7 +109,7 @@ namespace ET
         {
             self.TypeId = typeId;
 
-            self.TaskTypeName.GetComponent<Text>().text = PaiMaiHelper.Instance.PaiMaiTypeText[typeId];
+            self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(PaiMaiHelper.Instance.PaiMaiTypeText[typeId]);
         }
 
         public static void SetClickTypeHandler(this UIPaiMaiShopTypeComponent self, Action<int> action)

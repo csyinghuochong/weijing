@@ -39,7 +39,7 @@ namespace ET
         public static void OnUpdateUI(this UIRoleQiangHuaTipComponent self, int subType, int qianghuaLv)
         {
 
-            string tip = $"当前部位强化至{qianghuaLv}级";
+            string tip = string.Format(GameSettingLanguge.LoadLocalization("当前部位强化至{0}级"), qianghuaLv);
             self.Text_Tip.GetComponent<Text>().text = tip ;
             UICommonHelper.DOScale(self.ScaleNode.transform, Vector3.one, 0.5f);
         }

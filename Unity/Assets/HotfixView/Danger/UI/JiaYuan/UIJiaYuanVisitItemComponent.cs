@@ -53,7 +53,7 @@ namespace ET
             long masterid = self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId;
             if (masterid == self.JiaYuanVisit.UnitId)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经在当前房间中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经在当前房间中！"));
                 return;
             }
 

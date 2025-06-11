@@ -114,7 +114,7 @@ namespace ET
             }
             else
             {
-                self.Text_RewardTime.GetComponent<Text>().text = $"奖励发放时间: {TimeHelper.ShowLeftTime(leftTime)}"; 
+                self.Text_RewardTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("奖励发放时间: {0}"), TimeHelper.ShowLeftTime(leftTime)); 
             }
         }
 
@@ -177,11 +177,11 @@ namespace ET
 
             if (myRank == -1)
             {
-                self.Text_MyRank.GetComponent<Text>().text = "我的排名: 未上榜";
+                self.Text_MyRank.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("我的排名: 未上榜");
             }
             else
             {
-                self.Text_MyRank.GetComponent<Text>().text = $"我的排名: {myRank}";
+                self.Text_MyRank.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("我的排名: {0}"), myRank);
             }
         }
 

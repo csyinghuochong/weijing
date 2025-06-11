@@ -62,7 +62,7 @@ namespace ET
             int index = int.Parse(activityConfig.Par_1);
             self.ActivityConfig = activityConfig;
 
-            self.Label_ItemName.GetComponent<Text>().text = $"第{index}天";
+            self.Label_ItemName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}天"), index);
 
             int current = index % 2;
             self.Image_ItemIconList[current].SetActive(true);

@@ -64,7 +64,7 @@ namespace ET
         {
             if (self.SellId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择道具！"));
                 return;
             }
             int buyNum = int.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
@@ -114,7 +114,7 @@ namespace ET
 
         public static void OnUpdateNumShow(this UITowerShopComponent self) {
             //获取道具数量进行显示
-            self.Lab_Num.GetComponent<Text>().text = "当前拥有数量:" + self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000148);
+            self.Lab_Num.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("当前拥有数量:") + self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000148);
         }
 
         public static void OnBtn_BuyNum_jia(this UITowerShopComponent self, int num)
@@ -124,7 +124,7 @@ namespace ET
 
             if (num > 0 && diamondsNumber >= 100)
             {
-                FloatTipManager.Instance.ShowFloatTip("购买最多100个！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("购买最多100个！"));
                 return;
             }
 

@@ -250,33 +250,35 @@ namespace ET
                     returnName = "体质";
                     break;
             }
-            return returnName;
+            return GameSettingLanguge.LoadLocalization(returnName);
 
         }
 
         //传入宠物品质显示文字
-        public static string GetPetQualityName(int quality) {
+        public static string GetPetQualityName(int quality)
+        {
 
+            string name = "";
             switch (quality) {
 
                 case 1:
-                    return "大众";
-                    //break;
+                    name = "大众";
+                    break;
                 case 2:
-                    return "优秀";
-                    //break;
+                    name = "优秀";
+                    break;
                 case 3:
-                    return "百里挑一";
-                    //break;
+                    name = "百里挑一";
+                    break;
                 case 4:
-                    return "千载难逢";
-                    //break;
+                    name = "千载难逢";
+                    break;
                 case 5:
-                    return "万众瞩目";
-                    //break;
+                    name = "万众瞩目";
+                    break;
             }
 
-            return "";
+            return GameSettingLanguge.LoadLocalization(name);
 
         }
 
@@ -364,10 +366,10 @@ namespace ET
             {
                 if (num % 10000 == 0)
                 {
-                    return (num / 10000).ToString() + "万";
+                    return (num / 10000).ToString() + GameSettingLanguge.LoadLocalization("万");
                 }
                 else {
-                    return ((float)num / 10000f).ToString("F2") + "万";
+                    return ((float)num / 10000f).ToString("F2") + GameSettingLanguge.LoadLocalization("万");
                 }
             }
             else {

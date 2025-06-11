@@ -74,13 +74,13 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前奖励已领取");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前奖励已领取"));
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) < rechargeNumber)
             {
-                FloatTipManager.Instance.ShowFloatTip($"充值金额不足 {rechargeNumber}元");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("充值金额不足 {0}元"), rechargeNumber));
                 return;
             }
                  
@@ -125,7 +125,7 @@ namespace ET
                 self.ImageReceived.SetActive(userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
             }
             
-            self.TextTip.GetComponent<Text>().text = $"累冲{rechargeNumber}元， 获得以下奖励";
+            self.TextTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累冲{0}元， 获得以下奖励"), rechargeNumber);
 
             string reward = ConfigHelper.RechargeReward[rechargeNumber];
             List<RewardItem> rewardItems = ItemHelper.GetRewardItems(reward);

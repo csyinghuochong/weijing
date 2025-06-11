@@ -67,12 +67,12 @@ namespace ET
             int needNumber = int.Parse(activityConfig.Par_2);
             if (rechargeNum < needNumber)
             {
-                FloatTipManager.Instance.ShowFloatTip("冒险家积分不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("冒险家积分不足！"));
                 return;
             }
             if (activityComponent.ActivityReceiveIds.Contains(self.CurActivityId))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前奖励已领取！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前奖励已领取！"));
                 return;
             }
             int errorCode = await activityComponent.GetActivityReward(activityConfig.ActivityType, activityConfig.Id);

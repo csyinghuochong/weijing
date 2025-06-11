@@ -93,18 +93,18 @@ namespace ET
             string tip = string.Empty;
             if (rechargeNumber < needRecharge)
             {
-                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，当前充值金额{rechargeNumber}元";
+                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启宝石仓库，当前充值金额{1}元"), needRecharge, rechargeNumber);
             }
             else
             {
-                tip = $"当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启";
+                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启"), needRecharge);
             }
 
-            PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启栏位", tip, () =>
+            PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启栏位"), tip, () =>
             {
                 if (rechargeNumber < needRecharge)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("充值额度不足！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("充值额度不足！"));
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace ET
             }, () =>
             {
                 UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine();
-            }, "开启", "前往充值").Coroutine();
+            }, GameSettingLanguge.LoadLocalization("开启"), GameSettingLanguge.LoadLocalization("前往充值")).Coroutine();
             
             return false;
         }

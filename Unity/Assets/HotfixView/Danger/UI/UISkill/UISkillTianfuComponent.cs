@@ -84,7 +84,7 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < 35) {
 
-                FloatTipManager.Instance.ShowFloatTip("35级开启天赋方案,可自由切换天赋!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("35级开启天赋方案,可自由切换天赋!"));
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace ET
             self.OnActiveTianFu();
             self.UpdatePlanButton();
 
-            FloatTipManager.Instance.ShowFloatTip("已切换为当前天赋!");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已切换为当前天赋!"));
 
         }
 
@@ -218,7 +218,7 @@ namespace ET
             TalentConfig talentConfig = TalentConfigCategory.Instance.Get(self.TianFuId);
             if (playerLv < talentConfig.LearnRoseLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
 
@@ -228,12 +228,12 @@ namespace ET
             {
                 // GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
                 // string itemdesc = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置专精",
-               $"是否花费{50000 + talentConfig.LearnRoseLv * 100}金币重置专精",
-               () =>
-               {
-                   skillSetComponent.ActiveTianFu(self.TianFuId).Coroutine();
-               }).Coroutine();
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重置专精"),
+                    string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}金币重置专精"), 50000 + talentConfig.LearnRoseLv * 100),
+                    () =>
+                    {
+                        skillSetComponent.ActiveTianFu(self.TianFuId).Coroutine();
+                    }).Coroutine();
                 return;
             }
 

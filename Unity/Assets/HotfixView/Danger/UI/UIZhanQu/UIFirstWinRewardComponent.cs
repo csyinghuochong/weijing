@@ -69,7 +69,7 @@ namespace ET
         public static void OnUpdateUI(this UIFirstWinRewardComponent self, int firstWinId)
         {
             self.FristWinId = firstWinId;
-            self.TextTip_Title.GetComponent<Text>().text = "首胜奖励";
+            self.TextTip_Title.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("首胜奖励");
             self.GameObject.SetActive(true);
             self.Button_Get_3.SetActive(false);
             self.Button_Get_2.SetActive(false);
@@ -95,7 +95,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (!userInfoComponent.IsHaveFristWinReward(self.FristWinId, diff))
             {
-                FloatTipManager.Instance.ShowFloatTip("对应难度的领主怪物未被击败,请先击败对应怪物") ;
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("对应难度的领主怪物未被击败,请先击败对应怪物")) ;
                 return;
             }
 
@@ -115,7 +115,7 @@ namespace ET
         {
             self.FristWinId = firstWinId;
             self.GameObject.SetActive(true);
-            self.TextTip_Title.GetComponent<Text>().text = "个人奖励";
+            self.TextTip_Title.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("个人奖励");
 
             UICommonHelper.DestoryChild(self.RewardListNode1);
             UICommonHelper.DestoryChild(self.RewardListNode2);

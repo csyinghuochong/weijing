@@ -435,7 +435,7 @@ namespace ET
                     break;
 
             }
-            return proName;
+            return GameSettingLanguge.LoadLocalization(proName);
         }
 
         //在一个父节点循环创建子物体（创建的物体,创建的父节点,需要生成的道具列表）
@@ -479,7 +479,7 @@ namespace ET
                     propertyName = "魔防";
                     break;
             }
-            return propertyName;
+            return GameSettingLanguge.LoadLocalization(propertyName);
         }
 
         //获取当前分辨率小界面的缩放比

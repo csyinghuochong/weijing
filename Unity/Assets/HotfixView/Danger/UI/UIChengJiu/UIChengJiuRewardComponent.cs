@@ -114,12 +114,12 @@ namespace ET
             ChengJiuRewardConfig chengJiuConfig = ChengJiuRewardConfigCategory.Instance.Get(self.RewardId);
             if (self.ChengJiuComponent.TotalChengJiuPoint < chengJiuConfig.NeedPoint)
             {
-                FloatTipManager.Instance.ShowFloatTip("成就点不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("成就点不足！"));
                 return;
             }
             if (self.ChengJiuComponent.AlreadReceivedId.Contains(self.RewardId))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过该奖励！"));
                 return;
             }
 
@@ -184,7 +184,7 @@ namespace ET
             }
             self.Image_RewardIcon.GetComponent<Image>().sprite = sp;
 
-            self.Text_RewardPoint.GetComponent<Text>().text = string.Format("{0}成就奖励", chengJiuConfig.NeedPoint);
+            self.Text_RewardPoint.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}成就奖励"), chengJiuConfig.NeedPoint);
             self.Text_RewardDesc.GetComponent<Text>().text = chengJiuConfig.Desc;
 
             self.Text_TotalPoint.GetComponent<Text>().text = self.ChengJiuComponent.TotalChengJiuPoint.ToString();

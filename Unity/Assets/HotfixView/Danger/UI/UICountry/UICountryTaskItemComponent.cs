@@ -97,12 +97,12 @@ namespace ET
         {
             if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
             {
-                FloatTipManager.Instance.ShowFloatTip("任务还没有完成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("任务还没有完成！"));
                 return;
             }
             if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过奖励！"));
                 return;
             }
 

@@ -68,13 +68,13 @@ namespace ET
             string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("材料不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
                 return;
             }
 
             if (self.BagInfo_Transfer[0] == null || self.BagInfo_Transfer[1] == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择合适的装备转移！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择合适的装备转移！"));
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace ET
                 //相同部位
                 if (itemConfig_0.EquipType != itemConfig_1.EquipType)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("只有护甲类型相同的装备才能转移！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("只有护甲类型相同的装备才能转移！"));
                     return;
                 }
             }
@@ -100,7 +100,7 @@ namespace ET
                 //相同部位
                 if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("只有相同部位的装备才能转移！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("只有相同部位的装备才能转移！"));
                     return;
                 }
             }
@@ -108,14 +108,14 @@ namespace ET
             //紫色品质以上才可以转移
             if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
             {
-                FloatTipManager.Instance.ShowFloatTip("只有紫色及以上品质的装备才能转移！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("只有紫色及以上品质的装备才能转移！"));
                 return;
             }
 
             if (itemConfig_0.EquipType == 201 || itemConfig_0.EquipType == 301 
                 || itemConfig_1.EquipType == 201 || itemConfig_1.EquipType == 301)
             {
-                FloatTipManager.Instance.ShowFloatTip("该装备不能转移！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该装备不能转移！"));
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace ET
             //绑定装备无法转移
             if (self.BagInfo_Transfer[0].isBinging == true && self.BagInfo_Transfer[1].isBinging == false && itemConfig_1.ItemQuality == 4)
             {
-                FloatTipManager.Instance.ShowFloatTip("绑定装备的洗炼属性无法转移至未绑定的装备！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("绑定装备的洗炼属性无法转移至未绑定的装备！"));
                 return;
             }
 
@@ -137,7 +137,7 @@ namespace ET
             {
                 return;
             }
-            FloatTipManager.Instance.ShowFloatTip("装备属性转移成功！");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("装备属性转移成功！"));
             self.OnUpdateUI();
         }
 

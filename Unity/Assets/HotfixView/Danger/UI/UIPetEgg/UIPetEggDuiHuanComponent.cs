@@ -63,12 +63,12 @@ namespace ET
             PetEggDuiHuanConfig cofig0 = PetEggDuiHuanConfigCategory.Instance.Get(index);
             if (!bagComponent.CheckNeedItem(cofig0.CostItems))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
             if (bagComponent.GetBagLeftCell() <= 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 

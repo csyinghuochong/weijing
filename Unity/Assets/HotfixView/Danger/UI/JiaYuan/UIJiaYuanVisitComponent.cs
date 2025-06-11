@@ -136,7 +136,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            self.TextLimit.GetComponent<Text>().text = $"采摘:{numericComponent.GetAsInt(NumericType.JiaYuanGatherOther)}/5\r\n打扫:{numericComponent.GetAsInt(NumericType.JiaYuanPickOther)}/5";
+            self.TextLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("采摘:{0}/5\r\n打扫:{1}/5"), numericComponent.GetAsInt(NumericType.JiaYuanGatherOther), numericComponent.GetAsInt(NumericType.JiaYuanPickOther));
         }
 
     }

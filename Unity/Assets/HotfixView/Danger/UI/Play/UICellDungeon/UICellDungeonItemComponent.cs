@@ -91,7 +91,7 @@ namespace ET
             self.ChapterId = levelId;
             ChapterConfig chapterConfig = ChapterConfigCategory.Instance.Get(levelId);
             self.Lab_ChapSonNameOut.GetComponent<Text>().text = chapterConfig.ChapterName;
-            self.Lab_EnterLevel.GetComponent<Text>().text = "挑战等级:" + chapterConfig.EnterLv.ToString(); 
+            self.Lab_EnterLevel.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战等级:") + chapterConfig.EnterLv.ToString(); 
 
 
             FubenPassInfo fubenPassInfo = self.ZoneScene().GetComponent<UserInfoComponent>().GetPassInfoByID(levelId);

@@ -76,7 +76,7 @@ namespace ET
                 }
             }
             //显示兑换次数
-            self.LabDuiHuan.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization($"兑换次数:{receiveNumber}/{activityConfig.Par_1}");
+            self.LabDuiHuan.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:{0}/{1}"), receiveNumber, activityConfig.Par_1);
         }
 
         public static void SetAction(this UINewYearCollectionWordIemComponent self, Action action)
@@ -90,12 +90,12 @@ namespace ET
             bool receiveMax = ActivityHelper.HaveReceiveTimes(activityComponent.ActivityReceiveIds, self.ActivityConfig.Id);
             if (!receiveMax)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大领取上限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大领取上限！"));
                 return;
             }
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(self.ActivityConfig.Par_2))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
             await activityComponent.GetActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);

@@ -73,12 +73,12 @@ namespace ET
                 TeamPlayerInfo teamPlayerInfo = teamInfo.PlayerList[i];
                 self.ImagePlayerList[i].SetActive(true);
                 self.ImagePlayerNullList[i].SetActive(false);
-                self.ImagePlayerList[i].transform.Find("Text_Level").GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
+                self.ImagePlayerList[i].transform.Find("Text_Level").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), teamPlayerInfo.PlayerLv);
                 UICommonHelper.ShowOccIcon(self.ImagePlayerList[i].transform.Find("ImageMask/ImageHead").gameObject, teamPlayerInfo.Occ);
             }
 
             SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
-            self.Text_Condition.GetComponent<Text>().text = $"进入条件: {teamDungeonConfig.EnterLv}级";
+            self.Text_Condition.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进入条件: {0}级"), teamDungeonConfig.EnterLv);
 
             string addStr = "";
 
@@ -87,18 +87,18 @@ namespace ET
                 int lvCha = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv - teamDungeonConfig.EnterLv;
                 if (lvCha >= 10)
                 {
-                    addStr = "(帮助模式)";
+                    addStr = GameSettingLanguge.LoadLocalization("(帮助模式)");
                 }
             }
 
             if (teamInfo.FubenType == TeamFubenType.ShenYuan)
             {
-                addStr = "(深渊模式)";
+                addStr = GameSettingLanguge.LoadLocalization("(深渊模式)");
             }
 
             self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name + addStr;
 
-            self.Text_Tuijian.GetComponent<Text>().text = $"推荐等级： {teamDungeonConfig.TuiJianLv[0]}-{teamDungeonConfig.TuiJianLv[1]}级";
+            self.Text_Tuijian.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("推荐等级： {0}-{1}级"), teamDungeonConfig.TuiJianLv[0], teamDungeonConfig.TuiJianLv[1]);
         }
 
     }

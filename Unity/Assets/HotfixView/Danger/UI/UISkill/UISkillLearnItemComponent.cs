@@ -106,22 +106,22 @@ namespace ET
             int playerLv = userInfo.Lv;
             if (userInfo.Sp < skillConfig_base.CostSPValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("技能点不足！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("技能点不足！!"));
                 return;
             }
             if (playerLv < skillConfig_base.LearnRoseLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！!"));
                 return;
             }
             if (userInfo.Gold < skillConfig_base.CostGoldValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("金币不足！!"));
                 return;
             }
             if (skillConfig_base.NextSkillID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已满级！!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已满级！!"));
                 return;
             }
 
@@ -196,7 +196,7 @@ namespace ET
             int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             SkillConfig skillBaseConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
 
-            self.Lab_NeedSp.GetComponent<Text>().text = $"需要技能点: {skillBaseConfig.CostSPValue}";
+            self.Lab_NeedSp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要技能点: {0}"), skillBaseConfig.CostSPValue);
             
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
@@ -219,7 +219,7 @@ namespace ET
 
             if (skillBaseConfig.SkillLv == 0)
             {
-                self.Lab_SkillLv.GetComponent<Text>().text = string.Format("{0}级以后学习", skillBaseConfig.LearnRoseLv);
+                self.Lab_SkillLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级以后学习"), skillBaseConfig.LearnRoseLv);
                 UICommonHelper.SetImageGray(self.Img_SkillIcon, true);
             }
             else

@@ -115,17 +115,17 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (haveHuoyue < huoYueRewardConfig.NeedPoint)
             {
-                FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活跃度不足！"));
                 return;
             }
             if (taskComponent.ReceiveHuoYueIds.Contains(index))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过该奖励！"));
                 return;
             }
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckAddItemData(huoYueRewardConfig.RewardItems))
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -135,7 +135,7 @@ namespace ET
 
             if (maxPiLao < nowPiLao + 10)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "领取", "是否领取?\n领取后会有体力溢出!", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("领取"), GameSettingLanguge.LoadLocalization("是否领取?\n领取后会有体力溢出!"), async () =>
                 {
                     int errorcode = await taskComponent.RuqestHuoYueReward(index);
                     if (errorcode != ErrorCode.ERR_Success)
@@ -234,7 +234,7 @@ namespace ET
             {
                 self.Button_Reward[i].SetActive(!getids.Contains(i + 1));
                 self.Button_Open[i].SetActive(getids.Contains(i+1));
-                self.Text_Huoyue[i].GetComponent<Text>().text = string.Format("{0}活跃度", HuoYueRewardConfigCategory.Instance.Get(i+1).NeedPoint);
+                self.Text_Huoyue[i].GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}活跃度"), HuoYueRewardConfigCategory.Instance.Get(i+1).NeedPoint);
             }
         }
 

@@ -114,7 +114,7 @@ namespace ET
             if (self.LeftTime < 0)
                 self.OnCheckGetReward();
             else
-                self.Text_LeftTime.GetComponent<Text>().text = string.Format("选择剩余时间:{0}秒", self.LeftTime);
+                self.Text_LeftTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("选择剩余时间:{0}秒"), self.LeftTime);
 
             if (self.topSelect && self.bottomSelect)
             {
@@ -164,7 +164,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (index >= 3 && !unit.IsYueKaEndStates())
             {
-                FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡用户才能开启！"));
                 return;
             }
 
@@ -190,7 +190,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("体力不足!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力不足!"));
                 return;
             }
             int chapterId = self.ZoneScene().GetComponent<CellDungeonComponent>().ChapterId;

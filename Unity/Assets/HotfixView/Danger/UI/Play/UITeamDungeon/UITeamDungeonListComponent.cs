@@ -47,7 +47,7 @@ namespace ET
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo != null && teamInfo.SceneId != 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经有队伍了");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经有队伍了"));
                 return;
             }
 
@@ -94,11 +94,11 @@ namespace ET
             int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
             int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
             self.Text_LeftTime.SetActive(true);
-            self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{totalTimes - times}/{totalTimes}";
+            self.Text_LeftTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("副本次数：{0}/{1}"), totalTimes - times, totalTimes);
 
             totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
             times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-            self.Text_XieZhuNum.GetComponent<Text>().text = $"帮助次数：{totalTimes - times}/{totalTimes}";
+            self.Text_XieZhuNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("帮助次数：{0}/{1}"), totalTimes - times, totalTimes);
         }
     }
 }

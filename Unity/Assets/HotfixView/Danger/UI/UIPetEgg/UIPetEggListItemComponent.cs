@@ -117,7 +117,7 @@ namespace ET
             int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             if (maxNum <= PetHelper.GetCangKuPetNum(petComponent.RolePetInfos))
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大宠物数量"));
                 return;
             }
 
@@ -125,8 +125,8 @@ namespace ET
             string[] itemUseinfo = itemConfig.ItemUsePar.Split('@');
 
             int costValue = ComHelp.ReturnPetOpenTimeDiamond(self.RolePetEgg.ItemId, self.RolePetEgg.EndTime);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启宠物蛋",
-                $"开启需要花费 {costValue}钻石",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启宠物蛋"),
+                string.Format(GameSettingLanguge.LoadLocalization("开启需要花费 {0}钻石"), costValue),
                 () => 
                 {
                     self.OnButtonGet().Coroutine();
@@ -160,7 +160,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (maxNum <=PetHelper.GetBagPetNum(petComponent.RolePetInfos))
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大宠物数量"));
                 return;
             }
             RolePetEgg rolePetEgg = petComponent.RolePetEggs[self.Index];
@@ -176,7 +176,7 @@ namespace ET
             }
             if (userInfo.Diamond < needCost)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石不足！"));
                 return;
             }
 
@@ -198,7 +198,7 @@ namespace ET
         public static void OnTimer(this UIPetEggListItemComponent self)
         {
             long timeNow = self.RolePetEgg.EndTime - TimeHelper.ServerNow();
-            self.Text_Time.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(timeNow);
+            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(timeNow);
             if (timeNow <= 0)
             {
                 self.SetFuHuaEnd();
@@ -218,7 +218,7 @@ namespace ET
 
             string[] useparams = ItemConfigCategory.Instance.Get(self.RolePetEgg.ItemId).ItemUsePar.Split('@');
             long timeNow = long.Parse(useparams[0]);
-            self.Text_Time.GetComponent<Text>().text = "孵化时间:" + TimeHelper.ShowLeftTime(timeNow*1000);
+            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("孵化时间:") + TimeHelper.ShowLeftTime(timeNow*1000);
             self.ButtonOpen.SetActive(false);
             self.ButtonGet.SetActive(false);
         }

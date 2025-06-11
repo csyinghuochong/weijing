@@ -41,7 +41,7 @@ namespace ET
         {
             if (self.EggId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择宠物蛋！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择宠物蛋！"));
                 return;
             }
 

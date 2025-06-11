@@ -72,7 +72,7 @@ namespace ET
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
             if (mysteryConfig.JiaYuanLv > jiayuanCof.Lv)
             {
-                FloatTipManager.Instance.ShowFloatTip($"家园{mysteryConfig.JiaYuanLv}级开启");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("家园{0}级开启"), mysteryConfig.JiaYuanLv));
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace ET
 
             if (self.MysteryItemInfo.ItemNumber < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("请等待下次商店刷新");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请等待下次商店刷新"));
                 return;
             }
 
@@ -144,7 +144,7 @@ namespace ET
             else
             {
                 self.Text_Tip.SetActive(true);
-                self.Text_Tip.GetComponent<Text>().text = $"家园{mysteryConfig.JiaYuanLv}级开启";
+                self.Text_Tip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("家园{0}级开启"), mysteryConfig.JiaYuanLv);
                 Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
                 self.UICommonItem.Image_ItemIcon.GetComponent<Image>().material = mat;
                 //self.UICommonItem.Image_ItemQuality.GetComponent<Image>().color = new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f);

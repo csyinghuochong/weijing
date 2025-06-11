@@ -36,7 +36,7 @@ namespace ET
         public static void OnUpdateData(this UIActivityV1ConsumeItemComponent self, int key)
         {
             self.Key = key;
-            self.ConsumeNumText.GetComponent<Text>().text = $"{self.Key}钻石";
+            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}钻石"), self.Key);
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ActivityConfigHelper.ConsumeDiamondReward[key], self.RewardListNode, self, 0.8f);
 
@@ -52,7 +52,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
@@ -64,14 +64,14 @@ namespace ET
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.ConsumeDiamondReward.Contains(self.Key))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
 
             if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond) <
                 self.Key)
             {
-                FloatTipManager.Instance.ShowFloatTip("未达到条件");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到条件"));
                 return;
             }
 

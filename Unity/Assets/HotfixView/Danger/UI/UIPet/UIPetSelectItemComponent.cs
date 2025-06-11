@@ -87,7 +87,7 @@ namespace ET
         {
             if (self.RolePetInfo.IsProtect)
             {
-                FloatTipManager.Instance.ShowFloatTip("锁定宠物不能操作！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("锁定宠物不能操作！"));
                 return;
             }
 

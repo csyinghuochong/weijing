@@ -149,7 +149,7 @@ namespace ET
                 {
                     return true;
                 }
-                FloatTipManager.Instance.ShowFloatTip($"需要等级达到{needLv}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("需要等级达到{0}"), needLv));
                 return false;
             }
             return true;

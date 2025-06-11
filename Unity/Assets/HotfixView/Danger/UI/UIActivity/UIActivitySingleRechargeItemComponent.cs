@@ -39,7 +39,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
             self.Key = key;
-            self.ConsumeNumText.GetComponent<Text>().text = $"单笔充值{key}元";
+            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("单笔充值{0}元"), key);
             self.Reddot.SetActive( userInfoComponent.UserInfo.SingleRechargeIds.Contains(key) && !userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             self.ReceivedImg.SetActive(userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             self.ReceiveBtn.SetActive(!userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
@@ -63,19 +63,19 @@ namespace ET
             string[] rewarditemlist = ConfigHelper.SingleRechargeReward[self.Key].Split('@');
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < rewarditemlist.Length)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (!userInfo.SingleRechargeIds.Contains(self.Key))
             {
-                FloatTipManager.Instance.ShowFloatTip("未达条件");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达条件"));
                 return;
             }
             if (userInfo.SingleRewardIds.Contains(self.Key))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
 

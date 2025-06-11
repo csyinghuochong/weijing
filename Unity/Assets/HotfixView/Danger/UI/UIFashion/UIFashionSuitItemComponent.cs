@@ -70,12 +70,12 @@ namespace ET
             if (bagComponent.FashionActiveIds.Contains(fashionid))
             {
                 //status = bagComponent.FashionEquipList.Contains(fashionid) ? 2 : 1;
-                self.Text_222.GetComponent<Text>().text = "已拥有";
+                self.Text_222.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已拥有");
                 UICommonHelper.SetRawImageGray( self.RawImage, false );
             }
             else
             {
-                self.Text_222.GetComponent<Text>().text = "未拥有";
+                self.Text_222.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未拥有");
                 UICommonHelper.SetRawImageGray(self.RawImage, true);
             }
 

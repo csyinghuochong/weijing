@@ -110,7 +110,7 @@ namespace ET
             // 销毁骰子
             UnityEngine.Object.Destroy(gameObject);
 
-            FloatTipManager.Instance.ShowFloatTip("骰子点数是:" + diceResult);
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("骰子点数是:") + diceResult);
 
             int finished = myUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished);
             if (finished % 10 + diceResult > 10 && finished + diceResult <= 100)
@@ -125,7 +125,7 @@ namespace ET
                         .Call(new C2M_TowerOfSealNextRequest() { DiceResult = diceResult, CostType = costType });
                 if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("操作错误！！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("操作错误！！"));
                     return;
                 }
 

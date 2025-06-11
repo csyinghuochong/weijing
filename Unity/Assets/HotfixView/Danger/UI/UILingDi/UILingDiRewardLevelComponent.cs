@@ -41,7 +41,7 @@ namespace ET
             int row = (itemNum / gridLayoutGroup.constraintCount);
             row += (itemNum % gridLayoutGroup.constraintCount > 0 ? 1 : 0);
             self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1600f, 100f + row * 250f);
-            self.Text_Contion.GetComponent<Text>().text = $"领地达到({lingdiLv}/{lingDiRewardConfigs[0].CountryLvlimit})可激活兑换";
+            self.Text_Contion.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("领地达到({0}/{1})可激活兑换"), lingdiLv, lingDiRewardConfigs[0].CountryLvlimit);
 
             for (int i = 0; i < lingDiRewardConfigs.Count; i++)
             {

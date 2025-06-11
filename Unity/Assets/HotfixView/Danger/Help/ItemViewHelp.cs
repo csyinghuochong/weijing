@@ -28,7 +28,7 @@ namespace ET
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("只能存放非绑定的角色装备！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("只能存放非绑定的角色装备！"));
             }
         }
 
@@ -108,7 +108,7 @@ namespace ET
                     break;
             }
 
-            return textEquipType;
+            return GameSettingLanguge.LoadLocalization(textEquipType);
         }
 
 
@@ -123,7 +123,7 @@ namespace ET
             else
             {
                 //float floatNum = (float)num / 10000f;
-                return ((float)num / 10000.0f).ToString("0.##") + "万";
+                return ((float)num / 10000.0f).ToString("0.##") + GameSettingLanguge.LoadLocalization("万");
             }
 
         }
@@ -132,40 +132,43 @@ namespace ET
         public static string GetEquipTypeShow(int type)
         {
 
+            string name = "";
             switch (type)
             {
                 case 0:
-                    return "首饰";
-                //break;
+                    name = "首饰";
+                    break;
 
                 case 1:
-                    return "剑";
-                //break;
+                    name = "剑";
+                    break;
 
                 case 2:
-                    return "刀";
+                    name = "刀";
+                    break;
 
                 case 3:
-                    return "法杖";
+                    name = "法杖";
+                    break;
 
                 case 4:
-                    return "魔法书";
-                //break;
+                    name = "魔法书";
+                    break;
 
                 case 11:
-                    return "布甲";
-                //break;
+                    name = "布甲";
+                    break;
 
                 case 12:
-                    return "轻甲";
-                //break;
+                    name = "轻甲";
+                    break;
 
                 case 13:
-                    return "重甲";
-                    //break;
+                    name = "重甲";
+                    break;
             }
 
-            return "";
+            return GameSettingLanguge.LoadLocalization(name);
         }
 
         public static Dictionary<int, string> PropertyHint = new Dictionary<int, string>()
@@ -378,22 +381,23 @@ namespace ET
             public string Name;
             public string Icon;
         }
+
         /// <summary>
         /// 装备位置配置
         /// </summary>
         public static Dictionary<int, EquipWeiZhiInfo> EquipWeiZhiToName = new Dictionary<int, EquipWeiZhiInfo>()
         {
-           {  1,  new EquipWeiZhiInfo(){ Icon = "Img_24",   Name = "武器" } },
-           {  2,  new EquipWeiZhiInfo(){ Icon = "Img_28",   Name = "衣服" } },
-           {  3,  new EquipWeiZhiInfo(){ Icon = "Img_29",   Name = "护符" } },
-           {  4,  new EquipWeiZhiInfo(){ Icon = "Img_19",   Name = "戒指" } },
-           {  5,  new EquipWeiZhiInfo(){ Icon = "Img_21",   Name = "饰品" } },
-           {  6,  new EquipWeiZhiInfo(){ Icon = "Img_26",   Name = "鞋子" } },
-           {  7,  new EquipWeiZhiInfo(){ Icon = "Img_20",   Name = "裤子" } },
-           {  8,  new EquipWeiZhiInfo(){ Icon = "Img_27",   Name = "腰带" } },
-           {  9,  new EquipWeiZhiInfo(){ Icon = "Img_22",  Name = "手镯" } },
-           {  10,  new EquipWeiZhiInfo(){ Icon = "Img_23",  Name = "头盔" } },
-           {  11,  new EquipWeiZhiInfo(){ Icon = "Img_25",  Name = "项链" } },
+            { 1, new EquipWeiZhiInfo() { Icon = "Img_24", Name = GameSettingLanguge.LoadLocalization("武器") } },
+            { 2, new EquipWeiZhiInfo() { Icon = "Img_28", Name = GameSettingLanguge.LoadLocalization("衣服") } },
+            { 3, new EquipWeiZhiInfo() { Icon = "Img_29", Name = GameSettingLanguge.LoadLocalization("护符") } },
+            { 4, new EquipWeiZhiInfo() { Icon = "Img_19", Name = GameSettingLanguge.LoadLocalization("戒指") } },
+            { 5, new EquipWeiZhiInfo() { Icon = "Img_21", Name = GameSettingLanguge.LoadLocalization("饰品") } },
+            { 6, new EquipWeiZhiInfo() { Icon = "Img_26", Name = GameSettingLanguge.LoadLocalization("鞋子") } },
+            { 7, new EquipWeiZhiInfo() { Icon = "Img_20", Name = GameSettingLanguge.LoadLocalization("裤子") } },
+            { 8, new EquipWeiZhiInfo() { Icon = "Img_27", Name = GameSettingLanguge.LoadLocalization("腰带") } },
+            { 9, new EquipWeiZhiInfo() { Icon = "Img_22", Name = GameSettingLanguge.LoadLocalization("手镯") } },
+            { 10, new EquipWeiZhiInfo() { Icon = "Img_23", Name = GameSettingLanguge.LoadLocalization("头盔") } },
+            { 11, new EquipWeiZhiInfo() { Icon = "Img_25", Name = GameSettingLanguge.LoadLocalization("项链") } },
         };
 
         //宝石槽位
@@ -468,7 +472,7 @@ namespace ET
                 return tip;
             }
             tip += "\n\r";
-            tip += "<color=#ACFF23FF>此属性可出现的装备部位：\n";
+            tip += "<color=#ACFF23FF>" + GameSettingLanguge.LoadLocalization("此属性可出现的装备部位：" + "\n");
 
             //string str = hideProListConfig.EquipSpace.ArrayToString();
             //Log.Info("hideProListConfig.EquipSpace.ArrayToString() = " + hideProListConfig.EquipSpace.ArrayToString());
@@ -657,7 +661,7 @@ namespace ET
 
                 if (itemconf.ItemSubType == 110)
                 {
-                    Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"提示:史诗宝石一旦镶嵌将无法卸下身上最多可镶嵌4颗史诗宝石";
+                    Text_ItemDes = Text_ItemDes + "\n" + "\n" + @GameSettingLanguge.LoadLocalization("提示:史诗宝石一旦镶嵌将无法卸下身上最多可镶嵌4颗史诗宝石");
                 }
             }
 
@@ -752,17 +756,17 @@ namespace ET
 
                     if (hideProListConfig.IfMove == 1)
                     {
-                        canTransf = "传承";
+                        canTransf = GameSettingLanguge.LoadLocalization("传承");
                     }
 
                     if (showType == 2)
                     {
                         float value = (float)hide.HideValue / 100f;
-                        attribute += $"{canTransf}增幅: {proName} + " + value.ToString("0.##") + "%\n";
+                        attribute += canTransf + GameSettingLanguge.LoadLocalization("增幅") + ": "+ proName + " + " + value.ToString("0.##") + "%\n";
                     }
                     else
                     {
-                        attribute += $"{canTransf}增幅: {proName} + {hide.HideValue}\n";
+                        attribute += canTransf + GameSettingLanguge.LoadLocalization("增幅") + ":" + proName + " + " + hide.HideValue + "\n";
                     }
                 }
 
@@ -776,10 +780,10 @@ namespace ET
                     string skillName = skillConfig.SkillName;
                     if (hideProListConfig.IfMove == 1)
                     {
-                        canTransf = "传承";
+                        canTransf = GameSettingLanguge.LoadLocalization("传承");
                     }
 
-                    attribute += $"{canTransf}增幅: " + skillName + "\n";
+                    attribute += canTransf + GameSettingLanguge.LoadLocalization("增幅") + ": " + skillName + "\n";
                 }
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#7EA800>" + attribute + "</color>";
             }
@@ -844,7 +848,7 @@ namespace ET
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(iteminfo[0]));
             PetConfig petConfig = PetConfigCategory.Instance.Get(int.Parse(configInfo[1]));
-            string info = $"消耗{itemConfig.ItemName}X{iteminfo[1]}兑换{petConfig.PetName}";
+            string info = string.Format(GameSettingLanguge.LoadLocalization("消耗{0}X{1}兑换{2}"), itemConfig.ItemName, iteminfo[1], petConfig.PetName);
             return info;
         }
 
@@ -874,11 +878,11 @@ namespace ET
                         int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
                         if (showType == 2)
                         {
-                            attribute = $"当前附加 {proName}:" + (hideProList.HideValue / 100f).ToString("0.##") + "%";
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + " " + proName + ":" + (hideProList.HideValue / 100f).ToString("0.##") + "%";
                         }
                         else
                         {
-                            attribute = $"当前附加 {proName}:" + hideProList.HideValue;
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + " " + proName + ":" + hideProList.HideValue;
                         }
 
                         ShowPropertyText(attribute, showColor, Obj_EquipPropertyText, Obj_EquipBaseSetList);
@@ -892,7 +896,7 @@ namespace ET
                     {
                         int skillID = baginfo.HideSkillLists[i];
                         SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                        string proStr = "当前附加技能" + ":" + skillCof.SkillName;
+                        string proStr = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + skillCof.SkillName;
                         ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                         properShowNum += 1;
                     }
@@ -1194,7 +1198,7 @@ namespace ET
             //显示隐藏技能
             if (baginfo.HideSkillLists != null)
             {
-                string skillTip = itemconf.EquipType == 301 ? "套装效果，附加技能：" : "隐藏技能：";
+                string skillTip = itemconf.EquipType == 301 ? GameSettingLanguge.LoadLocalization("套装效果，附加技能：") : GameSettingLanguge.LoadLocalization("隐藏技能") + "：";
                 for (int i = 0; i < baginfo.HideSkillLists.Count; i++)
                 {
                     int skillID = baginfo.HideSkillLists[i];
@@ -1261,11 +1265,11 @@ namespace ET
                 if (showType == 2)
                 {
                     float value = (float)hideProList.HideValue / 100f;
-                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
+                    attribute = GameSettingLanguge.LoadLocalization("附魔属性") + ": " + ItemViewHelp.GetAttributeName(hideProList.HideID) + " + " + value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                    attribute = GameSettingLanguge.LoadLocalization("附魔属性") + ": " + ItemViewHelp.GetAttributeName(hideProList.HideID) + " + " + hideProList.HideValue;
                 }
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
@@ -1282,18 +1286,18 @@ namespace ET
                 
                 if (hideProListConfig.IfMove == 1)
                 {
-                    canTransf = "传承";
+                    canTransf = GameSettingLanguge.LoadLocalization("传承");
                 }
 
                 string attribute;
                 if (showType == 2)
                 {
                     float value = (float)hide.HideValue / 100f;
-                    attribute = $"{canTransf}增幅: {proName} + " + value.ToString("0.##") + "%";
+                    attribute = canTransf + GameSettingLanguge.LoadLocalization("增幅" + ": " + proName + " + " + value.ToString("0.##") + "%");
                 }
                 else
                 {
-                    attribute = $"{canTransf}增幅: {proName} + {hide.HideValue}";
+                    attribute = canTransf + GameSettingLanguge.LoadLocalization("增幅" + ": " + proName + " + " + hide.HideValue);
                 }
 
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
@@ -1309,10 +1313,10 @@ namespace ET
                 string skillName = skillConfig.SkillName;
                 if (hideProListConfig.IfMove == 1)
                 {
-                    canTransf = "传承";
+                    canTransf = GameSettingLanguge.LoadLocalization("传承");
                 }
 
-                string attribute = $"{canTransf}增幅: " + skillName;
+                string attribute = canTransf + GameSettingLanguge.LoadLocalization("增幅") + ": " + skillName;
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }
@@ -1365,7 +1369,7 @@ namespace ET
 
                                 if (inheritSkills[z] == skillID && equipItemList[y].BagInfoID != baginfo.BagInfoID)
                                 {
-                                    proStr += "\n(同类传承属性只激活一种)";
+                                    proStr += "\n(" + GameSettingLanguge.LoadLocalization("同类传承属性只激活一种" + ")");
                                     ifRepeat = true;
                                     showYanSe = "11";
                                     break;

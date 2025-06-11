@@ -218,10 +218,10 @@ namespace ET
                     tips = $"{ErrorHelp.Instance.ErrorHintList[code]}";
                 }
                 else {
-                    tips = $"{ErrorHelp.Instance.ErrorHintList[code]} 你本月已充值{fangChenMiComponent.GetMouthTotal()}元";
+                    tips = string.Format(GameSettingLanguge.LoadLocalization("{0} 你本月已充值{1}元"), ErrorHelp.Instance.ErrorHintList[code], fangChenMiComponent.GetMouthTotal());
                 }
 
-                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "防沉迷提示", tips, () => { }).Coroutine();
+                PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), GameSettingLanguge.LoadLocalization("防沉迷提示"), tips, () => { }).Coroutine();
                 return;
             }
             self.ReChargeNumber = chargetNumber;

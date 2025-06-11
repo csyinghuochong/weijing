@@ -105,13 +105,13 @@ namespace ET
         {
             if (self.RolePetInfo.PetSkill.Count < 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物技能数量小于2不能使用次道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物技能数量小于2不能使用次道具！"));
                 return;
             }
 
             if (self.SkillId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择需要锁定的技能！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择需要锁定的技能！"));
                 return;
             }
 

@@ -28,7 +28,7 @@ namespace ET
         {
             if (message.LeftPlayer < 0)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "竞技场第一", "恭喜你获得竞技场第1名,奖励内容8点发送至邮箱", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("竞技场第一"), GameSettingLanguge.LoadLocalization("恭喜你获得竞技场第1名,奖励内容8点发送至邮箱"), () =>
                {
                    if (self.IsDisposed)
                    {
@@ -39,7 +39,7 @@ namespace ET
             }
             else
             {
-                self.TextVS.GetComponent<Text>().text = $"剩余人数： {message.LeftPlayer}";
+                self.TextVS.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("剩余人数： {0}"), message.LeftPlayer);
             }
         }
 

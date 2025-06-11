@@ -29,7 +29,7 @@ namespace ET
         public static void OnInitUI(this UIAuctionRecodeItemComponent self, PaiMaiAuctionRecord record)
         {
             DateTime dateTime =  TimeInfo.Instance.ToDateTime(record.Time);
-            self.TextContent.GetComponent<Text>().text = $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{record.PlayerName}</color> {dateTime.ToShortTimeString()} 出价： <color=#{ComHelp.QualityReturnColor(2)}>{record.Price}</color>";
+            self.TextContent.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("玩家 <color=#{0}>{1}</color> {2} 出价： <color=#{3}>{4}</color>"), ComHelp.QualityReturnColor(4), record.PlayerName, dateTime.ToShortTimeString(), ComHelp.QualityReturnColor(2), record.Price);
         }
     }
 }

@@ -77,7 +77,7 @@ namespace ET
 
                 if (self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId != 0)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("战斗状态不能传送地图!");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("战斗状态不能传送地图!"));
                     return;
                 }
                 
@@ -111,8 +111,8 @@ namespace ET
             self.ChapterId = levelId;
             DungeonConfig chapterConfig = DungeonConfigCategory.Instance.Get(levelId);
             self.Lab_ChapSonNameOut.GetComponent<Text>().text = chapterConfig.ChapterName;
-            self.Lab_ChapIndex.GetComponent<Text>().text = $"第{levelIndex + 1}关";
-            self.Lab_EnterLevel.GetComponent<Text>().text = "挑战等级:" + chapterConfig.EnterLv.ToString();
+            self.Lab_ChapIndex.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}关"), levelIndex + 1);
+            self.Lab_EnterLevel.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战等级:") + chapterConfig.EnterLv.ToString();
         }
     }
 }

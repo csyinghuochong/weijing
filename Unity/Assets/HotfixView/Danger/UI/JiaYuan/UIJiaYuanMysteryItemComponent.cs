@@ -101,7 +101,7 @@ namespace ET
         {
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
             self.MysteryItemInfo = mysteryItemInfo;
-            self.Text_Number.GetComponent<Text>().text = $"剩余 {mysteryItemInfo.ItemNumber}件";
+            self.Text_Number.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("剩余 {0}件"), mysteryItemInfo.ItemNumber);
             self.Text_value.GetComponent<Text>().text = mysteryConfig.SellValue.ToString();
 
             self.UICommonItem.UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);

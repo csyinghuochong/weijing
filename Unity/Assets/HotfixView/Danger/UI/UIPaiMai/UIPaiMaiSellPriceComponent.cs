@@ -134,7 +134,7 @@ namespace ET
             // 橙色装备不能上架
             if (itemConfig.ItemQuality >= 5 && itemConfig.ItemType == 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能上架！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("橙色品质及以上的装备不能上架！"));
                 return;
             }
 
@@ -150,7 +150,7 @@ namespace ET
                 int nowPrice = (int)((float)paiMaiItemInfo.Price);
                 if (nowPrice < (int)(oldPrice * 0.5f))
                 {
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出售价格过低,当前最低价格为:" + (int)(oldPrice * 0.5f) * paiMaiItemInfo.BagInfo.ItemNum));
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出售价格过低,当前最低价格为:") + (int)(oldPrice * 0.5f) * paiMaiItemInfo.BagInfo.ItemNum);
                     return;
                 }
             }
@@ -174,7 +174,7 @@ namespace ET
             if (itemConfig.ItemQuality >= 4 && m2C_PaiMaiBuyResponse.PaiMaiItemInfo!=null)
             {
                 long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;        //
-                string text = $"在拍卖行上架道具<color=#{ComHelp.QualityReturnColor(4)}>{itemConfig.ItemName}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{itemConfig.ItemType}_{paimaiItemId}></link>";
+                string text = string.Format(GameSettingLanguge.LoadLocalization("在拍卖行上架道具<color=#{0}>{1}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{2}_{3}></link>"), ComHelp.QualityReturnColor(4), itemConfig.ItemName, itemConfig.ItemType, paimaiItemId);
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.PaiMai, text).Coroutine();
             }
 

@@ -143,7 +143,7 @@ namespace ET
 
         public static void OnButton_Return(this UILobbyComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "请问是否返回主界面?", ()=>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("请问是否返回主界面?"), ()=>
             {  //加载登录场景
                 EventType.ReturnLogin.Instance.ZoneScene = self.ZoneScene();
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
@@ -245,7 +245,7 @@ namespace ET
             if (self.SeletRoleInfo != null)
             {
                 self.Text_Name.GetComponent<Text>().text = self.SeletRoleInfo.PlayerName;
-                self.Text_Lv.GetComponent<Text>().text = $"{self.SeletRoleInfo.PlayerLv}级";
+                self.Text_Lv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), self.SeletRoleInfo.PlayerLv);
                 self.eTCancellation?.Cancel();
                 self.eTCancellation = new ETCancellationToken();
                 if (self.uIModelShowComponent == null)
@@ -331,8 +331,8 @@ namespace ET
             PopupTipHelp.OpenPopupTip
                 (
                     self.ZoneScene(),
-                    "删除角色",
-                    "是否删除当前角色？",
+                    GameSettingLanguge.LoadLocalization("删除角色"),
+                    GameSettingLanguge.LoadLocalization("是否删除当前角色？"),
                     () => 
                     {
                         self.RequestDeleteRole().Coroutine();

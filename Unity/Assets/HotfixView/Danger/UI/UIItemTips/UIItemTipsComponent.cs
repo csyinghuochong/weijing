@@ -157,7 +157,7 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             if (self.ItemOpetateType == ItemOperateEnum.GemBag && itemConfig.ItemType!= ItemTypeEnum.Gemstone)
             {
-                FloatTipManager.Instance.ShowFloatTip("只能放入宝石！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("只能放入宝石！"));
                 return;
             }
 
@@ -271,7 +271,7 @@ namespace ET
             BagInfo equipinfo = self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, weizhi);
             if (equipinfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("对应的位置没有装备！"));
                 return;
             }
             if (weizhi == (int)ItemSubTypeEnum.Shiping)
@@ -288,13 +288,13 @@ namespace ET
             if (equipinfo.FumoProLists.Count > 0)
             {
                 string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
-                string fumopro = $"当前附魔属性<color=#BEFF34>{equipfumo}</color> \n是否覆盖已有属性\n{itemfumo}\n此附魔道具已消耗";
+                string fumopro = string.Format(GameSettingLanguge.LoadLocalization("当前附魔属性<color=#BEFF34>{0}</color> \n是否覆盖已有属性\n{1}\n此附魔道具已消耗"), equipfumo, itemfumo);
 
                 self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("装备附魔"), fumopro, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0).Coroutine();
-                    FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("附魔属性 {0}"), itemfumo));
                     self.OnCloseTips();
                 }, () =>
                 {
@@ -305,7 +305,7 @@ namespace ET
             {
                 await self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists);
                 await self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0);
-                FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("附魔属性 {0}"), itemfumo));
 
                 self.OnCloseTips();
             }
@@ -345,7 +345,7 @@ namespace ET
             // 增幅卷轴
             if (itemConfig.ItemSubType == 17)
             {
-                FloatTipManager.Instance.ShowFloatTip("请前往家园装备增幅系统");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往家园装备增幅系统"));
                 return;
             }
 
@@ -371,32 +371,32 @@ namespace ET
                 UIRoleGemComponent uIRoleGemComponent = uIRoleComponent.UIPageView.UISubViewList[(int)RolePageEnum.RoleGem].GetComponent<UIRoleGemComponent>();
                 if (uIRoleGemComponent.XiangQianItem == null)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选择装备！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择装备！"));
                     return;
                 }
                 string gemHole = uIRoleGemComponent.XiangQianItem.GemHole;
                 if (uIRoleGemComponent.XiangQianIndex == -1)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选择孔位！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择孔位！"));
                     return;
                 }
                 string[] gemHolelist = gemHole.Split('_');
                 if (gemHolelist.Length <= uIRoleGemComponent.XiangQianIndex)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选择孔位！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择孔位！"));
                     return;
                 }
                 string itemgem = gemHolelist[uIRoleGemComponent.XiangQianIndex];
                 if (itemgem != itemConfig.ItemSubType.ToString() && itemConfig.ItemSubType != 110 && itemConfig.ItemSubType != 111)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("宝石与孔位不符！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宝石与孔位不符！"));
                     return;
                 }
                 string[] getIdNew = uIRoleGemComponent.XiangQianItem.GemIDNew.Split('_');
                 usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
                 if (getIdNew[uIRoleGemComponent.XiangQianIndex] != "0")
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "镶嵌宝石", "是否需要覆盖宝石?\n覆盖后原有位置得宝石会自动销毁哦!", () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("镶嵌宝石"), GameSettingLanguge.LoadLocalization("是否需要覆盖宝石?\n覆盖后原有位置得宝石会自动销毁哦!"), () =>
                     {
                         self.RequestXiangQianGem(usrPar).Coroutine();
                     }).Coroutine();
@@ -423,7 +423,7 @@ namespace ET
             {
                 if (self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.LocalDungeon)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("副本中才能使用!");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("副本中才能使用!"));
                     return;
                 }
             }
@@ -453,7 +453,7 @@ namespace ET
                 }
                 if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Contains(makeNew))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("已经学习过该技能！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经学习过该技能！"));
                     return;
                 }
             }
@@ -466,7 +466,7 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 102)
             {
-                FloatTipManager.Instance.ShowFloatTip("请前往主城的宠物蛋孵化处!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往主城的宠物蛋孵化处!"));
                 return;
             }
             if (itemConfig.ItemSubType == 112)
@@ -475,7 +475,7 @@ namespace ET
                 long openserverTime = ServerHelper.GetOpenServerTime(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId);
                 if (TimeHelper.ServerNow() - openserverTime < TimeHelper.Hour * 4)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("开区4小时后开启!");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开区4小时后开启!"));
                     return;
                 }
                 
@@ -498,7 +498,7 @@ namespace ET
             {
                 if (self.BagComponent.GetBagLeftCell() < 1)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("背包格子不够！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包格子不够！"));
                     return;
                 }
 
@@ -512,7 +512,7 @@ namespace ET
                 if (curSceneId != needSceneId)
                 {
                     string fubenName = DungeonConfigCategory.Instance.Get(needSceneId).ChapterName;
-                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请前往{0}"), GameSettingLanguge.LoadLocalization(fubenName)));
                     return;
                 }
                 else
@@ -524,7 +524,7 @@ namespace ET
                     Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);
                     //UIHelper.Remove(zoneScene, UIType.UIRole);
                     self.OnCloseTips();
-                    FloatTipManager.Instance.ShowFloatTip($"消耗道具:{itemConfig.ItemName}");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗道具:{0}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName)));
                     return;
                 }
             }
@@ -544,12 +544,12 @@ namespace ET
                     self.OnCloseTips();
                     return;
                 }
-                FloatTipManager.Instance.ShowFloatTip("请前往宠物重塑界面使用！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往宠物重塑界面使用！"));
                 return;
             }
             if (itemConfig.ItemSubType == 132)
             {
-                FloatTipManager.Instance.ShowFloatTip("请前往赛季界面使用");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往赛季界面使用"));
                 return;
             }
             if (itemConfig.ItemSubType == 137)
@@ -643,15 +643,15 @@ namespace ET
             self.ImageQualityBg.GetComponent<Image>().sprite = sp;
 
             //类型描述
-            string itemTypename = "消耗品";
+            string itemTypename = GameSettingLanguge.LoadLocalization("消耗品");
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
 
             //烹饪道具显示
             if (itemType == 1 && itemSubType == 131) {
-                itemTypename = "家园烹饪";
+                itemTypename = GameSettingLanguge.LoadLocalization("家园烹饪");
             }
 
-            self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
+            self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + itemTypename;
 
             string Text_ItemDes = itemconf.ItemDes;
             //获取道具描述的分隔符
@@ -717,7 +717,7 @@ namespace ET
             //显示道具描述
             int i2 = (int)((Text_ItemStory.Length) / 20) + 1;
             //float ItemBottomTextNum = 30.0f;
-            self.TextBtn_Use.GetComponent<Text>().text = itemconf.ItemSubType == 114 ? "镶嵌" : "使用";
+            self.TextBtn_Use.GetComponent<Text>().text = itemconf.ItemSubType == 114 ? GameSettingLanguge.LoadLocalization("镶嵌") : GameSettingLanguge.LoadLocalization("使用");
             self.Obj_BagOpenSet.SetActive(false);
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
@@ -812,7 +812,7 @@ namespace ET
                 case ItemOperateEnum.PetHeXinBag:
                     self.Obj_BagOpenSet.SetActive(true);
                     self.Btn_Use.SetActive(true);
-                    self.Btn_Use.transform.Find("TextBtn_Use").GetComponent<Text>().text = "装备";
+                    self.Btn_Use.transform.Find("TextBtn_Use").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("装备");
                     break;
                 default:
                     //ItemBottomTextNum = 0;
@@ -863,28 +863,28 @@ namespace ET
             //鉴定品质符
             if (itemconf.ItemSubType == 121)
             {
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"鉴定符品质:{baginfo.ItemPar}" + "\n" + "品质越高,鉴定出极品的概率越高。" + "\n" + "鉴定符品质与制造者熟练度相关。";
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("鉴定符品质:{0}"), baginfo.ItemPar) + "\n" + GameSettingLanguge.LoadLocalization("品质越高,鉴定出极品的概率越高。") + "\n" + GameSettingLanguge.LoadLocalization("鉴定符品质与制造者熟练度相关。");
             }
 
             //鉴定品质符
             if (itemconf.ItemType == 1 && itemconf.ItemSubType == 131)
             {
                 string[] addList = itemconf.ItemUsePar.Split(';')[0].Split(',');
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + "烹饪品质:" + baginfo.ItemPar;
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + GameSettingLanguge.LoadLocalization("烹饪品质:") + baginfo.ItemPar;
             }
 
             //宠物技能
             if (itemconf.ItemType == 2 && itemconf.ItemSubType == 122)
             {
                 SkillConfig skillCof = SkillConfigCategory.Instance.Get(int.Parse(itemconf.ItemUsePar));
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"技能描述:{skillCof.SkillDescribe}";
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("技能描述:{0}"), GameSettingLanguge.LoadLocalization(skillCof.SkillDescribe));
             }
 
             //藏宝图
             if (itemconf.ItemSubType == 127 && !string.IsNullOrEmpty(self.BagInfo.ItemPar)) 
             {
                 int sceneID = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
-                self.ItemDes.GetComponent<Text>().text =  $"{itemconf.ItemDes}\n前往地图:{DungeonConfigCategory.Instance.Get(sceneID).ChapterName}开启藏宝图!";
+                self.ItemDes.GetComponent<Text>().text =  string.Format(GameSettingLanguge.LoadLocalization("{0}\n前往地图:{1}开启藏宝图!"), GameSettingLanguge.LoadLocalization(itemconf.ItemDes), GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(sceneID).ChapterName));
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");

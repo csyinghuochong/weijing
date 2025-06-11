@@ -56,12 +56,12 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             if (self.Position == 1 && lv < 10)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
             if (self.Position == 2 && lv < 20)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
 

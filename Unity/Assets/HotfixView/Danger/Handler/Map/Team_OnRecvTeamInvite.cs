@@ -12,7 +12,7 @@
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip( args.ZoneScene, "组队邀请", $"{args.m2C_TeamInviteResult.TeamPlayerInfo.PlayerName}邀请你组队",
+            PopupTipHelp.OpenPopupTip( args.ZoneScene, GameSettingLanguge.LoadLocalization("组队邀请"), string.Format(GameSettingLanguge.LoadLocalization("{0}邀请你组队"), args.m2C_TeamInviteResult.TeamPlayerInfo.PlayerName),
                 () => 
                 {
                     args.ZoneScene.GetComponent<TeamComponent>().AgreeTeamInvite(args.m2C_TeamInviteResult).Coroutine();

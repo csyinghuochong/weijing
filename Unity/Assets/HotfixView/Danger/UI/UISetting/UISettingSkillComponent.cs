@@ -301,7 +301,7 @@ namespace ET
             Log.Debug($"点击技能{index}");
             if (self.SkillSet.Contains(index))
             {
-                FloatTipManager.Instance.ShowFloatTip("已放置该技能！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已放置该技能！"));
                 return;
             }
 

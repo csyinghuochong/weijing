@@ -42,12 +42,12 @@ namespace ET
                 if (self.CreateRoleInfo.OccTwo > 0)
                 {
                     OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(self.CreateRoleInfo.OccTwo);
-                    self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationTwo.OccupationName}";
+                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), GameSettingLanguge.LoadLocalization(occupationTwo.OccupationName));
                 }
                 else
                 {
                     OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.CreateRoleInfo.PlayerOcc);
-                    self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationConfig.OccupationName}";
+                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), GameSettingLanguge.LoadLocalization(occupationConfig.OccupationName));
                 }
                 UICommonHelper.ShowOccIcon(self.ObjImgOccHeadIcon, self.CreateRoleInfo.PlayerOcc);
                 self.ObjImgOccHeadIcon.SetActive(true);
@@ -72,7 +72,7 @@ namespace ET
                     self.ObjRoleName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("点击创建角色");
                     self.ObjRoleLv.SetActive(false);
                     self.ObjImgOccHeadIcon.SetActive(false);
-                    self.RoleOcc.GetComponent<Text>().text = "职业:战士/法师";
+                    self.RoleOcc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业:战士/法师");
                 }
             }
             self.ImageDi.SetActive(self.CreateRoleInfo == null);
@@ -106,7 +106,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 8)
             {
-                FloatTipManager.Instance.ShowFloatTip("角色列表已达上限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("角色列表已达上限！"));
                 return;
             }
             

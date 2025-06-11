@@ -92,7 +92,7 @@ namespace ET
             UnionQiangHuaConfig nextunionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(nextxiulianid);
             //self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(nextunionQiangHuaConfig.EquipPropreAdd);
-            self.Pro_1.transform.parent.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = $"消耗:{unionQiangHuaConfig.CostGold}点家族贡献";
+            self.Pro_1.transform.parent.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗:{0}点家族贡献"), unionQiangHuaConfig.CostGold);
 
             UICommonHelper.DestoryChild(self.CostItemListNode);
             if (!ComHelp.IfNull(unionQiangHuaConfig.CostItem))
@@ -119,13 +119,13 @@ namespace ET
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
             if (unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先提升家族等级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先提升家族等级！"));
                 return;
             }
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(unionQiangHuaConfig.CostItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 

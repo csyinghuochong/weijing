@@ -33,7 +33,7 @@ namespace ET
         public static void OnInitUI(this UIRandomTowerItemComponent self, TowerConfig towerRewardConfig)
         {
             self.TowerConfig = towerRewardConfig;
-            self.TextLevel.GetComponent<Text>().text =  $"{towerRewardConfig.CengNum} 层";
+            self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 层"), towerRewardConfig.CengNum);
             UICommonHelper.ShowItemList(towerRewardConfig.DropShow, self.ItemListNode, self);
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -46,13 +46,13 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.TowerRewardIds.Contains(self.TowerConfig.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("已领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已领取过该奖励！"));
                 return;
             }
             int randomTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             if (randomTowerId < self.TowerConfig.Id )
             {
-                FloatTipManager.Instance.ShowFloatTip("为达到领取条件！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为达到领取条件！"));
                 return;
             }
             NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerConfig.Id, SceneTypeEnum.RandomTower).Coroutine();

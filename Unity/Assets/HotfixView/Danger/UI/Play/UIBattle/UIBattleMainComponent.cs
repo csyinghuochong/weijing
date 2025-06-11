@@ -76,7 +76,7 @@ namespace ET
                 return;
             }
             self.CDTime-=1000;
-            self.CountDownTime.text = "倒计时: " + TimeHelper.ShowLeftTime(self.CDTime);
+            self.CountDownTime.text = GameSettingLanguge.LoadLocalization("倒计时: ") + TimeHelper.ShowLeftTime(self.CDTime);
         }
 
         public static void OnUpdateUI(this UIBattleMainComponent self, M2C_BattleInfoResult message)
@@ -88,7 +88,7 @@ namespace ET
         public static void OnUpdateSelfKill(this UIBattleMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.TextVS_Kill.GetComponent<Text>().text = "自身已战胜"+unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleTodayKill).ToString()+ "个玩家";
+            self.TextVS_Kill.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("自身已战胜{0}个玩家"), unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleTodayKill));
         }
     }
 }

@@ -44,14 +44,14 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetHeXinExploreNumber) < self.RewardKey)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件未达到！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件未达到！"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <
                 ConfigHelper.PetHeXinExploreReward[self.RewardKey].Split('@').Length - 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 

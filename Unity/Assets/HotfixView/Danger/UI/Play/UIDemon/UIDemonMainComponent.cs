@@ -66,11 +66,11 @@ namespace ET
                 long readyTime = self.ReadyTime - curTime;
                 if (readyTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"准备倒计时 {readyTime / 60}:{readyTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("准备倒计时 {0}:{1}"), readyTime / 60, readyTime % 60);
                 }
                 else if (endTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("活动结束倒计时 {0}:{1}"), endTime / 60, endTime % 60);
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);
@@ -105,20 +105,17 @@ namespace ET
             {
                 if (i == 0)
                 {
-                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, response.RankList[i].PlayerName);
                     self.PlayerInfoItem_1.SetActive(true);
                 }
                 else if (i == 1)
                 {
-                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, response.RankList[i].PlayerName);
                     self.PlayerInfoItem_2.SetActive(true);
                 }
                 else if (i == 2)
                 {
-                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, response.RankList[i].PlayerName);
                     self.PlayerInfoItem_3.SetActive(true);
                 }
                 else
@@ -126,13 +123,12 @@ namespace ET
                     if (num < self.Rankings.Count)
                     {
                         self.Rankings[i].SetActive(true);
-                        self.Rankings[i].GetComponentInChildren<Text>().text =
-                                $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                        self.Rankings[i].GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, response.RankList[i].PlayerName);
                     }
                     else
                     {
                         GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
-                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                        go.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, response.RankList[i].PlayerName);
                         go.SetActive(true);
                         UICommonHelper.SetParent(go, self.RankingListNode);
                         self.Rankings.Add(go);
@@ -157,20 +153,17 @@ namespace ET
             {
                 if (i == 0)
                 {
-                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, message.RankList[i].PlayerName);
                     self.PlayerInfoItem_1.SetActive(true);
                 }
                 else if (i == 1)
                 {
-                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, message.RankList[i].PlayerName);
                     self.PlayerInfoItem_2.SetActive(true);
                 }
                 else if (i == 2)
                 {
-                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text =
-                            $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, message.RankList[i].PlayerName);
                     self.PlayerInfoItem_3.SetActive(true);
                 }
                 else
@@ -178,13 +171,12 @@ namespace ET
                     if (num < self.Rankings.Count)
                     {
                         self.Rankings[i].SetActive(true);
-                        self.Rankings[i].GetComponentInChildren<Text>().text =
-                                $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                        self.Rankings[i].GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, message.RankList[i].PlayerName);
                     }
                     else
                     {
                         GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
-                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                        go.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}"), i + 1, message.RankList[i].PlayerName);
                         go.SetActive(true);
                         UICommonHelper.SetParent(go, self.RankingListNode);
                         self.Rankings.Add(go);

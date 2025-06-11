@@ -132,14 +132,14 @@ namespace ET
                     int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.BagInfo.BagInfoID);
                     if (errorCode == ErrorCode.ERR_Success)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("完成任务");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
                         self.OnGiveAction?.Invoke();
                         UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
                     }
                 }
                 else
                 {
-                    FloatTipManager.Instance.ShowFloatTip("道具类型不符合任务要求");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具类型不符合任务要求"));
                     return;
                 }
             }
@@ -162,14 +162,14 @@ namespace ET
                     int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.BagInfo.BagInfoID);
                     if (errorCode == ErrorCode.ERR_Success)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("完成任务");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
                         self.OnGiveAction?.Invoke();
                         UIHelper.Remove(self.ZoneScene(), UIType.UIGiveTask);
                     }
                 }
                 else
                 {
-                    FloatTipManager.Instance.ShowFloatTip("道具类型不符合任务要求");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具类型不符合任务要求"));
                     return;
                 }
             }

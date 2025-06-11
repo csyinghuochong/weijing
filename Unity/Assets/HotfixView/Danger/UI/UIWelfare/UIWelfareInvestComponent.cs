@@ -107,13 +107,13 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取!"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1 < 6)
             {
-                FloatTipManager.Instance.ShowFloatTip("今天还不能领取!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今天还不能领取!"));
                 return;
             }
 
@@ -133,11 +133,11 @@ namespace ET
                 TimeSpan ts = self.EndTime - nowTime;
                 if (ts.TotalMinutes > 0)
                 {
-                    self.TimeText.GetComponent<Text>().text = $"{ts.Days}天{ts.Hours}小时{ts.Minutes}分";
+                    self.TimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}天{1}小时{2}分"), ts.Days, ts.Hours, ts.Minutes);
                 }
                 else
                 {
-                    self.TimeText.GetComponent<Text>().text = "赶快领取!!";
+                    self.TimeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("赶快领取!!");
                 }
 
                 await TimerComponent.Instance.WaitAsync(60000);

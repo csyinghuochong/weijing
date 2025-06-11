@@ -113,7 +113,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetHourseLeftCell(19) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("请至少预留一个格子");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请至少预留一个格子"));
                 return;
             }
 
@@ -133,7 +133,7 @@ namespace ET
         public static  void OnBtn_ZhengLi(this UIWarehouseGemComponent self)
         {
             self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc(ItemLocType.GemWareHouse1).Coroutine();
-            FloatTipManager.Instance.ShowFloatTip("宝石仓库已整理完毕");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宝石仓库已整理完毕"));
         }
 
         public static  void InitBagCell(this UIWarehouseGemComponent self)

@@ -63,18 +63,18 @@ namespace ET
 
             if (args.ErrorCode == ErrorCode.ERR_OtherAccountLogin)
             {
-                FloatTipManager.Instance.ShowFloatTip("账号异地登录");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("账号异地登录"));
                 RunAsync2(args, 100).Coroutine();
             }
             else if (args.ErrorCode == ErrorCode.ERR_KickOutPlayer)
             {
-                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "重新登录", "由于您长时间未操作，请重新登录！", () => {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, GameSettingLanguge.LoadLocalization("重新登录"), GameSettingLanguge.LoadLocalization("由于您长时间未操作，请重新登录！"), () => {
                     RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }
             else if (args.ErrorCode == ErrorCode.ERR_PackageFrequent)
             {
-                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "消息异常", "请重新登录", () => {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, GameSettingLanguge.LoadLocalization("消息异常"), GameSettingLanguge.LoadLocalization("请重新登录"), () => {
                     RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }

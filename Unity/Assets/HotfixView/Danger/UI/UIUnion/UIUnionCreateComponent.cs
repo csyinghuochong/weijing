@@ -50,8 +50,8 @@ namespace ET
 
         public static void OnInitUI(this UIUnionCreateComponent self)
         {
-            self.Text_Contion1.GetComponent<Text>().text = $"1. 角色等级达到{GlobalValueConfigCategory.Instance.Get(21).Value}级";
-            self.Text_Contion2.GetComponent<Text>().text = $"2. 消耗{GlobalValueConfigCategory.Instance.Get(22).Value}钻石";
+            self.Text_Contion1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("1. 角色等级达到{0}级"), GlobalValueConfigCategory.Instance.Get(21).Value);
+            self.Text_Contion2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("2. 消耗{0}钻石"), GlobalValueConfigCategory.Instance.Get(22).Value);
         }
 
         public static async ETTask RequestCreateUnion(this UIUnionCreateComponent self)
@@ -60,12 +60,12 @@ namespace ET
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(unionName);
             if (mask || !StringHelper.IsSpecialChar(unionName))
             {
-                FloatTipManager.Instance.ShowFloatTip("家族名字有特殊字符！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家族名字有特殊字符！"));
                 return;
             }
             if (unionName.Length > 7)
             {
-                FloatTipManager.Instance.ShowFloatTip("家族名字最多七个字！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家族名字最多七个字！"));
                 return;
             }
 
@@ -78,19 +78,19 @@ namespace ET
             //}
             if (mask )
             {
-                FloatTipManager.Instance.ShowFloatTip("宣言有特殊字符！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宣言有特殊字符！"));
                 return;
             }
             if (purpose.Length >= 200)
             {
-                FloatTipManager.Instance.ShowFloatTip("宣言内容过长！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宣言内容过长！"));
                 return;
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) != 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先退出公会！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先退出公会！"));
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -98,12 +98,12 @@ namespace ET
             int needDiamond = int.Parse(GlobalValueConfigCategory.Instance.Get(22).Value);
             if (userInfo.Lv < needLevel )
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
             if (userInfo.Diamond < needDiamond)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石不足！"));
                 return;
             }
 

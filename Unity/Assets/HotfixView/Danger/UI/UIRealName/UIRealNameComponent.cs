@@ -120,11 +120,11 @@ namespace ET
 
             if (!sucess)
             {
-                FloatTipManager.Instance.ShowFloatTip("实名认证失败!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("实名认证失败!"));
                 return;
             }
             self.LoginTime = 0f;
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "认证提示", "实名认证成功!",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("认证提示"), GameSettingLanguge.LoadLocalization("实名认证成功!"),
                 () =>
                 {
                     self.SendRealName();
@@ -165,7 +165,7 @@ namespace ET
             M2C_RealNameRewardResponse sendChatResponse = (M2C_RealNameRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
             if (sendChatResponse.Error != 0)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("背包已满!");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("背包已满!"));
                 return;
             }
             self.PlayerComponent.PlayerInfo.RealNameReward = 1;

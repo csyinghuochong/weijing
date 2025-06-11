@@ -245,7 +245,7 @@ namespace ET
                 Unit targetUnit = null;
                 if (targetId == 0)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中施法目标"));
                     return;
                 }
                 targetUnit = myUnit.GetParent<UnitComponent>().Get(targetId);
@@ -258,7 +258,7 @@ namespace ET
                 //}
                 if (targetUnit == null || Vector3.Distance(targetUnit.Position, myUnit.Position) > self.SkillWuqiConfig.SkillRangeSize)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("施法距离太远");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("施法距离太远"));
                     return;
                 }
                 Vector3 direction = targetUnit.Position - myUnit.Position;

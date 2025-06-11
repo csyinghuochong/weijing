@@ -113,7 +113,7 @@ namespace ET
             }
 
             self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
-            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text =$"东西给你!{name} 不要追着我啦！";
+            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("东西给你!{0} 不要追着我啦！"), name);
 
             TimerComponent.Instance.Remove(ref self.TurtleTimer);
             self.TurtleTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * 5, TimerType.TurtleSpeak, self);
@@ -146,7 +146,7 @@ namespace ET
 
             string speakcontent = speaklist[RandomHelper.RandomNumber(0, speaklist.Count)];
             self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
-            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = speakcontent;
+            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(speakcontent);
 
             TimerComponent.Instance.Remove(ref self.TurtleTimer);
             self.TurtleTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * 5, TimerType.TurtleSpeak, self);

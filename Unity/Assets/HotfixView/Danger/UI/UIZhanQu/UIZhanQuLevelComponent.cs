@@ -67,7 +67,7 @@ namespace ET
                 uIItemComponent.OnInitUI(activityConfigs[i]);
             }
 
-            self.Lab_MyLv.GetComponent<Text>().text = "我的等级：" + self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv.ToString();
+            self.Lab_MyLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("我的等级：") + self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv.ToString();
         }
         
     }

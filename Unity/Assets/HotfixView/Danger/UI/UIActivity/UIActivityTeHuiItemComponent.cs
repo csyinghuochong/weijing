@@ -63,7 +63,7 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.ActivityReceiveIds.Contains(self.ActivityConfig.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经购买过该礼包！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经购买过该礼包！"));
                 return;
             }
 

@@ -53,7 +53,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             for(int i = 20;  i >= 0; i--)
             {
-                self.TextCountDown.GetComponent<Text>().text = $"倒计时:{i}";
+                self.TextCountDown.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("倒计时:{0}"), i);
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
@@ -82,7 +82,7 @@ namespace ET
                 && mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene
                 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先退出当前副本！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先退出当前副本！"));
                 return;
             }
 
@@ -138,7 +138,7 @@ namespace ET
 
             if (!String.IsNullOrEmpty(haverefuse))
             {
-                FloatTipManager.Instance.ShowFloatTip($"{haverefuse} 不同意进入副本");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0} 不同意进入副本"), haverefuse));
                 UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonPrepare);
                 return;
             }

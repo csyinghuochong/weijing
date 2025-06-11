@@ -224,7 +224,7 @@ namespace ET
                 //开区第一天
                 if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv + 3 > self.WorldPlayerLv)
                 {
-                    FloatTipManager.Instance.ShowFloatTip($"等级第一的玩家为:{self.WorldPlayerLv}级,开服第一天低于第一等级玩家3级内才可使用!");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("等级第一的玩家为:{0}级,开服第一天低于第一等级玩家3级内才可使用!"), self.WorldPlayerLv));
                     return;
                 }
             }

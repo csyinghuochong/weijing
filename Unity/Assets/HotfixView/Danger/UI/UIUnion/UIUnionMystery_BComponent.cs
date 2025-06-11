@@ -95,7 +95,7 @@ namespace ET
         {
             if (self.SellId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择道具！"));
                 return;
             }
 
@@ -158,7 +158,7 @@ namespace ET
         {
             if (num > 0 && self.BuyNum >= 100)
             {
-                FloatTipManager.Instance.ShowFloatTip("单次购买数量最多为100");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("单次购买数量最多为100"));
                 return;
             }
 

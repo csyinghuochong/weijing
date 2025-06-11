@@ -191,7 +191,7 @@ namespace ET
                 int killNumber = self.ZoneScene().GetComponent<UserInfoComponent>().GetMonsterKillNumber(unitboss.ConfigId);
                 int chpaterid = DungeonConfigCategory.Instance.GetChapterByDungeon(mapComponent.SceneId);
                 BossDevelopment bossDevelopment = ConfigHelper.GetBossDevelopmentByKill(chpaterid, killNumber);
-                self.Lab_Deve.text = bossDevelopment.Name;
+                self.Lab_Deve.text = GameSettingLanguge.LoadLocalization(bossDevelopment.Name);
             }
             else
             {
@@ -213,7 +213,7 @@ namespace ET
             {
                 self.Lab_Owner.color = new Color(255f / 255f, 99f / 255f, 66f / 255f);      //红色
             }
-            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
+            self.Lab_Owner.text = string.Format(GameSettingLanguge.LoadLocalization("掉落归属:{0}"), unitbelong.GetComponent<UnitInfoComponent>().UnitName);
         }
 
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
@@ -283,7 +283,7 @@ namespace ET
                 return hurt.ToString(); 
             }
             float value = hurt / 10000f;
-            return value.ToString("0.#") + "万";
+            return value.ToString("0.#") + GameSettingLanguge.LoadLocalization("万");
         }
 
         public static void UpdateHurtText(this UIMainHpBarComponent self)
@@ -295,8 +295,8 @@ namespace ET
             else
             {
                 self.HurtTextNode.SetActive(true);
-                self.HurtTextPlayer.text = "玩家: " + self.ShowHurtString(self.PlayerHurt);
-                self.HurtTextPet.text = "宠物: " + self.ShowHurtString(self.PetHurt);
+                self.HurtTextPlayer.text = GameSettingLanguge.LoadLocalization("玩家: ") + self.ShowHurtString(self.PlayerHurt);
+                self.HurtTextPet.text = GameSettingLanguge.LoadLocalization("宠物: ") + self.ShowHurtString(self.PetHurt);
             }
         }
 

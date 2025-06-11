@@ -192,7 +192,7 @@ namespace ET
             string text = self.InputFieldTMP.GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(text) || text.Length == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请输入聊天内容！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请输入聊天内容！"));
                 return;
             }
 
@@ -206,14 +206,14 @@ namespace ET
             int userLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             if (userLv < 20 && !gm)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级达到20级才能世界发言！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级达到20级才能世界发言！"));
                 return;
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (!ComHelp.IsCanChat_KillBoss(userInfoComponent.UserInfo.MonsterRevives, userLv) && !gm)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级达到20级才能世界发言！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级达到20级才能世界发言！"));
                 return;
             }
 
@@ -296,14 +296,14 @@ namespace ET
             }
             if (mask)
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入！"));
                 return;
             }
 
             int itemType = self.UIPageComponent.GetCurrentIndex();
             if (itemType == (int)ChannelEnum.Team && !self.ZoneScene().GetComponent<TeamComponent>().IsHaveTeam())
             {
-                FloatTipManager.Instance.ShowFloatTip("没有队伍！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有队伍！"));
                 return;
             }
             

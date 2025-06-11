@@ -35,7 +35,7 @@ namespace ET
         public static void OnInitUI(this UICampStrengthItemComponent self, int rank, RankingInfo rankingInfo)
         {
             self.TextStrength.GetComponent<Text>().text = rankingInfo.Combat.ToString();
-            self.TextPosition.GetComponent<Text>().text = "门众";
+            self.TextPosition.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("门众");
             self.TextName.GetComponent<Text>().text = rankingInfo.PlayerName.ToString();
             UICommonHelper.ShowOccIcon(self.PlayerIcon, rankingInfo.Occ);
 

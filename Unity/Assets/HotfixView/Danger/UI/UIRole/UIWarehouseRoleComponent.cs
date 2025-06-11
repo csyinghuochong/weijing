@@ -87,8 +87,8 @@ namespace ET
             if (cangkuNumber <= page)
             {
                 string costItems = GlobalValueConfigCategory.Instance.Get(38).Value;
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启仓库",
-                    $"是否消耗{UICommonHelper.GetNeedItemDesc(costItems)}开启一个仓库",
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启仓库"),
+                    string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}开启一个仓库"), UICommonHelper.GetNeedItemDesc(costItems)),
                     () => { self.RequestOpenCangKu().Coroutine(); }, null).Coroutine();
                 return false;
             }
@@ -180,7 +180,7 @@ namespace ET
             //}
             self.UpdateWareHouse();
 
-            FloatTipManager.Instance.ShowFloatTip($"获得道具: {UICommonHelper.GetNeedItemDesc(dataparams)}");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得道具: {0}"), UICommonHelper.GetNeedItemDesc(dataparams)));
         }
 
         public static void OnClickImage_Lock(this UIWarehouseRoleComponent self)
@@ -189,8 +189,8 @@ namespace ET
             int addcell = self.BagComponent.WarehouseAddedCell[curindex];
             BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
             //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                $"是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("购买格子"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}购买一个背包格子?"), UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)),
                 () => { self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(curindex + 5).Coroutine(); }, null).Coroutine();
             return;
         }

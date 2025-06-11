@@ -77,12 +77,12 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Lv < int.Parse(self.ActivityConfig.Par_1))
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包已满！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包已满！"));
                 return;
             }
 
@@ -90,12 +90,12 @@ namespace ET
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             if (index == 3 && selfRechage < 298)
             {
-                FloatTipManager.Instance.ShowFloatTip("未达到领取条件！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
                 return;
             }
             if (index == 2 && selfRechage < 98)
             {
-                FloatTipManager.Instance.ShowFloatTip("未达到领取条件！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
                 return;
             }
 
@@ -126,7 +126,7 @@ namespace ET
         public static void OnInitUI(this UIActivityTokenItemComponent self, ActivityConfig activityConfig)
         {
             self.ActivityConfig = activityConfig;
-            self.TextName.GetComponent<Text>().text = $"{activityConfig.Par_1}级";
+            self.TextName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), activityConfig.Par_1);
 
             self.UpdateItemUI(self.UIItemShow_1, activityConfig.Par_2);
             self.UpdateItemUI(self.UIItemShow_2, activityConfig.Par_3);

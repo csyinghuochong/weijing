@@ -42,7 +42,7 @@ namespace ET
         {
             self.ClickHandler = action;
             self.UserId = 0;
-            self.TextFubenName.GetComponent<Text>().text =  $"补偿金额:{number}";
+            self.TextFubenName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("补偿金额:{0}"), number);
         }
     }
 }

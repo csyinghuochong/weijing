@@ -137,7 +137,7 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.ActivityReceiveIds.Contains(activityId))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过奖励！"));
             }
             activityComponent.GetActivityReward( activityConfig.ActivityType, activityId).Coroutine();
             self.ButtonJieRiReward.SetActive(false);
@@ -229,7 +229,7 @@ namespace ET
                         ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(nextid);
                         string[] riqi = activityConfig.Par_1.Split(';');
                         string speek = self.Lab_NpcSpeak.GetComponent<Text>().text;
-                        self.Lab_NpcSpeak.GetComponent<Text>().text = $"{speek} 下次领取时间:{riqi[0]}月{riqi[1]}日 {activityConfig.Par_4}";
+                        self.Lab_NpcSpeak.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 下次领取时间:{1}月{2}日 {3}"), speek, riqi[0], riqi[1], activityConfig.Par_4);
                     }
                     break;
                 case 8:  //经验兑换
@@ -274,18 +274,18 @@ namespace ET
         {
             if (!PetHelper.IsShenShouFull(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽未满不能对话！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽未满不能对话！"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000136) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽碎片不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽碎片不足！"));
                 return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.PetFramgeItemId);
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "碎片兑换", $"是否消耗一个神兽碎片兑换一个{itemConfig.ItemName}", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("碎片兑换"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗一个神兽碎片兑换一个{0}"), itemConfig.ItemName), ()=>
             {
                 self.RequestFramegeDuiHuan().Coroutine();
             }, null).Coroutine();
@@ -300,7 +300,7 @@ namespace ET
 
         public static  void OnClickBuChangItem(this UITaskGetComponent self, long userid)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "补偿大师", "请求补偿",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("补偿大师"), GameSettingLanguge.LoadLocalization("请求补偿"),
             () =>
             {
                 self.RequestBuChangItem(userid).Coroutine();
@@ -325,7 +325,7 @@ namespace ET
             }
             if (npcType == 1)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神兽兑换", ItemViewHelp.ShowDuiHuanPet(configId),
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("神兽兑换"), ItemViewHelp.ShowDuiHuanPet(configId),
                    () =>
                    {
                        self.ReqestPetDuiHuan(configId).Coroutine();
@@ -334,13 +334,13 @@ namespace ET
             if (npcType == 2)
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(configId);
-                string desStr = "是否进入" + sceneConfig.Name + "?";
+                string desStr = string.Format(GameSettingLanguge.LoadLocalization("是否进入{0}?"), GameSettingLanguge.LoadLocalization(sceneConfig.Name));
                 if (sceneConfig.DayEnterNum >= 1)
                 {
-                    desStr += "\n提示:每天只能进入" + sceneConfig.DayEnterNum + "次";
+                    desStr += string.Format(GameSettingLanguge.LoadLocalization("\n提示:每天只能进入{0}次"), sceneConfig.DayEnterNum);
                 }
                 
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "进入地图", desStr,
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("进入地图"), desStr,
                     () =>
                     {
                         self.RequestEnterFuben(configId).Coroutine();
@@ -356,7 +356,7 @@ namespace ET
             
             if (PetHelper.GetBagPetNum(petComponent.RolePetInfos) >= PetHelper.GetPetMaxNumber(unit, lv) )
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大宠物数量！"));
                 return;
             }
             C2M_PetDuiHuanRequest   request = new C2M_PetDuiHuanRequest() { OperateId = configId };
@@ -376,13 +376,13 @@ namespace ET
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ArenaNumber)>0)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("次数不足！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("次数不足！"));
                     return;
                 }
 
                 if (!FunctionHelp.IsInTime(1031))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("不在活动时间内！"));
                     return;
                 }
             }
@@ -610,7 +610,7 @@ namespace ET
         {
             if (self.TaskId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择一个任务");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择一个任务"));
                 return;
             }
 

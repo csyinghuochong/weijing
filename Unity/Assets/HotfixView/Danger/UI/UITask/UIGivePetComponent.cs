@@ -139,7 +139,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
-            self.PetNumText.GetComponent<Text>().text = $"携带宠物数量:{PetHelper.GetBagPetNum(rolePetInfos)}/{maxNum}";
+            self.PetNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("携带宠物数量:{0}/{1}"), PetHelper.GetBagPetNum(rolePetInfos), maxNum);
         }
 
         public static int NextPetNumber(this UIGivePetComponent self)
@@ -190,49 +190,49 @@ namespace ET
         {
             if (self.LastSelectItem == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选择宠物！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选择宠物！"));
                 return;
             }
 
             if (self.LastSelectItem.IsProtect)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物已锁定！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物已锁定！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("出战宠物不能提交！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战宠物不能提交！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先停止家园散步！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先停止家园散步！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先从仓库取出！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先从仓库取出！"));
                 return;
             }
 
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能提交！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中,不能提交！"));
                 return;
             }
 
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物副本上阵中,不能提交！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中,不能提交！"));
                 return;
             }
 
             if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能提交！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物矿场队伍中,不能提交！"));
                 return;
             }
 
@@ -242,13 +242,13 @@ namespace ET
 
                 if (!TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物不符合任务要求！"));
                     return;
                 }
 
                 if (TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
                 {
-                    PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
+                    PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("提交宠物任务"), GameSettingLanguge.LoadLocalization("确定提交宠物?"),
                         async () =>
                         {
                             TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
@@ -256,7 +256,7 @@ namespace ET
                             int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.LastSelectItem.Id);
                             if (errorCode == ErrorCode.ERR_Success)
                             {
-                                FloatTipManager.Instance.ShowFloatTip("完成任务");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
                                 self.OnGiveAction?.Invoke();
                                 UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
                             }
@@ -270,13 +270,13 @@ namespace ET
 
                 if (!TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("宠物不符合任务要求！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物不符合任务要求！"));
                     return;
                 }
 
                 if (TaskHelper.IsTaskGivePet(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.LastSelectItem))
                 {
-                    PopupTipHelp.OpenPopupTip(self.DomainScene(), "提交宠物任务", GameSettingLanguge.LoadLocalization("确定提交宠物?"),
+                    PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("提交宠物任务"), GameSettingLanguge.LoadLocalization("确定提交宠物?"),
                         async () =>
                         {
                             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
@@ -295,7 +295,7 @@ namespace ET
                                     .SendCommitTaskCountry(self.TaskId, self.LastSelectItem.Id);
                             if (errorCode == ErrorCode.ERR_Success)
                             {
-                                FloatTipManager.Instance.ShowFloatTip("完成任务");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
                                 self.OnGiveAction?.Invoke();
                                 UIHelper.Remove(self.ZoneScene(), UIType.UIGivePet);
                             }

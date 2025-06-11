@@ -87,14 +87,14 @@ namespace ET
             }
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality < equipMakeConfig.CostVitality)
             {
-                FloatTipManager.Instance.ShowFloatTip("活力不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活力不足！"));
                 return;
             }
 
             bool success = self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItems);
             if (!success)
             {
-                FloatTipManager.Instance.ShowFloatTip("材料不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
                 return;
             }
 
@@ -132,13 +132,13 @@ namespace ET
             if (havezengfu)
             {
 
-                FloatTipManager.Instance.ShowFloatTip($"制造道具的装备材料中{tip}有传承属性, 无法制作");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}有传承属性, 无法制作"), tip));
                 return;
             }
 
             if (haveGem)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"制造道具的装备材料中{tip}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具",
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具"), tip),
                     () =>
                     {
                         self.RequestEquipMake().Coroutine();
@@ -185,7 +185,7 @@ namespace ET
             //self.TextVitality.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality.ToString();
             //显示消耗活力
             self.Lab_HuoLi.GetComponent<Text>().text = equipMakeConfig.CostVitality.ToString();
-            self.Text_Current.GetComponent<Text>().text = $"当前活力:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality}";
+            self.Text_Current.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前活力:  {0}"), self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality);
 
             for (int i = 0; i < itemsList.Length; i++)
             {

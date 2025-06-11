@@ -114,14 +114,14 @@ namespace ET
             
             if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
             {
-                FloatTipManager.Instance.ShowFloatTip("兑换次数不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("兑换次数不足！"));
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
             if (userInfo.JiaYuanFund < jiaYuanConfig.ExchangeExpCostZiJin)
             {
-                FloatTipManager.Instance.ShowFloatTip("家园资金不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家园资金不足！"));
                 return;
             }
 
@@ -136,14 +136,14 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin) >= 10)
             {
-                FloatTipManager.Instance.ShowFloatTip("兑换次数不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("兑换次数不足！"));
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
             if (userInfo.Gold < jiaYuanConfig.ExchangeZiJinCostGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("金币不足！"));
                 return;
             }
 
@@ -162,24 +162,25 @@ namespace ET
             int jiayuanid = userInfoCom.UserInfo.JiaYuanLv;
 
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
-            self.JiaYuanName.GetComponent<Text>().text = userInfoCom.UserInfo.Name + "的家园";
+            self.JiaYuanName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的家园"), userInfoCom.UserInfo.Name);
             self.Text_ZiZhiValue.GetComponent<Text>().text = userInfoCom.UserInfo.JiaYuanExp + "/" + jiayuanCof.Exp;
             self.ImageExpValue.GetComponent<Image>().fillAmount = (float)userInfoCom.UserInfo.JiaYuanExp / (float)jiayuanCof.Exp;
 
             self.Lab_GengDi.GetComponent<Text>().text = jiayuanCof.FarmNumMax.ToString();
             self.Lab_RenKou.GetComponent<Text>().text = jiayuanCof.PeopleNumMax.ToString();
 
-            self.JiaYuanLv.GetComponent<Text>().text = "等级:" + jiayuanCof.Lv;
+            self.JiaYuanLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}" + jiayuanCof.Lv));
 
             //提示描述
             int hour = (int)((float)(jiayuanCof.Exp - (int)userInfoCom.UserInfo.JiaYuanExp)/ jiayuanCof.JiaYuanAddExp) + 1;
             if (hour < 0) {
                 hour = 0;
             }
-            self.JiaYuanUpHint.GetComponent<Text>().text = "提示:经验产出" + jiayuanCof.JiaYuanAddExp + "/小时,预计" + hour + "小时后可升级家园";
 
-            self.ZiJinDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin)}";
-            self.ExpDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp)}";
+            self.JiaYuanUpHint.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("提示:经验产出{0}/小时,预计{1}小时后可升级家园"), jiayuanCof.JiaYuanAddExp, hour);
+
+            self.ZiJinDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin));
+            self.ExpDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp));
 
             string[] upgets = jiayuanCof.JiaYuanDes.Split(';');
             for (int i = 0; i < self.UpdateGet.transform.childCount; i++)

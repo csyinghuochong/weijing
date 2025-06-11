@@ -66,7 +66,7 @@ namespace ET
         {
             if (self.CDdownTimeNumber < 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("本层赛季之塔的时间已经用尽，请返回主城!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("本层赛季之塔的时间已经用尽，请返回主城!"));
                 TimerComponent.Instance?.Remove(ref self.CDTimer);
                 self.WaitReturn().Coroutine();
                 return;
@@ -77,7 +77,7 @@ namespace ET
                 int showTime = self.CDdownTimeNumber;
                 int minute = showTime / 60;
                 int sceond = showTime % 60;
-                self.CDdownTimeText.text = $"倒计时 {minute}:{sceond}";
+                self.CDdownTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("倒计时 {0}:{1}"), minute, sceond);
             }
             self.CDdownTimeNumber--;
         }

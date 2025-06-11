@@ -160,20 +160,20 @@ namespace ET
 
             if (!unionLevelMax &&  unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先提升家族等级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先提升家族等级！"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin < unionQiangHuaConfig.CostGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("家族贡献不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家族贡献不足！"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(unionQiangHuaConfig.CostItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 

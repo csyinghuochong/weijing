@@ -69,7 +69,7 @@ namespace ET
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(curScene, jiaYuanViewComponent.CellIndex);
             if (unit != null)
             {
-                FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前土地有植物！"));
                 return;
             }
             try

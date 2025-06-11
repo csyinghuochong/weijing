@@ -55,20 +55,20 @@ namespace ET
                 time = time.Substring(5, time.Length - 5);
                 Text Text = gameObject.transform.Find("Text").GetComponent<Text>();
                 string tip = string.Empty;
-                tip = $"{time} 玩家<color=#9CA606>{jiaYuanRecord.PlayerName}</color>";
+                tip = string.Format(GameSettingLanguge.LoadLocalization("{0} 玩家<color=#9CA606>{1}</color>"), time, jiaYuanRecord.PlayerName);
                 switch (jiaYuanRecord.OperateType)
                 {
                     case JiaYuanOperateType.Visit:
-                        tip += " 来到你的家园逛了一圈。";
+                        tip += GameSettingLanguge.LoadLocalization(" 来到你的家园逛了一圈。");
                         break;
                     case JiaYuanOperateType.GatherPlant:
-                        tip += $" 在你的家园拾取了<color=#9CA606> {JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>";
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name);
                         break;
                     case JiaYuanOperateType.GatherPasture:
-                        tip += $" 在你的家园拾取了<color=#9CA606> {JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>";
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name);
                         break;
                     case JiaYuanOperateType.Pick:
-                        tip += $" 在你的家园清理了<color=#9CA606> {MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName}</color>";
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园清理了<color=#9CA606> {0}</color>"), MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName);
                         break;
                     default:
                         break;

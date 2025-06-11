@@ -85,15 +85,15 @@ namespace ET
             self.Node_1.SetActive(shouhulist.Contains(rolePetInfo.Id));
             self.Node_2.SetActive(!shouhulist.Contains(rolePetInfo.Id));
 
-            self.Lab_PinFen.GetComponent<Text>().text = $"评分: {PetHelper.PetPingJia(rolePetInfo)}";
+            self.Lab_PinFen.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("评分: {0}"), PetHelper.PetPingJia(rolePetInfo));
 
             if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
             {
-                self.Lab_ShouHu.GetComponent<Text>().text = "神兽守护";
+                self.Lab_ShouHu.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("神兽守护");
             }
             else
             {
-                self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+                self.Lab_ShouHu.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value);
             }
             string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
             Sprite sp2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path2);

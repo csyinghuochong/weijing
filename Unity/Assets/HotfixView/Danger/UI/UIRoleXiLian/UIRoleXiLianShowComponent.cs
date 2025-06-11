@@ -286,7 +286,7 @@ namespace ET
 
 			int totalTimes = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>()
 					.GetAsInt(NumericType.ItemXiLianNumber);
-			self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
+			self.Text_TotalNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日累计次数：{0}"), totalTimes);
 		}
 
 		public static void OnSelectItem(this UIRoleXiLianShowComponent self, BagInfo bagInfo)
@@ -343,7 +343,7 @@ namespace ET
 
 				if (!self.BagComponent.CheckNeedItem(costItems))
 				{
-					FloatTipManager.Instance.ShowFloatTip("材料不足！");
+					FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
 					return;
 				}
 			}
@@ -379,14 +379,14 @@ namespace ET
 			}
 			if (times == 1)
 			{
-				HintHelp.GetInstance().ShowHint("洗炼道具成功");
+				HintHelp.GetInstance().ShowHint(GameSettingLanguge.LoadLocalization("洗炼道具成功"));
 				self.OnXiLianReturn();
 				self.ShowXiLianEffect().Coroutine();
 			}
 			if (times > 1)
 			{
 				int newXiLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
-				HintHelp.GetInstance().ShowHint($"获得{newXiLianDu - oldXiLianDu}洗炼经验");
+				HintHelp.GetInstance().ShowHint(string.Format(GameSettingLanguge.LoadLocalization("获得{0}洗炼经验"), newXiLianDu - oldXiLianDu));
 				
 				UI uitex = await UIHelper.Create( self.ZoneScene(), UIType.UIRoleXiLianTen );
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);

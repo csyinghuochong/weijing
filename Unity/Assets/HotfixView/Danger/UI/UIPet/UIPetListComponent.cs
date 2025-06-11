@@ -348,20 +348,20 @@ namespace ET
             string text_old = self.InputFieldName.GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(text_old) || text_old.Length == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请输入名字！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请输入名字！"));
                 return;
             }
 
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(text_old);
             if (mask)
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入！"));
                 return;
             }
 
             if (text_old.Length > 10)
             {
-                FloatTipManager.Instance.ShowFloatTip("名字过长！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字过长！"));
                 return;
             }
 
@@ -416,7 +416,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (self.LastSelectItem.SkinId != self.PetSkinId)
             {
-                FloatTipManager.Instance.ShowFloatTip("该皮肤尚未激活！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该皮肤尚未激活！"));
                 return;
             }
 
@@ -432,7 +432,7 @@ namespace ET
 
             self.LastSelectItem.SkinId = self.PetSkinId;
             self.UpdatePetModel(self.LastSelectItem);
-            FloatTipManager.Instance.ShowFloatTip("宠物皮肤更换成功！");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物皮肤更换成功！"));
         }
 
         public static void OnBtn_FangSheng(this UIPetListComponent self)
@@ -444,49 +444,49 @@ namespace ET
 
             if (self.LastSelectItem.IsProtect)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物已锁定！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物已锁定！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("出战宠物不能分解！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战宠物不能分解！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先停止家园散步！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先停止家园散步！"));
                 return;
             }
 
             if (self.LastSelectItem.PetStatus == 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先从仓库取出！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先从仓库取出！"));
                 return;
             }
 
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能分解！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中,不能分解！"));
                 return;
             }
 
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物副本上阵中,不能分解！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中,不能分解！"));
                 return;
             }
 
             if (PetHelper.IsShenShou(self.LastSelectItem.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能放生");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能放生"));
                 return;
             }
 
             if (PetHelper.HavePetHeXin(self.LastSelectItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("请先卸下宠物之核！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先卸下宠物之核！"));
                 return;
             }
 
@@ -510,7 +510,7 @@ namespace ET
 
             if (rolePetInfo.PetStatus == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("先停止散步！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("先停止散步！"));
                 return;
             }
 
@@ -521,7 +521,7 @@ namespace ET
 
             if (TimeHelper.ClientNow() - cdTime < 180 * TimeHelper.Second)
             {
-                FloatTipManager.Instance.ShowFloatTip("出战冷却中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战冷却中！"));
                 return;
             }
 
@@ -534,7 +534,7 @@ namespace ET
             RolePetInfo rolePetInfo = self.LastSelectItem;
             if (rolePetInfo.UpStageStatus == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。"));
             }
 
             if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
@@ -552,7 +552,7 @@ namespace ET
 
             if (rolePetInfo.UpStageStatus == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("您的宠物已进化完成。");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("您的宠物已进化完成。"));
             }
         }
 
@@ -567,7 +567,7 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
             if (petConfig.PetType == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽已达最终阶段,无需进化！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽已达最终阶段,无需进化！"));
                 return;
             }
 
@@ -939,7 +939,7 @@ namespace ET
                 //int position = int.Parse(itemConfig.ItemUsePar);
                 itemTransform.Find("Node_2").gameObject.SetActive(true);
                 itemTransform.Find("Node_2/TextName").gameObject.GetComponent<Text>().text = itemConfig.ItemName;
-                itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = $"等级 {itemConfig.UseLv}";
+                itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级 {0}"), itemConfig.UseLv);
                 Image ImageIcon = itemTransform.Find("Node_2/ImageIcon").gameObject.GetComponent<Image>();
                 string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
@@ -991,28 +991,28 @@ namespace ET
             int index = 0;
             if (lv10number >= 3)
             {
-                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "高级核心";
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("高级核心");
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 3;
                 self.PetHeXinSuit = 10;
             }
             else if (lv8number >= 3)
             {
-                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "中级核心";
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("中级核心");
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 2;
                 self.PetHeXinSuit = 8;
             }
             else if (lv5number >= 3)
             {
-                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("初级核心");
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = null;
                 index = 1;
                 self.PetHeXinSuit = 5;
             }
             else
             {
-                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = "初级核心";
+                self.PetHeXinSuitBtn.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("初级核心");
                 self.PetHeXinSuitBtn.GetComponent<Image>().material = mat;
                 index = 1;
                 self.PetHeXinSuit = 0;
@@ -1430,7 +1430,7 @@ namespace ET
 
             self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
-            self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            self.Text_ShouHu.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value);
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -1447,19 +1447,19 @@ namespace ET
                 if (rolePetInfo.UpStageStatus == 1)
                 {
                     self.JinHuaReddot.SetActive(true);
-                    self.Lab_JinHua.GetComponent<Text>().text = "点击进化";
+                    self.Lab_JinHua.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("点击进化");
                 }
                 else
                 {
                     self.JinHuaReddot.SetActive(false);
-                    self.Lab_JinHua.GetComponent<Text>().text = "未进化";
+                    self.Lab_JinHua.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未进化");
                 }
             }
             else
             {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
                 self.JinHuaReddot.SetActive(false);
-                self.Lab_JinHua.GetComponent<Text>().text = "已进化";
+                self.Lab_JinHua.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已进化");
             }
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
@@ -1467,7 +1467,7 @@ namespace ET
             {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
                 self.JinHuaReddot.SetActive(false);
-                self.Lab_JinHua.GetComponent<Text>().text = "已进化";
+                self.Lab_JinHua.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已进化");
             }
         }
     }

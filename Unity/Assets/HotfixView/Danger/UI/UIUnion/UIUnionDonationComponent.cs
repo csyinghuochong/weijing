@@ -46,8 +46,8 @@ namespace ET
         public static async void OnUpdateUI(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.Text_Tip_4.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/5次";
-            self.Text_Tip_6.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDiamondDonationNumber)}/10次";
+            self.Text_Tip_4.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("捐献次数： {0}/{1}次"), unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber), 5);
+            self.Text_Tip_6.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("捐献次数： {0}/{1}次"), unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDiamondDonationNumber), 10);
 
             //客户端获取家族等级
             long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
@@ -64,8 +64,8 @@ namespace ET
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
 
             self.UnionLevel = respose.UnionMyInfo.Level;
-            self.Text_Tip_3.GetComponent<Text>().text = "消耗:" + unionCof.DonateGold + "金币";
-            self.Text_Tip_5.GetComponent<Text>().text = "消耗:" + unionCof.DonateDiamond + "钻石";
+            self.Text_Tip_3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗:{0}金币"), unionCof.DonateGold);
+            self.Text_Tip_5.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗:{0}钻石"), unionCof.DonateDiamond);
         }
 
         public static void OnButton_Record(this UIUnionDonationComponent self)
@@ -79,7 +79,7 @@ namespace ET
             long selfDiamond = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond;
             if (selfDiamond < unionConfig.DonateDiamond)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石数量不足！"));
                 return;
             }
 
@@ -91,7 +91,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDiamondDonationNumber)>= 10)
             {
-                FloatTipManager.Instance.ShowFloatTip("捐献次数已达上限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("捐献次数已达上限！"));
                 return;
             }
 
@@ -106,7 +106,7 @@ namespace ET
             long selfgold = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold;
             if (selfgold < unionConfig.DonateGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("金币数量不足！"));
                 return;
             }
             
@@ -118,7 +118,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 5)
             {
-                FloatTipManager.Instance.ShowFloatTip("捐献次数已达上限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("捐献次数已达上限！"));
                 return;
             }
 

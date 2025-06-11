@@ -220,7 +220,7 @@ namespace ET
                 }
                 uIItemComponent.UpdateItem(petHeXins[i], ItemOperateEnum.PetHeXinBag);
                 uIItemComponent.SetClickHandler(self.SelectItemHandlder);
-                uIItemComponent.Label_ItemNum.GetComponent<Text>().text = $"{itemConfig.UseLv}级";
+                uIItemComponent.Label_ItemNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), itemConfig.UseLv);
                 number++;
             }
 

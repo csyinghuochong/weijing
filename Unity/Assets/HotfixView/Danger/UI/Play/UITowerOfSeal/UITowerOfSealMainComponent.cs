@@ -68,14 +68,14 @@ namespace ET
             // 如果已经通关塔顶
             if (numericComponent.GetAsInt(NumericType.TowerOfSealFinished) >= 100)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经通关塔顶，请明日再来挑战!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经通关塔顶，请明日再来挑战!"));
                 return;
             }
 
             // 如果该层的Boss未击败
             if (numericComponent.GetAsInt(NumericType.TowerOfSealArrived) > numericComponent.GetAsInt(NumericType.TowerOfSealFinished))
             {
-                FloatTipManager.Instance.ShowFloatTip("该层boss并未击败，请击败本次boss再继续挑战!!!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该层boss并未击败，请击败本次boss再继续挑战!!!"));
                 return;
             }
 

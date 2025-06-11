@@ -86,7 +86,7 @@ namespace ET
                 if (attackMode == 3 && !zoneScene.GetComponent<BattleMessageComponent>().AttackSelfPlayer.Contains(unitAttack.Id))
                 {
                     zoneScene.GetComponent<BattleMessageComponent>().AttackSelfPlayer.Add(unitAttack.Id);
-                    FloatTipManager.Instance.ShowFloatTip($"{unitAttack.GetComponent<UnitInfoComponent>().UnitName} 攻击了你");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0} 攻击了你"), unitAttack.GetComponent<UnitInfoComponent>().UnitName));
                 }
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon

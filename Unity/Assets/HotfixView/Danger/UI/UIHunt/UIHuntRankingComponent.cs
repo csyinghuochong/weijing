@@ -84,7 +84,7 @@ namespace ET
             self.NameText_No1.SetActive(true);
             self.HuntNumText_No1.SetActive(true);
             self.NameText_No1.GetComponent<Text>().text = response.RankList[0].PlayerName;
-            self.HuntNumText_No1.GetComponent<Text>().text = $"狩猎数量:{response.RankList[0].KillNumber}";
+            self.HuntNumText_No1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("狩猎数量:{0}"), response.RankList[0].KillNumber);
             UICommonHelper.ShowOccIcon(self.HeadImage_No1, response.RankList[0].Occ);
 
             // 其余
@@ -110,11 +110,11 @@ namespace ET
                 long endTime = self.EndTime - curTime;
                 if (endTime > 0)
                 {
-                    self.HuntingTimeText.GetComponent<Text>().text = $"{endTime / 60}分{endTime % 60}秒";
+                    self.HuntingTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}分{1}秒"), endTime / 60, endTime % 60);
                 }
                 else
                 {
-                    self.HuntingTimeText.GetComponent<Text>().text = "未到活动时间";
+                    self.HuntingTimeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未到活动时间");
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);

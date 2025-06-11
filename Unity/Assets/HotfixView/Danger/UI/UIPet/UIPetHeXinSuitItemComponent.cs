@@ -40,16 +40,16 @@ namespace ET
             switch (key)
             {
                 case 5:
-                    self.NameText.GetComponent<Text>().text = "初级核心";
-                    self.RequirementText.GetComponent<Text>().text = "穿戴3个5级以上的宠物之核";
+                    self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("初级核心");
+                    self.RequirementText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("穿戴3个5级以上的宠物之核");
                     break;
                 case 8:
-                    self.NameText.GetComponent<Text>().text = "中级核心";
-                    self.RequirementText.GetComponent<Text>().text = "穿戴3个8级以上的宠物之核";
+                    self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("中级核心");
+                    self.RequirementText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("穿戴3个8级以上的宠物之核");
                     break;
                 case 10:
-                    self.NameText.GetComponent<Text>().text = "高级核心";
-                    self.RequirementText.GetComponent<Text>().text = "穿戴3个10级以上的宠物之核";
+                    self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("高级核心");
+                    self.RequirementText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("穿戴3个10级以上的宠物之核");
                     break;
             }
 

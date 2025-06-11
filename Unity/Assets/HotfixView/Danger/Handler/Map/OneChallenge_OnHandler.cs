@@ -12,7 +12,7 @@ namespace ET
 
             if (args.m2C_OneChallenge.Operatate == 1)
             {
-                PopupTipHelp.OpenPopupTip(args.ZoneScene, "挑战", $"{args.m2C_OneChallenge.OtherName}向你发起挑战，是否接受?", () =>
+                PopupTipHelp.OpenPopupTip(args.ZoneScene, GameSettingLanguge.LoadLocalization("挑战"), string.Format(GameSettingLanguge.LoadLocalization("{0}向你发起挑战，是否接受?"), args.m2C_OneChallenge.OtherName), () =>
                 {
                     RunAsync(args).Coroutine();
                 }, null).Coroutine();

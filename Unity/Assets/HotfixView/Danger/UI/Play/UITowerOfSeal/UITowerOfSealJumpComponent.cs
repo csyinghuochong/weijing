@@ -44,7 +44,7 @@ namespace ET
 
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Finished = myUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished);
-            self.TipText.GetComponent<Text>().text = $"是否花费350钻石去到第{(self.Finished + diceResult) / 10 * 10}层";
+            self.TipText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("是否花费350钻石去到第{0}层"), (self.Finished + diceResult) / 10 * 10);
         }
 
         public static async ETTask OnYesBtn(this UITowerOfSealJumpComponent self)
@@ -63,7 +63,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Diamond < needGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石数量不够");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石数量不够"));
                 self.OnNoBtn().Coroutine();
                 return;
             }
@@ -73,7 +73,7 @@ namespace ET
                     .Call(new C2M_TowerOfSealNextRequest() { DiceResult = 10 - self.Finished % 10, CostType = 10 + self.CostType });
             if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("操作错误！！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("操作错误！！"));
                 return;
             }
             if (self.IsDisposed)
@@ -96,7 +96,7 @@ namespace ET
                     .Call(new C2M_TowerOfSealNextRequest() { DiceResult = self.DiceResult, CostType = self.CostType });
             if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("操作错误！！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("操作错误！！"));
                 return;
             }
 

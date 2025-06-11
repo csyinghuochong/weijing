@@ -78,14 +78,14 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (!unit.IsYueKaStates())
             {
-                FloatTipManager.Instance.ShowFloatTip("请先开启月卡！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先开启月卡！"));
                 return;
             }
 
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaAward) == 1)
             {
                 //当天已领取
-                FloatTipManager.Instance.ShowFloatTip("当天奖励已领取！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当天奖励已领取！"));
                 return;
             }
             
@@ -94,7 +94,7 @@ namespace ET
 
             if (maxPiLao < nowPiLao + 20)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "领取", "是否领取?\n领取后会有体力溢出!", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("领取"), GameSettingLanguge.LoadLocalization("是否领取?\n领取后会有体力溢出!"), async () =>
                 {
                     C2M_YueKaRewardRequest c2M_RoleYueKaRequest = new C2M_YueKaRewardRequest() { };
                     M2C_YueKaRewardResponse m2C_RoleYueKaResponse =
@@ -134,7 +134,7 @@ namespace ET
 
             //判断自身是否有钻石
             string cost = GlobalValueConfigCategory.Instance.Get(37).Value;
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启月卡", $"是否花费{cost}钻石开启月卡?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启月卡"), string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}钻石开启月卡?"), cost), () =>
            {
                self.ReqestOpenYueKa().Coroutine();
            }, null).Coroutine() ;

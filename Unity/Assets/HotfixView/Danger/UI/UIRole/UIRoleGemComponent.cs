@@ -169,8 +169,8 @@ namespace ET
         public static void OnClickImage_Lock(this UIRoleGemComponent self)
         {
             string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("购买格子"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}购买一个背包格子?"), UICommonHelper.GetNeedItemDesc(costitems)), () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell((int)ItemLocType.GemWareHouse1).Coroutine();
                 }, null).Coroutine();

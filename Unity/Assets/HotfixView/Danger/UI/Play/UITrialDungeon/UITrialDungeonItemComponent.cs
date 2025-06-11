@@ -52,8 +52,8 @@ namespace ET
             string[] monsterInfo = monsterSet.Split(';');
             int monster = int.Parse(monsterInfo[2]);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monster);
-            this.Lab_Lv.GetComponent<Text>().text = $"等级: {monsterConfig.Lv}";
-            this.Lab_HP.GetComponent<Text>().text = $"生命: {monsterConfig.Hp}";
+            this.Lab_Lv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), monsterConfig.Lv);
+            this.Lab_HP.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("生命: {0}"), monsterConfig.Hp);
 
             //int curId = 
             UserInfo userInfo = this.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;

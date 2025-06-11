@@ -181,13 +181,13 @@ namespace ET
             switch (taskTypeEnum)
             {
                 case (int)TaskTypeEnum.Main:
-                    self.TaskTypeName.GetComponent<Text>().text = "主线任务";
+                    self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("主线任务");
                     break;
                 case (int)TaskTypeEnum.Branch:
-                    self.TaskTypeName.GetComponent<Text>().text = "支线任务";
+                    self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("支线任务");
                     break;
                 case (int)TaskTypeEnum.Daily:
-                    self.TaskTypeName.GetComponent<Text>().text = "每日任务";
+                    self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("每日任务");
                     break;
             }
         }

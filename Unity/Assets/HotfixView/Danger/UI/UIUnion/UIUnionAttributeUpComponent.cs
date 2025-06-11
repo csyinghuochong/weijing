@@ -101,7 +101,7 @@ namespace ET
             }
             else
             {
-                self.PropertyText.GetComponent<Text>().text = "下一级:\n" +
+                self.PropertyText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("下一级:\n") +
                         ItemViewHelp.GetAttributeDesc(PublicQiangHuaConfigCategory.Instance.Get(publicQiangHuaConfig.NextID).EquipPropreAdd);
             }
 
@@ -141,7 +141,7 @@ namespace ET
                 itemComponent.GameObject.SetActive(true);
                 itemComponent.UpdateItem(new BagInfo() { ItemID = itemConfigId }, ItemOperateEnum.None);
                 itemComponent.Label_ItemNum.GetComponent<Text>().text =
-                        itemConfigId == 1 ? $"{itemNum / 10000f:0.#}万/{havedNum / 10000f:0.#}万" : $"{itemNum}/{havedNum}";
+                        itemConfigId == 1 ? string.Format(GameSettingLanguge.LoadLocalization("{0}万/{1}万"), (itemNum / 10000f).ToString("0.#"), (havedNum / 10000f).ToString("0.#")) : $"{itemNum}/{havedNum}";
                 itemComponent.Label_ItemNum.GetComponent<Text>().color =
                         havedNum >= itemNum ? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
                 num++;
@@ -185,20 +185,20 @@ namespace ET
 
             if (publicQiangHuaConfig.NextID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到最高级");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到最高级"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < publicQiangHuaConfig.UpLvLimit)
             {
-                FloatTipManager.Instance.ShowFloatTip($"玩家等级不足，{publicQiangHuaConfig.UpLvLimit}开启");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("玩家等级不足，{0}开启"), publicQiangHuaConfig.UpLvLimit));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem("1;" + publicQiangHuaConfig.CostGold + "@" + publicQiangHuaConfig.CostItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 
@@ -213,7 +213,7 @@ namespace ET
 
             if (response.Level == publicQiangHuaConfig.Id)
             {
-                FloatTipManager.Instance.ShowFloatTip("升级失败");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("升级失败"));
             }
 
             self.UpdateInfo();

@@ -459,7 +459,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.CommonPopup args = cls as EventType.CommonPopup;
-            PopupTipHelp.OpenPopupTip(args.ZoneScene, "系统提示", args.HintText, null, null).Coroutine();
+            PopupTipHelp.OpenPopupTip(args.ZoneScene, GameSettingLanguge.LoadLocalization("系统提示"), args.HintText, null, null).Coroutine();
         }
     }
 
@@ -741,7 +741,7 @@ namespace ET
             string[] iteminfo = dataPaams.Split('_');
             int itemId = int.Parse(iteminfo[0]);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{iteminfo[1]}");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), itemConfig.ItemName, iteminfo[1]));
         }
 
         public static void OnUpdateHP(this UIMainComponent self, int sceneType, Unit defend, Unit attack, long hurtvalue)
@@ -842,11 +842,11 @@ namespace ET
                     }
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 家族捐献");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 家族捐献"), updateValue));
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 家族捐献");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗{0} 家族捐献"), int.Parse(updateValue) * -1));
                     }
                     break;
 
@@ -857,43 +857,43 @@ namespace ET
                     }
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 金币");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 金币"), updateValue));
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 金币");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗{0} 金币"), int.Parse(updateValue) * -1));
                     }
                     break;
                 case UserDataType.WeiJingGold:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 兑换币");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 兑换币"), updateValue));
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 兑换币");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗{0} 兑换币"), int.Parse(updateValue) * -1));
                     }
                     break;
                 case UserDataType.RongYu:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 荣誉");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 荣誉"), updateValue));
                     }
                     if (int.Parse(updateValue) < 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"消耗{int.Parse(updateValue) * -1} 荣誉");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗{0} 荣誉"), int.Parse(updateValue) * -1));
                     }
                     break;
                 case UserDataType.JiaYuanFund:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 家园资金");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 家园资金"), updateValue));
                     }
                     break;
                 case UserDataType.BaoShiDu:
                     if (int.Parse(updateValue) > 0)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"获得{updateValue} 饱食度");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得{0} 饱食度"), updateValue));
                     }
                     break;
 
@@ -911,10 +911,10 @@ namespace ET
                     reddotComponent.UpdateReddont(ReddotType.SkillUp);
                     break;
                 case UserDataType.Message:
-                    PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
+                    PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统消息"), updateValue, null).Coroutine();
                     break;
                 case UserDataType.PullBack:
-                    FloatTipManager.Instance.ShowFloatTip("所有人不要乱跑哦");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("所有人不要乱跑哦"));
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 30000002);
                     break;
                 default:
@@ -924,7 +924,7 @@ namespace ET
 
         public static void OnRechageSucess(this UIMainComponent self, int addNumber)
         {
-            FloatTipManager.Instance.ShowFloatTipDi($"充值{addNumber}元成功");
+            FloatTipManager.Instance.ShowFloatTipDi(string.Format(GameSettingLanguge.LoadLocalization("充值{0}元成功"), addNumber));
 
             self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo.RechargeInfos.Add(new RechargeInfo()
             {
@@ -1226,7 +1226,7 @@ namespace ET
 
         public static async ETTask OnStopServer(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "停服维护", "十分钟后停服维护，请暂时退出游戏！",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("停服维护"), GameSettingLanguge.LoadLocalization("十分钟后停服维护，请暂时退出游戏！"),
                () =>
                {
                }).Coroutine();
@@ -1304,7 +1304,7 @@ namespace ET
 
         public static void OnUnionRace(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家族争霸赛", "是否参与家族争霸赛?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("家族争霸赛"), GameSettingLanguge.LoadLocalization("是否参与家族争霸赛?"), () =>
            {
                UIHelper.Remove(self.ZoneScene(), UIType.UIDonation);
                EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
@@ -1566,7 +1566,7 @@ namespace ET
                     return;
                 }
 
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", popInfos[2], null).Coroutine();
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), popInfos[2], null).Coroutine();
             }
         }
 
@@ -2151,14 +2151,14 @@ namespace ET
 
         public static void OnButtonStallCancel(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?\n 支持下线,摊位可以离线显示6小时!",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("摊位提示"), GameSettingLanguge.LoadLocalization("是否收起自己的摊位?\n 支持下线,摊位可以离线显示6小时!"),
                        () =>
                        {
                            NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();
                            //界面存在就销毁界面
                            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall);
                            //弹出提示
-                           FloatTipManager.Instance.ShowFloatTipDi("摊位已收起!");
+                           FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("摊位已收起!"));
                        }).Coroutine();
         }
 
@@ -2268,8 +2268,8 @@ namespace ET
                 {
                     color = "C4FF00";
                 }
-                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = $"<color=#{color}>等级奖励</color>";
-                rc.Get<GameObject>("LvText").GetComponent<Text>().text = $"<color=#{color}>{newLv}级领取</color>";
+                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>等级奖励</color>"), color);
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
                 self.Btn_LvReward.SetActive(true);
             }
             else
@@ -2391,7 +2391,8 @@ namespace ET
                 {
                     color = "C4FF00";
                 }
-                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = $"<color=#{color}>击败怪物</color>";
+
+                rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>击败怪物</color>"), color);
                 rc.Get<GameObject>("LvText").GetComponent<Text>().text =
                         $"<color=#{color}>{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}</color>";
                 self.Btn_KillMonsterReward.SetActive(true);
@@ -2407,7 +2408,7 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请前往主城!"));
                 return;
             }
             self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(20000006).Coroutine();
@@ -2465,7 +2466,7 @@ namespace ET
             int now_horse = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
             if (now_horse == 0 && !self.ZoneScene().GetComponent<BattleMessageComponent>().IsCanRideHorse())
             {
-                FloatTipManager.Instance.ShowFloatTip("战斗状态不能骑马!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("战斗状态不能骑马!"));
                 return;
             }
 
@@ -2478,7 +2479,7 @@ namespace ET
                 {
                     if (showtip)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("该场景不能骑马!");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该场景不能骑马!"));
                     }
                     return;
                 }
@@ -2580,7 +2581,7 @@ namespace ET
             int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             if (SeasonHelper.GetOpenSeason(lv) == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("赛季已结束！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("赛季已结束！"));
                 return;
             }
 
@@ -2611,7 +2612,7 @@ namespace ET
 
         public static void OnBtn_RerurnDungeon(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "返回副本", GameSettingLanguge.LoadLocalization("移动次数消耗完毕,请返回副本!"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("返回副本"), GameSettingLanguge.LoadLocalization("移动次数消耗完毕,请返回副本!"),
                 () =>
                 {
                     int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
@@ -2645,10 +2646,10 @@ namespace ET
                 return;
             }
 
-            string tipStr = "确定返回主城？";
+            string tipStr = GameSettingLanguge.LoadLocalization("确定返回主城？");
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {
-                tipStr = "现在离开战场,将不会获得战场胜利的奖励哦";
+                tipStr = GameSettingLanguge.LoadLocalization("现在离开战场,将不会获得战场胜利的奖励哦");
             }
 
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
@@ -2681,7 +2682,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (!ExpConfigCategory.Instance.Contain(userInfo.Lv))
             {
-                FloatTipManager.Instance.ShowFloatTip("非法修改数据！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("非法修改数据！"));
                 return;
             }
             self.Obj_Lab_ExpValue.GetComponent<Text>().text = userInfo.Exp.ToString() + "/" + ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
@@ -2890,7 +2891,7 @@ namespace ET
             {
                 //移除挂机组件
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
-                FloatTipManager.Instance.ShowFloatTip("取消挂机!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("取消挂机!"));
             }
             self.UGuaJiSet.SetActive(false);
         }

@@ -42,13 +42,13 @@ namespace ET
         {
             self.day = day;
 
-            self.DayText.GetComponent<Text>().text = $"第{day + 1}天";
+            self.DayText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}天"), day + 1);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(ConfigHelper.WelfareInvestList[day].Value.Split(';')[0]));
             
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = itemConfig.Id, ItemNum = 1 }, ItemOperateEnum.None);
 
-            self.InvestText.GetComponent<Text>().text = $"投资{ConfigHelper.WelfareInvestList[day].KeyId}金币";
+            self.InvestText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("投资{0}金币"), ConfigHelper.WelfareInvestList[day].KeyId);
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(day))
             {
@@ -66,13 +66,13 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(self.day))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经进行了投资!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经进行了投资!"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay() - 1 < self.day)
             {
-                FloatTipManager.Instance.ShowFloatTip("今天还不能进行该项投资!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今天还不能进行该项投资!"));
                 return;
             }
 

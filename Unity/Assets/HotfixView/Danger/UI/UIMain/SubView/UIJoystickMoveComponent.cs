@@ -451,7 +451,7 @@ namespace ET
             }
             self.LastShowTip = Time.time;
             string monsterName = MonsterConfigCategory.Instance.Get(monsterId).MonsterName;
-            FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
         }
 
         public  static Vector3 CanMovePosition(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation, List<Vector3> pathfind)

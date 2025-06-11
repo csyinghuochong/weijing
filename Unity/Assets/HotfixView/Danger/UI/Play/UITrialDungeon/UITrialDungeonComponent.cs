@@ -170,7 +170,7 @@ namespace ET
                 self.UITrialDungeonItems[i].GameObject.SetActive(false);
             }
             showIndex = showIndex == -1 ? 0 : showIndex;
-            self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
+            self.TextLayer.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}层"), cengNum);
             int moveIndex = Mathf.Max(showIndex, showNum - 5);
             self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
             self.MoveToIndex(showIndex);
@@ -227,7 +227,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("请清理一下背包！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请清理一下背包！"));
                 return;
             }
             //试炼之地
@@ -251,7 +251,7 @@ namespace ET
             //}
             if (self.TowerId > nextId && nextId!=0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请激活前置关卡！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请激活前置关卡！"));
                 return;
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.TrialDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.TrialDungeon),0, self.TowerId.ToString());

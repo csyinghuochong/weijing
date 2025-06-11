@@ -33,7 +33,7 @@ namespace ET
         public static void OnUpdateUI(this UIRankRewardItemComponent self, RankRewardConfig rankRewardConfig)
         {
 
-            self.Text_Rank.GetComponent<Text>().text = $"{rankRewardConfig.NeedPoint[0]}-{rankRewardConfig.NeedPoint[1]}名";
+            self.Text_Rank.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-{1}名"), rankRewardConfig.NeedPoint[0], rankRewardConfig.NeedPoint[1]);
             UICommonHelper.ShowItemList(rankRewardConfig.RewardItems, self.ItemListNode, self, 0.9f);
 
             if (rankRewardConfig.NeedPoint[0] == 1) 

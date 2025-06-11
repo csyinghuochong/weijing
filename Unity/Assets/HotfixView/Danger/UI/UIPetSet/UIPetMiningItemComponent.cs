@@ -89,13 +89,13 @@ namespace ET
             }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
-            self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name + (hexin ? "(核心矿)": string.Empty);
+            self.TextMine.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(mineBattleConfig.Name) + (hexin ? GameSettingLanguge.LoadLocalization("(核心矿)") : string.Empty);
 
             int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             int openDay = ServerHelper.GetOpenServerDay(false, zone);
             float coffi = ComHelp.GetMineCoefficient(openDay, mingType, index, petMineExtend);
             int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
-            self.TextChanChu.GetComponent<Text>().text = $"{chanchu}/小时";
+            self.TextChanChu.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}/小时"), chanchu);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace ET
 
             if (petMingPlayerInfo != null)
             {
-                playerName = "拥有者：" + petMingPlayerInfo.PlayerName;
+                playerName = GameSettingLanguge.LoadLocalization("拥有者：") + petMingPlayerInfo.PlayerName;
                 confids = petMingPlayerInfo.PetConfig;
 
                 for (int i = 0; i < self.PetIconList.Length; i++)
@@ -139,7 +139,7 @@ namespace ET
             }
             else
             {
-                playerName = "占领者：无";
+                playerName = GameSettingLanguge.LoadLocalization("占领者：无");
                 for (int i = 0; i < self.PetIconList.Length; i++)
                 {
                     self.PetIconList[i].gameObject.SetActive(false);

@@ -104,7 +104,7 @@ namespace ET
             P2C_PaiMaiFindResponse response = (P2C_PaiMaiFindResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(reuqest);
             if (response.Page == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具已经被买走了!"));
                 return;
             }
 
@@ -376,7 +376,7 @@ namespace ET
                 case 1:
                     if (self.PageIndex >= self.MaxPage_Consume)
                     {
-                        FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
+                        FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达最后一页"));
                         return;
                     }
 
@@ -385,7 +385,7 @@ namespace ET
                 case 2:
                     if (self.PageIndex >= self.MaxPage_Material)
                     {
-                        FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
+                        FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达最后一页"));
                         return;
                     }
 
@@ -394,7 +394,7 @@ namespace ET
                 case 3:
                     if (self.PageIndex >= self.MaxPage_Equipment)
                     {
-                        FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
+                        FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达最后一页"));
                         return;
                     }
 
@@ -403,7 +403,7 @@ namespace ET
                 case 4:
                     if (self.PageIndex >= self.MaxPage_Gemstone)
                     {
-                        FloatTipManager.Instance.ShowFloatTipDi("已达最后一页");
+                        FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("已达最后一页"));
                         return;
                     }
 
@@ -424,7 +424,7 @@ namespace ET
 
             if (string.IsNullOrEmpty(text))
             {
-                FloatTipManager.Instance.ShowFloatTipDi("请输入道具名字！！！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请输入道具名字！！！"));
                 return;
             }
 
@@ -449,14 +449,14 @@ namespace ET
 
             if (findTypeList.Count <= 0 || findItemIdList.Count <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("不存在该名称的道具，请输入正确的道具名！！！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("不存在该名称的道具，请输入正确的道具名！！！"));
                 return;
             }
 
             long timeNow = TimeHelper.ServerNow();
             if (timeNow - self.SearchTime <= 3000)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("搜索过于频繁！！！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("搜索过于频繁！！！"));
                 return;
             }
 
@@ -472,7 +472,7 @@ namespace ET
             self.ShowPaiMaiList();
             if (self.PaiMaiIteminfos_Now.Count <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("未找到对应拍卖行道具");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("未找到对应拍卖行道具"));
             }
         }
 

@@ -45,8 +45,8 @@ namespace ET
         {
             self.TeamPlayerInfo = teamPlayerInfo;
             self.TextName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
-            self.TextCombat.GetComponent<Text>().text = $"战力：{teamPlayerInfo.Combat}";
-            self.TextLevel.GetComponent<Text>().text = $"等级：{teamPlayerInfo.PlayerLv}";
+            self.TextCombat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("战力：{0}"), teamPlayerInfo.Combat);
+            self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), teamPlayerInfo.PlayerLv);
             
             string occName = "";
             if (teamPlayerInfo.OccTwo != 0)

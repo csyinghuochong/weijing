@@ -78,7 +78,7 @@ namespace ET
             string name = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.StallName;
             if (string.IsNullOrEmpty(name))
             {
-                name = "商品摊位";
+                name = GameSettingLanguge.LoadLocalization("商品摊位");
             }
 
             self.Lab_Name.GetComponent<InputField>().text = name;
@@ -102,7 +102,7 @@ namespace ET
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(name);
             if (mask)
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入！"));
                 return;
             }
 
@@ -147,13 +147,13 @@ namespace ET
             if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
                 //弹出提示
-                FloatTipManager.Instance.ShowFloatTip("请前往主城摆摊!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往主城摆摊!"));
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (UnitHelper.GetUnitListByDis(unit.DomainScene(), unit.Position, UnitType.Npc, 5f).Count > 0)
             {
-                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "摆摊提示", "NPC附近不得摆摊, 是否前往摆摊区域进行摆摊?", () => { self.OnRun(); }).Coroutine();
+                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("摆摊提示"), GameSettingLanguge.LoadLocalization("NPC附近不得摆摊, 是否前往摆摊区域进行摆摊?"), () => { self.OnRun(); }).Coroutine();
                 return;
             }
 
@@ -167,7 +167,7 @@ namespace ET
 
             if (Mathf.Abs(x - stallarea[0]) > distance || Mathf.Abs(z - stallarea[2]) > distance)
             {
-                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "摆摊提示", "是否前往摆摊区域进行摆摊?", () => { self.OnRun(); }).Coroutine();
+                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("摆摊提示"), GameSettingLanguge.LoadLocalization("是否前往摆摊区域进行摆摊?"), () => { self.OnRun(); }).Coroutine();
                 return;
             }
 
@@ -193,7 +193,7 @@ namespace ET
         {
             if (self.PaiMaiItemInfoId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选中道具");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中道具"));
                 return;
             }
 
@@ -203,7 +203,7 @@ namespace ET
                 {
                     if (self.PaiMaiItemInfos[i].UserId != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("数据错误!");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("数据错误!"));
                         return;
                     }
                 }
@@ -235,24 +235,24 @@ namespace ET
         {
             if (self.BagInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选中道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中道具！"));
                 return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             if (itemConfig.IfStopPaiMai == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("此道具禁止上架！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("此道具禁止上架！"));
                 return;
             }
             if (!ComHelp.IsShowPaiMai(itemConfig.ItemType, itemConfig.ItemSubType))
             {
-                FloatTipManager.Instance.ShowFloatTip("此道具不能上架！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("此道具不能上架！"));
                 return;
             }
             if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到最大上架数量！"));
                 return;
             }
 
@@ -387,7 +387,7 @@ namespace ET
 
             //显示上架数量
             int maxNum = GlobalValueConfigCategory.Instance.Get(50).Value2;
-            self.Text_SellTime.GetComponent<Text>().text = "已上架:"  + $"{self.PaiMaiItemInfos.Count}/{maxNum}";
+            self.Text_SellTime.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已上架:")  + $"{self.PaiMaiItemInfos.Count}/{maxNum}";
         }
 
         public static async ETTask OnPointerDown(this UIStallSellComponent self, BagInfo binfo, PointerEventData pdata)

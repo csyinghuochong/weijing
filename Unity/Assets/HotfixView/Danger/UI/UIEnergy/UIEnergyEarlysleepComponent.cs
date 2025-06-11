@@ -54,12 +54,12 @@ namespace ET
 
             if (huor >= 0 && huor <= 7)
             {
-                FloatTipManager.Instance.ShowFloatTip("不在领取时间内！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("不在领取时间内！"));
                 return;
             }
             if (energyComponent.GetRewards[1] == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过该奖励！"));
             }
             else
             {

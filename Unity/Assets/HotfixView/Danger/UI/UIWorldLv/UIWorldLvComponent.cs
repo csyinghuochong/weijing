@@ -60,20 +60,20 @@ namespace ET
             //self.Lab_GanDiName.SetActive(rankingInfo != null);
             if (rankingInfo != null)
             {
-                self.Lab_GanDiName.GetComponent<Text>().text = $"{rankingInfo.PlayerName}({rankingInfo.PlayerLv}级)";
+                self.Lab_GanDiName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}({1}级)"), rankingInfo.PlayerName, rankingInfo.PlayerLv);
             }
             else 
             {
-                self.Lab_GanDiName.GetComponent<Text>().text = "暂无上榜";
+                self.Lab_GanDiName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("暂无上榜");
             }
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            self.Lab_MyLv1.GetComponent<Text>().text = $"你当前的等级：{userInfo.Lv}";
-            self.Lab_MyLv2.GetComponent<Text>().text = $"你当前的等级：{userInfo.Lv}";
+            self.Lab_MyLv1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("你当前的等级：{0}"), userInfo.Lv);
+            self.Lab_MyLv2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("你当前的等级：{0}"), userInfo.Lv);
 
             float expAdd = ComHelp.GetExpAdd(userInfo.Lv, response.ServerInfo);
-            self.Lab_ExpRate.GetComponent<Text>().text = $"可以获得经验加成:{(int)(expAdd*100)}%";
-            self.Lab_ExpAddPro.GetComponent<Text>().text = $"可以获得经验加成{(int)(expAdd * 100)}%";
+            self.Lab_ExpRate.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("可以获得经验加成:{0}%"), (int)(expAdd * 100));
+            self.Lab_ExpAddPro.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("可以获得经验加成:{0}%"), (int)(expAdd * 100));
             self.UpdateDuiHuanTimes();
         }
 
@@ -88,7 +88,7 @@ namespace ET
 
             if (userInfo.Lv < self.ServerInfo.WorldLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("低于世界等级无法兑换");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("低于世界等级无法兑换"));
                 return;
             }
           
@@ -97,13 +97,13 @@ namespace ET
             int costExp = (int)(expCof.UpExp * 0.2f);
             if (userInfo.Exp < costExp)
             {
-                FloatTipManager.Instance.ShowFloatTip("低于20%经验无法兑换");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("低于20%经验无法兑换"));
                 return;
             }
 
             int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "兑换金币",
-                $"是否消耗{costExp}经验兑换{sendGold}金币", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("兑换金币"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}经验兑换{1}金币"), costExp, sendGold), () =>
             {
                 self.RequestExpToGold().Coroutine();
             }, null).Coroutine();
@@ -113,7 +113,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int times = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ExpToGoldTimes);
-            self.Lab_DuiHuanTimes.GetComponent<Text>().text = $"今日兑换次数:{times}";
+            self.Lab_DuiHuanTimes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日兑换次数:{0}"), times);
         }
 
         public static async ETTask RequestExpToGold(this UIWorldLvComponent self)

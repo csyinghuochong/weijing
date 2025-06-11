@@ -82,7 +82,7 @@ namespace ET
             int totalHongBa0 = (int)(v1rechargeNumber / 98);
             if (hongbaoNumber >= totalHongBa0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取完了");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取完了"));
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace ET
             DropHelper.DropIDToDropItem_2(ActivityConfigHelper.HongBaoDropId, rewardItems);
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < rewardItems.Count)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包已满");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包已满"));
                 return;
             }
 

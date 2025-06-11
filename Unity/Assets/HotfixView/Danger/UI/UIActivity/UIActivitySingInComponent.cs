@@ -140,14 +140,14 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeSign) != 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("不满足领取条件");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("不满足领取条件"));
                 return;
             }
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityId);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < ItemHelper.GetNeedCell(activityConfig.Par_2) )
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -162,18 +162,18 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.TotalSignNumber == 30)
             {
-                FloatTipManager.Instance.ShowFloatTip("已领完全部奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已领完全部奖励！"));
                 return;
             }
             long serverNow = TimeHelper.ServerNow();
             if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime))
             {
-                FloatTipManager.Instance.ShowFloatTip("当日奖励已领取！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当日奖励已领取！"));
                 return;
             }
             if (activityComponent.ActivityReceiveIds.Contains(self.ActivityId))
             {
-                FloatTipManager.Instance.ShowFloatTip("当日奖励已领取！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当日奖励已领取！"));
                 return;
             }
 

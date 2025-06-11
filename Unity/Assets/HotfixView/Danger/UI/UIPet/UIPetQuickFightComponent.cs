@@ -96,7 +96,7 @@ namespace ET
 
                 if (TimeHelper.ClientNow() - cdTime < 0)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("出战冷却中！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战冷却中！"));
                     return;
                 }
 
@@ -127,7 +127,7 @@ namespace ET
 
             if (rolePetInfo.PetStatus == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物散步中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物散步中！"));
                 return;
             }
 

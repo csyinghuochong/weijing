@@ -72,7 +72,7 @@ namespace ET
         {
             if (self.ImageFight.activeSelf)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先下阵！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先下阵！"));
                 return;
             }    
 
@@ -110,7 +110,7 @@ namespace ET
             }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.ImageFight.SetActive(fighting);
-            self.TextLv.GetComponent<Text>().text = $"等级: {rolePetInfo.PetLv}";
+            self.TextLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), rolePetInfo.PetLv);
             self.TextName.GetComponent<Text>().text = rolePetInfo.PetName;
         }
     }

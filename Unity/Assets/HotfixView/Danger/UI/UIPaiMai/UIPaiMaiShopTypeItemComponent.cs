@@ -45,7 +45,7 @@ namespace ET
         public static void OnUpdateData(this UIPaiMaiShopTypeItemComponent self, int typeid, int subType)
         {
             self.SubTypeId = subType;
-            self.Lab_TaskName.GetComponent<Text>().text = PaiMaiHelper.Instance.PaiMaiIndexText[subType];
+            self.Lab_TaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(PaiMaiHelper.Instance.PaiMaiIndexText[subType]);
         }
 
         public static void OnClickButtoin(this UIPaiMaiShopTypeItemComponent self)

@@ -154,7 +154,7 @@ namespace ET
             BagInfo equip_2 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip_2, (int)ItemSubTypeEnum.Wuqi);
             if (equip_1 == null || equip_2 == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先在对应位置装备武器！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先在对应位置装备武器！"));
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -305,7 +305,7 @@ namespace ET
                 case 1:
                     if (chengJiuComponent.RandomDrop == 1)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("每日只能获取一次奖励！");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("每日只能获取一次奖励！"));
                         return;
                     }
                     C2M_JingLingDropRequest  request = new C2M_JingLingDropRequest();
@@ -660,7 +660,7 @@ namespace ET
 
         public static void OnEnterCancelButton(this UIMainSkillComponent self)
         {
-            FloatTipManager.Instance.ShowFloatTip("取消技能施法");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("取消技能施法"));
 
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {

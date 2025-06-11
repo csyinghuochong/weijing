@@ -140,7 +140,7 @@ namespace ET
             self.GameObject.SetActive(true);
             if (self.Index == 0 && self.ActivityShowList.Count > 0)
             {
-                self.TextName.GetComponent<Text>().text = self.ActivityShowList[0].Conent;
+                self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.ActivityShowList[0].Conent);
             }
             if (self.Index == 1 && self.ActivityShowList.Count > 0)
             {

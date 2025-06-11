@@ -76,7 +76,7 @@ namespace ET
             if (userInfo.Lv < openLv)
             {
                 self.Difficulty = 1;
-                FloatTipManager.Instance.ShowFloatTip($"{openLv}级开启");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), openLv));
                 return;
             }
 
@@ -111,9 +111,9 @@ namespace ET
             self.ChapterId = chapterId;
 
             int[] openLv = DungeonSectionConfigCategory.Instance.Get(self.ChapterId).OpenLevel;
-            self.NanDu_1_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[0]}级";
-            self.NanDu_2_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[1]}级";
-            self.NanDu_3_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[2]}级";
+            self.NanDu_1_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("激活等级:{0}级"), openLv[0]);
+            self.NanDu_2_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("激活等级:{0}级"), openLv[1]);
+            self.NanDu_3_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("激活等级:{0}级"), openLv[2]);
 
             UserInfo userinfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.OnNanDu_Button(PlayerPrefsHelp.GetChapterDifficulty($"{userinfo.UserId}{self.ChapterId}"));

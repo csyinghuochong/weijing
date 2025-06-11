@@ -38,8 +38,7 @@ namespace ET
             // 阵营胜利奖励
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(100);
             ReferenceCollector refer = self.Rewards.GetComponent<ReferenceCollector>();
-            refer.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                    $"阵营胜利奖励";
+            refer.Get<GameObject>("TextTip").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("阵营胜利奖励");
             UICommonHelper.ShowItemList(globalValueConfig.Value, refer.Get<GameObject>("RewardsListNode"), self, 0.9f);
 
             // 积分奖励
@@ -48,8 +47,7 @@ namespace ET
             {
                 GameObject go = GameObject.Instantiate(self.Rewards);
                 ReferenceCollector re = go.GetComponent<ReferenceCollector>();
-                re.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                        $"{rankRewardConfigs[i].NeedPoint[0]}~{rankRewardConfigs[i].NeedPoint[1]}积分奖励";
+                re.Get<GameObject>("TextTip").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}~{1}积分奖励"), rankRewardConfigs[i].NeedPoint[0], rankRewardConfigs[i].NeedPoint[1]);
                 UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode").gameObject, self, 0.9f);
                 UICommonHelper.SetParent(go, self.RewardsListNode);
             }

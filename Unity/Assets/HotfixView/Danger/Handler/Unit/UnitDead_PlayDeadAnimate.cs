@@ -144,7 +144,7 @@ namespace ET
             if (!SceneConfigHelper.IfCanRevive(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
                 long instanceId = unit.InstanceId;
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该地图不支持复活"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization(GameSettingLanguge.LoadLocalization("该地图不支持复活")));
                 await TimerComponent.Instance.WaitAsync(3000);
                 if (instanceId != unit.InstanceId)
                 {

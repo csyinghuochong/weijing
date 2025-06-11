@@ -61,7 +61,7 @@ namespace ET
         {
             if (self.RolePetInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选中宠物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选中宠物"));
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace ET
             int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到宠物最大数量"));
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace ET
         {
             if (self.RolePetInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选中宠物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选中宠物"));
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace ET
                 self.UIRolePetBagItemComponents[0].OnImage_ItemButton();
             }
 
-            self.TextNumber.text = $"宠物数量： {rolePetInfos.Count}/{GlobalValueConfigCategory.Instance.Get(119).Value2}";
+            self.TextNumber.text = string.Format(GameSettingLanguge.LoadLocalization("宠物数量： {0}/{1}"), rolePetInfos.Count, GlobalValueConfigCategory.Instance.Get(119).Value2);
         }
 
         public static void OnClickPetHandler(this UIRolePetBagComponent self, RolePetInfo rolePetInfo)

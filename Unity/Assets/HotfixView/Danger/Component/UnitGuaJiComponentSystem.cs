@@ -95,7 +95,7 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneId == 101)
             {
-                FloatTipManager.Instance.ShowFloatTip("主城禁止挂机喔,已为你自动移除挂机!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("主城禁止挂机喔,已为你自动移除挂机!"));
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
                 return false;
             }
@@ -103,7 +103,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("体力已经消耗完毕,请确保体力充足喔!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力已经消耗完毕,请确保体力充足喔!"));
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
                 return false;
             };
@@ -280,7 +280,7 @@ namespace ET
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("附近未发现怪物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("附近未发现怪物"));
             }
 
             return;
@@ -307,7 +307,7 @@ namespace ET
                 {
                     //一键出售
                     self.ZoneScene().GetComponent<BagComponent>().RequestOneSell(ItemLocType.ItemLocBag).Coroutine();
-                    HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
+                    HintHelp.GetInstance().ShowHint(GameSettingLanguge.LoadLocalization("背包已满，已自动一键出售道具!"));
                 }
             }
         }

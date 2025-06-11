@@ -26,11 +26,11 @@ namespace ET
             string showText = string.Empty;
             if (skillBuffConfig.buffParameterValue > 0)
             {
-                showText = SkillHelp.BuffFallingFont[skillBuffConfig.buffParameterType].Item1;
+                showText = GameSettingLanguge.LoadLocalization(SkillHelp.BuffFallingFont[skillBuffConfig.buffParameterType].Item1);
             }
             else
             {
-                showText = SkillHelp.BuffFallingFont[skillBuffConfig.buffParameterType].Item2;
+                showText = GameSettingLanguge.LoadLocalization(SkillHelp.BuffFallingFont[skillBuffConfig.buffParameterType].Item2);
             }
 
             if (showText == string.Empty)

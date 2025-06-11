@@ -148,7 +148,7 @@ namespace ET
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "遗忘技能", "遗忘后将可以重新学习其他的生活技能，之前学习的所有技能将重置,请谨慎选择", ()=>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("遗忘技能"), GameSettingLanguge.LoadLocalization("遗忘后将可以重新学习其他的生活技能，之前学习的所有技能将重置,请谨慎选择"), ()=>
             {
                 self.Right.SetActive(false);
                 self.Left.SetActive(false);
@@ -159,7 +159,7 @@ namespace ET
 
         public static void OnBtn_Learn(this UISkillMakeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "学习技能", "可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("学习技能"), GameSettingLanguge.LoadLocalization("可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!"), () =>
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int makeTypenumreic = self.Plan == 1 ? NumericType.MakeType_1 : NumericType.MakeType_2;
@@ -200,7 +200,7 @@ namespace ET
             int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
             if (makeType_1 == makeId || makeType_2 == makeId)
             {
-                FloatTipManager.Instance.ShowFloatTip("该生活技能已学习！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该生活技能已学习！"));
                 return;
             }
 
@@ -260,17 +260,17 @@ namespace ET
             {
                 if (rechargeNumber < needRecharge)
                 {
-                    tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，当前充值金额{rechargeNumber}元";
+                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，当前充值金额{1}元"), needRecharge, rechargeNumber);
                 }
                 else
                 {
-                    tip = $"当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启";
+                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启"), needRecharge);
                 }
-                PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), "开启栏位", tip, () =>
+                PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启栏位"), tip, () =>
                 {
                     if (rechargeNumber < needRecharge)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("充值额度不足！");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("充值额度不足！"));
                     }
                     else
                     {
@@ -281,7 +281,7 @@ namespace ET
                 }, ()=>
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine();
-                }, "开启", "前往充值").Coroutine();
+                }, GameSettingLanguge.LoadLocalization("开启"), GameSettingLanguge.LoadLocalization("前往充值")).Coroutine();
                 return;
             }
 
@@ -342,14 +342,14 @@ namespace ET
             }
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality < equipMakeConfig.CostVitality)
             {
-                FloatTipManager.Instance.ShowFloatTip("活力不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活力不足！"));
                 return;
             }
 
             bool success = self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItems);
             if (!success)
             {
-                FloatTipManager.Instance.ShowFloatTip("材料不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
                 return;
             }
             await NetHelper.RequestEquipMake(self.ZoneScene(), 0, self.MakeId, self.Plan);
@@ -398,7 +398,7 @@ namespace ET
 
             if (equipMakeConfig.ProficiencyValue[0] != 0)
             {
-                self.Lab_ShuLianShow.GetComponent<Text>().text = $"熟练度:{equipMakeConfig.ProficiencyValue[0]}-{equipMakeConfig.ProficiencyValue[1]}点 上限:{equipMakeConfig.ProficiencyMax}点";
+                self.Lab_ShuLianShow.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("熟练度:{0}-{1}点 上限:{2}点"), equipMakeConfig.ProficiencyValue[0], equipMakeConfig.ProficiencyValue[1], equipMakeConfig.ProficiencyMax);
             }
             else 
             {
@@ -409,7 +409,7 @@ namespace ET
             //self.TextVitality.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality.ToString();
             //显示消耗活力
             self.TextVitality.GetComponent<Text>().text = equipMakeConfig.CostVitality.ToString();
-            self.Text_Current.GetComponent<Text>().text = $"当前活力:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality}";
+            self.Text_Current.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前活力:  {0}"), self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality);
 
             int number = 0;
             for (int i = 0; i < itemsList.Length; i++)

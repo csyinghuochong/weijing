@@ -180,7 +180,7 @@ namespace ET
 				typeButtonInfos.Add(new TypeButtonInfo()
 				{
 					TypeId = item.Key,
-					TypeName = $"第{item.Key}章",
+					TypeName = string.Format(GameSettingLanguge.LoadLocalization("第{0}章"), item.Key),
 					typeButtonItems = typeButtonItems
 				});
 			}
@@ -277,7 +277,7 @@ namespace ET
 			int bossId = FirstWinConfigCategory.Instance.Get(firstwinId).BossID;
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
-			self.Text_Lv.GetComponent<Text>().text = "等级:" + monsterConfig.Lv;
+			self.Text_Lv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级:") + monsterConfig.Lv;
 			
 			int[] skillIds = monsterConfig.SkillID;
 			for (int i = 0; i < skillIds.Length; i++)
@@ -335,7 +335,7 @@ namespace ET
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 			bool noupdatestatus = userInfoComponent.GetReviveTime(bossId) > TimeHelper.ServerNow();
 			DateTime dateTime = TimeInfo.Instance.ToDateTime(userInfoComponent.GetReviveTime(bossId));
-			self.Text_UpdateStatus.GetComponent<Text>().text = noupdatestatus ? $"下次刷新时间\n{dateTime.ToString()}" : "(已刷新)";
+			self.Text_UpdateStatus.GetComponent<Text>().text = noupdatestatus ? string.Format(GameSettingLanguge.LoadLocalization("下次刷新时间\n{0}"), dateTime.ToString()) : GameSettingLanguge.LoadLocalization("(已刷新)");
 			self.Text_UpdateStatus.GetComponent<Text>().color = noupdatestatus ? new Color(164f / 255, 66f / 255f, 8f / 255f): new Color(25f/255,180f/255f,25f/255f);
 
 			int killNumber = userInfoComponent.GetMonsterKillNumber( bossId );
@@ -343,19 +343,19 @@ namespace ET
 			BossDevelopment bossDevelopmentNext = ConfigHelper.GetBossDevelopmentById(self.ChapterId, bossDevelopment.Level + 1);
 			if (bossDevelopmentNext == null)
 			{
-                self.Text_BossDevp.GetComponent<Text>().text = $"{bossDevelopment.Name}";
+                self.Text_BossDevp.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(bossDevelopment.Name);
 				self.ImageProgress.GetComponent<Image>().fillAmount = 1f;
             }
 			else
 			{
-                self.Text_BossDevp.GetComponent<Text>().text = $"领主升级: {killNumber}/{bossDevelopmentNext.KillNumber}";
+                self.Text_BossDevp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("领主升级: {0}/{1}"), killNumber, bossDevelopmentNext.KillNumber);
 				self.ImageProgress.GetComponent<Image>().fillAmount = killNumber * 1f / bossDevelopmentNext.KillNumber;
             }
 
-			self.Text_BossExp.GetComponent<Text>().text = $"怪物经验:{1f * bossDevelopment.ExpAdd * monsterConfig.Exp}";
-            self.Text_BossDevpName.text = bossDevelopment.Name;
+			self.Text_BossExp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("怪物经验:{0}"), 1f * bossDevelopment.ExpAdd * monsterConfig.Exp);
+            self.Text_BossDevpName.text = GameSettingLanguge.LoadLocalization(bossDevelopment.Name);
 			long cdTime = (long)(monsterConfig.ReviveTime * 1000 * bossDevelopment.ReviveTimeAdd);
-			self.Text_BossFreshTIme.text = "冷却时间:"+TimeHelper.ShowLeftTime(cdTime);
+			self.Text_BossFreshTIme.text = GameSettingLanguge.LoadLocalization("冷却时间:") + TimeHelper.ShowLeftTime(cdTime);
 
 
             List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);
@@ -391,11 +391,11 @@ namespace ET
 		{
 			if (firstWinInfo != null)
 			{
-				Text_JiSha_1.GetComponent<Text>().text = $"{firstWinInfo.PlayerName} (时间： {TimeInfo.Instance.ToDateTime(firstWinInfo.KillTime).ToString()})";
+				Text_JiSha_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} (时间： {1})"), firstWinInfo.PlayerName, TimeInfo.Instance.ToDateTime(firstWinInfo.KillTime).ToString());
 			}
 			else
 			{
-				Text_JiSha_1.GetComponent<Text>().text = "暂无上榜!";
+				Text_JiSha_1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("暂无上榜!");
 			}
 		}
 	}

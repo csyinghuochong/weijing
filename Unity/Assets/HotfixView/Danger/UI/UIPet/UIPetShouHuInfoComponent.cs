@@ -99,7 +99,7 @@ namespace ET
             }
 
             self.Index = index;
-            self.Text_Name.text = ConfigHelper.PetShouHuAttri[index].Value;
+            self.Text_Name.text = GameSettingLanguge.LoadLocalization(ConfigHelper.PetShouHuAttri[index].Value);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -140,19 +140,19 @@ namespace ET
 
             switch (index) {
                 case 0:
-                    self.Text_Attri.GetComponent<Text>().text = "暴击率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    self.Text_Attri.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("暴击率附加") + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
                     break;
 
                 case 1:
-                    self.Text_Attri.GetComponent<Text>().text = "抗暴率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    self.Text_Attri.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("抗暴率附加") + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
                     break;
 
                 case 2:
-                    self.Text_Attri.GetComponent<Text>().text = "命中率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    self.Text_Attri.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("命中率附加") + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
                     break;
 
                 case 3:
-                    self.Text_Attri.GetComponent<Text>().text = "闪避率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    self.Text_Attri.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("闪避率附加") + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
                     break;
             }
         }

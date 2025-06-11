@@ -61,7 +61,7 @@ namespace ET
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(item[0]), ItemNum = int.Parse(item[1]) }, ItemOperateEnum.None);
                 if (activityV1Info.ChouKa2RewardIds.Contains(i))
                 {
-                    uIItemComponent.Label_ItemName.GetComponent<Text>().text = "已抽取";
+                    uIItemComponent.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已抽取");
                 }
 
                 //uIItemComponent.Label_ItemName.SetActive(false);
@@ -77,7 +77,7 @@ namespace ET
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            self.NumText.GetComponent<Text>().text = $"消耗幸运卷轴:{bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem)}/1";
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗幸运卷轴:{0}/1"), bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem));
         }
 
         public static async ETTask OnOpenBtn(this UIActivityV1ChouKa2Component self)
@@ -85,14 +85,14 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具数量不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具数量不足！"));
                 return;
             }
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.ChouKa2RewardIds.Count >= activityV1Info.ChouKa2ItemList.Split('@').Length)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经抽完");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经抽完"));
                 return;
             }
 
@@ -114,7 +114,7 @@ namespace ET
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.ChouKa2RewardIds.Count < activityV1Info.ChouKa2ItemList.Split('@').Length / 2)
             {
-                FloatTipManager.Instance.ShowFloatTip("未达刷新条件");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达刷新条件"));
                 return;
             }
 

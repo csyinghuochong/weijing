@@ -104,7 +104,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int totalTimes = numericComponent.GetAsInt(NumericType.PetExploreNumber);
-            self.Text_TotalNumber.GetComponent<Text>().text = $"今日累计次数：{totalTimes}";
+            self.Text_TotalNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日累计次数：{0}"), totalTimes);
 
             self.Text_PetExploreLuckly.GetComponent<Text>().text = $"{numericComponent.GetAsInt(NumericType.PetExploreLuckly)}";
         }
@@ -150,17 +150,17 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < choukaType)
             {
-                FloatTipManager.Instance.ShowFloatTip("请预留足够的背包空间！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请预留足够的背包空间！"));
                 return;
             }
             if (bagComponent.GetPetHeXinLeftSpace() < choukaType)
             {
-                FloatTipManager.Instance.ShowFloatTip("请清理一下宠物之核背包！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请清理一下宠物之核背包！"));
                 return;
             }
             if (self.ZoneScene().GetComponent<PetComponent>().RolePetBag.Count >= GlobalValueConfigCategory.Instance.Get(119).Value2)
             {
-                FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请及时清理探索宠物仓库！"));
                 return;
             }
 

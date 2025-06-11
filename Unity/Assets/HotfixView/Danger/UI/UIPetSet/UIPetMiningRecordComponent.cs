@@ -54,7 +54,7 @@ namespace ET
                 gameObject.SetActive(true);
 
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingRecord.MineType );
-                string content = $"玩家 {response.PetMingRecords[i].WinPlayer} {TimeInfo.Instance.ToDateTime(petMingRecord.Time)} 占领了你的{mineBattleConfig.Name}";
+                string content = string.Format(GameSettingLanguge.LoadLocalization("玩家 {0} {1} 占领了你的{2}"), response.PetMingRecords[i].WinPlayer, TimeInfo.Instance.ToDateTime(petMingRecord.Time), mineBattleConfig.Name);
                 gameObject.transform.Find("Text").GetComponent<Text>().text = content;
                 UICommonHelper.SetParent( gameObject, self.BuildingList2 );
             }

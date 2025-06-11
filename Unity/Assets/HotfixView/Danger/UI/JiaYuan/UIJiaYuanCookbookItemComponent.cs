@@ -52,16 +52,16 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             if (jiaYuanComponent.LearnMakeIds_7.Contains(self.MakeItemId))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经学习过该食谱！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经学习过该食谱！"));
                 return;
             }
             if (userInfoComponent.UserInfo.JiaYuanFund < needcost)
             {
-                FloatTipManager.Instance.ShowFloatTip("家园资金不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家园资金不足！"));
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "学习食谱", $"是否消耗{needcost}家园资金学习该食谱?" , ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("学习食谱"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}家园资金学习该食谱?"), needcost) , ()=>
             {
                 self.RequestLearn(self.MakeItemId).Coroutine();
             }, null).Coroutine();

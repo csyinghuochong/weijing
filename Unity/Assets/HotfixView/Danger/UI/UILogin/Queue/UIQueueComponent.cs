@@ -32,7 +32,7 @@ namespace ET
 
         public static void ShowQueueNumber(this UIQueueComponent self, string number)
         {
-            self.TextTime.GetComponent<Text>().text = $"{number}分钟";
+            self.TextTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}分钟"), number);
             self.TextNumber.GetComponent<Text>().text = number;
         }
 

@@ -70,7 +70,7 @@ namespace ET
             int cengshu = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.SeasonTowerId) % 250000;
 
             self.LayerText.GetComponent<Text>().text = $"{cengshu}/10";
-            self.Text_Ceng.GetComponent<Text>().text = $"{cengshu}层";
+            self.Text_Ceng.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}层"), cengshu);
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             List<RankSeasonTowerInfo> rankList = response.RankList;
             for (int i = 0; i < rankList.Count; i++)
@@ -84,7 +84,7 @@ namespace ET
                 {
                     //NumericType.SeasonTowerId 当前通关的塔ID
                     self.TimeText.GetComponent<Text>().text =
-                            $"{rankList[i].TotalTime / 3600000}小时{rankList[i].TotalTime % 3600000 / 60000}分{rankList[i].TotalTime % 3600000 % 60000 / 1000}秒";
+                            string.Format(GameSettingLanguge.LoadLocalization("{0}小时{1}分{2}秒"), rankList[i].TotalTime / 3600000, rankList[i].TotalTime % 3600000 / 60000, rankList[i].TotalTime % 3600000 % 60000 / 1000);
                 }
 
                 GameObject go = UnityEngine.Object.Instantiate(self.UISeasonTowerRankItem);

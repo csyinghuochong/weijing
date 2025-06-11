@@ -83,18 +83,18 @@ namespace ET
 
             if (refreshtime >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("今日次数不足!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日次数不足!"));
                 return;
             }
             if (jiayuanzijin < needzijin)
             {
-                FloatTipManager.Instance.ShowFloatTip("家园资金不足!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家园资金不足!"));
                 return;
             }
 
             if (needzijin > 0)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家园刷新", $"是否花费{needzijin}家园资金刷新", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("家园刷新"), string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}家园资金刷新"), needzijin), () =>
                 {
                     self.RquestFresh().Coroutine();
                 }, null).Coroutine();
@@ -161,7 +161,7 @@ namespace ET
             {
                 cdTime = 24 * 60 * 60 - curTime;
             }
-            self.Text_Time.GetComponent<Text>().text = $"刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
+            self.Text_Time.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("刷新倒计时: {0}"), TimeHelper.ShowLeftTime(cdTime * 1000));
         }
 
         public static void OnUpdateItem(this UIJiaYuanPurchaseComponent self)

@@ -33,32 +33,32 @@ namespace ET
 
             if (!StringHelper.IsSpecialChar(account))
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入账号！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入账号！"));
                 return;
             }
             int length = account.Length;
             if (length < 5|| length > 20)
             {
-                FloatTipManager.Instance.ShowFloatTip("账号长度为5-20！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("账号长度为5-20！"));
                 return;
             }
 
             if (!StringHelper.IsSpecialChar(password))
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入密码！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入密码！"));
                 return;
             }
             length = password.Length;
             if (length < 5 || length > 20)
             {
-                FloatTipManager.Instance.ShowFloatTip("密码长度为5-20！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("密码长度为5-20！"));
                 return;
             }
 
             int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password);
             if (errorCode == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("注册成功！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("注册成功！"));
                 UIHelper.Remove(self.ZoneScene(), UIType.UIRegister);
             }
         }

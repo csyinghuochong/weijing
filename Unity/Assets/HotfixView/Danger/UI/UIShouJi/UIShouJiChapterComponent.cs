@@ -100,22 +100,22 @@ namespace ET
             }
             if ((shouJiChapterInfo.RewardInfo & 1 << index) > 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("奖励已领取！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("奖励已领取！"));
                 return;
             }
             if (index == 1 && shouJiChapterInfo.StarNum < shouJiConfig.ProList1_StartNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件不足！"));
                 return;
             }
             if (index == 2 && shouJiChapterInfo.StarNum < shouJiConfig.ProList2_StartNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件不足！"));
                 return;
             }
             if (index == 3 && shouJiChapterInfo.StarNum < shouJiConfig.ProList3_StartNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件不足！"));
                 return;
             }
           

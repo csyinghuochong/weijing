@@ -147,7 +147,7 @@ namespace ET
         public static void UpdateHurtValue(this UIPetMainComponent self, long unitId)
         { 
             PetBattleInfo petBattleInfo = self.PetBattleList[unitId];
-            self.PetBattleList[unitId].Text.text = $"造成伤害:{petBattleInfo.hurt} 承受伤害:{petBattleInfo.receive}";
+            self.PetBattleList[unitId].Text.text = string.Format(GameSettingLanguge.LoadLocalization("造成伤害:{0} 承受伤害:{1}"), petBattleInfo.hurt, petBattleInfo.receive);
         }
 
         public static void InitHpList(this UIPetMainComponent self)

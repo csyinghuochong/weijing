@@ -52,11 +52,11 @@ namespace ET
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             if (message.BattleResult == CombatResultEnum.Fail)
             {
-                self.Text_Ceng.GetComponent<Text>().text = $"挑战失败";
+                self.Text_Ceng.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战失败");
             }
             else
             {
-                self.Text_Ceng.GetComponent<Text>().text = $"你当前成功完成挑战{towerConfig.CengNum}波,获得奖励如下:";
+                self.Text_Ceng.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("你当前成功完成挑战{0}波,获得奖励如下:"), towerConfig.CengNum);
             }
 
             string rewardList = $"1;{message.RewardGold}@2;{message.RewardExp}";

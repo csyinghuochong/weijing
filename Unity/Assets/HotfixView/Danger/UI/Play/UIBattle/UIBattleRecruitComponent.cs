@@ -91,8 +91,7 @@ namespace ET
                 }
             }
 
-            self.CurrentNumberText.GetComponent<Text>().text =
-                    $"当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
+            self.CurrentNumberText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前召唤人口:{0}/{1}"), BattleHelper.GetSummonNumber(response.BattleSummonList), int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value));
 
             // 开启定时刷新
             self.UpdateUI().Coroutine();
@@ -137,7 +136,7 @@ namespace ET
             BattleSummonConfig battleSummonConfig = BattleSummonConfigCategory.Instance.Get(battleSummonConfigId);
             if (cursummonnumber + battleSummonConfig.MonsterNumber > int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value))
             {
-                FloatTipManager.Instance.ShowFloatTip("人口不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("人口不足！"));
                 return;
             }
 
@@ -145,7 +144,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Gold < costgold)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 
@@ -155,11 +154,10 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip($"召唤{battleSummonConfig.ItemName}成功!");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("召唤{0}成功!"), battleSummonConfig.ItemName));
             }
             
-            self.CurrentNumberText.GetComponent<Text>().text =
-                    $"当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
+            self.CurrentNumberText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前召唤人口:{0}/{1}"), BattleHelper.GetSummonNumber(response.BattleSummonList), int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value));
 
             for (int i = 0; i < response.BattleSummonList.Count; i++)
             {

@@ -75,7 +75,7 @@ namespace ET
             {
                 self.Button_List[i].SetActive(false);
             }
-            self.TextTip.GetComponent<Text>().text = "今日已答完全部问题,请明日再来!";
+            self.TextTip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("今日已答完全部问题,请明日再来!");
             self.TextQuestion.GetComponent<Text>().text = "";
             self.ItemNodeList.SetActive(false);
         }
@@ -85,7 +85,7 @@ namespace ET
             int questionId = self.EnergyComponent.QuestionList[self.EnergyComponent.QuestionIndex];
             self.QuestionBankConfig = QuestionBankConfigCategory.Instance.Get(questionId);
 
-            self.TextTip.GetComponent<Text>().text = $"当前问答题{self.EnergyComponent.QuestionIndex + 1}/{self.EnergyComponent.QuestionList.Count}";
+            self.TextTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前问答题{0}/{1}"), self.EnergyComponent.QuestionIndex + 1, self.EnergyComponent.QuestionList.Count);
             self.TextQuestion.GetComponent<Text>().text = self.QuestionBankConfig.Question;
 
             string answerRight = self.QuestionBankConfig.Right;
@@ -110,17 +110,17 @@ namespace ET
             int QusetionValue = 0;
             if (self.RightIndex != index)
             {
-                FloatTipManager.Instance.ShowFloatTip("答错了！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("答错了！"));
             }
             else {
-                FloatTipManager.Instance.ShowFloatTip("回答正确,获得奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("回答正确,获得奖励！"));
                 QusetionValue = 1;
             }
 
             self.EnergyComponent.QuestionIndex++;
             if (self.EnergyComponent.QuestionIndex >= self.EnergyComponent.QuestionList.Count)
             {
-                FloatTipManager.Instance.ShowFloatTip("已答完全部题目");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已答完全部题目"));
                 self.ShowAnswerEndUI();
             }
             else

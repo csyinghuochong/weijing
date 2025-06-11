@@ -113,25 +113,25 @@ namespace ET
         public static string ZhuaPuProToStr(int par)
         {
             float pro = (float)par / 10000f;
-            string str = "抓捕难度:";
+            string str = GameSettingLanguge.LoadLocalization("抓捕难度:");
             if (pro <= 0.05f) {
-                str += "万里挑一";
+                str += GameSettingLanguge.LoadLocalization("万里挑一");
             }
             if (pro > 0.05f && pro <= 0.1f)
             {
-                str += "千载难逢";
+                str += GameSettingLanguge.LoadLocalization("千载难逢");
             }
             if (pro > 0.1f && pro <= 0.2f)
             {
-                str += "百不一遇";
+                str += GameSettingLanguge.LoadLocalization("百不一遇");
             }
             if (pro > 0.2f && pro <= 0.3f)
             {
-                str += "一般";
+                str += GameSettingLanguge.LoadLocalization("一般");
             }
             if (pro > 0.3f)
             {
-                str += "容易";
+                str += GameSettingLanguge.LoadLocalization("容易");
             }
             return str;
         }

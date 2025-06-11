@@ -83,7 +83,7 @@ namespace ET
             {
                 self.FightTime = 1;
             }
-            self.TextHurt.text = $"伤害总值:{ self.HurtValue}\n伤害秒值:{(int)((float)self.HurtValue / self.FightTime)}";
+            self.TextHurt.text = string.Format(GameSettingLanguge.LoadLocalization("伤害总值:{0}\n伤害秒值:{1}"), self.HurtValue, (int)((float)self.HurtValue / self.FightTime));
         }
 
         public static void BeginTimer(this UITrialMainComponent self)
@@ -109,7 +109,7 @@ namespace ET
             }
             self.LastTiaoZhan = TimeHelper.ServerNow();
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(),"系统提示", "是否重新开始挑战,开始后倒计时和怪物生命将自动初始化", () => 
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("是否重新开始挑战,开始后倒计时和怪物生命将自动初始化"), () => 
             {
                 self.RequestTiaozhan().Coroutine();
             }, null).Coroutine();
@@ -147,12 +147,12 @@ namespace ET
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
 
-                self.TextCoundown.GetComponent<Text>().text = $"未能在60秒内击败怪物,请点击重新挑战";
+                self.TextCoundown.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未能在60秒内击败怪物,请点击重新挑战");
 
                 return;
             }
 
-            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {leftTime - 1}";
+            self.TextCoundown.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("倒计时 {0}"), leftTime - 1);
             self.FightTime++;
         }
     }

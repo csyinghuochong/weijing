@@ -233,7 +233,8 @@ namespace ET
             }
             string hintStr = code.ToString();
             ErrorHintList.TryGetValue(code, out hintStr);
-            return hintStr;
+            
+            return GameSettingLanguge.LoadLocalization(hintStr);
         }
 
         public void ErrorHint(int code) 
@@ -250,7 +251,7 @@ namespace ET
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTipDi(hintStr);
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(hintStr));
             }
         }
 

@@ -198,7 +198,7 @@ namespace ET
             if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + itemConfig.ItemName, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
@@ -226,12 +226,12 @@ namespace ET
                 BagInfo costbaginfo = bagComponent.GetBagInfo(appraisalItem);
                 if (costbaginfo == null)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                     return;
                 }
 
                 string costitem = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启封印", $"是否消耗{costitem}开启封印?", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启封印"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}开启封印?"), costitem), () =>
                 {
                     bagComponent.SendAppraisalItem(self.BagInfo, costbaginfo.BagInfoID).Coroutine();
                     self.OnCloseTips();
@@ -278,24 +278,24 @@ namespace ET
             int itemType = itemconf.ItemType;
             int itemSubType = itemconf.ItemSubType;
             //类型描述
-            string itemTypename = "消耗品";
+            string itemTypename = GameSettingLanguge.LoadLocalization("消耗品");
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
-            self.ItemType.GetComponent<Text>().text =  "类型:" + itemTypename;
+            self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + itemTypename;
             if (itemconf.ItemEquipID != 0 && itemconf.EquipType != 201)
             {
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID).AppraisalItem;
                 if (appraisalItem != 0)
                 {
-                    string tip_1 = itemconf.EquipType == 101 ? "封印生肖" : "进行鉴定";
+                    string tip_1 = itemconf.EquipType == 101 ? GameSettingLanguge.LoadLocalization("封印生肖") : GameSettingLanguge.LoadLocalization("进行鉴定");
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#EA8EF9>{jiandingName}</color>{tip_1}";
+                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗<color=#EA8EF9>{0}</color>{1}"), jiandingName, tip_1);
                 }
             }
 
             if (baginfo.MakePlayer != "" && baginfo.MakePlayer != null)
             {
                 self.Lab_ItemMake.SetActive(true);
-                self.Lab_ItemMake.GetComponent<Text>().text = $"此装备由<color=#805100>{self.BagInfo.MakePlayer}</color>打造";
+                self.Lab_ItemMake.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("此装备由<color=#805100>{0}</color>打造"), self.BagInfo.MakePlayer);
             }
             else {
                 self.Lab_ItemMake.GetComponent<Text>().text = "";
@@ -310,8 +310,8 @@ namespace ET
                 string textEquipSonType = ItemViewHelp.GetEquipTypeShow(itemconf.EquipType);
 
                 //121211 <color=#AFFF06>颜色</color>
-                equipType =  $"<color=#AFFF06>    类型:{textEquipSonType}</color>";
-                self.ItemType.GetComponent<Text>().text = "部位:" + textEquipType;
+                equipType =  string.Format(GameSettingLanguge.LoadLocalization("<color=#AFFF06>    类型:{0}</color>"), textEquipSonType);
+                self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("部位:") + textEquipType;
             }
 
             string Text_ItemDes = itemconf.ItemDes;
@@ -374,7 +374,7 @@ namespace ET
             self.Img_FengYin.SetActive( itemconf.EquipType == 101 );
             UICommonHelper.SetImageGray(self.Obj_ItemIcon, true);
 
-            self.ItemDes.GetComponent<Text>().text = itemconf.EquipType == 101 ? "封印生肖" : "未鉴定装备";
+            self.ItemDes.GetComponent<Text>().text = itemconf.EquipType == 101 ? GameSettingLanguge.LoadLocalization("封印生肖") : GameSettingLanguge.LoadLocalization("未鉴定装备");
             // 赛季晶核
             if (itemType == 3 && itemconf.EquipType == 201)
             {
@@ -387,7 +387,7 @@ namespace ET
                     qua = 5;
                 }
                 string colorValue = ItemViewHelp.QualityReturnColorUI(qua);
-                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = $"当前品质:{baginfo.ItemPar}";
+                self.Lab_ItemJingHeQuality.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前品质:{0}"), baginfo.ItemPar);
                 //self.Lab_ItemJingHeQuality.AddComponent<Outline>();
                 // 属性显示itemConfig.ItemUsePar
                 string attribute = "";
@@ -429,7 +429,7 @@ namespace ET
                 self.Lab_ItemJingHeProperty.GetComponent<Text>().text = attribute;
             }
 
-            self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? "开启封印" : "鉴定";
+            self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? GameSettingLanguge.LoadLocalization("开启封印") : GameSettingLanguge.LoadLocalization("鉴定");
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconf.ItemQuality);
             string path3 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, ItemQuality);

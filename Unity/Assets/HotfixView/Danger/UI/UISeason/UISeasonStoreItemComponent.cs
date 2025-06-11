@@ -65,7 +65,7 @@ namespace ET
 
             if (glod < storeSellConfig.SellValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("货币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("货币不足！"));
                 return;
             }
 

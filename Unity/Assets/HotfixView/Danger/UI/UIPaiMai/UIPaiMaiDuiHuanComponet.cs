@@ -110,7 +110,7 @@ namespace ET
 
             if (num > 0 && diamondsNumber >= 10000)
             {
-                FloatTipManager.Instance.ShowFloatTip("兑换单次最多兑换10000钻石哦！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("兑换单次最多兑换10000钻石哦！"));
                 return;
             }
 
@@ -134,7 +134,7 @@ namespace ET
 
             if (num > 0 && diamondsNumber>=10000)
             {
-                FloatTipManager.Instance.ShowFloatTip("兑换单次最多兑换10000钻石哦！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("兑换单次最多兑换10000钻石哦！"));
                 return;
             }
 
@@ -158,14 +158,14 @@ namespace ET
             long diamondsNumber = long.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < diamondsNumber)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石不足！"));
                 return;
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("为保证游戏内金币保值，充值任意额度后激活此功能！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值，充值任意额度后激活此功能！"));
                 return;
             }
 
@@ -178,14 +178,14 @@ namespace ET
             long diamondsNumber = long.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < diamondsNumber)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石不足！"));
                 return;
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("为保证游戏内金币保值，充值任意额度后激活此功能！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值，充值任意额度后激活此功能！"));
                 return;
             }
 

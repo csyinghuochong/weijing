@@ -66,7 +66,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
-            self.Text_ChouKaNumber.GetComponent<Text>().text = $"(兑换次数: {leftTime}/20)";
+            self.Text_ChouKaNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("(兑换次数: {0}/20)"), leftTime);
         }
 
         public static void UpdateMoney(this UIPetChouKaComponent self)
@@ -109,7 +109,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (petComponent.RolePetBag.Count >= GlobalValueConfigCategory.Instance.Get(119).Value2)
             {
-                FloatTipManager.Instance.ShowFloatTip("请及时清理探索宠物仓库！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请及时清理探索宠物仓库！"));
                 return;
             }
             // Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -152,7 +152,7 @@ namespace ET
 
         public static void BtnChouKaProHint(this UIPetChouKaComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.DomainScene(), "概率提示", "大众 55% 优秀 25 % 百里挑一 14 % 千载难逢 5 % 万里挑一 1 % ", null).Coroutine();
+            PopupTipHelp.OpenPopupTip_2(self.DomainScene(), GameSettingLanguge.LoadLocalization("概率提示"), GameSettingLanguge.LoadLocalization("大众 55% 优秀 25 % 百里挑一 14 % 千载难逢 5 % 万里挑一 1 % "), null).Coroutine();
         }
     }
 

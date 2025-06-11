@@ -70,7 +70,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (petComponent.PetCangKuOpen.Contains(self.Index - 1))
             {
-                FloatTipManager.Instance.ShowFloatTip("已开启！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已开启！"));
                 return;
             }
             int jiayuanlv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
@@ -78,14 +78,14 @@ namespace ET
             int petNum = jiaYuanConfig.PetNum;
             if (petNum <= petComponent.PetCangKuOpen.Count)
             {
-                FloatTipManager.Instance.ShowFloatTip("家园等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家园等级不足！"));
                 return;
             }
             
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
 
             string costdesc = UICommonHelper.GetNeedItemDesc(costitem);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物仓库", $"是否花费{costdesc}开启宠物仓库?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("宠物仓库"), string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}开启宠物仓库?"), costdesc), () =>
             {
                 self.RequestOpenCangKu().Coroutine();
             }, null).Coroutine();
@@ -96,7 +96,7 @@ namespace ET
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
             {
-                FloatTipManager.Instance.ShowFloatTip("家园资金不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家园资金不足！"));
                 return;
             }
             
@@ -128,7 +128,7 @@ namespace ET
             int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
             if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物格子不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物格子不足！"));
                 return;
             }
 
@@ -158,7 +158,7 @@ namespace ET
             if (petNum < index || !petComponent.PetCangKuOpen.Contains(index - 1))
             {
                 int openlv = PetHelper.GetCangKuOpenLv(index);
-                self.Text_Name.GetComponent<Text>().text = $"{JiaYuanConfigCategory.Instance.Get(openlv).Lv}级开启";
+                self.Text_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), JiaYuanConfigCategory.Instance.Get(openlv).Lv);
                 self.ButtonOpen.SetActive(true);
                 self.ButtonQuHui.SetActive(false);
                 return;

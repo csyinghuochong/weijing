@@ -151,11 +151,11 @@ namespace ET
 
                 if (minExp == maxExp)
                 {
-                    self.Text_Zhuru_Exp.text = $"本次注入预计获得{minExp}经验";
+                    self.Text_Zhuru_Exp.text = string.Format(GameSettingLanguge.LoadLocalization("本次注入预计获得{0}经验"), minExp);
                 }
                 else
                 {
-                    self.Text_Zhuru_Exp.text = $"本次注入预计获得{minExp}-{maxExp}经验";
+                    self.Text_Zhuru_Exp.text = string.Format(GameSettingLanguge.LoadLocalization("本次注入预计获得{0}-{1}经验"), minExp, maxExp);
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace ET
 
             if (curLv == maxLv)
             { 
-                self.Text_Progess.GetComponent<Text>().text = $"已满级";
+                self.Text_Progess.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已满级");
             }
             else
             {
@@ -279,7 +279,7 @@ namespace ET
                 int culv = skillSetComponent.GetLifeShieldLevel(self.ShieldType);
                 if (hplv <= culv)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请先升级生命之魂！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先升级生命之魂！"));
                     return;
                 }
             }
@@ -290,7 +290,7 @@ namespace ET
                 BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(costs[i]);
                 if (bagInfo == null)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("数据异常！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("数据异常！"));
                     return;
                 }
 
@@ -303,7 +303,7 @@ namespace ET
 
             if (havegreen)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "有橙色装备，是否要继续注入?", ()=>
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("有橙色装备，是否要继续注入?"), ()=>
                 {
                     self.RequestZhuru(self.ShieldType, costs).Coroutine();
                 }, null).Coroutine();
@@ -320,7 +320,7 @@ namespace ET
             M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.AddExp > 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("注入成功!本次增加" + response.AddExp + "点魂值");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("注入成功!本次增加{0}点魂值"), response.AddExp));
             }
             self.ZoneScene().GetComponent<SkillSetComponent>().LifeShieldList = response.ShieldList;
             self.OnClickShieldHandler(self.ShieldType);

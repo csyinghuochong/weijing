@@ -72,23 +72,23 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<PetComponent>().RolePetInfos.Count < 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("最少有3个宠物才可以开启合成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("最少有3个宠物才可以开启合成！"));
                 return;
             }
             if (self.HeChengPet_Left == null || self.HeChengPet_Right == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择要合成的宠物！"));
                 return;
             }
             if (PetHelper.IsShenShou(self.HeChengPet_Left.ConfigId)
                 || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能合成！"));
                 return;
             }
             if (PetHelper.HavePetHeXin(self.HeChengPet_Left) || PetHelper.HavePetHeXin(self.HeChengPet_Right)  )
             {
-                FloatTipManager.Instance.ShowFloatTip("请先卸下宠物之核！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先卸下宠物之核！"));
                 return;
             }
 
@@ -109,10 +109,10 @@ namespace ET
                     break;
                 }
             }
-            string addStr = havepetHexin ? "当前放入的宠物身上穿戴了宠物之核，融合后会消失," : "";
+            string addStr = havepetHexin ? GameSettingLanguge.LoadLocalization("当前放入的宠物身上穿戴了宠物之核，融合后会消失,") : "";
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物合成",
-                $"合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{addStr}</color> 请确认是否执行合成",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("宠物合成"),
+                string.Format(GameSettingLanguge.LoadLocalization("合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{0}</color> 请确认是否执行合成"), addStr),
                 () => {
                     self.ReqestHeCheng().Coroutine();
                 }).Coroutine();
@@ -122,13 +122,13 @@ namespace ET
         {
             if (self.HeChengPet_Left == null || self.HeChengPet_Right == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择要合成的宠物！"));
                 return;
             }
             if (PetHelper.IsShenShou(self.HeChengPet_Left.ConfigId)
                 || PetHelper.IsShenShou(self.HeChengPet_Right.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能合成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能合成！"));
                 return;
             }
 

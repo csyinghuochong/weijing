@@ -64,11 +64,11 @@ namespace ET
             self.Lab_TaskName.GetComponent<Text>().text = SpiritConfig.Name;
             if (complete)
             {
-                self.Lab_ProValue.GetComponent<Text>().text ="进度:0/1";
+                self.Lab_ProValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度:0/1");
             }
             else
             {
-                self.Lab_ProValue.GetComponent<Text>().text = "进度:1/1";
+                self.Lab_ProValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度:1/1");
             }
             self.Ima_CompleteTask.SetActive(complete);
 

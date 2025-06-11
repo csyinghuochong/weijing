@@ -177,23 +177,23 @@ namespace ET
             if (self.SelectDifficulty == FubenDifficulty.Normal)
             {
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-                self.EnterContion_1_Text.GetComponent<Text>().text = "进入等级:" + chapterConfig.EnterLv.ToString();
+                self.EnterContion_1_Text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进入等级:") + chapterConfig.EnterLv.ToString();
                 self.EnterContion_1_OK.SetActive(userInfo.Lv >= chapterConfig.EnterLv);
-                self.ErrorString = (userInfo.Lv < chapterConfig.EnterLv) ?  "等级不足！" : "";
+                self.ErrorString = (userInfo.Lv < chapterConfig.EnterLv) ?  GameSettingLanguge.LoadLocalization("等级不足！") : "";
                 selectParent = self.Nandu1_Button.transform.parent.gameObject;
             }
             if (self.SelectDifficulty == FubenDifficulty.TiaoZhan)
             {
-                self.EnterContion_1_Text.GetComponent<Text>().text = "普通模式通关副本";
+                self.EnterContion_1_Text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("普通模式通关副本");
                 self.EnterContion_1_OK.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= 1);
-                self.ErrorString = (!self.EnterContion_1_OK.activeSelf) ? "请先通关普通模式副本！" : "";
+                self.ErrorString = (!self.EnterContion_1_OK.activeSelf) ? GameSettingLanguge.LoadLocalization("请先通关普通模式副本！") : "";
                 selectParent = self.Nandu2_Button.transform.parent.gameObject;
             }
             if (self.SelectDifficulty == FubenDifficulty.DiYu)
             {
-                self.EnterContion_1_Text.GetComponent<Text>().text = "挑战模式通关副本";
+                self.EnterContion_1_Text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战模式通关副本");
                 self.EnterContion_1_OK.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= 2);
-                self.ErrorString = (!self.EnterContion_1_OK.activeSelf) ? "请先通关挑战模式副本！" : "";
+                self.ErrorString = (!self.EnterContion_1_OK.activeSelf) ? GameSettingLanguge.LoadLocalization("请先通关挑战模式副本！") : "";
                 selectParent = self.Nandu3_Button.transform.parent.gameObject;
             }
 

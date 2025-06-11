@@ -89,20 +89,20 @@ namespace ET
 
             if (selects.Count == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择道具！"));
                 return;
             }
 
             if (number + selects.Count > shouJiItemConfig.AcitveNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("吞噬数量超出！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("吞噬数量超出！"));
                 return;
             }
 
 
             if (havegem)
             {
-                PopupTipHelp.OpenPopupTip(  self.ZoneScene(), "系统提示", "装备有橙色宝石，是否继续？" , ()=>
+                PopupTipHelp.OpenPopupTip(  self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("装备有橙色宝石，是否继续？") , ()=>
                 {
                     self.RequestShouJiTreasure(selects, self.ShouJIId).Coroutine();
                 }).Coroutine();

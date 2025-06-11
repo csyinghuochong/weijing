@@ -506,7 +506,7 @@ namespace ET
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
             if (self.NpcId == 40000003)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "神秘之门","是否前往神秘之门？", ()=>
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("神秘之门"), GameSettingLanguge.LoadLocalization("是否前往神秘之门？"), ()=>
                 {
                     int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
                     int chapterid = DungeonConfigCategory.Instance.DungeonToChapter[sceneId];
@@ -516,7 +516,7 @@ namespace ET
             }
             else if (self.NpcId == 40000004)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "返回副本", GameSettingLanguge.LoadLocalization("是否返回副本!"),
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("返回副本"), GameSettingLanguge.LoadLocalization("是否返回副本!"),
                     () =>
                     {
                         int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
@@ -592,7 +592,7 @@ namespace ET
             if (obstruct != 0)
             {
                 string monsterName = MonsterConfigCategory.Instance.Get(obstruct).MonsterName;
-                FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
                 return -1;
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;

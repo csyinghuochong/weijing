@@ -44,13 +44,13 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa) < self.TakeCardRewardConfig.RoseLvLimit)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件未达到！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件未达到！"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < self.TakeCardRewardConfig.RewardItems.Split('@').Length)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace ET
             }, ItemOperateEnum.None);
 
             self.TextZuanshi.GetComponent<Text>().text = $"{takeCardRewardConfig.RewardDiamond[0]}-{takeCardRewardConfig.RewardDiamond[1]}";
-            self.TextNeedTimes.GetComponent<Text>().text = $"抽卡次数达到{takeCardRewardConfig.RoseLvLimit}次";
+            self.TextNeedTimes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("抽卡次数达到{0}次"), takeCardRewardConfig.RoseLvLimit);
 
             self.UpdateButton();
         }

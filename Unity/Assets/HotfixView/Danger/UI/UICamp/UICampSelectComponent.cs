@@ -40,7 +40,7 @@ namespace ET
                 self.RequestCampSelect(campId).Coroutine(); 
                 return;
             }
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "更改阵营", "是否花费200钻石更改阵营?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("更改阵营"), GameSettingLanguge.LoadLocalization("是否花费200钻石更改阵营?"), () =>
             {
                 self.RequestCampSelect(campId).Coroutine();
             }, null).Coroutine();

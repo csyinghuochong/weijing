@@ -94,29 +94,29 @@ namespace ET
             {
                 self.Lab_PetName.GetComponent<Text>().text = PetUpInfo.PetName;
                 int fightNum = PetHelper.PetPingJia(PetUpInfo);
-                self.Lab_PetNum.GetComponent<Text>().text = "评分:" +  fightNum.ToString();
+                self.Lab_PetNum.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("评分:") +  fightNum.ToString();
 
                 if (fightNum <= 3000)
                 {
-                    self.Label_JianDingShow.GetComponent<Text>().text = "一般";
+                    self.Label_JianDingShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("一般");
                     self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(1);
                 }
 
                 if (fightNum <= 5000)
                 {
-                    self.Label_JianDingShow.GetComponent<Text>().text = "较好";
+                    self.Label_JianDingShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("较好");
                     self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(2);
                 }
 
                 if (fightNum <= 7000)
                 {
-                    self.Label_JianDingShow.GetComponent<Text>().text = "极好";
+                    self.Label_JianDingShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("极好");
                     self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(3);
                 }
 
                 if (fightNum > 7000)
                 {
-                    self.Label_JianDingShow.GetComponent<Text>().text = "完美";
+                    self.Label_JianDingShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("完美");
                     self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(4);
                 }
             }
@@ -133,7 +133,7 @@ namespace ET
         {
 
             if (self.PetXianjiId <= 0) {
-                FloatTipManager.Instance.ShowFloatTip("请放入对应祭品宠物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请放入对应祭品宠物"));
                 return;
             }
 
@@ -141,20 +141,20 @@ namespace ET
 
             if (PetHelper.IsShenShou(xianjiPetUpInfo.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能作为祭品宠物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能作为祭品宠物"));
                 return;
             }
 
             if (xianjiPetUpInfo.PetHeXinList.Any(l => l != 0))
             {
-                FloatTipManager.Instance.ShowFloatTip("请拆下祭品宠物身上的核心");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请拆下祭品宠物身上的核心"));
                 return;
             }
             
             RolePetInfo oldPetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetUpId);
             if (PetHelper.IsShenShou(oldPetUpInfo.ConfigId))
             {
-                FloatTipManager.Instance.ShowFloatTip("神兽不能进化");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能进化"));
                 return;
             }
 

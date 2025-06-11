@@ -71,7 +71,7 @@ namespace ET
         public static void Check(this UICellDungeonReviveComponent self, int leftTime)
         {
             self.LeftTime = leftTime;
-            self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", leftTime);
+            self.Text_ExitTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}秒后退出副本"), leftTime);
             if (leftTime <= 0)
             {
                 self.OnAuto_Exit();
@@ -124,14 +124,14 @@ namespace ET
                 self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum;
                 self.Text_Cost.GetComponent<Text>().color = Color.green;
             }
-            else 
+            else
             {
-                self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum + "("+"道具不足"+")";
+                self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum + "(" + GameSettingLanguge.LoadLocalization("道具不足") + ")";
                 self.Text_Cost.GetComponent<Text>().color = Color.yellow;
             }
 
             if (self.SceneType != SceneTypeEnum.LocalDungeon) {
-                self.Text_ExitDes.GetComponent<Text>().text = "返回出生点";
+                self.Text_ExitDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("返回出生点");
             }
         }
 
@@ -142,12 +142,12 @@ namespace ET
             bool success = bagComponent.CheckNeedItem(reviveCost);
             if (!success)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
             if (self.SceneType == SceneTypeEnum.UnionRace)
             {
-                FloatTipManager.Instance.ShowFloatTip("不支持复活");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("不支持复活"));
                 return;
             }
 
@@ -181,11 +181,11 @@ namespace ET
                 {
                     if (self.SceneType == SceneTypeEnum.LocalDungeon)
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回主城！");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0}秒后可返回主城！"), self.LeftTime));
                     }
-                    else 
+                    else
                     {
-                        FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回出生点！");
+                        FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0}秒后可返回出生点！"), self.LeftTime));
                     }
                 }
                 else

@@ -66,12 +66,12 @@ namespace ET
         public static void OnBtn_ZhengLi(this UIRoleBagComponent self)
         {
             self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc(ItemLocType.ItemLocBag).Coroutine();
-            FloatTipManager.Instance.ShowFloatTip("背包已整理完毕");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包已整理完毕"));
         }
 
         public static  void OnBtn_OneSell(this UIRoleBagComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "一键出售", "是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择"), ()=>
             {
                 self.RequestOneSell().Coroutine();
             }, null).Coroutine();
@@ -82,7 +82,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("请至少预留一个格子");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请至少预留一个格子"));
                 return;
             }
 
@@ -118,11 +118,11 @@ namespace ET
             if (costgold <= 0)
             {
 
-                FloatTipManager.Instance.ShowFloatTip("当前背包暂无可合成宝石");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前背包暂无可合成宝石"));
                 return;
             }
             //{costvitality}活力
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "合成宝石", $"一键合成消耗{costgold}金币", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("合成宝石"), string.Format(GameSettingLanguge.LoadLocalization("一键合成消耗{0}金币"), costgold), () =>
             {
 
 
@@ -237,8 +237,8 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.WarehouseAddedCell[0]];
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                $"是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("购买格子"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}购买一个背包格子?"), UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)), () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
                 }, null).Coroutine();

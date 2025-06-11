@@ -714,7 +714,7 @@ namespace ET
                 }
             }
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
-            FloatTipManager.Instance.ShowFloatTipDi(taskCof.TaskName + GameSettingLanguge.LoadLocalization("任务完成!"));
+            FloatTipManager.Instance.ShowFloatTipDi(taskCof.TaskName + GameSettingLanguge.LoadLocalization(GameSettingLanguge.LoadLocalization("任务完成!")));
         }
 
         public static void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)

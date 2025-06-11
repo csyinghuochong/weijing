@@ -37,8 +37,8 @@ namespace ET
         public static void OnUpdateUI(this UITeamDungeonSettlementPlayerComponent self, TeamPlayerInfo teamPlayerInfo, List<RewardItem> rewardItems)
         {
             self.Text_Name.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
-            self.Text_Level.GetComponent<Text>().text = $"等级：{teamPlayerInfo.PlayerLv}";
-            self.Text_Damage.GetComponent<Text>().text = $"伤害：{teamPlayerInfo.Damage}";
+            self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), teamPlayerInfo.PlayerLv);
+            self.Text_Damage.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("伤害：{0}"), teamPlayerInfo.Damage);
             UICommonHelper.ShowOccIcon(self.ImageIcon, teamPlayerInfo.Occ);
 
             self.ItemNode.SetActive(rewardItems!=null);

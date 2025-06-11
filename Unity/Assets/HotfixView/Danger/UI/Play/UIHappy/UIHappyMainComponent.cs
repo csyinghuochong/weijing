@@ -115,7 +115,7 @@ namespace ET
                 leftTime /= 1000;
                 int minute = (int)(leftTime / 60);
                 int second = (int)(leftTime % 60);
-                self.TextCoundown.text = $"下次道具刷新: {minute}:{second}";
+                self.TextCoundown.text = string.Format(GameSettingLanguge.LoadLocalization("下次道具刷新: {0}:{1}"), minute, second);
             }
             else
             {
@@ -127,11 +127,11 @@ namespace ET
             long endTime = self.EndTime - curTime;
             if (endTime > 60)
             {
-                self.EndTimeText.text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("活动结束倒计时 {0}:{1}"), endTime / 60, endTime % 60);
             }
             else
             {
-                self.EndTimeText.text = $"活动结束还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
+                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("活动结束还剩{0}秒，活动结束将强制离开地图哦。"), endTime % 60);
             }
             if (endTime <= 0)
             {
@@ -151,7 +151,7 @@ namespace ET
             else
             {
                 //self.TextTip_1.text = self.DefaultTime;
-                self.TextTip_1.text = "可以进行移动";
+                self.TextTip_1.text = GameSettingLanguge.LoadLocalization("可以进行移动");
             }
         }
 
@@ -163,11 +163,11 @@ namespace ET
 
             //金币消耗
             GlobalValueConfig globalValueConfig1 = GlobalValueConfigCategory.Instance.Get(94);
-            self.TextTip_2.text = $"金币消耗:{globalValueConfig1.Value2}";
+            self.TextTip_2.text = string.Format(GameSettingLanguge.LoadLocalization("金币消耗:{0}"), globalValueConfig1.Value2);
 
             //钻石消耗
             GlobalValueConfig globalValueConfig2 = GlobalValueConfigCategory.Instance.Get(95);
-            self.TextTip_3.text = $"钻石消耗:{globalValueConfig2.Value2}";
+            self.TextTip_3.text = string.Format(GameSettingLanguge.LoadLocalization("钻石消耗:{0}"), globalValueConfig2.Value2);
         }
 
         public static void  OnButtonPick(this UIHappyMainComponent self)
@@ -213,7 +213,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_GoldNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("喜从天降"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币?"), globalValueConfig.Value2), async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
@@ -246,7 +246,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_DiamondNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("喜从天降"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}钻石?"), globalValueConfig.Value2), async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };

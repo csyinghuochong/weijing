@@ -107,7 +107,7 @@ namespace ET
                 {
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                     int left = storeSellConfig.LimitNumber - userInfoComponent.GetStoreBuy(storeSellConfig.Id);
-                    self.Text_left.text = $"限购:{left}";
+                    self.Text_left.text = string.Format(GameSettingLanguge.LoadLocalization("限购:{0}"), left);
                 }
             }
         }

@@ -173,15 +173,15 @@ namespace ET
 
         public static void OnButtonTiLi(this UIRolePropertyComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "体力介绍",
-                "0点恢复30体力\r\n6点恢复50体力\r\n12点恢复30体力\r\n20点恢复50体力",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("体力介绍"),
+                GameSettingLanguge.LoadLocalization("0点恢复30体力\r\n6点恢复50体力\r\n12点恢复30体力\r\n20点恢复50体力"),
                 null).Coroutine();
         }
 
         public static void OnButtonBaoShi(this UIRolePropertyComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "饱食度介绍",
-                "在家园制作烹饪饮用可以恢复饱食度\r\n饱食度达到80可获得爆率加成状态\r\n每次击败1个领主扣除1点饱食度\r\n每消耗5点体力扣除1点饱食度",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("饱食度介绍"),
+                GameSettingLanguge.LoadLocalization("在家园制作烹饪饮用可以恢复饱食度\r\n饱食度达到80可获得爆率加成状态\r\n每次击败1个领主扣除1点饱食度\r\n每消耗5点体力扣除1点饱食度"),
                 null).Coroutine();
         }
 
@@ -220,68 +220,68 @@ namespace ET
 			//self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Stamina, "耐力", "Pro_1", 1));
 			//self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Constitution, "体质", "Pro_6", 1));
 			//self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Agility, "敏捷", "Pro_2", 1));
-			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxHp, "生命", "Pro_4", 1));
-			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAct, "攻击", "Pro_5", 1));
-			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxDef, "防御", "Pro_3", 1));
-			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAdf, "魔御", "Pro_9", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Mage, "技能伤害", "Pro_2", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Power, "力量", "Pro_8", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Intellect, "智力", "Pro_2", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Constitution, "体质", "Pro_6", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Stamina, "耐力", "Pro_7", 1));
-            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Agility, "敏捷", "Pro_9", 1));
+			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxHp, GameSettingLanguge.LoadLocalization("生命"), "Pro_4", 1));
+			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAct, GameSettingLanguge.LoadLocalization("攻击"), "Pro_5", 1));
+			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxDef, GameSettingLanguge.LoadLocalization("防御"), "Pro_3", 1));
+			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAdf, GameSettingLanguge.LoadLocalization("魔御"), "Pro_9", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Mage, GameSettingLanguge.LoadLocalization("技能伤害"), "Pro_2", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Power, GameSettingLanguge.LoadLocalization("力量"), "Pro_8", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Intellect, GameSettingLanguge.LoadLocalization("智力"), "Pro_2", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Constitution, GameSettingLanguge.LoadLocalization("体质"), "Pro_6", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Stamina, GameSettingLanguge.LoadLocalization("耐力"), "Pro_7", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Agility, GameSettingLanguge.LoadLocalization("敏捷"), "Pro_9", 1));
             //
 
             //特殊属性
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Cri, "暴击概率", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Res, "韧性概率", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Hit, "命中概率", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Dodge, "闪避概率", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeAddPro, "伤害加成", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeSubPro, "伤害减免", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Cri, GameSettingLanguge.LoadLocalization("暴击概率"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Res, GameSettingLanguge.LoadLocalization("韧性概率"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Hit, GameSettingLanguge.LoadLocalization("命中概率"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Dodge, GameSettingLanguge.LoadLocalization("闪避概率"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeAddPro, GameSettingLanguge.LoadLocalization("伤害加成"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeSubPro, GameSettingLanguge.LoadLocalization("伤害减免"), "", 2));
             // self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, GameSettingLanguge.LoadLocalization("移动速度"), "", 2));
             
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, "暴击等级", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ResLv, "韧性等级", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, "命中等级", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, "闪避等级", "", 1));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, GameSettingLanguge.LoadLocalization("暴击等级"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ResLv, GameSettingLanguge.LoadLocalization("韧性等级"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, GameSettingLanguge.LoadLocalization("命中等级"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, GameSettingLanguge.LoadLocalization("闪避等级"), "", 1));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物伤加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔伤加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeSubPro, "物伤减免", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeSubPro, "魔伤减免", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, GameSettingLanguge.LoadLocalization("物伤加成"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, GameSettingLanguge.LoadLocalization("魔伤加成"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeSubPro, GameSettingLanguge.LoadLocalization("物伤减免"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeSubPro, GameSettingLanguge.LoadLocalization("魔伤减免"), "", 2));
 
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJiPro, "重击概率", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJi, "重击附加伤害", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiActPro, "攻击穿透", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiMagePro, "魔法穿透", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, "忽视防御", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, "忽视魔御", "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJiPro, GameSettingLanguge.LoadLocalization("重击概率"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJi, GameSettingLanguge.LoadLocalization("重击附加伤害"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiActPro, GameSettingLanguge.LoadLocalization("攻击穿透"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiMagePro, GameSettingLanguge.LoadLocalization("魔法穿透"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, GameSettingLanguge.LoadLocalization("忽视防御"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, GameSettingLanguge.LoadLocalization("忽视魔御"), "", 1));
 
             //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_XiXuePro, "吸血概率", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillCDTimeCostPro, "技能冷却", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillCDTimeCostPro, GameSettingLanguge.LoadLocalization("技能冷却"), "", 2));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDodgePro, "魔法闪避", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDodgePro, "物理闪避", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDodgePro, GameSettingLanguge.LoadLocalization("魔法闪避"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDodgePro, GameSettingLanguge.LoadLocalization("物理闪避"), "", 2));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_GeDang, "格挡值", "", 1));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhenShi, "真实伤害", "", 1));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_GeDang, GameSettingLanguge.LoadLocalization("格挡值"), "", 1));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhenShi, GameSettingLanguge.LoadLocalization("真实伤害"), "", 1));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActSpeedPro, "攻速加成", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActSpeedPro, GameSettingLanguge.LoadLocalization("攻速加成"), "", 2));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ShenNongPro, "额外恢复", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuiXue, "战斗恢复", "", 1));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ShenNongPro, GameSettingLanguge.LoadLocalization("额外恢复"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuiXue, GameSettingLanguge.LoadLocalization("战斗恢复"), "", 1));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillDodgePro, "技能闪避", "", 2));
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_PuGongAddPro, "普攻加成", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillDodgePro, GameSettingLanguge.LoadLocalization("技能闪避"), "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_PuGongAddPro, GameSettingLanguge.LoadLocalization("普攻加成"), "", 2));
             
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossPro, "领主普攻加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossPro, "领主技能加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主普攻减免", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossSubPro, "领主技能减免", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossPro, GameSettingLanguge.LoadLocalization("领主普攻加成"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossPro, GameSettingLanguge.LoadLocalization("领主技能加成"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActBossSubPro, GameSettingLanguge.LoadLocalization("领主普攻减免"), "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageBossSubPro, GameSettingLanguge.LoadLocalization("领主技能减免"), "", 2));
 
             //抗性属性
             /*

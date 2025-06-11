@@ -58,7 +58,7 @@ namespace ET
             }
             petComponent.PetShouHuActive = response.PetShouHuActive;
             self.SetShouHuActive(petComponent.PetShouHuActive - 1);
-            FloatTipManager.Instance.ShowFloatTip($"激活: {ConfigHelper.PetShouHuAttri[petComponent.PetShouHuActive - 1].Value}");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("激活: {0}"), GameSettingLanguge.LoadLocalization(ConfigHelper.PetShouHuAttri[petComponent.PetShouHuActive - 1].Value)));
         }
 
         public static async  ETTask OnButtonShouHuHandler(this UIPetShouHuComponent self, long petid)

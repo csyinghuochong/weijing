@@ -62,7 +62,7 @@ namespace ET
             leftNumber = int.Parse(activityInfo.Par_2) - receiveNum;
 
             self.TextLeft.GetComponent<Text>().text = $"{leftNumber}/{activityInfo.Par_2}";
-            self.Text_level.GetComponent<Text>().text = $"等级达到{activityInfo.Par_1}级";
+            self.Text_level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级达到{0}级"), activityInfo.Par_1);
 
             self.YiLingQuSet.SetActive(activityComponent.ZhanQuReceiveIds.Contains(activityInfo.Id) && leftNumber > 0);
             self.ButtonReceive.SetActive(!activityComponent.ZhanQuReceiveIds.Contains(activityInfo.Id) && leftNumber > 0);
@@ -74,14 +74,14 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < int.Parse(self.ActivityConfig.Par_1))
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.ZhanQuReceiveIds.Contains(self.ActivityConfig.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过该奖励！"));
                 return;
             }
 

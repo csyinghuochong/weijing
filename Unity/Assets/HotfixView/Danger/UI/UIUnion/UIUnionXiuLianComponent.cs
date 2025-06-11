@@ -78,7 +78,7 @@ namespace ET
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();   
                 if (userInfoComponent.UserInfo.Lv < 60)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("60级开启血石系统！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("60级开启血石系统！"));
                     return false;
                 }
             }

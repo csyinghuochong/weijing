@@ -196,7 +196,7 @@ namespace ET
         public static async void OnButtonReturn(this UIJiaYuanMainComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            string tipStr = "请选择返回主城或自己家园？";
+            string tipStr = GameSettingLanguge.LoadLocalization("请选择返回主城或自己家园？");
             UI ui =  await PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
                 () =>
                 {
@@ -207,8 +207,8 @@ namespace ET
                     self.OnButtonMyJiaYuan();
                 });
             UIPopupComponent uiPopupComponent = ui.GetComponent<UIPopupComponent>();
-            uiPopupComponent.cancelButton.transform.Find("Text").GetComponent<Text>().text  = "返回家园";
-            uiPopupComponent.confirButton.transform.Find("Text").GetComponent<Text>().text = "返回主城";
+            uiPopupComponent.cancelButton.transform.Find("Text").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("返回家园");
+            uiPopupComponent.confirButton.transform.Find("Text").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("返回主城");
         }
 
         public static async ETTask OnClickPet(this UIJiaYuanMainComponent self, long unitid)
@@ -296,7 +296,7 @@ namespace ET
             if (!self.MyJiaYuan)
             {
                 UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );
-                uimain.GetComponent<UIMainComponent>().UIMapMini.ShowMapName($"{response.MasterName}的家园");
+                uimain.GetComponent<UIMainComponent>().UIMapMini.ShowMapName(string.Format(GameSettingLanguge.LoadLocalization("{0}的家园"), response.MasterName));
             }
         }
 
@@ -407,7 +407,7 @@ namespace ET
 
             if (gatherNumber == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("附近没有可收获的道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("附近没有可收获的道具！"));
             }
         }
 
@@ -654,7 +654,7 @@ namespace ET
             }
             int costnumber = ConfigHelper.JiaYuanFarmOpen[index];
             string consttip = UICommonHelper.GetNeedItemDesc($"13;{costnumber}");
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"是否花费 {consttip} 开启一块土地", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("是否花费 {0} 开启一块土地"), consttip), () =>
             {
                 self.RequestPlanOpen(index).Coroutine();
             }, null).Coroutine();

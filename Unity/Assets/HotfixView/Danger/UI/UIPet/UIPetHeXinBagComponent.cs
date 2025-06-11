@@ -89,7 +89,7 @@ namespace ET
                 }
                 uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.None);
                 uIItemComponent.Image_ItemButton.name = $"PetHeXinHeCheng_Image_ItemButton@{bagInfos[i].BagInfoID}";
-                uIItemComponent.Label_ItemNum.GetComponent<Text>().text = $"{itemConfig.UseLv}级";
+                uIItemComponent.Label_ItemNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), itemConfig.UseLv);
                 number++;
             }
 

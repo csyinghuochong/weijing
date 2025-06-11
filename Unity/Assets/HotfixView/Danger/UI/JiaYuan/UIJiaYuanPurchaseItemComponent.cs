@@ -57,7 +57,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetItemNumber(itemid) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
             
@@ -80,12 +80,12 @@ namespace ET
             long endTime = self.JiaYuanPurchaseItem.EndTime;
             if (endTime < serverTime)
             {
-                self.Text_Time.GetComponent<Text>().text = "已过期";
+                self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已过期");
                 return false;
             }
             else
             {
-                self.Text_Time.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(endTime - serverTime);
+                self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(endTime - serverTime);
                 return true;
             }
         }
@@ -133,7 +133,7 @@ namespace ET
                 self.MakeList[i].GameObject.SetActive(false);
             }
 
-            self.Text_Price.GetComponent<Text>().text = "资金:" + jiaYuanPurchaseItem.BuyZiJin.ToString();
+            self.Text_Price.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("资金:") + jiaYuanPurchaseItem.BuyZiJin.ToString();
 
             self.UpdateLeftTime();
         }

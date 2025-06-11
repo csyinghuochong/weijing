@@ -106,7 +106,7 @@ namespace ET
                 case 0:
                     if (!bagComponent.CheckNeedItem(fashionConfig.ActiveCost))
                     {
-                        FloatTipManager.Instance.ShowFloatTip("道具不足");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                         return;
                     }
 
@@ -167,13 +167,13 @@ namespace ET
                 case 0:
                     self.Equipinged.SetActive(false);
                     self.Btn_Active.SetActive(true);
-                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "激活";
+                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("激活");
                     UICommonHelper.SetRawImageGray( self.RawImage, true );
                     break;
                 case 1:
                     self.Equipinged.SetActive(false);
                     self.Btn_Active.SetActive(true);
-                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "穿戴";
+                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("穿戴");
                     UICommonHelper.SetRawImageGray(self.RawImage, false);
                     break;
                 case 2:
@@ -193,7 +193,7 @@ namespace ET
             else
             {
                 string[] costitem = fashionConfig.ActiveCost.Split(';');
-                self.Text_222.GetComponent<Text>().text = $"需要:{int.Parse(costitem[1])}个";
+                self.Text_222.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要:{0}个"), int.Parse(costitem[1]));
                 int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
                 self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber }, ItemOperateEnum.None);
                 self.UIItemComponent.Label_ItemName.SetActive(true);

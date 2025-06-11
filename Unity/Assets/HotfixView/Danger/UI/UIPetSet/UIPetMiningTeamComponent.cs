@@ -158,7 +158,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             if(defendteamids.Contains(team) && unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime) > TimeHelper.ServerNow())
             {
-                FloatTipManager.Instance.ShowFloatTip("挑战冷却中，无法更换");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("挑战冷却中，无法更换"));
                 return;
             }
 

@@ -78,7 +78,7 @@ namespace ET
             {
                 number += (pets[i] != 0 ? 1 : 0);
             }
-            self.TextNumber.GetComponent<Text>().text = $"阵容限制：{number}/5";
+            self.TextNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("阵容限制：{0}/5"), number);
         }
 
         public static void UpdateFighting(this UIPetFormationComponent self, int sceneType)
@@ -160,7 +160,7 @@ namespace ET
             }
             if (index != -1 && number >= 5 && self.PetTeamList[index] == 0 && operateType!=2)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到上阵最大数量！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到上阵最大数量！"));
                 return;
             }
 

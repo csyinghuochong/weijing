@@ -36,7 +36,7 @@ namespace ET
         public static void OnInitUI(this UIPetHeXinChouKaRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.TextTitle.GetComponent<Text>().text = $"今日探索次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetHeXinExploreNumber)}";
+            self.TextTitle.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日探索次数:{0}"), unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetHeXinExploreNumber));
 
             foreach (KeyValuePair<int, string> keyValuePair in ConfigHelper.PetHeXinExploreReward)
             {

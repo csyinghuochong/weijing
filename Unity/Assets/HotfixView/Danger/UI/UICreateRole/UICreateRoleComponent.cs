@@ -189,7 +189,7 @@ namespace ET
             if (createName.Contains("*") 
                 || !StringHelper.IsSpecialChar(createName))
             {
-                FloatTipManager.Instance.ShowFloatTip("名字不合法!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法!"));
                 return;
             }
             Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
@@ -207,7 +207,7 @@ namespace ET
             }
             else
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"每天只能建立8个角色,当前已经创建了{TodayCreateRole}个角色", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("每天只能建立8个角色,当前已经创建了{0}个角色"), TodayCreateRole), () =>
                 {
                     self.RequestCreateRole(createName).Coroutine();
                 }, null).Coroutine();

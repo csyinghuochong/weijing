@@ -67,7 +67,7 @@ namespace ET
             string tip = string.Empty;
 
             tip = itemConfig.ItemName;
-            self.TextTip3.GetComponent<Text>().text = $"恭喜你获得了{tip}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!";
+            self.TextTip3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("恭喜你获得了{0}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!"), tip);
 
             
             if (!ComHelp.IfNull(itemConfig.ItemModelID))

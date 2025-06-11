@@ -95,7 +95,7 @@ namespace ET
                 int havedNum = (int)bagComponent.GetItemNumber(allword[i]);
                 ReferenceCollector rc = self.UIActivityV1DuiHuanWordItems[i].GetComponent<ReferenceCollector>();
                 UICommonHelper.SetImageGray(rc.Get<GameObject>("IconImg"), havedNum == 0);
-                rc.Get<GameObject>("NumText").GetComponent<Text>().text = $"拥有数量：{havedNum}";
+                rc.Get<GameObject>("NumText").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("拥有数量：{0}"), havedNum);
             }
         }
 
@@ -124,7 +124,7 @@ namespace ET
         {
             if (self.YearItemId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择用于兑换的字");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择用于兑换的字"));
                 return;
             }
 
@@ -132,14 +132,14 @@ namespace ET
 
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
             int havedNum = (int)bagComponent.GetItemNumber(self.YearItemId);
             if (havedNum <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("该字数量不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该字数量不足"));
                 return;
             }
 
@@ -167,7 +167,7 @@ namespace ET
                     continue;
                 }
 
-                FloatTipManager.Instance.ShowFloatTip("没有完整的一套字");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有完整的一套字"));
                 return;
             }
 

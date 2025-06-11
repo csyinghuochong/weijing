@@ -106,12 +106,12 @@ namespace ET
             }
             if (TimeHelper.ServerNow() >= self.AuctionStatus)
             {
-                self.Text_2.GetComponent<Text>().text = "已结束";
+                self.Text_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已结束");
                 TimerComponent.Instance?.Remove(ref self.AuctionTimer);
                 return;
             }
             long leftTime = self.AuctionStatus - TimeHelper.ServerNow();
-            self.Text_2.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(leftTime); 
+            self.Text_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(leftTime); 
         }
 
         public static void Btn_BuyNum_jia(this UIPaiMaiAuctionComponent self, int add)
@@ -137,7 +137,7 @@ namespace ET
 
             if (curprice < paiprice)
             {
-                FloatTipManager.Instance.ShowFloatTip("不能小于竞拍价！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("不能小于竞拍价！"));
                 return;
             }
 
@@ -159,7 +159,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Gold < price)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("金币不足！"));
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace ET
             {
                 return;
             }
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "参与竞拍", $"扣除{returngold}金币的保证金", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("参与竞拍"), string.Format(GameSettingLanguge.LoadLocalization("扣除{0}金币的保证金"), returngold), () =>
            {
                self.RquestCanYu().Coroutine();
            }, null).Coroutine();
@@ -218,14 +218,14 @@ namespace ET
             }
             if (TimeHelper.ServerNow() >= response.AuctionStatus)
             {
-                self.Text_2.GetComponent<Text>().text = "已结束";
+                self.Text_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已结束");
                 self.Btn_Auction.SetActive(false);
                 self.Btn_CanYu.SetActive(false);
                 return;
             }
             self.AuctionStatus = response.AuctionStatus;
             self.OnUpdateUI( response.AuctionItem, response.AuctionNumber, response.AuctionPrice );
-            self.TextAuctionPlayer.GetComponent<Text>().text = "出价玩家:" + response.AuctionPlayer;
+            self.TextAuctionPlayer.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("出价玩家:") + response.AuctionPlayer;
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = response.AuctionNumber.ToString();
             self.AuctionStart = response.AuctionStart;
 
@@ -235,7 +235,7 @@ namespace ET
             if (response.AuctionJoin)
             {
                 int returngold = (int)(response.AuctionStart * 0.1f);
-                string text = $"已经缴纳{returngold}保证金";
+                string text = string.Format(GameSettingLanguge.LoadLocalization("已经缴纳{0}保证金"), returngold);
                 self.TextBaoZhenJin.GetComponent<Text>().text = text;
             }
             else
@@ -260,7 +260,7 @@ namespace ET
             int itmenumber = int.Parse(infos[1]);
             long price = long.Parse(infos[2]);
             self.OnUpdateUI(itmeid, itmenumber, price);
-            self.TextAuctionPlayer.GetComponent<Text>().text = "出价玩家:" + infos[3];
+            self.TextAuctionPlayer.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("出价玩家:") + infos[3];
         }
     }
 }

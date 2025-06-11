@@ -138,7 +138,7 @@ namespace ET
                     cdTime = 24 * 60 * 60 - curTime;
                 }
 
-                self.Text_CDTime.GetComponent<Text>().text = $"刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
+                self.Text_CDTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("刷新倒计时: {0}"), TimeHelper.ShowLeftTime(cdTime * 1000));
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (self.IsDisposed)
                 {

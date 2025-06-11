@@ -114,7 +114,7 @@ namespace ET
         {
             bool isLeader = self.ZoneScene().GetComponent<TeamComponent>().IsTeamLeader();
             
-            PopupTipHelp.OpenPopupTip( self.DomainScene(), "我的队伍", isLeader ? "是否解散队伍": "是否离开队伍？", 
+            PopupTipHelp.OpenPopupTip( self.DomainScene(), GameSettingLanguge.LoadLocalization("我的队伍"), isLeader ? GameSettingLanguge.LoadLocalization("是否解散队伍"): GameSettingLanguge.LoadLocalization("是否离开队伍？"), 
                 ()=> 
                 {
                     self.SendLeaveRequest();

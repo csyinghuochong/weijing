@@ -43,17 +43,17 @@ namespace ET
             string attriname_1 = ItemViewHelp.GetAttributeName(int.Parse(attriinfo_1[0]));
             string attriname_2 = ItemViewHelp.GetAttributeName(int.Parse(attriinfo_2[0]));
 
-            self.Item_0.transform.Find("Text_Name").GetComponent<Text>().text = keyValuePair_0.Value;
-            self.Item_1.transform.Find("Text_Name").GetComponent<Text>().text = keyValuePair_1.Value;
-            self.Item_2.transform.Find("Text_Name").GetComponent<Text>().text = keyValuePair_2.Value;
+            self.Item_0.transform.Find("Text_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(keyValuePair_0.Value);
+            self.Item_1.transform.Find("Text_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(keyValuePair_1.Value);
+            self.Item_2.transform.Find("Text_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(keyValuePair_2.Value);
 
             self.Item_0.transform.Find("Text_Attri").GetComponent<Text>().text = $"{attriname_0} +{attriinfo_0[1]}";
             self.Item_1.transform.Find("Text_Attri").GetComponent<Text>().text = $"{attriname_1} +{attriinfo_1[1]}";
             self.Item_2.transform.Find("Text_Attri").GetComponent<Text>().text = $"{attriname_2} +{attriinfo_2[1]}";
 
-            self.Item_0.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_0}次开启";
-            self.Item_1.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_1}次开启";
-            self.Item_2.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_2}次开启";
+            self.Item_0.transform.Find("Text_Tip").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("品尝{0}次开启"), need_time_0);
+            self.Item_1.transform.Find("Text_Tip").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("品尝{0}次开启"), need_time_1);
+            self.Item_2.transform.Find("Text_Tip").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("品尝{0}次开启"), need_time_2);
 
             UICommonHelper.SetImageGray(self.Item_0.transform.Find("ImageIcon").gameObject, dashiTime < need_time_0);
             UICommonHelper.SetImageGray(self.Item_1.transform.Find("ImageIcon").gameObject, dashiTime < need_time_1);

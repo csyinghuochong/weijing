@@ -97,7 +97,7 @@ namespace ET
 
         public static void OnButtonSell(this UIChouKaWarehouseComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "一键出售", "是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择"),
                 () => { self.BagComponent.RequestOneSell(ItemLocType.ChouKaWarehouse).Coroutine(); }, null).Coroutine();
         }
 

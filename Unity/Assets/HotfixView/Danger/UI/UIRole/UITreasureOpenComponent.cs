@@ -76,7 +76,7 @@ namespace ET
                 string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
                 int itemId = int.Parse(itemInfo.Split(';')[0]);
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), itemConfig.ItemName, itemInfo.Split(';')[1]));
             }
         }
 
@@ -259,7 +259,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
             

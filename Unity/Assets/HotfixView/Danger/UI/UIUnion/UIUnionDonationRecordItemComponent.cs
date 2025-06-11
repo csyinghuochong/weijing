@@ -32,12 +32,12 @@ namespace ET
             if (donationRecord.Gold > 0)
             {
                 self.TextContent.GetComponent<Text>().text =
-                        $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Gold}</color>金币";
+                        string.Format(GameSettingLanguge.LoadLocalization("玩家 <color=#{0}>{1}</color> {2} 捐献： <color=#{3}>{4}</color>金币"), ComHelp.QualityReturnColor(4), donationRecord.Name, dateTime.ToShortTimeString(), ComHelp.QualityReturnColor(2), donationRecord.Gold);
             }
             else
             {
                 self.TextContent.GetComponent<Text>().text =
-                        $"玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Diamond}</color>钻石";
+                        string.Format(GameSettingLanguge.LoadLocalization("玩家 <color=#{0}>{1}</color> {2} 捐献： <color=#{3}>{4}</color>钻石"), ComHelp.QualityReturnColor(4), donationRecord.Name, dateTime.ToShortTimeString(), ComHelp.QualityReturnColor(2), donationRecord.Diamond);
             }
 
             UICommonHelper.ShowOccIcon(self.HeadIcon, donationRecord.Occ);

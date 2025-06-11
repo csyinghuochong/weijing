@@ -112,7 +112,7 @@ namespace ET
             float sellgold_1 = sellgold * 0.0001f;
             float todayGold_1 = todayGold * 0.0001f;
 
-            self.PaiMaiGoldText.text = $"今日获利:{UICommonHelper.ShowFloatValue_1(sellgold_1)}万/{UICommonHelper.ShowFloatValue_1(todayGold_1)}万";
+            self.PaiMaiGoldText.text = string.Format(GameSettingLanguge.LoadLocalization("今日获利:{0}万/{1}万"), UICommonHelper.ShowFloatValue_1(sellgold_1), UICommonHelper.ShowFloatValue_1(todayGold_1));
             self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
@@ -137,7 +137,7 @@ namespace ET
         {
             if (self.PaiMaiItemInfoId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选中道具");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中道具"));
                 return;
             }
 
@@ -148,7 +148,7 @@ namespace ET
                 {
                     if (self.PaiMaiItemInfos[i].UserId != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("数据错误!");
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("数据错误!"));
                         return;
                     }
                     itemType = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfos[i].BagInfo.ItemID).ItemType;
@@ -180,24 +180,24 @@ namespace ET
         {
             if (self.BagInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选中道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中道具！"));
                 return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             if (itemConfig.IfStopPaiMai  == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("此道具禁止上架！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("此道具禁止上架！"));
                 return;
             }
             if (!ComHelp.IsShowPaiMai(itemConfig.ItemType, itemConfig.ItemSubType))
             {
-                FloatTipManager.Instance.ShowFloatTip("此道具不能上架！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("此道具不能上架！"));
                 return;
             }
             if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到最大上架数量！"));
                 return;
             }
 
@@ -330,7 +330,7 @@ namespace ET
 
             //显示上架数量
             int maxNum =  GlobalValueConfigCategory.Instance.Get(50).Value2;
-            self.Text_SellTime.GetComponent<Text>().text = "已上架:"  + $"{self.PaiMaiItemInfos.Count}/{maxNum}";
+            self.Text_SellTime.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已上架:")  + $"{self.PaiMaiItemInfos.Count}/{maxNum}";
         }
         
         public static async ETTask OnPointerDown(this UIPaiMaiSellComponent self, BagInfo binfo, PointerEventData pdata)

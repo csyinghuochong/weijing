@@ -86,7 +86,7 @@ namespace ET
         {
             if (self.CostGold > 0)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "战场招募", $"是否消耗{self.CostGold}金币召唤{self.BattleSummonConfig.ItemName}?",
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("战场招募"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币召唤{1}?"), self.CostGold, self.BattleSummonConfig.ItemName),
                     () => { self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold); }).Coroutine();
             }
             else
@@ -137,7 +137,7 @@ namespace ET
 
             //显示人口
             self.MonsterNumberText.GetComponent<Text>().text = $"{battleSummonConfig.MonsterNumber}";
-            self.CostText.GetComponent<Text>().text = $"{self.CostGold}金币";
+            self.CostText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}金币"), self.CostGold);
         }
 
         public static void UpdateUI(this UIBattleRecruitItemComponent self, long nowTime)
@@ -145,20 +145,20 @@ namespace ET
             if (nowTime - self.SummonTime >= self.BattleSummonConfig.FreeResetTime * TimeHelper.Second)
             {
                 self.CostGold = 0;
-                self.BtnText.GetComponent<Text>().text = "免费召唤";
-                self.TimeText.GetComponent<Text>().text = "免费:0分0秒";
+                self.BtnText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("免费召唤");
+                self.TimeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("免费:0分0秒");
             }
             else
             {
                 self.CostGold = self.BattleSummonConfig.CostGold;
-                self.BtnText.GetComponent<Text>().text = "召唤魔物";
+                self.BtnText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("召唤魔物");
                 long time = self.SummonTime + self.BattleSummonConfig.FreeResetTime * TimeHelper.Second - TimeHelper.ClientNow();
                 time /= 1000;
                 int hour = (int)time / 3600;
                 int min = (int)((time - (hour * 3600)) / 60);
                 int sec = (int)(time - (hour * 3600) - (min * 60));
-                string showStr = min + "分" + sec + "秒";
-                self.TimeText.GetComponent<Text>().text = $"免费:{showStr}";
+                string showStr = min + GameSettingLanguge.LoadLocalization("分") + sec + GameSettingLanguge.LoadLocalization("秒");
+                self.TimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("免费:{0}"), showStr);
             }
         }
 

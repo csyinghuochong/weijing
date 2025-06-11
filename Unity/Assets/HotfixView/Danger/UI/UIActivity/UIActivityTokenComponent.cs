@@ -81,7 +81,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             //self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
-            self.TextRecharge.GetComponent<Text>().text = $"当前额度：{selfRechage}/298";
+            self.TextRecharge.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前额度：{0}/298"), selfRechage);
             self.TextRecharge.SetActive(selfRechage < 298);
         }
     }

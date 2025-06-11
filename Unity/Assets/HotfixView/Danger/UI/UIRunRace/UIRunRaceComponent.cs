@@ -47,12 +47,12 @@ namespace ET
                 if (rankRewardConfigs[i].NeedPoint[0] == rankRewardConfigs[i].NeedPoint[1])
                 {
                     re.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                        $"第{rankRewardConfigs[i].NeedPoint[0]}名奖励";
+                        string.Format(GameSettingLanguge.LoadLocalization("第{0}名奖励"), rankRewardConfigs[i].NeedPoint[0]);
                 }
                 else
                 {
                     re.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                        $"第{rankRewardConfigs[i].NeedPoint[0]}-{rankRewardConfigs[i].NeedPoint[1]}名奖励";
+                        string.Format(GameSettingLanguge.LoadLocalization("第{0}-{1}名奖励"), rankRewardConfigs[i].NeedPoint[0], rankRewardConfigs[i].NeedPoint[1]);
                 }
 
                 UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);

@@ -39,7 +39,7 @@ namespace ET
             KeyValuePair keyValuePair = ActivityConfigHelper.LiBaoList[key];
 
             self.Key = key;
-            self.ConsumeNumText.GetComponent<Text>().text = $"钻石:{keyValuePair.Value.Split(';')[1]}";
+            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("钻石:{0}"), keyValuePair.Value.Split(';')[1]);
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(keyValuePair.Value2, self.RewardListNode, self, 0.8f);
 
@@ -54,7 +54,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 6)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
@@ -66,14 +66,14 @@ namespace ET
 
             if (activityV1Info.LiBaoBuyIds.Contains(self.Key))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(ActivityConfigHelper.LiBaoList[self.Key].Value))
             {
-                FloatTipManager.Instance.ShowFloatTip("未达到条件");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到条件"));
                 return;
             }
 

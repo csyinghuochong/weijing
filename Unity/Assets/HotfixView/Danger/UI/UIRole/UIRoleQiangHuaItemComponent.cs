@@ -46,7 +46,7 @@ namespace ET
 
         public static void OnUpateUI(this UIRoleQiangHuaItemComponent self, int qianghuaLevel)
         {
-            self.Text_QiangHua.GetComponent<Text>().text = $"强化+{qianghuaLevel}";
+            self.Text_QiangHua.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("强化+{0}"), qianghuaLevel);
         }
     }
 }

@@ -52,7 +52,7 @@ namespace ET
 
         public static void OnButtonCancel(this UIUnionJingXuanComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "取消申请", "是否确认取消申请族长?", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("取消申请"), GameSettingLanguge.LoadLocalization("是否确认取消申请族长?"), ()=>
             {
                 self.OnButtonConfirm(0).Coroutine();
 

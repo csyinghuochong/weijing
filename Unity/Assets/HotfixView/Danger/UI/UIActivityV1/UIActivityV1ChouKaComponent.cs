@@ -44,13 +44,13 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
             if (!bagComponent.CheckNeedItem(ActivityConfigHelper.ChouKaCostItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("所需道具不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("所需道具不足"));
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace ET
         public static void UpdateInfo(this UIActivityV1ChouKaComponent self)
         {
             self.NumText.GetComponent<Text>().text =
-                    $"抽奖次数：{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber)}";
+                    string.Format(GameSettingLanguge.LoadLocalization("抽奖次数：{0}"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber));
         }
     }
 }

@@ -118,7 +118,7 @@ namespace ET
         {
             bool isLeader = self.ZoneScene().GetComponent<TeamComponent>().IsTeamLeader();
           
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "我的队伍", isLeader ? "是否离开队伍" : "是否离开队伍？",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("我的队伍"), isLeader ? GameSettingLanguge.LoadLocalization("是否离开队伍") : GameSettingLanguge.LoadLocalization("是否离开队伍？"),
                 () =>
                 {
                     self.ZoneScene().GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
@@ -133,7 +133,7 @@ namespace ET
             TeamInfo teamInfo = teamComponent.GetSelfTeam();
             if (teamInfo == null || teamInfo.SceneId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("没有副本队伍");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有副本队伍"));
                 return;
             }
 
@@ -141,13 +141,13 @@ namespace ET
             if (battleMessageComponent.CanShout())
             {
                 string text =
-                        $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}_{teamInfo.FubenType}_{teamInfo.PlayerList[0].PlayerLv}></link>";
+                        string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name, teamInfo.TeamId, teamInfo.SceneId, teamInfo.FubenType, teamInfo.PlayerList[0].PlayerLv);
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
-                FloatTipManager.Instance.ShowFloatTip("已发送！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已发送！"));
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("喊话过于频繁！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("喊话过于频繁！"));
             }
         }
 
@@ -167,7 +167,7 @@ namespace ET
 
                 if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"帮助副本次数已尽，继续则消耗正常次数", async () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽，继续则消耗正常次数"), async () =>
                     {
                         TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
                         int errorCode = await teamComponent.RequestTeamDungeonOpen();
@@ -213,12 +213,12 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             if (teamInfo.FubenType == TeamFubenType.XieZhu)
             {
-                addStr = "(帮助模式)";
+                addStr = GameSettingLanguge.LoadLocalization("(帮助模式)");
             }
 
             if (teamInfo.FubenType == TeamFubenType.ShenYuan)
             {
-                addStr = "(深渊模式)";
+                addStr = GameSettingLanguge.LoadLocalization("(深渊模式)");
             }
             self.Obj_Lab_FuBenName.GetComponent<Text>().text = sceneConfig.Name + addStr;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";

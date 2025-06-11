@@ -81,9 +81,9 @@ namespace ET
             self.UIItemComponent_2 = item_app;
             self.UIItemComponent_2.GameObject.SetActive(false);
             //item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
-            self.Text_Tip_1.GetComponent<Text>().text = $"需要消耗：{itemConfig_app.ItemName}";
+            self.Text_Tip_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要消耗：{0}"), itemConfig_app.ItemName);
 
-            self.Text_EquipLevel.GetComponent<Text>().text = itemCof.UseLv + "级";
+            self.Text_EquipLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), itemCof.UseLv);
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
@@ -117,7 +117,7 @@ namespace ET
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(appList[i], ItemOperateEnum.None);
                 uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo, itemCof);  } );
-                string pingzhi = $"品质:{appList[i].ItemPar}";
+                string pingzhi = string.Format(GameSettingLanguge.LoadLocalization("品质:{0}"), appList[i].ItemPar);
                 uIItemComponent.Label_ItemName.GetComponent<Text>().text = pingzhi;
                 uIItemComponent.Label_ItemName.SetActive(true);
                 self.uIItems.Add(uIItemComponent);
@@ -129,39 +129,39 @@ namespace ET
             self.BagInfo_Appri = bagInfo;
             self.UIItemComponent_2.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.UIItemComponent_2.GameObject.SetActive(true);
-            self.Label_JianDingQuality.GetComponent<Text>().text = "品质:" + bagInfo.ItemPar;
-            string jianDingStr = "大海捞针";
+            self.Label_JianDingQuality.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("品质:{0}"), bagInfo.ItemPar);
+            string jianDingStr = GameSettingLanguge.LoadLocalization("大海捞针");
             int chaValue = 0;
             if (!string.IsNullOrEmpty(bagInfo.ItemPar))
             {
                 chaValue = int.Parse(bagInfo.ItemPar) - itemCof.UseLv;
             }
             if (chaValue < 0) {
-                jianDingStr = "大海捞针";
+                jianDingStr = GameSettingLanguge.LoadLocalization("大海捞针");
                 self.Label_JianDingShow.GetComponent<Text>().color = new Color(130f / 255f, 130f / 255f, 130f / 255f);
             }
             if (chaValue >= 0 && chaValue < 8) {
-                jianDingStr = "一击必中";
+                jianDingStr = GameSettingLanguge.LoadLocalization("一击必中");
                 self.Label_JianDingShow.GetComponent<Text>().color = new Color(175f / 255f, 200f / 255f, 20f / 255f);
             }
             if (chaValue >= 8 && chaValue < 16)
             {
-                jianDingStr = "十发十中";
+                jianDingStr = GameSettingLanguge.LoadLocalization("十发十中");
                 self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(2);
             }
             if (chaValue >= 16 && chaValue < 24)
             {
-                jianDingStr = "百年不遇";
+                jianDingStr = GameSettingLanguge.LoadLocalization("百年不遇");
                 self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(3);
             }
             if (chaValue >= 24 && chaValue < 32)
             {
-                jianDingStr = "千载难逢";
+                jianDingStr = GameSettingLanguge.LoadLocalization("千载难逢");
                 self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(4);
             }
             if (chaValue >= 32 && chaValue < 999)
             {
-                jianDingStr = "万里挑一";
+                jianDingStr = GameSettingLanguge.LoadLocalization("万里挑一");
                 self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(5);
             }
 
@@ -181,7 +181,7 @@ namespace ET
                 zizhi = int.Parse(bagInfo.ItemPar);
             }
             JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, zizhi, true);
-            self.Label_JianDingShowPro.GetComponent<Text>().text = "范围:" + jiandingDate.MinNum + "-" + jiandingDate.MaxNum;
+            self.Label_JianDingShowPro.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("范围:{0}-{1}"), jiandingDate.MinNum, jiandingDate.MaxNum);
         }
 
         public static void OnButton_Coin(this UIAppraisalSelectComponent self)
@@ -195,7 +195,7 @@ namespace ET
         {
             if (self.BagInfo_Appri == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择鉴定符！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择鉴定符！"));
                 return;
             }
             if (self.BagInfo_Equip.BagInfoID == self.BagInfo_Appri.BagInfoID)
@@ -208,7 +208,7 @@ namespace ET
 
             UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect);
 
-            FloatTipManager.Instance.ShowFloatTip("恭喜您！道具发挥了作用,鉴定成功!");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜您！道具发挥了作用,鉴定成功!"));
 
         }
     }

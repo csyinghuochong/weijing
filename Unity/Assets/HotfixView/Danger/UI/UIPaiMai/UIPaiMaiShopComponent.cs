@@ -126,19 +126,19 @@ namespace ET
         {
             if (self.PaiMaiSellId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选中要拍卖的商品！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选中要拍卖的商品！"));
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             PaiMaiSellConfig paiMaiSellConfig =  PaiMaiSellConfigCategory.Instance.Get(self.PaiMaiSellId);
             if (userInfo.Lv < paiMaiSellConfig.BuyLv)
             {
-                FloatTipManager.Instance.ShowFloatTip($"{paiMaiSellConfig.BuyLv}级才能购买！");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0}级才能购买！"), paiMaiSellConfig.BuyLv));
                 return;
             }
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包已满！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包已满！"));
                 return;
             }
 
@@ -220,7 +220,7 @@ namespace ET
         public static void OnClickChangeBuyNum(this UIPaiMaiShopComponent self, int num) {
 
             if (num > 0 && self.BuyNum >= 100) {
-                FloatTipManager.Instance.ShowFloatTip("单次购买数量最多为100");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("单次购买数量最多为100"));
                 return;
             }
 

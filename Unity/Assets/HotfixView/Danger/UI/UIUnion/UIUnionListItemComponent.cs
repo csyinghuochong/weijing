@@ -46,14 +46,14 @@ namespace ET
             long unionId = numericComponent.GetAsLong(NumericType.UnionId_0);
             if (unionId != 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先退出公会");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先退出公会"));
                 return;
             }
             long leaveTime = numericComponent.GetAsLong(NumericType.UnionIdLeaveTime);
             if (TimeHelper.ServerNow()- leaveTime < TimeHelper.Hour * 8)
             {
                 string tip = TimeHelper.ShowLeftTime(TimeHelper.Hour * 8 - (TimeHelper.ServerNow() - leaveTime));
-                FloatTipManager.Instance.ShowFloatTip($"{tip} 后才能加入家族！");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0} 后才能加入家族！"), tip));
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace ET
             {
                 return; 
             }
-            FloatTipManager.Instance.ShowFloatTip("已申请加入");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已申请加入"));
         }
 
         public static void OnUpdateUI(this UIUnionListItemComponent self, UnionListItem unionListItem)
@@ -75,8 +75,8 @@ namespace ET
             self.UnionListItem = unionListItem;
             unionListItem.UnionLevel =  Math.Max(unionListItem.UnionLevel, 1);
             int peopleMax = UnionConfigCategory.Instance.Get(unionListItem.UnionLevel).PeopleNum;
-            self.Text_Request.GetComponent<Text>().text = $"等级达到1级";
-            self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/{peopleMax}";
+            self.Text_Request.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级达到1级");
+            self.Text_Number.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("人数 {0}/{1}"), unionListItem.PlayerNumber, peopleMax);
             self.Text_Name.GetComponent<Text>().text = unionListItem.UnionName;
             self.Text_Leader.GetComponent<Text>().text = unionListItem.UnionLeader;
             self.Text_Level.GetComponent<Text>().text = unionListItem.UnionLevel.ToString();

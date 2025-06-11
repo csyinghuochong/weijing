@@ -142,7 +142,7 @@ namespace ET
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "转职", $"是否转职为：{occupationTwoConfig.OccupationName}", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("转职"), string.Format(GameSettingLanguge.LoadLocalization("是否转职为：{0}"), occupationTwoConfig.OccupationName), () =>
             {
                 self.RequestChangeOcc().Coroutine();
             }).Coroutine();
@@ -153,7 +153,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.OccTwo != 0)
             {
-                HintHelp.GetInstance().ShowHint("不能重复转职!");
+                HintHelp.GetInstance().ShowHint(GameSettingLanguge.LoadLocalization("不能重复转职!"));
                 return;
             }
 
@@ -171,34 +171,34 @@ namespace ET
 
             if (self.OccTwoId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先选择一个职业！"));
                 return;
             }
             if (userInfoComponent.UserInfo.OccTwo == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先选择一个职业！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先选择一个职业！"));
                 return;
             }
             if (self.OccTwoId == userInfoComponent.UserInfo.OccTwo)
             {
-                FloatTipManager.Instance.ShowFloatTip("重置职业不能和当前职业一样！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("重置职业不能和当前职业一样！"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.HaveOccEquip())
             {
-                FloatTipManager.Instance.ShowFloatTip("请先把装备全部卸到背包中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先把装备全部卸到背包中！"));
                 return;
             }
 
             string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
-            PopupTipHelp.OpenPopupTip_4(self.ZoneScene(), "重置职业",
-          $"<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>\n<color=#FFFFFF>是否花费{costitem}重置技能点?</color>",
-          () =>
-          {
-              self.RequestReset(2).Coroutine();
-          }).Coroutine();
+            PopupTipHelp.OpenPopupTip_4(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重置职业"),
+                string.Format(GameSettingLanguge.LoadLocalization("<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>\n<color=#FFFFFF>是否花费{0}重置技能点?</color>"), costitem),
+                () =>
+                {
+                    self.RequestReset(2).Coroutine();
+                }).Coroutine();
             await ETTask.CompletedTask;
         }
 
@@ -341,8 +341,8 @@ namespace ET
             }
             self.Image_WuQi_Type.GetComponent<Image>().sprite = sp1;
 
-            self.Lab_HuJia.GetComponent<Text>().text = self.showType[occupationTwoConfig.ArmorMastery] + "专精";
-            self.Lab_WuQi.GetComponent<Text>().text = self.showType[occupationTwoConfig.WeaponType] + "专精";
+            self.Lab_HuJia.GetComponent<Text>().text = self.showType[occupationTwoConfig.ArmorMastery] + GameSettingLanguge.LoadLocalization("专精");
+            self.Lab_WuQi.GetComponent<Text>().text = self.showType[occupationTwoConfig.WeaponType] + GameSettingLanguge.LoadLocalization("专精");
 
             path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"OccTwo_{occupationTwoConfig.Id}");
             sp1 = ResourcesComponent.Instance.LoadAsset<Sprite>(path1);

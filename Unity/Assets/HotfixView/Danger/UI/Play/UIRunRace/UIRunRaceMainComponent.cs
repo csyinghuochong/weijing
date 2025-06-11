@@ -161,13 +161,13 @@ namespace ET
                 long readyTime = self.ReadyTime - curTime;
                 if (readyTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"奔跑准备时间 {readyTime / 60}:{readyTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("奔跑准备时间 {0}:{1}"), readyTime / 60, readyTime % 60);
                     self.TransformTimeText.GetComponent<Text>().text = string.Empty;
                 }
                 else if(endTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
-                    self.TransformTimeText.GetComponent<Text>().text = $"下次变身时间:  {leftTime / 60}:{leftTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("活动结束倒计时 {0}:{1}"), endTime / 60, endTime % 60);
+                    self.TransformTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("下次变身时间:  {0}:{1}"), leftTime / 60, leftTime % 60);
                 }
 
     
@@ -223,13 +223,13 @@ namespace ET
         {
             if (rankingInfo.PlayerLv < 0)
             {
-                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  还剩:{rankingInfo.Combat * 0.01}";
+                gameObject.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}  还剩:{2}"), i + 1, rankingInfo.PlayerName, rankingInfo.Combat * 0.01);
             }
             else
             {
                 DateTime dateTime = TimeInfo.Instance.ToDateTime(rankingInfo.Combat);
                 string showTime = $"{dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}";
-                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  时间:{showTime}";
+                gameObject.GetComponentInChildren<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}名 {1}  时间:{2}"), i + 1, rankingInfo.PlayerName, showTime);
             }    
         }
 

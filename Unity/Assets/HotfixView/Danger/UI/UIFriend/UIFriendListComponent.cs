@@ -81,7 +81,7 @@ namespace ET
             self.ChatView.SetActive(true);
   
             self.UIFriendChatComponent.OnUpdateUI(friendInfo);
-            self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = "与" + friendInfo.PlayerName + "私聊中...";
+            self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("与{0}私聊中..."), friendInfo.PlayerName);
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             if (friendComponent.FriendChatId.Contains(friendInfo.UserId))

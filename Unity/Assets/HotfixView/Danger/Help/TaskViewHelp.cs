@@ -99,7 +99,7 @@ namespace ET
 
         public bool ExcutePlayerLv(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
-            FloatTipManager.Instance.ShowFloatTip("请提升到相对的等级");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请提升到相对的等级"));
             return true;
         }
 
@@ -122,7 +122,7 @@ namespace ET
                 {
                     return false;
                 }
-                FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " +DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
                 return false;
             }
             if (mapComponent.SceneId != fubenId)
@@ -138,7 +138,7 @@ namespace ET
             string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
             if (position == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请手动前往");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请手动前往"));
                 return false;
             }
 
@@ -162,7 +162,7 @@ namespace ET
             {
                 return false;
             }
-            FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
             return true;
         }
 
@@ -196,7 +196,7 @@ namespace ET
         {
             int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
             int npcid = taskConfig.CompleteNpcID;
-            string fubenname = "副本";
+            string fubenname = GameSettingLanguge.LoadLocalization("副本");
             if (!TaskHelper.HaveNpc(zoneScene, npcid))
             {
                 int fubenId = TaskViewHelp.Instance.GetFubenByNpc(npcid);
@@ -223,7 +223,7 @@ namespace ET
                     fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
                 }
 
-                FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
                 return true;
             }
 
@@ -355,7 +355,7 @@ namespace ET
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
             int target = taskConfig.TargetType;
             int npcid = taskConfig.CompleteNpcID;
-            string fubenname = "副本";
+            string fubenname = GameSettingLanguge.LoadLocalization("副本");
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
                 if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union ||
@@ -394,10 +394,10 @@ namespace ET
                         fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
                     }
 
-                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
                     return true;
                 }
-                FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("正在前往任务目标点"));
                 TaskViewHelp.Instance.MoveToNpc(zoneScene, npcid).Coroutine();
                 return false;
             }
@@ -406,7 +406,7 @@ namespace ET
                 bool excuteVAlue = TaskViewHelp.Instance.MoveToTask(zoneScene, taskConfig.TargetPosition);
                 if (excuteVAlue)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("正在前往任务目标点"));
                     return true;
                 }
             }
@@ -476,14 +476,14 @@ namespace ET
         public string GetDescKillMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
             string desc = "";
-            string progress = "击败{0} {1}/{2} {3}";
+            string progress = GameSettingLanguge.LoadLocalization("击败{0} {1}/{2} {3}");
 
             for (int i = 0; i < taskConfig.Target.Length; i++)
             {
                 int monsterId = taskConfig.Target[i];
                 int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
                 fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
-                string fubenName = fubenId > 0 ? " (地图:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+                string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
                 string text1 = "";
@@ -507,7 +507,7 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
             int fubenId = GetFubenByNpc(taskConfig.Target[0]);
-            string fubenName = fubenId > 0 ? " (地图:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+            string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
             string text1 = string.Format(progress, npcConfig.Name, fubenName);
@@ -970,7 +970,7 @@ namespace ET
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请前往主城!"));
                 return;
             }
             scene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc).Coroutine();

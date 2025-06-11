@@ -54,7 +54,7 @@ namespace ET
                 }
             }
 
-            self.NumText.GetComponent<Text>().text = $"可种植地数量:{self.Lands.Count}/{jiaYuanComponent.PlanOpenList_7.Count}";
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("可种植地数量:{0}/{1}"), self.Lands.Count, jiaYuanComponent.PlanOpenList_7.Count);
 
             self.SeedToggles.Clear();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
@@ -116,7 +116,7 @@ namespace ET
                 }
                 else
                 {
-                    FloatTipManager.Instance.ShowFloatTip("空地数量不足！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("空地数量不足！"));
                 }
             }
         }

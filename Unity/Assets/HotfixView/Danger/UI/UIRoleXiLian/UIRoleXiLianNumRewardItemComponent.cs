@@ -44,13 +44,13 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber) < self.RewardKey)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件未达到！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("条件未达到！"));
                 return;
             }
 
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < ConfigHelper.ItemXiLianNumReward[self.RewardKey].Split('@').Length - 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace ET
             UICommonHelper.ShowItemList(rewardItems, self.RewardListNode, self, 0.8f);
             string[] diamond = reward[1].Split(';')[1].Split(',');
             self.TextZuanshi.GetComponent<Text>().text = $"{diamond[0]}-{diamond[1]}";
-            self.TextNeedTimes.GetComponent<Text>().text = $"洗练次数达到{key}次";
+            self.TextNeedTimes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("洗练次数达到{0}次"), key);
 
             self.UpdateButton();
         }

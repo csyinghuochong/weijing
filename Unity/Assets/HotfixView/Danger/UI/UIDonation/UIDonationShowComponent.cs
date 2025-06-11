@@ -74,7 +74,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Lv < 12)
             {
-                FloatTipManager.Instance.ShowFloatTip("捐献等级不得小于12级");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("捐献等级不得小于12级"));
                 return;
             }
             self.UIDonationPrice.SetActive(!self.UIDonationPrice.activeSelf);
@@ -86,7 +86,7 @@ namespace ET
             int number = int.Parse(text);
             if (number < 100000)
             {
-                FloatTipManager.Instance.ShowFloatTip("最低捐献10万金币！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("最低捐献10万金币！"));
                 return;
             }
 
@@ -134,8 +134,8 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.Text_MyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币";
-            self.TextMyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币";
+            self.Text_MyDonation.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("我已捐献{0}金币"), unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber));
+            self.TextMyDonation.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("我已捐献{0}金币"), unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber));
         }
     }
 }

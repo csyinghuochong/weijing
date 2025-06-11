@@ -99,14 +99,14 @@ namespace ET
             int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
             if (drawReward == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经参与过抽奖！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经参与过抽奖！"));
                 return;
             }
 
             long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
             if (haveHuoyue < 60)
             {
-                FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活跃度不足！"));
                 return;
             }
 

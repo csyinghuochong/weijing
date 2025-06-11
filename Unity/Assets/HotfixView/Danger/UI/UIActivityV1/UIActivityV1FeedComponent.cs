@@ -51,7 +51,7 @@ namespace ET
         {
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
 
-            self.NumText.GetComponent<Text>().text = $"饱食度：{activityV1Info.BaoShiDu}";
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("饱食度：{0}"), activityV1Info.BaoShiDu);
 
             List<int> items = ActivityConfigHelper.FeedItemReward.Keys.ToList();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
@@ -74,13 +74,13 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
             if (bagComponent.GetItemNumber(itemId) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 

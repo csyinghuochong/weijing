@@ -77,7 +77,7 @@ namespace ET
 
             if (m2C_RolePetXiLian.RankNumber == 0)
             {
-                self.Text_Rank.GetComponent<Text>().text = "无";
+                self.Text_Rank.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("无");
             }
             else
             {
@@ -97,8 +97,8 @@ namespace ET
 
         public static void OnButton_Add(this UIRankPetComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置次数",
-                "是否花费200钻石重置次数",
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重置次数"),
+                GameSettingLanguge.LoadLocalization("是否花费200钻石重置次数"),
                 () =>
                 {
                     self.RequestReset().Coroutine();
@@ -112,7 +112,7 @@ namespace ET
             long resetValue = numericComponent.GetAsLong(NumericType.FubenTimesReset);
             if (resetValue >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("每天只能重置三次");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("每天只能重置三次"));
                 return;
             }
 

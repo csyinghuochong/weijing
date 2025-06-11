@@ -152,7 +152,7 @@ namespace ET
         {
             bool isLeader = self.ZoneScene().GetComponent<TeamComponent>().IsTeamLeader();
 
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "我的队伍", isLeader ? "是否离开队伍" : "是否离开队伍？",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("我的队伍"), isLeader ? GameSettingLanguge.LoadLocalization("是否离开队伍") : GameSettingLanguge.LoadLocalization("是否离开队伍？"),
                 () =>
                 {
                     self.ZoneScene().GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
@@ -168,7 +168,7 @@ namespace ET
 
             Unit watchUnit = unit.GetParent<UnitComponent>().Get(self.UserId);
             string playName = watchUnit.GetComponent<UnitInfoComponent>().MasterName;
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "邀请加入", $"邀请玩家{playName}加入{userInfo.UnionName}家族?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("邀请加入"), string.Format(GameSettingLanguge.LoadLocalization("邀请玩家{0}加入{1}家族?"), playName, userInfo.UnionName), () =>
             {
                 C2M_UnionInviteRequest request = new C2M_UnionInviteRequest() { InviteId = self.UserId };
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
@@ -177,7 +177,7 @@ namespace ET
 
         public static  void OnButton_KickUnion(this UIWatchMenuComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "踢出家族", "确定将该玩家踢出家族?", () =>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("踢出家族"), GameSettingLanguge.LoadLocalization("确定将该玩家踢出家族?"), () =>
             {
                 self.RequestKickUnion().Coroutine();
             }, null).Coroutine();
@@ -239,7 +239,7 @@ namespace ET
             {
                 if (TimeHelper.ServerNow() - battleMessageComponent.OneChallengeTime[self.UserId] < TimeHelper.Minute)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("一分钟内不能向该玩家再次发起挑战！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("一分钟内不能向该玩家再次发起挑战！"));
                     return;
                 }
                 battleMessageComponent.OneChallengeTime[self.UserId] = TimeHelper.ServerNow();
@@ -268,7 +268,7 @@ namespace ET
 
         public static void OnButton_UnionTransfer(this UIWatchMenuComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "转移族长", "是否转移族长？", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("转移族长"), GameSettingLanguge.LoadLocalization("是否转移族长？"), ()=>
             {
                 self.RequestUnionTransfer().Coroutine();
             }, null).Coroutine();
@@ -301,7 +301,7 @@ namespace ET
 
         public static void OnButton_KickOut(this UIWatchMenuComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "我的队伍", "是否踢出队伍？",
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("我的队伍"), GameSettingLanguge.LoadLocalization("是否踢出队伍？"),
                 () =>
                 {
                     self.ZoneScene().GetComponent<TeamComponent>().SendKickOutRequest(self.UserId).Coroutine();

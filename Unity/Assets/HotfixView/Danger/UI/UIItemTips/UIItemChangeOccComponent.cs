@@ -95,14 +95,14 @@ namespace ET
         {
             if (self.SelectOcc == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择新职业！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择新职业！"));
                 return;
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (self.SelectOcc == userInfoComponent.UserInfo.Occ)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择新职业！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择新职业！"));
                 return;
             }
 
@@ -120,7 +120,7 @@ namespace ET
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "重新登录", "请重新登录！", () => {
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重新登录"), GameSettingLanguge.LoadLocalization("请重新登录！"), () => {
                 EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
                 EventType.ReturnLogin.Instance.ErrorCode = ErrorCode.ERR_Success;
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);

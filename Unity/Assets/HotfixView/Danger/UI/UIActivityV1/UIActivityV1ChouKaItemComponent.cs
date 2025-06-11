@@ -35,7 +35,7 @@ namespace ET
         public static void OnUpdateData(this UIActivityV1ChouKaItemComponent self, int key)
         {
             self.Key = key;
-            self.NumText.GetComponent<Text>().text = $"今日抽奖次数x{key}";
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日抽奖次数x{0}"), key);
             UICommonHelper.ShowItemList(ActivityConfigHelper.ChouKaNumberReward[key], self.RewardListNode, self, 0.8f);
 
             self.ReceivedImg.SetActive(self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key));
@@ -50,14 +50,14 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
 
             if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber) <
                 self.Key)
             {
-               FloatTipManager.Instance.ShowFloatTip("前置条件不足");
+               FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("前置条件不足"));
                 return;
             }
 

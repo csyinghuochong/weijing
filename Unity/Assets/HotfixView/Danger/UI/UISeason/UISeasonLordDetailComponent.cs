@@ -75,7 +75,7 @@ namespace ET
         {
             if (self.BagInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选择道具！"));
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace ET
             long end = numericComponent.GetAsLong(NumericType.SeasonBossRefreshTime);
             if (end - now <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("赛季首领已经出现！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("赛季首领已经出现！"));
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("使用成功！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("使用成功！"));
                 self.BagInfo = null;
                 self.UICommonItem.SetActive(false);
                 self.ItemNameText.GetComponent<Text>().text = string.Empty;
@@ -113,7 +113,7 @@ namespace ET
 
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
-            self.PositionText.GetComponent<Text>().text = $"即将出现在{dungeonConfig.ChapterName}中...";
+            self.PositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("即将出现在{0}中..."), dungeonConfig.ChapterName);
 
             int bossId = SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
@@ -214,11 +214,11 @@ namespace ET
                     DateTime nowTime = TimeInfo.Instance.ToDateTime(now);
                     DateTime endTime = TimeInfo.Instance.ToDateTime(end);
                     TimeSpan ts = endTime - nowTime;
-                    self.RefreshTimeText.text = $"剩余时间:{ts.Days}天{ts.Hours}时{ts.Minutes}分{ts.Seconds}秒";
+                    self.RefreshTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("剩余时间:{0}天{1}时{2}分{3}秒"), ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
                 }
                 else
                 {
-                    self.RefreshTimeText.text = "出现!!";
+                    self.RefreshTimeText.text = GameSettingLanguge.LoadLocalization("出现!!");
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);

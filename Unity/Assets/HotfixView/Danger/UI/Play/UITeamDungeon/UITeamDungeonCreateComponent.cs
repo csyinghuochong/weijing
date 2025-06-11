@@ -81,7 +81,7 @@ namespace ET
                 //更新显示
                 ReferenceCollector rcSon = item.GetComponent<ReferenceCollector>();
                 //rcSon.Get<GameObject>("Img_Show");
-                rcSon.Get<GameObject>("Lab_Lv").GetComponent<Text>().text = "进入等级:" + sceneConfig[i].EnterLv.ToString() + "级";
+                rcSon.Get<GameObject>("Lab_Lv").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进入等级:{0}级"), sceneConfig[i].EnterLv);
                 rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().text = sceneConfig[i].Name;
 
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig[i].Icon);
@@ -180,7 +180,7 @@ namespace ET
 
             UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
             self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
-            self.TextPlayerLimit.GetComponent<Text>().text = $"{sceneConfig.PlayerLimit}-3人";
+            self.TextPlayerLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-3人"), sceneConfig.PlayerLimit);
             self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.ChapterDes;
             self.TextFubenName2.GetComponent<Text>().text = sceneConfig.Name;
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon2);
@@ -210,7 +210,7 @@ namespace ET
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 if (bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
                 {
-                    FloatTipManager.Instance.ShowFloatTip($"需要道具{ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).ItemName}！");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("需要道具{0}！"), ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).ItemName));
                     return;
                 }
                 dungeonType = TeamFubenType.ShenYuan;
@@ -229,7 +229,7 @@ namespace ET
 
                 if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"帮助副本次数已尽，开启副本会消耗正常次数", async () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽，开启副本会消耗正常次数"), async () =>
                     {
                         int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
                         if (errorCode != ErrorCode.ERR_Success)

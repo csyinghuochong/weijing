@@ -407,7 +407,7 @@ namespace ET
 
                 if (numericComponent.GetAsInt(NumericType.UnionRaceWin) == 1 && !string.IsNullOrEmpty(unionname))
                 {
-                    unionname += "(争霸)";
+                    unionname += GameSettingLanguge.LoadLocalization("(争霸)");
                 }
             }
             if (string.IsNullOrEmpty(unionname) )
@@ -415,13 +415,13 @@ namespace ET
                 int rankId = numericComponent.GetAsInt(NumericType.CombatRankID);
                 int occRankId = numericComponent.GetAsInt(NumericType.OccCombatRankID);
                 int occ = unit.ConfigId;
-                unionname = ConfigHelper.GetRankChengHao(rankId, occRankId, occ);
+                unionname = GameSettingLanguge.LoadLocalization(ConfigHelper.GetRankChengHao(rankId, occRankId, occ));
             }
 
             if (unit.MainHero && ComHelp.IsZhuBoZone(this.ZoneScene().GetComponent<AccountInfoComponent>().ServerId))
             {
                 int occ = unit.ConfigId;
-                unionname = ConfigHelper.GetRankChengHao(1, 1, occ);
+                unionname = GameSettingLanguge.LoadLocalization(ConfigHelper.GetRankChengHao(1, 1, occ));
             }
 
             if (string.IsNullOrEmpty(unionname) )
@@ -471,7 +471,7 @@ namespace ET
                 {
                     if (monsterCof.MonsterType == 3)
                     {
-                        this.Lal_Name.GetComponent<Text>().text = $"深渊召唤:{colorstr}{monsterCof.MonsterName}</color>";
+                        this.Lal_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("深渊召唤:{0}{1}</color>"), colorstr, monsterCof.MonsterName);
                     }
                     else
                     {
@@ -499,13 +499,13 @@ namespace ET
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
-                this.Lal_JiaZuName.GetComponent<Text>().text = $"{unitInfoComponent.MasterName }的宠物";
+                this.Lal_JiaZuName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的宠物"), unitInfoComponent.MasterName);
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
-                this.Lal_JiaZuName.GetComponent<Text>().text = $"{unitInfoComponent.MasterName }的精灵";
+                this.Lal_JiaZuName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的精灵"), unitInfoComponent.MasterName);
             }
             if (this.GetParent<Unit>().Type == UnitType.Stall)
             {
@@ -608,8 +608,8 @@ namespace ET
             int hour = (int) leftTime / 3600;
             int min = (int)((leftTime - (hour * 3600))/60);
             int sec = (int)(leftTime - (hour * 3600) - (min * 60));
-            string showStr = hour + "时" + min + "分" + sec + "秒";
-            reviveTime.GetComponent<Text>().text = $"{monsterConfig.MonsterName} 刷新剩余时间:{showStr}";
+            string showStr = hour + GameSettingLanguge.LoadLocalization("时") + min + GameSettingLanguge.LoadLocalization("分") + sec + GameSettingLanguge.LoadLocalization("秒");
+            reviveTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 刷新剩余时间:{1}"), monsterConfig.MonsterName, showStr);
         }
 
         public void OnGetUseInfoUpdate()
@@ -707,7 +707,7 @@ namespace ET
             }
             else
             {
-                self.Lal_AddtionName.GetComponent<Text>().text = $"{stallName}的小跟班";
+                self.Lal_AddtionName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的小跟班"), stallName);
             }
         }
 

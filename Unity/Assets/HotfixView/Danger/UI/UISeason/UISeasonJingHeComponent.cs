@@ -154,8 +154,8 @@ namespace ET
             // 更新右侧面板信息
             if (!userInfoComponent.UserInfo.OpenJingHeIds.Contains(seasonJingHeConfig.Id)) // 未解锁的孔位
             {
-                self.NameText.GetComponent<Text>().text = "赛季晶核孔位";
-                self.DesText.GetComponent<Text>().text = "可以让玩家在本赛季拥有额外的赛季能力";
+                self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("赛季晶核孔位");
+                self.DesText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("可以让玩家在本赛季拥有额外的赛季能力");
 
                 int costItemId = int.Parse(seasonJingHeConfig.Cost.Split(';')[0]);
                 int cosrItemNum = int.Parse(seasonJingHeConfig.Cost.Split(';')[1]);
@@ -195,7 +195,7 @@ namespace ET
             }
             else // 解锁的孔位
             {
-                self.NameText.GetComponent<Text>().text = "赛季晶核孔位";
+                self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("赛季晶核孔位");
                 string attribute = "";
                 if (nowItem != null && nowItem.BagInfo != null)
                 {
@@ -208,11 +208,11 @@ namespace ET
                             int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
                             if (showType == 2)
                             {
-                                attribute = $"当前附加 {proName}:" + (hideProList.HideValue / 100f).ToString("0.##") + "%" + "\n";
+                                attribute = GameSettingLanguge.LoadLocalization("当前附加") + $" {proName}:" + (hideProList.HideValue / 100f).ToString("0.##") + "%" + "\n";
                             }
                             else
                             {
-                                attribute = $"当前附加 {proName}:" + hideProList.HideValue + "\n";
+                                attribute = GameSettingLanguge.LoadLocalization("当前附加") + $" {proName}:" + hideProList.HideValue + "\n";
                             }
                         }
                     }
@@ -223,7 +223,7 @@ namespace ET
                         {
                             int skillID = nowItem.BagInfo.HideSkillLists[i];
                             SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                            attribute = "当前附加技能" + ":" + skillCof.SkillName + "\n";
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + skillCof.SkillName + "\n";
                         }
                     }
 
@@ -308,13 +308,13 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.OpenJingHeIds.Contains(self.JingHeId))
             {
-                FloatTipManager.Instance.ShowFloatTip("孔位已开启！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("孔位已开启！"));
                 return;
             }
 
             if (!SeasonJingHeConfigCategory.Instance.Contain(self.JingHeId))
             {
-                FloatTipManager.Instance.ShowFloatTip("无效孔位！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("无效孔位！"));
                 return;
             }
 
@@ -324,7 +324,7 @@ namespace ET
             long havedNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemId);
             if (havedNum < cosrItemNum)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具数量不足！"));
                 return;
             }
 
@@ -371,7 +371,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (self.BagInfo == null || self.JingHeId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选择道具！"));
                 return;
             }
 

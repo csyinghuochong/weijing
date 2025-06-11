@@ -49,12 +49,12 @@ namespace ET
 
             if (setvalue == "1")
             {
-                FloatTipManager.Instance.ShowFloatTip("你开启了高帧模式");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("你开启了高帧模式"));
             }
 
             if (setvalue == "0")
             {
-                FloatTipManager.Instance.ShowFloatTip("你开启了普通模式");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("你开启了普通模式"));
             }
 
             //移除界面

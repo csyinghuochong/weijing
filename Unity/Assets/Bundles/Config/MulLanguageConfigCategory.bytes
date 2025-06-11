@@ -10824,8 +10824,6 @@ Skill name
 (��技能展示Skills demonstration
 /��职业:战士/法师Class: Warrior/Mage
 >��玩家名字七个字!The player's name is seven words.
-��	等级:10
-Rating: 10
 2��点击创建新角色Click Create New Role
 ��	上一页Previous page
 ��	下一页	Next page
@@ -10963,8 +10961,6 @@ I��--请选择要喂食的道具--"-- Please select a prop to feed --
  ��停止散步Stop walking
 $��宠物散步Pets take a walk
 ��暂无宠物No pets yet
-��
-等级：0Level: 0
 4��已经获得经验Experience has been gained
 4��已经散步：0分Already walking: 0 points
 $��寻找宠物Looking for pets
@@ -10999,7 +10995,6 @@ _��*玩家幸福的瞬间来到你的家园。-The player's happy moment com
 !��	耕地：Cultivated land:
 ��	人口：Population:
 6��幸福瞬间的家园The Home of Happy Moments
-��等级:1级Level: 1
 (家园经验Homestead experience
 DÜ人口上线提升至10%Population upper line increased to 10
 -Ĝ兑换家园资金Exchange home funds
@@ -11245,7 +11240,6 @@ Expression
 ��拍卖Auction
 N��玩家名字七八个字.Seven or eight characters in the player's name
 0��哈哈哈<U>HAHAH </U>Hahaha < U > HAHAH
-��	等级：Level
 H�� 哈哈哈<U>HAHAH </U>1111111111 Hahaha < U > HAHAH  1111 111111.
 ��奖励Reward
 ��成就Achievement
@@ -11310,8 +11304,6 @@ Q֞抽卡次数达到11111次/The number of card drawing reaches 1,111 time
 '؞一键出售Sell with one click
 ٞ金币Gold
  ڞ怪物名称Monster name
-۞等级：10
-Rating: 10
 ܞ血量Blood volume
  ݞ获得奖励Get a reward
 ޞ新技能！New skills!
@@ -11600,8 +11592,6 @@ $Š热重载值Hot Reload Value
 Sɠ恭喜玩家获得:勇气2Congratulations to the player for gaining: Courage
 4ʠ武器的名字啊啊The name of the weapon.
 ˠ类型：剑Type: Sword
-̠等级：45
-Rating: 45
 '͠部位：手套Location: Gloves
 1Π力量要求：10Strength requirement: 10
 Ϡ	未绑定Unbound
@@ -11614,7 +11604,6 @@ Rating: 45
 ֠萨雷斯之Of Sares
 4נ萨雷斯之怒（1/4）Rage of Thales (1/4)
 Dؠ提示:穿戴后激活套装 Tip: Activate suit after wearing
-(٠【隐藏技能】[Hidden Skill]
 6ڠ隐藏技能提示框Hide the skill prompt box
 4۠制造者：星星点灯Maker: Star Lighting
 (ܠ取消回炼Cancel back refining
@@ -11702,9 +11691,6 @@ $��领取邮件Pick up the mail
 '��恢复默认Restore the default
 ��3拖动技能可以设置技能对应的按钮位置DDrag the skill to set the button position corresponding to the skill
 @��宠物名称七个字#The name of the pet is seven words.
-��
-等级: 10
-Rating: 10
 $��任务描述Task description
 (��任务名称The name of the task
 ��等级Level
@@ -11756,8 +11742,6 @@ Frames: 60
 &ݡ活力 100/100Vitality 100/100
  ޡ
 先锋1区Pioneer Zone 1
-ߡ	等级:99
-Rating: 99
 /�体力 100/100Physical strength 100/100
 �	战力:99	Power: 99
 +�开启宝箱Open the treasure chest
@@ -11986,8 +11970,6 @@ Add points
 生命 361Life 361
 #��基础属性Base properties
 &��特殊属性Special attributes
-��
-等级：1Grade: 1
 U��!选择需要装备的宠物之核,Select the core of the pet you want to equip
 ��
 攻击 +99Attack + 99
@@ -12137,7 +12119,6 @@ $��拥有宠物蛋Have pet eggs
 "��阵容搭配Line-ups match
 %��确认搭配Confirm the match
 )��返回探险Return to exploration
-��等级:9	Rating: 9
 (��返回天梯Return to the ladder
 ���L提示:拖动左边的宠物到右边的上阵单位即可完成阵容搭配kPrompt: Drags the left side the pet to the right side the battle unit then completes the line-ups to match.
 -��阵容限制：5/5Line-ups limit: 5/5
@@ -12964,8 +12945,6 @@ Enter a lower level dungeon than yourself
 0�等待确认..Waiting for confirmation..
  �玩家11111Player 1111 1
 .��倒计时：10秒Countdown: 10 seconds
-�等级：70
-Rating: 70
 �伤害：70
 Damage: 70
 �额外奖励Bonus
@@ -13010,8 +12989,6 @@ N��
 Monsters receive the following rewards
 +��1级伤害副本Level 1 Damage Copy
 #��生命：100000Life: 100000
-��等级：11
-Rating: 11
  ��	第一层The first floor
 ���<重新挑战怪物当前的生命值和倒计时均会重置KThe current health and countdown of the re-challenge monster will be reset.
 !��伤害:10000Injury: 10000
@@ -13048,28 +13025,6 @@ O��&冲冲冲,我不会让大家失望的!!Go, go, go, I won't let you down!
 x��+我好累,妈妈说累了就可以歇一歇EI'm so tired, and my mother said I could take a break when I'm tired.
 Y��%好饱啊,我要停下来歇一歇。,I'm so full. I want to stop and have a rest.
 c��/唉呀,谁用石头丢了我一下,头好晕哦,Oh, who threw me with a stone? I feel dizzy.
-�
-���版本更新内容
-1.更新家族系统,可以创建家族邀请其他玩家加入。
-2.开启游戏第六章第一个地图,60级可进入。
-3.新增宠物守护系统,根据宠物评分可以增加暴击等相关属性。
-4.增加家园访问，其他玩家可以互相访问家园。
-5.家园小地图显示石块和树叶方便玩家快速查询。
-6.赏金任务需要的怪物数量缩减。
-7.创建角色增加随机姓名。
-8.修复牧师技能不加攻击的问题。
-9.增加天气系统。
-10.增加野外碰到精灵和宠物的几率。�Version update content 
-1. Update the family system, you can create a family to invite other players to join. 
-2. Open the first map of the sixth chapter of the game. Level 60 can be entered. 
-3. Add a pet guardian system, which can increase critical strike and other related attributes according to the pet score. 
-4. Added home access to allow other players to visit each other's homes. 
-5. Home minimap displays stones and leaves for quick queries.
-6. Bounty quests require a reduced number of monsters. 
- 7. Create a character and add a random name. 
-8. Fixed an issue with the Priest ability not attacking. 
-9. Add a weather system. 
-10. Increases the chance to encounter elves and pets in the wild.
 *��白虎守护The white tiger guards
 (��朱雀守护The rosefinch guards
  ��玄武守护Xuanwu guard
@@ -13116,20 +13071,8 @@ Aݪ全区第一法师'The first Dharma Master in the district
 A�全区第一唤魔者$The First Demon Caller in the Region
 B�全区第二唤魔者%The Second Demon Caller in the Region
 A�全区第三唤魔者$The Third Demon Caller in the Region
-�掉落为0:
-Drop to 0:
-��c掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！ dropID =�Dropped successfully! Dropped successfully! Dropped successfully! Dropped successfully! Dropped successfully! Dropped successfully! dropID =
-�掉落1Drop 1
-�掉落2Drop 2
 5�请提升等级至: {0}Please upgrade to: {0}
 9�请完成任务: {0}Please complete the task: {0}
-�追风Chasing the wind
-#��杨丶大桃Yang, big peach
-G�!9@景沫渺@你作弊了！！！9 @ Jing Momiao @ You cheated!
-���0@0@经过大数据排查，我们查询到您使用了第三方违规充值，请主动加QQ群: 719546102 (联系群主) 我们收到消息会主动与你处理此事！�0 @ 0 @ After big data investigation, we found that you used a third party to recharge illegally. Please take the initiative to add QQ group: 719546102 (contact the group owner) We will take the initiative to deal with this matter with you after receiving the message!
-���0@0@经过大数据排查，我们查询到您使用了违规操作，请主动加QQ群: 719546102 (联系群主) 我们收到消息会主动与你处理此事！�0 @ 0 @ After the big data investigation, we found that you used the illegal operation, please take the initiative to join the QQ group: 719546102 (contact the group owner) We will take the initiative to deal with this matter with you after receiving the message!
-�	不存在Does not exist
-�封号:Seal Number:
 ��系统赠与System gift
 /��副本结算奖励Copy Settlement Award
 ��抽卡Draw a card
@@ -13409,8 +13352,6 @@ C��恭喜你！竞技场获胜....Congratulations! Arena win..
 (��次数不足！Not enough times!
 6��!{sceneConfig.EnterLv}级开启！{0} level on!
 1��体力不足！Lack of physical strength!
-l��L宠物装备数量1： {m2C_PetEquipResponse.RolePetInfo.PetEquipList.Count}Pet Equipment Qty 1: {0}
-���l宠物装备数量2： {zoneScene.GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.PetLocEquip).Count}Pet Equipment Quantity 2: {0}
 '��制作失败!Production failed!
 h��:恭喜你领悟到新的制作技能 {itemConfig.ItemName}&Congratulations on your new skill {0}.
 .��赛季结束奖励End of season reward
@@ -13418,9 +13359,6 @@ h��:恭喜你领悟到新的制作技能 {itemConfig.ItemName}&Congratulatio
 F��初始化当前怪物血量:"Initialize current monster health:
 ��射手Shooter
 B��释放打断寻路状态"Release Interrupt Wayfinding State
-3��ios支付返回1111 returned by IOS payment
-D��payload[内购成功]:&Payload [internal purchase succeeded]:
-���E用户无可玩时长，此时用户只能退出游戏或切换账号_The user has no time to play. At this time, the user can only quit the game or switch accounts.
 9��实名认证失败Real name authentication failed
 Q��请确认是否登录TapTap！+Please confirm whether to log in to TapTap!
 2��抖音登录失败！Tik Tok login failed!
@@ -13429,33 +13367,28 @@ Q��请确认是否登录TapTap！+Please confirm whether to log in to TapTa
 ��抵抗
 Resistance
 ��免疫Immunity
-4��手指向左滑Slide your finger to the left
-2��手指右滑Slide your finger to the right
-&��手指下滑Fingers slide down
-)��手指上滑Slide your fingers up
 !��	可收获Can be harvested
 ��天God
 ��时Time
 ��分Points
 ��秒Seconds
-2��收获计时: {showStr}Harvest Timing: {0}
+,��收获计时: {0}Harvest Timing: {0}
 ��	未开启Not turned on
-M��)东西给你!{name} 不要追着我啦！Here you go! Don't chase me!
+M��&东西给你!{0} 不要追着我啦！Here you go!{0} Don't chase me!
 )̭唤魔之击Call the Demon Strike
 sѭ2附近有领主出现,请问是否进入新地图?9There is a Lord nearby. Do you want to enter the new map?
 ҭ(争霸)
 (Hegemony)
-Xӭ7深渊召唤:{colorstr}{monsterCof.MonsterName}</color>Call of the Abyss: {0}{1}
-9ԭ({unitInfoComponent.MasterName }的宠物	{0}'s pet
-9խ({unitInfoComponent.MasterName }的精灵	{0} Genie
-_֭8{monsterConfig.MonsterName} 刷新剩余时间:{showStr}{0} Refresh Time Remaining: {1}
-9׭{stallName}的小跟班The little sidekick of {0}
+Eӭ深渊召唤:{0}{1}</color>"Call of the Abyss: {0}{1} </color>
+ԭ{0}的宠物	{0}'s pet
+խ{0}的精灵	{0} Genie
+A֭{0} 刷新剩余时间:{1}{0} Refresh Time Remaining: {1}
+1׭{0}的小跟班The little sidekick of {0}
 �ح2主城禁止挂机喔,已为你自动移除挂机!VHang-up is forbidden in the main city. Hang-up has been automatically removed for you!
 �٭2体力已经消耗完毕,请确保体力充足喔!dThe physical strength has been exhausted, please make sure that the physical strength is sufficient!
 5ڭ附近未发现怪物No monsters found nearby
 uۭ+背包已满，已自动一键出售道具!BBackpack is full, props have been sold automatically with one key!
 *ܭ任务完成!Mission accomplished!
-,ݭ实装碰撞体:Real collision body:
 Xޭ*恭喜你赢得了本场试炼的胜利！&Congratulations on winning this trial!
 4߭战斗超时，失败Battle timeout, failure
 ;�账号异地登录!Account login in different places
@@ -13463,21 +13396,20 @@ Xޭ*恭喜你赢得了本场试炼的胜利！&Congratulations on winning th
 {�0由于您长时间未操作，请重新登录！CBecause you have not operated for a long time, please log in again!
 %�消息异常Message exception
 *�请重新登录Please log in again
-q�C{args.m2C_OneChallenge.OtherName}向你发起挑战，是否接受?&{0} is challenging you. Do you accept?
+S�%{0}向你发起挑战，是否接受?&{0} is challenging you. Do you accept?
 #�组队邀请Team invitation
-n�D{args.m2C_TeamInviteResult.TeamPlayerInfo.PlayerName}邀请你组队"The {0} has invited you to team up
+<�{0}邀请你组队"The {0} has invited you to team up
 ��|<color=#FDFB47>队伍内有人机,副本掉率将降低!</color>
 建议:和其他玩家组队爆率将获得大幅度提升
-�< color = # FDF B47 > If there is a machine in the team, the copy drop rate will be reduced!  
+�<color=#FDFB47> If there is a machine in the team, the copy drop rate will be reduced!</color>
 Suggestion: Team explosion rate with other players will be greatly increased 
 
-D�{tip}是否进入副本？"{0} Do you want to enter the copy?
 %�家族邀请Family invitation
-��J玩家{message.PlayerName}邀请你加入{message.UnionName},是否接受?/Player {0} has invited you to join {1}. Accept?
+`�)玩家{0}邀请你加入{1},是否接受?/Player {0} has invited you to join {1}. Accept?
 -�争霸赛结束The tournament is over
 |��/争霸赛已结束,请及时退出结算奖励!EThe competition has ended, please exit the settlement reward in time!
 G�该地图不支持复活'This map does not support resurrection.
-\�D{unitAttack.GetComponent<UnitInfoComponent>().UnitName} 攻击了你{0} attacked you
+(�{0} 攻击了你{0} attacked you
 :�位置没有改变！The location has not changed!
 Q�是否立即前往角斗场？+Do you want to go to the arena immediately?
 c�!是否立即前往喜从天降？:Do you want to go to Joy Falling from the Sky immediately?
@@ -13655,8 +13587,6 @@ M��当前上架已达上限-The current shelf has reached the upper limit
 ]��!该道具购买今日已达上限4The item purchase has reached the upper limit today.
 S��!正在回档中，请稍后登陆*Filing is in progress, please log in later
 8��前置条件不足！Insufficient preconditions!
-J�� 播放受击特效PlayHitEffect:"Play the hit effect PlayHitEffect:
-K��技能CD中,不能移动技能%Skill cannot be moved in the skill CD
 ��	生命值
 Hit points
 #��物理攻击Physical attack
@@ -13847,9 +13777,7 @@ Pet attack
 ,�宠物洗练Pet washing and training
 �	鉴定符
 Identifier
-w�6<color=#ACFF23FF>此属性可出现的装备部位：
-9< color = # ACFF23FF > Where this attribute can appear: 
-
+L�$此属性可出现的装备部位： Where this attribute can appear:
 �	全部位	All parts
 �黄色Yellow
 �紫色Purple
@@ -13865,36 +13793,24 @@ $�守护能量Guard the energy
 ��槽位Slot position
 0��挖宝位置Location of treasure digging
 ��品质Quality
-:��{canTransf}增幅: {proName} +{0} Increment: {1} +
-R��0{canTransf}增幅: {proName} + {hide.HideValue}
-{0} Increment: {1} + {2} 
-
-'��{canTransf}增幅:{0} Increase:
-h��B消耗{itemConfig.ItemName}X{iteminfo[1]}兑换{petConfig.PetName}Consume {0} X {1} Exchange {2}
-6��当前附加 {proName}:Currently attached {0}:
+��增幅Incremen
+<��消耗{0}X{1}兑换{2}Consume {0} X {1} Exchange {2}
+&��当前附加Currently attached
 3��当前附加技能Current additional skills
 ��防御Defense
 ��提升Promote
 ��点Point
 D��套装效果，附加技能：Set effect, additional skills:
-%��隐藏技能：Hidden skills:
-c��C附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} +Enchant Attribute: {0} +
-���[附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}Enchant Properties: {0} + {1}
-O��/{canTransf}增幅: {proName} + {hide.HideValue}{0} Increment: {1} + {2}
-`��$
-(同类传承属性只激活一种)4
- (Only one kindred inheritance attribute is active)
-��个A
-��1 区Zone 1
-��	轩辕剑Xuanyuan Sword
+!��隐藏技能Hidden skills
+%��附魔属性Enchant Attribute
+Y��!同类传承属性只激活一种0Only one kindred inheritance attribute is active
 H��请提升到相对的等级%Please upgrade to the relative level.
-T��C请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}	Go to {0}
+��	请前往Go to
 )��请手动前往Please go manually
 ��副本Copy
-,��请前往{fubenname}Please go to {0}
 E��正在前往任务目标点"Proceeding to mission target point
 3��击败{0} {1}/{2} {3}Defeat {0} {1}/{2} {3}
-��(地图:(Map:
+��地图(Map:
 2��找 {0} 谈一谈 {1}Talk to {0} about {1}
 C��等级提升至{0}级 {1}/{2}Level increased to {0} {1}/{2}
 <��击败任意怪物 {0}/{1}Defeat any monster {0}/{1}
@@ -13958,7 +13874,6 @@ Aͱ组队副本伤害值 {0}/{1}Team Instance Damage {0}/{1}
 ?α矿场占领次数 {0}/{1}Mine occupation times {0}/{1}
 Yϱ(击败地狱级任意领主怪物{0}/{1})Defeat Infernal Any Lord Monsters {0}/{1}
 4б寻找道具{0} {1}/{2}Find Prop {0} {1}/{2}
-3ѱ请前往主城!Please go to the main city!
 .ұ骰子点数是:The number of dice is:
 *ӱ操作错误！！Operation error!
 "Ա最低攻击Minimum attack
@@ -13980,111 +13895,98 @@ c�I当前等级：{numericComponent.GetAsInt(NumericType.Now_Lv).ToString()}
 ;�已经学习过该食谱！Have learned the recipe!
 1�家园资金不足！Home is underfunded!
 !�学习食谱Learn recipes
-j�2是否消耗{needcost}家园资金学习该食谱?0Does it cost {0} home money to learn the recipe?
+c�+是否消耗{0}家园资金学习该食谱?0Does it cost {0} home money to learn the recipe?
 >�背包空间不足！!Not enough space in the backpack!
-p�+恭喜你学会制作 {itemConfig.ItemName}=Congratulations on learning how to make itemConfig. ItemName.
+L�恭喜你学会制作 {0}+Congratulations on learning how to make {0}
 .�道具数量不足！Not enough props!
 %�增加属性：Add Attribute:
-0�品尝{need_time_0}次开启Taste {0} on
-3��品尝{need_time_1}次开启Taste {0} Onset
-6�品尝{need_time_2}次开启Taste {0} times on
+3�品尝{0}次开启Taste {0} times to unlock
 i�'请选择返回主城或自己家园？:Please choose to return to the main city or your own home?
 �返回家园Return home
-1�{response.MasterName}的家园Home of {0}
+�{0}的家园Home of {0}
 O�!附近没有可收获的道具！&There are no harvestable props nearby!
-^�*是否花费 {consttip} 开启一块土地,Whether to spend {0} to open a piece of land
+W�#是否花费 {0} 开启一块土地,Whether to spend {0} to open a piece of land
 2��是否移除农作物?Is the crop removed?
-;��&剩余 {mysteryItemInfo.ItemNumber}件Remaining {0}
-A��(家园{mysteryConfig.JiaYuanLv}级开启Home {0} Level On
+"��剩余 {0}件Remaining {0}
++��家园{0}级开启Home {0} Level On
 I��请等待下次商店刷新&Please wait for the next store refresh
-@��+剩余 {self.MysteryItemInfo.ItemNumber}件Remaining {0}
-W��9刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}Refresh Countdown: {0}
-���M可种植地数量:{self.Lands.Count}/{jiaYuanComponent.PlanOpenList_7.Count}.Number of land available for planting: {0}/{1}
+2��刷新倒计时: {0}Refresh Countdown: {0}
+P��可种植地数量:{0}/{1}.Number of land available for planting: {0}/{1}
 @��空地数量不足！#Insufficient number of open spaces!
-@��)人口：{jiaYuanPastureConfig.PeopleNum}Population: {0}
-��{hour}小时	{0} hours
-A�� 购买{mysteryConfig.Name}成功Purchase of {0} succeeded
-K��2家园{jiaYuanPastureConfig.BuyJiaYuanLv}级开启Home {0} Level On
-M��4家园{myJiaYuanPastureConfig.BuyJiaYuanLv}级开启Home {0} Level On
->��经验收益: {addExp}/小时Experience gain: {0}/hour
-L��(宠物增加 {response.MoodAdd}心情值Pet Increases {0} Mood Value
+0��购买{0}成功Purchase of {0} succeeded
++��家园{0}级开启Home {0} Level On
+9��经验收益: {0}/小时Experience gain: {0}/hour
+=��宠物增加 {0}心情值Pet Increases {0} Mood Value
 *��等级不足！Insufficient grade!
 $��10级开启！Level 10 open!
 $��20级开启！Level 20 open!
 +��20级家园开启Level 20 Home Open
-.��等级：{rolePetInfo.PetLv}
+��等级：{0}
 Level: {0}
-K��0已经散步:{TimeHelper.ShowLeftTime(walkTime)}Already walked: {0}
-��/小时/hour
-O��5当前阶段: {JiaYuanHelper.GetPlanStageName(stage)}Current stage: {0}
-q��Z下一阶段: {JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString()}Next stage: {0}
-{��^预计收获: {JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString()}Expected harvest: {0}
-g��I{gatherTime} {m2C_JiaYuanWatch.JiaYuanRecord[i].PlayerName}收获一次 
++��已经散步:{0}Already walked: {0}
+��小时/hour
++��当前阶段: {0}Current stage: {0}
+(��下一阶段: {0}Next stage: {0}
+.��预计收获: {0}Expected harvest: {0}
+3��{0} {1}收获一次 
 {0} {1} Harvest Once 
 
 2��今日次数不足!Not enough times today!
 /��家园资金不足!Home is underfunded!
  ��家园刷新Home refresh
-`��)是否花费{needzijin}家园资金刷新/Whether to spend {0} homestead funds to refresh
+X��!是否花费{0}家园资金刷新/Whether to spend {0} homestead funds to refresh
 (��道具不足！Not enough props!
 ��	已过期Expired
 $��剩余时间:Time remaining:
 ��资金:Funding:
-i��>{time} 玩家<color=#9CA606>{jiaYuanRecord.PlayerName}</color>#{0} Player < color = # 9CA606 > {1}
+Q��${0} 玩家<color=#9CA606>{1}</color>%{0} Player <color=#9CA606>{1}</color>
 F��!来到你的家园逛了一圈。Came to your home for a walk.
-���v在你的家园拾取了<color=#9CA606> {JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>6< color = # 9CA606 > {0}  was picked in your homestead
-���y在你的家园拾取了<color=#9CA606> {JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>6< color = # 9CA606 > {0}  was picked in your homestead
-���y在你的家园清理了<color=#9CA606> {MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName}</color>.Cleared < color = # 9CA606 > {0}  in your home
+r��3在你的家园拾取了<color=#9CA606> {0}</color>7<color=#9CA606>{0}</color> was picked in your homestead
+j��3在你的家园清理了<color=#9CA606> {0}</color>/Cleared <color=#9CA606>{0}</color> in your home
 ��购买格子Buy Lattice
-���P是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?7Do you want to spend {0} to buy a backpack compartment?
+g��(是否花费{0}购买一个背包格子?7Do you want to spend {0} to buy a backpack compartment?
 >��兑换次数不足！!Insufficient number of exchanges!
 -��金币不足！Not enough gold coins!
-��	的家园Home
-��等级:Level
-1��提示:经验产出Tip: Experience output
-&��/小时,预计/hour, estimated
-@��小时后可升级家园 Home can be upgraded after hours
-p��M兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin)}Number of exchanges: 10/{0}
-n��K兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp)}Number of exchanges: 10/{0}
-����采摘:{numericComponent.GetAsInt(NumericType.JiaYuanGatherOther)}/5
-打扫:{numericComponent.GetAsInt(NumericType.JiaYuanPickOther)}/5Picking: {0}/5
+���?提示:经验产出{0}/小时,预计{1}小时后可升级家园]Experience output: {0} per hour. It is estimated that your home can be upgraded in {1} hours.
+6��兑换次数:10/{0}Number of exchanges: 10/{0}
+0��采摘:{0}/5
+打扫:{1}/5Picking: {0}/5
 ?��已经在当前房间中！Already in the current room!
 &��开启仓库Open the warehouse
-{��I是否消耗{UICommonHelper.GetNeedItemDesc(costItems)}开启一个仓库*Whether to consume {0} to open a warehouse
-P��:获得道具: {UICommonHelper.GetNeedItemDesc(dataparams)}Get props: {0}
+S��!是否消耗{0}开启一个仓库*Whether to consume {0} to open a warehouse
+'��获得道具: {0}Get props: {0}
 ��剑类Sword class
 ��刀类Knives
 ��弓箭Bow and arrow
 ��转职Transfer
-N��6是否转职为：{occupationTwoConfig.OccupationName}Transfer to: {0}
+-��是否转职为：{0}Transfer to: {0}
 7��不能重复转职!Can not repeat the transfer!
 @��请先选择一个职业！Please choose a career first!
 f��*重置职业不能和当前职业一样！4Reset class cannot be the same as the current class!
 g��'请先把装备全部卸到背包中！8Please unload all the equipment into the backpack first!
-����<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>
-<color=#FFFFFF>是否花费{costitem}重置技能点?</color>�< color = # BEFF34 > Tip: After reset, the equipment will not be adjusted with the transfer, and the equipment of the corresponding armor type needs to be remade  
- < color = # FFFFFF > Do you want to spend {0} to reset the skill points?
+����<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>
+<color=#FFFFFF>是否花费{0}重置技能点?</color>�<color=#BEFF34> Tip: After reset, the equipment will not be adjusted with the transfer, and the equipment of the corresponding armor type needs to be remade </color>
+<color=#FFFFFF> Do you want to spend {0} to reset the skill points? </color>
 ��专精Specialization
 %��挑战失败Challenge failure
 $��挑战胜利Challenge to win
 #��已通关！Passed through!
 )��竞技场第一First in the arena
 ���?恭喜你获得竞技场第1名,奖励内容8点发送至邮箱vCongratulations, you won the first place in the arena, and the reward content will be sent to the mailbox at 8 points.
-D��$剩余人数： {message.LeftPlayer}Headcount Remaining: {0}
+3��剩余人数： {0}Headcount Remaining: {0}
 ��
 倒计时:
 Countdown:
--��自身已战胜I have overcome myself
-��	个玩家A player
-����当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}$Current Summoned Population: {0}/{1}
+E��自身已战胜{0}个玩家"I have defeated {0} players myself
+F��当前召唤人口:{0}/{1}$Current Summoned Population: {0}/{1}
 '��人口不足！Underpopulation!
-M��*召唤{battleSummonConfig.ItemName}成功!Summoning of {0} succeeded!
+3��召唤{0}成功!Summoning of {0} succeeded!
 +²战场招募Battlefield recruitment
-vòJ是否消耗{self.CostGold}金币召唤{self.BattleSummonConfig.ItemName}?$Does it cost {0} gold to summon {0}?
-*Ĳ{self.CostGold}金币{0} gold coin
+Kò是否消耗{0}金币召唤{1}?$Does it cost {0} gold to summon {0}?
+Ĳ	{0}金币{0} gold coin
 !Ų免费召唤Call for free
 )Ʋ召唤魔物Summon a magic object
-!ǲ免费:{showStr}	Free: {0}
+ǲ	免费:{}	Free: {0}
 .Ȳ请选择道具！Please select props!
 Wɲ单次购买数量最多为1001The maximum quantity for a single purchase is 100
 ʲ	进度值Progress value
@@ -14095,8 +13997,8 @@ Wɲ单次购买数量最多为1001The maximum quantity for a single purchas
 ;ϲ{0}秒后退出副本Exiting Replica in {0} seconds
 0в返回出生点Return to the birth point
 4Ѳ不支持复活Resurrection is not supported
-VҲ'{self.LeftTime}秒后可返回主城！'{0} seconds to return to the main city!
-WӲ*{self.LeftTime}秒后可返回出生点！%Return to birth point in {0} seconds!
+JҲ{0}秒后可返回主城！'{0} seconds to return to the main city!
+KӲ{0}秒后可返回出生点！%Return to birth point in {0} seconds!
 !Բ进入等级:Enter Level:
 :ղ普通模式通关副本Normal mode clearance copy
 Pֲ!请先通关普通模式副本！'Please pass the normal mode copy first!
@@ -14107,120 +14009,112 @@ Cڲ选择剩余时间:{0}秒"Select time remaining: {0} seconds
 F۲周卡用户才能开启！#Only weekly card users can open it!
 /ܲ体力不足!Lack of physical strength!
 0ݲ阵营胜利奖励Faction victory reward
-q޲S{rankRewardConfigs[i].NeedPoint[0]}~{rankRewardConfigs[i].NeedPoint[1]}积分奖励{0} ~ {1} Bonus Points
-U߲1准备倒计时 {readyTime / 60}:{readyTime % 60}Ready to count down {0}: {1}
-Z�3活动结束倒计时 {endTime / 60}:{endTime % 60}Activity end countdown {0}: {1}
+1޲{0}~{1}积分奖励{0} ~ {1} Bonus Points
+;߲准备倒计时 {0}:{1}Ready to count down {0}: {1}
+D�活动结束倒计时 {0}:{1}Activity end countdown {0}: {1}
 %�第{0}名 {1}{0}th place: {1}
-/�刷新时间:{showStr}Refresh Time: {0}
+)�刷新时间:{0}Refresh Time: {0}
 �	已刷新	Refreshed
-Z�3神秘之门倒计时 {endTime / 60}:{endTime % 60}Mystery Gate Countdown {0}: {1}
-��M神秘之门还剩{endTime % 60}秒，活动结束将强制离开地图哦。jThere are {0} seconds left in Mysterious Gate. You will be forced to leave the map when the activity ends.
+C�神秘之门倒计时 {0}:{1}Mystery Gate Countdown {0}:{1}
+��B神秘之门还剩{0}秒，活动结束将强制离开地图哦。jThere are {0} seconds left in Mysterious Gate. You will be forced to leave the map when the activity ends.
 &�可以进行移动Can be moved
->�(金币消耗:{globalValueConfig1.Value2}Gold Cost: {0}
-H�(钻石消耗:{globalValueConfig2.Value2}Diamond consumption: {0}
-;�移动次数: {5 -useTimes}/5Number of moves: {0}/5
+&�金币消耗:{0}Gold Cost: {0}
+0�钻石消耗:{0}Diamond consumption: {0}
+1�移动次数: {0}/5Number of moves: {0}/5
 '�神秘之门The door of mystery
-C�-是否消耗{globalValueConfig.Value2}金币?Cost {0} gold?
-J��-是否消耗{globalValueConfig.Value2}钻石?Consume {0} diamonds?
-)�{openlv}级解锁{0} level unlock
-%�{openLv}级开启{0} level on
-8�激活等级:{openLv[0]}级Activation level: {0}
-8�激活等级:{openLv[1]}级Activation level: {0}
-8�激活等级:{openLv[2]}级Activation level: {0}
-<�)第{ChapterIndex}章 第{levelIndex+1}关{0} {1} off
-%��第{levelIndex + 1}关{0} off
+,�是否消耗{0}金币?Cost {0} gold?
+3��是否消耗{0}钻石?Consume {0} diamonds?
+$�{0}级解锁{0} level unlock
+ �{0}级开启{0} level on
+0�激活等级:{0}级Activation level: {0}
+0�第{0}章 第{1}关Chapter {0} Level {1}
+��	第{0}关	Level {0}
 L��战斗状态不能传送地图!%Combat status does not teleport maps!
-H��%下次道具刷新: {minute}:{second}Next item refresh: {0}: {1}
-���M活动结束还剩{endTime % 60}秒，活动结束将强制离开地图哦。qThere are {0} seconds left before the activity ends. You will be forced to leave the map after the activity ends.
-Y��4奔跑准备时间 {readyTime / 60}:{readyTime % 60}Run preparation time {0}: {1}
-^��4下次变身时间:  {leftTime / 60}:{leftTime % 60}"Next transformation time: {0}: {1}
-m��H下次变身时间:  {message.NextTransforTime - TimeHelper.ServerNow()}Next transformation time: {0}
+>��下次道具刷新: {0}:{1}Next item refresh: {0}: {1}
+���B活动结束还剩{0}秒，活动结束将强制离开地图哦。qThere are {0} seconds left before the activity ends. You will be forced to leave the map after the activity ends.
+?��奔跑准备时间 {0}:{1}Run preparation time {0}: {1}
+F��下次变身时间:  {0}:{1}"Next transformation time: {0}: {1}
+=��下次变身时间:  {0}Next transformation time: {0}
 4��第{0}名 {1}  还剩:{2}{0}th {1} left: {2}
 4��第{0}名 {1}  时间:{2}{1}th {1} Time: {2}
 U��!请先创建或加入副本队伍,Please create or join the replica team first
-��级Level
-3��{sceneConfig.PlayerLimit}-3人{0}-3 persons
-l��Q需要道具{ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).ItemName}！Props required {0}!
+-��进入等级:{0}级Level entered: {0}
+��{0}-3人{0}-3 persons
+-��需要道具{0}！Props required {0}!
 ���<帮助副本次数已尽，开启副本会消耗正常次数eThe number of help copies has been exhausted. Opening a copy will consume the normal number of times.
-'��{teamPlayerInfo.PlayerLv}级{0}
-M��,进入条件: {teamDungeonConfig.EnterLv}级Entry criteria: {0} level
+��{0}级Lv {0}
+5��进入条件: {0}级Entry criteria: {0} level
 !��(帮助模式)(Help Mode)
 "��(深渊模式)(Abyss Mode)
-v��T推荐等级： {teamDungeonConfig.TuiJianLv[0]}-{teamDungeonConfig.TuiJianLv[1]}级Recommended level: {0}-{1}
+<��推荐等级： {0}-{1}级Recommended level: {0}-{1}
 1��已经有队伍了There's already a team.
-Q��0副本次数：{totalTimes - times}/{totalTimes}Number of copies: {0}/{1}
-K��0帮助次数：{totalTimes - times}/{totalTimes}Help times: {0}/{1}
+7��副本次数：{0}/{1}Number of copies: {0}/{1}
+1��帮助次数：{0}/{1}Help times: {0}/{1}
 ��	冷却中Cooling
 3��是否离开队伍Whether to leave the line
 ;��是否离开队伍？Do you want to leave the team?
 /��没有副本队伍There is no copy team
-����副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}_{teamInfo.FubenType}_{teamInfo.PlayerList[0].PlayerLv}></link>�Copy: {0} starts the adventure, now we invite you to join us! < color = # B5FF28 > Click Apply to join  < link = team_{1}_{2}_{3}_{4}>
+���{副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>�Copy: {0} starts the adventure, now we invite you to join us! <color=#B5FF28> Click Apply to join </color> <link=team_{1}_{2}_{3}_{4}></link>
 ��已发送！Sent!
 0��喊话过于频繁！Shouting too often!
 ���6帮助副本次数已尽，继续则消耗正常次数]The number of help copies has been exhausted. Continue to consume the normal number of times.
-#��倒计时:{i}Countdown: {0}
+#��倒计时:{0}Countdown: {0}
 F��请先退出当前副本！#Please exit the current copy first!
-D��"{haverefuse} 不同意进入副本{0} Disagree to enter copy
-J�� 选择剩余时间:{leftTime}秒"Select remaining time: {0} seconds
+;��{0} 不同意进入副本{0} Disagree to enter copy
+D��选择剩余时间:{l0}秒"Select remaining time: {0} seconds
 I��周卡用户才能开启喔！#Only weekly card users can open it!
 %��副本奖励Duplicate rewards
 ���^由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收�As your backpack is full, the reward of the clearance treasure chest has been automatically distributed to your mailbox, please pay attention to check.
 W��(请在右侧领取自己的战利品哦!'Please pick up your booty on the right!
-4��"等级：{teamPlayerInfo.PlayerLv}
-Level: {0}
-3�� 伤害：{teamPlayerInfo.Damage}Injury: {0}
-<��拾取剩余:{timeStr}秒Pick remaining: {0} seconds
-v��4建议等级达到{jianyiLevel[0]}级后进行挑战:It is recommended to challenge after the level reaches {0}
-v��4建议等级达到{jianyiLevel[1]}级后进行挑战:It is recommended to challenge after the level reaches {0}
-v��4建议等级达到{jianyiLevel[2]}级后进行挑战:It is recommended to challenge after the level reaches {0}
-K��3{jianyiLevel[self.FubenDifficulty - 1]}级进入！{0} Level Entry!
-���G你当前成功完成挑战{towerConfig.CengNum}波,获得奖励如下:_You currently receive the following rewards for successfully completing the Challenge {0} Wave:
+��伤害：{0}Injury: {0}
+6��拾取剩余:{0}秒Pick remaining: {0} seconds
+i��'建议等级达到{0}级后进行挑战:It is recommended to challenge after the level reaches {0}
+'��{0}级进入！{0} Level Entry!
+���5你当前成功完成挑战{0}波,获得奖励如下:_You currently receive the following rewards for successfully completing the Challenge {0} Wave:
 n��'战斗未结束，是否领取奖励？?Do you want to receive the reward before the end of the battle?
 *��挑战之地：Place of challenge:
 +��购买最多100个！Buy up to 100!
 ���2今日已经达到塔顶,请明天再来挑战哦!TToday we have reached the top of the tower, please come to challenge again tomorrow!
 7��钻石数量不够There are not enough diamonds
 >��凭证数量不够$The number of vouchers is not enough
-���I是否花费350钻石去到第{(self.Finished + diceResult) / 10 * 10}层5Do you want to spend 350 diamonds to get to level {0}
+a��$是否花费350钻石去到第{0}层5Do you want to spend 350 diamonds to get to level {0}
 |��+已经通关塔顶，请明日再来挑战!IHave passed the top of the tower, please come back tomorrow to challenge!
 ���>该层boss并未击败，请击败本次boss再继续挑战!!!\This layer of boss has not been defeated, please defeat this boss and continue to challenge!
- ��第{cengNum}层	Level {0}
+��	第{0}层	Level {0}
 ;��请清理一下背包！Please clean your backpack!
 =��已通关该关卡！ The checkpoint has been cleared!
 @��请激活前置关卡！ Please activate the front level!
-,��等级: {monsterConfig.Lv}
-Level: {0}
-+��生命: {monsterConfig.Hp}	Life: {0}
+��生命: {0}	Life: {0}
 O��!伤害总值:{0}
 伤害秒值:{1}&Total Damage: {0} 
 Damage Seconds: {1}
 C��已经通关了该关卡！ The checkpoint has been cleared!
 ���L是否重新开始挑战,开始后倒计时和怪物生命将自动初始化zWhether to restart the challenge or not, the countdown and monster life will be automatically initialized after the start.
 ���3未能在60秒内击败怪物,请点击重新挑战UIf you fail to defeat the monster within 60 seconds, please click to challenge again.
--��倒计时 {leftTime - 1}Countdown {0}
-[��7奖励发放时间: {TimeHelper.ShowLeftTime(leftTime)}Bonus Distribution Time: {0}
-*��我的排名: {myRank}My Rank: {0}
-R��6{rankingInfo.FubenId%20000}层({rankingInfo.Hurt}/秒){0} layers ({1}/sec)
+"��倒计时 {0}Countdown {0}
+;��奖励发放时间: {0}Bonus Distribution Time: {0}
+%��我的排名: {0}My Rank: {0}
++��{0}层({1}/秒){0} layers ({1}/sec)
 7��10级才能领取！You can get it at level 10!
 K��未达到领取条件！+Does not meet the conditions for receiving!
 @��今天的奖励已领取 Today's reward has been claimed.
 -��货币不足！Insufficient currency!
-4��{activityConfig.Par_1}级礼包{0} Gift Pack
--��{activityConfig.Par_1}级开启{0} On
+!��{0}级礼包{0} Gift Pack
+&��{0}级开启Level {0} unlocked
 ?��冒险家积分不足！Insufficient Adventurer Points!
 D��当前奖励已领取！$The current reward has been claimed!
 G��不满足领取条件*Does not meet the conditions for receiving
 ?³已领完全部奖励！All rewards have been received!
 Hó当日奖励已领取！(The reward of the day has been received!
-ĳ第{index}天Day {0}
-4ų单笔充值{key}元Single recharge {0} yuan
+ĳ	第{0}天Day {0}
+2ų单笔充值{0}元Single recharge {0} yuan
 CƳ背包空间不足)There is not enough space in the backpack
 2ǳ未达条件Failure to meet the conditions
 )ȳ已经领取It has been collected
 Mɳ已经购买过该礼包！*This gift pack has already been purchased!
->ʳ 当前额度：{selfRechage}/298Current limit: {0}/298
+4ʳ当前额度：{0}/298Current limit: {0}/298
 ,˳背包已满！The backpack is full!
-&̳{activityConfig.Par_1}级{0}Lv
+̳{0}级{0}Lv
 @ͳ请先开启月卡！#Please open the monthly card first!
 Iγ当天奖励已领取！)The reward of the day has been collected!
 �ϳ*是否领取?
@@ -14228,44 +14122,43 @@ Iγ当天奖励已领取！)The reward of the day has been collected!
 There will be physical overflow after receiving it!
 Aг月卡开启成功'The monthly card is opened successfully
 )ѳ开启月卡Open the monthly card
-hҳ%是否花费{cost}钻石开启月卡?;Do you want to spend {0} diamonds to open the monthly card?
+eҳ"是否花费{0}钻石开启月卡?;Do you want to spend {0} diamonds to open the monthly card?
 ӳ	已抽取	Extracted
-vԳU消耗幸运卷轴:{bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem)}/1Spend Lucky Scroll: {0}/1
-=ճ道具数量不足#The number of props is insufficient
+9Գ消耗幸运卷轴:{0}/1Spend Lucky Scroll: {0}/1
 !ֳ已经抽完It's finished
 3׳未达刷新条件Refresh condition not met
 5س所需道具不足Insufficient props required
-�ٳ�抽奖次数：{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber)}Number of draws: {0}
-@ڳ今日抽奖次数x{key} Number of lucky draw today X {0}
+.ٳ抽奖次数：{0}Number of draws: {0}
+=ڳ今日抽奖次数x{0}Number of lucky draw today x{0}
 4۳前置条件不足Insufficient preconditions
-�ܳ�{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond)}钻石v{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent().GetAsLong(NumericType.V1DayCostDia Mond) } Diamond
-#ݳ{self.Key}钻石{0} Diamond
+ܳ	{0}钻石{0} Diamond
 /޳未达到条件The condition is not met
-;߳拥有数量：{havedNum}Number of possessions: {0}
+4߳拥有数量：{0}Number of possessions: {0}
 F�请选择用于兑换的字#Please select a word for redemption
 =�该字数量不足#The number of words is insufficient
 A�没有完整的一套字!There is no complete set of words
-9�%饱食度：{activityV1Info.BaoShiDu}Satiety: {0}
-;�选中新年数字{index}Select New Year Number {0}
+#�饱食度：{0}Satiety: {0}
 (�已经竞猜It's already a guess
-��k是否是否花费{item[1]}{ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName}开启新选项？-Whether to spend {0} {0} to open new options?
-@�{keyValuePair.Key}点开奖{0} Click to draw the lottery
+_�*是否是否花费{0}{1}开启新选项？-Whether to spend {0} {1} to open new options?
+1�{0}点开奖{0} Click to draw the lottery
 �中奖Win the lottery
 /�	未开奖The lottery has not been drawn
 0�已经领取完了It has been collected.
-=�)钻石:{keyValuePair.Value.Split(';')[1]}Diamond: {0}
-I�(需要消耗：{itemConfig_app.ItemName}Required consumption: {0}
-/��品质:{appList[i].ItemPar}Quality: {0}
+�
+钻石:{0}Diamond: {0}
+3�需要消耗：{0}Required consumption: {0}
+��
+品质:{0}Quality: {0}
 �品质:Quality
 (�大海捞针Needle in a haystack
 *�一击必中One hit is sure to hit
 '�十发十中Ten shots, ten hits
 +�百年不遇Once in a hundred years
-�范围:Scope:
+#�范围:{0}-{1}Scope:{0}-{1}
 9��请选择鉴定符！Please select an identifier!
 ���/恭喜您！道具发挥了作用,鉴定成功!OCongratulations! The props played a role and the identification was successful!
-5��补偿金额:{number}Compensation amount: {0}
-B��1第{config.RankRange[0]}-{config.RankRange[1]}名	{0}-{1}Th
+0��补偿金额:{0}Compensation amount: {0}
+��第{0}-{1}名	{0}-{1}Th
 &��更改阵营Change the faction
 b��"是否花费200钻石更改阵营?8Do you want to spend 200 diamonds to change the faction?
 ��门众The door crowd
@@ -14284,11 +14177,11 @@ G��已经领取过该奖励！$This award has already been claimed!
 ��
 进度:1/1Progress: 1/1
 7��第{0}章探宝 Chapter {0} Treasure Exploration
-D��!今日累计次数：{totalTimes}Cumulative Times Today: {0}
+;��今日累计次数：{0}Cumulative Times Today: {0}
 (��免费抽卡Draw a card for free
-���W今日探宝次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa)}!Treasure hunting times today: {0}
+?��今日探宝次数:{0}!Treasure hunting times today: {0}
 ,��条件未达到！Condition not met!
-c��7抽卡次数达到{takeCardRewardConfig.RoseLvLimit}次$Card drawing times reached {0} times
+D��抽卡次数达到{0}次$Card drawing times reached {0} times
 ���U是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择}Whether to sell low-quality equipment and gems with one click or not, the quality of selling can be selected in the settings.
 -��角斗场规则The rules of the arena
 ����1.活动开启后,所有12级以上玩家均可进入。
@@ -14306,21 +14199,21 @@ c��7抽卡次数达到{takeCardRewardConfig.RoseLvLimit}次$Card drawing tim
  ��{0}活跃度{0} Activity
 ,��名字不合法!The name is illegal!
 U��已掉线，请重新连接!1The line has been disconnected, please reconnect!
-���L每天只能建立8个角色,当前已经创建了{TodayCreateRole}个角色KOnly 8 roles can be created per day. Currently, {0} roles have been created
+���>每天只能建立8个角色,当前已经创建了{0}个角色KOnly 8 roles can be created per day. Currently, {0} roles have been created
 X��捐献等级不得小于12级3The donation level shall not be less than level 12.
 I��最低捐献10万金币！'Minimum donation of 100,000 gold coins!
-���c我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币I have donated {0} gold
-V��2{dateTime.Month}月{dateTime.Day}日 21点30开启{0} month {1} day 21:30 open
+4��我已捐献{0}金币I have donated {0} gold
+>��{0}月{1}日 21点30开启{0} month {1} day 21:30 open
 "��未报名！Not signed up!
 !��没有家族！
 No family!
 &��已报名！Already signed up!
 !��没有权限！
 No access!
-N��+累计总奖金： {response.TotalDonation}Cumulative Total Bonus: {0}
+9��累计总奖金： {0}Cumulative Total Bonus: {0}
 *��已报名家族:Enrolled families:
 w��,今日已答完全部问题,请明日再来!CI have answered all the questions today, please come back tomorrow!
-���a当前问答题{self.EnergyComponent.QuestionIndex + 1}/{self.EnergyComponent.QuestionList.Count}Current Essay Questions {0}/{1}
+=��当前问答题{0}/{1}Current Essay Questions {0}/{1}
 !��答错了！Wrong answer!
 F��回答正确,获得奖励！"Answer correctly and get a reward!
 =��已答完全部题目 All questions have been answered
@@ -14328,19 +14221,12 @@ F��回答正确,获得奖励！"Answer correctly and get a reward!
 7��未选择增幅卷轴No increment reel selected
 *��传承增幅:Inheritance increase:
 ��增幅:	Increase:
-���h当前<color=#BEFF34>{reelCanTransfAttribute}</color> 
+|��9当前<color=#BEFF34>{0}</color> 
 是否覆盖已有
-{equipmentCanTransfAttribute}
->Current < color = # BEFF34 > {0}  
- Overwrite existing 
- {1} 
-
-���f当前<color=#BEFF34>{reelNoTransfAttribute}</color> 
-是否覆盖已有
-{equipmentNoTransfAttribute}
->Current < color = # BEFF34 > {0}  
- Overwrite existing 
- {1} 
+{1}
+;Current <color=#BEFF34>{0}</color> 
+Overwrite existing
+{1}
 
 )��装备增幅Increase in equipment
 /��增幅成功The increase was successful
@@ -14354,33 +14240,29 @@ v��3只有紫色及以上品质的装备才能转移！;Only purple and abov
 J��装备属性转移成功！'Equipment attribute transfer succeeded!
 e��$相同部位装备只能穿戴一个9Only one piece of equipment can be worn on the same part.
 ��穿戴Wear
-7��"需要:{int.Parse(costitem[1])}个Required: {0}
-^��?套装部件{NeedNum}/{maxnum}
-{equipSuitProperty.EquipSuitDes}Kit Parts {0}/{1} 
+"��需要:{0}个Required: {0}
+6��套装部件{0}/{1}
+{2}Kit Parts {0}/{1} 
  {2}
 ��	未拥有	Not owned
-9��需要等级达到{needLv}Need level to reach {0}
-?��已经领取过taptap奖励Have received taptap rewards
+4��需要等级达到{0}Need level to reach {0}
 H�� 活跃度低于30没有奖励！ No reward for activity below 30!
 ��危境Danger
 ���@暗黑系列ARPG探索类手游《危境》系列正式开启！KDiablo Series ARPG Exploration Hand Tour "Danger" Series Officially Opened!
 ���D一把木剑，一件布衣,点击这个链接开始你的探险吧!DA wooden sword, a cloth, click on this link to start your adventure!
-L´记得输入我的邀请码喔:%Remember to enter my invitation code:
 #Ŵ状态:在线Status: Online
 $ƴ状态:离线Status: Offline
-1Ǵ等级:{friendInfo.PlayerLevel}
+ ȴ等级: {0}级
 Level: {0}
-;ȴ#等级: {friendInfo.PlayerLevel}级Level: {0} Level
 Pɴ$请先创建或者加入一个家族$Please create or join a family first
-ʴ与And
-$˴私聊中...In private chat.
+7ʴ与{0}私聊中...In a private chat with {0}...
 3̴输入不能为空！Input cannot be empty!
 4ʹ邮件发送成功！Mail sent successfully!
-lϴN玩家:{sendChatResponse.OnLineNumber}机器人:{sendChatResponse.OnLineRobot}Player: {0} Robot: {1}
-Jд.狩猎数量:{response.RankList[0].KillNumber}Number of hunts: {0}
-AѴ"{endTime / 60}分{endTime % 60}秒{0} minutes {1} seconds
+5ϴ玩家:{0}机器人:{1}Player: {0} Robot: {1}
+,д狩猎数量:{0}Number of hunts: {0}
++Ѵ{0}分{1}秒{0} minutes {1} seconds
 3Ҵ未到活动时间Activity time not reached
-EӴ)狩猎数量:{rankShouLieInfo.KillNumber}Number of hunts: {0}
+,Ӵ狩猎数量:{0}Number of hunts: {0}
 IԴ请到宠物界面操作)Please go to the pet interface to operate
 Rմ%请选择武器类型为：刀 剑！%Please select the weapon type: sword!
 hִ1请选择武器类型为：法杖 魔法书！！/Please select the weapon type: Staff Spellbook!
@@ -14397,7 +14279,7 @@ uܴ0该装备镶嵌有宝石，是否出售道具？=The equipment is inlaid
 B�未激活护甲专精%Armor Specialization is not activated
 O�转职后激活护甲专精,Activate Armor Specialization after transfer
 A�(超过4个,属性无效) (More than 4, invalid attribute)
-�提高Enhance
+.�{0}提高{1}点{0} Increase {1} points
 �件套Set of pieces
 �	已绑定Bound
 �类型Type
@@ -14407,7 +14289,7 @@ A�(超过4个,属性无效) (More than 4, invalid attribute)
 �需要Need
 �达到Achieve
 0��攻击力不足Insufficient attack power
-b�9由<color=#805100>{self.BagInfo.MakePlayer}</color>打造!Built by < color = # 805100 > {0}
+N�#由<color=#805100>{0}</color>打造#Built by <color=#805100>{0}</color>
 �	无限制	Unlimited
 �铠甲Armor
 �鼠Rat
@@ -14422,30 +14304,28 @@ b�9由<color=#805100>{self.BagInfo.MakePlayer}</color>打造!Built by < col
 ��狗Dog
 ��猪Pig
 !��开启封印Open the seal
-S��#是否消耗{costitem}开启封印?(Whether to consume {0} to open the seal?
+L��是否消耗{0}开启封印?(Whether to consume {0} to open the seal?
 9��道具鉴定成功!Props identified successfully!
 ��类型:Type:
 '��封印生肖Seal Chinese zodiac
 ,��进行鉴定Carry out identification
-_��2消耗<color=#EA8EF9>{jiandingName}</color>{tip_1}%Consume < color = # EA8EF9 > {0}  {1}
-}��B此装备由<color=#805100>{self.BagInfo.MakePlayer}</color>打造3This equipment is built by < color = # 805100 > {0}
-Z��4<color=#AFFF06>    类型:{textEquipSonType}</color>< color = # AFFF06 > Type: {0}
+P��#消耗<color=#EA8EF9>{0}</color>{1}%Consume <color=#EA8EF9>{0}</color>{1}
+i��,此装备由<color=#805100>{0}</color>打造5This equipment is built by <color=#805100>{0}</color>
+N��%<color=#AFFF06>    类型:{0}</color>!<color=#AFFF06> Type: {0}</color>
 ��部位:	Location:
-:��当前品质:{baginfo.ItemPar}Current Quality: {0}
-8��当前附加 {skillName}:Currently attached {0}:
+,��当前品质:{0}Current Quality: {0}
 ��镶 嵌Inlay
 8��请选择新职业！Please choose a new career!
 .��请重新登录！Please log in again!
-���l等级第一的玩家为:{self.WorldPlayerLv}级,开服第一天低于第一等级玩家3级内才可使用!vLevel one player is: {0} level, the first day of service is lower than first level player within 3 levels can be used!
-���r当前附魔属性<color=#BEFF34>{equipfumo}</color> 
+���[等级第一的玩家为:{0}级,开服第一天低于第一等级玩家3级内才可使用!vLevel one player is: {0} level, the first day of service is lower than first level player within 3 levels can be used!
+���c当前附魔属性<color=#BEFF34>{0}</color> 
 是否覆盖已有属性
-{itemfumo}
-此附魔道具已消耗�Current enchantment attribute < color = # BEFF34 > {0}  
-Overwrite existing attribute 
- {1} 
+{1}
+此附魔道具已消耗�Current enchantment attribute <color=#BEFF34>{0}</color> 
+Overwrite existing attribute
+{1}
 This enchantment item has been consumed
 )��装备附魔Equip the enchantment
-4��附魔属性 {itemfumo}Enchant attribute {0}
 5��只能放入宝石！Only gems can be put in!
 )��
  出售总价:
@@ -14464,76 +14344,65 @@ After overwriting, the gem in the original position will be destroyed automatica
 `��%请前往主城的宠物蛋孵化处!3Please go to the pet egg hatchery in the main city!
 /��开区4小时后开启!Open in 4 hours!
 <��背包格子不够！Backpack lattice is not enough!
-%��请前往{fubenName}	Go to {0}
-<��"消耗道具:{itemConfig.ItemName}Consume items: {0}
+��请前往{0}	Go to {0}
+*��消耗道具:{0}Consume items: {0}
 ]��$请前往宠物重塑界面使用！1Please go to the pet remodeling interface to use!
 K��请前往赛季界面使用(Please go to the season interface to use
 a��"已达到最大购买格子数量!7The maximum number of purchased cells has been reached!
 3��道具使用成功!Props used successfully!
  ��家园烹饪Home cooking
 ��使用Use
-C��!鉴定符品质:{baginfo.ItemPar}Authenticator Quality: {0}
+5��鉴定符品质:{0}Authenticator Quality: {0}
 ���.品质越高,鉴定出极品的概率越高。KThe higher the quality, the higher the probability of identifying the best.
 ���-鉴定符品质与制造者熟练度相关。PThe quality of the identifier is related to the proficiency of the manufacturer.
 %��烹饪品质:Cooking quality:
-C��%技能描述:{skillCof.SkillDescribe}Skill Description: {0}
-���i{itemconf.ItemDes}
-前往地图:{DungeonConfigCategory.Instance.Get(sceneID).ChapterName}开启藏宝图!&{0} 
+.��技能描述:{0}Skill Description: {0}
+R��${0}
+前往地图:{1}开启藏宝图!&{0} 
 Go to Map: {1} Open Treasure Map!
 ��使用等级	Use level
-G��1消耗：{occupationJueXingConfig.costGold}金币Cost: {0} gold
-F��+繁荣度: {lingdiExp}/{lingDiConfig.UpExp}Prosperity: {0}/{1}
-3��领地等级:{lingdiLv}Territory Level: {0}
-9��#消耗: {lingDiConfig.GoldUp}金币Cost: {0} gold
-O��,经验产出: {lingDiConfig.HoureExp}/小时Experience Output: {0}/hour
-M��.荣誉产出: {lingDiConfig.HoureHonor}/小时Honors Output: {0}/hour
-S��0经验产出: {lingDiConfigNext.HoureExp}/小时Experience Output: {0}/hour
-Q��2荣誉产出: {lingDiConfigNext.HoureHonor}/小时Honors Output: {0}/hour
+(��消耗：{0}金币Cost: {0} gold
+-��繁荣度: {0}/{1}Prosperity: {0}/{1}
+,��领地等级:{0}Territory Level: {0}
+'��消耗: {0}金币Cost: {0} gold
+;��经验产出: {0}/小时Experience Output: {0}/hour
+7��荣誉产出: {0}/小时Honors Output: {0}/hour
 A��领地等级不足！$The territory level is insufficient!
-���O领地达到({lingdiLv}/{lingDiRewardConfigs[0].CountryLvlimit})可激活兑换:Exchange can be activated when territory reaches ({0}/{1})
-!��{number}分钟{0} minutes
+f��$领地达到({0}/{1})可激活兑换:Exchange can be activated when territory reaches ({0}/{1})
+��	{0}分钟{0} minutes
 C��请重新输入账号！#Please re-enter the account number!
 5��账号长度为5-20！Account length is 5-20!
 >��请重新输入密码！Please re-enter your password!
 :��密码长度为5-20！The password length is 5-20!
 /��注册成功！Registration successful!
-K��1获得物品 {itemConfig.ItemName} x{iteminfo[1]}Get Item {0} X {1}
+/��获得物品 {0} x{1}Get Item {0} x {1}
 F��恭喜你!等级提升至:$Congratulations! Level increased to:
-C�� 获得{updateValue} 家族捐献Get {0} Family Contribution
-W��0消耗{int.Parse(updateValue) * -1} 家族捐献Consume {0} Family Contribution
-.��获得{updateValue} 金币Get {0} gold
-?µ*消耗{int.Parse(updateValue) * -1} 金币Cost {0} gold
->õ获得{updateValue} 兑换币Get {0} Exchange Currency
-Rĵ-消耗{int.Parse(updateValue) * -1} 兑换币Consume {0} exchange currency
-0ŵ获得{updateValue} 荣誉Honored by {0}
-@Ƶ*消耗{int.Parse(updateValue) * -1} 荣誉Cost {0} Honor
-?ǵ 获得{updateValue} 家园资金Get {0} Homestead Funds
-4ȵ获得{updateValue} 饱食度Get {0} Satiety
+9��获得{0} 家族捐献Get {0} Family Contribution
+=��消耗{0} 家族捐献Consume {0} Family Contribution
+$��获得{0} 金币Get {0} gold
+%µ消耗{0} 金币Cost {0} gold
+4õ获得{0} 兑换币Get {0} Exchange Currency
+8ĵ消耗{0} 兑换币Consume {0} exchange currency
+&ŵ获得{0} 荣誉Honored by {0}
+&Ƶ消耗{0} 荣誉Cost {0} Honor
+5ǵ获得{0} 家园资金Get {0} Homestead Funds
+*ȵ获得{0} 饱食度Get {0} Satiety
 #ɵ系统消息System messages
 ;ʵ所有人不要乱跑哦Everyone, don't run around.
-@˵充值{addNumber}元成功Recharge {0} yuan successfully
+8˵充值{0}元成功Recharge {0} yuan successfully
 �̵3十分钟后停服维护，请暂时退出游戏！MStop service maintenance after ten minutes, please quit the game temporarily!
 Q͵是否参与家族争霸赛?-Do you participate in the family competition?
-gε4拍卖特惠剩余显示时间:{maxTime - curMinute}+Auction special remaining display time: {0}
 ϵ摊位提示
 Booth tips
 �еK是否收起自己的摊位?
  支持下线,摊位可以离线显示6小时!TDo you want to close your booth? 
 Support offline, booth can be offline for 6 hours!
 ,ѵ摊位已收起!The booth is closed!
-Pҵ$<color=#{color}>等级奖励</color>$<color = #{0}> Rank Rewards </color>
-Zӵ(<color=#{color}>{newLv}级领取</color>*<color=#{0}> {1} Level Collection </color>
-QԵ$<color=#{color}>击败怪物</color>%<color=#{0}> Defeat Monsters </color>
+Jҵ <color=#{0}>等级奖励</color>"<color=#{0}> Rank Rewards </color>
+Rӵ <color=#{0}>{1}级领取</color>*<color=#{0}> {1} Level Collection </color>
+MԵ <color=#{0}>击败怪物</color>%<color=#{0}> Defeat Monsters </color>
 ?յ战斗状态不能骑马!You can't ride in combat mode!
 Cֵ该场景不能骑马!%You can't ride a horse in this scene!
-o׵L今日消耗钻石:{numericComponent.GetAsInt(NumericType.V1DayCostDiamond)}Diamond consumed today: {0}
-oصK今日充值数量:{numericComponent.GetAsInt(NumericType.V1RechageNumber)}Recharge Quantity Today: {0}
-pٵK今日领取红包:{numericComponent.GetAsInt(NumericType.V1HongBaoNumber)}Get a red envelope today: {0}
-_ڵ>今日抽卡掉落ID: {response_1.ActivityV1Info.ChouKaDropId}Today's card drop ID: {0}
-b۵A今日已竞猜数字: {response_1.ActivityV1Info.GuessIds.Count}Number guessed today: {0}
-yܵK今日竞猜中奖纪录: {response_1.ActivityV1Info.LastGuessReward.Count}&Winning record of today's contest: {0}
-�ݵW今日已领取抽卡次数奖励: {response_1.ActivityV1Info.ChouKaNumberReward.Count}:Reward for the number of drawing cards received today: {0}
-�޵Y今日已领取消费次数奖励: {response_1.ActivityV1Info.ConsumeDiamondReward.Count}.Reward of consumption times claimed today: {0}
 =ߵ已领取抽卡奖励：Card drawing reward received:
 )�已竞猜数字：Number guessed:
 -�赛季已结束！The season is over!
@@ -14544,7 +14413,7 @@ E�确定返回主城？(Are you sure to return to the main city?
 b�$当前场景不支持查看小地图6The current scene does not support viewing the minimap
 '�取消挂机!Cancel hanging up!
 7�击败怪物领取Defeat the monster and get it
-C�!抓捕成功率： {gailv*0.01f}%Capture success rate: {0}%
+9�抓捕成功率： {0}%Capture success rate: {0}%
 4�宠物格子不足！Not enough pet lattice!
 E�恭喜你,抓捕成功！$Congratulations, successful capture!
 U�&它趁你不注意,偷偷的溜走了!'It sneaks away when you're not looking!
@@ -14554,17 +14423,14 @@ U�&它趁你不注意,偷偷的溜走了!'It sneaks away when you're not lo
 �输出:Output:
 B�请选中施法目标%Please select the target of the spell
 :�施法距离太远 Spellcasting distance is too far
-L�,移动摇杆按下: {TimeHelper.ServerNow()}Move Joystick Press: {0}
-K��,移动摇杆拖动: {TimeHelper.ServerNow()}Move joystick drag: {0}
-6��请先消灭{monsterName}Please kill {0} first
-K��,移动摇杆停止: {TimeHelper.ServerNow()}Move Joystick Stop: {0}
-a��D掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}Drop attribution: {0}
+,��请先消灭{0}Please kill {0} first
+-��掉落归属:{0}Drop attribution: {0}
 ��玩家:Players:
 ��宠物:Pet
 h��$请先在对应位置装备武器！<Please equip the weapon in the corresponding position first!
 M��!每日只能获取一次奖励！$You can only get one reward per day!
 <��取消技能施法"Cancel the ability to cast a spell
-����请前往{DungeonConfigCategory.Instance.Get(fubenId).ChapterName} {NpcConfigCategory.Instance.Get(getNpc).Name} 出接取任务$Please go to {0} {1} to get the task
+L�� 请前往{0} {1} 出接取任务$Please go to {0} {1} to get the task
 ��晴天	Sunny day
 ��雨天	Rainy Day
 ��(普通)(Normal)
@@ -14572,15 +14438,15 @@ M��!每日只能获取一次奖励！$You can only get one reward per day!
 ��(地狱)(Hell)
 ��(协助)(Assistance)
 ��(深渊)(Abyss)
-I��3{userInfoComponent.UserInfo.UnionName} 家族地图{0} family map
+&��{0} 家族地图{0} family map
 M��体力不足,无法拾取,Lack of physical strength, unable to pick up
 P��背包空间不足,无法拾取)Insufficient space in backpack to pick up
-w��J道具不足，需要道具 {UICommonHelper.GetNeedItemDesc(itemneeds)}！%Insufficient props, props needed {0}!
-)��战力: {combat}Combat Power: {0}
+O��"道具不足，需要道具 {0}！%Insufficient props, props needed {0}!
+$��战力: {0}Combat Power: {0}
 !��体力:Physical strength:
 ��活力:Vitality
-j��Q当前金币:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold}Current Gold: {0}
-"��第{chaptet}章Chapter {0}
++��当前金币:  {0}Current Gold: {0}
+��	第{0}章Chapter {0}
 ��技能重置Skill reset
 ���D重置后自身学习的生活技能将全部遗忘,请谨慎选择!aAfter resetting, all the life skills you have learned will be forgotten. Please choose carefully!
 D��该生活技能已学习！!This life skill has been learned!
@@ -14589,14 +14455,14 @@ D��该生活技能已学习！!This life skill has been learned!
 7��已经学习过该道具!Have learned the prop!
 9��学习配方成功!Learn the recipe successfully!
 .��学习等级:{0}级Learning level: {0}
-Y��3兑换次数:{receiveNumber}/{activityConfig.Par_1}Number of redemptions: {0}/{1}
+:��兑换次数:{0}/{1}Number of redemptions: {0}/{1}
 T��已达到最大领取上限！.The maximum collection limit has been reached!
-����玩家 <color=#{ComHelp.QualityReturnColor(4)}>{record.PlayerName}</color> {dateTime.ToShortTimeString()} 出价： <color=#{ComHelp.QualityReturnColor(2)}>{record.Price}</color>?Player <color=#{0}>{1}</color> {2} Bid: <color=#{3}>{4}</color>
+���D玩家 <color=#{0}>{1}</color> {2} 出价： <color=#{3}>{4}</color>?Player <color=#{0}>{1}</color> {2} Bid: <color=#{3}>{4}</color>
 ��	已结束Ended
 >��不能小于竞拍价！Cannot be less than bid price!
 .��参与竞拍Participate in the auction
-P��$扣除{returngold}金币的保证金$Deduct the deposit of {0} gold coins
-B��!已经缴纳{returngold}保证金{0} deposit has been paid
+G��扣除{0}金币的保证金$Deduct the deposit of {0} gold coins
+9��已经缴纳{0}保证金{0} deposit has been paid
 <��道具已经被买走了!The props have been bought!
 +��已达最后一页Last page reached
 A��请输入道具名字！！！Please enter the prop name!
@@ -14605,14 +14471,14 @@ A��请输入道具名字！！！Please enter the prop name!
 P��未找到对应拍卖行道具*No corresponding auction house props found
 >��道具已经被买走了！The props have been bought!
 m��-橙色品质及以上的装备不能购买！8Orange quality and above equipment can not be purchased!
-���M等级需达到{needLv}级或赞助任意金额开启拍卖行购买功能！]Level must reach {0} level or sponsor any amount to open the auction house purchase function!
-���w你购买的道具需要花费{self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum}金币，是否购买？:The item you bought costs {0} gold. Do you want to buy it?
-;��$单价：{self.PaiMaiItemInfo.Price}Unit Price: {0}
-J��2总价：{self.PaiMaiItemInfo.Price * self.BuyNum}Total price: {0}
+���H等级需达到{0}级或赞助任意金额开启拍卖行购买功能！]Level must reach {0} level or sponsor any amount to open the auction house purchase function!
+{��9你购买的道具需要花费{0}金币，是否购买？:The item you bought costs {0} gold. Do you want to buy it?
+#��单价：{0}Unit Price: {0}
+$��总价：{0}Total price: {0}
 \��)兑换单次最多兑换10000钻石哦！+Up to 10000 diamonds for a single exchange!
 +��钻石不足！Not enough diamonds!
 ���H为保证游戏内金币保值，充值任意额度后激活此功能！kIn order to ensure the value of gold coins in the game, activate this function after recharging any amount!
-���o今日获利:{UICommonHelper.ShowFloatValue_1(sellgold_1)}万/{UICommonHelper.ShowFloatValue_1(todayGold_1)}万%Profit today: {0} million/{1} million
+G��今日获利:{0}万/{1}万%Profit today: {0} million/{1} million
 *��请选中道具Please select props
  ��数据错误!Data error!
 .��请选中道具！Please select props!
@@ -14624,10 +14490,10 @@ X��!已经达到最大上架数量！/The maximum number of shelves has been
 p��-橙色品质及以上的装备不能上架！;Orange quality and above equipment can not be on the shelf!
 p��)出售价格过低,当前最低价格为:?The selling price is too low, and the current minimum price is:
 u��+上架总金额不能超过1000万金币！BThe total amount on the shelf cannot exceed 10 million gold coins!
-����在拍卖行上架道具<color=#{ComHelp.QualityReturnColor(4)}>{itemConfig.ItemName}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{itemConfig.ItemType}_{paimaiItemId}></link>�Put props on the auction house <color=#{0}> {1}</color> ! <color=# 00FF00> Click to go to the auction house</color> < link = paimai_{0}_{1}>
+���{在拍卖行上架道具<color=#{0}>{1}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{2}_{3}></link>�Put props on the auction house <color=#{0}>{1}</color> ! <color=#00FF00> Click to go to the auction house</color> <link=paimai_{0}_{1}></link>
 {��,如需再提高价格,请手动修改价格!GIf you need to raise the price again, please modify the price manually!
 M��请选中要拍卖的商品！'Please select the item to be auctioned!
-C��*{paiMaiSellConfig.BuyLv}级才能购买！{0} level to buy!
+.��{0}级才能购买！{0} level to buy!
 #��价格下降Prices are down
 >��近期价格稳定$Prices are stable in the near future
 %��价格上涨The price goes up
@@ -14638,12 +14504,9 @@ K��请前往主城摆摊!-Please go to the main city to set up a stall!
 NŶ请前往主城摆摊222!-Please go to the main city to set up a stall!
 ƶ已开启！Opened!
 8Ƕ家园等级不足！Home level is insufficient!
-dȶ)是否花费{costdesc}开启宠物仓库?3Do you want to spend {0} to open the pet warehouse?
-Nɶ8{JiaYuanConfigCategory.Instance.Get(openlv).Lv}级开启{0} level open
+]ȶ"是否花费{0}开启宠物仓库?3Do you want to spend {0} to open the pet warehouse?
+"ɶ{0}级开启{0} level open
 ʶ空Empty
-˶	等级: 0Level: 0
-,̶等级: {itemConfig.UseLv}
-Level: {0}
 4Ͷ孔位不符！Hole position does not match!
 7ζ宠物等级不足！Pet level is insufficient!
 c϶+最少有3个宠物才可以开启合成！0There are at least 3 pets to open the synthesis!
@@ -14652,7 +14515,7 @@ FѶ神兽不能合成！)The mythical beast cannot be synthesized!
 DҶ请先卸下宠物之核！!Please remove the pet core first!
 �ӶF当前放入的宠物身上穿戴了宠物之核，融合后会消失,RThe current pet is wearing the core of the pet, which will disappear after fusion.
 !Զ宠物合成Pet synthesis
-�ն~合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{addStr}</color> 请确认是否执行合成�One pet will be kept randomly after synthesis, and the other pet will be destroyed. <color=#ff0000>{0}</color> Please confirm whether to perform synthesis.
+�նy合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{0}</color> 请确认是否执行合成�One pet will be kept randomly after synthesis, and the other pet will be destroyed. <color=#ff0000>{0}</color> Please confirm whether to perform synthesis.
 I׶宠物之核合成成功！&Nucleosynthesis of pets is successful!
 xض3同类型和同等级的宠物之核才能合成！=Only pet cores of the same type and level can be synthesized!
 %ٶ中级核心Intermediate core
@@ -14680,7 +14543,6 @@ J�请先从仓库取出！*Please take it out of the warehouse first!
 }�7是否献祭1个宠物后全面进化一次宠物资质>Whether to fully evolve a pet aptitude after sacrificing a pet
 G�您的宠物已进化完成。!Your pet's evolution is complete.
 {�(神兽已达最终阶段,无需进化！KThe mythical beast has reached the final stage and does not need to evolve!
-*�等级 {itemConfig.UseLv}	Grade {0}
 "�
 血量 {0}Blood Volume {0}
 ��
@@ -14693,16 +14555,16 @@ Attack {0}
 &��点击进化Click on Evolution
 ��	已进化Evolved
 ��散步中...On a walk..
-%��{nextLv}级开启{0} level on
+ ��{0}级开启{0} level on
 )��宠物散步中！Pets on a walk!
-"��{leftsecond}秒{0} seconds
+��{0}秒{0} seconds
 E��锁定宠物不能操作！"The locked pet cannot be operated!
-b��M激活: {ConfigHelper.PetShouHuAttri[petComponent.PetShouHuActive - 1].Value}Activate: {0}
+ ��激活: {0}Activate: {0}
 1��暴击率附加Critical Strike Rate Bonus
 .��抗暴率附加Anti-riot rate addition
 &��命中率附加Hit rate append
 )��闪避率附加Evasion rate added
->��+评分: {PetHelper.PetPingJia(rolePetInfo)}Rating: {0}
+��评分: {0}Rating: {0}
 Q��请先选择要升星的宠物+Please select the pet to be upgraded first.
 W��!请选择需要升星的宠物！.Please choose a pet that needs to be upgraded!
 =��已经最大星数！ Maximum number of stars already!
@@ -14725,69 +14587,63 @@ P��'变异的宠物不能使用此道具！!Mutant pets cannot use this item
 R��'只有变异宠物能使用此道具！#Only mutant pets can use this item!
 ~��1宠物技能数量小于2不能使用次道具！EThe number of pet skills is less than 2, and you can't use this item!
 N��!请选择需要锁定的技能！%Please select the skill to be locked!
-6��激活({shenshouNumber}/{i})Activate ({0}/{1})
-B��(兑换次数: {leftTime}/20)(Number of exchanges: {0}/20)
+)��激活({0}/{1})Activate ({0}/{1})
+;��(兑换次数: {0}/20)(Number of exchanges: {0}/20)
 ]��$请及时清理探索宠物仓库！1Please clear the discovery pet warehouse in time!
 A��已达到宠物最大数量Maximum number of pets reached
 U��!已达到钻石抽卡最大次数,Maximum number of diamond card draws reached
 %��概率提示Probability hints
 ���J大众 55% 优秀 25 % 百里挑一 14 % 千载难逢 5 % 万里挑一 1 %ZVolkswagen 55% Excellent 25% One in a million 14% Once in a million 5% One in a million 1%
-��(提升(Lift
-��点)Point)
+(��(提升{0}点)(Boost {0} points)
 W��!请预留足够的背包空间！.Please reserve enough space for your backpack!
 P��$请清理一下宠物之核背包！$Please clean pet's nuclear backpack!
-���a今日探索次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber)}Explorations Today: {0}
-N��探索次数达到{key}次,The number of explorations reached {0} times
+5��今日探索次数:{0}Explorations Today: {0}
+L��探索次数达到{0}次,The number of explorations reached {0} times
 4��请选择宠物蛋！Please select pet eggs!
 A��已达到最大宠物数量Maximum number of pets reached
 '��开启宠物蛋Open the pet egg
-I��$开启需要花费 {costValue}钻石It costs {0} diamonds to open
+A��开启需要花费 {0}钻石It costs {0} diamonds to open
 %��孵化时间:Incubation time:
-���f今日探索次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetHeXinExploreNumber)}Explorations Today: {0}
+5��今日探索次数:{0}Explorations Today: {0}
 '��未选中宠物No pets selected
-x��Y宠物数量： {rolePetInfos.Count}/{GlobalValueConfigCategory.Instance.Get(119).Value2}Number of pets: {0}/{1}
+6��宠物数量： {0}/{1}Number of pets: {0}/{1}
 Y��!当前没有可以领取的奖励0There are currently no awards available to claim
 4��关卡未解锁！The level is not unlocked!
 ;��请设置上阵宠物！Please set up your own pet!
-J��%推荐战力： {petfubenConf.Combat}Recommended Combat Power: {0}
-a��0建议最低队伍等级： {petfubenConf.Lv}级)Recommended Minimum Team Level: {0} Level
-6��阵容限制：{number}/5Line-ups limit: {0}/5
+S��"建议最低队伍等级： {0}级)Recommended Minimum Team Level: {0} Level
+1��阵容限制：{0}/5Line-ups limit: {0}/5
 L��已达到上阵最大数量！&The maximum quantity has been reached!
 '��请先下阵！Please go first!
--��等级: {rolePetInfo.PetLv}
-Level: {0}
-e��F造成伤害:{petBattleInfo.hurt} 承受伤害:{petBattleInfo.receive}Damage: {0} Damage: {1}
+@��!造成伤害:{0} 承受伤害:{1}Damage: {0} Damage: {1}
 '��重置挑战Reset the challenge
 ���N是否花费350钻石重置5次挑战次数？/n提示:挑战次数上限为10fDo you want to spend 350 diamonds to reset 5 challenges? /nTip: The maximum number of challenges is 10
 L��每天最多只能重置3次！%Can only reset up to 3 times per day!
-b��9挑战剩余次数:{sceneConfig.DayEnterNum - useTime}/10!Remaining challenge times: {0}/10
+B��挑战剩余次数:{0}/10!Remaining challenge times: {0}/10
 A��查看宠物信息出错！Error viewing pet information!
-/��产出:{chanchu}小时Output: {0} hours
-=��(占领者:{petMingPlayerInfo.PlayerName}Occupier: {0}
+)��产出:{0}小时Output: {0} hours
+"��占领者:{0}Occupier: {0}
 #��占领者:无Occupier: None
 .·挑战冷却时间:Challenge cooldown:
 5÷请选择一个队伍！Please select a team!
 1ķ挑战冷却中！Challenge cooling down!
 <ŷ出战队伍不能为空！The team cannot be empty!
 �Ʒ3抢矿后原占有矿会变成无人看守的矿！QAfter robbing the mine, the original occupied mine will become an unguarded mine!
-!Ƿ{chatchun}/小时{0}/hour
-fȷD当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}Current occupation {0}/{1}
+5ȷ当前占领{0}/{1}Current occupation {0}/{1}
 ɷ(核心矿)(Core Mine)
- ʷ{chanchu}/小时{0}/hour
 ˷拥有者：Owner:
-�̷�玩家 {response.PetMingRecords[i].WinPlayer} {TimeInfo.Instance.ToDateTime(petMingRecord.Time)} 占领了你的{mineBattleConfig.Name}!Player {0} {1} Take over your {0}
+J̷!玩家 {0} {1} 占领了你的{2}!Player {0} {1} Take over your {0}
 0ͷ任务未完成！Mission not completed!
 Nη占领矿场中，无法更换(In the occupied mine, cannot be replaced
 KϷ挑战冷却中，无法更换%Challenge cooling, cannot be replaced
-!з{position + 1}队{0} team
+з{0}队{0} team
 6ѷ已经作为被推广人Already as a promoter.
 Zҷ 大于15级不能作为推广人2Level greater than 15 cannot be used as a promoter
--ӷ金币： {goldReward}Gold Coins: {0}
--Է钻石： {diamondReward}Diamond: {0}
+$ӷ金币： {0}Gold Coins: {0}
+!Է钻石： {0}Diamond: {0}
 շ解锁Unlock
-*ַ装备{tip}成功Rig {0} succeeded
-*׷宠物{tip}成功Pet {0} succeeded
-0ط{towerRewardConfig.CengNum} 层	{0} Layer
+(ַ装备{0}成功Rig {0} succeeded
+(׷宠物{0}成功Pet {0} succeeded
+ط{0} 层	{0} Layer
 Dٷ已领取过该奖励！$This award has already been claimed!
 Nڷ为达到领取条件！.In order to meet the conditions for receiving!
 ۷0失败0 failed
@@ -14795,24 +14651,24 @@ Nڷ为达到领取条件！.In order to meet the conditions for receiving!
 $ݷ重置次数Number of resets
 I޷!是否花费200钻石重置次数 Does it cost 200 diamond resets?
 F߷每天只能重置三次&It can only be reset three times a day
-�	的队伍The team
+�{0}的队伍
+{0} s team
 6�上阵宠物不足三只!Less than three pets!
-V�B{rankRewardConfig.NeedPoint[0]}-{rankRewardConfig.NeedPoint[1]}名{0}-{1} Name
+�
+{0}-{1}名{0}-{1} Name
 -�认证提示Prompt for authentication
 B�实名认证成功!'Real name authentication is successful!
-_�!苹果平台暂时不能充值！6Apple platform cannot be recharged for the time being!
-��c{ErrorHelp.Instance.ErrorHintList[code]} 你本月已充值{fangChenMiComponent.GetMouthTotal()}元*{0} You have recharged {1} yuan this month
+N�{0} 你本月已充值{1}元*{0} You have recharged {1} yuan this month
 *�防沉迷提示Anti-addiction tips
 �赠送Give as a present
 ;�当前奖励已领取Current award has been claimed
-S�&充值金额不足 {rechargeNumber}元%Recharge amount is less than {0} yuan
-��/累冲{rechargeNumber}元， 获得以下奖励MIf the accumulated charge is {0} yuan, the following rewards will be obtained
+F�充值金额不足 {0}元%Recharge amount is less than {0} yuan
+w�"累冲{0}元， 获得以下奖励MIf the accumulated charge is {0} yuan, the following rewards will be obtained
 <�背包已整理完毕The backpack has been arranged.
 C��请至少预留一个格子 Please reserve at least one grid
 `�!当前背包暂无可合成宝石7Currently, there are no synthetic gems in the backpack.
 '�合成宝石Synthetic gemstones
-^�"一键合成消耗{costgold}金币4Consumption of {0} gold coins by one-click synthesis
-��W是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?7Do you want to spend {0} to buy a backpack compartment?
+W�一键合成消耗{0}金币4Consumption of {0} gold coins by one-click synthesis
 N�30级开启生肖系统喔！)Level 30 opens the Chinese zodiac system!
 u�-中镶嵌宝石,分解会导致宝石消失!
 @Gems are inlaid in. Disintegration will cause gems to disappear!
@@ -14859,72 +14715,71 @@ $��人物伤害Character damage
 $��冰霜抗性Frost resistance
 $��火焰抗性Flame resistance
 (��闪电抗性Lightning resistance
-D��%{qianghuaName}强化 +{qianghuaLevel}{0} Reinforcement + {1}
-]��#对应部位提升 { svalue}%属性2The corresponding part promotes the {0}% attribute
-g��?强化成功率: {(int)(equipQiangHuaConfig.SuccessPro * 100)}% Reinforcement Success Rate: {0}%
-I��&附加成功率 { (int)(addPro *100)}%Additional Success Rate {}%
+-��{0}强化 +{1}{0} Reinforcement + {1}
+W��对应部位提升 {0}%属性2The corresponding part promotes the {0}% attribute
+=��强化成功率: {0}% Reinforcement Success Rate: {0}%
+8��附加成功率 {0}%Additional Success Rate {0}%
 Q��已经强化到最大等级！+Has been strengthened to the maximum level!
 ,��强化失败！Reinforcement failed!
-,��强化+{qianghuaLevel}Reinforce + {}
-X��$当前部位强化至{qianghuaLv}级,The current part is strengthened to {} level
-V��<获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}Get Item {0} X {1}
-���u当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，当前充值金额{rechargeNumber}元�When the current recharge amount reaches {0} yuan, the gem warehouse will be opened automatically. The current recharge amount is {1} yuan.
-���}当前充值金额累计达到{needRecharge}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启�If the current accumulated recharge amount reaches {0} yuan, the gem warehouse will be automatically opened. You have met the conditions, please click to open.
+!��
+强化+{0}Reinforce + {0}
+P��当前部位强化至{0}级-The current part is strengthened to {0} level
+/��获得物品 {0} x{1}Get Item {0} X {1}
+���]当前充值金额累计达到{0}元，将自动开启宝石仓库，当前充值金额{1}元�When the current recharge amount reaches {0} yuan, the gem warehouse will be opened automatically. The current recharge amount is {1} yuan.
+���r当前充值金额累计达到{0}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启�If the current accumulated recharge amount reaches {0} yuan, the gem warehouse will be automatically opened. You have met the conditions, please click to open.
 A��充值额度不足！$The recharge amount is insufficient!
 9��宝石合成成功！Gem synthesis is successful!
 =��请整理一下仓库！Please tidy up the warehouse!
 I��宝石仓库已整理完毕&The gem warehouse has been sorted out.
-���m恭喜你获得了{tip}!
+���k恭喜你获得了{0}!
 它可以让你的技能产生变化!
 不同类型的武器对应不同的技能哦!Congratulations on getting {0}! It allows you to change your skills! Different types of weapons correspond to different skills!
-9��${bagInfo.InheritTimes}/{maxTimes}次{0}/{1} times
+��
+{0}/{1}次{0}/{1} times
 i��'该装备不可再进行传承鉴定！:The equipment can no longer be identified for inheritance!
-����传承鉴定效果：{skillConfig.SkillDescribe}
-传承装备只有{maxInheritTimes}次重新鉴定传承的机会
+���x传承鉴定效果：{0}
+传承装备只有{1}次重新鉴定传承的机会
 请问是否覆盖原始传承鉴定效果?�Inheritance appraisal effect: {0} 
 Inheritance equipment has only {1} opportunities to re-appraise inheritance 
 Do you want to overwrite the original inheritance appraisal effect?
-���Y传承鉴定效果：{skillConfig.SkillDescribe}
+���A传承鉴定效果：{0}
 恭喜你装备传承效果鉴定成功!mInheritance appraisal effect: {0} 
 Congratulations on your successful equipment inheritance effect appraisal!
-���*，洗炼获得高品质属性概率提升VIncrease the probability of obtaining high quality attributes by washing and refining.
-���a今日洗练次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianNumber)}Washing times today: {0}
-_��洗练次数达到{key}次=The number of times of washing and refining reaches {0} times
+���3获得{0}，洗炼获得高品质属性概率提升WObtain {0}, the probability of refining to obtain high-quality attributes is increased.
+6��今日洗练次数:{0}Washing times today: {0}
+]��洗练次数达到{0}次=The number of times of washing and refining reaches {0} times
 @��洗炼道具成功&Wash and refine the props successfully
-P��-获得{newXiLianDu - oldXiLianDu}洗炼经验Get {0} refining experience
+8��获得{0}洗炼经验Get {0} refining experience
 z��'额外增加概率出现的特殊属性KSpecial properties that additionally increase the probability of occurrence
 E��该装备不能转移！%This equipment cannot be transferred!
 ���?绑定装备的洗炼属性无法转移至未绑定的装备！TThe washing attribute of bound equipment cannot be transferred to unbound equipment!
-C��/第{rankRewardConfigs[i].NeedPoint[0]}名奖励{0}th reward
-k��S第{rankRewardConfigs[i].NeedPoint[0]}-{rankRewardConfigs[i].NeedPoint[1]}名奖励{0}-{1}th reward
+#��第{0}名奖励{0}th reward
++��第{0}-{1}名奖励{0}-{1}th reward
 ��进度Progress
-���l赛季时间:{startTime.Year}.{startTime.Month}.{startTime.Day}-{endTime.Year}.{endTime.Month}.{endTime.Day}$Season Time: {0}.{1}.{2}-{3}.{4}.{5}
+P��$赛季时间:{0}.{1}.{2}-{3}.{4}.{5}$Season Time: {0}.{1}.{2}-{3}.{4}.{5}
 0��2025第一赛季The first season of 2025
 1��2025第二赛季The second season of 2025
-M��2赛季经验:{seasonExp}/{seasonLevelConfig.UpExp}Season Exp: {0}/{0}
+/��赛季经验:{0}/{1}Season Exp: {0}/{1}
 ��	未刷新Not refreshed
-E��(出现位置:{dungeonConfig.ChapterName}Where it appears: {0}
-4��{nowReward}级赛季奖励{0} Season Rewards
-l��8刷新时间:{ts.Days}天{ts.Hours}小时{ts.Minutes}分,Refresh time: {0} days {0} hours {0} minutes
+-��出现位置:{0}Where it appears: {0}
+,��{0}级赛季奖励{0} Season Rewards
+V��"刷新时间:{0}天{1}小时{2}分,Refresh time: {0} days {1} hours {2} minutes
 >��赛季领主已刷新!!Season Lord has been refreshed!
 8��未到领取等级！Not to the receiving level!
 8��孔位已开启！Hole position has been opened!
 -��无效孔位！Invalid hole position!
 ,��未选择道具！No props selected!
-C��'当前品质:{self.MainBagInfo.ItemPar}Current Quality: {0}
-:��当前品质:{bagInfo.ItemPar}Current Quality: {0}
+,��当前品质:{0}Current Quality: {0}
 B��赛季首领已经出现！The season leader has appeared!
 )¸使用成功！Successfully used!
-Jø0即将出现在{dungeonConfig.ChapterName}中...To appear in {0}..
-�ĸD剩余时间:{ts.Days}天{ts.Hours}时{ts.Minutes}分{ts.Seconds}秒:Time remaining: {0} days {0} hours {0} minutes {0} seconds
+2ø即将出现在{0}中...To appear in {0}..
+gĸ%剩余时间:{0}天{1}时{2}分{3}秒:Time remaining: {0} days {1} hours {2} minutes {3} seconds
 Ÿ出现!!Appear!
 �Ƹ:本层赛季之塔的时间已经用尽，请返回主城!^The time of the season tower of this layer has been exhausted, please return to the main city!
-5Ǹ倒计时 {minute}:{sceond}Countdown {0}: {0}
++Ǹ倒计时 {0}:{1}Countdown {0}: {1}
 -ȸ当前进度值Current progress value
-ɸ{cengshu}层	{0} layer
-�ʸ�{rankList[i].TotalTime / 3600000}小时{rankList[i].TotalTime % 3600000 / 60000}分{rankList[i].TotalTime % 3600000 % 60000 / 1000}秒!{0} hours {1} minutes {0} seconds
-+˸{info.FubenId % 250000}层	{0} Layer
-�̸q{info.TotalTime / 3600000}小时{info.TotalTime % 3600000 / 60000}分{info.TotalTime % 3600000 % 60000 / 1000}秒!{0} hours {1} minutes {2} seconds
+ɸ{0}层	{0} layer
+>ʸ{0}小时{1}分{2}秒!{0} hours {1} minutes {2} seconds
 >͸你开启了高帧模式You turned on high frame mode.
 :θ你开启了普通模式You turned on normal mode.
 �ϸ@请移动至有技能框的区域,比如探险地区进行更改PMove to an area with a skill box, such as an adventure area, to make the change.
@@ -14932,75 +14787,71 @@ Jø0即将出现在{dungeonConfig.ChapterName}中...To appear in {0}..
 )Ѹ是否退出游戏?Quit the game?
 �Ҹ�开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!�Turn on the high frame mode. Depending on the configuration of the phone, it may cause the phone to heat up and consume power. If this happens, please turn it off in time!
 AӸ请不要频繁操作！!Please do not operate frequently!
-�Ը�内存占用: 当前使用:{monouse/1024/1024}MB Unity分配:{totalallocated / 1024 / 1024}MB 总内存:{totalreserved / 1024 / 1024}MB 空闲内存:{unusedreserved / 1024 / 1024}MBiMemory footprint: Currently used: {0} MB Unity allocated: {1} MB Total memory: {2} MB Free memory: {3} MB
-Jո+已绑定手机号:{playerInfo.PhoneNumber}Bound phone number: {0}
+5ո已绑定手机号:{0}Bound phone number: {0}
 Qָ$名字不合法，请重新输入！%The name is illegal, please re-enter!
 [׸'角色名字过长，请重新输入！,Character name is too long, please re-enter!
-(ظ需要 {needItem}{0} is required
+!ظ
+需要 {0}{0} is required
 @ٸ修改名称成功！#The name was modified successfully!
 Cڸ当前地图不能挂机!"The current map cannot be hung up!
 N۸达到12级才能挂机哦!+You can't hang up until you reach level 12!
 &ܸ开始挂机!Start hanging up!
 �ݸ5当前正在挂机,请确保周围是怪物刷新点!OCurrently hanging up, please make sure there are monster refresh points around!
-+޸点击技能{index}Click Skills {0}
 7߸已放置该技能！The skill has been placed!
 2�奖励已领取！Reward has been claimed!
 /�条件不足！Insufficient conditions!
 ;�吞噬数量超出！The number of devours exceeds!
 S�'装备有橙色宝石，是否继续？$Equipped with orange gems, continue?
 3�吞噬道具完成。Swallow prop complete.
-I�0激活:{haveNumber}/{shouJiItemConfig.AcitveNum}Activate: {0}/{1}
-p�R提升{ItemViewHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点Promote {0} {1} points
-*�施法者：{spellcast}Caster: {0}
+'�激活:{0}/{1}Activate: {0}/{1}
+-�提升{0}{1}点Promote {0} {1} points
+"�施法者：{0}Caster: {0}
 )�技能点重置Skill points reset
-]�+是否花费{needGold}金币重置技能点*Whether to spend {0} to reset skill points
-M�)消耗技能点:{skillConfig.CostSPValue}Skill point consumption: {0}
+V�$是否花费{0}金币重置技能点*Whether to spend {0} to reset skill points
+7�消耗技能点:{0}Skill point consumption: {0}
 ,�达到最大级Maximum level reached
 0��技能点不足！!Lack of skill points!
-+�等级不足！!Insufficient grade!
- �已满级！!Level Full!
-A�剩余技能点: {userInfo.Sp}Remaining Skill Points: {0}
+7�剩余技能点: {0}Remaining Skill Points: {0}
 .�金币不足！!Not enough gold coins!
-P�.需要技能点: {skillBaseConfig.CostSPValue}Skill points required: {0}
+6�需要技能点: {0}Skill points required: {0}
 �等级Level
 /��{0}级以后学习Study after level {0}
-_��&本次注入预计获得{minExp}经验1This injection is expected to gain {0} experience
-l��/本次注入预计获得{minExp}-{maxExp}经验5This injection is expected to gain {0}-{1} experience
+Z��!本次注入预计获得{0}经验1This injection is expected to gain {0} experience
+b��%本次注入预计获得{0}-{1}经验5This injection is expected to gain {0}-{1} experience
 I��请先升级生命之魂！&Please upgrade the soul of life first!
 &��数据异常！Data exception!
 i��(有橙色装备，是否要继续注入?9With orange equipment, do you want to continue to inject?
-F��注入成功!本次增加%Injection success! Increase this time
-!��	点魂值Point soul value
+i��%注入成功!本次增加{0}点魂值<Injection successful! This time, {0} soul points were added.
 ���j遗忘后将可以重新学习其他的生活技能，之前学习的所有技能将重置,请谨慎选择�After forgetting, you will be able to learn other life skills again. All the skills you learned before will be reset. Please choose carefully.
 ���[可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!~You can learn the latest life skills of the current level at the corresponding professional learning masters in the main city!
-����当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，当前充值金额{rechargeNumber}元�If the current recharge amount reaches {0} yuan, the second life skill field will be automatically opened, and the current recharge amount is {1} yuan.
-����当前充值金额累计达到{needRecharge}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启�If the current accumulated recharge amount reaches {0} yuan, the second life skill field will be automatically opened. You have already met the conditions. Please click to open it.
+���l当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，当前充值金额{1}元�If the current recharge amount reaches {0} yuan, the second life skill field will be automatically opened, and the current recharge amount is {1} yuan.
+����当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启�If the current accumulated recharge amount reaches {0} yuan, the second life skill field will be automatically opened. You have already met the conditions. Please click to open it.
 &��活力不足！Lack of energy!
-����熟练度:{equipMakeConfig.ProficiencyValue[0]}-{equipMakeConfig.ProficiencyValue[1]}点 上限:{equipMakeConfig.ProficiencyMax}点3Proficiency: {0}-{1} Points Upper Limit: {2} Points
-r��U当前活力:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality}Current activity: {0}
+]��"熟练度:{0}-{1}点 上限:{2}点3Proficiency: {0}-{1} Points Upper Limit: {2} Points
+/��当前活力:  {0}Current activity: {0}
 !��生活熔炼Life smelting
 q��.该装备镶嵌有宝石，是否放入熔炼?;The equipment is inlaid with gems. Is it put into smelting?
 {��.35级开启天赋方案,可自由切换天赋!ELevel 35 opens the talent program, and you can switch talents freely!
 @��已切换为当前天赋!Switched to the current talent!
 (��重置专精Reset Specialization
-��F是否花费{50000 + talentConfig.LearnRoseLv * 100}金币重置专精1Whether to spend {0} gold to reset specialization
-7��级激活此天赋Activate this talent at level
-x��E套装技能穿戴{hideProListConfig.NeedNumber}个时激活此技能+Set Skill Activates when you wear {0} skill
+Z��!是否花费{0}金币重置专精1Whether to spend {0} gold to reset specialization
+>��{0}级激活此天赋!Activate this talent at level {0}
+]��*套装技能穿戴{0}个时激活此技能+Set Skill Activates when you wear {0} skill
 0��类型：被动技能Type: Passive Skill
 D��!已经匹配，请耐心等候...Matched, please be patient.
 K��!开始匹配，请耐心等候..."Start matching, please be patient.
-E��+{response.WinTime}胜{response.FailTime}败{0} wins {1} loses
--��积分:{response.MathTime}Points: {0}
+&��{0}胜{1}败{0} wins {1} loses
+��
+积分:{0}Points: {0}
 L��点击下方开始匹配对手&Click below to start matching opponent
-c��5匹配时间:{timeCha.Minutes}分{timeCha.Seconds}秒&Matching time: {0} minutes {1} seconds
+G��匹配时间:{0}分{1}秒&Matching time: {0} minutes {1} seconds
 e��&竞技场匹配完成,请尽快进入!7Arena match complete, please enter as soon as possible!
-C��){soloInfo.WinNum}胜{soloInfo.FailNum}败{0} wins {1} loses
 R��'恭喜你！获得本场挑战的胜利#Congratulations! Win the challenge.
 ���7非常遗憾！你在本场挑战失败,请再接再厉LA great pity! If you fail in this challenge, please make persistent efforts.
-O��{i}秒后自动回城2Return to the city automatically after {0} seconds
-V��我点击了返回主城按钮0I clicked the button to return to the main city.
-$��限购:{left}Restricted: {0}
-a��B携带宠物数量:{PetHelper.GetBagPetNum(rolePetInfos)}/{maxNum}Number of pets: {0}/{1}
+O��{0}秒后自动回城2Return to the city automatically after {0} seconds
+!��
+限购:{0}Restricted: {0}
+9��携带宠物数量:{0}/{1}Number of pets: {0}/{1}
 *��未选择宠物！No pet selected!
 @��出战宠物不能提交！War pets cannot be submitted!
 ���:当前宠物存在于宠物天梯上阵中,不能提交！AThe current pet exists in the pet ladder and cannot be submitted!
@@ -15011,7 +14862,7 @@ T��宠物不符合任务要求！.Pets do not meet the requirements of the 
 A��确定提交宠物?&Are you sure you want to submit a pet?
 #��完成任务Finish the task
 ]��!道具类型不符合任务要求4Prop type does not meet the requirements of the task
-x��3完成任务请找:<color=#5C7B32>{npcName}</color>=To complete the task, please find: <color=#5C7B32>{0}</color>
+r��-完成任务请找:<color=#5C7B32>{0}</color>=To complete the task, please find: <color=#5C7B32>{0}</color>
 )��上交装备Hand in the equipment
 #��上交宠物Hand in the pet
 L��主线任务不能取消追踪!%The main task cannot cancel tracking!
@@ -15020,19 +14871,18 @@ P��追踪数量不能超过三个!)The number of tracks cannot exceed three
 3��任务取消追踪!Mission cancel tracking!
 B��主线任务不能放弃"The main task cannot be abandoned.
 K��跑环任务不能放弃+You can't give up the task of running ring.
-���J{speek} 下次领取时间:{riqi[0]}月{riqi[1]}日 {activityConfig.Par_4}/{0} Next collection time: {1} month {2} day {3}
+^��'{0} 下次领取时间:{1}月{2}日 {3}/{0} Next collection time: {1} month {2} day {3}
 P��神兽未满不能对话！-Can't talk before the mythical beast is full!
 F��神兽碎片不足！)The mythical beast is short of fragments!
 %��碎片兑换Fragment exchange
-���?是否消耗一个神兽碎片兑换一个{itemConfig.ItemName}BWhether to consume a mythical beast fragment to exchange for a {0}
+w��-是否消耗一个神兽碎片兑换一个{0}BWhether to consume a mythical beast fragment to exchange for a {0}
 *��补偿大师Master of compensation
 ,��请求补偿Request for compensation
 1��神兽兑换The divine beast is exchanged
-$��是否进入Whether to enter
-<��
-提示:每天只能进入
-Hint: Access only per day
-��次Times
+3��是否进入{0}?Are you going to enter {0}?
+T�� 
+提示:每天只能进入{0}次,
+Note: You can only enter {0} times per day.
 !��进入地图Enter the map
 N��已达到最大宠物数量！(Maximum number of pets has been reached!
 i��-获取赏金任务失败，请重新登录！4Bounty acquisition task failed, please log in again!
@@ -15041,85 +14891,74 @@ i��-获取赏金任务失败，请重新登录！4Bounty acquisition task fa
 !��支线任务Side missions
 ��每日任务
 Daily task
-��(第(No
-��环)Ring)
-��/10环)
-/10 rings)
-¹/100环)/100 rings)
-9ù 战力：{teamPlayerInfo.Combat}Combat Power: {0}
+%��(第{0}/{1}环)(Ring {0}/{1})
+%ù战力：{0}Combat Power: {0}
 5Ĺ是否解散队伍Whether to disband the team
-8ƹ战力: {teamPlayerInfo.Combat}Combat Power: {0}
 2ǹ已有支持的小龟!Turtle with support!
-�ȹT是否消耗{GlobalValueConfigCategory.Instance.Get(98).Value}金币支持该小龟?7Do you want to consume {0} gold to support this turtle?
+dȹ%是否消耗{0}金币支持该小龟?7Do you want to consume {0} gold to support this turtle?
 $ɹ竞猜小龟Guess the turtle
->ʹ#获胜次数:{response.WinTimes[0]}Number of wins: {0}
->˹#获胜次数:{response.WinTimes[1]}Number of wins: {0}
->̹#获胜次数:{response.WinTimes[2]}Number of wins: {0}
-Q͹*本次支持数:{response.SupportTimes[0]}Number supported this time: {0}
-Qι*本次支持数:{response.SupportTimes[1]}Current supported quantity: {0}
-QϹ*本次支持数:{response.SupportTimes[2]}Current supported quantity: {0}
-pй8活动开启倒计时 {endTime / 60}分{endTime % 60}秒0Activity start countdown {0} minutes {1} seconds
++ʹ获胜次数:{0}Number of wins: {0}
+:͹本次支持数:{0}Number supported this time: {0}
+Zй"活动开启倒计时 {0}分{1}秒0Activity start countdown {0} minutes {1} seconds
 +ѹ活动开始!!!The activity begins!
-�ҹ@制造道具的装备材料中{tip}有传承属性, 无法制作\{0} in the equipment material for making props has inheritance attribute and cannot be made.
-�ӹ�制造道具的装备材料中{tip}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具�Gem is inlaid in {0} of the equipment material for making item. Making will cause <color ='#55FF00'> gem to disappear!</color>Do you want to continue making this item?
+�ҹ>制造道具的装备材料中{0}有传承属性, 无法制作\{0} in the equipment material for making props has inheritance attribute and cannot be made.
+�ӹ�制造道具的装备材料中{0}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具�Gem is inlaid in {0} of the equipment material for making item. Making will cause <color ='#55FF00'> gem to disappear!</color>Do you want to continue making this item?
  Թ下一级:
 Next Level: 
 
-Qչ4{itemNum / 10000f:0.#}万/{havedNum / 10000f:0.#}万{0}million/{1}million
+*չ{0}万/{1}万{0}million/{1}million
 ;ֹ已经达到最高级Have reached the highest level
-j׹;玩家等级不足，{publicQiangHuaConfig.UpLvLimit}开启'Player level is insufficient, {0} is on
+M׹玩家等级不足，{0}开启'Player level is insufficient, {0} is on
 "ع升级失败Upgrade failed
-pٹJ1. 角色等级达到{GlobalValueConfigCategory.Instance.Get(21).Value}级1. Character level reaches {0}
-aڹA2. 消耗{GlobalValueConfigCategory.Instance.Get(22).Value}钻石2. Consumed {0} Diamonds
+Aٹ1. 角色等级达到{0}级1. Character level reaches {0}
+2ڹ2. 消耗{0}钻石2. Consumed {0} Diamonds
 K۹家族名字有特殊字符！%Family names have special characters!
 Mܹ家族名字最多七个字！'The family name is seven words at most!
 Gݹ宣言有特殊字符！'The declaration has special characters!
 7޹宣言内容过长！The manifesto is too long!
 9߹请先退出公会！Please quit the guild first!
-~�f捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/5次Donations: {0}/5
-��n捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDiamondDonationNumber)}/10次Donations: {0}/10
-�消耗:Consumption:
+4�捐献次数： {0}/{1}次Donations: {0}/{1}
+1�消耗:{0}钻石Consumption: {0} diamonds
+3�消耗:{0}金币Consumption: {0} gold coins
 1�钻石数量不足！Not enough diamonds!
 Q�捐献次数已达上限！.The number of donations has reached the limit!
 3�金币数量不足！Not enough gold coins!
-���玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Gold}</color>金币FPlayer <color=#{0}>{1}</color> {2} Donate: <color=#{3}>{4}</color>Gold
-���玩家 <color=#{ComHelp.QualityReturnColor(4)}>{donationRecord.Name}</color> {dateTime.ToShortTimeString()} 捐献： <color=#{ComHelp.QualityReturnColor(2)}>{donationRecord.Diamond}</color>钻石JPlayer <color=#{0}>{1}</color> {2} Donate: <color=#{3}>{4}</color> Diamond
+��J玩家 <color=#{0}>{1}</color> {2} 捐献： <color=#{3}>{4}</color>金币FPlayer <color=#{0}>{1}</color> {2} Donate: <color=#{3}>{4}</color>Gold
+��J玩家 <color=#{0}>{1}</color> {2} 捐献： <color=#{3}>{4}</color>钻石JPlayer <color=#{0}>{1}</color> {2} Donate: <color=#{3}>{4}</color> Diamond
 a�是否确认取消申请族长?:Are you sure you want to cancel the application patriarch?
 �下一级：Next Level:
 8�已经达到满级！Has reached the full level!
-��o等级：{unionKeJiConfig.QiangHuaLv.ToString()}/{UnionKeJiConfigCategory.Instance.Get(maxConfigId).QiangHuaLv}Level: {0}/{1}
+&�等级：{0}/{1}Level: {0}/{1}
 ��	研究中Under study
-\�8需要家族等级达到{unionKeJiConfig.NeedUnionLv}级Requires family level of {0}
-��q消耗家族金币：{unionKeJiConfig.CostUnionGold / 10000f:0.#}万/{self.UnionMyInfo.UnionGold / 10000f:0.#}万Consumed family gold: {0}/{1}
-g�B研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:0.##}小时Study elapsed time: {0} hours
-o�F{leftTime / 3600}时{leftTime % 3600 / 60}分{leftTime % 3600 % 60}秒!{0} hours {1} minutes {2} seconds
+B�需要家族等级达到{0}级Requires family level of {0}
+G�"消耗家族金币：{0}万/{1}万Consumed family gold: {0}/{1}
+C�研究消耗时间：{0}小时Study elapsed time: {0} hours
+;�{0}时{1}分{2}秒!{0} hours {1} minutes {2} seconds
 K�没有正在研究的科技！%There is no technology being studied!
 )�加速科技Accelerate technology
-���z是否花费{UnionHelper.CalcuNeedeForAccele(self.UnionMyInfo.KeJiActiteTime, unionKeJiConfig.NeedTime)}钻石加速科技0Does it cost {0} Diamond Acceleration Technology
+Y��!是否花费{0}钻石加速科技0Does it cost {0} Diamond Acceleration Technology
 ?��有科技正在研究中！Technology is being studied!
 :��家族金币不足！Not enough family gold coins!
 ��	未研究Not studied
 6��请先退出公会Please quit the guild first.
-M��{tip} 后才能加入家族！'Only after {0} can you join the family!
+K��{0} 后才能加入家族！'Only after {0} can you join the family!
 *��已申请加入Has applied to join
 %��等级达到1级Level up to 1
-H��/人数 {unionListItem.PlayerNumber}/{peopleMax}Headcount {0}/{1}
+'��人数 {0}/{1}Headcount {0}/{1}
 -��输入不合法!The input is illegal!
 ���/族长不能离开家族, 请先转移族长！KThe patriarch cannot leave the family, please transfer the patriarch first!
 r��,离开家族24小时内无法加入新家族>Can't join a new family within 24 hours of leaving the family.
-���b{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.#}万/{unionConfig.UnionGoldLimit / 10000f:0.#}万{0} million/{1} million
 \��'你也不在家族，请重新退出！-You are not in the family, please quit again!
-I��&在线人数 {self.OnLinePlayer.Count}Number of people online {0}
-H��.当前等级: {unionQiangHuaConfig.QiangHuaLv}Current Level: {0}
+3��在线人数 {0}Number of people online {0}
++��当前等级: {0}Current Level: {0}
 I��请先提升家族等级！&Please upgrade the family level first!
 G��家族贡献不足！*The family's contribution is insufficient!
-G��9通过{ItemHelper.ItemGetWayNameList[int.Parse(strs[1])]}By {0}
-����增加了<color=#{ComHelp.QualityReturnColor(2)}>{strs[3]}</color>{ItemConfigCategory.Instance.Get(int.Parse(strs[2])).ItemName}!Added <color=#{0}>{1}</color> {2}
-I��2下一等级: {nextunionQiangHuaConfig.QiangHuaLv}Next Level: {0}
-`��4消耗:{unionQiangHuaConfig.CostGold}点家族贡献$Cost: {0} Points Family Contribution
+���E<color=#{0}>{1}</color> 通过{2} 增加了<color=#{3}>{4}</color>{5}Q<color=#{0}>{1}</color> was increased by {2} to become <color=#{3}>{4}</color>{5}
+(��下一等级: {0}Next Level: {0}
+E��消耗:{0}点家族贡献$Cost: {0} Points Family Contribution
 J��60级开启血石系统！(Level 60 turns on the Bloodstone system!
 "��邀请加入Invite to join
-h��7邀请玩家{playName}加入{userInfo.UnionName}家族?)Invite player {0} to join the {1} family?
+P��邀请玩家{0}加入{1}家族?)Invite player {0} to join the {1} family?
 b��确定将该玩家踢出家族?;Are you sure you want to kick the player out of the family?
 p��3一分钟内不能向该玩家再次发起挑战！5The player cannot be challenged again for one minute!
 0��是否转移族长？Transfer Patriarch?
@@ -15127,49 +14966,46 @@ p��3一分钟内不能向该玩家再次发起挑战！5The player cannot be
 D��已经参与过抽奖！$Already participated in the lottery!
 '��已经领取!Already collected!
 5��今天还不能领取!You can't get it today!
-Q��+{ts.Days}天{ts.Hours}小时{ts.Minutes}分{0} Days {1} Hours {2} Minutes
+;��{0}天{1}小时{2}分{0} Days {1} Hours {2} Minutes
 %��赶快领取!!Get it quickly!
-��第{day + 1}天Day {0}
-W��7投资{ConfigHelper.WelfareInvestList[day].KeyId}金币Invest in {0} Gold Coins
+��	第{0}天Day {0}
+/��投资{0}金币Invest in {0} Gold Coins
 ;��已经进行了投资!The investment has been made!
 N��"今天还不能进行该项投资!$The investment cannot be made today!
-8��已完成的任务 {tasks[i]}Completed tasks {0}
-8��未领取的任务 {tasks[i]}Unclaimed tasks {0}
-N��(当天完成度:{commited}/{tasks.Count}Completion of the day: {0}/{1}
+=��当天完成度:{0}/{1}Completion of the day: {0}/{1}
 L��所有任务还没有完成！&All tasks have not been completed yet!
-J��3{rankingInfo.PlayerName}({rankingInfo.PlayerLv}级){0} ({1} level)
+"��{0}({1}级){0} ({1} level)
 '��暂无上榜Not on the list yet
-A��"你当前的等级：{userInfo.Lv}Your current level: {0}
-K��-可以获得经验加成:{(int)(expAdd*100)}%Experience bonus: {0}%
-K��.可以获得经验加成{(int)(expAdd * 100)}%Experience bonus {0}%
+7��你当前的等级：{0}Your current level: {0}
+;��可以获得经验加成:{0}%Experience bonus: {0}%
+9��可以获得经验加成{0}%Experience bonus {0}%
 O��低于世界等级无法兑换)Cannot be converted below the world level
 O��低于20%经验无法兑换,Less than 20% experience cannot be converted
-c��1是否消耗{costExp}经验兑换{sendGold}金币*Whether to exchange {0} experience for {1}
-@��今日兑换次数:{times}Number of exchanges today: {0}
-S��+剩余领取次数 {3- xiulianCoinNumber}/3 Remaining Collection Times {0}/3
-S��+剩余领取次数 {3 - xiulianExpNumber}/3 Remaining collection times {0}/3
-c��(当前可提取修炼经验：{addValue}3Training experience can be extracted currently: {0}
-c��(当前可提取修炼金币：{addValue}3Currently available gold coins for cultivation: {0}
+V��$是否消耗{0}经验兑换{1}金币*Whether to exchange {0} experience for {1}
+<��今日兑换次数:{0}Number of exchanges today: {0}
+D��剩余领取次数 {0}/{1}"Remaining Collection Times {0}/{1}
+\��!当前可提取修炼经验：{0}3Training experience can be extracted currently: {0}
+\��!当前可提取修炼金币：{0}3Currently available gold coins for cultivation: {0}
 9��修炼时间倒计时:Countdown of training time:
 %��可领取！Can be collected!
 <��还未到领取时间！It's not time to get it yet!
 W��已达到最大修炼次数！1The maximum number of practices has been reached!
-#��第{item.Key}章Chapter {0}
-G��(下次刷新时间
-{dateTime.ToString()}Next Refresh Time 
+��	第{0}章Chapter {0}
+5��下次刷新时间
+{0}Next Refresh Time 
  {0}
 ��(已刷新)(Refreshed)
-\��;领主升级: {killNumber}/{bossDevelopmentNext.KillNumber}Overlord Upgrade: {0}/{1}
-]��>怪物经验:{1f * bossDevelopment.ExpAdd * monsterConfig.Exp}Monster Experience: {0}
+6��领主升级: {0}/{1}Overlord Upgrade: {0}/{1}
+/��怪物经验:{0}Monster Experience: {0}
 "��冷却时间:Cooling time:
-}��f{firstWinInfo.PlayerName} (时间： {TimeInfo.Instance.ToDateTime(firstWinInfo.KillTime).ToString()}){0} (Time: {1})
+*��{0} (时间： {1}){0} (Time: {1})
 )��暂无上榜!Not on the list yet!
 ���@对应难度的领主怪物未被击败,请先击败对应怪物vThe Lord monster of the corresponding difficulty has not been defeated. Please defeat the corresponding monster first.
-o��S我的战力：{self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat}My Combat Power: {0}
-@�� 战力达到{activityInfo.Par_1}Combat Power Reaches {0}
+.��我的战力：{0}My Combat Power: {0}
+/��战力达到{0}Combat Power Reaches {0}
 1��战力不足！Not enough fighting power!
  ��我的等级：	My level:
-:��#等级达到{activityInfo.Par_1}级Level up to {0}
+)��等级达到{0}级Level up to {0}
 K��请先激活当前坐骑！(Please activate the current mount first!
 f��,等级达到25级才可以骑乘坐骑喔！2You can only ride a mount when you reach level 25!
 ���@激活坐骑成功,清在主界面点击骑乘按钮即可喔！MSuccessfully activate the mount, click the ride button in the main interface!
@@ -15180,8 +15016,8 @@ Lź是否前往神秘之门？)Do you want to go to the mysterious gate?
 ɺ容易Easy
 &ʺ登录成功!Login successful!
 [˺账号已完成实名认证!7The account has completed the real-name authentication!
-V̺%职业:{occupationTwo.OccupationName})Occupation: occupationTwo. OccupationName
-\ͺ(职业:{occupationConfig.OccupationName},Occupation: occupationConfig. OccupationName
+;̺
+职业:{0})Occupation: occupationTwo. OccupationName
 +κ点击创建角色Click Create Role
 1Ϻ提示啦提示啦！！！！Hint, hint!
 Pк角色列表已达上限！-The list of characters has reached the limit!

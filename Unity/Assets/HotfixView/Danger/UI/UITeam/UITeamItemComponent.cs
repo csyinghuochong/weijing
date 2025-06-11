@@ -84,9 +84,9 @@ namespace ET
                 self.TextName.SetActive(true);
                 self.TextCombat.SetActive(true);
                 self.TextOcc.SetActive(true);
-                self.TextLevel.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv} 级";
+                self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 级"), teamPlayerInfo.PlayerLv);
                 self.TextName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
-                self.TextCombat.GetComponent<Text>().text = $"战力: {teamPlayerInfo.Combat}";
+                self.TextCombat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("战力: {0}"), teamPlayerInfo.Combat);
 
                 self.TextOcc.SetActive(teamPlayerInfo.Occ!=0 || teamPlayerInfo.OccTwo!=0);
                 if (teamPlayerInfo.Occ != 0)

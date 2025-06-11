@@ -38,7 +38,7 @@ namespace ET
         public static  void OnInitUI(this UIChouKaRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            self.TextTitle.GetComponent<Text>().text = $"今日探宝次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa)}";
+            self.TextTitle.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日探宝次数:{0}"), unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa));
             
             List<TakeCardRewardConfig> takeCardRewardConfigs = TakeCardRewardConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < takeCardRewardConfigs.Count; i++)

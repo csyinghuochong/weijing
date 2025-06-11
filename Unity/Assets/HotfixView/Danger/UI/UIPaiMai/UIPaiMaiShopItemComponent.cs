@@ -106,13 +106,13 @@ namespace ET
             string des = "";
             if (shopItemInfo.PricePro < 1f)
             {
-                des = "价格下降" + (1 - shopItemInfo.PricePro).ToString("0.0") + "%";
+                des = GameSettingLanguge.LoadLocalization("价格下降") + (1 - shopItemInfo.PricePro).ToString("0.0") + "%";
                 self.Obj_Lab_Tips.GetComponent<Text>().color = new Color(80f / 255f, 110f / 255f, 30f / 255f);
             }
 
             if (shopItemInfo.PricePro == 1f)
             {
-                des = "近期价格稳定";
+                des = GameSettingLanguge.LoadLocalization("近期价格稳定");
                 //self.Obj_Lab_Tips.GetComponent<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
                 //self.Obj_Lab_Tips.GetComponent<Text>().color = new Color(137f / 255f, 89f / 255f, 51f / 255f);
                 self.Obj_Lab_Tips.GetComponent<Text>().color = new Color(100f / 255f, 100f / 255f, 100f / 255f);
@@ -121,7 +121,7 @@ namespace ET
             if (shopItemInfo.PricePro > 1f)
             {
                 Log.Info("shopItemInfo.PricePro = " + shopItemInfo.PricePro);
-                des = "价格上涨" + ((shopItemInfo.PricePro - 1)*100).ToString("0.00") + "%";
+                des = GameSettingLanguge.LoadLocalization("价格上涨") + ((shopItemInfo.PricePro - 1)*100).ToString("0.00") + "%";
                 self.Obj_Lab_Tips.GetComponent<Text>().color = new Color(137f / 255f, 89f / 255f, 51f / 255f);
             }
 

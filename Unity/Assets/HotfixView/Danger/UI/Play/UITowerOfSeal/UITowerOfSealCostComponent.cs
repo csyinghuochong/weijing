@@ -69,7 +69,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Diamond < needGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石数量不够");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石数量不够"));
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace ET
             long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(itemConfigID);
             if (itemNum <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("凭证数量不够");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("凭证数量不够"));
                 return;
             }
 

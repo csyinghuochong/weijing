@@ -59,7 +59,7 @@ namespace ET
         public static void OnUpdateData(this UITaskTypeItemComponent self, TaskPro taskPro)
         {
             self.TaskPro = taskPro;
-            string name_1 = TaskConfigCategory.Instance.Get(taskPro.taskID).TaskName;
+            string name_1 = GameSettingLanguge.LoadLocalization(TaskConfigCategory.Instance.Get(taskPro.taskID).TaskName);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             self.Lab_TaskName.GetComponent<Text>().text = name_1;
@@ -67,22 +67,22 @@ namespace ET
             if (taskType == 3)
             {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DailyTaskNumber) + 1;
-                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + string.Format(GameSettingLanguge.LoadLocalization("(第{0}/{1}环)"), nowNum, GlobalValueConfigCategory.Instance.Get(58).Value);
             }
             if (taskType == 5)
             {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.WeeklyTaskNumber) + 1;
-                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/10环)";
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + string.Format(GameSettingLanguge.LoadLocalization("(第{0}/{1}环)"), nowNum, 10);
             }
             if (taskType == 7)
             {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber) + 1;
-                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(108).Value + "环)";
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + string.Format(GameSettingLanguge.LoadLocalization("(第{0}/{1}环)"), nowNum, GlobalValueConfigCategory.Instance.Get(108).Value);
             }
             if (taskType == 10)
             {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RingTaskNumber) + 1;
-                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/100环)";
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + string.Format(GameSettingLanguge.LoadLocalization("(第{0}/{1}环)"), nowNum, 100);
             }
           
             self.Ima_Ongoing.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Completed);

@@ -69,7 +69,7 @@ namespace ET
             HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideId);
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             self.Lab_SkillName.GetComponent<Text>().text = skillConfig.SkillName + $"{skillNum}/{hideProListConfig.NeedNumber}";
-            self.TextTip2.GetComponent<Text>().text = $"套装技能穿戴{hideProListConfig.NeedNumber}个时激活此技能";
+            self.TextTip2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("套装技能穿戴{0}个时激活此技能"), hideProListConfig.NeedNumber);
         }
 
         public static void OnUpdateData(this UISkillTipsComponent self, int skillId, Vector3 vector3, string aBAtlasTypes = ABAtlasTypes.RoleSkillIcon, string addTip = "")

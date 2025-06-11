@@ -243,7 +243,7 @@ namespace ET
         {
             if (self.MainPetInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先选择要升星的宠物");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先选择要升星的宠物"));
                 return;
             }
             UI uIpet = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);

@@ -171,12 +171,12 @@ namespace ET
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(text);
             if (mask)
             {
-                FloatTipManager.Instance.ShowFloatTip("输入不合法!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("输入不合法!"));
                 return;
             }
             if (!StringHelper.IsSpecialChar(text))
             {
-                FloatTipManager.Instance.ShowFloatTip("输入不合法!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("输入不合法!"));
                 return;
             }
 
@@ -220,7 +220,7 @@ namespace ET
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(text);
             if (mask)
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新输入！"));
                 return;
             }
 
@@ -244,10 +244,10 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId && self.UnionInfo.UnionPlayerList.Count > 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("族长不能离开家族, 请先转移族长！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("族长不能离开家族, 请先转移族长！"));
                 return;
             }
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "离开家族", "离开家族24小时内无法加入新家族", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("离开家族"), GameSettingLanguge.LoadLocalization("离开家族24小时内无法加入新家族"), ()=>
             {
                 self.RequestLevelUnion().Coroutine();
             }, null).Coroutine();
@@ -311,12 +311,12 @@ namespace ET
                 if (r2c_roleEquip.UnionMyInfo.UnionGold <= unionConfig.UnionGoldLimit)
                 {
                     self.Text_UnionGold.GetComponent<Text>().text =
-                            $"{r2c_roleEquip.UnionMyInfo.UnionGold / 10000f:0.#}万/{unionConfig.UnionGoldLimit / 10000f:0.#}万";
+                            string.Format(GameSettingLanguge.LoadLocalization("{0}万/{1}万"), (r2c_roleEquip.UnionMyInfo.UnionGold / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
                 }
                 else
                 {
                     self.Text_UnionGold.GetComponent<Text>().text =
-                            $"{unionConfig.UnionGoldLimit / 10000f:0.#}万/{unionConfig.UnionGoldLimit / 10000f:0.#}万";
+                            string.Format(GameSettingLanguge.LoadLocalization("{0}万/{1}万"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
                 }
             }
             else
@@ -361,13 +361,13 @@ namespace ET
             UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
             if (mainPlayerInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("你也不在家族，请重新退出！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("你也不在家族，请重新退出！"));
                 return;
             }
             
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)unionInfo.Level);
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
-            self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
+            self.Text_OnLine.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("在线人数 {0}"), self.OnLinePlayer.Count);
             self.Text_Purpose.GetComponent<Text>().text = self.UnionInfo.UnionPurpose;
             self.Text_Number.GetComponent<Text>().text = $"{ self.UnionInfo.UnionPlayerList.Count}/{unionCof.PeopleNum}";
             self.Text_Leader.GetComponent<Text>().text = self.UnionInfo.LeaderName;

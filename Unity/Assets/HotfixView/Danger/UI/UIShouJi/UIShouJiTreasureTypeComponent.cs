@@ -56,7 +56,7 @@ namespace ET
         {
             self.Chapter = chapter;
 
-            self.Lab_TaskName.GetComponent<Text>().text = $"第{chapter}章";
+            self.Lab_TaskName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}章"), chapter);
             self.UpdateRedDot();
         }
 

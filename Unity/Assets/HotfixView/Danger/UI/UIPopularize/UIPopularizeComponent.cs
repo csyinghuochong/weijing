@@ -77,14 +77,14 @@ namespace ET
         {
             if (self.BePopularize)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经作为被推广人");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经作为被推广人"));
                 return;
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Lv >= 15)
             {
-                FloatTipManager.Instance.ShowFloatTip("大于15级不能作为推广人");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("大于15级不能作为推广人"));
                 return;
             }
 
@@ -150,8 +150,8 @@ namespace ET
                 }
             }
 
-            self.Text_Reward_1.GetComponent<Text>().text = $"金币： {goldReward}";
-            self.Text_Reward_2.GetComponent<Text>().text = $"钻石： {diamondReward}";
+            self.Text_Reward_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("金币： {0}"), goldReward);
+            self.Text_Reward_2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("钻石： {0}"), diamondReward);
             self.ButtonGet.SetActive(rewardlist.Count > 0);
 
             for (int i = 0; i < response.MyPopularizeList.Count; i++)

@@ -113,7 +113,7 @@ namespace ET
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null || teamInfo.SceneId == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("请先创建或加入副本队伍");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先创建或加入副本队伍"));
                 return false;
             }
             return true;

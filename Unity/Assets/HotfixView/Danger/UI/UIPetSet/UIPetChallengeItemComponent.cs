@@ -101,7 +101,7 @@ namespace ET
             self.ImageLine_2.SetActive(index % 2 != 0);
             self.TextLevel.GetComponent<Text>().text = petfubenConf.Name;
             //self.TextCombat.GetComponent<Text>().text = $"推荐战力： {petfubenConf.Combat}";
-            self.TextCombat.GetComponent<Text>().text = $"建议最低队伍等级： {petfubenConf.Lv}级";
+            self.TextCombat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("建议最低队伍等级： {0}级"), petfubenConf.Lv);
             self.Node_2.SetActive(locked);
             self.StartNode.SetActive(!locked);
             self.Start_2.SetActive(star >= 3);

@@ -64,13 +64,13 @@ namespace ET
             else
             {
                 int leftsecond = Mathf.FloorToInt(cdTime * 0.001f);
-                self.TexTCd.text = $"{leftsecond}秒";
+                self.TexTCd.text = string.Format(GameSettingLanguge.LoadLocalization("{0}秒"), leftsecond);
             }
         }
 
         public static void OnUpdateUI(this UIPetQuickFightItemComponent self, long fightid)
         {
-            self.Text.GetComponent<Text>().text = fightid == self.PetId ? "休息" : "出战";
+            self.Text.GetComponent<Text>().text = fightid == self.PetId ? GameSettingLanguge.LoadLocalization("休息") : GameSettingLanguge.LoadLocalization("出战");
 
 
         }

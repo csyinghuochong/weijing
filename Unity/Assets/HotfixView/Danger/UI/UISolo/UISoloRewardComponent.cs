@@ -32,10 +32,10 @@ namespace ET
 
             if (type == 1)
             {
-                self.Text_Result.GetComponent<Text>().text = "恭喜你！获得本场挑战的胜利";
+                self.Text_Result.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("恭喜你！获得本场挑战的胜利");
             }
             else {
-                self.Text_Result.GetComponent<Text>().text = "非常遗憾！你在本场挑战失败,请再接再厉";
+                self.Text_Result.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("非常遗憾！你在本场挑战失败,请再接再厉");
             }
 
             //显示奖励列表
@@ -59,7 +59,7 @@ namespace ET
                 }
                 if (self.Text_ReturnTime != null)
                 {
-                    self.Text_ReturnTime.GetComponent<Text>().text = $"{i}秒后自动回城";
+                    self.Text_ReturnTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}秒后自动回城"), i);
                 }
                 if (i <= 0)
                 {

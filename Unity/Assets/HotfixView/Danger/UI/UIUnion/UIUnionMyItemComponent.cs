@@ -106,7 +106,7 @@ namespace ET
             self.CurPlayerInfo = unionPlayerInfo;
             self.Text_Name.GetComponent<Text>().text = unionPlayerInfo.PlayerName;
             self.Text_Level.GetComponent<Text>().text = unionPlayerInfo.PlayerLevel.ToString();
-            self.Text_Position.GetComponent<Text>().text = UnionHelper.UnionPosition[unionPlayerInfo.Position];
+            self.Text_Position.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(UnionHelper.UnionPosition[unionPlayerInfo.Position]);
         }
     }
 }

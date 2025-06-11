@@ -119,7 +119,7 @@ namespace ET
 
         public static  void OnButtonReset(this UIPetMiningChallengeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置挑战", "是否花费350钻石重置5次挑战次数？/n提示:挑战次数上限为10", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重置挑战"), GameSettingLanguge.LoadLocalization("是否花费350钻石重置5次挑战次数？/n提示:挑战次数上限为10"), () =>
             {
                 self.RequestPetMingReset().Coroutine();
             }, null).Coroutine();
@@ -130,14 +130,14 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetMineReset) >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("每天最多只能重置3次！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("每天最多只能重置3次！"));
                 return;
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Diamond < 350)
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石不足！"));
                 return;
             }
 
@@ -157,7 +157,7 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get( sceneid );
 
             int useTime = (int)self.ZoneScene().GetComponent<UserInfoComponent>().GetSceneFubenTimes(sceneid);
-            self.TextChallengeTime.GetComponent<Text>().text = $"挑战剩余次数:{sceneConfig.DayEnterNum - useTime}/10";
+            self.TextChallengeTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("挑战剩余次数:{0}/10"), sceneConfig.DayEnterNum - useTime);
         }
 
         public static async ETTask RequestPetInfo(this UIPetMiningChallengeComponent self, int index)
@@ -179,7 +179,7 @@ namespace ET
 
             if (response.RolePetInfos == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("查看宠物信息出错！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("查看宠物信息出错！"));
                 return;
             }
 
@@ -226,19 +226,19 @@ namespace ET
             int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
 
 
-            self.Text_chanchu.GetComponent<Text>().text = $"产出:{chanchu}小时";
+            self.Text_chanchu.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("产出:{0}小时"), chanchu);
 
             self.PetMingPlayerInfo = petMingPlayerInfo;
             string playerName = string.Empty;  
             List<int> confids = new List<int>();
             if (petMingPlayerInfo != null)
             {
-                playerName = $"占领者:{petMingPlayerInfo.PlayerName}";
+                playerName = string.Format(GameSettingLanguge.LoadLocalization("占领者:{0}"), petMingPlayerInfo.PlayerName);
                 confids = petMingPlayerInfo.PetConfig;
             }
             else
             {
-                playerName = "占领者:无";
+                playerName = GameSettingLanguge.LoadLocalization("占领者:无");
             }
             self.Text_player.GetComponent<Text>().text = playerName;
             for (int i = 0; i< self.PetIconList.Count; i++)
@@ -274,7 +274,7 @@ namespace ET
 
             while (cdTime > 0)
             {
-                self.TextChallengeCD.GetComponent<Text>().text = "挑战冷却时间: "+ TimeHelper.ShowLeftTime(cdTime);   
+                self.TextChallengeCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战冷却时间: ")+ TimeHelper.ShowLeftTime(cdTime);   
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
@@ -289,14 +289,14 @@ namespace ET
         {
             if (self.TeamId == -1)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择一个队伍！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择一个队伍！"));
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             long cdTime = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.PetMineCDTime );
             if (cdTime > TimeHelper.ServerNow())
             {
-                FloatTipManager.Instance.ShowFloatTip("挑战冷却中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("挑战冷却中！"));
                 return;
             }
 

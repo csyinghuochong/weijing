@@ -124,7 +124,7 @@ namespace ET
 
             self.ShowSkillList(unit);
             self.NameText.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(unit.ConfigId).MonsterName;
-            self.LvText.GetComponent<Text>().text = $"当前等级：{numericComponent.GetAsInt(NumericType.Now_Lv).ToString()}";
+            self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前等级：{0}"), numericComponent.GetAsInt(NumericType.Now_Lv).ToString());
 
             for (int i = 0; i < self.ShowPropertyList.Count; i++)
             {
@@ -174,15 +174,15 @@ namespace ET
 
         public static void InitShowPropertyList(this UICommonPropertyComponent self)
         {
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxHp, "生命", "Pro_4", 1));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxAct, "攻击", "Pro_5", 1));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxDef, "防御", "Pro_3", 1));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxAdf, "魔御", "Pro_9", 1));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Hit, "命中概率", "", 2));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Dodge, "闪避概率", "", 2));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Cri, "暴击概率", "", 2));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Res, "韧性概率", "", 2));
-            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxHp, GameSettingLanguge.LoadLocalization("生命"), "Pro_4", 1));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxAct, GameSettingLanguge.LoadLocalization("攻击"), "Pro_5", 1));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxDef, GameSettingLanguge.LoadLocalization("防御"), "Pro_3", 1));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_MaxAdf, GameSettingLanguge.LoadLocalization("魔御"), "Pro_9", 1));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Hit, GameSettingLanguge.LoadLocalization("命中概率"), "", 2));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Dodge, GameSettingLanguge.LoadLocalization("闪避概率"), "", 2));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Cri, GameSettingLanguge.LoadLocalization("暴击概率"), "", 2));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Res, GameSettingLanguge.LoadLocalization("韧性概率"), "", 2));
+            self.ShowPropertyList.Add(AddShowProperList(NumericType.Now_Speed, GameSettingLanguge.LoadLocalization("移动速度"), "", 2));
         }
 
         public static ShowPropertyList AddShowProperList(int numericType, string name, string iconID, int type)

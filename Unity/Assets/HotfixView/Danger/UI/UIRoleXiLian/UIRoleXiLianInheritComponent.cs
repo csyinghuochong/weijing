@@ -115,7 +115,7 @@ namespace ET
 
 			int maxTimes = GlobalValueConfigCategory.Instance.Get(117).Value2;
 			self.ProgressBarImg.GetComponent<Image>().fillAmount = bagInfo.InheritTimes * 1f / maxTimes;
-			self.InheritTimesText.GetComponent<Text>().text = $"{bagInfo.InheritTimes}/{maxTimes}次";
+			self.InheritTimesText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}/{1}次"), bagInfo.InheritTimes, maxTimes);
 		}
 
 		public static void OnXiLianReturn(this UIRoleXiLianInheritComponent self)
@@ -232,7 +232,7 @@ namespace ET
 			int maxInheritTimes = GlobalValueConfigCategory.Instance.Get(117).Value2;
 			if (bagInfo.InheritTimes >= maxInheritTimes)
 			{
-				FloatTipManager.Instance.ShowFloatTip("该装备不可再进行传承鉴定！");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该装备不可再进行传承鉴定！"));
 				return;
 			}
 
@@ -240,7 +240,7 @@ namespace ET
 			string costitem = ItemHelper.GetInheritCost(bagInfo.InheritTimes);
             if (!self.BagComponent.CheckNeedItem(costitem))
 			{
-				FloatTipManager.Instance.ShowFloatTip("材料不足！");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("材料不足！"));
 				return;
 			}
 
@@ -255,7 +255,7 @@ namespace ET
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
 			// 二次确认框
-			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n传承装备只有{maxInheritTimes}次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?", ()=>
+			PopupTipHelp.OpenPopupTip( self.DomainScene(), GameSettingLanguge.LoadLocalization("传承鉴定"), string.Format(GameSettingLanguge.LoadLocalization("传承鉴定效果：{0}\n传承装备只有{1}次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?"), GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe), maxInheritTimes), ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
 			}, () => { self.OnXiLianReturn();}).Coroutine();

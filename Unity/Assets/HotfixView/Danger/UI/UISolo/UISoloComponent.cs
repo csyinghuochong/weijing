@@ -51,14 +51,14 @@ namespace ET
             //此处只是在界面中申请,重新打开界面允许重新匹配
             if (self.PipeiStatus && self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime>0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经匹配，请耐心等候...");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经匹配，请耐心等候..."));
                 return;
             }
 
             //点击按钮给服务器发送匹配消息
             int errorCode = await NetHelper.RequestSoloMatch(self.ZoneScene());
             if (errorCode == 0) {
-                FloatTipManager.Instance.ShowFloatTip("开始匹配，请耐心等候...");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开始匹配，请耐心等候..."));
                 self.PipeiStatus = true;
             }
 
@@ -77,8 +77,8 @@ namespace ET
             C2S_SoloMyInfoRequest request = new C2S_SoloMyInfoRequest() { };
             S2C_SoloMyInfoResponse response = (S2C_SoloMyInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == ErrorCode.ERR_Success) {
-                self.Text_Result.GetComponent<Text>().text = $"{response.WinTime}胜{response.FailTime}败";
-                self.Text_IntegraList.GetComponent<Text>().text = $"积分:{response.MathTime}";
+                self.Text_Result.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}胜{1}败"), response.WinTime, response.FailTime);
+                self.Text_IntegraList.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("积分:{0}"), response.MathTime);
             }
 
             //显示列表
@@ -100,7 +100,7 @@ namespace ET
         public static async ETTask ShowPiPeiTime(this UISoloComponent self)
         {
             if (self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime == 0) {
-                self.Text_Match.GetComponent<Text>().text = $"点击下方开始匹配对手";
+                self.Text_Match.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("点击下方开始匹配对手");
                 return;
             }
 
@@ -117,7 +117,7 @@ namespace ET
                 TimeSpan timeCha = nowDateTime - startDateTime;
 
           
-                self.Text_Match.GetComponent<Text>().text = $"匹配时间:{timeCha.Minutes}分{timeCha.Seconds}秒";
+                self.Text_Match.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("匹配时间:{0}分{1}秒"), timeCha.Minutes, timeCha.Seconds);
 
                 //1秒刷新一次
                 await TimerComponent.Instance.WaitAsync(1000);

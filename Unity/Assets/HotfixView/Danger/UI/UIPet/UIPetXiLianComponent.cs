@@ -75,12 +75,12 @@ namespace ET
         {
             if (self.RolePetInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择宠物！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择宠物！"));
                 return;
             }
             if (self.CostItemInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择道具！"));
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -95,14 +95,14 @@ namespace ET
 
             if ((itemConfig.ItemSubType == 108 || itemConfig.ItemSubType == 109) && self.RolePetInfo.PetLv >= userInfo.Lv + 5)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物等级不能高于玩家5级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物等级不能高于玩家5级！"));
                 return;
             }
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.RolePetInfo.ConfigId);
             if (itemConfig.ItemSubType == 119 && self.RolePetInfo.ZiZhi_ChengZhang >= petConfig.ZiZhi_ChengZhang_Max) //成长
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物成长已经达到上限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物成长已经达到上限！"));
                 return;
             }
 
@@ -111,7 +111,7 @@ namespace ET
             {
                 if (PetHelper.IsBianYI(self.RolePetInfo))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("变异的宠物不能使用此道具！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("变异的宠物不能使用此道具！"));
                     return;
                 }
             }

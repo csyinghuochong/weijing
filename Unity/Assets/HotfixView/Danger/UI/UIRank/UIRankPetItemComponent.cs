@@ -114,7 +114,7 @@ namespace ET
             }
             else
             {
-                self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.PlayerName + "的队伍";
+                self.Lab_TeamName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的队伍"), rankPetInfo.PlayerName);
                 self.Lab_Owner.GetComponent<Text>().text = rankPetInfo.PlayerName;
             }
 
@@ -156,7 +156,7 @@ namespace ET
             }
             if (teamNumber < 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("上阵宠物不足三只!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("上阵宠物不足三只!"));
                 return;
             }
 

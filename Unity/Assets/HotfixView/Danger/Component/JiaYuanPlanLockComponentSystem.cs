@@ -94,7 +94,7 @@ namespace ET
             self.HeadBarUI.HeadBar = self.HeadBar;
             self.HeadBar.transform.SetAsFirstSibling();
 
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = "未开启";
+            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未开启");
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = String.Empty;
         }
     }

@@ -72,7 +72,7 @@ namespace ET
                         long newvalue = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
                         if (oldvalue == newvalue)
                         {
-                            FloatTipManager.Instance.ShowFloatTip("位置没有改变！");
+                            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("位置没有改变！"));
                         }
                     }
                     break;

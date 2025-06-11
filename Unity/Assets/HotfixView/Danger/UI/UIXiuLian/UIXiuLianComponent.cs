@@ -78,36 +78,36 @@ namespace ET
             int xiulianExpNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.XiuLian_ExpNumber);
             int xiulianCoinNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.XiuLian_CoinNumber);
 
-            self.Text_CoinTime.GetComponent<Text>().text = $"剩余领取次数 {3- xiulianCoinNumber}/3";
-            self.Text_ExpTime.GetComponent<Text>().text = $"剩余领取次数 {3 - xiulianExpNumber}/3";
+            self.Text_CoinTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("剩余领取次数 {0}/{1}"), 3 - xiulianCoinNumber, 3);
+            self.Text_ExpTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("剩余领取次数 {0}/{1}"), 3 - xiulianExpNumber, 3);
 
             float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(29).Value);
             int addValue = Mathf.CeilToInt(coefficient * level);
-            self.Text_GetExp.GetComponent<Text>().text = $"当前可提取修炼经验：{addValue}";
+            self.Text_GetExp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前可提取修炼经验：{0}"), addValue);
 
             coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(30).Value);
             addValue = Mathf.CeilToInt(coefficient * level);
-            self.Text_GetCoin.GetComponent<Text>().text = $"当前可提取修炼金币：{addValue}";
+            self.Text_GetCoin.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前可提取修炼金币：{0}"), addValue);
 
             long xiulianExpTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.XiuLian_ExpTime);
             long xiulianCoinTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.XiuLian_CoinTime);
             long leftExpCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianExpTime);
             if (leftExpCD > 0)
             {
-                self.Text_ExpCD.GetComponent<Text>().text = "修炼时间倒计时:" + TimeHelper.ShowLeftTime(leftExpCD);
+                self.Text_ExpCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftExpCD);
             }
             else
             {
-                self.Text_ExpCD.GetComponent<Text>().text = "可领取！";
+                self.Text_ExpCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("可领取！");
             }
             long leftCoinCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianCoinTime);
             if (leftCoinCD > 0)
             {
-                self.Text_CoinCD.GetComponent<Text>().text = "修炼时间倒计时:" + TimeHelper.ShowLeftTime(leftCoinCD);
+                self.Text_CoinCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftCoinCD);
             } 
             else
             {
-                self.Text_CoinCD.GetComponent<Text>().text = "可领取！";
+                self.Text_CoinCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("可领取！");
             }
         }
         
@@ -118,14 +118,14 @@ namespace ET
             long leftCoinCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianCoinTime);
             if (leftCoinCD > 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("还未到领取时间！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("还未到领取时间！"));
                 return;
             }
 
             int xiulianNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.XiuLian_CoinNumber);
             if (xiulianNumber >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大修炼次数！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大修炼次数！"));
                 return;
             }
 
@@ -141,14 +141,14 @@ namespace ET
             long leftExpCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianExpTime);
             if (leftExpCD > 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("还未到领取时间！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("还未到领取时间！"));
                 return;
             }
            
             int xiulianNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.XiuLian_ExpNumber);
             if (xiulianNumber >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("已达到最大修炼次数！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已达到最大修炼次数！"));
                 return;
             }
 

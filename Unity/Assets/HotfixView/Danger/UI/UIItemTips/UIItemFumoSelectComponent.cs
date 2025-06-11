@@ -93,12 +93,12 @@ namespace ET
             if (equipinfo.FumoProLists.Count > 0)
             {
                 string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
-                string fumopro = $"当前附魔属性<color=#BEFF34>{equipfumo}</color> \n是否覆盖已有属性\n{itemfumo}\n此附魔道具已消耗";
+                string fumopro = string.Format(GameSettingLanguge.LoadLocalization("当前附魔属性<color=#BEFF34>{0}</color> \n是否覆盖已有属性\n{1}\n此附魔道具已消耗"), equipfumo, itemfumo);
                 self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.FumoItemInfo, hideProLists).Coroutine();
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("装备附魔"), fumopro, async () =>
                 {
                     await  self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(index);
-                    FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("附魔属性 {0}"), itemfumo));
 
                     UIHelper.Remove(self.ZoneScene(), UIType.UIItemFumoSelect);
                 }, () =>
@@ -111,7 +111,7 @@ namespace ET
                 //await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.FumoItemInfo, index.ToString());
                 await self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.FumoItemInfo, hideProLists);
                 await self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(index);
-                FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("附魔属性 {0}"), itemfumo));
 
                 UIHelper.Remove(self.ZoneScene(), UIType.UIItemFumoSelect);
             }

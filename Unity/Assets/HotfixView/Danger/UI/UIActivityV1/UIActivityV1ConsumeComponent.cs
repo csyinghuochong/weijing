@@ -49,7 +49,7 @@ namespace ET
             }
 
             self.ConsumeNumText.GetComponent<Text>().text =
-                    $"{UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond)}钻石";
+                    string.Format(GameSettingLanguge.LoadLocalization("{0}钻石"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond));
         }
     }
 }

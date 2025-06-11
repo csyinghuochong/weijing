@@ -101,11 +101,11 @@ namespace ET
             endTime /= 1000;
             if (endTime > 60)
             {
-                self.EndTimeText.text = $"神秘之门倒计时 {endTime / 60}:{endTime % 60}";
+                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("神秘之门倒计时 {0}:{1}"), endTime / 60, endTime % 60);
             }
             else
             {
-                self.EndTimeText.text = $"神秘之门还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
+                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("神秘之门还剩{0}秒，活动结束将强制离开地图哦。"), endTime % 60);
             }
             if (endTime <= 60)
             {
@@ -134,7 +134,7 @@ namespace ET
             }
             else
             {
-                self.TextTip_1.text = "可以进行移动";
+                self.TextTip_1.text = GameSettingLanguge.LoadLocalization("可以进行移动");
             }
         }
 
@@ -146,14 +146,14 @@ namespace ET
 
             //金币消耗
             GlobalValueConfig globalValueConfig1 = GlobalValueConfigCategory.Instance.Get(94);
-            self.TextTip_2.text = $"金币消耗:{globalValueConfig1.Value2}";
+            self.TextTip_2.text = string.Format(GameSettingLanguge.LoadLocalization("金币消耗:{0}"), globalValueConfig1.Value2);
 
             //钻石消耗
             GlobalValueConfig globalValueConfig2 = GlobalValueConfigCategory.Instance.Get(95);
-            self.TextTip_3.text = $"钻石消耗:{globalValueConfig2.Value2}";
+            self.TextTip_3.text = string.Format(GameSettingLanguge.LoadLocalization("钻石消耗:{0}"), globalValueConfig2.Value2);
 
             int useTimes = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyMoveNumber);
-            self.TextTip_MianFeiTime.text = $"移动次数: {5 -useTimes}/5";
+            self.TextTip_MianFeiTime.text = string.Format(GameSettingLanguge.LoadLocalization("移动次数: {0}/5"), 5 - useTimes);
         }
 
         public static void OnButtonPick(this UIDungeonHappyMainComponent self)
@@ -199,7 +199,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_GoldNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神秘之门", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("神秘之门"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币?"), globalValueConfig.Value2), async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
@@ -227,7 +227,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_DiamondNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神秘之门", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("神秘之门"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}钻石?"), globalValueConfig.Value2), async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };

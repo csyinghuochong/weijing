@@ -45,7 +45,7 @@ namespace ET
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text =
-                    $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}/{UnionKeJiConfigCategory.Instance.Get(maxConfigId).QiangHuaLv}";
+                    string.Format(GameSettingLanguge.LoadLocalization("等级：{0}/{1}"), unionKeJiConfig.QiangHuaLv.ToString(), UnionKeJiConfigCategory.Instance.Get(maxConfigId).QiangHuaLv);
 
             UICommonHelper.SetImageGray(self.IconImg, unionKeJiConfig.QiangHuaLv == 0);
         }

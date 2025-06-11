@@ -104,8 +104,8 @@ namespace ET
             {
                 return;
             }
-            string tip = isprotectd ? "锁定" : "解锁";
-            FloatTipManager.Instance.ShowFloatTip($"宠物{tip}成功");
+            string tip = isprotectd ? GameSettingLanguge.LoadLocalization("锁定") : GameSettingLanguge.LoadLocalization("解锁");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("宠物{0}成功"), tip));
             self.PetComponent.OnPetProtect( self.PetInfoId, isprotectd );
             self.OnInitPetList();
             self.OnClickPetHandler(self.PetInfoId);

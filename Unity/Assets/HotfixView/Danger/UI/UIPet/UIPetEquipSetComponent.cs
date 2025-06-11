@@ -77,7 +77,7 @@ namespace ET
             self.ButtonEquipXieXia.GetComponent<Button>().onClick.RemoveAllListeners();
             ButtonHelp.AddListenerEx(self.ButtonEquipXieXia, () => { self.OnButtonEquipXieXia().Coroutine(); });
             List<string> TypeNames = new List<string>() { "头饰", "项圈", "护腕" };
-            self.TextType.GetComponent<Text>().text = TypeNames[self.Position];
+            self.TextType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(TypeNames[self.Position]);
 
             UICommonHelper.DestoryChild(self.AttributeListNode);
             // 当前宠物装备的属性
@@ -121,14 +121,14 @@ namespace ET
             self.ButtonEquipXieXia.SetActive(bagInfo != null);
             if (bagInfo == null)
             {
-                self.TextName.GetComponent<Text>().text = "空";
-                self.TextLevel.GetComponent<Text>().text = "等级: 0";
+                self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("空");
+                self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), 0);
                 return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             self.TextName.GetComponent<Text>().text = itemConfig.ItemName;
-            self.TextLevel.GetComponent<Text>().text = $"等级: {itemConfig.UseLv}";
+            self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), itemConfig.UseLv);
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -279,12 +279,12 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             if (itemConfig.ItemSubType - 3001 != self.Position)
             {
-                FloatTipManager.Instance.ShowFloatTip("孔位不符！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("孔位不符！"));
                 return -1;
             }
             if (self.RolePetInfo.PetLv < itemConfig.UseLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物等级不足！"));
                 return -1;
             }
 

@@ -161,7 +161,7 @@ namespace ET
             {
                 timeStr = 0;
             }
-            self.Label_LeftTime.GetComponent<Text>().text = $"拾取剩余:{timeStr}秒";
+            self.Label_LeftTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("拾取剩余:{0}秒"), timeStr);
         }
     }
 }

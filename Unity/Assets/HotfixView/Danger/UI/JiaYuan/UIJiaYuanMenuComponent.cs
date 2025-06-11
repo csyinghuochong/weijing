@@ -193,7 +193,7 @@ namespace ET
 
         public static  void OnButton_Uproot(this UIJiaYuanMenuComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "是否移除农作物?", () => 
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("是否移除农作物?"), () => 
             {
                 self.RequestUproot().Coroutine();
             }, null  ).Coroutine();

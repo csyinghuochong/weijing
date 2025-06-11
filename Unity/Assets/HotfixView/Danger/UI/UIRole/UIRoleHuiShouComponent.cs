@@ -417,20 +417,20 @@ namespace ET
 
             if (tip != "")
             {
-                tip += " 中镶嵌宝石,分解会导致宝石消失!\n";
+                tip += GameSettingLanguge.LoadLocalization(" 中镶嵌宝石,分解会导致宝石消失!\n");
             }
 
             if (petHeXin8)
             {
-                tip += "请问确实需要分解高级的宠物之核嘛？";
+                tip += GameSettingLanguge.LoadLocalization("请问确实需要分解高级的宠物之核嘛？");
             }
             
             if (tip != "" )
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "分解", tip, async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("分解"), tip, async () =>
                 {
                     await self.BagComponent.SendHuiShou(huishouList);
-                    FloatTipManager.Instance.ShowFloatTip("分解成功");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("分解成功"));
                 }, () => { }).Coroutine();
             }
             else

@@ -66,7 +66,7 @@ namespace ET
             leftNumber = int.Parse(activityInfo.Par_2) - receiveNum;
 
             self.TextLeft.GetComponent<Text>().text = $"{leftNumber}/{activityInfo.Par_2}";
-            self.Text_level.GetComponent<Text>().text = $"战力达到{activityInfo.Par_1}";
+            self.Text_level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("战力达到{0}"), activityInfo.Par_1);
 
             self.YiLingQuSet.SetActive(activityComponent.ZhanQuReceiveIds.Contains(activityInfo.Id) && leftNumber > 0);
             self.ButtonReceive.SetActive(!activityComponent.ZhanQuReceiveIds.Contains(activityInfo.Id) && leftNumber > 0);
@@ -79,13 +79,13 @@ namespace ET
             int needCombat = int.Parse(activityInfo.Par_1);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat < needCombat)
             {
-                FloatTipManager.Instance.ShowFloatTip("战力不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("战力不足！"));
                 return;
             }
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.ZhanQuReceiveIds.Contains(self.ActivityConfig.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过该奖励！"));
                 return;
             }
             await activityComponent.GetZhanQuActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);

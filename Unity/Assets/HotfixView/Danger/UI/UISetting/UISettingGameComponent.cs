@@ -253,7 +253,7 @@ namespace ET
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
             if (!uI.GetComponent<UIMainComponent>().UIMainSkill.activeSelf)
             {
-                FloatTipManager.Instance.ShowFloatTip("请移动至有技能框的区域,比如探险地区进行更改");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请移动至有技能框的区域,比如探险地区进行更改"));
                 return;
             }
 
@@ -326,7 +326,7 @@ namespace ET
 
             if (oldIndex != index)
             {
-                FloatTipManager.Instance.ShowFloatTip("请重启游戏");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重启游戏"));
             }
         }
 
@@ -560,7 +560,7 @@ namespace ET
         public static void OnCloseGame(this UISettingGameComponent self)
         {
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "设置", "是否退出游戏?", () => 
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("设置"), GameSettingLanguge.LoadLocalization("是否退出游戏?"), () => 
             {
                 if (GlobalHelp.GetPlatform() == 100)
                 {
@@ -631,7 +631,7 @@ namespace ET
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HighFps);
             if (oldValue == "0")
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!"), () =>
                 {
                     self.SaveSettings(GameSettingEnum.HighFps, oldValue == "0" ? "1" : "0");
                     self.UpdateHighFps();
@@ -666,7 +666,7 @@ namespace ET
             BattleMessageComponent battleMessage = self.ZoneScene().GetComponent<BattleMessageComponent>();
             if (TimeHelper.ServerNow() - battleMessage.UploadMemoryTime < TimeHelper.Minute)
             {
-                FloatTipManager.Instance.ShowFloatTip("请不要频繁操作！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请不要频繁操作！"));
                 return;
             }
 
@@ -748,7 +748,7 @@ namespace ET
             PlayerInfo playerInfo = self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo;
             if (!string.IsNullOrEmpty(playerInfo.PhoneNumber))
             {
-                FloatTipManager.Instance.ShowFloatTip($"已绑定手机号:{playerInfo.PhoneNumber}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("已绑定手机号:{0}"), playerInfo.PhoneNumber));
                 return;
             }
 
@@ -761,18 +761,18 @@ namespace ET
 
             if (string.IsNullOrEmpty(text))
             {
-                FloatTipManager.Instance.ShowFloatTip("名字不合法，请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法，请重新输入！"));
                 return;
             }
             if (text.Length >= 8)
             {
-                FloatTipManager.Instance.ShowFloatTip("角色名字过长，请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("角色名字过长，请重新输入！"));
                 return;
             }
 
             if (text.Contains("*") || !StringHelper.IsSpecialChar(text))
             {
-                FloatTipManager.Instance.ShowFloatTip("名字不合法，请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法，请重新输入！"));
                 return;
             }
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(70);
@@ -780,7 +780,7 @@ namespace ET
             if (!bagComponent.CheckNeedItem(globalValueConfig.Value))
             {
                 string needItem = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
-                FloatTipManager.Instance.ShowFloatTip($"需要 {needItem}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("需要 {0}"), needItem));
                 return;
             }
 
@@ -789,7 +789,7 @@ namespace ET
 
             if (r2c_roleEquip.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("修改名称成功！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("修改名称成功！"));
             }
         }
     }

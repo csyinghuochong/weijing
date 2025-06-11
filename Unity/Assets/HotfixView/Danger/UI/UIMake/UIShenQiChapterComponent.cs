@@ -53,16 +53,16 @@ namespace ET
 
             if (chaptet == 0)
             {
-                self.Text_Name.GetComponent<Text>().text = $"生肖";
+                self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("生肖");
                 self.OnClickMakeItem(self.MakeListUI[0].MakeID);
             }
             else if (chaptet == 6) {
-                self.Text_Name.GetComponent<Text>().text = $"传承";
+                self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("传承");
                 //self.OnClickMakeItem(self.MakeListUI[0].MakeID);
             }
             else
             {
-                self.Text_Name.GetComponent<Text>().text = $"第{chaptet}章";
+                self.Text_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}章"), chaptet);
             }
         }
 

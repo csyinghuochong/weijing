@@ -138,7 +138,7 @@ namespace ET
             if (sType == 8 && !share)
             {
                 Log.ILog.Debug($"分享回调TapTap：  pType: {pType}  sType:{sType}   share:{share}");
-                FloatTipManager.Instance.ShowFloatTipDi("TapTap未安装或该版本不支持分享！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("TapTap未安装或该版本不支持分享！"));
                 return;
             }
 
@@ -146,7 +146,7 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (taskComponent.GetHuoYueDu() < 30)
             {
-                FloatTipManager.Instance.ShowFloatTip("活跃度低于30没有奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活跃度低于30没有奖励！"));
                 return;
             }
             Log.ILog.Debug($"OnShareHandler: 333");
@@ -186,13 +186,13 @@ namespace ET
 
         public static void FenXiangByType(this UIFenXiangSetComponent self, int shareType)
         {
-            string title = "危境";
-            string text = "暗黑系列ARPG探索类手游《危境》系列正式开启！";
+            string title = GameSettingLanguge.LoadLocalization("危境");
+            string text = GameSettingLanguge.LoadLocalization("暗黑系列ARPG探索类手游《危境》系列正式开启！");
 
             if (shareType == 4 || shareType == 5) {
 
-                title = "快来和我一起玩危境吧!";
-                text = "一把木剑，一件布衣,点击这个链接开始你的探险吧!";
+                title = GameSettingLanguge.LoadLocalization("快来和我一起玩危境吧!");
+                text = GameSettingLanguge.LoadLocalization("一把木剑，一件布衣,点击这个链接开始你的探险吧!");
                 if (self.PopularizeCode != "") {
                     //text += "记得输入我的邀请码喔:" + self.PopularizeCode;
                 }

@@ -214,7 +214,7 @@ namespace ET
             self.CheckNoPet(rolePetInfo != null);
             if (rolePetInfo == null)
             {
-                self.Text_PetName.GetComponent<Text>().text = "未选择宠物";
+                self.Text_PetName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未选择宠物");
                 return;
             }
 

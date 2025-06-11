@@ -164,7 +164,7 @@ namespace ET
                 self.UIWelfareTaskItemComponents[k].GameObject.SetActive(false);
             }
 
-            self.CompletenessText.GetComponent<Text>().text = $"当天完成度:{commited}/{tasks.Count}";
+            self.CompletenessText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当天完成度:{0}/{1}"), commited, tasks.Count);
 
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ConfigHelper.WelfareTaskReward[day], self.RewardListNode, self, 1f);
@@ -188,20 +188,20 @@ namespace ET
             int needcell = ItemHelper.GetNeedCell(reward);
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
             bool canget = TaskHelper.IsDayTaskComplete(taskComponent.RoleComoleteTaskList, self.Day);
             if (!canget)
             {
-                FloatTipManager.Instance.ShowFloatTip("所有任务还没有完成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("所有任务还没有完成！"));
                 return;
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.WelfareTaskRewards.Contains(self.Day))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取过奖励！"));
                 return;
             }
            

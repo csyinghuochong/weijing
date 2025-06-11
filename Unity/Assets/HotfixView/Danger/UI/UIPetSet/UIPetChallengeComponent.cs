@@ -208,7 +208,7 @@ namespace ET
             }
             if (locked)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("关卡未解锁！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("关卡未解锁！"));
                 return;
             }
             bool havepet = false;
@@ -223,7 +223,7 @@ namespace ET
             }
             if (!havepet)
             {
-                FloatTipManager.Instance.ShowFloatTipDi("请设置上阵宠物！");
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请设置上阵宠物！"));
                 return;
             }
 

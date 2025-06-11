@@ -30,7 +30,7 @@ namespace ET
         public static void OnUpdate(this UIHuntRankingPlayerInfoItemComponent self, RankShouLieInfo rankShouLieInfo, int index)
         {
             self.NameText.GetComponent<Text>().text = $"   {index}    {rankShouLieInfo.PlayerName}";
-            self.HuntNumText.GetComponent<Text>().text = $"狩猎数量:{rankShouLieInfo.KillNumber}";
+            self.HuntNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("狩猎数量:{0}"), rankShouLieInfo.KillNumber);
         }
     }
 }

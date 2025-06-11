@@ -59,8 +59,8 @@ namespace ET
             self.UIItemComponent.UpdateItem(self.PaiMaiItemInfo.BagInfo, ItemOperateEnum.None);
             self.BuyNum = 1;
             self.Lab_RmbNum.GetComponent<InputField>().text = self.BuyNum.ToString();
-            self.UnitPriceText.GetComponent<Text>().text = $"单价：{self.PaiMaiItemInfo.Price}";
-            self.TotalPriceText.GetComponent<Text>().text = $"总价：{self.PaiMaiItemInfo.Price * self.BuyNum}";
+            self.UnitPriceText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("单价：{0}"), self.PaiMaiItemInfo.Price);
+            self.TotalPriceText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("总价：{0}"), self.PaiMaiItemInfo.Price * self.BuyNum);
         }
 
         public static void OnClickChangeBuyNum(this UIPaiMaiBuyTipComponent self, int num)
@@ -78,7 +78,7 @@ namespace ET
 
             self.Lab_RmbNum.GetComponent<InputField>().text = self.BuyNum.ToString();
 
-            self.TotalPriceText.GetComponent<Text>().text = $"总价：{self.PaiMaiItemInfo.Price * self.BuyNum}";
+            self.TotalPriceText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("总价：{0}"), self.PaiMaiItemInfo.Price * self.BuyNum);
         }
 
         public static async ETTask OnBtn_Buy(this UIPaiMaiBuyTipComponent self)
@@ -86,7 +86,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 

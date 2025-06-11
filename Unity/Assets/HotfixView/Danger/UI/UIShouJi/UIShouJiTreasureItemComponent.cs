@@ -59,7 +59,7 @@ namespace ET
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(self.ShoujiId);
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(self.ShoujiId);
             int haveNumber = keyValuePairInt != null? (int)keyValuePairInt.Value : 0;
-            self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
+            self.TextNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("激活:{0}/{1}"), haveNumber, shouJiItemConfig.AcitveNum);
             bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
 
             // 显示红点
@@ -93,7 +93,7 @@ namespace ET
                 }
                 else
                 {
-                    attributeStr = attributeStr + $"提升{ItemViewHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
+                    attributeStr = attributeStr + string.Format(GameSettingLanguge.LoadLocalization("提升{0}{1}点"), ItemViewHelp.GetAttributeName(numericType), int.Parse(attributeInfo[1]));
                 }
 
                 if (i < attributeInfoList.Length - 1)
@@ -106,7 +106,7 @@ namespace ET
 
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(shouijId);
             int haveNumber = keyValuePairInt != null? (int)keyValuePairInt.Value : 0;
-            self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
+            self.TextNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("激活:{0}/{1}"), haveNumber, shouJiItemConfig.AcitveNum);
 
             UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, haveNumber == 0);
             UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, haveNumber == 0);

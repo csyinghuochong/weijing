@@ -105,14 +105,14 @@ namespace ET
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.GuessIds.Contains(index))
             {
-                FloatTipManager.Instance.ShowFloatTip("已经竞猜");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经竞猜"));
                 return;
             }
 
             string costItem = ActivityConfigHelper.GetGuessCostItem(activityV1Info.GuessIds.Count);
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItem))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 
@@ -128,8 +128,8 @@ namespace ET
             else
             {
                 string[] item = costItem.Split(';');
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "竞猜",
-                    $"是否是否花费{item[1]}{ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName}开启新选项？",
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("竞猜"),
+                    string.Format(GameSettingLanguge.LoadLocalization("是否是否花费{0}{1}开启新选项？"), item[1], ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName),
                     async () =>
                     {
                         C2M_ActivityGuessRequest request = new C2M_ActivityGuessRequest() { GuessId = index };
@@ -149,7 +149,7 @@ namespace ET
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1GuessItem);
                 ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
-                rc.Get<GameObject>("TimeText").GetComponent<Text>().text = $"{keyValuePair.Key}点开奖";
+                rc.Get<GameObject>("TimeText").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}点开奖"), keyValuePair.Key);
                 UICommonHelper.ShowItemList(keyValuePair.Value, rc.Get<GameObject>("RewardListNode"), self, 0.8f);
                 UICommonHelper.SetParent(go, self.UIActivityV1GuessItemListNode);
                 self.UIActivityV1GuessItems.Add(go);
@@ -190,7 +190,7 @@ namespace ET
                         rc.Get<GameObject>("NewYearImg").GetComponent<Image>().sprite = sp;
                     }
 
-                    rc.Get<GameObject>("GuessText").GetComponent<Text>().text = activityV1Info.LastGuessReward.Contains(key)? "中奖" : "未中";
+                    rc.Get<GameObject>("GuessText").GetComponent<Text>().text = activityV1Info.LastGuessReward.Contains(key)? GameSettingLanguge.LoadLocalization("中奖") : GameSettingLanguge.LoadLocalization("未中");
 
                     index++;
                 }
@@ -200,7 +200,7 @@ namespace ET
             {
                 ReferenceCollector rc = self.UIActivityV1GuessItems[i].GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("NewYearImg").SetActive(false);
-                rc.Get<GameObject>("GuessText").GetComponent<Text>().text = "未开奖";
+                rc.Get<GameObject>("GuessText").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未开奖");
             }
         }
     }

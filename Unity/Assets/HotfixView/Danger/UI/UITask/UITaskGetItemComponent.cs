@@ -53,8 +53,9 @@ namespace ET
             {
                 self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName;
             }
-            else {
-                self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName+"(已完成)";
+            else
+            {
+                self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName + GameSettingLanguge.LoadLocalization("(已完成)");
                 self.TextTaskName.GetComponent<Text>().color = new Color(131f/255f,255f/255f,83f/255f);
             }
 

@@ -80,7 +80,7 @@ namespace ET
             self.Lab_BuffTime.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间") + ":" + showStr;
 
             self.PositionNode.transform.localPosition = vector3 + new Vector3(100, 0f, 0f);
-            self.Lab_Spellcaster.GetComponent<Text>().text = $"施法者：{spellcast}";
+            self.Lab_Spellcaster.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("施法者：{0}"), spellcast);
         }
 
     }

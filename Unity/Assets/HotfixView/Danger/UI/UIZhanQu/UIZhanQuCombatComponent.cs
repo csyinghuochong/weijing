@@ -62,7 +62,7 @@ namespace ET
                 uIItemComponent.OnInitUI(activityConfigs[i]);
             }
 
-            self.Lab_MyLv.GetComponent<Text>().text = $"我的战力：{self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat}";
+            self.Lab_MyLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("我的战力：{0}"), self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat);
         }
 
 

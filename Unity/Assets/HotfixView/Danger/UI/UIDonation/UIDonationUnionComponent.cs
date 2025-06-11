@@ -49,14 +49,14 @@ namespace ET
 
             if (raceopen && curTime < opentime)
             {
-                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 21点30开启";
+                self.Text_Open_Time.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}月{1}日 21点30开启"), dateTime.Month, dateTime.Day);
             }
             else
             {
                 long addTime = (7 - (int)dateTime.DayOfWeek) * TimeHelper.OneDay + (opentime  - curTime )* TimeHelper.Second;
                 serverTime += addTime;
                 dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 21点30开启";
+                self.Text_Open_Time.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}月{1}日 21点30开启"), dateTime.Month, dateTime.Day);
             }
         }
 
@@ -81,7 +81,7 @@ namespace ET
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("未报名！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未报名！"));
             }
         }
 
@@ -92,7 +92,7 @@ namespace ET
 
             if (numericComponent.GetAsLong(NumericType.UnionId_0) == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("没有家族！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有家族！"));
                 return;
             }
 
@@ -100,7 +100,7 @@ namespace ET
             {
                 if (self.UnionListItems[i].UnionId == numericComponent.GetAsLong(NumericType.UnionId_0))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("已报名！");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已报名！"));
                     return;
                 }
             }
@@ -110,7 +110,7 @@ namespace ET
             UnionPlayerInfo unionPlayerInfo = UnionHelper.GetUnionPlayerInfo(unionrespose.UnionMyInfo.UnionPlayerList, unit.Id);
             if (unionPlayerInfo.Position == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("没有权限！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有权限！"));
                 return;
             }
 
@@ -125,9 +125,9 @@ namespace ET
             C2U_UnionRaceInfoRequest  request = new C2U_UnionRaceInfoRequest();
             U2C_UnionRaceInfoResponse response = (U2C_UnionRaceInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.UnionListItems = response.UnionInfoList;
-            self.Text_Bonus.GetComponent<Text>().text = $"累计总奖金： {response.TotalDonation}";
+            self.Text_Bonus.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累计总奖金： {0}"), response.TotalDonation);
 
-            string unionnamelist = "已报名家族: ";
+            string unionnamelist = GameSettingLanguge.LoadLocalization("已报名家族: ");
             for (int i = 0; i < self.UnionListItems.Count; i++)
             {
                 unionnamelist = unionnamelist + self.UnionListItems[i].UnionName + "   ";

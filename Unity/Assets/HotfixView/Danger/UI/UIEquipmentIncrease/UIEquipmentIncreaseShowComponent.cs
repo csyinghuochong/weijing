@@ -344,13 +344,13 @@ namespace ET
 
             if (self.ReelBagInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选择增幅卷轴");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选择增幅卷轴"));
                 return;
             }
 
             // 获取卷轴的传承和非传承的技能与属性
-            string reelCanTransfAttribute = "传承增幅:";
-            string reelNoTransfAttribute = "增幅:";
+            string reelCanTransfAttribute = GameSettingLanguge.LoadLocalization("传承增幅:");
+            string reelNoTransfAttribute = GameSettingLanguge.LoadLocalization("增幅:");
             for (int i = 0; i < self.ReelBagInfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = self.ReelBagInfo.IncreaseProLists[i];
@@ -397,8 +397,8 @@ namespace ET
             }
 
             // 获取装备的传承和非传承的技能与属性
-            string equipmentCanTransfAttribute = "传承增幅:";
-            string equipmentNoTransfAttribute = "增幅:";
+            string equipmentCanTransfAttribute = GameSettingLanguge.LoadLocalization("传承增幅:");
+            string equipmentNoTransfAttribute = GameSettingLanguge.LoadLocalization("增幅:");
             for (int i = 0; i < self.EquipmentBagInfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = self.EquipmentBagInfo.IncreaseProLists[i];
@@ -447,33 +447,33 @@ namespace ET
             // 当前装备已经存在传承增幅
             string tipStr = "";
             bool isTip = false;
-            if (reelCanTransfAttribute != "传承增幅:" && equipmentCanTransfAttribute != "传承增幅:")
+            if (reelCanTransfAttribute != GameSettingLanguge.LoadLocalization("传承增幅:") && equipmentCanTransfAttribute != GameSettingLanguge.LoadLocalization("传承增幅:"))
             {
-                tipStr += $"当前<color=#BEFF34>{reelCanTransfAttribute}</color> \n是否覆盖已有\n{equipmentCanTransfAttribute}\n";
+                tipStr += string.Format(GameSettingLanguge.LoadLocalization("当前<color=#BEFF34>{0}</color> \n是否覆盖已有\n{1}\n"), reelCanTransfAttribute, equipmentCanTransfAttribute);
                 isTip = true;
             }
 
             // 当前装备已经存在非传承增幅
-            if (reelNoTransfAttribute != "增幅:" && equipmentNoTransfAttribute != "增幅:")
+            if (reelNoTransfAttribute != GameSettingLanguge.LoadLocalization("增幅:") && equipmentNoTransfAttribute != GameSettingLanguge.LoadLocalization("增幅:"))
             {
-                tipStr += $"当前<color=#BEFF34>{reelNoTransfAttribute}</color> \n是否覆盖已有\n{equipmentNoTransfAttribute}\n";
+                tipStr += string.Format(GameSettingLanguge.LoadLocalization("当前<color=#BEFF34>{0}</color> \n是否覆盖已有\n{1}\n"), reelNoTransfAttribute, equipmentNoTransfAttribute);
                 isTip = true;
             }
 
             // 是否弹出提示框
             if (isTip)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备增幅", tipStr, async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("装备增幅"), tipStr, async () =>
                 {
                     await self.ZoneScene().GetComponent<BagComponent>().SendEquipmentIncrease(self.EquipmentBagInfo, self.ReelBagInfo);
-                    FloatTipManager.Instance.ShowFloatTip("增幅成功");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("增幅成功"));
                     self.OnUpdateIncrease();
                 }, () => { }).Coroutine();
             }
             else
             {
                 await self.ZoneScene().GetComponent<BagComponent>().SendEquipmentIncrease(self.EquipmentBagInfo, self.ReelBagInfo);
-                FloatTipManager.Instance.ShowFloatTip("增幅成功");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("增幅成功"));
                 self.OnUpdateIncrease();
             }
         }

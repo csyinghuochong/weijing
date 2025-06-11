@@ -114,7 +114,7 @@ namespace ET
             }
             else
             {
-                FloatTipManager.Instance.ShowFloatTip("道具已经被买走了！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具已经被买走了！"));
             }
         }
 
@@ -124,14 +124,14 @@ namespace ET
             // 橙色装备不能购买
             if (itemConfig.ItemQuality >= 5 && itemConfig.ItemType == 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("橙色品质及以上的装备不能购买！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("橙色品质及以上的装备不能购买！"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
                 return;
             }
 
@@ -169,7 +169,7 @@ namespace ET
 
             if (!canBuy)
             {
-                FloatTipManager.Instance.ShowFloatTip($"等级需达到{needLv}级或赞助任意金额开启拍卖行购买功能！");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("等级需达到{0}级或赞助任意金额开启拍卖行购买功能！"), needLv));
                 return;
             }
 
@@ -200,8 +200,8 @@ namespace ET
             {
                 if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具",
-                        $"你购买的道具需要花费{self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum}金币，是否购买？",
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("购买道具"),
+                        string.Format(GameSettingLanguge.LoadLocalization("你购买的道具需要花费{0}金币，是否购买？"), self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum),
                         () => { self.RequestBuy().Coroutine(); },
                         null).Coroutine();
                 }
@@ -236,7 +236,7 @@ namespace ET
             if (itemCof.ItemType == 3)
             {
                 self.ItemUI.Label_ItemNum.SetActive(true);
-                self.ItemUI.Label_ItemNum.GetComponent<Text>().text = itemCof.UseLv + "级";
+                self.ItemUI.Label_ItemNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), itemCof.UseLv);
             }
         }
     }

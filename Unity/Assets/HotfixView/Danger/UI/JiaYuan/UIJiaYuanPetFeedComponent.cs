@@ -133,7 +133,7 @@ namespace ET
             ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
             //int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
             int addExp = ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
-            self.Text_HourExp.GetComponent<Text>().text = $"经验收益: {addExp}/小时";
+            self.Text_HourExp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("经验收益: {0}/小时"), addExp);
 
             self.Text_PetName.GetComponent<Text>().text = jiaYuanPet.PetName;
         }
@@ -247,7 +247,7 @@ namespace ET
             M2C_JiaYuanPetFeedResponse response = (M2C_JiaYuanPetFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
 
-            FloatTipManager.Instance.ShowFloatTip($"宠物增加 {response.MoodAdd}心情值");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("宠物增加 {0}心情值"), response.MoodAdd));
 
             self.OnUpdateItemList();
             self.OnUpdatePetInfo();

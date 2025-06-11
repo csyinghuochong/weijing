@@ -224,7 +224,7 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
-                FloatTipManager.Instance.ShowFloatTip("当前地图不能挂机!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前地图不能挂机!"));
                 return;
             }
 
@@ -237,14 +237,14 @@ namespace ET
                     //移除挂机组件
                     self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
                 }
-                FloatTipManager.Instance.ShowFloatTip("体力已经消耗完毕,请确保体力充足喔!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力已经消耗完毕,请确保体力充足喔!"));
                 return;
             };
 
             // 等级判断，达到12级才能挂机
             if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < 12)
             {
-                FloatTipManager.Instance.ShowFloatTip("达到12级才能挂机哦!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("达到12级才能挂机哦!"));
                 return;
             }
             
@@ -252,12 +252,12 @@ namespace ET
             if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() == null)
             {
                 self.ZoneScene().AddComponent<UnitGuaJiComponen>();
-                FloatTipManager.Instance.ShowFloatTip("开始挂机!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开始挂机!"));
             }
             else
             {
                 //当前已经在挂机
-                FloatTipManager.Instance.ShowFloatTip("当前正在挂机,请确保周围是怪物刷新点!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前正在挂机,请确保周围是怪物刷新点!"));
             }
 
             //关闭设置界面
@@ -271,7 +271,7 @@ namespace ET
             {
                 //移除挂机组件
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
-                FloatTipManager.Instance.ShowFloatTip("取消挂机!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("取消挂机!"));
             }
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(false);

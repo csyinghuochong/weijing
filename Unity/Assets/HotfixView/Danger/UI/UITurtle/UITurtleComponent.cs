@@ -190,11 +190,11 @@ namespace ET
         {
             if (self.SupportId != 0 || !(supportId == 20099011 || supportId == 20099012 || supportId == 20099013))
             {
-                FloatTipManager.Instance.ShowFloatTip("已有支持的小龟!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已有支持的小龟!"));
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), $"小龟大赛", $"是否消耗{GlobalValueConfigCategory.Instance.Get(98).Value}金币支持该小龟?", async () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("小龟大赛"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币支持该小龟?"), GlobalValueConfigCategory.Instance.Get(98).Value), async () =>
             {
                 C2M_TurtleSupportRequest request = new C2M_TurtleSupportRequest() { SupportId = supportId };
                 M2C_TurtleSupportResponse response =
@@ -206,15 +206,15 @@ namespace ET
 
                 if (supportId == 20099011)
                 {
-                    self.BtnText1.GetComponent<Text>().text = "竞猜小龟";
+                    self.BtnText1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
                 }
                 else if (supportId == 20099012)
                 {
-                    self.BtnText2.GetComponent<Text>().text = "竞猜小龟";
+                    self.BtnText2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
                 }
                 else if (supportId == 20099013)
                 {
-                    self.BtnText3.GetComponent<Text>().text = "竞猜小龟";
+                    self.BtnText3.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
                 }
 
                 self.SupportId = supportId;
@@ -242,25 +242,25 @@ namespace ET
 
             self.SupportId = response.SupportId;
 
-            self.WinNumText1.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[0]}";
-            self.WinNumText2.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[1]}";
-            self.WinNumText3.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[2]}";
+            self.WinNumText1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获胜次数:{0}"), response.WinTimes[0]);
+            self.WinNumText2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获胜次数:{0}"), response.WinTimes[1]);
+            self.WinNumText3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获胜次数:{0}"), response.WinTimes[2]);
 
-            self.SupportNumText1.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[0]}";
-            self.SupportNumText2.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[1]}";
-            self.SupportNumText3.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[2]}";
+            self.SupportNumText1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("本次支持数:{0}"), response.SupportTimes[0]);
+            self.SupportNumText2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("本次支持数:{0}"), response.SupportTimes[1]);
+            self.SupportNumText3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("本次支持数:{0}"), response.SupportTimes[2]);
 
             if (response.SupportId == 20099011)
             {
-                self.BtnText1.GetComponent<Text>().text = "竞猜小龟";
+                self.BtnText1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
             }
             else if (response.SupportId == 20099012)
             {
-                self.BtnText2.GetComponent<Text>().text = "竞猜小龟";
+                self.BtnText2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
             }
             else if (response.SupportId == 20099013)
             {
-                self.BtnText3.GetComponent<Text>().text = "竞猜小龟";
+                self.BtnText3.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("竞猜小龟");
             }
 
             await ETTask.CompletedTask;
@@ -275,11 +275,11 @@ namespace ET
                 long endTime = self.EndTime - curTime;
                 if (endTime > 0)
                 {
-                    self.TimeText.text = $"活动开启倒计时 {endTime / 60}分{endTime % 60}秒";
+                    self.TimeText.text = string.Format(GameSettingLanguge.LoadLocalization("活动开启倒计时 {0}分{1}秒"), endTime / 60, endTime % 60);
                 }
                 else
                 {
-                    self.TimeText.text = "活动开始!!!";
+                    self.TimeText.text = GameSettingLanguge.LoadLocalization("活动开始!!!");
                 }
 
                 await TimerComponent.Instance.WaitAsync(1000);

@@ -62,14 +62,14 @@ namespace ET
         {
             if (!self.IsHaveZuoQi(self.ZuoQiConfig.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("请先激活当前坐骑！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先激活当前坐骑！"));
                 return;
             }
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (self.ZuoQiConfig.Id == 10001 && userInfo.Lv < 25) 
             {
-                FloatTipManager.Instance.ShowFloatTip("等级达到25级才可以骑乘坐骑喔！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级达到25级才可以骑乘坐骑喔！"));
                 return;
             }
 
@@ -78,7 +78,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("激活坐骑成功,清在主界面点击骑乘按钮即可喔！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("激活坐骑成功,清在主界面点击骑乘按钮即可喔！"));
             }
 
         }

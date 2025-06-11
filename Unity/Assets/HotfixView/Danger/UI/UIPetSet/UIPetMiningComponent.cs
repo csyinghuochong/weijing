@@ -177,7 +177,7 @@ namespace ET
             for (int i = 0; i < self.TeamTipList.Count; i++)
             {
                 int openLv = ConfigHelper.PetMiningTeamOpenLevel[i];
-                self.TeamTipList[i].text = $"{openLv}级开启";
+                self.TeamTipList[i].text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), openLv);
                 self.TeamTipList[i].gameObject.SetActive(openLv > userInfo.Lv);
             }
             for (int i = 0; i < self.TeamIconList.Count; i++)
@@ -298,7 +298,7 @@ namespace ET
             }
             self.BuildingList.SetActive(false);
             self.BuildingList.SetActive(true);
-            self.Text_Chanchu_1.GetComponent<Text>().text = $"{chatchun}/小时";
+            self.Text_Chanchu_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}/小时"), chatchun);
         }
 
         public static List<PetMingPlayerInfo> GetSelfPetMing(this UIPetMiningComponent self)
@@ -374,7 +374,7 @@ namespace ET
             var path = ABPathHelper.GetJpgPath(baginfs[page]);
             Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             self.ImageMineDi.GetComponent<Image>().sprite = atlas;
-            self.Text_OccNumber.GetComponent<Text>().text = $"当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}";
+            self.Text_OccNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前占领{0}/{1}"), occNumber, ConfigHelper.PetMiningList[mineType].Count);
 
             self.AssetPath.Add(path);
             //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);

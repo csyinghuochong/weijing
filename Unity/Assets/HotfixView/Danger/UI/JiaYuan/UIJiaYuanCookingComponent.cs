@@ -60,7 +60,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足！"));
                 return;
             }
 
@@ -80,7 +80,7 @@ namespace ET
             if (response.LearnId != 0)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(response.LearnId);
-                FloatTipManager.Instance.ShowFloatTip($"恭喜你学会制作 {itemConfig.ItemName}");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("恭喜你学会制作 {0}"), itemConfig.ItemName));
             }
             self.ZoneScene().GetComponent<JiaYuanComponent>().LearnMakeIds_7 = response.LearnMakeIds;
             self.OnUpdateUI();

@@ -125,12 +125,12 @@ namespace ET
 
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
-            self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
+            self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
 
             if (unionKeJiConfig.QiangHuaLv == 0)
             {
                 UnionKeJiConfig unionKeJiConfig1 = UnionKeJiConfigCategory.Instance.Get(unionKeJiConfig.NextID);
-                self.AttributeText.GetComponent<Text>().text = "下一级：" + ItemViewHelp.GetAttributeDesc(unionKeJiConfig1.EquipPropreAdd);
+                self.AttributeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("下一级：") + ItemViewHelp.GetAttributeDesc(unionKeJiConfig1.EquipPropreAdd);
             }
             else
             {
@@ -174,20 +174,20 @@ namespace ET
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UserInfo.UnionKeJiList[self.Position]);
             if (unionKeJiConfig.NextID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到满级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到满级！"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(unionKeJiConfig.LearnCost))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具数量不足！"));
                 return;
             }
 
             if (unionKeJiConfig.NextID > self.UnionMyInfo.UnionKeJiList[self.Position])
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
 

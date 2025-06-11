@@ -26,9 +26,12 @@ namespace ET
         {
             string[] strs = record.Split('_');
             self.TextContent.GetComponent<Text>().text =
-                    $"<color=#{ComHelp.QualityReturnColor(4)}>{strs[0]}</color> " +
-                    $"通过{ItemHelper.ItemGetWayNameList[int.Parse(strs[1])]} " +
-                    $"增加了<color=#{ComHelp.QualityReturnColor(2)}>{strs[3]}</color>{ItemConfigCategory.Instance.Get(int.Parse(strs[2])).ItemName}";
+                    string.Format("<color=#{0}>{1}</color> 通过{2} 增加了<color=#{3}>{4}</color>{5}", 
+                        ComHelp.QualityReturnColor(4), 
+                        strs[0], 
+                        GameSettingLanguge.LoadLocalization(ItemHelper.ItemGetWayNameList[int.Parse(strs[1])]), 
+                        ComHelp.QualityReturnColor(2), strs[3], 
+                        ItemConfigCategory.Instance.Get(int.Parse(strs[2])).ItemName);
         }
     }
 }

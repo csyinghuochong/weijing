@@ -56,13 +56,13 @@ namespace ET
             int openLevel = int.Parse(self.ActivityConfig.Par_1);
             if (playerLv < openLevel)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("等级不足！"));
                 return;
             }
 
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(self.ActivityConfig.Par_2))
             {
-                FloatTipManager.Instance.ShowFloatTip("货币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("货币不足！"));
                 return;
             }
 
@@ -75,8 +75,8 @@ namespace ET
         public static void OnUpdateUI(this UIActivityLvLiBaoItemComponent self, ActivityConfig activityConfig)
         {
             self.ActivityConfig = activityConfig;
-            self.Lab_Name.GetComponent<Text>().text = $"{activityConfig.Par_1}级礼包";
-            self.Lab_LvDes.GetComponent<Text>().text = $"{activityConfig.Par_1}级开启";
+            self.Lab_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级礼包"), activityConfig.Par_1);
+            self.Lab_LvDes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), activityConfig.Par_1);
             self.Lab_BuyValue.GetComponent<Text>().text = activityConfig.Par_2.Split(';')[1];
 
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f);

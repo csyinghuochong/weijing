@@ -149,7 +149,7 @@ namespace ET
             {
                 numMax = 50;
             }
-            self.TextTip.GetComponent<Text>().text = "挑战之地：" + TowerConfigCategory.Instance.Get(towerId).CengNum + "/" + numMax;
+            self.TextTip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战之地：") + TowerConfigCategory.Instance.Get(towerId).CengNum + "/" + numMax;
         }
     }
 }

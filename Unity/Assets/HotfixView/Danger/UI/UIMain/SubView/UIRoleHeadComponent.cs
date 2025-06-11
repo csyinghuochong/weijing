@@ -101,7 +101,7 @@ namespace ET
         public static void OnUpdateCombat(this UIRoleHeadComponent self)
         {
             long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
-            self.Lab_Combat.GetComponent<Text>().text = $"战力: {combat}";
+            self.Lab_Combat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("战力: {0}"), combat);
         }
 
         public static void OnImagePetHeadIcon(this UIRoleHeadComponent self)

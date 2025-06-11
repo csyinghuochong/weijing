@@ -53,7 +53,7 @@ namespace ET
         {
             if (self.CostIds.Count <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("未选择道具！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未选择道具！"));
                 return;
             }
 
@@ -66,7 +66,7 @@ namespace ET
             self.MaxAdd = 0;
             self.CostIds.Clear();
             self.UpdateItemList();
-            self.NowQualityText.GetComponent<Text>().text = $"当前品质:{self.MainBagInfo.ItemPar}";
+            self.NowQualityText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前品质:{0}"), self.MainBagInfo.ItemPar);
         }
 
         public static void InitInfo(this UISeasonJingHeZhuruComponent self, BagInfo bagInfo)
@@ -75,7 +75,7 @@ namespace ET
             self.UIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             self.ItemNameText.GetComponent<Text>().text = itemConfig.ItemName;
-            self.NowQualityText.GetComponent<Text>().text = $"当前品质:{bagInfo.ItemPar}";
+            self.NowQualityText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前品质:{0}"), bagInfo.ItemPar);
             self.AddQualityText.GetComponent<Text>().text = "";
 
             self.UpdateItemList();

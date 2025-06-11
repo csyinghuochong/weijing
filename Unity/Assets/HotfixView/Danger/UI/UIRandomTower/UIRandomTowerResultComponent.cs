@@ -32,7 +32,7 @@ namespace ET
         public static void OnUpdateUI(this UIRandomTowerResultComponent self, M2C_FubenSettlement message)
         {
             // 0失败 1胜利
-            self.TextResult.GetComponent<Text>().text = message.BattleResult == 0 ? "0失败" : "胜利";
+            self.TextResult.GetComponent<Text>().text = message.BattleResult == 0 ? GameSettingLanguge.LoadLocalization("0失败") : GameSettingLanguge.LoadLocalization("胜利");
         }
 
         public static void OnButton_exit(this UIRandomTowerResultComponent self)

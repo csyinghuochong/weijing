@@ -101,15 +101,15 @@ namespace ET
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
             self.TextName.GetComponent<Text>().text = jiaYuanFarmConfig.Name;
-            self.TextStage.GetComponent<Text>().text = JiaYuanHelper.GetPlanStageName(stage);
+            self.TextStage.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(JiaYuanHelper.GetPlanStageName(stage));
 
-            self.Text_Desc_1.GetComponent<Text>().text = $"当前阶段: {JiaYuanHelper.GetPlanStageName(stage)}";
+            self.Text_Desc_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前阶段: {0}"), GameSettingLanguge.LoadLocalization(JiaYuanHelper.GetPlanStageName(stage)));
 
             long nextTime = JiaYuanHelper.GetNextStateTime(unit.ConfigId, StartTime);
-            self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: {  JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString("f"))}";
+            self.Text_Desc_2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("下一阶段: {0}"), JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString("f")));
 
             long shouhuoTime =  JiaYuanHelper.GetPlanNextShouHuoTime(unit.ConfigId, StartTime, GatherNumber, GatherLastTime);
-            self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
+            self.Text_Desc_3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("预计收获: {0}"), JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f")));
 
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);
 
@@ -121,7 +121,7 @@ namespace ET
             {
                 string gatherTime = TimeInfo.Instance.ToDateTime(m2C_JiaYuanWatch.JiaYuanRecord[i].Time).ToString();
                 gatherTime = gatherTime.Substring(5,gatherTime.Length - 5);
-                gatherrecode += $"{gatherTime} {m2C_JiaYuanWatch.JiaYuanRecord[i].PlayerName}收获一次 \n";
+                gatherrecode += string.Format(GameSettingLanguge.LoadLocalization("{0} {1}收获一次 \n"), gatherTime, m2C_JiaYuanWatch.JiaYuanRecord[i].PlayerName);
             }
 
             self.Text_Record.GetComponent<Text>().text = gatherrecode;

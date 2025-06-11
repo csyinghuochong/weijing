@@ -103,7 +103,7 @@ namespace ET
         {
             self.SpiritTypeId = typeId;
 
-            self.TaskTypeName.GetComponent<Text>().text = SpiritHelper.Instance.SpiritTypeText[typeId];
+            self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SpiritHelper.Instance.SpiritTypeText[typeId]);
         }
 
         public static void SetClickSubTypeHandler(this UISpiritTypeComponent self, Action<int, int> action)

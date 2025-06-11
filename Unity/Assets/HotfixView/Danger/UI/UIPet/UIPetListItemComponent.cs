@@ -178,13 +178,13 @@ namespace ET
                 self.Lab_PetQuality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);
                 self.Lab_PetQuality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
 
-                self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2? "散步中..." : String.Empty;
+                self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2? GameSettingLanguge.LoadLocalization("散步中...") : String.Empty;
 
                 self.Image_Protect?.SetActive(rolePetInfo.IsProtect);
             }
             else
             {
-                self.Text_Open.GetComponent<Text>().text = $"{nextLv}级开启";
+                self.Text_Open.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级开启"), nextLv);
             }
         }
 

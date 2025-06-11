@@ -63,11 +63,11 @@ namespace ET
             self.Lab_TaskName.GetComponent<Text>().text = chengJiuConfig.Name;
             if (complete)
             {
-                self.Lab_ProValue.GetComponent<Text>().text = string.Format("进度:{0}/{1}", chengJiuConfig.TargetValue, chengJiuConfig.TargetValue);
+                self.Lab_ProValue.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进度:{0}/{1}"), chengJiuConfig.TargetValue, chengJiuConfig.TargetValue);
             }
             else
             {
-                self.Lab_ProValue.GetComponent<Text>().text = string.Format("进度:{0}/{1}", chengJiuInfo != null ? chengJiuInfo.ChengJiuProgess : 0, chengJiuConfig.TargetValue);
+                self.Lab_ProValue.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进度:{0}/{1}"), chengJiuInfo != null ? chengJiuInfo.ChengJiuProgess : 0, chengJiuConfig.TargetValue);
             }
             self.Ima_CompleteTask.SetActive(complete);
 
@@ -81,7 +81,7 @@ namespace ET
             }
             self.Ima_Icon.GetComponent<Image>().sprite = sp;
             
-            self.Lab_ChengJiuNum.GetComponent<Text>().text = string.Format("成就点数:{0}", chengJiuConfig.RewardNum);
+            self.Lab_ChengJiuNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("成就点数:{0}"), chengJiuConfig.RewardNum);
         }
     }
 

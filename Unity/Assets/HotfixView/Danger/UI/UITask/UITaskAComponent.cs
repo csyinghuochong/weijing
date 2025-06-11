@@ -183,7 +183,7 @@ namespace ET
 			if(self.TaskConfig.CompleteNpcID > 0)
 			{
                 string npcName = NpcConfigCategory.Instance.Get(self.TaskConfig.CompleteNpcID).Name;
-                self.Text_comTaskNpc.GetComponent<Text>().text = $"完成任务请找:<color=#5C7B32>{npcName}</color>";
+                self.Text_comTaskNpc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("完成任务请找:<color=#5C7B32>{0}</color>"), npcName);
             }
 			
 
@@ -320,21 +320,21 @@ namespace ET
 				self.RewardUIList[i].GameObject.SetActive(false);
 			}
 
-			self.Button_Going.transform.GetComponentInChildren<Text>().text = "前往任务";
+			self.Button_Going.transform.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("前往任务");
 			if (self.TaskConfig.TargetType == TaskTargetType.GiveItem_10)
 			{
-				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交装备";
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("上交装备");
 			}
 			else if(self.TaskConfig.TargetType == TaskTargetType.GivePet_25)
 			{
-				self.Button_Going.transform.GetComponentInChildren<Text>().text = "上交宠物";
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("上交宠物");
 			}
 
 			if ((self.TaskConfig.TaskType == TaskTypeEnum.Ring || self.TaskConfig.TaskType == TaskTypeEnum.Union ||
 				    self.TaskConfig.TaskType == TaskTypeEnum.Daily || self.TaskConfig.TaskType == TaskTypeEnum.Treasure) &&
 			    self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
 			{
-				self.Button_Going.transform.GetComponentInChildren<Text>().text = "完成任务";
+				self.Button_Going.transform.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization("完成任务");
 			}
 		}
 		
@@ -358,7 +358,7 @@ namespace ET
    //         }
 			if (self.ZoneScene().GetComponent<TaskComponent>().GetAllTrackList().Count >= 3 && track)
 			{
-                FloatTipManager.Instance.ShowFloatTip("追踪数量不能超过三个!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("追踪数量不能超过三个!"));
                 return;
             }
 
@@ -370,11 +370,11 @@ namespace ET
 			//提示
 			if (self.Button_Zhuizong.activeSelf == false)
 			{
-				FloatTipManager.Instance.ShowFloatTip("任务开启追踪!");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("任务开启追踪!"));
 			}
 			else 
 			{
-				FloatTipManager.Instance.ShowFloatTip("任务取消追踪!");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("任务取消追踪!"));
 			}
 
 		}
@@ -387,12 +387,12 @@ namespace ET
 			TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
 			if (taskConfig.TaskType == (int)TaskTypeEnum.Main)
 			{
-				FloatTipManager.Instance.ShowFloatTip("主线任务不能放弃");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("主线任务不能放弃"));
 				return;
 			}
 			if (taskConfig.TaskType == TaskTypeEnum.Ring)
 			{
-				FloatTipManager.Instance.ShowFloatTip("跑环任务不能放弃");
+				FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("跑环任务不能放弃"));
 				return;
 			}
 			self.ZoneScene().GetComponent<TaskComponent>().SendGiveUpTask(self.TaskPro.taskID).Coroutine();

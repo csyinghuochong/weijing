@@ -62,15 +62,15 @@ namespace ET
 
             LingDiConfig lingDiConfig = LingDiConfigCategory.Instance.Get(lingdiLv);
 
-            self.TextExpProgress.GetComponent<Text>().text = $"繁荣度: {lingdiExp}/{lingDiConfig.UpExp}";
+            self.TextExpProgress.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("繁荣度: {0}/{1}"), lingdiExp, lingDiConfig.UpExp);
             float progress = Mathf.Min(1f, 1f * lingdiExp / lingDiConfig.UpExp);
             self.Image_6.transform.localScale = new Vector3(progress, 1f, 1f);
 
-            self.TextLevel.GetComponent<Text>().text = $"领地等级:{lingdiLv}";
-            self.TextCost.GetComponent<Text>().text = $"消耗: {lingDiConfig.GoldUp}金币";
+            self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("领地等级:{0}"), lingdiLv);
+            self.TextCost.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗: {0}金币"), lingDiConfig.GoldUp);
 
-            self.TextChanXu11.GetComponent<Text>().text = $"经验产出: {lingDiConfig.HoureExp}/小时";
-            self.TextChanXu12.GetComponent<Text>().text = $"荣誉产出: {lingDiConfig.HoureHonor}/小时";
+            self.TextChanXu11.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("经验产出: {0}/小时"), lingDiConfig.HoureExp);
+            self.TextChanXu12.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("荣誉产出: {0}/小时"), lingDiConfig.HoureHonor);
 
             if (!LingDiConfigCategory.Instance.Contain(lingdiLv+1))
             {
@@ -79,8 +79,8 @@ namespace ET
             }
             self.NextNode.SetActive(true);
             LingDiConfig lingDiConfigNext = LingDiConfigCategory.Instance.Get(lingdiLv+1);
-            self.TextChanXu21.GetComponent<Text>().text = $"经验产出: {lingDiConfigNext.HoureExp}/小时";
-            self.TextChanXu22.GetComponent<Text>().text = $"荣誉产出: {lingDiConfigNext.HoureHonor}/小时";
+            self.TextChanXu21.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("经验产出: {0}/小时"), lingDiConfigNext.HoureExp);
+            self.TextChanXu22.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("荣誉产出: {0}/小时"), lingDiConfigNext.HoureHonor);
 
         }
     }

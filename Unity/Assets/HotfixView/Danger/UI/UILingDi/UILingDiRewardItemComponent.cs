@@ -75,7 +75,7 @@ namespace ET
         {
             if (self.LingDiLevel < self.LingDiRewardConfig.CountryLvlimit)
             {
-                FloatTipManager.Instance.ShowFloatTip("领地等级不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("领地等级不足！"));
                 return;
             }
 

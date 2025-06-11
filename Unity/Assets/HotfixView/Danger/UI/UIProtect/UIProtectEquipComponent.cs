@@ -168,8 +168,8 @@ namespace ET
 			{
 				return;
 			}
-			string tip = isprotectd ? "锁定" : "解锁";
-			FloatTipManager.Instance.ShowFloatTip($"装备{tip}成功");
+			string tip = isprotectd ? GameSettingLanguge.LoadLocalization("锁定") : GameSettingLanguge.LoadLocalization("解锁");
+			FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("装备{0}成功"), tip));
 			self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
 			self.OnXiLianReturn();
 		}

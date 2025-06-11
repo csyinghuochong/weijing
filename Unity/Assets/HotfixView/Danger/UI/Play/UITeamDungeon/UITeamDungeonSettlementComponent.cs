@@ -123,7 +123,7 @@ namespace ET
                 self.Text_LeftTime.SetActive(false);
                 return;
             }
-            self.Text_LeftTime.GetComponent<Text>().text = $"选择剩余时间:{leftTime}秒";
+            self.Text_LeftTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("选择剩余时间:{0}秒"), leftTime);
         }
 
         public static void CheckSelfSelected(this UITeamDungeonSettlementComponent self)
@@ -197,7 +197,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (index >= 3 && !unit.IsYueKaEndStates())
             {
-                FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启喔！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡用户才能开启喔！"));
                 return;
             }
 
@@ -214,7 +214,7 @@ namespace ET
             }
             if (r2c_Reward.Mail == 1)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "副本奖励", "由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收", null, null).Coroutine();
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("副本奖励"), GameSettingLanguge.LoadLocalization("由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收"), null, null).Coroutine();
             }
         }
 
@@ -264,7 +264,7 @@ namespace ET
             //判断宝箱自己是否领取
             if (self.IfLingQuStatus == false) 
             {
-                FloatTipManager.Instance.ShowFloatTip("请在右侧领取自己的战利品哦!");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请在右侧领取自己的战利品哦!"));
                 return;
             }
 

@@ -106,13 +106,13 @@ namespace ET
             UICommonHelper.SetParent(self.ImageSelect, self.QiangHuaItemList[subType-1].GameObject);
             self.ImageSelect.transform.localPosition = new Vector3(1f, -2f, 0f);
             string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Name;
-            self.TextQiangHuaName.GetComponent<Text>().text = $"{qianghuaName}强化 +{qianghuaLevel}";
+            self.TextQiangHuaName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}强化 +{1}"), qianghuaName, qianghuaLevel);
             EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel);
 
             float fvalue = float.Parse( equipQiangHuaConfig.EquipPropreAdd )* 100f;
             //string svalue = string.Format("{0:F}", fvalue);
             string svalue = fvalue.ToString("0.#####");
-            self.TextAttribute1.GetComponent<Text>().text = $"对应部位提升 { svalue}%属性";
+            self.TextAttribute1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("对应部位提升 {0}%属性"), svalue);
 
             self.Text_QiangHuaLv.GetComponent<Text>().text = $"+{qianghuaLevel}";
             self.Text_QiangHuaName.GetComponent<Text>().text = ItemViewHelp.EquipWeiZhiToName[subType].Name;
@@ -129,16 +129,16 @@ namespace ET
             EquipQiangHuaConfig next_equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel+1);
             fvalue = float.Parse(next_equipQiangHuaConfig.EquipPropreAdd) * 100f;
             svalue = fvalue.ToString("0.#####"); ;/// string.Format("{0:P}", fvalue);
-            self.TextAttribute2.GetComponent<Text>().text = $"对应部位提升 { svalue}%属性";
+            self.TextAttribute2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("对应部位提升 {0}%属性"), svalue);
 
             string costItems = equipQiangHuaConfig.CostItem;
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
             UICommonHelper.DestoryChild(self.QiangHuaCostNode);
             UICommonHelper.ShowCostItemList(costItems, self.QiangHuaCostNode, self, 1f);
 
-            self.TextSuccessRate.GetComponent<Text>().text = $"强化成功率: {(int)(equipQiangHuaConfig.SuccessPro * 100)}%";
+            self.TextSuccessRate.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("强化成功率: {0}%"), (int)(equipQiangHuaConfig.SuccessPro * 100));
             double addPro = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel).AdditionPro * bagComponent.QiangHuaFails[subType];
-            self.TextSuccessAddition.GetComponent<Text>().text = $"附加成功率 { (int)(addPro *100)}%";
+            self.TextSuccessAddition.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("附加成功率 {0}%"), (int)(addPro *100));
         }
 
         public static async ETTask OnButtonQiangHua(this UIRoleQiangHuaComponent self)
@@ -148,7 +148,7 @@ namespace ET
             int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(self.ItemSubType);
             if (qianghuaLevel >= maxLevel - 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经强化到最大等级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经强化到最大等级！"));
                 return;
             }
 
@@ -157,7 +157,7 @@ namespace ET
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
             if (!bagComponent.CheckNeedItem(costItems))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足！"));
                 return;
             }
 
@@ -175,7 +175,7 @@ namespace ET
             if (bagComponent.QiangHuaLevel[self.ItemSubType] == m2C_ItemQiangHuaResponse.QiangHuaLevel)
             {
                 bagComponent.QiangHuaFails[self.ItemSubType]++;
-                FloatTipManager.Instance.ShowFloatTip("强化失败！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("强化失败！"));
             }
             else
             {

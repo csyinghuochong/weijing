@@ -148,7 +148,7 @@ namespace ET
                         continue;
                     }
 
-                    researchItemComponent.LvText.GetComponent<Text>().text = "研究中";
+                    researchItemComponent.LvText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("研究中");
                     break;
                 }
             }
@@ -159,12 +159,12 @@ namespace ET
 
             Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
             self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
-            self.LvText.GetComponent<Text>().text = $"等级：{unionKeJiConfig.QiangHuaLv.ToString()}";
-            self.NeedUnionLvText.GetComponent<Text>().text = $"需要家族等级达到{unionKeJiConfig.NeedUnionLv}级";
+            self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
+            self.NeedUnionLvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要家族等级达到{0}级"), unionKeJiConfig.NeedUnionLv);
             if (unionKeJiConfig.QiangHuaLv == 0)
             {
                 UnionKeJiConfig unionKeJiConfig1 = UnionKeJiConfigCategory.Instance.Get(unionKeJiConfig.NextID);
-                self.AttributeText.GetComponent<Text>().text = "下一级：" + ItemViewHelp.GetAttributeDesc(unionKeJiConfig1.EquipPropreAdd);
+                self.AttributeText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("下一级：") + ItemViewHelp.GetAttributeDesc(unionKeJiConfig1.EquipPropreAdd);
             }
             else
             {
@@ -174,8 +174,8 @@ namespace ET
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = 35, ItemNum = unionKeJiConfig.CostUnionGold }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
             self.CostUnionGoldText.GetComponent<Text>().text =
-                    $"消耗家族金币：{unionKeJiConfig.CostUnionGold / 10000f:0.#}万/{self.UnionMyInfo.UnionGold / 10000f:0.#}万";
-            self.NeedTimeText.GetComponent<Text>().text = $"研究消耗时间：{unionKeJiConfig.NeedTime / 3600f:0.##}小时";
+                    string.Format(GameSettingLanguge.LoadLocalization("消耗家族金币：{0}万/{1}万"), (unionKeJiConfig.CostUnionGold / 10000f).ToString("0.#"), (self.UnionMyInfo.UnionGold / 10000f).ToString("0.#"));
+            self.NeedTimeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("研究消耗时间：{0}小时"), (unionKeJiConfig.NeedTime / 3600f).ToString("0.##"));
         }
 
         public static async ETTask UpdataProgressBar(this UIUnionKeJiResearchComponent self)
@@ -195,7 +195,7 @@ namespace ET
                     {
                         self.ProgressBarImg.fillAmount = passTime * 1f / self.NeedTime;
                         long leftTime = self.NeedTime - passTime;
-                        self.UnderwayText.GetComponent<Text>().text = $"{leftTime / 3600}时{leftTime % 3600 / 60}分{leftTime % 3600 % 60}秒";
+                        self.UnderwayText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}时{1}分{2}秒"), leftTime / 3600, leftTime % 3600 / 60, leftTime % 3600 % 60);
                     }
                     else
                     {
@@ -217,25 +217,25 @@ namespace ET
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UnionMyInfo.UnionKeJiList[self.Position]);
             if (self.UnionMyInfo.KeJiActiteTime == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("没有正在研究的科技！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有正在研究的科技！"));
                 return;
             }
 
             if (unionKeJiConfig.NextID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到满级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到满级！"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem("3;200"))
             {
-                FloatTipManager.Instance.ShowFloatTip("钻石数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("钻石数量不足！"));
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "加速科技",
-                $"是否花费{UnionHelper.CalcuNeedeForAccele(self.UnionMyInfo.KeJiActiteTime, unionKeJiConfig.NeedTime)}钻石加速科技", async () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("加速科技"),
+                string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}钻石加速科技"), UnionHelper.CalcuNeedeForAccele(self.UnionMyInfo.KeJiActiteTime, unionKeJiConfig.NeedTime)), async () =>
                 {
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     long unionId = unit.GetUnionId();
@@ -261,19 +261,19 @@ namespace ET
             long passTime = (timeNow - self.UnionMyInfo.KeJiActiteTime) / 1000;
             if (passTime < unionKeJiConfig.NeedTime)
             {
-                FloatTipManager.Instance.ShowFloatTip("有科技正在研究中！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("有科技正在研究中！"));
                 return;
             }
 
             if (unionKeJiConfig.NextID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已经达到满级！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经达到满级！"));
                 return;
             }
 
             if (self.UnionMyInfo.UnionGold < unionKeJiConfig.CostUnionGold)
             {
-                FloatTipManager.Instance.ShowFloatTip("家族金币不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("家族金币不足！"));
                 return;
             }
 

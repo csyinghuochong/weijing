@@ -180,7 +180,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetItemNumber(bagInfo.ItemID) < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("道具数量不足！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具数量不足！"));
                 return;
             }
 

@@ -81,7 +81,7 @@ namespace ET
             string itemlist = self.InputField_EmailItem.GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(itemlist))
             {
-                FloatTipManager.Instance.ShowFloatTip("输入不能为空！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("输入不能为空！"));
                 return;
             }
             
@@ -89,7 +89,7 @@ namespace ET
             E2C_GMEMailResponse sendChatResponse = (E2C_GMEMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
             if (sendChatResponse.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("邮件发送成功！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("邮件发送成功！"));
             }
         }
 
@@ -119,7 +119,7 @@ namespace ET
             string reload = self.InputField_ReLoadValue.GetComponent<InputField>().text;
             if (reload.Length < 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("请输入热重载类型！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请输入热重载类型！"));
                 return;
             }
 
@@ -143,7 +143,7 @@ namespace ET
 
             if (sendChatResponse.Error == 0)
             {
-                self.Text_OnLineNumber.GetComponent<Text>().text = $"玩家:{sendChatResponse.OnLineNumber}机器人:{sendChatResponse.OnLineRobot}";
+                self.Text_OnLineNumber.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("玩家:{0}机器人:{1}"), sendChatResponse.OnLineNumber, sendChatResponse.OnLineRobot);
             }
             else
             {

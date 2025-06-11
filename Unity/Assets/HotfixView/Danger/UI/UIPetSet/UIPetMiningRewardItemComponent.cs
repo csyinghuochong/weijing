@@ -43,7 +43,7 @@ namespace ET
         {
             if (self.TaskPro.taskStatus != (int)TaskStatuEnum.Completed)
             {
-                FloatTipManager.Instance.ShowFloatTip("任务未完成！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("任务未完成！"));
                 return;
             }
             int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);

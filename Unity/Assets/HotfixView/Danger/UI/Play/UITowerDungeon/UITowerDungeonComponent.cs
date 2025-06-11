@@ -38,9 +38,9 @@ namespace ET
             self.TextLevelJianyi_1 = rc.Get<GameObject>("TextLevelJianyi_1");
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(63);
             string[] jianyiLevel = globalValueConfig.Value.Split(';');
-            self.TextLevelJianyi_1.GetComponent<Text>().text = $"建议等级达到{jianyiLevel[0]}级后进行挑战";
-            self.TextLevelJianyi_2.GetComponent<Text>().text = $"建议等级达到{jianyiLevel[1]}级后进行挑战";
-            self.TextLevelJianyi_3.GetComponent<Text>().text = $"建议等级达到{jianyiLevel[2]}级后进行挑战";
+            self.TextLevelJianyi_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("建议等级达到{0}级后进行挑战"), jianyiLevel[0]);
+            self.TextLevelJianyi_2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("建议等级达到{0}级后进行挑战"), jianyiLevel[1]);
+            self.TextLevelJianyi_3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("建议等级达到{0}级后进行挑战"), jianyiLevel[2]);
 
             globalValueConfig = GlobalValueConfigCategory.Instance.Get(61);
             UICommonHelper.ShowItemList(globalValueConfig.Value, self.ItemListNode, self,1, false);
@@ -67,7 +67,7 @@ namespace ET
             string[] jianyiLevel = globalValueConfig.Value.Split(';');
             if (userInfoComponent.UserInfo.Lv < int.Parse(jianyiLevel[self.FubenDifficulty - 1]))
             {
-                FloatTipManager.Instance.ShowFloatTip($"{jianyiLevel[self.FubenDifficulty - 1]}级进入！");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0}级进入！"), jianyiLevel[self.FubenDifficulty - 1]));
                 return;
             }
 

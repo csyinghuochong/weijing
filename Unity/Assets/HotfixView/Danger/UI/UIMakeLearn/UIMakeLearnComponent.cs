@@ -145,8 +145,8 @@ namespace ET
             if (makeType != 0)
             {
                 int cost = GlobalValueConfigCategory.Instance.Get(46).Value2;
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能重置",
-                    $"重置后自身学习的生活技能将全部遗忘,请谨慎选择!", ()=>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("技能重置"),
+                    GameSettingLanguge.LoadLocalization("重置后自身学习的生活技能将全部遗忘,请谨慎选择!"), ()=>
                     {
                         self.RequestMakeSelect(makeId).Coroutine();
                     }, null).Coroutine();
@@ -162,7 +162,7 @@ namespace ET
             int makeType_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType_2);
             if (makeType_1 == makeId || makeType_2 == makeId)
             {
-                FloatTipManager.Instance.ShowFloatTip("该生活技能已学习！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该生活技能已学习！"));
                 return;
             }
             C2M_MakeSelectRequest request = new C2M_MakeSelectRequest() { MakeType = makeId , Plan = self.Plan == -1 ? 1 : self.Plan };
@@ -312,12 +312,12 @@ namespace ET
             if (unit.GetComponent<NumericComponent>().GetAsInt(shulianduNumeric) < equipMakeConfig.NeedProficiencyValue)
             {
                 //不满足显示红色,满足显示绿色
-                self.LabNeedShuLian.GetComponent<Text>().text += "(熟练度不足)";
+                self.LabNeedShuLian.GetComponent<Text>().text += GameSettingLanguge.LoadLocalization("(熟练度不足)");
                 self.LabNeedShuLian.GetComponent<Text>().color = new Color(207f / 255f, 12f / 255f, 0);
             }
             else {
                 //满足显示绿色,满足显示绿色
-                self.LabNeedShuLian.GetComponent<Text>().text += "(可学习)";
+                self.LabNeedShuLian.GetComponent<Text>().text += GameSettingLanguge.LoadLocalization("(可学习)");
                 self.LabNeedShuLian.GetComponent<Text>().color = new Color(86f / 255f, 147f / 255f, 0);
             }
 

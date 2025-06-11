@@ -120,7 +120,7 @@ namespace ET
             {
                 Log.Debug(webEx.ToString());
             }
-            return "服务器维护中！";
+            return GameSettingLanguge.LoadLocalization("服务器维护中！");
         }
 
         public static string GetYingSiText(int platform)
@@ -139,7 +139,7 @@ namespace ET
             {
                 Log.Debug(webEx.ToString());
             }
-            return "服务器维护中！";
+            return GameSettingLanguge.LoadLocalization("服务器维护中！");
         }
 
     }

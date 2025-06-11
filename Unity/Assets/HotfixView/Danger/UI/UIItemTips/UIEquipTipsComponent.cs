@@ -284,12 +284,12 @@ namespace ET
             {
                 if (self.ItemOpetateType != ItemOperateEnum.PetEquipBag)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请到宠物界面操作");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请到宠物界面操作"));
                     return;
                 }
                 if (UIHelper.GetUI(self.ZoneScene(), UIType.UIPet) == null)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请到宠物界面操作");
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请到宠物界面操作"));
                     return;
                 }
                 UIHelper.GetUI(self.ZoneScene(), UIType.UIPet)?.GetComponent<UIPetComponent>().RequestPetEquipSelect().Coroutine();
@@ -304,19 +304,19 @@ namespace ET
                         {
                             //战士
                             case 1:
-                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：刀 剑！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择武器类型为：刀 剑！"));
                                 break;
                             //法师
                             case 2:
-                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择武器类型为：法杖 魔法书！！"));
                                 break;
                             //猎人
                             case 3:
-                                FloatTipManager.Instance.ShowFloatTip("本职业无法穿戴此武器");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("本职业无法穿戴此武器"));
                                 break;
                             //唤魔师
                             case 4:
-                                FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择武器类型为：法杖 魔法书！！"));
                                 break;
                         }
                         return;
@@ -332,15 +332,15 @@ namespace ET
                         {
                             //布甲
                             case 11:
-                                FloatTipManager.Instance.ShowFloatTip("转职后请选择布甲进行装备！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("转职后请选择布甲进行装备！"));
                                 break;
                             //轻甲
                             case 12:
-                                FloatTipManager.Instance.ShowFloatTip("转职后请选择轻甲进行装备！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("转职后请选择轻甲进行装备！"));
                                 break;
                             //重甲
                             case 13:
-                                FloatTipManager.Instance.ShowFloatTip("转职后请选择重甲进行装备！");
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("转职后请选择重甲进行装备！"));
                                 break;
                         }
                         return;
@@ -382,7 +382,7 @@ namespace ET
             if (haveGem)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "该装备镶嵌有宝石，是否出售道具？", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("该装备镶嵌有宝石，是否出售道具？"), () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
@@ -394,7 +394,7 @@ namespace ET
             if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + itemConfig.ItemName, () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
@@ -454,13 +454,13 @@ namespace ET
                     if (selfMastery == itemconf.EquipType)
                     {
                         //occShowStr = "         (护甲专精+20%)";
-                        self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = "已激活护甲专精";
+                        self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已激活护甲专精");
                         self.Obj_ZhuanJingStatusDes.GetComponent<Text>().color = new Color(0.52f, 0.75f, 0);
                         self.Obj_ZhuanJingStatusImg.SetActive(true);
                     }
                     else
                     {
-                        self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = "未激活护甲专精";
+                        self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未激活护甲专精");
                         self.Obj_ZhuanJingStatusDes.GetComponent<Text>().color = new Color(0.58f, 0.58f, 0.58f);
                         self.Obj_ZhuanJingStatusImg.SetActive(false);
                     }
@@ -470,7 +470,7 @@ namespace ET
             {
                 //self.Obj_ZhuanJingStatusDes.SetActive(false);
                 //self.Obj_ZhuanJingStatusImg.SetActive(false);
-                self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = "转职后激活护甲专精";
+                self.Obj_ZhuanJingStatusDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("转职后激活护甲专精");
                 self.Obj_ZhuanJingStatusDes.GetComponent<Text>().color = new Color(0.58f, 0.58f, 0.58f);
                 self.Obj_ZhuanJingStatusImg.SetActive(false);
             }
@@ -515,7 +515,7 @@ namespace ET
 
                 if (itemConfig.ItemSubType == 110 && equipShiShiGemNum > 4)
                 {
-                    text.GetComponent<Text>().text += "(超过4个,属性无效)";
+                    text.GetComponent<Text>().text += GameSettingLanguge.LoadLocalization("(超过4个,属性无效)");
                 }
 
             }
@@ -581,7 +581,7 @@ namespace ET
                 {
                     //获取属性名称
                     string proName = UICommonHelper.GetProName(hide.HideID);
-                    string proText = proName + "提高" + hide.HideValue + "点";
+                    string proText = string.Format(GameSettingLanguge.LoadLocalization("{0}提高{1}点"), proName, hide.HideValue);
                     GameObject nowObj = ItemViewHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZhuanJingSetList);
                     properShowNum += 1;
        
@@ -861,7 +861,7 @@ namespace ET
 
             if (int.Parse(equipLv) > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)
             {
-                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv + " (等级不足)";
+                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv + GameSettingLanguge.LoadLocalization(" (等级不足)");
                 self.Obj_EquipWearNeed.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
             }
 
@@ -915,7 +915,7 @@ namespace ET
             //显示制造方
             if (self.BagInfo.MakePlayer != "" && self.BagInfo.MakePlayer != null)
             {
-                self.Obj_Lab_EquipMake.GetComponent<Text>().text = $"由<color=#805100>{self.BagInfo.MakePlayer}</color>打造";
+                self.Obj_Lab_EquipMake.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("由<color=#805100>{0}</color>打造"), self.BagInfo.MakePlayer);
             }
             else {
                 self.Obj_Lab_EquipMake.GetComponent<Text>().text = "";
@@ -1131,31 +1131,31 @@ namespace ET
             switch (type)
             {
                 case 0:
-                    return "首饰";
+                    return GameSettingLanguge.LoadLocalization("首饰");
 
                 case 1:
-                    return "剑";
+                    return GameSettingLanguge.LoadLocalization("剑");
 
                 case 2:
-                    return "刀";
+                    return GameSettingLanguge.LoadLocalization("刀");
 
                 case 3:
-                    return "法杖";
+                    return GameSettingLanguge.LoadLocalization("法杖");
 
                 case 4:
-                    return "魔法书";
+                    return GameSettingLanguge.LoadLocalization("魔法书");
 
                 case 11:
-                    return "布甲";
+                    return GameSettingLanguge.LoadLocalization("布甲");
 
                 case 12:
-                    return "轻甲";
+                    return GameSettingLanguge.LoadLocalization("轻甲");
 
                 case 13:
-                    return "重甲";
+                    return GameSettingLanguge.LoadLocalization("重甲");
 
                 case 99:
-                    return "无限制";
+                    return GameSettingLanguge.LoadLocalization("无限制");
             }
 
             return "";
@@ -1173,13 +1173,13 @@ namespace ET
             {
 
                 case 3001:
-                    return "项圈";
+                    return GameSettingLanguge.LoadLocalization("项圈");
 
                 case 3002:
-                    return "铠甲";
+                    return GameSettingLanguge.LoadLocalization("铠甲");
 
                 case 3003:
-                    return "护腕";
+                    return GameSettingLanguge.LoadLocalization("护腕");
 
             }
             return "";
@@ -1193,40 +1193,40 @@ namespace ET
             {
 
                 case 1:
-                    return "鼠";
+                    return GameSettingLanguge.LoadLocalization("鼠");
 
                 case 2:
-                    return "牛";
+                    return GameSettingLanguge.LoadLocalization("牛");
 
                 case 3:
-                    return "虎";
+                    return GameSettingLanguge.LoadLocalization("虎");
 
                 case 4:
-                    return "兔";
+                    return GameSettingLanguge.LoadLocalization("兔");
 
                 case 5:
-                    return "龙";
+                    return GameSettingLanguge.LoadLocalization("龙");
 
                 case 6:
-                    return "蛇";
+                    return GameSettingLanguge.LoadLocalization("蛇");
 
                 case 7:
-                    return "马";
+                    return GameSettingLanguge.LoadLocalization("马");
 
                 case 8:
-                    return "羊";
+                    return GameSettingLanguge.LoadLocalization("羊");
 
                 case 9:
-                    return "猴";
+                    return GameSettingLanguge.LoadLocalization("猴");
 
                 case 10:
-                    return "鸡";
+                    return GameSettingLanguge.LoadLocalization("鸡");
 
                 case 11:
-                    return "狗";
+                    return GameSettingLanguge.LoadLocalization("狗");
 
                 case 12:
-                    return "猪";
+                    return GameSettingLanguge.LoadLocalization("猪");
             }
 
             return "";

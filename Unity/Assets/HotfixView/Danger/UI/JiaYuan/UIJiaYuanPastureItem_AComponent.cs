@@ -120,7 +120,7 @@ namespace ET
                 self.Text_value2.SetActive(false);
                 self.Text_value.SetActive(false);
                 self.Text_Tip.SetActive(true);
-                self.Text_Tip.GetComponent<Text>().text = $"家园{jiaYuanPastureConfig.BuyJiaYuanLv}级开启";
+                self.Text_Tip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("家园{0}级开启"), jiaYuanPastureConfig.BuyJiaYuanLv);
             }
         }
 
@@ -133,7 +133,7 @@ namespace ET
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
             if (myJiaYuanPastureConfig.BuyJiaYuanLv > jiayuanCof.Lv)
             {
-                FloatTipManager.Instance.ShowFloatTip($"家园{myJiaYuanPastureConfig.BuyJiaYuanLv}级开启");
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("家园{0}级开启"), myJiaYuanPastureConfig.BuyJiaYuanLv));
                 return;
             }
 
@@ -167,7 +167,7 @@ namespace ET
 
             UI jiayuanmain = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
-            FloatTipManager.Instance.ShowFloatTip($"购买{mysteryConfig.Name}成功");
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("购买{0}成功"), mysteryConfig.Name));
         }
     }
 }
