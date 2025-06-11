@@ -198,7 +198,7 @@ namespace ET
         public static void OnTimer(this UIPetEggListItemComponent self)
         {
             long timeNow = self.RolePetEgg.EndTime - TimeHelper.ServerNow();
-            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(timeNow);
+            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(timeNow, GameSettingLanguge.Language);
             if (timeNow <= 0)
             {
                 self.SetFuHuaEnd();
@@ -218,7 +218,7 @@ namespace ET
 
             string[] useparams = ItemConfigCategory.Instance.Get(self.RolePetEgg.ItemId).ItemUsePar.Split('@');
             long timeNow = long.Parse(useparams[0]);
-            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("孵化时间:") + TimeHelper.ShowLeftTime(timeNow*1000);
+            self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("孵化时间:") + TimeHelper.ShowLeftTime(timeNow*1000, GameSettingLanguge.Language);
             self.ButtonOpen.SetActive(false);
             self.ButtonGet.SetActive(false);
         }

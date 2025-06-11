@@ -85,7 +85,7 @@ namespace ET
             }
             else
             {
-                self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(endTime - serverTime);
+                self.Text_Time.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(endTime - serverTime, GameSettingLanguge.Language);
                 return true;
             }
         }

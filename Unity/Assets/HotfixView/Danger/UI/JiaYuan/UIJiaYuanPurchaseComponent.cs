@@ -161,7 +161,7 @@ namespace ET
             {
                 cdTime = 24 * 60 * 60 - curTime;
             }
-            self.Text_Time.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("刷新倒计时: {0}"), TimeHelper.ShowLeftTime(cdTime * 1000));
+            self.Text_Time.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("刷新倒计时: {0}"), TimeHelper.ShowLeftTime(cdTime * 1000, GameSettingLanguge.Language));
         }
 
         public static void OnUpdateItem(this UIJiaYuanPurchaseComponent self)

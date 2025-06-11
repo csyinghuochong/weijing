@@ -94,7 +94,7 @@ namespace ET
             long leftExpCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianExpTime);
             if (leftExpCD > 0)
             {
-                self.Text_ExpCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftExpCD);
+                self.Text_ExpCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftExpCD, GameSettingLanguge.Language);
             }
             else
             {
@@ -103,7 +103,7 @@ namespace ET
             long leftCoinCD = 60 * 60 * 1000 - (TimeHelper.ServerNow() - xiulianCoinTime);
             if (leftCoinCD > 0)
             {
-                self.Text_CoinCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftCoinCD);
+                self.Text_CoinCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("修炼时间倒计时:") + TimeHelper.ShowLeftTime(leftCoinCD, GameSettingLanguge.Language);
             } 
             else
             {

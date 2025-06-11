@@ -76,7 +76,7 @@ namespace ET
                 return;
             }
             self.CDTime-=1000;
-            self.CountDownTime.text = GameSettingLanguge.LoadLocalization("倒计时: ") + TimeHelper.ShowLeftTime(self.CDTime);
+            self.CountDownTime.text = GameSettingLanguge.LoadLocalization("倒计时: ") + TimeHelper.ShowLeftTime(self.CDTime, GameSettingLanguge.Language);
         }
 
         public static void OnUpdateUI(this UIBattleMainComponent self, M2C_BattleInfoResult message)

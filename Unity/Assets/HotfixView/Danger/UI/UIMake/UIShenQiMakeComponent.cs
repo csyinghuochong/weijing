@@ -218,7 +218,7 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow());
+            self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow(), GameSettingLanguge.Language);
         }
 
         public static void ShowCDTime(this UIShenQiMakeComponent self)

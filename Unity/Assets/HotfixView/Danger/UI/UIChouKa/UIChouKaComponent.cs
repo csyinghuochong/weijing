@@ -273,8 +273,8 @@ namespace ET
             long passTime_2 = curTime - numericComponent.GetAsLong(NumericType.ChouKaTenTime);
             long cdTime_1 = long.Parse(GlobalValueConfigCategory.Instance.Get(35).Value) * 1000;
             long cdTime_2 = long.Parse(GlobalValueConfigCategory.Instance.Get(36).Value) * 1000;
-            self.Text_MianFeiTime_1.GetComponent<Text>().text = passTime_1 > cdTime_1 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_1 - passTime_1);
-            self.Text_MianFeiTime_2.GetComponent<Text>().text = passTime_2 > cdTime_2 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_2 - passTime_2);
+            self.Text_MianFeiTime_1.GetComponent<Text>().text = passTime_1 > cdTime_1 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_1 - passTime_1, GameSettingLanguge.Language);
+            self.Text_MianFeiTime_2.GetComponent<Text>().text = passTime_2 > cdTime_2 ? GameSettingLanguge.LoadLocalization("免费抽卡") : TimeHelper.ShowLeftTime(cdTime_2 - passTime_2, GameSettingLanguge.Language);
         }
 
         public static void OnUpdateUI(this UIChouKaComponent self)

@@ -111,7 +111,7 @@ namespace ET
                 return;
             }
             long leftTime = self.AuctionStatus - TimeHelper.ServerNow();
-            self.Text_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(leftTime); 
+            self.Text_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间:") + TimeHelper.ShowLeftTime(leftTime, GameSettingLanguge.Language); 
         }
 
         public static void Btn_BuyNum_jia(this UIPaiMaiAuctionComponent self, int add)
