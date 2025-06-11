@@ -95,7 +95,7 @@ namespace ET
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
-            self.ChengHaoName.GetComponent<Text>().text = jingLingConfig.Name;
+            self.ChengHaoName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jingLingConfig.Name);
 
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -107,9 +107,9 @@ namespace ET
             gameObject.transform.localPosition = new Vector2(jingLingConfig.Id % 10 * 1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
-            self.Text_value.GetComponent<Text>().text = jingLingConfig.Des;
-            self.ObjGetText.GetComponent<Text>().text = jingLingConfig.GetDes;
-            self.JingLingDes.GetComponent<Text>().text = jingLingConfig.ProDes;
+            self.Text_value.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jingLingConfig.Des);
+            self.ObjGetText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jingLingConfig.GetDes);
+            self.JingLingDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jingLingConfig.ProDes);
             UICommonHelper.SetRawImageGray(self.RawImage, !active);
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();

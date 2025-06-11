@@ -167,7 +167,7 @@ namespace ET
 			self.Text_CostValue.GetComponent<Text>().text = string.Format("{0}/{1}", self.BagComponent.GetItemNumber(itemCost[0]), itemCost[1]);
 			self.Text_CostValue.GetComponent<Text>().color = self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1] ? Color.green : Color.red;
 
-			self.Text_CostName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemName;
+			self.Text_CostName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemName);
 			self.Text_CostName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi((int)ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemQuality);
 			if (self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1])
 			{

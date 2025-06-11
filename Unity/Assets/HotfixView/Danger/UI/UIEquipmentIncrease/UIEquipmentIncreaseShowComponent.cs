@@ -384,7 +384,7 @@ namespace ET
                 int hide = self.ReelBagInfo.IncreaseSkillLists[i];
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
-                string skillName = skillConfig.SkillName;
+                string skillName = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
 
                 if (hideProListConfig.IfMove == 1)
                 {
@@ -432,7 +432,7 @@ namespace ET
                 int hide = self.EquipmentBagInfo.IncreaseSkillLists[i];
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
-                string skillName = skillConfig.SkillName;
+                string skillName = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
 
                 if (hideProListConfig.IfMove == 1)
                 {

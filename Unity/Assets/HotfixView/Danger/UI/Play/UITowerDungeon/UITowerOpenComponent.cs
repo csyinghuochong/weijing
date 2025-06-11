@@ -129,7 +129,7 @@ namespace ET
             self.PostionSet.SetActive(true);
             self.ObjImageDi.GetComponent<Image>().color = new Color(0, 0, 0, 1);
             self.Lab_ChapterName.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-            self.Lab_ChapterName.GetComponent<Text>().text = TowerConfigCategory.Instance.Get(towerId).Name;
+            self.Lab_ChapterName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(TowerConfigCategory.Instance.Get(towerId).Name);
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.TowerOpenTimer, self);
 

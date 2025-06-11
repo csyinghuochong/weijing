@@ -41,8 +41,8 @@ namespace ET
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.GetParent<UISeasonTaskComponent>().UpdateInfo(self.TaskPro); });
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
 
-            self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
-            self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
+            self.TaskDescText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
 
             // 已经完成
             if (taskPro.taskStatus == (int)TaskStatuEnum.Commited)

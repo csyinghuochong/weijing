@@ -216,13 +216,13 @@ namespace ET
                 if (unitInfo.UnitType == UnitType.Pet)
                 {
                     PetConfig petConfig = PetConfigCategory.Instance.Get(unitInfo.ConfigId);
-                    name = petConfig.PetName;
+                    name = GameSettingLanguge.LoadLocalization(petConfig.PetName);
                 }
 
                 if (unitInfo.UnitType == UnitType.Monster)
                 {
                     MonsterConfig petConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
-                    name = petConfig.MonsterName;
+                    name = GameSettingLanguge.LoadLocalization(petConfig.MonsterName);
                 }
 
                 self.InstantiateIcon(unitInfo.UnitType == UnitType.Pet? self.jiayuanPet : self.jiayuanRubsh, new Vector3(unitInfo.X, unitInfo.Z, 0),
@@ -263,14 +263,14 @@ namespace ET
                 // 赛季boss
                 if (unitInfo.ConfigId == SeasonHelper.SeasonBossId)
                 {
-                    self.InstantiateIcon(self.bossIcon, vector3, monsterConfig.MonsterName);
+                    self.InstantiateIcon(self.bossIcon, vector3, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName));
                 }
 
                 // 野生精灵
                 int sonType = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId).MonsterSonType;
                 if (unitInfo.UnitType == UnitType.Monster && (sonType == 58 || sonType == 59))
                 {
-                    self.InstantiateIcon(self.jinglingIcon, vector3, monsterConfig.MonsterName);
+                    self.InstantiateIcon(self.jinglingIcon, vector3, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName));
                 }
             }
         }
@@ -355,7 +355,7 @@ namespace ET
                 return monsterPosition.NextID; ;
             }
             Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
-            self.InstantiateIcon(self.bossIcon,vector3,monsterConfig.MonsterName);
+            self.InstantiateIcon(self.bossIcon, vector3, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName));
 
             self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
 
@@ -389,7 +389,7 @@ namespace ET
                         continue;
                     }
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
-                    self.InstantiateIcon(self.bossIcon, vector3, monsterConfig.MonsterName);
+                    self.InstantiateIcon(self.bossIcon, vector3, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName));
 
                     self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
                 }
@@ -408,13 +408,13 @@ namespace ET
             if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
                 npcList = SceneConfigCategory.Instance.Get(self.SceneId).NpcList;
-                self.MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(self.SceneId).Name;
+                self.MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(self.SceneId).Name);
                 self.ShowStallArea();
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
                 npcList = DungeonConfigCategory.Instance.Get(self.SceneId).NpcList;
-                self.MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName;
+                self.MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName);
                 self.ShowChuansong();
                 self.ShowLocalBossList();
                 self.RequestLocalUnitPosition().Coroutine();
@@ -451,8 +451,7 @@ namespace ET
 
                     NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
 
-                    self.InstantiateIcon(self.NpcPostion, new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0),
-                        npcConfig.Name);
+                    self.InstantiateIcon(self.NpcPostion, new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0), GameSettingLanguge.LoadLocalization(npcConfig.Name));
 
                     GameObject npcGo = UnityEngine.Object.Instantiate(self.UIMapBigNpcItem);
                     npcGo.SetActive(true);

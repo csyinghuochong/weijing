@@ -47,9 +47,9 @@ namespace ET
         public static async ETTask OnInitUI(this UIChengJiuActiviteComponent self, int chengjiuId)
         {
             ChengJiuConfig chengJiuConfig = ChengJiuConfigCategory.Instance.Get(chengjiuId);
-            self.Text_ChengJiuDesc.GetComponent<Text>().text = chengJiuConfig.Des;
+            self.Text_ChengJiuDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chengJiuConfig.Des);
             self.Text_ChengJiuPoint.GetComponent<Text>().text = chengJiuConfig.RewardNum.ToString();
-            self.Text_ChengJiuName.GetComponent<Text>().text = chengJiuConfig.Name;
+            self.Text_ChengJiuName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chengJiuConfig.Name);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ChengJiuIcon, chengJiuConfig.Icon.ToString());
             Sprite sprite = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))

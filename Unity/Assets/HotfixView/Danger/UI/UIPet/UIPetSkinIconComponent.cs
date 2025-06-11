@@ -81,7 +81,7 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
-            self.TextSkinName.GetComponent<Text>().text = skillConfig.Name;
+            self.TextSkinName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.Name);
             UICommonHelper.SetImageGray(self.Image_ItemIcon, !unlocked);
             UICommonHelper.SetImageGray(self.Image_ItemQuality, !unlocked);
             if (unlocked)

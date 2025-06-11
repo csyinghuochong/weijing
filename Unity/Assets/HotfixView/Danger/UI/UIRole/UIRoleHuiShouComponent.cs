@@ -395,7 +395,7 @@ namespace ET
                     {
                         if (gem[j] != "0")
                         {
-                            tip += " " + ItemConfigCategory.Instance.Get(self.HuiShouInfos[i].ItemID).ItemName;
+                            tip += " " + GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(self.HuiShouInfos[i].ItemID).ItemName);
                             break;
                         }
                     }

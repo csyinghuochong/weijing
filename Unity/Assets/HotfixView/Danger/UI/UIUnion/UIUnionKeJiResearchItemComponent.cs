@@ -43,8 +43,8 @@ namespace ET
             self.Position = position;
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(configId);
-            Match match = Regex.Match(unionKeJiConfig.EquipSpaceName, @"\d");
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.EquipSpaceName.Substring(0, match.Index);
+            Match match = Regex.Match(GameSettingLanguge.LoadLocalization(unionKeJiConfig.EquipSpaceName), @"\d");
+            self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(unionKeJiConfig.EquipSpaceName).Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = unionKeJiConfig.QiangHuaLv == 0? GameSettingLanguge.LoadLocalization("未研究") : string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
 
             UICommonHelper.SetImageGray(self.IconImg, unionKeJiConfig.QiangHuaLv == 0);

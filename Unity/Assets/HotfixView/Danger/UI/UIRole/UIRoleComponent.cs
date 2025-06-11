@@ -202,13 +202,13 @@ namespace ET
 			if (occTwo != 0) 
 			{
 				//转职
-				self.ObjLab_RoseOccShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业") + ": " + OccupationTwoConfigCategory.Instance.Get(occTwo).OccupationName;
+				self.ObjLab_RoseOccShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业") + ": " + GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(occTwo).OccupationName);
 			}
 			else 
 			{
 				//未转职
 				int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-				self.ObjLab_RoseOccShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业") + ": " + OccupationConfigCategory.Instance.Get(occ).OccupationName;
+				self.ObjLab_RoseOccShow.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业") + ": " + GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(occ).OccupationName);
 			}
 
 			self.UpdateShowComBat();

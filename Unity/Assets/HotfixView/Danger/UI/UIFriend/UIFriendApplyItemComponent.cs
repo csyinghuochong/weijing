@@ -71,7 +71,7 @@ namespace ET
 
             self.PlayerLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级:{0}"), friendInfo.PlayerLevel);
             self.PlayerName.GetComponent<Text>().text = friendInfo.PlayerName;
-            self.PlayerOcc.GetComponent<Text>().text = OccupationConfigCategory.Instance.Get(friendInfo.Occ).OccupationName;
+            self.PlayerOcc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(friendInfo.Occ).OccupationName);
             UICommonHelper.ShowOccIcon(self.HeadIcon, friendInfo.Occ);
         }
     }

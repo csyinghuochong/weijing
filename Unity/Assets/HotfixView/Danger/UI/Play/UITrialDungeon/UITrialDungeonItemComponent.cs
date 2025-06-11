@@ -44,7 +44,7 @@ namespace ET
             this.Hint_2.SetActive(false);
             this.Hint_3.SetActive(false);
 
-            this.Lab_Name.text = towerConfig.Name;
+            this.Lab_Name.text = GameSettingLanguge.LoadLocalization(towerConfig.Name);
             this.ClickHandle = action;
 
             //1;0,0,3;72000001;1

@@ -90,8 +90,8 @@ namespace ET
             //self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
             float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;
             self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
-            self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.Title;
-            self.TextLevelTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获得{0}，洗炼获得高品质属性概率提升"), equipXiLianConfig.Title);
+            self.TextTitle.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(equipXiLianConfig.Title);
+            self.TextLevelTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获得{0}，洗炼获得高品质属性概率提升"), GameSettingLanguge.LoadLocalization(equipXiLianConfig.Title));
 
             if (equipXiLianConfig.ProList_Type[0] != 0)
             {

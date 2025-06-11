@@ -48,8 +48,8 @@ namespace ET
             JingLingConfig petSkinConfig = JingLingConfigCategory.Instance.Get(jinglingid);
             self.uIModelShowComponent.ShowOtherModel("JingLing/" + petSkinConfig.Assets).Coroutine();
 
-            self.TextSkinName.GetComponent<Text>().text = petSkinConfig.Name;
-            self.TextDes.GetComponent<Text>().text = petSkinConfig.Des;
+            self.TextSkinName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petSkinConfig.Name);
+            self.TextDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petSkinConfig.Des);
         }
     }
 }

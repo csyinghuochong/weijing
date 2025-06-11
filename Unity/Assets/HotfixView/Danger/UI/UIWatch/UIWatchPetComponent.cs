@@ -458,8 +458,8 @@ namespace ET
                 Transform itemTransform = self.PetHeXinItemList[i].transform;
                 //int position = int.Parse(itemConfig.ItemUsePar);
                 itemTransform.Find("Node_2").gameObject.SetActive(true);
-                itemTransform.Find("Node_2/TextName").gameObject.GetComponent<Text>().text = itemConfig.ItemName;
-                itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = $"等级 {itemConfig.UseLv}";
+                itemTransform.Find("Node_2/TextName").gameObject.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+                itemTransform.Find("Node_2/TextIcon").gameObject.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级 {0}"), itemConfig.UseLv);
                 Image ImageIcon = itemTransform.Find("Node_2/ImageIcon").gameObject.GetComponent<Image>();
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

@@ -41,7 +41,7 @@ namespace ET
             self.SeasonIcon.GetComponent<Button>().onClick.RemoveAllListeners();
             self.SeasonIcon.GetComponent<Button>().onClick.AddListener(() => { self.GetParent<UISeasonTaskComponent>().UpdateInfo(self.TaskId); });
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            self.Text.GetComponent<Text>().text = taskConfig.TaskName;
+            self.Text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
             self.Img_line.SetActive(true);
         }
 

@@ -168,7 +168,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.PetHpNode);
                     gameObject.SetActive(true);
 
-                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName);
                     self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
                     self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();
                     continue;
@@ -180,7 +180,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
                     gameObject.SetActive(true);
 
-                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName);
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = "";
                     self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
                     self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();
@@ -194,7 +194,7 @@ namespace ET
                     gameObject.SetActive(true);
 
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
-                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = monsterCof.MonsterName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterCof.MonsterName);
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
                     self.PetBattleList[entities[i].Id].Image = gameObject.transform.Find("Img_HpValue").GetComponent<Image>();
                     self.PetBattleList[entities[i].Id].Text = gameObject.transform.Find("Lal_Hurt").GetComponent<Text>();

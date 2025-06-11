@@ -32,7 +32,7 @@ namespace ET
         public static void OnInitData(this UIFashionExplainComponent self , int fashionid)
         { 
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);
-            self.TextExplain.text = fashionConfig.PropertyDes;
+            self.TextExplain.text = GameSettingLanguge.LoadLocalization(fashionConfig.PropertyDes);
         }
     }
 }

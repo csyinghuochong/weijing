@@ -450,7 +450,7 @@ namespace ET
                 return;
             }
             self.LastShowTip = Time.time;
-            string monsterName = MonsterConfigCategory.Instance.Get(monsterId).MonsterName;
+            string monsterName = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(monsterId).MonsterName);
             FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
         }
 

@@ -741,7 +741,7 @@ namespace ET
             string[] iteminfo = dataPaams.Split('_');
             int itemId = int.Parse(iteminfo[0]);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), itemConfig.ItemName, iteminfo[1]));
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName), iteminfo[1]));
         }
 
         public static void OnUpdateHP(this UIMainComponent self, int sceneType, Unit defend, Unit attack, long hurtvalue)

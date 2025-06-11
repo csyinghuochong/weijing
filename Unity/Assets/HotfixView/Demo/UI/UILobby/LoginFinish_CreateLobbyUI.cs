@@ -33,7 +33,7 @@ namespace ET
 
 		public static async ETTask OnLoginSucess(EventType.LoginFinish args)
 		{
-			FloatTipManager.Instance.ShowFloatTip("登录成功!");
+			FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("登录成功!"));
 			var path = ABPathHelper.GetScenePath("CreateRole");
 			await ResourcesComponent.Instance.LoadSceneAsync(path);
 			await TimerComponent.Instance.WaitAsync(500);
@@ -43,7 +43,7 @@ namespace ET
 			UIComponent.Instance.MainCamera.transform.localPosition = new Vector3(-1.8f, 1.5f, -17f);
 			UIComponent.Instance.MainCamera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
-			FloatTipManager.Instance.ShowFloatTip("账号已完成实名认证!");
+			FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("账号已完成实名认证!"));
 			await TimerComponent.Instance.WaitAsync(500);
 
 			AccountInfoComponent PlayerComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();

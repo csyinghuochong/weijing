@@ -80,7 +80,7 @@ namespace ET
             {
                 self.AssetPath.Add(path);
             }
-            self.SkillNameText.GetComponent<Text>().text = skillConfig.SkillName;
+            self.SkillNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
             // 未学习显示灰色
             int baseskill = SkillConfigCategory.Instance.GetInitSkill(skillPro.SkillID);
             if (baseskill == skillPro.SkillID)

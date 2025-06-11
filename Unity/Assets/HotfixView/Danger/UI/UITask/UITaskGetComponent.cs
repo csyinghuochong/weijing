@@ -149,8 +149,8 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcID);
 
             //显示Npc对话   
-            self.Lab_NpcSpeak.GetComponent<Text>().text = "   " + npcConfig.SpeakText;
-            self.Lab_NpcName.GetComponent<Text>().text = npcConfig.Name;
+            self.Lab_NpcSpeak.GetComponent<Text>().text = "   " + GameSettingLanguge.LoadLocalization(npcConfig.SpeakText);
+            self.Lab_NpcName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(npcConfig.Name);
             self.TaskFubenList.SetActive(false);
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
@@ -191,7 +191,7 @@ namespace ET
                     long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
                     self.EnergySkill.SetActive(true);
                     //获取
-                    self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
+                    self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(costItemID).ItemName) + "  " + itemNum + "/" + 5;
                     break;
                 case 5://补偿大师
                     self.TaskFubenList.SetActive(true);
@@ -229,7 +229,7 @@ namespace ET
                         ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(nextid);
                         string[] riqi = activityConfig.Par_1.Split(';');
                         string speek = self.Lab_NpcSpeak.GetComponent<Text>().text;
-                        self.Lab_NpcSpeak.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 下次领取时间:{1}月{2}日 {3}"), speek, riqi[0], riqi[1], activityConfig.Par_4);
+                        self.Lab_NpcSpeak.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 下次领取时间:{1}月{2}日 {3}"), speek, riqi[0], riqi[1], GameSettingLanguge.LoadLocalization(activityConfig.Par_4));
                     }
                     break;
                 case 8:  //经验兑换
@@ -285,7 +285,7 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.PetFramgeItemId);
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("碎片兑换"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗一个神兽碎片兑换一个{0}"), itemConfig.ItemName), ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("碎片兑换"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗一个神兽碎片兑换一个{0}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName)), ()=>
             {
                 self.RequestFramegeDuiHuan().Coroutine();
             }, null).Coroutine();

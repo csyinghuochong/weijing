@@ -129,7 +129,7 @@ namespace ET
             {
                 string[] item = costItem.Split(';');
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("竞猜"),
-                    string.Format(GameSettingLanguge.LoadLocalization("是否是否花费{0}{1}开启新选项？"), item[1], ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName),
+                    string.Format(GameSettingLanguge.LoadLocalization("是否是否花费{0}{1}开启新选项？"), item[1], GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(int.Parse(item[0])).ItemName)),
                     async () =>
                     {
                         C2M_ActivityGuessRequest request = new C2M_ActivityGuessRequest() { GuessId = index };

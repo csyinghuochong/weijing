@@ -105,7 +105,7 @@ namespace ET
             string[] needList = reviveCost.Split(';');
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(needList[0]));
-            self.Text_CostName.GetComponent<Text>().text = itemConfig.ItemName;
+            self.Text_CostName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
 
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

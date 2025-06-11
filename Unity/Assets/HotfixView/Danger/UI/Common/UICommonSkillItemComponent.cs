@@ -91,7 +91,7 @@ namespace ET
             self.UnActive = unactive;
             self.HaveSkillNum = haveNum;
 
-            self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
+            self.TextSkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
             self.Image_Lock?.SetActive(lockSkill);
         }
 
@@ -119,7 +119,7 @@ namespace ET
             self.SkillAtlas = SkillAtlas;
             self.addTip = addtip;
 
-            self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
+            self.TextSkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
             self.Image_Lock?.SetActive(lockSkill);
             self.UnActive = false;
             self.HaveSkillNum = 1;

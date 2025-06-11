@@ -184,7 +184,7 @@ namespace ET
                     break;
             }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
-            self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
+            self.Text_111.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(fashionConfig.Name);
             if (fashionConfig.ActiveCost == "0;0"|| fashionConfig.ActiveCost == "0")
             {
                 self.Text_222.gameObject.SetActive(false);  

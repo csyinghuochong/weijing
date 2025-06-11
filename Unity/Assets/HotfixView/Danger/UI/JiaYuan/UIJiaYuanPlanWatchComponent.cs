@@ -100,7 +100,7 @@ namespace ET
             gameObject.transform.localPosition = new Vector2(1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
-            self.TextName.GetComponent<Text>().text = jiaYuanFarmConfig.Name;
+            self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanFarmConfig.Name);
             self.TextStage.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(JiaYuanHelper.GetPlanStageName(stage));
 
             self.Text_Desc_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前阶段: {0}"), GameSettingLanguge.LoadLocalization(JiaYuanHelper.GetPlanStageName(stage)));

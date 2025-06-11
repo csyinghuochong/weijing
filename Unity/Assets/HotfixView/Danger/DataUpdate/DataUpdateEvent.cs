@@ -675,7 +675,7 @@ namespace ET
         public void OnGetTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue) 
         {
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
-            FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + taskCof.TaskName);
+            FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + GameSettingLanguge.LoadLocalization(taskCof.TaskName));
 
             List<Entity> entities = dataUpdateComponentDic.Values.ToList();
             for (int i = entities.Count - 1; i >= 0; i--)
@@ -714,7 +714,7 @@ namespace ET
                 }
             }
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
-            FloatTipManager.Instance.ShowFloatTipDi(taskCof.TaskName + GameSettingLanguge.LoadLocalization(GameSettingLanguge.LoadLocalization("任务完成!")));
+            FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(taskCof.TaskName) + GameSettingLanguge.LoadLocalization(GameSettingLanguge.LoadLocalization("任务完成!")));
         }
 
         public static void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)

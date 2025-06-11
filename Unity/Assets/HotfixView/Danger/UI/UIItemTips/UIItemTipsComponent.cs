@@ -511,7 +511,7 @@ namespace ET
                 }
                 if (curSceneId != needSceneId)
                 {
-                    string fubenName = DungeonConfigCategory.Instance.Get(needSceneId).ChapterName;
+                    string fubenName = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(needSceneId).ChapterName);
                     FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请前往{0}"), GameSettingLanguge.LoadLocalization(fubenName)));
                     return;
                 }
@@ -595,8 +595,8 @@ namespace ET
             if (errorCode == ErrorCode.ERR_ItemOnlyUseOcc)
             {
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(itemConfig.UseOcc);
-                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), occupationConfig.OccupationName);
-                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(tip));
+                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), GameSettingLanguge.LoadLocalization(occupationConfig.OccupationName));
+                FloatTipManager.Instance.ShowFloatTipDi(tip);
             }
 
             //播放音效
@@ -653,7 +653,7 @@ namespace ET
 
             self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + itemTypename;
 
-            string Text_ItemDes = itemconf.ItemDes;
+            string Text_ItemDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
             //获取道具描述的分隔符
             string[] itemDesArray = Text_ItemDes.Split(';');
             string itemMiaoShu = "";
@@ -713,7 +713,7 @@ namespace ET
             }
             self.Obj_ItemQuality.GetComponent<Image>().sprite = sp1;
 
-            string Text_ItemStory = itemconf.ItemDes;
+            string Text_ItemStory = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
             //显示道具描述
             int i2 = (int)((Text_ItemStory.Length) / 20) + 1;
             //float ItemBottomTextNum = 30.0f;

@@ -142,7 +142,7 @@ namespace ET
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("转职"), string.Format(GameSettingLanguge.LoadLocalization("是否转职为：{0}"), occupationTwoConfig.OccupationName), () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("转职"), string.Format(GameSettingLanguge.LoadLocalization("是否转职为：{0}"), GameSettingLanguge.LoadLocalization(occupationTwoConfig.OccupationName)), () =>
             {
                 self.RequestChangeOcc().Coroutine();
             }).Coroutine();
@@ -231,12 +231,12 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
-            self.Text_ZhiYe.GetComponent<Text>().text = occupationConfig.OccupationName;
+            self.Text_ZhiYe.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(occupationConfig.OccupationName);
 
             int[] OccTwoID = occupationConfig.OccTwoID;
-            self.Text_ZhiYe_1.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(OccTwoID[0]).OccupationName;
-            self.Text_ZhiYe_2.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(OccTwoID[1]).OccupationName;
-            self.Text_ZhiYe_3.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(OccTwoID[2]).OccupationName;
+            self.Text_ZhiYe_1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(OccTwoID[0]).OccupationName);
+            self.Text_ZhiYe_2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(OccTwoID[1]).OccupationName);
+            self.Text_ZhiYe_3.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(OccTwoID[2]).OccupationName);
 
             int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
             List<int> occTwoList = new List<int>(OccTwoID);
@@ -322,7 +322,7 @@ namespace ET
         {
             self.OccTwoId = occTwoId;
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwoId);
-            self.Text_ZhiYe_4.GetComponent<Text>().text = occupationTwoConfig.OccupationName;
+            self.Text_ZhiYe_4.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(occupationTwoConfig.OccupationName);
             UICommonHelper.DestoryChild(self.SkillContainer);
 
             string path1 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"HuJia_{occupationTwoConfig.ArmorMastery}");

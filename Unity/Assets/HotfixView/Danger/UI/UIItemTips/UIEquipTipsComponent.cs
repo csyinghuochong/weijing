@@ -394,7 +394,7 @@ namespace ET
             if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + itemConfig.ItemName, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + GameSettingLanguge.LoadLocalization(itemConfig.ItemName), () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
@@ -433,7 +433,7 @@ namespace ET
             {
                 case "10001":
                     //获取技能名称
-                    string skillName = SkillConfigCategory.Instance.Get(int.Parse(propretyValue)).SkillName;
+                    string skillName = GameSettingLanguge.LoadLocalization(SkillConfigCategory.Instance.Get(int.Parse(propretyValue)).SkillName);
                     string langStr = GameSettingLanguge.LoadLocalization("隐藏属性");
                     textShow = langStr + "：" + skillName;
                     break;
@@ -486,7 +486,7 @@ namespace ET
             if (gemId != 0)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemId);
-                text.GetComponent<Text>().text = itemConfig.ItemName;
+                text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
@@ -629,7 +629,7 @@ namespace ET
                         continue;
 
                     SkillConfig skillconf = SkillConfigCategory.Instance.Get(int.Parse(skillID[i]));
-                    string skillName = skillconf.SkillName;
+                    string skillName = GameSettingLanguge.LoadLocalization(skillconf.SkillName);
                     string showHintTxt = GameSettingLanguge.LoadLocalization("技能") + "：" + skillName;
                     ItemViewHelp.ShowPropertyText(showHintTxt, "4", self.Obj_EquipPropertyText, self.Obj_EquipHintSkillSetList);
                     properShowNum += 1;
@@ -657,7 +657,7 @@ namespace ET
 
                 EquipSuitConfig equipSuit = EquipSuitConfigCategory.Instance.Get(equipSuitID);
 
-                string equipSuitName = equipSuit.Name;
+                string equipSuitName = GameSettingLanguge.LoadLocalization(equipSuit.Name);
 
                 int[] needEquipIDSet = equipSuit.NeedEquipID;
                 //string[] needEquipNumSet = equipSuit.NeedEquipNum.Split(';');
@@ -691,7 +691,7 @@ namespace ET
 
                     //显示套装名称
                     self.Obj_EquipSuitItemNamePropertyText.GetComponent<Text>().horizontalOverflow = HorizontalWrapMode.Overflow;
-                    ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
+                    ItemViewHelp.ShowPropertyText(GameSettingLanguge.LoadLocalization(itemCof.ItemName), showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
                     properShowNum += 0;
 
 
@@ -712,7 +712,7 @@ namespace ET
                     {
                         continue;
                     }
-                    string equipSuitDes = equipSuitProperty.EquipSuitDes;
+                    string equipSuitDes = GameSettingLanguge.LoadLocalization(equipSuitProperty.EquipSuitDes);
                     string ifShowSuitNum = equipSuitProperty.ifShowSuitNum.ToString();
 
                     //显示类型
@@ -756,9 +756,9 @@ namespace ET
             string ItemIcon = itemconf.Icon;
             int ItemQuality = itemconf.ItemQuality;
             string equip_ID = itemconf.ItemEquipID.ToString();
-            string equipName = itemconf.ItemName;
+            string equipName = GameSettingLanguge.LoadLocalization(itemconf.ItemName);
             string equipLv = itemconf.UseLv.ToString();
-            string ItemBlackDes = itemconf.ItemDes;
+            string ItemBlackDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
             string textEquipType = "";
             string textEquipTypeSon = "";
             textEquipType = ItemViewHelp.GetItemSubType3Name(itemconf.ItemSubType);

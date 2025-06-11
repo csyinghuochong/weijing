@@ -226,7 +226,7 @@ namespace ET
             }
 
             self.MonsterNode.SetActive(true);
-            self.Lab_MonsterName.GetComponent<Text>().text = monsterConfig.MonsterName;
+            self.Lab_MonsterName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower)
             {
@@ -425,7 +425,7 @@ namespace ET
                 self.BossConfiId = unit.ConfigId;
                 self.BossNode.SetActive(true);
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
-                self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
+                self.Lab_BossName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
                 self.UpdateModelShowView(configid);
                 self.OnUpdateHP(unit);
                 self.OnUpdateBelongID(unit.Id, unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID));

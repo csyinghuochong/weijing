@@ -60,7 +60,7 @@ namespace ET
             ChengJiuInfo chengJiuInfo = null;
             chengJiuComponent.ChengJiuProgessList.TryGetValue(id, out chengJiuInfo);
 
-            self.Lab_TaskName.GetComponent<Text>().text = chengJiuConfig.Name;
+            self.Lab_TaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chengJiuConfig.Name);
             if (complete)
             {
                 self.Lab_ProValue.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进度:{0}/{1}"), chengJiuConfig.TargetValue, chengJiuConfig.TargetValue);
@@ -71,7 +71,7 @@ namespace ET
             }
             self.Ima_CompleteTask.SetActive(complete);
 
-            self.Lab_TaskDes.GetComponent<Text>().text = chengJiuConfig.Des;
+            self.Lab_TaskDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chengJiuConfig.Des);
 
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ChengJiuIcon, chengJiuConfig.Icon.ToString());
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

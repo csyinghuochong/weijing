@@ -48,7 +48,7 @@ namespace ET
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
             self.TaskConfig = taskConfig;
-            self.TaskName.GetComponent<Text>().text = taskConfig.TaskName;
+            self.TaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
 
             Text textDesc = self.TaskTargetDes.GetComponent<Text>();
             textDesc.text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);

@@ -68,7 +68,7 @@ namespace ET
             int hideId = HideProListConfigCategory.Instance.PetSkillToHideProId[skillId];
             HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideId);
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            self.Lab_SkillName.GetComponent<Text>().text = skillConfig.SkillName + $"{skillNum}/{hideProListConfig.NeedNumber}";
+            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName) + $"{skillNum}/{hideProListConfig.NeedNumber}";
             self.TextTip2.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("套装技能穿戴{0}个时激活此技能"), hideProListConfig.NeedNumber);
         }
 
@@ -89,8 +89,8 @@ namespace ET
             }
             self.Image_SkillIcon.GetComponent<Image>().sprite = sp;
 
-            self.Lab_SkillName.GetComponent<Text>().text = skillConfig.SkillName;
-            self.Lab_SkillDes.GetComponent<Text>().text = skillConfig.SkillDescribe + addTip;
+            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
+            self.Lab_SkillDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe) + addTip;
 
             if (skillConfig.SkillType == 1)
             {

@@ -88,7 +88,7 @@ namespace ET
             int chapterid = dungeonConfig.ChapterId;
 
             DungeonSectionConfig mdungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chapterid);
-            self.ChapterText.GetComponent<Text>().text = mdungeonSectionConfig.ChapterName;
+            self.ChapterText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(mdungeonSectionConfig.ChapterName);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
             int number = 0;
@@ -186,14 +186,14 @@ namespace ET
                 boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sp;
 
                 // Boss名字
-                boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
 
                 int dungeonid = SceneConfigHelper.GetFubenByMonster(monsterConfig.Id);
                 if (dungeonid > 0)
                 {
                     // Boss出生地
                     boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
-                            $"({DungeonConfigCategory.Instance.Get(dungeonid).ChapterName})";
+                            $"({GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(dungeonid).ChapterName)})";
                 }
 
                 if (self.BossRefreshTime.ContainsKey(bossRevivesTime[i].KeyId))
@@ -267,7 +267,7 @@ namespace ET
                 go.SetActive(true);
                 // Boss名字
                 ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
-                go.Get<GameObject>("NameText").GetComponent<Text>().text = monsterConfig.MonsterName;
+                go.Get<GameObject>("NameText").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
 
                 // 按钮
                 if (!PlayerPrefs.HasKey(bossConfigId.ToString()))

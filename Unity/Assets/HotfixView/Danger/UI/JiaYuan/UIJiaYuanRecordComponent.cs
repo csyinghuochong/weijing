@@ -62,13 +62,13 @@ namespace ET
                         tip += GameSettingLanguge.LoadLocalization(" 来到你的家园逛了一圈。");
                         break;
                     case JiaYuanOperateType.GatherPlant:
-                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name);
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), GameSettingLanguge.LoadLocalization(JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name));
                         break;
                     case JiaYuanOperateType.GatherPasture:
-                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name);
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园拾取了<color=#9CA606> {0}</color>"), GameSettingLanguge.LoadLocalization(JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name));
                         break;
                     case JiaYuanOperateType.Pick:
-                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园清理了<color=#9CA606> {0}</color>"), MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName);
+                        tip += string.Format(GameSettingLanguge.LoadLocalization(" 在你的家园清理了<color=#9CA606> {0}</color>"), GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName));
                         break;
                     default:
                         break;

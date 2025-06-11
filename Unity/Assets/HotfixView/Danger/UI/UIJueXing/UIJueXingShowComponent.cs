@@ -136,9 +136,9 @@ namespace ET
 
             self.Text_Gold.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗：{0}金币"), occupationJueXingConfig.costGold);
 
-            self.TextSkillName.GetComponentInChildren<Text>().text =skillConfig.SkillName;
+            self.TextSkillName.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
 
-            self.Text_11.GetComponent<Text>().text =skillConfig.SkillDescribe;
+            self.Text_11.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() ) ;
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

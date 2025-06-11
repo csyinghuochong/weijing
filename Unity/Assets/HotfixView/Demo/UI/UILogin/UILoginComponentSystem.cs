@@ -1177,7 +1177,7 @@ namespace ET
 		public static void OnSelectServer(this UILoginComponent self, ServerItem serverId)
 		{
 			self.ServerInfo = serverId;
-			self.SelectServerName.GetComponent<Text>().text = serverId.ServerName;
+			self.SelectServerName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(serverId.ServerName);
 		}
 
 		public static void  OnNotice(this UILoginComponent self)

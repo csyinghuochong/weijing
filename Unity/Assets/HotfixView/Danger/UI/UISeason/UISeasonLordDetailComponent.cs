@@ -113,7 +113,7 @@ namespace ET
 
             int fubenid = numericComponent.GetAsInt(NumericType.SeasonBossFuben);
             DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
-            self.PositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("即将出现在{0}中..."), dungeonConfig.ChapterName);
+            self.PositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("即将出现在{0}中..."), GameSettingLanguge.LoadLocalization(dungeonConfig.ChapterName));
 
             int bossId = SeasonHelper.SeasonBossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
@@ -191,8 +191,8 @@ namespace ET
             self.CheckedItem.UpdateItem(new BagInfo() { ItemID = bagInfo.ItemID, ItemNum = 1 }, ItemOperateEnum.None);
             self.UICommonItem.SetActive(true);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            self.ItemNameText.GetComponent<Text>().text = itemConfig.ItemName;
-            self.ItemDesText.GetComponent<Text>().text = itemConfig.ItemDes;
+            self.ItemNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.ItemDesText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemDes);
 
             for (int i = 0; i < self.ItemList.Count; i++)
             {

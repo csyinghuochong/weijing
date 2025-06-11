@@ -67,11 +67,11 @@ namespace ET
 
             if (unionPlayerInfo.OccTwo != 0)
             {
-                self.Text_Occ.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(unionPlayerInfo.OccTwo).OccupationName;
+                self.Text_Occ.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(unionPlayerInfo.OccTwo).OccupationName);
             }
             else
             {
-                self.Text_Occ.GetComponent<Text>().text = OccupationConfigCategory.Instance.Get(unionPlayerInfo.Occ).OccupationName;
+                self.Text_Occ.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(unionPlayerInfo.Occ).OccupationName);
             }
         }
     }

@@ -149,12 +149,12 @@ namespace ET
                     self.PiFuJiHuo.SetActive(false);
                 }
 
-                self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
+                self.Text_Tip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petConfig.PetName);
                 self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
 
 
                 PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
-                self.Text_PetName.GetComponent<Text>().text = petSkinConfig.Name;
+                self.Text_PetName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petSkinConfig.Name);
 
 
                 self.BianYiDi.SetActive(rolePetInfo.SkinId != petConfig.Skin[0]);

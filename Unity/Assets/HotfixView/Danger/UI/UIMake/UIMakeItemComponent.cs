@@ -79,7 +79,7 @@ namespace ET
             }
             self.ImageQuality.GetComponent<Image>().sprite = sp2;
 
-            self.Lab_PetName.GetComponent<Text>().text = itemconfig.ItemName;
+            self.Lab_PetName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
             self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemconfig.ItemQuality);
         }
 

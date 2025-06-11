@@ -678,7 +678,7 @@ namespace ET
         public void ItemObjShowName(GameObject itemObj, int itemID)
         {
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
-            itemObj.GetComponent<Text>().text = itemCof.ItemName;
+            itemObj.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemCof.ItemName);
             itemObj.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemCof.ItemQuality);
         }
 

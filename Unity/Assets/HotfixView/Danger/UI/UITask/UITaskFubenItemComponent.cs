@@ -39,7 +39,7 @@ namespace ET
                     self.TextFubenName.GetComponent<Text>().text = ItemViewHelp.ShowDuiHuanPet(fubenId);
                     break;
                 case 2:
-                    self.TextFubenName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(fubenId).Name;
+                    self.TextFubenName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(fubenId).Name);
                     break;
                 default:
                     break;

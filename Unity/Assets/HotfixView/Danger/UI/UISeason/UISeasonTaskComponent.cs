@@ -255,7 +255,7 @@ namespace ET
             self.TaskPro = taskPro;
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
 
-            self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
+            self.TaskNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
             // 已经完成
             if (taskPro.taskStatus == (int)TaskStatuEnum.Commited)
             {
@@ -314,7 +314,7 @@ namespace ET
                 self.AcvityedImg.SetActive(false);
             }
 
-            self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskDescText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
             if (!ComHelp.IfNull(taskConfig.RewardItem))
             {
                 UICommonHelper.DestoryChild(self.RewardListNode);
@@ -331,7 +331,7 @@ namespace ET
         public static void UpdateInfo(this UISeasonTaskComponent self, int taskId)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
+            self.TaskNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
             if (taskId < self.TaskPro.taskID || (taskId == self.TaskPro.taskID && taskId == self.CompeletTaskId))
             {
                 // 已经完成
@@ -396,7 +396,7 @@ namespace ET
                 self.AcvityedImg.SetActive(false);
             }
 
-            self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskDescText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
             if (!ComHelp.IfNull(taskConfig.ItemID))
             {
                 UICommonHelper.DestoryChild(self.RewardListNode);

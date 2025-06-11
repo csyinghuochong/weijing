@@ -70,8 +70,8 @@ namespace ET
                 UICommonHelper.DestoryChild(self.ItemListNode);
                 UICommonHelper.ShowItemList(taskConfig.RewardItem, self.ItemListNode, self, 0.8f, true);
             }
-            self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName;
-            self.TextTaskDesc.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TextTaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
+            self.TextTaskDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
 
             taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue[0] ? taskConfig.TargetValue[0] : taskPro.taskTargetNum_1;
             self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " + string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);

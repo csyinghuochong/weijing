@@ -66,7 +66,7 @@ namespace ET
             if (self.guidCof != null)
             {
                 self.ShowLabSet.SetActive(true);
-                self.ShowLab.GetComponent<Text>().text = self.guidCof.Text;
+                self.ShowLab.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.guidCof.Text);
             }
             else {
                 self.ShowLabSet.SetActive(false);

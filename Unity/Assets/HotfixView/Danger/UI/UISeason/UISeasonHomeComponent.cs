@@ -135,7 +135,7 @@ namespace ET
             else
             {
                 DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenid);
-                self.MonsterPositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("出现位置:{0}"), dungeonConfig.ChapterName);
+                self.MonsterPositionText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("出现位置:{0}"), GameSettingLanguge.LoadLocalization(dungeonConfig.ChapterName));
             }
            
 

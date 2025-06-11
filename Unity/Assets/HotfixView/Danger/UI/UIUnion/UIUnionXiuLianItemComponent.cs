@@ -36,7 +36,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int xiulianid = numericComponent.GetAsInt(numerType);
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
-            self.Text_Tip_1.GetComponent<Text>().text = unionQiangHuaConfig.EquipSpaceName;
+            self.Text_Tip_1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(unionQiangHuaConfig.EquipSpaceName);
         }
     }
 }

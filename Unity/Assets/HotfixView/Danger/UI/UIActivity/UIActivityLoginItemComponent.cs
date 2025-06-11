@@ -97,7 +97,7 @@ namespace ET
         {
             self.ActivityConfig = activityConfig;
 
-            self.Lab_Name.GetComponent<Text>().text = activityConfig.Par_4;
+            self.Lab_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(activityConfig.Par_4);
             UICommonHelper.DestoryChild(self.ItemNodeList);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f);
         }

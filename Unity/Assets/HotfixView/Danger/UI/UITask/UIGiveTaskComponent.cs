@@ -63,12 +63,12 @@ namespace ET
             if (taskType == 1)
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-                self.TaskDesText.GetComponent<Text>().text = taskConfig.TaskDes;
+                self.TaskDesText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
             }
             else
             {
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(taskId);
-                self.TaskDesText.GetComponent<Text>().text = taskCountryConfig.TaskDes;
+                self.TaskDesText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskCountryConfig.TaskDes);
             }
         }
 

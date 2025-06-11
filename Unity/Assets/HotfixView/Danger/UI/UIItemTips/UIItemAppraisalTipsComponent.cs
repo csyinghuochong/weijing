@@ -198,7 +198,7 @@ namespace ET
             if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + itemConfig.ItemName, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("是否出售道具:") + GameSettingLanguge.LoadLocalization(itemConfig.ItemName), () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
@@ -230,7 +230,7 @@ namespace ET
                     return;
                 }
 
-                string costitem = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
+                string costitem = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(appraisalItem).ItemName);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启封印"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}开启封印?"), costitem), () =>
                 {
                     bagComponent.SendAppraisalItem(self.BagInfo, costbaginfo.BagInfoID).Coroutine();
@@ -287,7 +287,7 @@ namespace ET
                 if (appraisalItem != 0)
                 {
                     string tip_1 = itemconf.EquipType == 101 ? GameSettingLanguge.LoadLocalization("封印生肖") : GameSettingLanguge.LoadLocalization("进行鉴定");
-                    string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
+                    string jiandingName = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(appraisalItem).ItemName);
                     self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗<color=#EA8EF9>{0}</color>{1}"), jiandingName, tip_1);
                 }
             }
@@ -314,7 +314,7 @@ namespace ET
                 self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("部位:") + textEquipType;
             }
 
-            string Text_ItemDes = itemconf.ItemDes;
+            string Text_ItemDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
             //获取道具描述的分隔符
             string[] itemDesArray = Text_ItemDes.Split(';');
             string itemMiaoShu = "";
@@ -440,7 +440,7 @@ namespace ET
             }
             self.Obj_ItemQuality.GetComponent<Image>().sprite = sp3;
 
-            string Text_ItemStory = itemconf.ItemDes;
+            string Text_ItemStory = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
             //显示道具描述
             int i2 = (int)((Text_ItemStory.Length) / 20) + 1;
             //float ItemBottomTextNum = 30.0f;

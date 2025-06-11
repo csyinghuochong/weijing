@@ -96,7 +96,7 @@ namespace ET
                 addStr = GameSettingLanguge.LoadLocalization("(深渊模式)");
             }
 
-            self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name + addStr;
+            self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(teamDungeonConfig.Name) + addStr;
 
             self.Text_Tuijian.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("推荐等级： {0}-{1}级"), teamDungeonConfig.TuiJianLv[0], teamDungeonConfig.TuiJianLv[1]);
         }

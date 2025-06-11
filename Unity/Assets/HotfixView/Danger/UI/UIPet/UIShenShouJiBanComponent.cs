@@ -85,7 +85,7 @@ namespace ET
                     }
 
                     go.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemIcon").GetComponent<Image>().sprite = sp;
-                    go.GetComponent<ReferenceCollector>().Get<GameObject>("Label_ItemName").GetComponent<Text>().text = petConfig.PetName;
+                    go.GetComponent<ReferenceCollector>().Get<GameObject>("Label_ItemName").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petConfig.PetName);
                     UICommonHelper.SetParent(go, self.PetItemNode);
                     go.SetActive(true);
                 }

@@ -238,7 +238,7 @@ namespace ET
 
                 if (self.Label_ItemName != null)
                 {
-                    self.Label_ItemName.GetComponent<Text>().text = itemconfig.ItemName;
+                    self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
                     self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemconfig.ItemQuality);
                 }
 

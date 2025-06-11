@@ -31,7 +31,7 @@ namespace ET
                         strs[0], 
                         GameSettingLanguge.LoadLocalization(ItemHelper.ItemGetWayNameList[int.Parse(strs[1])]), 
                         ComHelp.QualityReturnColor(2), strs[3], 
-                        ItemConfigCategory.Instance.Get(int.Parse(strs[2])).ItemName);
+                        GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(int.Parse(strs[2])).ItemName));
         }
     }
 }

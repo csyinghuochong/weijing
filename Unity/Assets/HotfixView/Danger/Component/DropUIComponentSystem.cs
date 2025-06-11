@@ -108,11 +108,11 @@ namespace ET
             //显示名称
             if (dropinfo.ItemNum == 1)
             {
-                textMeshProUGUI.text = itemConfig.ItemName;
+                textMeshProUGUI.text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
             }
             else 
             {
-                textMeshProUGUI.text = $"{dropinfo.ItemNum}{itemConfig.ItemName}";
+                textMeshProUGUI.text = $"{dropinfo.ItemNum}{GameSettingLanguge.LoadLocalization(itemConfig.ItemName)}";
             }
 
             //显示品质

@@ -46,8 +46,8 @@ namespace ET
             self.Day = day;
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
 
-            self.TaskNameText.GetComponent<Text>().text = taskConfig.TaskName;
-            self.TaskDescText.GetComponent<Text>().text = taskConfig.TaskDes;
+            self.TaskNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
+            self.TaskDescText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
 
             if (!ComHelp.IfNull(taskConfig.ItemID))
             {

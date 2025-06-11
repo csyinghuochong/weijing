@@ -74,7 +74,7 @@ namespace ET
             self.NumericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             int configId = self.MyUnit.ConfigId;
             JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(configId);
-            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = jiaYuanFarmConfig.Name;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanFarmConfig.Name);
             self.OnUpdateUI();
         }
 
@@ -99,7 +99,7 @@ namespace ET
 
                 JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
                 self.GameObject.Get<GameObject>("TalkNode").SetActive(true);
-                self.GameObject.Get<GameObject>("Lal_Talk").GetComponent<Text>().text = $"{jiaYuanPastureConfig.Speak}";
+                self.GameObject.Get<GameObject>("Lal_Talk").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanPastureConfig.Speak);
             }
             if (distance > 3f && !self.MainUnitExit)
             {

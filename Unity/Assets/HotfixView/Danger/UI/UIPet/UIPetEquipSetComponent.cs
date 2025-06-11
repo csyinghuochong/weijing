@@ -127,7 +127,7 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            self.TextName.GetComponent<Text>().text = itemConfig.ItemName;
+            self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
             self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), itemConfig.UseLv);
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

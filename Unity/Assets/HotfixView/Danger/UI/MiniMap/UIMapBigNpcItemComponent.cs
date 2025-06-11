@@ -46,11 +46,11 @@ namespace ET
 
             if (unittype == UnitType.Npc)
             {
-                self.TextName.GetComponent<Text>().text = NpcConfigCategory.Instance.Get(npcId).Name;
+                self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(NpcConfigCategory.Instance.Get(npcId).Name);
             }
             else
             {
-                self.TextName.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(npcId).MonsterName;
+                self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(npcId).MonsterName);
             }
         }
 

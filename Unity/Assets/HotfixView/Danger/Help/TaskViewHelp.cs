@@ -122,7 +122,7 @@ namespace ET
                 {
                     return false;
                 }
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " +DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName));
                 return false;
             }
             if (mapComponent.SceneId != fubenId)
@@ -162,7 +162,7 @@ namespace ET
             {
                 return false;
             }
-            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName));
             return true;
         }
 
@@ -215,12 +215,12 @@ namespace ET
                     fubenId = TaskViewHelp.Instance.GetSceneByNpc(taskConfig.CompleteNpcID);
                     if (fubenId > 0)
                     {
-                        fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
+                        fubenname = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(fubenId).Name);
                     }
                 }
                 else
                 {
-                    fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
+                    fubenname = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
                 }
 
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
@@ -386,12 +386,12 @@ namespace ET
                         fubenId = TaskViewHelp.Instance.GetSceneByNpc(taskConfig.CompleteNpcID);
                         if (fubenId > 0)
                         {
-                            fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
+                            fubenname = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(fubenId).Name);
                         }
                     }
                     else
                     {
-                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
+                        fubenname = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName);
                     }
 
                     FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
@@ -483,17 +483,17 @@ namespace ET
                 int monsterId = taskConfig.Target[i];
                 int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
                 fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
-                string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+                string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName) + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
                 string text1 = "";
                 if (i == 0)
                 {
-                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[i], fubenName);
+                    text1 = string.Format(progress, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName), taskPro.taskTargetNum_1, taskConfig.TargetValue[i], fubenName);
                 }
                 if (i == 1)
                 {
-                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_2, taskConfig.TargetValue[i], fubenName);
+                    text1 = string.Format(progress, GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName), taskPro.taskTargetNum_2, taskConfig.TargetValue[i], fubenName);
                 }
 
                 desc = desc + text1 + "\n";
@@ -507,10 +507,10 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
             int fubenId = GetFubenByNpc(taskConfig.Target[0]);
-            string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+            string fubenName = fubenId > 0 ? " (" + GameSettingLanguge.LoadLocalization("地图") + ":" + GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName) + ")" : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
-            string text1 = string.Format(progress, npcConfig.Name, fubenName);
+            string text1 = string.Format(progress, GameSettingLanguge.LoadLocalization(npcConfig.Name), fubenName);
             return text1;
         }
 
@@ -864,7 +864,7 @@ namespace ET
         public string GetDescKillChallengeMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("击败挑战级的 {0} {1}/{2}");
-            string monsterName = MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName;
+            string monsterName = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName);
             string text1 = string.Format(progress, monsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
@@ -872,7 +872,7 @@ namespace ET
         public string GetDescKillInfernalMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("击败地狱级的 {0} {1}/{2}");
-            string monsterName = MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName;
+            string monsterName = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName);
             string text1 = string.Format(progress, monsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
@@ -961,7 +961,7 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("寻找道具{0} {1}/{2}");
             int itemId = taskConfig.Target[0];
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            string text1 = string.Format(progress, itemConfig.ItemName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            string text1 = string.Format(progress, GameSettingLanguge.LoadLocalization(itemConfig.ItemName), taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 

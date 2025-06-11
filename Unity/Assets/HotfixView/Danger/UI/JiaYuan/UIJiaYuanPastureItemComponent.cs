@@ -94,7 +94,7 @@ namespace ET
             self.MysteryItemInfo = mysteryItemInfo;
 
             self.Text_RenKou.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("人口：")+ jiaYuanPastureConfig.PeopleNum;
-            self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
+            self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanPastureConfig.Name);
             self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
 
             int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
@@ -133,7 +133,7 @@ namespace ET
 
             UI jiayuanmain =  UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
-            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("购买{0}成功"), mysteryConfig.Name));
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("购买{0}成功"), GameSettingLanguge.LoadLocalization(mysteryConfig.Name)));
         }
 
     }

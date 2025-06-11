@@ -163,7 +163,7 @@ namespace ET
             self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.PetModel.ToString(), true).Coroutine();
 
             //显示名称
-            self.Text_PetName.GetComponent<Text>().text = petConfig.PetName;
+            self.Text_PetName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petConfig.PetName);
         }
 
         public static void UpdatePetZizhi(this UIPetTuJianComponent self, int petid)

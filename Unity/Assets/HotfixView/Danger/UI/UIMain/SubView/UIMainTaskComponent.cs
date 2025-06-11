@@ -96,7 +96,7 @@ namespace ET
                 return;
             }
 
-            string fubenName = string.Format(GameSettingLanguge.LoadLocalization("请前往{0} {1} 出接取任务"), DungeonConfigCategory.Instance.Get(fubenId).ChapterName, NpcConfigCategory.Instance.Get(getNpc).Name);
+            string fubenName = string.Format(GameSettingLanguge.LoadLocalization("请前往{0} {1} 出接取任务"), GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(fubenId).ChapterName), GameSettingLanguge.LoadLocalization(NpcConfigCategory.Instance.Get(getNpc).Name));
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {

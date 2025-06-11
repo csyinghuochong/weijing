@@ -141,7 +141,12 @@ namespace ET
             if (battleMessageComponent.CanShout())
             {
                 string text =
-                        string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name, teamInfo.TeamId, teamInfo.SceneId, teamInfo.FubenType, teamInfo.PlayerList[0].PlayerLv);
+                        string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), 
+                            GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name), 
+                            teamInfo.TeamId, 
+                            teamInfo.SceneId, 
+                            teamInfo.FubenType, 
+                            teamInfo.PlayerList[0].PlayerLv);
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已发送！"));
             }
@@ -220,7 +225,7 @@ namespace ET
             {
                 addStr = GameSettingLanguge.LoadLocalization("(深渊模式)");
             }
-            self.Obj_Lab_FuBenName.GetComponent<Text>().text = sceneConfig.Name + addStr;
+            self.Obj_Lab_FuBenName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(sceneConfig.Name) + addStr;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";
         }
 

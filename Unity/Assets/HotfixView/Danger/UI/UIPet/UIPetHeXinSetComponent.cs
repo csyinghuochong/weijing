@@ -88,7 +88,7 @@ namespace ET
             self.ButtonHeXinHeCheng.SetActive(true);
             self.ButtonEquipXieXia.GetComponent<Button>().onClick.RemoveAllListeners();
             ButtonHelp.AddListenerEx( self.ButtonEquipXieXia, () => { self.OnButtonEquipXieXia().Coroutine();  });
-            List<string> TypeNames = new List<string>() { "进攻能量", "守护能量", "生命能量" };
+            List<string> TypeNames = new List<string>() { GameSettingLanguge.LoadLocalization("进攻能量"), GameSettingLanguge.LoadLocalization("守护能量"), GameSettingLanguge.LoadLocalization("生命能量") };
             self.TextType.GetComponent<Text>().text = TypeNames[self.Position];
 
             UICommonHelper.DestoryChild(self.AttributeListNode);
@@ -105,14 +105,14 @@ namespace ET
             self.ButtonEquipXieXia.SetActive(bagInfo != null);
             if (bagInfo == null)
             {
-                self.TextName.GetComponent<Text>().text = "空";
-                self.TextLevel.GetComponent<Text>().text = "等级: 0";
+                self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("空");
+                self.TextLevel.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级: 0");
                 return;
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            self.TextName.GetComponent<Text>().text = itemConfig.ItemName;
-            self.TextLevel.GetComponent<Text>().text = $"等级: {itemConfig.UseLv}";
+            self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.TextLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), itemConfig.UseLv);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -262,7 +262,7 @@ namespace ET
             }
             if (itemConfig.ItemSubType -1 != self.Position)
             {
-                FloatTipManager.Instance.ShowFloatTip("孔位不符！");
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("孔位不符！"));
                 return -1;
             }
 

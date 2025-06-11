@@ -93,7 +93,7 @@ namespace ET
                 self.Label_ItemNum.GetComponent<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
             }
 
-            self.Label_ItemName.GetComponent<Text>().text = itemconfig.ItemName;
+            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
             self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);
 
         }

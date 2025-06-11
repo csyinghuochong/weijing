@@ -74,8 +74,8 @@ namespace ET
             }
             self.Image_SkillIcon.GetComponent<Image>().sprite = sprite;
         
-            self.Lab_SkillName.GetComponent<Text>().text = skillBufConfig.BuffName;
-            self.Lab_SkillDes.GetComponent<Text>().text = skillBufConfig.BuffDescribe;
+            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillBufConfig.BuffName);
+            self.Lab_SkillDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillBufConfig.BuffDescribe);
 
             self.Lab_BuffTime.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间") + ":" + showStr;
 

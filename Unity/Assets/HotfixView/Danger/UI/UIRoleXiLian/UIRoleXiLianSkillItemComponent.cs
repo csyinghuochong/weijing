@@ -52,7 +52,7 @@ namespace ET
 
                 Log.Info("xilianSkill[i] = " + xilianSkill[i]);
                 SkillConfig skillcof = SkillConfigCategory.Instance.Get((int)xilianSkill[i].Value);
-                ui_item.TextSkillName.GetComponent<Text>().text = skillcof.SkillName;
+                ui_item.TextSkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillcof.SkillName);
                 ui_item.TextSkillName.SetActive(true);
                 self.uIItems.Add(ui_item);
             }

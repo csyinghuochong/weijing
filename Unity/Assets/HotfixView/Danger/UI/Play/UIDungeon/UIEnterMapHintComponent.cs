@@ -59,7 +59,7 @@ namespace ET
                 {
                     //地狱难度
                 }
-                self.titleText.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(dungeonId).ChapterName;
+                self.titleText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(dungeonId).ChapterName);
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
@@ -70,7 +70,7 @@ namespace ET
                     self.ShenYuanSet.SetActive(true);
                     
                 }
-                self.titleText.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(dungeonId).Name;
+                self.titleText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(dungeonId).Name);
             }
 
             long instanceId = self.InstanceId;
