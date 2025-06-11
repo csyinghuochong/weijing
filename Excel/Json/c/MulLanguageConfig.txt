@@ -9053,6 +9053,7 @@
 {"_t":"MulLanguageConfig","_id":109053,"Chinese":"守护牦牛","English":"Guardian Yak"},
 {"_t":"MulLanguageConfig","_id":109054,"Chinese":"化境","English":"Transcendence"},
 {"_t":"MulLanguageConfig","_id":109055,"Chinese":"烈焰爆裂","English":"Flame Burst"},
+{"_t":"MulLanguageConfig","_id":109056,"Chinese":"主城","English":"Main City"},
 {"_t":"MulLanguageConfig","_id":200001,"Chinese":"任务","English":"Task"},
 {"_t":"MulLanguageConfig","_id":200002,"Chinese":"商店","English":"Shop"},
 {"_t":"MulLanguageConfig","_id":200003,"Chinese":"每天20:30-21:00开启","English":"It starts at 8:30 PM every day until 8:00 PM."},
