@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4448840633755497118}
   - component: {fileID: 8966486386468348352}
   - component: {fileID: 5412224899834718098}
+  - component: {fileID: 8163851077333598577}
   m_Layer: 5
   m_Name: NanDu_3_Button
   m_TagString: Untagged
@@ -123,6 +124,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8163851077333598577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492694178295846336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_60_EN
+    gameObject: {fileID: 21300000, guid: 451c12216d56d954582784dbe74ec5e8, type: 3}
 --- !u!1 &1327118677743738051
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +189,7 @@ GameObject:
   - component: {fileID: 8086565974468075836}
   - component: {fileID: 479743787288858734}
   - component: {fileID: 5031789158281449321}
+  - component: {fileID: 2240053815691906237}
   m_Layer: 5
   m_Name: NanDu_1_Button
   m_TagString: Untagged
@@ -284,6 +301,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2240053815691906237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414379923483236563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_59_EN
+    gameObject: {fileID: 21300000, guid: 1d84d19bce9a54f468a0bf8fe197f715, type: 3}
 --- !u!1 &1558214656064616428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2607,7 @@ GameObject:
   - component: {fileID: 6846609778570111866}
   - component: {fileID: 1866074593890067455}
   - component: {fileID: 8135277796510791982}
+  - component: {fileID: 1136599945071836864}
   m_Layer: 5
   m_Name: NanDu_2_Button
   m_TagString: Untagged
@@ -2686,6 +2719,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1136599945071836864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909807362273307871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_58_EN
+    gameObject: {fileID: 21300000, guid: 2c0199103baeb6648b83ddccd6e1c292, type: 3}
 --- !u!1 &5961725424059400620
 GameObject:
   m_ObjectHideFlags: 0

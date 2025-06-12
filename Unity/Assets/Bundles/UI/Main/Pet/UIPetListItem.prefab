@@ -1050,6 +1050,7 @@ GameObject:
   - component: {fileID: 2583136549912536426}
   - component: {fileID: 2583136549912593970}
   - component: {fileID: 2583136549883622476}
+  - component: {fileID: 8930751561804995465}
   m_Layer: 5
   m_Name: Img_CanZhan
   m_TagString: Untagged
@@ -1114,6 +1115,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8930751561804995465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2583136549890413170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_232_EN
+    gameObject: {fileID: 21300000, guid: e1872b7eb0a79b048a87ec41ced0ef89, type: 3}
 --- !u!1 &2583136549890414876
 GameObject:
   m_ObjectHideFlags: 0

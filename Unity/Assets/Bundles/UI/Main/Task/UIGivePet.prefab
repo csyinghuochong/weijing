@@ -5401,10 +5401,10 @@ RectTransform:
   m_Father: {fileID: 3746020097838226139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 246.5, y: -90}
+  m_SizeDelta: {x: 390, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050747660303429876
 MonoBehaviour:
@@ -5474,6 +5474,7 @@ GameObject:
   - component: {fileID: 6455293243885766168}
   - component: {fileID: 6455293243885708608}
   - component: {fileID: 6455293243892635454}
+  - component: {fileID: 8471240298504594339}
   m_Layer: 5
   m_Name: Img_CanZhan
   m_TagString: Untagged
@@ -5538,6 +5539,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8471240298504594339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455293243899572480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_232_EN
+    gameObject: {fileID: 21300000, guid: e1872b7eb0a79b048a87ec41ced0ef89, type: 3}
 --- !u!1 &6455293243899574894
 GameObject:
   m_ObjectHideFlags: 0

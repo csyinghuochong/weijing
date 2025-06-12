@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 2292223430365972203}
   - component: {fileID: 8784647058526077097}
   - component: {fileID: 8205603672084858558}
+  - component: {fileID: 2796222510755121611}
   m_Layer: 5
   m_Name: Button_Zhuizong
   m_TagString: Untagged
@@ -733,6 +734,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2796222510755121611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838096854033089709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_139_EN
+    gameObject: {fileID: 21300000, guid: 13ff8feb4ace4cd4e96f46dbdc61dde2, type: 3}
 --- !u!1 &2946244059370835030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2281,7 @@ GameObject:
   - component: {fileID: 1714166085137353049}
   - component: {fileID: 6319920444905408362}
   - component: {fileID: 74162022926894424}
+  - component: {fileID: 3985167519557392283}
   m_Layer: 5
   m_Name: Button_CancelZhuizong
   m_TagString: Untagged
@@ -2373,6 +2390,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3985167519557392283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053803579045922812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_140_EN
+    gameObject: {fileID: 21300000, guid: 3be2c4e8644f7444e89e181b4314b752, type: 3}
 --- !u!1 &7592636496965373979
 GameObject:
   m_ObjectHideFlags: 0

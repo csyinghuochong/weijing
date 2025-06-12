@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 723997483979854283}
   - component: {fileID: 3214080846106552537}
   - component: {fileID: 3966814010124236021}
+  - component: {fileID: 7592580011880715919}
   m_Layer: 5
   m_Name: Nandu2_Button
   m_TagString: Untagged
@@ -551,6 +552,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7592580011880715919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947402762648798924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_58_EN
+    gameObject: {fileID: 21300000, guid: 2c0199103baeb6648b83ddccd6e1c292, type: 3}
 --- !u!1 &1059913844233602883
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +710,7 @@ GameObject:
   - component: {fileID: 8098509543734253191}
   - component: {fileID: 1347136344571757411}
   - component: {fileID: 3703527552609763992}
+  - component: {fileID: 5520426261378040362}
   m_Layer: 5
   m_Name: Nandu3_Button
   m_TagString: Untagged
@@ -802,6 +819,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5520426261378040362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132632891293738106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_60_EN
+    gameObject: {fileID: 21300000, guid: 451c12216d56d954582784dbe74ec5e8, type: 3}
 --- !u!1 &2197670305633842719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1601,7 @@ GameObject:
   - component: {fileID: 8243940857806957859}
   - component: {fileID: 344040920544871284}
   m_Layer: 5
-  m_Name: UILevelSelect
+  m_Name: UICellDungeonSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2466,6 +2498,7 @@ GameObject:
   - component: {fileID: 8459999955853804150}
   - component: {fileID: 1528791998338363309}
   - component: {fileID: 5370616525577468091}
+  - component: {fileID: 2313994392405384630}
   m_Layer: 5
   m_Name: Nandu1_Button
   m_TagString: Untagged
@@ -2574,6 +2607,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2313994392405384630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635389798604943334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_59_EN
+    gameObject: {fileID: 21300000, guid: 1d84d19bce9a54f468a0bf8fe197f715, type: 3}
 --- !u!1 &6811094623399785322
 GameObject:
   m_ObjectHideFlags: 0
