@@ -88,7 +88,15 @@ namespace ET
             if (subType < 100)
             {
                 string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
-                string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName);
+                string path = "";
+                if (GameSettingLanguge.Language == 0)
+                {
+                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName);
+                }
+                else
+                {
+                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, qianghuaName + "_EN");
+                }
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))
                 {

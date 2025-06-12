@@ -108,7 +108,15 @@ namespace ET
                 titlePath = "UITeamDungeon";
             }
 
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, "Img_" + titlePath);
+            string path = "";
+            if (GameSettingLanguge.Language == 0)
+            {
+                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, "Img_" + titlePath);
+            }
+            else
+            {
+                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, "Img_" + titlePath + "_EN");
+            }
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {

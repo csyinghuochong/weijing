@@ -201,7 +201,16 @@ namespace ET
             int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             self.Button_Switch_0.SetActive( occ == 3);
-            string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex ==0 ? "c12" : "c11");
+            string path = "";
+            if (GameSettingLanguge.Language == 0)
+            {
+                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0? "c12" : "c11");
+            }
+            else
+            {
+                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0? "c12_EN" : "c11_EN");
+            }
+            
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
             {
