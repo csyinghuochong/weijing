@@ -274,7 +274,7 @@ namespace ET
 
             while (cdTime > 0)
             {
-                self.TextChallengeCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战冷却时间: ")+ TimeHelper.ShowLeftTime(cdTime, GameSettingLanguge.Language);   
+                self.TextChallengeCD.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战冷却时间: ")+ UICommonHelper.ShowLeftTime(cdTime, GameSettingLanguge.Language);   
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {

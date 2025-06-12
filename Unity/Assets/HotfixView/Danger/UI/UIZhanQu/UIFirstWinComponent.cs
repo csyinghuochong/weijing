@@ -355,7 +355,7 @@ namespace ET
 			self.Text_BossExp.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("怪物经验:{0}"), 1f * bossDevelopment.ExpAdd * monsterConfig.Exp);
             self.Text_BossDevpName.text = GameSettingLanguge.LoadLocalization(bossDevelopment.Name);
 			long cdTime = (long)(monsterConfig.ReviveTime * 1000 * bossDevelopment.ReviveTimeAdd);
-			self.Text_BossFreshTIme.text = GameSettingLanguge.LoadLocalization("冷却时间:") + TimeHelper.ShowLeftTime(cdTime, GameSettingLanguge.Language);
+			self.Text_BossFreshTIme.text = GameSettingLanguge.LoadLocalization("冷却时间:") + UICommonHelper.ShowLeftTime(cdTime, GameSettingLanguge.Language);
 
 
             List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);

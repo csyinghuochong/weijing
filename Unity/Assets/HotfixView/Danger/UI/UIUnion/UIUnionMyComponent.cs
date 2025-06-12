@@ -336,7 +336,7 @@ namespace ET
                 self.TextJingXuanEndTime.text = string.Empty;
                 return;
             }
-            self.TextJingXuanEndTime.text = TimeHelper.ShowLeftTime(lastTime, GameSettingLanguge.Language);
+            self.TextJingXuanEndTime.text = UICommonHelper.ShowLeftTime(lastTime, GameSettingLanguge.Language);
         }
 
         public static  void UpdateMyUnion(this UIUnionMyComponent self, UnionInfo unionInfo)

@@ -114,7 +114,7 @@ namespace ET
             }
             else
             {
-                self.Text_RewardTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("奖励发放时间: {0}"), TimeHelper.ShowLeftTime(leftTime, GameSettingLanguge.Language)); 
+                self.Text_RewardTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("奖励发放时间: {0}"), UICommonHelper.ShowLeftTime(leftTime, GameSettingLanguge.Language)); 
             }
         }
 

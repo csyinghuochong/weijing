@@ -7,6 +7,41 @@ namespace ET
 {
     public static class UICommonHelper
     {
+        public static string ShowLeftTime(long time, int language = 0)
+        {
+            string str = "";
+            time = time / 1000;
+
+            if (language == 0)
+            {
+                if (time > 24 * 60 * 60)
+                {
+                    str += $"{time / (24 * 60 * 60)}天";
+                    time %= 24 * 60 * 60;
+                }
+
+                str += $"{time / (60 * 60)}时";
+                time %= 60 * 60;
+                str += $"{time / 60}分";
+                str += $"{time % 60}秒";
+            }
+            else
+            {
+                if (time > 24 * 60 * 60)
+                {
+                    str += $"{time / (24 * 60 * 60)}d";
+                    time %= 24 * 60 * 60;
+                }
+                
+                str += $"{time / (60 * 60)}h";
+                time %= 60 * 60;
+                str += $"{time / 60}m";
+                str += $"{time % 60}s";
+            }
+
+            return str;
+        }
+        
         //"Assets/Bundles/Effect/SkillEffect/Eff_Skill_GongJianAct_1.prefab"
         public static List<string> NoUsePool = new List<string>()
         {

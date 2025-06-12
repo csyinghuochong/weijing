@@ -52,7 +52,7 @@ namespace ET
             long leaveTime = numericComponent.GetAsLong(NumericType.UnionIdLeaveTime);
             if (TimeHelper.ServerNow()- leaveTime < TimeHelper.Hour * 8)
             {
-                string tip = TimeHelper.ShowLeftTime(TimeHelper.Hour * 8 - (TimeHelper.ServerNow() - leaveTime), GameSettingLanguge.Language);
+                string tip = UICommonHelper.ShowLeftTime(TimeHelper.Hour * 8 - (TimeHelper.ServerNow() - leaveTime), GameSettingLanguge.Language);
                 FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("{0} 后才能加入家族！"), tip));
                 return;
             }

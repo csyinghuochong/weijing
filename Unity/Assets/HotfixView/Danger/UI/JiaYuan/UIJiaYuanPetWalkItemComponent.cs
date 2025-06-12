@@ -183,7 +183,7 @@ namespace ET
                 self.ImagePetIcon.GetComponent<Image>().sprite = sp;
 
                 long walkTime = jiaYuanPet.StartTime > 0 ? TimeHelper.ServerNow() - jiaYuanPet.StartTime : 0;
-                self.Text_Tip_121.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("已经散步:{0}"), TimeHelper.ShowLeftTime(walkTime, GameSettingLanguge.Language));
+                self.Text_Tip_121.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("已经散步:{0}"), UICommonHelper.ShowLeftTime(walkTime, GameSettingLanguge.Language));
 
                 self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
                 self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
