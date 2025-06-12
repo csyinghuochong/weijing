@@ -1,272 +1,277 @@
 
-$¡ç»¿æ—å°é•‡‘N"
-TaskMove_1*0
-$¢ç»¿æ—å°é•‡‘N"
-TaskMove_2*0
-$£ç»¿æ—å°é•‡‘N"
-TaskMove_3*0
-$¤ç»¿æ—å°é•‡‘N"
-TaskMove_4*0
-$¥ç»¿æ—å°é•‡‘N"
-TaskMove_5*0
-$¦ç»¿æ—å°é•‡‘N"
-TaskMove_6*0
-$§ç»¿æ—å°é•‡‘N"
-TaskMove_7*0
-$¨ç»¿æ—å°é•‡‘N"
-TaskMove_8*0
-$©ç»¿æ—å°é•‡‘N"
-TaskMove_9*0
-%ªç»¿æ—å°é•‡‘N"TaskMove_10*0
-/…çŸ¿æ´ä¸€å±‚’N"
-TaskMove_1*10001,100008
-/†çŸ¿æ´ä¸€å±‚’N"
-TaskMove_2*10001,100008
-/‡çŸ¿æ´ä¸€å±‚’N"
-TaskMove_3*10001,100008
-/ˆçŸ¿æ´ä¸€å±‚’N"
-TaskMove_4*10001,100008
-/‰çŸ¿æ´ä¸€å±‚’N"
-TaskMove_5*10001,100008
-$ŠçŸ¿æ´ä¸€å±‚’N"
-TaskMove_6*0
-<éçŸ¿æ´äºŒå±‚“N"
-TaskMove_1*10001,100008;10002,100106
-$êçŸ¿æ´äºŒå±‚“N"
-TaskMove_2*0
-$ëçŸ¿æ´äºŒå±‚“N"
-TaskMove_3*0
-$ìçŸ¿æ´äºŒå±‚“N"
-TaskMove_4*0
-$íçŸ¿æ´äºŒå±‚“N"
-TaskMove_5*0
-<Íç»¿å¶éƒŠå¤–”N"
-TaskMove_1*10001,100009;10005,100401
-$Îç»¿å¶éƒŠå¤–”N"
-TaskMove_2*0
-$Ïç»¿å¶éƒŠå¤–”N"
-TaskMove_3*0
-$Ğç»¿å¶éƒŠå¤–”N"
-TaskMove_4*0
-$Ñç»¿å¶éƒŠå¤–”N"
-TaskMove_5*0
-$±ç»¿å¶æ£®æ—•N"
-TaskMove_1*0
-$²ç»¿å¶æ£®æ—•N"
-TaskMove_2*0
-$³ç»¿å¶æ£®æ—•N"
-TaskMove_3*0
-<´ç»¿å¶æ£®æ—•N"
-TaskMove_4*10001,100009;10004,100303
-$•‘æ­»äº¡æ´ç©´–N"
-TaskMove_1*0
-$–‘æ­»äº¡æ´ç©´–N"
-TaskMove_2*0
-$—‘æ­»äº¡æ´ç©´–N"
-TaskMove_3*0
-$˜‘æ­»äº¡æ´ç©´–N"
-TaskMove_4*0
-$™‘æ­»äº¡æ´ç©´–N"
-TaskMove_5*0
-$ù‘å¤å¢“ä¸€å±‚—N"
-TaskMove_1*0
-<ú‘å¤å¢“ä¸€å±‚—N"
-TaskMove_2*10001,100009;10004,100304
-$û‘å¤å¢“ä¸€å±‚—N"
-TaskMove_3*0
-$ü‘å¤å¢“ä¸€å±‚—N"
-TaskMove_4*0
-$İ’å¤å¢“äºŒå±‚˜N"
-TaskMove_1*0
-IŞ’å¤å¢“äºŒå±‚˜N"
-TaskMove_2*&10001,100009;10004,100304;10007,100604
-$ß’å¤å¢“äºŒå±‚˜N"
-TaskMove_3*0
-$à’å¤å¢“äºŒå±‚˜N"
-TaskMove_4*0
-$á’å¤å¢“äºŒå±‚˜N"
-TaskMove_5*0
-%Ášçƒ­è’æ²™æ¼ ¡œ"
-TaskMove_1*0
-%Âšçƒ­è’æ²™æ¼ ¡œ"
-TaskMove_2*0
-%Ãšçƒ­è’æ²™æ¼ ¡œ"
-TaskMove_3*0
-%Äšçƒ­è’æ²™æ¼ ¡œ"
-TaskMove_4*0
-%¥›çƒ­è’æ²™æ¼ ¢œ"
-TaskMove_1*0
-%¦›çƒ­è’æ²™æ¼ ¢œ"
-TaskMove_2*0
-%§›çƒ­è’æ²™æ¼ ¢œ"
-TaskMove_3*0
-%¨›çƒ­è’æ²™æ¼ ¢œ"
-TaskMove_4*0
-%‰œè¯…å’’åºŸå¢Ÿ£œ"
-TaskMove_1*0
-%Šœè¯…å’’åºŸå¢Ÿ£œ"
-TaskMove_2*0
-%‹œè¯…å’’åºŸå¢Ÿ£œ"
-TaskMove_3*0
-%Œœè¯…å’’åºŸå¢Ÿ£œ"
-TaskMove_4*0
-%œè¯…å’’åºŸå¢Ÿ£œ"
-TaskMove_5*0
-%íœåœ°ç‰¢ä¸€å±‚¤œ"
-TaskMove_1*0
-%îœåœ°ç‰¢ä¸€å±‚¤œ"
-TaskMove_2*0
-%ïœåœ°ç‰¢ä¸€å±‚¤œ"
-TaskMove_3*0
-%ğœåœ°ç‰¢ä¸€å±‚¤œ"
-TaskMove_4*0
-%Ñåœ°ç‰¢äºŒå±‚¥œ"
-TaskMove_1*0
-%Òåœ°ç‰¢äºŒå±‚¥œ"
-TaskMove_2*0
-%Å¨å†°å°åŸé•‡±ê"
-TaskMove_1*0
-%Æ¨å†°å°åŸé•‡±ê"
-TaskMove_2*0
-%Ç¨å†°å°åŸé•‡±ê"
-TaskMove_3*0
-%È¨å†°å°åŸé•‡±ê"
-TaskMove_4*0
-%©©å†°å°æ£®æ—²ê"
-TaskMove_1*0
-%ª©å†°å°æ£®æ—²ê"
-TaskMove_2*0
-%«©å†°å°æ£®æ—²ê"
-TaskMove_3*0
-0¬©å†°å°æ£®æ—²ê"
-TaskMove_4*30001,300204
-%ªå†°å°å ¡å’³ê"
-TaskMove_1*0
-%ªå†°å°å ¡å’³ê"
-TaskMove_2*0
-%ªå†°å°å ¡å’³ê"
-TaskMove_3*0
-=ªå†°å°å ¡å’³ê"
-TaskMove_4*30001,300104;30002,300204
-%ñªåƒé’ˆå¶æ—´ê"
-TaskMove_1*0
-%òªåƒé’ˆå¶æ—´ê"
-TaskMove_2*0
-%óªåƒé’ˆå¶æ—´ê"
-TaskMove_3*0
-=ôªåƒé’ˆå¶æ—´ê"
-TaskMove_4*30001,300104;30002,300204
-%Õ«å†°å°ä¹‹è·¯µê"
-TaskMove_1*0
-%Ö«å†°å°ä¹‹è·¯µê"
-TaskMove_2*0
-%×«å†°å°ä¹‹è·¯µê"
-TaskMove_3*0
-%Ø«å†°å°ä¹‹è·¯µê"
-TaskMove_4*0
-JÙ«å†°å°ä¹‹è·¯µê"
-TaskMove_5*&30001,300104;30002,300204;30004,300403
-%¹¬å†°å°é­”ç©´¶ê"
-TaskMove_1*0
-%º¬å†°å°é­”ç©´¶ê"
-TaskMove_2*0
-%»¬å†°å°é­”ç©´¶ê"
-TaskMove_3*0
-%¼¬å†°å°é­”ç©´¶ê"
-TaskMove_4*0
-W½¬å†°å°é­”ç©´¶ê"
-TaskMove_5*330001,300104;30002,300204;30004,300403;30005,300504
-%åµæš®è‰²åŸé•‡Á¸"
-TaskMove_1*0
-%æµæš®è‰²åŸé•‡Á¸"
-TaskMove_2*0
-%çµæš®è‰²åŸé•‡Á¸"
-TaskMove_3*0
-%èµæš®è‰²åŸé•‡Á¸"
-TaskMove_4*0
-%éµæš®è‰²åŸé•‡Á¸"
-TaskMove_5*0
-%É¶æš®è‰²éƒŠå¤–Â¸"
-TaskMove_1*0
-%Ê¶æš®è‰²éƒŠå¤–Â¸"
-TaskMove_2*0
-0Ë¶æš®è‰²éƒŠå¤–Â¸"
-TaskMove_3*40001,400104
-%Ì¶æš®è‰²éƒŠå¤–Â¸"
-TaskMove_4*0
-%­·æš®è‰²æ£®æ—Ã¸"
-TaskMove_1*0
-%®·æš®è‰²æ£®æ—Ã¸"
-TaskMove_2*0
-%¯·æš®è‰²æ£®æ—Ã¸"
-TaskMove_3*0
-%°·æš®è‰²æ£®æ—Ã¸"
-TaskMove_4*0
-=±·æš®è‰²æ£®æ—Ã¸"
-TaskMove_5*40001,400104;40002,400204
-P‘¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_1*&40001,400104;40002,400204;40003,400304
-+’¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_2*0
-+“¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_3*0
-+”¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_4*0
-+•¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_5*0
-+–¸æš®è‰²çŸ¿æ´ä¸€å±‚Ä¸"
-TaskMove_6*0
-+õ¸æš®è‰²çŸ¿æ´äºŒå±‚Å¸"
-TaskMove_1*0
-+ö¸æš®è‰²çŸ¿æ´äºŒå±‚Å¸"
-TaskMove_2*0
-+÷¸æš®è‰²çŸ¿æ´äºŒå±‚Å¸"
-TaskMove_3*0
-+ø¸æš®è‰²çŸ¿æ´äºŒå±‚Å¸"
-TaskMove_4*0
-0Ù¹è£‚çŸ³å³¡è°·Æ¸"
-TaskMove_1*40001,400105
-%Ú¹è£‚çŸ³å³¡è°·Æ¸"
-TaskMove_2*0
-%Û¹è£‚çŸ³å³¡è°·Æ¸"
-TaskMove_3*0
-=½ºåœ°ç‹±è£‚è°·Ç¸"
-TaskMove_1*40001,400105;40006,400603
-%¾ºåœ°ç‹±è£‚è°·Ç¸"
-TaskMove_2*0
-%¿ºåœ°ç‹±è£‚è°·Ç¸"
-TaskMove_3*0
-%…Ãé»‘æš—å°é•‡Ñ†"
-TaskMove_1*0
-%†Ãé»‘æš—å°é•‡Ñ†"
-TaskMove_2*0
-%‡Ãé»‘æš—å°é•‡Ñ†"
-TaskMove_3*0
-%ˆÃé»‘æš—å°é•‡Ñ†"
-TaskMove_4*0
-0éÃè¯¡å¼‚å°å¾„Ò†"
-TaskMove_1*50001,500102
-%êÃè¯¡å¼‚å°å¾„Ò†"
-TaskMove_2*0
-%ëÃè¯¡å¼‚å°å¾„Ò†"
-TaskMove_3*0
-%ìÃè¯¡å¼‚å°å¾„Ò†"
-TaskMove_4*0
-%íÃè¯¡å¼‚å°å¾„Ò†"
-TaskMove_5*0
-%ÍÄè…èš€ä¹‹åœ°Ó†"
-TaskMove_1*0
-%ÎÄè…èš€ä¹‹åœ°Ó†"
-TaskMove_2*0
-%ÏÄè…èš€ä¹‹åœ°Ó†"
-TaskMove_3*0
-%ĞÄè…èš€ä¹‹åœ°Ó†"
-TaskMove_4*0
-P±Åé»‘æš—èµ°å»Šä¸€å±‚Ô†"
-TaskMove_1*&50001,500102;50002,500205;50003,500304
-+ùÆé»‘æš—èµ°å»Šä¸‰å±‚Ö†"
-TaskMove_1*0
-+úÆé»‘æš—èµ°å»Šä¸‰å±‚Ö†"
-TaskMove_2*0
-%İÇé»‘æš—ä¹‹å¿ƒ×†"
-TaskMove_1*0
+4¡ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_120
+4¢ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_220
+4£ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_320
+4¤ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_420
+4¥ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_520
+4¦ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_620
+4§ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_720
+4¨ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_820
+4©ç»¿æ—å°é•‡Greenwood Town ‘N*
+TaskMove_920
+5ªç»¿æ—å°é•‡Greenwood Town ‘N*TaskMove_1020
+J…çŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_1210001,100008
+J†çŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_2210001,100008
+J‡çŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_3210001,100008
+JˆçŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_4210001,100008
+J‰çŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_5210001,100008
+?ŠçŸ¿æ´ä¸€å±‚Level 1 of the Mine Shaft ’N*
+TaskMove_620
+VéçŸ¿æ´äºŒå±‚Second floor of the mine “N*
+TaskMove_1210001,100008;10002,100106
+>êçŸ¿æ´äºŒå±‚Second floor of the mine “N*
+TaskMove_220
+>ëçŸ¿æ´äºŒå±‚Second floor of the mine “N*
+TaskMove_320
+>ìçŸ¿æ´äºŒå±‚Second floor of the mine “N*
+TaskMove_420
+>íçŸ¿æ´äºŒå±‚Second floor of the mine “N*
+TaskMove_520
+RÍç»¿å¶éƒŠå¤–Green Leaf Outskirts ”N*
+TaskMove_1210001,100009;10005,100401
+:Îç»¿å¶éƒŠå¤–Green Leaf Outskirts ”N*
+TaskMove_220
+:Ïç»¿å¶éƒŠå¤–Green Leaf Outskirts ”N*
+TaskMove_320
+:Ğç»¿å¶éƒŠå¤–Green Leaf Outskirts ”N*
+TaskMove_420
+:Ñç»¿å¶éƒŠå¤–Green Leaf Outskirts ”N*
+TaskMove_520
+7±ç»¿å¶æ£®æ—Green Leaf Forest •N*
+TaskMove_120
+7²ç»¿å¶æ£®æ—Green Leaf Forest •N*
+TaskMove_220
+7³ç»¿å¶æ£®æ—Green Leaf Forest •N*
+TaskMove_320
+O´ç»¿å¶æ£®æ—Green Leaf Forest •N*
+TaskMove_4210001,100009;10004,100303
+0•‘æ­»äº¡æ´ç©´
+Death Cave –N*
+TaskMove_120
+0–‘æ­»äº¡æ´ç©´
+Death Cave –N*
+TaskMove_220
+0—‘æ­»äº¡æ´ç©´
+Death Cave –N*
+TaskMove_320
+0˜‘æ­»äº¡æ´ç©´
+Death Cave –N*
+TaskMove_420
+0™‘æ­»äº¡æ´ç©´
+Death Cave –N*
+TaskMove_520
+Iù‘å¤å¢“ä¸€å±‚#The first floor of the ancient tomb —N*
+TaskMove_120
+aú‘å¤å¢“ä¸€å±‚#The first floor of the ancient tomb —N*
+TaskMove_2210001,100009;10004,100304
+Iû‘å¤å¢“ä¸€å±‚#The first floor of the ancient tomb —N*
+TaskMove_320
+Iü‘å¤å¢“ä¸€å±‚#The first floor of the ancient tomb —N*
+TaskMove_420
+>İ’å¤å¢“äºŒå±‚Second floor of the tomb ˜N*
+TaskMove_120
+cŞ’å¤å¢“äºŒå±‚Second floor of the tomb ˜N*
+TaskMove_22&10001,100009;10004,100304;10007,100604
+>ß’å¤å¢“äºŒå±‚Second floor of the tomb ˜N*
+TaskMove_320
+>à’å¤å¢“äºŒå±‚Second floor of the tomb ˜N*
+TaskMove_420
+>á’å¤å¢“äºŒå±‚Second floor of the tomb ˜N*
+TaskMove_520
+?Ášçƒ­è’æ²™æ¼ Desert of Scorching Heat ¡œ*
+TaskMove_120
+?Âšçƒ­è’æ²™æ¼ Desert of Scorching Heat ¡œ*
+TaskMove_220
+?Ãšçƒ­è’æ²™æ¼ Desert of Scorching Heat ¡œ*
+TaskMove_320
+?Äšçƒ­è’æ²™æ¼ Desert of Scorching Heat ¡œ*
+TaskMove_420
+?¥›çƒ­è’æ²™æ¼ Desert of Scorching Heat ¢œ*
+TaskMove_120
+?¦›çƒ­è’æ²™æ¼ Desert of Scorching Heat ¢œ*
+TaskMove_220
+?§›çƒ­è’æ²™æ¼ Desert of Scorching Heat ¢œ*
+TaskMove_320
+?¨›çƒ­è’æ²™æ¼ Desert of Scorching Heat ¢œ*
+TaskMove_420
+2‰œè¯…å’’åºŸå¢ŸCurse Ruins £œ*
+TaskMove_120
+2Šœè¯…å’’åºŸå¢ŸCurse Ruins £œ*
+TaskMove_220
+2‹œè¯…å’’åºŸå¢ŸCurse Ruins £œ*
+TaskMove_320
+2Œœè¯…å’’åºŸå¢ŸCurse Ruins £œ*
+TaskMove_420
+2œè¯…å’’åºŸå¢ŸCurse Ruins £œ*
+TaskMove_520
+=íœåœ°ç‰¢ä¸€å±‚Floor 1 of the Dungeon ¤œ*
+TaskMove_120
+=îœåœ°ç‰¢ä¸€å±‚Floor 1 of the Dungeon ¤œ*
+TaskMove_220
+=ïœåœ°ç‰¢ä¸€å±‚Floor 1 of the Dungeon ¤œ*
+TaskMove_320
+=ğœåœ°ç‰¢ä¸€å±‚Floor 1 of the Dungeon ¤œ*
+TaskMove_420
+BÑåœ°ç‰¢äºŒå±‚Second floor of the dungeon ¥œ*
+TaskMove_120
+BÒåœ°ç‰¢äºŒå±‚Second floor of the dungeon ¥œ*
+TaskMove_220
+2Å¨å†°å°åŸé•‡Frozen Town ±ê*
+TaskMove_120
+2Æ¨å†°å°åŸé•‡Frozen Town ±ê*
+TaskMove_220
+2Ç¨å†°å°åŸé•‡Frozen Town ±ê*
+TaskMove_320
+2È¨å†°å°åŸé•‡Frozen Town ±ê*
+TaskMove_420
+4©©å†°å°æ£®æ—Frozen Forest ²ê*
+TaskMove_120
+4ª©å†°å°æ£®æ—Frozen Forest ²ê*
+TaskMove_220
+4«©å†°å°æ£®æ—Frozen Forest ²ê*
+TaskMove_320
+?¬©å†°å°æ£®æ—Frozen Forest ²ê*
+TaskMove_4230001,300204
+6ªå†°å°å ¡å’Frozen Fortress ³ê*
+TaskMove_120
+6ªå†°å°å ¡å’Frozen Fortress ³ê*
+TaskMove_220
+6ªå†°å°å ¡å’Frozen Fortress ³ê*
+TaskMove_320
+Nªå†°å°å ¡å’Frozen Fortress ³ê*
+TaskMove_4230001,300104;30002,300204
+=ñªåƒé’ˆå¶æ—Thousand-needle forest ´ê*
+TaskMove_120
+=òªåƒé’ˆå¶æ—Thousand-needle forest ´ê*
+TaskMove_220
+=óªåƒé’ˆå¶æ—Thousand-needle forest ´ê*
+TaskMove_320
+Uôªåƒé’ˆå¶æ—Thousand-needle forest ´ê*
+TaskMove_4230001,300104;30002,300204
+2Õ«å†°å°ä¹‹è·¯Frozen Path µê*
+TaskMove_120
+2Ö«å†°å°ä¹‹è·¯Frozen Path µê*
+TaskMove_220
+2×«å†°å°ä¹‹è·¯Frozen Path µê*
+TaskMove_320
+2Ø«å†°å°ä¹‹è·¯Frozen Path µê*
+TaskMove_420
+WÙ«å†°å°ä¹‹è·¯Frozen Path µê*
+TaskMove_52&30001,300104;30002,300204;30004,300403
+6¹¬å†°å°é­”ç©´Frozen Demonç©´ ¶ê*
+TaskMove_120
+6º¬å†°å°é­”ç©´Frozen Demonç©´ ¶ê*
+TaskMove_220
+6»¬å†°å°é­”ç©´Frozen Demonç©´ ¶ê*
+TaskMove_320
+6¼¬å†°å°é­”ç©´Frozen Demonç©´ ¶ê*
+TaskMove_420
+h½¬å†°å°é­”ç©´Frozen Demonç©´ ¶ê*
+TaskMove_52330001,300104;30002,300204;30004,300403;30005,300504
+0åµæš®è‰²åŸé•‡	Dusk Town Á¸*
+TaskMove_120
+0æµæš®è‰²åŸé•‡	Dusk Town Á¸*
+TaskMove_220
+0çµæš®è‰²åŸé•‡	Dusk Town Á¸*
+TaskMove_320
+0èµæš®è‰²åŸé•‡	Dusk Town Á¸*
+TaskMove_420
+0éµæš®è‰²åŸé•‡	Dusk Town Á¸*
+TaskMove_520
+9É¶æš®è‰²éƒŠå¤–The dusk outskirts Â¸*
+TaskMove_120
+9Ê¶æš®è‰²éƒŠå¤–The dusk outskirts Â¸*
+TaskMove_220
+DË¶æš®è‰²éƒŠå¤–The dusk outskirts Â¸*
+TaskMove_3240001,400104
+9Ì¶æš®è‰²éƒŠå¤–The dusk outskirts Â¸*
+TaskMove_420
+2­·æš®è‰²æ£®æ—Dusk Forest Ã¸*
+TaskMove_120
+2®·æš®è‰²æ£®æ—Dusk Forest Ã¸*
+TaskMove_220
+2¯·æš®è‰²æ£®æ—Dusk Forest Ã¸*
+TaskMove_320
+2°·æš®è‰²æ£®æ—Dusk Forest Ã¸*
+TaskMove_420
+J±·æš®è‰²æ£®æ—Dusk Forest Ã¸*
+TaskMove_5240001,400104;40002,400204
+c‘¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_12&40001,400104;40002,400204;40003,400304
+>’¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_220
+>“¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_320
+>”¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_420
+>•¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_520
+>–¸æš®è‰²çŸ¿æ´ä¸€å±‚Dusk Mine Level 1 Ä¸*
+TaskMove_620
+Nõ¸æš®è‰²çŸ¿æ´äºŒå±‚!Second floor of the Twilight Mine Å¸*
+TaskMove_120
+Nö¸æš®è‰²çŸ¿æ´äºŒå±‚!Second floor of the Twilight Mine Å¸*
+TaskMove_220
+N÷¸æš®è‰²çŸ¿æ´äºŒå±‚!Second floor of the Twilight Mine Å¸*
+TaskMove_320
+Nø¸æš®è‰²çŸ¿æ´äºŒå±‚!Second floor of the Twilight Mine Å¸*
+TaskMove_420
+DÙ¹è£‚çŸ³å³¡è°·Crack Stone Canyon Æ¸*
+TaskMove_1240001,400105
+9Ú¹è£‚çŸ³å³¡è°·Crack Stone Canyon Æ¸*
+TaskMove_220
+9Û¹è£‚çŸ³å³¡è°·Crack Stone Canyon Æ¸*
+TaskMove_320
+O½ºåœ°ç‹±è£‚è°·Hell Rift Valley Ç¸*
+TaskMove_1240001,400105;40006,400603
+7¾ºåœ°ç‹±è£‚è°·Hell Rift Valley Ç¸*
+TaskMove_220
+7¿ºåœ°ç‹±è£‚è°·Hell Rift Valley Ç¸*
+TaskMove_320
+0…Ãé»‘æš—å°é•‡	Dark Town Ñ†*
+TaskMove_120
+0†Ãé»‘æš—å°é•‡	Dark Town Ñ†*
+TaskMove_220
+0‡Ãé»‘æš—å°é•‡	Dark Town Ñ†*
+TaskMove_320
+0ˆÃé»‘æš—å°é•‡	Dark Town Ñ†*
+TaskMove_420
+>éÃè¯¡å¼‚å°å¾„Strange path Ò†*
+TaskMove_1250001,500102
+3êÃè¯¡å¼‚å°å¾„Strange path Ò†*
+TaskMove_220
+3ëÃè¯¡å¼‚å°å¾„Strange path Ò†*
+TaskMove_320
+3ìÃè¯¡å¼‚å°å¾„Strange path Ò†*
+TaskMove_420
+3íÃè¯¡å¼‚å°å¾„Strange path Ò†*
+TaskMove_520
+5ÍÄè…èš€ä¹‹åœ°Corrosive Land Ó†*
+TaskMove_120
+5ÎÄè…èš€ä¹‹åœ°Corrosive Land Ó†*
+TaskMove_220
+5ÏÄè…èš€ä¹‹åœ°Corrosive Land Ó†*
+TaskMove_320
+5ĞÄè…èš€ä¹‹åœ°Corrosive Land Ó†*
+TaskMove_420
+v±Åé»‘æš—èµ°å»Šä¸€å±‚$The first floor of the Dark Corridor Ô†*
+TaskMove_12&50001,500102;50002,500205;50003,500304
+EùÆé»‘æš—èµ°å»Šä¸‰å±‚Dark Corridor, 3rd floor Ö†*
+TaskMove_120
+EúÆé»‘æš—èµ°å»Šä¸‰å±‚Dark Corridor, 3rd floor Ö†*
+TaskMove_220
+8İÇé»‘æš—ä¹‹å¿ƒHeart of Darkness ×†*
+TaskMove_120

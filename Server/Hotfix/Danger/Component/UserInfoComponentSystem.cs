@@ -719,7 +719,11 @@ namespace ET
             {
                 Log.Warning($"增加钻石: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
-
+            if (Type == UserDataType.WeiJingGold)
+            {
+                Log.Warning($"增加兑换币: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
+            }
+    
             if (Type == UserDataType.UnionExp || Type == UserDataType.UnionGold)
             {
                 self.SendUnionOperate(getWay, Type, gold).Coroutine();
@@ -748,6 +752,10 @@ namespace ET
             if (Type == UserDataType.Diamond)
             {
                 Log.Warning($"扣除钻石: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
+            }
+            if (Type == UserDataType.WeiJingGold)
+            {
+                Log.Warning($"扣除兑换币: {Type} {unit.Id} {getWay} {self.UserInfo.Name} {value}");
             }
 
             unit.GetComponent<DataCollationComponent>().UpdateRoleMoneySub(Type, getWay, gold);

@@ -81,14 +81,17 @@ namespace ET
 		/// <summary>传送点名称</summary>
 		[ProtoMember(2)]
 		public string MapName { get; set; }
-		/// <summary>传送地图</summary>
+		/// <summary>传送点名称</summary>
 		[ProtoMember(3)]
+		public string MapName_EN { get; set; }
+		/// <summary>传送地图</summary>
+		[ProtoMember(4)]
 		public int MapID { get; set; }
 		/// <summary>传送坐标点</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string PositionName { get; set; }
 		/// <summary>其余地图</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string OtherMapMove { get; set; }
 
 	}

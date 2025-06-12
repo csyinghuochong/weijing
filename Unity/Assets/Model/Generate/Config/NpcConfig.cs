@@ -81,65 +81,74 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>商店值</summary>
+		/// <summary>名字</summary>
 		[ProtoMember(3)]
+		public string Name_EN { get; set; }
+		/// <summary>商店值</summary>
+		[ProtoMember(4)]
 		public int ShopValue { get; set; }
 		/// <summary>NPC类型</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int NpcType { get; set; }
 		/// <summary>任务ID</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] TaskID { get; set; }
 		/// <summary>剧情对话ID</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int[] StorySpeakID { get; set; }
 		/// <summary>npc参数</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int[] NpcPar { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string Desc { get; set; }
 		/// <summary>资源</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public string Asset { get; set; }
 		/// <summary>位置</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int[] Position { get; set; }
 		/// <summary>方向</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int Rotation { get; set; }
 		/// <summary>AI</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int AI { get; set; }
 		/// <summary>移动坐标</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public string MovePosition { get; set; }
 		/// <summary>摄像头是否拉近</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int ifCameraLaJin { get; set; }
 		/// <summary>对话信息</summary>
-		[ProtoMember(15)]
-		public string SpeakText { get; set; }
-		/// <summary>头部说话</summary>
 		[ProtoMember(16)]
-		public string NpcHeadSpeakText { get; set; }
-		/// <summary>任务提示</summary>
+		public string SpeakText { get; set; }
+		/// <summary>对话信息</summary>
 		[ProtoMember(17)]
+		public string SpeakText_EN { get; set; }
+		/// <summary>头部说话</summary>
+		[ProtoMember(18)]
+		public string NpcHeadSpeakText { get; set; }
+		/// <summary>对话信息</summary>
+		[ProtoMember(19)]
+		public string NpcHeadSpeakText_EN { get; set; }
+		/// <summary>任务提示</summary>
+		[ProtoMember(20)]
 		public string TaskHint { get; set; }
 		/// <summary>播放音效ID</summary>
-		[ProtoMember(18)]
+		[ProtoMember(21)]
 		public int SourceID { get; set; }
 		/// <summary>展示等级</summary>
-		[ProtoMember(19)]
+		[ProtoMember(22)]
 		public int ShowRoseLv { get; set; }
 		/// <summary>出现类型</summary>
-		[ProtoMember(20)]
+		[ProtoMember(23)]
 		public int ShowType { get; set; }
 		/// <summary>出现值</summary>
-		[ProtoMember(21)]
+		[ProtoMember(24)]
 		public int ShowValue { get; set; }
 		/// <summary>商店类型</summary>
-		[ProtoMember(22)]
+		[ProtoMember(25)]
 		public int ShopType { get; set; }
 
 	}

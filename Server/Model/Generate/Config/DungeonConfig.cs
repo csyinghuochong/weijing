@@ -81,50 +81,53 @@ namespace ET
 		/// <summary>章节名称</summary>
 		[ProtoMember(2)]
 		public string ChapterName { get; set; }
-		/// <summary>音乐</summary>
+		/// <summary>章节名称</summary>
 		[ProtoMember(3)]
+		public string ChapterName_EN { get; set; }
+		/// <summary>音乐</summary>
+		[ProtoMember(4)]
 		public string Music { get; set; }
 		/// <summary>个人副本类型</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int MapType { get; set; }
 		/// <summary>进入等级限制</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int EnterLv { get; set; }
 		/// <summary>章节BossIcon</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int BossIcon { get; set; }
 		/// <summary>章节文本描述</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string ChapterDes { get; set; }
 		/// <summary>地图ID</summary>
-		[ProtoMember(8)]
+		[ProtoMember(10)]
 		public int MapID { get; set; }
 		/// <summary>出生点</summary>
-		[ProtoMember(9)]
+		[ProtoMember(11)]
 		public int[] BornPosLeft { get; set; }
 		/// <summary>摄像机参数</summary>
-		[ProtoMember(10)]
+		[ProtoMember(12)]
 		public double[] CameraPos { get; set; }
 		/// <summary>传送点</summary>
-		[ProtoMember(11)]
+		[ProtoMember(13)]
 		public int[] TransmitPos { get; set; }
 		/// <summary>寻路</summary>
-		[ProtoMember(12)]
+		[ProtoMember(14)]
 		public string AutoPath { get; set; }
 		/// <summary>NPC</summary>
-		[ProtoMember(13)]
+		[ProtoMember(15)]
 		public int[] NpcList { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(14)]
+		[ProtoMember(16)]
 		public string CreateMonster { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(15)]
+		[ProtoMember(17)]
 		public int MonsterGroup { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(16)]
+		[ProtoMember(18)]
 		public int MonsterPosition { get; set; }
 		/// <summary>对应章节</summary>
-		[ProtoMember(17)]
+		[ProtoMember(19)]
 		public int ChapterId { get; set; }
 
 	}

@@ -82,79 +82,79 @@ namespace ET
 		[ProtoMember(2)]
 		public string ItemName { get; set; }
 		/// <summary>道具Icon</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public string Icon { get; set; }
 		/// <summary>道具模型ID</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string ItemModelID { get; set; }
 		/// <summary>道具品质</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int ItemQuality { get; set; }
 		/// <summary>使用等级</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int UseLv { get; set; }
 		/// <summary>使用职业</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int UseOcc { get; set; }
 		/// <summary>道具类型</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int ItemType { get; set; }
 		/// <summary>道具子类</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int ItemSubType { get; set; }
 		/// <summary>装备类型</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int EquipType { get; set; }
 		/// <summary>道具堆叠最大数量</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int ItemPileSum { get; set; }
 		/// <summary>出售货币类型</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int SellMoneyType { get; set; }
 		/// <summary>出售货币值</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int SellMoneyValue { get; set; }
 		/// <summary>装备ID</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int ItemEquipID { get; set; }
 		/// <summary>宠物之核合成新道具</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int PetHeXinHeChengID { get; set; }
 		/// <summary>道具使用参数</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public string ItemUsePar { get; set; }
 		/// <summary>道具技能</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public string SkillID { get; set; }
 		/// <summary>道具Tips显示技能</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int SkillIDIfShow { get; set; }
 		/// <summary>洗练石数量</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int[] XiLianStone { get; set; }
 		/// <summary>回收获取物品</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public string HuiShouGetItem { get; set; }
 		/// <summary>道具描述</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public string ItemDes { get; set; }
 		/// <summary>道具背景描述</summary>
-		[ProtoMember(22)]
+		[ProtoMember(24)]
 		public string ItemBlackDes { get; set; }
 		/// <summary>是否自动使用</summary>
-		[ProtoMember(23)]
+		[ProtoMember(25)]
 		public int IfAutoUse { get; set; }
 		/// <summary>是否禁止拍卖行上架</summary>
-		[ProtoMember(24)]
+		[ProtoMember(26)]
 		public int IfStopPaiMai { get; set; }
 		/// <summary>获取是否绑定</summary>
-		[ProtoMember(25)]
+		[ProtoMember(27)]
 		public int IfLock { get; set; }
 		/// <summary>每天使用次数</summary>
-		[ProtoMember(26)]
+		[ProtoMember(28)]
 		public int DayUseNum { get; set; }
 		/// <summary>总共使用次数</summary>
-		[ProtoMember(27)]
+		[ProtoMember(29)]
 		public int SumUseNum { get; set; }
 
 	}

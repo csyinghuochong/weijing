@@ -82,61 +82,64 @@ namespace ET
 		[ProtoMember(2)]
 		public string TaskName { get; set; }
 		/// <summary>任务等级</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int TaskLv { get; set; }
 		/// <summary>最大接取等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int TaskMaxLv { get; set; }
 		/// <summary>任务类型</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int TaskType { get; set; }
 		/// <summary>任务子类</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int TaskSonType { get; set; }
 		/// <summary>触发类型</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int TriggerType { get; set; }
 		/// <summary>触发值</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int TriggerValue { get; set; }
 		/// <summary>任务经验</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int TaskExp { get; set; }
 		/// <summary>任务金币</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int TaskCoin { get; set; }
 		/// <summary>奖励道具ID</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string ItemID { get; set; }
 		/// <summary>奖励道具数量</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public string ItemNum { get; set; }
 		/// <summary>接取任务的NPC</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int GetNpcID { get; set; }
 		/// <summary>交任务的Npc</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int CompleteNpcID { get; set; }
 		/// <summary>目标类型</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int TargetType { get; set; }
 		/// <summary>目标ID</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int[] Target { get; set; }
 		/// <summary>目标值</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int[] TargetValue { get; set; }
 		/// <summary>目标点</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int TargetPosition { get; set; }
 		/// <summary>任务描述</summary>
-		[ProtoMember(19)]
-		public string TaskDes { get; set; }
-		/// <summary>任务经验和金币是否跟随等级成长</summary>
 		[ProtoMember(20)]
+		public string TaskDes { get; set; }
+		/// <summary>任务描述</summary>
+		[ProtoMember(21)]
+		public string TaskDes_EN { get; set; }
+		/// <summary>任务经验和金币是否跟随等级成长</summary>
+		[ProtoMember(22)]
 		public int Development { get; set; }
 		/// <summary>权重</summary>
-		[ProtoMember(21)]
+		[ProtoMember(23)]
 		public int Weight { get; set; }
 
 	}

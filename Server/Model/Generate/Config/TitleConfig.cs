@@ -82,34 +82,34 @@ namespace ET
 		[ProtoMember(2)]
 		public string Name { get; set; }
 		/// <summary>图标显示</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int Icon { get; set; }
 		/// <summary>额外属性</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string AddProperty { get; set; }
 		/// <summary>序列帧动画</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string AnimatorAsset { get; set; }
 		/// <summary>序列帧动画数量</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int AnimatorNumber { get; set; }
 		/// <summary>有效期(秒)</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int ValidityTime { get; set; }
 		/// <summary>额外属性描述</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string Des { get; set; }
 		/// <summary>缩放大小</summary>
-		[ProtoMember(9)]
+		[ProtoMember(11)]
 		public double size { get; set; }
 		/// <summary>X偏移</summary>
-		[ProtoMember(10)]
+		[ProtoMember(12)]
 		public double MoveX { get; set; }
 		/// <summary>Y便宜</summary>
-		[ProtoMember(11)]
+		[ProtoMember(13)]
 		public double MoveY { get; set; }
 		/// <summary>额外属性描述</summary>
-		[ProtoMember(12)]
+		[ProtoMember(14)]
 		public string GetDes { get; set; }
 
 	}

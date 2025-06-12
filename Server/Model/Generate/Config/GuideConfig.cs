@@ -109,7 +109,7 @@ namespace ET
 		[ProtoMember(11)]
 		public string Text { get; set; }
 		/// <summary>文本位置[相对于按钮]</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int TextPosition { get; set; }
 
 	}

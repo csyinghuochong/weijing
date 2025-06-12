@@ -82,46 +82,49 @@ namespace ET
 		[ProtoMember(2)]
 		public string Name { get; set; }
 		/// <summary>下一级ID</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int NextID { get; set; }
 		/// <summary>等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int Lv { get; set; }
 		/// <summary>升级经验</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int Exp { get; set; }
 		/// <summary>人口上限</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int PeopleNumMax { get; set; }
 		/// <summary>需要玩家等级</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int NeedRoseLv { get; set; }
 		/// <summary>农场种植上限</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int FarmNumMax { get; set; }
 		/// <summary>农场描述</summary>
-		[ProtoMember(9)]
-		public string JiaYuanDes { get; set; }
-		/// <summary>兑换经验消耗资金</summary>
 		[ProtoMember(10)]
+		public string JiaYuanDes { get; set; }
+		/// <summary>农场描述</summary>
+		[ProtoMember(11)]
+		public string JiaYuanDes_EN { get; set; }
+		/// <summary>兑换经验消耗资金</summary>
+		[ProtoMember(12)]
 		public int ExchangeExpCostZiJin { get; set; }
 		/// <summary>兑换获得经验</summary>
-		[ProtoMember(11)]
+		[ProtoMember(13)]
 		public int ExchangeExp { get; set; }
 		/// <summary>兑换获得资金消耗金币</summary>
-		[ProtoMember(12)]
+		[ProtoMember(14)]
 		public int ExchangeZiJinCostGold { get; set; }
 		/// <summary>兑换获得资金</summary>
-		[ProtoMember(13)]
+		[ProtoMember(15)]
 		public int ExchangeZiJin { get; set; }
 		/// <summary>家园每小时产出经验</summary>
-		[ProtoMember(14)]
+		[ProtoMember(16)]
 		public int JiaYuanAddExp { get; set; }
 		/// <summary>宠物栏位</summary>
-		[ProtoMember(15)]
+		[ProtoMember(17)]
 		public int PetNum { get; set; }
 		/// <summary>属性上限</summary>
-		[ProtoMember(16)]
+		[ProtoMember(18)]
 		public string ProMax { get; set; }
 
 	}

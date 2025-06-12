@@ -88,22 +88,22 @@ namespace ET
 		[ProtoMember(4)]
 		public string Name { get; set; }
 		/// <summary>称号图片</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int Icon { get; set; }
 		/// <summary>奖励成就点数</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int RewardNum { get; set; }
 		/// <summary>目标要求类型</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int TargetType { get; set; }
 		/// <summary>目标要求值</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int TargetID { get; set; }
 		/// <summary>目标要求值</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int TargetValue { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string Des { get; set; }
 
 	}

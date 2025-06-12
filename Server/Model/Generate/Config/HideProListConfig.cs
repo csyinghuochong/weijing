@@ -82,40 +82,40 @@ namespace ET
 		[ProtoMember(2)]
 		public string Name { get; set; }
 		/// <summary>下一ID</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int NtxtID { get; set; }
 		/// <summary>洗炼属性出现部位</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int[] EquipSpace { get; set; }
 		/// <summary>需要洗炼等级</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int NeedXiLianLv { get; set; }
 		/// <summary>随机概率</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public double TriggerPro { get; set; }
 		/// <summary>隐藏属性类型</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int PropertyType { get; set; }
 		/// <summary>是否根据等级成长</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int IfEquipLvUp { get; set; }
 		/// <summary>隐藏属性类型</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int HideProValueType { get; set; }
 		/// <summary>隐藏属性最小值</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string PropertyValueMin { get; set; }
 		/// <summary>隐藏属性最大值</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string PropertyValueMax { get; set; }
 		/// <summary>附加战力</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int AddFightValue { get; set; }
 		/// <summary>转移是否继承</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int IfMove { get; set; }
 		/// <summary>激活条件</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int NeedNumber { get; set; }
 
 	}

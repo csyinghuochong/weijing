@@ -82,16 +82,16 @@ namespace ET
 		[ProtoMember(2)]
 		public string Name { get; set; }
 		/// <summary>Icon</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int Icon { get; set; }
 		/// <summary>学习等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int LearnRoseLv { get; set; }
 		/// <summary>天赋描述</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string talentDes { get; set; }
 		/// <summary>附加</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string AddPropreListStr { get; set; }
 
 	}

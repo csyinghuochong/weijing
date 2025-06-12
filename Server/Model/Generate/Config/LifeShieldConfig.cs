@@ -85,13 +85,13 @@ namespace ET
 		[ProtoMember(3)]
 		public string ShieldName { get; set; }
 		/// <summary>等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int ShieldLevel { get; set; }
 		/// <summary>生命之盾经验</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int ShieldExp { get; set; }
 		/// <summary>额外属性</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string AddProperty { get; set; }
 
 	}

@@ -90,24 +90,30 @@ namespace ET
 		/// <summary>时装名字</summary>
 		[ProtoMember(5)]
 		public string Name { get; set; }
-		/// <summary>时装模型</summary>
+		/// <summary>时装名字</summary>
 		[ProtoMember(6)]
+		public string Name_EN { get; set; }
+		/// <summary>时装模型</summary>
+		[ProtoMember(7)]
 		public string Model { get; set; }
 		/// <summary>激活条件</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string ActiveCost { get; set; }
 		/// <summary>时装属性加成Key</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int[] PropertyKey { get; set; }
 		/// <summary>时装属性加成Value</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public long[] PropertyValue { get; set; }
 		/// <summary>摄像机参数</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public double[] Camera { get; set; }
 		/// <summary>时装描述</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string PropertyDes { get; set; }
+		/// <summary>时装描述</summary>
+		[ProtoMember(13)]
+		public string PropertyDes_EN { get; set; }
 
 	}
 }

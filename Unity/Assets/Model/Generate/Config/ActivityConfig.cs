@@ -96,6 +96,9 @@ namespace ET
 		/// <summary>参数_4</summary>
 		[ProtoMember(7)]
 		public string Par_4 { get; set; }
+		/// <summary>参数_4</summary>
+		[ProtoMember(8)]
+		public string Par_4_EN { get; set; }
 
 	}
 }

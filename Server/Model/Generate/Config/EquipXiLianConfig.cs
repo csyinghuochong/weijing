@@ -90,14 +90,17 @@ namespace ET
 		/// <summary>称号</summary>
 		[ProtoMember(5)]
 		public string Title { get; set; }
-		/// <summary>属性类型</summary>
+		/// <summary>称号</summary>
 		[ProtoMember(6)]
+		public string Title_EN { get; set; }
+		/// <summary>属性类型</summary>
+		[ProtoMember(7)]
 		public int[] ProList_Type { get; set; }
 		/// <summary>属性值</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int[] ProList_Value { get; set; }
 		/// <summary>达成奖励</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string RewardList { get; set; }
 
 	}

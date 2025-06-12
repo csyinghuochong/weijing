@@ -489,10 +489,11 @@ message C2M_PathfindingRequest // IActorLocationMessage
 message C2M_PathfindingResult // IActorLocationMessage
 {
 	int32 RpcId = 1;
-    
+
 	repeated float Xs = 5;
 	repeated float Ys = 6;
 	repeated float Zs = 7;
+	int64 ServerTime = 8;   //服务器时间戳
 }
 
 message M2C_PathfindingResult // IActorMessage

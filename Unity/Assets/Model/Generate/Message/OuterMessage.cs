@@ -991,6 +991,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<float> Zs = new List<float>();
 
+		[ProtoMember(8)]
+		public long ServerTime { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PathfindingResult)]

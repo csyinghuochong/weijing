@@ -108,8 +108,11 @@ namespace ET
 		/// <summary>引导文本</summary>
 		[ProtoMember(11)]
 		public string Text { get; set; }
-		/// <summary>文本位置[相对于按钮]</summary>
+		/// <summary>引导文本</summary>
 		[ProtoMember(12)]
+		public string Text_EN { get; set; }
+		/// <summary>文本位置[相对于按钮]</summary>
+		[ProtoMember(13)]
 		public int TextPosition { get; set; }
 
 	}

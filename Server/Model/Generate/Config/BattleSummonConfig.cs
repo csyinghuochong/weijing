@@ -82,22 +82,22 @@ namespace ET
 		[ProtoMember(2)]
 		public string ItemName { get; set; }
 		/// <summary>战场ID</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int SceneId { get; set; }
 		/// <summary>士兵Id</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int[] MonsterIds { get; set; }
 		/// <summary>士兵数量</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int MonsterNumber { get; set; }
 		/// <summary>人口数量</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int RenKouNumber { get; set; }
 		/// <summary>消耗金币</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int CostGold { get; set; }
 		/// <summary>免费重置时间(s)</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int FreeResetTime { get; set; }
 
 	}

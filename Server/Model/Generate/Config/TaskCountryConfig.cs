@@ -82,46 +82,46 @@ namespace ET
 		[ProtoMember(2)]
 		public string TaskName { get; set; }
 		/// <summary>任务类型</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int TaskType { get; set; }
 		/// <summary>图标</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int TaskIcon { get; set; }
 		/// <summary>任务等级</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int TaskLv { get; set; }
 		/// <summary>下个任务</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int NextTask { get; set; }
 		/// <summary>触发概率</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public double TriggerPro { get; set; }
 		/// <summary>触发类型</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int TriggerType { get; set; }
 		/// <summary>触发值</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int TriggerValue { get; set; }
 		/// <summary>活跃度奖励</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int EveryTaskRewardNum { get; set; }
 		/// <summary>奖励金币</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int RewardGold { get; set; }
 		/// <summary>奖励道具</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public string RewardItem { get; set; }
 		/// <summary>目标类型</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int TargetType { get; set; }
 		/// <summary>目标ID</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int[] Target { get; set; }
 		/// <summary>目标值1</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int[] TargetValue { get; set; }
 		/// <summary>任务描述</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public string TaskDes { get; set; }
 
 	}

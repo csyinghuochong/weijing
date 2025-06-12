@@ -81,32 +81,41 @@ namespace ET
 		/// <summary>名称</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>品质</summary>
+		/// <summary>名称</summary>
 		[ProtoMember(3)]
+		public string Name_EN { get; set; }
+		/// <summary>品质</summary>
+		[ProtoMember(4)]
 		public int Quality { get; set; }
 		/// <summary>图标显示</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string Icon { get; set; }
 		/// <summary>模型ID</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string ModelID { get; set; }
 		/// <summary>拖尾特效名称</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string TuoWeiEffectID { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(7)]
-		public string Des { get; set; }
-		/// <summary>额外属性</summary>
 		[ProtoMember(8)]
-		public string AddProperty { get; set; }
+		public string Des { get; set; }
 		/// <summary>描述</summary>
 		[ProtoMember(9)]
-		public string GetDes { get; set; }
-		/// <summary>对应骑乘Buff</summary>
+		public string Des_EN { get; set; }
+		/// <summary>额外属性</summary>
 		[ProtoMember(10)]
+		public string AddProperty { get; set; }
+		/// <summary>描述</summary>
+		[ProtoMember(11)]
+		public string GetDes { get; set; }
+		/// <summary>描述</summary>
+		[ProtoMember(12)]
+		public string GetDes_EN { get; set; }
+		/// <summary>对应骑乘Buff</summary>
+		[ProtoMember(13)]
 		public int MoveBuffID { get; set; }
 		/// <summary>玩家名称显示上移</summary>
-		[ProtoMember(11)]
+		[ProtoMember(14)]
 		public double NameShowUp { get; set; }
 
 	}

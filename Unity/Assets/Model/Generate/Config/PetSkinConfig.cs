@@ -81,18 +81,24 @@ namespace ET
 		/// <summary>名称</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>皮肤图标</summary>
+		/// <summary>名称</summary>
 		[ProtoMember(3)]
+		public string Name_EN { get; set; }
+		/// <summary>皮肤图标</summary>
+		[ProtoMember(4)]
 		public int IconID { get; set; }
 		/// <summary>皮肤ID</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int SkinID { get; set; }
 		/// <summary>激活属性(暂时不用)</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string PripertySet { get; set; }
 		/// <summary>激活属性描述</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string PripertyShow { get; set; }
+		/// <summary>激活属性描述</summary>
+		[ProtoMember(8)]
+		public string PripertyShow_EN { get; set; }
 
 	}
 }

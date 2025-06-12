@@ -1113,6 +1113,10 @@ namespace ET
                 {
                     Log.Warning($"[获取钻石]UserDataType.Diamond  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
                 }
+                if (userDataType == UserDataType.WeiJingGold)
+                {
+                    Log.Warning($"[获取兑换币]UserDataType.WeiJingGold  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
+                }
                 if (userDataType == UserDataType.PiLao)
                 {
                     //Log.Warning($"[增加疲劳] {unit.DomainZone()}  {unit.Id}   {getType}  {rewardItems[i].ItemNum}");
@@ -1639,10 +1643,7 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionContri, itemNum.ToString());
                     continue;
                 }
-                //if (!DllHelper.CheckItem)
-                //{
-                //    continue;
-                //}
+                
                 LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", false);
                 List<BagInfo> bagInfos = self.GetItemByLoc(itemLocType);
                 for (int k = bagInfos.Count - 1; k >= 0; k--)

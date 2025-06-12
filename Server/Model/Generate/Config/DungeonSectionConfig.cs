@@ -82,16 +82,16 @@ namespace ET
 		[ProtoMember(2)]
 		public string ChapterName { get; set; }
 		/// <summary>名称</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public string Name { get; set; }
 		/// <summary>章节关卡</summary>
-		[ProtoMember(4)]
+		[ProtoMember(6)]
 		public int[] RandomArea { get; set; }
 		/// <summary>开启等级</summary>
-		[ProtoMember(5)]
+		[ProtoMember(7)]
 		public int[] OpenLevel { get; set; }
 		/// <summary>神秘之门地图ID</summary>
-		[ProtoMember(6)]
+		[ProtoMember(8)]
 		public string ShenMiEnterID { get; set; }
 
 	}

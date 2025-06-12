@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>成就描述</summary>
 		[ProtoMember(5)]
 		public string Desc { get; set; }
+		/// <summary>成就描述</summary>
+		[ProtoMember(6)]
+		public string Desc_EN { get; set; }
 
 	}
 }

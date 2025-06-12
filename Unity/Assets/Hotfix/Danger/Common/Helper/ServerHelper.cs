@@ -401,14 +401,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 155, ServerIp = $"{ip}:20605", ServerName = "雷霆万钧", ServerOpenTime = 1747393200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 156, ServerIp = $"{ip}:20615", ServerName = "龙翔九天", ServerOpenTime = 1747998000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 157, ServerIp = $"{ip}:20645", ServerName = "神谕森林", ServerOpenTime = 1748602800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
-
-
-            //2025/06/06 19:00:00 1749207600000 合区 诗情画意-萤火森林 89/97
-            //2025/06/06 19:00:00 1749207600000 合区 锦绣山河-纵横驰骋 105/113
-            //2025/06/06 19:00:00 1749207600000 合区 花满楼-永恒之境   131/135
-            //2025/06/06 19:00:00 1749207600000 合区 龙裔国度-秘境森林 151/152
-            //2025/06/06 19:00:00 1749207600000 新区 泰坦神殿 158
             serverItems_1.Add(new ServerItem() { ServerId = 158, ServerIp = $"{ip}:20375", ServerName = "泰坦神殿", ServerOpenTime = 1749207600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
+
+
+            //2025/06/13 19:00:00 1749812400000 合区 xx-xx xx/xx
+            //2025/06/13 19:00:00 1749812400000 新区 星辰之巅 159
+            serverItems_1.Add(new ServerItem() { ServerId = 159, ServerIp = $"{ip}:20405", ServerName = "星辰之巅", ServerOpenTime = 1749812400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义

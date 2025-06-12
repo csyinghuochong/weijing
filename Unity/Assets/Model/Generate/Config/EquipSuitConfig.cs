@@ -81,17 +81,20 @@ namespace ET
 		/// <summary>套装名称</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>需要装备ID</summary>
+		/// <summary>套装名称</summary>
 		[ProtoMember(3)]
+		public string Name_EN { get; set; }
+		/// <summary>需要装备ID</summary>
+		[ProtoMember(4)]
 		public int[] NeedEquipID { get; set; }
 		/// <summary>套装属性</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string SuitPropertyID { get; set; }
 		/// <summary>套装类型</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int SuitType { get; set; }
 		/// <summary>职业</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int Occ { get; set; }
 
 	}
