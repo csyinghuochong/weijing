@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 1067344403230290080}
   - component: {fileID: 8837428225357375870}
   - component: {fileID: 365249790032629581}
+  - component: {fileID: 746709924603868571}
   m_Layer: 5
   m_Name: PetIconDi (1)
   m_TagString: Untagged
@@ -556,6 +557,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &746709924603868571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862776426441631048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Img_432_EN
+    gameObject: {fileID: 21300000, guid: 1e7490008725e6048b8084783b58d4f5, type: 3}
 --- !u!1 &1955344998108836753
 GameObject:
   m_ObjectHideFlags: 0
