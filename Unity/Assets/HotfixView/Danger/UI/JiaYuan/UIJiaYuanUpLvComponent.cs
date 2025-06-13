@@ -169,7 +169,7 @@ namespace ET
             self.Lab_GengDi.GetComponent<Text>().text = jiayuanCof.FarmNumMax.ToString();
             self.Lab_RenKou.GetComponent<Text>().text = jiayuanCof.PeopleNumMax.ToString();
 
-            self.JiaYuanLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}" + jiayuanCof.Lv));
+            self.JiaYuanLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), + jiayuanCof.Lv);
 
             //提示描述
             int hour = (int)((float)(jiayuanCof.Exp - (int)userInfoCom.UserInfo.JiaYuanExp)/ jiayuanCof.JiaYuanAddExp) + 1;
