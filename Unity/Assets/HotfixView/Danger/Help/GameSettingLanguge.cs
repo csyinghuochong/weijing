@@ -266,16 +266,22 @@ namespace ET
 
         public static void InitMulLanguageData()
         {
+            foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Chinese, config.English);
+            }
+            
             foreach (ItemConfig config in ItemConfigCategory.Instance.GetAll().Values)
             {
                 AddMulLanguageData(config.ItemName, config.ItemName_EN);
                 AddMulLanguageData(config.ItemDes, config.ItemDes_EN);
             }
 
-            foreach (HideProListConfig config in HideProListConfigCategory.Instance.GetAll().Values)
-            {
-                AddMulLanguageData(config.Name, config.Name_EN);
-            }
+            // 单独处理 避免被前面的配置覆盖
+            // foreach (HideProListConfig config in HideProListConfigCategory.Instance.GetAll().Values)
+            // {
+            //     AddMulLanguageData(config.Name, config.Name_EN);
+            // }
 
             foreach (NpcConfig config in NpcConfigCategory.Instance.GetAll().Values)
             {
@@ -481,11 +487,6 @@ namespace ET
             {
                 AddMulLanguageData(config.Desc, config.Desc_EN);
             }
-            
-            foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
-            {
-                AddMulLanguageData(config.Chinese, config.English);
-            }
         }
 
         private static void AddMulLanguageData(string chinese, string english)
@@ -526,6 +527,21 @@ namespace ET
         {
             //通过传进来的中文KEY 去数据表里面读对应替换的多语言文字
             return string.Format(text, args);
+        }
+    }
+    
+    public static class MulLanguageHelper
+    {
+        public static string GetName(this HideProListConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.Name;
+            }
+            else
+            {
+                return self.Name_EN;
+            }
         }
     }
 }

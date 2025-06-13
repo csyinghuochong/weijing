@@ -78,11 +78,14 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>名字</summary>
+		/// <summary>描述</summary>
 		[ProtoMember(2)]
+		public string Des { get; set; }
+		/// <summary>名字</summary>
+		[ProtoMember(3)]
 		public string Chinese { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public string English { get; set; }
 
 	}
