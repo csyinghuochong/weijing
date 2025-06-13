@@ -81,35 +81,38 @@ namespace ET
 		/// <summary>装备名称</summary>
 		[ProtoMember(2)]
 		public string EquipSpaceName { get; set; }
-		/// <summary>图标</summary>
+		/// <summary>装备名称</summary>
 		[ProtoMember(3)]
+		public string EquipSpaceName_EN { get; set; }
+		/// <summary>图标</summary>
+		[ProtoMember(4)]
 		public string Icon { get; set; }
 		/// <summary>强化类型</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int ItemSubType { get; set; }
 		/// <summary>下一级强化</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int NextID { get; set; }
 		/// <summary>强化等级</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int QiangHuaLv { get; set; }
 		/// <summary>升级等级限制</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int UpLvLimit { get; set; }
 		/// <summary>成功概率</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public double SuccessPro { get; set; }
 		/// <summary>消耗金币</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int CostGold { get; set; }
 		/// <summary>强化消耗</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string CostItem { get; set; }
 		/// <summary>强化属性</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string EquipPropreAdd { get; set; }
 		/// <summary>失败附加成功概率</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public double AdditionPro { get; set; }
 
 	}

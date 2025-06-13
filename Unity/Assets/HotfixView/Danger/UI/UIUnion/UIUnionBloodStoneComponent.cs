@@ -78,8 +78,8 @@ namespace ET
             self.IconLImg.GetComponent<Image>().sprite = sp;
             self.IconRImg.GetComponent<Image>().sprite = sp;
 
-            self.NameLText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
-            self.NameRText.GetComponent<Text>().text = publicQiangHuaConfig.EquipSpaceName;
+            self.NameLText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(publicQiangHuaConfig.EquipSpaceName);
+            self.NameRText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(publicQiangHuaConfig.EquipSpaceName);
             if (publicQiangHuaConfig.QiangHuaLv != 0)
             {
                 self.PropertyText.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(publicQiangHuaConfig.EquipPropreAdd);

@@ -37,6 +37,8 @@ namespace ET
             ConfigComponent.Instance.Load();
             //ResourcesComponent.Instance.UnloadBundle("config.unity3d");
             
+            GameSettingLanguge.InitMulLanguageData();
+            
             Game.Scene.AddComponent<OpcodeTypeComponent>();
             Game.Scene.AddComponent<MessageDispatcherComponent>();
             

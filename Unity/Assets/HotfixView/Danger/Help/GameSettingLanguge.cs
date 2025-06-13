@@ -24,7 +24,7 @@ namespace ET
 
         public Dictionary<string, LangugeType> LangugeList = new Dictionary<string, LangugeType>();
 
-        public static Dictionary<string, string> MulLanguge = new Dictionary<string, string>();
+        public static Dictionary<string, string> MulLanguage = new Dictionary<string, string>();
 
         public static string LoadLocalization(string getString)
         {
@@ -264,7 +264,244 @@ namespace ET
             }
         }
 
-        public  static string GetText(string text)
+        public static void InitMulLanguageData()
+        {
+            foreach (ItemConfig config in ItemConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.ItemName, config.ItemName_EN);
+                AddMulLanguageData(config.ItemDes, config.ItemDes_EN);
+            }
+
+            foreach (HideProListConfig config in HideProListConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+            }
+
+            foreach (NpcConfig config in NpcConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.NpcHeadSpeakText, config.NpcHeadSpeakText_EN);
+                AddMulLanguageData(config.SpeakText, config.SpeakText_EN);
+            }
+
+            foreach (PetConfig config in PetConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.PetName, config.PetName_EN);
+            }
+
+            foreach (SceneConfig config in SceneConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.ChapterDes, config.ChapterDes_EN);
+            }
+
+            foreach (SkillConfig config in SkillConfigCategory.Instance.GetAll().Values)  
+            {
+                AddMulLanguageData(config.SkillName, config.SkillName_EN);
+                AddMulLanguageData(config.SkillDescribe, config.SkillDescribe_EN);
+            }
+
+            foreach (TalentConfig config in TalentConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.TalentDes, config.TalentDes_EN);
+            }
+
+            foreach (SkillBuffConfig config in SkillBuffConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.BuffName, config.BuffName_EN);
+                AddMulLanguageData(config.BuffDescribe, config.BuffDescribe_EN);
+            }
+
+            foreach (ActivityConfig config in ActivityConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Par_4, config.Par_4_EN);
+            }
+
+            foreach (OccupationConfig config in OccupationConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.OccupationName, config.OccupationName_EN);
+            }
+
+            foreach (OccupationTwoConfig config in OccupationTwoConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.OccupationName, config.OccupationName_EN);
+                AddMulLanguageData(config.OccDes, config.OccDes_EN);
+            }
+
+            foreach (TaskConfig config in TaskConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.TaskName, config.TaskName_EN);
+                AddMulLanguageData(config.TaskDes, config.TaskDes_EN);
+            }
+
+            foreach (MonsterConfig config in MonsterConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.MonsterName, config.MonsterName_EN);
+            }
+
+            foreach (ZuoQiShowConfig config in ZuoQiShowConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+                AddMulLanguageData(config.GetDes, config.GetDes_EN);
+            }
+
+            foreach (TitleConfig config in TitleConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+                AddMulLanguageData(config.GetDes, config.GetDes_EN);
+            }
+
+            foreach (FashionConfig config in FashionConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.PropertyDes, config.PropertyDes_EN);
+            }
+
+            foreach (LifeShieldConfig config in LifeShieldConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.ShieldName, config.ShieldName_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+            }
+
+            foreach (TowerConfig config in TowerConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name,  config.Name_EN);
+            }
+
+            foreach (PublicQiangHuaConfig config in PublicQiangHuaConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.EquipSpaceName, config.EquipSpaceName_EN);
+            }
+
+            foreach (JiaYuanConfig config in JiaYuanConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.JiaYuanDes, config.JiaYuanDes_EN);
+            }
+
+            foreach (UnionQiangHuaConfig config in UnionQiangHuaConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.EquipSpaceName, config.EquipSpaceName_EN);
+            }
+
+            foreach (TaskCountryConfig config in TaskCountryConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.TaskName, config.TaskName_EN);
+                AddMulLanguageData(config.TaskDes, config.TaskDes_EN);
+            }
+
+            foreach (DungeonConfig config in DungeonConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.ChapterName, config.ChapterDes_EN);
+            }
+
+            foreach (EquipSuitPropertyConfig config in EquipSuitPropertyConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.EquipSuitDes, config.EquipSuitDes_EN);
+            }
+
+            foreach (EquipSuitConfig config in EquipSuitConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+            }
+
+            foreach (DungeonSectionConfig config in DungeonSectionConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.ChapterName, config.ChapterName_EN);
+                AddMulLanguageData(config.Name, config.Name_EN);
+            }
+
+            foreach (PetSkinConfig config in PetSkinConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+            }
+
+            foreach (JingLingConfig config in JingLingConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.ProDes, config.ProDes_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+                AddMulLanguageData(config.GetDes, config.GetDes_EN);
+            }
+
+            foreach (UnionKeJiConfig config in UnionKeJiConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.EquipSpaceName,  config.EquipSpaceName_EN);
+            }
+
+            foreach (PetFubenConfig config in PetFubenConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+            }
+
+            foreach (TaskPositionConfig config in TaskPositionConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.MapName, config.MapName_EN);
+            }
+
+            foreach (EquipXiLianConfig config in EquipXiLianConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Title, config.Title_EN);
+            }
+
+            foreach (GuideConfig config in GuideConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Text, config.Text_EN);
+            }
+
+            foreach (JiaYuanFarmConfig config in JiaYuanFarmConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.Speak, config.Speak_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+            }
+
+            foreach (JiaYuanPastureConfig config in JiaYuanPastureConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.Speak, config.Speak_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+            }
+
+            foreach (BattleSummonConfig config in BattleSummonConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.ItemName, config.ItemName_EN);
+            }
+
+            foreach (ChengJiuConfig config in ChengJiuConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Name, config.Name_EN);
+                AddMulLanguageData(config.Des, config.Des_EN);
+            }
+
+            foreach (ChengJiuRewardConfig config in ChengJiuRewardConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Desc, config.Desc_EN);
+            }
+            
+            foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
+            {
+                AddMulLanguageData(config.Chinese, config.English);
+            }
+        }
+
+        private static void AddMulLanguageData(string chinese, string english)
+        {
+            if (string.IsNullOrEmpty(chinese) || string.IsNullOrEmpty(english))
+            {
+                return;
+            }
+
+            if (!MulLanguage.ContainsKey(chinese))
+            {
+                MulLanguage.Add(chinese, english);
+            }
+        }
+        
+        private static string GetText(string text)
         {
             //通过传进来的中文KEY 去数据表里面读对应替换的多语言文字
             if (Language == 0)
@@ -276,20 +513,12 @@ namespace ET
             {
                 return text;
             }
-            
-            if (MulLanguge.ContainsKey(text))
+
+            if (MulLanguage.TryGetValue(text, out string text1))
             {
-                return MulLanguge[text];
+                return text1;
             }
-            List<MulLanguageConfig> configs = MulLanguageConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < configs.Count; i++)
-            {
-                if (configs[i].Chinese.Equals(text))
-                {
-                    MulLanguge.Add(text, configs[i].English);
-                    return configs[i].English;
-                }
-            }
+
             return text;
         }
 
@@ -298,6 +527,5 @@ namespace ET
             //通过传进来的中文KEY 去数据表里面读对应替换的多语言文字
             return string.Format(text, args);
         }
-
     }
 }
