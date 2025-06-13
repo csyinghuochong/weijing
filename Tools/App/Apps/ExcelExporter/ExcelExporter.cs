@@ -433,6 +433,9 @@ namespace ET
         static void ExportSheetClass(ExcelWorksheet worksheet, Table table)
         {
             const int row = 2;
+
+            Dictionary<string, List<string>> fieldNameList = new Dictionary<string, List<string>>();
+            fieldNameList.Add(worksheet.Name, new List<string>());  
             for (int col = 3; col <= worksheet.Dimension.End.Column; ++col)
             {
                 if (worksheet.Name.StartsWith("#"))
@@ -444,6 +447,16 @@ namespace ET
                 if (fieldName == "")
                 {
                     continue;
+                }
+
+                if (fieldNameList[worksheet.Name].Contains(fieldName))
+                {
+                    Log.Console($"重复字段:  {worksheet.Name}  {fieldName}");
+                    throw new Exception($"重复字段:  {worksheet.Name}  {fieldName}");
+                }
+                else
+                {
+                    fieldNameList[worksheet.Name].Add(fieldName);
                 }
 
                 if (table.HeadInfos.ContainsKey(fieldName))
