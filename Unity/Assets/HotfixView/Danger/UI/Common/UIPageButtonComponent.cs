@@ -81,6 +81,12 @@ namespace ET
                     Vector2 size = rt.sizeDelta;
                     size.x = GameSettingLanguge.Language == 0? 100f : 200f;
                     rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
                 }
 
                 Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
@@ -90,6 +96,12 @@ namespace ET
                     Vector2 size = rt.sizeDelta;
                     size.x = GameSettingLanguge.Language == 0? 100f : 200f;
                     rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
                 }
             }
         }
