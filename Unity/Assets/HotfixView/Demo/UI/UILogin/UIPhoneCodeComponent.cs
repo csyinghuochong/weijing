@@ -56,7 +56,16 @@ namespace ET
         public static void OnButtonGetCode(this UIPhoneCodeComponent self)
         {
             string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
-            GlobalHelp.OnButtonGetCode(phoneNum);
+
+            if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
+            {
+                GlobalHelp.OnButtonGetCode(phoneNum);
+            }
+            else
+            {
+                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phoneNum).Coroutine();
+            }
+
             self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
             self.SendYanzheng.SetActive(false);
             self.YanZheng.SetActive(true);
@@ -67,18 +76,40 @@ namespace ET
             string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
             string code = self.TextPhoneCode.GetComponent<InputField>().text;
 
+            if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
+            {
 #if UNITY_EDITOR
-            self.OnCommitCodeHandler(phoneNum);
+                self.OnCommitCodeHandler(phoneNum);
 #else
-            GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phoneNum,code);
+                GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phoneNum,code);
 #endif
+            }
+            else 
+            {
+                self.CheckSmsVerifyCode(phoneNum, code).Coroutine();
+            }
+        }
 
+        private static async ETTask CheckSmsVerifyCode(this UIPhoneCodeComponent self, string phone, string code)
+        {
+            int errorcode = await LoginHelper.CheckSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phone, code);
+            if (errorcode == ErrorCode.ERR_Success)
+            {
+                self.OnRquestBingPhone(phone).Coroutine();
+            }
         }
 
         public static void OnSendYanzheng(this UIPhoneCodeComponent self)
         {
             string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
-            GlobalHelp.OnButtonGetCode(phoneNum);
+            if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
+            {
+                GlobalHelp.OnButtonGetCode(phoneNum);
+            }
+            else
+            {
+                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phoneNum).Coroutine();
+            }
             self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
             self.SendYanzheng.SetActive(false);
             self.YanZheng.SetActive(true);
@@ -87,7 +118,11 @@ namespace ET
         public static void OnCommitCodeHandler(this UIPhoneCodeComponent self, string phone)
         {
             Log.Debug($"OnCommitCodeHandler : {phone}");
-
+            if (string.IsNullOrEmpty(phone))
+            {
+                FloatTipManager.Instance.ShowFloatTipDi("验证失败！");
+                return;
+            }
             self.OnRquestBingPhone(phone).Coroutine();
         }
 

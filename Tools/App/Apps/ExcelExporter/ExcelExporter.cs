@@ -451,8 +451,8 @@ namespace ET
 
                 if (fieldNameList[worksheet.Name].Contains(fieldName))
                 {
-                    Log.Console($"重复字段:  {worksheet.Name}  {fieldName}");
-                    throw new Exception($"重复字段:  {worksheet.Name}  {fieldName}");
+                    Log.Console($"<color=#FF0000>重复字段:  {worksheet.Name}  {fieldName}</color>");
+                    throw new Exception($"<color=#FF0000>重复字段:  {worksheet.Name}  {fieldName}</color>");
                 }
                 else
                 {
