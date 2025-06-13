@@ -89,7 +89,7 @@ namespace ET
 		public int LearnRoseLv { get; set; }
 		/// <summary>天赋描述</summary>
 		[ProtoMember(6)]
-		public string TalentDes { get; set; }
+		public string talentDes { get; set; }
 		/// <summary>附加</summary>
 		[ProtoMember(8)]
 		public string AddPropreListStr { get; set; }
