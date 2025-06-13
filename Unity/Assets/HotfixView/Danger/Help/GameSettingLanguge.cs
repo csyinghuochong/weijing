@@ -24,13 +24,15 @@ namespace ET
             }
             set
             {
-                if (value != language)
+                if (value == language)
                 {
-                    IsChange = true;
-                    PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, value);
+                    return;
                 }
 
                 language = value;
+                IsChange = true;
+                PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, value);
+                HintHelp.GetInstance().DataUpdate(DataType.LanguageUpdate);
             }
         }
 

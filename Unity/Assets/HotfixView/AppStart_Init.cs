@@ -37,8 +37,6 @@ namespace ET
             ConfigComponent.Instance.Load();
             //ResourcesComponent.Instance.UnloadBundle("config.unity3d");
             
-            GameSettingLanguge.InitMulLanguageData();
-            
             Game.Scene.AddComponent<OpcodeTypeComponent>();
             Game.Scene.AddComponent<MessageDispatcherComponent>();
             
@@ -63,6 +61,8 @@ namespace ET
             Game.Scene.AddComponent<IosPurchasingComponent>();
 
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(Read);
+            
+            GameSettingLanguge.InitMulLanguageData();
 
             TimeInfo.Instance.TimeZone = 8;
             //await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");

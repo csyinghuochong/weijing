@@ -129,5 +129,7 @@
         public const int OnSkillUse = 49;
 
         public const int AccountWarehous = 50;
+
+        public const int LanguageUpdate = 51;
     }
 }

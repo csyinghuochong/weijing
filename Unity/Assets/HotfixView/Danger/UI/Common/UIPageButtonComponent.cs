@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPageButtonComponent : Entity, IAwake
+    public class UIPageButtonComponent : Entity, IAwake, IDestroy
     {
         public int LastIndex;
         public int CurrentIndex;
@@ -44,13 +44,56 @@ namespace ET
                 });
             }
 
+            self.OnLanguageUpdate();
+            
             //播放音效
             UIHelper.PlayUIMusic("10001");
+            
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIPageButtonComponentDestroySystem : DestroySystem<UIPageButtonComponent>
+    {
+        public override void Destroy(UIPageButtonComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPageButtonComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPageButtonComponent self)
+        {
+            Log.Debug("!!111111");
+            
+            Transform tt = self.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                }
+            }
+        }
+
         public static void OnClickButton(this UIPageButtonComponent self, Transform transform )
         {
             if (!self.ClickEnabled)
