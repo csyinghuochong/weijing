@@ -94,11 +94,15 @@ namespace ET
 
 			//IOS适配
 			IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
+			
+			self.OnLanguageUpdate();
+			
 			DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
 			DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipHuiShow, self);
 			DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+			DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 
 			ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
 			redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -117,6 +121,7 @@ namespace ET
 			DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.EquipHuiShow, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
+			DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
 			ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
 			redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -125,6 +130,47 @@ namespace ET
 
 	public static class UIRoleComponentSystem
 	{
+		public static void OnLanguageUpdate(this UIRoleComponent self)
+		{
+			Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+			int childCount = tt.childCount;
+			for (int i = 0; i < childCount; i++)
+			{
+				Transform transform = tt.transform.GetChild(i);
+
+				Transform XuanZhong = transform.Find("XuanZhong");
+				if (XuanZhong)
+				{
+					RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+					Vector2 size = rt.sizeDelta;
+					size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+					rt.sizeDelta = size;
+                    
+					Text text = XuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+
+				Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+				if (WeiXuanZhong)
+				{
+					RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+					Vector2 size = rt.sizeDelta;
+					size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+					rt.sizeDelta = size;
+                    
+					Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+			}
+		}
+		
 		public static async ETTask OnButtonZodiac(this UIRoleComponent self)
 		{
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

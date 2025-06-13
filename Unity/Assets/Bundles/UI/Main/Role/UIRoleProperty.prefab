@@ -4191,7 +4191,7 @@ GameObject:
   - component: {fileID: 2832143294855583723}
   - component: {fileID: 6822222142760176911}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: ImagePiLaoDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4266,7 +4266,7 @@ GameObject:
   - component: {fileID: 2977306761275015394}
   - component: {fileID: 1308065520889191547}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: ImageBaoShiDuDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8922,6 +8922,10 @@ MonoBehaviour:
     gameObject: {fileID: 6062911388288088789}
   - key: Btn_LuckExplain
     gameObject: {fileID: 4333256869871975354}
+  - key: ImagePiLaoDi
+    gameObject: {fileID: 2677011927264226675}
+  - key: ImageBaoShiDuDi
+    gameObject: {fileID: 2728854317513735863}
 --- !u!1 &6770916700336806838
 GameObject:
   m_ObjectHideFlags: 0

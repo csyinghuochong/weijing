@@ -519,9 +519,19 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UIPageButtonComponent uiPageButtonComponent)
+                if (component is UIRoleComponent uiRoleComponent)
                 {
-                    uiPageButtonComponent.OnLanguageUpdate();
+                    uiRoleComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRoleBagComponent uiRoleBagComponent)
+                {
+                    uiRoleBagComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRolePropertyComponent uiRolePropertyComponent)
+                {
+                    uiRolePropertyComponent.OnLanguageUpdate();
                     continue;
                 }
             }

@@ -14,6 +14,7 @@ namespace ET
         public GameObject ScrollView1;
         public GameObject ScrollView2;
         public GameObject ImageBaoShiDu;
+        public GameObject ImageBaoShiDuDi;
         public GameObject Text_BaoShiDu;
         public GameObject ButtonTiLi;
         public GameObject ButtonBaoShi; 
@@ -26,6 +27,7 @@ namespace ET
         public GameObject ImageExp;
         public GameObject Text_PiLao;
         public GameObject ImagePiLao;
+        public GameObject ImagePiLaoDi;
         public GameObject Text_Vitality;
         public GameObject PropertyListSet_2;
         public GameObject Btn_TeShuPro;
@@ -77,8 +79,10 @@ namespace ET
             self.ScrollView2 = rc.Get<GameObject>("ScrollView2");
             self.Text_BaoShiDu = rc.Get<GameObject>("Text_BaoShiDu");
             self.ImageBaoShiDu = rc.Get<GameObject>("ImageBaoShiDu");
+            self.ImageBaoShiDuDi = rc.Get<GameObject>("ImageBaoShiDuDi");
             self.Text_PiLao = rc.Get<GameObject>("Text_PiLao");
             self.ImagePiLao = rc.Get<GameObject>("ImagePiLao");
+            self.ImagePiLaoDi = rc.Get<GameObject>("ImagePiLaoDi");
             self.Text_Vitality = rc.Get<GameObject>("Text_Vitality");
             self.ButtonTiLi = rc.Get<GameObject>("ButtonTiLi");
             self.ButtonBaoShi = rc.Get<GameObject>("ButtonBaoShi");
@@ -134,6 +138,9 @@ namespace ET
             // redPointComponent.RegisterReddot(ReddotType.RolePoint, (int numer) => { self.Reddot_RolePoint(numer); });
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnShowUI().Coroutine();
         }
 	}
@@ -156,6 +163,7 @@ namespace ET
             
             //移除监听事件
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleProper, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -164,6 +172,35 @@ namespace ET
 
     public static class UIRolePropertyComponentSystem
 	{
+        public static void OnLanguageUpdate(this UIRolePropertyComponent self)
+        {
+            Vector2 position = Vector2.zero;
+            
+            position = self.Text_PiLao.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.Text_PiLao.GetComponent<RectTransform>().localPosition = position;
+            
+            position = self.ImagePiLao.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.ImagePiLao.GetComponent<RectTransform>().localPosition = position;
+            
+            position = self.ImagePiLaoDi.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.ImagePiLaoDi.GetComponent<RectTransform>().localPosition = position;
+            
+            
+            position = self.Text_BaoShiDu.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.Text_BaoShiDu.GetComponent<RectTransform>().localPosition = position;
+            
+            position = self.ImageBaoShiDu.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.ImageBaoShiDu.GetComponent<RectTransform>().localPosition = position;
+            
+            position = self.ImageBaoShiDuDi.GetComponent<RectTransform>().localPosition;
+            position.x += GameSettingLanguge.Language == 0? 0 : 40f;
+            self.ImageBaoShiDuDi.GetComponent<RectTransform>().localPosition = position;
+        }
 
         public static async ETTask OnShowUI(this UIRolePropertyComponent self)
         {

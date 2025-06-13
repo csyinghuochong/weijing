@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRoleBagComponent : Entity, IAwake
+    public class UIRoleBagComponent : Entity, IAwake, IDestroy
     {
         public GameObject Button_OpenOneSellSet;
         public GameObject Btn_OneGem;
@@ -46,12 +46,61 @@ namespace ET
                 self.OnClickPageButton(page);
             } );
             self.UIPageComponent = uIPageViewComponent;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.InitBagUIList().Coroutine();
+        }
+    }
+    
+    public class UIRoleBagComponentDestroySystem : DestroySystem<UIRoleBagComponent>
+    {
+        public override void Destroy(UIRoleBagComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIRoleBagComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRoleBagComponent self)
+        {
+            Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Transform icon = XuanZhong.Find("XuanZhong (1)");
+                    if (icon)
+                    {
+                        icon.gameObject.SetActive(GameSettingLanguge.Language == 0);
+                    }
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+
         public static void OnUpdateUI(this UIRoleBagComponent self)
         {
             self.UIPageComponent.OnSelectIndex(0);
