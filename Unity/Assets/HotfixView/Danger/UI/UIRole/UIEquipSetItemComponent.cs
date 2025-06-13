@@ -87,7 +87,7 @@ namespace ET
 
             if (subType < 100)
             {
-                string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
+                string qianghuaName = GameSettingLanguge.LoadLocalization(ItemViewHelp.EquipWeiZhiToName[subType].Icon);
                 string path = "";
                 if (GameSettingLanguge.Language == 0)
                 {

@@ -173,160 +173,159 @@ namespace ET
 
         public static Dictionary<int, string> PropertyHint = new Dictionary<int, string>()
         {
-            { NumericType.Now_MaxHp, GameSettingLanguge.LoadLocalization("自身的生命值上限,当生命值为0时便意味着自身的挑战失败") },
-            { NumericType.Now_MaxAct, GameSettingLanguge.LoadLocalization("伤害基础值,对目标造成伤害的主要属性") },
-            { NumericType.Now_MaxDef, GameSettingLanguge.LoadLocalization("物理防御,可以抵扣物理攻击带来的伤害") },
-            { NumericType.Now_MaxAdf, GameSettingLanguge.LoadLocalization("法术防御,可以抵扣魔法攻击带来的伤害") },
-            { NumericType.Now_Mage, GameSettingLanguge.LoadLocalization("会额外提升你所有的技能造成的伤害") },
-            { NumericType.Now_Constitution, GameSettingLanguge.LoadLocalization("提升生命和闪避，伤害减免属性") },
-            { NumericType.Now_Power, GameSettingLanguge.LoadLocalization("提升攻击，物防和物穿攻速属性") },
-            { NumericType.Now_Intellect, GameSettingLanguge.LoadLocalization("提升技能伤害，魔防和魔穿属性") },
-            { NumericType.Now_Stamina, GameSettingLanguge.LoadLocalization("提升双防，抗暴，战斗回血属性") },
-            { NumericType.Now_Agility, GameSettingLanguge.LoadLocalization("提升攻速，攻击，冷却缩减属性") },
-            { NumericType.Now_Cri, GameSettingLanguge.LoadLocalization("本次攻击触发暴击的概率") },
-            { NumericType.Now_MageDamgeSubPro, GameSettingLanguge.LoadLocalization("降低受到魔法类技能的伤害") },
-            { NumericType.Now_Res, GameSettingLanguge.LoadLocalization("抵抗对方暴击的概率和抵抗眩晕等控制类技能") },
-            { NumericType.Now_ZhongJiPro, GameSettingLanguge.LoadLocalization("攻击有概率使目标的防御降低为0,无视对方防御进行攻击,对怪物触发会额外增加20%的伤害") },
-            { NumericType.Now_Hit, GameSettingLanguge.LoadLocalization("命中敌人的附加概率，和闪避概率进行抵消") },
-            { NumericType.Now_ZhongJi, GameSettingLanguge.LoadLocalization("触发重击后额外附加的伤害值") },
-            { NumericType.Now_Dodge, GameSettingLanguge.LoadLocalization("受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能") },
-            { NumericType.Now_HuShiActPro, GameSettingLanguge.LoadLocalization("攻击中降低敌人物理防御值百分比") },
-            { NumericType.Now_HuShiMagePro, GameSettingLanguge.LoadLocalization("攻击中降低敌人魔法防御值百分比") },
-            { NumericType.Now_DamgeSubPro, GameSettingLanguge.LoadLocalization("受到敌人攻击的伤害后，降低本次受到的伤害") },
-            { NumericType.Now_HuShiDef, GameSettingLanguge.LoadLocalization("攻击中降低敌人物理防御值固定值") },
-            { NumericType.Now_Speed, GameSettingLanguge.LoadLocalization("自身在地图中移动的速度") },
-            { NumericType.Now_SkillCDTimeCostPro, GameSettingLanguge.LoadLocalization("降低释放技能的冷却时间") },
-            { NumericType.Now_CriLv, GameSettingLanguge.LoadLocalization("根据当前的暴击等级换算成暴击概率附加到自身属性") },
-            { NumericType.Now_MageDodgePro, GameSettingLanguge.LoadLocalization("受到魔法技能伤害时,可以躲避本次魔法伤害的概率") },
-            { NumericType.Now_ResLv, GameSettingLanguge.LoadLocalization("根据当前的韧性等级换算成韧性概率附加到自身属性") },
-            { NumericType.Now_ActDodgePro, GameSettingLanguge.LoadLocalization("受到物理技能伤害时,可以躲避本次魔法伤害的概率") },
-            { NumericType.Now_HitLv, GameSettingLanguge.LoadLocalization("根据当前的命中等级换算成命中概率附加到自身属性") },
-            { NumericType.Now_GeDang, GameSettingLanguge.LoadLocalization("受到伤害可以减免对应的伤害值") },
-            { NumericType.Now_DodgeLv, GameSettingLanguge.LoadLocalization("根据当前的闪避等级换算成闪避概率附加到自身属性") },
-            { NumericType.Now_ZhenShi, GameSettingLanguge.LoadLocalization("每次攻击额外增加的固定伤害") },
-            { NumericType.Now_ActDamgeAddPro, GameSettingLanguge.LoadLocalization("使用物理攻击目标时额外造成的伤害") },
-            { NumericType.Now_ActSpeedPro, GameSettingLanguge.LoadLocalization("可以加快自身普通攻击的攻击频率") },
-            { NumericType.Now_MageDamgeAddPro, GameSettingLanguge.LoadLocalization("使用魔法攻击目标时额外造成的伤害") },
-            { NumericType.Now_ShenNongPro, GameSettingLanguge.LoadLocalization("使用药剂和技能为自身恢复生命值时,可以获得额外恢复的能力") },
-            { NumericType.Now_ActDamgeSubPro, GameSettingLanguge.LoadLocalization("受到物理伤害可以降低自身受到的伤害值") },
-            { NumericType.Now_HuiXue, GameSettingLanguge.LoadLocalization("战斗中提升额外的生命恢复") },
-            { NumericType.Now_HuShiAdf, GameSettingLanguge.LoadLocalization("攻击中降低敌人魔法防御值固定值") },
-            { NumericType.Now_Luck, GameSettingLanguge.LoadLocalization("当幸运达到10点时,你将刀刀发挥最高攻击!") }
+            { NumericType.Now_MaxHp, "自身的生命值上限,当生命值为0时便意味着自身的挑战失败" },
+            { NumericType.Now_MaxAct, "伤害基础值,对目标造成伤害的主要属性" },
+            { NumericType.Now_MaxDef, "物理防御,可以抵扣物理攻击带来的伤害" },
+            { NumericType.Now_MaxAdf, "法术防御,可以抵扣魔法攻击带来的伤害" },
+            { NumericType.Now_Mage, "会额外提升你所有的技能造成的伤害" },
+            { NumericType.Now_Constitution, "提升生命和闪避，伤害减免属性" },
+            { NumericType.Now_Power, "提升攻击，物防和物穿攻速属性" },
+            { NumericType.Now_Intellect, "提升技能伤害，魔防和魔穿属性" },
+            { NumericType.Now_Stamina, "提升双防，抗暴，战斗回血属性" },
+            { NumericType.Now_Agility, "提升攻速，攻击，冷却缩减属性" },
+            { NumericType.Now_Cri, "本次攻击触发暴击的概率" },
+            { NumericType.Now_MageDamgeSubPro, "降低受到魔法类技能的伤害" },
+            { NumericType.Now_Res, "抵抗对方暴击的概率和抵抗眩晕等控制类技能" },
+            { NumericType.Now_ZhongJiPro, "攻击有概率使目标的防御降低为0,无视对方防御进行攻击,对怪物触发会额外增加20%的伤害" },
+            { NumericType.Now_Hit, "命中敌人的附加概率，和闪避概率进行抵消" },
+            { NumericType.Now_ZhongJi, "触发重击后额外附加的伤害值" },
+            { NumericType.Now_Dodge, "受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能" },
+            { NumericType.Now_HuShiActPro, "攻击中降低敌人物理防御值百分比" },
+            { NumericType.Now_HuShiMagePro, "攻击中降低敌人魔法防御值百分比" },
+            { NumericType.Now_DamgeSubPro, "受到敌人攻击的伤害后，降低本次受到的伤害" },
+            { NumericType.Now_HuShiDef, "攻击中降低敌人物理防御值固定值" },
+            { NumericType.Now_Speed, "自身在地图中移动的速度" },
+            { NumericType.Now_SkillCDTimeCostPro, "降低释放技能的冷却时间" },
+            { NumericType.Now_CriLv, "根据当前的暴击等级换算成暴击概率附加到自身属性" },
+            { NumericType.Now_MageDodgePro, "受到魔法技能伤害时,可以躲避本次魔法伤害的概率" },
+            { NumericType.Now_ResLv, "根据当前的韧性等级换算成韧性概率附加到自身属性" },
+            { NumericType.Now_ActDodgePro, "受到物理技能伤害时,可以躲避本次魔法伤害的概率" },
+            { NumericType.Now_HitLv, "根据当前的命中等级换算成命中概率附加到自身属性" },
+            { NumericType.Now_GeDang, "受到伤害可以减免对应的伤害值" },
+            { NumericType.Now_DodgeLv, "根据当前的闪避等级换算成闪避概率附加到自身属性" },
+            { NumericType.Now_ZhenShi, "每次攻击额外增加的固定伤害" },
+            { NumericType.Now_ActDamgeAddPro, "使用物理攻击目标时额外造成的伤害" },
+            { NumericType.Now_ActSpeedPro, "可以加快自身普通攻击的攻击频率" },
+            { NumericType.Now_MageDamgeAddPro, "使用魔法攻击目标时额外造成的伤害" },
+            { NumericType.Now_ShenNongPro, "使用药剂和技能为自身恢复生命值时,可以获得额外恢复的能力" },
+            { NumericType.Now_ActDamgeSubPro, "受到物理伤害可以降低自身受到的伤害值" },
+            { NumericType.Now_HuiXue, "战斗中提升额外的生命恢复" },
+            { NumericType.Now_HuShiAdf, "攻击中降低敌人魔法防御值固定值" },
+            { NumericType.Now_Luck, "当幸运达到10点时,你将刀刀发挥最高攻击!" }
         };
 
 
         public static Dictionary<int, NumericAttribute> AttributeToName = new Dictionary<int, NumericAttribute>()
         {
-            { NumericType.Now_MaxHp, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("生命"), Icon = "PetPro_1" }},
-            { NumericType.Now_MaxAct, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("攻击"), Icon = "PetPro_2" }},
-            { NumericType.Now_Mage, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔法"), Icon = "PetPro_3" }},
-            { NumericType.Now_MaxDef, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("物防"), Icon = "PetPro_4" }},
-            { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔防"), Icon = "PetPro_5" }},
+            { NumericType.Now_MaxHp, new NumericAttribute(){ Name = "生命", Icon = "PetPro_1" }},
+            { NumericType.Now_MaxAct, new NumericAttribute(){ Name = "攻击", Icon = "PetPro_2" }},
+            { NumericType.Now_Mage, new NumericAttribute(){ Name = "魔法", Icon = "PetPro_3" }},
+            { NumericType.Now_MaxDef, new NumericAttribute(){ Name = "物防", Icon = "PetPro_4" }},
+            { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = "魔防", Icon = "PetPro_5" }},
 
-            { NumericType.Now_Cri, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("暴击概率"), Icon = string.Empty, Threshold = GameSettingLanguge.LoadLocalization("当此值减去目标的抗暴概率，其上限达到75%便会达到阈值,无法实际增长") }},
-            { NumericType.Now_Res, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("抗暴概率"), Icon = string.Empty }},
-            { NumericType.Now_Hit, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("命中概率"), Icon = string.Empty }},
-            { NumericType.Now_Dodge, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("闪避概率"), Icon = string.Empty, Threshold = GameSettingLanguge.LoadLocalization("当此值减去目标的命中概率，其上限达到75%便会达到阈值,无法实际增长") }},
+            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty, Threshold = "当此值减去目标的抗暴概率，其上限达到75%便会达到阈值,无法实际增长" }},
+            { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = string.Empty }},
+            { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = string.Empty }},
+            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty, Threshold = "当此值减去目标的命中概率，其上限达到75%便会达到阈值,无法实际增长" }},
 
-            { NumericType.Base_Luck_Base, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("幸运加成"),Icon = string.Empty}},
+            { NumericType.Base_Luck_Base, new NumericAttribute(){Name = "幸运加成",Icon = string.Empty}},
             
-            { NumericType.Now_MinAct, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("最小攻击"), Icon = string.Empty }},
-            { NumericType.Now_MinDef, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("最小物防"), Icon = string.Empty }},
-            { NumericType.Now_MinAdf, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("最小魔防"), Icon = string.Empty }},
+            { NumericType.Now_MinAct, new NumericAttribute(){ Name = "最小攻击", Icon = string.Empty }},
+            { NumericType.Now_MinDef, new NumericAttribute(){ Name = "最小物防", Icon = string.Empty }},
+            { NumericType.Now_MinAdf, new NumericAttribute(){ Name = "最小魔防", Icon = string.Empty }},
             //{ NumericType.Now_Mage, new NumericAttribute(){ Name = "技能伤害", Icon = "" }},
              
-            { NumericType.Now_Power, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("力量"), Icon = string.Empty }},
-            { NumericType.Now_Agility, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("敏捷"), Icon = string.Empty }},
-            { NumericType.Now_Intellect, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("智力"), Icon = string.Empty }},
-            { NumericType.Now_Stamina, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("耐力"), Icon = string.Empty }},
-            { NumericType.Now_Constitution, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("体质"), Icon = string.Empty }},
+            { NumericType.Now_Power, new NumericAttribute(){ Name = "力量", Icon = string.Empty }},
+            { NumericType.Now_Agility, new NumericAttribute(){ Name = "敏捷", Icon = string.Empty }},
+            { NumericType.Now_Intellect, new NumericAttribute(){ Name = "智力", Icon = string.Empty }},
+            { NumericType.Now_Stamina, new NumericAttribute(){ Name = "耐力", Icon = string.Empty }},
+            { NumericType.Now_Constitution, new NumericAttribute(){ Name = "体质", Icon = string.Empty }},
 
-            { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("伤害加成"), Icon = string.Empty }},
-            { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("伤害减免"), Icon = string.Empty }},
-            { NumericType.Now_Luck, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("幸运值"), Icon = string.Empty,Threshold = GameSettingLanguge.LoadLocalization("此值上限值为：10点。") }},
-            { NumericType.Now_Speed, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("移动速度"), Icon = string.Empty }},
-            { NumericType.Now_CriLv, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("暴击等级"), Icon = string.Empty }},
-            { NumericType.Now_ResLv, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("韧性等级"), Icon = string.Empty }},
-            { NumericType.Now_HitLv, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("命中等级"), Icon = string.Empty }},
-            { NumericType.Now_DodgeLv, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("闪避等级"), Icon = string.Empty }},
-            { NumericType.Now_ActDamgeAddPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("物理伤害加成"), Icon = string.Empty }},
-            { NumericType.Now_MageDamgeAddPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔法伤害加成"), Icon = string.Empty }},
-            { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("物理伤害减免"), Icon = string.Empty }},
-            { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔法伤害减免"), Icon = string.Empty }},
-            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("重击概率"), Icon = string.Empty,Threshold = "此值上限值为：75%" }},
-            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("重击附加"), Icon = string.Empty }},
-            { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("攻击穿透"), Icon = string.Empty }},
-            { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔法穿透"), Icon = string.Empty }},
-            { NumericType.Now_HuShiDef, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("忽视目标防御"), Icon = string.Empty }},
-            { NumericType.Now_HuShiAdf, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("忽视目标魔御"), Icon = string.Empty }},
-            { NumericType.Now_XiXuePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("吸血概率"), Icon = string.Empty }},
-            { NumericType.Now_SkillCDTimeCostPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("技能冷却缩减"), Icon = string.Empty }},
-            { NumericType.Now_GeDang, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("格挡值"), Icon = string.Empty }},
-            { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("真实伤害"), Icon = string.Empty }},
-            { NumericType.Now_HuiXue, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("回血值"), Icon = string.Empty }},
-            { NumericType.Now_ZhongJiLv, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("重击等级"), Icon = string.Empty }},
-
-
-            { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("经验收益"), Icon = string.Empty }},
-            { NumericType.Now_GoldAdd, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("金币收益"), Icon = string.Empty }},
-
-            { NumericType.Now_MonsterDis, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("怪物发现目标距离"), Icon = string.Empty }},
-            { NumericType.Now_JumpDisAdd, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("冲锋距离加成"), Icon = string.Empty }},
-            { NumericType.Now_ActQiangDuAdd, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("攻击强度"), Icon = string.Empty }},
-            { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("法术强度"), Icon = string.Empty }},
+            { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = "伤害加成", Icon = string.Empty }},
+            { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = "伤害减免", Icon = string.Empty }},
+            { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = string.Empty,Threshold = "此值上限值为：10点。" }},
+            { NumericType.Now_Speed, new NumericAttribute(){ Name = "移动速度", Icon = string.Empty }},
+            { NumericType.Now_CriLv, new NumericAttribute(){ Name = "暴击等级", Icon = string.Empty }},
+            { NumericType.Now_ResLv, new NumericAttribute(){ Name = "韧性等级", Icon = string.Empty }},
+            { NumericType.Now_HitLv, new NumericAttribute(){ Name = "命中等级", Icon = string.Empty }},
+            { NumericType.Now_DodgeLv, new NumericAttribute(){ Name = "闪避等级", Icon = string.Empty }},
+            { NumericType.Now_ActDamgeAddPro, new NumericAttribute(){ Name = "物理伤害加成", Icon = string.Empty }},
+            { NumericType.Now_MageDamgeAddPro, new NumericAttribute(){ Name = "魔法伤害加成", Icon = string.Empty }},
+            { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = "物理伤害减免", Icon = string.Empty }},
+            { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = "魔法伤害减免", Icon = string.Empty }},
+            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = string.Empty,Threshold = "此值上限值为：75%" }},
+            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加", Icon = string.Empty }},
+            { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = "攻击穿透", Icon = string.Empty }},
+            { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = "魔法穿透", Icon = string.Empty }},
+            { NumericType.Now_HuShiDef, new NumericAttribute(){ Name = "忽视目标防御", Icon = string.Empty }},
+            { NumericType.Now_HuShiAdf, new NumericAttribute(){ Name = "忽视目标魔御", Icon = string.Empty }},
+            { NumericType.Now_XiXuePro, new NumericAttribute(){ Name = "吸血概率", Icon = string.Empty }},
+            { NumericType.Now_SkillCDTimeCostPro, new NumericAttribute(){ Name = "技能冷却缩减", Icon = string.Empty }},
+            { NumericType.Now_GeDang, new NumericAttribute(){ Name = "格挡值", Icon = string.Empty }},
+            { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = "真实伤害", Icon = string.Empty }},
+            { NumericType.Now_HuiXue, new NumericAttribute(){ Name = "回血值", Icon = string.Empty }},
+            { NumericType.Now_ZhongJiLv, new NumericAttribute(){ Name = "重击等级", Icon = string.Empty }},
 
 
-            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("领主普攻加成"), Icon = string.Empty }},
-            { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("领主技能加成"), Icon = string.Empty }},
-            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("领主普攻免伤"), Icon = string.Empty }},
-            { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("领主技能免伤"), Icon = string.Empty }},
+            { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = "经验收益", Icon = string.Empty }},
+            { NumericType.Now_GoldAdd, new NumericAttribute(){ Name = "金币收益", Icon = string.Empty }},
 
-            { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("致命一击"), Icon = string.Empty }},
-            { NumericType.Now_FuHuoPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("重生几率"), Icon = string.Empty }},
-            { NumericType.Now_WuShiFangYuPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("无视防御"), Icon = string.Empty }},
-            { NumericType.Now_SkillNoCDPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("技能零冷却"), Icon = string.Empty }},
-            { NumericType.Now_SkillMoreDamgePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("技能额外伤害"), Icon = string.Empty }},
-            { NumericType.Now_SkillDodgePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("技能闪避"), Icon = string.Empty }},
-            { NumericType.Now_ShenNongPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("神农"), Icon = string.Empty }},
-            { NumericType.Now_SecHpAddPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("每秒恢复"), Icon =  string.Empty }},
-            { NumericType.Now_DiKangPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("抵抗减益状态"), Icon =  string.Empty }},
-            { NumericType.Now_MageDodgePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("魔法闪避"), Icon =  string.Empty }},
-            { NumericType.Now_ZhuanZhuPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("专注概率"), Icon =  string.Empty }},
-            { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("物理闪避"), Icon =  string.Empty }},
-            { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("攻击速度"), Icon =  string.Empty }},
-            { NumericType.Now_ActBossAddDamge, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("对怪伤害"), Icon =  string.Empty }},
-            { NumericType.Now_PlayerActDamgeSubPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("玩家普攻减伤)"),Icon = string.Empty}}, 
-            { NumericType.Now_PlayerSkillDamgeSubPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("玩家技能减伤"),Icon = string.Empty}},
-            { NumericType.Now_GoldAdd_Pro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("经验收益"),Icon = string.Empty}},
-            { NumericType.Now_ExpAdd_Pro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("金币收益"),Icon = string.Empty}},
-            { NumericType.Now_DropAdd_Pro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("游戏爆率"), Icon = string.Empty}},
-            { NumericType.Now_MonsterActIncreaseDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("怪攻增伤"), Icon = string.Empty}},
-            { NumericType.Now_MonsterMageIncreaseDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("怪技增伤"), Icon = string.Empty}},
-            { NumericType.Now_MonsterActReduceDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("怪攻减伤"), Icon = string.Empty}},
-            { NumericType.Now_MonsterMageReduceDamgeSubPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("怪技减伤"), Icon = string.Empty}},
+            { NumericType.Now_MonsterDis, new NumericAttribute(){ Name = "怪物发现目标距离", Icon = string.Empty }},
+            { NumericType.Now_JumpDisAdd, new NumericAttribute(){ Name = "冲锋距离加成", Icon = string.Empty }},
+            { NumericType.Now_ActQiangDuAdd, new NumericAttribute(){ Name = "攻击强度", Icon = string.Empty }},
+            { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = "法术强度", Icon = string.Empty }},
 
-            { NumericType.Now_PuGongAddPro, new NumericAttribute(){ Name = GameSettingLanguge.LoadLocalization("普通攻击加成"), Icon = string.Empty}},
 
-            { NumericType.Now_PetAllMageAct, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物全体魔法攻击"),Icon = string.Empty}},
-            { NumericType.Now_PetAllAct, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物全体攻击"),Icon = string.Empty}},
-            { NumericType.Now_PetAllDef, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物全体防御"),Icon = string.Empty}},
-            { NumericType.Now_PetAllAdf, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物全体魔防"),Icon = string.Empty}},
-            { NumericType.Now_PetAllHp, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物全体生命"),Icon = string.Empty}},
+            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主普攻加成", Icon = string.Empty }},
+            { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = "领主技能加成", Icon = string.Empty }},
+            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主普攻免伤", Icon = string.Empty }},
+            { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = "领主技能免伤", Icon = string.Empty }},
 
-            { NumericType.Now_PetAllMageActPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物魔法攻击"),Icon = string.Empty}},
-            { NumericType.Now_PetAllActPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物攻击"),Icon = string.Empty}},
-            { NumericType.Now_PetAllDefPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物防御"),Icon = string.Empty}},
-            { NumericType.Now_PetAllAdfPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物魔防"),Icon = string.Empty}},
-            { NumericType.Now_PetAllHpPro, new NumericAttribute(){Name = GameSettingLanguge.LoadLocalization("宠物生命"),Icon = string.Empty}},
+            { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = "致命一击", Icon = string.Empty }},
+            { NumericType.Now_FuHuoPro, new NumericAttribute(){ Name = "重生几率", Icon = string.Empty }},
+            { NumericType.Now_WuShiFangYuPro, new NumericAttribute(){ Name = "无视防御", Icon = string.Empty }},
+            { NumericType.Now_SkillNoCDPro, new NumericAttribute(){ Name = "技能零冷却", Icon = string.Empty }},
+            { NumericType.Now_SkillMoreDamgePro, new NumericAttribute(){ Name = "技能额外伤害", Icon = string.Empty }},
+            { NumericType.Now_SkillDodgePro, new NumericAttribute(){ Name = "技能闪避", Icon = string.Empty }},
+            { NumericType.Now_ShenNongPro, new NumericAttribute(){ Name = "神农", Icon = string.Empty }},
+            { NumericType.Now_SecHpAddPro, new NumericAttribute(){ Name = "每秒恢复", Icon =  string.Empty }},
+            { NumericType.Now_DiKangPro, new NumericAttribute(){ Name = "抵抗减益状态", Icon =  string.Empty }},
+            { NumericType.Now_MageDodgePro, new NumericAttribute(){ Name = "魔法闪避", Icon =  string.Empty }},
+            { NumericType.Now_ZhuanZhuPro, new NumericAttribute(){ Name = "专注概率", Icon =  string.Empty }},
+            { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = "物理闪避", Icon =  string.Empty }},
+            { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon =  string.Empty }},
+            { NumericType.Now_ActBossAddDamge, new NumericAttribute(){ Name = "对怪伤害", Icon =  string.Empty }},
+            { NumericType.Now_PlayerActDamgeSubPro, new NumericAttribute(){Name = "玩家普攻减伤",Icon = string.Empty}}, { NumericType.Now_PlayerSkillDamgeSubPro, new NumericAttribute(){Name = "玩家技能减伤",Icon = string.Empty}},
+            { NumericType.Now_GoldAdd_Pro, new NumericAttribute(){Name = "经验收益",Icon = string.Empty}},
+            { NumericType.Now_ExpAdd_Pro, new NumericAttribute(){Name = "金币收益",Icon = string.Empty}},
+            { NumericType.Now_DropAdd_Pro, new NumericAttribute(){ Name = "游戏爆率", Icon = string.Empty}},
+            { NumericType.Now_MonsterActIncreaseDamgeSubPro, new NumericAttribute(){ Name = "怪攻增伤", Icon = string.Empty}},
+            { NumericType.Now_MonsterMageIncreaseDamgeSubPro, new NumericAttribute(){ Name = "怪技增伤", Icon = string.Empty}},
+            { NumericType.Now_MonsterActReduceDamgeSubPro, new NumericAttribute(){ Name = "怪攻减伤", Icon = string.Empty}},
+            { NumericType.Now_MonsterMageReduceDamgeSubPro, new NumericAttribute(){ Name = "怪技减伤", Icon = string.Empty}},
+
+            { NumericType.Now_PuGongAddPro, new NumericAttribute(){ Name = "普通攻击加成", Icon = string.Empty}},
+
+            { NumericType.Now_PetAllMageAct, new NumericAttribute(){Name = "宠物全体魔法攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllAct, new NumericAttribute(){Name = "宠物全体攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllDef, new NumericAttribute(){Name = "宠物全体防御",Icon = string.Empty}},
+            { NumericType.Now_PetAllAdf, new NumericAttribute(){Name = "宠物全体魔防",Icon = string.Empty}},
+            { NumericType.Now_PetAllHp, new NumericAttribute(){Name = "宠物全体生命",Icon = string.Empty}},
+
+            { NumericType.Now_PetAllMageActPro, new NumericAttribute(){Name = "宠物魔法攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllActPro, new NumericAttribute(){Name = "宠物攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllDefPro, new NumericAttribute(){Name = "宠物防御",Icon = string.Empty}},
+            { NumericType.Now_PetAllAdfPro, new NumericAttribute(){Name = "宠物魔防",Icon = string.Empty}},
+            { NumericType.Now_PetAllHpPro, new NumericAttribute(){Name = "宠物生命",Icon = string.Empty}},
         };
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
         {
-            {  ItemTypeEnum.Consume,  GameSettingLanguge.LoadLocalization("消耗品") },
-            {  ItemTypeEnum.Material,  GameSettingLanguge.LoadLocalization("材料") },
-            {  ItemTypeEnum.Equipment,   GameSettingLanguge.LoadLocalization("装备") },
-            {  ItemTypeEnum.Gemstone,   GameSettingLanguge.LoadLocalization("宝石") },
-            {  ItemTypeEnum.PetHeXin,   GameSettingLanguge.LoadLocalization("宠物之核") },
+            { ItemTypeEnum.Consume, "消耗品" },
+            { ItemTypeEnum.Material, "材料" },
+            { ItemTypeEnum.Equipment, "装备" },
+            { ItemTypeEnum.Gemstone, "宝石" },
+            { ItemTypeEnum.PetHeXin, "宠物之核" },
         };
 
         //Administrator:
@@ -355,26 +354,26 @@ namespace ET
         /// </summary>
         public static Dictionary<int, string> ItemSubType3Name = new Dictionary<int, string>()
         {
-           {  0,  GameSettingLanguge.LoadLocalization("全部") },
-           {  1,  GameSettingLanguge.LoadLocalization("武器") },
-           {  2,  GameSettingLanguge.LoadLocalization("衣服") },
-           {  3,  GameSettingLanguge.LoadLocalization("护符") },
-           {  4,  GameSettingLanguge.LoadLocalization("戒指") },
-           {  5,  GameSettingLanguge.LoadLocalization("饰品") },
-           {  6,  GameSettingLanguge.LoadLocalization("鞋子") },
-           {  7,  GameSettingLanguge.LoadLocalization("裤子") },
-           {  8,  GameSettingLanguge.LoadLocalization("腰带") },
-           {  9,  GameSettingLanguge.LoadLocalization("手镯") },
-           {  10,  GameSettingLanguge.LoadLocalization("头盔") },
-           {  11,  GameSettingLanguge.LoadLocalization("项链") },
-           {  1100,  GameSettingLanguge.LoadLocalization("生肖") },
+           {  0,  "全部" },
+           {  1,  "武器" },
+           {  2,  "衣服" },
+           {  3,  "护符" },
+           {  4,  "戒指" },
+           {  5,  "饰品" },
+           {  6,  "鞋子" },
+           {  7,  "裤子" },
+           {  8,  "腰带" },
+           {  9,  "手镯" },
+           {  10, "头盔" },
+           {  11, "项链" },
+           {  1100, "生肖" },
         };
 
         public static string GetItemSubType3Name(int subType)
         { 
             string name = string.Empty;
             ItemSubType3Name.TryGetValue(subType, out name);
-            return name;
+            return GameSettingLanguge.LoadLocalization(name);
         }
 
         public struct EquipWeiZhiInfo
@@ -388,36 +387,36 @@ namespace ET
         /// </summary>
         public static Dictionary<int, EquipWeiZhiInfo> EquipWeiZhiToName = new Dictionary<int, EquipWeiZhiInfo>()
         {
-            { 1, new EquipWeiZhiInfo() { Icon = "Img_24", Name = GameSettingLanguge.LoadLocalization("武器") } },
-            { 2, new EquipWeiZhiInfo() { Icon = "Img_28", Name = GameSettingLanguge.LoadLocalization("衣服") } },
-            { 3, new EquipWeiZhiInfo() { Icon = "Img_29", Name = GameSettingLanguge.LoadLocalization("护符") } },
-            { 4, new EquipWeiZhiInfo() { Icon = "Img_19", Name = GameSettingLanguge.LoadLocalization("戒指") } },
-            { 5, new EquipWeiZhiInfo() { Icon = "Img_21", Name = GameSettingLanguge.LoadLocalization("饰品") } },
-            { 6, new EquipWeiZhiInfo() { Icon = "Img_26", Name = GameSettingLanguge.LoadLocalization("鞋子") } },
-            { 7, new EquipWeiZhiInfo() { Icon = "Img_20", Name = GameSettingLanguge.LoadLocalization("裤子") } },
-            { 8, new EquipWeiZhiInfo() { Icon = "Img_27", Name = GameSettingLanguge.LoadLocalization("腰带") } },
-            { 9, new EquipWeiZhiInfo() { Icon = "Img_22", Name = GameSettingLanguge.LoadLocalization("手镯") } },
-            { 10, new EquipWeiZhiInfo() { Icon = "Img_23", Name = GameSettingLanguge.LoadLocalization("头盔") } },
-            { 11, new EquipWeiZhiInfo() { Icon = "Img_25", Name = GameSettingLanguge.LoadLocalization("项链") } },
+            { 1, new EquipWeiZhiInfo() { Icon = "Img_24", Name = "武器" } },
+            { 2, new EquipWeiZhiInfo() { Icon = "Img_28", Name = "衣服" } },
+            { 3, new EquipWeiZhiInfo() { Icon = "Img_29", Name = "护符" } },
+            { 4, new EquipWeiZhiInfo() { Icon = "Img_19", Name = "戒指" } },
+            { 5, new EquipWeiZhiInfo() { Icon = "Img_21", Name = "饰品" } },
+            { 6, new EquipWeiZhiInfo() { Icon = "Img_26", Name = "鞋子" } },
+            { 7, new EquipWeiZhiInfo() { Icon = "Img_20", Name = "裤子" } },
+            { 8, new EquipWeiZhiInfo() { Icon = "Img_27", Name = "腰带" } },
+            { 9, new EquipWeiZhiInfo() { Icon = "Img_22", Name = "手镯" } },
+            { 10, new EquipWeiZhiInfo() { Icon = "Img_23", Name = "头盔" } },
+            { 11, new EquipWeiZhiInfo() { Icon = "Img_25", Name = "项链" } },
         };
 
         //宝石槽位
         public static Dictionary<int, string> GemHoleName = new Dictionary<int, string>()
         {
-            {  101,  GameSettingLanguge.LoadLocalization("黄色插槽") },
-            {  102,  GameSettingLanguge.LoadLocalization("紫色插槽") },
-            {  103,  GameSettingLanguge.LoadLocalization("蓝色插槽") },
-            {  104,  GameSettingLanguge.LoadLocalization("绿色插槽") },
-            {  105,  GameSettingLanguge.LoadLocalization("橙色插槽") },
+            {  101,  "黄色插槽" },
+            {  102,  "紫色插槽" },
+            {  103,  "蓝色插槽" },
+            {  104,  "绿色插槽" },
+            {  105,  "橙色插槽" },
         };
 
         //消耗品
         public static Dictionary<int, string> ItemSubType1Name = new Dictionary<int, string>()
         {
-             {  0,  GameSettingLanguge.LoadLocalization("全部") },
-             {  101,  GameSettingLanguge.LoadLocalization("药剂") },
-             {  15,  GameSettingLanguge.LoadLocalization("附魔") },
-             {  127,  GameSettingLanguge.LoadLocalization("藏宝图") },
+             {  0,  "全部" },
+             {  101,  "药剂" },
+             {  15,  "附魔" },
+             {  127,  "藏宝图" },
              /*
              {  1,  GameSettingLanguge.LoadLocalization("金币") },
              {  2,  GameSettingLanguge.LoadLocalization("经验") },
@@ -435,10 +434,10 @@ namespace ET
         //材料
         public static Dictionary<int, string> ItemSubType2Name = new Dictionary<int, string>()
         {
-             {  0,  GameSettingLanguge.LoadLocalization("全部") },
-             {  1,  GameSettingLanguge.LoadLocalization("材料") },
-             {  121,  GameSettingLanguge.LoadLocalization("鉴定符") },
-             {  122,  GameSettingLanguge.LoadLocalization("宠物技能") },
+             {  0,  "全部" },
+             {  1,  "材料" },
+             {  121,  "鉴定符" },
+             {  122,  "宠物技能" },
              /*
              {  1,  GameSettingLanguge.LoadLocalization("金币") },
              {  2,  GameSettingLanguge.LoadLocalization("经验") },
@@ -455,12 +454,12 @@ namespace ET
         //材料
         public static Dictionary<int, string> ItemSubType4Name = new Dictionary<int, string>()
         {
-            {  0,  GameSettingLanguge.LoadLocalization("全部") },
-            {  101,  GameSettingLanguge.LoadLocalization("黄色插槽") },
-            {  102,  GameSettingLanguge.LoadLocalization("紫色插槽") },
-            {  103,  GameSettingLanguge.LoadLocalization("蓝色插槽") },
-            {  104,  GameSettingLanguge.LoadLocalization("绿色插槽") },
-            {  105,  GameSettingLanguge.LoadLocalization("橙色插槽") },
+            {  0,  "全部" },
+            {  101,  "黄色插槽" },
+            {  102,  "紫色插槽" },
+            {  103,  "蓝色插槽" },
+            {  104,  "绿色插槽" },
+            {  105,  "橙色插槽" },
         };
 
         public static string XiLianWeiZhiTip(int hideId)
@@ -534,7 +533,7 @@ namespace ET
             {
                 return GetAttributeName(numberType / 100);
             }
-            return name;
+            return GameSettingLanguge.LoadLocalization(name);
         }
 
         public static string GetAttributeIcon(int numberType)

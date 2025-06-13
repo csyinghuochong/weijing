@@ -34,7 +34,7 @@ namespace ET
         {
             self.PositionNode.transform.localPosition = vector3 + new Vector3(100, 0f, 0f);
             self.PropertyNameText.GetComponent<Text>().text = name;
-            self.PropertyDesText.GetComponent<Text>().text = ItemViewHelp.PropertyHint[numtype];
+            self.PropertyDesText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemViewHelp.PropertyHint[numtype]);
 
             int addHeight = 100;
             if (ItemViewHelp.AttributeToName.ContainsKey(numtype))

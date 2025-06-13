@@ -186,6 +186,9 @@ namespace ET
             self.Obj_UIEquipGemHoleIconList[2] = rc.Get<GameObject>("Obj_UIEquipGemHoleIcon_3");
             self.Obj_UIEquipGemHoleIconList[3] = rc.Get<GameObject>("Obj_UIEquipGemHoleIcon_4");
 
+            GameSettingLanguge.TransformText(self.GetParent<UI>().GameObject.transform);
+            GameSettingLanguge.TransformImage(self.GetParent<UI>().GameObject.transform);
+            
             ButtonHelp.AddListenerEx(self.Img_back_btn, self.OnCloseTips);
             ButtonHelp.AddListenerEx(self.Btn_Use, self.OnClickWearEquip);
             ButtonHelp.AddListenerEx(self.Btn_Takeoff, self.OnClickTakeEquip);
@@ -521,7 +524,7 @@ namespace ET
             }
             else
             {
-                text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
+                text.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemViewHelp.GemHoleName[gemHole]);
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))

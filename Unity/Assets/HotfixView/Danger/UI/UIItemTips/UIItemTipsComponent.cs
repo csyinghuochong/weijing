@@ -645,6 +645,7 @@ namespace ET
             //类型描述
             string itemTypename = GameSettingLanguge.LoadLocalization("消耗品");
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
+            itemTypename = GameSettingLanguge.LoadLocalization(itemTypename);
 
             //烹饪道具显示
             if (itemType == 1 && itemSubType == 131) {

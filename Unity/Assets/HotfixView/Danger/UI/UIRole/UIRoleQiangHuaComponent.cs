@@ -105,7 +105,7 @@ namespace ET
 
             UICommonHelper.SetParent(self.ImageSelect, self.QiangHuaItemList[subType-1].GameObject);
             self.ImageSelect.transform.localPosition = new Vector3(1f, -2f, 0f);
-            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Name;
+            string qianghuaName = GameSettingLanguge.LoadLocalization(ItemViewHelp.EquipWeiZhiToName[subType].Name);
             self.TextQiangHuaName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}强化 +{1}"), qianghuaName, qianghuaLevel);
             EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel);
 
@@ -115,7 +115,7 @@ namespace ET
             self.TextAttribute1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("对应部位提升 {0}%属性"), svalue);
 
             self.Text_QiangHuaLv.GetComponent<Text>().text = $"+{qianghuaLevel}";
-            self.Text_QiangHuaName.GetComponent<Text>().text = ItemViewHelp.EquipWeiZhiToName[subType].Name;
+            self.Text_QiangHuaName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemViewHelp.EquipWeiZhiToName[subType].Name);
             self.QiangHuaItemList[subType - 1].OnUpateUI(qianghuaLevel);
 
             for (int i = 0; i < self.QiangHuaLevelList.transform.childCount; i++)

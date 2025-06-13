@@ -113,7 +113,7 @@ namespace ET
                 self.Lab_HoleName.SetActive(true);
                 //self.ImageHoleName.SetActive(true);
                 self.UIGemItem.GameObject.SetActive(false);
-                self.Lab_HoleName.GetComponent<Text>().text = ItemViewHelp.GemHoleName[holeId];
+                self.Lab_HoleName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemViewHelp.GemHoleName[holeId]);
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"Img_hole_{holeId}");
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
                 if (!self.AssetPath.Contains(path))

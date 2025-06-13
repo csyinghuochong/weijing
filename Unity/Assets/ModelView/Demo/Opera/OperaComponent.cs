@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ET
 {
-	public class OperaComponent: Entity,IDestroy, IAwake//, IUpdate
+	public class OperaComponent: Entity,IDestroy, IAwake, IUpdate
     {
         public float LastSendTime;
 

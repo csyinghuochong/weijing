@@ -318,15 +318,17 @@ namespace ET
         {
             int oldIndex = GameSettingLanguge.Language;
             GameSettingLanguge.Language = index;
-
-            PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, index);
             
             self.LanguageSet.transform.Find("Image_Click_0").gameObject.SetActive(index == 0);
             self.LanguageSet.transform.Find("Image_Click_1").gameObject.SetActive(index == 1);
 
             if (oldIndex != index)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重启游戏"));
+                foreach (UI ui in self.ZoneScene().GetComponent<UIComponent>().UIs.Values)
+                {
+                    GameSettingLanguge.TransformText(ui.GameObject.transform);
+                    GameSettingLanguge.TransformImage(ui.GameObject.transform);
+                }
             }
         }
 

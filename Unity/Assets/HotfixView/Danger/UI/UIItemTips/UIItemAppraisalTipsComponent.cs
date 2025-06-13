@@ -280,7 +280,7 @@ namespace ET
             //类型描述
             string itemTypename = GameSettingLanguge.LoadLocalization("消耗品");
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
-            self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + itemTypename;
+            self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + GameSettingLanguge.LoadLocalization(itemTypename);
             if (itemconf.ItemEquipID != 0 && itemconf.EquipType != 201)
             {
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID).AppraisalItem;

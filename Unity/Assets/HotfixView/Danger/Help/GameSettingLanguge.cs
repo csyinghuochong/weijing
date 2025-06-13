@@ -7,14 +7,32 @@ namespace ET
 {
     public class GameSettingLanguge : Singleton<GameSettingLanguge>
     {
-
         //随机名称
         public int ranNameNum;
         public string[] randomName_xing;
         public string[] randomName_name;
         public bool langLoadStatus;             //本地化语言加载状态 
 
-        public static int Language = 0;
+        private static bool IsChange = false;
+        private static int language = 0;
+
+        public static int Language
+        {
+            get
+            {
+                return language;
+            }
+            set
+            {
+                if (value != language)
+                {
+                    IsChange = true;
+                    PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, value);
+                }
+
+                language = value;
+            }
+        }
 
         public struct LangugeType
         {
@@ -22,9 +40,10 @@ namespace ET
             public string en;
         }
 
-        public Dictionary<string, LangugeType> LangugeList = new Dictionary<string, LangugeType>();
+        private Dictionary<string, LangugeType> LangugeList = new Dictionary<string, LangugeType>();
 
-        public static Dictionary<string, string> MulLanguage = new Dictionary<string, string>();
+        private static Dictionary<string, string> ZhToEn = new Dictionary<string, string>();
+        private static Dictionary<string, string> EnToZh = new Dictionary<string, string>();
 
         public static string LoadLocalization(string getString)
         {
@@ -38,7 +57,6 @@ namespace ET
 
         public async ETTask InitRandomName()
         {
-            Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language);
             if (randomName_xing == null)
             {
                 var path_1 = ABPathHelper.GetTextPath("RandName_Xing");
@@ -189,10 +207,11 @@ namespace ET
 
         public static void TransformText(Transform root)
         {
-            if (Language == 0)
+            if (Language == 0 && !IsChange)
             {
                 return;
             }
+            
             foreach (Transform chind in root)
             {
                 Text label = chind.GetComponent<Text>();
@@ -214,7 +233,7 @@ namespace ET
 
         public static void TransformImage(Transform root)
         {
-            if (Language == 0)
+            if (Language == 0 && !IsChange)
             {
                 return;
             }
@@ -245,14 +264,27 @@ namespace ET
                 if (image != null && image.sprite != null)
                 {
                     string text = image.sprite.name;
-                    
                     ReferenceCollector re = chind.GetComponent<ReferenceCollector>();
                     if (re != null)
                     {
-                        Sprite sp_EN = re.Get<Sprite>(text + "_EN");
-                        if (sp_EN != null)
+                        if (text.EndsWith("_EN"))
                         {
-                            image.sprite = sp_EN;
+                            text = text.Substring(0, text.Length - 3);
+                        }
+                        
+                        Sprite sprite = null;
+                        if (Language == 0)
+                        {
+                            sprite = re.Get<Sprite>(text);
+                        }
+                        else
+                        {
+                            sprite = re.Get<Sprite>(text + "_EN");
+                        }
+                                
+                        if (sprite != null)
+                        {
+                            image.sprite = sprite;
                         }
                     }
                 }
@@ -266,6 +298,8 @@ namespace ET
 
         public static void InitMulLanguageData()
         {
+            Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language);
+            
             foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
             {
                 AddMulLanguageData(config.Chinese, config.English);
@@ -496,16 +530,20 @@ namespace ET
                 return;
             }
 
-            if (!MulLanguage.ContainsKey(chinese))
+            if (!ZhToEn.ContainsKey(chinese))
             {
-                MulLanguage.Add(chinese, english);
+                ZhToEn.Add(chinese, english);
+            }
+            
+            if (!EnToZh.ContainsKey(english))
+            {
+                EnToZh.Add(english, chinese);
             }
         }
         
         private static string GetText(string text)
         {
-            //通过传进来的中文KEY 去数据表里面读对应替换的多语言文字
-            if (Language == 0)
+            if (Language == 0 && !IsChange)
             {
                 return text;
             }
@@ -515,9 +553,45 @@ namespace ET
                 return text;
             }
 
-            if (MulLanguage.TryGetValue(text, out string text1))
+            int textType = -1;
+            foreach (char c in text)
             {
-                return text1;
+                if (char.IsWhiteSpace(c) || char.IsPunctuation(c) || char.IsDigit(c))
+                    continue;
+
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+                {
+                    // 英文
+                    textType = 1;
+                }
+                else
+                {
+                    // 中文
+                    textType = 0;
+                }
+                break;
+            }
+
+            if (textType == Language)
+            {
+                return text;
+            }
+
+            if (Language == 0)
+            {
+                // 英文转中文
+                if (EnToZh.TryGetValue(text, out string text1))
+                {
+                    return text1;
+                }
+            }
+            else
+            {
+                // 中文转英文
+                if (ZhToEn.TryGetValue(text, out string text1))
+                {
+                    return text1;
+                }
             }
 
             return text;

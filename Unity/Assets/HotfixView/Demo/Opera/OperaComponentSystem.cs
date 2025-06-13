@@ -44,6 +44,21 @@ namespace ET
             self.UpdateClickMode();
         }
     }
+    
+    public class OperaComponentUpdateSystem : UpdateSystem<OperaComponent>
+    {
+        public override void Update(OperaComponent self)
+        {
+            if (self.EditorMode)
+            {
+                if (InputHelper.GetKey((int)KeyCode.LeftAlt) && InputHelper.GetKeyDown((int)KeyCode.L) ||
+                    InputHelper.GetKeyDown((int)KeyCode.LeftAlt) && InputHelper.GetKey((int)KeyCode.L))
+                {
+                    self.SwitchLanguage();
+                }
+            }
+        }
+    }
 
 
     public class OperaComponentDestroySystem : DestroySystem<OperaComponent>
@@ -59,6 +74,17 @@ namespace ET
 
     public static class OperaComponentSystem
     {
+        public static void SwitchLanguage(this OperaComponent self)
+        {
+            GameSettingLanguge.Language = GameSettingLanguge.Language == 0 ? 1 : 0;
+            Log.Warning("切换语言   " + GameSettingLanguge.Language);
+            foreach (UI ui in self.ZoneScene().GetComponent<UIComponent>().UIs.Values)
+            {
+                GameSettingLanguge.TransformText(ui.GameObject.transform);
+                GameSettingLanguge.TransformImage(ui.GameObject.transform);
+            }
+        }
+        
         public static void UpdateClickMode(this OperaComponent self)
         {
             self.ClickMode = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.Click) == "1";

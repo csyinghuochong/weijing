@@ -144,41 +144,41 @@ namespace ET
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType1Name.Keys)
             {
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemSubType1Name[key]) });
             }
 
             typeButtonInfo.TypeId = 1;
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Consume];
+            typeButtonInfo.TypeName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemTypeName[ItemTypeEnum.Consume]);
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType2Name.Keys)
             {
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemSubType2Name[key]) });
             }
             
             typeButtonInfo.TypeId = 2;
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
+            typeButtonInfo.TypeName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemTypeName[ItemTypeEnum.Material]);
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType3Name.Keys)
             {
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType3Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemSubType3Name[key]) });
             }
 
             typeButtonInfo.TypeId = 3;
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Equipment];
+            typeButtonInfo.TypeName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemTypeName[ItemTypeEnum.Equipment]);
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType4Name.Keys)
             {
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType4Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemSubType4Name[key]) });
             }
 
             typeButtonInfo.TypeId = 4;
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Gemstone];
+            typeButtonInfo.TypeName = GameSettingLanguge.LoadLocalization(ItemViewHelp.ItemTypeName[ItemTypeEnum.Gemstone]);
             typeButtonInfos.Add(typeButtonInfo);
 
             return typeButtonInfos;
