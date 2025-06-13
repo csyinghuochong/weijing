@@ -93,8 +93,11 @@ namespace ET
 		/// <summary>天赋描述</summary>
 		[ProtoMember(6)]
 		public string talentDes { get; set; }
-		/// <summary>附加</summary>
+		/// <summary>天赋描述</summary>
 		[ProtoMember(7)]
+		public string talentDes_EN { get; set; }
+		/// <summary>附加</summary>
+		[ProtoMember(8)]
 		public string AddPropreListStr { get; set; }
 
 	}

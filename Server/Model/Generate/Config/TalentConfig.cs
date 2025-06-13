@@ -91,7 +91,7 @@ namespace ET
 		[ProtoMember(6)]
 		public string talentDes { get; set; }
 		/// <summary>附加</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string AddPropreListStr { get; set; }
 
 	}
