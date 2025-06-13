@@ -173,7 +173,7 @@ namespace ET
 
             TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 
-            string[] descList = GameSettingLanguge.LoadLocalization(talentConfig.TalentDes).Split(';');
+            string[] descList = GameSettingLanguge.LoadLocalization(talentConfig.talentDes).Split(';');
             UICommonHelper.DestoryChild(self.DescListNode);
             for (int i = 0; i < descList.Length; i++)
             {

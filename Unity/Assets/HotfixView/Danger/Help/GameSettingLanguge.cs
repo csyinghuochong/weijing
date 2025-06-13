@@ -310,7 +310,7 @@ namespace ET
             foreach (TalentConfig config in TalentConfigCategory.Instance.GetAll().Values)
             {
                 AddMulLanguageData(config.Name, config.Name_EN);
-                AddMulLanguageData(config.TalentDes, config.TalentDes_EN);
+                AddMulLanguageData(config.talentDes, config.talentDes_EN);
             }
 
             foreach (SkillBuffConfig config in SkillBuffConfigCategory.Instance.GetAll().Values)
