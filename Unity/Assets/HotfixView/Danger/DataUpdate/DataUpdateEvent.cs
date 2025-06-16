@@ -529,6 +529,11 @@ namespace ET
                     uiRoleBagComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleGemComponent uiRoleGemComponent)
+                {
+                    uiRoleGemComponent.OnLanguageUpdate();
+                    continue;
+                }
                 if (component is UIRolePropertyComponent uiRolePropertyComponent)
                 {
                     uiRolePropertyComponent.OnLanguageUpdate();
