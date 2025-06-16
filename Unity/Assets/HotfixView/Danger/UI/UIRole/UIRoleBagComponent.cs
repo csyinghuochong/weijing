@@ -13,6 +13,8 @@ namespace ET
         public GameObject Btn_OneSell;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
+        
+        public List<Vector2> PageTextOldPositionList = new List<Vector2>();
     }
 
 
@@ -47,6 +49,7 @@ namespace ET
             } );
             self.UIPageComponent = uIPageViewComponent;
             
+            self.StoreUIdData();
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
             
@@ -64,6 +67,26 @@ namespace ET
 
     public static class UIRoleBagComponentSystem
     {
+        public static void StoreUIdData(this UIRoleBagComponent self)
+        {
+            Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+
+                    self.PageTextOldPositionList.Add(rt.localPosition);
+                }
+            }
+        }
+        
         public static void OnLanguageUpdate(this UIRoleBagComponent self)
         {
             Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
@@ -83,9 +106,25 @@ namespace ET
                     }
                     
                     Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
                     if (text)
                     {
+                        // 调整文字大小
                         text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
+                        
+                        // 调整文字位置
+                        Vector2 position = Vector2.zero;
+                        position = self.PageTextOldPositionList[i];
+                        if (GameSettingLanguge.Language == 1)
+                        {
+                            position.x -= 20f;
+                        }
+                        rt.localPosition = position;
                     }
                 }
 
@@ -93,9 +132,16 @@ namespace ET
                 if (WeiXuanZhong)
                 {
                     Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
                     if (text)
                     {
+                        // 调整文字大小
                         text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
                     }
                 }
             }
