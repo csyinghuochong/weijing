@@ -39,7 +39,7 @@ namespace ET
             int addHeight = 100;
             if (ItemViewHelp.AttributeToName.ContainsKey(numtype))
             {
-                self.ThresholdText.GetComponent<Text>().text = ItemViewHelp.AttributeToName[numtype].Threshold;
+                self.ThresholdText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemViewHelp.AttributeToName[numtype].Threshold);
                 addHeight = 140;
             }
             else
