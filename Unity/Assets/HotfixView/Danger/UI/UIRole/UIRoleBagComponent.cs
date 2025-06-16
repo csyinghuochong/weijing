@@ -122,9 +122,12 @@ namespace ET
                         position = self.PageTextOldPositionList[i];
                         if (GameSettingLanguge.Language == 1)
                         {
-                            position.x -= 20f;
+                            position.x = 0f;
                         }
                         rt.localPosition = position;
+                        
+                        // 调整文字对齐方式
+                        text.alignment = GameSettingLanguge.Language == 0? TextAnchor.UpperLeft : TextAnchor.UpperCenter;
                     }
                 }
 
