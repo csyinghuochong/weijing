@@ -1,23 +1,23 @@
 
-��生命"Life
-��攻击"Attack
-��魔法"Magic
-��物防"Physical defense
-��魔防"Magic defense
-,��暴击概率"Critical Hit Probability
-4��抗暴概率" Resistance to Damage Probability
-��命中概率"
-Hit Chance
-'��闪避概率"Evasion probability
-��幸运加成"Lucky bonus
+��生命"HP
+��攻击"ATK
+��魔法"MAG
+��物防"DEF
+��魔防"MDEF
+��暴击概率"	Crit Rate
+"��抗暴概率"Anti-Crit Rate
+��命中概率"Hit Rate
+��闪避概率"
+Dodge Rate
+��幸运加成"Lucky
 "��最小攻击"Minimum attack
 ,��最小物防"Minimum physical defense
 )��最小魔防"Minimum Magic Defense
-��力量"Power
-��敏捷"Agile
-��智力"Intelligence
-��耐力"	Endurance
-��体质"Physique
+��力量"STR
+��敏捷"DEX
+��智力"INT
+��耐力"VIT
+��体质"CON
  ��伤害加成"Damage Bonus
 $��伤害减免"Damage Reduction
 ��	幸运值"Lucky
@@ -85,9 +85,9 @@ Pet attack
 �宠物防御"Pet defense
 %�宠物魔防"Pet Magic Defense
 �宠物生命"Pet life
-��防御"Defense
-��魔御"Magic Defense
- ��技能伤害"Skill damage
+��防御"DEF
+��魔御"MDEF
+��技能伤害"MAG
 ,��物伤加成"Physical injury addition
 &��魔伤加成"Magic Damage Bonus
 $��忽视魔御"Ignore the Demon
@@ -346,7 +346,7 @@ Funding: 0
 _��*玩家幸福的瞬间来到你的家园。"-The player's happy moment comes to your home.
 ���B提示：此仓库只可存储藏宝图和生活技能相关道具"RTip: This warehouse can only store items related to treasure maps and life skills.
 ��储藏"Storage
-*��一键放入"Put it in with one key
+��一键放入"Mass Deploy
 ��我的背包"My backpack
  ��我的仓库"My warehouse
 *��整理仓库"Sort out the warehouse
@@ -501,7 +501,7 @@ Extraction
 7��消耗幸运卷轴:0/1"Consume Lucky Scroll: 0/1
 #��刷新奖励"Refresh rewards
 /��你消费，我送礼"You spend, I give.
-��消耗"Consumption
+��消耗"Consume
 ��	100钻石"100 diamonds
 ��领取"Collect
 )��今日消耗："Consumption today:
@@ -579,14 +579,14 @@ m�,今日狩猎任意怪物数量达到10000只"9The number of any monster h
 /�邪派 459231"The evil faction is 459231
 f�C排行                        姓名                      实力值"Ranking name strength value
 g�D排行                         姓名                      实力值"Ranking name strength value
-!�世界频道"World Channel
- �队伍频道"Team Channel
-"��家族频道"Family Channel
-"��系统频道"System channel
-#��好友频道"Friends Channel
-'��拾取频道"Pick up the channel
-#��拍卖频道"Auction channel
-"��发送信息"Send a message
+�世界频道"World
+�队伍频道"Team
+��家族频道"Family
+��系统频道"System
+��好友频道"Friends
+��拾取频道"Pick
+��拍卖频道"Auction
+��发送信息"Send
 ��表情"
 Expression
 ��世界"World
@@ -822,7 +822,7 @@ N��!拖动左侧的装备放入此处"%Drag the rig on the left to drop here
 ��脸"Face
 ��眼睛"Eye
 ��眉毛"Eyebrow
-��头饰"Headgear
+��头饰"Head
 ��脸部"Face
 ��上衣"Jacket
 ��服饰"Dress
@@ -1251,12 +1251,12 @@ E��宠物蛋和其他橙色道具"Pet eggs and other orange props
 '¢宠物之核"The core of the pet
 â约74%"About 74 percent
 1Ģ宠物合成预览"Pet compositing preview
-%Ţ体质资质"Physical aptitude
-(Ƣ攻击资质"Attack qualification
-2Ǣ物防资质"Physical defense qualification
-/Ȣ魔防资质"Magic defense qualification
-$ɢ魔法资质"Magical aptitude
-#ʢ成长资质"Growth aptitude
+ Ţ体质资质"CON aptitude
+ Ƣ攻击资质"ATK aptitude
+ Ǣ物防资质"DEF aptitude
+ Ȣ魔防资质"MDF aptitude
+ ɢ魔法资质"MGA aptitude
+ʢ成长资质"Growth
 3ˢ必定存在的技能"Skills that must exist
 <̢合成预计资质""Synthetic Projected Qualifications
 1͢天生存在技能"There are innate skills
@@ -1266,17 +1266,17 @@ w΢0提示：以上宠物合成后随机出现一种"?Prompt: One of the abov
 'Ѣ宠物之核列表"Pet core list
 �Ң@提示:拖拽相同的碎片即可合成更高级的宠物之核"CTip: Drag the same fragment to synthesize a more advanced pet core.
 Ӣ宠物核心"Pet core
- Ԣ初级核心"Primary core
+Ԣ初级核心"Primary
 )բ激活条件"Activation conditions
 P֢#穿戴3个5级以上的宠物之核"%Wear 3 pet cores of level 5 and above
 /ע对怪攻击+50%"+ 50% to monster attack
 آ	未激活"Not activated
-!٢生命资质"Life aptitude
+٢生命资质"HP aptitude
 ڢ切换"Switch
 ۢ2级"Level 2
 ܢ宠物技能"
 Pet skills
-#ݢ修改名称"Modify the name
+ݢ修改名称"Change Name
 ޢ等级 1"Level 1
 ߢ加点"
 Add points
@@ -1301,13 +1301,13 @@ $�进攻能量"Offensive energy
 �卸下"Unload
 �宠物装备"	Pet Equip
 W�!选择需要装备的宠物装备".Select the pet Equip that needs to be equipped
-4�当前剩余点数:"Current remaining points:
-*��确认属性"Confirm the properties
-��项圈"A collar
-��护腕"	Wristband
+#�当前剩余点数:"Current:
+��确认属性"Confirm
+��项圈"collar
+��护腕"Wrist
 ,��携带宠物数量："Number of Pets:
 ��	未进化"	Unevolved
-3��神兽同伴"Companion of the mythical beast
+��神兽同伴"	Companion
 <��你还未拥有一只宠物"You don't have a pet yet.
 '��品质:优秀"Quality: Excellent
 !��10级开启
@@ -1422,7 +1422,8 @@ $ǣ拥有宠物蛋"Have pet eggs
 .ˣ探索宠物核心"Explore the pet core
 /̣核心探索说明"Core Exploratory Note
 1ͣ宠物探索仓库"Pet Discovery Warehouse
-Σ分解"Salvage
+Σ分解"
+Disenchant
 "ϣ取出宠物"Remove the pet
 .У宠物数量： 1/2"Number of pets: 1/2
 ѣ星级奖励"Star awards
@@ -1440,7 +1441,7 @@ $ǣ拥有宠物蛋"Have pet eggs
  ݣ宠物列表"List of pets
 "ޣ	已上阵"Already in battle
 .ߣ敌方上阵"The enemy went into battle
-1�己方上阵"Go to battle on your own side
+�己方上阵"battle
 �	倒计时"	Countdown
 &�准备战斗"Prepare for battle
 �黄金矿场"A gold mine
@@ -1580,18 +1581,18 @@ HȤ$属性描述············"Description of attributes ·
 Ϥ拆分道具"Split props
 UФ!请输入要拆分道具的数量",Please enter the number of props to be split
 'Ѥ白色孔位"White hole position
-$Ҥ回炼装备"Refine the Equip
-)Ӥ分解奖励"Break down the reward
-&Ԥ分解列表"Decompose the list
+Ҥ回炼装备"Refine
+Ӥ分解奖励"Reward
+#Ԥ分解列表"Disenchant list
 դ称号"Title
 &֤小小探险家"Little Explorer
-פ	体力值"Energy value
-�ؤ2(提升攻击物防和物穿、攻速相关属性)"P(Improve the attributes related to attack defense, penetration and attack speed)
-y٤)(提升技能伤害魔防和魔穿属性)"H(Increases skill damage, Magic Defense and Magic Penetration attributes)
-}ڤ2(提升生命和闪避、伤害减免相关属性)"C(Increases health and evasive, damage reduction related attributes)
-�ۤ2(提升双防和抗暴、格挡回血相关属性)"X(Improve the attributes related to double defense, anti-violence and block blood return)
-wܤ2(提升攻击和攻速、缩减技能冷却时间)"=(Increase attack and attack speed, reduce cooldown of skills)
-+ݤ推荐加点"Recommend to add points
+פ	体力值"Energy
+qؤ2(提升攻击物防和物穿、攻速相关属性)"7(Improve attack defense, penetration, and attack speed)
+h٤)(提升技能伤害魔防和魔穿属性)"7(Improve damage to magic defense and magic penetration)
+aڤ2(提升生命和闪避、伤害减免相关属性)"'(improve life and dodge, reduce damage)
+pۤ2(提升双防和抗暴、格挡回血相关属性)"6(Improve defense and anti riot rate, block and health)
+qܤ2(提升攻击和攻速、缩减技能冷却时间)"7(Improve attack and attack speed, reduce skill CD time)
+ݤ推荐加点"	Recommend
 ޤ武器"Weapons
 Nߤ已经强化到最大等级"+Has been strengthened to the maximum level.
 '�开始强化"Start strengthening
@@ -3556,9 +3557,9 @@ Booth tips
  支持下线,摊位可以离线显示6小时!"TDo you want to close your booth? 
 Support offline, booth can be offline for 6 hours!
 ,��摊位已收起!"The booth is closed!
-J�� <color=#{0}>等级奖励</color>""<color=#{0}> Rank Rewards </color>
+E�� <color=#{0}>等级奖励</color>"<color=#{0}> Rewards </color>
 R�� <color=#{0}>{1}级领取</color>"*<color=#{0}> {1} Level Collection </color>
-M�� <color=#{0}>击败怪物</color>"%<color=#{0}> Defeat Monsters </color>
+D�� <color=#{0}>击败怪物</color>"<color=#{0}> Defeat </color>
 ?��战斗状态不能骑马!"You can't ride in combat mode!
 C��该场景不能骑马!"%You can't ride a horse in this scene!
 =��已领取抽卡奖励："Card drawing reward received:
@@ -3589,8 +3590,8 @@ h��$请先在对应位置装备武器！"<Please equip the weapon in the corr
 M��!每日只能获取一次奖励！"$You can only get one reward per day!
 <��取消技能施法""Cancel the ability to cast a spell
 L�� 请前往{0} {1} 出接取任务"$Please go to {0} {1} to get the task
-��晴天"	Sunny day
-��雨天"	Rainy Day
+��晴天"Sunny
+��雨天"Rainy
 ³(普通)"(Normal)
 ó(挑战)"(Challenge)
 ĳ(地狱)"(Hell)
@@ -3674,9 +3675,9 @@ D��请先卸下宠物之核！"!Please remove the pet core first!
 ���y合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{0}</color> 请确认是否执行合成"�One pet will be kept randomly after synthesis, and the other pet will be destroyed. <color=#ff0000>{0}</color> Please confirm whether to perform synthesis.
 I��宠物之核合成成功！"&Nucleosynthesis of pets is successful!
 x��3同类型和同等级的宠物之核才能合成！"=Only pet cores of the same type and level can be synthesized!
-%��中级核心"Intermediate core
+ ��中级核心"Intermediate
 P��#穿戴3个8级以上的宠物之核"%Wear 3 pet cores of level 8 and above
-!��高级核心"Advanced Core
+��高级核心"Advanced
 R��$穿戴3个10级以上的宠物之核"&Wear 3 pet cores of level 10 and above
 &��未选择宠物"No pet selected
 7��请输入名字！"Please enter your first name!
@@ -3843,10 +3844,10 @@ u��-中镶嵌宝石,分解会导致宝石消失!
 When the satiety reaches 80, you can get the explosive rate bonus status 
 Deduct 1 satiety point every time you defeat 1 Lord 
 Deduct 1 satiety point every time you consume 5 Energy.
--��{0}强化 +{1}"{0} Reinforcement + {1}
-W��对应部位提升 {0}%属性"2The corresponding part promotes the {0}% attribute
-=��强化成功率: {0}%" Reinforcement Success Rate: {0}%
-8��附加成功率 {0}%"Additional Success Rate {0}%
+��{0}强化 +{1}"	{0} + {1}
+I��对应部位提升 {0}%属性"$The part promotes the {0}% attribute
+/��强化成功率: {0}%"Success Rate: {0}%
+0��附加成功率 {0}%"Additional Rate {0}%
 Q��已经强化到最大等级！"+Has been strengthened to the maximum level!
 ,��强化失败！"Reinforcement failed!
 !��
