@@ -146,6 +146,7 @@ namespace ET
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("请问是否返回主界面?"), ()=>
             {  //加载登录场景
                 EventType.ReturnLogin.Instance.ZoneScene = self.ZoneScene();
+                EventType.ReturnLogin.Instance.ErrorCode = 0;
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
             }, null).Coroutine();
            
