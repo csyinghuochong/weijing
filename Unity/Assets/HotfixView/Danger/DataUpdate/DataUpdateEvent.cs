@@ -539,6 +539,11 @@ namespace ET
                     uiRolePropertyComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIProLucklyExplainComponent uiProLucklyExplainComponent)
+                {
+                    uiProLucklyExplainComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
