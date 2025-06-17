@@ -21,6 +21,7 @@ namespace ET
         public GameObject ImageButton;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
+        public UIPageButtonComponent UIPageButton;
 
         public UIPageViewComponent UIPageView;
     }
@@ -60,11 +61,11 @@ namespace ET
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiJoystick = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", BtnItemTypeSet);
-            UIPageButtonComponent uIPageViewComponent = uiJoystick.AddComponent<UIPageButtonComponent>();
-            uIPageViewComponent.SetClickHandler((int page) => {
+            self.UIPageButton = uiJoystick.AddComponent<UIPageButtonComponent>();
+            self.UIPageButton.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
-            uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButton.OnSelectIndex(0);
 
 
             //IOS适配
@@ -73,22 +74,65 @@ namespace ET
             self.GetChengJiuList();
 
             DataUpdateComponent.Instance.AddListener(DataType.ChengJiuUpdate, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
 
     public class UIChengJiuComponentDestroySystem : DestroySystem<UIChengJiuComponent>
     {
-
         public override void Destroy(UIChengJiuComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.ChengJiuUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIChengJiuComponentSystem
     {
+        public static void OnLanguageUpdate(this UIChengJiuComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
 
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void  OnClickPageButton(this UIChengJiuComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

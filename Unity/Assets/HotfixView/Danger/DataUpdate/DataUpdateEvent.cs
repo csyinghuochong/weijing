@@ -574,6 +574,26 @@ namespace ET
                     uiPetListComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISkillComponent uiSkillComponent)
+                {
+                    uiSkillComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UITaskComponent uiTaskComponent)
+                {
+                    uiTaskComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIFriendComponent uiFriendComponent)
+                {
+                    uiFriendComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIChengJiuComponent uiChengJiuComponent)
+                {
+                    uiChengJiuComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

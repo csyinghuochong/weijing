@@ -70,6 +70,9 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
             redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
@@ -85,6 +88,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillReset, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
             redPointComponent?.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
@@ -93,6 +97,47 @@ namespace ET
 
     public static class UISkillComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void Reddot_SkillUp(this UISkillComponent self, int num)
         {
             self.UIPageButton.SetButtonReddot((int)SkillPageEnum.SkillLearn, num > 0);

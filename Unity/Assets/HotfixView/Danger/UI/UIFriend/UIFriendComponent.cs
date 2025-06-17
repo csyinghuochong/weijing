@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -71,6 +72,9 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.FriendApply, self.Reddot_FriendApply);
             redPointComponent.RegisterReddot(ReddotType.FriendChat, self.Reddot_FriendChat);
             DataUpdateComponent.Instance.AddListener(DataType.FriendUpdate, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -79,6 +83,7 @@ namespace ET
         public override void Destroy(UIFriendComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.FriendUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.FriendApply, self.Reddot_FriendApply);
@@ -88,6 +93,46 @@ namespace ET
 
     public static class UIFriendComponentSystem
     {
+        public static void OnLanguageUpdate(this UIFriendComponent self)
+        {
+            Transform tt = self.UIPageButtonComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
 
         public static async ETTask RequestFriendInfo(this UIFriendComponent self)
         {
