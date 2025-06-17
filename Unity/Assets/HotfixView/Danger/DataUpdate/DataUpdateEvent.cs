@@ -544,6 +544,11 @@ namespace ET
                     uiProLucklyExplainComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleGemHoleComponent uiRoleGemHoleComponent)
+                {
+                    uiRoleGemHoleComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

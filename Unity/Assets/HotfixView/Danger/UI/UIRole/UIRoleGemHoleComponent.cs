@@ -37,6 +37,9 @@ namespace ET
             self.UIGemItem = self.AddChild<UIItemComponent, GameObject>(gemItem);
             self.UIGemItem.Image_ItemButton.SetActive(false);
             self.UIGemItem.GameObject.SetActive(false);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIRoleGemHoleComponentDestroy: DestroySystem<UIRoleGemHoleComponent>
@@ -50,12 +53,18 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             self.AssetPath = null;
         }
     }
     public static class UIRoleGemHoleComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRoleGemHoleComponent self)
+        {
+            self.Lab_HoleName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+        }
 
         public static void OnBtn_Select(this UIRoleGemHoleComponent self)
         {
