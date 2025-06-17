@@ -14,7 +14,7 @@ namespace ET
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
         
-        public List<Vector2> PageTextOldPositionList = new List<Vector2>();
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -82,7 +82,7 @@ namespace ET
                     Text text = XuanZhong.GetComponentInChildren<Text>();
                     RectTransform rt = text.GetComponent<RectTransform>();
 
-                    self.PageTextOldPositionList.Add(rt.localPosition);
+                    self.UIOldPositionList.Add(rt.localPosition);
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace ET
                         
                         // 调整文字位置
                         Vector2 position = Vector2.zero;
-                        position = self.PageTextOldPositionList[i];
+                        position = self.UIOldPositionList[i];
                         if (GameSettingLanguge.Language == 1)
                         {
                             position.x = 0f;

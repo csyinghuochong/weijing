@@ -564,6 +564,16 @@ namespace ET
                     uiCommonRewardComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetComponent uiPetComponent)
+                {
+                    uiPetComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIPetListComponent uiPetListComponent)
+                {
+                    uiPetListComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

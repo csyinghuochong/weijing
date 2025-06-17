@@ -92,6 +92,8 @@ namespace ET
         public List<string> AssetPath = new List<string>();
         public long ClickTime;
         public bool IsChange;
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
     public class UIPetListComponentDestroySystem: DestroySystem<UIPetListComponent>
@@ -108,6 +110,8 @@ namespace ET
                 }
             }
 
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            
             self.AssetPath = null;
 
             self.PetUIList.Clear();
@@ -275,11 +279,98 @@ namespace ET
             self.InitModelShowView_2().Coroutine();
             
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPetListComponentSystem
     {
+        public static void StoreUIdData(this UIPetListComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+
+                    self.UIOldPositionList.Add(rt.localPosition);
+                }
+            }
+        }
+
+        public static void OnLanguageUpdate(this UIPetListComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Transform icon = XuanZhong.Find("XuanZhong (1)");
+                    if (icon)
+                    {
+                        icon.gameObject.SetActive(GameSettingLanguge.Language == 0);
+                    }
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+                    if (text)
+                    {
+                        // 调整文字大小
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
+                        
+                        // 调整文字位置
+                        Vector2 position = Vector2.zero;
+                        position = self.UIOldPositionList[i];
+                        if (GameSettingLanguge.Language == 1)
+                        {
+                            position.x = 0f;
+                        }
+                        rt.localPosition = position;
+                        
+                        // 调整文字对齐方式
+                        text.alignment = GameSettingLanguge.Language == 0? TextAnchor.UpperLeft : TextAnchor.UpperCenter;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+                    if (text)
+                    {
+                        // 调整文字大小
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
+                    }
+                }
+            }
+        }
+        
         /// <summary>
         ///  //1 属性 2 宠物之核 3 加点 4 宠物装备
         /// </summary>

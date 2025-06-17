@@ -3784,4 +3784,5 @@
 {"_t":"MulLanguageConfig","_id":203749,"Des":"","Chinese":"确认退出","English":"Confirm exit"},
 {"_t":"MulLanguageConfig","_id":203750,"Des":"","Chinese":"如您不同意用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？","English":"If you do not agree to the user agreement and privacy agreement, you will not be able to play the game, please confirm whether to quit the game?"},
 {"_t":"MulLanguageConfig","_id":203751,"Des":"","Chinese":"等级:{0}","English":"Lv:{0}"},
+{"_t":"MulLanguageConfig","_id":203752,"Des":"","Chinese":"等级 {0}","English":"Lv {0}"},
 ]}

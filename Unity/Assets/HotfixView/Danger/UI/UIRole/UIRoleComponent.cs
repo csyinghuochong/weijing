@@ -95,13 +95,13 @@ namespace ET
 			//IOS适配
 			IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
 			
-			self.OnLanguageUpdate();
-			
 			DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
 			DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipHuiShow, self);
 			DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+			
+			self.OnLanguageUpdate();
 			DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 
 			ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();

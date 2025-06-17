@@ -75,6 +75,9 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.PetUpStarUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.PetFenJieUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -92,11 +95,53 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.PetUpStarUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.PetFenJieUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIRolePetComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnBtn_Close(this UIPetComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIPet);
