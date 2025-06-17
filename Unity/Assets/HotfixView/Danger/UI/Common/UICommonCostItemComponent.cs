@@ -7,11 +7,13 @@ namespace ET
 {
     public class UICommonCostItemComponent : Entity, IAwake, IAwake<GameObject>,IDestroy
     {
+        public GameObject Image_ItemButton;
         public GameObject Label_ItemName;
         public GameObject Label_ItemNum;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
 
+        public int ItemId;
         public List<string> AssetPath = new List<string>();
     }
 
@@ -21,10 +23,13 @@ namespace ET
         public override void Awake(UICommonCostItemComponent self, GameObject gameObject)
         {
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+            self.Image_ItemButton = rc.Get<GameObject>("Image_ItemButton");
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");
             self.Label_ItemNum = rc.Get<GameObject>("Label_ItemNum");
             self.Image_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
+            
+            self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
         }
     }
     public class UICommonCostItemComponentDestroy : DestroySystem<UICommonCostItemComponent>
@@ -43,8 +48,26 @@ namespace ET
     }
     public static class UICommonCostItemComponentSystem
     {
+        public static void OnClickUIItem(this UICommonCostItemComponent self)
+        {
+            if (self.ItemId == 0)
+            {
+                return;
+            }
+            
+            //弹出Tips
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = new BagInfo() { ItemID = self.ItemId };
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
         public static void UpdateItem(this UICommonCostItemComponent self, int itemId, int itemNum)
         {
+            self.ItemId = itemId;
+            
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
 
