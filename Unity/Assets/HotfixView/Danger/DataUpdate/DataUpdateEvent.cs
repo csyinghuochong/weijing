@@ -559,6 +559,11 @@ namespace ET
                     uiRoleHuiShouComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UICommonRewardComponent uiCommonRewardComponent)
+                {
+                    uiCommonRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
