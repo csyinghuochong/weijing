@@ -594,6 +594,56 @@ namespace ET
                     uiChengJiuComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetSetComponent uiPetSetComponent)
+                {
+                    uiPetSetComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UITeamDungeonComponent uiTeamDungeonComponent)
+                {
+                    uiTeamDungeonComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIDonationComponent uiDonationComponent)
+                {
+                    uiDonationComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIFenXiangComponent uiFenXiangComponent)
+                {
+                    uiFenXiangComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UICountryComponent uiCountryComponent)
+                {
+                    uiCountryComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIActivityComponent uiActivityComponent)
+                {
+                    uiActivityComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UISeasonComponent uiSeasonComponent)
+                {
+                    uiSeasonComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIZhanQuComponent uiZhanQuComponent)
+                {
+                    uiZhanQuComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UINewYearComponent uiNewYearComponent)
+                {
+                    uiNewYearComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRankComponent uiRankComponent)
+                {
+                    uiRankComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

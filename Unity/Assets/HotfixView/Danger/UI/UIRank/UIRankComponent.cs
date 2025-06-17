@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -13,7 +14,7 @@ namespace ET
         RankNum,
     }
 
-    public class UIRankComponent : Entity, IAwake
+    public class UIRankComponent : Entity, IAwake, IDestroy
     {
         public GameObject SubViewNode;
         public UI UIPageButton;
@@ -54,15 +55,76 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIRankComponentDestroySystem : DestroySystem<UIRankComponent>
+    {
+        public override void Destroy(UIRankComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIRankComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRankComponent self)
+        {
+            Transform tt = self.UIPageButton.GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    // RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    // Vector2 size = rt.sizeDelta;
+                    // size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    // rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        RectTransform rt = text.GetComponent<RectTransform>();
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 180f : 200f;
+                        rt.sizeDelta = size;
+                        
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    // RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    // Vector2 size = rt.sizeDelta;
+                    // size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    // rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        RectTransform rt = text.GetComponent<RectTransform>();
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 180f : 200f;
+                        rt.sizeDelta = size;
+                        
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UIRankComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
     }
-
 }

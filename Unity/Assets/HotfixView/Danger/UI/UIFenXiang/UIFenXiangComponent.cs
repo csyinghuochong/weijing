@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using cn.sharesdk.unity3d;
+using UnityEngine.UI;
 
 namespace ET 
 {
@@ -110,12 +111,63 @@ namespace ET
             {
                 self.UIPageButtonComponent.OnSelectIndex(0);
             }
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIFenXiangComponentDestroySystem : DestroySystem<UIFenXiangComponent>
+    {
+        public override void Destroy(UIFenXiangComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIFenXiangComponentSystem
     {
+        public static void OnLanguageUpdate(this UIFenXiangComponent self)
+        {
+            Transform tt = self.UIPageButtonComponent.GetParent<UI>().GameObject.transform;
 
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static bool CheckPageButton_1(this UIFenXiangComponent self, int page)
         {
             if (page == (int)FenXiangPageEnum.Popularize)

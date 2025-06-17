@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -12,7 +13,7 @@ namespace ET
         Number,
     }
 
-    public class UIDonationComponent : Entity, IAwake
+    public class UIDonationComponent : Entity, IAwake, IDestroy
     {
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -53,11 +54,63 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIDonationComponentDestroySystem : DestroySystem<UIDonationComponent>
+    {
+        public override void Destroy(UIDonationComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIDonationComponentSystem
     {
+        public static void OnLanguageUpdate(this UIDonationComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UIDonationComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

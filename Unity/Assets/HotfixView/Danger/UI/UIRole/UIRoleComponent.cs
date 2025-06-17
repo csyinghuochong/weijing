@@ -110,8 +110,6 @@ namespace ET
         }
     }
 
-
-
 	public class UIRoleComponentDestroySystem : DestroySystem<UIRoleComponent>
 	{
 		public override void Destroy(UIRoleComponent self)

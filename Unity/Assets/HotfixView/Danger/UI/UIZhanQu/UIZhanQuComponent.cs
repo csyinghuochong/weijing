@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -12,7 +13,7 @@ namespace ET
 		Number ,
     }
 
-    public class UIZhanQuComponent : Entity, IAwake
+    public class UIZhanQuComponent : Entity, IAwake, IDestroy
 	{
         public UIPageViewComponent UIPageView;
         public UIPageButtonComponent UIPageButton;
@@ -59,11 +60,63 @@ namespace ET
 			self.ActivityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
 
             self.UIPageButton.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
+	}
+	
+	public class UIZhanQuComponentDestroySystem : DestroySystem<UIZhanQuComponent>
+	{
+		public override void Destroy(UIZhanQuComponent self)
+		{
+			DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+		}
 	}
 
 	public static class UIZhanQuComponentSystem
 	{
+		public static void OnLanguageUpdate(this UIZhanQuComponent self)
+		{
+			Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+			int childCount = tt.childCount;
+			for (int i = 0; i < childCount; i++)
+			{
+				Transform transform = tt.transform.GetChild(i);
+
+				Transform XuanZhong = transform.Find("XuanZhong");
+				if (XuanZhong)
+				{
+					RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+					Vector2 size = rt.sizeDelta;
+					size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+					rt.sizeDelta = size;
+                    
+					Text text = XuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+
+				Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+				if (WeiXuanZhong)
+				{
+					RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+					Vector2 size = rt.sizeDelta;
+					size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+					rt.sizeDelta = size;
+                    
+					Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+			}
+		}
+		
 		public static void OnClickPageButton(this UIZhanQuComponent self, int page)
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();

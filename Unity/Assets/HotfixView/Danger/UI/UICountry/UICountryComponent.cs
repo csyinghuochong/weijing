@@ -69,6 +69,9 @@ namespace ET
             //self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -78,12 +81,53 @@ namespace ET
         public override void Destroy(UICountryComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UICountryComponentSystem
     {
+        public static void OnLanguageUpdate(this UICountryComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
 
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    Vector2 size = rt.sizeDelta;
+                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    rt.sizeDelta = size;
+                    
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnUpdateRoleData(this UICountryComponent self)
         {
             UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.Task];
