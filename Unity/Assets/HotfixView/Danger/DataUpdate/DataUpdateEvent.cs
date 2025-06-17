@@ -549,6 +549,16 @@ namespace ET
                     uiRoleGemHoleComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIItemComponent uiItemComponent)
+                {
+                    uiItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRoleHuiShouComponent uiRoleHuiShouComponent)
+                {
+                    uiRoleHuiShouComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

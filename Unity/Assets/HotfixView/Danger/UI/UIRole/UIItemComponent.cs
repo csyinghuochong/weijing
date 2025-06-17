@@ -67,8 +67,11 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            
             self.AssetPath = null;
-            GameObject.Destroy( self.GameObject );
+            GameObject.Destroy(self.GameObject);
         }
     }
 
@@ -101,6 +104,14 @@ namespace ET
             self.Image_Lock?.SetActive(false);
             self.Image_Protect?.SetActive(false);
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+
+        public static void OnLanguageUpdate(this UIItemComponent self)
+        {
+            self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
         }
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
@@ -278,7 +289,7 @@ namespace ET
                     {
                         if (itemconfig.ItemType == 5)
                         {
-                            self.Label_ItemNum.GetComponent<Text>().text = "等级:" + itemconfig.UseLv;
+                            self.Label_ItemNum.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级:{0}"), itemconfig.UseLv);
                         }
                         else {
                             self.Label_ItemNum.SetActive(false);

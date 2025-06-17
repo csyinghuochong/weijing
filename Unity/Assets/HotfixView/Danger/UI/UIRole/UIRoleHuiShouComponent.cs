@@ -37,6 +37,8 @@ namespace ET
             {
                 self.HuiShouUIList[i] = null;
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -62,6 +64,9 @@ namespace ET
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.Img_YiJianZiSe.SetActive(false);
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.InitHuiShouList();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -71,6 +76,10 @@ namespace ET
 
     public static class UIHuiShouComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRoleHuiShouComponent self)
+        {
+            self.BagListNode.GetComponent<GridLayoutGroup>().cellSize = GameSettingLanguge.Language == 0? new Vector2(150, 180) : new Vector2(150, 210);
+        }
 
         public static void  InitHuiShouList(this UIRoleHuiShouComponent self)
         {
