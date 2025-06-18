@@ -106,6 +106,7 @@ namespace ET
         public static void OnLanguageUpdate(this UIPetListItemComponent self)
         {
             self.Lab_PetName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.Lab_PetLv.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
         }
         
         public static void OnClickPetItem(this UIPetListItemComponent self)
