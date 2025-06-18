@@ -369,6 +369,11 @@ namespace ET
                     }
                 }
             }
+
+            foreach (GameObject go in self.PetZiZhiItemList)
+            {
+                go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            }
         }
         
         /// <summary>
@@ -1509,7 +1514,7 @@ namespace ET
 
         public static void OnUpdatePetInfo(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
-            self.InputFieldName.GetComponent<InputField>().text = rolePetInfo.PetName;
+            self.InputFieldName.GetComponent<InputField>().text = GameSettingLanguge.LoadLocalization(rolePetInfo.PetName);
             self.Btn_XiuXi.SetActive(rolePetInfo.PetStatus == 1);
             self.Btn_ChuZhan.SetActive(rolePetInfo.PetStatus == 0);
 

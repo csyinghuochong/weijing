@@ -644,6 +644,11 @@ namespace ET
                     uiRankComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetListItemComponent uiPetListItemComponent)
+                {
+                    uiPetListItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

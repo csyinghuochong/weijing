@@ -77,6 +77,9 @@ namespace ET
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
 
             self.ImageDiEventTrigger = rc.Get<GameObject>("ImageDiEventTrigger");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -91,6 +94,8 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             self.AssetPath = null;
         }
@@ -98,6 +103,11 @@ namespace ET
 
     public static class UIPetListItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetListItemComponent self)
+        {
+            self.Lab_PetName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
+        
         public static void OnClickPetItem(this UIPetListItemComponent self)
         {
             self.ClickPetHandler(self.PetId);
@@ -173,7 +183,7 @@ namespace ET
 
                 self.Img_CanZhan.SetActive(rolePetInfo.PetStatus == 1);
                 self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
-                self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+                self.Lab_PetLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
 
                 self.Lab_PetQuality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);
                 self.Lab_PetQuality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
