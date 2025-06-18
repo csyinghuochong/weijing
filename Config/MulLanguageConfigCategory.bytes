@@ -1283,7 +1283,7 @@ Add points
 �出战"Go to battle
 �休息"Rest
 �放生"Release
-�资质"Qualifications
+�资质"Aptitude
 �变异"Mutation
 �使用皮肤"Use skin
 @�激活属性: 攻击+100" Activate Attribute: Attack + 100
@@ -2295,10 +2295,10 @@ O��&冲冲冲,我不会让大家失望的!"!Go, go, go, I won't let you down!
 x��+我好累,妈妈说累了就可以歇一歇"EI'm so tired, and my mother said I could take a break when I'm tired.
 Y��%好饱啊,我要停下来歇一歇。",I'm so full. I want to stop and have a rest.
 c��/唉呀,谁用石头丢了我一下,头好晕哦",Oh, who threw me with a stone? I feel dizzy.
-*©白虎守护"The white tiger guards
-(é朱雀守护"The rosefinch guards
- ĩ玄武守护"Xuanwu guard
-2ũ神兽守护"Guardian of the mythical beast
+©白虎守护"Tiger
+é朱雀守护"Bird
+ĩ玄武守护"Tortoise
+ũ神兽守护"Beast
 0Ʃ美味大师1级"Delicious Master Level 1
 0ǩ美味大师2级"Delicious Master Level 2
 0ȩ美味大师3级"Delicious Master Level 3
@@ -4170,3 +4170,4 @@ I�点击显示服务器列表..."#Click to display a list of servers.
 �
 等级 {0}"Lv {0}
 �任务"Task
+�等级"Lv
