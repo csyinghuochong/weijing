@@ -60,8 +60,8 @@ namespace ET
             self.ChapterId = chapterId;
             self.UnLock.SetActive(false);
             self.Move.SetActive(false);
-            self.Text_Index.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonSectionConfigCategory.Instance.Get(chapterId).ChapterName);
-            self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonSectionConfigCategory.Instance.Get(chapterId).Name);
+            self.Text_Index.GetComponent<Text>().text = DungeonSectionConfigCategory.Instance.Get(chapterId).GetChapterName();
+            self.Text_Name.GetComponent<Text>().text = DungeonSectionConfigCategory.Instance.Get(chapterId).GetName();
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             int openlv = self.GetOpenLevel(chapterId);

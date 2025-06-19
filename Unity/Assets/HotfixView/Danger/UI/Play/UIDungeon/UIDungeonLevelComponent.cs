@@ -167,7 +167,7 @@ namespace ET
                 }
                 number++;
 
-                self.Lab_LevelName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chapterSectionConfig.Name);
+                self.Lab_LevelName.GetComponent<Text>().text = chapterSectionConfig.GetName();
                 self.Lab_OpenNumShow.GetComponent<Text>().text = "(" + GameSettingLanguge.LoadLocalization("冒险进度") + "：" + (i + 1).ToString() + "/" + chapterSectionConfig.RandomArea.Length.ToString() + ")";
             }
 

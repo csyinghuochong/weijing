@@ -99,7 +99,7 @@ namespace ET
             self.Node_1.transform.localPosition = new Vector3( index % 2 == 0 ? -105f : -280f, 30f, 0f );
             self.ImageLine_1.SetActive(index % 2 == 0);
             self.ImageLine_2.SetActive(index % 2 != 0);
-            self.TextLevel.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petfubenConf.Name);
+            self.TextLevel.GetComponent<Text>().text = petfubenConf.GetName();
             //self.TextCombat.GetComponent<Text>().text = $"推荐战力： {petfubenConf.Combat}";
             self.TextCombat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("建议最低队伍等级： {0}级"), petfubenConf.Lv);
             self.Node_2.SetActive(locked);

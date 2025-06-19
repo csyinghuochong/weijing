@@ -82,7 +82,7 @@ namespace ET
             self.ImageReceived.SetActive(received);
             self.ButtonBuy.SetActive(!received);
             self.TextPrice.GetComponent<Text>().text = activityConfig.Par_2.Split(';')[1];
-            self.TextType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(activityConfig.Par_4);
+            self.TextType.GetComponent<Text>().text = activityConfig.GetPar_4();
 
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true, ItemGetWay.Activity_DayTeHui);

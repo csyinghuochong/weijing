@@ -65,7 +65,7 @@ namespace ET
             self.OnLineTime.GetComponent<Text>().text = friendInfo.OnLineTime == 1 ? GameSettingLanguge.LoadLocalization("状态:在线") : GameSettingLanguge.LoadLocalization("状态:离线");
             self.PlayerLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}级"), friendInfo.PlayerLevel);
             self.PlayerName.GetComponent<Text>().text = friendInfo.PlayerName;
-            self.OccName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业:") + GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(friendInfo.Occ).OccupationName);
+            self.OccName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("职业:") + OccupationConfigCategory.Instance.Get(friendInfo.Occ).GetOccupationName();
             UICommonHelper.ShowOccIcon(self.HeadIcon, friendInfo.Occ);
         }
     }

@@ -64,7 +64,7 @@ namespace ET
         {
             self.Title = titieInfoId;
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titieInfoId);
-            self.ChengHaoName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(titleConfig.Name);
+            self.ChengHaoName.GetComponent<Text>().text = titleConfig.GetName();
             
             //Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
             //self.RawImage.GetComponent<Image>().sprite = sp;
@@ -72,8 +72,8 @@ namespace ET
             //self.RawImage.GetComponent<Image>().SetNativeSize();
             self.UIXuLieZhenComponent.OnUpdateTitle(titieInfoId).Coroutine();
 
-            self.ObjGetText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(titleConfig.GetDes);
-            self.Text_value.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(titleConfig.Des);
+            self.ObjGetText.GetComponent<Text>().text = titleConfig.GetGetDes();
+            self.Text_value.GetComponent<Text>().text = titleConfig.GetDes();
             self.OnUpdateUI();
 
             UICommonHelper.SetImageGray(self.RawImage, !activeed);

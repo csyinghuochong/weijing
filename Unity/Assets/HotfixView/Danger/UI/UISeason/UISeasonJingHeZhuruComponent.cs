@@ -74,7 +74,7 @@ namespace ET
             self.MainBagInfo = bagInfo;
             self.UIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            self.ItemNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.ItemNameText.GetComponent<Text>().text = itemConfig.GetItemName();
             self.NowQualityText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前品质:{0}"), bagInfo.ItemPar);
             self.AddQualityText.GetComponent<Text>().text = "";
 

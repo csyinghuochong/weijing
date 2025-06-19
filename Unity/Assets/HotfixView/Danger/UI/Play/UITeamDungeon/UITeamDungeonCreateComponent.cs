@@ -82,7 +82,7 @@ namespace ET
                 ReferenceCollector rcSon = item.GetComponent<ReferenceCollector>();
                 //rcSon.Get<GameObject>("Img_Show");
                 rcSon.Get<GameObject>("Lab_Lv").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进入等级:{0}级"), sceneConfig[i].EnterLv);
-                rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(sceneConfig[i].Name);
+                rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().text = sceneConfig[i].GetName();
 
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig[i].Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
@@ -181,8 +181,8 @@ namespace ET
             UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
             self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
             self.TextPlayerLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-3人"), sceneConfig.PlayerLimit);
-            self.TextFubenDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(sceneConfig.ChapterDes);
-            self.TextFubenName2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(sceneConfig.Name);
+            self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.GetChapterDes();
+            self.TextFubenName2.GetComponent<Text>().text = sceneConfig.GetName();
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon2);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
@@ -210,7 +210,7 @@ namespace ET
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 if (bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
                 {
-                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("需要道具{0}！"), GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).ItemName)));
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("需要道具{0}！"), ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).GetItemName()));
                     return;
                 }
                 dungeonType = TeamFubenType.ShenYuan;

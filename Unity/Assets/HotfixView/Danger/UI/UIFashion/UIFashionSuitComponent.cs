@@ -153,7 +153,7 @@ namespace ET
                 EquipSuitPropertyConfig equipSuitProperty = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
                 self.TextProList[y].transform.Find("Image").gameObject.SetActive(num >= NeedNum);
 
-                string texttip = string.Format(GameSettingLanguge.LoadLocalization("套装部件{0}/{1}\n{2}"), NeedNum, maxnum, GameSettingLanguge.LoadLocalization(equipSuitProperty.EquipSuitDes));
+                string texttip = string.Format(GameSettingLanguge.LoadLocalization("套装部件{0}/{1}\n{2}"), NeedNum, maxnum, equipSuitProperty.GetEquipSuitDes());
                 self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = texttip;
             }
         }

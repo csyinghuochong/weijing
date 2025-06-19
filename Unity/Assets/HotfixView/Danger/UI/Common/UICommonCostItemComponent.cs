@@ -71,7 +71,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
 
-            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.Label_ItemName.GetComponent<Text>().text = itemConfig.GetItemName();
 
             //显示字
             //self.Label_ItemNum.GetComponent<Text>().text = $"{bagComponent.GetItemNumber(itemId)}/{itemNum}";

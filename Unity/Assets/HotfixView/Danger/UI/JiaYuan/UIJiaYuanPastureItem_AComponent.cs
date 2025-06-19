@@ -102,7 +102,7 @@ namespace ET
             if (jiaYuanPastureConfig.BuyJiaYuanLv <= jiayuanCof.Lv)
             {
                 self.Text_RenKou.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("人口：{0}"), jiaYuanPastureConfig.PeopleNum);
-                self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanPastureConfig.Name);
+                self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.GetName();
                 self.Text_value2.GetComponent<Text>().text = ((int)(jiaYuanPastureConfig.BuyGold * 1.5f)).ToString();
 
                 int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
@@ -110,7 +110,7 @@ namespace ET
             }
             else
             {
-                self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanPastureConfig.Name);
+                self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.GetName();
 
                 Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
                 self.RawImage.GetComponent<RawImage>().material = mat;
@@ -167,7 +167,7 @@ namespace ET
 
             UI jiayuanmain = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
-            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("购买{0}成功"), GameSettingLanguge.LoadLocalization(mysteryConfig.Name)));
+            FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("购买{0}成功"), mysteryConfig.GetName()));
         }
     }
 }

@@ -66,7 +66,7 @@ namespace ET
 
             OccupationTwoConfig twoCof = OccupationTwoConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo);
 
-            self.TextOccTwoName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(twoCof.OccupationName);
+            self.TextOccTwoName.GetComponent<Text>().text = twoCof.GetOccupationName();
 
             UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
             self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);

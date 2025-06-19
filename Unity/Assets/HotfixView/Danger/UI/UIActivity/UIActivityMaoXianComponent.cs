@@ -133,7 +133,7 @@ namespace ET
             ActivityComponent activityComponent =  self.ZoneScene().GetComponent<ActivityComponent>();
 
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(maoxianId);
-            self.Text_Title.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(activityConfig.Par_4);
+            self.Text_Title.GetComponent<Text>().text = activityConfig.GetPar_4();
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
 

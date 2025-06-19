@@ -52,11 +52,11 @@ namespace ET
             if (teamPlayerInfo.OccTwo != 0)
             {
                 OccupationTwoConfig occtwoCof = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.OccTwo);
-                occName = GameSettingLanguge.LoadLocalization(occtwoCof.OccupationName);
+                occName = occtwoCof.GetOccupationName();
             }
             else {
                 OccupationConfig occCof = OccupationConfigCategory.Instance.Get(teamPlayerInfo.Occ);
-                occName = GameSettingLanguge.LoadLocalization(occCof.OccupationName);
+                occName = occCof.GetOccupationName();
             }
             self.TextOcc.GetComponent<Text>().text = occName;
             //是否是人机

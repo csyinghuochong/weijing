@@ -131,7 +131,7 @@ namespace ET
             long endTime = buffHandler.BuffData.BuffEndTime;
             SkillBuffConfig skillBuffConfig = buffHandler.mSkillBuffConf;
             self.BuffTime = skillBuffConfig.BuffTime;
-            self.TextBuffName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillBuffConfig.BuffName); 
+            self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.GetBuffName(); 
             self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
             self.BuffID = skillBuffConfig.Id;

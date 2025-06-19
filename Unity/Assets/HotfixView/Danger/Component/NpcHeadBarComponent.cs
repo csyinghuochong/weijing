@@ -90,7 +90,7 @@ namespace ET
             self.HeadBarUI.HeadBar = self.UINpcName;
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcId);
-            self.UINpcName.transform.Find("Lab_NpcName").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(npcConfig.Name);
+            self.UINpcName.transform.Find("Lab_NpcName").GetComponent<Text>().text = npcConfig.GetName();
 
             // 乌龟说话
             if (ConfigHelper.TurtleList.Contains(self.NpcId) )
@@ -179,7 +179,7 @@ namespace ET
                 self.OnRecvTaskUpdate();
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcId);
                 self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
-                self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(npcConfig.SpeakText);
+                self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = npcConfig.GetSpeakText();
             }
             if (distance > 10f && !self.MainUnitExit)
             {

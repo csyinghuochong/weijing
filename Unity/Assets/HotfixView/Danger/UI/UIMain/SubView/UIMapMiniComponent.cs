@@ -301,7 +301,7 @@ namespace ET
                         str = string.Empty;
                     }
 
-                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(sceneId).ChapterName) + str;
+                    self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).GetChapterName() + str;
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
                     str = "";
@@ -313,7 +313,7 @@ namespace ET
                     {
                         str = GameSettingLanguge.LoadLocalization("(深渊)");
                     }
-                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(sceneId).Name) + str;
+                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).GetName() + str;
                     break;
                 case SceneTypeEnum.Union:
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
@@ -321,7 +321,7 @@ namespace ET
                     break;
                 default:
                     //显示地图名称
-                    self.Lab_MapName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(sceneId).Name);
+                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).GetName();
                     break;
             }
 

@@ -136,7 +136,7 @@ namespace ET
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(baseskill);
 
-            string[] skillDesc = Regex.Split(GameSettingLanguge.LoadLocalization(skillConfig_base.SkillDescribe), "\n\n", RegexOptions.IgnoreCase);
+            string[] skillDesc = Regex.Split(skillConfig_base.GetSkillDescribe(), "\n\n", RegexOptions.IgnoreCase);
 
             if (skillDesc.Length == 1)
             {
@@ -212,7 +212,7 @@ namespace ET
             {
                 self.AssetPath.Add(path);
             }
-            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillWeaponConfig.SkillName);
+            self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.GetSkillName();
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 
             self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级 ") + skillWeaponConfig.SkillLv.ToString();

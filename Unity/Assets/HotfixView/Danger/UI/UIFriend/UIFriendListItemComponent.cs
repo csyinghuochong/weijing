@@ -102,7 +102,7 @@ namespace ET
             self.OnLineTime.GetComponent<Text>().text = friendInfo.OnLineTime ==  1 ? "状态:在线" : "状态:离线";
             self.PlayerLevel.GetComponent<Text>().text = $"等级: {friendInfo.PlayerLevel}级";
             self.PlayerName.GetComponent<Text>().text = friendInfo.PlayerName;
-            self.OccName.GetComponent<Text>().text = "职业:" + GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(friendInfo.Occ).OccupationName);
+            self.OccName.GetComponent<Text>().text = "职业:" + OccupationConfigCategory.Instance.Get(friendInfo.Occ).GetOccupationName();
             UICommonHelper.ShowOccIcon(self.HeadIcon, friendInfo.Occ);
         }
     }

@@ -74,7 +74,7 @@ namespace ET
             self.GameObject.transform.SetAsFirstSibling();
             self.UpdateShouHuoTime();
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(unit.ConfigId);
-            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(jiaYuanFarmConfig.Name);
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = jiaYuanFarmConfig.GetName();
         }
 
         public static int GetPlanStage(this JiaYuanPlanUIComponent self)

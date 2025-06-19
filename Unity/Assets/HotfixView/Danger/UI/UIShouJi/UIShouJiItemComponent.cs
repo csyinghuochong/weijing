@@ -70,7 +70,7 @@ namespace ET
             }
             self.Image_ItemQuality.GetComponent<Image>().sprite = sp1;
 
-            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
+            self.Label_ItemName.GetComponent<Text>().text = itemconfig.GetItemName();
             self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);
 
             self.Label_StarNum.GetComponent<Text>().text = shouJiItemConfig.StartNum.ToString();

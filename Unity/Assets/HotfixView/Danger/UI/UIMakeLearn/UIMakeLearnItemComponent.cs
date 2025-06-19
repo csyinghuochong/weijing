@@ -82,7 +82,7 @@ namespace ET
             self.Label_LearnLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("学习等级:{0}级"), equipMakeConfig.LearnLv);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
-            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.Label_ItemName.GetComponent<Text>().text = itemConfig.GetItemName();
             self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemConfig.ItemQuality);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

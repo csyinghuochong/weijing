@@ -92,7 +92,7 @@ namespace ET
         public static void OnInitUI(this UIZuoQiShowItemComponent self, ZuoQiShowConfig zuoQiConfig)
         {
             self.ZuoQiConfig = zuoQiConfig;
-            self.TextName.text = GameSettingLanguge.LoadLocalization(zuoQiConfig.Name);
+            self.TextName.text = zuoQiConfig.GetName();
             self.RenderTexture = null;
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
@@ -117,11 +117,11 @@ namespace ET
 
 
             //显示属性和来源
-            self.LabProDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.ZuoQiConfig.Des);
-            self.Lab_LaiYuan.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.ZuoQiConfig.GetDes);
+            self.LabProDes.GetComponent<Text>().text = self.ZuoQiConfig.GetDes();
+            self.Lab_LaiYuan.GetComponent<Text>().text = self.ZuoQiConfig.GetGetDes();
             //获取技能Buff
             SkillBuffConfig buffCof = SkillBuffConfigCategory.Instance.Get(self.ZuoQiConfig.MoveBuffID);
-            self.LabDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(buffCof.BuffDescribe);
+            self.LabDes.GetComponent<Text>().text = buffCof.GetBuffDescribe();
 
             UICommonHelper.SetRawImageGray(self.RawImage.gameObject, !self.IsHaveZuoQi(zuoQiConfig.Id));
 

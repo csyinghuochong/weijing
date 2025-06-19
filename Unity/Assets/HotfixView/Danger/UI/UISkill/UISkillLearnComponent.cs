@@ -382,14 +382,14 @@ namespace ET
                 self.AssetPath.Add(path);
             }
 
-            self.SkillInfoNameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
+            self.SkillInfoNameText.GetComponent<Text>().text = skillConfig.GetSkillName();
             self.SkillInfoconImg.GetComponent<Image>().sprite = sp;
 
-            self.NowText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe);
+            self.NowText.GetComponent<Text>().text = skillConfig.GetSkillDescribe();
             if (skillConfig.NextSkillID != 0)
             {
                 SkillConfig skillNextConfig = SkillConfigCategory.Instance.Get(skillConfig.NextSkillID);
-                self.NextText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillNextConfig.SkillDescribe);
+                self.NextText.GetComponent<Text>().text = skillNextConfig.GetSkillDescribe();
                 self.ConsumeText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗技能点:{0}"), skillConfig.CostSPValue);
             }
             else

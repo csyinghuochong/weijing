@@ -182,7 +182,7 @@ namespace ET
             self.ZiJinDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin));
             self.ExpDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp));
 
-            string[] upgets = GameSettingLanguge.LoadLocalization(jiayuanCof.JiaYuanDes).Split(';');
+            string[] upgets = jiayuanCof.GetJiaYuanDes().Split(';');
             for (int i = 0; i < self.UpdateGet.transform.childCount; i++)
             {
                 Transform item = self.UpdateGet.transform.GetChild(i);

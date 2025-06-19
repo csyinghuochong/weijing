@@ -59,7 +59,7 @@ namespace ET
             self.TaskPro = taskPro;
             TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get( taskPro.taskID );
 
-            self.Text_tip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskCountryConfig.TaskDes);
+            self.Text_tip.GetComponent<Text>().text = taskCountryConfig.GetTaskDes();
             self.Text_progress.GetComponent<Text>().text = $"{taskPro.taskTargetNum_1}/{taskCountryConfig.TargetValue[0]}";
 
             self.ImageReceived.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);

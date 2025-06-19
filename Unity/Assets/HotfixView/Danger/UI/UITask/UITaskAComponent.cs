@@ -173,7 +173,7 @@ namespace ET
 			self.Text_jinbiValue.GetComponent<Text>().text = self.TaskConfig.TaskCoin.ToString();
 
 			self.Text_taskTarget.GetComponent<Text>().text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
-			self.Text_jiangliText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.TaskConfig.TaskDes);
+			self.Text_jiangliText.GetComponent<Text>().text = self.TaskConfig.GetTaskDes();
 
 			self.Button_Zhuizong.SetActive(taskPro.TrackStatus == 0);
 			self.Button_CancelZhuizong.SetActive(taskPro.TrackStatus == 1);
@@ -182,7 +182,7 @@ namespace ET
 			//显示提交任务
 			if(self.TaskConfig.CompleteNpcID > 0)
 			{
-                string npcName = GameSettingLanguge.LoadLocalization(NpcConfigCategory.Instance.Get(self.TaskConfig.CompleteNpcID).Name);
+                string npcName = NpcConfigCategory.Instance.Get(self.TaskConfig.CompleteNpcID).GetName();
                 self.Text_comTaskNpc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("完成任务请找:<color=#5C7B32>{0}</color>"), npcName);
             }
 			

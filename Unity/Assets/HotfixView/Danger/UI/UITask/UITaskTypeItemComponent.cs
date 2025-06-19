@@ -59,7 +59,7 @@ namespace ET
         public static void OnUpdateData(this UITaskTypeItemComponent self, TaskPro taskPro)
         {
             self.TaskPro = taskPro;
-            string name_1 = GameSettingLanguge.LoadLocalization(TaskConfigCategory.Instance.Get(taskPro.taskID).TaskName);
+            string name_1 = TaskConfigCategory.Instance.Get(taskPro.taskID).GetTaskName();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             self.Lab_TaskName.GetComponent<Text>().text = name_1;

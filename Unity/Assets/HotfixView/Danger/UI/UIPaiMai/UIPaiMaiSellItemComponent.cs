@@ -84,7 +84,7 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             self.TextTime.GetComponent<Text>().text = TimeHelper.ShowTimeDifferenceStr(dateTime, TimeInfo.Instance.ToDateTime(self.PaiMaiItemInfo.SellTime));
 
-            self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).ItemName);
+            self.TextName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).GetItemName();
 
             self.UIItem.Baginfo = self.PaiMaiItemInfo.BagInfo;
         }

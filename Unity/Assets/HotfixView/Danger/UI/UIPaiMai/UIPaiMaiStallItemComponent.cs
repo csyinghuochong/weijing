@@ -65,7 +65,7 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-            self.TextName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.TextName.GetComponent<Text>().text = itemConfig.GetItemName();
             self.TextPrice.GetComponent<Text>().text = paiMaiItemInfo.Price.ToString();
             self.UIItemComponent.UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.None);
         }

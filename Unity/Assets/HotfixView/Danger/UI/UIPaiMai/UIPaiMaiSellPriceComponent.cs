@@ -174,7 +174,7 @@ namespace ET
             if (itemConfig.ItemQuality >= 4 && m2C_PaiMaiBuyResponse.PaiMaiItemInfo!=null)
             {
                 long paimaiItemId = m2C_PaiMaiBuyResponse.PaiMaiItemInfo.Id;        //
-                string text = string.Format(GameSettingLanguge.LoadLocalization("在拍卖行上架道具<color=#{0}>{1}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{2}_{3}></link>"), ComHelp.QualityReturnColor(4), GameSettingLanguge.LoadLocalization(itemConfig.ItemName), itemConfig.ItemType, paimaiItemId);
+                string text = string.Format(GameSettingLanguge.LoadLocalization("在拍卖行上架道具<color=#{0}>{1}</color>！<color=#00FF00>点击前往拍卖行 </color><link=paimai_{2}_{3}></link>"), ComHelp.QualityReturnColor(4), itemConfig.GetItemName(), itemConfig.ItemType, paimaiItemId);
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.PaiMai, text).Coroutine();
             }
 

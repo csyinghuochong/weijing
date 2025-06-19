@@ -78,20 +78,20 @@ namespace ET
                 case 56:
                 case 57:
                 case 60:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.GetMonsterName();
                     break;
                 case 58:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.GetMonsterName();
                     self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
                     self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().color = new Color(184f / 255f, 255f / 255f, 66f / 255f);
                     break;
                 case 59:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.GetMonsterName();
                     self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
                     self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
                     break;
                 case 61:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.GetMonsterName();
                     self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = string.Empty;
                     break;
                 default:
@@ -108,8 +108,8 @@ namespace ET
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
-            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
-            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe);
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = skillConfig.GetSkillName();
+            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = skillConfig.GetSkillDescribe();
         }
     }
 

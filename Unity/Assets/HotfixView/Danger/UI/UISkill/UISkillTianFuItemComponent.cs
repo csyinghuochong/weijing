@@ -91,7 +91,7 @@ namespace ET
                 self.AssetPath.Add(path1);
             }
             self.ImageIcon1.GetComponent<Image>().sprite = sp1;
-            self.TextName1.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.Name);
+            self.TextName1.GetComponent<Text>().text = skillConfig.GetName();
 
             skillConfig = TalentConfigCategory.Instance.Get(tianfus[1]);
             string path2 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
@@ -101,7 +101,7 @@ namespace ET
                 self.AssetPath.Add(path2);
             }
             self.ImageIcon2.GetComponent<Image>().sprite = sp2;
-            self.TextName2.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.Name);
+            self.TextName2.GetComponent<Text>().text = skillConfig.GetName();
 
             skillConfig = TalentConfigCategory.Instance.Get(tianfus[2]);
             string path3 =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
@@ -111,7 +111,7 @@ namespace ET
                 self.AssetPath.Add(path3);
             }
             self.ImageIcon3.GetComponent<Image>().sprite = sp3;
-            self.TextName3.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.Name);
+            self.TextName3.GetComponent<Text>().text = skillConfig.GetName();
 
             self.TextLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级激活此天赋"), skillConfig.LearnRoseLv);
         }

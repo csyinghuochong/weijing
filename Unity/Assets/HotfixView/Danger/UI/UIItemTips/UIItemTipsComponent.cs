@@ -511,7 +511,7 @@ namespace ET
                 }
                 if (curSceneId != needSceneId)
                 {
-                    string fubenName = GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(needSceneId).ChapterName);
+                    string fubenName = DungeonConfigCategory.Instance.Get(needSceneId).GetChapterName();
                     FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请前往{0}"), GameSettingLanguge.LoadLocalization(fubenName)));
                     return;
                 }
@@ -524,7 +524,7 @@ namespace ET
                     Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);
                     //UIHelper.Remove(zoneScene, UIType.UIRole);
                     self.OnCloseTips();
-                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗道具:{0}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName)));
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("消耗道具:{0}"), itemConfig.GetItemName()));
                     return;
                 }
             }
@@ -595,7 +595,7 @@ namespace ET
             if (errorCode == ErrorCode.ERR_ItemOnlyUseOcc)
             {
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(itemConfig.UseOcc);
-                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), GameSettingLanguge.LoadLocalization(occupationConfig.OccupationName));
+                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), occupationConfig.GetOccupationName());
                 FloatTipManager.Instance.ShowFloatTipDi(tip);
             }
 
@@ -654,7 +654,7 @@ namespace ET
 
             self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + itemTypename;
 
-            string Text_ItemDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
+            string Text_ItemDes = itemconf.GetItemDes();
             //获取道具描述的分隔符
             string[] itemDesArray = Text_ItemDes.Split(';');
             string itemMiaoShu = "";
@@ -714,7 +714,7 @@ namespace ET
             }
             self.Obj_ItemQuality.GetComponent<Image>().sprite = sp1;
 
-            string Text_ItemStory = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
+            string Text_ItemStory = itemconf.GetItemDes();
             //显示道具描述
             int i2 = (int)((Text_ItemStory.Length) / 20) + 1;
             //float ItemBottomTextNum = 30.0f;
@@ -847,7 +847,7 @@ namespace ET
             //设置底的长度
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
             //显示道具信息
-            self.Lab_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconf.ItemName);
+            self.Lab_ItemName.GetComponent<Text>().text = itemconf.GetItemName();
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             self.ItemDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes);
             //赞助宝箱设置描述为绿色
@@ -878,14 +878,14 @@ namespace ET
             if (itemconf.ItemType == 2 && itemconf.ItemSubType == 122)
             {
                 SkillConfig skillCof = SkillConfigCategory.Instance.Get(int.Parse(itemconf.ItemUsePar));
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("技能描述:{0}"), GameSettingLanguge.LoadLocalization(skillCof.SkillDescribe));
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("技能描述:{0}"), skillCof.GetSkillDescribe());
             }
 
             //藏宝图
             if (itemconf.ItemSubType == 127 && !string.IsNullOrEmpty(self.BagInfo.ItemPar)) 
             {
                 int sceneID = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
-                self.ItemDes.GetComponent<Text>().text =  string.Format(GameSettingLanguge.LoadLocalization("{0}\n前往地图:{1}开启藏宝图!"), GameSettingLanguge.LoadLocalization(itemconf.ItemDes), GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(sceneID).ChapterName));
+                self.ItemDes.GetComponent<Text>().text =  string.Format(GameSettingLanguge.LoadLocalization("{0}\n前往地图:{1}开启藏宝图!"), itemconf.GetItemDes(), DungeonConfigCategory.Instance.Get(sceneID).GetChapterName());
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");

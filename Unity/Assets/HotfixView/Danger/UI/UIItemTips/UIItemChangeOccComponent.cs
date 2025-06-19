@@ -69,7 +69,7 @@ namespace ET
             {
                 OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occupationConfig.OccTwoID[i]);
                 Transform occitem = self.GridList_2.transform.GetChild(i);
-                occitem.Find("Text").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(occupationTwoConfig.OccupationName);
+                occitem.Find("Text").GetComponent<Text>().text = occupationTwoConfig.GetOccupationName();
                 self.OccTwoSelectList[i] = occitem.Find("Image_XuanZhong").gameObject;
 
                 int ii = i;

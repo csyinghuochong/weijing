@@ -80,7 +80,7 @@ namespace ET
             if (response.LearnId != 0)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(response.LearnId);
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("恭喜你学会制作 {0}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName)));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("恭喜你学会制作 {0}"), itemConfig.GetItemName()));
             }
             self.ZoneScene().GetComponent<JiaYuanComponent>().LearnMakeIds_7 = response.LearnMakeIds;
             self.OnUpdateUI();

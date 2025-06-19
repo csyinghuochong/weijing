@@ -91,11 +91,11 @@ namespace ET
                 self.TextOcc.SetActive(teamPlayerInfo.Occ!=0 || teamPlayerInfo.OccTwo!=0);
                 if (teamPlayerInfo.Occ != 0)
                 {
-                    self.TextOcc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationConfigCategory.Instance.Get(teamPlayerInfo.Occ).OccupationName);
+                    self.TextOcc.GetComponent<Text>().text = OccupationConfigCategory.Instance.Get(teamPlayerInfo.Occ).GetOccupationName();
                 }
                 if (teamPlayerInfo.OccTwo != 0)
                 {
-                    self.TextOcc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.OccTwo).OccupationName);
+                    self.TextOcc.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.OccTwo).GetOccupationName();
                 }
 
                 //机器人显示

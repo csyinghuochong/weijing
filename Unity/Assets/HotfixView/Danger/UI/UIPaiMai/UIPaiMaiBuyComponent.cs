@@ -433,7 +433,7 @@ namespace ET
 
             foreach (ItemConfig itemConfig in ItemConfigCategory.Instance.GetAll().Values)
             {
-                if (GameSettingLanguge.LoadLocalization(itemConfig.ItemName).Contains(text))
+                if (itemConfig.GetItemName().Contains(text))
                 {
                     if (!findItemIdList.Contains(itemConfig.Id))
                     {

@@ -86,7 +86,7 @@ namespace ET
                 int itemId = int.Parse(itemInfo[0]);
                 int itemNum = int.Parse(itemInfo[1]);
                 ItemConfig itemConfig= ItemConfigCategory.Instance.Get(itemId);
-                itemDesc += $"{GameSettingLanguge.LoadLocalization(itemConfig.ItemName)} x {itemNum} ";
+                itemDesc += $"{itemConfig.GetItemName()} x {itemNum} ";
             }
             return itemDesc;
         }

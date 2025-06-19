@@ -123,8 +123,8 @@ namespace ET
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(self.UserInfo.UnionKeJiList[position]);
 
-            Match match = Regex.Match(GameSettingLanguge.LoadLocalization(unionKeJiConfig.EquipSpaceName), @"\d");
-            self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(unionKeJiConfig.EquipSpaceName).Substring(0, match.Index);
+            Match match = Regex.Match(unionKeJiConfig.GetEquipSpaceName(), @"\d");
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.GetEquipSpaceName().Substring(0, match.Index);
             self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
 
             if (unionKeJiConfig.QiangHuaLv == 0)

@@ -561,7 +561,7 @@ namespace ET
         public static string GetItemDesc(BagInfo baginfo, ref int i1)
         {
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
-            string Text_ItemDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
+            string Text_ItemDes = itemconf.GetItemDes();
             int itemType = itemconf.ItemType;
             int itemSubType = itemconf.ItemSubType;
 
@@ -777,7 +777,7 @@ namespace ET
                     string canTransf = "";
                     HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
-                    string skillName = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
+                    string skillName = skillConfig.GetSkillName();
                     if (hideProListConfig.IfMove == 1)
                     {
                         canTransf = GameSettingLanguge.LoadLocalization("传承");
@@ -848,7 +848,7 @@ namespace ET
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(iteminfo[0]));
             PetConfig petConfig = PetConfigCategory.Instance.Get(int.Parse(configInfo[1]));
-            string info = string.Format(GameSettingLanguge.LoadLocalization("消耗{0}X{1}兑换{2}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName), iteminfo[1], GameSettingLanguge.LoadLocalization(petConfig.PetName));
+            string info = string.Format(GameSettingLanguge.LoadLocalization("消耗{0}X{1}兑换{2}"), itemConfig.GetItemName(), iteminfo[1], petConfig.GetPetName());
             return info;
         }
 
@@ -860,9 +860,9 @@ namespace ET
             string ItemIcon = itemconf.Icon;
             int ItemQuality = itemconf.ItemQuality;
             string equip_ID = itemconf.ItemEquipID.ToString();
-            string equipName = GameSettingLanguge.LoadLocalization(itemconf.ItemName);
+            string equipName = itemconf.GetItemName();
             string equipLv = itemconf.UseLv.ToString();
-            string ItemBlackDes = GameSettingLanguge.LoadLocalization(itemconf.ItemDes);
+            string ItemBlackDes = itemconf.GetItemDes();
 
             // 赛季晶核
             if (itemconf.ItemType == 3 && itemconf.EquipType == 201)
@@ -896,7 +896,7 @@ namespace ET
                     {
                         int skillID = baginfo.HideSkillLists[i];
                         SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                        string proStr = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + GameSettingLanguge.LoadLocalization(skillCof.SkillName);
+                        string proStr = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + skillCof.GetSkillName();
                         ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                         properShowNum += 1;
                     }
@@ -1203,7 +1203,7 @@ namespace ET
                 {
                     int skillID = baginfo.HideSkillLists[i];
                     SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                    string proStr = GameSettingLanguge.LoadLocalization(skillTip) + GameSettingLanguge.LoadLocalization(skillCof.SkillName);
+                    string proStr = GameSettingLanguge.LoadLocalization(skillTip) + skillCof.GetSkillName();
                     ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                     properShowNum += 1;
                 }
@@ -1310,7 +1310,7 @@ namespace ET
                 string canTransf = "";
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
-                string skillName = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
+                string skillName = skillConfig.GetSkillName();
                 if (hideProListConfig.IfMove == 1)
                 {
                     canTransf = GameSettingLanguge.LoadLocalization("传承");
@@ -1324,7 +1324,7 @@ namespace ET
             //显示描述
             if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
             {
-                string[] des = GameSettingLanguge.LoadLocalization(itemconf.ItemDes).Split('\n');
+                string[] des = itemconf.GetItemDes().Split('\n');
                 foreach (string s in des)
                 {
                     int allLength = s.Length;
@@ -1353,7 +1353,7 @@ namespace ET
                     if (skillID != 0)
                     {
                         SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                        string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + GameSettingLanguge.LoadLocalization(skillCof.SkillDescribe);
+                        string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.GetSkillDescribe();
 
                         //获取当前穿戴的装备是否有相同的传承属性
                         bool ifRepeat = false;

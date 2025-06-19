@@ -76,7 +76,7 @@ namespace ET
                 string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
                 int itemId = int.Parse(itemInfo.Split(';')[0]);
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), GameSettingLanguge.LoadLocalization(itemConfig.ItemName), itemInfo.Split(';')[1]));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("获得物品 {0} x{1}"), itemConfig.GetItemName(), itemInfo.Split(';')[1]));
             }
         }
 

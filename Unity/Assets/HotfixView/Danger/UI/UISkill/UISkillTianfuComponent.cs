@@ -173,7 +173,7 @@ namespace ET
 
             TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 
-            string[] descList = GameSettingLanguge.LoadLocalization(talentConfig.talentDes).Split(';');
+            string[] descList = talentConfig.GettalentDes().Split(';');
             UICommonHelper.DestoryChild(self.DescListNode);
             for (int i = 0; i < descList.Length; i++)
             {
@@ -188,7 +188,7 @@ namespace ET
                 gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(600f, gameObject.GetComponent<Text>().preferredHeight);
             }
 
-            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(talentConfig.Name);
+            self.Lab_SkillName.GetComponent<Text>().text = talentConfig.GetName();
             self.Text_NeedLv.GetComponent<Text>().text = talentConfig.LearnRoseLv.ToString();
 
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, talentConfig.Icon.ToString());

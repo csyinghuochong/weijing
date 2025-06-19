@@ -123,7 +123,7 @@ namespace ET
             }
 
             self.ShowSkillList(unit);
-            self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(unit.ConfigId).MonsterName);
+            self.NameText.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(unit.ConfigId).GetMonsterName();
             self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前等级：{0}"), numericComponent.GetAsInt(NumericType.Now_Lv).ToString());
 
             for (int i = 0; i < self.ShowPropertyList.Count; i++)

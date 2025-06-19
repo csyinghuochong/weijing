@@ -154,7 +154,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("召唤{0}成功!"), GameSettingLanguge.LoadLocalization(battleSummonConfig.ItemName)));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("召唤{0}成功!"), battleSummonConfig.GetItemName()));
             }
             
             self.CurrentNumberText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前召唤人口:{0}/{1}"), BattleHelper.GetSummonNumber(response.BattleSummonList), int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value));

@@ -86,7 +86,7 @@ namespace ET
         {
             if (self.CostGold > 0)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("战场招募"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币召唤{1}?"), self.CostGold, GameSettingLanguge.LoadLocalization(self.BattleSummonConfig.ItemName)),
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("战场招募"), string.Format(GameSettingLanguge.LoadLocalization("是否消耗{0}金币召唤{1}?"), self.CostGold, self.BattleSummonConfig.GetItemName()),
                     () => { self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold); }).Coroutine();
             }
             else
@@ -100,7 +100,7 @@ namespace ET
             self.BattleSummonConfig = battleSummonConfig;
             self.CostGold = battleSummonConfig.CostGold;
 
-            self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(battleSummonConfig.ItemName);
+            self.NameText.GetComponent<Text>().text = battleSummonConfig.GetItemName();
 
             if (self.RenderTexture != null)
             {

@@ -185,7 +185,7 @@ namespace ET
             self.Image_RewardIcon.GetComponent<Image>().sprite = sp;
 
             self.Text_RewardPoint.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}成就奖励"), chengJiuConfig.NeedPoint);
-            self.Text_RewardDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(chengJiuConfig.Desc);
+            self.Text_RewardDesc.GetComponent<Text>().text = chengJiuConfig.GetDesc();
 
             self.Text_TotalPoint.GetComponent<Text>().text = self.ChengJiuComponent.TotalChengJiuPoint.ToString();
         }

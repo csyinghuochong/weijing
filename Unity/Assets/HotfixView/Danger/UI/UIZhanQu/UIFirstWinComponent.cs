@@ -173,7 +173,7 @@ namespace ET
 					typeButtonItems.Add( new TypeButtonItem() 
 					{
 						SubTypeId = item.Value[b], 
-						ItemName = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(bossId).MonsterName)
+						ItemName = MonsterConfigCategory.Instance.Get(bossId).GetMonsterName()
 					} );
 				}
 
@@ -276,14 +276,14 @@ namespace ET
 			}
 			int bossId = FirstWinConfigCategory.Instance.Get(firstwinId).BossID;
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-			self.Text_BossName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+			self.Text_BossName.GetComponent<Text>().text = monsterConfig.GetMonsterName();
 			self.Text_Lv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级:") + monsterConfig.Lv;
 			
 			int[] skillIds = monsterConfig.SkillID;
 			for (int i = 0; i < skillIds.Length; i++)
 			{
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIds[i]);
-				string str = $"{GameSettingLanguge.LoadLocalization(skillConfig.SkillName)}:" + GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe);
+				string str = $"{skillConfig.GetSkillName()}:" + skillConfig.GetSkillDescribe();
 				float height = (str.Length / 30 + 1) * 40; // 16个字一行
 				if (i == 0)
 				{
@@ -329,7 +329,7 @@ namespace ET
 					continue;
 				}
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skilllist[i]);
-				skilldesc = skilldesc + GameSettingLanguge.LoadLocalization(skillConfig.SkillName) +  " " + GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe) + "\n";
+				skilldesc = skilldesc + skillConfig.GetSkillName() +  " " + skillConfig.GetSkillDescribe() + "\n";
 			}
 			self.Text_SkillJieShao.GetComponent<Text>().text = skilldesc;
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

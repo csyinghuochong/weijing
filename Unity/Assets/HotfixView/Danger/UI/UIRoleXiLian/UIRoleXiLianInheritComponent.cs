@@ -106,7 +106,7 @@ namespace ET
 			self.Text_CostValue.GetComponent<Text>().text = string.Format("{0}/{1}", self.BagComponent.GetItemNumber(costitemid), constitemnumber);
 			self.Text_CostValue.GetComponent<Text>().color = self.BagComponent.GetItemNumber(int.Parse(costitem[0])) >= int.Parse(costitem[1]) ? Color.green : Color.red;
 
-			self.Text_CostName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemName);
+			self.Text_CostName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).GetItemName();
 			self.Text_CostName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi((int)ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemQuality);
 			if (self.BagComponent.GetItemNumber(int.Parse(costitem[0])) >= int.Parse(costitem[1]) )
 			{
@@ -255,7 +255,7 @@ namespace ET
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
 			// 二次确认框
-			PopupTipHelp.OpenPopupTip( self.DomainScene(), GameSettingLanguge.LoadLocalization("传承鉴定"), string.Format(GameSettingLanguge.LoadLocalization("传承鉴定效果：{0}\n传承装备只有{1}次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?"), GameSettingLanguge.LoadLocalization(skillConfig.SkillDescribe), maxInheritTimes), ()=>
+			PopupTipHelp.OpenPopupTip( self.DomainScene(), GameSettingLanguge.LoadLocalization("传承鉴定"), string.Format(GameSettingLanguge.LoadLocalization("传承鉴定效果：{0}\n传承装备只有{1}次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?"), skillConfig.GetSkillDescribe(), maxInheritTimes), ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
 			}, () => { self.OnXiLianReturn();}).Coroutine();

@@ -169,7 +169,7 @@ namespace ET
                 boosTimeItemRc.Get<GameObject>("Photo").GetComponent<Image>().sprite = sp;
 
                 // Boss名字
-                boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                boosTimeItemRc.Get<GameObject>("Name").GetComponent<Text>().text = monsterConfig.GetMonsterName();
 
 
                 int dungeonid = SceneConfigHelper.GetFubenByMonster(monsterConfig.Id);
@@ -177,7 +177,7 @@ namespace ET
                 {
                     // Boss出生地
                     boosTimeItemRc.Get<GameObject>("Map").GetComponent<Text>().text =
-                            $"({GameSettingLanguge.LoadLocalization(DungeonConfigCategory.Instance.Get(dungeonid).ChapterName)})";
+                            $"({DungeonConfigCategory.Instance.Get(dungeonid).GetChapterName()})";
 
                 }
                 if (self.BossRefreshTime.ContainsKey(bossRevivesTime[i].KeyId))
@@ -250,7 +250,7 @@ namespace ET
                 go.SetActive(true);
                 // Boss名字
                 ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
-                go.Get<GameObject>("NameText").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName);
+                go.Get<GameObject>("NameText").GetComponent<Text>().text = monsterConfig.GetMonsterName();
 
                 // 按钮
                 if (!PlayerPrefs.HasKey(bossConfigId.ToString()))

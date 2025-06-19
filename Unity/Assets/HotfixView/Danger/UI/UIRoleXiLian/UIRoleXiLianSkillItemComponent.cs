@@ -36,7 +36,7 @@ namespace ET
             self.EquipXiLianConfig = equipXiLianConfig;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.Text_XiLianName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(equipXiLianConfig.Title) + GameSettingLanguge.LoadLocalization("额外增加概率出现的特殊属性");
+            self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.GetTitle() + GameSettingLanguge.LoadLocalization("额外增加概率出现的特殊属性");
             List<KeyValuePairInt> xilianSkill = XiLianHelper.GetLevelSkill(equipXiLianConfig.XiLianLevel);
 
             int row = (xilianSkill.Count / 8);
@@ -52,7 +52,7 @@ namespace ET
 
                 Log.Info("xilianSkill[i] = " + xilianSkill[i]);
                 SkillConfig skillcof = SkillConfigCategory.Instance.Get((int)xilianSkill[i].Value);
-                ui_item.TextSkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillcof.SkillName);
+                ui_item.TextSkillName.GetComponent<Text>().text = skillcof.GetSkillName();
                 ui_item.TextSkillName.SetActive(true);
                 self.uIItems.Add(ui_item);
             }

@@ -142,7 +142,7 @@ namespace ET
             {
                 string text =
                         string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), 
-                            GameSettingLanguge.LoadLocalization(SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name), 
+                            SceneConfigCategory.Instance.Get(teamInfo.SceneId).GetName(), 
                             teamInfo.TeamId, 
                             teamInfo.SceneId, 
                             teamInfo.FubenType, 
@@ -225,7 +225,7 @@ namespace ET
             {
                 addStr = GameSettingLanguge.LoadLocalization("(深渊模式)");
             }
-            self.Obj_Lab_FuBenName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(sceneConfig.Name) + addStr;
+            self.Obj_Lab_FuBenName.GetComponent<Text>().text = sceneConfig.GetName() + addStr;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";
         }
 

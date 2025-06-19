@@ -117,7 +117,7 @@ namespace ET
                     if (gemids[g] != "0")
                     {
                         haveGem = true;
-                        tip += GameSettingLanguge.LoadLocalization(itemConfig.ItemName) + " ";
+                        tip += itemConfig.GetItemName() + " ";
                         break;
                     }
                 }
@@ -175,7 +175,7 @@ namespace ET
 
             //显示名称
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
-            string itemName = GameSettingLanguge.LoadLocalization(itemConfig.ItemName); 
+            string itemName = itemConfig.GetItemName(); 
   
             self.Lab_MakeName.GetComponent<Text>().text = itemName;
             self.Lab_MakeName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemConfig.ItemQuality);

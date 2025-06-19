@@ -185,7 +185,7 @@ namespace ET
                 self.AssetPath.Add(path2);
             }
             self.Img_ItemQuality.GetComponent<Image>().sprite = sp2;
-            self.Text_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
+            self.Text_ItemName.GetComponent<Text>().text = itemconfig.GetItemName();
         }
 
         public static void OnUpdateUI(this UIPetXiLianComponent self)

@@ -89,7 +89,7 @@ namespace ET
             self.UICommonItem.Label_ItemNum.SetActive(false);
             self.UICommonItem.HideItemName();
             self.NameText.GetComponent<Text>().text =
-                    $"<color=\"#{ComHelp.QualityReturnColor(itemConfig.ItemQuality)}\">{GameSettingLanguge.LoadLocalization(itemConfig.ItemName)}</color>";
+                    $"<color=\"#{ComHelp.QualityReturnColor(itemConfig.ItemQuality)}\">{itemConfig.GetItemName()}</color>";
             self.ValueText.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
 
             ItemConfig sellTypeItemConfig = ItemConfigCategory.Instance.Get(storeSellConfig.SellType);

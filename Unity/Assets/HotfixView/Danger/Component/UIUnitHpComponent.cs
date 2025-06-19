@@ -471,16 +471,16 @@ namespace ET
                 {
                     if (monsterCof.MonsterType == 3)
                     {
-                        this.Lal_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("深渊召唤:{0}{1}</color>"), colorstr, GameSettingLanguge.LoadLocalization(monsterCof.MonsterName));
+                        this.Lal_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("深渊召唤:{0}{1}</color>"), colorstr, monsterCof.GetMonsterName());
                     }
                     else
                     {
-                        this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{GameSettingLanguge.LoadLocalization(monsterCof.MonsterName)}</color>";
+                        this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{monsterCof.GetMonsterName()}</color>";
                     }
                 }
                 else
                 {
-                    this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{GameSettingLanguge.LoadLocalization(monsterCof.MonsterName)}</color>";
+                    this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{monsterCof.GetMonsterName()}</color>";
                 }
 
                 //怪物等级显示
@@ -609,7 +609,7 @@ namespace ET
             int min = (int)((leftTime - (hour * 3600))/60);
             int sec = (int)(leftTime - (hour * 3600) - (min * 60));
             string showStr = hour + GameSettingLanguge.LoadLocalization("时") + min + GameSettingLanguge.LoadLocalization("分") + sec + GameSettingLanguge.LoadLocalization("秒");
-            reviveTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 刷新剩余时间:{1}"), GameSettingLanguge.LoadLocalization(monsterConfig.MonsterName), showStr);
+            reviveTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 刷新剩余时间:{1}"), monsterConfig.GetMonsterName(), showStr);
         }
 
         public void OnGetUseInfoUpdate()

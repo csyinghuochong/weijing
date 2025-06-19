@@ -83,7 +83,7 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
-            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(petConfig.PetName);
+            self.Label_ItemName.GetComponent<Text>().text = petConfig.GetPetName();
         }
     }
 }

@@ -42,12 +42,12 @@ namespace ET
                 if (self.CreateRoleInfo.OccTwo > 0)
                 {
                     OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(self.CreateRoleInfo.OccTwo);
-                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), GameSettingLanguge.LoadLocalization(occupationTwo.OccupationName));
+                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), occupationTwo.GetOccupationName());
                 }
                 else
                 {
                     OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.CreateRoleInfo.PlayerOcc);
-                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), GameSettingLanguge.LoadLocalization(occupationConfig.OccupationName));
+                    self.RoleOcc.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("职业:{0}"), occupationConfig.GetOccupationName());
                 }
                 UICommonHelper.ShowOccIcon(self.ObjImgOccHeadIcon, self.CreateRoleInfo.PlayerOcc);
                 self.ObjImgOccHeadIcon.SetActive(true);

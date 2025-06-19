@@ -51,11 +51,11 @@ namespace ET
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             if (!isCompleted)
             {
-                self.TextTaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
+                self.TextTaskName.GetComponent<Text>().text = taskConfig.GetTaskName();
             }
             else
             {
-                self.TextTaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName) + GameSettingLanguge.LoadLocalization("(已完成)");
+                self.TextTaskName.GetComponent<Text>().text = taskConfig.GetTaskName() + GameSettingLanguge.LoadLocalization("(已完成)");
                 self.TextTaskName.GetComponent<Text>().color = new Color(131f/255f,255f/255f,83f/255f);
             }
 

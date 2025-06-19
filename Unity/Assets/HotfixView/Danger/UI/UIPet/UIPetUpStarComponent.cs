@@ -96,7 +96,7 @@ namespace ET
                 self.AssetPath.Add(path1);
             }
             self.Img_ItemQuality.GetComponent<Image>().sprite = sp1;
-            self.Text_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.Text_ItemName.GetComponent<Text>().text = itemConfig.GetItemName();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 

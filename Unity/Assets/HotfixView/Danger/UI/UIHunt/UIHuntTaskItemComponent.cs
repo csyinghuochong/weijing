@@ -69,8 +69,8 @@ namespace ET
                 UICommonHelper.ShowItemList(taskConfig.RewardItem, self.ItemListNode, self, 0.8f, true);
             }
 
-            self.TextTaskName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskName);
-            self.TextTaskDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(taskConfig.TaskDes);
+            self.TextTaskName.GetComponent<Text>().text = taskConfig.GetTaskName();
+            self.TextTaskDesc.GetComponent<Text>().text = taskConfig.GetTaskDes();
 
             taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue[0] ? taskConfig.TargetValue[0] : taskPro.taskTargetNum_1;
             self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " +

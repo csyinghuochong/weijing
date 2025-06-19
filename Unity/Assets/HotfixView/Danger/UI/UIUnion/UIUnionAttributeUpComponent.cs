@@ -166,7 +166,7 @@ namespace ET
             }
 
             gameitem.transform.Find("Button_IconItem0").GetComponent<Image>().sprite = sp;
-            gameitem.transform.Find("NameLText").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(publicQiangHuaConfig.EquipSpaceName);
+            gameitem.transform.Find("NameLText").GetComponent<Text>().text = publicQiangHuaConfig.GetEquipSpaceName();
             UICommonHelper.SetImageGray(gameitem.transform.Find("Button_IconItem0").gameObject, publicQiangHuaConfig.QiangHuaLv == 0);
         }
 

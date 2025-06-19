@@ -153,7 +153,7 @@ namespace ET
             self.Text_Number.GetComponent<Text>().text = paiMaiItemInfo.BagInfo.ItemNum.ToString();
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-            self.Lab_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+            self.Lab_ItemName.GetComponent<Text>().text = itemConfig.GetItemName();
             self.Lab_ChuShouPrice.GetComponent<Text>().text = paiMaiItemInfo.Price.ToString();
             self.UIItemComponent.UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.None);
         }

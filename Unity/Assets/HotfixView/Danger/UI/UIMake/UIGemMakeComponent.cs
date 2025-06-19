@@ -164,7 +164,7 @@ namespace ET
             string[] itemsList = needItems.Split('@');
 
             //显示名称
-            self.Lab_MakeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemName);
+            self.Lab_MakeName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).GetItemName();
             self.Lab_MakeName.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemQuality);
             self.Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
 

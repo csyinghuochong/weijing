@@ -159,7 +159,7 @@ namespace ET
             self.AssetPath.Add(path_1);
 
             uiItemShow.transform.Find("Label_ItemNum").GetComponent<Text>().text = itemInfo.Split(';')[1];
-            uiItemShow.transform.Find("Label_ItemName").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig1.ItemName);
+            uiItemShow.transform.Find("Label_ItemName").GetComponent<Text>().text = itemconfig1.GetItemName();
         }
 
         public static void SetReceiced(this UIActivityTokenItemComponent self, GameObject gameObject, int index)

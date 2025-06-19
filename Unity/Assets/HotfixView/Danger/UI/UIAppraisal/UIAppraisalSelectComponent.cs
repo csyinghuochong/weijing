@@ -81,7 +81,7 @@ namespace ET
             self.UIItemComponent_2 = item_app;
             self.UIItemComponent_2.GameObject.SetActive(false);
             //item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
-            self.Text_Tip_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要消耗：{0}"), GameSettingLanguge.LoadLocalization(itemConfig_app.ItemName));
+            self.Text_Tip_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要消耗：{0}"), itemConfig_app.GetItemName());
 
             self.Text_EquipLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), itemCof.UseLv);
 

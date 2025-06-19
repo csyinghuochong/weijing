@@ -134,7 +134,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID, UnitHelper.GetEquipType(self.ZoneScene()), skillSetComponent.SkillList    ));
-            self.Lab_SkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillWeaponConfig.SkillName);
+            self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.GetSkillName();
             self.Lab_SkillLv.GetComponent<Text>().text = skillWeaponConfig.SkillLv.ToString();
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

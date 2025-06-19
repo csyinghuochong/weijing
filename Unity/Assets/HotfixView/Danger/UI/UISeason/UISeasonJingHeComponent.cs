@@ -181,7 +181,7 @@ namespace ET
                 rc.Get<GameObject>("Back").GetComponent<Image>().sprite = sp1;
                 
                 
-                rc.Get<GameObject>("ItemNameText").GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemConfig.ItemName);
+                rc.Get<GameObject>("ItemNameText").GetComponent<Text>().text = itemConfig.GetItemName();
                 rc.Get<GameObject>("ItemNameText").GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemConfig.ItemQuality);
                 rc.Get<GameObject>("ItemNumText").GetComponent<Text>().text = $"{havedNum}/{cosrItemNum}";
                 rc.Get<GameObject>("ItemNumText").GetComponent<Text>().color =
@@ -223,11 +223,11 @@ namespace ET
                         {
                             int skillID = nowItem.BagInfo.HideSkillLists[i];
                             SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                            attribute = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + GameSettingLanguge.LoadLocalization(skillCof.SkillName) + "\n";
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加技能") + ":" + skillCof.GetSkillName() + "\n";
                         }
                     }
 
-                    self.NameText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ItemConfigCategory.Instance.Get(nowItem.BagInfo.ItemID).ItemName);
+                    self.NameText.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(nowItem.BagInfo.ItemID).GetItemName();
                 }
                 self.DesText.GetComponent<Text>().text = attribute;
                 

@@ -617,7 +617,7 @@ namespace ET
             int obstruct = self.CheckObstruct(unit.Position, position);
             if (obstruct != 0)
             {
-                string monsterName = GameSettingLanguge.LoadLocalization(MonsterConfigCategory.Instance.Get(obstruct).MonsterName);
+                string monsterName = MonsterConfigCategory.Instance.Get(obstruct).GetMonsterName();
                 FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
                 return -1;
             }

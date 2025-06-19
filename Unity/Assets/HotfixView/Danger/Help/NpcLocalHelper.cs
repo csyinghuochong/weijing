@@ -25,8 +25,8 @@ namespace ET
                     }
                     NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
                     npcLocal.Target = mainTf;
-                    npcLocal.NpcName = GameSettingLanguge.LoadLocalization(npcConfig.Name);
-                    npcLocal.NpcSpeak = GameSettingLanguge.LoadLocalization(npcConfig.SpeakText);
+                    npcLocal.NpcName = npcConfig.GetName();
+                    npcLocal.NpcSpeak = npcConfig.GetSpeakText();
                     npcLocal.AssetBundle = npc_go;
                 }
             }

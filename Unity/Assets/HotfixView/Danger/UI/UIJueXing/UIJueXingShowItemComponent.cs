@@ -78,7 +78,7 @@ namespace ET
             }
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
-            self.TextSkillName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(skillConfig.SkillName);
+            self.TextSkillName.GetComponent<Text>().text = skillConfig.GetSkillName();
 
             self.OnUpdateUI();
         }

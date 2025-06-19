@@ -110,11 +110,11 @@ namespace ET
             }
             self.Image_ItemQuality.GetComponent<Image>().sprite = sp2;
 
-            self.Label_ItemName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(itemconfig.ItemName);
+            self.Label_ItemName.GetComponent<Text>().text = itemconfig.GetItemName();
             self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);
 
             ItemConfig itemConfigneed = ItemConfigCategory.Instance.Get(shouJiItemConfig.BuyItemID);
-            self.Label_ItemNeed.GetComponent<Text>().text = $"{shouJiItemConfig.BuyPrice}{GameSettingLanguge.LoadLocalization(itemConfigneed.ItemName)}";
+            self.Label_ItemNeed.GetComponent<Text>().text = $"{shouJiItemConfig.BuyPrice}{itemConfigneed.GetItemName()}";
 
             UICommonHelper.SetImageGray(self.Image_ItemIcon, lingdiLv < shouJiItemConfig.CountryLvlimit);
         }
