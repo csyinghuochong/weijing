@@ -112,10 +112,10 @@ namespace ET
                 Transform XuanZhong = transform.Find("XuanZhong");
                 if (XuanZhong)
                 {
-                    RectTransform rt = XuanZhong.GetComponent<RectTransform>();
-                    Vector2 size = rt.sizeDelta;
-                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
-                    rt.sizeDelta = size;
+                    // RectTransform rt = XuanZhong.GetComponent<RectTransform>();
+                    // Vector2 size = rt.sizeDelta;
+                    // size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    // rt.sizeDelta = size;
                     
                     Text text = XuanZhong.GetComponentInChildren<Text>();
                     if (text)
@@ -127,10 +127,10 @@ namespace ET
                 Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
                 if (WeiXuanZhong)
                 {
-                    RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
-                    Vector2 size = rt.sizeDelta;
-                    size.x = GameSettingLanguge.Language == 0? 100f : 200f;
-                    rt.sizeDelta = size;
+                    // RectTransform rt = WeiXuanZhong.GetComponent<RectTransform>();
+                    // Vector2 size = rt.sizeDelta;
+                    // size.x = GameSettingLanguge.Language == 0? 100f : 200f;
+                    // rt.sizeDelta = size;
                     
                     Text text = WeiXuanZhong.GetComponentInChildren<Text>();
                     if (text)

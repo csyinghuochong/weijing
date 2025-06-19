@@ -3783,4 +3783,6 @@
 {"_t":"MulLanguageConfig","_id":203765,"Des":"","Chinese":"角色历练","English":"Role experience"},
 {"_t":"MulLanguageConfig","_id":203766,"Des":"","Chinese":"积累成就","English":"Accumulate achievements"},
 {"_t":"MulLanguageConfig","_id":203767,"Des":"","Chinese":"宠物成就","English":"Pet achievement"},
+{"_t":"MulLanguageConfig","_id":203768,"Des":"","Chinese":"金币","English":"Gold"},
+{"_t":"MulLanguageConfig","_id":203769,"Des":"","Chinese":"藏宝图","English":"Treasure Map"},
 ]}
