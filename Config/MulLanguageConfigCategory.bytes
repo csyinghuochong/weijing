@@ -221,7 +221,6 @@ $��显示设置"Display settings
 !��钻石移动"Diamonds move
 I��活动结束倒计时 0:0"(Countdown to the end of the activity 0:0
 !��拾取道具"Pick up props
-��	第一章"	Chapter 1
 "��点击进入"Click to enter
 $��{0}级解锁"{0} Level Unlock
 7��选择当前难度"Select the current difficulty
@@ -613,7 +612,7 @@ s��*攻击有一定概率恢复己方生命值"AAttacks have a certain probab
 '��成就奖励"Achievement rewards
 0��2060成就奖励"2060 Achievement Rewards
 %��关卡成就"Level achievement
-%��	完成度"Degree of completion
+��	完成度"Progress
 %��进度：10/10"Progress: 10/10
 +��成就点数:5"Achievement Points: 5
 /��消灭100只小树妖"Destroy 100 Dryads
@@ -919,7 +918,6 @@ $��调整等级"Adjust the grade
 +��服务器热重载"Server hot reload
 $��热重载值"Hot Reload Value
 '��通用指令"General Instruction
-��通用"	Universal
 !��点击拆开"Click to open
 S��恭喜玩家获得:勇气"2Congratulations to the player for gaining: Courage
 4��武器的名字啊啊"The name of the weapon.
@@ -1046,7 +1044,6 @@ Tools
 &��返回副本"Return to the copy
 (��进入探险"Enter the expedition
 ��骑乘"Ride
- ��组队副本"Team dungeon
 *��返回建筑"Return to the building
 ��对话"Dialogue
 $��家族领地"Family territory
@@ -2270,9 +2267,6 @@ F��!攻击 +100 获取途径
 <��来源:来自积分奖励"Source: Rewards from Points
 (��探索成就"Explore achievements
 (��收集成就"Collect achievements
-#��角色历练"Role experience
-+��积累成就"Accumulate achievements
-#��宠物成就"Pet achievement
 }��3号选手获得了本次小龟大赛的最终胜利"BPlayer No. Won the final victory of the Little Turtle Competition.
 D��快来和我一起玩危境吧!"Come and play danger with me!
 u��8一把木剑，一件布衣,快来和我一起探险吧!"5A wooden sword, a commoner, come and explore with me!
@@ -4161,3 +4155,13 @@ I�点击显示服务器列表..."#Click to display a list of servers.
 �成长之路"System Task
 �学习技能"Learn
 $��任务描述"Task Description
+�通用"	Universal
+�	第一章"	Chapter 1
+�	第二章"	Chapter 2
+�	第三章"	Chapter 3
+�	第四章"	Chapter 4
+�	第五章"	Chapter 5
+ ��组队副本"Team dungeon
+#��角色历练"Role experience
++��积累成就"Accumulate achievements
+#��宠物成就"Pet achievement

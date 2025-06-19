@@ -1210,6 +1210,8 @@ MonoBehaviour:
     gameObject: {fileID: 8146563033798202032}
   - key: Ima_CompleteTask
     gameObject: {fileID: 5970328019358546975}
+  - key: Lab_TaskTip
+    gameObject: {fileID: 7024493872693253505}
 --- !u!1 &5970252946469610573
 GameObject:
   m_ObjectHideFlags: 0

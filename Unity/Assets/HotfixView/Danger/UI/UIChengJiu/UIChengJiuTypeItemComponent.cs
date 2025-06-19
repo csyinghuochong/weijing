@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIChengJiuTypeItemComponent : Entity, IAwake
+    public class UIChengJiuTypeItemComponent : Entity, IAwake, IDestroy
     {
+        public GameObject GameObject;
         public GameObject Ima_CompleteTask;
         public GameObject Ima_Progress;
         public GameObject Lab_TaskNum;
         public GameObject Lab_TaskName;
         public GameObject Ima_Di;
         public GameObject Ima_SelectStatus;
+        public GameObject Lab_TaskTip;
 
         public Action<int> ClickHandler;
         public int SubTypeId;
@@ -24,6 +26,7 @@ namespace ET
 
         public override void Awake(UIChengJiuTypeItemComponent self)
         {
+            self.GameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>(); 
 
             self.Ima_CompleteTask = rc.Get<GameObject>("Ima_CompleteTask");
@@ -32,12 +35,34 @@ namespace ET
             self.Lab_TaskName = rc.Get<GameObject>("Lab_TaskName");
             self.Ima_Di = rc.Get<GameObject>("Ima_Di");
             self.Ima_SelectStatus = rc.Get<GameObject>("Ima_SelectStatus");
+            self.Lab_TaskTip = rc.Get<GameObject>("Lab_TaskTip");
             self.Ima_Di.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtoin(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIChengJiuTypeItemComponentDestroy: DestroySystem<UIChengJiuTypeItemComponent>
+    {
+        public override void Destroy(UIChengJiuTypeItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIChengJiuTypeItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIChengJiuTypeItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+
+            self.Lab_TaskTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+        
         public static void SetSelected(this UIChengJiuTypeItemComponent self, int subTypeid)
         {
             self.Ima_SelectStatus.SetActive(subTypeid == self.SubTypeId);

@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIChengJiuShowItemComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject GameObject;
         public GameObject Lab_ChengJiuNum;
         public GameObject Lab_ProValue;
         public GameObject Lab_TaskName;
@@ -23,6 +23,7 @@ namespace ET
 
         public override void Awake(UIChengJiuShowItemComponent self)
         {
+            self.GameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Lab_ChengJiuNum = rc.Get<GameObject>("Lab_ChengJiuNum");
@@ -31,6 +32,9 @@ namespace ET
             self.Ima_CompleteTask = rc.Get<GameObject>("Ima_CompleteTask");
             self.Ima_Icon = rc.Get<GameObject>("Ima_Icon");
             self.Lab_TaskDes = rc.Get<GameObject>("Lab_TaskDes");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIChengJiuShowItemComponentDestroy : DestroySystem<UIChengJiuShowItemComponent>
@@ -44,13 +48,27 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            
             self.AssetPath = null;
         }
     }
 
     public static class UIChengJiuShowItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIChengJiuShowItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
 
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Lab_TaskDes.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+            self.Lab_ProValue.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+        }
+        
         public static void OnUpdateData(this UIChengJiuShowItemComponent self, int id)
         {
             ChengJiuConfig chengJiuConfig = ChengJiuConfigCategory.Instance.Get(id);

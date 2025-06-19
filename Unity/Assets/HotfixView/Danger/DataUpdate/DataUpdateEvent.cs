@@ -689,6 +689,16 @@ namespace ET
                     uiTaskBComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIChengJiuTypeItemComponent uiChengJiuTypeItemComponent)
+                {
+                    uiChengJiuTypeItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIChengJiuShowItemComponent uiChengJiuShowItemComponent)
+                {
+                    uiChengJiuShowItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
