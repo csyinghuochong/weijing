@@ -649,6 +649,31 @@ namespace ET
                     uiPetListItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetInfoShowComponent uiPetInfoShowComponent)
+                {
+                    uiPetInfoShowComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIPetChouKaGetComponent uiPetChouKaGetComponent)
+                {
+                    uiPetChouKaGetComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRolePetBagComponent uiRolePetBagComponent)
+                {
+                    uiRolePetBagComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIWatchPetComponent uiWatchPetComponent)
+                {
+                    uiWatchPetComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIPetTuJianComponent uiPetTuJianComponent)
+                {
+                    uiPetTuJianComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

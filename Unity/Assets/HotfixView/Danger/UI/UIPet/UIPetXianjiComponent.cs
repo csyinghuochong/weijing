@@ -92,7 +92,7 @@ namespace ET
             RolePetInfo PetUpInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetXianjiId);
             if (PetUpInfo != null)
             {
-                self.Lab_PetName.GetComponent<Text>().text = PetUpInfo.PetName;
+                self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(PetUpInfo.PetName);
                 int fightNum = PetHelper.PetPingJia(PetUpInfo);
                 self.Lab_PetNum.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("评分:") +  fightNum.ToString();
 

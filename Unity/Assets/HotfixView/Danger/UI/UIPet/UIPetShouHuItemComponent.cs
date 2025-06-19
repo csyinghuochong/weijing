@@ -80,7 +80,7 @@ namespace ET
             }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
 
             self.Node_1.SetActive(shouhulist.Contains(rolePetInfo.Id));
             self.Node_2.SetActive(!shouhulist.Contains(rolePetInfo.Id));

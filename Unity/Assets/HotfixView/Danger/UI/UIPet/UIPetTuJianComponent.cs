@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ET
 {
-    public class UIPetTuJianComponent : Entity,IAwake
+    public class UIPetTuJianComponent : Entity,IAwake, IDestroy
     {
         /// <summary>
         /// 宠物皮肤节点
@@ -70,11 +70,30 @@ namespace ET
             self.InitModelShowView_1();
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIPetTuJianComponentDestroy : DestroySystem<UIPetTuJianComponent>
+    {
+        public override void Destroy(UIPetTuJianComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPetTuJianComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetTuJianComponent self)
+        {
+            foreach (GameObject go in self.PetZiZhiItemList)
+            {
+                go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            }
+        }
+        
         public static  void InitModelShowView_1(this UIPetTuJianComponent self)
         {
             //模型展示界面

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRolePetBagComponent: Entity, IAwake
+    public class UIRolePetBagComponent: Entity, IAwake, IDestroy
     {
         public Text TextNumber;
         public GameObject TakeOutBagBtn;
@@ -52,11 +52,30 @@ namespace ET
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
 
             self.OnUpdatePetList();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIRolePetBagComponentDestroy : DestroySystem<UIRolePetBagComponent>
+    {
+        public override void Destroy(UIRolePetBagComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIRolePetBagComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRolePetBagComponent self)
+        {
+            foreach (GameObject go in self.PetZiZhiItemList)
+            {
+                go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            }
+        }
+        
         public static async ETTask OnTakeOutBagBtn(this UIRolePetBagComponent self)
         {
             if (self.RolePetInfo == null)

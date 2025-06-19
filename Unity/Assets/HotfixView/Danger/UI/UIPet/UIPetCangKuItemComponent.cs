@@ -64,7 +64,7 @@ namespace ET
         public static void OnUpdateUI(this UIPetCangKuItemComponent self, RolePetInfo rolePetInfo)
         {
             self.RolePetInfo = rolePetInfo;
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);

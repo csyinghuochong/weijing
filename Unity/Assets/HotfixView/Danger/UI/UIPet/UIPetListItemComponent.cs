@@ -137,7 +137,7 @@ namespace ET
 
         public static void OnRName(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
         {
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
         }
 
         public static void OnPetFightingSet(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
@@ -183,7 +183,7 @@ namespace ET
                 self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
                 self.Img_CanZhan.SetActive(rolePetInfo.PetStatus == 1);
-                self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+                self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
                 self.Lab_PetLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
 
                 self.Lab_PetQuality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);

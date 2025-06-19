@@ -143,7 +143,7 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Obj_ImagePetHeadIcon.GetComponent<Image>().sprite = sp;
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
             Unit pet = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
             self.Lab_PetLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级")+":" + rolePetInfo.PetLv;
             self.OnUpdatePetHP(pet);

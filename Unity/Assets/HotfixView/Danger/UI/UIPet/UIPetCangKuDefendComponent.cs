@@ -181,7 +181,7 @@ namespace ET
             if (rolePetInfo != null)
             {
                 self.RawImage.SetActive(true);
-                self.Text_Name.GetComponent<Text>().text = rolePetInfo.PetName;
+                self.Text_Name.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
@@ -196,7 +196,7 @@ namespace ET
                 self.RawImage.SetActive(false);
             }
 
-            self.Text_Name.GetComponent<Text>().text = rolePetInfo != null ? rolePetInfo.PetName : string.Empty;
+            self.Text_Name.GetComponent<Text>().text = rolePetInfo != null ? MulLanguageHelper.ShowPetName(rolePetInfo.PetName) : string.Empty;
             self.ButtonQuHui.SetActive(rolePetInfo != null);
             self.ButtonOpen.SetActive(!petComponent.PetCangKuOpen.Contains(index - 1));
 

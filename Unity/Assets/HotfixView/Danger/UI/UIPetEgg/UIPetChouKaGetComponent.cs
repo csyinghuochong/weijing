@@ -68,6 +68,9 @@ namespace ET
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             ButtonHelp.AddListenerEx(self.Btn_Close, () => { self.OnBtn_Close(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIPetChouKaGetComponentDestroy: DestroySystem<UIPetChouKaGetComponent>
@@ -81,13 +84,22 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             self.AssetPath = null;
         }
     }
     public static class UIPetChouKaGetComponentSystem
     {
-
+        public static void OnLanguageUpdate(this UIPetChouKaGetComponent self)
+        {
+            foreach (GameObject go in self.PetZiZhiItemList)
+            {
+                go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            }
+        }
+        
         public static  void InitModelShowView(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
         {
             //模型展示界面
@@ -220,7 +232,7 @@ namespace ET
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
-            self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+            self.Text_PetLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
             
 
             self.Text_Quality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);

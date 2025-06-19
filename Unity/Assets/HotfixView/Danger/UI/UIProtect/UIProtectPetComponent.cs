@@ -84,7 +84,7 @@ namespace ET
             self.PetInfoId = petId;
             self.XiLianButton.SetActive(!rolePetInfo.IsProtect);
             self.UnlockButton.SetActive(rolePetInfo.IsProtect);
-            self.Text_Name.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Text_Name.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

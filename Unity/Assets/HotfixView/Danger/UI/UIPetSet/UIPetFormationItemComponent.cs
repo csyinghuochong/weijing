@@ -111,7 +111,7 @@ namespace ET
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.ImageFight.SetActive(fighting);
             self.TextLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级: {0}"), rolePetInfo.PetLv);
-            self.TextName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.TextName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
         }
     }
 }

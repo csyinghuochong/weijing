@@ -500,7 +500,7 @@ namespace ET
 
         public static void UpdateExpAndLv(this UIPetInfoComponent self, RolePetInfo rolePetInfo)
         {
-            self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+            self.Text_PetLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
             ExpConfig expConfig = ExpConfigCategory.Instance.Get(rolePetInfo.PetLv);
             self.Text_PetExp.GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.PetExp, expConfig.PetUpExp);
             self.ImageExpValue.transform.localScale = new Vector3(Mathf.Clamp(rolePetInfo.PetExp * 1f / expConfig.PetUpExp, 0f, 1f), 1f, 1f);
@@ -702,7 +702,7 @@ namespace ET
             if (petConfig.PripertyShow != "" && petConfig.PripertyShow != "0")
             {
                 self.PropertyShowText.SetActive(true);
-                self.PropertyShowText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("激活属性") + ":" + petConfig.PripertyShow;
+                self.PropertyShowText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("激活属性") + ":" + petConfig.GetPripertyShow();
             }
             else
             {
@@ -724,7 +724,7 @@ namespace ET
 
         public static void OnUpdatePetInfo(this UIPetInfoComponent self, RolePetInfo rolePetInfo)
         {
-            self.InputFieldName.GetComponent<InputField>().text = rolePetInfo.PetName;
+            self.InputFieldName.GetComponent<InputField>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
             self.Btn_XiuXi.SetActive(false);
             self.Btn_ChuZhan.SetActive(false);
 

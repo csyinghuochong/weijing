@@ -59,6 +59,9 @@ namespace ET
 
             self.Btn_QieHuan = rc.Get<GameObject>("Btn_QieHuan");
             self.Btn_QieHuan.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSelect().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIPetInfoShowComponentDestroy : DestroySystem<UIPetInfoShowComponent>
@@ -72,11 +75,22 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
                 }
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            
             self.AssetPath = null;
         }
     }
     public static class UIPetInfoShowComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetInfoShowComponent self)
+        {
+            foreach (GameObject go in self.PetZiZhiItemList)
+            {
+                go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            }
+        }
+
         public static async ETTask OnClickSelect(this UIPetInfoShowComponent self)
         {
             UI uIpet = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);
@@ -146,7 +160,7 @@ namespace ET
                 self.ImageStarList.transform.GetChild(i).gameObject.SetActive(rolePetInfo.Star > i);
             }
             */
-            self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Text_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
@@ -157,7 +171,7 @@ namespace ET
             }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
-            self.Text_PetLevel.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+            self.Text_PetLevel.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
             ExpConfig expConfig = ExpConfigCategory.Instance.Get(rolePetInfo.PetLv);
 
             string expStr = rolePetInfo.PetExp.ToString();

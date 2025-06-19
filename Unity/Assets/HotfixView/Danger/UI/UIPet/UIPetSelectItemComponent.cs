@@ -74,8 +74,8 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
-            self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
+            self.Lab_PetLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rolePetInfo.PetLv.ToString());
             self.Image_Protect.SetActive(rolePetInfo.IsProtect);
             //self.Img_Start.SetActive(!GlobalHelp.IsBanHaoMode);
             //self.Lab_StartLv.SetActive(!GlobalHelp.IsBanHaoMode);

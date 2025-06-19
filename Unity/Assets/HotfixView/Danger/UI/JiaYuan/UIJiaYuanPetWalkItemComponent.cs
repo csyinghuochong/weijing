@@ -171,7 +171,7 @@ namespace ET
                 }
 
                 self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), rolePetInfo.PetLv);
-                self.Text_Name.GetComponent<Text>().text = rolePetInfo.PetName;
+                self.Text_Name.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);

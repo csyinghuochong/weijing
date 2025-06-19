@@ -462,6 +462,41 @@ namespace ET
                 return self.SpeakText_EN;
             }
         }
+
+        public static string ShowPetName(string name)
+        {
+            foreach (PetConfig config in PetConfigCategory.Instance.GetAll().Values)
+            {
+                if (config.PetName == name || config.PetName_EN == name)
+                {
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        return config.PetName;
+                    }
+                    else
+                    {
+                        return config.PetName_EN;
+                    }
+                }
+            }
+
+            foreach (PetSkinConfig config in PetSkinConfigCategory.Instance.GetAll().Values)
+            {
+                if (config.Name == name || config.Name_EN == name)
+                {
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        return config.Name;
+                    }
+                    else
+                    {
+                        return config.Name_EN;
+                    }
+                }
+            }
+
+            return name;
+        }
         
         public static string GetPetName(this PetConfig self)
         {
@@ -904,6 +939,18 @@ namespace ET
             else
             {
                 return self.Name_EN;
+            }
+        }
+        
+        public static string GetPripertyShow(this PetSkinConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.PripertyShow;
+            }
+            else
+            {
+                return self.PripertyShow_EN;
             }
         }
      

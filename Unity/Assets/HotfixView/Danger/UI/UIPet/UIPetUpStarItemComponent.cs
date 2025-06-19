@@ -76,7 +76,7 @@ namespace ET
             }
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
-            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
+            self.Lab_PetName.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(rolePetInfo.PetName);
             self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString();
 
             string showProStr = "";
