@@ -679,6 +679,16 @@ namespace ET
                     uiSkillLearnItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITaskTypeItemComponent uiTaskTypeItemComponent)
+                {
+                    uiTaskTypeItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UITaskBComponent uiTaskBComponent)
+                {
+                    uiTaskBComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

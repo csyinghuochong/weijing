@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITaskBComponent: Entity, IAwake
+    public class UITaskBComponent: Entity, IAwake, IDestroy
     {
         public GameObject UITaskBItemListNode;
         public GameObject UITaskBItem;
@@ -43,11 +43,27 @@ namespace ET
             self.GiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnGiveBtn().Coroutine(); });
 
             self.UpdateTask();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITaskBComponentDestroy: DestroySystem<UITaskBComponent>
+    {
+        public override void Destroy(UITaskBComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITaskBComponentSystem
     {
+        public static void OnLanguageUpdate(this UITaskBComponent self)
+        {
+            self.ProgressText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
+        
         public static void UpdateTask(this UITaskBComponent self)
         {
             self.CompeletTaskId =

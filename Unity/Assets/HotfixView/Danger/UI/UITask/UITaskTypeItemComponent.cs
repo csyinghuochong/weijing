@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITaskTypeItemComponent : Entity, IAwake<GameObject>
+    public class UITaskTypeItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Ima_DiButton;
         public GameObject Lab_TaskName;
@@ -35,11 +35,31 @@ namespace ET
             self.Ima_SelectStatus.SetActive(false);
 
             self.Ima_DiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickTaskTypeItem(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITaskTypeItemComponentDestroy: DestroySystem<UITaskTypeItemComponent>
+    {
+        public override void Destroy(UITaskTypeItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITaskTypeItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UITaskTypeItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 26;
+        }
 
         public static void SetSelected(this UITaskTypeItemComponent self, int taskid)
         {
