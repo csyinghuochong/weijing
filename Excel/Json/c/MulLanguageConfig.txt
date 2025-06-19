@@ -3778,4 +3778,5 @@
 {"_t":"MulLanguageConfig","_id":203754,"Des":"","Chinese":"等级","English":"Lv"},
 {"_t":"MulLanguageConfig","_id":203755,"Des":"","Chinese":"成长之路","English":"System Task"},
 {"_t":"MulLanguageConfig","_id":203756,"Des":"","Chinese":"学习技能","English":"Learn"},
+{"_t":"MulLanguageConfig","_id":203757,"Des":"","Chinese":"任务描述","English":"Task Description"},
 ]}
