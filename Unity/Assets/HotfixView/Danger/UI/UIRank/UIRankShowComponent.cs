@@ -124,11 +124,11 @@ namespace ET
 
             if (myRank == -1)
             {
-                self.Text_MyRank.GetComponent<Text>().text = "我的排名: 未上榜";
+                self.Text_MyRank.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("我的排名: 未上榜");
             }
             else
             {
-                self.Text_MyRank.GetComponent<Text>().text = $"我的排名: {myRank}";
+                self.Text_MyRank.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("我的排名: {0}"), myRank);
             }
         }
 
