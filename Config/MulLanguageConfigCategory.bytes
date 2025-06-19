@@ -347,7 +347,7 @@ _��*玩家幸福的瞬间来到你的家园。"-The player's happy moment com
 ���B提示：此仓库只可存储藏宝图和生活技能相关道具"RTip: This warehouse can only store items related to treasure maps and life skills.
 ��储藏"Storage
 ��一键放入"Mass Deploy
-��我的背包"My backpack
+��我的背包"My Bag
  ��我的仓库"My warehouse
 *��整理仓库"Sort out the warehouse
 ,��一键取出"Take it out with one key
@@ -897,6 +897,7 @@ D�(点击可复制推广码)""(Click to copy the promotion code)
 ��职业:"
 Occupation
 ��在线"Online
+(��玩家等级:1级"Player Level: 1
 ;��最近上线时间: 2022/2/22"Last online: 2022/2/22
 +��移除黑名单"Remove the blacklist
 ��私聊"Private chat
@@ -1232,9 +1233,9 @@ $��取回宠物"Retrieve the pet
 ��开启栏位"
 Open field
 !��开始融合"Begin to fuse
-���p提示:融合后的放入的宠物会随机消失其中一只，生成的技能和资质来源于放入宠物。"{Tip: After fusion, one of the pets will disappear randomly, and the skills and aptitudes generated will come from the pets.
-+��预览合成"Preview the composition
-+��合成说明"Composition description
+���p提示:融合后的放入的宠物会随机消失其中一只，生成的技能和资质来源于放入宠物。"2Tip: When fusing, one pet will disappear randomly,
+��预览合成"Preview
+��合成说明"Description
 ����1.两只宠物合成后，会随机消失一只,没有主副之分。
 2.合成后的宠物属性来源是放置宠物的属性取其最大值和最小值中的随机值，取完后再进行上下浮动。
 3.合成后的技能来源是放置宠物的技能，每个技能有一定概率的留存或删除
@@ -1272,7 +1273,6 @@ P֢#穿戴3个5级以上的宠物之核"%Wear 3 pet cores of level 5 and abov
 آ	未激活"Not activated
 ٢生命资质"HP aptitude
 ڢ切换"Switch
-ۢ2级"Level 2
 ܢ宠物技能"
 Pet skills
 ݢ修改名称"Change Name
@@ -1303,7 +1303,7 @@ W�!选择需要装备的宠物装备".Select the pet Equip that needs to be 
 ��确认属性"Confirm
 ��项圈"collar
 ��护腕"Wrist
-.��携带宠物数量："Number of Pets：
+,��携带宠物数量："Number of Pets:
 ��	未进化"	Unevolved
 ��神兽同伴"	Companion
 <��你还未拥有一只宠物"You don't have a pet yet.
@@ -1829,7 +1829,7 @@ s��*提示：装备一旦吞噬将立即销毁"ATip: Once the Equip is devour
 ��技能"Skills
 ��放置"Place
 ��天赋"Talent
-$��生命之魂"The soul of life
+��生命之魂"Soul
 )��重置技能点"Reset skill points
 !��主动技能"Active skills
 "��被动技能"Passive skills
@@ -1845,7 +1845,7 @@ $��生命之魂"The soul of life
 -��20级以后学习"Study after level 20
 f��1提示：技能点数每次角色升级获得1点"-Tip: Gain 1 skill point per character upgrade
 2¦澜汐之盾 级"The shield level of Lan Xi
-"æ道具注入"Prop injection
+æ道具注入"	Injection
 (Ħ生命之盾 1级"Life Shield Lv1
 SŦ 受到攻击任务伤害降低1%"+1% reduction in damage from attack missions
 bƦ%本次注入预计获得100-200经验"5This injection is expected to gain 100-200 experience
@@ -1953,7 +1953,6 @@ Occupation
 7��请输入家族名字"Please enter a family name
 &��创建条件"Create a condition
 ��家族名称"Family name
-��等级20级"Level 20
 $��捐献记录"Donation records
 "��捐献规则"Donation rules
 ���N1.   每次捐献获得随机额度的家族贡献,家族经验和家族资金"e1. Each donation receives a random amount of family contribution, family experience and family funds.
@@ -1976,8 +1975,6 @@ Election rules:
 ��研究"Research
 ��学习"Learn
 %��金币能力"Gold coin ability
-��等级：1/5"
-Grade: 1/5
 F��"家族科技:额外金币获取+1%"Family Tech: + 1% extra gold
 =��科技能力")Scientific and technological capabilities
 B��消耗家族资金：999999"Consuming Family Money: 999999.
@@ -2192,8 +2189,6 @@ V�'组队副本开启时间  19:00 - 24:00"'Team dungeon opening time 19: 00
 �发送喊话"Send a call
 "�添加机器人"Add a robot
 >�挑战副本:深海副本"Challenge Copy: Deep Sea Copy
-�	等级:20"
-Rating: 20
 ��拥有:"	Owned by:
 $�友爱商店"Friendship Store
 ��@提示:在副本帮助模式下的大号会获得友爱奖章。"ATip: a tuba in dungeon help mode will receive a friendship medal.
@@ -4168,3 +4163,4 @@ I�点击显示服务器列表..."#Click to display a list of servers.
 等级 {0}"Lv {0}
 �任务"Task
 �等级"Lv
+�成长之路"System Task
