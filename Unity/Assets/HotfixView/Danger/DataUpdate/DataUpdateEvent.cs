@@ -699,6 +699,20 @@ namespace ET
                     uiChengJiuShowItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIActivitySingleRechargeItemComponent uiActivitySingleRechargeItemComponent)
+                {
+                    uiActivitySingleRechargeItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIPaiMaiShopTypeItemComponent uiPaiMaiShopTypeItemComponent)
+                {
+                    uiPaiMaiShopTypeItemComponent.OnLanguageUpdate();
+                    continue;
+                } if (component is UITypeButtonItemComponent uiTypeButtonItemComponent)
+                {
+                    uiTypeButtonItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

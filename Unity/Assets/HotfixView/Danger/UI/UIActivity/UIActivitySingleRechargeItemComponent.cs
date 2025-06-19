@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivitySingleRechargeItemComponent: Entity, IAwake<GameObject>
+    public class UIActivitySingleRechargeItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
         public GameObject ConsumeNumText;
@@ -29,11 +29,32 @@ namespace ET
 
             self.ReceivedImg.SetActive(false);
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIActivitySingleRechargeItemComponentDestroy: DestroySystem<UIActivitySingleRechargeItemComponent>
+    {
+        public override void Destroy(UIActivitySingleRechargeItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIActivitySingleRechargeItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIActivitySingleRechargeItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+
+            self.ConsumeNumText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+        }
+        
         public static void OnUpdateData(this UIActivitySingleRechargeItemComponent self, int key)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

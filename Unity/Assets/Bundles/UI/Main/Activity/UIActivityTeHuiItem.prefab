@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1185063577666645632}
   - component: {fileID: 1826346979951665582}
   m_Layer: 5
-  m_Name: TextType (1)
+  m_Name: Text_TypeName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,6 +315,8 @@ MonoBehaviour:
     gameObject: {fileID: 7638717688726128639}
   - key: ImageBox
     gameObject: {fileID: 1020785442184523792}
+  - key: Text_TypeName
+    gameObject: {fileID: 733208951085458471}
 --- !u!1 &1772547175605019300
 GameObject:
   m_ObjectHideFlags: 0

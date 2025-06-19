@@ -223,7 +223,7 @@ namespace ET
     }
 
 
-    public class UITypeButtonItemComponent : Entity, IAwake<GameObject>
+    public class UITypeButtonItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Lab_TaskName;
         public GameObject Ima_SelectStatus;
@@ -249,11 +249,31 @@ namespace ET
             self.Ima_Di = rc.Get<GameObject>("Ima_Di");
             self.Ima_SelectStatus = rc.Get<GameObject>("Ima_SelectStatus");
             self.Ima_Di.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtoin(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITypeButtonItemComponentDestroy: DestroySystem<UITypeButtonItemComponent>
+    {
+        public override void Destroy(UITypeButtonItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITypeItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UITypeButtonItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+        }
 
         public static void SetSelected(this UITypeButtonItemComponent self, int subTypeid)
         {

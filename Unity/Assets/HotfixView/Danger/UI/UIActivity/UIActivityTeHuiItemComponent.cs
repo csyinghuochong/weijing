@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIActivityTeHuiItemComponent : Entity, IAwake<GameObject>,IDestroy
     {
+        public GameObject GameObject;
         public GameObject ImageReceived;
         public GameObject TextPrice;
         public GameObject TextType;
@@ -14,6 +15,7 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject ImageTitle;
         public GameObject ImageBox;
+        public GameObject Text_TypeName;
 
         public ActivityConfig ActivityConfig;
 
@@ -25,6 +27,7 @@ namespace ET
     {
         public override void Awake(UIActivityTeHuiItemComponent self, GameObject gameObject)
         {
+            self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             
             self.ImageReceived = rc.Get<GameObject>("ImageReceived");
@@ -37,6 +40,7 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.ImageTitle = rc.Get<GameObject>("ImageTitle");
             self.ImageBox = rc.Get<GameObject>("ImageBox");
+            self.Text_TypeName = rc.Get<GameObject>("Text_TypeName");
         }
     }
 
@@ -83,6 +87,7 @@ namespace ET
             self.ButtonBuy.SetActive(!received);
             self.TextPrice.GetComponent<Text>().text = activityConfig.Par_2.Split(';')[1];
             self.TextType.GetComponent<Text>().text = activityConfig.GetPar_4();
+            self.Text_TypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(self.Text_TypeName.GetComponent<Text>().text);
 
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true, ItemGetWay.Activity_DayTeHui);
