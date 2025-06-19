@@ -241,21 +241,21 @@ namespace ET
             //assetImporter2.assetBundleName = "Code.unity3d";
 
             //List<string> allHotUpdateDllFiles = SettingsUtil.BuildAssemblieEditor;
-            // List<string> allHotUpdateDllFiles = SettingsUtil.HotUpdateAssemblyFilesExcludePreserved;
-            // foreach (var dll in allHotUpdateDllFiles)
-            // {
-            //     string file = Path.Combine(hotDllPath, dll);
-            //     if (!File.Exists(file))
-            //     {
-            //         Debug.LogError($"不存在dll:{file}, 无法跑huatuo模式");
-            //         continue;
-            //     }
-            //     File.Copy(file, Path.Combine(CodeDir, $"{dll}.bytes"), true);
-            //     AssetDatabase.Refresh();
-            //
-            //     AssetImporter assetImporter1 = AssetImporter.GetAtPath($"Assets/Bundles/Code/{dll}.bytes");
-            //     assetImporter1.assetBundleName = "Code.unity3d";
-            // }
+            List<string> allHotUpdateDllFiles = SettingsUtil.HotUpdateAssemblyFilesExcludePreserved;
+            foreach (var dll in allHotUpdateDllFiles)
+            {
+                string file = Path.Combine(hotDllPath, dll);
+                if (!File.Exists(file))
+                {
+                    Debug.LogError($"不存在dll:{file}, 无法跑huatuo模式");
+                    continue;
+                }
+                File.Copy(file, Path.Combine(CodeDir, $"{dll}.bytes"), true);
+                AssetDatabase.Refresh();
+
+                AssetImporter assetImporter1 = AssetImporter.GetAtPath($"Assets/Bundles/Code/{dll}.bytes");
+                assetImporter1.assetBundleName = "Code.unity3d";
+            }
 
 
             List<string> aotDllFiles = new List<string>()

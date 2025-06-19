@@ -567,7 +567,7 @@
 {"_t":"MulLanguageConfig","_id":200463,"Des":"","Chinese":"激活属性:","English":"Activate attribute:"},
 {"_t":"MulLanguageConfig","_id":200464,"Des":"","Chinese":"来自比武大会","English":"From the tournament"},
 {"_t":"MulLanguageConfig","_id":200465,"Des":"","Chinese":"提示:精灵只能装备一种,只有装备的精灵才有效果。","English":"Tip: Only one kind of sprite can be equipped. Only the equipped sprite has the effect."},
-{"_t":"MulLanguageConfig","_id":200466,"Des":"","Chinese":"成就点数：","English":"Achievement Points:"},
+{"_t":"MulLanguageConfig","_id":200466,"Des":"","Chinese":"成就点数：","English":"Achievement Points："},
 {"_t":"MulLanguageConfig","_id":200467,"Des":"","Chinese":"成就奖励","English":"Achievement rewards"},
 {"_t":"MulLanguageConfig","_id":200468,"Des":"","Chinese":"2060成就奖励","English":"2060 Achievement Rewards"},
 {"_t":"MulLanguageConfig","_id":200469,"Des":"","Chinese":"关卡成就","English":"Level achievement"},
