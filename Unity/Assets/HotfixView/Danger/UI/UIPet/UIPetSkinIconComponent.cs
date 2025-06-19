@@ -93,7 +93,7 @@ namespace ET
                 self.JiHuoSet.SetActive(false);
             }
             
-            GameSettingLanguge.TransformText(self.JiHuoSet.transform);
+            GameSettingLanguge.TransformText(self.GameObject.transform);
         }
     }
 }

@@ -215,7 +215,7 @@ namespace ET
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.GetSkillName();
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 
-            self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级 ") + skillWeaponConfig.SkillLv.ToString();
+            self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级")+ " " + skillWeaponConfig.SkillLv.ToString();
 
             if (skillBaseConfig.SkillLv == 0)
             {
