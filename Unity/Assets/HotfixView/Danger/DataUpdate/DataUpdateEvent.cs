@@ -674,6 +674,11 @@ namespace ET
                     uiPetTuJianComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISkillLearnItemComponent uiSkillLearnItemComponent)
+                {
+                    uiSkillLearnItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

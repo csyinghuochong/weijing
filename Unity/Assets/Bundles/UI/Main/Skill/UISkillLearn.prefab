@@ -85,6 +85,8 @@ MonoBehaviour:
     gameObject: {fileID: 1474833849271084672}
   - key: UISkillLearnSkillItem
     gameObject: {fileID: 5426713840919345927}
+  - key: Img_SkillIconDi2
+    gameObject: {fileID: 1474833849271005658}
 --- !u!1 &102974507644842194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,8 +1970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -182.70006, y: 34}
-  m_SizeDelta: {x: 500, y: 60}
+  m_AnchoredPosition: {x: -298.31152, y: 18.63861}
+  m_SizeDelta: {x: 268.7772, y: 90.723}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1474833849293004030
 CanvasRenderer:
@@ -2006,7 +2008,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2453,6 +2455,10 @@ MonoBehaviour:
     gameObject: {fileID: 9023950924759653026}
   - key: Reddot
     gameObject: {fileID: 5116642840841904275}
+  - key: Img_SkillIconDi
+    gameObject: {fileID: 1474833849271036940}
+  - key: Img_SkillIconDi2
+    gameObject: {fileID: 1474833849271005658}
 --- !u!1 &1476403865077858328
 GameObject:
   m_ObjectHideFlags: 0
@@ -6839,8 +6845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -283.20004, y: -37.99997}
-  m_SizeDelta: {x: 300, y: 60}
+  m_AnchoredPosition: {x: -298.56, y: -37.99997}
+  m_SizeDelta: {x: 269.28, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7109971416841791264
 CanvasRenderer:

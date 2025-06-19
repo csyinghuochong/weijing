@@ -20,6 +20,8 @@ namespace ET
         public GameObject Lab_SkillLv;
         public GameObject Lab_SkillName;
         public GameObject Img_SkillIcon;
+        public GameObject Img_SkillIconDi;
+        public GameObject Img_SkillIconDi2;
         public GameObject ButtonMax;
         public GameObject Lab_NeedSp;
         public GameObject GameObject;
@@ -27,6 +29,8 @@ namespace ET
         public SkillPro SkillPro;
         public Action<SkillPro> ClickHandler;
         public List<string> AssetPath = new List<string>();
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -44,6 +48,8 @@ namespace ET
             self.Lab_SkillLv = rc.Get<GameObject>("Lab_SkillLv");
             self.Lab_SkillName = rc.Get<GameObject>("Lab_SkillName");
             self.Img_SkillIcon = rc.Get<GameObject>("Img_SkillIcon");
+            self.Img_SkillIconDi = rc.Get<GameObject>("Img_SkillIconDi");
+            self.Img_SkillIconDi2 = rc.Get<GameObject>("Img_SkillIconDi2");
             self.Text_Desc = rc.Get<GameObject>("Text_Desc");
             self.ButtonMax = rc.Get<GameObject>("ButtonMax");
             self.Lab_NeedSp = rc.Get<GameObject>("Lab_NeedSp");
@@ -66,6 +72,10 @@ namespace ET
             {
                 self.OnButtonLearn();
             });
+            
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UISkillLearnItemComponentDestroy: DestroySystem<UISkillLearnItemComponent>
@@ -80,11 +90,65 @@ namespace ET
                 }
             }
 
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            
             self.AssetPath = null;
         }
     }
     public static class UISkillLearnItemComponentSystem
     {
+        public static void StoreUIdData(this UISkillLearnItemComponent self)
+        {
+            self.UIOldPositionList.Add(self.Img_SkillIconDi.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Img_SkillIconDi2.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Lab_SkillName.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Lab_SkillLv.GetComponent<RectTransform>().localPosition);
+        }
+
+        public static void OnLanguageUpdate(this UISkillLearnItemComponent self)
+        {
+            if (self.GameObject == null)
+            {
+                return;
+            }
+            
+            Vector2 position = Vector2.zero;
+            position = self.UIOldPositionList[0];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 60f;
+            }
+            self.Img_SkillIconDi.GetComponent<RectTransform>().localPosition = position;
+
+            position = Vector2.zero;
+            position = self.UIOldPositionList[1];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 60f;
+            }
+            self.Img_SkillIconDi2.GetComponent<RectTransform>().localPosition = position;
+            
+            position = Vector2.zero;
+            position = self.UIOldPositionList[2];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 60f;
+            }
+            self.Lab_SkillName.GetComponent<RectTransform>().localPosition = position;
+            
+            position = Vector2.zero;
+            position = self.UIOldPositionList[3];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 60f;
+            }
+            self.Lab_SkillLv.GetComponent<RectTransform>().localPosition = position;
+            
+            self.Lab_SkillName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Lab_SkillLv.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 29;
+            self.Text_Desc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
+        }
+
         public static void OnButtonUp(this UISkillLearnItemComponent self)
         {
             self.OnButtonLearn();
