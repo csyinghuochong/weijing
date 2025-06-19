@@ -90,6 +90,7 @@ namespace AlibabaCloud.SDK.Sample
                 {
                     // 打印返回结果的 JSON 字符串
                     Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}" +  Newtonsoft.Json.JsonConvert.SerializeObject(response));
+                    Log.Debug($"Send PhoneNumber: {phoneNum}" + Newtonsoft.Json.JsonConvert.SerializeObject(response));
                     // 你可以根据具体的返回类型和需求，访问返回对象的属性
                     // 例如：Console.WriteLine(response.Body.SomeProperty);
                     if (response.Body.Success == true && response.Body.Code == "OK" )
