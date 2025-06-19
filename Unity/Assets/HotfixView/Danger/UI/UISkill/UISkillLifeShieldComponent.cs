@@ -241,8 +241,8 @@ namespace ET
             int nextlifeId = skillSetComponent.GetLifeShieldShowId(shieldType);
            
             LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
-            self.Text_ShieldName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(lifeShieldConfig.ShieldName);
-            self.Text_ShieldDesc.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(lifeShieldConfig.Des);
+            self.Text_ShieldName.GetComponent<Text>().text = lifeShieldConfig.GetShieldName();
+            self.Text_ShieldDesc.GetComponent<Text>().text = lifeShieldConfig.GetDes();
 
             LifeShieldInfo lifeShieldInfo = skillSetComponent.GetLifeShieldByType(shieldType);
             int curExp = lifeShieldInfo != null ? lifeShieldInfo.Exp : 0;

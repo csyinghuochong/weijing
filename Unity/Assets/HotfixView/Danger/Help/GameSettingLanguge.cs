@@ -1181,5 +1181,29 @@ namespace ET
                 return self.Desc_EN;
             }
         }
+        
+        public static string GetShieldName(this LifeShieldConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.ShieldName;
+            }
+            else
+            {
+                return self.ShieldName_EN;
+            }
+        }
+        
+        public static string GetDes(this LifeShieldConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.Des;
+            }
+            else
+            {
+                return self.Des_EN;
+            }
+        }
     }
 }
