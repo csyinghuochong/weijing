@@ -98,6 +98,7 @@ namespace ET
                 GameObject go = GameObject.Instantiate(bundleGameObject);
 
                 UICommonHelper.SetParent(go, self.ChapterList);
+                GameSettingLanguge.TransformText(go.transform);
                 UIDungeonItemComponent uIChapterItemComponent = self.AddChild<UIDungeonItemComponent, GameObject>(go);
                 uIChapterItemComponent.OnInitData(i, chapterid).Coroutine();
             }
@@ -158,7 +159,7 @@ namespace ET
                 GameObject go = GameObject.Instantiate(self.UIBossRefreshTimeItem);
                 go.SetActive(true);
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
-
+                
                 // Boss头像
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
@@ -219,12 +220,12 @@ namespace ET
                     int hour = (int)time / 3600;
                     int min = (int)((time - (hour * 3600)) / 60);
                     int sec = (int)(time - (hour * 3600) - (min * 60));
-                    string showStr = hour + "时" + min + "分" + sec + "秒";
-                    self.BossRefreshObjs[it.Key].text = $"刷新时间:{showStr}";
+                    string showStr = hour + GameSettingLanguge.LoadLocalization("时") + min + GameSettingLanguge.LoadLocalization("分") + sec + GameSettingLanguge.LoadLocalization("秒");
+                    self.BossRefreshObjs[it.Key].text = string.Format(GameSettingLanguge.LoadLocalization("刷新时间:{0}"), showStr);
                 }
                 else
                 {
-                    self.BossRefreshObjs[it.Key].text = "已刷新";
+                    self.BossRefreshObjs[it.Key].text = GameSettingLanguge.LoadLocalization("已刷新");
                 }
             }
         }

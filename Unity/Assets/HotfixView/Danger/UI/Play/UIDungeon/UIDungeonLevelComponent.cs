@@ -161,6 +161,7 @@ namespace ET
                     go.transform.localPosition = Vector3.zero;
                     go.transform.localScale = Vector3.one;
 
+                    GameSettingLanguge.TransformText(go.transform);
                     uiitem = self.AddChild<UIDungeonLevelItemComponent, GameObject>(go);
                     uiitem.OnInitData(chapterid, i, chapterSectionConfig.RandomArea[i]);
                     self.LevelListUI.Add(uiitem);
