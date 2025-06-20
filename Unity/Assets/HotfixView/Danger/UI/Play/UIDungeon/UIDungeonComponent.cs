@@ -252,6 +252,8 @@ namespace ET
                 // Boss名字
                 ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
                 go.Get<GameObject>("NameText").GetComponent<Text>().text = monsterConfig.GetMonsterName();
+                go.Get<GameObject>("NameText").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 30;
+                go.Get<GameObject>("Text").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 32;
 
                 // 按钮
                 if (!PlayerPrefs.HasKey(bossConfigId.ToString()))

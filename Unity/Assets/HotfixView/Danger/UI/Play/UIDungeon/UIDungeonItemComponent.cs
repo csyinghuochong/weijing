@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIDungeonItemComponent : Entity, IAwake<GameObject>
+    public class UIDungeonItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Text_UnlockLevel;
         public GameObject Move;
@@ -35,11 +35,28 @@ namespace ET
             self.Text_UnlockLevel = rc.Get<GameObject>("Text_UnlockLevel");
 
             self.Image_DI.GetComponent<Button>().onClick.AddListener(() => { self.OnShowChpaterLevels().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIDungeonItemComponentDestroySystem : DestroySystem<UIDungeonItemComponent>
+    {
+        public override void Destroy(UIDungeonItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIDungeonItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIDungeonItemComponent self)
+        {
+            self.Text_Index.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 60 : 40;
+        }
+
         public static int GetOpenLevel(this UIDungeonItemComponent self, int chapterId)
         {
             int level = 100;

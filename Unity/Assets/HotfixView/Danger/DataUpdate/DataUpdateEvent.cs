@@ -724,6 +724,11 @@ namespace ET
                     uiStallSellComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIDungeonItemComponent uiDungeonItemComponent)
+                {
+                    uiDungeonItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
