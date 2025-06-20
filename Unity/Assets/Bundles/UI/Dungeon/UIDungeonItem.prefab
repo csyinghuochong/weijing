@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 2
   moveDistance: -1000
-  delayTime: 0
+  isLoop: 0
   MoveToTime: 0.2
 --- !u!1 &4090884963232107585
 GameObject:
@@ -557,6 +557,8 @@ MonoBehaviour:
     gameObject: {fileID: 2369048748679022070}
   - key: Text_UnlockLevel
     gameObject: {fileID: 5140874181421478130}
+  - key: Image_Icon
+    gameObject: {fileID: 8475350788291229988}
 --- !u!1 &5355075777829220866
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +936,7 @@ GameObject:
   - component: {fileID: 4208209074314966122}
   - component: {fileID: 4409293103588387187}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Image_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

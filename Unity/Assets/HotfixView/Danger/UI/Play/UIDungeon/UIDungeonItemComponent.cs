@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIDungeonItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public GameObject Image_Icon;
         public GameObject Text_UnlockLevel;
         public GameObject Move;
         public GameObject Text_Index;
@@ -17,6 +18,7 @@ namespace ET
         public Action<int> ClickHandler;
 
         public int ChapterId;
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -32,10 +34,12 @@ namespace ET
             self.Node_1 = rc.Get<GameObject>("Node_1");
             self.UnLock = rc.Get<GameObject>("UnLock");
             self.Image_DI = rc.Get<GameObject>("Image_DI");
+            self.Image_Icon = rc.Get<GameObject>("Image_Icon");
             self.Text_UnlockLevel = rc.Get<GameObject>("Text_UnlockLevel");
 
             self.Image_DI.GetComponent<Button>().onClick.AddListener(() => { self.OnShowChpaterLevels().Coroutine(); });
             
+            self.StoreUIdData();
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
@@ -51,10 +55,34 @@ namespace ET
     
     public static class UIDungeonItemComponentSystem
     {
+        public static void StoreUIdData(this UIDungeonItemComponent self)
+        {
+           self.UIOldPositionList.Add(self.Image_Icon.GetComponent<RectTransform>().localPosition);
+           self.UIOldPositionList.Add(self.Text_UnlockLevel.GetComponent<RectTransform>().localPosition);
+        }
+        
         public static void OnLanguageUpdate(this UIDungeonItemComponent self)
         {
             self.Text_Index.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
             self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 60 : 40;
+            
+            RectTransform rt = self.Image_Icon.GetComponent<RectTransform>();
+            Vector2 position = Vector2.zero;
+            position = self.UIOldPositionList[0];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 70f;
+            }
+            rt.localPosition = position;
+            
+            rt = self.Text_UnlockLevel.GetComponent<RectTransform>();
+            position = Vector2.zero;
+            position = self.UIOldPositionList[1];
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.x -= 70f;
+            }
+            rt.localPosition = position;
         }
 
         public static int GetOpenLevel(this UIDungeonItemComponent self, int chapterId)
