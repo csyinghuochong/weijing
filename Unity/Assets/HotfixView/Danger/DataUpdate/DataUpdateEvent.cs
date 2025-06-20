@@ -708,9 +708,20 @@ namespace ET
                 {
                     uiPaiMaiShopTypeItemComponent.OnLanguageUpdate();
                     continue;
-                } if (component is UITypeButtonItemComponent uiTypeButtonItemComponent)
+                } 
+                if (component is UITypeButtonItemComponent uiTypeButtonItemComponent)
                 {
                     uiTypeButtonItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIPaiMaiSellComponent uiPaiMaiSellComponent)
+                {
+                    uiPaiMaiSellComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIStallSellComponent uiStallSellComponent)
+                {
+                    uiStallSellComponent.OnLanguageUpdate();
                     continue;
                 }
             }
