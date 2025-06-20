@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UISettingGameComponent : Entity, IAwake
+    public class UISettingGameComponent : Entity, IAwake, IDestroy
     {
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
@@ -30,7 +30,9 @@ namespace ET
         public GameObject HighFps;
         public GameObject Smooth;
         public GameObject ButtonPhone;
+        public GameObject LastLoginTimeTip;
         public GameObject LastLoginTime;
+        public GameObject TextVersionTip;
         public GameObject TextVersion;
         public GameObject Image_YinYing;
         public GameObject Btn_YinYing;
@@ -72,9 +74,11 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
+            self.TextVersionTip = rc.Get<GameObject>("TextVersionTip");
             self.TextVersion = rc.Get<GameObject>("TextVersion");
             self.Image_Click = rc.Get<GameObject>("Image_Click");
             self.Btn_Click = rc.Get<GameObject>("Btn_Click");
+            self.LastLoginTimeTip = rc.Get<GameObject>("LastLoginTimeTip");
             self.LastLoginTime = rc.Get<GameObject>("LastLoginTime");
             self.Btn_Click.GetComponent<Button>().onClick.AddListener(self.OnBtn_Click);
 
@@ -213,13 +217,68 @@ namespace ET
 
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             self.InitUI();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
-
-
     }
 
+    public class UISettingGameComponentDestroySystem : DestroySystem<UISettingGameComponent>
+    {
+        public override void Destroy(UISettingGameComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UISettingGameComponentSystem
     {
+        public static void OnLanguageUpdate(this UISettingGameComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            rc.Get<GameObject>("Text_PlayerName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_Music").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_Sound").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_YaoGanSet").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.HighFps.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Smooth.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_YaoGan").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_Fps").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.NoShowOther.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.RandomHorese.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            foreach (Text text in self.ActTargetSelect.GetComponentsInChildren<Text>())
+            {
+                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            }
+            self.AutoAttack.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            foreach (Text text in self.OneSellSet.GetComponentsInChildren<Text>())
+            {
+                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            }
+            foreach (Text text in self.ActTypeSet.GetComponentsInChildren<Text>())
+            {
+                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            }
+            self.HideLeftBottom.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.FirstUnionName.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.SkillAttackPlayerFirst.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            foreach (Text text in self.PickSet.GetComponentsInChildren<Text>())
+            {
+                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            }
+            self.LenDepthSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.RotaAngleSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.ZhuBoSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            foreach (Text text in self.LanguageSet.GetComponentsInChildren<Text>())
+            {
+                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            }
+            self.TextVersionTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.TextVersion.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.LastLoginTimeTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.LastLoginTime.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+        }
+        
         public static void OnScreenToggle0_Ex(this UISettingGameComponent self, bool value)
         {
             if (value)

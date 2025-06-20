@@ -241,6 +241,22 @@ MonoBehaviour:
     gameObject: {fileID: 3663528367123137743}
   - key: LanguageSet
     gameObject: {fileID: 6043575517293812106}
+  - key: Text_PlayerName
+    gameObject: {fileID: 1521728213552086}
+  - key: Text_Music
+    gameObject: {fileID: 1521148315010578174}
+  - key: Text_Sound
+    gameObject: {fileID: 8113386675597271168}
+  - key: Text_YaoGan
+    gameObject: {fileID: 7778134679662588911}
+  - key: Text_YaoGanSet
+    gameObject: {fileID: 3347560213192148476}
+  - key: Text_Fps
+    gameObject: {fileID: 569025182880816984}
+  - key: TextVersionTip
+    gameObject: {fileID: 6719170877699888221}
+  - key: LastLoginTimeTip
+    gameObject: {fileID: 4980562587971667447}
 --- !u!1 &109964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1602,7 @@ GameObject:
   - component: {fileID: 114678102404659272}
   - component: {fileID: 8919167819194985367}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_PlayerName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3019,7 +3035,7 @@ GameObject:
   - component: {fileID: 7245392713485392571}
   - component: {fileID: 5625955761596776695}
   m_Layer: 5
-  m_Name: Fps
+  m_Name: Text_Fps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5028,7 +5044,7 @@ GameObject:
   - component: {fileID: 493017676502911617}
   - component: {fileID: 533848481402774203}
   m_Layer: 5
-  m_Name: Text_1
+  m_Name: Text_Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7703,7 +7719,7 @@ GameObject:
   - component: {fileID: 67630637468352323}
   - component: {fileID: 8587225469494294393}
   m_Layer: 5
-  m_Name: Fps (2)
+  m_Name: Text_YaoGanSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11382,7 +11398,7 @@ GameObject:
   - component: {fileID: 4840178365054909712}
   - component: {fileID: 6630433764609757539}
   m_Layer: 5
-  m_Name: textt
+  m_Name: LastLoginTimeTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11404,8 +11420,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -469.5, y: 161}
-  m_SizeDelta: {x: 250, y: 100}
+  m_AnchoredPosition: {x: -557.5541, y: 161}
+  m_SizeDelta: {x: 410.3081, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5226105824352679444
 CanvasRenderer:
@@ -11442,7 +11458,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 48
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -15054,7 +15070,7 @@ GameObject:
   - component: {fileID: 2790408743337202743}
   - component: {fileID: 6066821467718033190}
   m_Layer: 5
-  m_Name: TextTip
+  m_Name: TextVersionTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15076,8 +15092,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447, y: 394.7}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -572.58, y: 394.7}
+  m_SizeDelta: {x: 461.16, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3168126855508974281
 CanvasRenderer:
@@ -15114,7 +15130,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 48
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -16810,7 +16826,7 @@ GameObject:
   - component: {fileID: 5972726089570358019}
   - component: {fileID: 4818099964584472753}
   m_Layer: 5
-  m_Name: Fps
+  m_Name: Text_YaoGan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17372,7 +17388,7 @@ GameObject:
   - component: {fileID: 8614730347809932423}
   - component: {fileID: 3258213567526819560}
   m_Layer: 5
-  m_Name: Text_1 (1)
+  m_Name: Text_Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

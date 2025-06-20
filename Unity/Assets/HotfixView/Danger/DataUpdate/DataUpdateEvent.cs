@@ -729,6 +729,11 @@ namespace ET
                     uiDungeonItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISettingGameComponent uiSettingGameComponent)
+                {
+                    uiSettingGameComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
