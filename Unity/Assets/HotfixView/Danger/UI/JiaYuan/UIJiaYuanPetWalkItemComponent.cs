@@ -156,6 +156,7 @@ namespace ET
                 self.Button_Add.SetActive(true);
 
                 self.Text_TotalExp.GetComponent<Text>().text = String.Empty;
+                self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), 0);
                 self.Button_Walk.SetActive(false);
                 self.Button_Stop.SetActive(false);
             }

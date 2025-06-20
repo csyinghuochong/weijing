@@ -85,6 +85,7 @@ namespace ET
                     self.CookBookList.Add(uI_1);
                 }
                 uI_1.OnUpdateUI(allfoods[i], jiaYuanComponent.LearnMakeIds_7.Contains(allfoods[i]));
+                GameSettingLanguge.TransformText(uI_1.GameObject.transform);
             }
         }
     }

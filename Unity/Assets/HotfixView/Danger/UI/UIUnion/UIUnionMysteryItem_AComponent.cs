@@ -113,6 +113,8 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.Image_gold.GetComponent<Image>().sprite = sp;
+
+            self.ButtonBuy.GetComponentInChildren<Text>().text = GameSettingLanguge.LoadLocalization(self.ButtonBuy.GetComponentInChildren<Text>().text);
         }
     }
 }

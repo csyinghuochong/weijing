@@ -76,7 +76,7 @@ namespace ET
             self.Label_StarNum.GetComponent<Text>().text = shouJiItemConfig.StartNum.ToString();
             ShoujiComponent shoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
             bool have = shoujiComponent.HaveShouJiItem(chapterId,shouJiItemConfig.ItemID);
-            self.Label_HaveTag.GetComponent<Text>().text = have ? "已拥有" : "未拥有";
+            self.Label_HaveTag.GetComponent<Text>().text = have ? GameSettingLanguge.LoadLocalization("已拥有") : GameSettingLanguge.LoadLocalization("未拥有");
             self.Label_HaveTag.GetComponent<Text>().color =have ? Color.green : Color.white;
             UICommonHelper.SetImageGray(self.Image_ItemIcon, !have);
             UICommonHelper.SetImageGray(self.Image_ItemQuality, !have);

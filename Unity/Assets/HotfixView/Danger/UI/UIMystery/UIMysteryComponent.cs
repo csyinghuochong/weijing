@@ -104,6 +104,7 @@ namespace ET
                     self.SellList.Add(ui_1);
                 }
                 ui_1.OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpcId);
+                GameSettingLanguge.TransformText(ui_1.GameObject.transform);
                 number++;
             }
 

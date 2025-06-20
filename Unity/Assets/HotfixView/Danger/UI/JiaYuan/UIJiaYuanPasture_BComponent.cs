@@ -121,6 +121,7 @@ namespace ET
                 }
 
                 ui_1.OnUpdateUI(mysteryItemInfos[i], i);
+                GameSettingLanguge.TransformText(ui_1.GameObject.transform);
                 number++;
             }
 

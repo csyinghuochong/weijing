@@ -37,7 +37,7 @@ namespace ET
             if (self.CreateRoleInfo != null)
             {
                 self.ObjRoleName.GetComponent<Text>().text = self.CreateRoleInfo.PlayerName;
-                self.ObjRoleLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级:") + self.CreateRoleInfo.PlayerLv.ToString();
+                self.ObjRoleLv.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级:{0}"), self.CreateRoleInfo.PlayerLv.ToString());
                 self.ObjRoleLv.SetActive(true);
                 if (self.CreateRoleInfo.OccTwo > 0)
                 {

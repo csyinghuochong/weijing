@@ -107,6 +107,7 @@ namespace ET
                     ItemID = jiaYuanPastureConfigs[i].GetItemID, ItemNumber = 1, MysteryId = jiaYuanPastureConfigs[i].Id, ProductId = -1
                 };
                 ui_1.OnUpdateUI(mysteryItemInfos, i);
+                GameSettingLanguge.TransformText(ui_1.GameObject.transform);
                 number++;
             }
 

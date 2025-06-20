@@ -152,7 +152,7 @@ namespace ET
             progress = Mathf.Min(1f, progress);
 
             self.ImageProgress.GetComponent<Image>().fillAmount = progress;
-            self.Text_Name.GetComponent<Text>().text = shouJiConfig.ChapterDes;
+            self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(shouJiConfig.ChapterDes);
             self.Text_StarNum.GetComponent<Text>().text = $"{starNum}/{shouJiConfig.ProList3_StartNum}";
             self.Text_Star1.GetComponent<Text>().text = shouJiConfig.ProList1_StartNum.ToString();
             self.Text_Star2.GetComponent<Text>().text = shouJiConfig.ProList2_StartNum.ToString();

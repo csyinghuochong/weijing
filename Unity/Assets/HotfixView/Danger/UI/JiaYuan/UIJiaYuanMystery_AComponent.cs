@@ -112,7 +112,7 @@ namespace ET
                     ItemID = mysteryConfig.SellItemID, ItemNumber = 1, MysteryId = itemList[i], ProductId = -1
                 };
                 ui_1.OnUpdateUI(mysteryItemInfo);
-
+                GameSettingLanguge.TransformText(ui_1.GameObject.transform);
                 number++;
             }
 

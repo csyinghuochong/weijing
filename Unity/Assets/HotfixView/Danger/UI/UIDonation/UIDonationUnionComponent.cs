@@ -127,7 +127,7 @@ namespace ET
             self.UnionListItems = response.UnionInfoList;
             self.Text_Bonus.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累计总奖金： {0}"), response.TotalDonation);
 
-            string unionnamelist = GameSettingLanguge.LoadLocalization("已报名家族: ");
+            string unionnamelist = GameSettingLanguge.LoadLocalization("已报名家族：");
             for (int i = 0; i < self.UnionListItems.Count; i++)
             {
                 unionnamelist = unionnamelist + self.UnionListItems[i].UnionName + "   ";

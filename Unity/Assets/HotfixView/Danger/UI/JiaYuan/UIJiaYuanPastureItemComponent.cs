@@ -98,7 +98,7 @@ namespace ET
             self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
 
             int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
-            self.Text_value.GetComponent<Text>().text = hour + GameSettingLanguge.LoadLocalization("小时");
+            self.Text_value.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}小时"), hour);
         }
 
         public static async ETTask OnButtonBuy(this UIJiaYuanPastureItemComponent self)
