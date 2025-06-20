@@ -103,6 +103,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_TakeStoreHouse, self.OnBtn_PutBag);
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            
+            GameSettingLanguge.TransformText(self.GetParent<UI>().GameObject.transform);
         }
     }
     public class UIItemAppraisalTipsComponentDestroy: DestroySystem<UIItemAppraisalTipsComponent>
