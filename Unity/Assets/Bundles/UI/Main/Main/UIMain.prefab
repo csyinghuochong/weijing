@@ -11907,8 +11907,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
+  - key: c6
+    gameObject: {fileID: 21300000, guid: 01ce93ecb8c1cb340938c2e1a1bab89c, type: 3}
   - key: c6_EN
-    gameObject: {fileID: 21300000, guid: ad4852994748478429b7afb5e8b51cc6, type: 3}
+    gameObject: {fileID: 21300000, guid: 3c61c810c17e7414892d6fa14aa4b4e3, type: 3}
 --- !u!1 &2327365064091372227
 GameObject:
   m_ObjectHideFlags: 0
