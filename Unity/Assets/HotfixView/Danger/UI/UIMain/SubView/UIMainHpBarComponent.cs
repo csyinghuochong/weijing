@@ -295,8 +295,8 @@ namespace ET
             else
             {
                 self.HurtTextNode.SetActive(true);
-                self.HurtTextPlayer.text = GameSettingLanguge.LoadLocalization("玩家: ") + self.ShowHurtString(self.PlayerHurt);
-                self.HurtTextPet.text = GameSettingLanguge.LoadLocalization("宠物: ") + self.ShowHurtString(self.PetHurt);
+                self.HurtTextPlayer.text = GameSettingLanguge.LoadLocalization("玩家:") + " " + self.ShowHurtString(self.PlayerHurt);
+                self.HurtTextPet.text = GameSettingLanguge.LoadLocalization("宠物:") + " " + self.ShowHurtString(self.PetHurt);
             }
         }
 
