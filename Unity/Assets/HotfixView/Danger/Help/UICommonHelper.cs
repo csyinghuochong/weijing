@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,59 @@ namespace ET
 {
     public static class UICommonHelper
     {
+        public static string ShowTimeDifferenceStr(DateTime dt1, DateTime dt2, int language)
+        {
+            //Log.Info("dt1 = " + dt1.ToString() + " dt2 = " + dt2.ToString());
+            TimeSpan dt = dt1 - dt2;
+            string returnStr = "";
+            if (language == 0)
+            {
+                if (dt.Days >= 1)
+                {
+                    returnStr = dt.Days + "天";
+                }
+
+                if (dt.Hours >= 1)
+                {
+                    returnStr += dt.Hours + "时";
+                }
+
+                if (dt.Minutes >= 1)
+                {
+                    returnStr += dt.Minutes + "分";
+                }
+            }
+            else
+            {
+                if (dt.Days >= 1)
+                {
+                    returnStr = dt.Days + "d";
+                }
+
+                if (dt.Hours >= 1)
+                {
+                    returnStr += dt.Hours + "h";
+                }
+
+                if (dt.Minutes >= 1)
+                {
+                    returnStr += dt.Minutes + "m";
+                }
+            }
+
+            return returnStr;
+        }
+
+        public static string TimeToShowCostTimeStr(long time, int addHours, int language = 0)
+        {
+            DateTime dt1 = TimeInfo.Instance.ToDateTime(time);
+            dt1 = dt1.AddHours(addHours);
+            DateTime dt2 = TimeHelper.DateTimeNow();
+            //TimeSpan dt = dt1 - dt2;
+            //Log.Info("dt1 = " + dt1.ToString() + " dt2 = " + dt2.ToString());
+            return ShowTimeDifferenceStr(dt1, dt2, language);
+        }
+        
         public static string ShowLeftTime(long time, int language = 0)
         {
             string str = "";

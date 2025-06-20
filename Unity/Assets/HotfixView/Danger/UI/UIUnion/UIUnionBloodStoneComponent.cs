@@ -86,7 +86,7 @@ namespace ET
             }
             else
             {
-                self.PropertyText.GetComponent<Text>().text = "下一级:\n" +
+                self.PropertyText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("下一级：") + "\n" +
                         ItemViewHelp.GetAttributeDesc(PublicQiangHuaConfigCategory.Instance.Get(publicQiangHuaConfig.NextID).EquipPropreAdd);
             }
 

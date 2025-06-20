@@ -229,7 +229,7 @@ namespace ET
             self.Text_Price.GetComponent<Text>().text = sumPrice.ToString();
 
             //显示时间
-            self.Text_LeftTime.GetComponent<Text>().text = TimeHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime, 48);
+            self.Text_LeftTime.GetComponent<Text>().text = UICommonHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime, 48, GameSettingLanguge.Language);
 
             //装备显示等级
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);

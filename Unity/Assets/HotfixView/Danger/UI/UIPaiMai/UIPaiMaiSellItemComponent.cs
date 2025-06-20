@@ -82,7 +82,7 @@ namespace ET
 
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            self.TextTime.GetComponent<Text>().text = TimeHelper.ShowTimeDifferenceStr(dateTime, TimeInfo.Instance.ToDateTime(self.PaiMaiItemInfo.SellTime));
+            self.TextTime.GetComponent<Text>().text = UICommonHelper.ShowTimeDifferenceStr(dateTime, TimeInfo.Instance.ToDateTime(self.PaiMaiItemInfo.SellTime), GameSettingLanguge.Language);
 
             self.TextName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).GetItemName();
 
