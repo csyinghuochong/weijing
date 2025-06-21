@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108, y: -76}
-  m_SizeDelta: {x: 1200, y: 3}
+  m_AnchoredPosition: {x: 65, y: -76}
+  m_SizeDelta: {x: 1400, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1863211732619741943
 CanvasRenderer:
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -453, y: 0}
+  m_AnchoredPosition: {x: -541, y: 0}
   m_SizeDelta: {x: 138, y: 152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4656301978539996483
@@ -257,7 +257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -184.7, y: 27.69997}
+  m_AnchoredPosition: {x: -262.7, y: 27.69997}
   m_SizeDelta: {x: 356.2, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2610974733689905215
@@ -351,7 +351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70.4, y: -24.000046}
+  m_AnchoredPosition: {x: -119.2, y: -24.000046}
   m_SizeDelta: {x: 356.2, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2612042716614600623
@@ -490,7 +490,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -184.09995, y: -24.000046}
+  m_AnchoredPosition: {x: -262.09995, y: -24.000046}
   m_SizeDelta: {x: 356.2, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2608279638069643803
@@ -1174,7 +1174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241.4, y: 27.7}
+  m_AnchoredPosition: {x: -332.9, y: 27.7}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7151365236581460356
