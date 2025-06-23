@@ -734,6 +734,16 @@ namespace ET
                     uiSettingGameComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISkillMakeComponent uiSkillMakeComponent)
+                {
+                    uiSkillMakeComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIMakeNeedComponent uiMakeNeedComponent)
+                {
+                    uiMakeNeedComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

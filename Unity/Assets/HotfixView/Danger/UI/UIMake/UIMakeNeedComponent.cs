@@ -34,6 +34,7 @@ namespace ET
             self.Image_EventTrigger.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUIItem(); });
             
             self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIMakeNeedComponentDestroy : DestroySystem<UIMakeNeedComponent>
@@ -48,6 +49,8 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIMakeNeedComponentSystem

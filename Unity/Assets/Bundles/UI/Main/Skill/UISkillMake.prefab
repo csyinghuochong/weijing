@@ -6445,6 +6445,10 @@ MonoBehaviour:
     gameObject: {fileID: 9074106474200895657}
   - key: TitleSet
     gameObject: {fileID: 2367869269257191209}
+  - key: Text_Tip
+    gameObject: {fileID: 7355240678287101755}
+  - key: Text_CostHuoLiTip
+    gameObject: {fileID: 5340164448828482370}
 --- !u!1 &1679095062265195746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7910,7 +7914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 215.1, y: 224.09476}
+  m_AnchoredPosition: {x: 215.1, y: 226}
   m_SizeDelta: {x: 500, y: 81.6105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2002061360244013310
@@ -20047,7 +20051,7 @@ GameObject:
   - component: {fileID: 7100269936267444993}
   - component: {fileID: 4824521254859930643}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_CostHuoLiTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20069,8 +20073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -685.9, y: -449}
-  m_SizeDelta: {x: 310, y: 60}
+  m_AnchoredPosition: {x: -644.29956, y: -449}
+  m_SizeDelta: {x: 226.8, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7100269936267444993
 CanvasRenderer:
@@ -20107,7 +20111,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -26309,7 +26313,7 @@ GameObject:
   - component: {fileID: 4686204147796876759}
   - component: {fileID: 7994999609902783207}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26331,8 +26335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -373, y: -297}
-  m_SizeDelta: {x: 810.0001, y: 60}
+  m_AnchoredPosition: {x: -373, y: -317.83765}
+  m_SizeDelta: {x: 810.0001, y: 84.6753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4686204147796876759
 CanvasRenderer:
@@ -26369,7 +26373,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

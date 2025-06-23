@@ -23,7 +23,8 @@ namespace ET
 
     public class UISkillMakeComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject Text_Tip;
+        public GameObject Text_CostHuoLiTip;
         public GameObject TitleSet;
         public GameObject Btn_TianFu_1;
         public GameObject Btn_TianFu_2;
@@ -71,6 +72,7 @@ namespace ET
         public override void Destroy(UISkillMakeComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -84,6 +86,8 @@ namespace ET
             self.MakeListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
+            self.Text_CostHuoLiTip = rc.Get<GameObject>("Text_CostHuoLiTip");
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.Text_Current = rc.Get<GameObject>("Text_Current");
 
@@ -142,6 +146,7 @@ namespace ET
             self.OnBtn_Plan(1);
             
             self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -150,6 +155,9 @@ namespace ET
         public static void OnLanguageUpdate(this UISkillMakeComponent self)
         {
             self.Lab_ShuLianShow.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 25;
+            self.Text_Current.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.Text_CostHuoLiTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
         }
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
