@@ -67,6 +67,7 @@ namespace ET
             self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
             self.Lab_TaskDes.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
             self.Lab_ProValue.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+            self.Lab_ChengJiuNum.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 38 : 28;
         }
         
         public static void OnUpdateData(this UIChengJiuShowItemComponent self, int id)

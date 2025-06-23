@@ -60,7 +60,8 @@ namespace ET
                 return;
             }
 
-            self.Lab_TaskTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Lab_TaskTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 28;
         }
         
         public static void SetSelected(this UIChengJiuTypeItemComponent self, int subTypeid)
