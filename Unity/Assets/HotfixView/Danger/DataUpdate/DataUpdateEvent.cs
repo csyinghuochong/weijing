@@ -814,6 +814,11 @@ namespace ET
                     uiRankPetRewardComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRechargeRewardComponent uiRechargeRewardComponent)
+                {
+                    uiRechargeRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

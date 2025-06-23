@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace ET
 {
 
-    public class UIRechargeRewardComponent : Entity, IAwake
+    public class UIRechargeRewardComponent : Entity, IAwake, IDestroy
     {
         public GameObject TextTip;
         public GameObject ButtonClose;
@@ -55,11 +55,26 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageViewComponent;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIRechargeRewardComponentDestroySystem : DestroySystem<UIRechargeRewardComponent>
+    {
+        public override void Destroy(UIRechargeRewardComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIRechargeRewardComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRechargeRewardComponent self)
+        {
+            self.TextTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+        }
 
         public static void OnButtonClose(this UIRechargeRewardComponent self)
         {
