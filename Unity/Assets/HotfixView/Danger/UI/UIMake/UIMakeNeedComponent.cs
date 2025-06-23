@@ -32,6 +32,8 @@ namespace ET
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");
 
             self.Image_EventTrigger.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUIItem(); });
+            
+            self.OnLanguageUpdate();
         }
     }
     public class UIMakeNeedComponentDestroy : DestroySystem<UIMakeNeedComponent>
@@ -50,6 +52,12 @@ namespace ET
     }
     public static class UIMakeNeedComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMakeNeedComponent self)
+        {
+            self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 28;
+            self.Label_ItemNum.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 28;
+        }
+
         public static void OnClickUIItem(this UIMakeNeedComponent self)
         {
             //弹出Tips
