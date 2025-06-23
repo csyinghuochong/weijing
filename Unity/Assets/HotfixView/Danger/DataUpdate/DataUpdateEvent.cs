@@ -839,6 +839,11 @@ namespace ET
                     uiDonationShowComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIDonationUnionComponent uiDonationUnionComponent)
+                {
+                    uiDonationUnionComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

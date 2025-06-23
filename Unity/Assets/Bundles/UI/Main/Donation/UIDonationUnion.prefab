@@ -244,6 +244,14 @@ MonoBehaviour:
     gameObject: {fileID: 326998428457056802}
   - key: Button_Race
     gameObject: {fileID: 3936915860411588103}
+  - key: Text_Tip_4
+    gameObject: {fileID: 8176752221054034439}
+  - key: Text_Tip_3
+    gameObject: {fileID: 8422233847736782164}
+  - key: Text_Tip_2
+    gameObject: {fileID: 2271286075769264833}
+  - key: Text_Tip_1
+    gameObject: {fileID: 6767210680792234807}
 --- !u!1 &1524428380282764507
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +435,7 @@ GameObject:
   - component: {fileID: 3787247744774220593}
   - component: {fileID: 3502935190095184440}
   m_Layer: 5
-  m_Name: Text_Tip_1 (2)
+  m_Name: Text_Tip_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1187,7 @@ GameObject:
   - component: {fileID: 6482373297124407746}
   - component: {fileID: 464893433688772137}
   m_Layer: 5
-  m_Name: Text_Tip_1 (1)
+  m_Name: Text_Tip_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,7 +1472,7 @@ GameObject:
   - component: {fileID: 528887549922575989}
   - component: {fileID: 2550195872501625015}
   m_Layer: 5
-  m_Name: Text_Tip_1 (4)
+  m_Name: Text_Tip_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,7 +1567,7 @@ GameObject:
   - component: {fileID: 6261201906906614035}
   - component: {fileID: 3766322291791903392}
   m_Layer: 5
-  m_Name: Text_Tip_1 (3)
+  m_Name: Text_Tip_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

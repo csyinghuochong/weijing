@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIDonationUnionComponent : Entity, IAwake
+    public class UIDonationUnionComponent : Entity, IAwake, IDestroy
     {
         public GameObject Text_Bonus;
         public GameObject Text_Open_Time;
         public GameObject Button_Signup;
+        public GameObject Text_Tip_1;
+        public GameObject Text_Tip_2;
+        public GameObject Text_Tip_3;
+        public GameObject Text_Tip_4;
         public GameObject Text_Tip_5;
         public GameObject Button_Race;
         public List<UnionListItem> UnionListItems = new List<UnionListItem>();
@@ -23,6 +27,11 @@ namespace ET
 
             self.Text_Bonus = rc.Get<GameObject>("Text_Bonus");
             self.Text_Open_Time = rc.Get<GameObject>("Text_Open_Time");
+            
+            self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
+            self.Text_Tip_2 = rc.Get<GameObject>("Text_Tip_2");
+            self.Text_Tip_3 = rc.Get<GameObject>("Text_Tip_3");
+            self.Text_Tip_4 = rc.Get<GameObject>("Text_Tip_4");
             self.Text_Tip_5 = rc.Get<GameObject>("Text_Tip_5");
 
             self.Button_Signup = rc.Get<GameObject>("Button_Signup");
@@ -32,11 +41,32 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_Race, () => { self.OnButton_Race(); });
             self.Button_Race.SetActive(false);
             self.OnUpdateUI().Coroutine();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIDonationUnionComponentDestroySystem : DestroySystem<UIDonationUnionComponent>
+    {
+        public override void Destroy(UIDonationUnionComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIDonationUnionComponentSystem
     {
+        public static void OnLanguageUpdate(this UIDonationUnionComponent self)
+        {
+            self.Text_Open_Time.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 38;
+            self.Text_Bonus.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 50 : 38;
+            
+            self.Text_Tip_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 33 : 28;
+            self.Text_Tip_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 33 : 28;
+            self.Text_Tip_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 33 : 28;
+            self.Text_Tip_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 33 : 28;
+        }
 
         public static void ShowOpenTime(this UIDonationUnionComponent self)
         {
