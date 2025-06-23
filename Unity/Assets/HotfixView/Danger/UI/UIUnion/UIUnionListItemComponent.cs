@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionListItemComponent : Entity, IAwake<GameObject>
+    public class UIUnionListItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
 
         public GameObject Text_Level;
@@ -34,11 +34,31 @@ namespace ET
             self.Text_Number = rc.Get<GameObject>("Text_Number");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
             self.Text_Leader = rc.Get<GameObject>("Text_Leader");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIUnionListItemComponentDestroySystem : DestroySystem<UIUnionListItemComponent>
+    {
+        public override void Destroy(UIUnionListItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIUnionListItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionListItemComponent self)
+        {
+            self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_Level.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_Number.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_Leader.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_Request.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+        }
+
         public static async ETTask OnButtonApply(this UIUnionListItemComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

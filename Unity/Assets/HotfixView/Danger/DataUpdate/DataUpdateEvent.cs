@@ -759,6 +759,16 @@ namespace ET
                     uiTaskAComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionListComponent uiUnionListComponent)
+                {
+                    uiUnionListComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIUnionListItemComponent uiUnionListItemComponent)
+                {
+                    uiUnionListItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

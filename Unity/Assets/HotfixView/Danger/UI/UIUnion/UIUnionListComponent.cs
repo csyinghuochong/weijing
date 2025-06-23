@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionListComponent : Entity, IAwake<GameObject>
+    public class UIUnionListComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
+        public GameObject Text_Tip5;
+        public GameObject Text_Tip4;
+        public GameObject Text_Tip3;
+        public GameObject Text_Tip2;
+        public GameObject Text_Tip1;
         public GameObject UnionListNode;
         public GameObject UIUnionListItem;
         public List<UnionListItem> UnionList = null;
@@ -20,14 +25,40 @@ namespace ET
         {
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+            self.Text_Tip5 = rc.Get<GameObject>("Text_Tip5");
+            self.Text_Tip4 = rc.Get<GameObject>("Text_Tip4");
+            self.Text_Tip3 = rc.Get<GameObject>("Text_Tip3");
+            self.Text_Tip2 = rc.Get<GameObject>("Text_Tip2");
+            self.Text_Tip1 = rc.Get<GameObject>("Text_Tip1");
             self.UnionListNode = rc.Get<GameObject>("UnionListNode");
             self.UIUnionListItem = rc.Get<GameObject>("UIUnionListItem");
             self.UIUnionListItem.SetActive(false);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIUnionListComponentDestroySystem : DestroySystem<UIUnionListComponent>
+    {
+        public override void Destroy(UIUnionListComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIUnionListComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionListComponent self)
+        {
+            self.Text_Tip5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_Tip4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_Tip3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_Tip2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_Tip1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            
+            self.Text_Tip2.GetComponent<Text>().text = GameSettingLanguge.Language == 0? "等级" : "Level";
+        }
 
         public static async ETTask OnUpdateUI(this UIUnionListComponent self)
         {
