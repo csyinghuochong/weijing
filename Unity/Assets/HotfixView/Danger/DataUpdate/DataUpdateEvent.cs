@@ -799,6 +799,11 @@ namespace ET
                     uiPaiMaiBuyItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRankShowItemComponent uiRankShowItemComponent)
+                {
+                    uiRankShowItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

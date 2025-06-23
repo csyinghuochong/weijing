@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRankShowItemComponent : Entity, IAwake<GameObject>
+    public class UIRankShowItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
 
         public GameObject ImageHeadIcon;
@@ -48,11 +48,27 @@ namespace ET
             self.Rank_2 = rc.Get<GameObject>("Rank_2");
             self.Rank_3 = rc.Get<GameObject>("Rank_3");
             self.ImageHeadIcon = rc.Get<GameObject>("ImageHeadIcon");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIRankShowItemComponentDestroySystem : DestroySystem<UIRankShowItemComponent>
+    {
+        public override void Destroy(UIRankShowItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIRankShowItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRankShowItemComponent self)
+        {
+            self.Button_WatchEquip.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 34;
+        }
+
         public static async ETTask OnButtonWatch(this UIRankShowItemComponent self)
         {
             C2F_WatchPlayerRequest c2M_SkillSet = new C2F_WatchPlayerRequest() { UserId = self.RankingInfo.UserId };
