@@ -139,7 +139,7 @@ AК倒计时:46分60秒"%Countdown: 46 minutes and 60 seconds.
 ,ؚ当前拥有数量:"Current quantity:
 "ٚ疾风之刃"Blizzard Blade
 %ښ活跃度 +5"Activity level +5
- ۚ领取奖励"Claim reward
+ۚ领取奖励"Claim
 *ܚ进度值:  0/1"Progress value: 0/1
 ݚ	已领取"Received
 ޚ	已完成"	Completed
@@ -147,14 +147,13 @@ AК倒计时:46分60秒"%Countdown: 46 minutes and 60 seconds.
 ��概率"Probability
 6�重生剩余时间:"Remaining time for rebirth:
 #�商人名称"Merchant's name
-'�学习制造"Learn manufacturing
+�学习制造"Learn
 �	场景物"Scene objects
 �商品摊位"Goods stall
 W�0说话内容。。。。。。。。。。。。"The following area is now open.
 &�下一区域已开放"	Level map
 �关卡地图"Normal mode
-�普通模式"
-Level name
+�普通模式"Normal
 ,�关卡名称"Mysterious Lord Appears!
 +�神秘领主出现！"Deep in Lorand
 '�洛兰深处"Challenge level: 10
@@ -267,7 +266,7 @@ Sʛ(距离下次刷新奖励的时间  10:00"#10:00 until the next reward ref
 o՛-3.击败怪物等级不能低于自身9级。":3. The level of defeating monsters cannot be lower than 9.
 �֛;4.活动结束后奖励会通过邮件进行统一发放。"F4. After the event, the rewards will be distributed uniformly by mail.
 כ第1名奖励"	1st Prize
-,؛第2~3名奖励"2nd ~ 3rd place award
+&؛第2~3名奖励"2nd ~ 3rd Prize
 (ٛ第4~10名奖励"4th ~ 10th Prize
 ڛ我的种子"My seed
 ۛ全部"Whole
@@ -457,33 +456,33 @@ D��等级礼包
 Collect on Arrival
 ��每日"Daily
 2��20等级开启购买"Level 20 Open Purchase
-��购 买"Purchase
+��购 买"Buy
 (��冒险家奖励"Adventurer reward
 (��冒险家积分"Adventurer points
 ���R提示: 完成每日活跃可以获得积分,每充值1元可获得10点积分。
 "sTip: You can get points by completing the daily activity, and you can get 10 points for every recharge of 1 yuan. 
 
-!��前往赞助"Go to Sponsor
+"��前往赞助"Go to recharge
 ��	积分值"Integral value
  ��奖励道具"Reward props
 #��奖励列表"List of rewards
-"��签到奖励"Sign-in reward
+ ��签到奖励"Free Sign-In
 '��赞助奖励"Sponsorship Rewards
 !��今日签到"Sign in today
 ��	已签到"
 Checked in
-&��赞助签到"Sponsored check-in
+!��赞助签到"Paid Check-In
 ���m提示：以上为单笔充值的对应额度奖励,累加不计入单笔哦！此奖励只可领取一次！"�Prompt: The above is the reward for the corresponding amount of single recharge, and the accumulation is not included in the single recharge! This reward can only be claimed once!
 "��前往充值"Go to recharge
 .��单笔充值0元"Single recharge 0 yuan
 )��传说大礼包"Legendary gift bag
 "��礼包物品"Gift bag items
-8��累计充值98元"Accumulated recharge of 98 yuan
-7��累计充值298元"Accumulated recharge 298 yuan
+)��累计充值98元"Recharge 98 yuan
++��累计充值298元"Recharge 298 yuan
 #��免费领取"Get it for free
 2��当前额度:999/298"Current limit: 999/298
 7��制作书：哈哈哈哈"Make the book: hahahaha
-)��	可领取"Available for collection
+��	可领取"Claim
 Z�� 1. 体力上限额外增加20点"21. Increase the upper limit of Energy by 20 points
 ~��(。
 2. 通关关卡可额外开启宝箱"N。 
@@ -498,7 +497,7 @@ Z��$。
 &��周卡奖励"Weekly card reward
 )��月卡福利"Monthly card benefits
 (��开启周卡"Open the weekly card
-M��周卡剩余领取次数:",Number of remaining weekly card collections:
+-��周卡剩余领取次数:"Claim Times:
 ���;周卡特权
 激活周卡,副本将额外开启一个宝箱"fWeekly Card Privilege 
 Activate the weekly card and the dungeon will open an additional treasure chest
@@ -616,7 +615,8 @@ H�� 哈哈哈<U>HAHAH </U>1111111111" Hahaha < U > HAHAH  1111 111111.
 ��奖励"Reward
 ��成就"Achievement
 ��精灵"Spirit
- ��图鉴"Illustrated manual
+��图鉴"
+Pet manual
 S��恭喜你,激活新的成就!".Congratulations, activate the new achievement!
 $��成就名字"Achievement name
 4��累计成就点"Cumulative achievement points
@@ -628,8 +628,8 @@ s��*攻击有一定概率恢复己方生命值"AAttacks have a certain probab
 (��激活属性:"Activate attribute:
 -��来自比武大会"From the tournament
 ���D提示:精灵只能装备一种,只有装备的精灵才有效果。"VTip: Only one kind of sprite can be equipped. Only the equipped sprite has the effect.
-,��成就点数："Achievement Points：
-'��成就奖励"Achievement rewards
+ ��成就点数："	Points：
+��成就奖励"Rewards
 0��2060成就奖励"2060 Achievement Rewards
 %��关卡成就"Level achievement
 ��	完成度"Progress
@@ -701,29 +701,29 @@ wޞ4在角斗场坚持时间越长获得奖励越丰厚!";The longer you stay
 Y��%每日19:40开启   19:50关闭入口",Open daily at 19:40 and close daily at 19:50
 %�世界领主"Lord of the world
 }�-世界领主准时携带巨量宝物来袭！"HThe Lord of the World is coming on time with a huge amount of treasures!
-f�&每周一、三、五、七20:00开启"8Open every Monday, Wednesday, Friday and Sunday at 20:00
+O�&每周一、三、五、七20:00开启"!Every Mon, Wed, Fri, Sun at 20:00
 �小龟赛跑"Turtle race
 ��Q活动开启前10分钟,小龟赛跑大使会准时出现在主城正下方喔！"m10 minutes before the event starts, the Turtle Race Ambassador will appear right below the main city on time!
-Z� 每周二、四、六20:00开启"2Open every Tuesday, Thursday and Saturday at 20:00
+D� 每周二、四、六20:00开启"Every Tue, Thu, Sat at 20:00
 *�战场活动"Battlefield activities
 ��9玩家多人随机对战，获胜方将获得丰厚奖励"XPlayers play against each other at random, and the winner will receive generous rewards.
 .�每日20:30-21：00"Daily 20: 30-21: 00
 %�宝藏活动"Treasure activity
 r�-拾取场景内的宝箱获得丰厚的奖励"=Pick up the treasure chest in the scene and get rich rewards.
-g�'每周一、三、五、七 21:00开启"8Open every Monday, Wednesday, Friday and Sunday at 21:00
+P�'每周一、三、五、七 21:00开启"!Every Mon, Wed, Fri, Sun at 21:00
 *�变身大赛"Transformation contest
 ��L变成各种各样的怪物,率先到达终点即可获得最后的胜利。"YTurn into all kinds of monsters and reach the finish line first to win the final victory.
-[�!每周二、四、六 21:00开启"2Open every Tuesday, Thursday and Saturday at 21:00
+E�!每周二、四、六 21:00开启"Every Tue, Thu, Sat at 21:00
 ��K全地图随机刷新道具，只要随机到指定位置即可获得奖励"`Full map random refresh props, as long as the random to the designated location can be rewarded.
-g�'每周一、三、五、七 21:30开启"8Open every Monday, Wednesday, Friday and Sunday at 21:30
+P�'每周一、三、五、七 21:30开启"!Every Mon, Wed, Fri, Sun at 21:30
 &�狩猎活动"Hunting activities
 ��I活动期间不消耗体力,击败怪物数量越多获得奖励越丰厚"gDo not consume energy during the activity, the more monsters you defeat, the more rewards you will get.
-[��!每周二、四、六 21:30开启"2Open every Tuesday, Thursday and Saturday at 21:30
+E��!每周二、四、六 21:30开启"Every Tue, Thu, Sat at 21:30
 ���<玩家之间1对1的竞技挑战,展现自身真正硬实力"J1 to 1 competitive challenge between players to show their true hard power
-g��'每周一、三、五、七 22:00开启"8Open every Monday, Wednesday, Friday and Sunday at 22:00
+P��'每周一、三、五、七 22:00开启"!Every Mon, Wed, Fri, Sun at 22:00
 #��家族入侵"Family invasion
 }��5进入家族地图,打败入侵者,获得丰厚奖励"@Enter the family map, defeat the invaders, and get rich rewards.
-[��!每周二、四、六 22:00开启"2Open every Tuesday, Thursday and Saturday at 22:00
+E��!每周二、四、六 22:00开启"Every Tue, Thu, Sat at 21:00
 K��世界领主活动玩法介绍"%Introduction to World Lord Activities
 �
 ���1.当领主刷新出来后，玩家前往密境之地击败领主，领主携带的宝物会掉落在地上让玩家自由拾取。
@@ -750,10 +750,10 @@ The above rewards will be distributed by mail at the end of the event.
 ��	活跃度"Activity
 ��60活跃度"60 activity
 &��活跃度奖励"Activity reward
-$��捐献排行"Donation ranking
-#��家族争霸"Family hegemony
-$��争霸排行"Hegemony ranking
-$��我要捐献"I want to donate
+��捐献排行"Donation
+ ��家族争霸"FamilyBattle
+��争霸排行"Ranking
+��我要捐献"Donate
 ���3捐献金币在争霸战中作为奖励进行分配"IDonated gold coins are distributed as rewards in the battle for hegemony.
 V��捐献排行榜每天0:00清空"/The donation list is cleared at 0:00 every day.
 E��我已捐献10000000金币"#I have donated 10000000 gold coins.
@@ -789,7 +789,7 @@ S��累计总奖金： 100万金币",Cumulative total bonus: 1 million gold c
 ���<3. 其他参与家族的成员将平分奖池内40%奖励。"N3. Other family members involved will share the 40% of the prize pool equally.
 ���?4. 玩家在争霸捐献中的50%将自动累计到奖池中。"W4. 50% of the player's Hegemony donation will be automatically added to the prize pool.
 ,��已报名家族："Enrolled families:
-4��报名家族战"Sign up for the family battle
+��报名家族战"Sign up
 &��进入争霸"Enter the hegemony
 *��每日早起"Get up early every day
 -��每日早睡"Go to bed early every day
@@ -863,9 +863,9 @@ Nğ!拖动左侧的装备放入此处"%Drag the rig on the left to drop here
 Attack + 11
 ݟ分享"Share
 ޟ推广"	Promotion
-ߟ	序列号"Serial number
+ߟ	序列号"Serial
 ��论坛"Forum
-&�加群福利"Add group benefits
+�加群福利"Benefits
 '�点击一键加入"Click to join
 T�!游戏官方交流QQ群:690868439"+Game official exchange QQ group: 690868439.
 ��A加入官方群领取新手福利,与其他玩家共同交流喔!"VJoin the official group to receive novice benefits and communicate with other players!
@@ -883,8 +883,9 @@ $�抖音分享"Share on Tik Tok
 ��@提示:游戏内出现相关问题可加群找管理解决哦！"gPrompt: In the game appears the related question may add the group to look for the management to solve!
 ��M领取分享奖励,需要等级达到10级且在线时间达到30分钟即可"WTo receive the sharing reward, you need to reach level 10 and be online for 30 minutes.
 ��1关注公众号,获取更多序列号奖励哦！"IPay attention to the official account and get more serial number rewards!
-1�点击打开论坛"Click to open the forum
--�游戏交流论坛"Game Exchange Forum
+'�点击打开论坛"Click to open
+$�游戏交流论坛"
+Game Forum
 e��0提示: 每个评论只能领取一次奖励哦~"-Tip: You can only get one reward per comment.
 ���i打开游戏论坛,交流游戏心得,寻找游戏攻略。
 论坛还会不定时举行游戏活动哦！"�Open the game forum, exchange game experience, looking for game strategy. 
@@ -1030,14 +1031,14 @@ b��!领地达到(25/1)可激活兑换"9Redemption can be activated when terri
 "��5000000荣誉"5000000 honor
 #��点击兑换"Click to redeem
 @��你还未收到邮件!""You haven't received the mail yet!
-)��一键领取"Get it with one click
+��一键领取"One-Tap
 #��活动奖励"Activity reward
 ��	数量："Quantity
 $��邮件信息"Mail information
 $��邮件附件"Mail attachments
 ��邮件"Mail
 /��邮件内容"The contents of the message
-$��领取邮件"Pick up the mail
+��领取邮件"Claim
 ���G提示:请尽快收取邮箱内的邮件,最多保留100封邮件喔！"[Prompt: Please collect the mail in the mailbox as soon as possible, keep 100 mails at most!
 !��点击穿戴"Click to wear
 &��确认改动"Confirm the change
@@ -1051,7 +1052,7 @@ N��吟唱中，请及时打断"+During the chant, please interrupt in time.
 ��宠物：1000"
 Pets: 1000
 ��	归属："Attribution:
-��初级领主"Junior Lord
+��初级领主"Lesser
 ]��*哈哈哈<U>H11111111111111111111111111111"+Hahaha < U > H11111111111111111111111111111
 6��世界领主活动开启"World Lord Event Opens
 %��活动提醒"Activity reminder
@@ -1065,7 +1066,7 @@ $��恶魔活动"Demonic activity
 工具"	GM 
 Tools
 &��击败怪物"Defeat the monster
- ��等级奖励"Level reward
+��等级奖励"Level
 &��20级领取"Receive at level 20
 &��返回副本"Return to the copy
 (��进入探险"Enter the expedition
@@ -1104,8 +1105,8 @@ Use props:
 ���B提示:点击使用对应道具,可以增加对应抓铺成功率!"lTip: Click to use the corresponding props, you can increase the success rate of the corresponding grab shop!
 /¡消耗金币:"Consumption of gold coins:
 ,á当前金币:  100"Current Coins: 100
-ġ制 造"Manufacture
-+š制作数量："Production quantity:
+ġ制 造"Make
+š制作数量："Number:
 !ơ宝石合成"Gem synthesis
 ǡ道具名称"	Prop name
 5ȡ宠物装备制造"Pet equipment manufacturing
@@ -1206,13 +1207,13 @@ $��缴纳保证金"Pay a deposit
 ���M每100钻石会额外获得1兑换币,可以在右下角进行兑换道具。"hEvery 100 diamonds will get an extra 1 coin, which can be exchanged for props in the lower right corner.
 "��道具出售"Props for sale
 ���?提示：材料相关道具将由系统进行统一收购销售"MPrompt: Materials and related props will be purchased and sold by the system.
-+��我上架的商品"Items on my shelf
+#��我上架的商品"	My Listed
 ��材料"Material
 ��其他"Other
 +��一级紫宝石"First-class amethyst
 ��上架时间"
 Shelf time
-&��上架道具"Props on the shelf
+��上架道具"	List Item
 $��取消上架"Cancel the shelf
 3��主城摆摊"Set up a stall in the main city
 ,��已上架时间："Time on the shelf:
@@ -1347,7 +1348,7 @@ H��全属性附加抗爆率"(Full attribute additional antiknock rate
 ��(已激活)"(Activated)
 ��普通宠物"Common pets
 ��神宠"God's favor
-1��宠物可出现技能"Pet can appear skill
+&��宠物可出现技能"	Pet skill
 ��宠物皮肤"Pet skin
 &��升星宠物"Ascending star pet
 "��放入宠物"Put in the pet
@@ -1534,7 +1535,7 @@ $��解锁装备"Unlock the Equip
 2. The more layers, the more rewards you get.
 #��进入魔塔"Enter the tower
 ��10层"Floor 10
-"��排行奖励"Ranking reward
+��排行奖励"Rank reward
 !��天梯奖励"Ladder reward
 ��我的排名"
 My ranking
@@ -1549,9 +1550,9 @@ J��!拥有者：我的胃很大很大"!Owner: I have a big, big stomach.
 ��排行"Ranking
 ��战力"Combat power
 ��操作"	Operation
-'��战士排行"Ranking of soldiers
-&��法师排行"Ranking of wizards
-&��猎人排行"Ranking of hunters
+��战士排行"Warrior
+��法师排行"Mage
+��猎人排行"Hunter
 -��请输入姓名"Please enter your name
 @��请输入身份证号码" Please enter your ID card number
 ��	已认证"	Certified
@@ -1566,10 +1567,10 @@ J��!拥有者：我的胃很大很大"!Owner: I have a big, big stomach.
 ɤ	充值..."
 Recharge..
 ʤ赠送 0"Give away 0
-%ˤ累冲50元"Accumulate 50 yuan
-'̤累冲98元"Cumulatively 98 yuan
+ˤ累冲50元"50 yuan
+̤累冲98元"98 yuan
 ͤ&累冲达到50元可领取以下奖励"QIf the accumulated charge reaches 50 yuan, you can receive the following rewards.
-&Τ累充奖励"Accumulate rewards
+Τ累充奖励"Rewards
 zϤ4勾选想要出售的增幅种类,可以快捷出售">Check the type of increase you want to sell to quickly sell it
 Ф快捷出售"
 Quick sale
@@ -1705,7 +1706,7 @@ S��刷新时间:3天11小时11分"-Refresh time: 3 days, 11 hours and 11 min
 !��查看领主"View the Lord
 -��1级赛季奖励"Tier 1 Season Rewards
 ���P提示:所有晶核在赛季结束时会自动消失,晶核不计入战力统计"wTip: All nuclei will automatically disappear at the end of the season. Nuclei are not counted in the battle statistics.
-��方案"	Programme
+��方案"List
 '¥开启消耗"Turn on consumption
 >å赛季晶核之心"$The Heart of the Season Crystal Core
 ,ĥ开启晶核"Open the crystal nucleus
@@ -1876,15 +1877,15 @@ Sۦ 受到攻击任务伤害降低1%"+1% reduction in damage from attack miss
 bܦ%本次注入预计获得100-200经验"5This injection is expected to gain 100-200 experience
  ݦ注入道具"Inject props
 �ަ7提示:每种道具熟练度超过一定值不会增长"KTip: The proficiency of each prop will not increase beyond a certain value.
--ߦ消耗活力:"Consumption of vitality:
+"ߦ消耗活力:"Use vitality:
 /�当前活力:  100"Current activity: 100
 $�制作道具："Making props:
 )�冷却：10秒"Cooling: 10 seconds
 R�熟练度:1-3点   上限200点"+Proficiency: 1-3 points, maximum 200 points
-.�制造道具列表"Make a list of props
-%�遗忘技能"Forgetting skills
+#�制造道具列表"	Make list
+�遗忘技能"Forget
 �熔 炼"Smelting
-'�学习新技能"Learn new skills
+�学习新技能"Learn
 "�开始熔炼"Start smelting
 �装备列表"
 Equip list
@@ -1918,8 +1919,9 @@ Give props
 #��任务详情"Mission details
 &��任务目标"Mission objectives
 m��4等级到达50/50         (出现在：龙之峡谷)"1Level Reaches 50/50 (Appears in: Dragon's Canyon)
-'��放弃任务"Abandon the mission
-%��前往任务"Go to the mission
+��放弃任务"Abandon
+��前往任务"
+Go to task
 A��提交任务请找:村长" Submit the task to: Village Head
 &��魔导师.加尔"Magician. Gar.
 ���@嘿小勇士你是我引导的第8434个来这里探险的人。"KHey, little warrior, you're the 8,434th person I've guided to explore here.
@@ -1963,7 +1965,7 @@ $��
 V��活动开启倒计时 0分0秒"0Activity start countdown 0 minutes and 0 seconds
 '��图纸制造"Drawing fabrication
 &��击败敌方0人"Defeat 0 enemy
-#��创建家族"Create a family
+��创建家族"Create
 ��职位"Position
 ��名称"Name
 ��	魔法师"Sorcerer
@@ -2038,11 +2040,12 @@ Next level
 (�升级修炼"Upgrade and practice
 n�+玩家通过任务增加了5点家族经验";The player gains 5 family experience points through quests.
 .�消耗:1000金币"Cost: 1000 gold coins
-��人数"Number of people
+��人数"
+Guild Size
 �要求"Request
 4�家族名称族名称"Family Name Family Name
-!�申请加入"Apply to join
-�族长"	Patriarch
+�申请加入"Join
+�族长"Master
 �修炼"Practice
 �	生命石"
 Life Stone
@@ -2113,7 +2116,7 @@ E��可以获得经验加成20%""You can gain 20% experience bonus.
 3��你当前的等级:25"Your current level: 25
 C��作者真帅(29级)"(The author is really handsome (level 29)
 8��世界等级说明"Description of the world level
-8��今日兑换次数:0"Number of exchanges today: 0
+(��今日兑换次数:0"Exchanges: 0
 '��修炼经验"Practice experience
 '��经验修炼"Experience training
 Y��#当前可提取修炼经验：10000".Current extractable training experience: 10000
@@ -2125,7 +2128,7 @@ Y��#当前可提取修炼经验：10000".Current extractable training experie
 0��领取次数： 1/2"Collection times: 1/2
 E��下次可领取倒计时:"$Next time you can get the countdown:
 "��首胜名单"First win list
-$��首胜奖励"First win reward
+��首胜奖励"	First win
 $��个人奖励"Personal rewards
 "��（已刷新）"(Refreshed)
 ,¨领主升级: 1/10"Lord upgrade: 1/10
@@ -2146,21 +2149,21 @@ Introduction to Skills
 Introduction to Skills 
 Introduction to Skills 
 Introduction to Skills
-"Ũ困难模式"Difficult mode
-ƨ地狱模式"	Hell mode
+Ũ困难模式"	Difficult
+ƨ地狱模式"Hell
  Ǩ怪物掉落"Monster drop
 "Ȩ次级领主"Secondary Lord
 $ɨ刷新时间："Refresh time:
-�ʨx提示:每次击败领主获得1点领主经验,领主升级后掉落会增加，实力会上升，冷却时间会延长"�Tip: Each time you defeat a Lord, you gain 1 point of Lord experience. When the Lord is upgraded, the drop will increase, the strength will increase, and the cooldown will be extended.
+�ʨx提示:每次击败领主获得1点领主经验,领主升级后掉落会增加，实力会上升，冷却时间会延长"xDefeat the BOSS to get BOSS EXP. When the BOSS levels up, its drops will increase, but the cooldown time will be longer.
 0˨钢铁护卫-丝里安"Steel Guard-Silian
 #̨普通奖励"Ordinary reward
 %ͨ困难奖励"Difficulty reward
 Ψ地狱奖励"Hell reward
 �ϨV提示:首胜奖励为全服第一次击败怪物的玩家获得,邮件自动发放。"�Prompt: The first victory reward is obtained by the player who defeats the monster for the first time in full service, and the mail is automatically issued.
-#Ш实力奖励"Strength reward
+Ш实力奖励"Strength
 �Ѩ6战区实力值奖励（数量有限！先到先得）"DWarzone Strength Rewards (limited quantity! First come, first served
 9Ҩ我的战力：1000000"My fighting power: 1000000.
-&Ө剩余数量"Remaining quantity
+Ө剩余数量"	Remainder
 ;Ԩ领取人数已满"!The number of recipients is full.
 ;ը战力达到10000""Combat power has reached the 10000
 $֨我的等级:99"My rating: 99
@@ -2337,9 +2340,9 @@ Iߩ变身大赛活动开启")Transformation Competition Activity Opens
 ��`新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"�New Year's Activities: Disruptive Nian Beast appears in the land of treasure, players who want to go take firecrackers and hurry to go!
 ���f家族入侵:家族出现了入侵怪兽,想要奖励的小勇士请带上你们的武器速速前往!"�Family Invasion: There is an invasion monster in the family. If you want to be rewarded, please bring your weapons and go quickly!
 ��P竞技场活动已经开启,想要证明自己能力的小伙伴记得前往噢!"UArena activities have been opened, if you want to prove your ability, remember to go!
-%�中级领主"Intermediate Lord
-�高级领主"	High Lord
-%�终级领主"The Ultimate Lord
+�中级领主"Common
+�高级领主"Greater
+�终级领主"Final
 7�天下第一勇士"The best warrior in the world
 9�天下第二勇士"The second warrior in the world
 8��天下第三勇士"The third warrior in the world
@@ -2589,7 +2592,7 @@ $ī永恒结界"Eternal boundary
 %߫精灵列表"A list of sprites
 &�内存占用:"Memory footprint:
 �延迟:"Delay:
-�数量:"Quantity
+�数量:"	Quantity:
 �获得"Get
 �族员"Clan member
 !�	副族长"Deputy Patriarch
@@ -3176,7 +3179,7 @@ K��是否消耗{0}金币召唤{1}?"$Does it cost {0} gold to summon {0}?
 ��	免费:{}"	Free: {0}
 .��请选择道具！"Please select props!
 W��单次购买数量最多为100"1The maximum quantity for a single purchase is 100
-��	进度值"Progress value
+��	进度值"Progress
 <��任务还没有完成！"The mission is not complete!
 =��已经领取过奖励！"The reward has been received!
 ,��新关卡开启！"A new level opens!
@@ -3825,12 +3828,12 @@ F��每天只能重置三次"&It can only be reset three times a day
 {0} s team
 6�上阵宠物不足三只!"Less than three pets!
 �
-{0}-{1}名"{0}-{1} Name
+{0}-{1}名"Rank {0}-{1}
 -�认证提示"Prompt for authentication
 B�实名认证成功!"'Real name authentication is successful!
 N�{0} 你本月已充值{1}元"*{0} You have recharged {1} yuan this month
 *��防沉迷提示"Anti-addiction tips
-��赠送"Give as a present
+��赠送"Gift
 ;��当前奖励已领取"Current award has been claimed
 F��充值金额不足 {0}元"%Recharge amount is less than {0} yuan
 w��"累冲{0}元， 获得以下奖励"MIf the accumulated charge is {0} yuan, the following rewards will be obtained
@@ -3969,7 +3972,8 @@ i�%注入成功!本次增加{0}点魂值"<Injection successful! This time, {
 ��l当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，当前充值金额{1}元"�If the current recharge amount reaches {0} yuan, the second life skill field will be automatically opened, and the current recharge amount is {1} yuan.
 ���当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启"�If the current accumulated recharge amount reaches {0} yuan, the second life skill field will be automatically opened. You have already met the conditions. Please click to open it.
 &�活力不足！"Lack of energy!
-]�"熟练度:{0}-{1}点 上限:{2}点"3Proficiency: {0}-{1} Points Upper Limit: {2} Points
+]�"熟练度:{0}-{1}点 上限:{2}点"3Proficiency: {0}-{1}
+Points Upper Limit: {2} Points
 /�当前活力:  {0}"Current activity: {0}
 !�生活熔炼"Life smelting
 m�.该装备镶嵌有宝石，是否放入熔炼?"7The Equip is inlaid with gems. Is it put into smelting?
@@ -4135,14 +4139,14 @@ W��已达到最大修炼次数！"1The maximum number of practices has been 
 {0}"Next Refresh Time 
  {0}
 ��(已刷新)"(Refreshed)
-6��领主升级: {0}/{1}"Overlord Upgrade: {0}/{1}
-/��怪物经验:{0}"Monster Experience: {0}
+.��领主升级: {0}/{1}"Boss Exp: {0}/{1}
+'��怪物经验:{0}"Experience: {0}
 "��冷却时间:"Cooling time:
 *��{0} (时间： {1})"{0} (Time: {1})
 )��暂无上榜!"Not on the list yet!
 ���@对应难度的领主怪物未被击败,请先击败对应怪物"vThe Lord monster of the corresponding difficulty has not been defeated. Please defeat the corresponding monster first.
 .��我的战力：{0}"My Combat Power: {0}
-/��战力达到{0}"Combat Power Reaches {0}
+��战力达到{0}"{0} CP
 1��战力不足！"Not enough fighting power!
  ��我的等级："	My level:
 )��等级达到{0}级"Level up to {0}
@@ -4186,7 +4190,7 @@ I��点击显示服务器列表..."#Click to display a list of servers.
 ��
 等级 {0}"Lv {0}
 ��等级"Lv
-��成长之路"System Task
+��成长之路"	Grow Task
 ��学习技能"Learn
 $��任务描述"Task Description
 ��通用"	Universal

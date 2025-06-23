@@ -140,11 +140,17 @@ namespace ET
             self.MeltingComponent = self.AddChild<UISkillMeltingComponent, GameObject>(self.Melt);
             self.OnInitUI();
             self.OnBtn_Plan(1);
+            
+            self.OnLanguageUpdate();
         }
     }
 
     public static class UISkillMakeComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillMakeComponent self)
+        {
+            self.Lab_ShuLianShow.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+        }
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
         {
