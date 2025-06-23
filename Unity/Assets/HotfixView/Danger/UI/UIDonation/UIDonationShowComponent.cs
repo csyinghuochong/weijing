@@ -6,6 +6,9 @@ namespace ET
 {
     public class UIDonationShowComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Hint_1;
+        public GameObject Text_Hint_2;
+        public GameObject RankDesListNode;
         public GameObject Btn_Donation_2;
         public GameObject InputFieldNumber;
         public GameObject ImageButton;
@@ -18,6 +21,8 @@ namespace ET
         public string AssetPath = string.Empty;
 
         public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
     public class UIDonationShowComponentDestroy : DestroySystem<UIDonationShowComponent>
@@ -28,6 +33,8 @@ namespace ET
             {
                 ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -39,6 +46,11 @@ namespace ET
             self.uIDonationShowItems.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Hint_1 = rc.Get<GameObject>("Text_Hint_1");
+            self.Text_Hint_2 = rc.Get<GameObject>("Text_Hint_2");
+            
+            self.RankDesListNode = rc.Get<GameObject>("RankDesListNode");
+            
             self.Btn_Donation_2 = rc.Get<GameObject>("Btn_Donation_2");
             ButtonHelp.AddListenerEx(self.Btn_Donation_2, () => { self.OnButton_Donation2().Coroutine(); });
 
@@ -62,12 +74,87 @@ namespace ET
 
             self.RankListNode = rc.Get<GameObject>("RankListNode");
 
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnUpdateUI().Coroutine();
         }
     }
 
     public static class UIDonationShowComponentSystem
     {
+        public static void StoreUIdData(this UIDonationShowComponent self)
+        {
+            int childCount = self.RankDesListNode.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = self.RankDesListNode.transform.GetChild(i);
+                self.UIOldPositionList.Add(transform.GetComponent<RectTransform>().sizeDelta);
+
+                if (i == 4)
+                {
+                    self.UIOldPositionList.Add(transform.Find("Text_Other").GetComponent<RectTransform>().localPosition);
+                }
+            }
+        }
+
+        public static void OnLanguageUpdate(this UIDonationShowComponent self)
+        {
+            Transform transform = self.RankDesListNode.transform.GetChild(0);
+            Vector2 size = self.UIOldPositionList[0];
+            if (GameSettingLanguge.Language != 0)
+            {
+                size.y = 200f;
+            }
+            transform.GetComponent<RectTransform>().sizeDelta = size;
+            
+            transform = self.RankDesListNode.transform.GetChild(1);
+            size = self.UIOldPositionList[1];
+            if (GameSettingLanguge.Language != 0)
+            {
+                size.y = 200f;
+            }
+            transform.GetComponent<RectTransform>().sizeDelta = size;
+            
+            transform = self.RankDesListNode.transform.GetChild(2);
+            size = self.UIOldPositionList[2];
+            if (GameSettingLanguge.Language != 0)
+            {
+                size.y = 200f;
+            }
+            transform.GetComponent<RectTransform>().sizeDelta = size;
+            
+            transform = self.RankDesListNode.transform.GetChild(3);
+            size = self.UIOldPositionList[3];
+            if (GameSettingLanguge.Language != 0)
+            {
+                size.y = 200f;
+            }
+            transform.GetComponent<RectTransform>().sizeDelta = size;
+            
+            transform = self.RankDesListNode.transform.GetChild(4);
+            size = self.UIOldPositionList[4];
+            if (GameSettingLanguge.Language != 0)
+            {
+                size.y = 300f;
+            }
+            transform.GetComponent<RectTransform>().sizeDelta = size;
+
+            transform = transform.Find("Text_Other");
+            Vector2 position = self.UIOldPositionList[5];
+            if (GameSettingLanguge.Language != 0)
+            {
+                position.y = -115f;
+            }
+            transform.GetComponent<RectTransform>().localPosition = position;
+            
+            LayoutRebuilder.ForceRebuildLayoutImmediate(self.RankDesListNode.GetComponent<RectTransform>());
+            
+            self.Text_Hint_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_Hint_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+            self.Text_MyDonation.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 28;
+        }
 
         public static void On_Button_Donation(this UIDonationShowComponent self)
         {

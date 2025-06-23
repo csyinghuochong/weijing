@@ -834,6 +834,11 @@ namespace ET
                     uiFirstWinComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIDonationShowComponent uiDonationShowComponent)
+                {
+                    uiDonationShowComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
