@@ -40,6 +40,9 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.UIMainBuffItem = rc.Get<GameObject>("UIMainBuffItem");
             self.UIMainBuffItem.SetActive(false);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -49,11 +52,16 @@ namespace ET
         public override void Destroy(UIMainBuffComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIMainBuffComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMainBuffComponent self)
+        {
+            self.ResetUI();
+        }
 
         public static void OnUpdate(this UIMainBuffComponent self)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIMainTaskComponent : Entity, IAwake<GameObject>
+    public class UIMainTaskComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Btn_RoseTask;
         public GameObject TaskShowList;
@@ -12,8 +12,7 @@ namespace ET
 
         public List<UIMainTaskItemComponent> TrackTaskList = new List<UIMainTaskItemComponent>();
     }
-
-
+    
     public class TaskShowSetComponentAwakeSystem : AwakeSystem<UIMainTaskComponent, GameObject>
     {
         public override void Awake(UIMainTaskComponent self, GameObject gameObject)
@@ -29,12 +28,27 @@ namespace ET
 
             self.TrackTaskList.Clear();
             self.OnUpdateUI();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIMainTaskComponentDestroySystem : DestroySystem<UIMainTaskComponent>
+    {
+        public override void Destroy(UIMainTaskComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class TaskShowSetComponentSystem
     {
-
+        public static void OnLanguageUpdate(this UIMainTaskComponent self)
+        {
+            self.OnUpdateUI();
+        }
+        
         public static void OnUpdateUI(this UIMainTaskComponent self)
         {
             for (int i = 0; i < self.TrackTaskList.Count; i++)

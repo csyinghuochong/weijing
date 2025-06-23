@@ -51,6 +51,7 @@ namespace ET
         public override void Destroy(UIMapMiniComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -73,11 +74,18 @@ namespace ET
             self.HeadItem = rc.Get<GameObject>("HeadItem");
             self.HeadItem.SetActive(false);
             self.HeadList.SetActive(false);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIMapMiniComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMapMiniComponent self)
+        {
+            self.UpdateSceneName();
+        }
 
         public static void UpdateTianQi(this UIMapMiniComponent self, string tianqi)
         {
@@ -270,12 +278,25 @@ namespace ET
         public static void OnEnterScene(this UIMapMiniComponent self)
         {
             self.LoadMapCamera().Coroutine();
+            
+            self.MainCityShow.SetActive(true);
 
+            self.UpdateSceneName();
+            
+            self.HeadList.SetActive(true);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.MapMiniTimer, self);
+
+            DateTime serverTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+            self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}:{serverTime.Minute}";
+        }
+
+        public static void UpdateSceneName(this UIMapMiniComponent self)
+        {
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             int difficulty = self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            self.MainCityShow.SetActive(true);
-
+            
             //显示地图名称
             switch (sceneTypeEnum)
             {
@@ -325,12 +346,6 @@ namespace ET
                     break;
             }
 
-            self.HeadList.SetActive(true);
-            TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.MapMiniTimer, self);
-
-            DateTime serverTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
-            self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}:{serverTime.Minute}";
         }
     }
 }

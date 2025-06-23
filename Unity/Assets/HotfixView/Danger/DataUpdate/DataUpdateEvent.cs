@@ -774,6 +774,26 @@ namespace ET
                     uiChengJiuRewardComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleHeadComponent uiRoleHeadComponent)
+                {
+                    uiRoleHeadComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIMainBuffComponent uiMainBuffComponent)
+                {
+                    uiMainBuffComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIMainTaskComponent uiMainTaskComponent)
+                {
+                    uiMainTaskComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIMapMiniComponent uiMapMiniComponent)
+                {
+                    uiMapMiniComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

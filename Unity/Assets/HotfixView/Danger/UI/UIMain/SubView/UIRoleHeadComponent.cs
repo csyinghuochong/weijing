@@ -73,6 +73,9 @@ namespace ET
             self.Lab_ServerName.GetComponent<Text>().text = serverName;
 
             self.InitShow();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIRoleHeadComponentDestroy: DestroySystem<UIRoleHeadComponent>
@@ -88,10 +91,16 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIRoleHeadComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRoleHeadComponent self)
+        {
+            self.InitShow();
+        }
 
         public static void OnEnterScene(this UIRoleHeadComponent self, int sceneTypeEnum)
         {
