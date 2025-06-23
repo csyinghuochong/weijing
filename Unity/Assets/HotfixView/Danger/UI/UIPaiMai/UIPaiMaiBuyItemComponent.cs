@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPaiMaiBuyItemComponent: Entity, IAwake<GameObject>
+    public class UIPaiMaiBuyItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         /// <summary>
         /// 弹出下拉列表按钮
@@ -46,11 +46,27 @@ namespace ET
             self.Text_Name = rc.Get<GameObject>("Text_Name");
 
             self.InitItemUI();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIPaiMaiBuyItemComponentDestroySystem : DestroySystem<UIPaiMaiBuyItemComponent>
+    {
+        public override void Destroy(UIPaiMaiBuyItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIPaiMaiBuyItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPaiMaiBuyItemComponent self)
+        {
+            self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
+        }
+
         public static void InitItemUI(this UIPaiMaiBuyItemComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");

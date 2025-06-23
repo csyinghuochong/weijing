@@ -794,6 +794,11 @@ namespace ET
                     uiMapMiniComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPaiMaiBuyItemComponent uiPaiMaiBuyItemComponent)
+                {
+                    uiPaiMaiBuyItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
