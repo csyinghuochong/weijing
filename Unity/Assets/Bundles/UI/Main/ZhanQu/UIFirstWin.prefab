@@ -104,6 +104,8 @@ MonoBehaviour:
     gameObject: {fileID: 6996348126779075249}
   - key: Text_BossExp
     gameObject: {fileID: 3689878428705852284}
+  - key: Text_BossHint
+    gameObject: {fileID: 1285215809792060019}
 --- !u!1 &30733344714475161
 GameObject:
   m_ObjectHideFlags: 0

@@ -829,6 +829,11 @@ namespace ET
                     uiNewYearCollectionWordIemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIFirstWinComponent uiFirstWinComponent)
+                {
+                    uiFirstWinComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIFirstWinComponent : Entity, IAwake, IDestroy
     {
+	    public GameObject Text_BossHint;
 	    public GameObject Text_BossExp;
 		public Text Text_BossFreshTIme;
         public Text Text_BossDevpName;
@@ -55,6 +56,7 @@ namespace ET
 			self.FirstWinId = 0;
 			self.LastUpdateTime = 0;
 			self.UIItemComponents.Clear();
+			self.Text_BossHint = rc.Get<GameObject>("Text_BossHint");
 			self.Text_JiSha_3 = rc.Get<GameObject>("Text_JiSha_3");
 			self.Text_JiSha_2 = rc.Get<GameObject>("Text_JiSha_2");
 			self.Text_JiSha_1 = rc.Get<GameObject>("Text_JiSha_1");
@@ -107,13 +109,35 @@ namespace ET
 			self.UITypeViewComponent.TypeButtonInfos = self.InitTypeButtonInfos();
 			
 			self.ReqestFirstWinInfo().Coroutine();
+			
+			self.OnLanguageUpdate();
+			DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 		}
     }
 
+    public class UIFirstWinComponentDestroySystem : DestroySystem<UIFirstWinComponent>
+    {
+	    public override void Destroy(UIFirstWinComponent self)
+	    {
+		    DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+	    }
+    }
+    
     public static class UIFirstWinComponentSystem
     {
+	    public static void OnLanguageUpdate(this UIFirstWinComponent self)
+	    {
+		    self.Button_FirstWin.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 28;
+		    self.Button_FirstWinSelf.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 28;
+		    
+		    self.Text_JiSha_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 25;
+		    self.Text_JiSha_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 25;
+		    self.Text_JiSha_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 25;
+		    
+		    self.Text_BossHint.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 26;
+	    }
 
-		public static void OnButton_FirstWin(this UIFirstWinComponent self)
+	    public static void OnButton_FirstWin(this UIFirstWinComponent self)
 		{
 			self.UIFirstWinReward.OnUpdateUI( self.FirstWinId );
 		}
