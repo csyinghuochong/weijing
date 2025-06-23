@@ -769,6 +769,11 @@ namespace ET
                     uiUnionListItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIChengJiuRewardComponent uiChengJiuRewardComponent)
+                {
+                    uiChengJiuRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

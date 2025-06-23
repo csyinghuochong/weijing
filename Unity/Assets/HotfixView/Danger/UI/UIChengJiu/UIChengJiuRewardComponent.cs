@@ -55,6 +55,9 @@ namespace ET
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
             self.InitRewardUIList();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     
@@ -70,10 +73,18 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIChengJiuRewardComponentSystem
     {
+        public static void OnLanguageUpdate(this UIChengJiuRewardComponent self)
+        {
+            self.Text_RewardPoint.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_RewardDesc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 28;
+        }
+
         public static void OnUpdateUI(this UIChengJiuRewardComponent self)
         {
             self.Text_TotalPoint.GetComponent<Text>().text = self.ChengJiuComponent.TotalChengJiuPoint.ToString();
