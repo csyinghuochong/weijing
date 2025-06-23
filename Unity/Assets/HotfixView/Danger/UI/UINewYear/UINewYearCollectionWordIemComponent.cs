@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public  class UINewYearCollectionWordIemComponent : Entity, IAwake<GameObject>
+    public  class UINewYearCollectionWordIemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject WordList;
         public GameObject RewardList;
@@ -28,11 +28,27 @@ namespace ET
             self.LabDuiHuan = rc.Get<GameObject>("LabDuiHuan");
             self.ButtonDuiHuan = rc.Get<GameObject>("ButtonDuiHuan");
             ButtonHelp.AddListenerEx(self.ButtonDuiHuan, () => { self.OnButtonDuiHuan().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UINewYearCollectionWordIemComponentDestroySystem : DestroySystem<UINewYearCollectionWordIemComponent>
+    {
+        public override void Destroy(UINewYearCollectionWordIemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UINewYearCollectionWordIemComponentSystem
     {
+        public static void OnLanguageUpdate(this UINewYearCollectionWordIemComponent self)
+        {
+            self.ButtonDuiHuan.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+        }
+
         public static void OnInitUI(this UINewYearCollectionWordIemComponent self, ActivityConfig  activityConfig)
         {
             self.ActivityConfig = activityConfig;
