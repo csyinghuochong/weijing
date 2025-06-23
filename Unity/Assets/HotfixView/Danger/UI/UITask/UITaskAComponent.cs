@@ -72,6 +72,9 @@ namespace ET
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskComplete, self);
+			
+			self.OnLanguageUpdate();
+			DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 
 			self.InitTaskTypeList();
 		}
@@ -86,11 +89,17 @@ namespace ET
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.TaskComplete, self);
+			DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 		}
 	}
 
 	public static class UIRoleTaskAComponentSystem
 	{
+		public static void OnLanguageUpdate(this UITaskAComponent self)
+		{
+			self.Text_comTaskNpc.SetActive(GameSettingLanguge.Language == 0);
+		}
+		
 
 		public static void OnTaskGiveUp(this UITaskAComponent self)
 		{
