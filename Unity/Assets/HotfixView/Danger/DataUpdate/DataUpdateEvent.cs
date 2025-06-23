@@ -849,6 +849,11 @@ namespace ET
                     uiHuntTaskItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPopularizeComponent uiPopularizeComponent)
+                {
+                    uiPopularizeComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPopularizeComponent : Entity, IAwake
+    public class UIPopularizeComponent : Entity, IAwake, IDestroy
     {
+        public GameObject TipListNode;
         public GameObject Text_Reward_2;
         public GameObject Text_Reward_1;
         public GameObject Text_Button_Copy;
@@ -30,6 +31,8 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.TipListNode = rc.Get<GameObject>("TipListNode");
+            
             self.Text_Button_Copy = rc.Get<GameObject>("Text_Button_Copy");
             ButtonHelp.AddListenerEx(self.Text_Button_Copy, self.OnText_Button_Copy);
 
@@ -49,11 +52,26 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonOk, () => { self.OnButtonOk().Coroutine(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine(); };
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIPopularizeComponentDestroySystem : DestroySystem<UIPopularizeComponent>
+    {
+        public override void Destroy(UIPopularizeComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPopularizeComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPopularizeComponent self)
+        {
+            // LayoutRebuilder.ForceRebuildLayoutImmediate(self.TipListNode.GetComponent<RectTransform>());
+        }
 
         public static void OnText_Button_Copy(this UIPopularizeComponent self)
         {
