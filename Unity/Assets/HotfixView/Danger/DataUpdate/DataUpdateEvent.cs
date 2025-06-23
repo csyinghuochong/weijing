@@ -804,6 +804,16 @@ namespace ET
                     uiRankShowItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRankRewardComponent uiRankRewardComponent)
+                {
+                    uiRankRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIRankPetRewardComponent uiRankPetRewardComponent)
+                {
+                    uiRankPetRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
