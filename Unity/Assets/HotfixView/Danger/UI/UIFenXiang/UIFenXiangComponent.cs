@@ -104,12 +104,21 @@ namespace ET
                 //rc.Get<GameObject>("Btn_Type3").transform.position = vector3;
                 // vector3.y -= 160;
                 // rc.Get<GameObject>("Btn_Type4").transform.position = vector3;
-                
-                self.UIPageButtonComponent.OnSelectIndex(2);
             }
-            else
+
+            if (GameSettingLanguge.Language != 0)
             {
-                self.UIPageButtonComponent.OnSelectIndex(0);
+                rc.Get<GameObject>("Btn_Type1").SetActive(false);
+            }
+            
+            var buttonNames = new[] { "Btn_Type1", "Btn_Type2", "Btn_Type3", "Btn_Type4", "Btn_Type5" };
+            for (int i = 0; i < buttonNames.Length; i++)
+            {
+                if (rc.Get<GameObject>(buttonNames[i]).activeSelf)
+                {
+                    self.UIPageButtonComponent.OnSelectIndex(i);
+                    break;
+                }
             }
             
             self.OnLanguageUpdate();
