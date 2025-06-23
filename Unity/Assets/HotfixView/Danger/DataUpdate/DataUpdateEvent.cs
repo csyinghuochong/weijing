@@ -844,6 +844,11 @@ namespace ET
                     uiDonationUnionComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIHuntTaskItemComponent uiHuntTaskItemComponent)
+                {
+                    uiHuntTaskItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
