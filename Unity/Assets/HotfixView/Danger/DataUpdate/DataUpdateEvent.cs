@@ -819,6 +819,11 @@ namespace ET
                     uiRechargeRewardComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UINewYearMonsterComponent uiNewYearMonsterComponent)
+                {
+                    uiNewYearMonsterComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
