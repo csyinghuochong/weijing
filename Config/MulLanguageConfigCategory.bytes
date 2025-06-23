@@ -159,7 +159,7 @@ W�0说话内容。。。。。。。。。。。。"The following area is n
 '�洛兰深处"Challenge level: 10
 /�挑战等级:10级"Energy consumption: 5
 1�消耗体力：5"Expend physical energy: 5
-'�开始冒险"Start the adventure
+�开始冒险"Start
 �返回"Return
 �再次挑战"Rechallenge
 ;�10秒后退出副本"Exit the instance in 10 seconds
@@ -281,7 +281,7 @@ o՛-3.击败怪物等级不能低于自身9级。":3. The level of defeating 
 =�53:14:52秒后免费领取"Free after 53:14:52 seconds
 "�奖励展示"Reward display
 ��T提示：每次制作成功菜肴，如果配方正确，可以领悟对应的食谱"rTip: Every time you make a successful dish, if the recipe is correct, you can understand the corresponding recipe.
-)�制造配方"Manufacturing formula
+�制造配方"Formula
 �锁定"Locked
  �开始制作"Start making
 t�61. 使用不同的食材可以制造出不同的菜肴"61. Use different ingredients to make different dishes.
@@ -362,9 +362,9 @@ _��*玩家幸福的瞬间来到你的家园。"-The player's happy moment com
 ��储藏"Storage
 ��一键放入"Mass Deploy
 ��我的背包"My Bag
- ��我的仓库"My warehouse
-*��整理仓库"Sort out the warehouse
-,��一键取出"Take it out with one key
+��我的仓库"	Warehouse
+��整理仓库"Arrange
+��一键取出"Take out
 ��生活"Life
 !��	耕地："Cultivated land:
 ��	人口："Population:
@@ -639,20 +639,20 @@ s��*攻击有一定概率恢复己方生命值"AAttacks have a certain probab
 (��小树妖:挑战"Dryad: Challenge
 ��皮肤名称"	Skin name
 [��恭喜你成功抓捕精灵!"7Congratulations on your success in capturing the elves!
-.��探宝仓库"Treasure hunting warehouse
+��探宝仓库"	Warehouse
 %��章节选择"Chapter selection
 7��今日累计次数：1"Cumulative times today: 1
-3��第一章探宝"Chapter One Treasure Hunting
+ ��第一章探宝"	Chapter 1
 +��探宝选择"Treasure Hunting Choice
-2��第二章探宝"Chapter II Treasure Hunting
-7��第三章探宝" Chapter III Treasure Exploration
-5��第四章探宝"Chapter 4 Treasure Exploration
-5��第五章探宝"Chapter 5 Treasure Exploration
-X��1级可以激活此探宝选项"1Level 1 can activate this treasure hunting option
+ ��第二章探宝"	Chapter 2
+ ��第三章探宝"	Chapter 3
+ ��第四章探宝"	Chapter 4
+ ��第五章探宝"	Chapter 5
+Y��1级可以激活此探宝选项"2Level 1 can activate this treasure hunting option.
 [�� 18级可以激活此探宝选项"3Level 18 can activate this treasure hunting option.
-Z�� 30级可以激活此探宝选项"2Level 30 can activate this treasure hunting option
+[�� 30级可以激活此探宝选项"3Level 30 can activate this treasure hunting option.
 [�� 40级可以激活此探宝选项"3Level 40 can activate this treasure hunting option.
-Z�� 50级可以激活此探宝选项"2Level 50 can activate this treasure hunting option
+[�� 50级可以激活此探宝选项"3Level 50 can activate this treasure hunting option.
 ��说明"Explain
 ����1.抽奖获得的各个奖励,其概率完全由系统随机决定。
 2.每次使用钻石抽取会计入当前的累计次数,累计次数达到一定值可以领取奖励，累计次数每日清空。"�1. The probability of each prize obtained by lottery is completely determined by the system at random. 
@@ -669,7 +669,7 @@ U��神兽碎片和珍品羽毛"2Fragments of mythical beasts and precious fe
 ��约54%"About 54 percent
 =��今日探宝次数:10" Treasure hunting times today: 10
 �F提示：今日探宝次数大于250次后，探宝消耗自动打8折"�Prompt: After the number of treasure hunting is more than 250 times today, the consumption of treasure hunting will be automatically discounted by 20%.
-%Þ随机获得"Randomly obtained
+Þ随机获得"Randomly
 QĞ抽卡次数达到11111次"/The number of card drawing reaches 1,111 times.
 �Ş3提示：抽奖背包，该仓库不能手动存入"EPrompt: Lucky draw backpack, this warehouse cannot be stored manually
 ƞ一键出售"Sell
@@ -1103,7 +1103,7 @@ Use props:
 ��抓"Grab
 6��抓捕成功率： 40%"Arrest success rate: 40%
 ���B提示:点击使用对应道具,可以增加对应抓铺成功率!"lTip: Click to use the corresponding props, you can increase the success rate of the corresponding grab shop!
-/¡消耗金币:"Consumption of gold coins:
+¡消耗金币:"	Consume :
 ,á当前金币:  100"Current Coins: 100
 ġ制 造"Make
 š制作数量："Number:
@@ -1114,7 +1114,7 @@ Use props:
 %ʡ可学习列表"Learnable list
 ,ˡ学习等级:10级"Learning level: 10
 ̡	熟练度"Proficiency
-"͡开始学习"Start learning
+͡开始学习"Learning
 *Ρ学习消耗:"Learning consumption:
 -ϡ需要熟练度:"Proficiency required:
 С锻造"Forging
@@ -1153,9 +1153,9 @@ Stall area
 ���6.每天晚上21点15分，会在宝藏之地刷新年兽：夕，此怪物攻击可以造成伤害，击败时将掉落大量战利品喔！"�6. Every night at 21:15, the New Year Beast will be refreshed in the Treasure Land. This monster can deal damage when it attacks. When it is defeated, it will drop a lot of booty!
 (��确认转职"Confirm the transfer
 (�重置职业"Reset the occupation
-%�攻击能力"Attack capability
-&�防御能力"Defense capability
-&�辅助能力"Auxiliary capacity
+�攻击能力"Attack
+�防御能力"Defense
+�辅助能力"	Auxiliary
 #�职业转职"Career transfer
 !�装备类型"Type of Equip
 "��技能列表"List of skills
@@ -1164,8 +1164,8 @@ Stall area
 ��武神2"	Wu Shen 2
 ��武神3"	Wu Shen 3
 $��武神武神"Wu Shen, Wu Shen
-(��剑类专精"Sword Specialization
-.��布甲专精"Cloth armor is specialized
+��剑类专精"Swords
+��布甲专精"Clothes
 Y��$提示:18级开启新职业转职！"-Prompt: Level 18 opens a new career transfer!
 %��职业名字"Professional name
 5��转职新增技能"New Skills for Job Transfer
@@ -1284,7 +1284,7 @@ EԢ宠物蛋和其他橙色道具"Pet eggs and other orange props
 1�天生存在技能"There are innate skills
 w�0提示：以上宠物合成后随机出现一种"?Prompt: One of the above pets appears randomly after synthesis.
 9�概率消失技能"Probability Disappearance Skill
-%�一键合成"One key synthesis
+�一键合成"	Synthesis
 '�宠物之核列表"Pet core list
 ��@提示:拖拽相同的碎片即可合成更高级的宠物之核"CTip: Drag the same fragment to synthesize a more advanced pet core.
 �宠物核心"Pet core
@@ -1381,7 +1381,7 @@ F��请选择要放置的道具"#Please select the prop to be placed
  ��确定锁定"Confirm lock
 $��同伴效果"Companion effect
 I�� 激活(1/1) 受到伤害减低5%"!Active (1/1) takes 5% less damage
-%��兑换宠物"Exchange for pets
+��兑换宠物"Exchange
 0��抽取次数：0/20"Number of draws: 0/20
 ���f获得概率
 大众         55%
@@ -1420,7 +1420,7 @@ Luck value
 3.此探索概率说明仅为消耗钻石的概率。"�1. The probability of each prize obtained by lottery is completely determined by the system at random. 
 2. Each time you use Diamond Exploration, you will get a different amount of luck value. When the luck value reaches 100 points, you will definitely get a mutated pet. 
 3. This discovery probability statement is only the probability of consuming diamonds.
-�ΣF提示：今日探宝次数大于300次后，探索消耗自动打8折"�Prompt: After the number of treasure hunting is more than 300 times today, the exploration consumption will be automatically discounted by 20%.
+�ΣF提示：今日探宝次数大于300次后，探索消耗自动打8折"7Today's treasure hunts: 20% off after 300 explorations.
 Tϣ$较小概率出现稀有的宠物蛋"(Rare pet eggs are less likely to appear.
 RУ$较大概率出现稀有的宠物蛋"&A greater probability of rare pet eggs
 _ѣ$一定概率出现珍贵的宠物蛋"3Precious pet eggs appear with a certain probability
@@ -1442,14 +1442,14 @@ $ڣ拥有宠物蛋"Have pet eggs
 �ݣE提示：可以在此处抽取，可获得宠物之核相关道具。">Tip: You can draw here to get items related to the pet's core.
 .ޣ探索宠物核心"Explore the pet core
 /ߣ核心探索说明"Core Exploratory Note
-1�宠物探索仓库"Pet Discovery Warehouse
+'�宠物探索仓库"Pet Warehouse
 �分解"
 Disenchant
-"�取出宠物"Remove the pet
+�取出宠物"Remove
 .�宠物数量： 1/2"Number of pets: 1/2
 �星级奖励"Star awards
 '�调整阵容"Adjust the line-ups
-'�开始挑战"Start the challenge
+�开始挑战"Start
 ;�建议宠物等级达到1级"Recommended Pet Level 1
 �锁"Lock
 3�今日进入次数:"Number of entries today:
@@ -1510,18 +1510,19 @@ Formation
 ��挖矿"Mining
 ��	装备锁"Equip the lock
 ��	宠物锁"Pet lock
-)��装备锁定954800"Arm lock 954800
-"��锁定装备"Lock the Equip
-$��解锁装备"Unlock the Equip
+"��装备锁定954800"Arm lock
+��锁定装备"Lock
+��解锁装备"Unlock
 !��锁定规则"Locking rules
 ���z1.装备锁定后不能出售。
 2.装备锁定后不能分解、熔炼。
 3.装备锁定后不能在拍卖行上出售。"�1. Equip cannot be sold after it is locked. 
 2. After the Equip is locked, it cannot be decomposed or smelted. 
 3. Equip cannot be sold on the auction house after it is locked.
- ��锁定宠物"Lock the pet
-"��解锁宠物"Unlock the pet
-#��宠物加锁"Pets are locked
+��锁定宠物"Lock
+��解锁宠物"Unlock
+��宠物加锁"
+Lock a pet
 ���b1.宠物锁定后不能洗炼。
 2.宠物锁定后不能合成。
 2.宠物锁定后不能放生。"�1. Pets cannot be washed after being locked. 
@@ -1535,7 +1536,7 @@ $��解锁装备"Unlock the Equip
 2. The more layers, the more rewards you get.
 #��进入魔塔"Enter the tower
 ��10层"Floor 10
-��排行奖励"Rank reward
+��排行奖励"Reward
 !��天梯奖励"Ladder reward
 ��我的排名"
 My ranking
@@ -1635,10 +1636,10 @@ p��&对应部位的装备提升25的属性"BThe Equip of the corresponding pa
 &��开启抽取"Turn on extraction
 p��7提示:点击停止即可随机列表中的一个奖励"1Tip: Click Stop to randomize a reward in the list
 E��这里有许许多多的宝藏!"There are many treasures here!
-,��账号仓库"Account number warehouse
-!��宝石仓库"Gem warehouse
+��账号仓库"Account
+��宝石仓库"Gem
 ���K提示：账号仓库只能存放装备用于账号之间的装备互通。"WPrompt: The account warehouse can only store Equip for Equip exchange between accounts.
-#��一键存放"One key storage
+��一键存放"storage
 ���R提示：只能存储宝石,野外获得宝石将自动存放进宝石仓库中。"jTip: Only gems can be stored. Gems obtained in the wild will be automatically stored in the gem warehouse.
 ����它可以让你的技能产生变化!
 不同类型的武器对应不同的技能哦!
@@ -1650,7 +1651,7 @@ U��!是否原因帮他完成任务？",Is the reason to help him complete the
 ��是"Yes
 ��否"No
 %��点击继续"Click to continue
-��洗炼"Wash and refine
+��洗炼"Wash
 ��传承"Inheritance
 ����1.洗炼装备可以让装备的洗炼属性产生变化。
 2.洗炼可以洗出额外的属性，如果运气好也可以在装备中发现隐藏技能。
@@ -1665,32 +1666,33 @@ U��!是否原因帮他完成任务？",Is the reason to help him complete the
 2. The use of Diamond Washing is not affected by the level of the Master Washing, and can
 3. The probability of using diamond to wash and refine the best attributes will be relatively high. activate all Washing skills.
 %��装备传承"Equip inheritance
-+��传承消耗"Inheritance consumption
-.��传承鉴定"Inheritance identification
+��传承消耗"Consumption
+"��传承鉴定"Identification
 ����提示: 60级以上的传承装备可以在这里进行3次传承属性的鉴定。
           饰品部位不能传承鉴定，传承鉴定无法转移。"�Tip: Inheritance Equip above level 60 can be identified here for 3 inheritance attributes. 
 Ornament parts cannot be identified by inheritance, and inheritance identification cannot be transferred.
-u��(提示:点击鉴定会立即消耗材料"ETip: Clicking on the appraisal will consume the material immediately.
-���.同属性的传承鉴定只能生效1个喔！"KThe inheritance appraisal of the same attribute can only take effect for 1!
+U��(提示:点击鉴定会立即消耗材料"%Tap to Identify—uses materials now!
+\��.同属性的传承鉴定只能生效1个喔！"&Only 1 same-attr inheritance ID works.
 (��18级洗练家"Lv18 Washing house
-*��激活属性："Activate attribute:
+!��激活属性："
+Attribute:
 1��攻击穿透——5%"Attack Penetration-5%
 ���;获得19级洗练家洗练之力，获得极品属性提升"SGet the power of level 19 washing and training, and get the best attribute upgrade.
 ���<提示：每次洗练都可以获取对应的洗练熟练度"KPrompt: You can get the corresponding washing proficiency for each washing.
-(��激活奖励："Activate Rewards:
+��激活奖励："Rewards:
 5��当前洗炼经验"Current refining experience
-&��激活技能："Activate Skill:
+��激活技能："Skill:
 F��今日钻石洗练次数:10"#Number of Diamond Washing Today: 10
 ���F提示：今日洗练次数大于300次后，洗练消耗自动打9折"�Prompt: After the number of washing and training is more than 300 times today, the consumption of washing and training will be automatically discounted by 10 percent
 \��洗练次数达到11111次":The number of times of washing and training reached 1,111.
-0��道具洗炼"Props are washed and refined
-0��洗练五次"Wash and practice five times
+��道具洗炼"Reforge
+"��洗炼五次"Refine 5 times
 7��今日累计次数：0"Cumulative times today: 0
 K��一级洗练家激活".Level 1 washing and training home is activated
 .��洗炼属性"Wash and refine attributes
 l��*转移装备需要放入紫色品质以上":Transfer Equip needs to be put in purple quality or above.
 ���<左边的装备洗炼属性会清空转职至右边的装备"PThe Equip on the left will be cleared and transferred to the Equip on the right.
-��首页"	Home page
+��首页"Home
 ��晶核"Nucleus
 ��爬塔"Climb the tower
 0��2023第一赛季"The first season of 2023
@@ -1933,7 +1935,7 @@ Give props
 (��兑换魔能"Exchange magic power
 ��	魔能币"Magic coins
 1��领取节日奖励"Receive holiday rewards
-'��经验兑换"Experience exchange
+��经验兑换"Exchange
 /��前往神秘地图"Go to the mystery map
 /��杀怪任务   2-1"Kill Monster Task 2-1
 ��主线任务"	Main task
@@ -2256,13 +2258,14 @@ Damage: 70
 ��0秒"	0 seconds
 ��挑战"	Challenge
 '��挑战规则"Challenge the rules
-����1.挑战之地内的怪物会不断刷新
+����1.挑战之地内的怪物会不断刷新
 2.刷新的波数越高,获得的奖励越丰富
-3.挑战之地每天只能挑战一次"�1. The monsters in the challenge area will be constantly refreshed. The higher the number of waves refreshed, the richer the rewards. 3. The challenge area can only be challenged once a day.
-e��&建议等级达到15级后进行挑战"7It is recommended to challenge after reaching level 15.
-e��&建议等级达到35级后进行挑战"7It is recommended to challenge after reaching level 35.
+3.挑战之地每天只能挑战一次"r1. The monsters in the challenge area will be refreshed. 
+2. The challenge area can only be challenged once a day.
+A��&建议等级达到15级后进行挑战"Unlock at Level 15.
+A��&建议等级达到35级后进行挑战"Unlock at Level 35.
 "��挑战模式"Challenge mode
-e��&建议等级达到50级后进行挑战"7It is recommended to challenge after reaching level 50.
+A��&建议等级达到50级后进行挑战"Unlock at Level 50.
 a��'恭喜你获得本场挑战的胜利！"2Congratulations on your victory in this challenge!
 3��挑战之地：1/30"Place of challenge: 1/30
 +��闯关规则"Break through the rules
@@ -3145,9 +3148,9 @@ g�(是否花费{0}购买一个背包格子?"7Do you want to spend {0} to buy
 &��开启仓库"Open the warehouse
 S��!是否消耗{0}开启一个仓库"*Whether to consume {0} to open a warehouse
 '��获得道具: {0}"Get props: {0}
-��剑类"Sword class
+��剑类"Sword
 ��刀类"Knives
-��弓箭"Bow and arrow
+��弓箭"Bow
 ��转职"Transfer
 -��是否转职为：{0}"Transfer to: {0}
 7��不能重复转职!"Can not repeat the transfer!
@@ -3280,7 +3283,7 @@ C��已经通关了该关卡！" The checkpoint has been cleared!
 ���L是否重新开始挑战,开始后倒计时和怪物生命将自动初始化"zWhether to restart the challenge or not, the countdown and monster life will be automatically initialized after the start.
 ���3未能在60秒内击败怪物,请点击重新挑战"UIf you fail to defeat the monster within 60 seconds, please click to challenge again.
 "��倒计时 {0}"Countdown {0}
-;��奖励发放时间: {0}"Bonus Distribution Time: {0}
+5��奖励发放时间: {0}"Distribution Time: {0}
 %��我的排名: {0}"My Rank: {0}
 +��{0}层({1}/秒)"{0} layers ({1}/sec)
 7��10级才能领取！"You can get it at level 10!
@@ -3313,7 +3316,7 @@ e��"是否花费{0}钻石开启月卡?";Do you want to spend {0} diamonds to 
 9��消耗幸运卷轴:{0}/1"Spend Lucky Scroll: {0}/1
 !��已经抽完"It's finished
 3��未达刷新条件"Refresh condition not met
-5��所需道具不足"Insufficient props required
+&��所需道具不足"Insufficient
 .��抽奖次数：{0}"Number of draws: {0}
 =��今日抽奖次数x{0}"Number of lucky draw today x{0}
 4��前置条件不足"Insufficient preconditions
@@ -3363,7 +3366,7 @@ Gı已经领取过该奖励！"$This award has already been claimed!
 ɱ
 进度:1/1"Progress: 1/1
 7ʱ第{0}章探宝" Chapter {0} Treasure Exploration
-;˱今日累计次数：{0}"Cumulative Times Today: {0}
+0˱今日累计次数：{0}"Times Today: {0}
 (̱免费抽卡"Draw a card for free
 ?ͱ今日探宝次数:{0}"!Treasure hunting times today: {0}
 ,α条件未达到！"Condition not met!
@@ -3772,7 +3775,7 @@ U��!已达到钻石抽卡最大次数",Maximum number of diamond card draws r
 W��!请预留足够的背包空间！".Please reserve enough space for your backpack!
 P��$请清理一下宠物之核背包！"$Please clean pet's nuclear backpack!
 5��今日探索次数:{0}"Explorations Today: {0}
-L��探索次数达到{0}次",The number of explorations reached {0} times
+=��探索次数达到{0}次"Explorations {0} times reward
 4��请选择宠物蛋！"Please select pet eggs!
 A��已达到最大宠物数量"Maximum number of pets reached
 '��开启宠物蛋"Open the pet egg
@@ -3892,9 +3895,9 @@ Do you want to overwrite the original inheritance appraisal effect?
 ���A传承鉴定效果：{0}
 恭喜你装备传承效果鉴定成功!"iInheritance appraisal effect: {0} 
 Congratulations on your successful Equip inheritance effect appraisal!
-���3获得{0}，洗炼获得高品质属性概率提升"WObtain {0}, the probability of refining to obtain high-quality attributes is increased.
+p��3获得{0}，洗炼获得高品质属性概率提升"5Obtain {0}, Higher chance for premium stats on refine
 6��今日洗练次数:{0}"Washing times today: {0}
-]��洗练次数达到{0}次"=The number of times of washing and refining reaches {0} times
+=��洗练次数达到{0}次"Reward for Refining {0} Times
 @��洗炼道具成功"&Wash and refine the props successfully
 8��获得{0}洗炼经验"Get {0} refining experience
 z��'额外增加概率出现的特殊属性"KSpecial properties that additionally increase the probability of occurrence
@@ -4024,7 +4027,7 @@ F��神兽碎片不足！")The mythical beast is short of fragments!
 w��-是否消耗一个神兽碎片兑换一个{0}"BWhether to consume a mythical beast fragment to exchange for a {0}
 *��补偿大师"Master of compensation
 ,��请求补偿"Request for compensation
-1��神兽兑换"The divine beast is exchanged
+��神兽兑换"	Exchanged
 3��是否进入{0}?"Are you going to enter {0}?
 T�� 
 提示:每天只能进入{0}次",
