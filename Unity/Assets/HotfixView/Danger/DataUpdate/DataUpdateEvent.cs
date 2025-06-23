@@ -744,6 +744,16 @@ namespace ET
                     uiMakeNeedComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISkillLearnSkillItemComponent uiSkillLearnSkillItemComponent)
+                {
+                    uiSkillLearnSkillItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UISkillLearnComponent uiSkillLearnComponent)
+                {
+                    uiSkillLearnComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

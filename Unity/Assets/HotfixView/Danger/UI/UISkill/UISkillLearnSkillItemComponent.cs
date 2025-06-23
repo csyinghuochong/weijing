@@ -33,6 +33,9 @@ namespace ET
             self.BorderImg.SetActive(false);
 
             self.SkillIconImg.GetComponent<Button>().onClick.AddListener(self.OnImg_Button);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UISkillLearnSkillItemComponentDestroy: DestroySystem<UISkillLearnSkillItemComponent>
@@ -48,10 +51,17 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UISkillLearnSkillItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillLearnSkillItemComponent self)
+        {
+            self.SkillNameText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
+
         public static void ShowReddot(this UISkillLearnSkillItemComponent self)
         {
             int skillpoint = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Sp;

@@ -82,6 +82,9 @@ namespace ET
             self.UIPageButton = uIPageViewComponent;
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UISkillLearnComponentDestroy: DestroySystem<UISkillLearnComponent>
@@ -97,10 +100,18 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UISkillLearnComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillLearnComponent self)
+        {
+            self.SkillInfoNameText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.ConsumeText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+
         public static void OnClickPageButton(this UISkillLearnComponent self,  int page)
         {
             self.InitSkillList(page).Coroutine();
