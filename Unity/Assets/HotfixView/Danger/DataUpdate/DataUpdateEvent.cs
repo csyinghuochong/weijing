@@ -929,6 +929,11 @@ namespace ET
                     uiWarehouseAccountComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPopupComponent uiPopupComponent)
+                {
+                    uiPopupComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

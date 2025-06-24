@@ -35,6 +35,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.confirButton, self.OnConfirButton);
 
             self.UIType = UIType.UIPopupview;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -45,11 +48,16 @@ namespace ET
         {
             self.confirHandler = null;
             self.cancelHandler = null;
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPopupComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPopupComponent self)
+        {
+            self.contentText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 28;
+        }
 
         public static void OnConfirButton(this UIPopupComponent self)
         {
