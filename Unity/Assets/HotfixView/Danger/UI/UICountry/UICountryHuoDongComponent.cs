@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICountryHuoDongComponent : Entity, IAwake
+    public class UICountryHuoDongComponent : Entity, IAwake, IDestroy
     {
+        public GameObject TaskListNode;
         public GameObject Btn_HuoDong_ArenaJieShao;
         public GameObject Btn_HuoDong_Lingzhu;
         public GameObject Btn_HuoDong_Baozang;
@@ -22,6 +23,9 @@ namespace ET
         public override void Awake(UICountryHuoDongComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            self.TaskListNode = rc.Get<GameObject>("TaskListNode");
+            
             self.Btn_HuoDong_Lingzhu = rc.Get<GameObject>("Btn_HuoDong_Lingzhu");
             self.Btn_HuoDong_Lingzhu.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_Lingzhu(); });
 
@@ -44,11 +48,34 @@ namespace ET
             int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
             self.UICountryTaskItem_0.SetActive(openDay <= 7 );
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UICountryHuoDongComponentDestroySystem : DestroySystem<UICountryHuoDongComponent>
+    {
+        public override void Destroy(UICountryHuoDongComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UICountryHuoDongComponentSystem
     {
+        public static void OnLanguageUpdate(this UICountryHuoDongComponent self)
+        {
+            for (int i = 0; i < self.TaskListNode.transform.childCount; i++)
+            {
+                Transform transform = self.TaskListNode.transform.GetChild(i);
+                
+                transform.Find("TextTaskName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 46 : 36;
+                transform.Find("TextTaskDesc").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 32 : 28;
+                transform.Find("TextTaskDesc (2)").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 32 : 28;
+            }
+        }
+
         public static void Btn_HuoDong_Lingzhu(this UICountryHuoDongComponent self) 
         {
             TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000028);

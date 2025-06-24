@@ -869,6 +869,11 @@ namespace ET
                     uiActivitySingInComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UICountryHuoDongComponent uiCountryHuoDongComponent)
+                {
+                    uiCountryHuoDongComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
