@@ -18,6 +18,8 @@ namespace ET
         public int NpcId;
         
         public List<string> AssetPath = new List<string>();
+
+        public Vector2 UIOldPosition;
     }
 
 
@@ -42,6 +44,10 @@ namespace ET
             UICommonHelper.SetParent(go, self.UIItemNode);
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(go);
             self.UICommonItem.Label_ItemName.SetActive(true);
+            
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIMysteryItemComponentDestroy : DestroySystem<UIMysteryItemComponent>
@@ -56,10 +62,26 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIMysteryItemComponentSystem
     {
+        public static void StoreUIdData(this UIMysteryItemComponent self)
+        {
+            self.UIOldPosition = self.Text_Number.GetComponent<RectTransform>().localPosition;
+        }
+
+        public static void OnLanguageUpdate(this UIMysteryItemComponent self)
+        {
+            Vector2 position = self.UIOldPosition;
+            if (GameSettingLanguge.Language == 1)
+            {
+                position.y -= 8f;
+            }
+            self.Text_Number.GetComponent<RectTransform>().localPosition = position;
+        }
 
         public static async ETTask OnButtonBuy(this UIMysteryItemComponent self)
         {
