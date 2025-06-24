@@ -80,6 +80,8 @@ MonoBehaviour:
     gameObject: {fileID: 4138986159979793224}
   - key: ButtonQuick
     gameObject: {fileID: 5776984041106005951}
+  - key: Text_Tip
+    gameObject: {fileID: 7237078787871104132}
 --- !u!1 &1829108146821298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,7 +3915,7 @@ GameObject:
   - component: {fileID: 130322442905676699}
   - component: {fileID: 2571439300622477884}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

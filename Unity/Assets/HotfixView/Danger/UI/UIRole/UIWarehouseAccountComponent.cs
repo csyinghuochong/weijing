@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIWarehouseAccountComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject BtnItemTypeSet;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
@@ -36,6 +37,7 @@ namespace ET
             self.NoLockList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine();  });
 
@@ -70,6 +72,9 @@ namespace ET
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.AccountWarehous, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -79,11 +84,18 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.AccountWarehous, self);
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIWarehouseAccountComponentSystem
     {
+        public static void OnLanguageUpdate(this UIWarehouseAccountComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
+        }
+
         public static bool CheckPageButton_1(this UIWarehouseAccountComponent self, int page)
         {
             return false;
