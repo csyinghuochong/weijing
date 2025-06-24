@@ -984,6 +984,11 @@ namespace ET
                     uiShouJiTreasureItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIProtectComponent uiProtectComponent)
+                {
+                    uiProtectComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
