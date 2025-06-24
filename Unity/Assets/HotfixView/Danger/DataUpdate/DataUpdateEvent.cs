@@ -959,6 +959,11 @@ namespace ET
                     uiTaskGetComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIMysteryItemComponent uiMysteryItemComponent)
+                {
+                    uiMysteryItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
