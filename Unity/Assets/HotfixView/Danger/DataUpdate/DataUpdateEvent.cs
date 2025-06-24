@@ -944,6 +944,16 @@ namespace ET
                     uiZuoQiComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIZuoQiShowItemComponent uiZuoQiShowItemComponent)
+                {
+                    uiZuoQiShowItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIZuoQiShowComponent uiZuoQiShowComponent)
+                {
+                    uiZuoQiShowComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

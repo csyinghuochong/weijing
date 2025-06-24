@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -280}
-  m_SizeDelta: {x: 400, y: 60}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2573934303529202680
 CanvasRenderer:
@@ -6347,6 +6347,8 @@ MonoBehaviour:
     gameObject: {fileID: 4441848878020902737}
   - key: UIZuoQiShowItem
     gameObject: {fileID: 3558821519323054936}
+  - key: Text_Tip
+    gameObject: {fileID: 8553606394032365910}
 --- !u!1 &6163968149547538122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,7 +6928,7 @@ GameObject:
   - component: {fileID: 7151574548747069321}
   - component: {fileID: 8837448976374069410}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -39,6 +39,9 @@ namespace ET
             self.StarList = rc.Get<GameObject>("StarList");
             self.ButtonFight = rc.Get<GameObject>("ButtonFight");
             ButtonHelp.AddListenerEx(self.ButtonFight, () => { self.OnButtonFight().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -52,11 +55,17 @@ namespace ET
             GameObject.Destroy(self.RenderTexture);
             self.RenderTexture = null;
             //RenderTexture.ReleaseTemporary(self.RenderTexture);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIZuoQiShowItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIZuoQiShowItemComponent self)
+        {
+            self.LabDes.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 28 : 26;
+            self.Lab_LaiYuan.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+        }
 
         public static async ETTask OnButtonFight(this UIZuoQiShowItemComponent self)
         {
