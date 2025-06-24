@@ -889,6 +889,11 @@ namespace ET
                     uiMailItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITrialDungeonComponent uiTrialDungeonComponent)
+                {
+                    uiTrialDungeonComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITrialDungeonComponent : Entity, IAwake
+    public class UITrialDungeonComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject UIListNode;
         public GameObject UITrialDungeonItem;
         public GameObject Btn_Enter;
@@ -29,6 +30,7 @@ namespace ET
             GameObject gameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.UIListNode = rc.Get<GameObject>("UIListNode");
             self.UITrialDungeonItem = rc.Get<GameObject>("UITrialDungeonItem");
             self.UITrialDungeonItem.SetActive(false);
@@ -52,11 +54,27 @@ namespace ET
             self.UICommonItemList = self.AddChild<UICommonItemListComponent, GameObject>(self.BuildingList);
 
             self.OnUpdateUI(self.GetShowCengNum());
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITrialDungeonComponentDestroySystem : DestroySystem<UITrialDungeonComponent>
+    {
+        public override void Destroy(UITrialDungeonComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITrialDungeonComponentSystem
     {
+        public static void OnLanguageUpdate(this UITrialDungeonComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.TextLayer.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 50 : 40;
+        }
 
         public static int GetShowCengNum(this UITrialDungeonComponent self)
         {
