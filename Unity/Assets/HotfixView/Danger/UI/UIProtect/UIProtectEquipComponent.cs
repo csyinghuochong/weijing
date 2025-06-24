@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIProtectEquipComponent : Entity, IAwake
+    public class UIProtectEquipComponent : Entity, IAwake, IDestroy
     {
-
+	    public GameObject Text_Tip;
 		public GameObject ButtonUnLock;
         public GameObject Obj_EquipPropertyText;
         public GameObject EquipBaseSetList;
@@ -30,6 +31,7 @@ namespace ET
         {
             self.EquipUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.XiLianButton = rc.Get<GameObject>("XiLianButton");
             ButtonHelp.AddListenerEx(self.XiLianButton, () => { self.OnXiLianButton(true).Coroutine(); });
 			self.XiLianButton.SetActive(false);
@@ -46,13 +48,31 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.InitSubItemUI().Coroutine();
         }
     }
 
+    public class UIProtectEquipComponentDestroySystem : DestroySystem<UIProtectEquipComponent>
+    {
+	    public override void Destroy(UIProtectEquipComponent self)
+	    {
+		    DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+	    }
+    }
+    
     public static class UIProtectEquipComponentSystem
     {
-		public static void OnUpdateUI(this UIProtectEquipComponent self)
+	    public static void OnLanguageUpdate(this UIProtectEquipComponent self)
+	    {
+		    self.EquipListNode.GetComponent<GridLayoutGroup>().spacing = GameSettingLanguge.Language == 0 ? new Vector2(24, 10) : new Vector2(30, 20);
+		    self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+	    }
+
+	    public static void OnUpdateUI(this UIProtectEquipComponent self)
 		{
 			self.XilianBagInfo = null;
 			self.OnEquiListUpdate().Coroutine();
