@@ -914,6 +914,11 @@ namespace ET
                     uiMakeLearnComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIWarehouseComponent uiWarehouseComponent)
+                {
+                    uiWarehouseComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

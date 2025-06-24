@@ -13,7 +13,7 @@ namespace ET
         Num,
     }
 
-    public class UIWarehouseComponent: Entity, IAwake
+    public class UIWarehouseComponent: Entity, IAwake, IDestroy
     {
         public GameObject Btn_Type_3;
         public UIPageViewComponent UIPageView;
@@ -57,11 +57,52 @@ namespace ET
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButtonComponent = uIPageButtonComponent;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIWarehouseComponentDestroySystem : DestroySystem<UIWarehouseComponent>
+    {
+        public override void Destroy(UIWarehouseComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIWarehouseComponentSystem
     {
+        public static void OnLanguageUpdate(this UIWarehouseComponent self)
+        {
+            Transform tt = self.UIPageButtonComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
 
         public static async ETTask UpdateSkillMakePlan2(this UIWarehouseComponent self)
         {
