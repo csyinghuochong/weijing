@@ -5,7 +5,7 @@ using System;
 
 namespace ET
 {
-    public class UIShouJiTreasureTypeComponent : Entity, IAwake<GameObject>
+    public class UIShouJiTreasureTypeComponent : Entity, IAwake<GameObject>, IDestroy
     {
 
         public GameObject Lab_TaskName;
@@ -15,6 +15,8 @@ namespace ET
 
         public int Chapter;
         public Action<int> ClickChapHandler;
+
+        public Vector2 UIOldPosition;
     }
 
 
@@ -31,11 +33,39 @@ namespace ET
 
             self.RedDot.SetActive(false);
             self.Ima_Di.GetComponent<Button>().onClick.AddListener(self.OnClick);
+            
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIShouJiTreasureTypeComponentDestroySystem : DestroySystem<UIShouJiTreasureTypeComponent>
+    {
+        public override void Destroy(UIShouJiTreasureTypeComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIShouJiTreasureTypeComponentSystem
     {
+        public static void StoreUIdData(this UIShouJiTreasureTypeComponent self)
+        {
+            self.UIOldPosition = self.RedDot.GetComponent<RectTransform>().localPosition;
+        }
+
+        public static void OnLanguageUpdate(this UIShouJiTreasureTypeComponent self)
+        {
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 35;
+            
+            Vector2 position = self.UIOldPosition;
+            if (GameSettingLanguge.Language != 0)
+            {
+                position.x += 40f;
+            }
+            self.RedDot.GetComponent<RectTransform>().localPosition = position;
+        }
 
         public static void SetClickHandler(this UIShouJiTreasureTypeComponent self, Action<int> action)
         {
