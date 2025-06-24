@@ -899,6 +899,11 @@ namespace ET
                     uiTrialComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITrialRankComponent uiTrialRankComponent)
+                {
+                    uiTrialRankComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

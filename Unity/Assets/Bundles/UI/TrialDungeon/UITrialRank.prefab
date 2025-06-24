@@ -563,6 +563,16 @@ MonoBehaviour:
     gameObject: {fileID: 8099395438508320014}
   - key: BtnItemTypeSet
     gameObject: {fileID: 5359305098372993881}
+  - key: Text_5
+    gameObject: {fileID: 1971199115012561257}
+  - key: Text_4
+    gameObject: {fileID: 6707094728166965796}
+  - key: Text_3
+    gameObject: {fileID: 654992862625320325}
+  - key: Text_2
+    gameObject: {fileID: 3475009900990348682}
+  - key: Text_1
+    gameObject: {fileID: 8684391978584514147}
 --- !u!1 &1305166101324252553
 GameObject:
   m_ObjectHideFlags: 0

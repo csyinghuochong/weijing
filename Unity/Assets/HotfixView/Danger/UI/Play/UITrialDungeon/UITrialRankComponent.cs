@@ -6,8 +6,13 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITrialRankComponent : Entity, IAwake
+    public class UITrialRankComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_1;
+        public GameObject Text_2;
+        public GameObject Text_3;
+        public GameObject Text_4;
+        public GameObject Text_5;
         public GameObject BtnItemTypeSet;
         public GameObject Button_Reward;
         public GameObject Text_MyRank;
@@ -25,6 +30,12 @@ namespace ET
         public override void Awake(UITrialRankComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            self.Text_1 = rc.Get<GameObject>("Text_1");
+            self.Text_2 = rc.Get<GameObject>("Text_2");
+            self.Text_3 = rc.Get<GameObject>("Text_3");
+            self.Text_4 = rc.Get<GameObject>("Text_4");
+            self.Text_5 = rc.Get<GameObject>("Text_5");
             self.RankListNode = rc.Get<GameObject>("RankListNode");
             self.Text_MyRank = rc.Get<GameObject>("Text_MyRank");
             self.UISet = rc.Get<GameObject>("UISet");
@@ -48,14 +59,33 @@ namespace ET
             UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage2"), 2);
             UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage3"), 3);
             
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.ShowRewardTime().Coroutine();
             self.OnUpdateUI().Coroutine();
         }
     }
-
+    
+    public class UITrialRankComponentDestroySystem : DestroySystem<UITrialRankComponent>
+    {
+        public override void Destroy(UITrialRankComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITrialRankComponentSystem
     {
-        
+        public static void OnLanguageUpdate(this UITrialRankComponent self)
+        {
+            self.Text_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Text_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+        }
+
         public static void OnClickPageButton(this UITrialRankComponent self, int page)
         {
             if (self.Page == page)
