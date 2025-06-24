@@ -694,8 +694,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -208, y: 2}
-  m_SizeDelta: {x: 600, y: 80}
+  m_AnchoredPosition: {x: -374.41962, y: 2}
+  m_SizeDelta: {x: 267.1607, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3860109990891407125
 CanvasRenderer:
@@ -1210,7 +1210,7 @@ GameObject:
   - component: {fileID: 2297290424434532589}
   - component: {fileID: 720038746217245604}
   m_Layer: 5
-  m_Name: ConsumeNumText (1)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1490,3 +1490,5 @@ MonoBehaviour:
     gameObject: {fileID: 8275696323895516329}
   - key: UIActivitySingleRechargeItemListNode
     gameObject: {fileID: 5069743666823826599}
+  - key: Text_Tip
+    gameObject: {fileID: 8221384803807970291}

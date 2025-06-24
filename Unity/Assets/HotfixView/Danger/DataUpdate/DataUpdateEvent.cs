@@ -874,6 +874,11 @@ namespace ET
                     uiCountryHuoDongComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIActivitySingleRechargeComponent uiActivitySingleRechargeComponent)
+                {
+                    uiActivitySingleRechargeComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

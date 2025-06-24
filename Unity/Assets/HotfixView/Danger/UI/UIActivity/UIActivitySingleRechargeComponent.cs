@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivitySingleRechargeComponent: Entity, IAwake
+    public class UIActivitySingleRechargeComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject UIActivitySingleRechargeItemListNode;
         public GameObject UIActivitySingleRechargeItem;
     }
@@ -15,6 +16,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.UIActivitySingleRechargeItemListNode = rc.Get<GameObject>("UIActivitySingleRechargeItemListNode");
             self.UIActivitySingleRechargeItem = rc.Get<GameObject>("UIActivitySingleRechargeItem");
 
@@ -22,11 +24,26 @@ namespace ET
 
           
             self.GetInfo();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIActivitySingleRechargeComponentDestroySystem : DestroySystem<UIActivitySingleRechargeComponent>
+    {
+        public override void Destroy(UIActivitySingleRechargeComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIActivitySingleRechargeComponentSystem
     {
+        public static void OnLanguageUpdate(this UIActivitySingleRechargeComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+        }
 
         public static  void GetInfo(this UIActivitySingleRechargeComponent self)
         {
