@@ -969,6 +969,11 @@ namespace ET
                     uiShouJiComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIShouJiItemComponent uiShouJiItemComponent)
+                {
+                    uiShouJiItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

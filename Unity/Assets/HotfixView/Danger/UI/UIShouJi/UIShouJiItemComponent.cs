@@ -26,6 +26,9 @@ namespace ET
             self.Image_ItemQuality = go.Get<GameObject>("Image_ItemQuality");
             self.Label_HaveTag = go.Get<GameObject>("Label_HaveTag");
             self.Label_StarNum = go.Get<GameObject>("Label_StarNum");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }    
     public class UIShouJiItemComponentDestroy: DestroySystem<UIShouJiItemComponent>
@@ -41,11 +44,19 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIShouJiItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIShouJiItemComponent self)
+        {
+            self.Label_ItemName.GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(200, 60) : new Vector2(220, 100);
+            self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+        }
+
         public static void  OnUpdateUI(this UIShouJiItemComponent self, int chapterId, ShouJiItemConfig shouJiItemConfig)
         {
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(shouJiItemConfig.ItemID);
