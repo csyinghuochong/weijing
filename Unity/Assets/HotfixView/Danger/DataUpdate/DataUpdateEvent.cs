@@ -854,6 +854,11 @@ namespace ET
                     uiPopularizeComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UILunTanComponent uiLunTanComponent)
+                {
+                    uiLunTanComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

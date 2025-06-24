@@ -68,6 +68,10 @@ MonoBehaviour:
     gameObject: {fileID: 2222055597783618571}
   - key: ButtonTapTap
     gameObject: {fileID: 3427933641628797978}
+  - key: Text_Tip_TapTap
+    gameObject: {fileID: 6409480849595991327}
+  - key: Text_Tip
+    gameObject: {fileID: 3245369780307201505}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +537,7 @@ GameObject:
   - component: {fileID: 1329670288329581430}
   - component: {fileID: 525631540527900680}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2116,7 +2120,7 @@ GameObject:
   - component: {fileID: 7927740786927777868}
   - component: {fileID: 416660085531381897}
   m_Layer: 5
-  m_Name: Text (5)
+  m_Name: Text_Tip_TapTap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UILunTanComponent : Entity, IAwake
+    public class UILunTanComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
+        public GameObject Text_Tip_TapTap;
         public GameObject ButtonGet;
         public GameObject ButtonTapTap;
         public GameObject TapTapShare;
@@ -19,6 +21,10 @@ namespace ET
         public override void Awake(UILunTanComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
+            self.Text_Tip_TapTap = rc.Get<GameObject>("Text_Tip_TapTap");
+            
             self.ButtonGet = rc.Get<GameObject>("ButtonGet");
             ButtonHelp.AddListenerEx(self.ButtonGet, () => { self.OnButtonGet(); });
 
@@ -29,12 +35,27 @@ namespace ET
             self.TapTapShare.SetActive(GlobalHelp.GetBigVersion() >= 20 && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (int pType, bool value) => { self.OnShareHandler(pType, value).Coroutine(); };
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
-
     }
 
+    public class UILunTanComponentDestroySystem : DestroySystem<UILunTanComponent>
+    {
+        public override void Destroy(UILunTanComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UILunTanComponentSystem
     {
+        public static void OnLanguageUpdate(this UILunTanComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Text_Tip_TapTap.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
 
         public static async ETTask OnShareHandler(this UILunTanComponent self, int pType, bool share)
         {
