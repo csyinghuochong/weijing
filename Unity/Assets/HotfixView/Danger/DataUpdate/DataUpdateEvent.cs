@@ -904,6 +904,16 @@ namespace ET
                     uiTrialRankComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIMakeLearnItemComponent uiMakeLearnItemComponent)
+                {
+                    uiMakeLearnItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIMakeLearnComponent uiMakeLearnComponent)
+                {
+                    uiMakeLearnComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

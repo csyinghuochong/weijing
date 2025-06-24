@@ -41,6 +41,9 @@ namespace ET
             {
                 self.OnImageButton();
             });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIMakeLearnItemComponentDestroy : DestroySystem<UIMakeLearnItemComponent>
@@ -55,10 +58,17 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIMakeLearnItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMakeLearnItemComponent self)
+        {
+            self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 26;
+        }
+
         public static void SetSelected(this UIMakeLearnItemComponent self, int makeid)
         {
             self.ImageSelect.SetActive(self.MakeId == makeid);

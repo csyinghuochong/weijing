@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMakeLearnComponent : Entity, IAwake,IDestroy
+    public class UIMakeLearnComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_NeedShuLianTip;
+        public GameObject Text_LearnItemCostTip;
         public GameObject Img_ShuLianPro;
         public GameObject Lab_ShuLianDu;
         public GameObject Button_Select_6;
@@ -53,6 +55,8 @@ namespace ET
             self.CostUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_NeedShuLianTip = rc.Get<GameObject>("Text_NeedShuLianTip");
+            self.Text_LearnItemCostTip = rc.Get<GameObject>("Text_LearnItemCostTip");
             self.Button_Select_6 = rc.Get<GameObject>("Button_Select_6");
             self.Button_Select_3 = rc.Get<GameObject>("Button_Select_3");
             self.Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
@@ -78,7 +82,7 @@ namespace ET
             self.ButtonLearn = rc.Get<GameObject>("ButtonLearn");
          
             GameObject UILearn = rc.Get<GameObject>("UILearn");
-            self.UILearn = self.AddComponent<UIItemComponent, GameObject>(UILearn);
+            self.UILearn = self.AddChild<UIItemComponent, GameObject>(UILearn);
            
 
             self.CostListNode = rc.Get<GameObject>("CostListNode");
@@ -98,6 +102,9 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(self.OnImageButton);
             self.OnBtn_Plan(1);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIMakeLearnComponentDestroy: DestroySystem<UIMakeLearnComponent>
@@ -113,10 +120,18 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIMakeLearnComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMakeLearnComponent self)
+        {
+            self.Text_NeedShuLianTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.Text_LearnItemCostTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.LabNeedShuLian.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+        }
 
         public static void OnBtn_Plan(this UIMakeLearnComponent self, int plan)
         {
