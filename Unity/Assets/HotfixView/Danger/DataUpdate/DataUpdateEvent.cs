@@ -859,6 +859,11 @@ namespace ET
                     uiLunTanComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UICountryTaskItemComponent uiCountryTaskItemComponent)
+                {
+                    uiCountryTaskItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

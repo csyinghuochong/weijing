@@ -41,6 +41,9 @@ namespace ET
             self.TextTaskName = rc.Get<GameObject>("TextTaskName");
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.ItemNumber = rc.Get<GameObject>("ItemNumber");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UICountryTaskItemComponentDestroy : DestroySystem<UICountryTaskItemComponent>
@@ -55,10 +58,17 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UICountryTaskItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UICountryTaskItemComponent self)
+        {
+            self.TextTaskDesc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.TextTaskProgress.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
 
         public static void OnUpdateData(this UICountryTaskItemComponent self, TaskPro taskPro)
         {
