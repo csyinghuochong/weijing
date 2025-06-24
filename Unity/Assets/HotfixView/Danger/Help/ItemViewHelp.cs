@@ -115,17 +115,28 @@ namespace ET
         //道具数量显示返回
         public static string ReturnNumStr(long num)
         {
-
-            if (num < 10000)
+            if (GameSettingLanguge.Language == 0)
             {
-                return num.ToString();
+                if (num < 10000)
+                {
+                    return num.ToString();
+                }
+                else
+                {
+                    return ((float)num / 10000.0f).ToString("0.##") + "万";
+                }
             }
             else
             {
-                //float floatNum = (float)num / 10000f;
-                return ((float)num / 10000.0f).ToString("0.##") + GameSettingLanguge.LoadLocalization("万");
+                if (num < 1000)
+                {
+                    return num.ToString();
+                }
+                else
+                {
+                    return ((float)num / 1000.0f).ToString("0.##") + "K";
+                }
             }
-
         }
 
         //获取装备子类型名称
