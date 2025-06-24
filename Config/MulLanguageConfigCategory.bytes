@@ -510,7 +510,7 @@ Activate the weekly card and the dungeon will open an additional treasure chest
 Extraction
 ��礼包"Gift bag
 9��今日抽奖次数x1"Number of lucky draw today x1
-"��今日奖励"Today's reward
+��今日奖励"Reward
 !��消耗道具"Consume props
 %��开始抽奖"Start the lottery
 '��抽奖次数："Number of draws:
@@ -1448,15 +1448,15 @@ Disenchant
 �取出宠物"Remove
 .�宠物数量： 1/2"Number of pets: 1/2
 �星级奖励"Star awards
-'�调整阵容"Adjust the line-ups
+�调整阵容"Adjust
 �开始挑战"Start
 ;�建议宠物等级达到1级"Recommended Pet Level 1
 �锁"Lock
-3�今日进入次数:"Number of entries today:
-"�阵容搭配"Line-ups match
-%�确认搭配"Confirm the match
-)�返回探险"Return to exploration
-(��返回天梯"Return to the ladder
+$�今日进入次数:"	Attempts:
+�阵容搭配"	Your Team
+�确认搭配"Confirm
+�返回探险"Return
+��返回天梯"Return
 ��L提示:拖动左边的宠物到右边的上阵单位即可完成阵容搭配"kPrompt: Drags the left side the pet to the right side the battle unit then completes the line-ups to match.
 -�阵容限制：5/5"Line-ups limit: 5/5
  �宠物列表"List of pets
@@ -1465,9 +1465,9 @@ Disenchant
 �己方上阵"battle
 ��	倒计时"	Countdown
 &��准备战斗"Prepare for battle
-��黄金矿场"A gold mine
-��白银矿场"Silver Mine
-!��青铜矿场"A bronze mine
+��黄金矿场"Gold
+��白银矿场"Silver
+��青铜矿场"Bronze
 *��占领者:AAAAAAA"Occupier: AAAAAAA
 ��	黄金矿"	Gold mine
 ��	白银矿"Silver Mine
@@ -1475,11 +1475,12 @@ Disenchant
 ��1000/时"	1000/hour
 ��我的队伍"My team
 $��25级开始"Start at level 25
-&��编辑队伍"The editorial team
+��编辑队伍"	Edit Team
  ��矿场记录"Mine records
-��拥有矿："Owned mine:
-(��金币产出："Gold coin output:
-)��累计产出："Cumulative output:
+��拥有矿："Owned:
+!��金币产出："
+Gold coin:
+"��累计产出："Cumulative:
 ��
 850/小时"850/hour
 .��当前拥有:5/5"Current ownership: 5/5
@@ -1506,7 +1507,7 @@ G��挑战次数达到5次")The number of challenges reached 5 times.
 &��调整
 阵型"Adjust 
 Formation
-��闯关"Break through
+��闯关"	Adventure
 ��挖矿"Mining
 ��	装备锁"Equip the lock
 ��	宠物锁"Pet lock
@@ -3787,8 +3788,8 @@ A��开启需要花费 {0}钻石"It costs {0} diamonds to open
 Y´!当前没有可以领取的奖励"0There are currently no awards available to claim
 4ô关卡未解锁！"The level is not unlocked!
 ;Ĵ请设置上阵宠物！"Please set up your own pet!
-SŴ"建议最低队伍等级： {0}级")Recommended Minimum Team Level: {0} Level
-1ƴ阵容限制：{0}/5"Line-ups limit: {0}/5
+@Ŵ"建议最低队伍等级： {0}级"Recommended Level: {0}
+(ƴ阵容限制：{0}/5"Limit: {0}/5
 LǴ已达到上阵最大数量！"&The maximum quantity has been reached!
 'ȴ请先下阵！"Please go first!
 @ɴ!造成伤害:{0} 承受伤害:{1}"Damage: {0} Damage: {1}
@@ -3805,7 +3806,7 @@ Aδ查看宠物信息出错！"Error viewing pet information!
 1Դ挑战冷却中！"Challenge cooling down!
 <մ出战队伍不能为空！"The team cannot be empty!
 �ִ3抢矿后原占有矿会变成无人看守的矿！"QAfter robbing the mine, the original occupied mine will become an unguarded mine!
-5״当前占领{0}/{1}"Current occupation {0}/{1}
+-״当前占领{0}/{1}"Occupation {0}/{1}
 ش(核心矿)"(Core Mine)
 ٴ拥有者："Owner:
 Jڴ!玩家 {0} {1} 占领了你的{2}"!Player {0} {1} Take over your {0}
