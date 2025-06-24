@@ -90,6 +90,9 @@ namespace ET
             self.ButtonMystery.GetComponent<Button>().onClick.AddListener(self.OnButtonMystery);
 
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -99,11 +102,17 @@ namespace ET
         {
             self.TaskUIList = null;
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UITaskGetComponentSystem
     {
+        public static void OnLanguageUpdate(this UITaskGetComponent self)
+        {
+            self.Lab_NpcSpeak.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
+        }
+
         public static  void OnTaskGet(this UITaskGetComponent self)
         {
             bool update = self.UpdataTask();

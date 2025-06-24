@@ -954,6 +954,11 @@ namespace ET
                     uiZuoQiShowComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITaskGetComponent uiTaskGetComponent)
+                {
+                    uiTaskGetComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
