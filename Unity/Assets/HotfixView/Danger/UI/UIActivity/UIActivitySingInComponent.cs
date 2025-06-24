@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -27,6 +28,8 @@ namespace ET
             {
                 ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
             }
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -50,11 +53,19 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Com2, () => { self.OnBtn_Com_Sign2().Coroutine(); });
 
             self.OnInitUI();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIActivitySingInComponentSystem
     {
+        public static void OnLanguageUpdate(this UIActivitySingInComponent self)
+        {
+            self.Btn_Com.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 34;
+            self.Btn_Com2.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 34;
+        }
 
         public static  void OnInitUI(this UIActivitySingInComponent self)
         {

@@ -864,6 +864,11 @@ namespace ET
                     uiCountryTaskItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIActivitySingInComponent uiActivitySingInComponent)
+                {
+                    uiActivitySingInComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
