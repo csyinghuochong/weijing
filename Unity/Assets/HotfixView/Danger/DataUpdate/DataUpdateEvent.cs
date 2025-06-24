@@ -879,6 +879,11 @@ namespace ET
                     uiActivitySingleRechargeComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISelectRewardComponent uiSelectRewardComponent)
+                {
+                    uiSelectRewardComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

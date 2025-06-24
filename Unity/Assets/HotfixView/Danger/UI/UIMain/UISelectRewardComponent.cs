@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISelectRewardComponent : Entity, IAwake
+    public class UISelectRewardComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject TitleText;
         public GameObject ItemListNode;
         public GameObject RewardItem;
@@ -21,6 +22,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.TitleText = rc.Get<GameObject>("TitleText");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.RewardItem = rc.Get<GameObject>("RewardItem");
@@ -28,11 +30,27 @@ namespace ET
 
             self.RewardItem.SetActive(false);
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UISelectReward); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UISelectRewardComponentDestroySystem : DestroySystem<UISelectRewardComponent>
+    {
+        public override void Destroy(UISelectRewardComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UISelectRewardComponentSystem
     {
+        public static void OnLanguageUpdate(this UISelectRewardComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+        }
+
         public static void UpdateInfo(this UISelectRewardComponent self, int key, int type)
         {
             self.Key = key;
