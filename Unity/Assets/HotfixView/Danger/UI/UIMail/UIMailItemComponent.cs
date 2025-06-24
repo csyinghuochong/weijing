@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMailItemComponent : Entity, IAwake<GameObject>
+    public class UIMailItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject TextConent;
         public GameObject ImageButton;
@@ -31,11 +31,26 @@ namespace ET
 
             self.ImageSelect.SetActive(false);
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnImageButton(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIMailItemComponentDestroySystem : DestroySystem<UIMailItemComponent>
+    {
+        public override void Destroy(UIMailItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIMailItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMailItemComponent self)
+        {
+            self.TextConent.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+        }
 
         public static void OnUpdateUI(this UIMailItemComponent self, MailInfo mailInfo)
         {

@@ -884,6 +884,11 @@ namespace ET
                     uiSelectRewardComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIMailItemComponent uiMailItemComponent)
+                {
+                    uiMailItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
