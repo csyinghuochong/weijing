@@ -979,6 +979,11 @@ namespace ET
                     uiShouJiTreasureTypeComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIShouJiTreasureItemComponent uiShouJiTreasureItemComponent)
+                {
+                    uiShouJiTreasureItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

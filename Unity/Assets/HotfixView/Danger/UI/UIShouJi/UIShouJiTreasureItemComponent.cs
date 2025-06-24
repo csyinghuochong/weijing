@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIShouJiTreasureItemComponent: Entity, IAwake<GameObject>
+    public class UIShouJiTreasureItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject RedDot;
         public GameObject TextNumber;
@@ -39,11 +39,27 @@ namespace ET
             self.ShoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
 
             self.RedDot.SetActive(false);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
+    public class UIShouJiTreasureItemComponentDestroySystem : DestroySystem<UIShouJiTreasureItemComponent>
+    {
+        public override void Destroy(UIShouJiTreasureItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIShouJiTreasureItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIShouJiTreasureItemComponent self)
+        {
+            self.TextAttribute.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 28 : 26;
+        }
+
         public static async ETTask OnButtonActive(this UIShouJiTreasureItemComponent self)
         {
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIShouJiSelect);

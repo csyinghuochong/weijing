@@ -53,7 +53,7 @@ namespace ET
     {
         public static void OnLanguageUpdate(this UIShouJiItemComponent self)
         {
-            self.Label_ItemName.GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(200, 60) : new Vector2(220, 100);
+            self.Label_ItemName.GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(200, 60) : new Vector2(220, 60);
             self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
         }
 
