@@ -919,6 +919,11 @@ namespace ET
                     uiWarehouseComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIWarehouseRoleComponent uiWarehouseRoleComponent)
+                {
+                    uiWarehouseRoleComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

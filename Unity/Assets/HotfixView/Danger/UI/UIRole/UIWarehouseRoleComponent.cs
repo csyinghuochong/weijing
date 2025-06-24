@@ -66,6 +66,9 @@ namespace ET
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -75,11 +78,43 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIWarehouseRoleComponentSystem
     {
+        public static void OnLanguageUpdate(this UIWarehouseRoleComponent self)
+        {
+            Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+                    }
+                }
+            }
+        }
+
         public static bool CheckPageButton_1(this UIWarehouseRoleComponent self, int page)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
