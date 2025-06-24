@@ -894,6 +894,11 @@ namespace ET
                     uiTrialDungeonComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITrialComponent uiTrialComponent)
+                {
+                    uiTrialComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

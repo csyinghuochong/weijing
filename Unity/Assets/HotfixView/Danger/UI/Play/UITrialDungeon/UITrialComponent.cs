@@ -15,7 +15,7 @@ namespace ET
         Number,
     }
 
-    public class UITrialComponent : Entity, IAwake
+    public class UITrialComponent : Entity, IAwake, IDestroy
     {
         public GameObject Btn_1;
         public GameObject SubViewNode;
@@ -56,17 +56,56 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITrialComponentDestroySystem : DestroySystem<UITrialComponent>
+    {
+        public override void Destroy(UITrialComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
 
     public static class UITrialComponentSystem
     {
+        public static void OnLanguageUpdate(this UITrialComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
 
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UITrialComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
-
     }
 }
