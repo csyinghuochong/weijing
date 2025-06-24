@@ -7,6 +7,7 @@ namespace ET
 
     public class UIWarehouseGemComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject BtnItemTypeSet;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
@@ -38,6 +39,7 @@ namespace ET
             self.NoLockList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhengLi);
 
@@ -74,6 +76,8 @@ namespace ET
             self.UpdateLockList(0);
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -82,11 +86,16 @@ namespace ET
         public override void Destroy(UIWarehouseGemComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIWarehouseGemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIWarehouseGemComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
+        }
 
         public static bool CheckPageButton_1(this UIWarehouseGemComponent self, int page)
         {

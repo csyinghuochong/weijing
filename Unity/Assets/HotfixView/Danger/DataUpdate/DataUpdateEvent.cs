@@ -934,6 +934,11 @@ namespace ET
                     uiPopupComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIWarehouseGemComponent uiWarehouseGemComponent)
+                {
+                    uiWarehouseGemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
