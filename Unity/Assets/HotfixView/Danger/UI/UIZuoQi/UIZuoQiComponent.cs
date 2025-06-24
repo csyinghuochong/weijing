@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -9,7 +10,7 @@ namespace ET
         Number,
     }
 
-    public class UIZuoQiComponent : Entity, IAwake
+    public class UIZuoQiComponent : Entity, IAwake, IDestroy
     {
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -45,11 +46,54 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIZuoQiComponentDestroySystem : DestroySystem<UIZuoQiComponent>
+    {
+        public override void Destroy(UIZuoQiComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+
+    
     public static class UIZuoQiComponentSystem
     {
+        public static void OnLanguageUpdate(this UIZuoQiComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+
         public static void OnClickPageButton(this UIZuoQiComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

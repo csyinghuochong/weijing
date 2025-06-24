@@ -939,6 +939,11 @@ namespace ET
                     uiWarehouseGemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIZuoQiComponent uiZuoQiComponent)
+                {
+                    uiZuoQiComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
