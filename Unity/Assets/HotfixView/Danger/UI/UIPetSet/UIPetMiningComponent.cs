@@ -308,7 +308,7 @@ namespace ET
             }
             self.BuildingList.SetActive(false);
             self.BuildingList.SetActive(true);
-            self.Text_Chanchu_1.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}/小时"), chatchun);
+            self.Text_Chanchu_1.GetComponent<Text>().text = chatchun + "/" + GameSettingLanguge.LoadLocalization("小时");
         }
 
         public static List<PetMingPlayerInfo> GetSelfPetMing(this UIPetMiningComponent self)

@@ -218,7 +218,7 @@ namespace ET
                 self.AssetPath.Add(path);
             }
             self.RawImage.GetComponent<Image>().sprite = sp;
-            self.Text_ming.GetComponent<Text>().text = mineBattleConfig.Name;
+            self.Text_ming.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(mineBattleConfig.Name);
 
             int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             int openDay = ServerHelper.GetOpenServerDay(false, zone);
