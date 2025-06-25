@@ -97,7 +97,7 @@ namespace ET
            
             SensitiveWords = "";
 
-            if (GameSettingLanguge.Language == 0)
+            if (GameSettingLanguge.Language != 0)
                 return isFind;
 
             if (null == sensitiveWordsArray || string.IsNullOrEmpty(text))
