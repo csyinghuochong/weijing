@@ -117,6 +117,9 @@ namespace ET
 
             self.Lab_HuJia = rc.Get<GameObject>("Lab_HuJia");
             self.Lab_WuQi = rc.Get<GameObject>("Lab_WuQi");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 
             self.OnInitUI();
         }
@@ -134,10 +137,20 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIOccTwoComponentSystem
     {
+        public static void OnLanguageUpdate(this UIOccTwoComponent self)
+        {
+            self.Text_ZhiYe.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_ZhiYe_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_ZhiYe_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_ZhiYe_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.Text_ZhiYe_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+        }
 
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
