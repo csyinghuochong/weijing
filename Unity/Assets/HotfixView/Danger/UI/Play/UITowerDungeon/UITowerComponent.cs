@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -48,11 +49,52 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageViewComponent;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITowerComponentDestroySystem : DestroySystem<UITowerComponent>
+    {
+        public override void Destroy(UITowerComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITowerComponentSystem
     {
+        public static void OnLanguageUpdate(this UITowerComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
 
         public static void OnClickPageButton(this UITowerComponent self, int page)
         {

@@ -999,6 +999,11 @@ namespace ET
                     uiProtectPetComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITowerComponent uiTowerComponent)
+                {
+                    uiTowerComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
