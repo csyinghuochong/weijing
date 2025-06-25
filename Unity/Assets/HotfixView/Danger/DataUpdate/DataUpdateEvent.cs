@@ -1014,6 +1014,11 @@ namespace ET
                     uiOccTwoComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIChouKaComponent uiChouKaComponent)
+                {
+                    uiChouKaComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

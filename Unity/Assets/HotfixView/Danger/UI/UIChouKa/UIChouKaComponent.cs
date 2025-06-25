@@ -106,11 +106,11 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000,TimerType.UIChouKaTimer, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.AddListener(DataType.ChouKaWarehouseAddItem, self);
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
-
-
-
+    
     public class UIChouKaComponentDestroySystem : DestroySystem<UIChouKaComponent>
     {
         public override void Destroy(UIChouKaComponent self)
@@ -118,11 +118,24 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.ChouKaWarehouseAddItem, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIChouKaComponentSystem
     {
+        public static void OnLanguageUpdate(this UIChouKaComponent self)
+        {
+            self.Btn_ChouKaProbExplain.SetActive(GameSettingLanguge.Language == 0);
+            
+            UIChouKaChapterSelectComponent uiChouKaChapterSelect = self.UIChouKaChapterSelect.GetComponent<UIChouKaChapterSelectComponent>();
+            uiChouKaChapterSelect.InfoNode.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0 ? new Vector2(0, 0) : new Vector2(-130, 0);
+            uiChouKaChapterSelect.Text_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+            uiChouKaChapterSelect.Text_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+            uiChouKaChapterSelect.Text_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+            uiChouKaChapterSelect.Text_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+            uiChouKaChapterSelect.Text_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+        }
 
         public static int GetChouKaId(this UIChouKaComponent self)
         {

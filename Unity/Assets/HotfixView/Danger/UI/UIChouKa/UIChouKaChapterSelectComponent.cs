@@ -8,6 +8,12 @@ namespace ET
 
     public class UIChouKaChapterSelectComponent : Entity, IAwake
     {
+        public GameObject InfoNode;
+        public GameObject Text_1;
+        public GameObject Text_2;
+        public GameObject Text_3;
+        public GameObject Text_4;
+        public GameObject Text_5;
         public GameObject Btn_Close;
         public GameObject Btn_ZhangJie5;
         public GameObject Btn_ZhangJie4;
@@ -26,6 +32,13 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.InfoNode = rc.Get<GameObject>("InfoNode");
+            self.Text_1 = rc.Get<GameObject>("Text_1");
+            self.Text_2 = rc.Get<GameObject>("Text_2");
+            self.Text_3 = rc.Get<GameObject>("Text_3");
+            self.Text_4 = rc.Get<GameObject>("Text_4");
+            self.Text_5 = rc.Get<GameObject>("Text_5");
+            
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
 
