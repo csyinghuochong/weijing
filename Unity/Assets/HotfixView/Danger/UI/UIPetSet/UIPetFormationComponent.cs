@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIPetFormationComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject CloseButton;
         public GameObject ButtonChallenge;
         public GameObject TextNumber;
@@ -34,6 +35,7 @@ namespace ET
             self.SetHandler = null;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.uIPetFormations.Clear();
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.ButtonChallenge = rc.Get<GameObject>("ButtonChallenge");
             self.TextNumber = rc.Get<GameObject>("TextNumber");
             self.FormationNode = rc.Get<GameObject>("FormationNode");
@@ -51,6 +53,9 @@ namespace ET
                 self.SetHandler?.Invoke();
                 UIHelper.Remove(self.ZoneScene(), UIType.UIPetFormation); 
             });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIPetFormationComponentDestroy : DestroySystem<UIPetFormationComponent>
@@ -65,10 +70,16 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIPetFormationComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetFormationComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
+        }
 
         public static void OnUpdateNumber(this UIPetFormationComponent self,int sceneType)
         {

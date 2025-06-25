@@ -1054,6 +1054,11 @@ namespace ET
                     uiPetEggListItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetFormationComponent uiPetFormationComponent)
+                {
+                    uiPetFormationComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

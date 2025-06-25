@@ -555,6 +555,8 @@ MonoBehaviour:
     gameObject: {fileID: 5649000757037392082}
   - key: CloseButton
     gameObject: {fileID: 6714672302199246869}
+  - key: Text_Tip
+    gameObject: {fileID: 3232503765433575335}
 --- !u!114 &8990721608257737764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +681,7 @@ GameObject:
   - component: {fileID: 504234591575839723}
   - component: {fileID: 4189033123458184536}
   m_Layer: 5
-  m_Name: TextTip
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,8 +703,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -755, y: -491}
-  m_SizeDelta: {x: 800, y: 60}
+  m_AnchoredPosition: {x: -755, y: -506.67065}
+  m_SizeDelta: {x: 800, y: 91.3413}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8718963020630053067
 CanvasRenderer:
