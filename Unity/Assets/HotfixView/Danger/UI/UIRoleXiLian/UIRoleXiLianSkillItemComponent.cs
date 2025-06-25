@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public  class UIRoleXiLianSkillItemComponent : Entity, IAwake<GameObject>
+    public  class UIRoleXiLianSkillItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject ItemNode;
         public GameObject Text_XiLianName;
@@ -39,9 +39,12 @@ namespace ET
             self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.GetTitle() + GameSettingLanguge.LoadLocalization("额外增加概率出现的特殊属性");
             List<KeyValuePairInt> xilianSkill = XiLianHelper.GetLevelSkill(equipXiLianConfig.XiLianLevel);
 
+            float h = GameSettingLanguge.Language == 0? 170f : 210f;
+            self.ItemNode.GetComponent<GridLayoutGroup>().cellSize = GameSettingLanguge.Language == 0? new Vector2(150f, 170f) : new Vector2(170f, 210f);
+            
             int row = (xilianSkill.Count / 8);
             row += (xilianSkill.Count % 8 > 0 ? 1 : 0);
-            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1400f, 100f + row * 170f);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1400f, 100f + row * h);
 
             for (int i = 0; i < xilianSkill.Count; i++)
             {
