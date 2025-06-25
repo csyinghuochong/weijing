@@ -586,6 +586,8 @@ MonoBehaviour:
     gameObject: {fileID: 4942051499621130069}
   - key: TextLevelJianyi_3
     gameObject: {fileID: 4317964862590686882}
+  - key: Text_Tip
+    gameObject: {fileID: 8155404232032937584}
 --- !u!114 &4946719543138760932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2489,7 +2491,7 @@ GameObject:
   - component: {fileID: 8042734303733879732}
   - component: {fileID: 6884234642546781826}
   m_Layer: 5
-  m_Name: Text_1 (2)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

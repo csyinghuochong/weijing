@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITowerDungeonComponent : Entity, IAwake
+    public class UITowerDungeonComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject TextLevelJianyi_3;
         public GameObject TextLevelJianyi_2;
         public GameObject TextLevelJianyi_1;
@@ -24,6 +25,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.ButtonSelect_3 = rc.Get<GameObject>("ButtonSelect_3");
             self.ButtonSelect_2 = rc.Get<GameObject>("ButtonSelect_2");
             self.ButtonSelect_1 = rc.Get<GameObject>("ButtonSelect_1");
@@ -45,11 +47,27 @@ namespace ET
             globalValueConfig = GlobalValueConfigCategory.Instance.Get(61);
             UICommonHelper.ShowItemList(globalValueConfig.Value, self.ItemListNode, self,1, false);
             self.OnButtonSelect(FubenDifficulty.Normal);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITowerDungeonComponentDestroySystem : DestroySystem<UITowerDungeonComponent>
+    {
+        public override void Destroy(UITowerDungeonComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITowerDungeonComponentSystem
     {
+        public static void OnLanguageUpdate(this UITowerDungeonComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+
         public static void OnButtonSelect(this UITowerDungeonComponent self, int difficulty)
         {
             Color color_1 = new Color(255, 255, 255, 150);

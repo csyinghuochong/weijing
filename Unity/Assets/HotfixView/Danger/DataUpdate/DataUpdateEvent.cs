@@ -1004,6 +1004,11 @@ namespace ET
                     uiTowerComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITowerDungeonComponent uiTowerDungeonComponent)
+                {
+                    uiTowerDungeonComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
