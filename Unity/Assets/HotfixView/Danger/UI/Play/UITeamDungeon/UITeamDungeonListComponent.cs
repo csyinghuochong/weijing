@@ -12,6 +12,8 @@ namespace ET
         public GameObject Text_LeftTime;
         public GameObject Text_XieZhuNum;
         public GameObject UITeamDungeonItem;
+        public GameObject Btn_XieZhuNumTip;
+        public GameObject Text_XieZhuNumTip;
 
         public List<UI> TeamUIList = new List<UI>();
     }
@@ -32,6 +34,10 @@ namespace ET
 
             self.Button_Create = rc.Get<GameObject>("Button_Create");
             self.UITeamDungeonItem = rc.Get<GameObject>("UITeamDungeonItem");
+            self.Btn_XieZhuNumTip = rc.Get<GameObject>("Btn_XieZhuNumTip");
+            self.Text_XieZhuNumTip = rc.Get<GameObject>("Text_XieZhuNumTip");
+            
+            self.Btn_XieZhuNumTip.GetComponent<Button>().onClick.AddListener(()=>{self.Text_XieZhuNumTip.SetActive(!self.Text_XieZhuNumTip.activeSelf);});
             
             self.UITeamDungeonItem.SetActive(false);
             self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(); });
@@ -54,6 +60,8 @@ namespace ET
     {
         public static void OnLanguageUpdate(this UITeamDungeonListComponent self)
         {
+            self.Btn_XieZhuNumTip.SetActive(GameSettingLanguge.Language == 1);
+            self.Text_XieZhuNumTip.SetActive(GameSettingLanguge.Language == 0);
             self.Text_LeftTime.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
             self.Text_XieZhuNum.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
         }
