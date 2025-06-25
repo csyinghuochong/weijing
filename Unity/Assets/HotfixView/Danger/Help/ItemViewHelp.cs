@@ -1344,7 +1344,17 @@ namespace ET
                     {
                         int leftNum = allLength - a * 18;
                         leftNum = Math.Min(leftNum, 18);
-                        ShowPropertyText(s.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                        GameObject go = ShowPropertyText(s.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+
+                        // 洗练界面，一个星星只对应一条属性
+                        if (a != 0)
+                        {
+                            Transform star = go.transform.Find("Image (1)");
+                            if (star)
+                            {
+                                star.gameObject.SetActive(false);
+                            }
+                        }
                     }
 
                     properShowNum += addNum;
@@ -1408,7 +1418,18 @@ namespace ET
                         {
                             int leftNum = allLength - a * 18;
                             leftNum = Math.Min(leftNum, 18);
-                            ShowPropertyText(proStr.Substring(a * 18, leftNum), showYanSe, Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                            GameObject go = ShowPropertyText(proStr.Substring(a * 18, leftNum), showYanSe, Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                            
+                            // 洗练界面，一个星星只对应一条属性
+                            if (a != 0)
+                            {
+                                Transform star = go.transform.Find("Image (1)");
+                                if (star)
+                                {
+                                    star.gameObject.SetActive(false);
+                                }
+                            }
+                            
                             properShowNum += 1;
                         }
 
