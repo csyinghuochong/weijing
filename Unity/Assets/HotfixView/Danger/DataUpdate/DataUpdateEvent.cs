@@ -1074,6 +1074,11 @@ namespace ET
                     uiTeamDungeonListComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITeamDungeonCreateComponent uiTeamDungeonCreateComponent)
+                {
+                    uiTeamDungeonCreateComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

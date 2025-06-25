@@ -83,6 +83,7 @@ namespace ET
                 //rcSon.Get<GameObject>("Img_Show");
                 rcSon.Get<GameObject>("Lab_Lv").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("进入等级:{0}级"), sceneConfig[i].EnterLv);
                 rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().text = sceneConfig[i].GetName();
+                rcSon.Get<GameObject>("Lab_Name").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 46 : 36;
 
                 string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig[i].Icon);
                 Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
@@ -106,6 +107,9 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UITeamDungeonCreateComponentDestroy: DestroySystem<UITeamDungeonCreateComponent>
@@ -121,10 +125,19 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UITeamDungeonCreateComponentSystem
     {
+        public static void OnLanguageUpdate(this UITeamDungeonCreateComponent self)
+        {
+            self.TextFubenName2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 48 : 36;
+            self.Button_XieZhu.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Button_Create.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+        }
+
         public static void OnClickButton(this UITeamDungeonCreateComponent self, Transform transform)
         {
             int index = self.ButtonList.IndexOf(transform);
