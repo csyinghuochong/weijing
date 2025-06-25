@@ -1039,6 +1039,11 @@ namespace ET
                     uiRoleXiLianComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleXiLianExplainComponent uiRoleXiLianExplainComponent)
+                {
+                    uiRoleXiLianExplainComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
