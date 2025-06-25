@@ -1029,6 +1029,11 @@ namespace ET
                     uiPetEggChouKaComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITowerOfSealComponent uiTowerOfSealComponent)
+                {
+                    uiTowerOfSealComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

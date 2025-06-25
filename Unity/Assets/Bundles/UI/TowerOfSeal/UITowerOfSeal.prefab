@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4581801132272256305}
   - component: {fileID: 4478239198406418452}
   m_Layer: 5
-  m_Name: Text_1 (4)
+  m_Name: Text_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 2528004192360915272}
   - component: {fileID: 1369508497859189886}
   m_Layer: 5
-  m_Name: Text_1 (2)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -936,6 +936,10 @@ MonoBehaviour:
   data:
   - key: Btn_Enter
     gameObject: {fileID: 6612856863624786582}
+  - key: Text_Tip
+    gameObject: {fileID: 4441990312004195468}
+  - key: Text_Name
+    gameObject: {fileID: 1212688802555319831}
 --- !u!114 &589559650348845592
 MonoBehaviour:
   m_ObjectHideFlags: 0

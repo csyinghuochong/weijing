@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
-    /// <summary>
-    /// 封印之塔UI
-    /// </summary>
-    public class UITowerOfSealComponent: Entity, IAwake
+    public class UITowerOfSealComponent: Entity, IAwake, IDestroy
     {
-        /// <summary>
-        /// 进入封印之塔按钮
-        /// </summary>
+        public GameObject Text_Name;
+        public GameObject Text_Tip;
         public GameObject Btn_Enter;
     }
 
@@ -21,6 +18,15 @@ namespace ET
         }
     }
 
+    public class UITowerOfSealComponentDestroySystem : DestroySystem<UITowerOfSealComponent>
+    {
+        public override void Destroy(UITowerOfSealComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+
+    
     public static class UITowerOfSealComponentSystem
     {
         public static void Awake(this UITowerOfSealComponent self)
@@ -28,14 +34,21 @@ namespace ET
             GameObject gameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Name = rc.Get<GameObject>("Text_Name");
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.Btn_Enter = rc.Get<GameObject>("Btn_Enter");
             ButtonHelp.AddListenerEx(self.Btn_Enter, () => { self.OnBtn_Enter().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
 
-        /// <summary>
-        /// 请求进入封印之地
-        /// </summary>
-        /// <param name="self"></param>
+        public static void OnLanguageUpdate(this UITowerOfSealComponent self)
+        {
+            self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 60 : 36;
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+        
         public static async ETTask OnBtn_Enter(this UITowerOfSealComponent self)
         {
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
