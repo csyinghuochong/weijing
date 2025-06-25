@@ -10,28 +10,28 @@ using ET;
 /// 避免冲突 
 /// </summary>
 public enum ChannelIdEnum
-{ 
-	XiaoMi = 15,
-	ViVo =  17,
-	OPPO =  23,
-	HuaWei =  24,
+{
+    XiaoMi = 15,
+    ViVo = 17,
+    OPPO = 23,
+    HuaWei = 24,
 }
 
 public class EventHandle : QuickSDKListener
 {
 
-	public GameObject mExitDialogCanvas;
+    public GameObject mExitDialogCanvas;
 
-	public Action<string, string> onLoginSuccessAction;
-	public Action onLoginFailAction;
-	public Action onInitSuccessAction;
+    public Action<string, string> onLoginSuccessAction;
+    public Action onLoginFailAction;
+    public Action onInitSuccessAction;
 
-	public string ChannelId = "1";
+    public string ChannelId = "1";
 
-	void showLog(string title, string message)
-	{
-		Debug.Log("title: " + title + ", message: " + message);
-	}
+    void showLog(string title, string message)
+    {
+        Debug.Log("title: " + title + ", message: " + message);
+    }
 
     // Use this for initialization
     void Start()
@@ -100,6 +100,7 @@ public class EventHandle : QuickSDKListener
     /// </summary>
     public void onPay(string info)
     {
+        //6_2963328665821184000_1_筱薰魅_159_星辰之巅_qd17503252454260
         //model.amount + "," + dingDanID;
         showLog("onPay", info);
         string[] infolist = info.Split('_');
@@ -107,11 +108,11 @@ public class EventHandle : QuickSDKListener
         OrderInfo orderInfo = new OrderInfo();
         GameRoleInfo gameRoleInfo = new GameRoleInfo();
 
-        orderInfo.goodsID = "1";       //产品ID，用来识别购买的产品
-        orderInfo.goodsName = "钻石";  //产品名称
+        orderInfo.goodsID = $"Pay_{infolist[0]}";       //产品ID，用来识别购买的产品
+        orderInfo.goodsName = $"{int.Parse(infolist[0]) * 100}钻石";  //产品名称
         orderInfo.goodsDesc = "钻石";
-        orderInfo.quantifier = "个"; 
-        orderInfo.extrasParams = "extparma";   //透传参数  服务器发送异步通知时原样回传(需要传纯字符串，不能传json格式)
+        orderInfo.quantifier = "个";
+        orderInfo.extrasParams = "";   //透传参数  服务器发送异步通知时原样回传(需要传纯字符串，不能传json格式)
         orderInfo.count = 1;            //购买数量
         orderInfo.amount = double.Parse(infolist[0]);            //支付总额（元）
         orderInfo.price = double.Parse(infolist[0]);            //价格(可跟amount传一样的值)
@@ -127,6 +128,9 @@ public class EventHandle : QuickSDKListener
         gameRoleInfo.serverName = infolist[5];
         gameRoleInfo.vipLevel = "1";
         gameRoleInfo.roleCreateTime = TimeHelper.ServerNow().ToString();
+
+        Log.Debug(gameRoleInfo.ToString());
+
         QuickSDK.getInstance().pay(orderInfo, gameRoleInfo);
     }
 
@@ -382,69 +386,69 @@ public class EventHandle : QuickSDKListener
 
 
     public static int onChannelType()
-	{
+    {
 #if QuDao
 		return QuickSDK.getInstance().channelType();
 #else
         return -1;
 #endif
-	}
+    }
 
-	public void onFuctionSupport(int type)
-	{
-		bool supported = QuickSDK.getInstance().isFunctionSupported((FuncType)type);
-		showLog("fuctionSupport", supported ? "yes" : "no");
-	}
-	public void onGetConfigValue(string key)
-	{
-		string value = QuickSDK.getInstance().getConfigValue(key);
-		showLog("onGetConfigValue", key + ": " + value);
-	}
+    public void onFuctionSupport(int type)
+    {
+        bool supported = QuickSDK.getInstance().isFunctionSupported((FuncType)type);
+        showLog("fuctionSupport", supported ? "yes" : "no");
+    }
+    public void onGetConfigValue(string key)
+    {
+        string value = QuickSDK.getInstance().getConfigValue(key);
+        showLog("onGetConfigValue", key + ": " + value);
+    }
 
-	public void onOk()
-	{
-		//messageBox.SetActive(false);
-	}
+    public void onOk()
+    {
+        //messageBox.SetActive(false);
+    }
 
-	public void onPauseGame()
-	{
-		if (!EventHandle.IsQudaoPackage())
-			return;
-		Time.timeScale = 0;
-		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_PAUSED_GAME);
-	}
+    public void onPauseGame()
+    {
+        if (!EventHandle.IsQudaoPackage())
+            return;
+        Time.timeScale = 0;
+        QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_PAUSED_GAME);
+    }
 
-	public void onResumeGame()
-	{
-		Time.timeScale = 1;
-	}
+    public void onResumeGame()
+    {
+        Time.timeScale = 1;
+    }
 
-	//************************************************************以下是需要实现的回调接口*************************************************************************************************************************
-	//callback
-	//初始化成功的回调
-	public override void onInitSuccess()
-	{
-		showLog("onInitSuccess", "onInitSuccess....QuickSDK");
+    //************************************************************以下是需要实现的回调接口*************************************************************************************************************************
+    //callback
+    //初始化成功的回调
+    public override void onInitSuccess()
+    {
+        showLog("onInitSuccess", "onInitSuccess....QuickSDK");
 
-		string channelid = EventHandle.onChannelType().ToString();
-		this.ChannelId = channelid;
+        string channelid = EventHandle.onChannelType().ToString();
+        this.ChannelId = channelid;
 
-		onInitSuccessAction?.Invoke();
+        onInitSuccessAction?.Invoke();
         //QuickSDK.getInstance ().login (); //如果游戏需要启动时登录，需要在初始化成功之后调用
         //如果游戏需要启动时登录，需要在初始化成功之后调用
     }
 
     public override void onInitFailed(ErrorMsg errMsg)
-	{
-		//初始化失败的回调
-		showLog("onInitFailed", "msg: " + errMsg.errMsg);
-	}
+    {
+        //初始化失败的回调
+        showLog("onInitFailed", "msg: " + errMsg.errMsg);
+    }
 
-	public override void onLoginSuccess(UserInfo userInfo)
-	{
+    public override void onLoginSuccess(UserInfo userInfo)
+    {
         String code = QuickSDK.getInstance().callFunctionWithResult(0);
-        int qudaotype =  onChannelType();
-        showLog("onLoginSuccess", "code: " + code +   "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg  + "  qudaotype" + qudaotype);
+        int qudaotype = onChannelType();
+        showLog("onLoginSuccess", "code: " + code + "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg + "  qudaotype" + qudaotype);
 
 
         //登录成功的回调
@@ -457,105 +461,105 @@ public class EventHandle : QuickSDKListener
         //	//其他渠道不需要处理实名，直接返回
         //	onLoginSuccessAction?.Invoke();
         //}
-        
+
         onLoginSuccessAction?.Invoke(userInfo.token, qudaotype + "_" + userInfo.uid);
     }
 
-	public override void onSwitchAccountSuccess(UserInfo userInfo)
-	{
-		//切换账号成功，清除原来的角色信息，使用获取到新的用户信息，回到进入游戏的界面，不需要再次调登录
+    public override void onSwitchAccountSuccess(UserInfo userInfo)
+    {
+        //切换账号成功，清除原来的角色信息，使用获取到新的用户信息，回到进入游戏的界面，不需要再次调登录
         // 切换账号成功的回调
         //一些渠道在悬浮框有切换账号的功能，此回调即切换成功后的回调。游戏应清除当前的游戏角色信息。在切换账号成功后回到选择服务器界面，请不要再次调用登录接口。
         showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
-		//Application.LoadLevel("scene2");
-	}
+        //Application.LoadLevel("scene2");
+    }
 
-	public override void onLoginFailed(ErrorMsg errMsg)
-	{
-		//登录失败的回调
-		//如果游戏没有登录按钮，应在这里再次调用登录接口
-		//我们的游戏有登录按钮，如果失败，给个提示，再次点击登录
-		onLoginFailAction?.Invoke();
-		showLog("onLoginFailed", "msg: " + errMsg.errMsg);
-	}
+    public override void onLoginFailed(ErrorMsg errMsg)
+    {
+        //登录失败的回调
+        //如果游戏没有登录按钮，应在这里再次调用登录接口
+        //我们的游戏有登录按钮，如果失败，给个提示，再次点击登录
+        onLoginFailAction?.Invoke();
+        showLog("onLoginFailed", "msg: " + errMsg.errMsg);
+    }
 
-	public override void onLogoutSuccess()
-	{
-		//注销成功的回调
-		//游戏应该清除当前角色信息，回到登陆界面，并自动调用一次登录接口
-		showLog("onLogoutSuccess", "");
+    public override void onLogoutSuccess()
+    {
+        //注销成功的回调
+        //游戏应该清除当前角色信息，回到登陆界面，并自动调用一次登录接口
+        showLog("onLogoutSuccess", "");
 
-		//注销成功后回到登陆界面
-		//Application.LoadLevel("scene1");
-	}
+        //注销成功后回到登陆界面
+        //Application.LoadLevel("scene1");
+    }
 
-	public override void onPaySuccess(PayResult payResult)
-	{
-		//支付成功的回调
-		//一些渠道支付成功的通知并不准确，因此客户端的通知仅供参考，游戏发货请以服务端通知为准，不能以客户端的通知为准
-		showLog("onPaySuccess", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
-		//ClearnPayValue?.invoke
-	}
+    public override void onPaySuccess(PayResult payResult)
+    {
+        //支付成功的回调
+        //一些渠道支付成功的通知并不准确，因此客户端的通知仅供参考，游戏发货请以服务端通知为准，不能以客户端的通知为准
+        showLog("onPaySuccess", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
+        //ClearnPayValue?.invoke
+    }
 
-	public override void onPayCancel(PayResult payResult)
-	{
-		//支付取消的回调
-		showLog("onPayCancel", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
-		//ClearnPayValue?.invoke
-	}
+    public override void onPayCancel(PayResult payResult)
+    {
+        //支付取消的回调
+        showLog("onPayCancel", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
+        //ClearnPayValue?.invoke
+    }
 
-	public override void onPayFailed(PayResult payResult)
-	{
-		//支付失败的回调
-		showLog("onPayFailed", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
-		//ClearnPayValue?.invoke
-	}
+    public override void onPayFailed(PayResult payResult)
+    {
+        //支付失败的回调
+        showLog("onPayFailed", "orderId: " + payResult.orderId + ", cpOrderId: " + payResult.cpOrderId + " ,extraParam" + payResult.extraParam);
+        //ClearnPayValue?.invoke
+    }
 
-	public override void onExitSuccess()
-	{
-		//SDK退出成功的回调
-		showLog("onExitSuccess", "");
-		//退出成功的回调里面调用  QuickSDK.getInstance ().exitGame ();  即可实现退出游戏，杀进程。为避免与渠道发生冲突，请不要使用  Application.Quit ();
-		QuickSDK.getInstance().exitGame();
-	}
+    public override void onExitSuccess()
+    {
+        //SDK退出成功的回调
+        showLog("onExitSuccess", "");
+        //退出成功的回调里面调用  QuickSDK.getInstance ().exitGame ();  即可实现退出游戏，杀进程。为避免与渠道发生冲突，请不要使用  Application.Quit ();
+        QuickSDK.getInstance().exitGame();
+    }
 
-	public override void onSucceed(string infos)
-	{
-		//华为渠道。 目前只有华为有返回！！！
-		showLog("onSucceed 222222", infos);
+    public override void onSucceed(string infos)
+    {
+        //华为渠道。 目前只有华为有返回！！！
+        showLog("onSucceed 222222", infos);
 
-		LitJson.JsonData jo = LitJson.JsonMapper.ToObject(infos);
-		//{ "uid":"1178471402501092","age":20,"realName":true,"resumeGame":true,"other":"","FunctionType":105}
-		//JObject jo = (JObject)JsonConvert.DeserializeObject(infos);
-		string functionType = jo["FunctionType"].ToString();
-		if (int.Parse(functionType) == (int)FuncType.QUICK_SDK_FUNC_TYPE_REAL_NAME_REGISTER)
-		{
-			string sage = jo["age"].ToString();
-			string realName = jo["realName"].ToString();
-			if (realName == "false")
-			{
-				PlayerPrefs.SetInt("FangChenMi_Year", 0);
-				showLog("realName: ", "=false.  没有实名认证. ");
-			}
-			else
-			{
-				int age = int.Parse(sage);
-				PlayerPrefs.SetInt("FangChenMi_Year", age);
-				showLog("年龄[SetInt]: ", age.ToString());
-			}
+        LitJson.JsonData jo = LitJson.JsonMapper.ToObject(infos);
+        //{ "uid":"1178471402501092","age":20,"realName":true,"resumeGame":true,"other":"","FunctionType":105}
+        //JObject jo = (JObject)JsonConvert.DeserializeObject(infos);
+        string functionType = jo["FunctionType"].ToString();
+        if (int.Parse(functionType) == (int)FuncType.QUICK_SDK_FUNC_TYPE_REAL_NAME_REGISTER)
+        {
+            string sage = jo["age"].ToString();
+            string realName = jo["realName"].ToString();
+            if (realName == "false")
+            {
+                PlayerPrefs.SetInt("FangChenMi_Year", 0);
+                showLog("realName: ", "=false.  没有实名认证. ");
+            }
+            else
+            {
+                int age = int.Parse(sage);
+                PlayerPrefs.SetInt("FangChenMi_Year", age);
+                showLog("年龄[SetInt]: ", age.ToString());
+            }
 
-			//onLoginSuccessAction?.Invoke();
-		}
-		else
-		{
-			showLog("functionType: ", functionType);
-		}
-	}
+            //onLoginSuccessAction?.Invoke();
+        }
+        else
+        {
+            showLog("functionType: ", functionType);
+        }
+    }
 
-	public override void onFailed(string message)
-	{
-		showLog("onFailed", "msg: " + message);
-	}
+    public override void onFailed(string message)
+    {
+        showLog("onFailed", "msg: " + message);
+    }
     public override void onPrivaceAgree()
     {
         QuickSDKImp.getInstance().init();
@@ -577,24 +581,24 @@ public class EventHandle : QuickSDKListener
     }
 
     public void onRecvPermissionsResult(string open)
-	{
-		UnityEngine.Debug.Log("onRecvPermissionsResult！");
+    {
+        UnityEngine.Debug.Log("onRecvPermissionsResult！");
 
-		if (open == "1")
-		{
-			UnityEngine.Debug.Log("安卓同意了权限！");
-		}
-		else
-		{
-			//弹出界面
-			UnityEngine.Debug.Log("安卓拒绝了权限！");
-		}
-	}
+        if (open == "1")
+        {
+            UnityEngine.Debug.Log("安卓同意了权限！");
+        }
+        else
+        {
+            //弹出界面
+            UnityEngine.Debug.Log("安卓拒绝了权限！");
+        }
+    }
 
-	public void QuDaoRequestPermissions()
-	{
-		if (!EventHandle.IsQudaoPackage())
-			return;
+    public void QuDaoRequestPermissions()
+    {
+        if (!EventHandle.IsQudaoPackage())
+            return;
 #if UNITY_ANDROID && !UNITY_EDITOR
         using (AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -605,7 +609,7 @@ public class EventHandle : QuickSDKListener
             }
         }
 #endif
-	}
+    }
 
     public static bool IsHuiWeiChannel()
     {
