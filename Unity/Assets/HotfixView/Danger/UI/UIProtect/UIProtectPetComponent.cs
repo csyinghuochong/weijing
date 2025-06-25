@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIProtectPetComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject Text_Tip;
         public GameObject PetIcon;
         public GameObject Text_Name;
         public GameObject PetListNode;
@@ -27,6 +27,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.PetListNode    = rc.Get<GameObject>("EquipListNode");
 
             self.UnlockButton   = rc.Get<GameObject>("UnlockButton");
@@ -40,6 +41,9 @@ namespace ET
 
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIProtectPetComponentDestroy: DestroySystem<UIProtectPetComponent>
@@ -55,10 +59,16 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIProtectPetComponentSystem
     {
+        public static void OnLanguageUpdate(this UIProtectPetComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
 
         public static void OnUpdateUI(this UIProtectPetComponent self)
         {

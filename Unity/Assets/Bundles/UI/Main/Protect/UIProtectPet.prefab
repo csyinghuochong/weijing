@@ -65,6 +65,8 @@ MonoBehaviour:
     gameObject: {fileID: 7472603720438351787}
   - key: PetIcon
     gameObject: {fileID: 4261730496667676037}
+  - key: Text_Tip
+    gameObject: {fileID: 6969305106881663822}
 --- !u!1 &1976308243590972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1202,7 @@ GameObject:
   - component: {fileID: 6762634406202094332}
   - component: {fileID: 8325857294116728363}
   m_Layer: 5
-  m_Name: Text_2
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
