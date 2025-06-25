@@ -50,6 +50,9 @@ namespace ET
             {
                 self.PetIconList[i] = self.PetList.transform.GetChild(i).Find("Icon").GetComponent<Image>();
             }
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIPetMiningItemComponentDestroy : DestroySystem<UIPetMiningItemComponent>
@@ -64,10 +67,16 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIPetMiningItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetMiningItemComponent self)
+        {
+            self.TextPlayer.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 35 : 30;
+        }
 
         public static async ETTask OnImageIcon(this UIPetMiningItemComponent self)
         {
@@ -95,7 +104,7 @@ namespace ET
             int openDay = ServerHelper.GetOpenServerDay(false, zone);
             float coffi = ComHelp.GetMineCoefficient(openDay, mingType, index, petMineExtend);
             int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
-            self.TextChanChu.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}/小时"), chanchu);
+            self.TextChanChu.GetComponent<Text>().text = chanchu + "/" + GameSettingLanguge.LoadLocalization("小时");
         }
 
         /// <summary>
