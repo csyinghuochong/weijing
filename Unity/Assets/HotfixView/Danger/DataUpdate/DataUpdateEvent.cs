@@ -1049,6 +1049,11 @@ namespace ET
                     uiRoleXiLianTransferComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetEggListItemComponent uiPetEggListItemComponent)
+                {
+                    uiPetEggListItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

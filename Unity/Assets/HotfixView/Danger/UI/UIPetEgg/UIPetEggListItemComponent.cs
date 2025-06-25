@@ -72,6 +72,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen(); });
             ButtonHelp.AddListenerEx(self.ButtonGet, () => { self.OnButtonGet().Coroutine();  });
             ButtonHelp.AddListenerEx(self.ButtonFuHua, () => { self.OnButtonFuHua().Coroutine(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -88,12 +91,21 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
 
     public static class UIPetEggListItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetEggListItemComponent self)
+        {
+            self.ButtonOpen.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.ButtonFuHua.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.ButtonGet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+        }
+
         public static void BeginDrag(this UIPetEggListItemComponent self, PointerEventData pdata)
         {
             self.BeginDragHandler?.Invoke(self.Index, pdata);
