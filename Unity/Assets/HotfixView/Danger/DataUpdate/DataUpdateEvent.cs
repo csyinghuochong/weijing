@@ -1064,6 +1064,11 @@ namespace ET
                     uiPetMiningItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetMiningComponent uiPetMiningComponent)
+                {
+                    uiPetMiningComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

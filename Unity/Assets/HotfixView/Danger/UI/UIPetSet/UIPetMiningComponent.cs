@@ -117,6 +117,9 @@ namespace ET
 
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
             redPointComponent.RegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -132,11 +135,18 @@ namespace ET
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIPetMiningComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetMiningComponent self)
+        {
+            self.ButtonEditorTeam.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 32;
+            self.ButtonRecord.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 32;
+        }
 
         public static async ETTask OnButtonRecord(this UIPetMiningComponent self)
         {
