@@ -1034,6 +1034,11 @@ namespace ET
                     uiTowerOfSealComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleXiLianComponent uiRoleXiLianComponent)
+                {
+                    uiRoleXiLianComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

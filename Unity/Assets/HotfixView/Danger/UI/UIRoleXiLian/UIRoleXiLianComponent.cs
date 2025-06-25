@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -65,6 +65,9 @@ namespace ET
 			//IOS适配
 			self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
 			IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
+			
+			self.OnLanguageUpdate();
+			DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
 		}
 	}
 
@@ -73,11 +76,43 @@ namespace ET
 	{
 		public override void Destroy(UIRoleXiLianComponent self)
 		{
+			DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 		}
 	}
 
 	public static class UIRoleXiLianComponentSystem
 	{
+		public static void OnLanguageUpdate(this UIRoleXiLianComponent self)
+		{
+			Transform tt = self.UIPageButton.GameObject.transform;
+
+			int childCount = tt.childCount;
+			for (int i = 0; i < childCount; i++)
+			{
+				Transform transform = tt.transform.GetChild(i);
+
+				Transform XuanZhong = transform.Find("XuanZhong");
+				if (XuanZhong)
+				{
+					Text text = XuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+
+				Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+				if (WeiXuanZhong)
+				{
+					Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+					if (text)
+					{
+						text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+					}
+				}
+			}
+		}
+
 		public static void OnClickPageButton(this UIRoleXiLianComponent self, int page)
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();
