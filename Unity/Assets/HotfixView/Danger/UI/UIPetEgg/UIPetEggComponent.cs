@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -14,11 +15,12 @@ namespace ET
         Num,
     }
 
-    public class UIPetEggComponent : Entity, IAwake
+    public class UIPetEggComponent : Entity, IAwake, IDestroy
     {
         public GameObject Btn_Type_5;
         public UIPageViewComponent UIPageView;
         public GameObject FunctionSetBtn;
+        public UIPageButtonComponent UIPageButton;
     }
 
 
@@ -58,15 +60,58 @@ namespace ET
             GameObject FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI PageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", FunctionSetBtn);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
+            self.UIPageButton = uIPageButtonComponent;
             uIPageButtonComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIPetEggComponentDestroySystem : DestroySystem<UIPetEggComponent>
+    {
+        public override void Destroy(UIPetEggComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIPetEggComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetEggComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UIPetEggComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
