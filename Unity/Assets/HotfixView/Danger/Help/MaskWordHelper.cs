@@ -94,7 +94,12 @@ namespace ET
         public bool IsContainSensitiveWords(ref string text, out string SensitiveWords)
         {
             bool isFind = false;
+           
             SensitiveWords = "";
+
+            if (GameSettingLanguge.Language == 0)
+                return isFind;
+
             if (null == sensitiveWordsArray || string.IsNullOrEmpty(text))
                 return isFind;
 
