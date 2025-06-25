@@ -57,6 +57,9 @@ namespace ET
             self.PetLucky = rc.Get<GameObject>("PetLucky");
             self.PetLucky.SetActive( true) ;
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.UpdateMoney();
             self.OnUpdateInfo();
             self.UpdateReward();
@@ -76,10 +79,17 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIPetEggChouKaComponentSystem
     {
+        public static void OnLanguageUpdate(this UIPetEggChouKaComponent self)
+        {
+            self.Btn_PetEggLucklyExplain.SetActive(GameSettingLanguge.Language == 0);
+        }
+
         public static void UpdateReward(this UIPetEggChouKaComponent self)
         {
             UICommonHelper.ShowItemList(ConfigHelper.PetChouKaRewardItemShow, self.RewardItemListNode, self, 0.8f);

@@ -1024,6 +1024,11 @@ namespace ET
                     uiPetEggComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPetEggChouKaComponent uiPetEggChouKaComponent)
+                {
+                    uiPetEggChouKaComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
