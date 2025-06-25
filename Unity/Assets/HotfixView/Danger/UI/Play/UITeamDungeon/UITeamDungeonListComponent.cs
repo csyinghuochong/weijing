@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITeamDungeonListComponent : Entity, IAwake<GameObject>
+    public class UITeamDungeonListComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
         public GameObject Button_Create;
@@ -37,11 +37,27 @@ namespace ET
             self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UITeamDungeonListComponentDestroySystem : DestroySystem<UITeamDungeonListComponent>
+    {
+        public override void Destroy(UITeamDungeonListComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UITeamDungeonListComponentSystem
     {
+        public static void OnLanguageUpdate(this UITeamDungeonListComponent self)
+        {
+            self.Text_LeftTime.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Text_XieZhuNum.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+
         public static void  OnButton_Create(this UITeamDungeonListComponent self)
         {
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();

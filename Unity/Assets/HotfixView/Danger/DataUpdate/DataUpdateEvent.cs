@@ -1069,6 +1069,11 @@ namespace ET
                     uiPetMiningComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UITeamDungeonListComponent uiTeamDungeonListComponent)
+                {
+                    uiTeamDungeonListComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
