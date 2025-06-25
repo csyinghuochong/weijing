@@ -12,6 +12,7 @@ namespace ET
         public GameObject Move;
         public GameObject Text_Index;
         public GameObject Text_Name;
+        public GameObject Text_Tip;
         public GameObject Node_1;
         public GameObject UnLock;
         public GameObject Image_DI;
@@ -31,6 +32,7 @@ namespace ET
             self.Move  = rc.Get<GameObject>("Move");
             self.Text_Index = rc.Get<GameObject>("Text_Index");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.Node_1 = rc.Get<GameObject>("Node_1");
             self.UnLock = rc.Get<GameObject>("UnLock");
             self.Image_DI = rc.Get<GameObject>("Image_DI");
@@ -65,6 +67,7 @@ namespace ET
         {
             self.Text_Index.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
             self.Text_Name.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 60 : 40;
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 28;
             
             RectTransform rt = self.Image_Icon.GetComponent<RectTransform>();
             Vector2 position = Vector2.zero;

@@ -559,6 +559,8 @@ MonoBehaviour:
     gameObject: {fileID: 5140874181421478130}
   - key: Image_Icon
     gameObject: {fileID: 8475350788291229988}
+  - key: Text_Tip
+    gameObject: {fileID: 6457174375956438427}
 --- !u!1 &5355075777829220866
 GameObject:
   m_ObjectHideFlags: 0
