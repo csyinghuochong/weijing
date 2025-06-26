@@ -310,13 +310,25 @@ namespace ET
                 self.Text_Exp.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Exp}/{unionConfig.Exp}";
                 if (r2c_roleEquip.UnionMyInfo.UnionGold <= unionConfig.UnionGoldLimit)
                 {
-                    self.Text_UnionGold.GetComponent<Text>().text =
-                            string.Format(GameSettingLanguge.LoadLocalization("{0}万/{1}万"), (r2c_roleEquip.UnionMyInfo.UnionGold / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        self.Text_UnionGold.GetComponent<Text>().text = string.Format("{0}万/{1}万", (r2c_roleEquip.UnionMyInfo.UnionGold / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
+                    }
+                    else
+                    {
+                        self.Text_UnionGold.GetComponent<Text>().text = string.Format("{0}K/{1}K", (r2c_roleEquip.UnionMyInfo.UnionGold / 1000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 1000f).ToString("0.#"));
+                    }
                 }
                 else
                 {
-                    self.Text_UnionGold.GetComponent<Text>().text =
-                            string.Format(GameSettingLanguge.LoadLocalization("{0}万/{1}万"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        self.Text_UnionGold.GetComponent<Text>().text = string.Format("{0}万/{1}万", (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 10000f).ToString("0.#"));
+                    }
+                    else
+                    {
+                        self.Text_UnionGold.GetComponent<Text>().text = string.Format("{0}K/{1}K", (unionConfig.UnionGoldLimit / 1000f).ToString("0.#"), (unionConfig.UnionGoldLimit / 1000f).ToString("0.#"));
+                    }
                 }
             }
             else
