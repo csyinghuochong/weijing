@@ -168,7 +168,7 @@ R��#勇士请重整旗鼓,重新再来!"'Warriors, please regroup and try aga
 +��返回主城"Return to the main city
 &��进入条件"Entry Requirements
 %��选择难度"Select Difficulty
-&��进入副本"Enter the Instance
+��进入副本"Enter
 9��第一章   洛兰森林"Chapter 1 - Lorand Forest
 4��(冒险进度：0/7)"(Arrow Progression: 0/7)
 *��继续挑战"Continue the challenge
@@ -183,7 +183,8 @@ C��挑战时间少于5分钟""Challenge time less than 5 minutes
 A��选择剩余时间:10秒"!Select remaining time: 10 seconds
 ,��正在加载数据中"Loading data...
 .��我是一个提示框"I am a prompt box
-!��系统提示"System prompt
+��系统提示"
+Sys Prompt
 i��*是否花费800钻石重置您的技能？"7Do you want to spend 800 diamonds to reset your skills?
 ��确 定"Sure
 ��取 消"Cancel
@@ -201,7 +202,7 @@ $��职业介绍"Job Introduction
 #��	唤魔者"Summoner of Demons
 ��技能名称"
 Skill Name
-!��创建角色"Create a role
+��创建角色"Create
 ��随机名称"Random name
 <��使用武器：刀、剑"Use of weapons: knife, sword
 (��技能展示"Skills demonstration
@@ -210,8 +211,8 @@ Skill Name
 2��点击创建新角色"Click Create New Role
 ��	上一页"Previous page
 ��	下一页"	Next page
-"��进入游戏"Enter the game
-#��删除角色"Delete the role
+��进入游戏"Enter
+��删除角色"Delete
 "��活动规则"Activity rules
 ���B1. 活动开启后会在场景中随机生产一定数量恶魔。"c1. After the activity is opened, a certain number of demons will be randomly produced in the scene.
 v��;2.恶魔或生存者获得胜利的一方将获得奖励。"32. The demon or survivor who wins will be rewarded.
@@ -221,8 +222,8 @@ v��;2.恶魔或生存者获得胜利的一方将获得奖励。"32. The demon
 2��准备倒计时 0:0"Ready to count down 0:0
 #��第1名 玩家1"1st Player 1
 "��玩家排名"Player ranking
-8��即将刷新的领主"Lords about to be refreshed
-$��显示设置"Display settings
++��即将刷新的领主"Refreshed List
+��显示设置"Display
 ��显示"Show
 +��关卡战役"The checkpoint campaign
 #��金币移动"Gold coins move
@@ -237,13 +238,13 @@ I��活动结束倒计时 0:0"(Countdown to the end of the activity 0:0
 ��家园危机"Home Crisis
 "��点击进入"Click to enter
 $��{0}级解锁"{0} Level Unlock
-7��选择当前难度"Select the current difficulty
+/��选择当前难度"Select the difficulty
 .��激活等级:15级"Activation Level: 15
 =��适合刚进入的探险者"Suitable for new explorers
 %��普通难度"Normal difficulty
-l��"适合经常探险,爆率提升20%"BSuitable for frequent exploration, explosion rate increased by 20%
+8��"适合经常探险,爆率提升20%"Drop Rate +20%
 *��苦难难度"Suffering is difficult
-s"不容一丝懈怠,爆率提升50%"IDo not allow a trace of slack, the explosion rate increased by 50 percent
+8"不容一丝懈怠,爆率提升50%"Drop Rate +50%
 #Û地狱难度"Hell difficulty
 ě传送"Transmission
 !ś章节名称"Chapter Title
@@ -280,17 +281,17 @@ o՛-3.击败怪物等级不能低于自身9级。":3. The level of defeating 
 ;��5:14:52秒后免费领取"Free after 5:14:52 seconds
 =�53:14:52秒后免费领取"Free after 53:14:52 seconds
 "�奖励展示"Reward display
-��T提示：每次制作成功菜肴，如果配方正确，可以领悟对应的食谱"rTip: Every time you make a successful dish, if the recipe is correct, you can understand the corresponding recipe.
+��T提示：每次制作成功菜肴，如果配方正确，可以领悟对应的食谱"hTip: When you successfully cook a dish with the correct recipe, you'll learn the corresponding cookbook.
 �制造配方"Formula
 �锁定"Locked
- �开始制作"Start making
-t�61. 使用不同的食材可以制造出不同的菜肴"61. Use different ingredients to make different dishes.
-x�52.每种菜肴烹饪会有2-4种不同的材料构成";2. Each dish will be cooked with 2-4 different ingredients.
-y�53.商人也会在收购一些比较热销的商品哦"<3. Businessmen will also buy some of the more popular goods.
+�开始制作"Making
+m�61. 使用不同的食材可以制造出不同的菜肴"/1. Different ingredients make different dishes.
+m�52.每种菜肴烹饪会有2-4种不同的材料构成"02. Each dish requires 2-4 different ingredients.
+a�53.商人也会在收购一些比较热销的商品哦"$3. Merchants also buy popular items.
  �制作烹饪"Make cooking
 �大师"Master
 �美味"	Delicious
-1�请大师品尝"Invite the master to taste
+�请大师品尝"Taste
 ��U提示：当单条属性值超过80%时,每日凌晨属性会小浮动下降自己。"hPrompt: When a single attribute value exceeds 80%, the attribute will float down slightly every morning.
 /�品尝50次开启"Taste 50 times to open
 �攻击+50点"Attack + 50
@@ -299,11 +300,11 @@ y�53.商人也会在收购一些比较热销的商品哦"<3. Businessmen wil
 �烹饪"Cook
 ��食谱"Recipe
 ��附近"Nearby
-��好友"Good friends
+��好友"Friends
 B��采摘:10/10  
 打扫:10/10"Picking: 10/10 
 Sweeping: 10/10
-��耕地"Cultivated land
+��耕地"Land
 ��人口"
 Population
 ��种植"Plant
@@ -320,8 +321,8 @@ Population
 $��一键种植"One key planting
 "��开始种植"Start planting
 H��可以种植地数量:1/1"'Number of land that can be planted: 1/1
- ��成长周期"Growth cycle
-"��购买资金"Purchase funds
+��成长周期"Growth
+��购买资金"Funds
 ��养"Raise
 ��
 人口：3"Population: 3
@@ -356,24 +357,24 @@ $��查看信息"View information
 ��
 资金：0"
 Funding: 0
-0��家园来访信息"Home visit information
++��家园来访信息"Visit information
 _��*玩家幸福的瞬间来到你的家园。"-The player's happy moment comes to your home.
 ���B提示：此仓库只可存储藏宝图和生活技能相关道具"RTip: This warehouse can only store items related to treasure maps and life skills.
 ��储藏"Storage
-��一键放入"Mass Deploy
+��一键放入"Save
 ��我的背包"My Bag
 ��我的仓库"	Warehouse
 ��整理仓库"Arrange
 ��一键取出"Take out
 ��生活"Life
-!��	耕地："Cultivated land:
+��	耕地："Land:
 ��	人口："Population:
 6��幸福瞬间的家园"The Home of Happy Moments
 #��家园经验"Home Experience
 D��人口上线提升至10"%Population upper line increased to 10
--��兑换家园资金"Exchange home funds
-2��兑换家园经验"Exchange home experience
-%��升级家园"Upgrade your home
+"��兑换家园资金"Exchange
+"��兑换家园经验"Exchange
+��升级家园"Upgrade
 ���?提示: 经验产出1000/小时,预计5小时后可升级家园"lPrompt: The experience output is 1000/hour, and it is estimated that the home can be upgraded after 5 hours.
 6��兑换次数：10/10"Number of exchanges: 10/10
 1��升级后可获得"Available after upgrade
@@ -403,8 +404,8 @@ Pop-up box
 ,Ҝ实名认证"Real name authentication
 �Ӝ�抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。"�Resist bad games and reject pirated games. Pay attention to self-protection and beware of being cheated. Moderate games are beneficial to the brain, while indulging in games is harmful to the body. Arrange your time properly and enjoy a healthy life.
 "Ԝ感谢名单"Thank you list
-'՜更新公告"Update the bulletin
-,֜区服列表"List of regional service
+՜更新公告"Notice
+ ֜区服列表"Service List
  ל登录中..."Logging in..
 �؜9已阅读并同意《用户协议》及《隐私协议》"?Have read and agree to the User Agreement and Privacy Agreement
 ٜ登录游戏"
@@ -765,7 +766,7 @@ I��当前已捐献：10000金币"$Currently donated: 10,000 gold coins
 $��王者捐献"The king donates
 "��捐献第2名"Donation No.2
 ��.游戏内爆率提升20%,对怪伤害增加25%"IGame implosion rate increased by 20%, damage to monsters increased by 25%
-$��钻石捐献"Diamond donation
+��钻石捐献"Donation
 "��捐献第3名"Donation No.3
 ���.游戏内爆率提升15%,对怪伤害增加20%"VThe game implosion rate increases by 15%, and the damage to monsters increases by 20%.
 !��黄金捐献"Gold donation
@@ -829,7 +830,7 @@ The better the Acura property.
 5. There is a chance that the lucky value attribute will appear.
 &��属性转移"Attribute transfer
 $��放入装备"Put in the Equip
-���:只有传承增幅才可以转移,普通增幅无法转移"cOnly the inheritance increase can be transferred, and the ordinary increase can not be transferred.
+r��:只有传承增幅才可以转移,普通增幅无法转移"0Only the inheritance increase can be transferred
 t��-转移装备需要同类型和部位的装备"?Transferring Equip requires Equip of the same type and location
 ���B左边的装备传承增幅属性会清空转移至右边的装备"oThe Equip inheritance increase attribute on the left will be cleared and transferred to the Equip on the right.
 7放入装备44444"Put in the 44444 of the Equip.
@@ -1248,7 +1249,7 @@ E��请输入要修改的名称..."Please enter a name to modify..
 
 Ţ10级"Level 10
 $Ƣ评分： 10000"Rating: 10000
-+Ǣ放入仓库"Put it in the warehouse
+Ǣ放入仓库"Put in
 )Ȣ青龙守护"Green Dragon Guardian
 $ɢ取回宠物"Retrieve the pet
 ʢ开启栏位"
@@ -1940,8 +1941,8 @@ Give props
 /��前往神秘地图"Go to the mystery map
 /��杀怪任务   2-1"Kill Monster Task 2-1
 ��主线任务"	Main task
-(��申请列表"List of applications
-#��离开队伍"Get out of line
+��申请列表"List
+��离开队伍"	Exit Team
 ��队长"Captain
 #��等待加入"Waiting to join
 ��队员"Team member
@@ -1978,12 +1979,12 @@ Occupation
 ��生命+。。。。"Life
 '��升级消耗"Upgrade consumption
 '��一级血石"Grade 1 blood stone
-&��升级血石"Upgrade Bloodstone
+��升级血石"Upgrade
 =��请输入加入宗旨" Please enter the joining purpose
-7��请输入家族名字"Please enter a family name
-&��创建条件"Create a condition
-��家族名称"Family name
-#��家族捐献"Family donation
+)��请输入家族名字"Enter a name
+��创建条件"	Condition
+��家族名称"Name
+��家族捐献"Donation
 $��捐献记录"Donation records
 "��捐献规则"Donation rules
 ���N1.   每次捐献获得随机额度的家族贡献,家族经验和家族资金"e1. Each donation receives a random amount of family contribution, family experience and family funds.
@@ -2007,30 +2008,31 @@ Election rules:
 ǧ学习"Learn
 %ȧ金币能力"Gold coin ability
 Fɧ"家族科技:额外金币获取+1%"Family Tech: + 1% extra gold
-=ʧ科技能力")Scientific and technological capabilities
+ ʧ科技能力"Capabilities
 B˧消耗家族资金：999999"Consuming Family Money: 999999.
 n̧-提示：同时间只能研究一个科技哦"9Tip: Only one technology can be studied at the same time.
 ;ͧ需要家族等级达到5级"Requires family level 5
 5Χ消耗家族金币：999"Cost Family Gold: 999
 ?ϧ研究消耗时间：8小时"Study elapsed time: 8 hours
-&Ч开始研究"Start the research
+Ч开始研究"Learn
 iѧ'科技能力:拾取金币额外获得1%":Tech Abilities: Get an additional 1% when picking up gold.
 (ҧ升级需求"Upgrade requirements
-%ӧ研究进度"Research progress
+ӧ研究进度"Progress
 1ԧ在线人数 20"Number of people online 20
 (է名称名称名称"Name Name Name
-$֧离开家族"Leave the family
+֧离开家族"Exit family
 +ק申请族长"Apply for the patriarch
 *ا请输入名称"Please enter a name
 &٧修改宗旨"Revise the purpose
-(ڧ家族族长"The family patriarch
-!ۧ家族成员"Family member
-"ܧ家族宗旨"Family purpose
+ڧ家族族长"	Patriarch
+ۧ家族成员"Member
+"ܧ家族宗旨"Family Purpose
 1ݧ天下第一帮"The best gang in the world
 ާ	哈哈哈"Ha ha ha
 $ߧ进入家族"Enter the family
 $�家族等级"Family hierarchy
-%�家族经验"Family experience
+�家族经验"
+Experience
 "�家族记录"Family records
  �家族资金"Family funds
 �1.5万"15,000
@@ -2040,7 +2042,7 @@ $�家族等级"Family hierarchy
 �攻击 + 35"Attack + 35
 �下一等级"
 Next level
-(�升级修炼"Upgrade and practice
+�升级修炼"Upgrade
 n�+玩家通过任务增加了5点家族经验";The player gains 5 family experience points through quests.
 .�消耗:1000金币"Cost: 1000 gold coins
 ��人数"
@@ -2202,7 +2204,7 @@ B�匹配时间：0分0秒"#Match time: 0 minutes and 0 seconds
 %�挑战结束"Challenge is over
 ��4你当前成功完成挑战10波,获得奖励如下:"bYou have successfully completed 10 waves of the current challenge and will be rewarded as follows:
 Y�10秒后自动返回主城"7Automatically return to the main city after 10 seconds.
-!�创建副本"Create a copy
+�创建副本"Create
 =�沼泽副本(协助模式)"Swamp dungeon (assist mode)
 6�进入条件：10级"Entry conditions: Level 10
 4��推荐等级：30-49"Recommended grade: 30-49
@@ -2215,7 +2217,7 @@ V��'组队副本开启时间  19:00 - 24:00"'Team dungeon opening time 19: 00
 2.高于副本等级10级的帮助玩家可获得友爱奖章，可以兑换稀有的游戏道具。"�Help copy prompt: 
 1. Participate in the help copy. If the copy level is higher than 10, it will consume the help times. Otherwise, it will consume the normal copy times. 
 2. Help players who are 10 levels higher than dungeon level can get the Friendship Medal, which can be exchanged for rare game items.
-���Q提示：2个玩家爆率提升30%，3个玩家爆率提升60%,人机无加成。"�Tip: The explosion rate of 2 players is increased by 30%, the explosion rate of 3 players is increased by 60%, and there is no man-machine bonus.
+���Q提示：2个玩家爆率提升30%，3个玩家爆率提升60%,人机无加成。"8Tip: 2 players: drop rate +30% 2 players: drop rate +30%
 ��人机"Man Machine
 ?��等待其他玩家加入"Wait for other players to join.
 '��战力:99999"Combat Power: 99999
@@ -2223,7 +2225,7 @@ V��'组队副本开启时间  19:00 - 24:00"'Team dungeon opening time 19: 00
 ��发送喊话"Send a call
 "��添加机器人"Add a robot
 >��挑战副本:深海副本"Challenge Copy: Deep Sea Copy
-��拥有:"	Owned by:
+��拥有:"Owned:
 $��友爱商店"Friendship Store
 ���@提示:在副本帮助模式下的大号会获得友爱奖章。"ATip: a tuba in dungeon help mode will receive a friendship medal.
 "��副本列表"List of copies
@@ -2233,16 +2235,16 @@ Swamp copy
 $��副本描述"Copy description
 ����副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描"!Copy description copy description
 ��1人"1 person
-'��推荐等级:"Recommended grade:
-/��人数要求:"Number of people required:
+��推荐等级:"Level :
+��人数要求:"	Players :
 ,��可能获得奖励:"Possible Rewards:
 4��推荐等级: 1-10级"Recommended grade: 1-10
 /��推荐人数: 3人"Recommended: 3 people
-��帮助副本"	Help copy
-(��消耗精力:"Energy consumption:
-y��4消耗帮助次数
-进入比自己等级低的副本"=Consume help times 
-Enter a lower level dungeon than yourself
+��帮助副本"Create Help
+��消耗精力:"Energy :
+j��4消耗帮助次数
+进入比自己等级低的副本".Consume help times 
+ Enter a Low-Level Dungeon
 0��开启深渊模式"Turn on the abyss mode
 %��进入准备"Prepare for entry
  ��拒绝进入"Denied entry
@@ -2321,12 +2323,12 @@ cҩ/唉呀,谁用石头丢了我一下,头好晕哦",Oh, who threw me with a 
 ԩ朱雀守护"Bird
 թ玄武守护"Tortoise
 ֩神兽守护"Beast
-0ש美味大师1级"Delicious Master Level 1
-0ة美味大师2级"Delicious Master Level 2
-0٩美味大师3级"Delicious Master Level 3
-0ک美味大师4级"Delicious Master Level 4
-,۩美味大师5级"Delicious Master Lv5
-,ܩ美味大师6级"Delicious Master Lv6
+ש美味大师1级"Level 1
+ة美味大师2级"Level 2
+٩美味大师3级"Level 3
+ک美味大师4级"Level 4
+۩美味大师5级"Level 5
+ܩ美味大师6级"Level 6
 5ݩ战场活动开启"Battlefield activities open
 7ީ宝藏活动开启"The treasure activity is open
 Iߩ变身大赛活动开启")Transformation Competition Activity Opens
@@ -3095,7 +3097,7 @@ ců+是否消耗{0}家园资金学习该食谱?"0Does it cost {0} home money 
 Lǯ恭喜你学会制作 {0}"+Congratulations on learning how to make {0}
 .ȯ道具数量不足！"Not enough props!
 %ɯ增加属性："Add Attribute:
-3ʯ品尝{0}次开启"Taste {0} times to unlock
+)ʯ品尝{0}次开启"Taste {0} times
 i˯'请选择返回主城或自己家园？":Please choose to return to the main city or your own home?
 ̯返回家园"Return home
 ͯ{0}的家园"Home of {0}
@@ -3132,7 +3134,7 @@ Level: {0}
 X�!是否花费{0}家园资金刷新"/Whether to spend {0} homestead funds to refresh
 (�道具不足！"Not enough props!
 �	已过期"Expired
-$�剩余时间:"Time remaining:
+�剩余时间:"Time:
 ��资金:"Funding:
 Q�${0} 玩家<color=#9CA606>{1}</color>"%{0} Player <color=#9CA606>{1}</color>
 F�!来到你的家园逛了一圈。"Came to your home for a walk.
@@ -3143,9 +3145,10 @@ g�(是否花费{0}购买一个背包格子?"7Do you want to spend {0} to buy
 >��兑换次数不足！"!Insufficient number of exchanges!
 -��金币不足！"Not enough gold coins!
 ���?提示:经验产出{0}/小时,预计{1}小时后可升级家园"]Experience output: {0} per hour. It is estimated that your home can be upgraded in {1} hours.
-6��兑换次数:10/{0}"Number of exchanges: 10/{0}
-0��采摘:{0}/5
-打扫:{1}/5"Picking: {0}/5
+(��兑换次数:10/{0}"Limit: 10/{0}
+:��采摘:{0}/5
+打扫:{1}/5"Pick: {0}/5
+Clean: {0}/5
 ?��已经在当前房间中！"Already in the current room!
 &��开启仓库"Open the warehouse
 S��!是否消耗{0}开启一个仓库"*Whether to consume {0} to open a warehouse
@@ -3231,12 +3234,12 @@ FŰ下次变身时间:  {0}:{1}""Next transformation time: {0}: {1}
 4ǰ第{0}名 {1}  还剩:{2}"{0}th {1} left: {2}
 4Ȱ第{0}名 {1}  时间:{2}"{1}th {1} Time: {2}
 Uɰ!请先创建或加入副本队伍",Please create or join the replica team first
--ʰ进入等级:{0}级"Level entered: {0}
+&ʰ进入等级:{0}级"Level : {0}
 ˰{0}-3人"{0}-3 persons
 -̰需要道具{0}！"Props required {0}!
 �Ͱ<帮助副本次数已尽，开启副本会消耗正常次数"eThe number of help copies has been exhausted. Opening a copy will consume the normal number of times.
 ΰ{0}级"Lv {0}
-5ϰ进入条件: {0}级"Entry criteria: {0} level
+-ϰ进入条件: {0}级"Entry : {0} level
 !а(帮助模式)"(Help Mode)
 "Ѱ(深渊模式)"(Abyss Mode)
 <Ұ推荐等级： {0}-{1}级"Recommended level: {0}-{1}
@@ -3624,7 +3627,7 @@ L�� 请前往{0} {1} 出接取任务"$Please go to {0} {1} to get the task
 B��体力不足,无法拾取"!Lack of Energy, unable to pick up
 P��背包空间不足,无法拾取")Insufficient space in backpack to pick up
 O��"道具不足，需要道具 {0}！"%Insufficient props, props needed {0}!
-$��战力: {0}"Combat Power: {0}
+��战力: {0}"Combat: {0}
 ��体力:"Energy:
 ��活力:"	Vitality:
 +��当前金币:  {0}"Current Gold: {0}
@@ -4057,7 +4060,7 @@ Z��"活动开启倒计时 {0}分{1}秒"0Activity start countdown {0} minutes 
  ��下一级:
 "Next Level: 
 
-*��{0}万/{1}万"{0}million/{1}million
+��{0}万/{1}万"	{0}K/{1}K
 ;��已经达到最高级"Have reached the highest level
 M��玩家等级不足，{0}开启"'Player level is insufficient, {0} is on
 "��升级失败"Upgrade failed
