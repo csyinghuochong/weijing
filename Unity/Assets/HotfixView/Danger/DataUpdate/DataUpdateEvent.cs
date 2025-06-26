@@ -1129,6 +1129,11 @@ namespace ET
                     uiEquipmentIncreaseTransferComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanUpLvComponent uiJiaYuanUpLvComponent)
+                {
+                    uiJiaYuanUpLvComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

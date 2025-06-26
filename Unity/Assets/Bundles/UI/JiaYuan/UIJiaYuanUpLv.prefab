@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2644408722549608042}
   - component: {fileID: 2309520866907218639}
   m_Layer: 0
-  m_Name: ImgGengDiIcon
+  m_Name: Image_GengDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,8 +711,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 369, y: 0}
-  m_SizeDelta: {x: 800, y: 80}
+  m_AnchoredPosition: {x: 15.1686, y: 0}
+  m_SizeDelta: {x: 92.3373, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9081661491610695154
 CanvasRenderer:
@@ -1478,7 +1478,7 @@ GameObject:
   - component: {fileID: 4350855839891908514}
   - component: {fileID: 2648258497233729833}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Image_RenKou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1665,7 +1665,7 @@ GameObject:
   - component: {fileID: 6826424765769367514}
   - component: {fileID: 8492730282610762246}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_RenKouTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1687,8 +1687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 0}
-  m_SizeDelta: {x: 800, y: 80}
+  m_AnchoredPosition: {x: -171.53, y: 0}
+  m_SizeDelta: {x: 301.35, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6826424765769367514
 CanvasRenderer:
@@ -1725,7 +1725,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1766,8 +1766,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 369, y: 0}
-  m_SizeDelta: {x: 800, y: 80}
+  m_AnchoredPosition: {x: 36.544495, y: 0}
+  m_SizeDelta: {x: 135.089, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7341627881393762238
 CanvasRenderer:
@@ -1944,7 +1944,7 @@ GameObject:
   - component: {fileID: 7559060286029840659}
   - component: {fileID: 8278807703605123535}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_GengDiTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1966,8 +1966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 0}
-  m_SizeDelta: {x: 800, y: 80}
+  m_AnchoredPosition: {x: -206.7056, y: 0}
+  m_SizeDelta: {x: 369.2964, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7559060286029840659
 CanvasRenderer:
@@ -2004,7 +2004,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2777,6 +2777,14 @@ MonoBehaviour:
     gameObject: {fileID: 2180967872509688875}
   - key: ImgGengDiIcon
     gameObject: {fileID: 70381634484062316}
+  - key: Image_GengDi
+    gameObject: {fileID: 70381634484062316}
+  - key: Text_GengDiTip
+    gameObject: {fileID: 4225636546309164260}
+  - key: Image_RenKou
+    gameObject: {fileID: 2926953542990739483}
+  - key: Text_RenKouTip
+    gameObject: {fileID: 3449938264119236267}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0

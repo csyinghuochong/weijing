@@ -16,7 +16,11 @@ namespace ET
         public GameObject ImageExpValue;
         public GameObject JiaYuanName;
         public GameObject JiaYuanLv;
+        public GameObject Text_GengDiTip;
+        public GameObject Image_GengDi;
         public GameObject Lab_GengDi;
+        public GameObject Text_RenKouTip;
+        public GameObject Image_RenKou;
         public GameObject Lab_RenKou;
         public GameObject ZiJinDuiHuanText;
         public GameObject ExpDuiHuanText;
@@ -27,6 +31,8 @@ namespace ET
         public GameObject ImgGengDiIcon;
         
         public List<string> AssetPath = new List<string>();
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -43,8 +49,11 @@ namespace ET
             self.ImageExpValue = rc.Get<GameObject>("ImageExpValue");
             self.JiaYuanName = rc.Get<GameObject>("JiaYuanName");
             self.JiaYuanLv = rc.Get<GameObject>("JiaYuanLv");
-
+            self.Text_GengDiTip = rc.Get<GameObject>("Text_GengDiTip");
+            self.Image_GengDi = rc.Get<GameObject>("Image_GengDi");
             self.Lab_GengDi = rc.Get<GameObject>("Lab_GengDi");
+            self.Text_RenKouTip = rc.Get<GameObject>("Text_RenKouTip");
+            self.Image_RenKou = rc.Get<GameObject>("Image_RenKou");
             self.Lab_RenKou = rc.Get<GameObject>("Lab_RenKou");
 
             self.ZiJinDuiHuanText = rc.Get<GameObject>("ZiJinDuiHuanText");
@@ -74,6 +83,10 @@ namespace ET
             }
             self.ImgGengDiIcon.GetComponent<Image>().sprite = sp;
 
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnUpdateUI();
         }
     }
@@ -89,10 +102,35 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIJiaYuanUpLvComponentSystem
     {
+        public static void StoreUIdData(this UIJiaYuanUpLvComponent self)
+        {
+            self.UIOldPositionList.Add(self.Text_GengDiTip.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Image_GengDi.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Lab_GengDi.GetComponent<RectTransform>().localPosition);
+            
+            self.UIOldPositionList.Add(self.Text_RenKouTip.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Image_RenKou.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Lab_RenKou.GetComponent<RectTransform>().localPosition);
+        }
+
+        public static void OnLanguageUpdate(this UIJiaYuanUpLvComponent self)
+        {
+            self.JiaYuanUpHint.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            
+            self.Text_GengDiTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[0] : new Vector2(-136, 0);
+            self.Image_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[1] : new Vector2(-282, 0);
+            self.Lab_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(117, 0);
+            
+            self.Text_RenKouTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[3] : new Vector2(-83, 0);
+            self.Image_RenKou.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[4] : new Vector2(-192, 0);
+            self.Lab_RenKou.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[5] : new Vector2(116, 0);
+        }
 
         public static async ETTask OnBtn_UpLv(this UIJiaYuanUpLvComponent self)
         {
