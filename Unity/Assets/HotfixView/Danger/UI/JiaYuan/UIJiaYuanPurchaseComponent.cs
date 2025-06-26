@@ -53,6 +53,9 @@ namespace ET
             self.ButtonRefresh = rc.Get<GameObject>("ButtonRefresh");
             ButtonHelp.AddListenerEx(self.ButtonRefresh, () => { self.OnButtonRefresh();  });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnUpdateUI();
             self.ShowCDTime();
         }
@@ -68,11 +71,17 @@ namespace ET
             }
             self.AssetPath = string.Empty;
             TimerComponent.Instance?.Remove(ref self.Timer);
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIJiaYuanPurchaseComponentSystem
     {
+        public static void OnLanguageUpdate(this UIJiaYuanPurchaseComponent self)
+        {
+            self.ButtonRefresh.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+        }
 
         public static  void OnButtonRefresh(this UIJiaYuanPurchaseComponent self)
         {

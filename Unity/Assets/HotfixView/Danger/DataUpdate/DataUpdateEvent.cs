@@ -1089,6 +1089,11 @@ namespace ET
                     uiJiaYuanFoodComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanPurchaseComponent uiJiaYuanPurchaseComponent)
+                {
+                    uiJiaYuanPurchaseComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
