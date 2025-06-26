@@ -54,11 +54,53 @@ namespace ET
 
             self.UIPageButtonComponent = uIPageButtonComponent;
             self.UIPageButtonComponent.OnSelectIndex(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
-
+    
+    public class UIJiaYuanDaShiComponentDestroySystem : DestroySystem<UIJiaYuanDaShiComponent>
+    {
+	    public override void Destroy(UIJiaYuanDaShiComponent self)
+	    {
+		    DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+	    }
+    }
+    
     public static class UIJiaYuanDaShiComponentSystem
     {
+	    public static void OnLanguageUpdate(this UIJiaYuanDaShiComponent self)
+	    {
+		    Transform tt = self.UIPageButtonComponent.GetParent<UI>().GameObject.transform;
+
+		    int childCount = tt.childCount;
+		    for (int i = 0; i < childCount; i++)
+		    {
+			    Transform transform = tt.transform.GetChild(i);
+
+			    Transform XuanZhong = transform.Find("XuanZhong");
+			    if (XuanZhong)
+			    {
+				    Text text = XuanZhong.GetComponentInChildren<Text>();
+				    if (text)
+				    {
+					    text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+				    }
+			    }
+
+			    Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+			    if (WeiXuanZhong)
+			    {
+				    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+				    if (text)
+				    {
+					    text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+				    }
+			    }
+		    }
+	    }
+	    
         public static void OnClickPageButton(this UIJiaYuanDaShiComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
