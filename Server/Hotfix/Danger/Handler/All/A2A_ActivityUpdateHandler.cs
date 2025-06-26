@@ -1,4 +1,5 @@
-﻿using NLog.Fluent;
+﻿using AlibabaCloud.SDK.Sample;
+using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 
@@ -6,8 +7,86 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public  class A2A_ActivityUpdateHandler : AMActorRpcHandler<Scene, A2A_ActivityUpdateRequest, A2A_ActivityUpdateResponse>
+    public class A2A_ActivityUpdateHandler : AMActorRpcHandler<Scene, A2A_ActivityUpdateRequest, A2A_ActivityUpdateResponse>
     {
+
+        private async ETTask TestSmss(Scene scene)
+        {
+            if (scene.DomainZone() == 3)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+
+                    Console.WriteLine("SendSmsVerifyCode.Send 18319670288");
+                    SendSmsVerifyCode.Send_2("18319670288", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18319670288", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18319670288", 2, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18319670288", 2, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+
+                    Console.WriteLine("SendSmsVerifyCode.Send 18652422521");
+                    SendSmsVerifyCode.Send_2("18652422521", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18652422521", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18652422521", 2, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("18652422521", 2, 2);
+
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    Console.WriteLine("SendSmsVerifyCode.Send 15172796169");
+                    SendSmsVerifyCode.Send_2("15172796169", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("15172796169", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("15172796169", 2, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 20);
+                    SendSmsVerifyCode.Send_2("15172796169", 2, 2);
+                }
+            }
+        }
+
+        private async ETTask TestSmssNew(Scene scene)
+        {
+            if (scene.DomainZone() == 3)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    //电信
+                    Console.WriteLine("SendSmsVerifyCode.Send 19974071056");
+                    Sample.Send("19974071056", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+                    Sample.Send("19974071056", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+
+                    //电信
+                    Console.WriteLine("SendSmsVerifyCode.Send 19959921706");
+                    Sample.Send("19959921706", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+                    Sample.Send("19959921706", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+
+                    //移动
+                    Console.WriteLine("SendSmsVerifyCode.Send 18319670288");
+                    Sample.Send("18319670288", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+                    Sample.Send("18319670288", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+
+                    //联通
+                    Console.WriteLine("SendSmsVerifyCode.Send 18652422521");
+                    Sample.Send("18652422521", 1, 1);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+                    Sample.Send("18652422521", 1, 2);
+                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
+                }
+            }
+
+        }
+
         protected override async ETTask Run(Scene scene, A2A_ActivityUpdateRequest request, A2A_ActivityUpdateResponse response, Action reply)
         {
             int hour = request.Hour;
@@ -19,6 +98,13 @@ namespace ET
                     {
                         PrintAllEntity();
                     }
+                    
+                    if (ComHelp.IsInnerNet())
+                    {
+                        //TestSmss(scene).Coroutine();
+                        TestSmssNew(scene).Coroutine();
+                    }
+
                     Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
                     for (int i = 0; i < players.Length; i++)
                     {
@@ -59,14 +145,14 @@ namespace ET
                     //Log.Console($"{scene.Name}  {scene.DomainZone()}  request.FunctionType: {request.FunctionId} {request.FunctionType}");
                     if (request.FunctionId == 1057 && request.FunctionType == 1)
                     {
-                        for (int npcid = 20099007; npcid <= 20099010; npcid++ )
+                        for (int npcid = 20099007; npcid <= 20099010; npcid++)
                         {
                             UnitFactory.CreateNpc(scene, npcid);
                         }
                     }
                     if (request.FunctionId == 1057 && request.FunctionType == 2)
                     {
-                        List<Unit> units = UnitHelper.GetUnitList( scene, UnitType.Npc );
+                        List<Unit> units = UnitHelper.GetUnitList(scene, UnitType.Npc);
                         for (int i = units.Count - 1; i >= 0; i--)
                         {
                             if (units[i].ConfigId >= 20099007 && units[i].ConfigId <= 20099010)
@@ -114,7 +200,7 @@ namespace ET
                         Log.Warning("OnShowLieOver");
                         scene.GetComponent<RankSceneComponent>().OnShowLieOver().Coroutine();
                     }
-                    if(request.FunctionId == 1044 && request.FunctionType == 2)
+                    if (request.FunctionId == 1044 && request.FunctionType == 2)
                     {
                         //Log.Console("RankSceneComponent.OnUnionRaceOver");
                         scene.GetComponent<RankSceneComponent>().OnUnionRaceOver().Coroutine();

@@ -163,9 +163,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
 }
 
+
+
 android {
-    compileSdkVersion **APIVERSION**
-    buildToolsVersion '**BUILDTOOLS**'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -173,8 +175,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion **MINSDKVERSION**
-        targetSdkVersion **TARGETSDKVERSION**
+        minSdkVersion 26
+        targetSdkVersion 26
         applicationId '**APPLICATIONID**'
         ndk {
             abiFilters **ABIFILTERS**
@@ -187,7 +189,7 @@ android {
             release {
                 keyAlias 'chinaboy'
                 keyPassword '829475'
-                storeFile file('H:\\GitWeiJing\\Unity\\user.keystore')
+                storeFile file('F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\user.keystore')
                 storePassword '829475'
             }
     }
