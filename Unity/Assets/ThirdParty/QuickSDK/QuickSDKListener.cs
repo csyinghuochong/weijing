@@ -41,25 +41,24 @@ namespace quicksdk
 
 
         //callback end
-
-
         public void onInitSuccess(string msg)
 		{
-            Debug.Log("QuickSdkListener  onInitSuccess");
+            Debug.Log($"QuickSDKListener.QuickSdkListener  {msg}");
             onInitSuccess();
 		}
 
 		public void onInitFailed(string msg)
 		{
-			var data = SimpleJSON.JSONNode.Parse(msg);
+            Debug.Log($"QuickSDKListener.onInitFailed  {msg}");
+            var data = SimpleJSON.JSONNode.Parse(msg);
 			ErrorMsg errMsg = new ErrorMsg();
 			errMsg.errMsg =  data["msg"].Value;
-			
-			onInitFailed(errMsg);
+            onInitFailed(errMsg);
 		}
 
         public void onLoginSuccess(string msg)
         {
+            Debug.Log($"QuickSDKListener.onLoginSuccess  {msg}");
             var data = SimpleJSON.JSONNode.Parse(msg);
             UserInfo userInfo = new UserInfo();
             userInfo.uid = data["userId"].Value;
@@ -72,7 +71,8 @@ namespace quicksdk
 
 		public void onSwitchAccountSuccess(string msg)
 		{
-			var data = SimpleJSON.JSONNode.Parse(msg);
+            Debug.Log($"QuickSDKListener.onSwitchAccountSuccess  {msg}");
+            var data = SimpleJSON.JSONNode.Parse(msg);
 			UserInfo userInfo = new UserInfo();
 			userInfo.uid = data["userId"].Value;
 			userInfo.token = data["userToken"].Value;
@@ -84,6 +84,7 @@ namespace quicksdk
 
         public void onLoginFailed(string msg)
         {
+            Debug.Log($"QuickSDKListener.onLoginFailed  {msg}");
             var data = SimpleJSON.JSONNode.Parse(msg);
 			ErrorMsg errMsg = new ErrorMsg();
 			errMsg.errMsg = data["msg"].Value;
@@ -93,13 +94,14 @@ namespace quicksdk
 
         public void onLogoutSuccess(string msg)
         {
+            Debug.Log($"QuickSDKListener.onLogoutSuccess  {msg}");
             onLogoutSuccess();
         }
 
 
-
         public void onPaySuccess(string msg)
         {
+            Debug.Log($"QuickSDKListener.onPaySuccess  {msg}");
             var data = SimpleJSON.JSONNode.Parse(msg);
             PayResult result = new PayResult();
             result.cpOrderId = data["cpOrderId"].Value;
@@ -111,6 +113,7 @@ namespace quicksdk
 
         public void onPayFailed(string msg)
         {
+            Debug.Log($"QuickSDKListener.onPayFailed  {msg}");
             var data = SimpleJSON.JSONNode.Parse(msg);
             PayResult result = new PayResult();
             result.cpOrderId = data["cpOrderId"].Value;
@@ -122,6 +125,7 @@ namespace quicksdk
 
         public void onPayCancel(string msg)
         {
+            Debug.Log($"QuickSDKListener.onPayCancel  {msg}");
             var data = SimpleJSON.JSONNode.Parse(msg);
             PayResult result = new PayResult();
             result.cpOrderId = data["cpOrderId"].Value;
@@ -133,26 +137,30 @@ namespace quicksdk
 
         public void onExitSuccess(string msg)
         {
-            Debug.Log("QuickSdkListener  onExitSuccess");
+            Debug.Log($"QuickSDKListener.onExitSuccess  {msg}");
             onExitSuccess();
         }
 		
         public void onSuccess(string infos)
         {
+            Debug.Log($"QuickSDKListener.onSuccess  {infos}");
             onSucceed(infos);
         }
 
         public void onFail(string msg)
         {
+            Debug.Log($"QuickSDKListener.onFail  {msg}");
             onFailed(msg);
         }
 
         public void onPrivaceAgree(string msg)
         {
+            Debug.Log($"QuickSDKListener.onPrivaceAgree  {msg}");
             onPrivaceAgree();
         }
         public void onPrivaceRefuse(string msg)
         {
+            Debug.Log($"QuickSDKListener.onPrivaceRefuse  {msg}");
             onPrivaceRefuse();
         }
 
