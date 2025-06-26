@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 2274932342308293262}
   - component: {fileID: 2653846391358273491}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3107,6 +3107,8 @@ MonoBehaviour:
     gameObject: {fileID: 2736198835634423088}
   - key: FunctionSetBtn
     gameObject: {fileID: 9214692888878496454}
+  - key: Text_Tip
+    gameObject: {fileID: 3473118452469491824}
 --- !u!1 &7146771088589331186
 GameObject:
   m_ObjectHideFlags: 0
