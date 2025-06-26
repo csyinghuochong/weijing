@@ -57,6 +57,8 @@ namespace ET
         public static void OnLanguageUpdate(this UIUnionCreateComponent self)
         {
             self.Img_Diamond.SetActive(GameSettingLanguge.Language == 0);
+            self.Text_Contion1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            self.Text_Contion2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
         }
 
         public static void CheckSensitiveWords(this UIUnionCreateComponent self, GameObject InputField)

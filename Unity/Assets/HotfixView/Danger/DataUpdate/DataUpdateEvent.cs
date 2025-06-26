@@ -1134,6 +1134,11 @@ namespace ET
                     uiJiaYuanUpLvComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionCreateComponent uiUnionCreateComponent)
+                {
+                    uiUnionCreateComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
