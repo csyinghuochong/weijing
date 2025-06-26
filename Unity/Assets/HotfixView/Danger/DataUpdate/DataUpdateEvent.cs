@@ -1104,6 +1104,11 @@ namespace ET
                     uiJiaYuanPastureComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanWarehouseComponent uiJiaYuanWarehouseComponent)
+                {
+                    uiJiaYuanWarehouseComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
