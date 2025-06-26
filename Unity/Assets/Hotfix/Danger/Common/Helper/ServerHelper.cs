@@ -399,8 +399,8 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 158, ServerIp = $"{ip}:20375", ServerName = "泰坦神殿", ServerOpenTime = 1749207600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 159, ServerIp = $"{ip}:20405", ServerName = "星辰之巅", ServerOpenTime = 1749812400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 160, ServerIp = $"{ip}:20455", ServerName = "微风草原", ServerOpenTime = 1750417200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
-            
-            
+
+
             //2025/06/27 19:00:00 1751022000000 合区 xx-xx xx/xx
             //2025/06/27 19:00:00 1751022000000 新区 时光镇 161
             serverItems_1.Add(new ServerItem() { ServerId = 161, ServerIp = $"{ip}:20445", ServerName = "时光镇", ServerOpenTime = 1751022000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
