@@ -65,12 +65,54 @@ namespace ET
 
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.InitModelShowView().Coroutine();
         }
     }
 
+    public class UIJiaYuanPastureComponentDestroySystem : DestroySystem<UIJiaYuanPastureComponent>
+    {
+        public override void Destroy(UIJiaYuanPastureComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIJiaYuanPastureComponentSystem
     {
+        public static void OnLanguageUpdate(this UIJiaYuanPastureComponent self)
+        {
+            Transform tt = self.UIPageButton.GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UIJiaYuanPastureComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

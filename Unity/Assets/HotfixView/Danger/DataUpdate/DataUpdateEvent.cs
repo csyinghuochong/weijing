@@ -1099,6 +1099,11 @@ namespace ET
                     uiJiaYuanMysteryComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanPastureComponent uiJiaYuanPastureComponent)
+                {
+                    uiJiaYuanPastureComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
