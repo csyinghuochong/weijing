@@ -23,6 +23,8 @@ namespace ET
 
         public List<GameObject> LockList = new List<GameObject>();
         public List<GameObject> NoLockList = new List<GameObject>();
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -87,6 +89,7 @@ namespace ET
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+            self.StoreUIdData();
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
@@ -94,10 +97,29 @@ namespace ET
 
     public static class UIJiaYuanWarehouseComponentSystem
     {
+        public static void StoreUIdData(this UIJiaYuanWarehouseComponent self)
+        {
+            Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+
+                    self.UIOldPositionList.Add(rt.localPosition);
+                }
+            }
+        }
+        
         public static void OnLanguageUpdate(this UIJiaYuanWarehouseComponent self)
         {
             Transform tt = self.FunctionSetBtn.transform;
-
             int childCount = tt.childCount;
             for (int i = 0; i < childCount; i++)
             {
@@ -120,6 +142,66 @@ namespace ET
                     if (text)
                     {
                         text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+            
+            
+            tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
+            childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Transform icon = XuanZhong.Find("XuanZhong (1)");
+                    if (icon)
+                    {
+                        icon.gameObject.SetActive(GameSettingLanguge.Language == 0);
+                    }
+                    
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+                    if (text)
+                    {
+                        // 调整文字大小
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
+                        
+                        // 调整文字位置
+                        Vector2 position = Vector2.zero;
+                        position = self.UIOldPositionList[i];
+                        if (GameSettingLanguge.Language == 1)
+                        {
+                            position.x = 0f;
+                        }
+                        rt.localPosition = position;
+                        
+                        // 调整文字对齐方式
+                        text.alignment = GameSettingLanguge.Language == 0? TextAnchor.UpperLeft : TextAnchor.UpperCenter;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    RectTransform rt = text.GetComponent<RectTransform>();
+                    if (text)
+                    {
+                        // 调整文字大小
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                        
+                        // 调整文字宽度
+                        Vector2 size = rt.sizeDelta;
+                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        rt.sizeDelta = size;
                     }
                 }
             }
