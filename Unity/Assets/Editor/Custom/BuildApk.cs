@@ -19,13 +19,13 @@ public class rememberKeyStore
 		//PlayerSettings.Android.keystoreName = "文件名.keystore";
 
 		// 密钥密码
-		PlayerSettings.Android.keystorePass = "829475";
+		//PlayerSettings.Android.keystorePass = "829475";
 
 		// 密钥别名
 		//PlayerSettings.Android.keyaliasName = "自己取的别名";
 
 		// 密钥别名密码
-		PlayerSettings.Android.keyaliasPass = "829475";
+		//PlayerSettings.Android.keyaliasPass = "829475";
 	}
 }
 
@@ -89,6 +89,12 @@ public class MyEditorScript
 	static void PerformAndroidQuDaoBuild()
 	{
 		BulidTarget("QuDao", "Android");
+	}
+	
+	[MenuItem("Custom/Build Android Google")]
+	static void PerformAndroidGoogleBuild()
+	{
+		BulidTarget("Google", "Android");
 	}
 
 	private static string targetPath = Application.dataPath + @"\Plugins\Android\libs_alipay"; //目标路径   ../表示当前项目文件的父路径
@@ -177,9 +183,15 @@ public class MyEditorScript
 			File.Delete(mainfestFile);
 		}
 		string app_name = "危境";
-       
-
-        if (name == "TikTok5")
+		int version = EditorRuntimeInitializeOnLoad.GetVersion();
+		string target_dir = Application.dataPath + "/TargetAndroid";
+		
+		if(name == "Google")
+		{
+			CopyLibs("google");
+			app_name = "危境google";
+		}
+		else if (name == "TikTok5")
 		{
             CopyLibs("tiktok");
             app_name = "抖音";
@@ -195,20 +207,28 @@ public class MyEditorScript
             CopyLibs("guanfang"); 
 			app_name = "危境";
 		}
-
-        int version = EditorRuntimeInitializeOnLoad.GetVersion();
+		
 		app_name = app_name + ((VersionMode)version).ToString() + name;
 
-		string target_dir = Application.dataPath + "/TargetAndroid";
-		string target_name = app_name + ".APK";
+		string target_name = app_name;
+		
 		BuildTargetGroup targetGroup = BuildTargetGroup.Android;
 		BuildTarget buildTarget = BuildTarget.Android;
 		string applicationPath = Application.dataPath.Replace("/Assets", "");
 
 		if (target == "Android")
 		{
+			if (name == "Google")
+			{
+				target_name = app_name + ".aab";
+			}
+			else
+			{
+				target_name = app_name + ".APK";
+			}
+
 			target_dir = applicationPath + "/AndroidTarget";
-			target_name = app_name + ".APK";
+			
 			targetGroup = BuildTargetGroup.Android;
 		}
 		if (target == "IOS")
@@ -237,8 +257,23 @@ public class MyEditorScript
 		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;" + name);
 
 		string[] scenes = new string[] { SCENES[0] };
-		PlayerSettings.Android.keystorePass = "829475";
-		PlayerSettings.Android.keyaliasPass = "829475";
+		PlayerSettings.Android.useCustomKeystore = true;
+		if (name == "Google")
+		{
+			PlayerSettings.Android.keystoreName = "F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\google.keystore";
+			PlayerSettings.Android.keystorePass = "weijing829475";
+			PlayerSettings.Android.keyaliasName = "weijingchinaboy";
+			PlayerSettings.Android.keyaliasPass = "weijing829475";
+			EditorUserBuildSettings.buildAppBundle = true;
+		}
+		else
+		{
+			PlayerSettings.Android.keystoreName = "F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\user.keystore";
+			PlayerSettings.Android.keystorePass = "829475";
+			PlayerSettings.Android.keyaliasName = "chinaboy";
+			PlayerSettings.Android.keyaliasPass = "829475";
+			EditorUserBuildSettings.buildAppBundle = false;
+		}
 
         //PlayerSettings.bundleVersion = "v0.0.1";
         if (name == "TikTok5")
