@@ -52,6 +52,7 @@ namespace ET
 
             Text textDesc = self.TaskTargetDes.GetComponent<Text>();
             textDesc.text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+            textDesc.horizontalOverflow = GameSettingLanguge.Language == 0? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
 
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {

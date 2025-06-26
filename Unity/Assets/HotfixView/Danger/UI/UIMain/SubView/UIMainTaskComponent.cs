@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -51,6 +52,8 @@ namespace ET
         
         public static void OnUpdateUI(this UIMainTaskComponent self)
         {
+            self.TaskShowList.GetComponent<GridLayoutGroup>().cellSize = GameSettingLanguge.Language == 0? new Vector2(300f, 90f) : new Vector2(300f, 120f);
+            
             for (int i = 0; i < self.TrackTaskList.Count; i++)
             {
                 self.TrackTaskList[i].GameObject.SetActive(false);
