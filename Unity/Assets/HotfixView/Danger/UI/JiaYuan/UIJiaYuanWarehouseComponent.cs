@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanWarehouseComponent:Entity, IAwake, IDestroy
     {
+        public GameObject FunctionSetBtn;
         public GameObject ButtonTakeOutAll;
         public GameObject ButtonOneKey;
         public GameObject BtnItemTypeSet;
@@ -31,6 +32,7 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -45,6 +47,7 @@ namespace ET
             self.NoLockList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
 
@@ -84,11 +87,43 @@ namespace ET
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIJiaYuanWarehouseComponentSystem
     {
+        public static void OnLanguageUpdate(this UIJiaYuanWarehouseComponent self)
+        {
+            Transform tt = self.FunctionSetBtn.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
 
         public static bool CheckPageButton_1(this UIJiaYuanWarehouseComponent self, int page)
         {
