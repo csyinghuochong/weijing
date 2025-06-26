@@ -1114,6 +1114,11 @@ namespace ET
                     uiJiaYuanTreasureMapStorageComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIEquipmentIncreaseComponent uiEquipmentIncreaseComponent)
+                {
+                    uiEquipmentIncreaseComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
