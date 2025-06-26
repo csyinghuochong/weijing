@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -12,7 +13,7 @@ namespace ET
 		Number,
 	}
 
-	public class UIJiaYuanFoodComponent : Entity, IAwake
+	public class UIJiaYuanFoodComponent : Entity, IAwake, IDestroy
 	{
 		public GameObject SubViewNode;
 		public GameObject FunctionSetBtn;
@@ -56,11 +57,52 @@ namespace ET
             });
             self.UIPageButton.OnSelectIndex(0);
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+	public class UIJiaYuanFoodComponentDestroySystem : DestroySystem<UIJiaYuanFoodComponent>
+	{
+		public override void Destroy(UIJiaYuanFoodComponent self)
+		{
+			DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+		}
+	}
+	
     public static class UIJiaYuanFoodComponentSystem
     {
+	    public static void OnLanguageUpdate(this UIJiaYuanFoodComponent self)
+	    {
+		    Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+		    int childCount = tt.childCount;
+		    for (int i = 0; i < childCount; i++)
+		    {
+			    Transform transform = tt.transform.GetChild(i);
+
+			    Transform XuanZhong = transform.Find("XuanZhong");
+			    if (XuanZhong)
+			    {
+				    Text text = XuanZhong.GetComponentInChildren<Text>();
+				    if (text)
+				    {
+					    text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+				    }
+			    }
+
+			    Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+			    if (WeiXuanZhong)
+			    {
+				    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+				    if (text)
+				    {
+					    text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+				    }
+			    }
+		    }
+	    }
+	    
         public static void OnClickPageButton(this UIJiaYuanFoodComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

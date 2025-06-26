@@ -1079,6 +1079,16 @@ namespace ET
                     uiTeamDungeonCreateComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanDaShiComponent uiJiaYuanDaShiComponent)
+                {
+                    uiJiaYuanDaShiComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIJiaYuanFoodComponent uiJiaYuanFoodComponent)
+                {
+                    uiJiaYuanFoodComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
