@@ -4,39 +4,14 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    /// <summary>
-    /// 家园藏宝图仓库UI
-    /// </summary>
     public class UIJiaYuanTreasureMapStorageComponent: Entity, IAwake, IDestroy
     {
-        /// <summary>
-        /// 一键取出按钮
-        /// </summary>
+        public GameObject FunctionSetBtn;
         public GameObject ButtonTakeOutAll;
-
-        /// <summary>
-        /// 一键放入按钮
-        /// </summary>
         public GameObject ButtonOneKey;
-
-        /// <summary>
-        /// 仓库列表
-        /// </summary>
         public GameObject BuildingList1;
-
-        /// <summary>
-        /// 背包列表
-        /// </summary>
         public GameObject BuildingList2;
-
-        /// <summary>
-        /// 整理按钮
-        /// </summary>
         public GameObject ButtonPack;
-
-        /// <summary>
-        /// 分页按钮组
-        /// </summary>
         public GameObject BtnItemTypeSet;
 
         public BagComponent BagComponent;
@@ -71,6 +46,7 @@ namespace ET
             self.StorageList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
 
@@ -99,8 +75,41 @@ namespace ET
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
 
+        public static void OnLanguageUpdate(this UIJiaYuanTreasureMapStorageComponent self)
+        {
+            Transform tt = self.FunctionSetBtn.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static bool CheckPageButton(this UIJiaYuanTreasureMapStorageComponent self, int page)
         {
             return true;
@@ -254,6 +263,7 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 }
