@@ -694,7 +694,8 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             GameObject gameObject = gameObjectComponent.GameObject;
             TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
-            textMesh.text = mastername;
+            textMesh.text = GameSettingLanguge.Language == 0? mastername : string.Format(GameSettingLanguge.LoadLocalization("{0}的家园"), mastername);
+            gameObject.Get<GameObject>("NewText").SetActive(GameSettingLanguge.Language == 0);
         }
 
         public static void InitEffect(this UIJiaYuanMainComponent self)

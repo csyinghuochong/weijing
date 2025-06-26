@@ -100,6 +100,8 @@ MonoBehaviour:
   data:
   - key: NewNameText
     gameObject: {fileID: 8419494901931937584}
+  - key: NewText
+    gameObject: {fileID: 8419494902673962781}
 --- !u!1 &2006025757172620789
 GameObject:
   m_ObjectHideFlags: 0
