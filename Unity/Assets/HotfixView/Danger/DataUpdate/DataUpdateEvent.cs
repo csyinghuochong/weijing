@@ -1124,6 +1124,11 @@ namespace ET
                     uiEquipmentIncreaseShowComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIEquipmentIncreaseTransferComponent uiEquipmentIncreaseTransferComponent)
+                {
+                    uiEquipmentIncreaseTransferComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

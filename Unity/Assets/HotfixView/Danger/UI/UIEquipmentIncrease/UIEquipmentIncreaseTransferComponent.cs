@@ -11,6 +11,9 @@ namespace ET
 {
     public class UIEquipmentIncreaseTransferComponent : Entity, IAwake,IDestroy
     {
+        public GameObject Text_Tip_1;
+        public GameObject Text_Tip_2;
+        public GameObject Text_Tip_3;
         public GameObject ButtonTransfer;
         public GameObject UICommonCostItem;
         public GameObject UICommonItem_2;
@@ -26,6 +29,8 @@ namespace ET
         public Vector2 localPoint;
         public bool IsHoldDown;
         public List<string> AssetPath = new List<string>();
+        
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
 
@@ -37,6 +42,10 @@ namespace ET
             self.IsHoldDown = false;
             self.BagInfo_Transfer = new BagInfo[2];
             self.UIItem_Transfer = new UIItemComponent[2];
+            
+            self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
+            self.Text_Tip_2 = rc.Get<GameObject>("Text_Tip_2");
+            self.Text_Tip_3 = rc.Get<GameObject>("Text_Tip_3");
             self.ButtonTransfer = rc.Get<GameObject>("ButtonTransfer");
             ButtonHelp.AddListenerEx( self.ButtonTransfer, () => { self.OnButtonTransfer().Coroutine(); } );
 
@@ -45,6 +54,10 @@ namespace ET
             self.UICommonItem_1 = rc.Get<GameObject>("UICommonItem_1");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnInitUI();
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
@@ -63,10 +76,31 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIRoleEquipmentIncreaseTransferComponentSystem
     {
+        public static void StoreUIdData(this UIEquipmentIncreaseTransferComponent self)
+        {
+            self.UIOldPositionList.Add(self.Text_Tip_1.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Text_Tip_2.GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(self.Text_Tip_3.GetComponent<RectTransform>().localPosition);
+        }
+
+        public static void OnLanguageUpdate(this UIEquipmentIncreaseTransferComponent self)
+        {
+            self.ItemListNode.GetComponent<GridLayoutGroup>().spacing = GameSettingLanguge.Language == 0 ? new Vector2(10, 10) : new Vector2(20, 20);
+
+            self.Text_Tip_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+            self.Text_Tip_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+            self.Text_Tip_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
+            self.Text_Tip_1.GetComponent<RectTransform>().localPosition = self.UIOldPositionList[0];
+            self.Text_Tip_2.GetComponent<RectTransform>().localPosition = self.UIOldPositionList[1];
+            self.Text_Tip_3.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(597, -126);
+        }
+
         public static async ETTask OnButtonTransfer(this UIEquipmentIncreaseTransferComponent self)
         {
             string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
