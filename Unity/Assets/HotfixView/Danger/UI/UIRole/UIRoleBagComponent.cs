@@ -56,14 +56,14 @@ namespace ET
             self.InitBagUIList().Coroutine();
         }
     }
-    
-    public class UIRoleBagComponentDestroySystem : DestroySystem<UIRoleBagComponent>
-    {
-        public override void Destroy(UIRoleBagComponent self)
+        public class UIRoleBagComponentDestroySystem : DestroySystem<UIRoleBagComponent>
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            public override void Destroy(UIRoleBagComponent self)
+            {
+                DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            }
         }
-    }
+
 
     public static class UIRoleBagComponentSystem
     {

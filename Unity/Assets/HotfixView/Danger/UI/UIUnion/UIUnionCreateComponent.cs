@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionCreateComponent : Entity, IAwake<GameObject>
+    public class UIUnionCreateComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public GameObject Img_Diamond;
         public GameObject InputFieldName;
         public GameObject Text_Contion2;
         public GameObject Text_Contion1;
@@ -22,6 +23,8 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Img_Diamond = rc.Get<GameObject>("Img_Diamond");
+            
             self.InputFieldName = rc.Get<GameObject>("InputFieldName");
             self.InputFieldName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(self.InputFieldName); });
 
@@ -34,12 +37,28 @@ namespace ET
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(self.InputFieldPurpose); });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnInitUI();
         }
     }
 
+    public class UIUnionCreateComponentDestroySystem : DestroySystem<UIUnionCreateComponent>
+    {
+        public override void Destroy(UIUnionCreateComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionCreateComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionCreateComponent self)
+        {
+            self.Img_Diamond.SetActive(GameSettingLanguge.Language == 0);
+        }
+
         public static void CheckSensitiveWords(this UIUnionCreateComponent self, GameObject InputField)
         {
             string text_new = "";
