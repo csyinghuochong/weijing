@@ -145,6 +145,7 @@ namespace ET
             {
                 self.Text_Tip.SetActive(true);
                 self.Text_Tip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("家园{0}级开启"), mysteryConfig.JiaYuanLv);
+                self.Text_Tip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0 ? new Vector2(-1.4f, -4.3f) : new Vector2(-1.4f, -15f);
                 Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
                 self.UICommonItem.Image_ItemIcon.GetComponent<Image>().material = mat;
                 //self.UICommonItem.Image_ItemQuality.GetComponent<Image>().color = new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f);

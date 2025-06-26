@@ -101,7 +101,7 @@ namespace ET
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
             if (jiaYuanPastureConfig.BuyJiaYuanLv <= jiayuanCof.Lv)
             {
-                self.Text_RenKou.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("人口：{0}"), jiaYuanPastureConfig.PeopleNum);
+                self.Text_RenKou.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("人口") + "：" + jiaYuanPastureConfig.PeopleNum;
                 self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.GetName();
                 self.Text_value2.GetComponent<Text>().text = ((int)(jiaYuanPastureConfig.BuyGold * 1.5f)).ToString();
 
