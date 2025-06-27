@@ -1154,6 +1154,11 @@ namespace ET
                     uiUnionKeJiComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionXiuLianComponent uiUnionXiuLianComponent)
+                {
+                    uiUnionXiuLianComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

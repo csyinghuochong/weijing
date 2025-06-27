@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -15,7 +16,7 @@ namespace ET
         Number,
     }
 
-    public class UIUnionXiuLianComponent: Entity, IAwake
+    public class UIUnionXiuLianComponent: Entity, IAwake, IDestroy
     {
 
         public GameObject Btn_4;
@@ -65,12 +66,53 @@ namespace ET
             self.UIPageButton = uIPageButtonComponent;
 
             uIPageButtonComponent.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIUnionXiuLianComponentDestroySystem : DestroySystem<UIUnionXiuLianComponent>
+    {
+        public override void Destroy(UIUnionXiuLianComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionXiuLianComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionXiuLianComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
 
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static bool CheckPageButton_1(this UIUnionXiuLianComponent self, int page)
         {
             if (page == (int)UnionXiuLianEnum.UnionBloodStone)
