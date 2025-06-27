@@ -1179,6 +1179,11 @@ namespace ET
                     uiUnionKeJiLearnItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISettingComponent uiSettingComponent)
+                {
+                    uiSettingComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
