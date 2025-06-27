@@ -65,6 +65,8 @@ namespace ET
             self.Text_Tip_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
             self.Text_Tip_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
             self.Text_Tip_6.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Button_Record.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Button_Record.GetComponentInChildren<Text>().lineSpacing = GameSettingLanguge.Language == 0? 1f : 0.6f;
         }
 
         public static async void OnUpdateUI(this UIUnionDonationComponent self)
