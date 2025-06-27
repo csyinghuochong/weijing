@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionDonationComponent : Entity, IAwake
+    public class UIUnionDonationComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip_1;
+        public GameObject Text_Tip_2;
         public GameObject Text_Tip_4;
         public GameObject Text_Tip_3;
         public GameObject Button_Donation;
@@ -22,6 +24,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
+            self.Text_Tip_2 = rc.Get<GameObject>("Text_Tip_2");
             self.Text_Tip_4 = rc.Get<GameObject>("Text_Tip_4");
             self.Text_Tip_3 = rc.Get<GameObject>("Text_Tip_3");
             self.Text_Tip_6 = rc.Get<GameObject>("Text_Tip_6");
@@ -36,12 +40,32 @@ namespace ET
             self.Button_Record = rc.Get<GameObject>("Button_Record");
             ButtonHelp.AddListenerEx(self.Button_Record, () => { self.OnButton_Record(); });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.OnUpdateUI();
         }
     }
 
+    public class UIUnionDonationComponentDestroySystem : DestroySystem<UIUnionDonationComponent>
+    {
+        public override void Destroy(UIUnionDonationComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionDonationComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionDonationComponent self)
+        {
+            self.Text_Tip_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Tip_2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Tip_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Tip_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Tip_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Tip_6.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+        }
 
         public static async void OnUpdateUI(this UIUnionDonationComponent self)
         {
