@@ -332,6 +332,8 @@ MonoBehaviour:
     gameObject: {fileID: 997949135995494868}
   - key: CostItemListNode
     gameObject: {fileID: 1464109501634750991}
+  - key: Text_Tip_Pro_1
+    gameObject: {fileID: 8968879517974549258}
 --- !u!114 &3996461927039886296
 MonoBehaviour:
   m_ObjectHideFlags: 0

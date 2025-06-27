@@ -5,8 +5,9 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIUnionRoleXiuLianComponent : Entity, IAwake
+    public class UIUnionRoleXiuLianComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip_Pro_1;
         public GameObject CostItemListNode;
         public GameObject XiuLianName;
         public GameObject XiuLianImageIcon;
@@ -25,6 +26,7 @@ namespace ET
             self.Position = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip_Pro_1 = rc.Get<GameObject>("Text_Tip_Pro_1");
             self.CostItemListNode = rc.Get<GameObject>("CostItemListNode");
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Donation().Coroutine(); });
@@ -43,11 +45,27 @@ namespace ET
                 self.UIUnionXiuLianItemList.Add(uIUnionXiuLianItem);
             }
             self.UIUnionXiuLianItemList[0].ClickHandler?.Invoke(0);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIUnionRoleXiuLianComponentDestroySystem: DestroySystem<UIUnionRoleXiuLianComponent>
+    {
+        public override void Destroy(UIUnionRoleXiuLianComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionRoleXiuLianComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionRoleXiuLianComponent self)
+        {
+            self.Text_Tip_Pro_1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 34;
+        }
+
         public static void OnClickHandler(this UIUnionRoleXiuLianComponent self, int position)
         {
             self.Position = position;
