@@ -1164,6 +1164,11 @@ namespace ET
                     uiUnionRoleXiuLianComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionAttributeUpComponent uiUnionAttributeUpComponent)
+                {
+                    uiUnionAttributeUpComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

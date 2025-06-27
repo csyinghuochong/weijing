@@ -54,6 +54,9 @@ namespace ET
             self.UpBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnUpBtn().Coroutine(); });
 
             self.OnClickAttributeItem(NumericType.UnionAttribute_1);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -70,12 +73,19 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
 
     public static class UIUnionAttributeUpComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionAttributeUpComponent self)
+        {
+            self.attributeItem_0.transform.Find("NameLText").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+            self.attributeItem_1.transform.Find("NameLText").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+        }
 
         public static void OnClickAttributeItem(this UIUnionAttributeUpComponent self, int numbeType)
         {
