@@ -851,6 +851,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class QuDaoSwichAccount : DisposeObject
+        {
+            public static readonly QuDaoSwichAccount Instance = new QuDaoSwichAccount();
+            public Action QuDaoSwichAccountHandler;
+            public Scene ZoneScene;
+        }
+
         public class QuDaoCreateRole : DisposeObject
         {
             public static readonly QuDaoCreateRole Instance = new QuDaoCreateRole();

@@ -186,10 +186,18 @@ namespace ET
             }
             if (self.PayType == PayTypeEnum.QuDaoPay)
             {
+                //EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
+                //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                //string payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}"; 
+                //EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
+                //EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
+
+                //test-----------------------------------------------------------
                 EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                string payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}"; 
+                string payinfo = $"{1}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
                 EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
                 EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
             }

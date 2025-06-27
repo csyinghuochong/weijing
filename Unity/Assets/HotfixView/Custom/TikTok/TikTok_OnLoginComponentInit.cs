@@ -279,6 +279,21 @@ namespace ET
     }
 
     [Event]
+    public class QuDao_QuDaoSwichAccount : AEventClass<EventType.QuDaoSwichAccount>
+    {
+        protected override void Run(object a)
+        {
+            EventType.QuDaoSwichAccount args = a as EventType.QuDaoSwichAccount;
+
+            Log.ILog.Debug("QuDaoLoginSwichAccount: ");
+
+            EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
+            eventHandle.onSwitchAccountSuccessAction = args.QuDaoSwichAccountHandler;
+        }
+    }
+
+
+    [Event]
     public class TikTok_TikTokGetAccesstoken : AEventClass<EventType.TikTokGetAccesstoken>
     {
         protected override void Run(object a)

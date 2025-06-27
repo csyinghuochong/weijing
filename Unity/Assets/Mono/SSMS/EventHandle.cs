@@ -23,6 +23,8 @@ public class EventHandle : QuickSDKListener
     public GameObject mExitDialogCanvas;
 
     public Action<string, string> onLoginSuccessAction;
+
+    public Action onSwitchAccountSuccessAction;
     public Action onLoginFailAction;
     public Action onInitSuccessAction;
 
@@ -116,6 +118,14 @@ public class EventHandle : QuickSDKListener
         orderInfo.count = 1;            //购买数量
         orderInfo.amount = double.Parse(infolist[0]);            //支付总额（元）
         orderInfo.price = double.Parse(infolist[0]);            //价格(可跟amount传一样的值)
+
+        //测试商品 1分钱
+        if (infolist[0] == "1")
+        {
+            orderInfo.amount = 0.01;            //支付总额（元）
+            orderInfo.price = 0.01;            //价格(可跟amount传一样的值)
+        }
+
         orderInfo.callbackUrl = "";     //游戏支付回调地址，如后台也有配置，则优先通知后台设置的地址
         orderInfo.cpOrderID = infolist[6];  //产品订单号（游戏方的订单号）
 
@@ -471,6 +481,7 @@ public class EventHandle : QuickSDKListener
         // 切换账号成功的回调
         //一些渠道在悬浮框有切换账号的功能，此回调即切换成功后的回调。游戏应清除当前的游戏角色信息。在切换账号成功后回到选择服务器界面，请不要再次调用登录接口。
         showLog("onLoginSuccess", "uid: " + userInfo.uid + " ,username: " + userInfo.userName + " ,userToken: " + userInfo.token + ", msg: " + userInfo.errMsg);
+        onSwitchAccountSuccessAction?.Invoke();
         //Application.LoadLevel("scene2");
     }
 

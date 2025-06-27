@@ -403,6 +403,8 @@ namespace ET
 
             self.CheckTapRepCiLiu();
 
+            self.RegisterQudaoSwitchAccount();
+
             self.RequestChatList().Coroutine();
 
             self.SendRelinkRecord().Coroutine();
@@ -940,6 +942,29 @@ namespace ET
                 TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 3, addNumber + "").Coroutine();
             }
 #endif
+        }
+
+        public static void RegisterQudaoSwitchAccount(this UIMainComponent self)
+        {
+#if UNITY_ANDROID
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                EventType.QuDaoSwichAccount.Instance.ZoneScene = self.ZoneScene();
+                EventType.QuDaoSwichAccount.Instance.QuDaoSwichAccountHandler = self.OnQuDaoSwichAccountHandler;
+                EventSystem.Instance.PublishClass(EventType.QuDaoSwichAccount.Instance);
+            }
+#endif
+        }
+
+        private static void OnQuDaoSwichAccountHandler(this UIMainComponent self)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+            EventType.ReturnLogin.Instance.ErrorCode = 0;
+            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
         }
 
         public static  void CheckTapRepCiLiu(this UIMainComponent self)
