@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -11,7 +12,7 @@ namespace ET
         Number,
     }
 
-    public class UIUnionKeJiComponent: Entity, IAwake
+    public class UIUnionKeJiComponent: Entity, IAwake, IDestroy
     {
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -53,12 +54,54 @@ namespace ET
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             self.UIPageButton = uIPageButtonComponent;
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.Init().Coroutine();
         }
     }
 
+    public class UIUnionKeJiComponentDestroySystem : DestroySystem<UIUnionKeJiComponent>
+    {
+        public override void Destroy(UIUnionKeJiComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionKeJiComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionKeJiComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static async ETTask Init(this UIUnionKeJiComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

@@ -1149,6 +1149,11 @@ namespace ET
                     uiUnionMysteryComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionKeJiComponent uiUnionKeJiComponent)
+                {
+                    uiUnionKeJiComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
