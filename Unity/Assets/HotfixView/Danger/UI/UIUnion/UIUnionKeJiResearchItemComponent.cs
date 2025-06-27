@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionKeJiResearchItemComponent: Entity, IAwake<GameObject>
+    public class UIUnionKeJiResearchItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
         public GameObject NameText;
@@ -33,18 +33,33 @@ namespace ET
             self.IconImg = rc.Get<GameObject>("IconImg");
 
             self.ClickBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn(); });
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
+    public class UIUnionKeJiResearchItemComponentDestroySystem: DestroySystem<UIUnionKeJiResearchItemComponent>
+    {
+        public override void Destroy(UIUnionKeJiResearchItemComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+    
     public static class UIUnionKeJiResearchItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UIUnionKeJiResearchItemComponent self)
+        {
+            self.NameText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+
         public static void UpdateInfo(this UIUnionKeJiResearchItemComponent self, int position, int configId)
         {
             self.Position = position;
 
             UnionKeJiConfig unionKeJiConfig = UnionKeJiConfigCategory.Instance.Get(configId);
-            Match match = Regex.Match(unionKeJiConfig.GetEquipSpaceName(), @"\d");
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.GetEquipSpaceName().Substring(0, match.Index);
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.GetEquipSpaceName();
             self.LvText.GetComponent<Text>().text = unionKeJiConfig.QiangHuaLv == 0? GameSettingLanguge.LoadLocalization("未研究") : string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
 
             UICommonHelper.SetImageGray(self.IconImg, unionKeJiConfig.QiangHuaLv == 0);

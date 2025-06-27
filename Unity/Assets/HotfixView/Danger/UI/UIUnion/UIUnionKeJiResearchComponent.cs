@@ -157,8 +157,8 @@ namespace ET
                 self.NeedTime = 0;
             }
 
-            Match match = Regex.Match(unionKeJiConfig.GetEquipSpaceName(), @"\d");
-            self.NameText.GetComponent<Text>().text = unionKeJiConfig.GetEquipSpaceName().Substring(0, match.Index);
+            
+            self.NameText.GetComponent<Text>().text = unionKeJiConfig.GetEquipSpaceName();
             self.LvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), unionKeJiConfig.QiangHuaLv.ToString());
             self.NeedUnionLvText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("需要家族等级达到{0}级"), unionKeJiConfig.NeedUnionLv);
             if (unionKeJiConfig.QiangHuaLv == 0)

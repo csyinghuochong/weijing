@@ -1169,6 +1169,16 @@ namespace ET
                     uiUnionAttributeUpComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIUnionKeJiResearchItemComponent uiUnionKeJiResearchItemComponent)
+                {
+                    uiUnionKeJiResearchItemComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIUnionKeJiLearnItemComponent uiUnionKeJiLearnItemComponent)
+                {
+                    uiUnionKeJiLearnItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
