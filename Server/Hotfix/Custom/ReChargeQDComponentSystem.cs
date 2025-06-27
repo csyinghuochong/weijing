@@ -51,7 +51,7 @@ namespace ET
             self.orderDic.Add(dingDanID, model);
             string toClientStr = model.objID + "," + dingDanID;
 
-            Console.WriteLine($"QudaoPay.dingDanID:  {dingDanID}");
+            Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}    QudaoPay.dingDanID:  {dingDanID}");
             //return toClientStr
             return dingDanID;
         }
@@ -235,10 +235,10 @@ namespace ET
                                                                                          //将传入的数据进行解码
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息                                                                       
 
-   
+
                 if ( string.IsNullOrEmpty(pay_notice))
                 {
-                    Console.WriteLine("CheckQudaoPayResultxxx null  " + pay_notice);
+                    Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   CheckQudaoPayResultxxx ==  null  " + pay_notice);
                     return;
                 }
 
@@ -249,7 +249,7 @@ namespace ET
 
                 foreach (var payvalueee in payResults)
                 {
-                    Console.WriteLine("payResultsxxx:    " + payvalueee.Key + "   " + payvalueee.Value);
+                    Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   payResultsxxx:    " + payvalueee.Key + "   " + payvalueee.Value);
                 }
 
                 if (payResults.ContainsKey("game_order"))
