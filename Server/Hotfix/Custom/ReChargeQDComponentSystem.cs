@@ -255,8 +255,20 @@ namespace ET
                 if (payResults.ContainsKey("game_order"))
                 {
                     string dingdanid = payResults["game_order"];
+                    float amout = 0f;
+
+                    if (payResults.ContainsKey("amout"))
+                    {
+                        amout = float.Parse(payResults["amount"]);
+                    }
+
                     QudaoOrderInfo orderinfo = null;
                     self.orderDic.TryGetValue(dingdanid, out orderinfo);
+
+                    if (Math.Abs(amout - orderinfo.amount) > 1)
+                    {
+                        Console.WriteLine(dingdanid + "XXXXXXXXXXXXXXX:Math.Abs(amout - orderinfo.amount) > 1！");
+                    }
 
                     if (orderinfo != null && self.CheckMd5Sign(pay_notice) && payResults["status"] == "0")
                     {
