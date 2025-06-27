@@ -73,7 +73,7 @@ namespace ET
             bool functionOn = FunctionHelp.CheckFuncitonOn(zoneScene, funtionOpenConfig);
             if (!functionOn)
             {
-                FloatTipManager.Instance.ShowFloatTip(FunctionHelp.GetFunctionContion(zoneScene, funtionOpenConfig));
+                FloatTipManager.Instance.ShowFloatTip(GetFunctionContion(zoneScene, funtionOpenConfig));
                 return false;
             }
 
@@ -113,6 +113,39 @@ namespace ET
             return true;
         }
 
+        public static string GetFunctionContion(Scene zongScene, FuntionConfig funtionOpenConfig)
+        {
+            string tip = string.Empty;
+            int[] contion_1 = funtionOpenConfig.ConditionType;
+            int[] contion_2 = funtionOpenConfig.ConditionParam;
+            for (int i = 0; i < contion_1.Length; i++)
+            {
+                int triggerType = contion_1[i];
+                int triggerValue = contion_2[i];
+                bool open = true;
+                switch (triggerType)
+                {
+                    case FunctionContionEnum.None:
+                        open = FunctionHelp.DonotCheck();
+                        break;
+                    case FunctionContionEnum.PlayerLv:
+                        open = FunctionHelp.CheckPlayerLv(zongScene, triggerValue);
+                        tip = string.Format(GameSettingLanguge.LoadLocalization("请提升等级至: {0}"), triggerValue);
+                        break;
+                    case FunctionContionEnum.TaskId:
+                        open = FunctionHelp.CheckTaskID(zongScene, triggerValue);
+                        TaskConfig taskConfig = TaskConfigCategory.Instance.Get(triggerValue);
+                        tip = string.Format(GameSettingLanguge.LoadLocalization("请完成任务: {0}"), taskConfig.GetTaskName());
+                        break;
+                }
+                if (!open)
+                {
+                    break;
+                }
+            }
+            return tip;
+        }
+        
         public int GetFunctionID(string uitype)
         {
             List<FuntionConfig> funtionConfigs = FuntionConfigCategory.Instance.GetAll().Values.ToList();
