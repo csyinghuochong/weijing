@@ -1842,7 +1842,7 @@ $��原地挂机"Hang up in place
 2��挂机释放顺序"Hang-up release sequence
 ���l提示：技能按顺序进行释放，如果当前技能冷却将自动跳过当前技能向后进行释放"�Tip: Skills are released in order. If the current skill is cooled, it will automatically skip the current skill and release it backward.
 !��设置顺序"Set the order
-"��显示称号"Show the title
+��显示称号"Show
 ��攻击： 1"
 Attacks: 1
 ��收集"Collect
@@ -2011,134 +2011,136 @@ Fɧ"家族科技:额外金币获取+1%"Family Tech: + 1% extra gold
  ʧ科技能力"Capabilities
 B˧消耗家族资金：999999"Consuming Family Money: 999999.
 n̧-提示：同时间只能研究一个科技哦"9Tip: Only one technology can be studied at the same time.
-;ͧ需要家族等级达到5级"Requires family level 5
-5Χ消耗家族金币：999"Cost Family Gold: 999
-?ϧ研究消耗时间：8小时"Study elapsed time: 8 hours
-Ч开始研究"Learn
-iѧ'科技能力:拾取金币额外获得1%":Tech Abilities: Get an additional 1% when picking up gold.
-(ҧ升级需求"Upgrade requirements
-ӧ研究进度"Progress
-1ԧ在线人数 20"Number of people online 20
-(է名称名称名称"Name Name Name
-֧离开家族"Exit family
-+ק申请族长"Apply for the patriarch
-*ا请输入名称"Please enter a name
-&٧修改宗旨"Revise the purpose
-ڧ家族族长"	Patriarch
-ۧ家族成员"Member
-"ܧ家族宗旨"Family Purpose
-1ݧ天下第一帮"The best gang in the world
-ާ	哈哈哈"Ha ha ha
-$ߧ进入家族"Enter the family
-$�家族等级"Family hierarchy
-�家族经验"
+ͧ加速"
+Accelerate
+;Χ需要家族等级达到5级"Requires family level 5
+5ϧ消耗家族金币：999"Cost Family Gold: 999
+?Ч研究消耗时间：8小时"Study elapsed time: 8 hours
+ѧ开始研究"Learn
+iҧ'科技能力:拾取金币额外获得1%":Tech Abilities: Get an additional 1% when picking up gold.
+(ӧ升级需求"Upgrade requirements
+ԧ研究进度"Progress
+1է在线人数 20"Number of people online 20
+(֧名称名称名称"Name Name Name
+ק离开家族"Exit family
++ا申请族长"Apply for the patriarch
+*٧请输入名称"Please enter a name
+&ڧ修改宗旨"Revise the purpose
+ۧ家族族长"	Patriarch
+ܧ家族成员"Member
+"ݧ家族宗旨"Family Purpose
+1ާ天下第一帮"The best gang in the world
+ߧ	哈哈哈"Ha ha ha
+$�进入家族"Enter the family
+$�家族等级"Family hierarchy
+�家族经验"
 Experience
-"�家族记录"Family records
- �家族资金"Family funds
-�1.5万"15,000
-1�攻击修炼:1级"Attack Training: Level 1
-4�攻击修炼： 1级"Attack Training: Level 1
-&�当前属性"Current properties
-�攻击 + 35"Attack + 35
-�下一等级"
+"�家族记录"Family records
+ �家族资金"Family funds
+�1.5万"15,000
+1�攻击修炼:1级"Attack Training: Level 1
+4�攻击修炼： 1级"Attack Training: Level 1
+&�当前属性"Current properties
+�攻击 + 35"Attack + 35
+�下一等级"
 Next level
-�升级修炼"Upgrade
-n�+玩家通过任务增加了5点家族经验";The player gains 5 family experience points through quests.
-.�消耗:1000金币"Cost: 1000 gold coins
-��人数"
+�升级修炼"Upgrade
+n�+玩家通过任务增加了5点家族经验";The player gains 5 family experience points through quests.
+.��消耗:1000金币"Cost: 1000 gold coins
+�人数"
 Guild Size
-�要求"Request
-4�家族名称族名称"Family Name Family Name
-�申请加入"Join
-�族长"Master
-�修炼"Practice
-�	生命石"
+�要求"Request
+4�家族名称族名称"Family Name Family Name
+�申请加入"Join
+�族长"Master
+�修炼"Practice
+��	生命石"
 Life Stone
-��皮肤"Skin
-!��邀请组队"Invite a team
-#��加为好友"Add as a friend
-(��踢出队伍"Kick out of the team
-*��申请入队"Apply to join the team
-3��邀请加入家族"Invite to join the family
-'��踢出家族"Kick out the family
-)��加入黑名单"Join the blacklist
-*��转移族长"Transfer the patriarch
-1��任命副族长"Appoint a deputy patriarch
-"��任命长老"Appoint elders
-��撤销"Revoke
-��挑战
+��皮肤"Skin
+!��邀请组队"Invite a team
+#��加为好友"Add as a friend
+(��踢出队伍"Kick out of the team
+*��申请入队"Apply to join the team
+3��邀请加入家族"Invite to join the family
+'��踢出家族"Kick out the family
+)��加入黑名单"Join the blacklist
+*��转移族长"Transfer the patriarch
+1��任命副族长"Appoint a deputy patriarch
+"��任命长老"Appoint elders
+��撤销"Revoke
+��挑战
 "Challenge 
 
-*��服务器黑名单"Server blacklist
-)��举报禁言"Report and ban speech
- ��快捷搜索"Quick search
-��抽奖"Draw a lottery
-��投资"
+*��服务器黑名单"Server blacklist
+)��举报禁言"Report and ban speech
+ ��快捷搜索"Quick search
+��抽奖"Draw a lottery
+��投资"
 Investment
-$��每日抽奖"Daily lucky draw
-���9提示:每日活跃度达到60点后可以开启抽奖。"PPrompt: The lucky draw can be opened after the daily activity reaches 60 points.
-0��3次必定获得"3 times must be obtained
-0��5次必定获得"5 times must be obtained
-0��7次必定获得"7 times must be obtained
-"��新手抽奖"Novice lottery
-r��-提示:每充值50可得到一次抽奖机会"=Tip: Every recharge of 50 can get a chance to draw a lottery.
-7��剩余抽奖次数："Number of remaining draws:
-��	投资500"
+$��每日抽奖"Daily lucky draw
+���9提示:每日活跃度达到60点后可以开启抽奖。"PPrompt: The lucky draw can be opened after the daily activity reaches 60 points.
+0��3次必定获得"3 times must be obtained
+0��5次必定获得"5 times must be obtained
+0��7次必定获得"7 times must be obtained
+"��新手抽奖"Novice lottery
+r��-提示:每充值50可得到一次抽奖机会"=Tip: Every recharge of 50 can get a chance to draw a lottery.
+7��剩余抽奖次数："Number of remaining draws:
+��	投资500"
 Invest 500
-(��投资金币"Invest in gold coins
-$��投资总额"Total investment
- ��利润总额"Total profit
- ��回报总额"Total return
-c��%领取剩余时间:99天99小时99分"6Time left to collect: 99 days, 99 hours and 99 minutes
-&��领取金币"Collect gold coins
-���G提示:奖池金币每天增长25%的利润,第七天可全部领取。"�Prompt: The gold coin of the prize pool increases 25% of the profit every day, and all of them can be collected on the seventh day.
-��第1天"Day 1
-��第2天"Day 2
-��第3天"Day 3
-��第4天"Day 4
-��第5天"Day 5
-��第6天"Day 6
-��第7天"Day 7
-��	进度："	Progress:
-%��完成度: 5/5"Completion: 5/5
-��世界等级"World class
-'��兑换经验"Exchange experience
--��低于世界等级:"Below world class:
-o��/1.低于世界等级可以获得经验加成。"81. Below the world level, you can gain experience bonus.
-���;2.低于世界等级使用经验盒子获得经验加成。"I2. Use the experience box below the world level to gain experience bonus.
-A��达到等级或世界等级:"Achieve Level or World Level:
-���51.达到世界等级的将无法使用经验盒子。"L1. Those who reach the world level will not be able to use experience boxes.
-���>2.达到世界等级可以把额外的经验转换成金币。"H2. Reaching the world level can convert additional experience into gold.
-���A3.达到世界等级的玩家游戏内怪物的爆率会提升。"^3. Players who reach the world level will increase the explosion rate of monsters in the game.
-��提示"Hint
-k��,提示：每差一级提升2%（最高20%）"7Tip: Increase by 2% per level of difference (up to 20%)
-���@提示:达到世界等级的玩家可以将经验兑换成金币"KTip: Players who have reached world level can exchange experience for gold.
-i��1提示: 每天中午12点开启新的世界等级"0Tip: Open a new world level at 12 noon every day
-`��#玩家达到10级后开启此功能"5Turn on this feature when the player reaches level 10
-M��当前的经验百分比:25%")Current experience percentage: 25 percent
-E��可以获得经验加成20%""You can gain 20% experience bonus.
-+��当前的等级:25"Current Level: 25
-3��你当前的等级:25"Your current level: 25
-C��作者真帅(29级)"(The author is really handsome (level 29)
-8��世界等级说明"Description of the world level
-(��今日兑换次数:0"Exchanges: 0
-'��修炼经验"Practice experience
-'��经验修炼"Experience training
-Y��#当前可提取修炼经验：10000".Current extractable training experience: 10000
-���>提示: 提升角色等级可增加每日修炼获得经验值"_Tip: Increasing the level of the character can increase the experience value of daily training.
-(��修炼金币"Cultivate gold coins
-&��金币修炼"Gold coin training
-]��#当前可提取修炼金币：10000"2Gold coins that can be extracted at present: 10000
-���3提升角色等级可增加每日修炼获得金币"UIncreasing the level of the character can increase the gold gained by daily training.
-0��领取次数： 1/2"Collection times: 1/2
-E��下次可领取倒计时:"$Next time you can get the countdown:
-"��首胜名单"First win list
-��首胜奖励"	First win
-$��个人奖励"Personal rewards
-"��（已刷新）"(Refreshed)
-,¨领主升级: 1/10"Lord upgrade: 1/10
-(è怪物经验:"Monster Experience:
-�Ĩ�技能介绍1111111111   技能介绍
+(��投资金币"Invest in gold coins
+$��投资总额"Total investment
+ ��利润总额"Total profit
+ ��回报总额"Total return
+c��%领取剩余时间:99天99小时99分"6Time left to collect: 99 days, 99 hours and 99 minutes
+&��领取金币"Collect gold coins
+���G提示:奖池金币每天增长25%的利润,第七天可全部领取。"�Prompt: The gold coin of the prize pool increases 25% of the profit every day, and all of them can be collected on the seventh day.
+��第1天"Day 1
+��第2天"Day 2
+��第3天"Day 3
+��第4天"Day 4
+��第5天"Day 5
+��第6天"Day 6
+��第7天"Day 7
+��	进度："	Progress:
+%��完成度: 5/5"Completion: 5/5
+��世界等级"World class
+'��兑换经验"Exchange experience
+-��低于世界等级:"Below world class:
+o��/1.低于世界等级可以获得经验加成。"81. Below the world level, you can gain experience bonus.
+���;2.低于世界等级使用经验盒子获得经验加成。"I2. Use the experience box below the world level to gain experience bonus.
+A��达到等级或世界等级:"Achieve Level or World Level:
+���51.达到世界等级的将无法使用经验盒子。"L1. Those who reach the world level will not be able to use experience boxes.
+���>2.达到世界等级可以把额外的经验转换成金币。"H2. Reaching the world level can convert additional experience into gold.
+���A3.达到世界等级的玩家游戏内怪物的爆率会提升。"^3. Players who reach the world level will increase the explosion rate of monsters in the game.
+��提示"Hint
+k��,提示：每差一级提升2%（最高20%）"7Tip: Increase by 2% per level of difference (up to 20%)
+���@提示:达到世界等级的玩家可以将经验兑换成金币"KTip: Players who have reached world level can exchange experience for gold.
+i��1提示: 每天中午12点开启新的世界等级"0Tip: Open a new world level at 12 noon every day
+`��#玩家达到10级后开启此功能"5Turn on this feature when the player reaches level 10
+M��当前的经验百分比:25%")Current experience percentage: 25 percent
+E��可以获得经验加成20%""You can gain 20% experience bonus.
++��当前的等级:25"Current Level: 25
+3��你当前的等级:25"Your current level: 25
+C��作者真帅(29级)"(The author is really handsome (level 29)
+8��世界等级说明"Description of the world level
+(��今日兑换次数:0"Exchanges: 0
+'��修炼经验"Practice experience
+'��经验修炼"Experience training
+Y��#当前可提取修炼经验：10000".Current extractable training experience: 10000
+���>提示: 提升角色等级可增加每日修炼获得经验值"_Tip: Increasing the level of the character can increase the experience value of daily training.
+(��修炼金币"Cultivate gold coins
+&��金币修炼"Gold coin training
+]��#当前可提取修炼金币：10000"2Gold coins that can be extracted at present: 10000
+���3提升角色等级可增加每日修炼获得金币"UIncreasing the level of the character can increase the gold gained by daily training.
+0��领取次数： 1/2"Collection times: 1/2
+E��下次可领取倒计时:"$Next time you can get the countdown:
+"��首胜名单"First win list
+��首胜奖励"	First win
+$��个人奖励"Personal rewards
+"¨（已刷新）"(Refreshed)
+,è领主升级: 1/10"Lord upgrade: 1/10
+(Ĩ怪物经验:"Monster Experience:
+�Ũ�技能介绍1111111111   技能介绍
 技能介绍技能介绍技能介绍
 技能介绍
 技能介绍
@@ -2154,141 +2156,141 @@ Introduction to Skills
 Introduction to Skills 
 Introduction to Skills 
 Introduction to Skills
-Ũ困难模式"	Difficult
-ƨ地狱模式"Hell
- Ǩ怪物掉落"Monster drop
-"Ȩ次级领主"Secondary Lord
-$ɨ刷新时间："Refresh time:
-�ʨx提示:每次击败领主获得1点领主经验,领主升级后掉落会增加，实力会上升，冷却时间会延长"xDefeat the BOSS to get BOSS EXP. When the BOSS levels up, its drops will increase, but the cooldown time will be longer.
-0˨钢铁护卫-丝里安"Steel Guard-Silian
-#̨普通奖励"Ordinary reward
-%ͨ困难奖励"Difficulty reward
-Ψ地狱奖励"Hell reward
-�ϨV提示:首胜奖励为全服第一次击败怪物的玩家获得,邮件自动发放。"�Prompt: The first victory reward is obtained by the player who defeats the monster for the first time in full service, and the mail is automatically issued.
-Ш实力奖励"Strength
-�Ѩ6战区实力值奖励（数量有限！先到先得）"DWarzone Strength Rewards (limited quantity! First come, first served
-9Ҩ我的战力：1000000"My fighting power: 1000000.
-Ө剩余数量"	Remainder
-;Ԩ领取人数已满"!The number of recipients is full.
-;ը战力达到10000""Combat power has reached the 10000
-$֨我的等级:99"My rating: 99
-'ר等级达到30级"Level up to 30
- ب重新挑战"Re-challenge
-٨	下一关"
+ƨ困难模式"	Difficult
+Ǩ地狱模式"Hell
+ Ȩ怪物掉落"Monster drop
+"ɨ次级领主"Secondary Lord
+$ʨ刷新时间："Refresh time:
+�˨x提示:每次击败领主获得1点领主经验,领主升级后掉落会增加，实力会上升，冷却时间会延长"xDefeat the BOSS to get BOSS EXP. When the BOSS levels up, its drops will increase, but the cooldown time will be longer.
+0̨钢铁护卫-丝里安"Steel Guard-Silian
+#ͨ普通奖励"Ordinary reward
+%Ψ困难奖励"Difficulty reward
+Ϩ地狱奖励"Hell reward
+�ШV提示:首胜奖励为全服第一次击败怪物的玩家获得,邮件自动发放。"�Prompt: The first victory reward is obtained by the player who defeats the monster for the first time in full service, and the mail is automatically issued.
+Ѩ实力奖励"Strength
+�Ҩ6战区实力值奖励（数量有限！先到先得）"DWarzone Strength Rewards (limited quantity! First come, first served
+9Ө我的战力：1000000"My fighting power: 1000000.
+Ԩ剩余数量"	Remainder
+;ը领取人数已满"!The number of recipients is full.
+;֨战力达到10000""Combat power has reached the 10000
+$ר我的等级:99"My rating: 99
+'ب等级达到30级"Level up to 30
+ ٨重新挑战"Re-challenge
+ڨ	下一关"
 Next level
-�ڨ;1. 活动开启后进入场景将会随机变成1种动物."T1. After the activity is started, the scene will be randomly changed into an animal.
-gۨ22.每种动物都有属于自己的特殊能力。"-2. Each animal has its own special abilities.
-�ܨU3.活动开启后,控制自身的变身动物奔跑至目标点
+�ۨ;1. 活动开启后进入场景将会随机变成1种动物."T1. After the activity is started, the scene will be randomly changed into an animal.
+gܨ22.每种动物都有属于自己的特殊能力。"-2. Each animal has its own special abilities.
+�ݨU3.活动开启后,控制自身的变身动物奔跑至目标点
 获得最终胜利。"w3. After the activity starts, control your own transformed animal to run to the target point 
 to win the final victory.
-�ݨ;4.活动过程中每隔一段时间会自动进行变身。"H4. It will automatically transform every other time during the activity.
-�ިK5.奔跑的过程中触碰星星道具也会获得额外的特殊
+�ި;4.活动过程中每隔一段时间会自动进行变身。"H4. It will automatically transform every other time during the activity.
+�ߨK5.奔跑的过程中触碰星星道具也会获得额外的特殊
 能力。"W5. Touching a star item while running will also give you additional special 
 abilities.
-Gߨ变身剩余倒计时 0:0"&Transformation Remaining Countdown 0:0
-}�1提示:长按技能图标可显示技能描述。"DTip: Press and hold the skill icon to display the skill description.
-"�开始匹配"Start matching
-�积分：99"
+G�变身剩余倒计时 0:0"&Transformation Remaining Countdown 0:0
+}�1提示:长按技能图标可显示技能描述。"DTip: Press and hold the skill icon to display the skill description.
+"�开始匹配"Start matching
+�积分：99"
 Points: 99
-"�今日战绩"Today's record
-l�&1. 每周一三五日22:00-22:20开启">1. Open every Monday, Wednesday and Friday from 22:00 to 22:20
-u�+2.活动开启后可以进行1对1的挑战"B2. After the activity starts, you can have a one-to-one challenge.
-�0胜4败"0-4
-B�匹配时间：0分0秒"#Match time: 0 minutes and 0 seconds
-%�竞技规则"Rules of the game
-'�竞技排名"Competitive ranking
-��33.活动结束后,按照排名进行发放奖励。"M3. At the end of the event, rewards will be awarded according to the ranking.
-��?4.每天的竞技场第一将激活稀有坐骑:竞技之猩。"V4. The first of each day in the arena will activate the rare mount: Arena of the Game.
-��?5.每天的竞技场第一将激活稀有坐骑:竞技之猩。"U5. The first of each day in the arena will activate a rare mount: the Arena of Rodeo.
-��	1胜11败"1-11
-%�挑战结束"Challenge is over
-��4你当前成功完成挑战10波,获得奖励如下:"bYou have successfully completed 10 waves of the current challenge and will be rewarded as follows:
-Y�10秒后自动返回主城"7Automatically return to the main city after 10 seconds.
-�创建副本"Create
-=�沼泽副本(协助模式)"Swamp dungeon (assist mode)
-6�进入条件：10级"Entry conditions: Level 10
-4��推荐等级：30-49"Recommended grade: 30-49
-#��协助模式"Assistance mode
-V��'组队副本开启时间  19:00 - 24:00"'Team dungeon opening time 19: 00-24: 00
--��副本次数:0/3"Number of copies: 0/3
-<��协助副本次数:0/3"Number of assisted copies: 0/3
-����帮助副本提示：
+"�今日战绩"Today's record
+l�&1. 每周一三五日22:00-22:20开启">1. Open every Monday, Wednesday and Friday from 22:00 to 22:20
+u�+2.活动开启后可以进行1对1的挑战"B2. After the activity starts, you can have a one-to-one challenge.
+�0胜4败"0-4
+B�匹配时间：0分0秒"#Match time: 0 minutes and 0 seconds
+%�竞技规则"Rules of the game
+'�竞技排名"Competitive ranking
+��33.活动结束后,按照排名进行发放奖励。"M3. At the end of the event, rewards will be awarded according to the ranking.
+��?4.每天的竞技场第一将激活稀有坐骑:竞技之猩。"V4. The first of each day in the arena will activate the rare mount: Arena of the Game.
+���?5.每天的竞技场第一将激活稀有坐骑:竞技之猩。"U5. The first of each day in the arena will activate a rare mount: the Arena of Rodeo.
+�	1胜11败"1-11
+%�挑战结束"Challenge is over
+��4你当前成功完成挑战10波,获得奖励如下:"bYou have successfully completed 10 waves of the current challenge and will be rewarded as follows:
+Y�10秒后自动返回主城"7Automatically return to the main city after 10 seconds.
+�创建副本"Create
+=�沼泽副本(协助模式)"Swamp dungeon (assist mode)
+6��进入条件：10级"Entry conditions: Level 10
+4��推荐等级：30-49"Recommended grade: 30-49
+#��协助模式"Assistance mode
+V��'组队副本开启时间  19:00 - 24:00"'Team dungeon opening time 19: 00-24: 00
+-��副本次数:0/3"Number of copies: 0/3
+<��协助副本次数:0/3"Number of assisted copies: 0/3
+����帮助副本提示：
 1.参与帮助副本，高于副本等级10级将消耗帮助次数，否则将消耗正常的副本次数。
 2.高于副本等级10级的帮助玩家可获得友爱奖章，可以兑换稀有的游戏道具。"�Help copy prompt: 
 1. Participate in the help copy. If the copy level is higher than 10, it will consume the help times. Otherwise, it will consume the normal copy times. 
 2. Help players who are 10 levels higher than dungeon level can get the Friendship Medal, which can be exchanged for rare game items.
-���Q提示：2个玩家爆率提升30%，3个玩家爆率提升60%,人机无加成。"8Tip: 2 players: drop rate +30% 2 players: drop rate +30%
-��人机"Man Machine
-?��等待其他玩家加入"Wait for other players to join.
-'��战力:99999"Combat Power: 99999
-��成员"Member
-��发送喊话"Send a call
-"��添加机器人"Add a robot
->��挑战副本:深海副本"Challenge Copy: Deep Sea Copy
-��拥有:"Owned:
-$��友爱商店"Friendship Store
-���@提示:在副本帮助模式下的大号会获得友爱奖章。"ATip: a tuba in dungeon help mode will receive a friendship medal.
-"��副本列表"List of copies
-��我的副本"My copy.
-��沼泽副本"
+���Q提示：2个玩家爆率提升30%，3个玩家爆率提升60%,人机无加成。"8Tip: 2 players: drop rate +30% 2 players: drop rate +30%
+��人机"Man Machine
+?��等待其他玩家加入"Wait for other players to join.
+'��战力:99999"Combat Power: 99999
+��成员"Member
+��发送喊话"Send a call
+"��添加机器人"Add a robot
+>��挑战副本:深海副本"Challenge Copy: Deep Sea Copy
+��拥有:"Owned:
+$��友爱商店"Friendship Store
+���@提示:在副本帮助模式下的大号会获得友爱奖章。"ATip: a tuba in dungeon help mode will receive a friendship medal.
+"��副本列表"List of copies
+��我的副本"My copy.
+��沼泽副本"
 Swamp copy
-$��副本描述"Copy description
-����副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描"!Copy description copy description
-��1人"1 person
-��推荐等级:"Level :
-��人数要求:"	Players :
-,��可能获得奖励:"Possible Rewards:
-4��推荐等级: 1-10级"Recommended grade: 1-10
-/��推荐人数: 3人"Recommended: 3 people
-��帮助副本"Create Help
-��消耗精力:"Energy :
-j��4消耗帮助次数
+$��副本描述"Copy description
+����副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描述副本描"!Copy description copy description
+��1人"1 person
+��推荐等级:"Level :
+��人数要求:"	Players :
+,��可能获得奖励:"Possible Rewards:
+4��推荐等级: 1-10级"Recommended grade: 1-10
+/��推荐人数: 3人"Recommended: 3 people
+��帮助副本"Create Help
+��消耗精力:"Energy :
+j��4消耗帮助次数
 进入比自己等级低的副本".Consume help times 
  Enter a Low-Level Dungeon
-0��开启深渊模式"Turn on the abyss mode
-%��进入准备"Prepare for entry
- ��拒绝进入"Denied entry
-0��等待确认.."Waiting for confirmation..
- ��玩家11111"Player 1111 1
-.��倒计时：10秒"Countdown: 10 seconds
-��伤害：70"
+0��开启深渊模式"Turn on the abyss mode
+%��进入准备"Prepare for entry
+ ��拒绝进入"Denied entry
+0��等待确认.."Waiting for confirmation..
+ ��玩家11111"Player 1111 1
+.��倒计时：10秒"Countdown: 10 seconds
+��伤害：70"
 Damage: 70
-��额外奖励"Bonus
-��关闭"Close
-+��通关宝箱"Pass the treasure chest
-��需求"Demand
-��放弃"Give up
-��0秒"	0 seconds
-��挑战"	Challenge
-'��挑战规则"Challenge the rules
-����1.挑战之地内的怪物会不断刷新
+��额外奖励"Bonus
+��关闭"Close
++��通关宝箱"Pass the treasure chest
+��需求"Demand
+��放弃"Give up
+��0秒"	0 seconds
+��挑战"	Challenge
+'��挑战规则"Challenge the rules
+����1.挑战之地内的怪物会不断刷新
 2.刷新的波数越高,获得的奖励越丰富
 3.挑战之地每天只能挑战一次"r1. The monsters in the challenge area will be refreshed. 
 2. The challenge area can only be challenged once a day.
-A��&建议等级达到15级后进行挑战"Unlock at Level 15.
-A��&建议等级达到35级后进行挑战"Unlock at Level 35.
-"��挑战模式"Challenge mode
-A��&建议等级达到50级后进行挑战"Unlock at Level 50.
-a��'恭喜你获得本场挑战的胜利！"2Congratulations on your victory in this challenge!
-3��挑战之地：1/30"Place of challenge: 1/30
-+��闯关规则"Break through the rules
-����花费封印之塔凭证或钻石可以我这里激活封印之塔里的魔物，这里有100层，传说它们的身上都携带了很多的宝物.
+A��&建议等级达到15级后进行挑战"Unlock at Level 15.
+A��&建议等级达到35级后进行挑战"Unlock at Level 35.
+"��挑战模式"Challenge mode
+A��&建议等级达到50级后进行挑战"Unlock at Level 50.
+a��'恭喜你获得本场挑战的胜利！"2Congratulations on your victory in this challenge!
+3��挑战之地：1/30"Place of challenge: 1/30
++��闯关规则"Break through the rules
+����花费封印之塔凭证或钻石可以我这里激活封印之塔里的魔物，这里有100层，传说它们的身上都携带了很多的宝物.
 所以它们的爆率是外面的双倍，听说能闯到最后的勇士都能获得丰厚的奖励哦，每到10层还会有个大宝箱等待你去开启哦！"�I can activate the magic objects in the Tower of Seals by spending the Tower of Seals certificate or diamond. There are 100 layers here. It is said that they all carry a lot of treasures. So their explosion rate is double that of the outside. It is said that the warriors who can break through to the end can get rich rewards. There will be a big treasure chest waiting for you to open every 10 layers!
-$��封印之地"Land of the Seal
-R��是否继续下面的挑战？",Do you want to continue the challenge below?
-���N本次的挑战需要消耗封印之塔的凭证或花费520钻直接开启！"pThis challenge needs to consume the certificate of the Tower of Seals or spend 520 diamonds to open it directly!
-%��钻石挑战"Diamond Challenge
-%��凭证挑战"Voucher challenge
-���?每10层会有一个宝箱,您当前掷点数会超过宝箱层"rThere will be a treasure chest every 10 layers, and your current roll points will exceed the treasure chest layer.
-k��$是否花费350钻石去到宝箱层"?Whether to spend 350 diamonds to go to the treasure chest layer
-��不去"Don't go
-��去"Go
-B��点击下面开始挑战""Click below to start the challenge
-.��当前层数:"Current number of layers:
-e��'消耗凭证或钻石可以开启挑战"6Consuming vouchers or diamonds can open the challenge.
-6��挑战倒计时 10:00"Challenge Countdown 10:00
-"��试炼规则"Rules of trial
-���E在指定的60秒内成功击败挑战
+$��封印之地"Land of the Seal
+R��是否继续下面的挑战？",Do you want to continue the challenge below?
+���N本次的挑战需要消耗封印之塔的凭证或花费520钻直接开启！"pThis challenge needs to consume the certificate of the Tower of Seals or spend 520 diamonds to open it directly!
+%��钻石挑战"Diamond Challenge
+%��凭证挑战"Voucher challenge
+���?每10层会有一个宝箱,您当前掷点数会超过宝箱层"rThere will be a treasure chest every 10 layers, and your current roll points will exceed the treasure chest layer.
+k��$是否花费350钻石去到宝箱层"?Whether to spend 350 diamonds to go to the treasure chest layer
+��不去"Don't go
+��去"Go
+B��点击下面开始挑战""Click below to start the challenge
+.��当前层数:"Current number of layers:
+e��'消耗凭证或钻石可以开启挑战"6Consuming vouchers or diamonds can open the challenge.
+6��挑战倒计时 10:00"Challenge Countdown 10:00
+"��试炼规则"Rules of trial
+���E在指定的60秒内成功击败挑战
 怪物即可获得如下奖励"hSuccessfully defeat the challenge within the specified 60 seconds
 Monsters receive the following rewards
 +��1级伤害副本"Level 1 Damage Copy
