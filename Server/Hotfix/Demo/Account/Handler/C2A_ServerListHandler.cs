@@ -52,7 +52,7 @@ namespace ET
                         StartSceneConfig gateconfig = RealmGateAddressHelper.GetGate(5, 1);
                         string gate = gateconfig.OuterIPPort.ToString();
                         response.RealAndGate = real + "_" + gate;
-                        response.SmsVerifyType = 0; //0 mob  1 aliyun
+                        response.SmsVerifyType = 1; //0 mob  1 aliyun
                         reply();
                         await ETTask.CompletedTask;
                     }
