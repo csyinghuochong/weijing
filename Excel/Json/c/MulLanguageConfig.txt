@@ -1718,7 +1718,7 @@
 {"_t":"MulLanguageConfig","_id":201606,"Des":"","Chinese":"嘿小勇士你是我引导的第8434个来这里探险的人。","English":"Hey, little warrior, you're the 8,434th person I've guided to explore here."},
 {"_t":"MulLanguageConfig","_id":201607,"Des":"","Chinese":"收集树皮","English":"Collect the bark"},
 {"_t":"MulLanguageConfig","_id":201608,"Des":"","Chinese":"接取任务","English":"Take the task"},
-{"_t":"MulLanguageConfig","_id":201609,"Des":"","Chinese":"提交任务","English":"Submit the task"},
+{"_t":"MulLanguageConfig","_id":201609,"Des":"","Chinese":"提交任务","English":"Submit Task"},
 {"_t":"MulLanguageConfig","_id":201610,"Des":"","Chinese":"给予道具","English":"Give props"},
 {"_t":"MulLanguageConfig","_id":201611,"Des":"","Chinese":"兑换魔能","English":"Exchange magic power"},
 {"_t":"MulLanguageConfig","_id":201612,"Des":"","Chinese":"魔能币","English":"Magic coins"},
