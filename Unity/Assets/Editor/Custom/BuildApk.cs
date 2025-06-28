@@ -172,7 +172,78 @@ public class MyEditorScript
 		}
 	}
 
-	static void BulidTarget(string name, string target)
+    /// <summary>
+    /// 删除指定目录下的所有内容，但保留目录本身
+    /// </summary>
+    /// <param name="directoryPath">要清理的目录路径</param>
+    static void DeleteDirectoryContents(string directoryPath)
+    {
+        // 删除目录下的所有文件
+        foreach (string filePath in Directory.GetFiles(directoryPath))
+        {
+            try
+            {
+                File.SetAttributes(filePath, FileAttributes.Normal); // 确保文件为普通属性
+                File.Delete(filePath);
+                Console.WriteLine($"已删除文件: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"无法删除文件 '{filePath}': {ex.Message}");
+            }
+        }
+
+        // 递归删除所有子目录
+        foreach (string subDirectoryPath in Directory.GetDirectories(directoryPath))
+        {
+            try
+            {
+                DeleteDirectoryContents(subDirectoryPath); // 先递归删除子目录内容
+                Directory.Delete(subDirectoryPath); // 再删除空目录
+                Console.WriteLine($"已删除目录: {subDirectoryPath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"无法删除目录 '{subDirectoryPath}': {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// 递归复制文件夹及其内容
+    /// </summary>
+    /// <param name="sourceFolder">源文件夹路径</param>
+    /// <param name="destinationFolder">目标文件夹路径</param>
+    static void CopyFolderContents(string sourceFolder, string destinationFolder)
+    {
+        // 创建目标文件夹（如果不存在）
+        if (!Directory.Exists(destinationFolder))
+        {
+            Directory.CreateDirectory(destinationFolder);
+            Console.WriteLine($"创建文件夹: {destinationFolder}");
+        }
+
+        // 复制文件
+        string[] files = Directory.GetFiles(sourceFolder);
+        foreach (string file in files)
+        {
+            string fileName = Path.GetFileName(file);
+            string destFile = Path.Combine(destinationFolder, fileName);
+            File.Copy(file, destFile, true);
+            Console.WriteLine($"复制文件: {file} -> {destFile}");
+        }
+
+        // 递归复制子文件夹
+        string[] subFolders = Directory.GetDirectories(sourceFolder);
+        foreach (string subFolder in subFolders)
+        {
+            string folderName = Path.GetFileName(subFolder);
+            string destSubFolder = Path.Combine(destinationFolder, folderName);
+            CopyFolderContents(subFolder, destSubFolder);
+        }
+    }
+
+    static void BulidTarget(string name, string target)
 	{
 		if (Directory.Exists(targetPath))
 		{
@@ -215,16 +286,47 @@ public class MyEditorScript
 		BuildTargetGroup targetGroup = BuildTargetGroup.Android;
 		BuildTarget buildTarget = BuildTarget.Android;
 		string applicationPath = Application.dataPath.Replace("/Assets", "");
+		string streamPath = Application.streamingAssetsPath;
 
-		if (target == "Android")
+        if (target == "Android")
 		{
-			if (name == "Google")
+            if (Directory.Exists(streamPath))
+            {
+                Console.WriteLine($"开始清理目录: {streamPath}");
+                DeleteDirectoryContents(streamPath);
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                Console.WriteLine($"目录 {streamPath} 清理完成!");
+            }
+			if (name != "Google")
 			{
+                //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
+                //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
+                string sourceFolder = Application.dataPath.Replace("Unity/Assets", "Release/DLCBeta/Android");
+               
+                CopyFolderContents(sourceFolder, streamPath);
+                // AssetDatabase.MoveAsset(sourceFolder, streamPath);
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                Console.WriteLine($"目录 {sourceFolder}  {streamPath} 拷贝完成!");
+            }
+			
+
+            //AssetDatabase.ImportAsset(streamPath);
+            //AssetDatabase.importPackageCompleted += OnRefreshComplete;
+
+
+            if (name == "Google")
+            {
 				target_name = app_name + ".aab";
-			}
+
+                //歌谷要打空包
+            }
 			else
 			{
 				target_name = app_name + ".APK";
+
+				//其他要打全包
 			}
 
 			target_dir = applicationPath + "/AndroidTarget";
@@ -251,6 +353,7 @@ public class MyEditorScript
 		{
 			Directory.CreateDirectory(target_dir);
 		}
+
 
         PlayerSettings.Android.targetSdkVersion = name == "QuDao" ? AndroidSdkVersions.AndroidApiLevel26 : AndroidSdkVersions.AndroidApiLevelAuto;
         PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, ";" + name);
