@@ -243,6 +243,39 @@ public class MyEditorScript
         }
     }
 
+    static bool RenameFolderExample(string qudao)
+    {
+        string oldPath = "Assets/StreamingAssets";
+        string newPath = "Assets/StreamingAssetsCopy";
+
+        // 构建新路径（保持父目录不变，仅修改文件夹名）
+        //string parentPath = System.IO.Path.GetDirectoryName(oldPath);
+       // string newPath = System.IO.Path.Combine(parentPath, newName);
+
+		// 执行重命名（通过移动实现）
+		string success = string.Empty;
+		if (qudao == "Google")
+		{
+            success = AssetDatabase.MoveAsset(oldPath, newPath);
+        }
+		else
+		{
+            success = AssetDatabase.MoveAsset(newPath, oldPath);
+        }
+		
+        if (string.IsNullOrEmpty(success))
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport); // 刷新项目视图
+            Debug.Log($"文件夹已重命名为: {newPath}");
+			return true;
+        }
+        else
+        {
+			// 重命名失败时获取错误信息
+			return false;
+        }
+    }
+
     static void BulidTarget(string name, string target)
 	{
 		if (Directory.Exists(targetPath))
@@ -286,35 +319,48 @@ public class MyEditorScript
 		BuildTargetGroup targetGroup = BuildTargetGroup.Android;
 		BuildTarget buildTarget = BuildTarget.Android;
 		string applicationPath = Application.dataPath.Replace("/Assets", "");
-		string streamPath = Application.streamingAssetsPath;
+		
 
         if (target == "Android")
 		{
-            if (Directory.Exists(streamPath))
-            {
-                Console.WriteLine($"开始清理目录: {streamPath}");
-                DeleteDirectoryContents(streamPath);
 
-                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-                Console.WriteLine($"目录 {streamPath} 清理完成!");
-            }
-			if (name != "Google")
-			{
-                //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
-                //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
-                string sourceFolder = Application.dataPath.Replace("Unity/Assets", "Release/DLCBeta/Android");
-               
-                CopyFolderContents(sourceFolder, streamPath);
-                // AssetDatabase.MoveAsset(sourceFolder, streamPath);
+			#region
+			///test1-----------------------------------------------------------
+			///string streamPath = Application.streamingAssetsPath;
+			//         if (Directory.Exists(streamPath))
+			//         {
+			//             Console.WriteLine($"开始清理目录: {streamPath}");
+			//             DeleteDirectoryContents(streamPath);
 
-                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-                Console.WriteLine($"目录 {sourceFolder}  {streamPath} 拷贝完成!");
-            }
-			
+			//             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+			//             Console.WriteLine($"目录 {streamPath} 清理完成!");
+			//         }
+			//if (name != "Google")
+			//{
+			//             //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
+			//             //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
+			//             string sourceFolder = Application.dataPath.Replace("Unity/Assets", "Release/DLCBeta/Android");
 
-            //AssetDatabase.ImportAsset(streamPath);
-            //AssetDatabase.importPackageCompleted += OnRefreshComplete;
+			//             CopyFolderContents(sourceFolder, streamPath);
+			//             // AssetDatabase.MoveAsset(sourceFolder, streamPath);
 
+			//             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+			//             Console.WriteLine($"目录 {sourceFolder}  {streamPath} 拷贝完成!");
+			//         }
+			//AssetDatabase.ImportAsset(streamPath);
+			//AssetDatabase.importPackageCompleted += OnRefreshComplete;
+
+			///test1-----------------------------------------------------------
+			#endregion test1
+
+
+			//test2-----------------------------------------------------------
+			//bool renamesucess = RenameFolderExample(name);
+			//if (!renamesucess)
+			//{
+			//	return;
+			//}
+            //test2-----------------------------------------------------------
 
             if (name == "Google")
             {
@@ -391,7 +437,8 @@ public class MyEditorScript
 		{
             PlayerSettings.applicationIdentifier = "com.example.weijinggame";
         }
-        GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
+		UnityEngine.Debug.Log(buildTarget);
+        //GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 	}
 
 	private static string[] FindEnabledEditorScenes()
