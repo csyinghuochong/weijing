@@ -120,11 +120,11 @@ public class EventHandle : QuickSDKListener
         orderInfo.price = double.Parse(infolist[0]);            //价格(可跟amount传一样的值)
 
         //测试商品 1分钱
-        if (infolist[0] == "1")
-        {
-            orderInfo.amount = 0.01;            //支付总额（元）
-            orderInfo.price = 0.01;            //价格(可跟amount传一样的值)
-        }
+        //if (infolist[0] == "1")
+        //{
+        //    orderInfo.amount = 0.01;            //支付总额（元）
+        //    orderInfo.price = 0.01;            //价格(可跟amount传一样的值)
+        //}
 
         orderInfo.callbackUrl = "";     //游戏支付回调地址，如后台也有配置，则优先通知后台设置的地址
         orderInfo.cpOrderID = infolist[6];  //产品订单号（游戏方的订单号）
