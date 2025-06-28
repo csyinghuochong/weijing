@@ -280,7 +280,11 @@ public class MyEditorScript
 		{
             PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
         }
-		else
+        if (name == "Google")
+        {
+            PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
+        }
+        else
 		{
             PlayerSettings.applicationIdentifier = "com.example.weijinggame";
         }
