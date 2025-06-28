@@ -152,7 +152,14 @@ namespace libx
 			data.Clear ();
 			using (var stream = File.OpenRead (filename)) {
 				var reader = new BinaryReader (stream);
-				var list = new List<VFile> ();
+
+                var list = new List<VFile>();
+
+                if (stream.Length == 0)
+				{
+					return list;
+                }
+
 				var ver = reader.ReadInt32 ();
 				var count = reader.ReadInt32 ();
 
