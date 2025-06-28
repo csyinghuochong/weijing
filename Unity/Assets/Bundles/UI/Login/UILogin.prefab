@@ -258,6 +258,8 @@ MonoBehaviour:
     gameObject: {fileID: 506514229471874736}
   - key: Btn_Apple
     gameObject: {fileID: 1965237749220468581}
+  - key: Img_GameName
+    gameObject: {fileID: 2204441241565106516}
 --- !u!114 &4343214064597879920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4400,7 +4402,7 @@ GameObject:
   - component: {fileID: 3698003420811125448}
   - component: {fileID: 3801838383381122696}
   m_Layer: 5
-  m_Name: Bg (2)
+  m_Name: Img_GameName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

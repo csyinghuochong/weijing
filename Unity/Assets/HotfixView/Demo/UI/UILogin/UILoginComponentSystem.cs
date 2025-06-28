@@ -193,6 +193,12 @@ namespace ET
 				uirotate.AddComponent<UIRotateComponent>();
 				self.UIRotateComponent = uirotate;
 				self.Loading.SetActive(false);
+
+				if (GameSettingLanguge.Language == 1)
+				{
+					rc.Get<GameObject>("Img_GameName").GetComponent<RectTransform>().localPosition = new Vector2(196f, 207f);
+					rc.Get<GameObject>("Img_GameName").GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+				}
 				
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
 				self.AccountInfoComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
