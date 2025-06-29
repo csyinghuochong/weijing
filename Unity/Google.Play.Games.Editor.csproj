@@ -41,14 +41,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSPostBuild.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSProjectSettings.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSAndroidSetupUI.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSStrings.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSDocsUI.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSUtil.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSUpgrader.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSAndroidSetupUI.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\NearbyConnectionUI.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSUpgrader.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSProjectSettings.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSPostBuild.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Editor\GPGSDocsUI.cs" />
      <None Include="Assets\GooglePlayGames\com.google.play.games\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
      <None Include="Assets\GooglePlayGames\com.google.play.games\Editor\Google.Play.Games.Editor.asmdef" />
      <None Include="Assets\GooglePlayGames\com.google.play.games\Editor\GooglePlayGamesPlugin_v2.0.0.txt" />
@@ -308,6 +308,9 @@
      <Reference Include="zxing.unity">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/Login/Plugins/zxing.unity.dll</HintPath>
      </Reference>
+     <Reference Include="Google.VersionHandlerImpl">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
+     </Reference>
      <Reference Include="Realtime">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/Realtime.dll</HintPath>
      </Reference>
@@ -319,6 +322,9 @@
      </Reference>
      <Reference Include="TapTap.TapDB">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/TapDB/Plugins/TapTap.TapDB.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.VersionHandler">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
      </Reference>
      <Reference Include="dnlib">
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@67c487f521/Plugins/dnlib.dll</HintPath>
@@ -341,26 +347,20 @@
      <Reference Include="ICSharpCode.SharpZipLib">
      <HintPath>H:/GitWeiJing/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
+     <Reference Include="Google.PackageManagerResolver">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
+     </Reference>
      <Reference Include="Storage.Unity">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.storage@beef2954fb/Plugins/Storage.Unity.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenEditor">
      <HintPath>H:/GitWeiJing/Unity/Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/SampleProject/Extensions/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
      </Reference>
-     <Reference Include="LiveQuery">
-     <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.VersionHandler">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.PackageManagerResolver">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.VersionHandlerImpl">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
-     </Reference>
      <Reference Include="Google.JarResolver">
      <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.JarResolver.dll</HintPath>
+     </Reference>
+     <Reference Include="LiveQuery">
+     <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>

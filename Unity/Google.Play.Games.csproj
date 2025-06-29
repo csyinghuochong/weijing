@@ -41,55 +41,55 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\ScorePageToken.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidSnapshotMetadata.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\LeaderboardScoreData.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SavedGame\SavedGameMetadataUpdate.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidHelperFragment.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\DummyClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\DummyNearbyConnectionClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidJavaConverter.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Events\Event.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SavedGame\ISavedGameMetadata.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesPlatform.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesAchievement.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\INearbyConnectionClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\CommonStatusCodes.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SignInStatus.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidSavedGameClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\PlayerProfile.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\AdvertisingResult.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\Misc.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SavedGame\SavedGameMetadataUpdate.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\RecallAccess.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\NearbyConnectionConfiguration.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\PlatformUtils.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\DummyClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidJavaConverter.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidTaskUtils.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\DummyNearbyConnectionClient.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\PlayGamesClientFactory.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\GameInfo.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidTaskUtils.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\NearbyConnectionConfiguration.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\ConnectionRequest.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\CommonStatusCodes.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesLocalUser.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\ConnectionResponse.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidEventsClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesUserProfile.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Player.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\EndpointDetails.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SavedGame\ISavedGameClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesAchievement.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SignInInteractivity.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\PlayGamesHelperObject.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\IPlayGamesClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\PluginVersion.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\PlatformUtils.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Events\IEvent.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesLeaderboard.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\Logger.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\PlayerProfile.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\NearbyHelperObject.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\INearbyConnectionClient.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\RecallAccess.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\Misc.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\PlayerStats.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Events\IEventsClient.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\CommonTypes.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\NearbyConnectionClientFactory.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\ScorePageToken.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Player.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\PlayerStats.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\ConnectionResponse.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\ConnectionRequest.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidEventsClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\EndpointDetails.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Achievement.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidNearbyConnectionClient.cs" />
      <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesScore.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SignInStatus.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Events\Event.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Nearby\AdvertisingResult.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Achievement.cs" />
-     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidSavedGameClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\Logger.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SignInInteractivity.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidHelperFragment.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\SavedGame\ISavedGameClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesLeaderboard.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\NearbyConnectionClientFactory.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesUserProfile.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\NearbyHelperObject.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\ISocialPlatform\PlayGamesPlatform.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\Events\IEvent.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\IPlayGamesClient.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\Platforms\Android\AndroidSnapshotMetadata.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\PluginVersion.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\BasicApi\LeaderboardScoreData.cs" />
+     <Compile Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Scripts\OurUtils\PlayGamesHelperObject.cs" />
      <None Include="Assets\GooglePlayGames\com.google.play.games\Runtime\Google.Play.Games.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/unityhub/2020.3.33f1c2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -322,6 +322,9 @@
      <Reference Include="zxing.unity">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/Login/Plugins/zxing.unity.dll</HintPath>
      </Reference>
+     <Reference Include="Google.VersionHandlerImpl">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
+     </Reference>
      <Reference Include="Realtime">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/Realtime.dll</HintPath>
      </Reference>
@@ -333,6 +336,9 @@
      </Reference>
      <Reference Include="TapTap.TapDB">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/TapDB/Plugins/TapTap.TapDB.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.VersionHandler">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
      </Reference>
      <Reference Include="dnlib">
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@67c487f521/Plugins/dnlib.dll</HintPath>
@@ -355,26 +361,20 @@
      <Reference Include="ICSharpCode.SharpZipLib">
      <HintPath>H:/GitWeiJing/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
+     <Reference Include="Google.PackageManagerResolver">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
+     </Reference>
      <Reference Include="Storage.Unity">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.storage@beef2954fb/Plugins/Storage.Unity.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenEditor">
      <HintPath>H:/GitWeiJing/Unity/Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/SampleProject/Extensions/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
      </Reference>
-     <Reference Include="LiveQuery">
-     <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.VersionHandler">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.PackageManagerResolver">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.VersionHandlerImpl">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
-     </Reference>
      <Reference Include="Google.JarResolver">
      <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.JarResolver.dll</HintPath>
+     </Reference>
+     <Reference Include="LiveQuery">
+     <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>D:/unityhub/2020.3.33f1c2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
