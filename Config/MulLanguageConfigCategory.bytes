@@ -1788,61 +1788,64 @@ Use normal
 &��上次登录时间:"Last login:
 #��游戏难度"Game difficulty
 ��44703"44703
-/��固定/移动摇杆"Fixed/movable rocker
+.��固定/移动摇杆"Fixed/Move Joystick
 ��固定"Fixed
 ��游戏音乐"
-Game music
+Game Music
 ��音乐"Music
-��音效"Sound effects
-(��帧数显示"Frame number display
-!��点击移动"Click to move
-#��高帧模式"High frame mode
-��流畅模式"Smooth mode
+��音效"SFX
+��帧数显示"FPS Show
+��点击移动"Tap Move
+��高帧模式"High FPS
+��流畅模式"Smooth Mode
 ��高清"HD
-��流畅"Fluent
- ��背影显示"Back display
-&��难度设置"Difficulty setting
-!��随机坐骑"Random mounts
+��流畅"Smooth
+��背影显示"	Back View
+��难度设置"
+Difficulty
+��随机坐骑"
+Rand Mount
 ��绿色"Green
 ��蓝色"Blue
-��宝石"Jewel
-��攻击模式"Attack mode
-��全体攻击"
-All attack
-��队伍模式"	Team mode
-��家族模式"Family mode
-!��和平模式"Mode of peace
-%��攻击目标"Attack the target
-��最近"Lately
-��目标"Aim
--��屏蔽其他玩家"Block other players
-$��自动攻击"Automatic attack
-W��$进入野外自动隐藏功能列表"+Enter the list of field auto-hide functions
-?��优先显示家族名字"Priority display of family name
-<��技能优先攻击玩家"Skill Priority Attack Player
-%��拾取过滤"Pickup filtration
-"��重置镜头"Reset the lens
-��镜头纵深"
-Lens depth
-,��旋转视角"Rotate the viewing angle
- ��隐藏分享"Hide sharing
-��语言"Language
+��宝石"Gems
+��攻击模式"Atk Mode
+��全体攻击"All Atk
+��队伍模式"
+Party Mode
+��家族模式"	Clan Mode
+��和平模式"
+Peace Mode
+��攻击目标"Target
+��最近"Nearest
+��目标"Target
+'��屏蔽其他玩家"Block Players
+��自动攻击"Auto Atk
+B��$进入野外自动隐藏功能列表"Auto-Hide Func in Wild
+/��优先显示家族名字"Clan Name Prior
+4��技能优先攻击玩家"Skills Prior Players
+��拾取过滤"Loot Filter
+��重置镜头"	Reset Cam
+��镜头纵深"	Cam Depth
+��旋转视角"Rotate View
+��隐藏分享"
+Hide Share
+��语言"Lang
 ��中文"Chinese
-!��游戏昵称"Game nickname
-5��未连接服务器"The server is not connected
-,��背景音效"Background sound effects
-��	分辨率"
-Resolution
-&��游戏音效"Game sound effects
-$��内存占用"Memory footprint
-"��无法移动"Unable to move
-2��自动一键出售"Automatic one-click sale
-$��开始挂机"Start hanging up
-(��关闭挂机"Turn off and hang up
-$��原地挂机"Hang up in place
-2��自动使用药剂"Automatic use of potions
--��技能释放顺序"Skill release order
-"��编辑技能"Editing skills
+��游戏昵称"Nickname
+#��未连接服务器"	No Server
+��背景音效"BGM
+��	分辨率"Res
+��游戏音效"Game SFX
+��内存占用"	Mem Usage
+��无法移动"
+Can't Move
+#��自动一键出售"	Auto Sell
+��开始挂机"	Start AFK
+��关闭挂机"Stop AFK
+��原地挂机"AFK Here
+%��自动使用药剂"Auto Potion
+%��技能释放顺序"Skill Order
+��编辑技能"Edit Skills
 ���8如果游戏中你感觉卡顿,截图给作者136087482
 "HIf you feel stuck in the game, send screenshots to the author 136087482.
 )��快捷技能栏"Shortcut Skill Bar
