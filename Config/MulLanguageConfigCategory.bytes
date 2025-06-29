@@ -1,118 +1,125 @@
 
 ��生命"HP
-��攻击"ATK
-��魔法"MAG
-��物防"DEF
-��魔防"MDEF
+��攻击"Atk
+��魔法"Magic
+��物防"Phys Def
+��魔防"	Magic Def
 ��暴击概率"	Crit Rate
-"��抗暴概率"Anti-Crit Rate
+��抗暴概率"Crit Res
 ��命中概率"Hit Rate
-��闪避概率"
-Dodge Rate
-��幸运加成"Lucky
-"��最小攻击"Minimum attack
-,��最小物防"Minimum physical defense
-)��最小魔防"Minimum Magic Defense
-��力量"STR
-��敏捷"DEX
-��智力"INT
-��耐力"VIT
-��体质"CON
- ��伤害加成"Damage Bonus
-$��伤害减免"Damage Reduction
-��	幸运值"Lucky
-"��移动速度"Movement speed
-*��暴击等级"Critical Strike Rating
-#��韧性等级"Toughness grade
-��命中等级"	Hit level
-��闪避等级"Dodge Level
-/��物理伤害加成"Physical damage bonus
-,��魔法伤害加成"Magic damage bonus
-3��物理伤害减免"Physical damage reduction
-0��魔法伤害减免"Magic damage reduction
-,��重击概率"Critical hit probability
-$��重击附加"Thump attachment
-&��攻击穿透"Attack penetration
-%魔法穿透"Magic Penetration
-/Í忽视目标防御"Ignore target defense
-2č忽视目标魔御"Ignore the target, Demon
--ō吸血概率"Blood-sucking probability
-2ƍ技能冷却缩减"Skill cooldown reduction
+ ��闪避概率"Evasion Rate
+��幸运加成"
+Luck Bonus
+��最小攻击"Min Atk
+ ��最小物防"Min Phys Def
+!��最小魔防"Min Magic Def
+��力量"Str
+��敏捷"Agi
+��智力"Int
+��耐力"Stam
+��体质"Vit
+��伤害加成"	Dmg Bonus
+!��伤害减免"Dmg Reduction
+��	幸运值"Luck
+��移动速度"Move Spd
+��暴击等级"Crit Rating
+%��韧性等级"Resilience Rating
+��命中等级"
+Hit Rating
+"��闪避等级"Evasion Rating
+(��物理伤害加成"Phys Dmg Bonus
+)��魔法伤害加成"Magic Dmg Bonus
+,��物理伤害减免"Phys Dmg Reduction
+-��魔法伤害减免"Magic Dmg Reduction
+��重击概率"
+Smash Rate
+��重击附加"	Smash Add
+��攻击穿透"Atk Pen
+魔法穿透"	Magic Pen
+$Í忽视目标防御"
+Ignore Def
+*č忽视目标魔御"Ignore Magic Def
+#ō吸血概率"Life Steal Rate
+&ƍ技能冷却缩减"CD Reduction
 Ǎ	格挡值"Block Value
-ȍ真实伤害"True Damage
-#ɍ	回血值"Blood return value
-ʍ重击等级"Bash rating
-#ˍ经验收益"Experience gain
-&̍金币收益"Gold coin proceeds
-=͍怪物发现目标距离"Monster Found Target Distance
-,΍冲锋距离加成"Charge range bonus
-$ύ攻击强度"Attack intensity
-Ѝ法术强度"Spell power
-3э领主普攻加成"Lord general attack bonus
-*ҍ领主技能加成"Lord skill bonus
-<Ӎ领主普攻免伤""Lord general attack without injury
-.ԍ领主技能免伤"Lord Skill No Damage
- Ս致命一击"A fatal blow
-%֍重生几率"Chance of rebirth
-"׍无视防御"Ignore defense
-*؍技能零冷却"Skill zero cooldown
-,ٍ技能额外伤害"Skill Extra Damage
-ڍ技能闪避"Skill Dodge
+ȍ真实伤害"True Dmg
+ɍ	回血值"HP Regen
+ ʍ重击等级"Smash Rating
+ˍ经验收益"Exp Gain
+̍金币收益"	Gold Gain
+3͍怪物发现目标距离"Mob Detection Range
+,΍冲锋距离加成"Charge Range Bonus
+ύ攻击强度"	Atk Power
+Ѝ法术强度"Spell Power
+*э领主普攻加成"Lord Melee Bonus
+*ҍ领主技能加成"Lord Skill Bonus
+/Ӎ领主普攻免伤"Lord Melee Mitigation
+/ԍ领主技能免伤"Lord Skill Mitigation
+Ս致命一击"	Fatal Hit
+ ֍重生几率"Respawn Rate
+׍无视防御"
+Def Ignore
+؍技能零冷却"Zero CD
+)ٍ技能额外伤害"Skill Extra Dmg
+!ڍ技能闪避"Skill Evasion
 ۍ神农"Shennong
-'܍每秒恢复"Recovery per second
-)ݍ抵抗减益状态"Resists debuffs
-ލ魔法闪避"Magic dodge
-(ߍ专注概率"Focus on probability
-$��物理闪避"Physical evasion
- �攻击速度"Attack speed
-$�对怪伤害"Hurt the monster
-D�玩家普攻减伤"*The player's general attack reduces damage
-7�玩家技能减伤"Player skill damage reduction
-'�游戏爆率"Game explosion rate
-3�怪攻增伤"Strange attack increases damage
-:�怪技增伤"&The strange skill increases the injury
-/�怪攻减伤"Weird attack reduces damage
-0�怪技减伤"Weird skill to reduce damage
--�普通攻击加成"Normal attack bonus
-4�宠物全体魔法攻击"Pet All Magic Attack
-)�宠物全体攻击"All pets attack
-+�宠物全体防御"Pet Total Defense
-/�宠物全体魔防"Pet all magic defense
-1�宠物全体生命"The whole life of a pet
-*��宠物魔法攻击"Pet magic attack
-�宠物攻击"
-Pet attack
-�宠物防御"Pet defense
-%�宠物魔防"Pet Magic Defense
-�宠物生命"Pet life
-��防御"DEF
-��魔御"MDEF
-��技能伤害"MAG
-,��物伤加成"Physical injury addition
-&��魔伤加成"Magic Damage Bonus
-$��忽视魔御"Ignore the Demon
-"��技能冷却"Skill cooldown
-(��普攻加成"General attack bonus
-7��领主普攻减免"Lord general attack reduction
-.��领主技能减免"Lord skill reduction
-$��野兽抗性"Beast resistance
-(��人物抗性"Character resistance
-$��恶魔抗性"Demon resistance
- ��野兽伤害"Beast damage
-$��人物伤害"Character damage
- ��恶魔伤害"Demon damage
-#��神圣抗性"Holy resistance
-%��暗影抗性"Shadow resistance
-$��冰霜抗性"Frost resistance
-$��火焰抗性"Flame resistance
-(��闪电抗性"Lightning resistance
-*��额外恢复"Additional Restoration
-*��战斗恢复"Healing during battles
-8��重击附加伤害"Heavy Strike Additional Damage
--��物伤减免"Physical damage reduction
-*��魔伤减免"Magic damage reduction
-$��忽视防御"Ignoring defense
-&��攻速加成"Attack Speed Bonus
+ ܍每秒恢复"HP Regen/sec
+'ݍ抵抗减益状态"Debuff Resist
+!ލ魔法闪避"Magic Evasion
+ߍ专注概率"
+Focus Rate
+ ��物理闪避"Phys Evasion
+�攻击速度"Atk Spd
+�对怪伤害"Mob Dmg
+1�玩家普攻减伤"Player Melee Mitigation
+1�玩家技能减伤"Player Skill Mitigation
+�游戏爆率"	Drop Rate
+(�怪攻增伤"Mob Atk Dmg Increase
+*�怪技增伤"Mob Skill Dmg Increase
+)�怪攻减伤"Mob Atk Dmg Reduction
++�怪技减伤"Mob Skill Dmg Reduction
+)�普通攻击加成"Melee Atk Bonus
+1�宠物全体魔法攻击"Pet All Magic Atk
+%�宠物全体攻击"Pet All Atk
+%�宠物全体防御"Pet All Def
++�宠物全体魔防"Pet All Magic Def
+$�宠物全体生命"
+Pet All HP
+'��宠物魔法攻击"Pet Magic Atk
+�宠物攻击"Pet Atk
+�宠物防御"Pet Def
+!�宠物魔防"Pet Magic Def
+�宠物生命"Pet HP
+��防御"Def
+��魔御"	Magic Def
+��技能伤害"	Skill Dmg
+"��物伤加成"Phys Dmg Bonus
+#��魔伤加成"Magic Dmg Bonus
+$��忽视魔御"Ignore Magic Def
+��技能冷却"Skill CD
+#��普攻加成"Melee Atk Bonus
+/��领主普攻减免"Lord Melee Mitigation
+/��领主技能减免"Lord Skill Mitigation
+��野兽抗性"	Beast Res
+ ��人物抗性"Humanoid Res
+��恶魔抗性"	Demon Res
+��野兽伤害"	Beast Dmg
+ ��人物伤害"Humanoid Dmg
+��恶魔伤害"	Demon Dmg
+��神圣抗性"Holy Res
+��暗影抗性"
+Shadow Res
+��冰霜抗性"	Frost Res
+��火焰抗性"Fire Res
+!��闪电抗性"Lightning Res
+��额外恢复"Extra Regen
+ ��战斗恢复"Combat Regen
+)��重击附加伤害"Smash Extra Dmg
+&��物伤减免"Phys Dmg Reduction
+'��魔伤减免"Magic Dmg Reduction
+��忽视防御"
+Ignore Def
+!��攻速加成"Atk Spd Bonus
 ��战场"Battlefield
 任务"Task
 Ú商店"Shop
@@ -561,8 +568,8 @@ Equip name
 ,ٝ金币鉴定"Gold coin identification
 'ڝ装备鉴定"Equipment appraisal
 D۝需要消耗：防御锻造符"Requires Cost: Defensive Forge
-�ܝ7提示:鉴定符的品质决定属性数量和属性值"_Tip: The quality of the identifier determines the number of attributes and the attribute values
-�ݝ'金币鉴定的概率较低出现极品"RThe probability of gold coin identification is low and the best gold coins appear.
+mܝ7提示:鉴定符的品质决定属性数量和属性值".Quality determines attribute count and values.
+eݝ'金币鉴定的概率较低出现极品"6Gold coin identification rarely yields top-tier items.
 *ޝ鉴定符列表"List of identifiers
 (ߝ阵营实力"Strength of the camp
 #��阵营奖励"Faction rewards
@@ -984,9 +991,9 @@ B͠当前附加生命：10-100"Current additional life: 10-100
 qΠ'品质越高开启封印的属性越好"BThe higher the quality, the better the attribute to open the seal.
 Ϡ鉴定"Identification
 Р存储"Store
-Ѡ回炼"Back refining
+Ѡ回炼"Refining
 Ҡ取消"Cancel
-$Ӡ卸下宝石"Unload the jewel
+Ӡ卸下宝石"Unload
 Ԡ取回"Retrieve
 $ՠ增加品质"Increase quality
 *֠激活属性"Activate the attribute
@@ -3474,7 +3481,7 @@ B��未激活护甲专精"%Armor Specialization is not activated
 O��转职后激活护甲专精",Activate Armor Specialization after transfer
 A��(超过4个,属性无效)" (More than 4, invalid attribute)
 .��{0}提高{1}点"{0} Increase {1} points
-��件套"Set of pieces
+��件套"P
 ��	已绑定"Bound
 ��类型"Type
 ��部位"Location
@@ -3501,7 +3508,7 @@ P��#消耗<color=#EA8EF9>{0}</color>{1}"%Consume <color=#EA8EF9>{0}</color>{1
 e��,此装备由<color=#805100>{0}</color>打造"1This Equip is built by <color=#805100>{0}</color>
 N��%<color=#AFFF06>    类型:{0}</color>"!<color=#AFFF06> Type: {0}</color>
 ��部位:"	Location:
-,��当前品质:{0}"Current Quality: {0}
+$��当前品质:{0}"Quality: {0}
 ��镶 嵌"Inlay
 8��请选择新职业！"Please choose a new career!
 .��请重新登录！"Please log in again!
