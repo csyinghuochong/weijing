@@ -8,7 +8,8 @@
         "UnityEngine.Purchasing",
         "UnityEngine.Purchasing.Stores",
         "TapTap.AntiAddiction",
-        "AppleAuth"
+        "AppleAuth",
+        "Google.Play.Games"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

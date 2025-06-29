@@ -246,7 +246,7 @@ public class MyEditorScript
     static bool RenameFolderExample(string qudao)
     {
         string oldPath = "Assets/StreamingAssets";
-        string newPath = "Assets/StreamingAssetsCopy";
+        string newPath = "Assets/StreamingAssetsGoogle";
 
         // 构建新路径（保持父目录不变，仅修改文件夹名）
         //string parentPath = System.IO.Path.GetDirectoryName(oldPath);
@@ -424,7 +424,6 @@ public class MyEditorScript
 			EditorUserBuildSettings.buildAppBundle = false;
 		}
 
-        //PlayerSettings.bundleVersion = "v0.0.1";
         if (name == "TikTok5")
 		{
             PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
@@ -438,7 +437,7 @@ public class MyEditorScript
             PlayerSettings.applicationIdentifier = "com.example.weijinggame";
         }
 		UnityEngine.Debug.Log(buildTarget);
-        //GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
+        GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 	}
 
 	private static string[] FindEnabledEditorScenes()

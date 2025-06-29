@@ -139,6 +139,7 @@ namespace ET
         public const int TikTok = 6;                //抖音登录
         public const int Apple = 7;                 //Apple登录
         public const int QuDao = 8;
+        public const int Google = 9;
     }
 
     public static class PayTypeEnum

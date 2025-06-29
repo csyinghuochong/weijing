@@ -5,7 +5,7 @@ allprojects {
         repositories {**ARTIFACTORYREPOSITORY**
 
             maven {
-                url "https://mvn.mob.com/android"
+                url "http://mvn.mob.com/android"
                 //url "http://10.18.97.47:7080/job/iMaven/ws/android/"
                 //url "http://10.18.97.56:8080/job/iMaven/ws/android/"
             }
@@ -46,14 +46,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty("android")) {
-            android {
-                buildToolsVersion '28.0.3'
-            }
-        }
-    }
 }

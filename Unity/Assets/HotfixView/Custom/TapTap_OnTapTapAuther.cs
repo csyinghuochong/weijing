@@ -113,4 +113,16 @@ namespace ET
             TapSDKV20Helper.Instance.RealNameAuther( args.Account );
         }
     }
+
+
+    public class Google_GoogleSignIn : AEventClass<EventType.GoogleSignIn>
+    {
+        protected override void Run(object numerice)
+        {
+            EventType.GoogleSignIn args = numerice as EventType.GoogleSignIn;
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+            args.AccesstokenHandler = init.OnGoogleSignInHandler;
+            init.GooglePlayGamesSignin();
+        }
+    }
 }

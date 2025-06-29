@@ -107,7 +107,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  渠道包100  ios20001
+        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  渠道包100  ios20001
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()
@@ -155,6 +155,13 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum();
             //GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum_2();
             //GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum_3();
+        }
+
+
+        public static void OnGooglePurchase(int rmb)
+        {
+            string product = $"pay_{rmb}";
+            GameObject.Find("Global").GetComponent<IAPManager>().BuyProduct_WJ(product);
         }
 
         public static void OnIOSPurchase(int rmb)

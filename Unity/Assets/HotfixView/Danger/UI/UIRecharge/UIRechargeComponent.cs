@@ -249,6 +249,14 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.TikTokRiskControlInfo.Instance);
 #endif
             }
+            else if (GlobalHelp.GetPlatform() == 7 && GlobalHelp.GetBigVersion() >= 23)
+            {
+                //google
+                self.Loading.SetActive(true);
+                //test
+                chargetNumber = 1;
+                GlobalHelp.OnGooglePurchase(chargetNumber);
+            }
             else
             {
                 self.RequestRecharge().Coroutine();

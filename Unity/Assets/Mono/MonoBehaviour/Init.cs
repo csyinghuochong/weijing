@@ -19,7 +19,8 @@ using AppleAuth.Interfaces;
 using System.Text;
 using AppleAuth.Extensions;
 using System.Net;
-
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -56,9 +57,9 @@ namespace ET
 		public bool EditorMode;
 		public bool OueNetMode;
 		public int BigVersion = 21;      
-		//17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包
+		//17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google
 		public int BigVersionIOS = 21;
-        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包/Google
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -73,7 +74,9 @@ namespace ET
 		public Action OnGetMouseButtonDown_1;
 		public Action OnGetMouseButtonDown_0;
 
-		public ShareSDK ssdk;
+        public Action<string> OnGoogleSignInHandler;
+
+        public ShareSDK ssdk;
 		public MobSDK mobsdk;
 
 		public string WXAppID = "wx638f7f0efe37a825";           //危境  74俄罗斯消除
@@ -157,7 +160,7 @@ namespace ET
             Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             ///平台Id定义 不得更改
-            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) QuDao100渠道母包(100以上为渠道包) ios20001
+            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  QuDao100渠道母包(100以上为渠道包) ios20001
 #if TapTap1
             Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
@@ -182,6 +185,10 @@ namespace ET
 			Log.ILog.Debug("unity111  TikTokMuBao6=true");
 			this.Platform = 6;
 			this.Apk_Extension = "tiktok";
+#elif Google
+            Log.ILog.Debug("unity111  Google=true");
+            this.Platform = 7;
+            this.Apk_Extension = "google";
 #elif QuDao
 			Log.ILog.Debug("unity111  QuDaoMuBao=true");
 			this.Platform = 100;
@@ -235,7 +242,9 @@ namespace ET
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
+
         }
+        
 
 		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
 		{
@@ -1045,6 +1054,34 @@ namespace ET
                     var authorizationErrorCode = error.GetAuthorizationErrorCode();
                     Debug.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
                 });
+        }
+
+
+        public void GooglePlayGamesSignin()
+        {
+            Debug.Log("GooglePlayGamesSignin" );
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        }
+
+        public void ProcessAuthentication(SignInStatus status)
+        {
+            if (status == SignInStatus.Success)
+            {
+                // Continue with Play Games Services
+                Debug.Log("登录成功！玩家ID: " + Social.localUser.id);
+                Debug.Log("玩家名称: " + Social.localUser.userName);
+
+				// 获取ID令牌（用于服务器验证）
+				this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
+            }
+            else
+            {
+				// Disable your integration with Play Games Services or show a login button
+				// to ask users to sign-in. Clicking it should call
+				// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+				this.OnGoogleSignInHandler?.Invoke(string.Empty);
+				Debug.Log($"登录失败！:  {status}");
+            }
         }
 
         public void SignInWithApple(string oldaccount)

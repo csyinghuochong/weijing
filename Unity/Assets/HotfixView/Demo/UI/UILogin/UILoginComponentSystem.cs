@@ -386,7 +386,19 @@ namespace ET
                 //self.HideNode.SetActive(false);
 #endif
             }
-			if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 100)
+            if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 7)
+            {
+                self.LoginType = LoginTypeEnum.Google.ToString();
+
+                self.ThirdLoginBg.SetActive(false);
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+                self.HideNode.SetActive(true);
+            }
+
+            if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 100)
 			{
                 self.LoginType = LoginTypeEnum.QuDao.ToString();
 
@@ -469,7 +481,19 @@ namespace ET
 #endif
 
                     break;
-				case LoginTypeEnum.PhoneCodeLogin:
+
+				case LoginTypeEnum.Google:
+                    self.ThirdLoginBg.SetActive(false);
+#if UNITY_EDITOR
+					self.OnRecvGoogleSignIn("google_18319670288");
+#else
+					EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
+                    EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
+                    EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
+#endif
+
+                    break;
+                case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
 					{
 						self.ZhuCe.SetActive(false);
@@ -503,8 +527,9 @@ namespace ET
                     break;
             }
 		}
-		
-		public static string GetPhoneZone(this UILoginComponent self)
+
+
+        public static string GetPhoneZone(this UILoginComponent self)
 		{
 			return "86";
 		}
@@ -748,7 +773,26 @@ namespace ET
             self.HideNode.SetActive(true);
         }
 
-		public static void OnGetAppleSignInfo(this UILoginComponent self,  string appuserinfo)
+        public static void OnRecvGoogleSignIn(this UILoginComponent self, string appuserinfo)
+        {
+            if (string.IsNullOrEmpty(appuserinfo))
+            {
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
+                return;
+            }
+            self.LoginType = LoginTypeEnum.Apple.ToString();
+            self.Account.GetComponent<InputField>().text = appuserinfo;
+            self.Password.GetComponent<InputField>().text = self.LoginType;
+            self.ZhuCe.SetActive(false);
+            self.YiJianDengLu.SetActive(false);
+            self.ThirdLoginBg.SetActive(false);
+            self.Account.SetActive(false);
+            self.Password.SetActive(false);
+            self.HideNode.SetActive(true);
+        }
+
+
+        public static void OnGetAppleSignInfo(this UILoginComponent self,  string appuserinfo)
 		{
 			if (string.IsNullOrEmpty(appuserinfo))
 			{

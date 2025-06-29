@@ -910,6 +910,14 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class GoogleSignIn : DisposeObject
+        {
+            public static readonly GoogleSignIn Instance = new GoogleSignIn();
+            public Action<string> AccesstokenHandler;
+            public Scene ZoneScene;
+            public string Account;
+        }
+
         public class TapTapAuther : DisposeObject
         {
             public static readonly TapTapAuther Instance = new TapTapAuther();

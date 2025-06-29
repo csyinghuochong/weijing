@@ -60,6 +60,11 @@ namespace ET
 
             Game.Scene.AddComponent<IosPurchasingComponent>();
 
+            if (GlobalHelp.GetPlatform() == 7)
+            {
+                Game.Scene.AddComponent<GooglePurchasingComponent>();
+            }
+
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(Read);
             
             GameSettingLanguge.InitMulLanguageData();
