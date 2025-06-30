@@ -16660,6 +16660,8 @@ MonoBehaviour:
     gameObject: {fileID: 8466242854227626270}
   - key: DragPanel
     gameObject: {fileID: 5376544258407503531}
+  - key: TextFps
+    gameObject: {fileID: 7443262053830922747}
 --- !u!114 &8254875540501795357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46850,7 +46852,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7443262053830922747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94331dd683f447c4ea18cb0e8e144a66, type: 3}
   m_Name: 

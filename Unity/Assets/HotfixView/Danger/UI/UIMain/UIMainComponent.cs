@@ -39,7 +39,7 @@ namespace ET
         }
     }
 
-    public class UIMainComponent : Entity, IAwake, IDestroy
+    public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
     {
         public GameObject DragPanel;
         public GameObject Button_ActivityV1;
@@ -73,6 +73,7 @@ namespace ET
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
         public GameObject Btn_Task;
+        public Text TextFps;
         public Text TextPing;
         public Text TextMessage;
         public GameObject Btn_LvReward;
@@ -146,6 +147,16 @@ namespace ET
         public Vector2 PreviousPressPosition;
         public float AngleX;
         public float AngleY;
+        
+        public string pjFpsText_EN = null;
+        public string fpsText_EN = null;
+        public string pingText_EN = null;
+        public string messageText_EN = null;
+        
+        public long mFrameCount = 0;
+        public long mLastFrameTime = 0;
+        public long mLastFps = 0;
+        public List<long> TickCount = new List<long>();  //三百帧取一个平均数
     }
 
 
@@ -284,6 +295,7 @@ namespace ET
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
+            self.TextFps = rc.Get<GameObject>("TextFps").GetComponent<Text>();
             self.TextPing = rc.Get<GameObject>("TextPing").GetComponent<Text>();
             self.TextMessage = rc.Get<GameObject>("TextMessage").GetComponent<Text>();
 
@@ -522,7 +534,14 @@ namespace ET
         }
     }
 
+    public class UIMainComponentUpdateSystem: UpdateSystem<UIMainComponent>
+    {
 
+        public override void Update(UIMainComponent self)
+        {
+            self.UpdateFps();
+        }
+    }
 
     public class UIMainComponentDestroySystem : DestroySystem<UIMainComponent>
     {
@@ -720,6 +739,83 @@ namespace ET
             self.UIRoleHead.OnUpdateCombat();
         }
 
+        public static void UpdateFps(this UIMainComponent self)
+        {
+            if (!self.Fps.activeSelf)
+            {
+                return;
+            }
+            
+            self.mFrameCount++;
+            long nCurTime = TickToMilliSec(System.DateTime.Now.Ticks);
+            if (self.mLastFrameTime == 0)
+            {
+                self.mLastFrameTime = TickToMilliSec(System.DateTime.Now.Ticks);
+            }
+
+            if ((nCurTime - self.mLastFrameTime) >= 1000)
+            {
+                long fps = (long)(self.mFrameCount * 1.0f / ((nCurTime - self.mLastFrameTime) / 1000.0f));
+
+                self.mLastFps = fps;
+
+                self.mFrameCount = 0;
+
+                self.mLastFrameTime = nCurTime;
+                self.TickCount.Add(fps);
+            }
+
+            if (self.TickCount.Count > 60)
+            {
+                long totalFps = 0;
+                for (int i = 0; i < self.TickCount.Count; i++)
+                {
+                    totalFps += self.TickCount[i];
+                }
+                totalFps = totalFps / self.TickCount.Count;
+                self.TickCount.Clear();
+                
+                string pjFpsText = "平均帧数: {0}";
+                if (GameSettingLanguge.Language == 1)
+                {
+                    if (string.IsNullOrEmpty(self.pjFpsText_EN))
+                    {
+                        self.pjFpsText_EN = GameSettingLanguge.LoadLocalization(pjFpsText);
+                    }
+
+                    pjFpsText = self.pjFpsText_EN;
+                }
+
+                using (zstring.Block())
+                {
+                    self.TextFps.text = zstring.Format(pjFpsText, totalFps);
+                }
+            }
+            else
+            {
+                string fpsText = "帧数: {0}";
+                if (GameSettingLanguge.Language == 1)
+                {
+                    if (string.IsNullOrEmpty(self.fpsText_EN))
+                    {
+                        self.fpsText_EN = GameSettingLanguge.LoadLocalization(fpsText);
+                    }
+
+                    fpsText = self.fpsText_EN;
+                }
+
+                using (zstring.Block())
+                {
+                    self.TextFps.text = zstring.Format(fpsText, self.mLastFps);
+                }
+            }
+        }
+
+        public static long TickToMilliSec(long tick)
+        {
+            return tick / (10 * 1000);
+        }
+        
         public static void UpdatePing(this UIMainComponent self)
         {
             SessionComponent sessionComponent = self.ZoneScene()?.GetComponent<SessionComponent>();
@@ -733,8 +829,22 @@ namespace ET
                 return;
             }
 
+            string pingText = "延迟: {0}";
+            if (GameSettingLanguge.Language == 1)
+            {
+                if (string.IsNullOrEmpty(self.pingText_EN))
+                {
+                    self.pingText_EN = GameSettingLanguge.LoadLocalization(pingText);
+                }
+
+                pingText = self.pingText_EN;
+            }
+
             long ping = pingComponent.Ping;
-            self.TextPing.text = StringBuilderHelper.GetPing(ping); 
+            using (zstring.Block())
+            {
+                self.TextPing.text = zstring.Format(pingText, ping);
+            }
             if (ping <= 200)
             {
                 self.TextPing.color = Color.green;
@@ -750,8 +860,34 @@ namespace ET
 
         public static void UpdateMessage(this UIMainComponent self)
         {
-             self.TextMessage.text = StringBuilderHelper.GetMessageCnt(OpcodeHelper.OneTotalNumber);
-             OpcodeHelper.OneTotalNumber = 0;
+            string messageText = "数量: {0}";
+            if (GameSettingLanguge.Language == 1)
+            {
+                if (string.IsNullOrEmpty(self.messageText_EN))
+                {
+                    self.messageText_EN = GameSettingLanguge.LoadLocalization(messageText);
+                }
+
+                messageText = self.messageText_EN;
+            }
+            
+            using (zstring.Block())
+            {
+                self.TextMessage.text = zstring.Format(messageText, OpcodeHelper.OneTotalNumber);
+            }
+            OpcodeHelper.OneTotalNumber = 0;
+        }
+        
+        public static void OnUpdateUserDataExp(this UIMainComponent self, string updateType, long updateValue)
+        {
+            //if (updateValue > 0)
+            {
+                using (zstring.Block())
+                {
+                    FloatTipManager.Instance.ShowFloatTip(zstring.Format(GameSettingLanguge.LoadLocalization("获得{0}经验"), updateValue));
+                }
+                self.UpdateShowRoleExp();
+            }
         }
 
         public static void ShowPing(this UIMainComponent self)
@@ -807,15 +943,6 @@ namespace ET
         public static void OnTeamUpdate(this UIMainComponent self)
         {
             self.UIMainTeam.OnUpdateUI();
-        }
-
-        public static void OnUpdateUserDataExp(this UIMainComponent self, string updateType, long updateValue)
-        {
-            //if (updateValue > 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip(StringBuilderHelper.GetExpTip(updateValue));
-                self.UpdateShowRoleExp();
-            }
         }
 
         public static void OnUpdateUserDataPiLao(this UIMainComponent self, string updateType, long updateValue)

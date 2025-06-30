@@ -84,7 +84,7 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(3)]
 		public string Chinese { get; set; }
-		/// <summary>描述</summary>
+		/// <summary>Average</summary>
 		[ProtoMember(4)]
 		public string English { get; set; }
 
