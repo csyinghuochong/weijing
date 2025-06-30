@@ -1199,6 +1199,16 @@ namespace ET
                     uiSkillTianFuItemComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIItemAppraisalTipsComponent uiItemAppraisalTipsComponent)
+                {
+                    uiItemAppraisalTipsComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UIEquipTipsComponent uiEquipTipsComponent)
+                {
+                    uiEquipTipsComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

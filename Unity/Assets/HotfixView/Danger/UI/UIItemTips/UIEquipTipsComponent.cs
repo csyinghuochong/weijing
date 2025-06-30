@@ -203,6 +203,9 @@ namespace ET
             self.TitleMiniHeight_50 = 50;                //条目标题高度
             self.TextItemHeight_40 = 40;                  //条目文本高度
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -221,11 +224,25 @@ namespace ET
 
             self.AssetPath = null;
             self.OnDestroyTips();
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UIEquipTipsComponentSystem
     {
+        public static void OnLanguageUpdate(this UIEquipTipsComponent self)
+        {
+            self.Obj_Btn_HuiShouCancle.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Obj_Btn_HuiShou.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Obj_SaveStoreHouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Obj_Btn_StoreHouseSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Btn_Sell.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Btn_Use.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            self.Btn_Takeoff.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
+            
+            self.Obj_Lab_EquipQiangHua.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 25;
+        }
 
         public static void On_Btn_HuiShou(this UIEquipTipsComponent self)
         {
@@ -842,12 +859,25 @@ namespace ET
             }
 
             langStr = GameSettingLanguge.LoadLocalization("部位");
-            self.Lab_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
-
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.Lab_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
+            }
+            else
+            {
+                self.Lab_EquipType.GetComponent<Text>().text = textEquipType;
+            }
 
 
             langStr = GameSettingLanguge.LoadLocalization("类型");
-            self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
+            }
+            else
+            {
+                self.Obj_EquipTypeSon.GetComponent<Text>().text = textEquipTypeSon;
+            }
 
             int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
             if (occTwo != 0)
@@ -860,7 +890,14 @@ namespace ET
                 }
             }
             langStr = GameSettingLanguge.LoadLocalization("等级");
-            self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
+            }
+            else
+            {
+                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + ":" + equipLv;
+            }
 
             if (int.Parse(equipLv) > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)
             {

@@ -105,6 +105,9 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
             
             GameSettingLanguge.TransformText(self.GetParent<UI>().GameObject.transform);
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIItemAppraisalTipsComponentDestroy: DestroySystem<UIItemAppraisalTipsComponent>
@@ -120,10 +123,24 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIItemAppraisalTipsComponentSystem
     {
+        public static void OnLanguageUpdate(this UIItemAppraisalTipsComponent self)
+        {
+            self.Btn_Sell.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Btn_Use.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Obj_SaveStoreHouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Obj_Btn_HuiShou.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Obj_Btn_HuiShouCancle.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Obj_Btn_XieXiaGemSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Btn_TakeStoreHouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Btn_JingHeAddQuality.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+            self.Btn_JingHeActivate.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+        }
 
         //晶核注入。增加品质
         public static async ETTask OnBtn_JingHeZhuYu(this UIItemAppraisalTipsComponent self)
@@ -282,7 +299,15 @@ namespace ET
             //类型描述
             string itemTypename = GameSettingLanguge.LoadLocalization("消耗品");
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
-            self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型:") + GameSettingLanguge.LoadLocalization(itemTypename);
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
+            }
+            else
+            {
+                self.ItemType.GetComponent<Text>().text = itemTypename;
+            }
+            
             if (itemconf.ItemEquipID != 0 && itemconf.EquipType != 201)
             {
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID).AppraisalItem;
@@ -312,8 +337,23 @@ namespace ET
                 string textEquipSonType = ItemViewHelp.GetEquipTypeShow(itemconf.EquipType);
 
                 //121211 <color=#AFFF06>颜色</color>
-                equipType =  string.Format(GameSettingLanguge.LoadLocalization("<color=#AFFF06>    类型:{0}</color>"), textEquipSonType);
-                self.ItemType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("部位:") + textEquipType;
+                if (GameSettingLanguge.Language == 0)
+                {
+                    equipType = string.Format("<color=#AFFF06>    类型:{0}</color>", textEquipSonType);
+                }
+                else
+                {
+                    equipType = string.Format("<color=#AFFF06>    {0}</color>", textEquipSonType);
+                }
+
+                if (GameSettingLanguge.Language == 0)
+                {
+                    self.ItemType.GetComponent<Text>().text = "部位:" + textEquipType;
+                }
+                else
+                {
+                    self.ItemType.GetComponent<Text>().text = textEquipType;
+                }
             }
 
             string Text_ItemDes = itemconf.GetItemDes();
@@ -579,7 +619,15 @@ namespace ET
 
                 if (itemconf.UseLv > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)
                 {
-                    self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv;
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv;
+                    }
+                    else
+                    {
+                        self.ItemItemLv.GetComponent<Text>().text = langStr + ":" + itemconf.UseLv;
+                    }
+                    
                     //self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv + " (等级不足)";
                     self.ItemItemLv.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
                 }
