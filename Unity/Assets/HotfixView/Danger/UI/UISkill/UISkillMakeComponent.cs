@@ -158,6 +158,8 @@ namespace ET
             self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 25;
             self.Text_Current.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
             self.Text_CostHuoLiTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.Lab_MakeName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.Btn_Melt.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 46 : 36;
         }
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
