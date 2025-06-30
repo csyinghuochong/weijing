@@ -8,6 +8,7 @@ namespace ET
 {
     public class UISettingSkillComponent: Entity, IAwake, IDestroy
     {
+        public GameObject Text_Tip;
         public GameObject Img_Mask;
         public GameObject ResetBtn;
         public GameObject SkillIconItem;
@@ -30,6 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.Img_Mask = rc.Get<GameObject>("Img_Mask");
             self.ResetBtn = rc.Get<GameObject>("ResetBtn");
             self.SkillIconItem = rc.Get<GameObject>("SkillIconItem");
@@ -42,6 +44,9 @@ namespace ET
             self.CloseBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseBtn().Coroutine(); });
             self.ResetBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnResetBtn(); });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.Init();
             self.UpdataSkillLeft();
             self.UpdataSkillSetRight();
@@ -61,11 +66,18 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UISettingSkillComponentSystem
     {
+        public static void OnLanguageUpdate(this UISettingSkillComponent self)
+        {
+            self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 30;
+        }
+
         public static void Init(this UISettingSkillComponent self)
         {
             int childCount = self.SkillIPositionSetLeft.transform.childCount;

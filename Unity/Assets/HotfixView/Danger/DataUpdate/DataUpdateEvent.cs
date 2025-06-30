@@ -1209,6 +1209,11 @@ namespace ET
                     uiEquipTipsComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISettingSkillComponent uiSettingSkillComponent)
+                {
+                    uiSettingSkillComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
