@@ -2626,10 +2626,10 @@ W�!请到装备界面穿戴宝石！".Please go to the Equip interface to we
 $�道具不足"Not enough props
 =�锁定道具不能出售!"Locked props cannot be sold!
 *�出售完成!"The sale is complete!
-\�-恭喜你获得{itemConfig.ItemUsePar}经验!"'Congratulations on your {0} experience!
-y�Q恭喜你学习 {ItemConfigCategory.Instance.Get(equipMake.MakeItemID).ItemName}!" Congratulations on learning {0}!
-_�0恭喜你获得{r2c_roleEquip.OperatePar}经验!"'Congratulations on your {0} experience!
-{��X当前使用次数{infoComponent.GetTotalUseTimes(itemConfig.Id)}/{itemConfig.SumUseNum}"Current usage times {0}/{1}
+H�恭喜你获得{0}经验!"'Congratulations on your {0} experience!
+<�恭喜你学习 {0}!" Congratulations on learning {0}!
+H�恭喜你获得{0}经验!"'Congratulations on your {0} experience!
+<��当前使用次数{0}/{1}"Current usage times {0}/{1}
 ���V防沉迷提示:当前可游玩时间结束,请安心休息吧！将立即退出游戏"gAnti-addiction tips: the current play time is over, please rest at ease! Will exit the game immediately
 B��'道具在宠物身上发生了作用！"Props work on pets!
 .��施法中断！"Spellcasting interrupt!
@@ -2640,19 +2640,18 @@ G��副本中不能离开队伍"$You cannot leave a team in a replica
 ?��副本中不能踢人""You can't kick people in the copy.
 >��已申请加入队伍！"Have applied to join the team!
 0��停服维护"Stop service for maintenance
-6��!获得{petSkinConfig.Name}宠物!"Get {0} pets!
+%��获得{0}宠物!"Get {0} pets!
 C��恭喜你！竞技场获胜...."Congratulations! Arena win..
 +��并且获得奖励:"And get rewards:
 7��所有人都准好好了"Everyone must be ready.
 8��请先退出副本！"Please exit the copy first!
 9��请先退出摆摊！"Please quit the stall first!
 (��次数不足！"Not enough times!
-6��!{sceneConfig.EnterLv}级开启！"{0} level on!
+$��{0}级开启！"{0} level on!
 &��体力不足！"Lack of Energy!
 '��制作失败!"Production failed!
-h��:恭喜你领悟到新的制作技能 {itemConfig.ItemName}"&Congratulations on your new skill {0}.
+V��(恭喜你领悟到新的制作技能 {0}"&Congratulations on your new skill {0}.
 .��赛季结束奖励"End of season reward
-`��D赛季开启: {unit.DomainZone()}  {unit.Id}  {seasonOpenTime.KeyId}"Season open: {0} {1}
 F��初始化当前怪物血量:""Initialize current monster health:
 ��射手"Shooter
 B��释放打断寻路状态""Release Interrupt Wayfinding State
