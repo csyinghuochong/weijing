@@ -302,9 +302,6 @@
      <Reference Include="zxing.unity">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/Login/Plugins/zxing.unity.dll</HintPath>
      </Reference>
-     <Reference Include="Google.VersionHandlerImpl">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
-     </Reference>
      <Reference Include="Realtime">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/Realtime.dll</HintPath>
      </Reference>
@@ -316,9 +313,6 @@
      </Reference>
      <Reference Include="TapTap.TapDB">
      <HintPath>H:/GitWeiJing/Unity/Assets/TapTap/TapDB/Plugins/TapTap.TapDB.dll</HintPath>
-     </Reference>
-     <Reference Include="Google.VersionHandler">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
      </Reference>
      <Reference Include="dnlib">
      <HintPath>H:/GitWeiJing/Unity/Library/PackageCache/com.code-philosophy.hybridclr@67c487f521/Plugins/dnlib.dll</HintPath>
@@ -341,20 +335,26 @@
      <Reference Include="ICSharpCode.SharpZipLib">
      <HintPath>H:/GitWeiJing/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
-     <Reference Include="Google.PackageManagerResolver">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
-     </Reference>
      <Reference Include="Storage.Unity">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.storage@beef2954fb/Plugins/Storage.Unity.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenEditor">
      <HintPath>H:/GitWeiJing/Unity/Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/SampleProject/Extensions/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
      </Reference>
-     <Reference Include="Google.JarResolver">
-     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.JarResolver.dll</HintPath>
-     </Reference>
      <Reference Include="LiveQuery">
      <HintPath>H:/GitWeiJing/Unity/Packages/com.leancloud.realtime@73c70db9d8/Plugins/LiveQuery.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.VersionHandler">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.PackageManagerResolver">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.PackageManagerResolver.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.VersionHandlerImpl">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.VersionHandlerImpl.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.JarResolver">
+     <HintPath>H:/GitWeiJing/Unity/Assets/ExternalDependencyManager/Editor/1.2.182/Google.JarResolver.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>D:/unityhub/2020.3.33f1c2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

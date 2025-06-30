@@ -165,7 +165,7 @@ dependencies {
 
 android {
     compileSdkVersion **APIVERSION**
-    buildToolsVersion '**BUILDTOOLS**'
+    buildToolsVersion '30.0.3'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -174,7 +174,7 @@ android {
 
     defaultConfig {
         minSdkVersion **MINSDKVERSION**
-        targetSdkVersion **TARGETSDKVERSION**
+        targetSdkVersion 30
         applicationId '**APPLICATIONID**'
         ndk {
             abiFilters **ABIFILTERS**
