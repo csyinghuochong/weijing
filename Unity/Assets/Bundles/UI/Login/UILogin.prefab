@@ -260,6 +260,10 @@ MonoBehaviour:
     gameObject: {fileID: 1965237749220468581}
   - key: Img_GameName
     gameObject: {fileID: 2204441241565106516}
+  - key: Text_DiTip
+    gameObject: {fileID: 2874205823437962534}
+  - key: YinSiButon
+    gameObject: {fileID: 1429123923136623800}
 --- !u!114 &4343214064597879920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5852,7 +5856,7 @@ GameObject:
   - component: {fileID: 6625456877138543725}
   - component: {fileID: 8961829100434537278}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_DiTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
