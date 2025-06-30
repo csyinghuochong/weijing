@@ -143,21 +143,21 @@ namespace ET
 
             if (type == 1)
             {
-                addStr = "暴击";
+                addStr = GameSettingLanguge.LoadLocalization("暴击");
                 startScale = new Vector3(1.4f, 1.4f, 1.4f);
             }
 
             if (type != 2 && type != 11 && type != 12 && targetValue == 0)
             {
-                showText = "闪避";
+                showText = GameSettingLanguge.LoadLocalization("闪避");
             }
             else if (type == 11)
             {
-                showText = "抵抗";
+                showText = GameSettingLanguge.LoadLocalization("抵抗");
             }
             else if (type == 12)
             {
-                showText = "免疫";
+                showText = GameSettingLanguge.LoadLocalization("免疫");
             }
             else
             {
