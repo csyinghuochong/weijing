@@ -7,7 +7,7 @@ namespace ET
 
     public class UISkillTianFuComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject Text_Tip2;
         public GameObject Btn_TianFu_2;
         public GameObject Btn_TianFu_1;
         public GameObject DescListNode;
@@ -33,6 +33,7 @@ namespace ET
             self.TianItemListUI.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip2 = rc.Get<GameObject>("Text_Tip2");
             self.Text_NeedLv = rc.Get<GameObject>("Text_NeedLv");
             self.Lab_SkillName = rc.Get<GameObject>("Lab_SkillName");
             self.TianfuListNode = rc.Get<GameObject>("TianfuListNode");
@@ -53,6 +54,9 @@ namespace ET
             self.Btn_ActiveTianFu = rc.Get<GameObject>("Btn_ActiveTianFu");
             self.Btn_ActiveTianFu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ActiveTianFu(); });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.InitTianFuList();
         }
     }
@@ -69,10 +73,17 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UISkillTianFuComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillTianFuComponent self)
+        {
+            self.Lab_SkillName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 38 : 32;
+            self.Text_Tip2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
 
         public static async ETTask OnBtn_TianFuPlan(this UISkillTianFuComponent self, int plan)
         {

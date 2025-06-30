@@ -40,6 +40,9 @@ namespace ET
             self.TextName3 = rc.Get<GameObject>("TextName3");
             self.TextName2 = rc.Get<GameObject>("TextName2");
             self.TextName1 = rc.Get<GameObject>("TextName1");
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UISkillTianFuItemComponentDestroy: DestroySystem<UISkillTianFuItemComponent>
@@ -55,10 +58,19 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UISkillTianFuItemComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillTianFuItemComponent self)
+        {
+            self.TextName1.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.TextName2.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+            self.TextName3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+        }
+        
         public static GameObject GetKuangByIndex(this UISkillTianFuItemComponent self, int index)
         {
             if (index == 0)

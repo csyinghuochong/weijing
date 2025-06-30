@@ -1189,6 +1189,16 @@ namespace ET
                     uiItemTipsComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISkillTianFuComponent uiSkillTianFuComponent)
+                {
+                    uiSkillTianFuComponent.OnLanguageUpdate();
+                    continue;
+                }
+                if (component is UISkillTianFuItemComponent uiSkillTianFuItemComponent)
+                {
+                    uiSkillTianFuItemComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
