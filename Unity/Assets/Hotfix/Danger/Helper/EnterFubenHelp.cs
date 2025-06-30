@@ -39,7 +39,7 @@ namespace ET
                     }
                     if (sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv)
                     {
-                        HintHelp.GetInstance().ShowHint($"{sceneConfig.EnterLv}级开启！");
+                        HintHelp.GetInstance().ShowHint("{0}级开启！", sceneConfig.EnterLv.ToString());
                         return ErrorCode.ERR_LevelIsNot;
                     }
                 }

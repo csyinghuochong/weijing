@@ -166,7 +166,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.OccTwo != 0)
             {
-                HintHelp.GetInstance().ShowHint(GameSettingLanguge.LoadLocalization("不能重复转职!"));
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("不能重复转职!"));
                 return;
             }
 

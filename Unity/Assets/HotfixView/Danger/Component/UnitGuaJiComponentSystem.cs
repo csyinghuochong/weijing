@@ -307,7 +307,7 @@ namespace ET
                 {
                     //一键出售
                     self.ZoneScene().GetComponent<BagComponent>().RequestOneSell(ItemLocType.ItemLocBag).Coroutine();
-                    HintHelp.GetInstance().ShowHint(GameSettingLanguge.LoadLocalization("背包已满，已自动一键出售道具!"));
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("背包已满，已自动一键出售道具!"));
                 }
             }
         }

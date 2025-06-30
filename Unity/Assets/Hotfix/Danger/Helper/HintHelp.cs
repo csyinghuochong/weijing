@@ -15,9 +15,11 @@
         }
 
         //展示飘字
-        public void ShowHint(string hintText)
+        public void ShowHint(string hintText, string par0 = null, string par1 = null)
         {
             EventType.CommonHint.Instance.HintText = hintText;
+            EventType.CommonHint.Instance.Par0 = par0;
+            EventType.CommonHint.Instance.Par1 = par1;
             EventSystem.Instance.PublishClass(EventType.CommonHint.Instance);
         }
 

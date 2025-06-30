@@ -298,8 +298,11 @@ namespace ET
             if (response.NewMakeId != 0)
             {
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(response.NewMakeId);
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
-                HintHelp.GetInstance().ShowHint($"恭喜你领悟到新的制作技能 {itemConfig.ItemName}");
+                
+                EventType.LearnItemHint.Instance.HintText = "恭喜你领悟到新的制作技能 {0}";
+                EventType.LearnItemHint.Instance.Id = equipMakeConfig.MakeItemID;
+                EventSystem.Instance.PublishClass(EventType.LearnItemHint.Instance);
+                
                 zoneScene.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(response.NewMakeId);
             }
             if (baginfoId == 0)

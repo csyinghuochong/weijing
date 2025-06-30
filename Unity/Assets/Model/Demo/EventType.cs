@@ -343,6 +343,21 @@ namespace ET
         {
             public static readonly CommonHint Instance = new CommonHint();
             public string HintText;
+            public string Par0;
+            public string Par1;
+        }
+        
+        public class LearnItemHint : DisposeObject
+        {
+            public static readonly LearnItemHint Instance = new LearnItemHint();
+            public string HintText;
+            public int Id;
+        }
+        
+        public class GetPetHint : DisposeObject
+        {
+            public static readonly GetPetHint Instance = new GetPetHint();
+            public int Id;
         }
 
         public class CommonPopup : DisposeObject

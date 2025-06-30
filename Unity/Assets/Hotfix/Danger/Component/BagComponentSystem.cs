@@ -419,17 +419,21 @@ namespace ET
 
                 if (itemConfig.ItemSubType == 2)
                 {
-                    HintHelp.GetInstance().ShowHint($"恭喜你获得{itemConfig.ItemUsePar}经验!");
+                    HintHelp.GetInstance().ShowHint("恭喜你获得{0}经验!", itemConfig.ItemUsePar);
                 }
                 if (itemConfig.ItemSubType == 16)
                 {
                     EquipMakeConfig equipMake = EquipMakeConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-                    HintHelp.GetInstance().ShowHint($"恭喜你学习 {ItemConfigCategory.Instance.Get(equipMake.MakeItemID).ItemName}!");
+
+                    EventType.LearnItemHint.Instance.HintText = "恭喜你学习 {0}!";
+                    EventType.LearnItemHint.Instance.Id = equipMake.MakeItemID;
+                    EventSystem.Instance.PublishClass(EventType.LearnItemHint.Instance);
+                    
                     infoComponent.UserInfo.MakeList.Add(int.Parse(itemConfig.ItemUsePar));
                 }
                 if (itemConfig.ItemSubType == 112)
                 {
-                    HintHelp.GetInstance().ShowHint($"恭喜你获得{r2c_roleEquip.OperatePar}经验!");
+                    HintHelp.GetInstance().ShowHint("恭喜你获得{0}经验!", r2c_roleEquip.OperatePar);
                 }
                 if (itemConfig.ItemSubType == 115)
                 {
@@ -468,9 +472,8 @@ namespace ET
                 if (itemConfig.SumUseNum > 0)
                 {
                     infoComponent.OnTotalUseTimes(itemConfig.Id);
-
-                    string ussTimesTip = $"当前使用次数{infoComponent.GetTotalUseTimes(itemConfig.Id)}/{itemConfig.SumUseNum}";
-                    HintHelp.GetInstance().ShowHint(ussTimesTip);
+                    
+                    HintHelp.GetInstance().ShowHint("当前使用次数{0}/{1}", infoComponent.GetTotalUseTimes(itemConfig.Id).ToString(), itemConfig.SumUseNum.ToString());
                 }
 
 

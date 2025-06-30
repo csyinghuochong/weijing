@@ -15,8 +15,8 @@ namespace ET
 
             if (message.GetWay == 2 && message.PetInfoAdd.Count > 0)
             {
-                PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(message.PetInfoAdd[0].SkinId);   
-                HintHelp.GetInstance().ShowHint($"获得{petSkinConfig.Name}宠物!");
+                EventType.GetPetHint.Instance.Id = message.PetInfoAdd[0].SkinId;
+                EventSystem.Instance.PublishClass(EventType.GetPetHint.Instance);
             }
             if (message.GetWay == 0 && message.PetInfoAdd.Count > 0)
             {

@@ -445,12 +445,52 @@ namespace ET
 
     //通用提示事件
     [Event]
-    public class CommonHintEvent : AEventClass<EventType.CommonHint>
+    public class CommonHintEvent: AEventClass<EventType.CommonHint>
     {
         protected override void Run(object cls)
         {
             EventType.CommonHint args = cls as EventType.CommonHint;
-            FloatTipManager.Instance.ShowFloatTipDi(args.HintText);
+
+            string tip = GameSettingLanguge.LoadLocalization(args.HintText);
+
+            if (!string.IsNullOrEmpty(args.Par0) && string.IsNullOrEmpty(args.Par1))
+            {
+                tip = string.Format(tip, args.Par0);
+            }
+
+            if (!string.IsNullOrEmpty(args.Par0) && !string.IsNullOrEmpty(args.Par1))
+            {
+                tip = string.Format(tip, args.Par0, args.Par1);
+            }
+
+            FloatTipManager.Instance.ShowFloatTipDi(tip);
+        }
+    }
+    
+    [Event]
+    public class LearnItemHintEvent: AEventClass<EventType.LearnItemHint>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.LearnItemHint args = cls as EventType.LearnItemHint;
+
+            string tip = string.Format(GameSettingLanguge.LoadLocalization(args.HintText), ItemConfigCategory.Instance.Get(args.Id).GetItemName());
+            
+            FloatTipManager.Instance.ShowFloatTipDi(tip);
+        }
+    }
+    
+    [Event]
+    public class GetPetHintEvent: AEventClass<EventType.GetPetHint>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.GetPetHint args = cls as EventType.GetPetHint;
+
+            PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(args.Id); 
+            string tip = string.Format(GameSettingLanguge.LoadLocalization("获得{0}宠物!"), petSkinConfig.GetName());
+            
+            FloatTipManager.Instance.ShowFloatTipDi(tip);
         }
     }
 

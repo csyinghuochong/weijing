@@ -37,7 +37,7 @@ namespace ET
             }
             if (ErrorHelp.Instance.ErrorHintList.ContainsKey(errorCode))
             {
-                HintHelp.GetInstance().ShowHint(ErrorHelp.Instance.ErrorHintList[errorCode]);
+                FloatTipManager.Instance.ShowFloatTipDi(ErrorHelp.Instance.ErrorHintList[errorCode]);
             }
         }
     }
