@@ -7,6 +7,10 @@ namespace ET
 {
     public class UIEquipTipsComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Text_EquipSuitTip;
+        public GameObject Text_HintSkillTip;
+        public GameObject Text_BaseProTip;
+        public GameObject Text_EquipZhuanJingTip;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
         public GameObject Img_back_btn;
@@ -111,6 +115,10 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_EquipSuitTip = rc.Get<GameObject>("Text_EquipSuitTip");
+            self.Text_HintSkillTip = rc.Get<GameObject>("Text_HintSkillTip");
+            self.Text_BaseProTip = rc.Get<GameObject>("Text_BaseProTip");
+            self.Text_EquipZhuanJingTip = rc.Get<GameObject>("Text_EquipZhuanJingTip");
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQualityBg");
             self.Img_back_btn = rc.Get<GameObject>("Img_back_btn");
@@ -242,6 +250,11 @@ namespace ET
             self.Btn_Takeoff.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 36 : 30;
             
             self.Obj_Lab_EquipQiangHua.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 25;
+            
+            self.Text_EquipSuitTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
+            self.Text_HintSkillTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
+            self.Text_BaseProTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
+            self.Text_EquipZhuanJingTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
         }
 
         public static void On_Btn_HuiShou(this UIEquipTipsComponent self)

@@ -1466,6 +1466,14 @@ MonoBehaviour:
     gameObject: {fileID: 1101908395115604271}
   - key: EquipBtnSet
     gameObject: {fileID: 173250}
+  - key: Text_EquipSuitTip
+    gameObject: {fileID: 2610756844985542111}
+  - key: Text_HintSkillTip
+    gameObject: {fileID: 440021505176745127}
+  - key: Text_BaseProTip
+    gameObject: {fileID: 1502555226344521149}
+  - key: Text_EquipZhuanJingTip
+    gameObject: {fileID: 5344490810252447040}
 --- !u!114 &283500103791125419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4312,7 +4320,7 @@ GameObject:
   - component: {fileID: 4600021637916276383}
   - component: {fileID: 1871502764392510180}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_HintSkillTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4981,7 +4989,7 @@ GameObject:
   - component: {fileID: 4478236626124124176}
   - component: {fileID: 7569643153931965958}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_BaseProTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5364,7 +5372,7 @@ GameObject:
   - component: {fileID: 3704906803908936756}
   - component: {fileID: 1420462401713782521}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_EquipSuitTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5713,7 +5721,7 @@ GameObject:
   - component: {fileID: 809125372105547479}
   - component: {fileID: 3045412784102913761}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_EquipZhuanJingTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5735,8 +5743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135, y: 7}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchoredPosition: {x: -63.837036, y: 7}
+  m_SizeDelta: {x: 342.326, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &809125372105547479
 CanvasRenderer:
