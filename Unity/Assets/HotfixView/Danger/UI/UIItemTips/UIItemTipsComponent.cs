@@ -100,6 +100,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShou, () => { self.On_Btn_HuiShou(); });
             ButtonHelp.AddListenerEx(self.Obj_Btn_XieXiaGemSet, () => { self.On_Btn_XieXiaGemSet(); });
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
     public class UIItemTipsComponentDestroy: DestroySystem<UIItemTipsComponent>
@@ -115,10 +118,17 @@ namespace ET
             }
 
             self.AssetPath = null;
+            
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIItemTipsComponentSystem
     {
+        public static void OnLanguageUpdate(this UIItemTipsComponent self)
+        {
+            self.Lab_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+        }
+
         public static void On_Btn_HuiShou(this UIItemTipsComponent self)
         {
             HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{self.BagInfo.BagInfoID}");

@@ -1184,6 +1184,11 @@ namespace ET
                     uiSettingComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIItemTipsComponent uiItemTipsComponent)
+                {
+                    uiItemTipsComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
