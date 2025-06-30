@@ -255,6 +255,8 @@ namespace ET
             self.Text_HintSkillTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
             self.Text_BaseProTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
             self.Text_EquipZhuanJingTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 28 : 26;
+            
+            self.Obj_EquipName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 32 : 30;
         }
 
         public static void On_Btn_HuiShou(this UIEquipTipsComponent self)

@@ -140,6 +140,8 @@ namespace ET
             self.Btn_TakeStoreHouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
             self.Btn_JingHeAddQuality.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
             self.Btn_JingHeActivate.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            
+            self.Lab_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
         }
 
         //晶核注入。增加品质
