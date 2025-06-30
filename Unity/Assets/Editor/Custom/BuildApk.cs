@@ -9,23 +9,68 @@ using System.Reflection;
 using libx;
 using ET;
 
+
 //监听Unity启动，一启动就执行
 [InitializeOnLoad]
 public class rememberKeyStore
 {
+	// 用于解析 ExternalTools.json 的数据结构
+	[System.Serializable]
+	private class ExternalToolsPrefs
+	{
+		public AndroidSettings Android = new AndroidSettings();
+	}
+    
+	[System.Serializable]
+	private class AndroidSettings
+	{
+		public string gradlePath = "";
+		// 其他 Android 设置字段...
+	}
+
+	
+	
 	static rememberKeyStore()
 	{
+		//Google
+		
+#if Google
+		
 		//秘钥名称：注意这里要加上.keystore后缀
-		//PlayerSettings.Android.keystoreName = "文件名.keystore";
+		PlayerSettings.Android.keystoreName = "google.keystore";
 
 		// 密钥密码
-		//PlayerSettings.Android.keystorePass = "829475";
+		PlayerSettings.Android.keystorePass = "weijing829475";
 
 		// 密钥别名
-		//PlayerSettings.Android.keyaliasName = "自己取的别名";
+		PlayerSettings.Android.keyaliasName = "weijingchinaboy";
 
 		// 密钥别名密码
-		//PlayerSettings.Android.keyaliasPass = "829475";
+		PlayerSettings.Android.keyaliasPass = "weijing829475";
+		
+		PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
+		
+		// 可选：设置 Gradle 路径为 Unity 内置路径
+		//string unityGradlePath = "F:\\soft\\android\\gradle-6.7.1";
+		//EditorPrefs.SetString("AndroidGradlePath", unityGradlePath);
+#else
+		//秘钥名称：注意这里要加上.keystore后缀
+		PlayerSettings.Android.keystoreName = "user.keystore";
+
+		// 密钥密码
+		PlayerSettings.Android.keystorePass = "829475";
+
+		// 密钥别名
+		PlayerSettings.Android.keyaliasName = "chinaboy";
+
+		// 密钥别名密码
+		PlayerSettings.Android.keyaliasPass = "829475";
+		
+		PlayerSettings.applicationIdentifier = "com.example.weijinggame";
+		
+		EditorPrefs.SetString("AndroidGradleUseEmbedded", "true");
+#endif
+
 	}
 }
 
@@ -399,9 +444,20 @@ public class MyEditorScript
 		{
 			Directory.CreateDirectory(target_dir);
 		}
-
-
-        PlayerSettings.Android.targetSdkVersion = name == "QuDao" ? AndroidSdkVersions.AndroidApiLevel26 : AndroidSdkVersions.AndroidApiLevelAuto;
+		
+		if(name == "QuDao" )
+		{
+			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+		}
+		else if (name == "Google" )
+		{
+			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel30;
+		}
+		else
+		{
+			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
+		}
+		
         PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, ";" + name);
 		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;" + name);
 

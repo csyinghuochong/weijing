@@ -21,7 +21,7 @@ using AppleAuth.Extensions;
 using System.Net;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-
+using Google;
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -1057,6 +1057,9 @@ namespace ET
         }
 
 
+        private string webClientId = "180577064002-sqr7qoqi6keicnsoafhh2ajc23crju3i.apps.googleusercontent.com";
+
+        
         public void GooglePlayGamesSignin()
         {
             Debug.Log("GooglePlayGamesSignin" );
@@ -1068,8 +1071,11 @@ namespace ET
             if (status == SignInStatus.Success)
             {
                 // Continue with Play Games Services
-                Debug.Log("登录成功！玩家ID: " + Social.localUser.id);
-                Debug.Log("玩家名称: " + Social.localUser.userName);
+                Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
+                Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
+                Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
+                Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
+                Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
 
 				// 获取ID令牌（用于服务器验证）
 				this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
