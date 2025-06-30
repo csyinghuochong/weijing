@@ -1205,5 +1205,17 @@ namespace ET
                 return self.Des_EN;
             }
         }
+        
+        public static string GetName(this DungeonTransferConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.Name;
+            }
+            else
+            {
+                return self.Name_EN;
+            }
+        }
     }
 }

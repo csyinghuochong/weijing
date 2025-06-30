@@ -190,7 +190,7 @@ namespace ET
                 }
                 DungeonTransferConfig dungeonTransferConfig = DungeonTransferConfigCategory.Instance.Get(transfers[i]);
                 self.InstantiateIcon(self.chuansong,
-                    new Vector3(dungeonTransferConfig.Position[0] * 0.01f, dungeonTransferConfig.Position[2] * 0.01f, 0), dungeonTransferConfig.Name);
+                    new Vector3(dungeonTransferConfig.Position[0] * 0.01f, dungeonTransferConfig.Position[2] * 0.01f, 0), dungeonTransferConfig.GetName());
             }
         }
 

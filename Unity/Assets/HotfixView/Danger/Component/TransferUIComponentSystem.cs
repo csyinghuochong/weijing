@@ -62,7 +62,7 @@ namespace ET
             self.HeadBar.transform.localScale = Vector3.one;
 
             self.UIPosition = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.Name;
+            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.GetName();
 
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)
             {

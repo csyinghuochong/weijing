@@ -81,17 +81,20 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>地图ID</summary>
+		/// <summary>名字</summary>
 		[ProtoMember(3)]
+		public string Name_EN { get; set; }
+		/// <summary>地图ID</summary>
+		[ProtoMember(4)]
 		public int MapID { get; set; }
 		/// <summary>进入等级</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int EnterLv { get; set; }
 		/// <summary>位置【进入新场景出生点】</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] BornPos { get; set; }
 		/// <summary>位置[传送门]</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int[] Position { get; set; }
 
 	}
