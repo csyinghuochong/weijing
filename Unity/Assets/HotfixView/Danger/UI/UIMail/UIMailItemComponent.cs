@@ -55,7 +55,7 @@ namespace ET
         public static void OnUpdateUI(this UIMailItemComponent self, MailInfo mailInfo)
         {
             self.MailInfo = mailInfo;
-            self.TextConent.GetComponent<Text>().text = mailInfo.Title;
+            self.TextConent.GetComponent<Text>().text = GameSettingLanguge.EmailTranslate(mailInfo.Title);
         }
 
         public static void OnImageButton(this UIMailItemComponent self)

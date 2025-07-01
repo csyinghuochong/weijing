@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 
 namespace ET
@@ -380,6 +381,53 @@ namespace ET
             }
 
             return text;
+        }
+
+
+        public static string EmailTranslate(string input)
+        {
+            if (Language == 0)
+            {
+                return input;
+            }
+
+            for (int id = 300001; id < 310000 ; id++)
+            {
+                if (!MulLanguageConfigCategory.Instance.Contain(id))
+                {
+                    return input;
+                }
+
+                MulLanguageConfig config = MulLanguageConfigCategory.Instance.Get(id);
+
+                if (input == config.Chinese)
+                {
+                    return config.English;
+                }
+
+                string zhTemplate = config.Chinese;
+                string enTemplate = config.English;
+
+                string pattern = Regex.Replace(zhTemplate, @"\{(\d+)\}", "(.+?)");
+                pattern = "^" + pattern + "$"; // 完整匹配
+
+                Match match = Regex.Match(input, pattern);
+                if (match.Success)
+                {
+                    // 提取参数
+                    List<string> args = new List<string>();
+                    for (int i = 1; i < match.Groups.Count; i++)
+                    {
+                        args.Add(match.Groups[i].Value);
+                    }
+
+                    // 拼接英文
+                    string result = string.Format(enTemplate, args.ToArray());
+                    return result;
+                }
+            }
+
+            return input;
         }
 
         public static string GetText(string text, params object[] args)

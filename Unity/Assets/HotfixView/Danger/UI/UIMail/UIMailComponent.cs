@@ -135,8 +135,8 @@ namespace ET
                 self.RewardListUI[i].GameObject.SetActive(false);
             }
             MailInfo mailInfos = self.MailComponent.SelectMail;
-            self.TextMailTitle.GetComponent<Text>().text = mailInfos.Title;
-            self.TextMailContent.GetComponent<Text>().text = mailInfos.Context;
+            self.TextMailTitle.GetComponent<Text>().text = GameSettingLanguge.EmailTranslate(mailInfos.Title);
+            self.TextMailContent.GetComponent<Text>().text = GameSettingLanguge.EmailTranslate(mailInfos.Context);
 
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
