@@ -21,7 +21,7 @@ using AppleAuth.Extensions;
 using System.Net;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using Google;
+
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -1063,7 +1063,11 @@ namespace ET
         public void GooglePlayGamesSignin()
         {
             Debug.Log("GooglePlayGamesSignin" );
+            
+            
+            
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+
         }
 
         public void ProcessAuthentication(SignInStatus status)
