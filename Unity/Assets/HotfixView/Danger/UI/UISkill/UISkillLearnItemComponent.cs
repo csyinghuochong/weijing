@@ -144,7 +144,7 @@ namespace ET
             }
             self.Lab_SkillLv.GetComponent<RectTransform>().localPosition = position;
             
-            self.Lab_SkillName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 32;
+            self.Lab_SkillName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
             self.Lab_SkillLv.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 29;
             self.Text_Desc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 25;
         }
