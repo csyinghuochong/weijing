@@ -51,6 +51,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
         Debug.Log("IAP初始化失败: " + error);
     }
 
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        Debug.Log("IAP初始化失败: " + error + "  message" + message );
+    }
+
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
 

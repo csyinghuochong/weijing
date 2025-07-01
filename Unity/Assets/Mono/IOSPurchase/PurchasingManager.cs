@@ -134,6 +134,11 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
         Debug.LogWarning("OnInitializeFailed Reason:" + error);
     }
 
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        Debug.Log("Purchase初始化失败: " + error + "  message" + message);
+    }
+
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
         Debug.LogWarning("OnPurchaseFailedproduct:" + product.transactionID + "  failureReason:" + failureReason);
