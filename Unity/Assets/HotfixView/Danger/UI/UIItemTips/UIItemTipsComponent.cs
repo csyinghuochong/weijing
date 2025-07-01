@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ namespace ET
         public GameObject Obj_ItemIcon;
         public GameObject Lab_ItemName;
         public GameObject ItemDes;
+        public GameObject ItemDes_EN;
         public GameObject ItemItemLv;
         public GameObject ItemType;
         public GameObject Img_back;
@@ -68,6 +70,7 @@ namespace ET
             self.ItemType = rc.Get<GameObject>("Lab_ItemType");
             self.ItemItemLv = rc.Get<GameObject>("Lab_ItemLv");
             self.ItemDes = rc.Get<GameObject>("Lab_ItemDes");
+            self.ItemDes_EN = rc.Get<GameObject>("Lab_ItemDes_EN");
             self.Lab_ItemName = rc.Get<GameObject>("Lab_ItemName");
             self.Lab_ItemNameWidth = self.Lab_ItemName.GetComponent<RectTransform>().sizeDelta.x;
             self.Obj_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
@@ -859,7 +862,17 @@ namespace ET
             //显示道具信息
             self.Lab_ItemName.GetComponent<Text>().text = itemconf.GetItemName();
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
-            self.ItemDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes);
+
+            self.ItemDes.SetActive(GameSettingLanguge.Language == 0);
+            self.ItemDes_EN.SetActive(GameSettingLanguge.Language == 1);
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes;
+            }
+            else
+            {
+                self.ItemDes_EN.GetComponent<TextMeshProUGUI>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes);
+            }
             //赞助宝箱设置描述为绿色
             //if (itemSubType == 9)
             //{
