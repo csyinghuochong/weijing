@@ -32,10 +32,10 @@ public class rememberKeyStore
 	
 	static rememberKeyStore()
 	{
-		//Google
-		
+        //Google
+
 #if Google
-		
+#if UNITY_ANDROID
 		//秘钥名称：注意这里要加上.keystore后缀
 		PlayerSettings.Android.keystoreName = "google.keystore";
 
@@ -53,9 +53,12 @@ public class rememberKeyStore
 		// 可选：设置 Gradle 路径为 Unity 内置路径
 		//string unityGradlePath = "F:\\soft\\android\\gradle-6.7.1";
 		//EditorPrefs.SetString("AndroidGradlePath", unityGradlePath);
+#endif
 #else
-		//秘钥名称：注意这里要加上.keystore后缀
-		PlayerSettings.Android.keystoreName = "user.keystore";
+
+#if UNITY_ANDROID
+        //秘钥名称：注意这里要加上.keystore后缀
+        PlayerSettings.Android.keystoreName = "user.keystore";
 
 		// 密钥密码
 		PlayerSettings.Android.keystorePass = "829475";
@@ -69,6 +72,7 @@ public class rememberKeyStore
 		PlayerSettings.applicationIdentifier = "com.example.weijinggame";
 		
 		EditorPrefs.SetString("AndroidGradleUseEmbedded", "true");
+#endif
 #endif
 
 	}
