@@ -7,7 +7,6 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BloodMonsterAtlas
-  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -29,6 +28,7 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+      enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
@@ -36,6 +36,12 @@ SpriteAtlas:
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - d6d0c76665ca66244b6b28c535bf690c: 21300000
+    - ad0d03f64dffa3e42b388c370ced0e5b: 21300000
+    - cc1d97f85e93660408024b429e22f106: 21300000
+    - e77a65a985ac31f4a88a282688410043: 21300000
+    - 115ab6bf43c43dc4eb9b2752d4d4f308: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: d6d0c76665ca66244b6b28c535bf690c, type: 3}
@@ -52,4 +58,3 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: BloodMonsterAtlas
   m_IsVariant: 0
-  m_IsPlaceholder: 0
