@@ -1059,15 +1059,18 @@ namespace ET
 
         private string webClientId = "180577064002-sqr7qoqi6keicnsoafhh2ajc23crju3i.apps.googleusercontent.com";
 
-#if UNITY_ANDROID
+
         public void GooglePlayGamesSignin()
         {
+#if UNITY_ANDROID
             Debug.Log("GooglePlayGamesSignin" );
-            
-           // PlayGamesPlatform.Activate();
-          //  PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-        }
+
+            // PlayGamesPlatform.Activate();
+            //  PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+
 #endif
+        }
+
 
 #if UNITY_ANDROID
         //    public void ProcessAuthentication(SignInStatus status)
@@ -1098,10 +1101,12 @@ namespace ET
 #endif
 
 
-#if UNITY_ANDROID
+
         public void ProcessAuthentication_2(bool status)
         {
-	        if (status == true)
+#if UNITY_ANDROID
+
+            if (status == true)
 	        {
 		        // Continue with Play Games Services
 		        //Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
@@ -1120,9 +1125,9 @@ namespace ET
 		        this.OnGoogleSignInHandler?.Invoke(string.Empty);
 		        Debug.Log($"Social 登录失败！:  {status}");
 	        }
-	        
-        }
 #endif
+        }
+
 
         public void SignInWithApple(string oldaccount)
         {
