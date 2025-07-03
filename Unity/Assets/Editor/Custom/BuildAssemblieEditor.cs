@@ -250,11 +250,12 @@ namespace ET
                     Debug.LogError($"不存在dll:{file}, 无法跑huatuo模式");
                     continue;
                 }
-                File.Copy(file, Path.Combine(CodeDir, $"{dll}.bytes"), true);
+                //File.Copy(file, Path.Combine(CodeDir, $"{dll}.bytes"), true);
+                Debug.Log($"not copy: {file}  {Path.Combine(CodeDir, $"{dll}.bytes")}");
                 AssetDatabase.Refresh();
 
-                AssetImporter assetImporter1 = AssetImporter.GetAtPath($"Assets/Bundles/Code/{dll}.bytes");
-                assetImporter1.assetBundleName = "Code.unity3d";
+                //AssetImporter assetImporter1 = AssetImporter.GetAtPath($"Assets/Bundles/Code/{dll}.bytes");
+                //assetImporter1.assetBundleName = "Code.unity3d";
             }
 
 

@@ -123,51 +123,75 @@ namespace ET
 						Log.ILog.Debug("hotupdate1   CodeMode.HuaTuo");
 
 						InitHybridCLR.Init();
-						foreach (var hotFixDll in this.HotFixDlls)
-						{
-							byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
-							var hotfixAssembly = Assembly.Load(assBytes);
-							this.AddHotfixTypes(hotfixAssembly.GetTypes());
-							this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
-						}
+                        //foreach (var hotFixDll in this.HotFixDlls)
+                        //{
+                        //	byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
+                        //	var hotfixAssembly = Assembly.Load(assBytes);
+                        //	this.AddHotfixTypes(hotfixAssembly.GetTypes());
+                        //	this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
+                        //}
 
-						//byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
-						//byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
-						//assembly = Assembly.Load(assBytes, pdbBytes);
-						//Type[] types = assembly.GetTypes();
-						//foreach (Type type in types)
-						//{
-						//	this.hotfixTypes[type.FullName] = type;
-						//}
-						assembly = this.hotFixAssemblies[HotDlls.ModelView];
-						Log.ILog.Debug($"huatuo2   CodeMode.HuaTuo {this.hotfixTypes.Count}");
-						IStaticMethod start = MonoStaticMethod.Create(assembly, "ET.Entry", "Start");
-						start.Run();
+                        //byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
+                        //byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
+                        //assembly = Assembly.Load(assBytes, pdbBytes);
+                        //Type[] types = assembly.GetTypes();
+                        //foreach (Type type in types)
+                        //{
+                        //	this.hotfixTypes[type.FullName] = type;
+                        //}
+                        //assembly = this.hotFixAssemblies[HotDlls.ModelView];
+                        //Log.ILog.Debug($"huatuo2   CodeMode.HuaTuo {this.hotfixTypes.Count}");
+                        //IStaticMethod start = MonoStaticMethod.Create(assembly, "ET.Entry", "Start");
+                        //start.Run();
 
-						break;
+                        byte[] assBytes = LoadHelper.LoadCode($"Code.dll").bytes;
+                        byte[] pdbBytes = LoadHelper.LoadCode($"Code.pdb").bytes;
+
+                        assembly = Assembly.Load(assBytes, pdbBytes);
+                        foreach (Type type in this.assembly.GetTypes())
+                        {
+                            this.monoTypes[type.FullName] = type;
+                            this.hotfixTypes[type.FullName] = type;
+                        }
+                        IStaticMethod start = new MonoStaticMethod(assembly, "ET.Entry", "Start");
+                        start.Run();
+
+                        break;
 					}
 				case CodeMode.Mono:
 				{
 					Log.ILog.Debug("hotupdate1   CodeMode.Mono");
-					//byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
-					//assembly = Assembly.Load(assBytes, pdbBytes);
-					//foreach (Type type in this.assembly.GetTypes())
-					//{
-					//	this.monoTypes[type.FullName] = type;
-					//	this.hotfixTypes[type.FullName] = type;
-					//}
-					foreach (var hotFixDll in this.HotFixDlls)
-					{
-						byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
-						var hotfixAssembly = Assembly.Load(assBytes);
-						this.AddHotfixTypes(hotfixAssembly.GetTypes());
-						this.AddMonoTypes(hotfixAssembly.GetTypes());
-						this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
-					}
+                        //byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
+                        //assembly = Assembly.Load(assBytes, pdbBytes);
+                        //foreach (Type type in this.assembly.GetTypes())
+                        //{
+                        //	this.monoTypes[type.FullName] = type;
+                        //	this.hotfixTypes[type.FullName] = type;
+                        //}
+                        byte[] assBytes = LoadHelper.LoadCode($"Code.dll").bytes;
+                        byte[] pdbBytes = LoadHelper.LoadCode($"Code.pdb").bytes;
 
-					assembly = this.hotFixAssemblies[HotDlls.ModelView];
-					IStaticMethod start = new MonoStaticMethod(assembly, "ET.Entry", "Start");
-					start.Run();
+                        assembly = Assembly.Load(assBytes, pdbBytes);
+                        foreach (Type type in this.assembly.GetTypes())
+                        {
+                            this.monoTypes[type.FullName] = type;
+                            this.hotfixTypes[type.FullName] = type;
+                        }
+                        IStaticMethod start = new MonoStaticMethod(assembly, "ET.Entry", "Start");
+                        start.Run();
+
+     //                   foreach (var hotFixDll in this.HotFixDlls)
+					//{
+					//	byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
+					//	var hotfixAssembly = Assembly.Load(assBytes);
+					//	this.AddHotfixTypes(hotfixAssembly.GetTypes());
+					//	this.AddMonoTypes(hotfixAssembly.GetTypes());
+					//	this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
+					//}
+
+					//assembly = this.hotFixAssemblies[HotDlls.ModelView];
+					//IStaticMethod start = new MonoStaticMethod(assembly, "ET.Entry", "Start");
+					//start.Run();
 					break;
 				}
                 case CodeMode.ILRuntime:
