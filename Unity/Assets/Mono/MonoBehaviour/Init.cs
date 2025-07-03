@@ -19,15 +19,15 @@ using AppleAuth.Interfaces;
 using System.Text;
 using AppleAuth.Extensions;
 using System.Net;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
 
 #if UNITY_ANDROID
+//using GooglePlayGames;
+//using GooglePlayGames.BasicApi;
+//using UnityEngine.SocialPlatforms;
 using UnityEngine.Android;
 #endif
 
@@ -1059,42 +1059,69 @@ namespace ET
 
         private string webClientId = "180577064002-sqr7qoqi6keicnsoafhh2ajc23crju3i.apps.googleusercontent.com";
 
-        
+#if UNITY_ANDROID
         public void GooglePlayGamesSignin()
         {
             Debug.Log("GooglePlayGamesSignin" );
             
-            
-            
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+           // PlayGamesPlatform.Activate();
+          //  PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
+            
         }
 
-        public void ProcessAuthentication(SignInStatus status)
+    //    public void ProcessAuthentication(SignInStatus status)
+    //    {
+    //        if (status == SignInStatus.Success)
+    //        {
+    //            // Continue with Play Games Services
+    //            Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
+    //            Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
+    //            Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
+    //            Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
+    //            Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
+
+				//// 获取ID令牌（用于服务器验证）
+				//this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
+    //        }
+    //        else
+    //        {
+				//// Disable your integration with Play Games Services or show a login button
+				//// to ask users to sign-in. Clicking it should call
+				//// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+				//this.OnGoogleSignInHandler?.Invoke(string.Empty);
+				//Debug.Log($"登录失败！:  {status}");
+    //        }
+
+    //        Social.localUser.Authenticate(ProcessAuthentication_2);
+    //    }
+
+        public void ProcessAuthentication_2(bool status)
         {
-            if (status == SignInStatus.Success)
-            {
-                // Continue with Play Games Services
-                Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
-                Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
-                Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
-                Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
-                Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
+	        if (status == true)
+	        {
+		        // Continue with Play Games Services
+		        //Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
+		        //Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
+		        //Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
+		        //Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
+		        //Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
 
-				// 获取ID令牌（用于服务器验证）
-				this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
-            }
-            else
-            {
-				// Disable your integration with Play Games Services or show a login button
-				// to ask users to sign-in. Clicking it should call
-				// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
-				this.OnGoogleSignInHandler?.Invoke(string.Empty);
-				Debug.Log($"登录失败！:  {status}");
-            }
+
+	        }
+	        else
+	        {
+		        // Disable your integration with Play Games Services or show a login button
+		        // to ask users to sign-in. Clicking it should call
+		        // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+		        this.OnGoogleSignInHandler?.Invoke(string.Empty);
+		        Debug.Log($"Social 登录失败！:  {status}");
+	        }
+	        
         }
+#endif
 
-        public void SignInWithApple(string oldaccount)
+		public void SignInWithApple(string oldaccount)
         {
 			Log.ILog.Debug($"SignInWithApple Begin");
             var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
