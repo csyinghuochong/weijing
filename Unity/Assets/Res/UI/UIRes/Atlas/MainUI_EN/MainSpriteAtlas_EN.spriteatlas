@@ -58,6 +58,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4e7d0925d4dcb014eb257185de622a8e, type: 3}
   - {fileID: 21300000, guid: 5245bc6551e5d7240a1203b42d2e36bd, type: 3}
   - {fileID: 21300000, guid: a511918591f778245af58c70cbf921eb, type: 3}
+  - {fileID: 21300000, guid: d3eacd853fc429d4e9aa5c7df28a70d5, type: 3}
   - {fileID: 21300000, guid: 7e03a6c5f3582044bbb264ba8df9ede0, type: 3}
   - {fileID: 21300000, guid: 2856f8760eedf9345bc5f30b1dbd8d4f, type: 3}
   - {fileID: 21300000, guid: 00356c9689c6a0e4b805caab0c53816e, type: 3}
@@ -109,6 +110,7 @@ SpriteAtlas:
   - c5_EN
   - Btn_131_EN
   - Btn_3_EN
+  - c11_EN
   - Btn_133_EN
   - Btn_110_EN
   - c2_EN
