@@ -260,34 +260,70 @@ namespace ET
             //     }
             // }
             
-            // 方案2
+            // 方案2 Mac会丢失图片
+            // foreach (Transform chind in root)
+            // {
+            //     Image image = chind.GetComponent<Image>();
+            //     if (image != null && image.sprite != null)
+            //     {
+            //         string text = image.sprite.name;
+            //         ReferenceCollector re = chind.GetComponent<ReferenceCollector>();
+            //         if (re != null)
+            //         {
+            //             if (text.EndsWith("_EN"))
+            //             {
+            //                 text = text.Substring(0, text.Length - 3);
+            //             }
+            //             
+            //             Sprite sprite = null;
+            //             if (Language == 0)
+            //             {
+            //                 sprite = re.Get<Sprite>(text);
+            //             }
+            //             else
+            //             {
+            //                 sprite = re.Get<Sprite>(text + "_EN");
+            //             }
+            //                     
+            //             if (sprite != null)
+            //             {
+            //                 image.sprite = sprite;
+            //             }
+            //         }
+            //     }
+            //
+            //     if (chind.childCount > 0)
+            //     {
+            //         TransformImage(chind);
+            //     }
+            // }
+            
+            // 方案 3
             foreach (Transform chind in root)
             {
                 Image image = chind.GetComponent<Image>();
                 if (image != null && image.sprite != null)
                 {
-                    string text = image.sprite.name;
-                    ReferenceCollector re = chind.GetComponent<ReferenceCollector>();
-                    if (re != null)
+                    ReferenceCollector rc = chind.GetComponent<ReferenceCollector>();
+                    if (rc != null)
                     {
-                        if (text.EndsWith("_EN"))
-                        {
-                            text = text.Substring(0, text.Length - 3);
-                        }
-                        
-                        Sprite sprite = null;
+                        GameObject imgGo = null;
                         if (Language == 0)
                         {
-                            sprite = re.Get<Sprite>(text);
+                            imgGo = rc.Get<GameObject>("ZH");
                         }
                         else
                         {
-                            sprite = re.Get<Sprite>(text + "_EN");
+                            imgGo = rc.Get<GameObject>("EN");
                         }
-                                
-                        if (sprite != null)
+
+                        if (imgGo != null)
                         {
-                            image.sprite = sprite;
+                            Sprite sprite = imgGo.GetComponent<Image>().sprite;
+                            if (sprite != null)
+                            {
+                                image.sprite = sprite;
+                            }
                         }
                     }
                 }
