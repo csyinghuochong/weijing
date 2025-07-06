@@ -319,6 +319,88 @@ namespace ET
             UnityEngine.Debug.Log("KCheckFontReferences: End");
         }
 
+
+        [MenuItem("Assets/Custom/Check References Bundler UI 22", false, 1)]//路径
+        public static void KCheckBundleUIReferences_222()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+
+            string[] assetPath = fontPath.Split('/');
+            string fontAssetName = assetPath[assetPath.Length - 1];
+            if (fontAssetName.Contains("."))
+            {
+                fontAssetName = fontAssetName.Split('.')[0];
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: Begin");
+
+            List<string> fileList = new List<string>();
+            fileList.AddRange(GetFile(sBundleUICheckPath, fileList));
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    // string[] assetPath = path.Split('/');
+                    //if (assetPath[assetPath.Length-1] == fongPath)
+
+                    if (!itemPath.Contains("UISkillLearn"))
+                    {
+                        continue;
+                    }
+
+                    if (path == fontPath)
+                    {
+                        UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
+
+
+                        GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
+                        tmpObj = GameObject.Instantiate(tmpObj) as GameObject;
+                        ReferenceCollector[] tmpAr = tmpObj.GetComponentsInChildren<ReferenceCollector>();
+                        for (int t = 0; t < tmpAr.Length; t++)
+                        {
+                            ReferenceCollector textTemp = tmpAr[t];
+                            List< ReferenceCollectorData >  datas  = textTemp.data;
+
+                            foreach (var item in datas)
+                            {
+                                
+                            }
+                        }
+
+                        //TextMeshPro[] tmpProAr = tmpObj.GetComponentsInChildren<TextMeshPro>();
+                        //for (int t = 0; t < tmpProAr.Length; t++)
+                        //{
+                        //    TextMeshPro textTemp = tmpProAr[t];
+                        //    TMP_FontAsset fontTemp = textTemp.font;
+                        //    if (fontTemp == null)
+                        //    {
+                        //        continue;
+                        //    }
+                        //    string assetName = fontTemp.name;
+                        //    if (fontAssetName == assetName)
+                        //    {
+                        //        UnityEngine.Debug.Log($" {textTemp.name}");
+                        //    }
+                        //}
+                    }
+                }
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: End");
+        }
+
+
         // [MenuItem("Asset / ), false, 1]
         [MenuItem("Assets/Custom/Check References Scene", false, 1)]//路径
         public static void KCheckSceneReferences()
