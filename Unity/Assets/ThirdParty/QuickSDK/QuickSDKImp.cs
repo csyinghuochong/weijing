@@ -304,7 +304,6 @@ namespace quicksdk
 			//default:
 			//	return "";
 			return "";
-			}
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.callFunc(type)+"";
