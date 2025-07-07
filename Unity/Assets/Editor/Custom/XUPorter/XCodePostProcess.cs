@@ -164,8 +164,8 @@ public static class XCodePostProcess
 		var newContent = mainContent.Replace("#include <UnityFramework/UnityFramework.h>", @"#include ""../UnityFramework/UnityFramework.h""");
 		File.WriteAllText(mainAppPath, newContent);
 
-		string path_1 = "//Users/tangzhen/project/gitwj/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
-		string path_2 = "//Users/tangzhen/project/gitwj/Unity/ios/Libraries/libil2cpp.a";
+		string path_1 = "//Users/tangzhen/project/gitwj_2022/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
+		string path_2 = "//Users/tangzhen/project/gitwj_2022/Unity/ios/Libraries/libil2cpp.a";
 		File.Copy(path_1, path_2, true);
 
 		// 修改Info.plist文件
