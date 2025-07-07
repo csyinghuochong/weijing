@@ -155,9 +155,11 @@ public static class XCodePostProcess
 		//TODO disable the bitcode for iOS 9
 		project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Release");
 		project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Debug");
-		
+
 		//TODO implement generic settings as a module option
 		//		project.overwriteBuildSetting("CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release");
+
+		Debug.Log("pathToBuiltProject:  " + pathToBuiltProject);
 
 		var mainAppPath = Path.Combine(pathToBuiltProject, "MainApp", "main.mm");
 		var mainContent = File.ReadAllText(mainAppPath);
