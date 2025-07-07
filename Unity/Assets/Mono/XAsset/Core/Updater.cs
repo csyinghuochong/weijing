@@ -113,21 +113,60 @@ namespace libx
             }
         }
 
+        private static bool IsUnityVersionGreaterThan2022()
+        {
+            string version = Application.unityVersion;
+
+            // 提取主版本号和次版本号（例如"2022.3.1f1" → 2022, 3）
+            string[] parts = version.Split('.');
+            if (parts.Length < 2) return false;
+
+            if (int.TryParse(parts[0], out int major) &&
+                int.TryParse(parts[1], out int minor))
+            {
+                // 比较主版本号和次版本号
+                if (major > 2022) return true;
+                if (major == 2022 && minor >= 1) return true;
+            }
+
+            return false;
+        }
+
         private void Start()
         {
             VersionMode versionMode = GameObject.Find("Global").GetComponent<Init>().VersionMode;
+            bool unit2022 = IsUnityVersionGreaterThan2022();
+
+            Debug.Log($"unit2022:  {unit2022}");
             string dlcPath = "";
             switch (versionMode)
             {
                 case VersionMode.Alpha:
-                    dlcPath = "DLCAlpha";
+                    if (unit2022)
+                    {
+                        dlcPath = "DLCAlpha/WJ";
+                    }
+                    else 
+                    {
+                        dlcPath = "DLCAlpha";
+                    }
                     break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
-                    dlcPath = "DLCBeta";
+                    if (unit2022)
+                    {
+                        dlcPath = "DLCBeta/WJ";
+                    }
+                    else
+                    {
+                        dlcPath = "DLCBeta";
+                    } 
                     break;
             }
             baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
+
+            //baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
+
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
             Init init = GameObject.Find("Global").GetComponent<Init>();

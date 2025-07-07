@@ -373,42 +373,42 @@ public class MyEditorScript
         if (target == "Android")
 		{
 
-			#region
-			///test1-----------------------------------------------------------
-			///string streamPath = Application.streamingAssetsPath;
-			//         if (Directory.Exists(streamPath))
-			//         {
-			//             Console.WriteLine($"开始清理目录: {streamPath}");
-			//             DeleteDirectoryContents(streamPath);
+            #region
+            ///test1-----------------------------------------------------------
+            ///string streamPath = Application.streamingAssetsPath;
+            //         if (Directory.Exists(streamPath))
+            //         {
+            //             Console.WriteLine($"开始清理目录: {streamPath}");
+            //             DeleteDirectoryContents(streamPath);
 
-			//             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-			//             Console.WriteLine($"目录 {streamPath} 清理完成!");
-			//         }
-			//if (name != "Google")
-			//{
-			//             //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
-			//             //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
-			//             string sourceFolder = Application.dataPath.Replace("Unity/Assets", "Release/DLCBeta/Android");
+            //             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            //             Console.WriteLine($"目录 {streamPath} 清理完成!");
+            //         }
+            //if (name != "Google")
+            //{
+            //             //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
+            //             //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
+            //             string sourceFolder = Application.dataPath.Replace("Unity/Assets", "Release/DLCBeta/WJ/Android");
 
-			//             CopyFolderContents(sourceFolder, streamPath);
-			//             // AssetDatabase.MoveAsset(sourceFolder, streamPath);
+            //             CopyFolderContents(sourceFolder, streamPath);
+            //             // AssetDatabase.MoveAsset(sourceFolder, streamPath);
 
-			//             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-			//             Console.WriteLine($"目录 {sourceFolder}  {streamPath} 拷贝完成!");
-			//         }
-			//AssetDatabase.ImportAsset(streamPath);
-			//AssetDatabase.importPackageCompleted += OnRefreshComplete;
+            //             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            //             Console.WriteLine($"目录 {sourceFolder}  {streamPath} 拷贝完成!");
+            //         }
+            //AssetDatabase.ImportAsset(streamPath);
+            //AssetDatabase.importPackageCompleted += OnRefreshComplete;
 
-			///test1-----------------------------------------------------------
-			#endregion test1
+            ///test1-----------------------------------------------------------
+            #endregion test1
 
 
-			//test2-----------------------------------------------------------
-			//bool renamesucess = RenameFolderExample(name);
-			//if (!renamesucess)
-			//{
-			//	return;
-			//}
+            //test2-----------------------------------------------------------
+            //bool renamesucess = RenameFolderExample(name);
+            //if (!renamesucess)
+            //{
+            //	return;
+            //}
             //test2-----------------------------------------------------------
 
             if (name == "Google")

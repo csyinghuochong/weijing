@@ -40,6 +40,26 @@ namespace libx
     public static class EditorRuntimeInitializeOnLoad
     {
 
+        public static bool IsUnityVersionGreaterThan2022()
+        {
+            string version = Application.unityVersion;
+
+            // 提取主版本号和次版本号（例如"2022.3.1f1" → 2022, 3）
+            string[] parts = version.Split('.');
+            if (parts.Length < 2) return false;
+
+            if (int.TryParse(parts[0], out int major) &&
+                int.TryParse(parts[1], out int minor))
+            {
+                // 比较主版本号和次版本号
+                if (major > 2022) return true;
+                if (major == 2022 && minor >= 1) return true;
+            }
+
+            return false;
+        }
+
+
         public static int GetVersion()
         {
             int version = -1;
@@ -71,14 +91,30 @@ namespace libx
                 UnityEngine.Debug.LogError("version == -1");
                 return version;
             }
+            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    BuildScript.outputPath = "../Release/DLCAlpha/" + BuildScript.GetPlatformName();
+                    if (unit2022)
+                    {
+                        BuildScript.outputPath = "../Release/DLCAlpha/WJ/" + BuildScript.GetPlatformName();
+                    }
+                    else
+                    {
+                        BuildScript.outputPath = "../Release/DLCAlpha/" + BuildScript.GetPlatformName();
+                    }
+                   
                     break;
                 case VersionMode.BanHao:
                 case VersionMode.Beta:
-                    BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
+                    if (unit2022)
+                    {
+                        BuildScript.outputPath = "../Release/DLCBeta/WJ" + BuildScript.GetPlatformName();
+                    }
+                    else
+                    {
+                        BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
+                    }
                     break;
             }
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;

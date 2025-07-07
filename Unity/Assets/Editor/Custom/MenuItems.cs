@@ -249,6 +249,8 @@ namespace libx
 
             string path = "DLC";
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
+
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
@@ -259,7 +261,16 @@ namespace libx
                     path = "DLCBeta";
                     break;
             }
-            ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}");
+
+            if (unit2022)
+            {
+                ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}/WJ");
+            }
+            else
+            {
+                ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}");
+            }
+
             //  DLLMgr.Delete(Directory.GetParent(Application.dataPath) + "/DLC");
             watch.Stop();
             ET.Log.Debug("Clean bundles in: " + watch.ElapsedMilliseconds + " ms.");

@@ -77,14 +77,29 @@ namespace libx
         internal static void ApplyBuildRules(bool hash = true)
         {
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    outputPath = "../Release/DLCAlpha/" + GetPlatformName();
+                    if (unit2022)
+                    {
+                        outputPath = "../Release/DLCAlpha/WJ/" + GetPlatformName();
+                    }
+                    else
+                    {
+                        outputPath = "../Release/DLCAlpha/" + GetPlatformName();
+                    }
                     break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
-                    outputPath = "../Release/DLCBeta/" + GetPlatformName();
+                    if (unit2022)
+                    {
+                        outputPath = "../Release/DLCBeta/WJ/" + GetPlatformName();
+                    }
+                    else
+                    {
+                        outputPath = "../Release/DLCBeta/" + GetPlatformName();
+                    } 
                     break;
             }
 
@@ -246,6 +261,7 @@ namespace libx
         public static string CreateAssetBundleDirectory()
         {
             // Choose the output path according to the build target.
+            Debug.Log($"CreateAssetBundleDirectory:  {outputPath}");
             if (!Directory.Exists(outputPath))
                 Directory.CreateDirectory(outputPath);
 
@@ -377,15 +393,30 @@ namespace libx
         {
             List<string> fileList = new List<string>();
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             string outputPath = string.Empty;
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    outputPath = "DLCAlpha";
+                    if (unit2022)
+                    {
+                        outputPath = "DLCAlpha/WJ";
+                    }
+                    else
+                    {
+                        outputPath = "DLCAlpha";
+                    }
                     break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
-                    outputPath = "DLCBeta";
+                    if (unit2022)
+                    {
+                        outputPath = "DLCBeta/WJ";
+                    }
+                    else
+                    {
+                        outputPath = "DLCBeta";
+                    }
                     break;
             }
             string dataPath = Application.dataPath;
