@@ -69,11 +69,6 @@ Unity2/
 /ToolsApp/
 /Unity/HybridCLRData/
 /Unity/Assets/Res/XAsset/Rules.asset
-/Unity/Assets/Bundles/Independent
-/Unity/Assets/Bundles/Code/Code.dll.bytes
-/Unity/Assets/Bundles/Code/Code.dll.bytes.meta
-/Unity/Assets/Bundles/Code/Code.pdb.bytes
-/Unity/Assets/Bundles/Code/Code.pdb.bytes.meta
 /Unity/Assembly-CSharp.csproj
 /Unity/Packages/packages-lock.json
 /Excel/~$*.xlsx
