@@ -560,47 +560,47 @@ namespace quicksdk
 		}
 		
 #if UNITY_IOS && !UNITY_EDITOR
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeSetListener(string gameObjectName);
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeLogin();
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeLogout();
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeRealNameAuth(int show);
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativePay(string goodsId, string goodsName, string goodsDesc, string quantifier, string cpOrderId, string callbackUrl, string extrasParams, double price, double amount, int count,
-		                                              string serverId, string serverName, string gameRoleName, string gameRoleId, string gameRoleBalance, string vipLevel, string gameRoleLevel, string partyName, string fightPower, string profession);
-		[DllImport("__Internal")]
-		private static extern IntPtr quicksdk_nativeUserId();
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeUpdateRoleInfo(string serverId, string serverName, string gameRoleName, string gameRoleId, string gameRoleBalance, string vipLevel, string gameRoleLevel, string partyName, string roleCreateTime, string fightPower, string profession, bool isCreate);
-		[DllImport("__Internal")]
-		private static extern void quicksdk_nativeEnterYunKeFuCenter(string gameRoleID, string gameRoleName, string serverName, string vipLevel);
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativeEnterUserCenter();
-		[DllImport("__Internal")]
-        private static extern int quicksdk_nativeEnterCustomerCenter();
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativeEnterBBS();
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativeShowToolBar(int place);
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativeHideToolBar();
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativePausedGame();
-		[DllImport("__Internal")]
-		private static extern bool quicksdk_nativeIsFunctionTypeSupported(int type);
-		[DllImport("__Internal")]
-		private static extern IntPtr quicksdk_nativeChannelName();
-		[DllImport("__Internal")]
-		private static extern IntPtr quicksdk_nativeChannelVersion();
-		[DllImport("__Internal")]
-		private static extern int quicksdk_nativeChannelType();
-		[DllImport("__Internal")]
-		private static extern IntPtr quicksdk_nativeSDKVersion();
-		[DllImport("__Internal")]
-		private static extern IntPtr quicksdk_nativeGetConfigValue(string key);
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeSetListener(string gameObjectName);
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeLogin();
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeLogout();
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeRealNameAuth(int show);
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativePay(string goodsId, string goodsName, string goodsDesc, string quantifier, string cpOrderId, string callbackUrl, string extrasParams, double price, double amount, int count,
+		//                                              string serverId, string serverName, string gameRoleName, string gameRoleId, string gameRoleBalance, string vipLevel, string gameRoleLevel, string partyName, string fightPower, string profession);
+		//[DllImport("__Internal")]
+		//private static extern IntPtr quicksdk_nativeUserId();
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeUpdateRoleInfo(string serverId, string serverName, string gameRoleName, string gameRoleId, string gameRoleBalance, string vipLevel, string gameRoleLevel, string partyName, string roleCreateTime, string fightPower, string profession, bool isCreate);
+		//[DllImport("__Internal")]
+		//private static extern void quicksdk_nativeEnterYunKeFuCenter(string gameRoleID, string gameRoleName, string serverName, string vipLevel);
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativeEnterUserCenter();
+		//[DllImport("__Internal")]
+  //      private static extern int quicksdk_nativeEnterCustomerCenter();
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativeEnterBBS();
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativeShowToolBar(int place);
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativeHideToolBar();
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativePausedGame();
+		//[DllImport("__Internal")]
+		//private static extern bool quicksdk_nativeIsFunctionTypeSupported(int type);
+		//[DllImport("__Internal")]
+		//private static extern IntPtr quicksdk_nativeChannelName();
+		//[DllImport("__Internal")]
+		//private static extern IntPtr quicksdk_nativeChannelVersion();
+		//[DllImport("__Internal")]
+		//private static extern int quicksdk_nativeChannelType();
+		//[DllImport("__Internal")]
+		//private static extern IntPtr quicksdk_nativeSDKVersion();
+		//[DllImport("__Internal")]
+		//private static extern IntPtr quicksdk_nativeGetConfigValue(string key);
 #endif
 
     }
