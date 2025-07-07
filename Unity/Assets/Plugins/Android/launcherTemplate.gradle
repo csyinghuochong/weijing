@@ -164,6 +164,8 @@ dependencies {
 }
 
 android {
+	namespace "**NAMESPACE**"
+	ndkPath "**NDKPATH**"
     compileSdkVersion **APIVERSION**
     buildToolsVersion '30.0.3'
 
