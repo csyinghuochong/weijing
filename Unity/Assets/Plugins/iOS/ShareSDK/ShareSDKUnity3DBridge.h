@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UnityAppController.h"
-#import <ShareSDKExtension/SSERestoreSceneHeader.h>
+//#import <ShareSDKExtension/SSERestoreSceneHeader.h>
 
 @interface ShareSDKUnity3DBridge : NSObject
 
@@ -17,9 +17,10 @@
 @interface UnityAppController (ShareSDKRestoreSceneInit)
 
 @end
-
+/*
 @interface ShareSDKUnityRestoreSceneCallback : NSObject <ISSERestoreSceneDelegate>
 
 + (ShareSDKUnityRestoreSceneCallback *)defaultCallBack;
 
 @end
+*/

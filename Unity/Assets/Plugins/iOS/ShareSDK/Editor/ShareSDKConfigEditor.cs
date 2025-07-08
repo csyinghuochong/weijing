@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
-//using cn.mob.unity3d.sdkporter;
+using cn.mob.unity3d.sdkporter;
 using System.Reflection;
 
 namespace cn.sharesdk.unity3d
@@ -18,6 +18,9 @@ namespace cn.sharesdk.unity3d
 	{
 		string appKey = "";
 		string appSecret = "";
+        string mobNetLater = "2";
+        string mobTwitterVer = "2";
+        
 		Hashtable platformConfList;
        
         List<string> associatedDomains = new List<string>();
@@ -45,6 +48,9 @@ namespace cn.sharesdk.unity3d
 
                 appKey = obj.appKey;
                 appSecret = obj.appSecret;
+                mobNetLater = obj.mobNetLater;
+                mobTwitterVer = obj.mobTwitterVer;
+
                 Save();
                 checkPlatforms(obj.devInfo);
             }
@@ -56,41 +62,53 @@ namespace cn.sharesdk.unity3d
 		{
 			platformConfList = new Hashtable();
 			platformConfList.Add ((int)PlatformType.AliSocial,"app_id");
-			platformConfList.Add ((int)PlatformType.Tumblr,"consumer_key");
+            platformConfList.Add((int)PlatformType.AliSocialMoments,"app_id");
+            platformConfList.Add ((int)PlatformType.Tumblr,"consumer_key");
 			platformConfList.Add ((int)PlatformType.VKontakte,"application_id");
 			platformConfList.Add ((int)PlatformType.Pinterest,"client_id");
 			platformConfList.Add ((int)PlatformType.KakaoTalk,"app_key");
-			platformConfList.Add ((int)PlatformType.KakaoStory,"app_key");
-			platformConfList.Add ((int)PlatformType.Facebook,"api_key");
+            platformConfList.Add((int)PlatformType.KakaoStory, "app_key");
+            platformConfList.Add ((int)PlatformType.KakaoPlatform,"app_key");
+            platformConfList.Add((int)PlatformType.Pocket, "redirect_uri");
+            platformConfList.Add((int)PlatformType.Dingding, "authApp_id");
+            platformConfList.Add((int)PlatformType.DingdingShare, "shareApp_id");
+            platformConfList.Add ((int)PlatformType.Facebook,"api_key");
 			platformConfList.Add ((int)PlatformType.FacebookMessenger,"api_key");
 			platformConfList.Add ((int)PlatformType.QZone,"app_id");
 			platformConfList.Add ((int)PlatformType.QQ,"app_id");
 			platformConfList.Add ((int)PlatformType.QQPlatform,"app_id");
-			platformConfList.Add ((int)PlatformType.MeiPai,"app_key");
-			platformConfList.Add ((int)PlatformType.WeChat,"app_id");
+            platformConfList.Add((int)PlatformType.MeiPai, "app_key");
+            platformConfList.Add ((int)PlatformType.WeChat,"app_id");
 			platformConfList.Add ((int)PlatformType.WeChatMoments,"app_id");
 			platformConfList.Add ((int)PlatformType.WeChatFavorites,"app_id");
-			platformConfList.Add ((int)PlatformType.YiXinSession,"app_id");
+            platformConfList.Add((int)PlatformType.WechatPlatform, "app_id");
+            platformConfList.Add((int)PlatformType.GooglePlus, "client_id");
+
+
+
+            platformConfList.Add ((int)PlatformType.YiXinSession,"app_id");
 			platformConfList.Add ((int)PlatformType.YiXinTimeline,"app_id");
 			platformConfList.Add ((int)PlatformType.YiXinFav,"app_id");
 			platformConfList.Add ((int)PlatformType.YixinPlatform,"app_id");
-			platformConfList.Add ((int)PlatformType.Dingding,"app_id");
-			platformConfList.Add ((int)PlatformType.SinaWeibo,"app_key");
-			platformConfList.Add ((int)PlatformType.CMCC,"app_id");
-			platformConfList.Add ((int)PlatformType.Twitter,"consumer_key");
-            platformConfList.Add ((int)PlatformType.Line,"channel_id");
+	
+
+            platformConfList.Add ((int)PlatformType.SinaWeibo,"app_key");
+            platformConfList.Add((int)PlatformType.CMCC, "app_id");
+            platformConfList.Add ((int)PlatformType.Twitter,"consumer_key");
+            platformConfList.Add ((int)PlatformType.Line, "channel_id");
             platformConfList.Add((int)PlatformType.FacebookAccount, "app_id");
             platformConfList.Add((int)PlatformType.Douyin, "app_key");
-            platformConfList.Add((int)PlatformType.WeWork, "app_key");
-			platformConfList.Add((int)PlatformType.Oasis, "app_key");
+            platformConfList.Add((int)PlatformType.WeWork, "app_Key");
+            platformConfList.Add((int)PlatformType.Oasis, "app_key");
             platformConfList.Add((int)PlatformType.SnapChat, "client_id");
             platformConfList.Add((int)PlatformType.TikTok, "app_key");
             platformConfList.Add((int)PlatformType.KuaiShou, "app_id");
+            platformConfList.Add((int)PlatformType.Youtube, "client_id");
 
 
         }
 
-		private void Prepare()
+        private void Prepare()
 		{
 			try
 			{
@@ -106,8 +124,9 @@ namespace cn.sharesdk.unity3d
 					Hashtable datastore = (Hashtable)MiniJSON.jsonDecode( contents );
 					appKey = (string)datastore["MobAppKey"];
 					appSecret = (string)datastore["MobAppSecret"];
-
-                    Debug.LogWarning ("MOB.keypds appKey: " + appKey);
+                    mobNetLater = (string)datastore["MOBNetLater"];
+                    mobTwitterVer = (string)datastore["MOBTwitterVer"];
+                    
 				}
 				else
 				{
@@ -120,6 +139,8 @@ namespace cn.sharesdk.unity3d
 				{
 					appKey = "moba6b6c6d6";
 					appSecret = "b89d2427a3bc7ad1aea1e1e8c1d36bf3";
+                    mobNetLater = "2";
+                    mobTwitterVer = "2";
 				}
 				Debug.LogException (e);
 			}
@@ -136,7 +157,8 @@ namespace cn.sharesdk.unity3d
 					Hashtable datastore = new Hashtable();
 					datastore["MobAppKey"] = appKey;
 					datastore["MobAppSecret"] = appSecret;
-                    Debug.LogWarning ("MOB.keypds MobAppKey: " + appKey);
+                    datastore["MOBNetLater"] = mobNetLater;
+
 					var json = MiniJSON.jsonEncode(datastore);
 					StreamWriter sWriter = new StreamWriter(filePath);
 					sWriter.WriteLine(json);
@@ -201,11 +223,11 @@ namespace cn.sharesdk.unity3d
 
 					string appkey = GetAPPKey (info,platformId);
 					enablePlatforms.Add (platformId,appkey);
-
+                    
+                    
+                    
                     savePlatformInfoWithId(platformId, info, deviceInfoPlatforms);
-
-                    UnityEngine.Debug.LogWarning("xxxxx: " + info.ToString());
-
+                    
                     if (info.GetType().GetField("app_universalLink") != null)
                     {
                         string app_universalLink = GetValueByName(info, "app_universalLink");
