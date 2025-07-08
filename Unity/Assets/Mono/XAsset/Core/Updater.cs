@@ -165,8 +165,6 @@ namespace libx
             }
             baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
 
-            //baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
-
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
