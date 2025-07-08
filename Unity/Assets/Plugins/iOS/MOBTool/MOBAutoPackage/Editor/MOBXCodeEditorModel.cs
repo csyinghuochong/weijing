@@ -140,7 +140,7 @@ namespace cn.mob.unity3d.sdkporter
 				AddFileFlags(datastore);
 
                 //添加场景还原
-                AddRestoreScene(datastore, savefilePath);
+                //AddRestoreScene(datastore, savefilePath);
 
                 //添加associatedDomains
                 AddAssociatedDomains(datastore, savefilePath);
@@ -318,7 +318,11 @@ namespace cn.mob.unity3d.sdkporter
                            
                             infoPlistSet.Add (key, saveHashtable);
 						}
-					}
+                        else if (value.GetType().Equals(typeof(ArrayList)))
+                        {
+                            infoPlistSet.Add(key, value);
+                        }
+                    }
 				}
 			}
 		}

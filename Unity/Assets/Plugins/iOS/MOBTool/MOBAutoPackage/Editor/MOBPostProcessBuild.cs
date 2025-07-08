@@ -6,12 +6,14 @@ using cn.mob.unity3d.sdkporter;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using System.Linq;
 
 
 #if UNITY_IOS
 
 using UnityEditor.iOS.Xcode;
-#if UNITY_2019_3_OR_NEWER
+
+#if UNITY_2017_2_OR_NEWER
 using UnityEditor.iOS.Xcode.Extensions;
 #endif
 using System.Reflection;
@@ -92,7 +94,7 @@ public class MOBPostProcessBuild
 
             AddFramework(pathModel.filePath, targetPath, xcodeTargetGuid, xcodeFrameworkTargetGuid, pathModel, xcodeProj, ref hasMobFramework, xcodeModel);
             AddStaticLibrary(pathModel.filePath, targetPath, xcodeFrameworkTargetGuid, pathModel, xcodeProj);
-            AddHeader(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj);
+            AddHeader(pathModel.filePath, targetPath, xcodeFrameworkTargetGuid, pathModel, xcodeProj);
             AddBundle(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj);
             AddOtherFile(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj, xcodeModel.fileFlags);
         }
@@ -149,10 +151,9 @@ public class MOBPostProcessBuild
     {
         foreach (MOBPathModel pathModel in xcodeModel.frameworks)
         {
-            if (pathModel.filePath.Contains(".framework") && !pathModel.filePath.Contains("MOBFoundation.framework"))
+            if ((pathModel.filePath.Contains(".framework") || pathModel.filePath.Contains(".xcframework")) && !pathModel.filePath.Contains("MOBFoundation.framework") && !pathModel.filePath.Contains("MOBFoundation.xcframework"))
             {
                 string frameworkPath = pathModel.filePath.Replace(pathModel.rootPath, "");
-
 
                 string savePath = xcodeTargetPath + frameworkPath;
                 int tempIndex = frameworkPath.LastIndexOf("\\");
@@ -166,7 +167,11 @@ public class MOBPostProcessBuild
                 DirectoryInfo saveFrameworkInfo = new DirectoryInfo(savePath);
                 CopyAll(frameworkInfo, saveFrameworkInfo);
                 //将 framework 加入 proj中
+#if UNITY_2017_1_OR_NEWER
                 xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(frameworkPath.Substring(1), "MOB" + frameworkPath, PBXSourceTree.Absolute));
+#else
+                xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(frameworkPath.Substring(1), "MOB" + frameworkPath, PBXSourceTree.Absolute));
+#endif
                 //将 build setting 设置
                 xcodeProj.AddBuildProperty(xcodeTargetGuid, "FRAMEWORK_SEARCH_PATHS", "$(SRCROOT)" + saveFrameworkPath.Replace("\\", "/"));
             }
@@ -241,7 +246,12 @@ public class MOBPostProcessBuild
                 }
                 else
                 {
+#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(otherFilePath.Substring(1), "MOB" + otherFilePath, PBXSourceTree.Absolute));
+
+#else
+                    xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(otherFilePath.Substring(1), "MOB" + otherFilePath, PBXSourceTree.Absolute));
+#endif
                 }
             }
         }
@@ -279,7 +289,11 @@ public class MOBPostProcessBuild
                 string savePath = xcodeTargetPath + headerPath;
                 fileInfo.CopyTo(savePath, true);
                 //将.h 加入 proj中
+#if UNITY_2017_1_OR_NEWER
                 xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddResourcesBuildPhase(xcodeTargetGuid),xcodeProj.AddFile(headerPath.Substring(1), "MOB" + headerPath, PBXSourceTree.Absolute));
+#else
+                xcodeProj.AddFileToBuild(xcodeTargetGuid,xcodeProj.AddFile(headerPath.Substring(1), "MOB" + headerPath, PBXSourceTree.Absolute));
+#endif
                 if (!savePathArray.Contains(saveHeaderPath))
                 {
                     savePathArray.Add(saveHeaderPath);
@@ -331,7 +345,11 @@ public class MOBPostProcessBuild
             string savePath = xcodeTargetPath + staticLibraryPath;
             fileInfo.CopyTo(savePath, true);
             //将.a 加入 proj中
+#if UNITY_2017_1_OR_NEWER
             xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(staticLibraryPath.Substring(1), "MOB" + staticLibraryPath, PBXSourceTree.Absolute));
+#else
+            xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(staticLibraryPath.Substring(1), "MOB" + staticLibraryPath, PBXSourceTree.Absolute));
+#endif
             //将 build setting 设置
             xcodeProj.AddBuildProperty(xcodeTargetGuid, "LIBRARY_SEARCH_PATHS", "$(SRCROOT)" + saveStaticLibraryPath.Replace("\\", "/"));
         }
@@ -363,9 +381,14 @@ public class MOBPostProcessBuild
             //将 framework copy到指定目录
             DirectoryInfo bundleInfo = new DirectoryInfo(lastFilePath);
             DirectoryInfo saveBundleInfo = new DirectoryInfo(savePath);
+            
             CopyAll(bundleInfo, saveBundleInfo);
             //将 framework 加入 proj中
+#if UNITY_2017_1_OR_NEWER
             xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddResourcesBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(bundlePath.Substring(1), "MOB" + bundlePath, PBXSourceTree.Absolute));
+#else
+            xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(bundlePath.Substring(1), "MOB" + bundlePath, PBXSourceTree.Absolute));
+#endif
         }
     }
 
@@ -382,7 +405,18 @@ public class MOBPostProcessBuild
         {
             searchOption = SearchOption.AllDirectories;
         }
-        string[] secondDirectories = Directory.GetDirectories(secondFilePath, "*.framework", searchOption);
+
+        string[] extensions = { ".framework", ".xcframework"};
+        string[] allDirectories = Directory.GetDirectories(secondFilePath, "*", searchOption);
+        var filteredDirectories = allDirectories.Where(dir => {
+            string dirName = Path.GetFileName(dir);
+            return extensions.Any(ext => dirName.EndsWith(ext));
+        });
+        string[] secondDirectories = {};
+        foreach (var dir in filteredDirectories)
+        {
+            secondDirectories = secondDirectories.Concat(new[] { dir }).ToArray();
+        }
         foreach (string lastFilePath in secondDirectories)
         {
             //			Debug.Log("lastFilePath" + lastFilePath);
@@ -397,7 +431,7 @@ public class MOBPostProcessBuild
             //framework 名称
             string frameworkName = lastFilePath.Substring(index + fileNameIndex);
             //			Debug.Log("frameworkName" + frameworkName);
-            bool isMOBFoundation = (frameworkName == "MOBFoundation.framework");
+            bool isMOBFoundation = (frameworkName == "MOBFoundation.xcframework" || frameworkName == "MOBFoundation.framework");
             if (!isMOBFoundation || (isMOBFoundation && !hasMobFramework))
             {
                 if (isMOBFoundation && !hasMobFramework)
@@ -432,22 +466,44 @@ public class MOBPostProcessBuild
                 string fileGuid = (string)xcodeProj.AddFile(frameworkPath.Substring(1), "MOB" + frameworkPath, PBXSourceTree.Absolute);
 
 
-                string[] dynamicframework = { "OasisSDK.framework", "SCSDKCreativeKit.framework", "SCSDKLoginKit.framework", "SCSDKCoreKit.framework" };
+                string[] dynamicframework = {
+                    "OasisSDK.framework", 
+                    "SCSDKCreativeKit.xcframework", 
+                    "SCSDKLoginKit.xcframework", 
+                    "SCSDKCoreKit.xcframework", 
+                    "Alamofire.framework", 
+                    "KakaoSDKAuth.framework", 
+                    "KakaoSDKCommon.framework", 
+                    "KakaoSDKShare.framework", 
+                    "KakaoSDKTalk.framework", 
+                    "KakaoSDKTemplate.framework", 
+                    "KakaoSDKUser.framework"
+                };
                 int dynamicIndex = Array.IndexOf(dynamicframework, frameworkName);
                 
                 if (dynamicIndex >= 0)
                 {
                     
                     targetGuid = xcodeTargetGuid;
+#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(targetGuid, xcodeProj.AddFrameworksBuildPhase(targetGuid), fileGuid);
-#if UNITY_2019_3_OR_NEWER
+#else
+                    xcodeProj.AddFileToBuild(targetGuid, fileGuid);
+#endif
+#if UNITY_2017_2_OR_NEWER
 
+                    xcodeProj.AddFileToEmbedFrameworks(targetGuid, fileGuid);
+#elif UNITY_2019_3_OR_NEWER
                     xcodeProj.AddFileToEmbedFrameworks(targetGuid, fileGuid, targetGuid);
 #endif
                 }
                 else
                 {
+#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(targetGuid, xcodeProj.AddFrameworksBuildPhase(targetGuid), fileGuid);
+#else
+                    xcodeProj.AddFileToBuild(targetGuid, fileGuid);
+#endif
                 }
 
                 //将 build setting 设置
@@ -518,8 +574,22 @@ public class MOBPostProcessBuild
             Hashtable datastore = (Hashtable)MiniJSON.jsonDecode(contents);
             string appKey = (string)datastore["MobAppKey"];
             string appSecret = (string)datastore["MobAppSecret"];
+            string mobNetLater = (string)datastore["MOBNetLater"];
+            string mobTwitterVer = (string)datastore["MOBTwitterVer"];
+
             plistElements.SetString("MOBAppkey", appKey);
             plistElements.SetString("MOBAppSecret", appSecret);
+            if(mobNetLater == null || mobNetLater == ""){
+                //如果为空不作任何操作
+            }else{
+                plistElements.SetString("MOBNetLater", mobNetLater);
+            }
+
+            if(mobTwitterVer == null || mobTwitterVer == ""){
+                //如果为空不作任何操作
+            }else{
+                plistElements.SetString("MOBTwitterVer", mobTwitterVer);
+            }
         }
         else
         {
@@ -587,6 +657,15 @@ public class MOBPostProcessBuild
                     //暂时只支持1层dict
                     dict.SetString(tempKey, (string)temp[tempKey]);
                 }
+            }else if (value.GetType().Equals(typeof(ArrayList)))
+            {
+                ArrayList temp = (ArrayList)value;
+                PlistElementArray urlArray = plistElements.CreateArray(key);
+
+                foreach (string str in temp)
+                {
+                    urlArray.AddString(str);
+                }				
             }
         }
     }
