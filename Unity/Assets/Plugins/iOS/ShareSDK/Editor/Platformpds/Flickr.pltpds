@@ -1,3 +1,5 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/FlickrConnector.framework"]
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/FlickrConnector.xcframework"
+	]
 }

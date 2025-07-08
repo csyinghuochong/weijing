@@ -1,4 +1,8 @@
 {
-    "framework":["/SDK/ShareSDK/Support/PlatformConnector/AppleAccountConnector.framework"],
-  "sysFramework":["AuthenticationServices.framework"]
+  "framework": [
+    "/SDK/ShareSDK/Support/PlatformConnector/AppleAccountConnector.xcframework"
+  ],
+  "sysFramework": [
+    "AuthenticationServices.framework"
+  ]
 }

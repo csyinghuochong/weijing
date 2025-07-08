@@ -1,3 +1,5 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/SMSConnector.framework"],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/SMSConnector.xcframework"
+    ]
 }

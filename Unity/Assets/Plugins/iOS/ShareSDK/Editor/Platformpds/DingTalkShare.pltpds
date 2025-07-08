@@ -1,0 +1,8 @@
+{
+	"URLSchemes": {
+		"CFBundleURLSchemes": [
+			"{appkey}"
+		],
+		"CFBundleURLName": "dingTalkShare"
+	}
+}

@@ -1,3 +1,5 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/LinkedInConnector.framework"]
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/LinkedInConnector.xcframework"
+	]
 }

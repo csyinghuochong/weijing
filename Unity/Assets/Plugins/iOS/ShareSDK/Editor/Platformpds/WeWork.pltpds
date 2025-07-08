@@ -1,9 +1,18 @@
 {
-    "folders" : ["/SDK/ShareSDK/Support/PlatformSDK/WXWorkSDK"],
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/WeworkConnector.framework"],
-    "LSApplicationQueriesSchemes":["wxwork","wxworkrdm"],
-    "URLSchemes" : {
-    				"CFBundleURLSchemes" :["{appkey}"],
-    				"CFBundleURLName" :"wework"
-    				}
+    "folders": [
+        "/SDK/ShareSDK/Support/PlatformSDK/WXWorkSDK"
+    ],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/WeworkConnector.xcframework"
+    ],
+    "LSApplicationQueriesSchemes": [
+        "wxwork",
+        "wxworkrdm"
+    ],
+    "URLSchemes": {
+        "CFBundleURLSchemes": [
+            "{appkey}"
+        ],
+        "CFBundleURLName": "wework"
+    }
 }

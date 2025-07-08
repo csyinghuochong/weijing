@@ -1,4 +1,8 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/TelegramConnector.framework"],
-    "LSApplicationQueriesSchemes":["tg"]
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/TelegramConnector.xcframework"
+    ],
+    "LSApplicationQueriesSchemes": [
+        "tg"
+    ]
 }

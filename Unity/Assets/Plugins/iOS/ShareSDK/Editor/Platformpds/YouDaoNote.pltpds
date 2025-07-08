@@ -1,3 +1,5 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/YouDaoNoteConnector.framework"]
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/YouDaoNoteConnector.xcframework"
+	]
 }

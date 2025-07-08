@@ -1,3 +1,5 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/CopyConnector.framework"],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/CopyConnector.xcframework"
+    ]
 }

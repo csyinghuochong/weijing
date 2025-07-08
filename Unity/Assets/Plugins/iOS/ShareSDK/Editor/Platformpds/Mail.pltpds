@@ -1,3 +1,5 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/MailConnector.framework"],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/MailConnector.xcframework"
+    ]
 }

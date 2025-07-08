@@ -1,3 +1,5 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/MingDaoConnector.framework"]
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/MingDaoConnector.xcframework"
+	]
 }

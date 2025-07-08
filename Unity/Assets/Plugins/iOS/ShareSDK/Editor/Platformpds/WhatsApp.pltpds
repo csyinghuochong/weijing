@@ -1,4 +1,8 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/WhatsAppConnector.framework"],
-	"LSApplicationQueriesSchemes":["whatsapp"]
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/WhatsAppConnector.xcframework"
+	],
+	"LSApplicationQueriesSchemes": [
+		"whatsapp"
+	]
 }

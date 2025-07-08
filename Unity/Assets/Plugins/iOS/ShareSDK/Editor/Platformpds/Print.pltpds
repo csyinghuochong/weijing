@@ -1,3 +1,5 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/PrintConnector.framework"],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/PrintConnector.xcframework"
+    ]
 }

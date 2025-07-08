@@ -1,3 +1,5 @@
 {
-    "framework" : ["/SDK/ShareSDK/Support/PlatformConnector/EvernoteConnector.framework"],
+    "framework": [
+        "/SDK/ShareSDK/Support/PlatformConnector/EvernoteConnector.xcframework"
+    ]
 }

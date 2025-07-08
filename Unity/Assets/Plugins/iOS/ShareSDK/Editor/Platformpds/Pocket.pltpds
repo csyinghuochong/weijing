@@ -1,4 +1,15 @@
 {
-	"LSApplicationQueriesSchemes":["pocket-oauth-v1"],
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/PocketConnector.framework"]
+	"LSApplicationQueriesSchemes": [
+		"pocket-oauth-v1",
+		"pocket"
+	],
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/PocketConnector.xcframework"
+	],
+	"URLSchemes": {
+		"CFBundleURLSchemes": [
+			"pocketapp1234"
+		],
+		"CFBundleURLName": "pocket"
+	}
 }

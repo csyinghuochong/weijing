@@ -1,3 +1,5 @@
 {
-	"framework" : ["/SDK/ShareSDK/Support/PlatformConnector/InstapaperConnector.framework"],
+	"framework": [
+		"/SDK/ShareSDK/Support/PlatformConnector/InstapaperConnector.xcframework"
+	]
 }
