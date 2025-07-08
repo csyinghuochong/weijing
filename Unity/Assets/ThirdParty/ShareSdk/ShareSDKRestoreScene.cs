@@ -1,106 +1,58 @@
-﻿using UnityEngine;
 using System;
+using UnityEngine;
 using System.Collections;
 
-namespace cn.sharesdk.unity3d
-{
-	public class ShareSDKRestoreScene : MonoBehaviour {
+namespace cn.sharesdk.unity3d {
+	public class ShareSDKRestoreScene : MonoBehaviour
+	{
+		public RestoreSceneConfigure restoreSceneConfig;
+		public static bool isInit;
+		public static ShareSDKRestoreScene _instance;
+		public static ShareSDKRestoreSceneImpl restoreSceneUtils;
+		public static event RestoreSceneHandler onRestoreScene;
+		public static event AnalysisCommandHandler OnAnalysisCommand;
+		public delegate void RestoreSceneHandler(RestoreSceneInfo scene);
 
-        // 场景还原功能
-        public RestoreSceneConfigure restoreSceneConfig;
+		public delegate void AnalysisCommandHandler(Hashtable parameters);
 
-        // 第一步：定义委托
-        public delegate void RestoreSceneHandler(RestoreSceneInfo scene);
-
-        // 第一步：定义委托
-        public delegate void AnalysisCommandHandler(Hashtable parameters);
-
-        // 第二步：创建委托对象
-        private static event RestoreSceneHandler onRestoreScene;
-
-        // 第二步：创建委托对象
-        private static event AnalysisCommandHandler OnAnalysisCommand;
-
-        private static bool isInit;
-		private static ShareSDKRestoreScene _instance;
-		private static ShareSDKRestoreSceneImpl restoreSceneUtils;
-
-		void Awake()
-		{
-			if (!isInit) 
-			{
-#if UNITY_ANDROID
-				//restoreSceneUtils = new ShareSDKRestoreSceneImpl();
-#elif UNITY_IPHONE
-                //restoreSceneUtils = new ShareSDKRestoreSceneImpl();//iOS不需要
-#endif
+		void Awake() {
+			if (!isInit) {
 				isInit = true;
 			}
 
-			if (_instance != null) 
-			{
+			if (_instance != null) {
 				Destroy(_instance.gameObject);
 			}
 			_instance = this;
-
 			DontDestroyOnLoad(this.gameObject);
 		}
 
-        public static void setRestoreSceneListener(cn.sharesdk.unity3d.ShareSDKRestoreScene.RestoreSceneHandler sceneHandler)
-        {
-#if UNITY_ANDROID
-            //restoreSceneUtils.setRestoreSceneListener();
-#elif UNITY_IPHONE
-            //restoreSceneUtils.setRestoreSceneListener();//iOS不需要
-#endif
-            onRestoreScene += sceneHandler;
+		public static void setRestoreSceneListener(cn.sharesdk.unity3d.ShareSDKRestoreScene.RestoreSceneHandler sceneHandler) {
+			onRestoreScene += sceneHandler;
+		}
 
-        }
+		public static void setCommandListener(cn.sharesdk.unity3d.ShareSDKRestoreScene.AnalysisCommandHandler commandHandler) {
+			OnAnalysisCommand += commandHandler;
+		}
 
+		public void _RestoreCallBack(string data) {
+			Hashtable res = (Hashtable)MiniJSON.jsonDecode(data);
+			if (res == null || res.Count <= 0) {
+				return;
+			}
+			string path = res ["path"].ToString();
+			Hashtable customParams = (Hashtable)res ["params"];
+			RestoreSceneInfo scene = new RestoreSceneInfo (path, customParams);
 
-        public static void setCommandListener(cn.sharesdk.unity3d.ShareSDKRestoreScene.AnalysisCommandHandler commandHandler)
-        {
-#if UNITY_ANDROID
-            //restoreSceneUtils.setRestoreSceneListener();
-#elif UNITY_IPHONE
-            //restoreSceneUtils.setRestoreSceneListener();//iOS不需要
-#endif
-            OnAnalysisCommand += commandHandler;
+			onRestoreScene(scene);
+		}
 
-        }
-
-        private void _RestoreCallBack(string data)
-        {
-            Debug.Log("[sharesdk-unity]_RestoreCallBack：" + data);
-            Debug.Log("QQQ " + data);
-
-            Hashtable res = (Hashtable)MiniJSON.jsonDecode(data);
-            if (res == null || res.Count <= 0)
-            {
-                return;
-            }
-            string path = res ["path"].ToString();
-            Hashtable customParams = (Hashtable)res ["params"];
-            RestoreSceneInfo scene = new RestoreSceneInfo (path, customParams);
-
-            onRestoreScene(scene);
-        }
-
-        private void _AnalysisCommandCallBack(string data)
-        {
-            Debug.Log("[sharesdk-unity]_AnalysisCommandCallBack：" + data);
-            Debug.Log("QQQ " + data);
-
-            Hashtable res = (Hashtable)MiniJSON.jsonDecode(data);
-            if (res == null || res.Count <= 0)
-            {
-                return;
-            }
-            OnAnalysisCommand(res);
-        }
-
-    }
-
+		public void _AnalysisCommandCallBack(string data) {
+			Hashtable res = (Hashtable)MiniJSON.jsonDecode(data);
+			if (res == null || res.Count <= 0) {
+				return;
+			}
+			OnAnalysisCommand(res);
+		}
+	}
 }
-
-

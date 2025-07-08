@@ -230,6 +230,14 @@ namespace cn.sharesdk.unity3d
 			Debug.Log("#WARING : Do not support this feature in Android" );
 		}
 
+		public override void isClientValidForAndroid(int reqID,PlatformType platform)
+		{
+			Debug.Log("AndroidImpl  ===>>>  isClientValidForAndroid" );
+			if (ssdk != null)
+			{
+				ssdk.Call("isClientValidForAndroid",  reqID, (int)platform);
+			}
+		}
 	}
 #endif
 }
