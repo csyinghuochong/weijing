@@ -1,39 +1,61 @@
 //
-//  BDOpenPlatformObjects.h
+//  DouyinOpenSDKObjects.h
 //
 //  Created by ByteDance on 2019/7/8.
 //  Copyright (c) 2018年 ByteDance Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "DouyinOpenSDKErrorCode.h"
+
 @class DouyinOpenSDKBaseResponse;
 
-typedef NS_ENUM(NSInteger, DouyinOpenSDKErrorCode) {
-    DouyinOpenSDKSuccess                = 0,
-    DouyinOpenSDKErrorCodeCommon        = -1,
-    DouyinOpenSDKErrorCodeUserCanceled  = -2,
-    DouyinOpenSDKErrorCodeSendFailed    = -3,
-    DouyinOpenSDKErrorCodeAuthDenied    = -4,
-    DouyinOpenSDKErrorCodeUnsupported   = -5,
+typedef NS_ENUM(NSInteger, DouyinOpenSDKTargetAppType) {
+    DouyinOpenSDKTargetAuto,
+    DouyinOpenSDKTargetDouyinLiteApp,
+    DouyinOpenSDKTargetDouyinApp,
+    DouyinOpenSDKTargetDouyinHTSApp,
 };
+
+// extraInfo 里的 key，字符串枚举
+typedef NSString * _Nullable DYOpenExtraInfoKey NS_TYPED_ENUM;
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^DouyinOpenSDKRequestCompletedBlock) (DouyinOpenSDKBaseResponse *resp);
 
 @interface DouyinOpenSDKBaseRequest : NSObject
+
 /**
-Passing additional sharing requests param;
-*/
+ Unique id flag the request.
+ */
+@property (nonatomic, copy, readwrite, nonnull) NSString *requestId;
+
+/// Passing additional sharing requests param
 @property (nonatomic, copy, nullable) NSDictionary *extraInfo;
+
+/// target app
+@property (nonatomic, assign) DouyinOpenSDKTargetAppType targetApp;
+
+/// other user info dict
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSObject *, id> *otherInfoDict;
+
 @end
 
 @interface DouyinOpenSDKBaseResponse : NSObject
 
-@property (nonatomic, readonly, assign) BOOL isSucceed;//!< YES for succeess
+/// YES for succeess
+@property (nonatomic, readonly, assign) BOOL isSucceed;
 
-@property (nonatomic, assign) DouyinOpenSDKErrorCode errCode;//!< if failed failed error code
+/// Level 1 code
+@property (nonatomic, assign) DouyinOpenSDKErrorCode errCode;
 
-@property (nonatomic, copy, nullable) NSString *errString;//!< if failed error description
+/// Level 2 code
+@property (nonatomic, assign) DouyinOpenSDKSubCode subErrorCode;
+
+/// error msg
+@property (nonatomic, copy, nullable) NSString *errString;
+
+@property (nonatomic, copy, nullable) NSDictionary *extraInfo;
 
 @end
 

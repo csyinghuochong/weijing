@@ -1,0 +1,11 @@
+framework module MKakaoConnector {
+  umbrella header "MKakaoConnector.h"
+  export *
+
+  module * { export * }
+}
+
+module MKakaoConnector.Swift {
+  header "MKakaoConnector-Swift.h"
+  requires objc
+}

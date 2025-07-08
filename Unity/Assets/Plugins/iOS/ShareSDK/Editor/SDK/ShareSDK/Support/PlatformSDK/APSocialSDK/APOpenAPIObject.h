@@ -50,6 +50,8 @@ typedef enum {
 /** 响应类型 */
 @property (nonatomic, assign) int type;
 @property (nonatomic, strong) NSString *openID;
+@property (nonatomic, strong) NSString *extStr;
+
 @end
 
 #pragma mark - 发送消息到支付宝
@@ -87,6 +89,7 @@ typedef enum {
 //  缩略图数据，thumbData是UIImage类型，thumbUrl是url类型，二者只有一个生效，UIImage优先级高于url
 @property (nonatomic, strong) NSData   *thumbData;
 @property (nonatomic, strong) NSString *thumbUrl;
+@property (nonatomic, strong) NSString *bizType;
 //  多媒体对象
 @property (nonatomic, strong) id mediaObject;
 @end

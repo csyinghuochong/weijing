@@ -1,0 +1,11 @@
+framework module KakaoSDKShare {
+  umbrella header "KakaoSDKShare.h"
+  export *
+
+  module * { export * }
+}
+
+module KakaoSDKShare.Swift {
+  header "KakaoSDKShare-Swift.h"
+  requires objc
+}

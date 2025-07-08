@@ -124,7 +124,7 @@
  * @return 成功返回YES，失败返回NO。
  */
 +(BOOL) openAPApp;
-
++(void) openAPAppCompletionHandler:(void (^)(BOOL success))completion API_AVAILABLE(ios(10.0));
 
 /*! @brief 发送请求到支付宝，等待支付宝返回onResp
  *
@@ -133,7 +133,7 @@
  * @return 成功返回YES，失败返回NO。
  */
 +(BOOL) sendReq:(APBaseReq*)req;
-
++(void) sendReq:(APBaseReq*)req completionHandler:(void (^)(BOOL success))completion API_AVAILABLE(ios(10.0));
 
 /*! @brief 收到支付宝onReq的请求，发送对应的应答给支付宝，并切换到支付宝界面
  *
@@ -142,5 +142,6 @@
  * @return 成功返回YES，失败返回NO。
  */
 +(BOOL) sendResp:(APBaseResp*)resp;
++(void) sendResp:(APBaseResp*)resp completionHandler:(void (^)(BOOL success))completion API_AVAILABLE(ios(10.0));
 
 @end

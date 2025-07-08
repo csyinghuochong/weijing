@@ -1,5 +1,5 @@
 //
-//  BDOpenPlatformAuth.h
+//  DouyinOpenSDKAuth.h
 //
 //  Created by ByteDance on 2019/7/8.
 //  Copyright (c) 2018年 ByteDance Ltd. All rights reserved.
@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @class DouyinOpenSDKAuthResponse;
 
-typedef void(^DouyinOpenSDKAuthCompleteBlock)(DouyinOpenSDKAuthResponse *resp);//!< Auth Result callback block
+/// 授权回调
+typedef void(^DouyinOpenSDKAuthCompleteBlock)(DouyinOpenSDKAuthResponse * _Nullable resp);
 
 #pragma mark - Auth Request
 @interface DouyinOpenSDKAuthRequest : DouyinOpenSDKBaseRequest
@@ -37,6 +38,51 @@ The additional permission type that the third-party application applies to Open 
 @property (nonatomic, copy, nullable) NSString *state;
 
 /**
+ Used for phone auth
+ */
+@property (nonatomic, copy, nullable) NSString *phoneAuthTicket;
+
+/**
+ Used for phone auth
+ */
+@property (nonatomic, copy, nullable) NSString *phoneNumber;
+
+/**
+ use half phone vc
+ */
+@property (nonatomic, assign) BOOL useHalfPhoneVC;
+
+/**
+ is no UI display for phone auth
+ */
+@property (nonatomic, assign) BOOL isSkipUIInPhoneAuth;
+
+/**
+ phone vc scene
+ */
+@property (nonatomic, copy, nullable) NSString *phoneAuthScene;
+
+/**
+ Used for Auth Page Comment
+ */
+@property (nonatomic, copy, nullable) NSString *commentID;
+
+/**
+ 实名互通参数
+ */
+
+@property (nonatomic, copy, nullable) NSString *realNameAssessToken;
+
+@property (nonatomic, copy, nullable) NSString *realNameSourceFrom;
+
+// Web授权配置项：选择是否在H5页面进行扫码授权
+@property (nonatomic, copy, nullable) NSString *webAuthType;
+
+// 授权协议ID，以逗号分隔，如a,b,c
+@property (nonatomic, copy, nullable) NSString *agreementId;
+
+
+/**
  * @brief Send authorization request to Open Platform. If not install App will open authorized web page.
 
  *
@@ -46,6 +92,9 @@ The additional permission type that the third-party application applies to Open 
  * @return Authorization request is valid will return YES;
  */
 - (BOOL)sendAuthRequestViewController:(UIViewController *)viewController completeBlock:(DouyinOpenSDKAuthCompleteBlock)completed;
+- (BOOL)sendAuthRequestWithWebInViewController:(UIViewController *)viewController completeBlock:(DouyinOpenSDKAuthCompleteBlock)completed;
+- (BOOL)preloadWebAuth; // 预加载WebAuth网页
+- (NSString *)scopeString;
 
 @end
 

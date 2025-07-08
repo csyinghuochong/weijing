@@ -1,0 +1,6 @@
+framework module XiaoHongShuOpenSDK {
+  umbrella header "XiaoHongShuOpenSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

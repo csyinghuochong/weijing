@@ -1,11 +1,12 @@
 //
-//  BDOpenPlatformApplicationDelegate.h
+//  DouyinOpenSDKApplicationDelegate.h
 //
 //  Created by ByteDance on 2019/7/8.
 //  Copyright (c) 2018年 ByteDance Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,8 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *currentVersion; //!< Open Platform SDK currtent version
 @property (nonatomic, weak) id<DouyinOpenSDKLogDelegate> logDelegate;//!< Open Platform internal log delegate
+@property (nonatomic, strong) NSString * phoneAuthCommonParams;
 
 + (instancetype) sharedInstance;
+- (void)setEnableTicketGuard:(BOOL)enableTicketGuard;
 
 /**
  * @brief iTunes Url to download app.
@@ -54,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param annotation you receive in you App Delegate
  * @return if Open Platform is handle this URL request will return YES
  */
-- (BOOL)application:(nullable UIApplication *)application openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation;
+- (BOOL)application:(nullable UIApplication *)application openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nullable id)annotation;
 
 /**
  * @brief If you didn't set you ClientKey in Project.info.plisty you can set it manually.

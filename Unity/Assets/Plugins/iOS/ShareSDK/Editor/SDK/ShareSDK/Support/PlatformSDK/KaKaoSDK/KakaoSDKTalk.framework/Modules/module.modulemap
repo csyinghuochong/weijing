@@ -1,0 +1,4 @@
+framework module KakaoSDKTalk {
+  header "KakaoSDKTalk-Swift.h"
+  requires objc
+}

@@ -1,0 +1,11 @@
+framework module KakaoSDKCommon {
+    umbrella header "KakaoSDKCommon.h"
+
+    export *
+    module * { export * }
+}
+
+module KakaoSDKCommon.Swift {
+  header "KakaoSDKCommon-Swift.h"
+  requires objc
+}

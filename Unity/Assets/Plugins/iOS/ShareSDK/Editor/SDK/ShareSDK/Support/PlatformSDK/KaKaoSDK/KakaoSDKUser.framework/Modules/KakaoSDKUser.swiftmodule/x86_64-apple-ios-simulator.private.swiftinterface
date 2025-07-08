@@ -1,0 +1,258 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name KakaoSDKUser
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import AuthenticationServices
+import Foundation
+import KakaoSDKAuth
+import KakaoSDKCommon
+@_exported import KakaoSDKUser
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct User : Swift.Codable {
+  public let id: Swift.Int64?
+  public let properties: [Swift.String : Swift.String]?
+  public let kakaoAccount: KakaoSDKUser.Account?
+  public let groupUserToken: Swift.String?
+  public let connectedAt: Foundation.Date?
+  public let synchedAt: Foundation.Date?
+  public let hasSignedUp: Swift.Bool?
+  public let uuid: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum AgeRange : Swift.String, Swift.Codable {
+  case Age0_9
+  case Age10_14
+  case Age15_19
+  case Age20_29
+  case Age30_39
+  case Age40_49
+  case Age50_59
+  case Age60_69
+  case Age70_79
+  case Age80_89
+  case Age90_Above
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum Gender : Swift.String, Swift.Codable {
+  case Male
+  case Female
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum BirthdayType : Swift.String, Swift.Codable {
+  case Solar
+  case Lunar
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct Account : Swift.Codable {
+  public let profileNeedsAgreement: Swift.Bool?
+  public let profileNicknameNeedsAgreement: Swift.Bool?
+  public let profileImageNeedsAgreement: Swift.Bool?
+  public let profile: KakaoSDKUser.Profile?
+  public let nameNeedsAgreement: Swift.Bool?
+  public let name: Swift.String?
+  public let emailNeedsAgreement: Swift.Bool?
+  public let isEmailValid: Swift.Bool?
+  public let isEmailVerified: Swift.Bool?
+  public let email: Swift.String?
+  public let ageRangeNeedsAgreement: Swift.Bool?
+  public let ageRange: KakaoSDKUser.AgeRange?
+  public let birthyearNeedsAgreement: Swift.Bool?
+  public let birthyear: Swift.String?
+  public let birthdayNeedsAgreement: Swift.Bool?
+  public let birthday: Swift.String?
+  public let birthdayType: KakaoSDKUser.BirthdayType?
+  public let genderNeedsAgreement: Swift.Bool?
+  public let gender: KakaoSDKUser.Gender?
+  public let phoneNumberNeedsAgreement: Swift.Bool?
+  public let phoneNumber: Swift.String?
+  public let legalNameNeedsAgreement: Swift.Bool?
+  public let legalName: Swift.String?
+  public let legalBirthDateNeedsAgreement: Swift.Bool?
+  public let legalBirthDate: Swift.String?
+  public let legalGenderNeedsAgreement: Swift.Bool?
+  public let legalGender: KakaoSDKUser.Gender?
+  public let isKoreanNeedsAgreement: Swift.Bool?
+  public let isKorean: Swift.Bool?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Profile : Swift.Codable {
+  public let nickname: Swift.String?
+  public let profileImageUrl: Foundation.URL?
+  public let thumbnailImageUrl: Foundation.URL?
+  public let isDefaultImage: Swift.Bool?
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_documentation(visibility: private) extension KakaoSDKUser.UserApi {
+  final public func _requestShippingAddress(continuePath: Swift.String, addressId: Swift.Int64? = nil, completion: @escaping (Swift.Int64?, (any Swift.Error)?) -> Swift.Void)
+}
+public enum ScopeType : Swift.String, Swift.Codable {
+  case Privacy
+  case Service
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct Scope : Swift.Codable {
+  public let id: Swift.String
+  public let displayName: Swift.String
+  public let type: KakaoSDKUser.ScopeType
+  public let using: Swift.Bool
+  public let delegated: Swift.Bool?
+  public let agreed: Swift.Bool
+  public let revocable: Swift.Bool?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ScopeInfo : Swift.Codable {
+  public let id: Swift.Int64
+  public let scopes: [KakaoSDKUser.Scope]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct AccessTokenInfo : Swift.Codable {
+  public let appId: Swift.Int64
+  public let id: Swift.Int64?
+  @available(*, deprecated, message: "대신 expiresIn 을 사용해주세요.")
+  @_documentation(visibility: private) public let expiresInMillis: Swift.Int64?
+  public let expiresIn: Swift.Int64
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class UserApi {
+  public static let shared: KakaoSDKUser.UserApi
+  @_documentation(visibility: private) final public var presentationContextProvider: Any?
+  @_documentation(visibility: private) final public var authenticateSession: AuthenticationServices.ASWebAuthenticationSession?
+  @objc deinit
+}
+extension KakaoSDKUser.UserApi {
+  public static func isKakaoTalkLoginAvailable() -> Swift.Bool
+  final public func loginWithKakaoTalk(launchMethod: KakaoSDKCommon.LaunchMethod? = .UniversalLink, channelPublicIds: [Swift.String]? = nil, serviceTerms: [Swift.String]? = nil, nonce: Swift.String? = nil, completion: @escaping (KakaoSDKAuth.OAuthToken?, (any Swift.Error)?) -> Swift.Void)
+  final public func loginWithKakaoAccount(prompts: [KakaoSDKAuth.Prompt]? = nil, loginHint: Swift.String? = nil, nonce: Swift.String? = nil, completion: @escaping (KakaoSDKAuth.OAuthToken?, (any Swift.Error)?) -> Swift.Void)
+  final public func loginWithKakaoAccount(scopes: [Swift.String], nonce: Swift.String? = nil, completion: @escaping (KakaoSDKAuth.OAuthToken?, (any Swift.Error)?) -> Swift.Void)
+  @_documentation(visibility: private) final public func loginWithKakaoAccount(prompts: [KakaoSDKAuth.Prompt]? = nil, channelPublicIds: [Swift.String]? = nil, serviceTerms: [Swift.String]? = nil, nonce: Swift.String? = nil, completion: @escaping (KakaoSDKAuth.OAuthToken?, (any Swift.Error)?) -> Swift.Void)
+}
+extension KakaoSDKUser.UserApi {
+  final public func signup(properties: [Swift.String : Swift.String]? = nil, completion: @escaping (Swift.Int64?, (any Swift.Error)?) -> Swift.Void)
+  final public func me(propertyKeys: [Swift.String]? = nil, secureResource: Swift.Bool = true, completion: @escaping (KakaoSDKUser.User?, (any Swift.Error)?) -> Swift.Void)
+  final public func updateProfile(properties: [Swift.String : Any], completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  final public func accessTokenInfo(completion: @escaping (KakaoSDKUser.AccessTokenInfo?, (any Swift.Error)?) -> Swift.Void)
+  final public func logout(completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  final public func unlink(completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  final public func shippingAddresses(fromUpdatedAt: Foundation.Date? = nil, pageSize: Swift.Int? = nil, completion: @escaping (KakaoSDKUser.UserShippingAddresses?, (any Swift.Error)?) -> Swift.Void)
+  final public func shippingAddresses(addressId: Swift.Int64, completion: @escaping (KakaoSDKUser.UserShippingAddresses?, (any Swift.Error)?) -> Swift.Void)
+  final public func serviceTerms(result: Swift.String? = nil, tags: [Swift.String]? = nil, completion: @escaping (KakaoSDKUser.UserServiceTerms?, (any Swift.Error)?) -> Swift.Void)
+  final public func revokeServiceTerms(tags: [Swift.String], completion: @escaping (KakaoSDKUser.UserRevokedServiceTerms?, (any Swift.Error)?) -> Swift.Void)
+  final public func scopes(scopes: [Swift.String]? = nil, completion: @escaping (KakaoSDKUser.ScopeInfo?, (any Swift.Error)?) -> Swift.Void)
+  final public func revokeScopes(scopes: [Swift.String], completion: @escaping (KakaoSDKUser.ScopeInfo?, (any Swift.Error)?) -> Swift.Void)
+  final public func selectShippingAddress(completion: @escaping (Swift.Int64?, (any Swift.Error)?) -> Swift.Void)
+}
+public struct UserShippingAddresses : Swift.Codable {
+  public let userId: Swift.Int64?
+  public let needsAgreement: Swift.Bool?
+  public let shippingAddresses: [KakaoSDKUser.ShippingAddress]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShippingAddress : Swift.Codable {
+  public enum `Type` : Swift.String, Swift.Codable {
+    case Old
+    case New
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public let id: Swift.Int64
+  public let name: Swift.String?
+  public let isDefault: Swift.Bool
+  public let updatedAt: Foundation.Date?
+  public let type: KakaoSDKUser.ShippingAddress.`Type`?
+  public let baseAddress: Swift.String?
+  public let detailAddress: Swift.String?
+  public let receiverName: Swift.String?
+  public let receiverPhoneNumber1: Swift.String?
+  public let receiverPhoneNumber2: Swift.String?
+  public let zoneNumber: Swift.String?
+  public let zipCode: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UserServiceTerms : Swift.Codable {
+  public let id: Swift.Int64
+  public let serviceTerms: [KakaoSDKUser.ServiceTerms]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ServiceTerms : Swift.Codable {
+  public let tag: Swift.String
+  public let agreedAt: Foundation.Date?
+  public let agreed: Swift.Bool
+  public let required: Swift.Bool
+  public let revocable: Swift.Bool
+  public let referer: KakaoSDKUser.ServiceTerms.Referer?
+  public enum Referer : Swift.String, Swift.Codable {
+    case kauth
+    case kapi
+    case unknown
+    @_documentation(visibility: private) public init(from decoder: any Swift.Decoder) throws
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  @_documentation(visibility: private) public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct UserRevokedServiceTerms : Swift.Codable {
+  public var id: Swift.Int64
+  public var revokedServiceTerms: [KakaoSDKUser.RevokedServiceTerms]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RevokedServiceTerms : Swift.Codable {
+  public let tag: Swift.String
+  public let agreed: Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension KakaoSDKUser.AgeRange : Swift.Equatable {}
+extension KakaoSDKUser.AgeRange : Swift.Hashable {}
+extension KakaoSDKUser.AgeRange : Swift.RawRepresentable {}
+extension KakaoSDKUser.Gender : Swift.Equatable {}
+extension KakaoSDKUser.Gender : Swift.Hashable {}
+extension KakaoSDKUser.Gender : Swift.RawRepresentable {}
+extension KakaoSDKUser.BirthdayType : Swift.Equatable {}
+extension KakaoSDKUser.BirthdayType : Swift.Hashable {}
+extension KakaoSDKUser.BirthdayType : Swift.RawRepresentable {}
+extension KakaoSDKUser.ScopeType : Swift.Equatable {}
+extension KakaoSDKUser.ScopeType : Swift.Hashable {}
+extension KakaoSDKUser.ScopeType : Swift.RawRepresentable {}
+extension KakaoSDKUser.ShippingAddress.`Type` : Swift.Equatable {}
+extension KakaoSDKUser.ShippingAddress.`Type` : Swift.Hashable {}
+extension KakaoSDKUser.ShippingAddress.`Type` : Swift.RawRepresentable {}
+extension KakaoSDKUser.ServiceTerms.Referer : Swift.Equatable {}
+extension KakaoSDKUser.ServiceTerms.Referer : Swift.Hashable {}
+extension KakaoSDKUser.ServiceTerms.Referer : Swift.RawRepresentable {}

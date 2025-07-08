@@ -1,0 +1,11 @@
+framework module KakaoSDKTemplate {
+  umbrella header "KakaoSDKTemplate.h"
+  export *
+
+  module * { export * }
+}
+
+module KakaoSDKTemplate.Swift {
+  header "KakaoSDKTemplate-Swift.h"
+  requires objc
+}
