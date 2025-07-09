@@ -146,7 +146,7 @@ public class MyEditorScript
 		BulidTarget("Google", "Android");
 	}
 
-	private static string targetPath = Application.dataPath + @"\Plugins\Android\libs_alipay"; //目标路径   ../表示当前项目文件的父路径
+	private static string targetPath = Application.dataPath + @"\Plugins\Android\libs_custom"; //目标路径   ../表示当前项目文件的父路径
 	private static string mainfestFile = Application.dataPath + @"\Plugins\Android\AndroidManifest"; //目标路径   ../表示当前项目文件的父路径
 	private static bool isNull = false;
 	private static void CopyLibs(string path)

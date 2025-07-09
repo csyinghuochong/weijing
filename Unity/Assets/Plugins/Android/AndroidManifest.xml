@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.goinggame.weijing.MainActivity"
+            android:name="com.example.weijinggame.MainActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
             android:exported="true"
             android:launchMode="singleTask"
@@ -39,7 +39,7 @@
                 android:value="true" />
         </activity>
         <activity
-            android:name="com.goinggame.weijing.wxapi.WXPayEntryActivity"
+            android:name="com.example.weijinggame.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
         <activity
