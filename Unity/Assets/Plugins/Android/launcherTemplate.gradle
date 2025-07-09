@@ -67,6 +67,9 @@ MobSDK {
     appKey "36af6e3967670"
     appSecret "c2b2d9e1afdfd9f6e1cfb3a399d01703"
 
+     SMSSDK {
+		
+    }
 
 
     ShareSDK {
