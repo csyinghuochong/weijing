@@ -33,13 +33,13 @@ namespace com.mob.mobpush
 		public delegate void OnPrivacyPolicyCallback(string content, int errorCode);
 
 		void Awake() {
-			#if UNITY_IPHONE
-				mobPushImpl = new iOSMobPushImpl(gameObject);
-			#elif UNITY_ANDROID
-				mobPushImpl = new AndroidImpl(gameObject);
-			#endif
+			//#if UNITY_IPHONE
+			//	mobPushImpl = new iOSMobPushImpl(gameObject);
+			//#elif UNITY_ANDROID
+			//	mobPushImpl = new AndroidImpl(gameObject);
+			//#endif
 
-			mobPushImpl.addPushReceiver();
+			//mobPushImpl.addPushReceiver();
 		}
 
 		private void _MobPushCallback(string data) {
