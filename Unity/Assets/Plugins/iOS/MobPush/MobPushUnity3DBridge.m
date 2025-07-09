@@ -8,7 +8,7 @@
 
 #import "MobPushUnity3DBridge.h"
 #import <MobPush/MobPush.h>
-#import <MOBFoundation/MOBFJson.h>
+#import <MOBFoundation/MOBFoundation.h>
 #import <MobPush/MPushNotificationConfiguration.h>
 #import <MobPush/MobPush+Test.h>
 #import <MobPush/MPushMessage.h>
@@ -71,7 +71,7 @@ extern "C" {
     BOOL _iosPro;
     
     MPushNotificationConfiguration *__parseNotiConfigHashtable (void *notificationInfo);
-    MPushMessage *__parseMessageHashtable (void *messageInfo);
+    MPushNotificationRequest *__parseMessageHashtable (void *messageInfo);
     
     void __iosMobPushSetAppForegroundHidden (bool hidden)
     {
@@ -203,7 +203,7 @@ extern "C" {
         NSString *observerStr = nil;
         if (observer)
         {
-            observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding]; 
+            observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
         }
         [[MobPushUnityCallback defaultCallBack] addPushObserver:observerStr];
     }
@@ -216,8 +216,12 @@ extern "C" {
     
     extern void __iosMobPushAddLocalNotification (void *messageInfo)
     {
-        MPushMessage *message = __parseMessageHashtable(messageInfo);
-        [MobPush addLocalNotification:message];
+        MPushNotificationRequest *request = __parseMessageHashtable(messageInfo);
+        [MobPush addLocalNotification:request result:^(id result, NSError *error) {
+#if DEBUG
+            if (result && !error) NSLog(@"Add localNotification success.");
+#endif
+        }];
     }
     
     extern void __iosMobPushGetTags (void *observer)
@@ -522,38 +526,39 @@ extern "C" {
         return config;
     }
 
-    MPushMessage *__parseMessageHashtable (void *messageInfo)
+    MPushNotificationRequest *__parseMessageHashtable (void *messageInfo)
     {
+        // 数据转换
         NSString *theParamsStr = [NSString stringWithCString:messageInfo encoding:NSUTF8StringEncoding];
         NSDictionary *eventParams = [MOBFJson objectFromJSONString:theParamsStr];
         
-        MPushMessage *message = [[MPushMessage alloc] init];
-        message.messageType = MPushMessageTypeLocal;
-        message.identifier = eventParams[@"id"];
-        message.extraInfomation = [MOBFJson objectFromJSONString:eventParams[@"extras"]];
-        MPushNotification *noti = [[MPushNotification alloc] init];
+        MPushNotificationRequest *request = [[MPushNotificationRequest alloc] init];
+        request.requestIdentifier = eventParams[@"id"];
         
-        noti.title = eventParams[@"title"];
-        noti.body = eventParams[@"content"];
-        noti.sound = eventParams[@"sound"];
-        noti.badge = [eventParams[@"badge"] integerValue];
-        noti.subTitle = eventParams[@"subTitle"];
+        MPushNotification *content = [[MPushNotification alloc] init];
+        content.title = eventParams[@"title"];
+        content.sound = eventParams[@"sound"];
+        content.body = eventParams[@"content"];
+        content.subTitle = eventParams[@"subTitle"];
+        content.badge = [eventParams[@"badge"] integerValue];
+        content.userInfo = [MOBFJson objectFromJSONString:eventParams[@"extras"]];
         
-        long timeStamp = [eventParams[@"timeStamp"] longValue];
-        if (timeStamp == 0)
-        {
-            message.isInstantMessage = YES;
+        request.content = content;
+        
+        if ([eventParams objectForKey:@"timeStamp"]
+            && [eventParams[@"timeStamp"] respondsToSelector:@selector(doubleValue)]) {
+            NSTimeInterval time = [eventParams[@"timeStamp"] doubleValue];
+            MPushNotificationTrigger *trigger = [[MPushNotificationTrigger alloc] init];
+            if ([MOBFDevice versionCompare:@"10.0"] == NSOrderedAscending) {
+                NSTimeInterval targetTS = [[NSDate date] timeIntervalSince1970] * 1000 + time;
+                trigger.fireDate = [NSDate dateWithTimeIntervalSince1970:targetTS];
+            } else {
+                trigger.timeInterval = time / 1000.0;
+            }
+            request.trigger = trigger;
         }
-        else
-        {
-            NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-            NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
-            message.taskDate = nowtime + (NSTimeInterval)timeStamp;
-        }
         
-        message.notification = noti;
-        
-        return message;
+        return request;
     }
 
     extern void __iosGetPrivacyPolicy(void *type, void *language, void *observer)

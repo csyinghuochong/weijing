@@ -17,7 +17,7 @@ namespace com.mob.mobpush
 		}
 
 		public void setTimestamp(long timestamp) {
-			styleParams ["timestamp"] = timestamp;
+			styleParams ["timeStamp"] = timestamp;
 		}
 
 		public void setId(string id) {

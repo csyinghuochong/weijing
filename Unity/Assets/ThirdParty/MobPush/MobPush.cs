@@ -7,7 +7,7 @@ namespace com.mob.mobpush
 {
 	public class MobPush : MonoBehaviour
 	{
-		public static string version = "3.0.1";
+		public static string version = "3.0.3";
 
 		public MobPushImpl mobPushImpl;
 		public OnNotifyCallback onNotifyCallback;
@@ -171,17 +171,10 @@ namespace com.mob.mobpush
 			mobPushImpl.setAppForegroundHiddenNotification(hidden);
 		}
 
-		/// <summary>
-		/// 获取 regId
-		/// </summary>
 		public void getRegistrationId() {
 			mobPushImpl.getRegistrationId();
 		}
 
-		/// <summary>
-		/// 添加标签（数组）
-		/// </summary>
-		/// <param name="tags"></param>
 		public void addTags(string[] tags) {
 			mobPushImpl.addTags(tags);
 		}
@@ -190,39 +183,22 @@ namespace com.mob.mobpush
 			mobPushImpl.getTags();
 		}
 
-		/// <summary>
-		/// 删除标签 （数组）
-		/// </summary>
-		/// <param name="tags"></param>
 		public void deleteTags(string[] tags) {
 			mobPushImpl.deleteTags(tags);
 		}
 
-		/// <summary>
-		/// 删除所有标签
-		/// </summary>
 		public void cleanAllTags() {
 			mobPushImpl.cleanAllTags();
 		}
 
-		/// <summary>
-		/// 添加别名（别名只有一个，再添加覆盖）
-		/// </summary>
-		/// <param name="alias"></param>
 		public void addAlias(string alias) {
 			mobPushImpl.addAlias(alias);
 		}
 
-		/// <summary>
-		/// 获取别名
-		/// </summary>
 		public void getAlias() {
 			mobPushImpl.getAlias();
 		}
 
-		/// <summary>
-		/// 删除别名
-		/// </summary>
 		public void cleanAllAlias() {
 			mobPushImpl.cleanAllAlias();
 		}
