@@ -66,11 +66,14 @@ apply plugin: 'com.mob.sdk'
 MobSDK {
     appKey "36af6e3967670"
     appSecret "c2b2d9e1afdfd9f6e1cfb3a399d01703"
+    spEdition "FP"
+      fp true
 
      SMSSDK {
 		
-    }
+      }
 
+   
 
     ShareSDK {
         //第三方平台配置
