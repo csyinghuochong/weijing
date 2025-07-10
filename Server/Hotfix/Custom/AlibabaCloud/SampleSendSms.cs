@@ -99,10 +99,22 @@ namespace AlibabaCloud.SDK.Sample
                 SignName = signtype == 1 ? "烟台贺寒信息科技" : "危境",
                 TemplateCode = "SMS_317195299",
                 PhoneNumbers = phoneNum,
-                TemplateParam = "{\"code\":\"" + code +  "\"}"
+                TemplateParam = "{\"code\":\"" + code + "\"}"
                 //templateParam == 1 ?  "您的验证码为：${code}，请勿泄露于他人！" : "{\"code\":\"##code##\"}",
                 // "{\"code\":\"1234\"}",
             };
+
+            //AlibabaCloud.SDK.Dysmsapi20170525.Models.SendSmsRequest sendSmsRequest = new AlibabaCloud.SDK.Dysmsapi20170525.Models.SendSmsRequest
+            //{
+            //    SignName = "速通互联验证平台",
+            //    TemplateCode = "100001",
+            //    PhoneNumbers = phoneNum,
+            //    TemplateParam = "{\"code\":\"" + code + "\"}"
+            //    //templateParam == 1 ?  "您的验证码为：${code}，请勿泄露于他人！" : "{\"code\":\"##code##\"}",
+            //    // "{\"code\":\"1234\"}",
+            //};
+
+
             AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
             try
             {

@@ -26,11 +26,12 @@ namespace ET
 
                 using (session.AddComponent<SessionLockingComponent>())
                 {
-                    //response.Error = CheckSmsVerifyCode.Check(request.PhoneNumber, request.Code, string.Empty);
-
-                    AccountCenterComponent playerInfoList = session.DomainScene().GetComponent<AccountCenterComponent>();
-                    bool code = playerInfoList.CheckVerification(request.PhoneNumber, request.Code);
-                    response.Error = code ? ErrorCode.ERR_Success : ErrorCode.MOBILE_CHECK_ILLEGAL;
+                    response.Error = CheckSmsVerifyCode.Check(request.PhoneNumber, request.Code, string.Empty);
+                    
+                    //AccountCenterComponent playerInfoList = session.DomainScene().GetComponent<AccountCenterComponent>();
+                    //bool code = playerInfoList.CheckVerification(request.PhoneNumber, request.Code);
+                    //response.Error = code ? ErrorCode.ERR_Success : ErrorCode.MOBILE_CHECK_ILLEGAL;
+                    //Console.WriteLine($"Check: {request.PhoneNumber} {request.Code}  {code}");
 
                     reply();
                 }

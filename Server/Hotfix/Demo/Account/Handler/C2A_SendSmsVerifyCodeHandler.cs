@@ -27,11 +27,11 @@ namespace ET
 
                 using (session.AddComponent<SessionLockingComponent>())
                 {
-                    //response.Error = SendSmsVerifyCode.Send(request.PhoneNumber);
+                    response.Error = SendSmsVerifyCode.Send(request.PhoneNumber);
 
-                    AccountCenterComponent playerInfoList = session.DomainScene().GetComponent<AccountCenterComponent>();
-                    string code =  playerInfoList.GenerateVerification(request.PhoneNumber);
-                    Sample.Send_2(request.PhoneNumber, 1, 1, code);
+                    //AccountCenterComponent playerInfoList = session.DomainScene().GetComponent<AccountCenterComponent>();
+                    //string code =  playerInfoList.GenerateVerification(request.PhoneNumber);
+                    //Sample.Send_2(request.PhoneNumber, 1, 1, code);
 
                     reply();
                 }
