@@ -32,7 +32,6 @@ namespace cn.sharesdk.unity3d {
 		public string mobNetLater = "2";
 		public string mobTwitterVer = "2";
 
-		public List<string> customAssociatedDomains = new List<string>();
 		public GetWXRequestTokenHanlerEvent wxRequestHandler;
 		public GetWXRefreshTokenHanlerEvent wxRefreshTokenHandler;
 		public GetShareCommandHanlerEvent shareCommandHandler;
