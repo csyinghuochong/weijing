@@ -53,13 +53,23 @@ namespace ET
 
 	public class Init : MonoBehaviour
 	{
-		public bool Development;
-		public bool EditorMode;
-		public bool OueNetMode;
-		public int BigVersion = 21;      
-		//17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google
-		public int BigVersionIOS = 21;
+        [SerializeField]
+        public bool Development;
+        [SerializeField]
+        public bool EditorMode;
+        [SerializeField]
+        public bool OueNetMode;
+        [SerializeField]
+        public int BigVersion = 21;
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google
+        [SerializeField]
+        public int BigVersionIOS = 21;
         //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包/Google
+        [SerializeField]
+        public CodeMode CodeMode = CodeMode.Mono;
+        [SerializeField]
+        public VersionMode VersionMode = VersionMode.Alpha;
+
         public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -101,9 +111,6 @@ namespace ET
         //而"com.mafeng.aliopensdk.AliSDKActivity"是之前的版本 对应安卓工程中的aliopensdk Module
         public string javaClassStr = "com.example.alinewsdk.AliSDKActivity";  //"com.mafeng.aliopensdk.AliSDKActivity";
 		public string javaActiveStr = "currentActivity";
-
-		public CodeMode CodeMode = CodeMode.Mono;
-		public VersionMode VersionMode = VersionMode.Alpha;
 
         [HideInInspector]
         public int Platform = 0;
