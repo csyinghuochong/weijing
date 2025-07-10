@@ -55,15 +55,22 @@ namespace cn.sharesdk.unity3d {
 				int platformId = (int)info.GetType().GetField("type").GetValue(info);
 				FieldInfo[] fields = info.GetType().GetFields();
 				Hashtable table = new Hashtable();
-				foreach (FieldInfo field in fields) {
+                Debug.Log($"ShareSDK.Add:  platformId:{platformId}");
+                foreach (FieldInfo field in fields) {
 					if ("type".EndsWith(field.Name)) {
 						continue;
 					} else if ("Enable".EndsWith(field.Name) || "ShareByAppClient".EndsWith(field.Name) || "BypassApproval".EndsWith(field.Name) || "WithShareTicket".EndsWith(field.Name)) {
 						table.Add(field.Name, Convert.ToString(field.GetValue(info)).ToLower());
-					} else {
+
+                        Debug.Log($"ShareSDK.Add:  table :{field.Name}   {Convert.ToString(field.GetValue(info)).ToLower()}");
+                    } else {
 						table.Add(field.Name, Convert.ToString(field.GetValue(info)));
-					}
-				}
+
+                        Debug.Log($"ShareSDK.Add:  table :{field.Name}   {Convert.ToString(field.GetValue(info))}");
+                    }
+                    
+                }
+				Debug.Log($"ShareSDK.Add:  platformId:{platformId}");
 				platformConfigs.Add(platformId, table);
 			}
 
