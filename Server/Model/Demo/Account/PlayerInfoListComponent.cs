@@ -11,7 +11,7 @@ namespace ET
         /// <summary>
         /// 正在回档的玩家
         /// </summary>
-        public List<KeyValuePair<long, string>> ArchivePlayerList = new List<KeyValuePair<long, string>>();       
+        public List<KeyValuePair<long, string>> ArchivePlayerList = new List<KeyValuePair<long, string>>();
 
     }
 }

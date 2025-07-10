@@ -62,13 +62,6 @@ namespace ET
                     Sample.Send("19974071056", 1, 2);
                     await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
 
-                    //电信
-                    Console.WriteLine("SendSmsVerifyCode.Send 19959921706");
-                    Sample.Send("19959921706", 1, 1);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-                    Sample.Send("19959921706", 1, 2);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-
                     //移动
                     Console.WriteLine("SendSmsVerifyCode.Send 18319670288");
                     Sample.Send("18319670288", 1, 1);

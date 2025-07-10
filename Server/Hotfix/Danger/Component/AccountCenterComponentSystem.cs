@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -115,6 +116,56 @@ namespace ET
                     break;
             }
         }
+
+        public static int GenerateSecureFourDigitNumber()
+        {
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                byte[] buffer = new byte[4];
+                rng.GetBytes(buffer);
+                int randomNumber = Math.Abs(BitConverter.ToInt32(buffer, 0));
+                return randomNumber % 9000 + 1000; // 确保范围在1000-9999之间
+            }
+        }
+
+        public static string GenerateVerification(this AccountCenterComponent self, string phone)
+        {
+            if (self.PhoneVerification.ContainsKey(phone))
+            {
+                KeyValuePair<long, string> keyValuePair = self.PhoneVerification[phone];
+
+                if (TimeHelper.ServerNow() - keyValuePair.Key < TimeHelper.Minute * 10)
+                {
+                    return keyValuePair.Value;
+                }
+                else
+                {
+                    self.PhoneVerification.Remove(phone);
+                }
+            }
+            int secureNumber = GenerateSecureFourDigitNumber();
+            self.PhoneVerification.Add(phone, new KeyValuePair<long, string>(TimeHelper.ServerNow(), secureNumber.ToString()));
+            Console.WriteLine($"GenerateVerification: {phone}  {secureNumber}");
+            return secureNumber.ToString();
+        }
+
+        public static bool CheckVerification(this AccountCenterComponent self, string phone, string code)
+        {
+            if (self.PhoneVerification.ContainsKey(phone))
+            {
+                KeyValuePair<long, string> keyValuePair = self.PhoneVerification[phone];
+
+                if (TimeHelper.ServerNow() - keyValuePair.Key > TimeHelper.Minute * 10)
+                {
+                    return false;
+                }
+
+                return keyValuePair.Value.Equals(code);
+            }
+
+            return false;
+        }
+
 
         public static async ETTask SaveDB(this AccountCenterComponent self)
         {

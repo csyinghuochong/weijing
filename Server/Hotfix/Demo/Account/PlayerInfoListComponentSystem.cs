@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Alipay.AopSdk.Core.Domain;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ET
 {
@@ -21,7 +24,7 @@ namespace ET
 
         }
 
-
+      
         public static bool OnAddArchive(this PlayerInfoListComponent self, string account, long unitid, int archive)
         {
             for (int i = self.ArchivePlayerList.Count - 1; i >= 0; i--)

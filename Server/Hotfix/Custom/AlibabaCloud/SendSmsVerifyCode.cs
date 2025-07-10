@@ -66,14 +66,13 @@ namespace AlibabaCloud.SDK.Sample
             //    ReturnVerifyCode = true,
             //};
 
-
             AlibabaCloud.SDK.Dypnsapi20170525.Client client = CreateClient();
             AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest sendSmsVerifyCodeRequest = new AlibabaCloud.SDK.Dypnsapi20170525.Models.SendSmsVerifyCodeRequest
             {
                 PhoneNumber = phoneNum,
                 TemplateCode = "100001",
                 TemplateParam = "{\"code\":\"##code##\",\"min\":10}",
-                SignName = "云渚科技验证平台",
+                SignName = "速通互联验证平台",
                 Interval = 10,
                 OutId = TimeHelper.ServerNow().ToString(),
                 CodeType = 1,
