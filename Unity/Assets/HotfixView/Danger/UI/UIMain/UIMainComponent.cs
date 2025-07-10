@@ -288,16 +288,16 @@ namespace ET
             self.Fps = rc.Get<GameObject>("Fps");
             self.Fps.SetActive(false);
 
+            self.TextFps = self.Fps.transform.Find("TextFps").GetComponent<Text>();
+            self.TextPing = self.Fps.transform.Find("TextPing").GetComponent<Text>();
+            self.TextMessage = self.Fps.transform.Find("TextMessage").GetComponent<Text>(); 
+
             //获取相关组件
             self.Obj_Img_ExpPro = rc.Get<GameObject>("Img_ExpPro");
             self.Obj_Lab_ExpValue = rc.Get<GameObject>("Lab_ExpValue");
             self.bagButton = rc.Get<GameObject>("Btn_RoseEquip");
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
-
-            self.TextFps = rc.Get<GameObject>("TextFps").GetComponent<Text>();
-            self.TextPing = rc.Get<GameObject>("TextPing").GetComponent<Text>();
-            self.TextMessage = rc.Get<GameObject>("TextMessage").GetComponent<Text>();
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
