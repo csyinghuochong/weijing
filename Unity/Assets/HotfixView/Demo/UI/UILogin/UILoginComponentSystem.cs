@@ -283,7 +283,7 @@ namespace ET
         /// <param name="state"></param>
         /// <param name="type"></param>
         /// <param name="result"></param>
-        public static void OnGetUserInfoResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
+        public static void OnGetUserInfoResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
         {
             Log.ILog.Debug("get user info result:");
             Log.ILog.Debug((MiniJSON.jsonEncode(result)));
@@ -342,7 +342,7 @@ namespace ET
         /// <param name="state"></param>
         /// <param name="type"></param>
         /// <param name="result"></param>
-        public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
+        public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
 			if (state != cn.sharesdk.unity3d.ResponseState.Success)
