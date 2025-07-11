@@ -121,65 +121,6 @@ namespace ET
                 }
             }
         }
-
-        /// <summary>
-        /// 返回各平台用户信息
-        /// </summary>
-        /// <param name="reqID"></param>
-        /// <param name="state"></param>
-        /// <param name="type"></param>
-        /// <param name="result"></param>
-        public static void OnGetUserInfoResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
-        {
-            Log.ILog.Debug("get user info result:");
-            Log.ILog.Debug((MiniJSON.jsonEncode(result)));
-            Log.ILog.Debug(("get user info sucess ! platform :" + type));
-            if (type == cn.sharesdk.unity3d.PlatformType.WeChat)
-            {
-                Log.ILog.Debug(("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type))));
-                if (state == ResponseState.Success)
-                {
-                    result = self.ssdk.GetAuthInfo(type);
-#if UNITY_ANDROID
-                    string openId = result["openID"].ToString();  //openID == userID
-                    Log.ILog.Debug("get user info openId :" + openId);
-                    string userId = result["unionID"].ToString();
-                    Log.ILog.Debug("get user info userId :" + userId);
-#elif UNITY_IPHONE
-					string openId = result["uid"].ToString();  //openID == userID
-					Log.ILog.Debug("get user info openId :" + openId);
-					string userId = result["token"].ToString();
-					Log.ILog.Debug("get user info userId :" + userId);
-#endif
-                    self.OnGetUserInfo($"wx{openId};wx{userId}");
-                }
-                else
-                {
-                    self.OnGetUserInfo("fail");
-                }
-            }
-            if (type == cn.sharesdk.unity3d.PlatformType.QQ)
-            {
-                Log.ILog.Debug("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type)));
-                if (state == ResponseState.Success)
-                {
-                    result = self.ssdk.GetAuthInfo(type);
-#if UNITY_ANDROID
-                    string openId = result["unionID"].ToString();
-                    string userId = result["userID"].ToString();
-#elif UNITY_IPHONE
-					string openId = result["uid"].ToString();
-					string userId = result["token"].ToString();
-#endif
-                    Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
-                    self.OnGetUserInfo($"qq{openId};qq{userId}");
-                }
-                else
-                {
-                    self.OnGetUserInfo("fail");
-                }
-            }
-        }
     }
 
 

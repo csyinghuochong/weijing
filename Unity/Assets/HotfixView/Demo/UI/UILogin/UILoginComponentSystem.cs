@@ -261,16 +261,14 @@ namespace ET
 		public static void InitSdk(this UILoginComponent self)
 		{
 
-#if !UNITY_EDITOR
-			GameObject sharesdk = GameObject.Find("Global");
-			ShareSDK ssdk = sharesdk.GetComponent<ShareSDK>();
-			ssdk.authHandler = (int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result) => 
-			{
-				self.OnAuthResultHandler(reqID, state, type, result); 
-			};
-			ssdk.showUserHandler = self.OnGetUserInfoResultHandler;
-			self.ssdk = ssdk;
-#endif
+            //#if !UNITY_EDITOR
+            GameObject sharesdk = GameObject.Find("Global");
+            ShareSDK ssdk = sharesdk.GetComponent<ShareSDK>();
+            ssdk.authHandler = self.OnAuthResultHandler;
+            ssdk.showUserHandler = self.OnGetUserInfoResultHandler;
+            self.ssdk = ssdk;
+            //MobSDK mobsdk = sharesdk.GetComponent<MobSDK>();
+            //#endif
 
 
 #if UNITY_ANDROID
@@ -278,6 +276,64 @@ namespace ET
 #endif
         }
 
+        /// <summary>
+        /// 返回各平台用户信息
+        /// </summary>
+        /// <param name="reqID"></param>
+        /// <param name="state"></param>
+        /// <param name="type"></param>
+        /// <param name="result"></param>
+        public static void OnGetUserInfoResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
+        {
+            Log.ILog.Debug("get user info result:");
+            Log.ILog.Debug((MiniJSON.jsonEncode(result)));
+            Log.ILog.Debug(("get user info sucess ! platform :" + type));
+            if (type == cn.sharesdk.unity3d.PlatformType.WeChat)
+            {
+                Log.ILog.Debug(("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type))));
+                if (state == ResponseState.Success)
+                {
+                    result = self.ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
+                    string openId = result["openID"].ToString();  //openID == userID
+                    Log.ILog.Debug("get user info openId :" + openId);
+                    string userId = result["unionID"].ToString();
+                    Log.ILog.Debug("get user info userId :" + userId);
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();  //openID == userID
+					Log.ILog.Debug("get user info openId :" + openId);
+					string userId = result["token"].ToString();
+					Log.ILog.Debug("get user info userId :" + userId);
+#endif
+                    self.OnGetUserInfo($"wx{openId};wx{userId}");
+                }
+                else
+                {
+                    self.OnGetUserInfo("fail");
+                }
+            }
+            if (type == cn.sharesdk.unity3d.PlatformType.QQ)
+            {
+                Log.ILog.Debug("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type)));
+                if (state == ResponseState.Success)
+                {
+                    result = self.ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
+                    string openId = result["unionID"].ToString();
+                    string userId = result["userID"].ToString();
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();
+					string userId = result["token"].ToString();
+#endif
+                    Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
+                    self.OnGetUserInfo($"qq{openId};qq{userId}");
+                }
+                else
+                {
+                    self.OnGetUserInfo("fail");
+                }
+            }
+        }
 
         /// <summary>
         /// 授权返回
@@ -286,7 +342,7 @@ namespace ET
         /// <param name="state"></param>
         /// <param name="type"></param>
         /// <param name="result"></param>
-        public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
+        public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
 			if (state != cn.sharesdk.unity3d.ResponseState.Success)
@@ -314,10 +370,9 @@ namespace ET
         /// <param name="fenxiangtype"></param>
         public static void GetUserInfo(this UILoginComponent self ,string fenxiangtype)
 		{
-			Log.ILog.Debug($"sharesdk GetUserInfo1");
 
 #if !UNITY_EDITOR
-			Log.ILog.Debug($"sharesdk GetUserInfo2");
+			Log.ILog.Debug($"sharesdk GetUserInfo Request");
 
 			switch (fenxiangtype)
 			{
