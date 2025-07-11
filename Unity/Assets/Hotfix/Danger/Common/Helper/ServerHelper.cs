@@ -404,8 +404,8 @@ namespace ET
 
 
             //2025/07/11 19:00:00 1752231600000 合区 xx-xx xx/xx
-            //2025/07/11 19:00:00 1752231600000 新区 新服 163
-            serverItems_1.Add(new ServerItem() { ServerId = 163, ServerIp = $"{ip}:20525", ServerName = "新服", ServerOpenTime = 1752231600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
+            //2025/07/11 19:00:00 1752231600000 新区 破晓战歌 163
+            serverItems_1.Add(new ServerItem() { ServerId = 163, ServerIp = $"{ip}:20525", ServerName = "破晓战歌", ServerOpenTime = 1752231600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
