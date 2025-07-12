@@ -142,29 +142,31 @@ public static class XCodePostProcess
 		UnityEngine.Debug.Log("PostProcess_1: " + pathToBuiltProject);
 		// Create a new project object from build target
 
-		XCProject project = new XCProject( pathToBuiltProject );
+		//XCProject project = new XCProject( pathToBuiltProject );
 
 		// Find and run through all projmods files to patch the project.
 		// Please pay attention that ALL projmods files in your project folder will be excuted!
-		string[] files = Directory.GetFiles( Application.dataPath, "*.projmods", SearchOption.AllDirectories );
-		foreach( string file in files ) {
-			UnityEngine.Debug.Log("ProjMod File: "+file);
-			//project.ApplyMod( file );
-		}
+		//string[] files = Directory.GetFiles( Application.dataPath, "*.projmods", SearchOption.AllDirectories );
+		//foreach( string file in files ) {
+		//	UnityEngine.Debug.Log("ProjMod File: "+file);
+		//project.ApplyMod( file );
+		//}
 
 		//TODO disable the bitcode for iOS 9
-		project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Release");
-		project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Debug");
+		//project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Release");
+		//project.overwriteBuildSetting("ENABLE_BITCODE", "NO", "Debug");
+		// Finally save the xcode project
+		//project.Save();
 
 		//TODO implement generic settings as a module option
 		//		project.overwriteBuildSetting("CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release");
 
 		Debug.Log("pathToBuiltProject:  " + pathToBuiltProject);
 
-		var mainAppPath = Path.Combine(pathToBuiltProject, "MainApp", "main.mm");
-		var mainContent = File.ReadAllText(mainAppPath);
-		var newContent = mainContent.Replace("#include <UnityFramework/UnityFramework.h>", @"#include ""../UnityFramework/UnityFramework.h""");
-		File.WriteAllText(mainAppPath, newContent);
+		//var mainAppPath = Path.Combine(pathToBuiltProject, "MainApp", "main.mm");
+		//var mainContent = File.ReadAllText(mainAppPath);
+		//var newContent = mainContent.Replace("#include <UnityFramework/UnityFramework.h>", @"#include ""../UnityFramework/UnityFramework.h""");
+		//File.WriteAllText(mainAppPath, newContent);
 
 		//string path_1 = "//Users/tangzhen/project/gitwj_2022/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
 		//string path_2 = "//Users/tangzhen/project/gitwj_2022/Unity/ios/Libraries/libil2cpp.a";
@@ -181,8 +183,7 @@ public static class XCodePostProcess
 
 		plist.WriteToFile(plistPath);
 
-		// Finally save the xcode project
-		project.Save();
+		
 		UnityEngine.Debug.Log("PostProcess_2");
 	}
 #endif
