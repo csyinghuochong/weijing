@@ -262,6 +262,13 @@ namespace ET
 			}
 		}
 
+		public void ShareSdkInit()
+		{
+#if !UNITY_EDITOR
+			mobsdk.submitPolicyGrantResult(true);
+#endif
+        }
+
         public void TikTokInit()
         {
 			if (this.Platform != 5)

@@ -165,6 +165,7 @@ public class UIYinSi : MonoBehaviour
             Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
             this.gameObject.SetActive(false);
             GameObject.Find("Global").GetComponent<Init>().TikTokInit();
+            GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
             GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
         }
     }
@@ -191,6 +192,7 @@ public class UIYinSi : MonoBehaviour
             Log.ILog.Debug($"onRequestPermissionsResult: StartUpdate");
 
             GameObject.Find("Global").GetComponent<Init>().TikTokInit();
+            GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
             GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
             this.AgreeNumber = -1000;
         }
@@ -199,6 +201,7 @@ public class UIYinSi : MonoBehaviour
     public  void OnButtonAgree()
     {
         this.gameObject.SetActive(false);
+        GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
         GameObject.Find("Global").GetComponent<Init>().SetIsPermissionGranted();
     }
 
