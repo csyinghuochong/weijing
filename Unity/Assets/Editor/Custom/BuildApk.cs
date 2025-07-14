@@ -451,7 +451,7 @@ public class MyEditorScript
 		
 		if(name == "QuDao" )
 		{
-			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;// AndroidSdkVersions.AndroidApiLevel26;
 		}
 		else if (name == "Google" )
 		{
