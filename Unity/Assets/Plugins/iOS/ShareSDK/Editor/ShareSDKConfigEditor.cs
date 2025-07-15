@@ -55,7 +55,7 @@ namespace cn.sharesdk.unity3d
                 checkPlatforms(obj.devInfo);
             }
 
-            Debug.LogWarning ("ShareSDK OnDisable 导出时会自动触发一次此方法");
+            Debug.LogWarning ("ShareSDK OnDisable");
 		}
 
 		private void SetPlatformConfList()
@@ -126,9 +126,8 @@ namespace cn.sharesdk.unity3d
 					appSecret = (string)datastore["MobAppSecret"];
                     mobNetLater = (string)datastore["MOBNetLater"];
                     mobTwitterVer = (string)datastore["MOBTwitterVer"];
-                    Debug.LogWarning("MOB.keypds find exist appKey:  " + appKey);
-
-                }
+                    
+				}
 				else
 				{
 					Debug.LogWarning ("MOB.keypds no find");
@@ -165,8 +164,7 @@ namespace cn.sharesdk.unity3d
 					sWriter.WriteLine(json);
 					sWriter.Close();
 					sWriter.Dispose();
-                    Debug.LogWarning("MOB.keypds find exist");
-                }
+				}
 				else
 				{
 					Debug.LogWarning ("MOB.keypds no find");
@@ -343,7 +341,7 @@ namespace cn.sharesdk.unity3d
                 checkRestoreScene(restoreSceneObj.restoreSceneConfig);
 
             }
-            Debug.LogWarning("ShareSDKRestoreScene OnDisable");
+            //Debug.LogWarning("ShareSDKRestoreScene OnDisable");
         }
 
         private void checkRestoreScene(RestoreSceneConfigure restoreSceneConfig)
