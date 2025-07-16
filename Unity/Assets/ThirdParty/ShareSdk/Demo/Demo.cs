@@ -23,10 +23,11 @@ public class Demo : MonoBehaviour {
 		ssdk.clientValidForAndroidHandler = onIsClientValidForAndroid;
 
 		mobsdk = gameObject.GetComponent<MobSDK>();
-        #if UNITY_ANDROID
+		mobsdk.submitPolicyGrantResult(true);
+		#if UNITY_ANDROID
 		//ShareSDKRestoreScene.setRestoreSceneListener(OnRestoreScene);
 		
-        #elif UNITY_IPHONE
+#elif UNITY_IPHONE
 		mobsdk.getPolicy = OnFollowGetPolicy;
         ssdk.wxRequestHandler = GetWXRequestTokenResultHandler;
         //ShareSDKRestoreScene.setRestoreSceneListener(OnRestoreScene);
@@ -63,18 +64,14 @@ public class Demo : MonoBehaviour {
 		float btnGap = 20 * scale;
 		GUI.skin.button.fontSize = Convert.ToInt32(13 * scale);
 
-		if (GUI.Button(new Rect((Screen.width - btnGap) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "Authorize"))
+		if (GUI.Button(new Rect((Screen.width - btnGap) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "Authorize QQ"))
 		{
 			print(ssdk == null);
 
-#if UNITY_ANDROID
-		    ssdk.Authorize(PlatformType.SinaWeibo);
-#elif UNITY_IPHONE
-            ssdk.Authorize(PlatformType.WeChat);
-#endif
+			ssdk.Authorize(PlatformType.QQ);
 		}
 
-		if (GUI.Button(new Rect((Screen.width - btnGap) / 2 + btnGap, btnTop, btnWidth, btnHeight), "Get User Info"))
+		if (GUI.Button(new Rect((Screen.width - btnGap) / 2 + btnGap, btnTop, btnWidth, btnHeight), "Authorize WX"))
 		{
             //ssdk.GetUserInfo(PlatformType.Douyin);
 
