@@ -275,11 +275,16 @@ namespace ET
             ssdk.authHandler = self.OnAuthResultHandler;
             ssdk.showUserHandler = self.OnGetUserInfoResultHandler;
             self.ssdk = ssdk;
-            //MobSDK mobsdk = sharesdk.GetComponent<MobSDK>();
-            //#endif
+			//MobSDK mobsdk = sharesdk.GetComponent<MobSDK>();
+			//#endif
 
 
 #if UNITY_ANDROID
+			if (GlobalHelp.GetPlatform() > 1)
+			{
+				return;
+			}
+
             TapSDKHelper.Init();
 #endif
         }
