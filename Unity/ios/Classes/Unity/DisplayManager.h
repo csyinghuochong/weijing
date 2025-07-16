@@ -3,11 +3,14 @@
 #include "UnityRendering.h"
 #include <UIKit/UIKit.h>
 
-@class EAGLContext;
 @class UnityView;
 
 @interface DisplayConnection : NSObject
+#if !PLATFORM_VISIONOS
 - (id)init:(UIScreen*)targetScreen;
+#else
+- (id)init;
+#endif
 - (void)dealloc;
 
 - (void)createView:(BOOL)useForRendering showRightAway:(BOOL)showRightAway;
@@ -21,7 +24,9 @@
 - (void)requestRenderingResolution:(CGSize)res;
 - (void)present;
 
+#if !PLATFORM_VISIONOS
 @property (readonly, copy, nonatomic)   UIScreen*               screen;
+#endif
 @property (readonly, copy, nonatomic)   UIWindow*               window;
 @property (readonly, copy, nonatomic)   UIView*                 view;
 
@@ -33,16 +38,17 @@
 
 
 @interface DisplayManager : NSObject
+#if !PLATFORM_VISIONOS
 - (id)objectForKeyedSubscript:(id)key;
 - (BOOL)displayAvailable:(UIScreen*)targetScreen;
 - (void)updateDisplayListCacheInUnity;
+- (void)enumerateDisplaysWithBlock:(void (^)(DisplayConnection* conn))block;
+- (void)enumerateNonMainDisplaysWithBlock:(void (^)(DisplayConnection* conn))block;
+#endif
 
 - (void)startFrameRendering;
 - (void)present;
 - (void)endFrameRendering;
-
-- (void)enumerateDisplaysWithBlock:(void (^)(DisplayConnection* conn))block;
-- (void)enumerateNonMainDisplaysWithBlock:(void (^)(DisplayConnection* conn))block;
 
 + (void)Initialize;
 + (DisplayManager*)Instance;

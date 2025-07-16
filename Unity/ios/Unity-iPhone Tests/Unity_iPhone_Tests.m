@@ -1,6 +1,10 @@
 #import "Preprocessor.h"
 #import <XCTest/XCTest.h>
-#include <UnityFramework/UnityFramework.h>
+#import <UnityFramework/UnityFramework.h>
+
+@interface UnityAppController (RenderingForTest)
+- (void)repaintDisplayLink;
+@end
 
 @interface UnityTest : XCTestCase
 
@@ -26,7 +30,8 @@
     UnityAppController* unityApp = [(UIApplication*)[UIApplication sharedApplication] delegate];
     while (running)
     {
-        [unityApp repaint];
+        // we need to call repaintDisplayLink instead of simple repaint to trigger UnityDisplayLinkCallback which will advance frame time internally
+        [unityApp repaintDisplayLink];
         [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.001f]];
     }
 #endif

@@ -19,7 +19,9 @@ static DisplayManager* _DisplayManager = nil;
     BOOL                        _needRecreateSurface;
     CGSize                      _requestedRenderingSize;
 
+#if !PLATFORM_VISIONOS
     UIScreen*                   _screen;
+#endif
     UIWindow*                   _window;
     UIView*                     _view;
 
@@ -28,7 +30,9 @@ static DisplayManager* _DisplayManager = nil;
     UnityDisplaySurfaceBase*    _surface;
 }
 
+#if !PLATFORM_VISIONOS
 @synthesize screen      = _screen;
+#endif
 @synthesize window      = _window;
 @synthesize view        = _view;
 @synthesize screenSize  = _screenSize;
@@ -41,6 +45,7 @@ static DisplayManager* _DisplayManager = nil;
     return (UnityDisplaySurfaceMTL*)_surface;
 }
 
+#if !PLATFORM_VISIONOS
 - (id)init:(UIScreen*)targetScreen
 {
     if ((self = [super init]))
@@ -62,6 +67,20 @@ static DisplayManager* _DisplayManager = nil;
     return self;
 }
 
+#else
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        self->_screenSize = CGSizeMake(1920, 1080);
+        self->_needRecreateSurface = NO;
+        self->_requestedRenderingSize = CGSizeMake(-1, -1);
+    }
+    return self;
+}
+
+#endif
+
 - (void)createWithWindow:(UIWindow*)window andView:(UIView*)view
 {
     _window = window;
@@ -78,14 +97,21 @@ static DisplayManager* _DisplayManager = nil;
 
 - (void)createView:(BOOL)useForRendering showRightAway:(BOOL)showRightAway;
 {
+#if !PLATFORM_VISIONOS
     NSAssert(_screen != [UIScreen mainScreen], @"DisplayConnection for mainScreen should be created with createWithWindow:andView:");
+#endif
     if (_view == nil)
     {
+#if !PLATFORM_VISIONOS
         UIWindow* window = [[UIWindow alloc] initWithFrame: _screen.bounds];
         window.screen = _screen;
 
         UIView* view = [(useForRendering ? [UnityRenderingView alloc] : [UIView alloc]) initWithFrame: _screen.bounds];
         view.contentScaleFactor = UnityScreenScaleFactor(_screen);
+#else
+        UIWindow* window = [[UIWindow alloc] init];
+        UIView* view = [(useForRendering ? [UnityRenderingView alloc] : [UIView alloc]) init];
+#endif
 
         [self createWithWindow: window andView: view];
 
@@ -100,7 +126,9 @@ static DisplayManager* _DisplayManager = nil;
 - (void)shouldShowWindow:(BOOL)show
 {
     _window.hidden = show ? NO : YES;
+#if !PLATFORM_VISIONOS
     _window.screen = show ? _screen : nil;
+#endif
 }
 
 - (UnityDisplaySurfaceBase*)initRendering
@@ -116,7 +144,6 @@ static DisplayManager* _DisplayManager = nil;
         surf->layer         = (CAMetalLayer*)_view.layer;
         surf->device        = UnityGetMetalDevice();
         surf->commandQueue  = [surf->device newCommandQueueWithMaxCommandBufferCount: UnityCommandQueueMaxCommandBufferCountMTL()];
-        surf->drawableCommandQueue = [surf->device newCommandQueueWithMaxCommandBufferCount: UnityCommandQueueMaxCommandBufferCountMTL()];
         ret = surf;
     }
     else
@@ -165,8 +192,8 @@ static DisplayManager* _DisplayManager = nil;
 
     surface->disableDepthAndStencil = params.disableDepthAndStencil;
 
-    surface->systemW = _screenSize.width;
-    surface->systemH = _screenSize.height;
+    surface->systemW = (unsigned)_screenSize.width;
+    surface->systemH = (unsigned)_screenSize.height;
 
     surface->targetW = params.renderW > 0 ? params.renderW : surface->systemW;
     surface->targetH = params.renderH > 0 ? params.renderH : surface->systemH;
@@ -196,7 +223,9 @@ static DisplayManager* _DisplayManager = nil;
         CreateUnityRenderBuffers(surface);
 
     _surface = surface;
+#if !PLATFORM_VISIONOS
     UnityInvalidateDisplayDataCache((__bridge void*)_screen);
+#endif
 }
 
 - (void)destroySurface
@@ -264,6 +293,7 @@ static DisplayManager* _DisplayManager = nil;
 @end
 
 
+#if !PLATFORM_VISIONOS
 @implementation DisplayManager
 {
     NSMapTable*         _displayConnection;
@@ -330,7 +360,7 @@ static DisplayManager* _DisplayManager = nil;
     return [_displayConnection objectForKey: (UIScreen*)key];
 }
 
-- (void)updateDisplayListCacheInUnity;
+- (void)updateDisplayListCacheInUnity
 {
     // [UIScreen screens] might be out of sync to what is indicated to the
     // application via UIScreenDidConnectNotification and UIScreenDidDisconnectNotification
@@ -439,6 +469,67 @@ static DisplayManager* _DisplayManager = nil;
 }
 
 @end
+#else
+// xros DisplayManager
+@implementation DisplayManager
+{
+    DisplayConnection*  _mainDisplay;
+}
+
+@synthesize mainDisplay     = _mainDisplay;
+@synthesize displayCount;
+- (NSUInteger)displayCount { return 1; }
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        _mainDisplay = [[DisplayConnection alloc] init];
+
+        // Unity needs a non-zero screen in order for renderloop to run
+        const int screenCount = 1;
+        void* screens[screenCount] = {(void*)0x1};
+        UnityUpdateDisplayListCache(screens, screenCount);
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+}
+
+- (void)startFrameRendering
+{
+    StartFrameRendering(_mainDisplay.surface);
+}
+
+- (void)endFrameRendering
+{
+    EndFrameRendering(_mainDisplay.surface);
+}
+
+- (void)present
+{
+    [_mainDisplay present];
+}
+
++ (void)Initialize
+{
+    NSAssert(_DisplayManager == nil, @"[DisplayManager Initialize] called after creating handler");
+    if (!_DisplayManager)
+        _DisplayManager = [[DisplayManager alloc] init];
+}
+
++ (DisplayManager*)Instance
+{
+    if (!_DisplayManager)
+        _DisplayManager = [[DisplayManager alloc] init];
+
+    return _DisplayManager;
+}
+
+@end
+#endif
 
 //==============================================================================
 //
@@ -493,19 +584,28 @@ extern "C" int UnityDisplayManager_DisplayCount()
 
 extern "C" bool UnityDisplayManager_DisplayAvailable(void* nativeDisplay)
 {
+#if !PLATFORM_VISIONOS
     if (nativeDisplay == NULL)
         return false;
 
     return [[DisplayManager Instance] displayAvailable: (__bridge UIScreen*)nativeDisplay];
+#else
+    return false;
+#endif
 }
 
 extern "C" bool UnityDisplayManager_DisplayActive(void* nativeDisplay)
 {
+#if !PLATFORM_VISIONOS
     return UnityDisplayManager_DisplayAvailable(nativeDisplay);
+#else
+    return true;
+#endif
 }
 
 extern "C" void UnityDisplayManager_DisplaySystemResolution(void* nativeDisplay, int* w, int* h)
 {
+#if !PLATFORM_VISIONOS
     if (nativeDisplay == NULL)
         return;
 
@@ -526,6 +626,7 @@ extern "C" void UnityDisplayManager_DisplaySystemResolution(void* nativeDisplay,
     const CGSize layerSize = conn.view.layer.bounds.size; const float scale = conn.view.contentScaleFactor;
     *w = (int)(layerSize.width * scale);
     *h = (int)(layerSize.height * scale);
+#endif
 }
 
 extern "C" void UnityDisplayManager_DisplayRenderingResolution(void* nativeDisplay, int* w, int* h)
@@ -533,7 +634,11 @@ extern "C" void UnityDisplayManager_DisplayRenderingResolution(void* nativeDispl
     if (nativeDisplay == NULL)
         return;
 
+#if !PLATFORM_VISIONOS
     DisplayConnection* conn = [DisplayManager Instance][(__bridge UIScreen*)nativeDisplay];
+#else
+    DisplayConnection* conn = [DisplayManager Instance].mainDisplay;
+#endif
     EnsureDisplayIsInited(conn);
 
     *w = (int)conn.surface->targetW;
@@ -545,7 +650,11 @@ extern "C" void UnityDisplayManager_DisplayRenderingBuffers(void* nativeDisplay,
     if (nativeDisplay == NULL)
         return;
 
+#if !PLATFORM_VISIONOS
     DisplayConnection* conn = [DisplayManager Instance][(__bridge UIScreen*)nativeDisplay];
+#else
+    DisplayConnection* conn = [DisplayManager Instance].mainDisplay;
+#endif
     EnsureDisplayIsInited(conn);
 
     if (colorBuffer)
@@ -556,6 +665,7 @@ extern "C" void UnityDisplayManager_DisplayRenderingBuffers(void* nativeDisplay,
 
 extern "C" void UnityDisplayManager_SetRenderingResolution(void* nativeDisplay, int w, int h)
 {
+#if !PLATFORM_VISIONOS
     if (nativeDisplay == NULL)
         return;
 
@@ -567,6 +677,7 @@ extern "C" void UnityDisplayManager_SetRenderingResolution(void* nativeDisplay, 
         UnityRequestRenderingResolution(w, h);
     else
         [conn requestRenderingResolution: CGSizeMake(w, h)];
+#endif
 }
 
 extern "C" int UnityDisplayManager_PrimaryDisplayIndex()
@@ -581,12 +692,17 @@ extern "C" void UnityActivateScreenForRendering(void* nativeDisplay)
     if (nativeDisplay == NULL)
         return;
 
+#if !PLATFORM_VISIONOS
     DisplayConnection* conn = [DisplayManager Instance][(__bridge UIScreen*)nativeDisplay];
+#else
+    DisplayConnection* conn = [DisplayManager Instance].mainDisplay;
+#endif
 
     EnsureDisplayIsInited(conn);
     [conn shouldShowWindow: YES];
 }
 
+#if !PLATFORM_VISIONOS
 extern "C" float UnityScreenScaleFactor(UIScreen* screen)
 {
     // NOTE: All views handled by Unity have their contentScaleFactor initialized
@@ -648,3 +764,43 @@ extern "C" float UnityGetBrightness()
     return 1.0f;
 #endif
 }
+
+extern "C" bool UnityIsFullscreen()
+{
+    CGSize screenSize = [[[[DisplayManager Instance] mainDisplay] screen] bounds].size;
+    CGSize viewSize = [[[[DisplayManager Instance] mainDisplay] view] bounds].size;
+
+    return screenSize.width == viewSize.width && screenSize.height == viewSize.height;
+}
+
+#else
+extern "C" int UnityMainScreenRefreshRate()
+{
+    return 90;
+}
+
+extern "C" void UnityStartFrameRendering()
+{
+    [[DisplayManager Instance] startFrameRendering];
+}
+
+extern "C" void UnityDestroyUnityRenderSurfaces()
+{
+    [[DisplayManager Instance].mainDisplay destroySurface];
+}
+
+extern "C" void UnitySetBrightness(float brightness)
+{
+}
+
+extern "C" float UnityGetBrightness()
+{
+    return 1.0f;
+}
+
+extern "C" bool UnityIsFullscreen()
+{
+    return false;
+}
+
+#endif

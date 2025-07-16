@@ -1,28 +1,6 @@
 #include "ActivityIndicator.h"
-#include "OrientationSupport.h"
 
-@interface ActivityIndicator : UIActivityIndicatorView
-{
-    UIView* _parent;
-}
-@end
-static ActivityIndicator* _activityIndicator = nil;
-
-
-@implementation ActivityIndicator
-- (void)show:(UIView*)parent
-{
-    _parent = parent;
-    [parent addSubview: self];
-    [self startAnimating];
-}
-
-- (void)layoutSubviews
-{
-    self.center = CGPointMake([_parent bounds].size.width / 2, [_parent bounds].size.height / 2);
-}
-
-@end
+static UIActivityIndicatorView* _activityIndicator = nil;
 
 void ShowActivityIndicator(UIView* parent, int style)
 {
@@ -31,12 +9,18 @@ void ShowActivityIndicator(UIView* parent, int style)
 
     if (style >= 0)
     {
-        _activityIndicator = [[ActivityIndicator alloc] initWithActivityIndicatorStyle: (UIActivityIndicatorViewStyle)style];
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: (UIActivityIndicatorViewStyle)style];
+#if !PLATFORM_VISIONOS
         _activityIndicator.contentScaleFactor = [UIScreen mainScreen].scale;
+#endif
     }
 
     if (_activityIndicator != nil)
-        [_activityIndicator show: parent];
+    {
+        [parent addSubview: _activityIndicator];
+        _activityIndicator.center = CGPointMake(parent.bounds.size.width / 2, parent.bounds.size.height / 2);
+        [_activityIndicator startAnimating];
+    }
 }
 
 void ShowActivityIndicator(UIView* parent)
@@ -56,7 +40,6 @@ void HideActivityIndicator()
 
 extern "C" void UnityStartActivityIndicator()
 {
-    // AppleTV does not support activity indicators
     ShowActivityIndicator(UnityGetGLView());
 }
 

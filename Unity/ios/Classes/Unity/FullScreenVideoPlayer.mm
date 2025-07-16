@@ -38,7 +38,7 @@ static AVKitVideoPlayback*  _AVKitVideoPlayback = nil;
 
 @implementation AVKitVideoPlayback
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 static void AVPlayerViewController_SetAllowsPictureInPicturePlayback_OldIOSImpl(id self_, SEL _cmd, BOOL allow) {}
 static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
 {
@@ -59,7 +59,7 @@ static bool prefersStatusBarHidden_DefaultImpl(id self_, SEL _cmd)
 {
     if (self == [AVKitVideoPlayback class])
     {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         class_replaceMethod([AVPlayerViewController class], @selector(supportedInterfaceOrientations), (IMP)&supportedInterfaceOrientations_DefaultImpl, UIViewController_supportedInterfaceOrientations_Enc);
         class_replaceMethod([AVPlayerViewController class], @selector(prefersStatusBarHidden), (IMP)&prefersStatusBarHidden_DefaultImpl, UIViewController_prefersStatusBarHidden_Enc);
 #endif
@@ -98,7 +98,7 @@ static bool prefersStatusBarHidden_DefaultImpl(id self_, SEL _cmd)
         videoViewController.videoGravity = (NSString*)videoGravity;
         videoViewController.transitioningDelegate = self;
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         videoViewController.allowsPictureInPicturePlayback = NO;
 #endif
 #if PLATFORM_TVOS

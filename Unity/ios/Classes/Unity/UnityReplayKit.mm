@@ -58,7 +58,7 @@ static UnityReplayKit* _replayKit = nil;
 // meaning that if we dont do anything suddenly all orientations become enabled.
 // to avoid that we create this monstrosity that pokes unity for orientation.
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 @interface UnityReplayKitViewController : UnityViewControllerBase
 {
 }

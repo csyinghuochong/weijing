@@ -9,7 +9,6 @@
 @class UIView;
 @class UIViewController;
 @class UIEvent;
-@class UILocalNotification;
 @class NSString;
 @class NSDictionary;
 @class NSArray;
@@ -18,7 +17,9 @@
 @class NSError;
 @class NSBundle;
 @class UIKeyCommand;
+@class UITouch;
 
+@class UnityView;
 @class UnityViewControllerBase;
 #else
 typedef struct objc_object UIScreen;
@@ -26,7 +27,6 @@ typedef struct objc_object UIWindow;
 typedef struct objc_object UIView;
 typedef struct objc_object UIViewController;
 typedef struct objc_object UIEvent;
-typedef struct objc_object UILocalNotification;
 typedef struct objc_object NSString;
 typedef struct objc_object NSDictionary;
 typedef struct objc_object NSArray;
@@ -35,8 +35,10 @@ typedef struct objc_object NSError;
 typedef struct objc_object NSData;
 typedef struct objc_object NSBundle;
 typedef struct objc_object UIKeyCommand;
+typedef struct objc_object UITouch;
 
 typedef struct objc_object UnityViewControllerBase;
+typedef struct objc_object UnityView;
 #endif
 
 // unity internal audio effect definition struct
@@ -135,5 +137,8 @@ extern "C" {
     bool UnityiOS111orNewer();
     bool UnityiOS112orNewer();
     bool UnityiOS130orNewer();
+    bool UnityiOS140orNewer();
+    bool UnityiOS150orNewer();
+    bool UnityiOS160orNewer();
 }
 #endif

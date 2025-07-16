@@ -83,6 +83,24 @@ typedef enum DeviceGeneration
     deviceiPhone13ProMax     = 67,
     deviceiPadPro5Gen        = 68,
     deviceiPadPro11Inch3Gen  = 69,
+    deviceiPhoneSE3Gen       = 70,
+    deviceiPadAir5Gen        = 71,
+    deviceiPhone14           = 72,
+    deviceiPhone14Plus       = 73,
+    deviceiPhone14Pro        = 74,
+    deviceiPhone14ProMax     = 75,
+    deviceiPadPro6Gen        = 76,
+    deviceiPadPro11Inch4Gen  = 77,
+    deviceiPad10Gen          = 78,
+    deviceiPhone15           = 79,
+    deviceiPhone15Plus       = 80,
+    deviceiPhone15Pro        = 81,
+    deviceiPhone15ProMax     = 82,
+    deviceiPhone16           = 83,
+    deviceiPhone16Plus       = 84,
+    deviceiPhone16Pro        = 85,
+    deviceiPhone16ProMax     = 86,
+    deviceiPhone16e          = 87,
 
     deviceiPhoneUnknown     = 10001,
     deviceiPadUnknown       = 10002,
@@ -92,7 +110,8 @@ typedef enum DeviceGeneration
     deviceAppleTVHD         = 1001,
     deviceAppleTV2Gen       = 1002,
     deviceAppleTV4K         = 1002,
-    deviceAppleTV4K2Gen     = 1003
+    deviceAppleTV4K2Gen     = 1003,
+    deviceAppleTV4K3Gen     = 1004,
 }
 DeviceGeneration;
 

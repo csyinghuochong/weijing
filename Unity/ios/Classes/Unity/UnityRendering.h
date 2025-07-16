@@ -3,14 +3,6 @@
 #include <stdint.h>
 
 #ifdef __OBJC__
-@class CAEAGLLayer;
-@class EAGLContext;
-#else
-typedef struct objc_object CAEAGLLayer;
-typedef struct objc_object EAGLContext;
-#endif
-
-#ifdef __OBJC__
 @class CAMetalLayer;
 @protocol CAMetalDrawable;
 @protocol MTLDrawable;
@@ -117,51 +109,24 @@ typedef struct UnityDisplaySurfaceBase
     #define kUnityNumOffscreenSurfaces 1
 #endif
 
-// GLES display surface
-START_STRUCT(UnityDisplaySurfaceGLES, UnityDisplaySurfaceBase)
-OBJC_OBJECT_PTR CAEAGLLayer *    layer;
-OBJC_OBJECT_PTR EAGLContext*    context;
-
-// system FB
-unsigned    systemFB;
-unsigned    systemColorRB;
-
-// target resolution FB/target RT to blit from
-unsigned    targetFB;
-unsigned    targetColorRT;
-
-// MSAA FB
-unsigned    msaaFB;
-unsigned    msaaColorRB;
-
-// when we enable AA for non-native resolution we need interim RT to resolve AA to (and then we will blit it to screen)
-UnityRenderBufferHandle resolvedColorBuffer;
-
-// will be "shared", only one depth buffer is needed
-unsigned    depthRB;
-
-// render surface gl setup: formats and AA
-unsigned    colorFormat;
-unsigned    depthFormat;
-END_STRUCT(UnityDisplaySurfaceGLES)
-
 // Metal display surface
 START_STRUCT(UnityDisplaySurfaceMTL, UnityDisplaySurfaceBase)
 OBJC_OBJECT_PTR CAMetalLayer *       layer;
 OBJC_OBJECT_PTR MTLDeviceRef         device;
 
 OBJC_OBJECT_PTR MTLCommandQueueRef  commandQueue;
-OBJC_OBJECT_PTR MTLCommandQueueRef  drawableCommandQueue;
-OBJC_OBJECT_PTR MTLCommandBufferRef presentCB;
-
 OBJC_OBJECT_PTR CAMetalDrawableRef  drawable;
-
 OBJC_OBJECT_PTR MTLTextureRef       drawableProxyRT[kUnityNumOffscreenSurfaces];
+UnityRenderBufferHandle             drawableProxyRS[kUnityNumOffscreenSurfaces];
+int                                 drawableProxyNeedsClear[kUnityNumOffscreenSurfaces];    // [bool] Tracks whether the drawableProxy requires a clear after initial creation
 
 // This is used on a Mac with drawableProxyRT when off-screen rendering is used
 int                                 proxySwaps;         // Counts times proxy RTs have swapped since surface recreated
 int                                 proxyReady;         // [bool] Proxy RT has swapped since last present; frame ended
+int                                 calledPresentDrawable; // Tracks presenting for editor.
+int                                 vsync;              // Is vsync enabled or not
 
+OBJC_OBJECT_PTR MTLTextureRef       drawableTex;
 OBJC_OBJECT_PTR MTLTextureRef       systemColorRB;
 OBJC_OBJECT_PTR MTLTextureRef       targetColorRT;
 OBJC_OBJECT_PTR MTLTextureRef       targetAAColorRT;
@@ -208,7 +173,7 @@ typedef struct RenderingSurfaceParams
 #ifdef __cplusplus
 extern "C" {
 #endif
-int UnitySelectedRenderingAPI();
+int UnitySelectedRenderingAPI(void);
 #ifdef __cplusplus
 } // extern "C"
 #endif
@@ -218,7 +183,7 @@ int UnitySelectedRenderingAPI();
 extern "C" {
 #endif
 
-void InitRenderingMTL();
+void InitRenderingMTL(void);
 
 void CreateSystemRenderingSurfaceMTL(UnityDisplaySurfaceMTL* surface);
 void DestroySystemRenderingSurfaceMTL(UnityDisplaySurfaceMTL* surface);
@@ -236,7 +201,7 @@ void PresentMTL(UnityDisplaySurfaceMTL* surface);
 // Acquires CAMetalDrawable resource for the surface and returns the drawable texture
 MTLTextureRef AcquireDrawableMTL(UnityDisplaySurfaceMTL* surface);
 
-unsigned UnityHDRSurfaceDepth();
+unsigned UnityHDRSurfaceDepth(void);
 
 // starting with ios11 apple insists on having just one presentDrawable per command buffer
 // hence we keep normal processing for main screen, but when airplay is used we will create extra command buffers
@@ -253,7 +218,7 @@ void SetDrawableSizeMTL(UnityDisplaySurfaceMTL* surface, int width, int height);
 extern "C" {
 #endif
 
-void InitRenderingNULL();
+void InitRenderingNULL(void);
 void CreateSystemRenderingSurfaceNULL(UnityDisplaySurfaceBase* surface);
 void CreateRenderingSurfaceNULL(UnityDisplaySurfaceBase* surface);
 void DestroyRenderingSurfaceNULL(UnityDisplaySurfaceBase* surface);
@@ -284,6 +249,12 @@ UnityRenderBufferHandle UnityCreateExternalColorSurfaceMTL(UnityRenderBufferHand
 UnityRenderBufferHandle UnityCreateExternalDepthSurfaceMTL(UnityRenderBufferHandle surf, MTLTextureRef tex, MTLTextureRef stencilTex, const UnityRenderBufferDesc* desc);
 // creates "dummy" surface - will indicate "missing" buffer (e.g. depth-only RT will have color as dummy)
 UnityRenderBufferHandle UnityCreateDummySurface(UnityRenderBufferHandle surf, int isColor, const UnityRenderBufferDesc* desc);
+// external render surfaces and textures are "out of scope" for memory profiler, hence we add means to register them separately
+// the separate mechanism is needed because unity cannot know what manages the lifetime of textures in this case
+//   specifically since we allow external render surfaces and textures to share metal textures
+void UnityRegisterExternalRenderSurfaceTextureForMemoryProfiler(MTLTextureRef tex);
+void UnityRegisterExternalTextureForMemoryProfiler(MTLTextureRef tex);
+void UnityUnregisterMetalTextureForMemoryProfiler(MTLTextureRef tex);
 
 // disable rendering to render buffers (all Cameras that were rendering to one of buffers would be reset to use backbuffer)
 void    UnityDisableRenderBuffers(UnityRenderBufferHandle color, UnityRenderBufferHandle depth);
@@ -297,12 +268,12 @@ void    UnityBlitToBackbuffer(UnityRenderBufferHandle srcColor, UnityRenderBuffe
 
 // sets vSync on OSX 10.13 and up
 #if PLATFORM_OSX
-void MetalUpdateDisplaySync();
+void MetalUpdateDisplaySync(void);
 #endif
 
 UnityRenderBufferHandle UnityNativeRenderBufferFromHandle(void *rb);
 
-MTLCommandBufferRef UnityCurrentMTLCommandBuffer();
+MTLCommandBufferRef UnityCurrentMTLCommandBuffer(void);
 
 void UnityUpdateDrawableSize(UnityDisplaySurfaceMTL* surface);
 

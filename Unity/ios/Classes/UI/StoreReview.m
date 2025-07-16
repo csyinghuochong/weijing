@@ -1,4 +1,4 @@
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 
 // This definition is here only for compiler to know about selector requestReview
 @interface UnityStoreReviewController
@@ -15,4 +15,4 @@ bool UnityRequestStoreReview()
     return true;
 }
 
-#endif
+#endif // PLATFORM_IOS || PLATFORM_VISIONOS

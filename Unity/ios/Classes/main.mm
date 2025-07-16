@@ -1,7 +1,8 @@
 #include "RegisterFeatures.h"
 #include <csignal>
 #include "UnityInterface.h"
-#include "../UnityFramework/UnityFramework.h"
+#import <UnityFramework/UnityFramework.h>
+#include "UI/Keyboard.h"
 
 void UnityInitTrampoline();
 
@@ -35,6 +36,11 @@ UnityFramework* _gUnityFramework = nil;
 - (UnityAppController*)appController
 {
     return GetAppController();
+}
+
+- (UITextField*)keyboardTextField
+{
+    return KeyboardDelegate.Instance.getTextField;
 }
 
 - (void)setExecuteHeader:(const MachHeader*)header
@@ -147,6 +153,11 @@ if([obj respondsToSelector:sel])                        \
 - (void)pause:(bool)pause
 {
     UnityPause(pause);
+}
+
+- (void)setAbsoluteURL:(const char *)url
+{
+    UnitySetAbsoluteURL(url);
 }
 
 @end

@@ -1,19 +1,20 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-#import "UnityAppController.h"
+#import <UnityFramework/UnityAppController.h>
 
-#include "UndefinePlatforms.h"
-#include <mach-o/ldsyms.h>
-typedef struct
-#ifdef __LP64__
-    mach_header_64
-#else
-    mach_header
-#endif
-    MachHeader;
-#include "RedefinePlatforms.h"
+// this is coming from mach-o/ldsyms.h
+// we were including this header header here directly
 
+// alas we were including <mach-o/ldsyms.h> directly in UnityFramework.h (for mach_header definition)
+//   instead of doing forward declaration and using, say, void pointers in unity c-interface
+// and this resulted in code in the wild that uses _mh_execute_header directly without this include
+// now, with C++/ObjC++ modules support we end up in a funny situation,
+// where we need to include UndefinePlatforms/RedefinePlatforms quoted which gives a warning
+// thankfully, we can easily provide the definition of _mh_execute_header ourselves
+
+typedef struct mach_header_64 MachHeader;
+extern const struct mach_header_64 _mh_execute_header;
 
 //! Project version number for UnityFramework.
 FOUNDATION_EXPORT double UnityFrameworkVersionNumber;
@@ -40,6 +41,8 @@ __attribute__ ((visibility("default")))
 
 - (UnityAppController*)appController;
 
+- (UITextField*)keyboardTextField;
+
 + (UnityFramework*)getInstance;
 
 - (void)setDataBundleId:(const char*)bundleId;
@@ -55,6 +58,8 @@ __attribute__ ((visibility("default")))
 
 - (void)showUnityWindow;
 - (void)pause:(bool)pause;
+
+- (void)setAbsoluteURL:(const char *)url;
 
 - (void)setExecuteHeader:(const MachHeader*)header;
 - (void)sendMessageToGOWithName:(const char*)goName functionName:(const char*)name message:(const char*)msg;

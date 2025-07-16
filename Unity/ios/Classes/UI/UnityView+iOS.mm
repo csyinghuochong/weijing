@@ -1,10 +1,8 @@
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 
 #import "UnityView.h"
 #import "UnityAppController+Rendering.h"
 #include "OrientationSupport.h"
-
-extern bool _unityAppReady;
 
 @interface UnityView ()
 @property (nonatomic, readwrite) ScreenOrientation contentOrientation;
@@ -46,4 +44,4 @@ extern bool _unityAppReady;
 
 @end
 
-#endif // PLATFORM_IOS
+#endif // PLATFORM_IOS || PLATFORM_VISIONOS

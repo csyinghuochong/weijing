@@ -40,9 +40,8 @@ __attribute__ ((visibility("default")))
 // override it to register plugins, tweak UI etc
 - (void)preStartUnity;
 
-// this one is called at first applicationDidBecomeActive
-// NB: it will be started with delay 0, so it will run on next run loop iteration
-// this is done to make sure that activity indicator animation starts before blocking loading
+// this one is called at at the very end of didFinishLaunchingWithOptions:
+// it will start showing unity view and rendering unity content
 - (void)startUnity:(UIApplication*)application;
 
 // this is a part of UIApplicationDelegate protocol starting with ios5

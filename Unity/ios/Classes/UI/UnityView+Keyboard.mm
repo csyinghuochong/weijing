@@ -39,44 +39,57 @@ static double GetTimeInSeconds()
     NSString* baseLayout = @"1234567890-=qwertyuiop[]asdfghjkl;'\\`zxcvbnm,./!@#$%^&*()_+{}:\"|<>?~ \t\r\b\\";
     NSString* numpadLayout = @"1234567890-=*+/.\r";
     NSString* upperCaseLetters = @"QWERTYUIOPASDFGHJKLZXCVBNM";
+    NSString* shortcutCharacters = @"axcv";
 
     size_t sizeOfKeyboardCommands = baseLayout.length + numpadLayout.length + upperCaseLetters.length + 11;
     NSMutableArray* commands = [NSMutableArray arrayWithCapacity: sizeOfKeyboardCommands];
 
+    void (^addKey)(NSString *keyName, UIKeyModifierFlags modifierFlags) = ^(NSString *keyName, UIKeyModifierFlags modifierFlags)
+    {
+        UIKeyCommand* command = [UIKeyCommand keyCommandWithInput: keyName modifierFlags: modifierFlags action: @selector(handleCommand:)];
+        if (@available(iOS 15.0, tvOS 15.0, *))
+            command.wantsPriorityOverSystemBehavior = YES;
+        [commands addObject: command];
+    };
+
     for (NSInteger i = 0; i < baseLayout.length; ++i)
     {
         NSString* input = [baseLayout substringWithRange: NSMakeRange(i, 1)];
-        [commands addObject: [UIKeyCommand keyCommandWithInput: input modifierFlags: kNilOptions action: @selector(handleCommand:)]];
+        addKey(input, kNilOptions);
+    }
+    for (NSInteger i = 0; i < shortcutCharacters.length; ++i)
+    {
+        NSString* input = [shortcutCharacters substringWithRange: NSMakeRange(i, 1)];
+        [commands addObject: [UIKeyCommand keyCommandWithInput: input modifierFlags: UIKeyModifierCommand action: @selector(handleCommand:)]];
     }
     for (NSInteger i = 0; i < numpadLayout.length; ++i)
     {
         NSString* input = [numpadLayout substringWithRange: NSMakeRange(i, 1)];
-        [commands addObject: [UIKeyCommand keyCommandWithInput: input modifierFlags: UIKeyModifierNumericPad action: @selector(handleCommand:)]];
+        addKey(input, UIKeyModifierNumericPad);
     }
-
     for (NSInteger i = 0; i < upperCaseLetters.length; ++i)
     {
         NSString* input = [upperCaseLetters substringWithRange: NSMakeRange(i, 1)];
-        [commands addObject: [UIKeyCommand keyCommandWithInput: input modifierFlags: UIKeyModifierShift action: @selector(handleCommand:)]];
+        addKey(input, UIKeyModifierShift);
     }
 
     // pageUp, pageDown
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"UIKeyInputPageUp" modifierFlags: kNilOptions action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"UIKeyInputPageDown" modifierFlags: kNilOptions action: @selector(handleCommand:)]];
+    addKey(UIKeyInputPageUp, kNilOptions);
+    addKey(UIKeyInputPageDown, kNilOptions);
 
     // up, down, left, right, esc
-    [commands addObject: [UIKeyCommand keyCommandWithInput: UIKeyInputUpArrow modifierFlags: kNilOptions action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: UIKeyInputDownArrow modifierFlags: kNilOptions action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: UIKeyInputLeftArrow modifierFlags: kNilOptions action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: UIKeyInputRightArrow modifierFlags: kNilOptions action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: UIKeyInputEscape modifierFlags: kNilOptions action: @selector(handleCommand:)]];
+    addKey(UIKeyInputUpArrow, kNilOptions);
+    addKey(UIKeyInputDownArrow, kNilOptions);
+    addKey(UIKeyInputLeftArrow, kNilOptions);
+    addKey(UIKeyInputRightArrow, kNilOptions);
+    addKey(UIKeyInputEscape, kNilOptions);
 
     // caps Lock, shift, control, option, command
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"" modifierFlags: UIKeyModifierAlphaShift action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"" modifierFlags: UIKeyModifierShift action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"" modifierFlags: UIKeyModifierControl action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"" modifierFlags: UIKeyModifierAlternate action: @selector(handleCommand:)]];
-    [commands addObject: [UIKeyCommand keyCommandWithInput: @"" modifierFlags: UIKeyModifierCommand action: @selector(handleCommand:)]];
+    addKey(@"", UIKeyModifierAlphaShift);
+    addKey(@"", UIKeyModifierShift);
+    addKey(@"", UIKeyModifierControl);
+    addKey(@"", UIKeyModifierAlternate);
+    addKey(@"", UIKeyModifierCommand);
 
     keyboardCommands = commands.copy;
 }
@@ -118,9 +131,8 @@ static double GetTimeInSeconds()
     NSString* input = command.input;
     UIKeyModifierFlags modifierFlags = command.modifierFlags;
 
-    char inputChar = ([input length] > 0) ? [input characterAtIndex: 0] : 0;
+    char inputChar = ([input length] == 1) ? [input characterAtIndex: 0] : 0;
     int code = (int)inputChar; // ASCII code
-    UnitySendKeyboardCommand(command);
 
     if (![self isValidCodeForButton: code])
     {
@@ -212,6 +224,8 @@ static double GetTimeInSeconds()
         code = UnityStringToKey("page up");
     else if ([input isEqualToString: @"UIKeyInputPageDown"])
         code = UnityStringToKey("page down");
+
+    UnitySendKeyboardCommand(command, code);
 
     KeyMap::iterator item = GetKeyMap().find(code);
     if (item == GetKeyMap().end())

@@ -27,7 +27,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // in case of multi-line input we use UITextView with UIToolbar as accessory view
     // tvOS does not support multiline input thus only UITextField option is implemented
     // tvOS does not support UIToolbar so we rely on tvOS default processing
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
     UITextView*     textView;
 
     UIToolbar*      viewToolbar;
@@ -63,6 +63,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // not pretty but seems like easiest way to keep "we are rotating" status
     BOOL            _rotating;
     NSRange         _hiddenSelection;
+    NSRange         _selectionRequest;
 
     // used for < iOS 14 external keyboard
     CGFloat         _heightOfKeyboard;
@@ -76,15 +77,25 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 @synthesize hasUsedDictation;
 
 
+- (void)setPendingSelectionRequest
+{
+    if (_selectionRequest.location != NSNotFound)
+    {
+        _keyboard.selection = _selectionRequest;
+        _selectionRequest.location = NSNotFound;
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField*)textFieldObj
 {
     [self textInputDone: nil];
     return YES;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 - (void)textInputModeDidChange:(NSNotification*)notification
 {
+    [self setPendingSelectionRequest];
     // Apple reports back the primary language of the current keyboard text input mode using BCP 47 language code i.e "en-GB"
     // but this also (undocumented) will return "dictation" when using voice dictation and "emoji" when using the emoji keyboard.
     if ([_keyboard->inputView.textInputMode.primaryLanguage isEqualToString: @"dictation"])
@@ -132,11 +143,21 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    if (textView.markedTextRange == nil && textView.text.length > _characterLimit && _characterLimit != 0)
+    {
+      textView.text = [textView.text substringToIndex: _characterLimit];
+    }
+    
     UnityKeyboard_TextChanged(textView.text);
 }
 
 - (void)textFieldDidChange:(UITextField*)textField
 {
+    if (textField.markedTextRange == nil && textField.text.length > _characterLimit && _characterLimit != 0)
+    {
+      textField.text = [textField.text substringToIndex: _characterLimit];
+    }
+    
     UnityKeyboard_TextChanged(textField.text);
 }
 
@@ -148,16 +169,16 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     return YES;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     if (notification.userInfo == nil || inputView == nil)
         return;
 
+    [self setPendingSelectionRequest];
     CGRect srcRect  = [[notification.userInfo objectForKey: UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect rect     = [UnityGetGLView() convertRect: srcRect fromView: nil];
-    rect.origin.y = [UnityGetGLView() frame].size.height - rect.size.height; // iPhone X sometimes reports wrong y value for keyboard
 
     [self positionInput: rect x: rect.origin.x y: rect.origin.y];
 }
@@ -181,6 +202,15 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
+    if (_keyboard)
+    {
+        // Reset selection to avoid selection graphics staying on the screen
+        if (_keyboard.selection.length > 0)
+        {
+            NSRange range = NSMakeRange(_keyboard.text.length, 0);
+            _keyboard.selection = range;
+        }
+    }
     UnityKeyboard_LayoutChanged(nil);
     [self systemHideKeyboard];
 }
@@ -210,13 +240,15 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // one, using the hide button on the keyboard, will move it outside view
     // another, for ipad floating keyboard, will "minimize" it (making its height/width zero)
 
-    if (rect.origin.y >= [UnityGetGLView() bounds].size.height || rect.size.width < 1e-6 || rect.size.height < 1e-6)
+    // if input field is multiline we need to account for the toolbar height
+    float expectedHeight = _multiline ? kToolBarHeight : 1e-6;
+
+    if (rect.origin.y + expectedHeight >= [UnityGetGLView() bounds].size.height || rect.size.width < 1e-6)
     {
         [self systemHideKeyboard];
     }
     else
     {
-        rect.origin.y = [UnityGetGLView() frame].size.height - rect.size.height; // iPhone X sometimes reports wrong y value for keyboard
         [self positionInput: rect x: rect.origin.x y: rect.origin.y];
     }
 }
@@ -243,7 +275,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     _keyboard = nil;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 - (UIToolbar*)createToolbarWithItems:(NSArray*)items
 {
     UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame: CGRectMake(0, 840, 320, kToolBarHeight)];
@@ -285,8 +317,9 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // mind you, all of that is highly empirical.
     // we assume space between items to be 18 [both betwen buttons and on the sides]
     // we also assume that button width would be more less title width exactly (it should be quite close though)
-    const int doneW   = [doneStr sizeWithAttributes: @{NSFontAttributeName: font}].width;
-    const int cancelW = [cancelStr sizeWithAttributes: @{NSFontAttributeName: font}].width;
+    const int doneW   = (int)[doneStr sizeWithAttributes: @{NSFontAttributeName: font}].width;
+    const int cancelW = (int)[cancelStr sizeWithAttributes: @{NSFontAttributeName: font}].width;
+
     singleLineSystemButtonsSpace = doneW + cancelW + 3 * 18;
 }
 
@@ -298,7 +331,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     self = [super init];
     if (self)
     {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 840, 480, 30)];
         textView.delegate = self;
         textView.font = [UIFont systemFontOfSize: 18.0];
@@ -316,17 +349,17 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
         textField.font = [UIFont systemFontOfSize: kSingleLineFontSize];
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         widthConstraint = [NSLayoutConstraint constraintWithItem: textField attribute: NSLayoutAttributeWidth relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: textField.frame.size.width];
         [textField addConstraint: widthConstraint];
 #endif
         [textField addTarget: self action: @selector(textFieldDidChange:) forControlEvents: UIControlEventEditingChanged];
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         [self createToolbars];
 #endif
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardDidShow:) name: UIKeyboardDidShowNotification object: nil];
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
@@ -336,6 +369,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 #endif
 
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(textInputDone:) name: UITextFieldTextDidEndEditingNotification object: nil];
+        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(textInputDone:) name: UITextViewTextDidEndEditingNotification object: nil];
     }
 
     return self;
@@ -343,31 +377,59 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (void)setTextInputTraits:(id<UITextInputTraits>)traits
     withParam:(KeyboardShowParam)param
-    withCap:(UITextAutocapitalizationType)capitalization
 {
-    traits.keyboardType = param.keyboardType;
-    traits.autocorrectionType = param.autocorrectionType;
-    traits.spellCheckingType  = param.spellcheckingType;
-    traits.keyboardAppearance = param.appearance;
-    traits.autocapitalizationType = capitalization;
+    UITextAutocapitalizationType capitalization = [KeyboardDelegate capitalizationForKeyboardParam: param];
+
     if (!_inputHidden)
         traits.secureTextEntry = param.secure;
+    if (param.secure)
+    {
+        traits.autocorrectionType = UITextAutocorrectionTypeNo;
+        traits.spellCheckingType  = UITextSpellCheckingTypeNo;
+        traits.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    }
+    else
+    {
+        traits.autocorrectionType = param.autocorrectionType;
+        traits.spellCheckingType  = param.spellcheckingType;
+        traits.autocapitalizationType = capitalization;
+    }
+    traits.keyboardType = param.keyboardType;
+    traits.keyboardAppearance = param.appearance;
+}
+
++ (UITextAutocapitalizationType)capitalizationForKeyboardParam:(KeyboardShowParam)param
+{
+    if (param.secure)
+        return UITextAutocapitalizationTypeNone;
+
+    UITextAutocapitalizationType capitalization;
+    switch (param.keyboardType)
+    {
+        case UIKeyboardTypeURL:
+        case UIKeyboardTypeEmailAddress:
+        case UIKeyboardTypeWebSearch:
+            capitalization = UITextAutocapitalizationTypeNone;
+            break;
+        default:
+            capitalization = UITextAutocapitalizationTypeSentences;
+    }
+
+    return capitalization;
 }
 
 - (void)setKeyboardParams:(KeyboardShowParam)param
 {
-    if (!editView.hidden)
+    [NSObject cancelPreviousPerformRequestsWithTarget: self];
+    if (cachedKeyboardParam.multiline != param.multiline ||
+        cachedKeyboardParam.secure != param.secure ||
+        cachedKeyboardParam.keyboardType != param.keyboardType ||
+        cachedKeyboardParam.autocorrectionType != param.autocorrectionType ||
+        cachedKeyboardParam.appearance != param.appearance)
     {
-        [NSObject cancelPreviousPerformRequestsWithTarget: self];
-        if (cachedKeyboardParam.multiline != param.multiline ||
-            cachedKeyboardParam.secure != param.secure ||
-            cachedKeyboardParam.keyboardType != param.keyboardType ||
-            cachedKeyboardParam.autocorrectionType != param.autocorrectionType ||
-            cachedKeyboardParam.appearance != param.appearance)
-        {
-            [self hideUIDelayed];
-        }
+        [self hideUIDelayed];
     }
+
     cachedKeyboardParam = param;
 
     if (_active)
@@ -377,33 +439,34 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
     _characterLimit = param.characterLimit;
 
-    UITextAutocapitalizationType capitalization = UITextAutocapitalizationTypeSentences;
-    if (param.keyboardType == UIKeyboardTypeURL || param.keyboardType == UIKeyboardTypeEmailAddress || param.keyboardType == UIKeyboardTypeWebSearch)
-        capitalization = UITextAutocapitalizationTypeNone;
-
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
     _multiline = param.multiline;
     if (_multiline)
     {
-        [self setTextInputTraits: textView withParam: param withCap: capitalization];
+        [self setTextInputTraits: textView withParam: param];
     }
     else
     {
-#if UNITY_HAS_IOSSDK_12_0
-        if (@available(iOS 12.0, *))
-        {
-            if (param.oneTimeCode)
-                textField.textContentType = UITextContentTypeOneTimeCode;
-        }
-#endif
-        [self setTextInputTraits: textField withParam: param withCap: capitalization];
+        if (param.oneTimeCode)
+            textField.textContentType = UITextContentTypeOneTimeCode;
+
+        [self setTextInputTraits: textField withParam: param];
         textField.placeholder = [NSString stringWithUTF8String: param.placeholder];
     }
+
     inputView = _multiline ? textView : textField;
     editView = _multiline ? textView : fieldToolbar;
 
+    // Initially hide input fields in case external keyboard is connected.
+    // This is needed for certain cases where external keyboard is connected
+    // and soft keyboard is reopened without closing it first.
+    // If external keyboard does not exist, these values will be updated by keyboardWillShow
+    editView.hidden = YES;
+    viewToolbar.hidden = YES;
+    inputView.hidden = YES;
+
 #else // PLATFORM_TVOS
-    [self setTextInputTraits: textField withParam: param withCap: capitalization];
+    [self setTextInputTraits: textField withParam: param];
     textField.placeholder = [NSString stringWithUTF8String: param.placeholder];
     inputView = textField;
     editView = textField;
@@ -416,6 +479,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     _status     = Visible;
     UnityKeyboard_StatusChanged(_status);
     _active     = YES;
+    _selectionRequest.location = NSNotFound;
 }
 
 // we need to show/hide keyboard to react to orientation too, so extract we extract UI fiddling
@@ -432,6 +496,13 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
         [UnityGetGLView() addSubview: editView];
         [inputView becomeFirstResponder];
+
+#if PLATFORM_TVOS
+        // make keyboard usable via controller by allowing exit to home temporarily
+        // val 3, as second lowest bit indicates a temporary disable
+        if (UnityGetAppleTVRemoteAllowExitToMenu() == 0)
+            UnitySetAppleTVRemoteAllowExitToMenu(3);
+#endif
     }
 
     // we need to reload input views when switching the keyboard type for already active keyboard
@@ -455,7 +526,11 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // Keyboard notifications are not supported on tvOS so keyboardWillHide: will never be called which would set _active to false.
     // To work around that limitation we will update _active from here.
     #if PLATFORM_TVOS
+    BOOL wasActive = _active;
     _active = editView.isFirstResponder;
+    // if closing, restore exit value to what it was (getter ignores temp value and returns what it is meant to be)
+    if (!_active && wasActive)
+        UnitySetAppleTVRemoteAllowExitToMenu(UnityGetAppleTVRemoteAllowExitToMenu());
     #endif
 }
 
@@ -468,6 +543,10 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
     _active = editView.isFirstResponder;
     editView.hidden = YES;
+
+    #if PLATFORM_IOS || PLATFORM_VISIONOS
+    viewToolbar.hidden = YES;
+    #endif
 
     _area = CGRectMake(0, 0, 0, 0);
 }
@@ -492,15 +571,15 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
     textField.returnKeyType = _inputHidden ? UIReturnKeyDone : UIReturnKeyDefault;
 
+    #if PLATFORM_IOS || PLATFORM_VISIONOS
+    viewToolbar.hidden  = !_multiline || _inputHidden ? YES : NO;
+    #endif
     editView.hidden     = _inputHidden ? YES : NO;
     inputView.hidden    = _inputHidden ? YES : NO;
-    if (_inputHidden)
-        textField.secureTextEntry = NO;
-    else
-        textField.secureTextEntry = cachedKeyboardParam.secure;
+    [self setTextInputTraits: textField withParam: cachedKeyboardParam];
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
 - (void)positionInput:(CGRect)kbRect x:(float)x y:(float)y
 {
     const float safeAreaInsetLeft = [UnityGetGLView() safeAreaInsets].left;
@@ -543,8 +622,6 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (NSRange)querySelection
 {
-    if (_inputHidden && _hiddenSelection.length > 0)
-        return _hiddenSelection;
     UIView<UITextInput>* textInput;
 
 #if PLATFORM_TVOS
@@ -583,6 +660,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     [textInput setSelectedTextRange: textRange];
     if (_inputHidden)
         _hiddenSelection = range;
+    _selectionRequest = range;
 }
 
 + (void)StartReorientation
@@ -613,7 +691,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (void)setText:(NSString*)newText
 {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
     if (_multiline)
         textView.text = newText;
     else
@@ -660,6 +738,11 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
         return _heightOfKeyboard < 160.0f;
 }
 
+- (UITextField*)getTextField
+{
+    return textField;
+}
+
 static bool StringContainsEmoji(NSString *string);
 - (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string_
 {
@@ -693,23 +776,19 @@ static bool StringContainsEmoji(NSString *string);
 {
     NSUInteger newLength = currentText.length + (text_.length - range.length);
 
-#if !FILTER_EMOJIS_IOS_KEYBOARD
-    // If the user inserts any emoji that exceeds the character limit it should quickly reject it, else it'll crash
-    if (newLength > _characterLimit && _characterLimit != 0 && StringContainsEmoji(text_))
-    {
-        return NO;
-    }
-#endif
-
     if (newLength > _characterLimit && _characterLimit != 0 && newLength >= currentText.length)
     {
+        // If the user inserts any emoji that exceeds the character limit it should quickly reject it, else it'll crash. We need to check regardless of FILTER_EMOJIS_IOS_KEYBOARD status as sometimes this method gets called before we've filtered out an emoji.
+        if (StringContainsEmoji(text_))
+            return NO;
+
         NSString* newReplacementText = @"";
         if ((currentText.length - range.length) < _characterLimit)
             newReplacementText = [text_ substringWithRange: NSMakeRange(0, _characterLimit - (currentText.length - range.length))];
 
         NSString* newText = [currentText stringByReplacingCharactersInRange: range withString: newReplacementText];
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
         if (_multiline)
             [textView setText: newText];
         else
@@ -735,7 +814,7 @@ static bool StringContainsEmoji(NSString *string);
         if (_inputHidden && _hiddenSelection.length > 0)
         {
             NSString* newText = [currentText stringByReplacingCharactersInRange: _hiddenSelection withString: text_];
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_VISIONOS
             if (_multiline)
                 [textView setText: newText];
             else
@@ -925,12 +1004,10 @@ extern "C" int UnityKeyboard_CanSetSelection()
 
 extern "C" void UnityKeyboard_SetSelection(int location, int length)
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void) {
-        if (_keyboard)
-        {
-            _keyboard.selection = NSMakeRange(location, length);
-        }
-    });
+    if (_keyboard)
+    {
+        _keyboard.selection = NSMakeRange(location, length);
+    }
 }
 
 //==============================================================================

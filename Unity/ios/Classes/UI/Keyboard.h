@@ -23,6 +23,7 @@ KeyboardShowParam;
 @interface KeyboardDelegate : NSObject<UITextFieldDelegate, UITextViewDelegate>
 {
 }
+- (void)setPendingSelectionRequest;
 - (BOOL)textFieldShouldReturn:(UITextField*)textField;
 - (void)textInputDone:(id)sender;
 - (void)textInputCancel:(id)sender;
@@ -55,6 +56,7 @@ KeyboardShowParam;
 - (NSString*)getText;
 - (void)setText:(NSString*)newText;
 - (BOOL)hasExternalKeyboard;
+- (UITextField*)getTextField;
 
 @property (readonly, nonatomic, getter = queryArea)               CGRect          area;
 @property (readonly, nonatomic)                                 BOOL            active;

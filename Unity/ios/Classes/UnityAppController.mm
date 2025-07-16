@@ -21,7 +21,7 @@
 #include "UI/OrientationSupport.h"
 #include "UI/UnityView.h"
 #include "UI/Keyboard.h"
-#include "UI/SplashScreen.h"
+#include "UI/UnityViewControllerBase.h"
 #include "Unity/InternalProfiler.h"
 #include "Unity/DisplayManager.h"
 #include "Unity/ObjCRuntime.h"
@@ -44,8 +44,12 @@ UnityAppController* GetAppController()
 bool _ios81orNewer = false, _ios82orNewer = false, _ios83orNewer = false, _ios90orNewer = false, _ios91orNewer = false;
 bool _ios100orNewer = false, _ios101orNewer = false, _ios102orNewer = false, _ios103orNewer = false;
 bool _ios110orNewer = false, _ios111orNewer = false, _ios112orNewer = false;
-bool _ios130orNewer = false;
+bool _ios130orNewer = false, _ios140orNewer = false, _ios150orNewer = false, _ios160orNewer = false;
 
+// minimal Unity initialization done, enough to do calls to provide data like URL launch
+bool    _unityEngineLoaded = false;
+// was core of Unity loaded (non-graphics part prior to loading first scene)
+bool    _unityEngineInitialized = false;
 // was unity rendering already inited: we should not touch rendering while this is false
 bool    _renderingInited        = false;
 // was unity inited: we should not touch unity api while this is false
@@ -62,9 +66,6 @@ bool    _wasPausedExternal      = false;
 bool    _skipPresent            = false;
 // was app "resigned active": some operations do not make sense while app is in background
 bool    _didResignActive        = false;
-
-// was startUnity scheduled: used to make startup robust in case of locking device
-static bool _startUnityScheduled    = false;
 
 #if UNITY_SUPPORT_ROTATION
 // Required to enable specific orientation for some presentation controllers: see supportedInterfaceOrientationsForWindow below for details
@@ -120,8 +121,10 @@ NSInteger _forceInterfaceOrientationMask = 0;
 
     UnityInitApplicationGraphics();
 
+#if !PLATFORM_VISIONOS
     // we make sure that first level gets correct display list and orientation
     [[DisplayManager Instance] updateDisplayListCacheInUnity];
+#endif
 
     UnityLoadApplication();
     Profiler_InitProfiler();
@@ -132,20 +135,13 @@ NSInteger _forceInterfaceOrientationMask = 0;
     UnitySetPlayerFocus(1);
 
     AVAudioSession* audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory: AVAudioSessionCategoryAmbient error: nil];
-    if (UnityIsAudioManagerAvailableAndEnabled())
+    // If Unity audio is disabled, we set the category to ambient to make sure we don't mute other app's audio. We set the audio session
+    // to active so we can get outputVolume callbacks. If Unity audio is enabled, FMOD should have already handled all of this AVAudioSession init.
+    if (!UnityIsAudioManagerAvailableAndEnabled())
     {
-        if (UnityShouldPrepareForIOSRecording())
-        {
-            [audioSession setCategory: AVAudioSessionCategoryPlayAndRecord error: nil];
-        }
-        else if (UnityShouldMuteOtherAudioSources())
-        {
-            [audioSession setCategory: AVAudioSessionCategorySoloAmbient error: nil];
-        }
+        [audioSession setCategory: AVAudioSessionCategoryAmbient error: nil];
+        [audioSession setActive: YES error: nil];
     }
-
-    [audioSession setActive: YES error: nil];
     [audioSession addObserver: self forKeyPath: @"outputVolume" options: 0 context: nil];
     UnityUpdateMuteState([audioSession outputVolume] < 0.01f ? 1 : 0);
 
@@ -161,6 +157,12 @@ extern "C" void UnityDestroyDisplayLink()
     [GetAppController() destroyDisplayLink];
 }
 
+extern "C" void UnityRequestUnload()
+{
+    _unityAppReady = false;
+    [[NSNotificationCenter defaultCenter] postNotificationName: kUnityDidUnload object: nil];
+}
+
 extern "C" void UnityRequestQuit()
 {
     _didResignActive = true;
@@ -173,14 +175,14 @@ extern "C" void UnityRequestQuit()
 extern void SensorsCleanup();
 extern "C" void UnityCleanupTrampoline()
 {
-    // Unity view and viewController will not necessary be destroyed right after this function execution.
-    // We need to ensure that these objects will not receive any callbacks from system during that time.
-    [_UnityAppController window].rootViewController = nil;
-    [[_UnityAppController unityView] removeFromSuperview];
-
     // Prevent multiple cleanups
     if (_UnityAppController == nil)
         return;
+
+    // Unity view and viewController will not necessary be destroyed right after this function execution.
+    // We need to ensure that these objects will not receive any callbacks from system during that time.
+    _UnityAppController.window.rootViewController = nil;
+    [_UnityAppController.unityView removeFromSuperview];
 
     [KeyboardDelegate Destroy];
 
@@ -224,33 +226,18 @@ extern "C" void UnityCleanupTrampoline()
 
 #endif
 
-#if !PLATFORM_TVOS
-- (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
-{
-    AppController_SendNotificationWithArg(kUnityDidReceiveLocalNotification, notification);
-    UnitySendLocalNotification(notification);
-}
-
-#endif
-
 #if UNITY_USES_REMOTE_NOTIFICATIONS
-- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
-{
-    AppController_SendNotificationWithArg(kUnityDidReceiveRemoteNotification, userInfo);
-    UnitySendRemoteNotification(userInfo);
-}
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     AppController_SendNotificationWithArg(kUnityDidRegisterForRemoteNotificationsWithDeviceToken, deviceToken);
-    UnitySendDeviceToken(deviceToken);
 }
 
 #if !PLATFORM_TVOS
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
 {
     AppController_SendNotificationWithArg(kUnityDidReceiveRemoteNotification, userInfo);
-    UnitySendRemoteNotification(userInfo);
+
     if (handler)
     {
         handler(UIBackgroundFetchResultNoData);
@@ -262,7 +249,7 @@ extern "C" void UnityCleanupTrampoline()
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     AppController_SendNotificationWithArg(kUnityDidFailToRegisterForRemoteNotificationsWithError, error);
-    UnitySendRemoteNotificationError(error);
+
     // alas people do not check remote notification error through api (which is clunky, i agree) so log here to have at least some visibility
     ::printf("\nFailed to register for remote notifications:\n%s\n\n", [[error localizedDescription] UTF8String]);
 }
@@ -287,12 +274,7 @@ extern "C" void UnityCleanupTrampoline()
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
-#if defined(__IPHONE_12_0) || defined(__TVOS_12_0)
-    restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring> > * _Nullable restorableObjects))restorationHandler
-#else
-    restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler
-#endif
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring> > * _Nullable restorableObjects))restorationHandler
 {
     NSURL* url = userActivity.webpageURL;
     if (url)
@@ -303,10 +285,39 @@ extern "C" void UnityCleanupTrampoline()
 - (BOOL)application:(UIApplication*)application willFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     AppController_SendNotificationWithArg(kUnityWillFinishLaunchingWithOptions, launchOptions);
+    NSURL* url = [self extractURLFromLaunchOptions: launchOptions];
+    if (url != nil)
+    {
+        [self initUnityApplicationNoGraphics];
+        UnitySetAbsoluteURL(url.absoluteString.UTF8String);
+    }
     return YES;
 }
 
-#if (PLATFORM_IOS && defined(__IPHONE_13_0)) || (PLATFORM_TVOS && defined(__TVOS_13_0))
+// Helper method to extract URL from launch options
+- (NSURL*)extractURLFromLaunchOptions:(NSDictionary*)launchOptions
+{
+    // Check for the direct launch URL
+    NSURL* url = launchOptions[UIApplicationLaunchOptionsURLKey];
+    if (url != nil)
+    {
+        return url;
+    }
+
+    // Check for the user activity dictionary and URL from user activity
+    NSUserActivity* userActivity = launchOptions[UIApplicationLaunchOptionsUserActivityDictionaryKey][@"UIApplicationLaunchOptionsUserActivityKey"];
+    if (userActivity != nil && [userActivity.activityType isEqualToString: NSUserActivityTypeBrowsingWeb])
+    {
+        url = userActivity.webpageURL;
+        if (url != nil)
+        {
+            return url;
+        }
+    }
+
+    return nil;
+}
+
 - (UIWindowScene*)pickStartupWindowScene:(NSSet<UIScene*>*)scenes API_AVAILABLE(ios(13.0), tvos(13.0))
 {
     // if we have scene with UISceneActivationStateForegroundActive - pick it
@@ -331,32 +342,55 @@ extern "C" void UnityCleanupTrampoline()
 
     return foregroundScene ? foregroundScene : backgroundScene;
 }
-#endif
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     ::printf("-> applicationDidFinishLaunching()\n");
 
     // send notfications
-#if !PLATFORM_TVOS
-    if (UILocalNotification* notification = [launchOptions objectForKey: UIApplicationLaunchOptionsLocalNotificationKey])
-        UnitySendLocalNotification(notification);
-
+#if !PLATFORM_TVOS && !PLATFORM_VISIONOS
     if ([UIDevice currentDevice].generatesDeviceOrientationNotifications == NO)
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 #endif
 
+    // if application is in background, don't initialize Unity
+    // this happens if app uses location fence, notifications with content/actions, ...
+    // initUnityWithApplication: initializes rendering, possibly loads scene and calls Start(), none meant for background
+    if (UIApplication.sharedApplication.applicationState == UIApplicationStateBackground)
+        return YES;
+
+    [self initUnityWithApplication: application];
+    return YES;
+}
+
+- (void)initUnityApplicationNoGraphics
+{
+    if (_unityEngineLoaded)
+        return;
+    _unityEngineLoaded = true;
     UnityInitApplicationNoGraphics(UnityDataBundleDir());
+}
+
+- (void)initUnityWithApplication:(UIApplication*)application
+{
+    if (_unityEngineInitialized)
+        return;
+    _unityEngineInitialized = true;
+
+    // basic unity init
+    [self initUnityApplicationNoGraphics];
 
     [self selectRenderingAPI];
     [UnityRenderingView InitializeForAPI: self.renderingAPI];
 
-#if (PLATFORM_IOS && defined(__IPHONE_13_0)) || (PLATFORM_TVOS && defined(__TVOS_13_0))
+#if !PLATFORM_VISIONOS
     if (@available(iOS 13, tvOS 13, *))
         _window = [[UIWindow alloc] initWithWindowScene: [self pickStartupWindowScene: application.connectedScenes]];
     else
+        _window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
+#else
+    _window = [[UIWindow alloc] init]; 
 #endif
-    _window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
 
     _unityView = [self createUnityView];
 
@@ -371,7 +405,12 @@ extern "C" void UnityCleanupTrampoline()
     // if you wont use keyboard you may comment it out at save some memory
     [KeyboardDelegate Initialize];
 
-    return YES;
+#if UNITY_DEVELOPER_BUILD
+    // Causes a black screen after splash screen, but would deadlock if waiting for manged debugger otherwise
+    [self performSelector: @selector(startUnity:) withObject: application afterDelay: 0];
+#else
+    [self startUnity: application];
+#endif
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context
@@ -421,10 +460,9 @@ extern "C" void UnityCleanupTrampoline()
         [self performSelector: @selector(updateUnityAudioOutput) withObject: nil afterDelay: 0.1];
         UnitySetPlayerFocus(1);
     }
-    else if (!_startUnityScheduled)
+    else
     {
-        _startUnityScheduled = true;
-        [self performSelector: @selector(startUnity:) withObject: application afterDelay: 0];
+        [self initUnityWithApplication: application];
     }
 
     _didResignActive = false;
@@ -504,7 +542,6 @@ extern "C" void UnityCleanupTrampoline()
                 UnityWillPause();
                 [self repaint];
                 UnityWaitForFrame();
-
                 [self addSnapshotViewController];
 #endif
                 UnityPause(1);
@@ -517,7 +554,6 @@ extern "C" void UnityCleanupTrampoline()
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
 {
-    ::printf("WARNING -> applicationDidReceiveMemoryWarning()\n");
     UnityLowMemory();
 }
 
@@ -529,6 +565,12 @@ extern "C" void UnityCleanupTrampoline()
     // this happens if the app is force closed immediately after opening it.
     if (_unityAppReady)
     {
+        // make sure that we are in a "unity cannot be touched" state
+        // if there was some complex UI shown when terminating, we can get extra UI calls from iOS after applicationWillTerminate:
+        // and we want to make sure we never do anything touching unity runtime at this point
+        _unityAppReady = _renderingInited = _unityEngineInitialized = false;
+        _didResignActive = true;
+
         UnityCleanup();
         UnityCleanupTrampoline();
     }
@@ -558,20 +600,11 @@ void AppController_SendUnityViewControllerNotification(NSString* name)
     [[NSNotificationCenter defaultCenter] postNotificationName: name object: UnityGetGLViewController()];
 }
 
-extern "C" UIWindow*            UnityGetMainWindow()
-{
-    return GetAppController().mainDisplay.window;
-}
+extern "C" UIWindow*            UnityGetMainWindow()        { return GetAppController().mainDisplay.window; }
+extern "C" UIViewController*    UnityGetGLViewController()  { return GetAppController().rootViewController; }
+extern "C" UnityView*           UnityGetUnityView()         { return GetAppController().unityView; }
+extern "C" UIView*              UnityGetGLView()            { return UnityGetUnityView(); }
 
-extern "C" UIViewController*    UnityGetGLViewController()
-{
-    return GetAppController().rootViewController;
-}
-
-extern "C" UIView*              UnityGetGLView()
-{
-    return GetAppController().unityView;
-}
 
 extern "C" ScreenOrientation    UnityCurrentOrientation()   { return GetAppController().unityView.contentOrientation; }
 
@@ -614,8 +647,10 @@ static bool isDebuggerAttachedToConsole(void)
     assert(junk == 0);
 
     // We're being debugged if the P_TRACED flag is set.
-
-    return ((info.kp_proc.p_flag & P_TRACED) != 0);
+    // But if we are starting app on device (and make debugger wait and attach after start)
+    //   it will NOT connect stout (only stderr, used by nslog)
+    // Hence we also check that stoud is rerouted
+    return ((info.kp_proc.p_flag & P_TRACED) != 0) && isatty(STDOUT_FILENO);
 }
 
 void UnityInitTrampoline()
@@ -624,11 +659,12 @@ void UnityInitTrampoline()
 
     NSString* version = [[UIDevice currentDevice] systemVersion];
 #define CHECK_VER(s) [version compare: s options: NSNumericSearch] != NSOrderedAscending
-    _ios81orNewer  = CHECK_VER(@"8.1"),  _ios82orNewer  = CHECK_VER(@"8.2"),  _ios83orNewer  = CHECK_VER(@"8.3");
-    _ios90orNewer  = CHECK_VER(@"9.0"),  _ios91orNewer  = CHECK_VER(@"9.1");
-    _ios100orNewer = CHECK_VER(@"10.0"), _ios101orNewer = CHECK_VER(@"10.1"), _ios102orNewer = CHECK_VER(@"10.2"), _ios103orNewer = CHECK_VER(@"10.3");
-    _ios110orNewer = CHECK_VER(@"11.0"), _ios111orNewer = CHECK_VER(@"11.1"), _ios112orNewer = CHECK_VER(@"11.2");
-    _ios130orNewer  = CHECK_VER(@"13.0");
+    _ios81orNewer  = CHECK_VER(@"8.1");  _ios82orNewer  = CHECK_VER(@"8.2");  _ios83orNewer  = CHECK_VER(@"8.3");
+    _ios90orNewer  = CHECK_VER(@"9.0");  _ios91orNewer  = CHECK_VER(@"9.1");
+    _ios100orNewer = CHECK_VER(@"10.0"); _ios101orNewer = CHECK_VER(@"10.1"); _ios102orNewer = CHECK_VER(@"10.2"); _ios103orNewer = CHECK_VER(@"10.3");
+    _ios110orNewer = CHECK_VER(@"11.0"); _ios111orNewer = CHECK_VER(@"11.1"); _ios112orNewer = CHECK_VER(@"11.2");
+    _ios130orNewer  = CHECK_VER(@"13.0"); _ios140orNewer = CHECK_VER(@"14.0"); _ios150orNewer = CHECK_VER(@"15.0");
+    _ios160orNewer = CHECK_VER(@"16.0");
 #undef CHECK_VER
 
     AddNewAPIImplIfNeeded();
@@ -652,11 +688,15 @@ extern "C" bool UnityiOS110orNewer() { return _ios110orNewer; }
 extern "C" bool UnityiOS111orNewer() { return _ios111orNewer; }
 extern "C" bool UnityiOS112orNewer() { return _ios112orNewer; }
 extern "C" bool UnityiOS130orNewer() { return _ios130orNewer; }
+extern "C" bool UnityiOS140orNewer() { return _ios140orNewer; }
+extern "C" bool UnityiOS150orNewer() { return _ios150orNewer; }
+extern "C" bool UnityiOS160orNewer() { return _ios160orNewer; }
 
 // sometimes apple adds new api with obvious fallback on older ios.
 // in that case we simply add these functions ourselves to simplify code
 static void AddNewAPIImplIfNeeded()
 {
+#if !PLATFORM_VISIONOS
     if (![[UIScreen class] instancesRespondToSelector: @selector(maximumFramesPerSecond)])
     {
         IMP UIScreen_MaximumFramesPerSecond_IMP = imp_implementationWithBlock(^NSInteger(id _self) {
@@ -672,18 +712,5 @@ static void AddNewAPIImplIfNeeded()
         });
         class_replaceMethod([UIView class], @selector(safeAreaInsets), UIView_SafeAreaInsets_IMP, UIView_safeAreaInsets_Enc);
     }
-}
-
-// xcode11 uses new compiler-rt lib
-// if we build unity player lib with xcode11 and then user links final project with older xcode
-//   the link fails with Undefined Symbol ___isPlatformVersionAtLeast
-// hence we add this as a temporary hack until we start requiring xcode11
-
-#if __clang_major__ < 11
-extern "C" int32_t __isOSVersionAtLeast(int32_t Major, int32_t Minor, int32_t Subminor);
-extern "C" int32_t __isPlatformVersionAtLeast(uint32_t Platform, uint32_t Major, uint32_t Minor, uint32_t Subminor)
-{
-    return __isOSVersionAtLeast(Major, Minor, Subminor);
-}
-
 #endif
+}
