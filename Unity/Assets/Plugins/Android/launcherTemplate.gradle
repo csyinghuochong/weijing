@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-
 dependencies {
     implementation project(':unityLibrary')
     }
@@ -61,7 +60,6 @@ android {
         }
     }
 }**SPLITS_VERSION_CODE****LAUNCHER_SOURCE_BUILD_SETUP**
-
 
 apply plugin: 'com.mob.sdk'
 
