@@ -331,10 +331,10 @@ public class MyEditorScript
 		{
 			CleanDirectory(targetPath);
 		}
-		if (File.Exists(mainfestFile))
-		{
-			File.Delete(mainfestFile);
-		}
+		//if (File.Exists(mainfestFile))
+		//{
+		//	File.Delete(mainfestFile);
+		//}
 		string app_name = "危境";
 		int version = EditorRuntimeInitializeOnLoad.GetVersion();
 		string target_dir = Application.dataPath + "/TargetAndroid";
