@@ -26,11 +26,15 @@ namespace ET
 				int platform = GlobalHelp.GetPlatform();
 
 #if UNITY_IPHONE || UNITY_IOS
-				if((bigversion == 21 && Application.version == "2.2.0")
-				|| (bigversion == 22 && Application.version == "2.2.1") )
+				if (bigversion == 23 && Application.version == "2.2.5")
 				{
 					self.IOSReview = true;
 				}
+				else
+				{
+					self.IOSReview = false;
+				}
+				
 #endif
 
 #if UNITY_ANDROID
@@ -78,19 +82,23 @@ namespace ET
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
-				
+
 				if (self.IOSReview && bigversion == 23)
 				{
+
+				
 #if UNITY_IPHONE || UNITY_IOS
-				self.DeleteAccountBtn.SetActive(true);
-				self.AccountText.GetComponent<Text>().text = "注册账号";
+					self.DeleteAccountBtn.SetActive(true);
+					self.AccountText.GetComponent<Text>().text = "注册账号";
+
 #endif
 				}
+				
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
 
-                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}");
+                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview} version: {Application.version}");
                 Log.ILog.Debug($"UILoginComponent  bigversion:{bigversion}   platform:{platform}");
 
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
