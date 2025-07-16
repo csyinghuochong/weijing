@@ -7,6 +7,12 @@ pluginManagement {
         maven {
                url "https://mvn.mob.com/android"
            }
+       maven {
+            url "https://artifact.bytedance.com/repository/ttgamesdk/"
+        }
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 
@@ -22,6 +28,12 @@ dependencyResolutionManagement {
          maven {
                url "https://mvn.mob.com/android"
            }
+        maven {
+            url "https://artifact.bytedance.com/repository/ttgamesdk/"
+        }
+        maven {
+            url "https://jitpack.io"
+        }
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }

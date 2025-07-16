@@ -6,6 +6,8 @@ plugins {
     id 'com.android.application' version '7.4.2' apply false
     id 'com.android.library' version '7.4.2' apply false
     id 'com.mob.sdk' version '+' apply false
+    //id "com.bytedance.ttgame.gbsdk_helper" version '1.0.10' apply false
+    //id 'org.jetbrains.kotlin:kotlin-gradle-plugin' version '1.4.30' apply false 
     **BUILD_SCRIPT_DEPS**
 }
 
