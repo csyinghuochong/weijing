@@ -1083,7 +1083,7 @@ namespace ET
                 {
                     return false;
                 }
-                if ((petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax) && UseLocType == ItemLocType.ItemLocBag)
+                if (petHeXinNumber > 0 && (petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax) && UseLocType == ItemLocType.ItemLocBag)
                 {
                     return false;
                 }
