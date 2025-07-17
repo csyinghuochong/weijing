@@ -3,6 +3,8 @@ using ET.EventType;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +51,9 @@ namespace ET
 #endif
 
                 self.InitSdk();
-				Application.runInBackground = true;
+				
+
+                Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
 				SettingHelper.ClintFindPath = false; ///bigversion >= 22;
@@ -172,7 +176,8 @@ namespace ET
 				self.YinSiToggle = rc.Get<GameObject>("YinSiToggle");
 				self.TextButton_2 = rc.Get<GameObject>("TextButton_2");
 				self.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-				self.YongHuXieYi.SetActive(false);
+				self.TextYongHu = rc.Get<GameObject>("TextYongHu").GetComponent<Text>();
+                self.YongHuXieYi.SetActive(false);
 				self.YinSiXieYi.SetActive(false);
 
 				self.TextButton_2_2 = rc.Get<GameObject>("TextButton_2_2");
@@ -223,10 +228,10 @@ namespace ET
 					self.AccountInfoComponent.Root = IPHoneHelper.IsRoot() ? 1 : 0;
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
-				
-				//Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 
-				self.InitLoginType();
+                //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
+                self.ShowYonghu();
+                self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
@@ -264,9 +269,36 @@ namespace ET
 	}
 	
 	public static class UILoginComponentSystem
-	{
+    {
 
-		public static void InitSdk(this UILoginComponent self)
+        public static string GetYongHuText(int platform)
+        {
+            try
+            {
+                WebClient MyWebClient = new WebClient();
+                MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+                string dataurl = "http://verification.weijinggame.com/weijing/xieyi1.txt";
+                Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
+                string pageHtml = Encoding.UTF8.GetString(pageData);
+                return pageHtml;
+            }
+
+            catch (WebException webEx)
+            {
+                Log.Debug(webEx.ToString());
+            }
+            return "服务器维护中！";
+        }
+
+        public static  void ShowYonghu(this UILoginComponent self)
+        {
+            int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
+
+            self.TextYongHu.text = GetYongHuText(platform);
+        }
+
+
+        public static void InitSdk(this UILoginComponent self)
 		{
 
             //#if !UNITY_EDITOR

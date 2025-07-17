@@ -24,9 +24,29 @@ public class UIYinSi : MonoBehaviour
     public GameObject ButtonRefuse;
     public GameObject ButtonAgree;
     public GameObject ButtonClose;
+    public Text TextYongHu;
 
     public int AgreeNumber = 0;
 
+
+    public string GetYongHuText(int platform)
+    {
+        try
+        {
+            WebClient MyWebClient = new WebClient();
+            MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+            string dataurl =  "http://verification.weijinggame.com/weijing/xieyi1.txt";
+            Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
+            string pageHtml = Encoding.UTF8.GetString(pageData);
+            return pageHtml;
+        }
+
+        catch (WebException webEx)
+        {
+            Log.Debug(webEx.ToString());
+        }
+        return "服务器维护中！";
+    }
 
     public string GetYingSiText(int platform)
     {
@@ -125,6 +145,14 @@ public class UIYinSi : MonoBehaviour
         }
     }
 
+    private bool LoadYonghu = false;
+    private void ShowYonghu() 
+    {
+        int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
+        TextYongHu.text = GetYongHuText(platform);
+    }
+
+
     void Start()
     {
         ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -132,7 +160,9 @@ public class UIYinSi : MonoBehaviour
 
         this.YongHuXieYi = rc.Get<GameObject>("YongHuXieYi");
         this.YinSiXieYi = rc.Get<GameObject>("YinSiXieYi");
+        this.TextYongHu = rc.Get<GameObject>("TextYongHu").GetComponent<Text>();
 
+        this.ShowYonghu();
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
         this.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
@@ -160,14 +190,14 @@ public class UIYinSi : MonoBehaviour
 
         this.AgreeNumber = 0;
 
-        if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
-        {
-            Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
-            this.gameObject.SetActive(false);
-            GameObject.Find("Global").GetComponent<Init>().TikTokInit();
-            GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
-            GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
-        }
+        //if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
+        //{
+        //    Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
+        //    this.gameObject.SetActive(false);
+        //    GameObject.Find("Global").GetComponent<Init>().TikTokInit();
+        //    GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
+        //    GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
+        //}
     }
 
     public void OnButtonRefuse(  )

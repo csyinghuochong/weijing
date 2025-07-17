@@ -1,6 +1,7 @@
 ﻿using cn.sharesdk.unity3d;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -54,8 +55,10 @@ namespace ET
 		public GameObject ObjSelectBtn;
 		public GameObject SelectServerName;
 		public GameObject Loading;
+		public Text TextYongHu;
 
-		public long LastLoginTime;
+
+        public long LastLoginTime;
 		
 		public ServerItem ServerInfo;
 		public AccountInfoComponent AccountInfoComponent;
