@@ -190,14 +190,14 @@ public class UIYinSi : MonoBehaviour
 
         this.AgreeNumber = 0;
 
-        //if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
-        //{
-        //    Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
-        //    this.gameObject.SetActive(false);
-        //    GameObject.Find("Global").GetComponent<Init>().TikTokInit();
-        //    GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
-        //    GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
-        //}
+        if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
+        {
+            Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
+            this.gameObject.SetActive(false);
+            GameObject.Find("Global").GetComponent<Init>().TikTokInit();
+            GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
+            GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
+        }
     }
 
     public void OnButtonRefuse(  )
