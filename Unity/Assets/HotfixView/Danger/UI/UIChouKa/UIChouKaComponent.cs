@@ -135,6 +135,8 @@ namespace ET
             uiChouKaChapterSelect.Text_3.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
             uiChouKaChapterSelect.Text_4.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
             uiChouKaChapterSelect.Text_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
+            
+            self.Btn_Warehouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 36;
         }
 
         public static int GetChouKaId(this UIChouKaComponent self)
