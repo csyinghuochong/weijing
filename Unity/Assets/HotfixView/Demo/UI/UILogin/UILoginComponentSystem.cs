@@ -176,29 +176,29 @@ namespace ET
 				self.YinSiToggle = rc.Get<GameObject>("YinSiToggle");
 				self.TextButton_2 = rc.Get<GameObject>("TextButton_2");
 				self.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-				self.TextYongHu = rc.Get<GameObject>("TextYongHu").GetComponent<Text>();
+				self.TextYinsiNew = rc.Get<GameObject>("TextYinsiNew").GetComponent<Text>();
                 self.YongHuXieYi.SetActive(false);
 				self.YinSiXieYi.SetActive(false);
 
 				self.TextButton_2_2 = rc.Get<GameObject>("TextButton_2_2");
 				self.TextButton_2_1 = rc.Get<GameObject>("TextButton_2_1");
 				self.YinSiToggle2 = rc.Get<GameObject>("YinSiToggle2");
-				self.TextYinSi = rc.Get<GameObject>("TextYinSi");
+				self.TextYongHuItem = rc.Get<GameObject>("TextYongHuItem");
 				if (platform == 6)
 				{
 					self.YinSiToggle2.GetComponent<Toggle>().isOn = false;
                     self.ZhuCe.transform.Find("Btn_iPhone").gameObject.SetActive(false);	
                 }
 
-                self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
-				self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
+                self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
+				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.TextButton_2_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
 
-				self.TextYinSi.SetActive(false);
-                UILoginHelper.ShowTextList(self.TextYinSi, GlobalHelp.GetPlatform());
+				self.TextYongHuItem.SetActive(false);
+                UILoginHelper.ShowTextList(self.TextYongHuItem, GlobalHelp.GetPlatform());
 
                 self.LoginErrorNumber = 0;
 				self.Loading = rc.Get<GameObject>("Loading");
@@ -230,7 +230,7 @@ namespace ET
                 }
 
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
-                self.ShowYonghu();
+                self.ShowYinsiNew();
                 self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
@@ -271,13 +271,14 @@ namespace ET
 	public static class UILoginComponentSystem
     {
 
-        public static string GetYongHuText(int platform)
+        public static string GetYingSiTextNew(this UILoginComponent self,int platform)
         {
             try
             {
                 WebClient MyWebClient = new WebClient();
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-                string dataurl = "http://verification.weijinggame.com/weijing/xieyi1.txt";
+                                                                             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+                string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
                 Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
                 string pageHtml = Encoding.UTF8.GetString(pageData);
                 return pageHtml;
@@ -290,11 +291,12 @@ namespace ET
             return "服务器维护中！";
         }
 
-        public static  void ShowYonghu(this UILoginComponent self)
+
+        public static  void ShowYinsiNew(this UILoginComponent self)
         {
             int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
 
-            self.TextYongHu.text = GetYongHuText(platform);
+            self.TextYinsiNew.text = self.GetYingSiTextNew(platform);
         }
 
 

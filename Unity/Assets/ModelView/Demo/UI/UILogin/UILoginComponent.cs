@@ -18,7 +18,7 @@ namespace ET
 		public GameObject TextButton_2_2;
 		public GameObject TextButton_2_1;
 		public GameObject YinSiToggle2;
-		public GameObject TextYinSi;
+		public GameObject TextYongHuItem;
 
 
         public GameObject BanHanNode;
@@ -55,7 +55,7 @@ namespace ET
 		public GameObject ObjSelectBtn;
 		public GameObject SelectServerName;
 		public GameObject Loading;
-		public Text TextYongHu;
+		public Text TextYinsiNew;
 
 
         public long LastLoginTime;

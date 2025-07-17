@@ -43,7 +43,7 @@ namespace ET
 
         public static void ShowTextList(GameObject textItem,int platForm)
         {
-            string pageHtml = GetYingSiText(platForm);
+            string pageHtml = GetYonHuText(platForm);
 
             string tempstr = string.Empty;
             string leftValue = pageHtml;
@@ -123,13 +123,13 @@ namespace ET
             return GameSettingLanguge.LoadLocalization("服务器维护中！");
         }
 
-        public static string GetYingSiText(int platform)
+        public static string GetYonHuText(int platform)
         {
             try
             {
                 WebClient MyWebClient = new WebClient();
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-                string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/yinsi3.txt" : "http://verification.weijinggame.com/weijing/yinsi1.txt";
+                string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
                 Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
                 string pageHtml = Encoding.UTF8.GetString(pageData);
                 return pageHtml;

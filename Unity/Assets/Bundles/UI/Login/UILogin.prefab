@@ -248,8 +248,6 @@ MonoBehaviour:
     gameObject: {fileID: 5287288159610889892}
   - key: DeleteAccountBtn
     gameObject: {fileID: 3669269589016597392}
-  - key: TextYinSi
-    gameObject: {fileID: 8736767872642601175}
   - key: buttonAgeTip
     gameObject: {fileID: 4884856014022583946}
   - key: UIAgeTip
@@ -262,12 +260,14 @@ MonoBehaviour:
     gameObject: {fileID: 2874205823437962534}
   - key: YinSiButon
     gameObject: {fileID: 1429123923136623800}
-  - key: TextYongHu
-    gameObject: {fileID: 1309357951781215939}
   - key: Img_GameName_EN
     gameObject: {fileID: 4788792528252754661}
   - key: Img_GameName_ZH
     gameObject: {fileID: 2204441241565106516}
+  - key: TextYinsiNew
+    gameObject: {fileID: 1309357951781215939}
+  - key: TextYongHuItem
+    gameObject: {fileID: 8736767872642601175}
 --- !u!114 &4343214064597879920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3021,7 +3021,7 @@ GameObject:
   - component: {fileID: 6674891696050910009}
   - component: {fileID: 673960635671707967}
   m_Layer: 5
-  m_Name: TextYongHu
+  m_Name: TextYinsiNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32958,7 +32958,7 @@ GameObject:
   - component: {fileID: 5282889438160022210}
   - component: {fileID: 3973174828113249781}
   m_Layer: 5
-  m_Name: TextYinSi
+  m_Name: TextYongHuItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
