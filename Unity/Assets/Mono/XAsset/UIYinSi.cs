@@ -135,8 +135,8 @@ public class UIYinSi : MonoBehaviour
 
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-        this.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
-        this.TextButton_1.GetComponent<Button>().onClick.AddListener(ShowYinSi);
+        this.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
+        this.TextButton_2.GetComponent<Button>().onClick.AddListener(ShowYinSi);
 
         this.TextYinSi = rc.Get<GameObject>("TextYinSi");
         this.TextYinSi.SetActive(false);
