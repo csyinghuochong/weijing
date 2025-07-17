@@ -71,6 +71,8 @@ namespace ET
             self.Btn_Shop = rc.Get<GameObject>("Btn_Shop");
             ButtonHelp.AddListenerEx(self.Btn_Shop, ()=> { self.OnBtn_Shop().Coroutine(); } );
 
+            self.OnLanguageUpdate();
+            
             //初始化数据
             self.Init().Coroutine();
         }
@@ -78,6 +80,14 @@ namespace ET
 
     public static class UIPaiMaiDuiHuanComponetSystem
     {
+        public static void OnLanguageUpdate(this UIPaiMaiDuiHuanComponet self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Text_5").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Lab_WeiJingGoldLab").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 42 : 32;
+            rc.Get<GameObject>("Text_4").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+        }
 
         public static async ETTask Init(this UIPaiMaiDuiHuanComponet self) {
 
