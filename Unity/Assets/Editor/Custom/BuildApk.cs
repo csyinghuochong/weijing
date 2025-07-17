@@ -68,10 +68,15 @@ public class rememberKeyStore
 
 		// 密钥别名密码
 		PlayerSettings.Android.keyaliasPass = "829475";
-		
+
+# if TikTok5
+        PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
+#else
 		PlayerSettings.applicationIdentifier = "com.example.weijinggame";
-		
-		EditorPrefs.SetString("AndroidGradleUseEmbedded", "true");
+#endif
+
+
+        EditorPrefs.SetString("AndroidGradleUseEmbedded", "true");
 #endif
 #endif
 
@@ -147,7 +152,7 @@ public class MyEditorScript
 	}
 
 	private static string targetPath = Application.dataPath + @"\Plugins\Android\libs_custom"; //目标路径   ../表示当前项目文件的父路径
-	private static string mainfestFile = Application.dataPath + @"\Plugins\Android\AndroidManifest"; //目标路径   ../表示当前项目文件的父路径
+	private static string app_debugaar = Application.dataPath + @"\Plugins\Android\app-debug.aar"; //目标路径   ../表示当前项目文件的父路径
 	private static bool isNull = false;
 	private static void CopyLibs(string path)
 	{
@@ -331,11 +336,12 @@ public class MyEditorScript
 		{
 			CleanDirectory(targetPath);
 		}
-		//if (File.Exists(mainfestFile))
-		//{
-		//	File.Delete(mainfestFile);
-		//}
-		string app_name = "危境";
+
+		if (File.Exists(app_debugaar))
+		{
+			File.Delete(app_debugaar);
+		}
+        string app_name = "危境";
 		int version = EditorRuntimeInitializeOnLoad.GetVersion();
 		string target_dir = Application.dataPath + "/TargetAndroid";
 		
@@ -484,13 +490,13 @@ public class MyEditorScript
 			EditorUserBuildSettings.buildAppBundle = false;
 		}
 
-        if (name == "TikTok5")
-		{
-            PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
-        }
         if (name == "Google")
         {
             PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
+        }
+        else if (name == "TikTok5")
+        {
+            PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
         }
         else
 		{
