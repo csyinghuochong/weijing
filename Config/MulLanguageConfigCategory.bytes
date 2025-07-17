@@ -7,7 +7,8 @@
 ��暴击概率"	Crit Rate
 ��抗暴概率"Crit Res
 ��命中概率"Hit Rate
- ��闪避概率"Evasion Rate
+��闪避概率"
+Dodge Rate
 ��幸运加成"
 Luck Bonus
 ��最小攻击"Min Atk
@@ -26,7 +27,7 @@ Luck Bonus
 %��韧性等级"Resilience Rating
 ��命中等级"
 Hit Rating
-"��闪避等级"Evasion Rating
+ ��闪避等级"Dodge Rating
 (��物理伤害加成"Phys Dmg Bonus
 )��魔法伤害加成"Magic Dmg Bonus
 ,��物理伤害减免"Phys Dmg Reduction
@@ -61,14 +62,15 @@ Ignore Def
 Def Ignore
 ؍技能零冷却"Zero CD
 )ٍ技能额外伤害"Skill Extra Dmg
-!ڍ技能闪避"Skill Evasion
+ڍ技能闪避"Skill Dodge
 ۍ神农"Shennong
  ܍每秒恢复"HP Regen/sec
 'ݍ抵抗减益状态"Debuff Resist
-!ލ魔法闪避"Magic Evasion
+ލ魔法闪避"Magic Dodge
 ߍ专注概率"
 Focus Rate
- ��物理闪避"Phys Evasion
+��物理闪避"
+Phys Dodge
 �攻击速度"Atk Spd
 �对怪伤害"Mob Dmg
 1�玩家普攻减伤"Player Melee Mitigation
@@ -561,15 +563,15 @@ Wӝ 游戏在线时间达到60分钟"/The online time of the game reaches 60 
 /ԝ登陆游戏1次"Log in to the game once
 ՝品质:0"
 Quality: 0
-6֝预测极品概率"Predict the best probability
+!֝预测极品概率"Predict
 $ם万里挑一"One in a million
 ؝装备名字"
 Equip name
-,ٝ金币鉴定"Gold coin identification
-'ڝ装备鉴定"Equipment appraisal
+"ٝ金币鉴定"Gold appraisal
+"ڝ装备鉴定"Item appraisal
 D۝需要消耗：防御锻造符"Requires Cost: Defensive Forge
 mܝ7提示:鉴定符的品质决定属性数量和属性值".Quality determines attribute count and values.
-eݝ'金币鉴定的概率较低出现极品"6Gold coin identification rarely yields top-tier items.
+Qݝ'金币鉴定的概率较低出现极品""Gold identified as Normal Quality.
 *ޝ鉴定符列表"List of identifiers
 (ߝ阵营实力"Strength of the camp
 #��阵营奖励"Faction rewards
@@ -1349,7 +1351,7 @@ $��新的宠物栏"A new pet bar
 %��开启守护"Open the guardian
 ,��已开启守护"Guardian is turned on
 :��属性附加命中率"Attribute attachment hit rate
->��属性附加闪避率"!Attribute additional evasion rate
+<��属性附加闪避率"Attribute additional Dodge rate
 K��全属性附加暴击率"+Full Attribute Additional Critical Hit Rate
 H��全属性附加抗爆率"(Full attribute additional antiknock rate
 #��改变守护"Change Guardian
@@ -1366,7 +1368,8 @@ H��全属性附加抗爆率"(Full attribute additional antiknock rate
 ��
 成功率:"Success rate:
 f��*提示：只能放入星级相等的宠物"4Tip: Only pets with equal star rating can be put in.
-9��预测进化品质"Predicting evolutionary quality
+$��预测进化品质"
+Predicting
 *��献祭说明"Sacrifice instructions
 *��进化祭品"Evolutionary sacrifice
 )��献祭进阶"Sacrifice advancement
@@ -2662,7 +2665,7 @@ B��释放打断寻路状态""Release Interrupt Wayfinding State
 Q��请确认是否登录TapTap！"+Please confirm whether to log in to TapTap!
 2��抖音登录失败！"Tik Tok login failed!
 ��暴击"Critical Hit
-��闪避"Evasion
+��闪避"Dodge
 ��抵抗"
 Resistance
 ��免疫"Immunity
@@ -2908,7 +2911,7 @@ C��忽视目标百分比防御值"Ignore Target Percent Defense
 7��初始暴击等级"Initial Critical Strike Level
 1��初始韧性等级"Initial toughness grade
 +��初始命中等级"Initial hit level
-/��初始闪避等级"Initial Evasion Level
+-��初始闪避等级"Initial Dodge Level
  ��	光抗性"Photoresistance
  ��	暗抗性"Dark resistance
  ��	火抗性"Fire resistance
@@ -2946,7 +2949,7 @@ The amulet
 ���4物理防御,可以抵扣物理攻击带来的伤害"HPhysical defense, which can offset the damage caused by physical attacks
 ��4法术防御,可以抵扣魔法攻击带来的伤害"CSpell defense, which can offset the damage caused by magic attacks.
 k��0会额外提升你所有的技能造成的伤害"3Increases the damage done by all of your abilities.
-b��*提升生命和闪避，伤害减免属性"0Increases health, evasion, and damage reduction.
+`��*提升生命和闪避，伤害减免属性".Increases health, Dodge, and damage reduction.
 t��*提升攻击，物防和物穿攻速属性"BIncreases attack, defense, and penetration attack speed attributes
 o��*提升技能伤害，魔防和魔穿属性"=Increases skill damage, magic defense, and magic penetration.
 ���*提升双防，抗暴，战斗回血属性"PImprove the attributes of double defense, anti-violence and combat blood return.
@@ -2955,7 +2958,7 @@ s��*提升攻速，攻击，冷却缩减属性"AIncreases attack speed, attac
 Y��$降低受到魔法类技能的伤害"-Reduces the damage taken by magical abilities
 ���<抵抗对方暴击的概率和抵抗眩晕等控制类技能"fControl skills such as the probability of resistance to the opponent's crit and resistance to vertigo.
 ���u攻击有概率使目标的防御降低为0,无视对方防御进行攻击,对怪物触发会额外增加20%的伤害"�Attacks have a chance to reduce the target's defense to 0. Attacks that ignore the opponent's defense will trigger an additional 20% damage to the monster.
-���9命中敌人的附加概率，和闪避概率进行抵消"XThe additional probability of hitting the enemy is offset by the probability of evasion.
+���9命中敌人的附加概率，和闪避概率进行抵消"VThe additional probability of hitting the enemy is offset by the probability of Dodge.
 k��'触发重击后额外附加的伤害值"<The amount of damage added after a critical hit is triggered
 ���H受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能"nThe probability of being attacked by the enemy to dodge this attack. You can dodge general attacks and skills.
 {��-攻击中降低敌人物理防御值百分比"FReduce the enemy's physical defense value percentage during the attack
@@ -2970,7 +2973,7 @@ M��!降低释放技能的冷却时间"$Reduces the cooldown of the ability.
 ���C受到物理技能伤害时,可以躲避本次魔法伤害的概率"SThe probability of avoiding this magic damage when receiving physical skill damage.
 ���E根据当前的命中等级换算成命中概率附加到自身属性"lAccording to the current hit level, it is converted into hit probability and attached to its own attributes.
 c��*受到伤害可以减免对应的伤害值"1Damage can reduce the corresponding damage value.
-���E根据当前的闪避等级换算成闪避概率附加到自身属性"tAccording to the current evasion level, it is converted into evasion probability and attached to its own attributes.
+���E根据当前的闪避等级换算成闪避概率附加到自身属性"pAccording to the current Dodge level, it is converted into Dodge probability and attached to its own attributes.
 Q��'每次攻击额外增加的固定伤害""Additional fixed damage per attack
 r��0使用物理攻击目标时额外造成的伤害":Extra damage dealt when attacking the target with physical
 o��-可以加快自身普通攻击的攻击频率":It can speed up the attack frequency of its normal attack.
@@ -3357,7 +3360,7 @@ _��*是否是否花费{0}{1}开启新选项？"-Whether to spend {0} {1} to o
 0��已经领取完了"It has been collected.
 ��
 钻石:{0}"Diamond: {0}
-3��需要消耗：{0}"Required consumption: {0}
+#��需要消耗：{0}"	Cost: {0}
 ��
 品质:{0}"Quality: {0}
 ��品质:"Quality
@@ -3762,7 +3765,7 @@ E��锁定宠物不能操作！""The locked pet cannot be operated!
 1��暴击率附加"Critical Strike Rate Bonus
 .��抗暴率附加"Anti-riot rate addition
 &��命中率附加"Hit rate append
-)��闪避率附加"Evasion rate added
+'��闪避率附加"Dodge rate added
 ��评分: {0}"Rating: {0}
 Q��请先选择要升星的宠物"+Please select the pet to be upgraded first.
 W��!请选择需要升星的宠物！".Please choose a pet that needs to be upgraded!
@@ -4020,8 +4023,9 @@ e��&竞技场匹配完成,请尽快进入!"7Arena match complete, please ente
 R��'恭喜你！获得本场挑战的胜利"#Congratulations! Win the challenge.
 ���7非常遗憾！你在本场挑战失败,请再接再厉"LA great pity! If you fail in this challenge, please make persistent efforts.
 O��{0}秒后自动回城"2Return to the city automatically after {0} seconds
-!��
-限购:{0}"Restricted: {0}
+��
+限购:{0}"
+Limit: {0}
 9��携带宠物数量:{0}/{1}"Number of pets: {0}/{1}
 *��未选择宠物！"No pet selected!
 @��出战宠物不能提交！"War pets cannot be submitted!
