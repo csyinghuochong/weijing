@@ -84,6 +84,8 @@ public static class XCodePostProcess
             plist.root.values.Remove("NSUserTrackingUsageDescription");
         }
 
+		plist.root.SetBoolean("ITSAppUsesNonExemptEncryption", false);
+
 
         foreach (var url in urllist)
         {
