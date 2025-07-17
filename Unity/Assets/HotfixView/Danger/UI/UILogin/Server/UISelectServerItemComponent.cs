@@ -43,6 +43,7 @@ namespace ET
             self.ServerInfo = serverId;
             self.Text_ServerName.GetComponent<Text>().text = serverId.ServerName;
             self.ImageNew.SetActive(index == 0 || serverId.New == 1) ;
+            self.ImageNew.GetComponentInChildren<Text>().text = GameSettingLanguge.Language == 0? "新" : "new";
         }
 
         public static void SetClickHandler(this UISelectServerItemComponent self, Action<ServerItem> action)
