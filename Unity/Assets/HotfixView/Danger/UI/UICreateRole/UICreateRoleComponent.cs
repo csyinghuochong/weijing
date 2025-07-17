@@ -117,7 +117,11 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
 
-            self.OnClickRandomName();
+            self.BtnRandomName.SetActive(GameSettingLanguge.Language == 0);
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.OnClickRandomName();
+            }
         }
     }
 
