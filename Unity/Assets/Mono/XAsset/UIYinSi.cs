@@ -15,7 +15,7 @@ public class UIYinSi : MonoBehaviour
     public GameObject TextButton_2;
     public GameObject TextButton_1;
 
-    public GameObject TextYinSi;
+    public GameObject TextYongHu;
     public GameObject YongHuXieYiClose;
     public GameObject YinSiXieYiClose;
     public GameObject YongHuXieYi;
@@ -24,7 +24,7 @@ public class UIYinSi : MonoBehaviour
     public GameObject ButtonRefuse;
     public GameObject ButtonAgree;
     public GameObject ButtonClose;
-    public Text TextYongHu;
+    public Text TextYinSiNew;
 
     public int AgreeNumber = 0;
 
@@ -35,7 +35,7 @@ public class UIYinSi : MonoBehaviour
         {
             WebClient MyWebClient = new WebClient();
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-            string dataurl =  "http://verification.weijinggame.com/weijing/xieyi1.txt";
+            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
             Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
             string pageHtml = Encoding.UTF8.GetString(pageData);
             return pageHtml;
@@ -54,7 +54,8 @@ public class UIYinSi : MonoBehaviour
         {
             WebClient MyWebClient = new WebClient();
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/yinsi3.txt" : "http://verification.weijinggame.com/weijing/yinsi1.txt";
+            //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+            string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
             Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
             string pageHtml = Encoding.UTF8.GetString(pageData);
             return pageHtml;
@@ -67,10 +68,10 @@ public class UIYinSi : MonoBehaviour
         return "服务器维护中！";
     }
 
-    public void ShowTextList(GameObject textItem)
+    public void ShowYonghuTextList(GameObject textItem)
     {
         int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
-        string pageHtml = GetYingSiText(platform);
+        string pageHtml = GetYongHuText(platform);
 
         string tempstr = string.Empty;
         string leftValue = pageHtml;
@@ -135,21 +136,21 @@ public class UIYinSi : MonoBehaviour
 
 
     private bool LoadYinSi = false;
-    private void ShowYinSi()
+    private void ShowYonghuText()
     {
         this.YongHuXieYi.SetActive(true);
         if (!LoadYinSi)
         {
             LoadYinSi = true;
-            ShowTextList(this.TextYinSi);
+            ShowYonghuTextList(this.TextYongHu);
         }
     }
 
     private bool LoadYonghu = false;
-    private void ShowYonghu() 
+    private void ShowYinsiNew() 
     {
         int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
-        TextYongHu.text = GetYongHuText(platform);
+        this.TextYinSiNew.text = GetYingSiText(platform);
     }
 
 
@@ -160,16 +161,16 @@ public class UIYinSi : MonoBehaviour
 
         this.YongHuXieYi = rc.Get<GameObject>("YongHuXieYi");
         this.YinSiXieYi = rc.Get<GameObject>("YinSiXieYi");
-        this.TextYongHu = rc.Get<GameObject>("TextYongHu").GetComponent<Text>();
+        this.TextYinSiNew = rc.Get<GameObject>("TextYinSiNew").GetComponent<Text>();
 
-        this.ShowYonghu();
+        this.ShowYinsiNew();
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-        this.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
-        this.TextButton_2.GetComponent<Button>().onClick.AddListener(ShowYinSi);
+        this.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
+        this.TextButton_1.GetComponent<Button>().onClick.AddListener(ShowYonghuText);
 
-        this.TextYinSi = rc.Get<GameObject>("TextYinSi");
-        this.TextYinSi.SetActive(false);
+        this.TextYongHu = rc.Get<GameObject>("TextYongHu");
+        this.TextYongHu.SetActive(false);
        
         this.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
         this.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { this.YongHuXieYi.SetActive(false); });
