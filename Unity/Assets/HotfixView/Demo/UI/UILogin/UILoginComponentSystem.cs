@@ -209,8 +209,8 @@ namespace ET
 
 				if (GameSettingLanguge.Language == 1)
 				{
-					rc.Get<GameObject>("Img_GameName").GetComponent<RectTransform>().localPosition = new Vector2(196f, 207f);
-					rc.Get<GameObject>("Img_GameName").GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+					rc.Get<GameObject>("Img_GameName_ZH").SetActive(false);
+					rc.Get<GameObject>("Img_GameName_EN").SetActive(true);
 					rc.Get<GameObject>("YinSiButon").SetActive(false);
 					rc.Get<GameObject>("Text_DiTip").SetActive(false);
 				}
