@@ -152,16 +152,17 @@
 -ñmongodb://localhost:27017/ì"	WJBeta150
 -ómongodb://localhost:27017/ó"	WJBeta151
 -òmongodb://localhost:27017/ó"	WJBeta152
--ômongodb://localhost:27017/ô"	WJBeta153
--ömongodb://localhost:27017/ô"	WJBeta154
+-ômongodb://localhost:27017/ó"	WJBeta153
+-ömongodb://localhost:27017/ó"	WJBeta154
 -õmongodb://localhost:27017/õ"	WJBeta155
--úmongodb://localhost:27017/ú"	WJBeta156
+-úmongodb://localhost:27017/õ"	WJBeta156
 -ùmongodb://localhost:27017/ù"	WJBeta157
--ûmongodb://localhost:27017/û"	WJBeta158
+-ûmongodb://localhost:27017/ù"	WJBeta158
 -ümongodb://localhost:27017/ü"	WJBeta159
--†mongodb://localhost:27017/†"	WJBeta160
+-†mongodb://localhost:27017/ü"	WJBeta160
 -°mongodb://localhost:27017/°"	WJBeta161
 -¢mongodb://localhost:27017/¢"	WJBeta162
 -£mongodb://localhost:27017/£"	WJBeta163
+-§mongodb://localhost:27017/§"	WJBeta164
 5 mongodb://localhost:27017/ "WJBeta202(center)
 4Àmongodb://localhost:27017/À"WJBeta203(robot)
