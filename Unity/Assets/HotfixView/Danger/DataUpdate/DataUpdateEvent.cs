@@ -1214,6 +1214,11 @@ namespace ET
                     uiSettingSkillComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIPaiMaiDuiHuanComponet uiPaiMaiDuiHuanComponent)
+                {
+                    uiPaiMaiDuiHuanComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
