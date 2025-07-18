@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -716,7 +716,7 @@ namespace ET
 
         public string PetXiLian10010086_33(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("宠物使用宠之晶洗练宠物次数 {0}/{1}");
+            string progress = GameSettingLanguge.LoadLocalization("宠物使用宠之晶洗炼宠物次数 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }
@@ -772,14 +772,14 @@ namespace ET
 
         public string XiLianSkillNumber_44(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("洗练出带有任何隐藏技能的装备 {0}/{1}");
+            string progress = GameSettingLanguge.LoadLocalization("洗炼出带有任何隐藏技能的装备 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }
 
         public string XiLianAttriId_45(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("洗练出带有指定属性的装备 {0}/{1}");
+            string progress = GameSettingLanguge.LoadLocalization("洗炼出带有指定属性的装备 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, 1);
             return text1;
         }

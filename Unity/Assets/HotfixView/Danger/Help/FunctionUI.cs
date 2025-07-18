@@ -458,7 +458,7 @@ namespace ET
                     proName = "金币加成";
                     break;
                 case "403":
-                    proName = "洗练极品掉落";
+                    proName = "洗炼极品掉落";
                     break;
                 case "404":
                     proName = "隐藏属性出现概率";
