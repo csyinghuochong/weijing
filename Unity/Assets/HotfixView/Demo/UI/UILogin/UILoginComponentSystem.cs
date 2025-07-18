@@ -102,7 +102,7 @@ namespace ET
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
 
-                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview} version: {Application.version}");
+                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}  appversion: {Application.version}");
                 Log.ILog.Debug($"UILoginComponent  bigversion:{bigversion}   platform:{platform}");
 
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
