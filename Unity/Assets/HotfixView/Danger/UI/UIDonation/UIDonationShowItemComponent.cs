@@ -65,8 +65,8 @@ namespace ET
         {
             self.RankingInfo = rankingInfo;
 
-            self.Text_Combat.GetComponent<Text>().text = rankingInfo.Combat.ToString() + "金币";
-            self.Text_Level.GetComponent<Text>().text = rankingInfo.PlayerLv.ToString() + "级";
+            self.Text_Combat.GetComponent<Text>().text = rankingInfo.Combat.ToString() + GameSettingLanguge.LoadLocalization("金币");
+            self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}级"), rankingInfo.PlayerLv.ToString());
             self.Text_Name.GetComponent<Text>().text = rankingInfo.PlayerName.ToString();
             self.Text_Rank.GetComponent<Text>().text = rank.ToString();
             UICommonHelper.ShowOccIcon(self.ImageHeadIcon, rankingInfo.Occ);
