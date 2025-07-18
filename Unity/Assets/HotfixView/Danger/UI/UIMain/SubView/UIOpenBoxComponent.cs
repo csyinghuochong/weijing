@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace ET
@@ -116,7 +116,7 @@ namespace ET
             if (itemneeds.Length > 2 && !bagComponent.CheckNeedItem(itemneeds))
             {
                 self.GetParent<UI>().GameObject.SetActive(false);
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("道具不足，需要道具 {0}！"), UICommonHelper.GetNeedItemDesc(itemneeds)));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("道具不足,需要道具 {0}！"), UICommonHelper.GetNeedItemDesc(itemneeds)));
                 return;
             }
 

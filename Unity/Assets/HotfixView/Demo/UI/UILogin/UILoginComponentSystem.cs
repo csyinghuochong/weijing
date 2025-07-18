@@ -1,4 +1,4 @@
-﻿using cn.sharesdk.unity3d;
+using cn.sharesdk.unity3d;
 using ET.EventType;
 using System;
 using System.Collections;
@@ -881,7 +881,7 @@ namespace ET
         {
             if (string.IsNullOrEmpty(appuserinfo))
             {
-                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败, 请选择其他登陆方式！");
                 return;
             }
             self.LoginType = LoginTypeEnum.Apple.ToString();
@@ -900,7 +900,7 @@ namespace ET
 		{
 			if (string.IsNullOrEmpty(appuserinfo))
 			{
-                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败, 请选择其他登陆方式！");
                 return;
             }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -91,7 +91,7 @@ namespace ET
             float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;
             self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
             self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.GetTitle();
-            self.TextLevelTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获得{0}，洗炼获得高品质属性概率提升"), equipXiLianConfig.GetTitle());
+            self.TextLevelTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获得{0},洗炼获得高品质属性概率提升"), equipXiLianConfig.GetTitle());
 
             if (equipXiLianConfig.ProList_Type[0] != 0)
             {

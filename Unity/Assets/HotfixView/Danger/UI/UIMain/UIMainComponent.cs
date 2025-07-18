@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -1418,7 +1418,7 @@ namespace ET
 
         public static async ETTask OnStopServer(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("停服维护"), GameSettingLanguge.LoadLocalization("十分钟后停服维护，请暂时退出游戏！"),
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("停服维护"), GameSettingLanguge.LoadLocalization("十分钟后停服维护,请暂时退出游戏！"),
                () =>
                {
                }).Coroutine();

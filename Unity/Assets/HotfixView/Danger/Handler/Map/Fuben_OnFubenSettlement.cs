@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -64,7 +64,7 @@ namespace ET
                     uitrial.GetComponent<UITrialMainComponent>().StopTimer();
                     PopupTipHelp.OpenPopupTip_2(args.Scene,
                         args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? GameSettingLanguge.LoadLocalization("胜利") : GameSettingLanguge.LoadLocalization("失败"),
-                        args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? GameSettingLanguge.LoadLocalization("恭喜你赢得了本场试炼的胜利！") : GameSettingLanguge.LoadLocalization("战斗超时，失败"),
+                        args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? GameSettingLanguge.LoadLocalization("恭喜你赢得了本场试炼的胜利！") : GameSettingLanguge.LoadLocalization("战斗超时,失败"),
                      () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
                      ).Coroutine();
                     break;

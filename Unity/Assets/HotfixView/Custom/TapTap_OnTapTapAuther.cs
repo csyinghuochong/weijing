@@ -19,7 +19,7 @@ namespace ET
         {
             if (code == 1050)
             {
-                FloatTipManager.Instance.ShowFloatTip("用户无可玩时长，此时用户只能退出游戏或切换账号");
+                FloatTipManager.Instance.ShowFloatTip("用户无可玩时长,此时用户只能退出游戏或切换账号");
                 return;
             }
 

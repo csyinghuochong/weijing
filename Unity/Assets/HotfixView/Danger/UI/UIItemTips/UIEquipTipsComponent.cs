@@ -1,4 +1,4 @@
-﻿using ProtoBuf.Meta;
+using ProtoBuf.Meta;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -417,7 +417,7 @@ namespace ET
             if (haveGem)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("该装备镶嵌有宝石，是否出售道具？"), () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("出售道具"), GameSettingLanguge.LoadLocalization("该装备镶嵌有宝石,是否出售道具？"), () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();

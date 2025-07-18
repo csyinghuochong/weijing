@@ -152,13 +152,13 @@ namespace ET
             List<int> defendteamids = petmingComponent.GetSelfPetMingTeam();
             //if (defendteamids.Contains(team))
             //{
-            //    FloatTipManager.Instance.ShowFloatTip("占领矿场中，无法更换");
+            //    FloatTipManager.Instance.ShowFloatTip("占领矿场中,无法更换");
             //    return;
             //}
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             if(defendteamids.Contains(team) && unit.GetComponent<NumericComponent>().GetAsLong(NumericType.PetMineCDTime) > TimeHelper.ServerNow())
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("挑战冷却中，无法更换"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("挑战冷却中,无法更换"));
                 return;
             }
 

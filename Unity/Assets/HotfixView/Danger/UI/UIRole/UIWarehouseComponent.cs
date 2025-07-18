@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -134,11 +134,11 @@ namespace ET
             string tip = string.Empty;
             if (rechargeNumber < needRecharge)
             {
-                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启宝石仓库，当前充值金额{1}元"), needRecharge, rechargeNumber);
+                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元,将自动开启宝石仓库,当前充值金额{1}元"), needRecharge, rechargeNumber);
             }
             else
             {
-                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启宝石仓库，您目前已经满足条件，请点击开启"), needRecharge);
+                tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元,将自动开启宝石仓库,您目前已经满足条件,请点击开启"), needRecharge);
             }
 
             PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启栏位"), tip, () =>

@@ -69,7 +69,7 @@ namespace ET
 
             if (raduis > PathfindingComponent.FindRandomNavPosMaxRadius * 0.001f)
             {
-                throw new Exception($"pathfinding raduis is too large，cur: {raduis}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
+                throw new Exception($"pathfinding raduis is too large,cur: {raduis}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
             }
 
             int degrees = RandomHelper.RandomNumber(0, 360);
@@ -101,7 +101,7 @@ namespace ET
 
             if (width > PathfindingComponent.FindRandomNavPosMaxRadius * 0.001f || height > PathfindingComponent.FindRandomNavPosMaxRadius * 0.001f)
             {
-                throw new Exception($"pathfinding rectangle is too large，width: {width} height: {height}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
+                throw new Exception($"pathfinding rectangle is too large,width: {width} height: {height}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
             }
 
             float x = RandomHelper.RandomNumber(-width, width);
@@ -121,7 +121,7 @@ namespace ET
 
             if (maxRadius > PathfindingComponent.FindRandomNavPosMaxRadius * 0.001f)
             {
-                throw new Exception($"pathfinding raduis is too large，cur: {maxRadius}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
+                throw new Exception($"pathfinding raduis is too large,cur: {maxRadius}, max: {PathfindingComponent.FindRandomNavPosMaxRadius}");
             }
 
             int degrees = RandomHelper.RandomNumber(0, 360);

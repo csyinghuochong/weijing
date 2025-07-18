@@ -105,7 +105,7 @@ namespace ET
             }
             else
             {
-                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("神秘之门还剩{0}秒，活动结束将强制离开地图哦。"), endTime % 60);
+                self.EndTimeText.text = string.Format(GameSettingLanguge.LoadLocalization("神秘之门还剩{0}秒,活动结束将强制离开地图哦。"), endTime % 60);
             }
             if (endTime <= 60)
             {

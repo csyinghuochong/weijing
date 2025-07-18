@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -78,7 +78,7 @@ namespace ET
         {
             if (!self.m_ReddotNodeDic.TryGetValue(key, out ReddotNode reddotNode))
             {
-                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree，please add node to reddot tree or modify key");
+                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree,please add node to reddot tree or modify key");
             }
 
             reddotNode.ChangeCount(changeValue);
@@ -98,7 +98,7 @@ namespace ET
             }
             else
             {
-                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree，please add node to reddot tree or modify key");
+                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree,please add node to reddot tree or modify key");
             }
         }
 
@@ -116,7 +116,7 @@ namespace ET
             }
             else
             {
-                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree，please add node to reddot tree or modify key");
+                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree,please add node to reddot tree or modify key");
             }
         }
 
@@ -133,7 +133,7 @@ namespace ET
             }
             else
             {
-                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree，please add node to reddot tree or modify key");
+                throw new Exception($"[Reddot System] there is no node which key is '{key}' in reddot tree,please add node to reddot tree or modify key");
             }
         }
     }

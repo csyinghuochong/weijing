@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using UnityEngine.UI;
 
@@ -51,14 +51,14 @@ namespace ET
             //此处只是在界面中申请,重新打开界面允许重新匹配
             if (self.PipeiStatus && self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime>0)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经匹配，请耐心等候..."));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经匹配,请耐心等候..."));
                 return;
             }
 
             //点击按钮给服务器发送匹配消息
             int errorCode = await NetHelper.RequestSoloMatch(self.ZoneScene());
             if (errorCode == 0) {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开始匹配，请耐心等候..."));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开始匹配,请耐心等候..."));
                 self.PipeiStatus = true;
             }
 
