@@ -1206,8 +1206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 1
-  EditorMode: 1
+  Development: 0
+  EditorMode: 0
   OueNetMode: 1
   BigVersion: 23
   BigVersionIOS: 23
@@ -6030,7 +6030,7 @@ GameObject:
   - component: {fileID: 7066996029254524115}
   - component: {fileID: 8454071036320988286}
   m_Layer: 5
-  m_Name: TextYinSi
+  m_Name: TextYongHu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6657,7 +6657,7 @@ GameObject:
   - component: {fileID: 484217206733046477}
   - component: {fileID: 5999870002841923787}
   m_Layer: 5
-  m_Name: TextYongHu
+  m_Name: TextYinSiNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7100,14 +7100,14 @@ MonoBehaviour:
     gameObject: {fileID: 3158615788131078741}
   - key: YongHuXieYiClose
     gameObject: {fileID: 4332468637315656384}
-  - key: TextYinSi
-    gameObject: {fileID: 3950613972193370211}
   - key: TextButton_1
     gameObject: {fileID: 1088727227539652140}
   - key: TextButton_2
     gameObject: {fileID: 286847521567720417}
-  - key: TextYongHu
+  - key: TextYinSiNew
     gameObject: {fileID: 5202348357924007735}
+  - key: TextYongHu
+    gameObject: {fileID: 3950613972193370211}
 --- !u!114 &6318772721187586611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8285,7 +8285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextButton_2: {fileID: 0}
   TextButton_1: {fileID: 0}
-  TextYinSi: {fileID: 0}
+  TextYongHu: {fileID: 0}
   YongHuXieYiClose: {fileID: 0}
   YinSiXieYiClose: {fileID: 0}
   YongHuXieYi: {fileID: 0}
@@ -8293,7 +8293,7 @@ MonoBehaviour:
   ButtonRefuse: {fileID: 0}
   ButtonAgree: {fileID: 0}
   ButtonClose: {fileID: 0}
-  TextYongHu: {fileID: 0}
+  TextYinSiNew: {fileID: 0}
   AgreeNumber: 0
 --- !u!222 &9031605751874732232
 CanvasRenderer:
