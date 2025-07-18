@@ -131,6 +131,7 @@ namespace ET
             self.Text_NeedShuLianTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.Text_LearnItemCostTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.LabNeedShuLian.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.CostListNode.GetComponent<GridLayoutGroup>().spacing = GameSettingLanguge.Language == 0? new Vector2(10f, 0f) : new Vector2(35f, 0f);
         }
 
         public static void OnBtn_Plan(this UIMakeLearnComponent self, int plan)
