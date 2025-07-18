@@ -40,6 +40,8 @@ namespace ET
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
+            
+            self.OnLanguageUpdate();
         }
     }
     public class UICellDungeonReviveComponentDestroy : DestroySystem<UICellDungeonReviveComponent>
@@ -58,6 +60,22 @@ namespace ET
     }
     public static class UICellDungeonReviveComponentSystem
     {
+        public static void OnLanguageUpdate(this UICellDungeonReviveComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Text_ExitTip_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 48 : 40;
+            if (GameSettingLanguge.Language == 1)
+            {
+                Vector2 position = rc.Get<GameObject>("Img_ExitTip").GetComponent<RectTransform>().localPosition;
+                position.y = -450f;
+                rc.Get<GameObject>("Img_ExitTip").GetComponent<RectTransform>().localPosition = position;
+                
+                position = rc.Get<GameObject>("Text_CostName").GetComponent<RectTransform>().localPosition;
+                position.x = 300f;
+                rc.Get<GameObject>("Text_CostName").GetComponent<RectTransform>().localPosition = position;
+            }
+        }
 
         public static bool IsNoAutoExit(this UICellDungeonReviveComponent self, int sceneType)
         {
