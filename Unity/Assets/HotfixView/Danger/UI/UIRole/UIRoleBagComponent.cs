@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -170,7 +170,7 @@ namespace ET
 
         public static  void OnBtn_OneSell(this UIRoleBagComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石，出售品质可以在设置中进行选择"), ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择"), ()=>
             {
                 self.RequestOneSell().Coroutine();
             }, null).Coroutine();

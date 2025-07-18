@@ -175,7 +175,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值，充值任意额度后激活此功能！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值,充值任意额度后激活此功能！"));
                 return;
             }
 
@@ -195,7 +195,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber) <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值，充值任意额度后激活此功能！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("为保证游戏内金币保值,充值任意额度后激活此功能！"));
                 return;
             }
 

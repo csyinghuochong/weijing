@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -588,13 +588,13 @@ namespace ET
 
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中，不能分解！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中,不能分解！"));
                 return;
             }
 
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中，不能分解！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中,不能分解！"));
                 return;
             }
 
@@ -612,7 +612,7 @@ namespace ET
 
             //if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
             //{
-            //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中，不能分解！");
+            //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
             //    return;
             //}
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生?"),
@@ -654,7 +654,7 @@ namespace ET
             RolePetInfo rolePetInfo = self.LastSelectItem;
             if (rolePetInfo.UpStageStatus == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物每次升级都有概率进行进化，进化消耗1个基础宠物全面提升属性并有概率获得新的技能。"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。"));
             }
 
             if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
@@ -687,7 +687,7 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
             if (petConfig.PetType == 2)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽已达最终阶段，无需进化！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽已达最终阶段,无需进化！"));
                 return;
             }
 

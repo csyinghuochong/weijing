@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -215,7 +215,7 @@ namespace ET
                 hour = 0;
             }
 
-            self.JiaYuanUpHint.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("提示:经验产出{0}/小时，预计{1}小时后可升级家园"), jiayuanCof.JiaYuanAddExp, hour);
+            self.JiaYuanUpHint.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("提示:经验产出{0}/小时,预计{1}小时后可升级家园"), jiayuanCof.JiaYuanAddExp, hour);
 
             self.ZiJinDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin));
             self.ExpDuiHuanText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("兑换次数:10/{0}"), numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp));

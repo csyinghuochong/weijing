@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -75,7 +75,7 @@ namespace ET
             {
                 self.Button_List[i].SetActive(false);
             }
-            self.TextTip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("今日已答完全部问题，请明日再来!");
+            self.TextTip.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("今日已答完全部问题,请明日再来!");
             self.TextQuestion.GetComponent<Text>().text = "";
             self.ItemNodeList.SetActive(false);
         }
@@ -113,7 +113,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("答错了！"));
             }
             else {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("回答正确，获得奖励！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("回答正确,获得奖励！"));
                 QusetionValue = 1;
             }
 

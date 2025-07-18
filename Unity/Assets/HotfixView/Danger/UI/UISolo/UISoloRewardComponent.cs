@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +35,7 @@ namespace ET
                 self.Text_Result.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("恭喜你！获得本场挑战的胜利");
             }
             else {
-                self.Text_Result.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("非常遗憾！你在本场挑战失败，请再接再厉");
+                self.Text_Result.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("非常遗憾！你在本场挑战失败,请再接再厉");
             }
 
             //显示奖励列表

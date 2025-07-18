@@ -1,4 +1,4 @@
-
+﻿
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -275,7 +275,7 @@ namespace ET
                 //        if (skillGrid.skillCDStatus)
                 //        {
                 //            moveStatus = false;
-                //            //Game_PublicClassVar.Get_function_UI.GameHint("技能CD中，不能移动技能");
+                //            //Game_PublicClassVar.Get_function_UI.GameHint("技能CD中,不能移动技能");
                 //            string langStrHint = Game_PublicClassVar.Get_gameSettingLanguge.LoadLocalizationHint("hint_402");
                 //            Game_PublicClassVar.Get_function_UI.GameGirdHint_Front(langStrHint);
                 //        }

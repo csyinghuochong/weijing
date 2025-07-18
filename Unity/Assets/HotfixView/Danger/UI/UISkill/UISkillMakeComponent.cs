@@ -164,7 +164,7 @@ namespace ET
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("遗忘技能"), GameSettingLanguge.LoadLocalization("遗忘后将可以重新学习其他的生活技能，之前学习的所有技能将重置，请谨慎选择"), ()=>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("遗忘技能"), GameSettingLanguge.LoadLocalization("遗忘后将可以重新学习其他的生活技能,之前学习的所有技能将重置,请谨慎选择"), ()=>
             {
                 self.Right.SetActive(false);
                 self.Left.SetActive(false);
@@ -276,11 +276,11 @@ namespace ET
             {
                 if (rechargeNumber < needRecharge)
                 {
-                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，当前充值金额{1}元"), needRecharge, rechargeNumber);
+                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元,将自动开启第二个生活技能栏位,当前充值金额{1}元"), needRecharge, rechargeNumber);
                 }
                 else
                 {
-                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元，将自动开启第二个生活技能栏位，您目前已经满足条件，请点击开启"), needRecharge);
+                    tip = string.Format(GameSettingLanguge.LoadLocalization("当前充值金额累计达到{0}元,将自动开启第二个生活技能栏位,您目前已经满足条件,请点击开启"), needRecharge);
                 }
                 PopupTipHelp.OpenPopupTipWithButtonText(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启栏位"), tip, () =>
                 {

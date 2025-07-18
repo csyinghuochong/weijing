@@ -293,7 +293,7 @@ namespace ET
             Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
             if (session == null || session.IsDisposed)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线，请重新连接!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线,请重新连接!"));
                 return;
             }
 

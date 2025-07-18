@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -95,7 +95,7 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < 35) {
 
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("35级开启天赋方案，可自由切换天赋!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("35级开启天赋方案,可自由切换天赋!"));
                 return;
             }
 

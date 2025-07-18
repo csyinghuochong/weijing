@@ -192,7 +192,7 @@ namespace ET
             if (shareType == 4 || shareType == 5) {
 
                 title = GameSettingLanguge.LoadLocalization("快来和我一起玩危境吧!");
-                text = GameSettingLanguge.LoadLocalization("一把木剑，一件布衣，点击这个链接开始你的探险吧!");
+                text = GameSettingLanguge.LoadLocalization("一把木剑,一件布衣,点击这个链接开始你的探险吧!");
                 if (self.PopularizeCode != "") {
                     //text += "记得输入我的邀请码喔:" + self.PopularizeCode;
                 }

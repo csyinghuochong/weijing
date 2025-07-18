@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -426,7 +426,7 @@ namespace ET
 
             if (tip != "")
             {
-                tip += GameSettingLanguge.LoadLocalization(" 中镶嵌宝石，分解会导致宝石消失!\n");
+                tip += GameSettingLanguge.LoadLocalization(" 中镶嵌宝石,分解会导致宝石消失!\n");
             }
 
             if (petHeXin8)

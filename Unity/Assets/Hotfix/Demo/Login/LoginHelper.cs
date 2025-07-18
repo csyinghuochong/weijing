@@ -373,7 +373,7 @@ namespace ET
 
                 if (r2CRegister.Error == ErrorCode.ERR_AccountAlreadyRegister)
                 {
-                    Log.Info($"注册失败，账号已被注册: {account}");
+                    Log.Info($"注册失败,账号已被注册: {account}");
                     return r2CRegister.Error;
                 }
 

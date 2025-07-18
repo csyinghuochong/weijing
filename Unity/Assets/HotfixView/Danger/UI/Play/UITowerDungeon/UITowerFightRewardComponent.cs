@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,7 +56,7 @@ namespace ET
             }
             else
             {
-                self.Text_Ceng.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("你当前成功完成挑战{0}波，获得奖励如下:"), towerConfig.CengNum);
+                self.Text_Ceng.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("你当前成功完成挑战{0}波,获得奖励如下:"), towerConfig.CengNum);
             }
 
             string rewardList = $"1;{message.RewardGold}@2;{message.RewardExp}";

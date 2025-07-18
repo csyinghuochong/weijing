@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -219,7 +219,7 @@ namespace ET
 
             UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect);
 
-            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜您！道具发挥了作用，鉴定成功!"));
+            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜您！道具发挥了作用,鉴定成功!"));
 
         }
     }

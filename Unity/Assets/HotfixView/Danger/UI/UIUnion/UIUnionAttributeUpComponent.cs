@@ -201,7 +201,7 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < publicQiangHuaConfig.UpLvLimit)
             {
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("玩家等级不足，{0}开启"), publicQiangHuaConfig.UpLvLimit));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("玩家等级不足,{0}开启"), publicQiangHuaConfig.UpLvLimit));
                 return;
             }
 

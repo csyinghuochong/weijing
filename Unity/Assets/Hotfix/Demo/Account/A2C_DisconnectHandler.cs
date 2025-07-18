@@ -4,7 +4,7 @@ namespace ET
     {
         protected override void  Run(Session session, A2C_Disconnect message)
         {
-            Log.Debug($"当前与服务器断开连接，连接错误码为: {message.Error}");
+            Log.Debug($"当前与服务器断开连接,连接错误码为: {message.Error}");
             session.GetComponent<PingComponent>().DisconnectType = message.Error;
         }
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -214,7 +214,7 @@ namespace ET
             }
             if (r2c_Reward.Mail == 1)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("副本奖励"), GameSettingLanguge.LoadLocalization("由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中，请注意查收"), null, null).Coroutine();
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("副本奖励"), GameSettingLanguge.LoadLocalization("由于您背包已满通关宝箱的奖励已经自动发放进您的邮箱中,请注意查收"), null, null).Coroutine();
             }
         }
 

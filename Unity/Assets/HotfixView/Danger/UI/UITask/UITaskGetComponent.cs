@@ -487,7 +487,7 @@ namespace ET
             //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
             //if (taskComponent.IsHaveTaskCountryLoop() && taskComponent.GetTaskTypeList(TaskTypeEnum.EveryDay).Count == 0 && !haveloopids)
             //{
-            //    FloatTipManager.Instance.ShowFloatTip("获取赏金任务失败，请重新登录！");
+            //    FloatTipManager.Instance.ShowFloatTip("获取赏金任务失败,请重新登录！");
             //}
 
             //给予任务

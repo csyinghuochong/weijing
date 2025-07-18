@@ -1418,7 +1418,7 @@ namespace ET
 
         public static async ETTask OnStopServer(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("停服维护"), GameSettingLanguge.LoadLocalization("十分钟后停服维护，请暂时退出游戏！"),
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("停服维护"), GameSettingLanguge.LoadLocalization("十分钟后停服维护,请暂时退出游戏！"),
                () =>
                {
                }).Coroutine();
@@ -2343,7 +2343,7 @@ namespace ET
 
         public static void OnButtonStallCancel(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("摊位提示"), GameSettingLanguge.LoadLocalization("是否收起自己的摊位?\n 支持下线，摊位可以离线显示6小时!"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("摊位提示"), GameSettingLanguge.LoadLocalization("是否收起自己的摊位?\n 支持下线,摊位可以离线显示6小时!"),
                        () =>
                        {
                            NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();
@@ -2804,7 +2804,7 @@ namespace ET
 
         public static void OnBtn_RerurnDungeon(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("返回副本"), GameSettingLanguge.LoadLocalization("移动次数消耗完毕，请返回副本!"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("返回副本"), GameSettingLanguge.LoadLocalization("移动次数消耗完毕,请返回副本!"),
                 () =>
                 {
                     int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
@@ -2841,7 +2841,7 @@ namespace ET
             string tipStr = GameSettingLanguge.LoadLocalization("确定返回主城？");
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {
-                tipStr = GameSettingLanguge.LoadLocalization("现在离开战场，将不会获得战场胜利的奖励哦");
+                tipStr = GameSettingLanguge.LoadLocalization("现在离开战场,将不会获得战场胜利的奖励哦");
             }
 
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),

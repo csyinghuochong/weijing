@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -20,7 +20,7 @@ namespace ET
         public static async ETTask OnLoginOut(this FangChenMiComponent self)
         {
             EventType.CommonPopup.Instance.ZoneScene = self.ZoneScene();
-            EventType.CommonPopup.Instance.HintText = "防沉迷提示:当前可游玩时间结束，请安心休息吧！将立即退出游戏";
+            EventType.CommonPopup.Instance.HintText = "防沉迷提示:当前可游玩时间结束,请安心休息吧！将立即退出游戏";
             Game.EventSystem.PublishClass(EventType.CommonPopup.Instance);
 
             await TimerComponent.Instance.WaitAsync(10000);

@@ -199,7 +199,7 @@ namespace ET
             Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
             if (session == null || session.IsDisposed)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线，请重新连接!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线,请重新连接!"));
                 return;
             }
 
@@ -211,7 +211,7 @@ namespace ET
             }
             else
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("每天只能建立8个角色，当前已经创建了{0}个角色"), TodayCreateRole), () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("每天只能建立8个角色,当前已经创建了{0}个角色"), TodayCreateRole), () =>
                 {
                     self.RequestCreateRole(createName).Coroutine();
                 }, null).Coroutine();

@@ -85,7 +85,7 @@ namespace ET
 
         public static void RequestTowerQuit(this UITowerOpenComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("战斗未结束，是否领取奖励？"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("战斗未结束,是否领取奖励？"),
                 () =>
                 {
                     C2M_TowerExitRequest request = new C2M_TowerExitRequest();

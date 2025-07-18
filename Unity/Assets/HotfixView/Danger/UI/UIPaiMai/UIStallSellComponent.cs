@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -250,7 +250,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (UnitHelper.GetUnitListByDis(unit.DomainScene(), unit.Position, UnitType.Npc, 5f).Count > 0)
             {
-                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("摆摊提示"), GameSettingLanguge.LoadLocalization("NPC附近不得摆摊， 是否前往摆摊区域进行摆摊?"), () => { self.OnRun(); }).Coroutine();
+                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), GameSettingLanguge.LoadLocalization("摆摊提示"), GameSettingLanguge.LoadLocalization("NPC附近不得摆摊, 是否前往摆摊区域进行摆摊?"), () => { self.OnRun(); }).Coroutine();
                 return;
             }
 

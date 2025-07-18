@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -887,7 +887,7 @@ namespace ET
             //鉴定品质符
             if (itemconf.ItemSubType == 121)
             {
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("鉴定符品质:{0}"), baginfo.ItemPar) + "\n" + GameSettingLanguge.LoadLocalization("品质越高，鉴定出极品的概率越高。") + "\n" + GameSettingLanguge.LoadLocalization("鉴定符品质与制造者熟练度相关。");
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + string.Format(GameSettingLanguge.LoadLocalization("鉴定符品质:{0}"), baginfo.ItemPar) + "\n" + GameSettingLanguge.LoadLocalization("品质越高,鉴定出极品的概率越高。") + "\n" + GameSettingLanguge.LoadLocalization("鉴定符品质与制造者熟练度相关。");
             }
 
             //鉴定品质符
