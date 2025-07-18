@@ -66,7 +66,7 @@ namespace ET
         {
             if (self.CDdownTimeNumber < 0)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("本层赛季之塔的时间已经用尽,请返回主城!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("本层赛季之塔的时间已经用尽，请返回主城!"));
                 TimerComponent.Instance?.Remove(ref self.CDTimer);
                 self.WaitReturn().Coroutine();
                 return;

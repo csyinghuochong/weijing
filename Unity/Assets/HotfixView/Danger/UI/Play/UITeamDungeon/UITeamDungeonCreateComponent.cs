@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -242,7 +242,7 @@ namespace ET
 
                 if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽,开启副本会消耗正常次数"), async () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽，开启副本会消耗正常次数"), async () =>
                     {
                         int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
                         if (errorCode != ErrorCode.ERR_Success)

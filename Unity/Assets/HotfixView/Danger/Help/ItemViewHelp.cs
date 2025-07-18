@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -189,21 +189,21 @@ namespace ET
             { NumericType.Now_MaxDef, "物理防御,可以抵扣物理攻击带来的伤害" },
             { NumericType.Now_MaxAdf, "法术防御,可以抵扣魔法攻击带来的伤害" },
             { NumericType.Now_Mage, "会额外提升你所有的技能造成的伤害" },
-            { NumericType.Now_Constitution, "提升生命和闪避,伤害减免属性" },
-            { NumericType.Now_Power, "提升攻击,物防和物穿攻速属性" },
-            { NumericType.Now_Intellect, "提升技能伤害,魔防和魔穿属性" },
-            { NumericType.Now_Stamina, "提升双防,抗暴,战斗回血属性" },
-            { NumericType.Now_Agility, "提升攻速,攻击,冷却缩减属性" },
+            { NumericType.Now_Constitution, "提升生命和闪避，伤害减免属性" },
+            { NumericType.Now_Power, "提升攻击，物防和物穿攻速属性" },
+            { NumericType.Now_Intellect, "提升技能伤害，魔防和魔穿属性" },
+            { NumericType.Now_Stamina, "提升双防，抗暴，战斗回血属性" },
+            { NumericType.Now_Agility, "提升攻速，攻击，冷却缩减属性" },
             { NumericType.Now_Cri, "本次攻击触发暴击的概率" },
             { NumericType.Now_MageDamgeSubPro, "降低受到魔法类技能的伤害" },
             { NumericType.Now_Res, "抵抗对方暴击的概率和抵抗眩晕等控制类技能" },
             { NumericType.Now_ZhongJiPro, "攻击有概率使目标的防御降低为0,无视对方防御进行攻击,对怪物触发会额外增加20%的伤害" },
-            { NumericType.Now_Hit, "命中敌人的附加概率,和闪避概率进行抵消" },
+            { NumericType.Now_Hit, "命中敌人的附加概率，和闪避概率进行抵消" },
             { NumericType.Now_ZhongJi, "触发重击后额外附加的伤害值" },
-            { NumericType.Now_Dodge, "受到敌人攻击闪避本次攻击的概率,可闪避普攻和技能" },
+            { NumericType.Now_Dodge, "受到敌人攻击闪避本次攻击的概率，可闪避普攻和技能" },
             { NumericType.Now_HuShiActPro, "攻击中降低敌人物理防御值百分比" },
             { NumericType.Now_HuShiMagePro, "攻击中降低敌人魔法防御值百分比" },
-            { NumericType.Now_DamgeSubPro, "受到敌人攻击的伤害后,降低本次受到的伤害" },
+            { NumericType.Now_DamgeSubPro, "受到敌人攻击的伤害后，降低本次受到的伤害" },
             { NumericType.Now_HuShiDef, "攻击中降低敌人物理防御值固定值" },
             { NumericType.Now_Speed, "自身在地图中移动的速度" },
             { NumericType.Now_SkillCDTimeCostPro, "降低释放技能的冷却时间" },
@@ -234,10 +234,10 @@ namespace ET
             { NumericType.Now_MaxDef, new NumericAttribute(){ Name = "物防", Icon = "PetPro_4" }},
             { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = "魔防", Icon = "PetPro_5" }},
 
-            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty, Threshold = "当此值减去目标的抗暴概率,其上限达到75%便会达到阈值,无法实际增长" }},
+            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty, Threshold = "当此值减去目标的抗暴概率，其上限达到75%便会达到阈值,无法实际增长" }},
             { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = string.Empty }},
             { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = string.Empty }},
-            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty, Threshold = "当此值减去目标的命中概率,其上限达到75%便会达到阈值,无法实际增长" }},
+            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty, Threshold = "当此值减去目标的命中概率，其上限达到75%便会达到阈值,无法实际增长" }},
 
             { NumericType.Base_Luck_Base, new NumericAttribute(){Name = "幸运加成",Icon = string.Empty}},
             
@@ -1209,7 +1209,7 @@ namespace ET
             //显示隐藏技能
             if (baginfo.HideSkillLists != null)
             {
-                string skillTip = itemconf.EquipType == 301 ? GameSettingLanguge.LoadLocalization("套装效果,附加技能：") : GameSettingLanguge.LoadLocalization("隐藏技能") + "：";
+                string skillTip = itemconf.EquipType == 301 ? GameSettingLanguge.LoadLocalization("套装效果，附加技能：") : GameSettingLanguge.LoadLocalization("隐藏技能") + "：";
                 for (int i = 0; i < baginfo.HideSkillLists.Count; i++)
                 {
                     int skillID = baginfo.HideSkillLists[i];

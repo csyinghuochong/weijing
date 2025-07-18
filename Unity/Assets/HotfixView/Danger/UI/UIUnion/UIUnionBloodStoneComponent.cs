@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -149,7 +149,7 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < publicQiangHuaConfig.UpLvLimit)
             {
-                FloatTipManager.Instance.ShowFloatTip($"玩家等级不足,{publicQiangHuaConfig.UpLvLimit}开启");
+                FloatTipManager.Instance.ShowFloatTip($"玩家等级不足，{publicQiangHuaConfig.UpLvLimit}开启");
                 return;
             }
 

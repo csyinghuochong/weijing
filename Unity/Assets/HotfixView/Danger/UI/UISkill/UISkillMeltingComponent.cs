@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -263,7 +263,7 @@ namespace ET
                     return;
                 }
 
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("生活熔炼"), GameSettingLanguge.LoadLocalization("该装备镶嵌有宝石,是否放入熔炼?"), () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("生活熔炼"), GameSettingLanguge.LoadLocalization("该装备镶嵌有宝石，是否放入熔炼?"), () =>
                {
                    self.OnPutInItem(binfo).Coroutine();
                }, null).Coroutine();

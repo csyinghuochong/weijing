@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -692,7 +692,7 @@ namespace ET
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HighFps);
             if (oldValue == "0")
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("开启高帧模式,根据手机的配置不同可能导致手机发热耗电的情况,如果出现此现象请及时关闭喔!"), () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!"), () =>
                 {
                     self.SaveSettings(GameSettingEnum.HighFps, oldValue == "0" ? "1" : "0");
                     self.UpdateHighFps();
@@ -822,18 +822,18 @@ namespace ET
 
             if (string.IsNullOrEmpty(text))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法,请重新输入！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法，请重新输入！"));
                 return;
             }
             if (text.Length >= 8)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("角色名字过长,请重新输入！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("角色名字过长，请重新输入！"));
                 return;
             }
 
             if (text.Contains("*") || !StringHelper.IsSpecialChar(text))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法,请重新输入！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("名字不合法，请重新输入！"));
                 return;
             }
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(70);

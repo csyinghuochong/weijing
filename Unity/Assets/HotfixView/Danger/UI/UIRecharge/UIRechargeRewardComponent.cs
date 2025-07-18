@@ -140,7 +140,7 @@ namespace ET
                 self.ImageReceived.SetActive(userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber));
             }
             
-            self.TextTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累冲{0}元, 获得以下奖励"), rechargeNumber);
+            self.TextTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累冲{0}元， 获得以下奖励"), rechargeNumber);
 
             string reward = ConfigHelper.RechargeReward[rechargeNumber];
             List<RewardItem> rewardItems = ItemHelper.GetRewardItems(reward);

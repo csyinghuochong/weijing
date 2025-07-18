@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -449,7 +449,7 @@ namespace ET
 
             if (findTypeList.Count <= 0 || findItemIdList.Count <= 0)
             {
-                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("不存在该名称的道具,请输入正确的道具名！！！"));
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("不存在该名称的道具，请输入正确的道具名！！！"));
                 return;
             }
 
