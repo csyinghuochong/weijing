@@ -370,7 +370,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F60\u6D88\u8D39,\u6211\u9001\u793C"
+  m_Text: "\u4F60\u6D88\u8D39\uFF0C\u6211\u9001\u793C"
 --- !u!114 &4138929038444137170
 MonoBehaviour:
   m_ObjectHideFlags: 0

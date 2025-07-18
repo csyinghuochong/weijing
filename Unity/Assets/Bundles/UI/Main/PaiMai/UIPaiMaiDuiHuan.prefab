@@ -1340,7 +1340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6BCF100\u94BB\u77F3\u4F1A\u989D\u5916\u83B7\u5F971\u5151\u6362\u5E01,\u53EF\u4EE5\u5728\u53F3\u4E0B\u89D2\u8FDB\u884C\u5151\u6362\u9053\u5177\u3002"
+  m_Text: "\u6BCF100\u94BB\u77F3\u4F1A\u989D\u5916\u83B7\u5F971\u5151\u6362\u5E01\uFF0C\u53EF\u4EE5\u5728\u53F3\u4E0B\u89D2\u8FDB\u884C\u5151\u6362\u9053\u5177\u3002"
 --- !u!114 &4651422379286206711
 MonoBehaviour:
   m_ObjectHideFlags: 0
