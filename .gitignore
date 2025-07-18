@@ -103,3 +103,6 @@ Unity/TapTap.UI.csproj
 Unity/TapTap.UI.Editor.csproj
 Unity/Assets/Res/Shader/Custom_Color_Test.shader
 Unity/Assets/Res/Shader/Custom_Color_Test.shader.meta
+Unity/AntiAddiction.csproj
+Unity/AppleAuth.csproj
+Unity/AppleAuth.Editor.csproj
