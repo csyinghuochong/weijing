@@ -102,6 +102,10 @@ MonoBehaviour:
   data:
   - key: Text
     gameObject: {fileID: 5924122422788570510}
+  - key: Text_1
+    gameObject: {fileID: 7132668697489974779}
+  - key: Text_2
+    gameObject: {fileID: 1467775148028339120}
 --- !u!1 &505514923811152916
 GameObject:
   m_ObjectHideFlags: 0
