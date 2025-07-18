@@ -1224,6 +1224,11 @@ namespace ET
                     uiAppraisalSelectComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIWelfareComponent uiWelfareComponent)
+                {
+                    uiWelfareComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
