@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -379,14 +379,14 @@ namespace ET
 			}
 			if (times == 1)
 			{
-				FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("洗炼道具成功"));
+				FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("洗练道具成功"));
 				self.OnXiLianReturn();
 				self.ShowXiLianEffect().Coroutine();
 			}
 			if (times > 1)
 			{
 				int newXiLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
-				FloatTipManager.Instance.ShowFloatTipDi(string.Format(GameSettingLanguge.LoadLocalization("获得{0}洗炼经验"), newXiLianDu - oldXiLianDu));
+				FloatTipManager.Instance.ShowFloatTipDi(string.Format(GameSettingLanguge.LoadLocalization("获得{0}洗练经验"), newXiLianDu - oldXiLianDu));
 				
 				UI uitex = await UIHelper.Create( self.ZoneScene(), UIType.UIRoleXiLianTen );
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);

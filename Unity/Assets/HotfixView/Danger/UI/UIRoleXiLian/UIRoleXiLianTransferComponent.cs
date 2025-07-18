@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -160,7 +160,7 @@ namespace ET
             //绑定装备无法转移
             if (self.BagInfo_Transfer[0].isBinging == true && self.BagInfo_Transfer[1].isBinging == false && itemConfig_1.ItemQuality == 4)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("绑定装备的洗炼属性无法转移至未绑定的装备！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("绑定装备的洗练属性无法转移至未绑定的装备！"));
                 return;
             }
 
