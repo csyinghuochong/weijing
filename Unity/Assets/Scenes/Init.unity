@@ -1178,7 +1178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575235020}
   - component: {fileID: 575235019}
-  - component: {fileID: 575235021}
+  - component: {fileID: 575235030}
   - component: {fileID: 575235022}
   - component: {fileID: 575235023}
   - component: {fileID: 575235024}
@@ -1206,15 +1206,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
-  EditorMode: 0
+  Development: 1
+  EditorMode: 1
   OueNetMode: 1
   BigVersion: 23
   BigVersionIOS: 23
   CodeMode: 4
   VersionMode: 1
   Updater: {fileID: 2018631435}
-  ssdk: {fileID: 575235021}
+  ssdk: {fileID: 575235030}
   mobsdk: {fileID: 575235022}
   WXAppID: wx638f7f0efe37a825
   WXAppSecret: c45e594ab681035a1cae6ab166f64a20
@@ -1246,61 +1246,6 @@ Transform:
   - {fileID: 616087508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &575235021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575235018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8bc47b8b2634d70a53f11da473b9d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appKey: 2d21337c7dc80
-  appSecret: a2c24f564def8b4a450a88491e5cc353
-  devInfo:
-    sinaweibo:
-      Enable: 1
-      SortId: 4
-      AppKey: 568898243
-      AppSecret: 38a4f8204cc784f81f9f0daaf31e02e3
-      RedirectUrl: http://www.sharesdk.cn
-      ShareByAppClient: 1
-    qq:
-      Enable: 1
-      SortId: 2
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
-      ShareByAppClient: 1
-    qzone:
-      Enable: 1
-      SortId: 1
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
-      ShareByAppClient: 1
-    wechat:
-      Enable: 1
-      SortId: 5
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
-      UserName: gh_afb25ac019c9@app
-      Path: /page/API/pages/share/share
-      BypassApproval: 0
-      WithShareTicket: 1
-      MiniprogramType: 0
-    wechatMoments:
-      Enable: 1
-      SortId: 6
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
-      BypassApproval: 1
-    wechatFavorites:
-      Enable: 1
-      SortId: 7
-      AppId: wx638f7f0efe37a825
-      AppSecret: c45e594ab681035a1cae6ab166f64a20
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,6 +1353,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb20e8edf9911a48a1d2961bd518b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &575235030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575235018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8bc47b8b2634d70a53f11da473b9d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appKey: 36af6e3967670
+  appSecret: c2b2d9e1afdfd9f6e1cfb3a399d01703
+  devInfo:
+    sinaweibo:
+      Enable: 1
+      SortId: 4
+      AppKey: 568898243
+      AppSecret: 38a4f8204cc784f81f9f0daaf31e02e3
+      RedirectUrl: http://www.sharesdk.cn
+      ShareByAppClient: 1
+    qq:
+      Enable: 1
+      SortId: 2
+      AppId: 1105893765
+      AppKey: 8DpWsEXj40TfCKzz
+      ShareByAppClient: 1
+    qzone:
+      Enable: 1
+      SortId: 1
+      AppId: 1105893765
+      AppKey: 8DpWsEXj40TfCKzz
+      ShareByAppClient: 1
+    wechat:
+      Enable: 1
+      SortId: 5
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
+      UserName: gh_afb25ac019c9@app
+      Path: /page/API/pages/share/share
+      BypassApproval: 0
+      WithShareTicket: 1
+      MiniprogramType: 0
+    wechatMoments:
+      Enable: 1
+      SortId: 6
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
+      BypassApproval: 1
+    wechatFavorites:
+      Enable: 1
+      SortId: 7
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
 --- !u!1 &615489394
 GameObject:
   m_ObjectHideFlags: 0

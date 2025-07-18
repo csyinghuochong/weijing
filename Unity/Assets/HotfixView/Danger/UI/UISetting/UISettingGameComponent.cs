@@ -558,7 +558,7 @@ namespace ET
             self.UpdateNoShowOther();
             self.UpdateAttackMode();
             self.UpdateAttackTarget();
-            self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetBigVersion().ToString() + "  " + Application.version + "  3";
+            self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetBigVersion().ToString() + "  " + Application.version;
             self.InputFieldCName.GetComponent<InputField>().text = self.UserInfoComponent.UserInfo.Name;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastGameTime);
