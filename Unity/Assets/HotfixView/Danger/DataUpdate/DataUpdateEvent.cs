@@ -1219,6 +1219,11 @@ namespace ET
                     uiPaiMaiDuiHuanComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIAppraisalSelectComponent uiAppraisalSelectComponent)
+                {
+                    uiAppraisalSelectComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

@@ -56,6 +56,7 @@ namespace ET
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect); });
 
+            self.OnLanguageUpdate();
 
             self.BagInfo_Equip = null;
             self.BagInfo_Appri = null;  
@@ -64,6 +65,16 @@ namespace ET
 
     public static class UIAppraisalSelectComponentSystem
     {
+        public static void OnLanguageUpdate(this UIAppraisalSelectComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            rc.Get<GameObject>("Text_Tip_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 26 : 24;
+            rc.Get<GameObject>("Text_Tip_3").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 26 : 24;
+            self.Button_Coin.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 34;
+            self.Button_Item.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 34;
+        }
+
         public static void OnInitUI(this UIAppraisalSelectComponent self, BagInfo bagInfo)
         {
             self.BagInfo_Equip = bagInfo;
