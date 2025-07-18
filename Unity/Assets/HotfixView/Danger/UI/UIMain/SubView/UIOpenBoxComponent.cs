@@ -96,14 +96,14 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.PiLao <= 0 && monsterConfig.MonsterSonType == 56)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力不足,无法拾取"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力不足，无法拾取"));
                 return;
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1 && monsterConfig.MonsterSonType == 57)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足,无法拾取"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足，无法拾取"));
                 return;
             }
 
@@ -116,7 +116,7 @@ namespace ET
             if (itemneeds.Length > 2 && !bagComponent.CheckNeedItem(itemneeds))
             {
                 self.GetParent<UI>().GameObject.SetActive(false);
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("道具不足,需要道具 {0}！"), UICommonHelper.GetNeedItemDesc(itemneeds)));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("道具不足，需要道具 {0}！"), UICommonHelper.GetNeedItemDesc(itemneeds)));
                 return;
             }
 

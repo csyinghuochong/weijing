@@ -141,7 +141,7 @@ namespace ET
             if (battleMessageComponent.CanShout())
             {
                 string text =
-                        string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险,现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), 
+                        string.Format(GameSettingLanguge.LoadLocalization(" 副本:{0}开启冒险，现邀请你的加入！<color=#B5FF28>点击申请加入</color> <link=team_{1}_{2}_{3}_{4}></link>"), 
                             SceneConfigCategory.Instance.Get(teamInfo.SceneId).GetName(), 
                             teamInfo.TeamId, 
                             teamInfo.SceneId, 
@@ -172,7 +172,7 @@ namespace ET
 
                 if (totalTimes - times > 0 && totalTimes_2 - times_2 <= 0)
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽,继续则消耗正常次数"), async () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("帮助副本次数已尽，继续则消耗正常次数"), async () =>
                     {
                         TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
                         int errorCode = await teamComponent.RequestTeamDungeonOpen();

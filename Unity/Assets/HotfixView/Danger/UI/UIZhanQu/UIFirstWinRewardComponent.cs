@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -95,7 +95,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (!userInfoComponent.IsHaveFristWinReward(self.FristWinId, diff))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("对应难度的领主怪物未被击败,请先击败对应怪物")) ;
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("对应难度的领主怪物未被击败，请先击败对应怪物")) ;
                 return;
             }
 

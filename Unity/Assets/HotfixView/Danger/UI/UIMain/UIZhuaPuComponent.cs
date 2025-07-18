@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -207,14 +207,14 @@ namespace ET
             M2C_JingLingCatchResponse response = (M2C_JingLingCatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == ErrorCode.ERR_Success && response.Message != "1")
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜你,抓捕成功！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("恭喜你，抓捕成功！"));
             }
 
             if (response.Error == ErrorCode.ERR_ZhuaBuFail)
             {
                 List<string> strList = new List<string>();
-                strList.Add(GameSettingLanguge.LoadLocalization("它趁你不注意,偷偷的溜走了!"));
-                strList.Add(GameSettingLanguge.LoadLocalization("抓铺的动作太大,被他发现后马上的逃走了!"));
+                strList.Add(GameSettingLanguge.LoadLocalization("它趁你不注意，偷偷的溜走了!"));
+                strList.Add(GameSettingLanguge.LoadLocalization("抓铺的动作太大，被他发现后马上的逃走了!"));
 
                 int randInt = RandomHelper.RandomNumber(0, strList.Count);
                 FloatTipManager.Instance.ShowFloatTip(strList[randInt]);

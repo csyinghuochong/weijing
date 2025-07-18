@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -162,7 +162,7 @@ namespace ET
             {
                 int cost = GlobalValueConfigCategory.Instance.Get(46).Value2;
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("技能重置"),
-                    GameSettingLanguge.LoadLocalization("重置后自身学习的生活技能将全部遗忘,请谨慎选择!"), ()=>
+                    GameSettingLanguge.LoadLocalization("重置后自身学习的生活技能将全部遗忘，请谨慎选择!"), ()=>
                     {
                         self.RequestMakeSelect(makeId).Coroutine();
                     }, null).Coroutine();

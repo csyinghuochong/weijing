@@ -32,7 +32,7 @@ namespace ET
 
 
         public static string TapTapShareTitle = "快来和我一起玩危境吧!";
-        public static string TapTapShareContent = "一把木剑,一件布衣,快来和我一起探险吧!";
+        public static string TapTapShareContent = "一把木剑，一件布衣，快来和我一起探险吧!";
 
         /// <summary>
         /// 小龟说话
@@ -40,8 +40,8 @@ namespace ET
         //1移动 2停止
         public static Dictionary<int, List<string>> TurtleSpeakList = new Dictionary<int, List<string>>()
         {
-            { 1, new List<string>(){ "不知道后面是不是有东西追我,我号好害怕,我要赶紧溜。", "加油,我一定是最后获得胜利的那只神龟","冲冲冲,我不会让大家失望的!" } },      //开始跑了
-            { 2, new List<string>(){ "我好累,妈妈说累了就可以歇一歇", "好饱啊,我要停下来歇一歇。","唉呀,谁用石头丢了我一下,头好晕哦" } }
+            { 1, new List<string>(){ "不知道后面是不是有东西追我，我号好害怕，我要赶紧溜。", "加油，我一定是最后获得胜利的那只神龟","冲冲冲，我不会让大家失望的!" } },      //开始跑了
+            { 2, new List<string>(){ "我好累，妈妈说累了就可以歇一歇", "好饱啊，我要停下来歇一歇。","唉呀，谁用石头丢了我一下，头好晕哦" } }
         };
 
 
@@ -154,7 +154,7 @@ namespace ET
         //public const string NoticeVersion = "1.0.0";        
         ////公告内容
         //public const string NoticeText =
-        //    "版本更新内容\r\n1.更新家族系统,可以创建家族邀请其他玩家加入。\r\n2.开启游戏第六章第一个地图,60级可进入。\r\n3.新增宠物守护系统,根据宠物评分可以增加暴击等相关属性。\r\n4.增加家园访问,其他玩家可以互相访问家园。\r\n5.家园小地图显示石块和树叶方便玩家快速查询。\r\n6.赏金任务需要的怪物数量缩减。\r\n7.创建角色增加随机姓名。\r\n8.修复牧师技能不加攻击的问题。\r\n9.增加天气系统。\r\n10.增加野外碰到精灵和宠物的几率。";
+        //    "版本更新内容\r\n1.更新家族系统，可以创建家族邀请其他玩家加入。\r\n2.开启游戏第六章第一个地图，60级可进入。\r\n3.新增宠物守护系统，根据宠物评分可以增加暴击等相关属性。\r\n4.增加家园访问，其他玩家可以互相访问家园。\r\n5.家园小地图显示石块和树叶方便玩家快速查询。\r\n6.赏金任务需要的怪物数量缩减。\r\n7.创建角色增加随机姓名。\r\n8.修复牧师技能不加攻击的问题。\r\n9.增加天气系统。\r\n10.增加野外碰到精灵和宠物的几率。";
 
 
         //类型对应部位
@@ -552,24 +552,24 @@ namespace ET
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
         {
-            new WorldSayConfig(){ Time = 1230, OpenDay = new List<int>{ -1},  Conent = "巨龙神已经准时出现在宝藏之地,想要挑战我的就带上你们的武器过来挑战我吧!"  },
-            new WorldSayConfig(){ Time = 1930, OpenDay = new List<int>{ -1},  Conent = "一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"  },
-            new WorldSayConfig(){ Time = 1940, OpenDay = new List<int>{ -1},  Conent = "角斗场已经开启,想要参加的勇士要抓紧时间哦!"  },
-            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{1,3,5,0},   Conent = "世界领主已经出现在密境中,赶紧过来看看吧!"  },
-            new WorldSayConfig(){ Time = 2015, OpenDay = new List<int>{ -1},  Conent = "拍卖特惠已经开启,有需要的玩家可以购买哦!"  },
-            new WorldSayConfig(){ Time = 2030, OpenDay = new List<int>{ -1},  Conent = "战场活动已经开启,可以通过右上角的战场按钮快速加入哦!"  },
-            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2110, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2120, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ 2,4,6},  Conent = "变身大赛活动即将开启,想要参加的小伙伴记得要准时参加噢,5分钟后开启正式比赛!"  },
+            new WorldSayConfig(){ Time = 1230, OpenDay = new List<int>{ -1},  Conent = "巨龙神已经准时出现在宝藏之地，想要挑战我的就带上你们的武器过来挑战我吧!"  },
+            new WorldSayConfig(){ Time = 1930, OpenDay = new List<int>{ -1},  Conent = "一波红包雨已经来临，赶紧来看看自己是否是那个幸运玩家!"  },
+            new WorldSayConfig(){ Time = 1940, OpenDay = new List<int>{ -1},  Conent = "角斗场已经开启，想要参加的勇士要抓紧时间哦!"  },
+            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{1,3,5,0},   Conent = "世界领主已经出现在密境中，赶紧过来看看吧!"  },
+            new WorldSayConfig(){ Time = 2015, OpenDay = new List<int>{ -1},  Conent = "拍卖特惠已经开启，有需要的玩家可以购买哦!"  },
+            new WorldSayConfig(){ Time = 2030, OpenDay = new List<int>{ -1},  Conent = "战场活动已经开启，可以通过右上角的战场按钮快速加入哦!"  },
+            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地，想要去的玩家赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2110, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地，想要去的玩家赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2120, OpenDay = new List<int>{ 1,3,5,0},  Conent = "一大波宝箱出现在宝藏之地，想要去的玩家赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ 2,4,6},  Conent = "变身大赛活动即将开启，想要参加的小伙伴记得要准时参加噢，5分钟后开启正式比赛!"  },
             //年兽
-            new WorldSayConfig(){ Time = 2114, OpenDay = new List<int>{ -1},  Conent = "新年活动:新年的年兽-夕还有1分钟即将来到宝藏之地,主城的勇士们,带上你们的装备快去迎接挑战吧！"  },
-            new WorldSayConfig(){ Time = 2115, OpenDay = new List<int>{ -1},  Conent = "新年的年兽-夕：我已经等了整整一年,弱者不配与我进行战斗,想要挑战我的就带上你们的装备过来吧,我已经到来到宝藏之地的中心！" },
-            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ 2,4,6},  Conent = "家族入侵:家族出现了入侵怪兽,想要奖励的小勇士请带上你们的武器速速前往!"  },
-            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ 1,3,5,0},  Conent = "竞技场活动已经开启,想要证明自己能力的小伙伴记得前往噢!"  },
+            new WorldSayConfig(){ Time = 2114, OpenDay = new List<int>{ -1},  Conent = "新年活动:新年的年兽-夕还有1分钟即将来到宝藏之地，主城的勇士们，带上你们的装备快去迎接挑战吧！"  },
+            new WorldSayConfig(){ Time = 2115, OpenDay = new List<int>{ -1},  Conent = "新年的年兽-夕：我已经等了整整一年，弱者不配与我进行战斗，想要挑战我的就带上你们的装备过来吧，我已经到来到宝藏之地的中心！" },
+            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地，想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地，想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地，想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ 2,4,6},  Conent = "家族入侵:家族出现了入侵怪兽，想要奖励的小勇士请带上你们的武器速速前往!"  },
+            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ 1,3,5,0},  Conent = "竞技场活动已经开启，想要证明自己能力的小伙伴记得前往噢!"  },
         };
 
         //家园相关

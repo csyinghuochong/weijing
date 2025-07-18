@@ -16,19 +16,19 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_NetWorkError, "网络错误!");
             ErrorHintList.Add(ErrorCode.ERR_AccountAlreadyRegister, "账号已注册!");
             ErrorHintList.Add(ErrorCode.ERR_AccountInBlackListError, "账号异常!");
-            ErrorHintList.Add(ErrorCode.ERR_LoginInfoIsNull, "未找到账号数据,请确认账号是否已经注册");
-            ErrorHintList.Add(ErrorCode.ERR_AccountOrPasswordError, "密码错误,请检查重新输入");
+            ErrorHintList.Add(ErrorCode.ERR_LoginInfoIsNull, "未找到账号数据，请确认账号是否已经注册");
+            ErrorHintList.Add(ErrorCode.ERR_AccountOrPasswordError, "密码错误，请检查重新输入");
             ErrorHintList.Add(ErrorCode.ERR_OtherAccountLogin, "账号异地登录");
             ErrorHintList.Add(ErrorCode.ERR_RequestRepeatedly, "请求重复");
-            ErrorHintList.Add(ErrorCode.ERR_EnterQueue, "服务器已满,进入排队系统");
+            ErrorHintList.Add(ErrorCode.ERR_EnterQueue, "服务器已满，进入排队系统");
             ErrorHintList.Add(ErrorCode.ERR_RequestExitFuben, "请先退出副本");
             ErrorHintList.Add(ErrorCode.ERR_LoginInfoExpire, "请重新登陆！");
 
             ErrorHintList.Add(ErrorCode.ERR_StopServer, "停服维护");
             ErrorHintList.Add(ErrorCode.ERR_BingPhoneError_1, "手机号已经注册过账号");
             ErrorHintList.Add(ErrorCode.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
-            ErrorHintList.Add(ErrorCode.ERR_VersionNoMatch, "版本不一致,请重开客户端");
-            ErrorHintList.Add(ErrorCode.ERR_EnterGameError, "角色登录异常,请尝试再次重新登录账号!");
+            ErrorHintList.Add(ErrorCode.ERR_VersionNoMatch, "版本不一致，请重开客户端");
+            ErrorHintList.Add(ErrorCode.ERR_EnterGameError, "角色登录异常，请尝试再次重新登录账号!");
             ErrorHintList.Add(ErrorCode.ERR_OtherNotExist, "该玩家不在主城!");
             ErrorHintList.Add(ErrorCode.ERR_NonePlayerError, "玩家不存在!");
             ErrorHintList.Add(ErrorCode.MOBILE_SEND_ILLEGAL, "发送验证码失败!");
@@ -118,13 +118,13 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_HuoYueNot, "活跃不足30点不能分享");
             
 
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip1, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于进一步严格管理切实防止未成年人沉迷网络游戏的通知》,仅每周五、周六、周日和法定节假日每日20时至21时提供1小时网络游戏服务。您今日游戏剩余时间{0}分钟。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip2, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》,您已超出支付上限,无法继续充值。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip3, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》,本游戏不为未满8周岁的用户提供游戏充值服务。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip4, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》,游戏中8周岁以上未满16周岁的用户,单次充值金额不得超过50元人民币,每月充值金额不得超过200元人民币。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip5, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》,游戏中16周岁以上未满18周岁的用户,单次充值金额不得超过100元人民币,每月充值金额不得超过400元人民币。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip6, "您目前为未成年人账号,已被纳入防沉迷系统。根据适龄提示,此时段本游戏将无法为不满12周岁未成年人用户提供任何形式的游戏服务。");
-            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip7, "您目前为未成年人账号,已被纳入防沉迷系统。根据国家新闻出版署《关于进一步严格管理切实防止未成年人沉迷网络游戏的通知》,仅每周五、周六、周日和法定节假日每日20时至21时提供1小时网络游戏服务。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip1, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于进一步严格管理切实防止未成年人沉迷网络游戏的通知》，仅每周五、周六、周日和法定节假日每日20时至21时提供1小时网络游戏服务。您今日游戏剩余时间{0}分钟。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip2, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》，您已超出支付上限，无法继续充值。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip3, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》，本游戏不为未满8周岁的用户提供游戏充值服务。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip4, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》，游戏中8周岁以上未满16周岁的用户，单次充值金额不得超过50元人民币，每月充值金额不得超过200元人民币。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip5, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》，游戏中16周岁以上未满18周岁的用户，单次充值金额不得超过100元人民币，每月充值金额不得超过400元人民币。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip6, "您目前为未成年人账号，已被纳入防沉迷系统。根据适龄提示，此时段本游戏将无法为不满12周岁未成年人用户提供任何形式的游戏服务。");
+            ErrorHintList.Add(ErrorCode.ERR_FangChengMi_Tip7, "您目前为未成年人账号，已被纳入防沉迷系统。根据国家新闻出版署《关于进一步严格管理切实防止未成年人沉迷网络游戏的通知》，仅每周五、周六、周日和法定节假日每日20时至21时提供1小时网络游戏服务。");
 
             ErrorHintList.Add(ErrorCode.ERR_TaskCommited, "当前任务奖励已领取");
             ErrorHintList.Add(ErrorCode.ERR_NotFindLevel, "未找到对应关卡");
@@ -134,7 +134,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_LevelNoEnough, "等级不足");
             ErrorHintList.Add(ErrorCode.ERR_LevelNormalNoPass, "普通关卡未通关");
             ErrorHintList.Add(ErrorCode.ERR_LevelChallengeNoPass, "挑战关卡未通关");
-            ErrorHintList.Add(ErrorCode.ERR_NotFindNpc, "任务点不在此地图,请根据指示前往其他地图。");
+            ErrorHintList.Add(ErrorCode.ERR_NotFindNpc, "任务点不在此地图，请根据指示前往其他地图。");
             ErrorHintList.Add(ErrorCode.ERR_TaskCanNotGet, "未达到领取条件");
             ErrorHintList.Add(ErrorCode.ERR_TaskNoComplete, "前先完成此类任务");
             ErrorHintList.Add(ErrorCode.ERR_TowerOfSealReachTop, "已通关");
@@ -145,7 +145,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_Pet_Hint_1, "宠物星级出错");
             ErrorHintList.Add(ErrorCode.ERR_Pet_UpStar, "宠物星级失败");
             ErrorHintList.Add(ErrorCode.ERR_Pet_UpStage, "宠物进化失败");
-            ErrorHintList.Add(ErrorCode.ERR_Pet_AddSkillSame, "具有相同技能,无法使用此道具");
+            ErrorHintList.Add(ErrorCode.ERR_Pet_AddSkillSame, "具有相同技能，无法使用此道具");
             ErrorHintList.Add(ErrorCode.ERR_Pet_NoUseItem, "此道具无法应用于宠物身上");
             ErrorHintList.Add(ErrorCode.ERR_PetIsFull, "当前携带的宠物数量已达上限");
             ErrorHintList.Add(ErrorCode.ERR_Pet_Hint_2, "出战宠物不能被融合");
@@ -163,7 +163,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_Union_HavActive, "只能同时研究一个科技");
             ErrorHintList.Add(ErrorCode.ERR_Union_NotActive, "当前没有正在研究的科技");
             ErrorHintList.Add(ErrorCode.ERR_Already_Guess, "已经竞猜该数字");
-            ErrorHintList.Add(ErrorCode.ERR_Union_NotRemove, "家族还有其他玩家,族长不能离开！");
+            ErrorHintList.Add(ErrorCode.ERR_Union_NotRemove, "家族还有其他玩家，族长不能离开！");
 
             ErrorHintList.Add(ErrorCode.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyFinish, "活动已经结束");
@@ -205,7 +205,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_PeopleNumber, "人口已达上限");
             ErrorHintList.Add(ErrorCode.ERR_JiaYuanSteal, "该作物已达偷取上限");
             ErrorHintList.Add(ErrorCode.ERR_PeopleNoEnough, "购买后人口超过上限");
-            ErrorHintList.Add(ErrorCode.ERR_CanNotGather, "未成熟或者收获次数用完,请重登尝试");
+            ErrorHintList.Add(ErrorCode.ERR_CanNotGather, "未成熟或者收获次数用完，请重登尝试");
             
             ErrorHintList.Add(ErrorCode.ERR_PopularizeThe, "相同账号的角色不能互相推广");
             ErrorHintList.Add(ErrorCode.ERR_SerialNoExist, "序列号不存在");
@@ -213,14 +213,14 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_PopularizeMax, "被推广次数已达上限");
             
 
-            ErrorHintList.Add(ErrorCode.ERR_ModifyData, "数据异常,请稍后再试");
-            ErrorHintList.Add(ErrorCode.ERR_PackageFrequent, "消息异常,请稍后再试");
+            ErrorHintList.Add(ErrorCode.ERR_ModifyData, "数据异常，请稍后再试");
+            ErrorHintList.Add(ErrorCode.ERR_PackageFrequent, "消息异常，请稍后再试");
             ErrorHintList.Add(ErrorCode.ERR_PaiMaiBuyMaxPage, "拍卖道具页数已达底部");
-            ErrorHintList.Add(ErrorCode.ERR_FenXiangMaxNum, "今日分享次数已达上限,请明日再来");
+            ErrorHintList.Add(ErrorCode.ERR_FenXiangMaxNum, "今日分享次数已达上限，请明日再来");
             ErrorHintList.Add(ErrorCode.ERR_RoleInBlackListError, "该角色已被禁止登陆");
             ErrorHintList.Add(ErrorCode.ERR_PaiMaiSellLimit, "当前上架已达上限");
             ErrorHintList.Add(ErrorCode.ERR_BuyMaxLimit, "该道具购买今日已达上限");
-            ErrorHintList.Add(ErrorCode.ERR_Archiveing, "正在回档中,请稍后登陆");
+            ErrorHintList.Add(ErrorCode.ERR_Archiveing, "正在回档中，请稍后登陆");
 
             ErrorHintList.Add(ErrorCode.Pre_Condition_Error, "前置条件不足！");
         }

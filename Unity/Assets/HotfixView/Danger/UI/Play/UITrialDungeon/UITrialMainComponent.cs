@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,7 +109,7 @@ namespace ET
             }
             self.LastTiaoZhan = TimeHelper.ServerNow();
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("是否重新开始挑战,开始后倒计时和怪物生命将自动初始化"), () => 
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("是否重新开始挑战，开始后倒计时和怪物生命将自动初始化"), () => 
             {
                 self.RequestTiaozhan().Coroutine();
             }, null).Coroutine();
@@ -147,7 +147,7 @@ namespace ET
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
 
-                self.TextCoundown.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未能在60秒内击败怪物,请点击重新挑战");
+                self.TextCoundown.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("未能在60秒内击败怪物，请点击重新挑战");
 
                 return;
             }

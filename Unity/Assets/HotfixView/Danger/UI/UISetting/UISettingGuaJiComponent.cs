@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -237,7 +237,7 @@ namespace ET
                     //移除挂机组件
                     self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
                 }
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力已经消耗完毕,请确保体力充足喔!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力已经消耗完毕，请确保体力充足喔!"));
                 return;
             };
 
@@ -257,7 +257,7 @@ namespace ET
             else
             {
                 //当前已经在挂机
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前正在挂机,请确保周围是怪物刷新点!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前正在挂机，请确保周围是怪物刷新点!"));
             }
 
             //关闭设置界面

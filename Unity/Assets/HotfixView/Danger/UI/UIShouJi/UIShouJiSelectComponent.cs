@@ -102,7 +102,7 @@ namespace ET
 
             if (havegem)
             {
-                PopupTipHelp.OpenPopupTip(  self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("装备有橙色宝石,是否继续？") , ()=>
+                PopupTipHelp.OpenPopupTip(  self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("装备有橙色宝石，是否继续？") , ()=>
                 {
                     self.RequestShouJiTreasure(selects, self.ShouJIId).Coroutine();
                 }).Coroutine();

@@ -244,7 +244,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId && self.UnionInfo.UnionPlayerList.Count > 1)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("族长不能离开家族, 请先转移族长！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("族长不能离开家族， 请先转移族长！"));
                 return;
             }
             PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("离开家族"), GameSettingLanguge.LoadLocalization("离开家族24小时内无法加入新家族"), ()=>
@@ -373,7 +373,7 @@ namespace ET
             UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
             if (mainPlayerInfo == null)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("你也不在家族,请重新退出！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("你也不在家族，请重新退出！"));
                 return;
             }
             

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -57,7 +57,7 @@ namespace ET
             // 判断是否到达100层
             if (finished >= 100)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日已经达到塔顶,请明天再来挑战哦!"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日已经达到塔顶，请明天再来挑战哦!"));
                 return;
             }
 

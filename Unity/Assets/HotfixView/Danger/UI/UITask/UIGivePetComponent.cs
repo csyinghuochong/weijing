@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -220,19 +220,19 @@ namespace ET
 
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中,不能提交！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中，不能提交！"));
                 return;
             }
 
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中,不能提交！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中，不能提交！"));
                 return;
             }
 
             if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物矿场队伍中,不能提交！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物矿场队伍中，不能提交！"));
                 return;
             }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 namespace ET
@@ -848,7 +848,7 @@ namespace ET
                     }
                     if (xilianType == 0 && itemConfig.ItemQuality<=3)
                     {
-                        noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
+                        noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>在拾取装备时，意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
                     }
 
                     //打造类型不弹出任何广播

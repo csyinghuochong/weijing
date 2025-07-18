@@ -207,7 +207,7 @@ namespace ET
 
             string costitem = UICommonHelper.GetNeedItemDesc(ConfigHelper.ChangeOccItem);
             PopupTipHelp.OpenPopupTip_4(self.ZoneScene(), GameSettingLanguge.LoadLocalization("重置职业"),
-                string.Format(GameSettingLanguge.LoadLocalization("<color=#BEFF34>提示：重置后装备不会跟随转职进行调整,需要重新制作对应护甲类型的装备</color>\n<color=#FFFFFF>是否花费{0}重置技能点?</color>"), costitem),
+                string.Format(GameSettingLanguge.LoadLocalization("<color=#BEFF34>提示：重置后装备不会跟随转职进行调整，需要重新制作对应护甲类型的装备</color>\n<color=#FFFFFF>是否花费{0}重置技能点?</color>"), costitem),
                 () =>
                 {
                     self.RequestReset(2).Coroutine();

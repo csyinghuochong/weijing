@@ -217,7 +217,7 @@ namespace ET
                 if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
                 {
                     PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("购买道具"),
-                        string.Format(GameSettingLanguge.LoadLocalization("你购买的道具需要花费{0}金币,是否购买？"), self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum),
+                        string.Format(GameSettingLanguge.LoadLocalization("你购买的道具需要花费{0}金币，是否购买？"), self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum),
                         () => { self.RequestBuy().Coroutine(); },
                         null).Coroutine();
                 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace ET
 {
@@ -9,7 +9,7 @@ namespace ET
         {
             EventType.UnionRaceInfo args = cls as EventType.UnionRaceInfo;
 
-            PopupTipHelp.OpenPopupTip_2( args.ZoneScene, GameSettingLanguge.LoadLocalization("争霸赛结束"), GameSettingLanguge.LoadLocalization("争霸赛已结束,请及时退出结算奖励!"), () =>
+            PopupTipHelp.OpenPopupTip_2( args.ZoneScene, GameSettingLanguge.LoadLocalization("争霸赛结束"), GameSettingLanguge.LoadLocalization("争霸赛已结束，请及时退出结算奖励!"), () =>
             {
                 EnterFubenHelp.RequestQuitFuben(args.ZoneScene);
             } ).Coroutine();

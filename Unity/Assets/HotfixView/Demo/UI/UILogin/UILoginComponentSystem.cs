@@ -881,7 +881,7 @@ namespace ET
         {
             if (string.IsNullOrEmpty(appuserinfo))
             {
-                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败, 请选择其他登陆方式！");
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
                 return;
             }
             self.LoginType = LoginTypeEnum.Apple.ToString();
@@ -900,7 +900,7 @@ namespace ET
 		{
 			if (string.IsNullOrEmpty(appuserinfo))
 			{
-                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败, 请选择其他登陆方式！");
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
                 return;
             }
 
@@ -978,7 +978,7 @@ namespace ET
             string head = phoneNum.Substring(0, 3);
             if (GMHelp.IllegalPhone.Contains(head))
             {
-                FloatTipManager.Instance.ShowFloatTip("此号码不支持注册,请使用其他方式登录游戏！");
+                FloatTipManager.Instance.ShowFloatTip("此号码不支持注册，请使用其他方式登录游戏！");
                 return;
             }
 

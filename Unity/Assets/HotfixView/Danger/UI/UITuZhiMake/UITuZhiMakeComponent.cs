@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,13 +132,13 @@ namespace ET
             if (havezengfu)
             {
 
-                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}有传承属性, 无法制作"), tip));
+                FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}有传承属性， 无法制作"), tip));
                 return;
             }
 
             if (haveGem)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具"), tip),
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), string.Format(GameSettingLanguge.LoadLocalization("制造道具的装备材料中{0}镶嵌宝石，制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具"), tip),
                     () =>
                     {
                         self.RequestEquipMake().Coroutine();

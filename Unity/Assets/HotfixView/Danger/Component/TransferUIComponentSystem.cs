@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -120,7 +120,7 @@ namespace ET
                 self.EnterRange = true;
                 if (UnitHelper.IsHaveBoss(mainhero.DomainScene(), vector3, 8f))
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("附近有领主出现,请问是否进入新地图?"), () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("附近有领主出现，请问是否进入新地图?"), () =>
                     {
                         self.StartTimer();
                     }, null).Coroutine();

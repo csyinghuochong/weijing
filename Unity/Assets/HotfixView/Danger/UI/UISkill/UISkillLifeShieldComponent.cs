@@ -303,7 +303,7 @@ namespace ET
 
             if (havegreen)
             {
-                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("有橙色装备,是否要继续注入?"), ()=>
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("系统提示"), GameSettingLanguge.LoadLocalization("有橙色装备，是否要继续注入?"), ()=>
                 {
                     self.RequestZhuru(self.ShieldType, costs).Coroutine();
                 }, null).Coroutine();

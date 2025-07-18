@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,7 @@ namespace ET
             //获取事件对应传参
             EventType.UISoloEnter args = cls as EventType.UISoloEnter;
 
-            string tipStr = GameSettingLanguge.LoadLocalization("竞技场匹配完成,请尽快进入!");
+            string tipStr = GameSettingLanguge.LoadLocalization("竞技场匹配完成，请尽快进入!");
             bool removeStatus = false;
 
             PopupTipHelp.OpenPopupTip(args.ZoneScene, "", GameSettingLanguge.LoadLocalization(tipStr),

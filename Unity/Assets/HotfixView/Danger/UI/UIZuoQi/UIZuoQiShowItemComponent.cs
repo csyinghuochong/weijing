@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,7 +87,7 @@ namespace ET
 
             if (response.Error == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("激活坐骑成功,清在主界面点击骑乘按钮即可喔！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("激活坐骑成功，清在主界面点击骑乘按钮即可喔！"));
             }
 
         }
