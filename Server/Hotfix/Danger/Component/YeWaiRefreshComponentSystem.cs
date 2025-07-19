@@ -193,6 +193,11 @@ namespace ET
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             int sceneId = mapComponent.SceneId;
 
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            {
+                self.OnBaoZangMonster(openDay);
+            }
+
             Dictionary<int, FuntionConfig> keyValuePairs = FuntionConfigCategory.Instance.GetAll();
             foreach (( int functionId, FuntionConfig FuntionConfig ) in keyValuePairs)
             { 
@@ -217,6 +222,7 @@ namespace ET
 
                 FubenHelp.CreateMonsterList(self.DomainScene(), FuntionConfig.CreateMonsterPosi);
             }
+
             //MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             //if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             //{
