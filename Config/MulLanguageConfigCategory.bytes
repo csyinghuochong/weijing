@@ -2,8 +2,8 @@
 ��生命"HP
 ��攻击"Atk
 ��魔法"Magic
-��物防"Phys Def
-��魔防"	Magic Def
+��物防"Pdef
+��魔防"MDef
 ��暴击概率"	Crit Rate
 ��抗暴概率"Crit Res
 ��命中概率"Hit Rate
@@ -823,7 +823,7 @@ n��4充足的睡眠可以为你送来健康和快乐!!!
 Attack 1-1
 ,��洗练装备"Wash and train the Equip
 4��洗练消耗" Washing and refining consumption
-��使用道具"	Use props
+��使用道具"	Use Items
 %��重铸次数:"Recasting times:
 ����1. 在这里放入装备洗练对应装备的极品属性。
 2. 洗练后装备获得的极品属性完全随机。
@@ -1189,7 +1189,7 @@ b��,玩家 大大大 2012:2: 出价 100000金币".Player Dada Dada 2012:2: Bi
 $��缴纳保证金"Pay a deposit
 #��拍卖记录"Auction records
 &��剩余时间："Time remaining:
-#��当前出价："Current Bid:
+��当前出价："Current:
 ��	拍卖会"Auction
 ���7拍卖时间结束时,出价最高者获得拍卖道具"JAt the end of the auction time, the highest bidder gets the auction props.
  ��出价玩家:"Bid Player:
@@ -1348,7 +1348,7 @@ $��新的宠物栏"A new pet bar
 ��180秒"180 seconds
 ���W提示:增加的守护属性和4个宠物评分相关,当前只能选择一种守护。"lTip: The added Guardian attribute is related to 4 pet ratings. Currently, only one Guardian can be selected.
 ��评分"Rating
-%��开启守护"Open the guardian
+��开启守护"Open
 ,��已开启守护"Guardian is turned on
 :��属性附加命中率"Attribute attachment hit rate
 <��属性附加闪避率"Attribute additional Dodge rate
@@ -1383,7 +1383,7 @@ The less the skill, the more it increases.
 L��宠物技能概率越高。")The higher the probability of pet skills.
 ��拉拉"Lesbian
 (��评分 199000"The score is 199000
-F��请选择要放置的道具"#Please select the prop to be placed
+6��请选择要放置的道具"Please select items
 ����提示:使用技能书对4技能内的宠物有概率不替换原始技能
          超过4个(含4个)必定会随机替换1个原始技能"�Tip: There is a probability that pets within 4 skills will not replace the original skill when using the skill book. 
  More than 4 (including 4) pets will randomly replace 1 original skill.
@@ -1753,9 +1753,9 @@ wܥ.当前赛季在地图内击败其他玩家5次"ADefeat other players with
 ݥ任务奖励"Task reward
 ޥ提交"
 Submission
-5ߥ本周赛季排行"This week's season rankings
+%ߥ本周赛季排行"week's rank
 �名次"Rank
-�层数"Number of layers
+�层数"layers
 �时间"Time
 /�玩家的名字名字"Player's name Name
 �20层"	20 floors
@@ -1767,7 +1767,7 @@ U�$1. 每周赛季之塔重置一次。")1. The season tower is reset once a
 ��@2. 每周一0:00点，根据挑战的层数进行发放奖励。"h2. Every Monday at 0:00, rewards will be distributed according to the number of levels of the challenge.
 9�2小时2分35秒"!2 hours, 2 minutes and 35 seconds
 0�当前层数："Current number of layers:
-7��进入赛季之塔"Enter the Tower of the Season
+)��进入赛季之塔"Enter the Tower
 �11层"Floor 11
 ��Q提示: 每周一0:00点通过邮箱进行发放哦，大家记得去领取哦！"cPrompt: Every Monday 0:00 carries on the issue through the mailbox, everybody remembers to receive!
 �设置"Set up
@@ -3660,7 +3660,7 @@ D��该生活技能已学习！"!This life skill has been learned!
 7��已经学习过该道具!"Have learned the prop!
 9��学习配方成功!"Learn the recipe successfully!
 .��学习等级:{0}级"Learning level: {0}
-:��兑换次数:{0}/{1}"Number of redemptions: {0}/{1}
+*��兑换次数:{0}/{1}"Limit: {0}/{1}
 T��已达到最大领取上限！".The maximum collection limit has been reached!
 ���D玩家 <color=#{0}>{1}</color> {2} 出价： <color=#{3}>{4}</color>"?Player <color=#{0}>{1}</color> {2} Bid: <color=#{3}>{4}</color>
 ��	已结束"Ended
