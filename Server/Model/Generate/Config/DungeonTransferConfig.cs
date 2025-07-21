@@ -81,9 +81,6 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>名字</summary>
-		[ProtoMember(3)]
-		public string Name_EN { get; set; }
 		/// <summary>地图ID</summary>
 		[ProtoMember(4)]
 		public int MapID { get; set; }
