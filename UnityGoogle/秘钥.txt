@@ -1,0 +1,18 @@
+PlayerSettings.Android.keystoreName = "google.keystore";
+
+// 密钥密码
+PlayerSettings.Android.keystorePass = "weijing829475";
+
+// 密钥别名
+PlayerSettings.Android.keyaliasName = "weijingchinaboy";
+
+// 密钥别名密码
+PlayerSettings.Android.keyaliasPass = "weijing829475";
+
+PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
+
+
+
+
+sha1:
+BD:30:14:56:49:9F:E3:4D:FD:8E:07:F2:48:D9:CD:68:65:45:4C:46
