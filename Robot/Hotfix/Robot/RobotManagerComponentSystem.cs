@@ -86,7 +86,7 @@ namespace ET
                 }
                 if (registerCode == ErrorCode.ERR_Success)
                 {
-                    A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
+                    A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName(zone));
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
                     if (playerComponent == null || g2cCreateRole.createRoleInfo == null)
                     {
@@ -115,7 +115,7 @@ namespace ET
                     {
                         Log.Debug($"{account}  {zone} 角色为空");
 
-                        A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
+                        A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName(zone));
                         playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
                         if (playerComponent == null || g2cCreateRole.createRoleInfo == null)
                         {
@@ -157,7 +157,7 @@ namespace ET
                 Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
             }
             robotNumber = self.RobotNumber[robotId]++;
-            string account = $"{robotId}_{zone}_{Options.Instance.Platform}_{robotNumber}_0617";   //服务器
+            string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
 
             Scene robotScene = await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
             return robotScene;

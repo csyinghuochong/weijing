@@ -240,10 +240,8 @@ namespace ET
 					PlayerPrefsHelp.SetString("UIYinSi0627", "1");
                 }
 #if UNITY_EDITOR
-				//if (self.Password.GetComponent<InputField>().text == "6")
-                {
-                    self.AccountInfoComponent.Age_Type = 100;
-                }
+                //if (self.Password.GetComponent<InputField>().text == "6")
+                self.AccountInfoComponent.Age_Type = 100;
 
                 //self.TestTapHttp_2().Coroutine();
 #endif
@@ -515,7 +513,7 @@ namespace ET
             }
 
 
-            Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}  {GlobalHelp.GetBigVersion()}  {GlobalHelp.GetPlatform()}");
+            Log.ILog.Debug($"InitLoginType: {lastloginType} { self.LoginType}  {GlobalHelp.GetBigVersion()}  {GlobalHelp.GetPlatform()}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
 			self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
@@ -588,14 +586,16 @@ namespace ET
 
 				case LoginTypeEnum.Google:
                     self.ThirdLoginBg.SetActive(false);
-#if UNITY_EDITOR
-					self.OnRecvGoogleSignIn("google_18319670288");
-#else
-					EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
-                    EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
-                    EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
-#endif
-
+					if (GlobalHelp.IsEditorMode)
+					{
+						self.OnRecvGoogleSignIn("google_18319670288");
+					}
+					else
+					{
+                        EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
+                        EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
+                        EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
+                    }
                     break;
                 case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
@@ -884,15 +884,17 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
                 return;
             }
-            self.LoginType = LoginTypeEnum.Apple.ToString();
+            self.LoginType = LoginTypeEnum.Google.ToString();
             self.Account.GetComponent<InputField>().text = appuserinfo;
-            self.Password.GetComponent<InputField>().text = self.LoginType;
+			self.Password.GetComponent<InputField>().text = self.LoginType;
             self.ZhuCe.SetActive(false);
             self.YiJianDengLu.SetActive(false);
             self.ThirdLoginBg.SetActive(false);
             self.Account.SetActive(false);
             self.Password.SetActive(false);
             self.HideNode.SetActive(true);
+			self.AccountInfoComponent.Age_Type = 100;
+			Log.ILog.Debug($"OnRecvGoogleSignIn:  {appuserinfo}  {self.LoginType}");
         }
 
 
@@ -1319,6 +1321,7 @@ namespace ET
             self.ResetPlayerPrefs(LoginTypeEnum.TapTap.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.TikTok.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.QuDao.ToString());
+            self.ResetPlayerPrefs(LoginTypeEnum.Google.ToString());
             self.InitLoginType();
 		}
 

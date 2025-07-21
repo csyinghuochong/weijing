@@ -51,9 +51,9 @@ namespace ET
             return vs;
         }
 
-        public static string GetRandomName(this RandNameComponent self)
+        public static string GetRandomName(this RandNameComponent self, int zone)
         {
-            if (Options.Instance.Platform == 7)
+            if (ServerHelper.GetGetServerItem(false, zone).PlatformList.Contains(7))
             {
                 return self.RandNameNameList_EN[RandomHelper.RandomNumber(0, self.RandNameNameList_EN.Count)];
             }

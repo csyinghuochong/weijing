@@ -37,6 +37,12 @@ namespace ET
                     newAccount.PlayerInfo.RealName = 1;
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }
+                if (request.LoginType == LoginTypeEnum.Google)
+                {
+                    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
+                    newAccount.PlayerInfo.RealName = 1;
+                    newAccount.PlayerInfo.IdCardNo = string.Empty;
+                }
 
                 //Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);

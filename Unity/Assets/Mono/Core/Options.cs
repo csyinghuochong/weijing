@@ -47,8 +47,5 @@ namespace ET
 
         [Option("Title", Required = false, Default = "")]
         public string Title { get; set; } = "";
-        
-        [Option("Platform", Required = false, Default = 0)]
-        public int Platform { get; set; } = 0;
     }
 }

@@ -153,7 +153,8 @@ namespace ET
                                 Center2A_RegisterAccount saveAccount = (Center2A_RegisterAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_RegisterAccount()
                                 {
                                     AccountName = request.AccountName,
-                                    Password = request.Password
+                                    Password = request.Password,
+                                    LoginType = int.Parse(request.ThirdLogin),
                                 });
                                 AccountId = saveAccount.AccountId;
 
@@ -304,7 +305,7 @@ namespace ET
                         //}
                         //防沉迷相关
                         string idCardNo = centerPlayerInfo.IdCardNo;
-                        int canLogin = CanLogin(idCardNo, IsHoliday, request.age_type);
+                        int canLogin = CanLogin(idCardNo, IsHoliday, request.age_type, int.Parse(request.ThirdLogin));
                         if (canLogin != ErrorCode.ERR_Success)
                         {
                             response.Error = canLogin;
@@ -437,8 +438,13 @@ namespace ET
             }
         }
 
-        public int CanLogin(string identityCard, bool isHoliday, int age_type)
+        public int CanLogin(string identityCard, bool isHoliday, int age_type, int thirdlogin)
         {
+            if (thirdlogin == LoginTypeEnum.Google)
+            {
+                return ErrorCode.ERR_Success; 
+            }
+
             int age = IDCardHelper.GetBirthdayAgeSex(identityCard, age_type);
             if (age >= 18)
             {

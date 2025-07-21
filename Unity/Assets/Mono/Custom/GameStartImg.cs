@@ -27,11 +27,17 @@ public class GameStartImg : MonoBehaviour
 	void Start () {
         nowShowImgNum = 0;
         PassTime = 0f;
+
+#if Google
+        PassTime = 10;
+        Destroy(this.gameObject);
+#else
         Obj_StartImg[nowShowImgNum].SetActive(true);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+#endif
+    }
+
+    // Update is called once per frame
+    void Update () {
         PassTime += Time.deltaTime; 
         if (PassTime >= 5f)
         { 

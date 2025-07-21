@@ -118,6 +118,10 @@ namespace ET
             uIPageViewComponent.OnSelectIndex(0);
 
             self.BtnRandomName.SetActive(GameSettingLanguge.Language == 0);
+            if (GlobalHelp.GetPlatform() ==7 )
+            {
+                self.BtnRandomName.SetActive(false);
+            }
             if (GameSettingLanguge.Language == 0)
             {
                 self.OnClickRandomName();
