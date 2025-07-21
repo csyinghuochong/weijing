@@ -270,7 +270,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/gitcustom/trunk_android/AndroidProject_WeiJing/user.keystore
+  AndroidKeystoreName: '{inproject}: user.keystore'
   AndroidKeyaliasName: chinaboy
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0
@@ -879,7 +879,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: NET452;DISABLE_ILRUNTIME_DEBUG;QuDao
+    Android: NET452;DISABLE_ILRUNTIME_DEBUG;TapTap1
     Standalone: ILRuntime;SUBSTANCE_PLUGIN_ENABLED
     WebGL: NET452;ILRuntime
     iPhone: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO
