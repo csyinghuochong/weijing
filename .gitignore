@@ -103,3 +103,5 @@ Unity/TapTap.UI.csproj
 Unity/TapTap.UI.Editor.csproj
 Unity/Assets/Res/Shader/Custom_Color_Test.shader
 Unity/Assets/Res/Shader/Custom_Color_Test.shader.meta
+Unity/Assets/GeneratedLocalRepo.meta
+Unity/Assets/Plugins/Android/GooglePlayGamesManifest.androidlib.meta

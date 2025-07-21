@@ -1,5 +1,13 @@
 登陆：  
+                
 	需要能获取到账号信息 唯一id 
 支付： 
+                看看能不能通过IAPManager去做。 危境有这个组件
 	需要能拉起支付。    如果需要危境服务器监听回调。 自己加在server/hotfix/custom  参考ReChargeQDComponent。    ReChargeIOSComponent...
                 能监听到返回消息即可
+
+
+googleconsole 和 clound 上面的配置有问题可以直接删除。。
+
+目前危境  Plugins/Android 这个目录的配置都是和google渠道包匹配的。  后期可以用危境工程打包测试。
+
