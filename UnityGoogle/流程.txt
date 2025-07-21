@@ -1,0 +1,5 @@
+登陆：  
+	需要能获取到账号信息 唯一id 
+支付： 
+	需要能拉起支付。    如果需要危境服务器监听回调。 自己加在server/hotfix/custom  参考ReChargeQDComponent。    ReChargeIOSComponent...
+                能监听到返回消息即可
