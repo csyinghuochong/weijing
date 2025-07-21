@@ -7,6 +7,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_HongBaoOpenRequest request, M2C_HongBaoOpenResponse response, Action reply)
         {
+            int functionId = 1023;
+            
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 12)
             {
                 response.Error = ErrorCode.ERR_HongBaoLevel;
@@ -25,6 +27,13 @@ namespace ET
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) != 0)
             {
                 response.Error = ErrorCode.ERR_AlreadyReceived;
+                reply();
+                return;
+            }
+            
+            if (!FunctionHelp.IsFunctionTimeOpen(functionId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }

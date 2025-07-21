@@ -46,6 +46,35 @@ namespace ET
             return false;
         }
 
+        public static bool IsFunctionTimeOpen(int functionId)
+        {
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
+            
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+
+            if (!IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId))
+            {
+                return false;
+            }
+            
+            if (ComHelp.IfNull(funtionConfig.OpenTime))
+            {
+                return true;
+            }
+            
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long startTime = GetOpenTime(functionId);
+            long endTime = GetCloseTime(functionId) - 10;
+
+            if (curTime > startTime && curTime < endTime)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
         /// <summary>
         /// 
         /// </summary>
