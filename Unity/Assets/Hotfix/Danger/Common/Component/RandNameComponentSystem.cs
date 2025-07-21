@@ -5,12 +5,14 @@ using System.IO;
 namespace ET
 {
     [ObjectSystem]
-    public class RandNameComponentAwakeSystem : AwakeSystem<RandNameComponent>
+    public class RandNameComponentAwakeSystem: AwakeSystem<RandNameComponent>
     {
         public override void Awake(RandNameComponent self)
         {
             self.RandNameXing = self.ReadFile("../Config/Name/RandName_Xing.txt");
             self.RandNameNameList = self.ReadFile("../Config/Name/RandName_Name.txt");
+
+            self.RandNameNameList_EN = self.ReadFile("../Config/Name/RandName_Name_EN.txt");
         }
     }
 
@@ -51,6 +53,11 @@ namespace ET
 
         public static string GetRandomName(this RandNameComponent self)
         {
+            if (Options.Instance.Platform == 7)
+            {
+                return self.RandNameNameList_EN[RandomHelper.RandomNumber(0, self.RandNameNameList_EN.Count)];
+            }
+
             int xingXuHao = RandomHelper.RandomNumber(0, self.RandNameXing.Count);
             int nameXuHao = RandomHelper.RandomNumber(0, self.RandNameNameList.Count);
             return self.RandNameXing[xingXuHao] + self.RandNameNameList[nameXuHao];

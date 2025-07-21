@@ -157,7 +157,7 @@ namespace ET
                 Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
             }
             robotNumber = self.RobotNumber[robotId]++;
-            string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
+            string account = $"{robotId}_{zone}_{Options.Instance.Platform}_{robotNumber}_0617";   //服务器
 
             Scene robotScene = await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
             return robotScene;

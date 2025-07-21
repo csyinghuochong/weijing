@@ -6,5 +6,7 @@ namespace ET
     {
         public List<string> RandNameNameList = new List<string>();
         public List<string> RandNameXing = new List<string>();
+        
+        public List<string> RandNameNameList_EN = new List<string>();
     }
 }
