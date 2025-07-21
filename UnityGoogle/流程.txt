@@ -9,5 +9,4 @@
 
 googleconsole 和 clound 上面的配置有问题可以直接删除。。
 
-目前危境  Plugins/Android 这个目录的配置都是和google渠道包匹配的。  后期可以用危境工程打包测试。
-
+目前危境  Plugins/Android 这个目录的配置都是和google渠道包匹配的。
