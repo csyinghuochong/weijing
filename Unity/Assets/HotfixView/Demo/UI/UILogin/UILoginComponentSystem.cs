@@ -28,7 +28,7 @@ namespace ET
 				int platform = GlobalHelp.GetPlatform();
 
 #if UNITY_IPHONE || UNITY_IOS
-				if (bigversion == 23 && Application.version == "2.2.5")
+				if (bigversion == 24 && Application.version == "2.4.0")
 				{
 					self.IOSReview = true;
 				}
