@@ -27134,6 +27134,8 @@ MonoBehaviour:
     gameObject: {fileID: 7781753452144888171}
   - key: ButtonCloseEquip
     gameObject: {fileID: 9207298766449344332}
+  - key: Image_PetPingFen
+    gameObject: {fileID: 8328027108752371279}
 --- !u!1 &4937500015458314991
 GameObject:
   m_ObjectHideFlags: 0
@@ -34591,7 +34593,7 @@ GameObject:
   - component: {fileID: 3251110320615139634}
   - component: {fileID: 8066377105810051171}
   m_Layer: 5
-  m_Name: ImageDi
+  m_Name: Image_PetPingFen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

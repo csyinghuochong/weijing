@@ -374,6 +374,9 @@ namespace ET
             {
                 go.transform.Find("Text_ZiZhiName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
             }
+            
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            rc.Get<GameObject>("Image_PetPingFen").GetComponent<RectTransform>().localScale = GameSettingLanguge.Language == 0? new Vector3(1f, 1f, 1f) : new Vector3(1.35f, 1.35f, 1.35f);
         }
         
         /// <summary>
@@ -1550,7 +1553,15 @@ namespace ET
 
             self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
-            self.Text_ShouHu.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value);
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            }
+            else
+            {
+                self.Text_ShouHu.GetComponent<Text>().text = "Guardian";
+            }
+            
             string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
