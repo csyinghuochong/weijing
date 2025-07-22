@@ -193,7 +193,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonPhone.SetActive(true);
-            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6 || GlobalHelp.GetPlatform() == 7)
             {
                 self.ButtonPhone.SetActive(false);
             }
@@ -281,6 +281,11 @@ namespace ET
             self.TextVersion.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.LastLoginTimeTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.LastLoginTime.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+
+            if (GameSettingLanguge.Language == 1)
+            {
+                self.ButtonPhone.SetActive(false);
+            }
         }
         
         public static void OnScreenToggle0_Ex(this UISettingGameComponent self, bool value)
