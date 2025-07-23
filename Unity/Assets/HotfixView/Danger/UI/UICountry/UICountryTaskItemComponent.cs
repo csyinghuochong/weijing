@@ -68,6 +68,9 @@ namespace ET
         {
             self.TextTaskDesc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
             self.TextTaskProgress.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+
+            self.TextTaskName.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(-322f, 27.5f) : new Vector2(-322f, 64.8f);
+            self.TextTaskDesc.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(-271f, -76f) : new Vector2(-271f, -31f);
         }
 
         public static void OnUpdateData(this UICountryTaskItemComponent self, TaskPro taskPro)
