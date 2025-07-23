@@ -213,6 +213,7 @@ namespace ET
 					rc.Get<GameObject>("Img_GameName_EN").SetActive(true);
 					rc.Get<GameObject>("YinSiButon").SetActive(false);
 					rc.Get<GameObject>("Text_DiTip").SetActive(false);
+					rc.Get<GameObject>("buttonAgeTip").SetActive(false);
 				}
 				
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
