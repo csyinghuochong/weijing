@@ -63,6 +63,10 @@ namespace ET
     {
         public static void OnUpdateData(this UIBattleTaskItemComponent self, TaskPro taskPro)
         {
+            self.TextTaskName.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(-447f, 25f) : new Vector2(-447f, 59f);
+            self.TextTaskDesc.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(-346f, -68f) : new Vector2(-346f, -31f);
+            self.TextTaskDesc.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 30;
+            
             self.TaskPro = taskPro;
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
             if (!ComHelp.IfNull(taskConfig.RewardItem))
