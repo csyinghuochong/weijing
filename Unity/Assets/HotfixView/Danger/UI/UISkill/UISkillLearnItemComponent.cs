@@ -217,6 +217,9 @@ namespace ET
                     self.Text_Desc.GetComponent<Text>().text = skillDesc[1];
                 }
             }
+            
+            LayoutRebuilder.ForceRebuildLayoutImmediate(self.Text_Desc.transform.parent.GetComponent<RectTransform>());
+            
             self.ButtonLearn.SetActive(false);
             self.ButtonUp.SetActive(false);
             self.ButtonMax.SetActive(false);
