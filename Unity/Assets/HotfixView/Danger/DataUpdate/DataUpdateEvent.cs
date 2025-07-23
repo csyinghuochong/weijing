@@ -1249,6 +1249,11 @@ namespace ET
                     uiBattleComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIBattleEnterComponent uiBattleEnterComponent)
+                {
+                    uiBattleEnterComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
