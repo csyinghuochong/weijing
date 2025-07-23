@@ -1,0 +1,3 @@
+    // OSDK_Douyin_Start，此行注释不能删除，用于自动化标记使用
+    implementation "com.bytedance.ttgame:gbsdk_optional_aweme:$version" 
+    // OSDK_Douyin_End，此行注释不能删除，用于自动化标记使用

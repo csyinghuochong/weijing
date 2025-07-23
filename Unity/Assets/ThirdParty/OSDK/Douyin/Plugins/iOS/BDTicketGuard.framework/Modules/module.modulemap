@@ -1,0 +1,6 @@
+framework module BDTicketGuard {
+  umbrella header "BDTicketGuard-umbrella.h"
+
+  export *
+  module * { export * }
+}

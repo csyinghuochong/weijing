@@ -1,0 +1,59 @@
+{
+    "setCurrentUser:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "currentUser" : {
+                    "possibleReason" : "currentUser 为空。",
+                    "solveMsg" : "currentUser 是必传的，请检查后重试。"
+                },
+                "currentUser.userID" : {
+                    "possibleReason" : "userID 为空或者数据类型错误。",
+                    "solveMsg" : "userID 是必传的 NSString 类型对象，取值应为用户的唯一标识，请检查后重试。"
+                },
+                "currentUser.registerMethod" : {
+                    "possibleReason" : "registerMethod 为空或者类型错误。",
+                    "solveMsg" : "registerMethod 是必传的 NSString 类型对象，请检查后重试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置完成回调。",
+                    "solveMsg" : "建议实现回调获取用户归因结果。"
+                }
+            },
+            
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "SDK未完成初始化" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "101" : {
+                    "UserID错误" : {
+                        "possibleReason" : "userID 为空或者数据类型错误。",
+                        "solveMsg" : "userID 是必传的 NSString 类型对象，取值应为用户的唯一标识，请检查后重试。"
+                    },
+                    "用户注册方式错误" : {
+                        "possibleReason" : "registerMethod 为空或者类型错误。",
+                        "solveMsg" : "registerMethod 是必传的 NSString 类型对象，请检查后重试。"
+                    }
+                },
+                "201" : {
+                    "SetCurrentUser error" : {
+                        "possibleReason" : "上传用户信息失败。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "logoutUser" : {
+        
+    }
+}
+

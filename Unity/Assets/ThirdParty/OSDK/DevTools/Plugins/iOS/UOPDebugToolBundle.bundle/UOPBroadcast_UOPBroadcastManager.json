@@ -1,0 +1,69 @@
+{
+    "setupWithConfig:delegate:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "delegate" : {
+                    "possibleReason" : "delegate 的设置异常。",
+                    "solveMsg" : "delegate 是必填的参数，需要实现 UOPBroadcastDelegate 的代理方法，请检查后重试。"
+                },
+                "delegate.protocol" : {
+                    "possibleReason" : "delegate 的设置异常。",
+                    "solveMsg" : "delegate 是必填的参数，需要实现 UOPBroadcastDelegate 的代理方法，请检查后重试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1001" : {
+                    "any" : {
+                        "possibleReason" : "直播能力初始化中。",
+                        "solveMsg" : "直播能力已经初始化了，不需要重复调用。"
+                    }
+                },
+                "-1003" : {
+                    "any" : {
+                        "possibleReason" : "直播能力未设置代理。",
+                        "solveMsg" : "delegate 是必填的参数，需要实现 UOPBroadcastDelegate 的代理方法。"
+                    },
+                },
+                "-1004" : {
+                    "any" : {
+                        "possibleReason" : "直播能力初始化失败。",
+                        "solveMsg" : "查看错误 userInfo 内的信息，尝试切换网络重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-1005" : {
+                    "any" : {
+                        "possibleReason" : "直播能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+            }
+        }
+    },
+    
+    "startLive:" : {
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "onView" : {
+                    "possibleReason" : "onView 不能为空。",
+                    "solveMsg" : "onView 是必填的参数，建议传入和屏幕大小一致的 UIView 对象，并注意层级和生命周期，避免后续被遮挡或者因为生命周期被销毁。"
+                },
+                "onView.class" : {
+                    "possibleReason" : "onView 设置异常。",
+                    "solveMsg" : "onView 是必填的参数，建议传入和屏幕大小一致的 UIView 对象，并注意层级和生命周期，避免后续被遮挡或者因为生命周期被销毁。"
+                }
+            },
+        }
+    }
+    
+}
+

@@ -1,0 +1,3 @@
+    // OSDK_DevTools_Start，此行注释不能删除，用于自动化标记使用
+    implementation "com.bytedance.ttgame:gbsdk_optional_devtools:$version" 
+    // OSDK_DevTools_End，此行注释不能删除，用于自动化标记使用

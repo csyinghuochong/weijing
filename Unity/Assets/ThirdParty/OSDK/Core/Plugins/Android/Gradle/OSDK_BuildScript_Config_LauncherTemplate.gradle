@@ -1,0 +1,12 @@
+// OSDK_BuildScript Start,此行注释不能删除，用于自动化标记使用
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+**BUILD_SCRIPT_DEPS**}
+}
+// OSDK_BuildScript End,此行注释不能删除，用于自动化标记使用

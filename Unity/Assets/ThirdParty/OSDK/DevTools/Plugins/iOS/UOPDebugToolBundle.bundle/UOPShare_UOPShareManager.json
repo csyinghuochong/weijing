@@ -1,0 +1,220 @@
+{
+    "shareContent:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "content" : {
+                    "possibleReason" : "content 为空。",
+                    "solveMsg" : "content 是必传的，是分享的内容对象。"
+                },
+                "douyinVideoContent.shareWay" : {
+                    "possibleReason" : "shareWay 分享方式设置错误。",
+                    "solveMsg" : "视频类型的分享不能分享给好友。"
+                },
+                "douyinVideoContent" : {
+                    "possibleReason" : "localIdentifiers 和 videoPath 均为空或者数据类型错误。",
+                    "solveMsg" : "传入的视频资源有误，请检查后重试。"
+                },
+                "douyinImageContent" : {
+                    "possibleReason" : "localIdentifiers 和 imagePath 均为空或者数据类型错误。",
+                    "solveMsg" : "传入的图片资源有误，请检查后重试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是分享完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "分享能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "-100" : {
+                    "Douyin share no register" : {
+                        "possibleReason" : "能力未完成初始化。",
+                        "solveMsg" : "分享能力依赖授权能力的初始化。授权能力初始化需要在SDK初始化配置文件增加 client_key 和 douyin_key 部分；或者调用 UOPAuthManager 的 registerAppKey:forPlatform: 方法完成能力初始化。"
+                    },
+                },
+                "-101" : {
+                    "分享失败" : {
+                        "possibleReason" : "分享能力暂不可用。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-103" : {
+                    "分享失败" : {
+                        "possibleReason" : "分享资源错误。",
+                        "solveMsg" : "传入的分享资源为空。视频分享请确认videoPath或者localIdentifiers，图片分享请确认imagePath或者localIdentifiers，请检查参数后重试。"
+                    }
+                },
+                "-6" : {
+                    "分享失败" : {
+                        "possibleReason" : "抖音客户端未安装。",
+                        "solveMsg" : "使用分享能力需要在设备上安装抖音客户端，"
+                    }
+                },
+                "-1" : {
+                    "分享失败" : {
+                        "possibleReason" : "分享失败。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-2" : {
+                    "cancel" : {
+                        "possibleReason" : "用户主动取消。",
+                        "solveMsg" : "用户主动取消触发的错误回调。"
+                    },
+                    "any" : {
+                        "possibleReason" : "用户主动取消。",
+                        "solveMsg" : "用户主动取消触发的错误回调。"
+                    }
+                },
+                "-3" : {
+                    "分享失败" : {
+                        "possibleReason" : "分享失败。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-4" : {
+                    "分享失败" : {
+                        "possibleReason" : "权限错误。",
+                        "solveMsg" : "分享能力依赖相册的完全权限，应用本身需要申请相册完全权限，抖音上也需要给予相册的完全权限。需要检查设备的设置内，抖音和应用的相册权限状态，在完全开启后重试。"
+                    }
+                },
+                "-5" : {
+                    "分享失败" : {
+                        "possibleReason" : "分享不支持。",
+                        "solveMsg" : "分享能力不支持。视频分享的'shareWay'仅支持'UOPShareDouyinWayPublish'；图片分享为'UOPShareDouyinWayIM'时，使用'localIdentifiers'相册分享仅支持分享一张图片；图片分享使用'imagePath'时，'shareWay'不支持'UOPShareDouyinWayCapture'类型；"
+                    }
+                },
+                "20001" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "20002" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "参数解析错误，获取到的资源和传入的资源类型不一致。请检查参数后重试。"
+                    }
+                },
+                "20003" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "没有足够的权限进行操作，分享或授权之前请确认您的App有相关操作权限。可在 open.douyin.com 的管理中心查看你有哪些权限。"
+                    }
+                },
+                "20004" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "用户未登录。分享能力需要用户完成登录，请登录后重试。"
+                    }
+                },
+                "20005" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "抖音没有获得完全的相册权限。分享能力依赖相册权限，在设置中确认相册权限后在重试。"
+                    }
+                },
+                "20006" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "20007" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "视频时长不符合限制。"
+                    }
+                },
+                "20008" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "图片资源分辨率不符合限制。"
+                    }
+                },
+                "20009" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "时间戳检查失败。"
+                    }
+                },
+                "20010" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "处理照片资源出错。"
+                    }
+                },
+                "20011" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "视频分辨率不符合限制。"
+                    }
+                },
+                "20012" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "视频格式不支持。"
+                    }
+                },
+                "20013" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "用户取消分享。"
+                    }
+                },
+                "20014" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "用户有未完成编辑的发布内容。"
+                    }
+                },
+                "20015" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "用户将分享内容存储为了草稿或用户账号不允许发布视频。"
+                    }
+                },
+                "20016" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "发布视频失败。"
+                    }
+                },
+                "21001" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "从 iCloud 同步资源出错。"
+                    }
+                },
+                "21002" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "传递的参数处理错误。"
+                    }
+                },
+                "21003" : {
+                    "any" : {
+                        "possibleReason" : "分享错误。",
+                        "solveMsg" : "获取资源错误，资源可能不存在。请检查资源路径是否正确。"
+                    }
+                }
+            }
+        }
+    }
+}
+

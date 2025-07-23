@@ -1,0 +1,3 @@
+// OSDK_Dependencies Start,此行注释不能删除，用于自动化标记使用
+def version = "2.4.4.0"
+// OSDK_Dependencies End,此行注释不能删除，用于自动化标记使用

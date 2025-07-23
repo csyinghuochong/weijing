@@ -282,7 +282,7 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().OnTikTokAuthorizeHandler = args.AuthorizeCodeHandler;
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
-            //init.TikTokAuthorize();
+            init.TikTokAuthorize();
         }
     }
 

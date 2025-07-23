@@ -1,0 +1,560 @@
+{
+    "fetchProfileModelWithContext:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "getVideoListWithContext:videoIDList:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                },
+                "videoIDList" : {
+                    "possibleReason" : "videoIDList 为空。",
+                    "solveMsg" : "videoIDList是查询视频列表的必要参数，需要以数组形式传入要查询的视频videoID。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "jumpToProfileWithContext:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "switchShowTypeWithContext:showType:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                },
+                "showType" : {
+                    "possibleReason" : "showType 为空。",
+                    "solveMsg" : "showType是必要的参数，需要以字符串的形式传入。其中 latest为最新模式，会按照作品的发布顺序排序；hottest为热度模式，会按照作品的热度顺序排序；custom为自定义模式，会按照用户在名片管理页面的设置的顺序排序。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3003" : {
+                    "any" : {
+                        "possibleReason" : "方法需要在主态下执行。",
+                        "solveMsg" : "切换名片展示模式是需要在主态下执行的方法，需要设置上下文对象为主态访问。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "updateCoverVideoWithContext:videoID:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                },
+                "videoID" : {
+                    "possibleReason" : "videoID 为空。",
+                    "solveMsg" : "videoID是方法的必要参数，为封面视频的videoID。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3003" : {
+                    "any" : {
+                        "possibleReason" : "方法需要在主态下执行。",
+                        "solveMsg" : "设置名片封面视频是需要在主态下执行的方法，需要设置上下文对象为主态访问。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "jumpToAlbumWithContext:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "context.targetOpenID" : {
+                    "possibleReason" : "targetOpenID 未设置。",
+                    "solveMsg" : "在客态下，targetOpenID 是必填的参数。在主态下，如果用户还未完成授权可以为空，调用后会自动拉起抖音授权获取用户openID。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是初始化完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "统一授权代理异常" : {
+                        "possibleReason" : "未实现统一授权相关代理方法。",
+                        "solveMsg" : "统一授权未实现相关代理方法，具体方法声明可以查看 UOPDouyinAuthInfoDelegate。"
+                    }
+                },
+                "-2" : {
+                    "DouyinAuth Unavailable" : {
+                        "possibleReason" : "未成功授权。",
+                        "solveMsg" : "统一授权接口回调返回的授权信息不可用。"
+                    }
+                },
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "需要先调用Core模块的相关初始化接口，再调用进阶能力的相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "工程缺少依赖组件。",
+                        "solveMsg" : "名片能力依赖Ticket和Douyin组件，请检查工程是否有正确引入相关组件。"
+                    },
+                },
+                "-3006" : {
+                    "any" : {
+                        "possibleReason" : "配置文件错误。",
+                        "solveMsg" : "配置文件中缺少clientkey的相关字段，请检查SDK的配置文件。正确格式的配置文件可以在抖音游戏厂商合作平台下载。"
+                    }
+                },
+                "-3001" : {
+                    "any" : {
+                        "possibleReason" : "名片能力暂不可用。",
+                        "solveMsg" : "尝试切换网络重试，如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-3004" : {
+                    "any" : {
+                        "possibleReason" : "方法缺失必要参数。",
+                        "solveMsg" : "方法的必要参数为空，请根据错误userinfo内的详细信息补全方法入参。"
+                    }
+                },
+                "-3002" : {
+                    "any" : {
+                        "possibleReason" : "未获取到当前用户信息。",
+                        "solveMsg" : "主态访问需要获取到当前的用户OpenID，在用户同意授权后需要把授权信息通过统一回调传进SDK内。"
+                    }
+                },
+                "-3003" : {
+                    "any" : {
+                        "possibleReason" : "方法需要在主态下执行。",
+                        "solveMsg" : "跳转到抖音的名片管理页面是需要在主态下执行的方法，需要设置上下文对象为主态访问。"
+                    }
+                },
+                "-3007" : {
+                    "any" : {
+                        "possibleReason" : "获取 ClientCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 ClientCode 为空或者已经失效。"
+                    }
+                },
+                "-3008" : {
+                    "any" : {
+                        "possibleReason" : "获取 AccessCode 失败。",
+                        "solveMsg" : "检查票据代理 UOPTicketDelegate 的实现，回调传入的 AccessCode 为空或者已经失效。"
+                    }
+                },
+                "-9999" : {
+                    "any" : {
+                        "possibleReason" : "其他错误，详情查看错误信息。",
+                        "solveMsg" : "其他错误，详情查看错误信息。"
+                    }
+                }
+            }
+        }
+    }
+    
+}

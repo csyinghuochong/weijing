@@ -1,0 +1,247 @@
+{
+    "registerWithCompletion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "建议实现回调 completion，以获取直播初始化结果。"
+                }
+            },
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "直播能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "1" : {
+                    "设备不支持" : {
+                        "possibleReason" : "设备不支持直播。",
+                        "solveMsg" : "更换看播设备。"
+                    }
+                },
+                "-1" : {
+                    "config file ttsdk_id unavailable" : {
+                        "possibleReason" : "ttsdk_id为空。",
+                        "solveMsg" : "需要正确传入ttsdk_id。"
+                    },
+                    "config file ttsdk_license unavailable" : {
+                        "possibleReason" : "ttsdk_license路径为空或根据该路径无法获取到。",
+                        "solveMsg" : "需要正确传入ttsdk_license。"
+                    },
+                    "config file webcast_id unavailable" : {
+                        "possibleReason" : "webcast_id为空。",
+                        "solveMsg" : "需要正确传入webcast_id。"
+                    },
+                    "config file live_sdk unavailable" : {
+                        "possibleReason" : "无法从配置文件获取到直播参数。",
+                        "solveMsg" : "请确认配置文件参数格式。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "sharedInstanceRegisterGameLive:delegate:completion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "config" : {
+                    "possibleReason" : "config 为空值。",
+                    "solveMsg" : "需要正确传入 config 初始化。"
+                },
+                "config.webcastID" : {
+                    "possibleReason" : "config.webcastID 为空。",
+                    "solveMsg" : "需要正确传入config.webcastID。"
+                },
+                "config.ttsdkID" : {
+                    "possibleReason" : "config.ttsdkID为空。",
+                    "solveMsg" : "需要正确传入 config.ttsdkID。"
+                },
+                "config.ttLicenseFilePath" : {
+                    "possibleReason" : "ttLicenseFilePath 为空。",
+                    "solveMsg" : "需要正确传入ttLicenseFilePath。"
+                },
+                "delegate" : {
+                    "possibleReason" : "delegate为空。",
+                    "solveMsg" : "请正确传入delegate, 以获取直播间回调。"
+                },
+                "completion" : {
+                    "possibleReason" : "completion为空。",
+                    "solveMsg" : "请正确传入completion, 以获取直播初始化结果。"
+                },
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "直播能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "1" : {
+                    "设备不支持" : {
+                        "possibleReason" : "设备不支持直播。",
+                        "solveMsg" : "更换看播设备。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "getLiveListWithParams:completion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "params" : {
+                    "possibleReason" : "params 为空。",
+                    "solveMsg" : "需要传入params。"
+                },
+                "params.scene" : {
+                    "possibleReason" : "params.scene为空。",
+                    "solveMsg" : "需要正确传入params.scene。"
+                },
+                "params.count" : {
+                    "possibleReason" : "params.count为0。",
+                    "solveMsg" : "需要正确传入params.count。"
+                },
+                "params.offset" : {
+                    "possibleReason" : "params.offset为0。",
+                    "solveMsg" : "需要正确传入params.offset。"
+                },
+                "completion" : {
+                    "possibleReason" : "completion 为空。",
+                    "solveMsg" : "需要正确传入completion以获取直播间列表。"
+                }
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "直播能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "1" : {
+                    "设备不支持" : {
+                        "possibleReason" : "设备不支持直播。",
+                        "solveMsg" : "更换看播设备。"
+                    }
+                },
+                "2" : {
+                    "功能不支持" : {
+                        "possibleReason" : "功能不支持直播。",
+                        "solveMsg" : "暂不提供该能力, 如需使用该能力, 请联系抖音游戏sdk相关人员。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "getLiveFollowListWithCompletion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "建议实现回调 completion，以获取关注列表。"
+                },
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "直播能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "1" : {
+                    "设备不支持" : {
+                        "possibleReason" : "设备不支持直播。",
+                        "solveMsg" : "更换看播设备。"
+                    }
+                },
+                "2" : {
+                    "功能不支持" : {
+                        "possibleReason" : "功能不支持直播。",
+                        "solveMsg" : "暂不提供该能力, 如需使用该能力, 请联系抖音游戏sdk相关人员。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "enterRoomWithRoomID:params:completion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "roomID" : {
+                    "possibleReason" : "roomID为空。",
+                    "solveMsg" : "传入正确的roomID进房。"
+                },
+                "params" : {
+                    "possibleReason" : "进房参数为空。",
+                    "solveMsg" : "传入进房参数。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "建议实现回调 completion，以获取进房结果。"
+                }
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "直播能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "1" : {
+                    "设备不支持" : {
+                        "possibleReason" : "设备不支持直播。",
+                        "solveMsg" : "更换看播设备。"
+                    }
+                },
+                "2" : {
+                    "功能不支持" : {
+                        "possibleReason" : "功能不支持直播。",
+                        "solveMsg" : "暂不提供该能力, 如需使用该能力, 请联系抖音游戏sdk相关人员。"
+                    }
+                }
+            }
+        }
+    }
+}
+

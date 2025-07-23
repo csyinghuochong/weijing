@@ -1,0 +1,205 @@
+{
+    "onGameActive" : {
+        
+    },
+    
+    "onAccountRegister:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                }
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "onRoleRegister:gameRoleID:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                },
+                "gameRoleID" : {
+                    "possibleReason" : "gameRoleID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameRoleID，gameRoleID 是当前用户角色的唯一标识。"
+                },
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "onAccountLogin:lastLoginTime:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                },
+                "lastLoginTime" : {
+                    "possibleReason" : "lastLoginTime 数值错误。",
+                    "solveMsg" : "需要正确传入 lastLoginTime，为该用户最近一次登录的时间戳，单位为秒。"
+                }
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "onRoleLogin:gameRoleID:lastRoleLoginTime:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                },
+                "gameRoleID" : {
+                    "possibleReason" : "gameRoleID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameRoleID，gameRoleID 是当前用户角色的唯一标识。"
+                },
+                "lastRoleLoginTime" : {
+                    "possibleReason" : "lastRoleLoginTime 数值错误。",
+                    "solveMsg" : "需要正确传入 lastRoleLoginTime，为该用户角色最近一次登录的时间戳，单位为秒。区别于 onAccountLogin 方法中传入的 lastLoginTime 为账号维度的时间戳，本方法需传入的是角色维度的时间戳"
+                }
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "onPay:gameRoleID:gameOrderID:totalAmount:productID:productName:productDesc:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                },
+                "gameRoleID" : {
+                    "possibleReason" : "gameRoleID 为空或者类型错误。",
+                    "solveMsg" : "gameRoleID 是可选入参允许传入空值，gameRoleID 是当前用户角色的唯一标识。"
+                },
+                "gameOrderID" : {
+                    "possibleReason" : "gameOrderID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameOrderID，gameOrderID 是应用内的订单唯一标识。这里需要使用游戏自己定义的订单标识。"
+                },
+                "totalAmount" : {
+                    "possibleReason" : "totalAmount 数值错误。",
+                    "solveMsg" : "需要正确传入 totalAmount，totalAmount 的值需要大于0，为该订单实际付款的金额，单位为分。"
+                },
+                "productID" : {
+                    "possibleReason" : "productID 为空或者类型错误。",
+                    "solveMsg" : "productID 是可选入参允许传入空值，productID 是当前商品的唯一标识。"
+                },
+                "productName" : {
+                    "possibleReason" : "productName 为空或者类型错误。",
+                    "solveMsg" : "productName 是可选入参允许传入空值，productName 是当前商品名。"
+                },
+                "productDesc" : {
+                    "possibleReason" : "productDesc 为空或者类型错误。",
+                    "solveMsg" : "productDesc 是可选入参允许传入空值，productDesc 是当前商品描述。"
+                }
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "onPaySpecial:gameRoleID:gameOrderID:payType:payRangeMin:payRangeMax:productID:productName:productDesc:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameUserID，gameUserID 是当前用户的唯一标识。"
+                },
+                "gameRoleID" : {
+                    "possibleReason" : "gameRoleID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 gameRoleID，gameRoleID 是当前用户角色的唯一标识。"
+                },
+                "gameOrderID" : {
+                    "possibleReason" : "gameOrderID 为空或者类型错误。",
+                    "solveMsg" : "gameOrderID 是可选入参允许传入空值，gameOrderID 是应用内的订单唯一标识。这里需要使用游戏自己定义的订单标识。"
+                },
+                "payType" : {
+                    "possibleReason" : "payType 为空或者类型错误。",
+                    "solveMsg" : "payType 是可选参数，允许传入空值。"
+                },
+                "payRangeMin" : {
+                    "possibleReason" : "payRangeMin 数值错误。",
+                    "solveMsg" : "payRangeMin 需要大于或者等于0。"
+                },
+                "payRangeMax" : {
+                    "possibleReason" : "payRangeMax 数值错误。",
+                    "solveMsg" : "payRangeMax 需要大于或者等于0，且不应该比 payRangeMin 的值更小。"
+                },
+                "productID" : {
+                    "possibleReason" : "productID 为空或者类型错误。",
+                    "solveMsg" : "productID 是可选入参允许传入空值，productID 是当前商品的唯一标识。"
+                },
+                "productName" : {
+                    "possibleReason" : "productName 为空或者类型错误。",
+                    "solveMsg" : "productName 是可选入参允许传入空值，productName 是当前商品名。"
+                },
+                "productDesc" : {
+                    "possibleReason" : "productDesc 为空或者类型错误。",
+                    "solveMsg" : "productDesc 是可选入参允许传入空值，productDesc 是当前商品描述。"
+                },
+            }
+        },
+        "CallStateEnd" : {
+            "possibleError" : {
+                "-1" : {
+                    "any" : {
+                        "possibleReason" : "方法传入的参数为空或者类型错误。",
+                        "solveMsg" : "请查看前置警告消息，修正参数后重试。"
+                    }
+                }
+            }
+        }
+    }
+    
+}
+

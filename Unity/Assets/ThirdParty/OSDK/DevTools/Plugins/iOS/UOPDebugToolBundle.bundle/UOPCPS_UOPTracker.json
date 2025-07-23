@@ -1,0 +1,176 @@
+{
+    "trackRegister:method:userID:isSuccess:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "accountType" : {
+                    "possibleReason" : "accountType 设置错误。",
+                    "solveMsg" : "需要正确传入 accountType， 只能赋值0或者1，0对应游客，1对应非游客。"
+                },
+                "method" : {
+                    "possibleReason" : "method 为空或者数据类型错误。",
+                    "solveMsg" : "需要正确传入 method，method 是当前账号的注册登录方式，按照实际情况传值即可。"
+                },
+                "userID" : {
+                    "possibleReason" : "userID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 userID，userID 是当前用户的唯一标识。"
+                },
+                "isSuccess" : {
+                    "possibleReason" : "注册失败。",
+                    "solveMsg" : "注册失败。"
+                }
+            },
+        },
+    },
+    
+    "trackLoginRequestWithAccountType:method:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "accountType" : {
+                    "possibleReason" : "accountType 设置错误。",
+                    "solveMsg" : "需要正确传入 accountType， 只能赋值0或者1，0对应游客，1对应非游客。"
+                },
+                "method" : {
+                    "possibleReason" : "method 为空或者数据类型错误。",
+                    "solveMsg" : "需要正确传入 method，method 是当前账号的注册登录方式，按照实际情况传值即可。"
+                },
+            }
+        }
+    },
+    
+    "trackPayRequestWithAccountType:userID:contentType:productID:productName:contentNumber:currency:totalAmount:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "accountType" : {
+                    "possibleReason" : "accountType 设置错误。",
+                    "solveMsg" : "需要正确传入 accountType， 只能赋值0或者1，0对应游客，1对应非游客。"
+                },
+                "userID" : {
+                    "possibleReason" : "userID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 userID，userID 是当前用户的唯一标识。"
+                },
+                "contentType" : {
+                    "possibleReason" : "contentType 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 contentType，contentType 是当前的商品类型，具体传值可以由厂商自己定义，用于区分不同的商品类型，仅支持大小写字母和数字。"
+                },
+                "productID" : {
+                    "possibleReason" : "productID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 productID，productID 是当前的商品唯一标识ID，具体传值可以由厂商自己定义。"
+                },
+                "productName" : {
+                    "possibleReason" : "productName 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 productName，productName 是当前的商品名，具体传值可以由厂商自己定义。"
+                },
+                "contentNumber" : {
+                    "possibleReason" : "contentNumber 数值错误。",
+                    "solveMsg" : "需要正确传入 contentNumber 的值，contentNumber 是当前的商品数量，不可以小于0。"
+                },
+                "currency" : {
+                    "possibleReason" : "currency 为空或者数值错误。",
+                    "solveMsg" : "需要正确传入 currency，currency 是当前的货币单位，国内发行的游戏均为'CNY'，注意大小写。"
+                },
+                "totalAmount" : {
+                    "possibleReason" : "totalAmount 数值错误。",
+                    "solveMsg" : "需要正确传入 totalAmount 的值，totalAmount 是本次交易的总金额，单位为‘分’，不可以小于0。"
+                }
+            }
+        }
+    },
+    
+    "trackPayResultWithAccountType:userID:orderID:payChannel:merchantID:contentType:productID:productName:contentNumber:currency:totalAmount:acturallyAmount:isSuccess:completion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "accountType" : {
+                    "possibleReason" : "accountType 设置错误。",
+                    "solveMsg" : "需要正确传入 accountType， 只能赋值0或者1，0对应游客，1对应非游客。"
+                },
+                "userID" : {
+                    "possibleReason" : "userID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 userID，userID 是当前用户的唯一标识。"
+                },
+                "orderID" : {
+                    "possibleReason" : "orderID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 orderID，orderID 是本次交易的订单号。"
+                },
+                "payChannel" : {
+                    "possibleReason" : "payChannel 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 payChannel，payChannel 是本次交易的渠道号，iOS 默认都是 'App Store'。"
+                },
+                "merchantID" : {
+                    "possibleReason" : "merchantID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 merchantID，merchantID 是本次交易的商户ID。如果没有商户ID字段，可以填写为AppID。"
+                },
+                "contentType" : {
+                    "possibleReason" : "contentType 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 contentType，contentType 是当前的商品类型，具体传值可以由厂商自己定义，用于区分不同的商品类型，仅支持大小写字母和数字。"
+                },
+                "productID" : {
+                    "possibleReason" : "productID 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 productID，productID 是当前的商品唯一标识ID，具体传值可以由厂商自己定义。"
+                },
+                "productName" : {
+                    "possibleReason" : "productName 为空或者类型错误。",
+                    "solveMsg" : "需要正确传入 productName，productName 是当前的商品名，具体传值可以由厂商自己定义。"
+                },
+                "contentNumber" : {
+                    "possibleReason" : "contentNumber 数值错误。",
+                    "solveMsg" : "需要正确传入 contentNumber 的值，contentNumber 是当前的商品数量，不可以小于0。"
+                },
+                "currency" : {
+                    "possibleReason" : "currency 为空或者数值错误。",
+                    "solveMsg" : "需要正确传入 currency，currency 是当前的货币单位，国内发行的游戏均为'CNY'，注意大小写。"
+                },
+                "totalAmount" : {
+                    "possibleReason" : "totalAmount 数值错误。",
+                    "solveMsg" : "需要正确传入 totalAmount 的值，totalAmount 是本次交易的总金额，单位为‘分’，不可以小于0。"
+                },
+                "acturallyAmount" : {
+                    "possibleReason" : "acturallyAmount 数值错误。",
+                    "solveMsg" : "需要正确传入 acturallyAmount 的值，acturallyAmount 是本次交易实际支付的总金额，单位为‘分’，不可以小于0。和 totalAmount 的区别在于有没有商品打折出售的情况，totalAmount 为交易原价，acturallyAmount 为实际支付金额。"
+                },
+                "isSuccess" : {
+                    "possibleReason" : "支付失败。",
+                    "solveMsg" : "本次支付失败。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "建议实现回调 completion，以获取支付上报结果。"
+                },
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-1" : {
+                    "支付结果参数错误，UserID为空" : {
+                        "possibleReason" : "userID 为空或者类型错误。",
+                        "solveMsg" : "需要正确传入 userID，userID 是当前用户的唯一标识。"
+                    },
+                    "支付结果参数错误，orderID为空" : {
+                        "possibleReason" : "orderID 为空或者类型错误。",
+                        "solveMsg" : "需要正确传入 orderID，orderID 是本次交易的订单号。"
+                    },
+                    "支付结果参数错误，productID为空" : {
+                        "possibleReason" : "productID 为空或者类型错误。",
+                        "solveMsg" : "需要正确传入 productID，productID 是当前的商品唯一标识ID，具体传值可以由厂商自己定义。"
+                    },
+                    "支付结果参数错误，productName为空" : {
+                        "possibleReason" : "productName 为空或者类型错误。",
+                        "solveMsg" : "需要正确传入 productName，productName 是当前的商品名，具体传值可以由厂商自己定义。"
+                    },
+                    "支付结果参数错误，contentNumber需大于0" : {
+                        "possibleReason" : "contentNumber 数值错误。",
+                        "solveMsg" : "需要正确传入 contentNumber 的值，contentNumber 是当前的商品数量，不可以小于0。"
+                    },
+                    "支付结果参数错误，totalAmount需大于0" : {
+                        "possibleReason" : "totalAmount 数值错误。",
+                        "solveMsg" : "需要正确传入 totalAmount 的值，totalAmount 是本次交易的总金额，单位为‘分’，不可以小于0。"
+                    },
+                    "支付结果参数错误，acturallyAmount需大于0" : {
+                        "possibleReason" : "acturallyAmount 数值错误。",
+                        "solveMsg" : "需要正确传入 acturallyAmount 的值，acturallyAmount 是本次交易实际支付的总金额，单位为‘分’，不可以小于0。和 totalAmount 的区别在于有没有商品打折出售的情况，totalAmount 为交易原价，acturallyAmount 为实际支付金额。"
+                    }
+                }
+            }
+        }
+    }
+}
+

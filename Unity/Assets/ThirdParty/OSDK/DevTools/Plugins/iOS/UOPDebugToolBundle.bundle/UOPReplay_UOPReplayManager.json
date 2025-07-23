@@ -1,0 +1,235 @@
+{
+    "setType:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "type" : {
+                    "possibleReason" : "type 的设置异常。",
+                    "solveMsg" : "type 是录屏采取的策略，只允许传入 UOPReplayType，请检查后重试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是策略设置完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "1" : {
+                    "any" : {
+                        "possibleReason" : "已经开始录制。",
+                        "solveMsg" : "录制策略不允许在录制中设置，请在结束本次录制后重试。"
+                    }
+                },
+                "2" : {
+                    "any" : {
+                        "possibleReason" : "设备不支持录制。",
+                        "solveMsg" : "当前运行的设备不支持使用录制能力，请更换设备后重试。"
+                    },
+                },
+                "3" : {
+                    "any" : {
+                        "possibleReason" : "录制能力暂不可用。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+            }
+        }
+    },
+    
+    "setConfig:completion:" : {
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "config" : {
+                    "possibleReason" : "config 为空。",
+                    "solveMsg" : "config 不允许为空，请检查后重试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置回调 completion。",
+                    "solveMsg" : "completion 是设置完成的回调，建议设置。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "1" : {
+                    "any" : {
+                        "possibleReason" : "已经开始录制。",
+                        "solveMsg" : "录制参数不允许在录制中设置，请在结束本次录制后重试。"
+                    }
+                },
+                "2" : {
+                    "any" : {
+                        "possibleReason" : "设备不支持录制。",
+                        "solveMsg" : "当前运行的设备不支持使用录制能力，请更换设备后重试。"
+                    },
+                },
+                "3" : {
+                    "any" : {
+                        "possibleReason" : "录制能力暂不可用。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+            }
+        }
+    },
+    
+    "removeReplayFileAtPath:" : {
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "filePath" : {
+                    "possibleReason" : "filePath 为空。",
+                    "solveMsg" : "filePath 不允许为空，请检查后重试。"
+                },
+                "filePath.noExist" : {
+                    "possibleReason" : "filePath 路径错误。",
+                    "solveMsg" : "filePath 文件不存在，请检查后重试。"
+                },
+                "filePath.noMov" : {
+                    "possibleReason" : "filePath 文件的格式错误。",
+                    "solveMsg" : "录制生成的文件格式为mov，请检查文件后重试。"
+                }
+            },
+        },
+    },
+    
+    "replayDidStartRecord:withCode:" : {
+        "CallStateCallback" : {
+            "possibleError" : {
+                "31" : {
+                    "any" : {
+                        "possibleReason" : "高光录制未设置代理。",
+                        "solveMsg" : "高光录制在开启前需要设置代理。"
+                    }
+                },
+                "32" : {
+                    "any" : {
+                        "possibleReason" : "高光录制代理方法未实现。",
+                        "solveMsg" : "高光录制代理方法未实现，请参考 UOPReplayManagerDelegate 的声明实现代理方法。"
+                    }
+                },
+                "1" : {
+                    "any" : {
+                        "possibleReason" : "已经开始录制。",
+                        "solveMsg" : "录制参数不允许在录制中设置，请在结束本次录制后重试。"
+                    }
+                },
+                "2" : {
+                    "any" : {
+                        "possibleReason" : "设备不支持录制。",
+                        "solveMsg" : "当前运行的设备不支持使用录制能力，请更换设备后重试。"
+                    },
+                },
+                "3" : {
+                    "any" : {
+                        "possibleReason" : "录制能力暂不可用。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "4" : {
+                    "any" : {
+                        "possibleReason" : "设备空间不足，录制已停止。",
+                        "solveMsg" : "使用高光录制能力，设备空间需要最少保持1GB以上，请在整理设备空间后再使用高光录制能力。"
+                    }
+                },
+                "5" : {
+                    "any" : {
+                        "possibleReason" : "未设置录制参数。",
+                        "solveMsg" : "使用高光录制能力需要完成录制参数的设置，即调用 setConfig 接口完成录制参数设置。"
+                    },
+                },
+                "6" : {
+                    "any" : {
+                        "possibleReason" : "录制接口调用和设置的录制策略不匹配。",
+                        "solveMsg" : "厂商控制的开始录制接口 startAutoRecord ，需要在录制策略为 UOPReplayTypeAuto 时才可以调用，请在调用前确认录制策略是否设置生效。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "replayDidStopRecord:withCode:videoPath:" : {
+        "CallStateCallback" : {
+            "possibleError" : {
+                "31" : {
+                    "any" : {
+                        "possibleReason" : "高光录制未设置代理。",
+                        "solveMsg" : "高光录制在开启前需要设置代理。"
+                    }
+                },
+                "32" : {
+                    "any" : {
+                        "possibleReason" : "高光录制代理方法未实现。",
+                        "solveMsg" : "高光录制代理方法未实现，请参考 UOPReplayManagerDelegate 的声明实现代理方法。"
+                    }
+                },
+                "6" : {
+                    "any" : {
+                        "possibleReason" : "录制接口调用和设置的录制策略不匹配。",
+                        "solveMsg" : "厂商控制的录制接口，需要在录制策略为 UOPReplayTypeAuto 时才可以调用，请在调用前确认录制策略是否设置生效。"
+                    }
+                },
+                "9" : {
+                    "any" : {
+                        "possibleReason" : "未在高光录制。",
+                        "solveMsg" : "一般为录制没有正确开启，或者录制已经被中断结束了。建议在厂商控制录制模式下，先判断是否在录制中在调用录制结束。"
+                    }
+                },
+                "10" : {
+                    "any" : {
+                        "possibleReason" : "画面采集失败。",
+                        "solveMsg" : "画面录制遇到了系统错误，请通过服务台获取技术支持。"
+                    }
+                },
+                "11" : {
+                    "any" : {
+                        "possibleReason" : "应用丢失第一响应，导致录制失败。",
+                        "solveMsg" : "这是一个正常的中断行为。"
+                    }
+                },
+                "12" : {
+                    "any" : {
+                        "possibleReason" : "录制文件存储失败。",
+                        "solveMsg" : "存储操作遇到了系统错误，如果稳定复现该场景，请通过服务台获取技术支持。"
+                    }
+                },
+                "13" : {
+                    "any" : {
+                        "possibleReason" : "录制时长过短。",
+                        "solveMsg" : "高光录制最少要在1秒以上。"
+                    }
+                },
+                "14" : {
+                    "any" : {
+                        "possibleReason" : "录制时长过长。",
+                        "solveMsg" : "高光录制时长最大为1小时。"
+                    }
+                },
+                "15" : {
+                    "any" : {
+                        "possibleReason" : "录制中旋转屏幕，导致录制失败。",
+                        "solveMsg" : "高光录制中不允许横竖屏切换，横竖屏画面切换会导致录制失败。"
+                    }
+                },
+            }
+        }
+    }
+}
+

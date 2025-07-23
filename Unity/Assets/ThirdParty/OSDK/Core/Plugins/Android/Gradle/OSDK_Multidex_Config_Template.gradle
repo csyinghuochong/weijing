@@ -1,0 +1,4 @@
+    // OSDK_MultiDex Start，此行注释不能删除，用于自动化标记使用
+    // multiDex
+    implementation 'com.android.support:multidex:1.0.3'
+    // OSDK_MultiDex End，此行注释不能删除，用于自动化标记使用

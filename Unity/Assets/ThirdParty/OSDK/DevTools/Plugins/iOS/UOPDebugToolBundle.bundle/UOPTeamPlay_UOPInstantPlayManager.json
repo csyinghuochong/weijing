@@ -1,0 +1,187 @@
+{
+    "setupWithConfig:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "config" : {
+                    "possibleReason" : "config为空。",
+                    "solveMsg" : "需要正确传入config"
+                },
+                "config.appID" : {
+                    "possibleReason" : "config.appID为空。",
+                    "solveMsg" : "需要正确传入appID。"
+                }
+            },
+        }
+    },
+    
+    "reportGameRoomStatus:data:complete:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "data.team_size" : {
+                    "possibleReason" : "data.team_size 为空。",
+                    "solveMsg" : "需要正确传入data.team_size。"
+                },
+                "data.team_members_num" : {
+                    "possibleReason" : "data.team_members_num为空。",
+                    "solveMsg" : "需要正确传入 data.team_members_num。"
+                },
+                "data.room_extra" : {
+                    "possibleReason" : "data.room_extra 为空。",
+                    "solveMsg" : "需要正确传入data.room_extra。"
+                },
+                "data.team_members_num_non_douyin" : {
+                    "possibleReason" : "data.team_members_num_non_douyin为空。",
+                    "solveMsg" : "请正确传入data.team_members_num_non_douyin。"
+                },
+                "data.game_nickname" : {
+                    "possibleReason" : "data.game_nickname为空。",
+                    "solveMsg" : "请正确传入data.game_nickname。"
+                },
+                "complete" : {
+                    "possibleReason" : "complete为空。",
+                    "solveMsg" : "请正确传入complete, 以获取上报结果。"
+                }
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "一键上车能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "-1" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "未知错误。",
+                        "solveMsg" : "未知错误。"
+                    }
+                },
+                "10001" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "服务不可用。",
+                        "solveMsg" : "网络服务问题。"
+                    }
+                },
+                "10011" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "参数错误。",
+                        "solveMsg" : "请检查上报参数。"
+                    }
+                },
+                "20003" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "token 失效错误。",
+                        "solveMsg" : "请刷新当前token。"
+                    }
+                },
+                "4014342" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "playid已绑定游戏房间。",
+                        "solveMsg" : "请检查playid。"
+                    }
+                },
+                "4014341" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "用户未加入抖音车队。",
+                        "solveMsg" : "请检查用户状态。"
+                    }
+                },
+                "4014344" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "游戏对局已开始。",
+                        "solveMsg" : "未知错误。"
+                    }
+                },
+                "4014340" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "当前用户未开启车队。",
+                        "solveMsg" : "请检查用户状态。"
+                    }
+                }
+            }
+        }
+    },
+    
+    "getBindGameRoomExtraWithComplete:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "completion" : {
+                    "possibleReason" : "completion 为空。",
+                    "solveMsg" : "需要正确传入completion以获取直播间列表。"
+                }
+            }
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-12" : {
+                    "any" : {
+                        "possibleReason" : "依赖组件缺失。",
+                        "solveMsg" : "一键上车能力依赖 Douyin 组件，请检查是否正确引入了 Douyin 组件。"
+                    }
+                },
+                "-1" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "未知错误。",
+                        "solveMsg" : "未知错误。"
+                    }
+                },
+                "10001" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "服务不可用。",
+                        "solveMsg" : "网络服务问题。"
+                    }
+                },
+                "10011" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "参数错误。",
+                        "solveMsg" : "请检查上报参数。"
+                    }
+                },
+                "20003" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "token 失效错误。",
+                        "solveMsg" : "请刷新当前token。"
+                    }
+                },
+                "4014342" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "playid已绑定游戏房间。",
+                        "solveMsg" : "请检查playid。"
+                    }
+                },
+                "4014341" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "用户未加入抖音车队。",
+                        "solveMsg" : "请检查用户状态。"
+                    }
+                },
+                "4014344" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "游戏对局已开始。",
+                        "solveMsg" : "未知错误。"
+                    }
+                },
+                "4014340" : {
+                    "TeamPlayErrorDomain" : {
+                        "possibleReason" : "当前用户未开启车队。",
+                        "solveMsg" : "请检查用户状态。"
+                    }
+                }
+            }
+        }
+    }
+}
+

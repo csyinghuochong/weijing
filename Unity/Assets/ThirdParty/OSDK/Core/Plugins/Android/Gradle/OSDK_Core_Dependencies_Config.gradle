@@ -1,0 +1,5 @@
+    // OSDK_Core_Start，此行注释不能删除，用于自动化标记使用
+    implementation "com.bytedance.ttgame:gbsdk_common_host:$version"
+    implementation "com.bytedance.ttgame:gbsdk_common_plugin:$version"
+    implementation "com.bytedance.ttgame:gbsdk_optional_applog:$version"
+    // OSDK_Core_End，此行注释不能删除，用于自动化标记使用

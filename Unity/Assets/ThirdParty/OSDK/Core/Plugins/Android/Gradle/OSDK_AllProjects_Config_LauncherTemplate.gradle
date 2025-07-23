@@ -1,0 +1,11 @@
+// OSDK_AllProjects Start,此行注释不能删除，用于自动化标记使用
+allprojects {
+    repositories {
+        google()
+        jcenter()      
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+// OSDK_AllProjects End,此行注释不能删除，用于自动化标记使用

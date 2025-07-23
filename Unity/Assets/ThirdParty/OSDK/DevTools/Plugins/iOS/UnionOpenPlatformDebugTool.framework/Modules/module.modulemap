@@ -1,0 +1,6 @@
+framework module UnionOpenPlatformDebugTool {
+  umbrella header "UnionOpenPlatformDebugTool-umbrella.h"
+
+  export *
+  module * { export * }
+}

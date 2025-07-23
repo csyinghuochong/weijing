@@ -1,0 +1,203 @@
+{
+    "registerAppKey:forPlatform:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "appKey" : {
+                    "possibleReason" : "appKey 为空或者数据类型错误。",
+                    "solveMsg" : "appKey 是必传的，对应抖音开放平台的'clientKey'，请检查后重试。这个方法近期版本会移除，建议使用配置文件进行初始化，详情请查看接入文档。"
+                },
+                "type" : {
+                    "possibleReason" : "type 的值异常。",
+                    "solveMsg" : "type 的设置需要对应分享平台，目前仅支持抖音 UOPThirdAuthTypeDouyin。"
+                }
+            },
+        },
+    },
+    
+    "authPlatform:request:result:" : {
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "type" : {
+                    "possibleReason" : "type 的值异常。",
+                    "solveMsg" : "type 的设置需要对应分享平台，目前仅支持抖音 UOPThirdAuthTypeDouyin。"
+                },
+                "request" : {
+                    "possibleReason" : "request 为空。",
+                    "solveMsg" : "request 是必传的，对应授权的参数配置。大部分场景只需要创建 UOPAuthRequest 对象当参数传入即可。"
+                },
+                "request.permissions" : {
+                    "possibleReason" : "'request.permissions' 携带了 'trial.whitelist' 权限。",
+                    "solveMsg" : "'trial.whitelist'不允许携带到正式环境，该权限在抖音的授权页面有明显的测试应用标识。注意使用该配置还需要在平台注册对应的白名单用户。"
+                },
+                "result" : {
+                    "possibleReason" : "没有设置回调 result。",
+                    "solveMsg" : "result 是必须要设置的回调，用户在抖音授权成功后会通过该回调输出临时票据。"
+                }
+            },
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-100" : {
+                    "授权失败" : {
+                        "possibleReason" : "授权能力未完成初始化。",
+                        "solveMsg" : "请检查SDK初始化配置文件中的 client_key.douyin_key 是否正确设置。未使用配置文件的，请检查'UOPAuthManager'中的'registerAppKey:forPlatform:'方法是否有正确调用。"
+                    },
+                },
+                "-101" : {
+                    "授权失败" : {
+                        "possibleReason" : "授权能力暂不可用。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-1" : {
+                    "授权失败" : {
+                        "possibleReason" : "授权失败。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-2" : {
+                    "授权失败" : {
+                        "possibleReason" : "用户主动取消。",
+                        "solveMsg" : "用户主动取消触发的错误回调。"
+                    }
+                },
+                "-3" : {
+                    "授权失败" : {
+                        "possibleReason" : "授权失败。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-4" : {
+                    "授权失败" : {
+                        "possibleReason" : "权限错误。",
+                        "solveMsg" : "检查'request.permissions'，是否携带了未开通的权限。如果携带了'trial.whitelist'，需要确认授权用户是否已加入到白名单。"
+                    }
+                },
+                "-5" : {
+                    "授权失败" : {
+                        "possibleReason" : "授权不支持。",
+                        "solveMsg" : "建议检查一下设备上的抖音版本，升级到最新版本再重试操作。如果重试后依然报错，请联系服务台协助。"
+                    }
+                },
+            }
+        }
+    },
+    
+    "isRegistedForPlatform:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "type" : {
+                    "possibleReason" : "type 的值异常。",
+                    "solveMsg" : "type 的设置需要对应分享平台，目前仅支持抖音 UOPThirdAuthTypeDouyin。"
+                },
+            },
+        },
+    },
+    
+    "injectDouyinAuthInfoDelegate:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "delegate" : {
+                    "possibleReason" : "delegate 为空。",
+                    "solveMsg" : "delegate 是必传的，会影响SDK内可选能力是否能正确使用。"
+                },
+                "delegate.getDouyinAuthInfo:" : {
+                    "possibleReason" : "delegate 对象未实现 UOPDouyinAuthInfoDelegate 方法。",
+                    "solveMsg" : "'delegate'对象需要遵循'UOPDouyinAuthInfoDelegate'协议，并实现对应的'getDouyinAuthInfo:'和'updateDouyinAuthInfo:'方法。"
+                },
+                "delegate.updateDouyinAuthInfo:" : {
+                    "possibleReason" : "delegate 对象未实现 UOPDouyinAuthInfoDelegate 方法。",
+                    "solveMsg" : "'delegate'对象需要遵循'UOPDouyinAuthInfoDelegate'协议，并实现对应的'getDouyinAuthInfo:'和'updateDouyinAuthInfo:'方法。"
+                },
+            },
+        },
+    },
+    
+    "clearDouyinAutoInfo" : {
+        
+    },
+    
+    "reportGameRole:gameUserID:completion:" : {
+        "CallStateStart" : {
+            "possibleErrorParams" : {
+                "gameRole" : {
+                    "possibleReason" : "gameRole 的值为空。",
+                    "solveMsg" : "参数 gameRole 应为 UOPGameRole 类型，是游戏中用户的角色信息，是方法必传的参数。"
+                },
+                "gameRole.roleID" : {
+                    "possibleReason" : "gameRole.roleID 的值为空。",
+                    "solveMsg" : "roleID 是角色ID，是账号绑定能力中必须的参数。"
+                },
+                "gameRole.roleName" : {
+                    "possibleReason" : "gameRole.roleName 的值为空。",
+                    "solveMsg" : "roleName 是角色的名字，进行账号绑定时建议传入。"
+                },
+                "gameRole.roleLevel" : {
+                    "possibleReason" : "gameRole.roleLevel 的值为空。",
+                    "solveMsg" : "roleLevel 是角色的等级信息，进行账号绑定时建议传入。"
+                },
+                "gameRole.serverID" : {
+                    "possibleReason" : "gameRole.serverID 的值为空。",
+                    "solveMsg" : "serverID 是角色的服务器ID，如果游戏存在多个服务器，则要求必须传入。"
+                },
+                "gameRole.serverName" : {
+                    "possibleReason" : "gameRole.serverName 的值为空。",
+                    "solveMsg" : "serverName 是角色的服务器名，进行账号绑定时建议传入。"
+                },
+                "gameUserID" : {
+                    "possibleReason" : "gameUserID 的值为空。",
+                    "solveMsg" : "gameUserID 是当前用户的用户ID，是方法必传的参数。"
+                },
+                "completion" : {
+                    "possibleReason" : "completion 的值为空。",
+                    "solveMsg" : "请正确传入 completion，以获取账号绑定方法的结果。"
+                }
+            },
+        },
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-11" : {
+                    "any" : {
+                        "possibleReason" : "SDK未完成初始化。",
+                        "solveMsg" : "请先执行SDK初始化再调用相关接口。"
+                    }
+                },
+                "-10002" : {
+                    "any" : {
+                        "possibleReason" : "抖音授权异常。",
+                        "solveMsg" : "账号绑定依赖抖音授权能力，需要正确完成抖音授权请求。需要调用 UOPAuthManager(FeatureOAuth) 相关方法，并完成实现 UOPDouyinAuthInfoDelegate 的相关代理方法。具体的流程也可以阅读接入文档 '抖音授权能力 - 全局授权管理' 相关章节。"
+                    }
+                },
+                "-10003" : {
+                    "any" : {
+                        "possibleReason" : "授权信息无效。",
+                        "solveMsg" : "账号绑定依赖抖音授权能力，抖音授权信息存在有效期概念。触发本错误需要使用 refresh_token 进行 token 续期或者用户重新授权。具体流程可以阅读接入文档 '抖音授权能力 - 服务端获取 access_token/open_id' 相关章节。"
+                    }
+                },
+                "-10004" : {
+                    "any" : {
+                        "possibleReason" : "服务器错误。",
+                        "solveMsg" : "建议先检查一下网络环境，尝试切换网络重试，尝试换一台设备重试。如果尝试后依然报错，请联系服务台协助。"
+                    }
+                },
+                "-10005" : {
+                    "any" : {
+                        "possibleReason" : "GameUserID为空。",
+                        "solveMsg" : "GameUserID不能为空，请检查后重试。"
+                    }
+                }
+            },
+        }
+    }
+}
+

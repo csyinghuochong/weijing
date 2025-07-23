@@ -1,0 +1,8 @@
+    // OSDK_PackagingOptions Start，此行注释不能删除，用于自动化标记使用
+    // 解决so冲突
+    packagingOptions {
+        pickFirst 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libweibosdkcore.so'
+    }
+    // OSDK_PackagingOptions End，此行注释不能删除，用于自动化标记使用

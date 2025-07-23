@@ -1,0 +1,55 @@
+{
+    "setupWithConfigFilePath:completion:" : {
+        
+        "CallStateStart" : {
+            
+            "possibleErrorParams" : {
+                "configFilePath" : {
+                    "possibleReason" : "初始化配置文件路径异常。",
+                    "solveMsg" : "配置文件路径是必传的，请检查路径再试。"
+                },
+                "completion" : {
+                    "possibleReason" : "没有设置完成回调。",
+                    "solveMsg" : "初始化方法存在异步操作，建议实现回调，并在回调内执行后续流程，保障功能正常。"
+                }
+            },
+            
+        },
+        
+        "CallStateCallback" : {
+            "possibleError" : {
+                "-3" : {
+                    "config file path not exist" : {
+                        "possibleReason" : "配置文件路径异常。",
+                        "solveMsg" : "配置文件路径是必传的，请检查路径再试。"
+                    },
+                    "config file unavailable" : {
+                        "possibleReason" : "配置文件内容有误。",
+                        "solveMsg" : "配置文件内的格式有错，可能不符合JSON格式，请在核实后再试。"
+                    },
+                    "config app_id unavailable" : {
+                        "possibleReason" : "配置内app_id错误。",
+                        "solveMsg" : "配置内app_id错误，请在核实后再试。"
+                    },
+                    "init fail" : {
+                        "possibleReason" : "初始化失败。",
+                        "solveMsg" : "建议先检查网络环境，切换网络后重启应用重试，或尝试换一台设备重试。重试后依然报错请联系服务台协助。"
+                    }
+                },
+                "-5" : {
+                    "Module Import Error" : {
+                        "possibleReason" : "SDK导入的模块有误，初始化失败。",
+                        "solveMsg" : "请根据错误弹窗的提示更正导入的SDK模块。"
+                    }
+                },
+                "-13" : {
+                    "init fail" : {
+                        "possibleReason" : "初始化禁用，针对全官服促活模式下的可控开关配置",
+                        "solveMsg" : "请确认该游戏版本是否处于无需上报全官服促活数据，且未接入其他进阶能力组件，满足该条件将禁用SDK初始化。若仍有疑问，请联系服务台协助。"
+                    }
+                },
+            }
+        }
+    }
+}
+

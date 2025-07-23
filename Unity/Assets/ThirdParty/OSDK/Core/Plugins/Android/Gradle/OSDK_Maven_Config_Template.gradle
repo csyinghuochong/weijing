@@ -1,0 +1,17 @@
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
