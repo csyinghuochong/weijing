@@ -908,6 +908,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TikTokGetAuthorizeCode : DisposeObject
+        {
+            public static readonly TikTokGetAuthorizeCode Instance = new TikTokGetAuthorizeCode();
+            public Action<string> AuthorizeCodeHandler;
+            public Scene ZoneScene;
+        }
+
         public class TikTokPayRequest : DisposeObject
         {
             public static readonly TikTokPayRequest Instance = new TikTokPayRequest();

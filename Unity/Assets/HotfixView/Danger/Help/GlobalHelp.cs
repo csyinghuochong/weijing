@@ -107,7 +107,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  渠道包100  ios20001
+        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  TikTokGuanFu8  渠道包100  ios20001
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()

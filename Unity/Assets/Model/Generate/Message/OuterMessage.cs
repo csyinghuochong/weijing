@@ -16455,4 +16455,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2C_TikTokGetOpenId))]
+	[Message(OuterOpcode.C2A_TikTokGetOpenId)]
+	[ProtoContract]
+	public partial class C2A_TikTokGetOpenId: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string auth_code { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_TikTokGetOpenId)]
+	[ProtoContract]
+	public partial class A2C_TikTokGetOpenId: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int age_type { get; set; }
+
+		[ProtoMember(2)]
+		public string sdk_open_id { get; set; }
+
+		[ProtoMember(3)]
+		public string access_token { get; set; }
+
+	}
+
 }

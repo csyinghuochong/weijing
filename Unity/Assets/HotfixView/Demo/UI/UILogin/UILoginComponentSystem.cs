@@ -499,6 +499,17 @@ namespace ET
                 self.Password.SetActive(false);
                 self.HideNode.SetActive(true);
             }
+            if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 8)
+            {
+                self.LoginType = LoginTypeEnum.TikTok.ToString();
+
+                self.ThirdLoginBg.SetActive(false);
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+                self.HideNode.SetActive(true);
+            }
 
             if (GlobalHelp.GetBigVersion() >= 23 && GlobalHelp.GetPlatform() == 100)
 			{
@@ -576,15 +587,26 @@ namespace ET
                     break;
 				case LoginTypeEnum.TikTok:
                     self.ThirdLoginBg.SetActive(false);
+
+
+					if (GlobalHelp.GetPlatform() == 5)
+					{
+						Log.ILog.Debug($"GlobalHelp.GetPlatform() == 5");
 #if !UNITY_EDITOR
 					EventType.TikTokGetAccesstoken.Instance.ZoneScene = self.ZoneScene();
                     EventType.TikTokGetAccesstoken.Instance.AccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
                     EventSystem.Instance.PublishClass(EventType.TikTokGetAccesstoken.Instance);
 #endif
-
-                    break;
-
-				case LoginTypeEnum.Google:
+					}
+                    if (GlobalHelp.GetPlatform() == 8)
+                    {
+                        Log.ILog.Debug($"GlobalHelp.GetPlatform() == 8");
+                        EventType.TikTokGetAuthorizeCode.Instance.ZoneScene = self.ZoneScene();
+                        EventType.TikTokGetAuthorizeCode.Instance.AuthorizeCodeHandler = (string text) => { self.OnRecvTikTokAuthorizeCode(text).Coroutine(); };
+                        EventSystem.Instance.PublishClass(EventType.TikTokGetAuthorizeCode.Instance);
+                    }
+                    break;;
+                case LoginTypeEnum.Google:
                     self.ThirdLoginBg.SetActive(false);
 					if (GlobalHelp.IsEditorMode)
 					{
@@ -1183,6 +1205,12 @@ namespace ET
                     password = "3";
                     loginType = "3";
                 }
+                if (self.LoginType == "6" || self.LoginType == "10")
+                {
+                    password = "6";
+                    loginType = "6";
+                }
+		
                 self.RequestLoginV20(account, password, loginType).Coroutine();
             }
         }
@@ -1322,6 +1350,7 @@ namespace ET
             self.ResetPlayerPrefs(LoginTypeEnum.TikTok.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.QuDao.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.Google.ToString());
+            self.ResetPlayerPrefs(LoginTypeEnum.TikTokGuanFu.ToString());
             self.InitLoginType();
 		}
 

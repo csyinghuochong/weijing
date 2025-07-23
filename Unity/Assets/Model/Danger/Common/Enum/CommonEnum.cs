@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -7,6 +8,23 @@ namespace ET
     {
         public List<string> Realms = new List<string>();
         public List<string> Routers = new List<string>();
+    }
+
+    //{"data":{"description":"参数错误","error_code":10002},"message":"error"}
+    public sealed class TikTokOAuth
+    {
+        public int code;        //返回码
+        public string message;  //说明
+        public TikTokOAuthData data;
+    }
+
+    public sealed class TikTokOAuthData
+    {
+        public int error_code;        
+        public string description;
+        public string access_token;
+        public string message;  //说明
+        public string open_id;
     }
 
 
@@ -140,6 +158,7 @@ namespace ET
         public const int Apple = 7;                 //Apple登录
         public const int QuDao = 8;
         public const int Google = 9;
+        public const int TikTokGuanFu = 10;
     }
 
     public static class PayTypeEnum

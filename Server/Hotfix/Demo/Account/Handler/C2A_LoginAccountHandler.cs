@@ -122,6 +122,17 @@ namespace ET
                 //先检测一下QQ和微信登录
                 long AccountId = 0;
                 long sessionId  = session.InstanceId;
+
+                try
+                {
+                    int ttthss = int.Parse(request.ThirdLogin);
+                }
+                catch (Exception ex22)
+                {
+                    Console.WriteLine(ex22 + "    " +  request.AccountName + "   "  + request.ThirdLogin);
+                    request.ThirdLogin = "0";
+                }
+
                 if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
                 {
                     using (session.AddComponent<SessionLockingComponent>())

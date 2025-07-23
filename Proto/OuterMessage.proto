@@ -7116,7 +7116,6 @@ message A2C_TikTokVerifyUser // IResponse
 	int32 age_type = 2;	//实名年龄段
 }
 
-
 //ResponseType A2C_QuDaoCheckUserInfor
 message C2A_QuDaoCheckUserInfor // IRequest
 {
@@ -7882,4 +7881,22 @@ message Center2C_QueryAccountResponse // IResponse
 	string Message = 92;
 	string Account = 1;
 	string Password = 2;
+}
+
+//ResponseType A2C_TikTokGetOpenId
+message C2A_TikTokGetOpenId // IRequest
+{
+	int32 RpcId = 90;
+	string auth_code	= 1;	// 
+}
+
+message A2C_TikTokGetOpenId // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int32 age_type = 1;	//实名年龄段
+	string sdk_open_id = 2;	//用户唯一标识
+	string access_token = 3;
 }

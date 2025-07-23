@@ -904,5 +904,7 @@ namespace ET
 		 public const ushort M2C_RelinkRecordResponse = 10901;
 		 public const ushort C2Center_QueryAccountRequest = 10902;
 		 public const ushort Center2C_QueryAccountResponse = 10903;
+		 public const ushort C2A_TikTokGetOpenId = 10904;
+		 public const ushort A2C_TikTokGetOpenId = 10905;
 	}
 }

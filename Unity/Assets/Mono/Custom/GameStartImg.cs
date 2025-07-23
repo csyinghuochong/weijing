@@ -28,7 +28,7 @@ public class GameStartImg : MonoBehaviour
         nowShowImgNum = 0;
         PassTime = 0f;
 
-#if Google
+#if Google7
         PassTime = 10;
         Destroy(this.gameObject);
 #else

@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 
 #if UNITY_ANDROID
 
-#if Google
+#if Google7
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
@@ -89,6 +89,7 @@ namespace ET
 		public Action OnGetMouseButtonDown_0;
 
         public Action<string> OnGoogleSignInHandler;
+		public Action<string> OnTikTokAuthorizeHandler;
 
         public ShareSDK ssdk;
 		public MobSDK mobsdk;
@@ -97,10 +98,10 @@ namespace ET
 		public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20";
 
 		public string QQAppID = "1105893765";
-		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore	//勇士/圣光
-		//apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore			//危境
+        //apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore	//勇士/圣光
+        //apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore			//危境 //3A0A616CDBF889B3565BA81FCA3BED49
 
-		public AndroidJavaClass jc;
+        public AndroidJavaClass jc;
 		public AndroidJavaObject jo;
 
 		//是java里的类，一些静态方法可以直接通过这个调用。
@@ -196,10 +197,14 @@ namespace ET
 			Log.ILog.Debug("unity111  TikTokMuBao6=true");
 			this.Platform = 6;
 			this.Apk_Extension = "tiktok";
-#elif Google
-            Log.ILog.Debug("unity111  Google=true");
+#elif Google7
+            Log.ILog.Debug("unity111  Google7=true");
             this.Platform = 7;
             this.Apk_Extension = "google";
+#elif TikTokGuanFu8
+            Log.ILog.Debug("unity111  TikTokGuanFu8=true");
+            this.Platform = 8;
+            this.Apk_Extension = "tiktokguanfu";
 #elif QuDao
 			Log.ILog.Debug("unity111  QuDaoMuBao=true");
 			this.Platform = 100;
@@ -275,16 +280,25 @@ namespace ET
 
         public void TikTokInit()
         {
-			if (this.Platform != 5)
-			{
-				return;
-			}
 
+			Debug.Log("Init.TikTokInit");
+			if (this.Platform == 5)
+			{
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
 #else
 
 #endif
+            }
+            if (this.Platform == 8)
+            {
+#if UNITY_ANDROID && !UNITY_EDITOR
+			//jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
+#else
+
+#endif
+            }
+
         }
 
         public void TikTokLogin()
@@ -336,6 +350,22 @@ namespace ET
                 this.OnShareHandler(8, false);
             }
         }
+
+        public void TikTokAuthorize( )
+        {
+#if UNITY_EDITOR
+            this.OnRecvTikTokAuthorize("7303474616922905355");
+#else
+			jo.Call("TikTokAuthorize", InitHelper.InitKey );
+#endif
+        }
+
+        public void OnRecvTikTokAuthorize(string authCode)
+		{
+			this.OnTikTokAuthorizeHandler?.Invoke(authCode);
+        }
+
+
         public void GetDeviceOAID()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -1081,7 +1111,7 @@ namespace ET
         public void GooglePlayGamesSignin()
         {
 #if UNITY_ANDROID
-#if Google
+#if Google7
             Debug.Log("GooglePlayGamesSignin" );
             // 配置登录选项，请求用户信息权限
             //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
@@ -1112,7 +1142,7 @@ namespace ET
 
 
 #if UNITY_ANDROID
-#if Google
+#if Google7
         public void ProcessAuthentication(SignInStatus status)
 		{
 			if (status == SignInStatus.Success)
@@ -1144,7 +1174,7 @@ namespace ET
         public void ProcessAuthentication_2(bool status)
         {
 #if UNITY_ANDROID
-#if Google
+#if Google7
             if (status == true)
 	        {
 				// Continue with Play Games Services
@@ -1168,7 +1198,7 @@ namespace ET
             Debug.Log("GooglePlayGamesSignin  End");
 #endif
 #endif
-		}
+        }
 
 
         public void SignInWithApple(string oldaccount)

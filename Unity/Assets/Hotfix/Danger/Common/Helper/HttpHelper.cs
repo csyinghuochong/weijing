@@ -332,6 +332,36 @@ namespace ET
             return result;//读取微信返回的数据
         }
 
+        public static string OnWebRequestPost_TikTokGetOpenId(string url, Dictionary<string, string> dic)
+        {
+            string result = "";
+            try
+            {
+                //paramslist.Add("code", request.auth_code);
+                //paramslist.Add("app_id", TikTokHelper.AppID.ToString());
+                //paramslist.Add("app_secret", TikTokHelper.AppSecret);
+                string code = UrlEncodeInterface(dic["code"]);
+                string app_id = UrlEncodeInterface(dic["app_id"]);
+                string app_secret = UrlEncodeInterface(dic["app_secret"]);
+
+                string postData = $"code={code}&app_id={app_id}&app_secret={app_secret}";
+                HttpClient httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromMinutes(100);
+                HttpContent httpContent = new StringContent(postData);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                HttpResponseMessage response = httpClient.PostAsync(url, httpContent).Result;
+                response.EnsureSuccessStatusCode();//用来抛异常的
+                result = response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Log.Info($"Exception ex: {ex}");
+                return "";
+            }
+            return result;//
+        }
+
+
         public static string OnWebRequestPost_Pay(string url, Dictionary<string, string> dic)
         {
             string result = "";

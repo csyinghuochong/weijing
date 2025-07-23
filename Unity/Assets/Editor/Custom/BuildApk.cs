@@ -34,7 +34,7 @@ public class rememberKeyStore
 	{
         //Google
 
-#if Google
+#if Google7
 #if UNITY_ANDROID
 		//秘钥名称：注意这里要加上.keystore后缀
 		PlayerSettings.Android.keystoreName = "google.keystore";
@@ -125,11 +125,24 @@ public class MyEditorScript
     {
         BulidTarget("TikTok5", "Android");
     }
+    
+   [MenuItem("Custom/Build Android TikTokGuanFu8")]
+    static void PerformAndroidTikTokGuanFu8Build()
+    {
+        BulidTarget("TikTokGuanFu8", "Android");
+    }
 
     [MenuItem("Custom/Build Android TikTokMuBao6")]
     static void PerformAndroidTikTokMuBao6Build()
     {
         BulidTarget("TikTokMuBao6", "Android");
+    }
+
+
+    [MenuItem("Custom/Build Android Google7")]
+    static void PerformAndroidGoogleBuild()
+    {
+        BulidTarget("Google7", "Android");
     }
 
     [MenuItem("Custom/Build Android ALL")]
@@ -145,15 +158,11 @@ public class MyEditorScript
 		BulidTarget("QuDao", "Android");
 	}
 	
-	[MenuItem("Custom/Build Android Google")]
-	static void PerformAndroidGoogleBuild()
-	{
-		BulidTarget("Google", "Android");
-	}
 
 	private static string targetPath = Application.dataPath + @"\Plugins\Android\libs_custom"; //目标路径   ../表示当前项目文件的父路径
 	private static string app_debugaar = Application.dataPath + @"\Plugins\Android\app-debug.aar"; //目标路径   ../表示当前项目文件的父路径
-	private static bool isNull = false;
+    private static string mainTemplate = Application.dataPath + @"\Plugins\Android\mainTemplate.gradle"; //目标路径   ../表示当前项目文件的父路径
+    private static bool isNull = false;
 	private static void CopyLibs(string path)
 	{
 		isNull = false;
@@ -336,34 +345,43 @@ public class MyEditorScript
 		{
 			CleanDirectory(targetPath);
 		}
-
 		if (File.Exists(app_debugaar))
 		{
 			File.Delete(app_debugaar);
 		}
+        if (File.Exists(mainTemplate))
+        {
+            File.Delete(mainTemplate);
+        }
+
         string app_name = "危境";
 		int version = EditorRuntimeInitializeOnLoad.GetVersion();
 		string target_dir = Application.dataPath + "/TargetAndroid";
-		
-		if(name == "Google")
+
+		if (name == "Google7")
 		{
 			CopyLibs("google");
 			app_name = "危境google";
 		}
 		else if (name == "TikTok5")
 		{
-            CopyLibs("tiktok");
+			CopyLibs("tiktok");
+			app_name = "抖音";
+		}
+		else if (name == "TikTokGuanFu8")
+		{
+            CopyLibs("tiktokguanfu");
             app_name = "抖音";
         }
 		else if (name == "QuDao")
 		{
 			CopyLibs("qudao");
 			app_name = "危境渠道母包";
-        }
+		}
 		else
 		{
-            //TikTokMuBao6 也是用的官方的安卓库
-            CopyLibs("guanfang"); 
+			//TikTokMuBao6 也是用的官方的安卓库
+			CopyLibs("guanfang");
 			app_name = "危境";
 		}
 		
@@ -390,7 +408,7 @@ public class MyEditorScript
             //             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             //             Console.WriteLine($"目录 {streamPath} 清理完成!");
             //         }
-            //if (name != "Google")
+            //if (name != "Google7")
             //{
             //             //Application.dataPath: H:/GitWeiJing/Unity/Assets  -》
             //             //Log.ILog.Debug($"Application.dataPath: {Application.dataPath}");
@@ -417,7 +435,7 @@ public class MyEditorScript
             //}
             //test2-----------------------------------------------------------
 
-            if (name == "Google")
+            if (name == "Google7")
             {
 				target_name = app_name + ".aab";
 
@@ -455,25 +473,25 @@ public class MyEditorScript
 			Directory.CreateDirectory(target_dir);
 		}
 		
-		if(name == "QuDao" )
+		if (name == "Google7" )
 		{
-			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;// AndroidSdkVersions.AndroidApiLevel26;
-		}
-		else if (name == "Google" )
-		{
-			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel30;
+			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel35;
 		}
 		else
 		{
 			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
-		}
+            if (name == "QuDao")
+            {
+                //PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;// AndroidSdkVersions.AndroidApiLevel26;
+            }
+        }
 		
         PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, ";" + name);
 		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;" + name);
 
 		string[] scenes = new string[] { SCENES[0] };
 		PlayerSettings.Android.useCustomKeystore = true;
-		if (name == "Google")
+		if (name == "Google7")
 		{
 			PlayerSettings.Android.keystoreName = "F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\google.keystore";
 			PlayerSettings.Android.keystorePass = "weijing829475";
@@ -490,7 +508,7 @@ public class MyEditorScript
 			EditorUserBuildSettings.buildAppBundle = false;
 		}
 
-        if (name == "Google")
+        if (name == "Google7")
         {
             PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
         }
