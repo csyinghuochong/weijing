@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Demo : MonoBehaviour {
+public class IceEffectDemo : MonoBehaviour {
 
     public GameObject[] effects;
 
