@@ -10,7 +10,7 @@ namespace Douyin.Game
     public class OSDKIntegrationEditor : Editor
     {
         private static OSDKIntegrationSettings _settings;
-        private const string IntegrationResDir = "Assets/OSDKData/Resources/";
+        private const string IntegrationResDir = "Assets/ThirdParty/OSDKData/Resources/";
         private const string IntegrationParamsFile = IntegrationResDir + "OSDKIntegrationSettings.asset";
         private const bool IsCreateDemoSample = false;
         

@@ -1,3 +1,60 @@
+﻿// OSDK_AllProjects Start,此行注释不能删除，用于自动化标记使用
+allprojects {
+    repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
+        google()
+        jcenter()      
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+// OSDK_AllProjects End,此行注释不能删除，用于自动化标记使用
+// OSDK_BuildScript Start,此行注释不能删除，用于自动化标记使用
+buildscript {
+    repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+**BUILD_SCRIPT_DEPS**}
+}
+// OSDK_BuildScript End,此行注释不能删除，用于自动化标记使用
 apply plugin: 'com.android.application'
 
 dependencies {
@@ -5,6 +62,14 @@ dependencies {
     }
 
 android {
+    // OSDK_PackagingOptions Start，此行注释不能删除，用于自动化标记使用
+    // 解决so冲突
+    packagingOptions {
+        pickFirst 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libweibosdkcore.so'
+    }
+    // OSDK_PackagingOptions End，此行注释不能删除，用于自动化标记使用
     namespace "**NAMESPACE**"
     ndkPath "**NDKPATH**"
 
@@ -17,6 +82,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion **MINSDKVERSION**
         targetSdkVersion **TARGETSDKVERSION**
         applicationId '**APPLICATIONID**'
@@ -61,6 +127,63 @@ android {
     }
 }**SPLITS_VERSION_CODE****LAUNCHER_SOURCE_BUILD_SETUP**
 
+// OSDK_AllProjects Start,此行注释不能删除，用于自动化标记使用
+allprojects {
+    repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
+        google()
+        jcenter()      
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+// OSDK_AllProjects End,此行注释不能删除，用于自动化标记使用
+// OSDK_BuildScript Start,此行注释不能删除，用于自动化标记使用
+buildscript {
+    repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+**BUILD_SCRIPT_DEPS**}
+}
+// OSDK_BuildScript End,此行注释不能删除，用于自动化标记使用
 apply plugin: 'com.mob.sdk'
 
 MobSDK {

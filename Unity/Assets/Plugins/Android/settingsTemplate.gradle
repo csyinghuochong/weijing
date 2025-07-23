@@ -1,5 +1,22 @@
-pluginManagement {
+﻿pluginManagement {
     repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
         **ARTIFACTORYREPOSITORY**
         gradlePluginPortal()
         google()
@@ -7,8 +24,6 @@ pluginManagement {
         maven {
                url "https://mvn.mob.com/android"
            }
-            maven { url "https://maven.google.com" }
-        maven { url "https://dl.google.com/dl/android/maven2/" }
     }
 }
 
@@ -18,6 +33,23 @@ include ':launcher', ':unityLibrary'
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/android_public/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/bytedance_android/'
+        }
+        maven {
+            url 'https://maven.byted.org/repository/Volcengine_inner/'
+        }
+        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
         **ARTIFACTORYREPOSITORY**
         google()
         mavenCentral()
