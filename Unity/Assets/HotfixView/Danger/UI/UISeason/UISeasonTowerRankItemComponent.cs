@@ -41,9 +41,16 @@ namespace ET
         {
             self.NuText.GetComponent<Text>().text = rank.ToString();
             self.NameText.GetComponent<Text>().text = info.PlayerName;
-            self.LayerText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}层"), info.FubenId % 250000);
-            self.TimeText.GetComponent<Text>().text =
-                    string.Format(GameSettingLanguge.LoadLocalization("{0}小时{1}分{2}秒"), info.TotalTime / 3600000, info.TotalTime % 3600000 / 60000, info.TotalTime % 3600000 % 60000 / 1000);
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.LayerText.GetComponent<Text>().text = string.Format("{0}层", info.FubenId % 250000);
+                self.TimeText.GetComponent<Text>().text = string.Format("{0}小时{1}分{2}秒", info.TotalTime / 3600000, info.TotalTime % 3600000 / 60000, info.TotalTime % 3600000 % 60000 / 1000);
+            }
+            else
+            {
+                self.LayerText.GetComponent<Text>().text = (info.FubenId % 250000).ToString();
+                self.TimeText.GetComponent<Text>().text = string.Format("{0}h{1}m{2}s", info.TotalTime / 3600000, info.TotalTime % 3600000 / 60000, info.TotalTime % 3600000 % 60000 / 1000);
+            }
 
             if (rank >= 4)
             {

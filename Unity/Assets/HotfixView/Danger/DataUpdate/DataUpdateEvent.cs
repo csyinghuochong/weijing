@@ -1259,6 +1259,11 @@ namespace ET
                     uiSeasonHomeComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISeasonTowerComponent uiSeasonTowerComponent)
+                {
+                    uiSeasonTowerComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
