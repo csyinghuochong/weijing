@@ -123,12 +123,12 @@ namespace ET
         {
             self.JiaYuanUpHint.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 28;
             
-            self.Text_GengDiTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[0] : new Vector2(-136, 0);
-            self.Image_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[1] : new Vector2(-282, 0);
-            self.Lab_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(117, 0);
+            self.Text_GengDiTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[0] : new Vector2(-219, 0);
+            self.Image_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[1] : new Vector2(-206, 0);
+            self.Lab_GengDi.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(34, 0);
             
             self.Text_RenKouTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[3] : new Vector2(-83, 0);
-            self.Image_RenKou.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[4] : new Vector2(-192, 0);
+            self.Image_RenKou.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[4] : new Vector2(-201, 0);
             self.Lab_RenKou.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[5] : new Vector2(116, 0);
         }
 
