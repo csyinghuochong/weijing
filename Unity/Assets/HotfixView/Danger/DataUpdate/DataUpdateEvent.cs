@@ -1254,6 +1254,11 @@ namespace ET
                     uiBattleEnterComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISeasonHomeComponent uiSeasonHomeComponent)
+                {
+                    uiSeasonHomeComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

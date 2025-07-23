@@ -52,6 +52,9 @@ namespace ET
                 UIHelper.Create(self.DomainScene(), UIType.UISeasonLordDetail).Coroutine();
             });
 
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);            
+            
             self.UpdateInfo();
             self.UpdateTime().Coroutine();
         }
@@ -70,11 +73,27 @@ namespace ET
             }
 
             self.AssetPath = null;
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UISeasonHomeComponentSystem
     {
+        public static void OnLanguageUpdate(this UISeasonHomeComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Text_Tip_1").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(383f, 75f) : new Vector2(383f, 53f);
+            rc.Get<GameObject>("Text_Tip_2").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(383f, 14f) : new Vector2(383f, -17f);
+
+            rc.Get<GameObject>("Text_Tip_1").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_Tip_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            
+            self.MonsterPositionText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.MonsterNameText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 50 : 34;
+            self.MonsterRefreshTimeText.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 34;
+        }
+
         public static void UpdateInfo(this UISeasonHomeComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
