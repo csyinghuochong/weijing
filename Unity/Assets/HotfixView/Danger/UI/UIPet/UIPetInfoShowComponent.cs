@@ -177,14 +177,29 @@ namespace ET
             string expStr = rolePetInfo.PetExp.ToString();
             string upExpStr = expConfig.UpExp.ToString();
 
-            if (rolePetInfo.PetExp >= 10000) 
+            if (GameSettingLanguge.Language == 0)
             {
-                expStr = (int)(rolePetInfo.PetExp / 10000) + GameSettingLanguge.LoadLocalization("万");
-            }
+                if (rolePetInfo.PetExp >= 10000)
+                {
+                    expStr = (int)(rolePetInfo.PetExp / 10000) + "万";
+                }
 
-            if (expConfig.UpExp >= 10000)
+                if (expConfig.UpExp >= 10000)
+                {
+                    upExpStr = (int)(expConfig.UpExp / 10000) + "万";
+                }
+            }
+            else
             {
-                upExpStr = (int)(expConfig.UpExp / 10000) + GameSettingLanguge.LoadLocalization("万");
+                if (rolePetInfo.PetExp >= 1000)
+                {
+                    expStr = (int)(rolePetInfo.PetExp / 1000) + "K";
+                }
+
+                if (expConfig.UpExp >= 1000)
+                {
+                    upExpStr = (int)(expConfig.UpExp / 1000) + "K";
+                }
             }
 
             self.Text_PetExp.GetComponent<Text>().text = string.Format("{0}/{1}", expStr, upExpStr);

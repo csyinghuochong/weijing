@@ -44,9 +44,21 @@ namespace ET
         {
             long value = teamPlayerInfo.Damage;
             string str = value.ToString();
-            if (value >= 10000) {
-                str = ((float)value / 10000.0f).ToString("F2") + GameSettingLanguge.LoadLocalization("万");
+            if (GameSettingLanguge.Language == 0)
+            {
+                if (value >= 10000)
+                {
+                    str = ((float)value / 10000.0f).ToString("F2") + "万";
+                }
             }
+            else
+            {
+                if (value >= 1000)
+                {
+                    str = ((float)value / 1000.0f).ToString("F2") + "K";
+                }
+            }
+
             self.DamageValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("输出:") + str;
         }
 

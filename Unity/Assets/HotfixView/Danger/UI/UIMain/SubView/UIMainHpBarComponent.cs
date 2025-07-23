@@ -282,8 +282,17 @@ namespace ET
             { 
                 return hurt.ToString(); 
             }
-            float value = hurt / 10000f;
-            return value.ToString("0.#") + GameSettingLanguge.LoadLocalization("万");
+
+            if (GameSettingLanguge.Language == 0)
+            {
+                float value = hurt / 10000f;
+                return value.ToString("0.#") + "万";
+            }
+            else
+            {
+                float value = hurt / 1000f;
+                return value.ToString("0.#") + "K";
+            }
         }
 
         public static void UpdateHurtText(this UIMainHpBarComponent self)

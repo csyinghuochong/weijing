@@ -492,25 +492,38 @@ namespace ET
         }
 
         //数字转换万
-        public static string NumToWString(long num) {
-
+        public static string NumToWString(long num)
+        {
             //超过10万才显示
             if (num >= 100000)
             {
-                if (num % 10000 == 0)
+                if (GameSettingLanguge.Language == 0)
                 {
-                    return (num / 10000).ToString() + GameSettingLanguge.LoadLocalization("万");
+                    if (num % 10000 == 0)
+                    {
+                        return (num / 10000).ToString() + "万";
+                    }
+                    else
+                    {
+                        return ((float)num / 10000f).ToString("F2") + "万";
+                    }
                 }
-                else {
-                    return ((float)num / 10000f).ToString("F2") + GameSettingLanguge.LoadLocalization("万");
+                else
+                {
+                    if (num % 1000 == 0)
+                    {
+                        return (num / 1000).ToString() + "K";
+                    }
+                    else
+                    {
+                        return ((float)num / 1000f).ToString("F2") + "K";
+                    }
                 }
             }
-            else {
+            else
+            {
                 return num.ToString();
             }
-
         }
-
-
     }
 }
