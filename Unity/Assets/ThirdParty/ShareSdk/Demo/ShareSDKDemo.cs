@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using cn.sharesdk.unity3d;
 using LitJson;
-public class Demo : MonoBehaviour {
+
+public class ShareSDKDemo : MonoBehaviour {
 
 	public GUISkin demoSkin;
 	public ShareSDK ssdk;
