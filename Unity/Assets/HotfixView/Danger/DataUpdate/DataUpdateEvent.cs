@@ -1229,6 +1229,11 @@ namespace ET
                     uiWelfareComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanPetComponent uiJiaYuanPetComponent)
+                {
+                    uiJiaYuanPetComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
