@@ -40,6 +40,8 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanVisitItemComponent self, JiaYuanVisit jiaYuanVisit)
         {
+            GameSettingLanguge.TransformText(self.GameObject.transform);
+            
             self.JiaYuanVisit = jiaYuanVisit;
 
             self.TextTimes_2.GetComponent<Text>().text = $"X{jiaYuanVisit.Rubbish}";
