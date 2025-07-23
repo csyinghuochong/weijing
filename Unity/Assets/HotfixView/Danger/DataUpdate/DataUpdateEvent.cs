@@ -1244,6 +1244,11 @@ namespace ET
                     uiHuntRankingComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIBattleComponent uiBattleComponent)
+                {
+                    uiBattleComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
