@@ -1234,6 +1234,11 @@ namespace ET
                     uiJiaYuanPetComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UISoloComponent uiSoloComponent)
+                {
+                    uiSoloComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 

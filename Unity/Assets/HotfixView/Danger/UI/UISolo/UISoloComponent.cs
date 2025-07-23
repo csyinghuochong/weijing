@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISoloComponent : Entity, IAwake
+    public class UISoloComponent : Entity, IAwake, IDestroy
     {
         public GameObject ButtonMatch;
         public GameObject Text_Result;
@@ -13,6 +14,7 @@ namespace ET
         public GameObject SoloResultListNode;
 
         public bool PipeiStatus;        //匹配状态
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
     public class UISoloComponentAwake : AwakeSystem<UISoloComponent>
@@ -29,14 +31,55 @@ namespace ET
             self.Text_IntegraList = rc.Get<GameObject>("Text_IntegraList");
             self.SoloResultListNode = rc.Get<GameObject>("SoloResultListNode");
 
-
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             //初始化
             self.Init();
+        }
+    }
+    
+    public class UISoloComponentDestroy : DestroySystem<UISoloComponent>
+    {
+        public override void Destroy(UISoloComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
     public static class UISoloComponentSystem
     {
+        public static void StoreUIdData(this UISoloComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_1").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_2").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_3").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_4").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_5").GetComponent<RectTransform>().localPosition);
+        }
+
+        public static void OnLanguageUpdate(this UISoloComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            rc.Get<GameObject>("TextTip_1").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[0] : new Vector2(517f, 166f);
+            rc.Get<GameObject>("TextTip_2").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[1] : new Vector2(517f, 76f);
+            rc.Get<GameObject>("TextTip_3").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(517f, -9f);
+            rc.Get<GameObject>("TextTip_4").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[3] : new Vector2(517f, -95f);
+            rc.Get<GameObject>("TextTip_5").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[4] : new Vector2(517f, -180f);
+
+            rc.Get<GameObject>("TextTip_1").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("TextTip_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("TextTip_3").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("TextTip_4").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("TextTip_5").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+
+            rc.Get<GameObject>("Image_Ranking").GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(300f, 60f) : new Vector2(500f,60f);
+            
+            self.ButtonMatch.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+        }
 
         //初始化
         public static void Init(this UISoloComponent self) {
