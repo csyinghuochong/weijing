@@ -8,6 +8,50 @@ namespace ET
 {
     public static class UICommonHelper
     {
+        /// <summary>
+        /// 将每个字符之间插入 \u200B
+        /// 在Text中一行末尾的空间不足以完整显示下一个单词时，会自动切行到下一行显示(英文好像就是这样)
+        /// 加入这个零宽断行符后就和中文一样，填满一行，不会根据单词切行，而是字符切行
+        /// TMP中才有效
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string InsertZeroWidthBreaks(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            if (GameSettingLanguge.Language != 1)
+            {
+                return input;
+            }
+            
+            return string.Join("\u200B", input.ToCharArray());
+        }
+
+
+        /// <summary>
+        /// Text 填满一行，不会根据单词切行，而是字符切行
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string CustomWrap(this string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+            
+            if (GameSettingLanguge.Language != 1)
+            {
+                return input;
+            }
+
+            return input.Replace(" ", "\u00A0");
+        }
+        
         public static string ShowTimeDifferenceStr(DateTime dt1, DateTime dt2, int language)
         {
             //Log.Info("dt1 = " + dt1.ToString() + " dt2 = " + dt2.ToString());
