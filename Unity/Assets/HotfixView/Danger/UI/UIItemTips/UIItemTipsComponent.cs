@@ -861,7 +861,7 @@ namespace ET
             self.Lab_ItemName.GetComponent<Text>().text = itemconf.GetItemName();
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
 
-            self.ItemDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes).CustomWrap();
+            self.ItemDes.GetComponent<Text>().text = UICommonHelper.CustomWrap(GameSettingLanguge.LoadLocalization(Text_ItemDes));
             //赞助宝箱设置描述为绿色
             //if (itemSubType == 9)
             //{

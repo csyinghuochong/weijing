@@ -37,7 +37,7 @@ namespace ET
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static string CustomWrap(this string input)
+        public static string CustomWrap(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
