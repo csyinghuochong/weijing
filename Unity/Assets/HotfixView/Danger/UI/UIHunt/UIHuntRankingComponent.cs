@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIHuntRankingComponent: Entity, IAwake
+    public class UIHuntRankingComponent: Entity, IAwake, IDestroy
     {
         public GameObject HuntingTimeText;
         public GameObject HeadImage_No1;
@@ -18,6 +18,7 @@ namespace ET
         public GameObject HuntRewardsListNode3;
 
         public long EndTime;
+        public List<Vector2> UIOldPositionList = new List<Vector2>();
     }
 
     public class UIHuntRankingComponentAwakesystem: AwakeSystem<UIHuntRankingComponent>
@@ -25,6 +26,14 @@ namespace ET
         public override void Awake(UIHuntRankingComponent self)
         {
             self.Awake();
+        }
+    }
+    
+    public class UIHuntRankingComponentDestroy : DestroySystem<UIHuntRankingComponent>
+    {
+        public override void Destroy(UIHuntRankingComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -51,9 +60,41 @@ namespace ET
             
             self.EndTime = FunctionHelp.GetCloseTime(1052);
 
+            self.StoreUIdData();
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
             self.ShowHuntingTime().Coroutine();
             self.ShowHuntRewards();
             self.UpdataRanking().Coroutine();
+        }
+
+        public static void StoreUIdData(this UIHuntRankingComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_1").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_2").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_3").GetComponent<RectTransform>().localPosition);
+            self.UIOldPositionList.Add(rc.Get<GameObject>("TextTip_4").GetComponent<RectTransform>().localPosition);
+        }
+
+        public static void OnLanguageUpdate(this UIHuntRankingComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            rc.Get<GameObject>("TextTip_1").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[0] : new Vector2(71f, -100f);
+            rc.Get<GameObject>("TextTip_2").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[1] : new Vector2(71f, -181f);
+            rc.Get<GameObject>("TextTip_3").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[2] : new Vector2(71f, -260f);
+            rc.Get<GameObject>("TextTip_4").GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? self.UIOldPositionList[3] : new Vector2(71f, -338f);
+            
+
+            rc.Get<GameObject>("TextTip_1").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            rc.Get<GameObject>("TextTip_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            rc.Get<GameObject>("TextTip_3").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            rc.Get<GameObject>("TextTip_4").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 34 : 30;
+            
+            rc.Get<GameObject>("Image_TipDi_1").GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(800f, 280f) : new Vector2(800f,330f);
+            rc.Get<GameObject>("Image_TipDi_2").GetComponent<RectTransform>().sizeDelta = GameSettingLanguge.Language == 0? new Vector2(500f, 100f) : new Vector2(600f,100f);
         }
 
         /// <summary>
