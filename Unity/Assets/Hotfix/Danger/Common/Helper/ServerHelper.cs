@@ -408,14 +408,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 161, ServerIp = $"{ip}:20445", ServerName = "时光镇", ServerOpenTime = 1751022000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 162, ServerIp = $"{ip}:20505", ServerName = "棉花糖", ServerOpenTime = 1751626800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 163, ServerIp = $"{ip}:20525", ServerName = "破晓战歌", ServerOpenTime = 1752231600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
-
-
-            //2025/07/18 19:00:00 1752836400000 合区 龙裔国度-荣耀之路 151/153
-            //2025/07/18 19:00:00 1752836400000 合区 雷霆万钧-龙翔九天 155/156
-            //2025/07/18 19:00:00 1752836400000 合区 神谕森林-泰坦神殿 157/158
-            //2025/07/18 19:00:00 1752836400000 合区 星辰之巅-微风草原 159/160
-            //2025/07/18 19:00:00 1752836400000 新区 翡翠仙境 164
             serverItems_1.Add(new ServerItem() { ServerId = 164, ServerIp = $"{ip}:20545", ServerName = "翡翠仙境", ServerOpenTime = 1752836400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
+
+
+            //2025/07/25 19:00:00 1753441200000 合区 xx-xx xx/xx
+            //2025/07/25 19:00:00 1753441200000 新区 繁花谷 165
+            serverItems_1.Add(new ServerItem() { ServerId = 165, ServerIp = $"{ip}:20375", ServerName = "繁花谷", ServerOpenTime = 1753441200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
