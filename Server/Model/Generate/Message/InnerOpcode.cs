@@ -253,5 +253,7 @@ namespace ET
 		 public const ushort M2M_AllPlayerListResponse = 20250;
 		 public const ushort M2M_PaiMaiBuyInfoRequest = 20251;
 		 public const ushort M2M_PaiMaiBuyInfoResponse = 20252;
+		 public const ushort A2Center_TiktokBinging = 20253;
+		 public const ushort Center2A_TiktokBinging = 20254;
 	}
 }

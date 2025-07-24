@@ -664,6 +664,7 @@ message PlayerInfo
 	repeated int32 BuChangZone = 7;
 	string PhoneNumber = 8;
 	repeated int64 ShareTimes = 9;    
+	string TikTokGuanFuAccount = 10;   //只有抖音渠道包才有这个标记
 }
 
 //ResponseType M2C_TestActorResponse
@@ -7889,7 +7890,10 @@ message Center2C_QueryAccountResponse // IResponse
 message C2A_TikTokGetOpenId // IRequest
 {
 	int32 RpcId = 90;
-	string auth_code	= 1;	// 
+	string AuthCode   = 1;	// 
+	string ClientToken = 2;
+	string AccessToken = 3;
+	string OpenId = 4;
 }
 
 message A2C_TikTokGetOpenId // IResponse

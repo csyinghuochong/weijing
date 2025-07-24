@@ -16,9 +16,9 @@ namespace Douyin.Game
     /// </summary>
     public class OSDKDouyin : MonoBehaviour
     {
-
+        public string AuthCode;
         public string ClientToken;
-        public Action<string> GetOpenIdCodeHandler;
+        public Action<string> OnTikTokAuthorizeHandler;
 
         //【以下代码，外部方法】------------------------------------------------------------------
 
@@ -33,11 +33,25 @@ namespace Douyin.Game
         public void Authorize(string scope = "user_info,trial.whitelist")
         {
             Debug.Log("OSDKDouyin.Authorize");
+
+#if UNITY_EDITOR
+            var dictionary = new Dictionary<string, string>()
+            {
+                { "auto_code", "auto_code" },
+                { "client_token", "client_token" },
+                { "access_token", "access_token"},
+                { "open_id", "open_id_202507242052" },
+            };
+
+            this.OnTikTokAuthorizeHandler?.Invoke(Json.Serialize(dictionary));
+#else
             Scope = scope;
             SetupAuthorize();
             OSDK.GetService<IDouyinService>().Authorize(scope, AuthResponseCallback);
+#endif
+
         }
-        
+
         /// <summary>
         /// 设置全局授权代理，SDK在需要授权信息时调用对应的回调方法
         /// </summary>
@@ -84,12 +98,25 @@ namespace Douyin.Game
 
         //【以下代码，需要开发者完善】------------------------------------------------------------------
 
+        private  void AuthorizeSuccess(string access_token, string open_id)
+        {
+            var dictionary = new Dictionary<string, string>()
+            {
+                { "auto_code", AuthCode },
+                { "client_token", ClientToken },
+                { "access_token", access_token},
+                { "open_id", open_id },
+            };
+
+            this.OnTikTokAuthorizeHandler?.Invoke(Json.Serialize(dictionary));
+        }
+
         /// <summary>
-        /// 获取抖音授权成功
+        /// 获取抖音授权成功  获取渠道包账号放在后端。
         /// </summary>
         /// <param name="token"></param>
         /// <param name="openid"></param>
-        private async void AuthorizeSuccess(string access_token, string  open_id)
+        private async void AuthorizeSuccess_Old(string access_token, string  open_id)
         {
             // TODO 请处理抖音授权成功后的游戏逻辑
             //this.GetOpenIdCodeHandler?.Invoke(open_id);
@@ -142,8 +169,6 @@ namespace Douyin.Game
 
                             if (!string.IsNullOrEmpty(sdk_open_id))
                             {
-                                this.GetOpenIdCodeHandler?.Invoke(sdk_open_id);
-
                                 //账号找回通知。 游戏侧账号迁移完成后，需通知抖音侧找回账号成功。
                                 //通知情况将会影响抖音对历史用户的触达方式。
                                 return;
@@ -181,13 +206,12 @@ namespace Douyin.Game
             }
 
             Debug.Log($"OSDK  找不到sdk_open_id.  直接用openid");
-            this.GetOpenIdCodeHandler?.Invoke(open_id);
         }
 
         private void AuthorizeFailed(BaseErrorEntity<DouyinAuthorizeErrorEnum> entity)
         {
             // TODO 请处理抖音授权失败后的游戏逻辑
-            this.GetOpenIdCodeHandler?.Invoke(string.Empty);
+            this.OnTikTokAuthorizeHandler?.Invoke(string.Empty);
         }
 
         private async Task RequestClientToken()
@@ -269,14 +293,16 @@ namespace Douyin.Game
             }
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="authCode"></param>
-        private  async void RequestOAuth(string authCode)
+        private  async void RequeseTokens(string authCode)
         {
-            await  RequestClientToken();
-            RequestAccessToken(authCode);
+            AuthCode = authCode;
+            await RequestClientToken();
+            await RequestAccessToken(authCode);
         }
 
         /// <summary>
@@ -284,7 +310,7 @@ namespace Douyin.Game
         /// 注意：以下为方便描述提供客户端实现示例代码，建议替换成在游戏服务端实现以防止密钥泄漏
         /// </summary>
         /// <param name="authCode">抖音授权返回的auth_code</param>
-        private async void RequestAccessToken(string authCode)
+        private async Task RequestAccessToken(string authCode)
         {
             // TODO 通过 authCode 换取 Token 和 Openid
             // 结果需回调给RequestOAuthSuccess(token, openid)或RequestOAuthFailed(errorEntity)
@@ -300,6 +326,7 @@ namespace Douyin.Game
                 throw new Exception("授权Client Secret不能为空，请填写");
             }
             Debug.Log($"OSDK.RequestAccessToken: {authCode}");
+            // 这个是旧版本接口
             // 接口文档 https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/get-access-token
             const string url = "https://open.douyin.com/oauth/access_token/";
             var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
@@ -406,7 +433,7 @@ namespace Douyin.Game
         {
             if (response.ErrorEnum == DouyinAuthorizeErrorEnum.SUCCESS)
             {
-                RequestOAuth(response.AuthCode);
+                RequeseTokens(response.AuthCode);
             }
             else
             {

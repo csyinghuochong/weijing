@@ -92,7 +92,6 @@ namespace ET
 		public Action OnGetMouseButtonDown_0;
 
         public Action<string> OnGoogleSignInHandler;
-		public Action<string> OnTikTokAuthorizeHandler;
 
         public ShareSDK ssdk;
 		public MobSDK mobsdk;
@@ -361,22 +360,6 @@ namespace ET
 			{
                 this.OnShareHandler(8, false);
             }
-        }
-
-        public void TikTokAuthorize( )
-        {
-			this.GetComponent<OSDKDouyin>().Authorize();
-
-#if UNITY_EDITOR
-            //this.OnRecvTikTokAuthorize("7303474616922905355");
-#else
-			//jo.Call("TikTokAuthorize", InitHelper.InitKey );
-#endif
-        }
-
-        public void OnRecvTikTokAuthorize(string authCode)
-		{
-			this.OnTikTokAuthorizeHandler?.Invoke(authCode);
         }
 
 

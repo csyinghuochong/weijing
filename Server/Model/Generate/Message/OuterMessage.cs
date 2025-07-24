@@ -1363,6 +1363,9 @@ namespace ET
 		[ProtoMember(9)]
 		public List<long> ShareTimes = new List<long>();
 
+		[ProtoMember(10)]
+		public string TikTokGuanFuAccount { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_TestActorResponse))]
@@ -16470,7 +16473,16 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public string auth_code { get; set; }
+		public string AuthCode { get; set; }
+
+		[ProtoMember(2)]
+		public string ClientToken { get; set; }
+
+		[ProtoMember(3)]
+		public string AccessToken { get; set; }
+
+		[ProtoMember(4)]
+		public string OpenId { get; set; }
 
 	}
 

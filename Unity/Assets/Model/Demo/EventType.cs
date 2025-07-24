@@ -911,8 +911,7 @@ namespace ET
         public class TikTokGetAuthorizeCode : DisposeObject
         {
             public static readonly TikTokGetAuthorizeCode Instance = new TikTokGetAuthorizeCode();
-            public Action<string> AuthorizeCodeHandler;
-            public Action<string> GetOpenIdCodeHandler;
+            public Action<string> TikTokAuthorizeHandler;
             public Scene ZoneScene;
         }
 

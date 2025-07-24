@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Collections.Generic;
 using System.Text;
 
 namespace ET
@@ -332,7 +331,7 @@ namespace ET
             return result;//读取微信返回的数据
         }
 
-        public static string OnWebRequestPost_TikTokGetOpenId(string url, Dictionary<string, string> dic)
+        public static string OnWebRequestPost_TikTokGetAccessToken(string url, Dictionary<string, string> dic)
         {
             string result = "";
             try
@@ -361,6 +360,85 @@ namespace ET
             return result;//
         }
 
+
+        public static async ETTask<string>  OnWebRequestPost_TikTokGetHistorydAccountInfo(string url, string clientToken, string open_id, string access_token)
+        {
+            string result = "";
+
+            var dictionary = new Dictionary<string, string>()
+            {
+                { "app_id", "554726" },
+                { "user_type","1" },
+                { "open_id", open_id },
+                { "app_package", "com.example.weijinggame" },
+                { "access_token", access_token },
+            };
+
+            var body = JsonHelper.ToJson(dictionary);
+            HttpContent postContent = new StringContent(body);
+            var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+
+            postContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            try
+            {
+                var responseMessage = await httpClient.PostAsync(url, postContent);
+                if (responseMessage != null && responseMessage.StatusCode == HttpStatusCode.OK)
+                {
+                    var responeresult = await responseMessage.Content.ReadAsStringAsync();
+                  
+                    //7492384281722297124
+                    //_000EX1CG4-EAWlO9YUsp1y4HnwdP1XV1X9P
+                    //这个接口有配额 要注意！！！
+                    //OSDK.get_history_account_info return: {"err_no":28003017,"err_msg":"quota已用完","log_id":"20250724161757EE2515F1BFF953756E79"}
+                    if (JsonHelper.FromJson(typeof(Dictionary<string,object>), responeresult) is Dictionary<string, object> obj)
+                    {
+                        var message = obj["message"] as string;
+                        if (message?.Equals("success") == true)
+                        {
+                            // 授权成功
+                            var data = obj["data"] as Dictionary<string, object>;
+                            var sdk_open_id = data?["sdk_open_id"] as string;
+                            var age_type = data?["age_type"] as string;
+                            int age_type_int = int.Parse(age_type);
+
+                            if (!string.IsNullOrEmpty(sdk_open_id))
+                            {
+                                //账号找回通知。 游戏侧账号迁移完成后，需通知抖音侧找回账号成功。
+                                //通知情况将会影响抖音对历史用户的触达方式。
+                                return sdk_open_id;
+                            }
+                        }
+                        else
+                        {
+                            // 网络请求成功，但server返回了错误信息，授权失败
+                            // {"data":{"captcha":"","desc_url":"","description":"code已失效","error_code":10007},"message":"error"}
+                            object errorDescription = "";
+                            object errCode = -1;
+                            var data = obj["data"] as Dictionary<string, object>;
+                            data?.TryGetValue("description", out errorDescription);
+                            data?.TryGetValue("error_code", out errCode);
+                            Console.WriteLine($"账号转移失败, resp: {errCode},{errorDescription}");
+                        }
+                    }
+                    else
+                    {
+                        // 数据格式错误，授权失败
+                        Console.WriteLine($"账号转移失败access_token解析失败");
+                    }
+                }
+                else
+                {
+                    // 网络请求失败，授权失败
+                    Console.WriteLine($"OSDK.OpenID_SDKOpenId Error: {responseMessage}");
+                }
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine($"账号转移失败  Exception e" + e);
+            }
+
+            return result;//
+        }
 
         public static string OnWebRequestPost_Pay(string url, Dictionary<string, string> dic)
         {

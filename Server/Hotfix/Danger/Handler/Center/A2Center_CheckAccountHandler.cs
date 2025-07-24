@@ -25,6 +25,14 @@ namespace ET
                    _account => _account.PlayerInfo != null && _account.PlayerInfo.PhoneNumber.Equals(request.AccountName));
             }
 
+            //抖音渠道包迁移账号
+            if (centerAccountInfoList.Count == 0 && request.ThirdLogin == "6")
+            {
+                centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
+                   _account => _account.PlayerInfo != null && _account.PlayerInfo.TikTokGuanFuAccount.Equals(request.AccountName));
+                Console.WriteLine($"A2Center_CheckAccount.抖音渠道包迁移账号:  {centerAccountInfoList != null && centerAccountInfoList.Count > 0}");
+            }
+
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;
             response.PlayerInfo = dBCenterAccountInfo != null ? dBCenterAccountInfo.PlayerInfo : null;
             response.AccountId = dBCenterAccountInfo != null ? dBCenterAccountInfo.Id : 0;
