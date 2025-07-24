@@ -912,6 +912,7 @@ namespace ET
         {
             public static readonly TikTokGetAuthorizeCode Instance = new TikTokGetAuthorizeCode();
             public Action<string> AuthorizeCodeHandler;
+            public Action<string> GetOpenIdCodeHandler;
             public Scene ZoneScene;
         }
 

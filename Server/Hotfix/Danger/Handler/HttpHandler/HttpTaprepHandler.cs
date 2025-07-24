@@ -4,6 +4,8 @@ using System.Net;
 
 namespace ET
 {
+
+    //http://39.96.194.143:20008/wjtaprepcallback
     [HttpHandler(SceneType.AccountCenter, "/wjtaprepcallback")]
     public class HttpTaprepCallBackHandler : IHttpHandler
     {

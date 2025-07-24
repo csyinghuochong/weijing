@@ -39,8 +39,8 @@ MonoBehaviour:
   showLive: 0
   showCloudGame: 0
   showTeamPlay: 0
-  showMoreSettings: 0
-  showInfoSettings: 0
+  showMoreSettings: 1
+  showInfoSettings: 1
   showIOSPermissions: 0
   showArchiveIOSProfile: 0
   pcEnvInitState: 0

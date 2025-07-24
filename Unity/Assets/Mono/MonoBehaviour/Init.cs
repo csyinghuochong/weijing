@@ -20,6 +20,9 @@ using System.Text;
 using AppleAuth.Extensions;
 using System.Net;
 
+using Douyin;
+using Douyin.Game;
+
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
@@ -148,8 +151,8 @@ namespace ET
 			{
 				Log.Error(e.ExceptionObject.ToString());
 			};
-
-			SynchronizationContext.SetSynchronizationContext(ThreadSynchronizationContext.Instance);
+            
+            SynchronizationContext.SetSynchronizationContext(ThreadSynchronizationContext.Instance);
 
 			DontDestroyOnLoad(gameObject);
 
@@ -259,6 +262,10 @@ namespace ET
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
 
+			if (this.Platform == 8)
+			{ 
+				this.GetComponent<OSDKInit>().InitSDK();
+			}
         }
         
 
@@ -292,6 +299,11 @@ namespace ET
             }
             if (this.Platform == 8)
             {
+				//根据【环境配置】- 【组件导入】导入OSDKCore.unitypackage
+				//初始化SDK后会采集一些设备信息,请确保披露隐私协议后再调用GBCommonSDK.init(...)方法以保证合规。
+				//初始化需要尽可能早调用，请确保SDK初始化成功后再调其他业务接口，否则可能会有不可预期的错误。
+				
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 			//jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
 #else
@@ -353,10 +365,12 @@ namespace ET
 
         public void TikTokAuthorize( )
         {
+			this.GetComponent<OSDKDouyin>().Authorize();
+
 #if UNITY_EDITOR
-            this.OnRecvTikTokAuthorize("7303474616922905355");
+            //this.OnRecvTikTokAuthorize("7303474616922905355");
 #else
-			jo.Call("TikTokAuthorize", InitHelper.InitKey );
+			//jo.Call("TikTokAuthorize", InitHelper.InitKey );
 #endif
         }
 

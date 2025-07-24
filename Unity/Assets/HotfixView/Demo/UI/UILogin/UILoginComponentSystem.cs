@@ -603,7 +603,9 @@ namespace ET
                     {
                         Log.ILog.Debug($"GlobalHelp.GetPlatform() == 8");
                         EventType.TikTokGetAuthorizeCode.Instance.ZoneScene = self.ZoneScene();
-                        EventType.TikTokGetAuthorizeCode.Instance.AuthorizeCodeHandler = (string text) => { self.OnRecvTikTokAuthorizeCode(text).Coroutine(); };
+                        //EventType.TikTokGetAuthorizeCode.Instance.AuthorizeCodeHandler = (string text) => { self.OnRecvTikTokAuthorizeCode(text).Coroutine(); };
+                        EventType.TikTokGetAuthorizeCode.Instance.GetOpenIdCodeHandler = (string text) => { self.OnRecvOpenIdCodeCode(text); };
+                        
                         EventSystem.Instance.PublishClass(EventType.TikTokGetAuthorizeCode.Instance);
                     }
                     break;;
