@@ -83,7 +83,7 @@
 {"_t":"MulLanguageConfig","_id":100083,"Des":"NumericType.Now_PetAllAdfPro","Chinese":"宠物魔防","English":"Pet Magic Def"},
 {"_t":"MulLanguageConfig","_id":100084,"Des":"NumericType.Now_PetAllHpPro","Chinese":"宠物生命","English":"Pet HP"},
 {"_t":"MulLanguageConfig","_id":100085,"Des":"NumericType.Now_MaxDef","Chinese":"防御","English":"Def"},
-{"_t":"MulLanguageConfig","_id":100086,"Des":"NumericType.Now_MaxAdf","Chinese":"魔御","English":"Magic Def"},
+{"_t":"MulLanguageConfig","_id":100086,"Des":"NumericType.Now_MaxAdf","Chinese":"魔御","English":"MDef"},
 {"_t":"MulLanguageConfig","_id":100087,"Des":"NumericType.Now_Mage","Chinese":"技能伤害","English":"Skill Dmg"},
 {"_t":"MulLanguageConfig","_id":100088,"Des":"NumericType.Now_ActDamgeAddPro","Chinese":"物伤加成","English":"Phys Dmg Bonus"},
 {"_t":"MulLanguageConfig","_id":100089,"Des":"NumericType.Now_MageDamgeAddPro","Chinese":"魔伤加成","English":"Magic Dmg Bonus"},
