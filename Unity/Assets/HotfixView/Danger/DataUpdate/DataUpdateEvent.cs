@@ -1264,6 +1264,11 @@ namespace ET
                     uiSeasonTowerComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIRoleXiLianShowComponent uiRoleXiLianShowComponent)
+                {
+                    uiRoleXiLianShowComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
