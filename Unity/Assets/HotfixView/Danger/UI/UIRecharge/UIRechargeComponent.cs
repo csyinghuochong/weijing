@@ -90,6 +90,16 @@ namespace ET
                 self.ButtonAliPay.SetActive(false);
                 self.ButtonWeiXin.SetActive(false);
             }
+
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                // self.PayType = PayTypeEnum.Google;
+                self.ImageSelect1.SetActive(false);
+                self.ImageSelect2.SetActive(false);
+                self.ButtonAliPay.SetActive(false);
+                self.ButtonWeiXin.SetActive(false);
+            }
+            
             if (GlobalHelp.GetPlatform() == 100)
             {
                 self.PayType = PayTypeEnum.QuDaoPay;
