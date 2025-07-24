@@ -93,7 +93,7 @@ namespace ET
 
             if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                // self.PayType = PayTypeEnum.Google;
+                self.PayType = PayTypeEnum.Google;
                 self.ImageSelect1.SetActive(false);
                 self.ImageSelect2.SetActive(false);
                 self.ButtonAliPay.SetActive(false);
@@ -131,19 +131,34 @@ namespace ET
                 return;
             }
             self.AssetPath = path;
-            foreach (var item in ConfigHelper.RechargeGive)
+            if (GameSettingLanguge.Language == 0)
             {
-                if (item.Key == 1)
+                foreach (var item in ConfigHelper.RechargeGive)
                 {
-                    continue;
-                }
+                    if (item.Key == 1)
+                    {
+                        continue;
+                    }
 
-                GameObject skillItem = GameObject.Instantiate(bundleObj);
-                UICommonHelper.SetParent(skillItem, self.RechargeList);
-                UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
-                UIRechargeItemComponent uIItemComponent = ui_1.AddComponent<UIRechargeItemComponent>();
-                uIItemComponent.OnInitData(item.Key, item.Value);
-                uIItemComponent.SetClickHandler((int number) => { self.OnClickRechargeItem(number).Coroutine(); });
+                    GameObject skillItem = GameObject.Instantiate(bundleObj);
+                    UICommonHelper.SetParent(skillItem, self.RechargeList);
+                    UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
+                    UIRechargeItemComponent uIItemComponent = ui_1.AddComponent<UIRechargeItemComponent>();
+                    uIItemComponent.OnInitData(item.Key, item.Value);
+                    uIItemComponent.SetClickHandler((int number) => { self.OnClickRechargeItem(number).Coroutine(); });
+                }
+            }
+            else
+            {
+                foreach (var item in ConfigHelper.RechargeGive_EN)
+                {
+                    GameObject skillItem = GameObject.Instantiate(bundleObj);
+                    UICommonHelper.SetParent(skillItem, self.RechargeList);
+                    UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
+                    UIRechargeItemComponent uIItemComponent = ui_1.AddComponent<UIRechargeItemComponent>();
+                    uIItemComponent.OnInitData(item.Key, item.Value);
+                    uIItemComponent.SetClickHandler((int number) => { self.OnClickRechargeItem(number).Coroutine(); });
+                }
             }
         }
 

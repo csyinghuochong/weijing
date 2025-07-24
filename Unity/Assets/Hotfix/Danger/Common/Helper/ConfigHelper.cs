@@ -137,6 +137,18 @@ namespace ET
             { 488,      8888},
             { 648,      12888},
         };
+        
+        public static Dictionary<int, int> RechargeGive_EN = new Dictionary<int, int>(){
+            { 1,        0},
+            { 5,        300},
+            { 7,        600},
+            { 15,       1200},
+            { 30,       2888},
+            { 40,       4888},
+            { 70,       8888},
+            { 90,       12888},
+        };
+        
         public static int GetDiamondNumber(int key)
         {
             if (!RechargeGive.ContainsKey(key))

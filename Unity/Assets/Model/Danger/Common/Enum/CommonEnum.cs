@@ -168,6 +168,7 @@ namespace ET
         public const int QuDaoPay = 3;
         public const int IOSPay = 4;
         public const int TikTok = 5;
+        public const int Google = 6;
     }
 
     public static class ReddotType
