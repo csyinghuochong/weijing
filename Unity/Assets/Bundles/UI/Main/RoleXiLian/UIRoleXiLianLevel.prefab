@@ -1012,6 +1012,8 @@ MonoBehaviour:
     gameObject: {fileID: 1723190847195488717}
   - key: SkillListNode
     gameObject: {fileID: 3405620536351473245}
+  - key: TextTitle2
+    gameObject: {fileID: 3735667340431764746}
 --- !u!1 &4534311223075977016
 GameObject:
   m_ObjectHideFlags: 0

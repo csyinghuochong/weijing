@@ -12,6 +12,7 @@ namespace ET
         public GameObject ButtonGet;
         public GameObject ItemListNode;
         public GameObject TextShuLianDu;
+        public GameObject TextTitle2;
         public GameObject TextLevelTip;
         public GameObject TextAttribute;
         public GameObject TextTitle;
@@ -33,6 +34,7 @@ namespace ET
             self.SkillListNode = rc.Get<GameObject>("SkillListNode");
             self.ImageExp = rc.Get<GameObject>("ImageExp");
             self.TextShuLianDu = rc.Get<GameObject>("TextShuLianDu");
+            self.TextTitle2 =  rc.Get<GameObject>("TextTitle2");
             self.TextLevelTip = rc.Get<GameObject>("TextLevelTip");
             self.TextAttribute = rc.Get<GameObject>("TextAttribute");
             self.TextTitle = rc.Get<GameObject>("TextTitle");
@@ -92,6 +94,10 @@ namespace ET
             self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
             self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.GetTitle();
             self.TextLevelTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("获得{0}，洗炼获得高品质属性概率提升"), equipXiLianConfig.GetTitle());
+            self.TextLevelTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 30;
+
+            self.TextTitle2.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(-307.5f, 4.5f) : new Vector2(-362.5f, 4.5f);
+            self.TextLevelTip.GetComponent<RectTransform>().localPosition = GameSettingLanguge.Language == 0? new Vector2(230f, 5.5f) : new Vector2(173f, 1f);
 
             if (equipXiLianConfig.ProList_Type[0] != 0)
             {
