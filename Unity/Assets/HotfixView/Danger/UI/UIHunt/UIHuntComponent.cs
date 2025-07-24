@@ -13,7 +13,7 @@ namespace ET
         Number,
     }
 
-    public class UIHuntComponent: Entity, IAwake
+    public class UIHuntComponent: Entity, IAwake, IDestroy
     {
         public UIPageViewComponent UIPageView;
         public UIPageButtonComponent UIPageButton;
@@ -27,6 +27,15 @@ namespace ET
         }
     }
 
+    public class UIHuntComponentDestroySystem : DestroySystem<UIHuntComponent>
+    {
+        public override void Destroy(UIHuntComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+        }
+    }
+
+    
     public static class UIHuntComponentSystem
     {
         public static void Awake(this UIHuntComponent self)
@@ -58,8 +67,42 @@ namespace ET
             uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageViewComponent;
+            
+            self.OnLanguageUpdate();
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
 
+        public static void OnLanguageUpdate(this UIHuntComponent self)
+        {
+            Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
+
+            int childCount = tt.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform transform = tt.transform.GetChild(i);
+
+                Transform XuanZhong = transform.Find("XuanZhong");
+                if (XuanZhong)
+                {
+                    Text text = XuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+
+                Transform WeiXuanZhong = transform.Find("WeiXuanZhong");
+                if (WeiXuanZhong)
+                {
+                    Text text = WeiXuanZhong.GetComponentInChildren<Text>();
+                    if (text)
+                    {
+                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
+                    }
+                }
+            }
+        }
+        
         public static void OnClickPageButton(this UIHuntComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

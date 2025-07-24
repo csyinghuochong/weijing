@@ -1269,6 +1269,11 @@ namespace ET
                     uiRoleXiLianShowComponent.OnLanguageUpdate();
                     continue;
                 }
+                if (component is UIHuntComponent uiHuntComponent)
+                {
+                    uiHuntComponent.OnLanguageUpdate();
+                    continue;
+                }
             }
         }
 
