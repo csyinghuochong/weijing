@@ -143,7 +143,7 @@ AК倒计时:46分60秒"%Countdown: 46 minutes and 60 seconds.
 Ӛ	100金币"100 gold coins
 "Ԛ召唤怪物"Summon monster
 3՚免费:0分0秒"Free: 0 points and 0 seconds
-֚腰带"Belt Purchase
+֚腰带"Belt
 ך购买"Buy
 ,ؚ当前拥有数量:"Current quantity:
 "ٚ疾风之刃"Blizzard Blade
@@ -1913,7 +1913,7 @@ Equip list
 
  �	药剂栏"Medicine column
 ���R提示:拖动技能和药剂到快捷施法栏中可以在主界面施法中展现"gTip: Drag skills and potions to the shortcut casting bar to display them in the main interface casting.
-!�道具列表"List of props
+�道具列表"Items
  �
 7级天赋"Level 7 talent
 "�熔岩爆裂"The lava burst
@@ -2928,8 +2928,7 @@ G��隐藏属性出现概率"'Hidden attribute occurrence probability
 W��$装备上的宝石槽位出现概率"+Occurrence probability of gem slot on Equip
 Z��'只能存放非绑定的角色装备！"+Only unbound character Equip can be stored!
 ��衣服"Clothes
-��护符"
-The amulet
+��护符"Amulet
 ��戒指"Ring
 ��饰品"	Ornaments
 ��裤子"Trousers
