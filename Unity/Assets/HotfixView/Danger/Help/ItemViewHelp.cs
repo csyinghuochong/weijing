@@ -1333,31 +1333,60 @@ namespace ET
             }
 
             //显示描述
+            Text textTemplate = Obj_EquipPropertyText.GetComponent<Text>();
             if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
             {
                 string[] des = itemconf.GetItemDes().Split('\n');
-                foreach (string s in des)
+                if (GameSettingLanguge.Language == 0)
                 {
-                    int allLength = s.Length;
-                    int addNum = Mathf.CeilToInt(allLength / 18f);
-                    for (int a = 0; a < addNum; a++)
+                    foreach (string s in des)
                     {
-                        int leftNum = allLength - a * 18;
-                        leftNum = Math.Min(leftNum, 18);
-                        GameObject go = ShowPropertyText(s.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-
-                        // 洗练界面，一个星星只对应一条属性
-                        if (a != 0)
+                        int allLength = s.Length;
+                        int addNum = Mathf.CeilToInt(allLength / 18f);
+                        for (int a = 0; a < addNum; a++)
                         {
-                            Transform star = go.transform.Find("Image (1)");
-                            if (star)
+                            int leftNum = allLength - a * 18;
+                            leftNum = Math.Min(leftNum, 18);
+                            GameObject go = ShowPropertyText(s.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+
+                            // 洗练界面，一个星星只对应一条属性
+                            if (a != 0)
                             {
-                                star.gameObject.SetActive(false);
+                                Transform star = go.transform.Find("Image (1)");
+                                if (star)
+                                {
+                                    star.gameObject.SetActive(false);
+                                }
                             }
                         }
-                    }
 
-                    properShowNum += addNum;
+                        properShowNum += addNum;
+                    }
+                }
+                else
+                {
+                    // 英文每个字母的宽度是不一样的
+                    foreach (string s in des)
+                    {
+                        List<string> splitLines = UICommonHelper.SplitTextByWidth(s, 420f, textTemplate);
+        
+                        foreach (string line in splitLines)
+                        {
+                            GameObject go = ShowPropertyText(line, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+
+                            // 洗练界面，一个星星只对应一条属性
+                            if (splitLines.IndexOf(line) != 0)
+                            {
+                                Transform star = go.transform.Find("Image (1)");
+                                if (star != null)
+                                {
+                                    star.gameObject.SetActive(false);
+                                }
+                            }
+                        }
+
+                        properShowNum += splitLines.Count;
+                    }
                 }
 
                 //int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);

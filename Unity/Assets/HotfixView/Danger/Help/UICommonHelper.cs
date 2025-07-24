@@ -31,6 +31,52 @@ namespace ET
             return string.Join("\u200B", input.ToCharArray());
         }
 
+        /// <summary>
+        /// 按宽度分割文本的方法，英文字母的宽度是不同的
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="maxWidth"></param>
+        /// <param name="textTemplate"></param>
+        /// <returns></returns>
+        public static List<string> SplitTextByWidth(string text, float maxWidth, Text textTemplate)
+        {
+            List<string> result = new List<string>();
+            if (string.IsNullOrEmpty(text))
+                return result;
+
+            TextGenerator textGen = new TextGenerator();
+            TextGenerationSettings generationSettings = textTemplate.GetGenerationSettings(Vector2.zero);
+
+            System.Text.StringBuilder currentLine = new System.Text.StringBuilder();
+
+            foreach (char c in text)
+            {
+                currentLine.Append(c);
+
+                textGen.Populate(currentLine.ToString(), generationSettings);
+                float currentWidth = textGen.GetPreferredWidth(currentLine.ToString(), generationSettings);
+
+                if (currentWidth > maxWidth)
+                {
+                    currentLine.Remove(currentLine.Length - 1, 1);
+
+                    if (currentLine.Length > 0)
+                    {
+                        result.Add(currentLine.ToString());
+                        currentLine.Clear();
+                    }
+
+                    currentLine.Append(c);
+                }
+            }
+
+            if (currentLine.Length > 0)
+            {
+                result.Add(currentLine.ToString());
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Text 填满一行，不会根据单词切行，而是字符切行
