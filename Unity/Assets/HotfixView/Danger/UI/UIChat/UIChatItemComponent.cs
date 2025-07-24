@@ -117,6 +117,8 @@ namespace ET
         //<sprite=0>
         public static void OnUpdateUI(this UIChatItemComponent self, ChatInfo chatInfo)
         {
+            GameSettingLanguge.TransformText(self.GameObject.transform);
+            
             self.mChatInfo = chatInfo;
 
             int startindex = chatInfo.ChatMsg.IndexOf("<link=");
@@ -149,7 +151,7 @@ namespace ET
 
                 self.Text_Name.GetComponent<Text>().text = chatInfo.PlayerName;
 
-                self.Text_Level.GetComponent<Text>().text = chatInfo.PlayerLevel.ToString();
+                self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), chatInfo.PlayerLevel.ToString());
 
                 Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
 
