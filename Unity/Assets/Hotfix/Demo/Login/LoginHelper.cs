@@ -570,6 +570,8 @@ namespace ET
             accountInfoComponent.AllServerList = r2CSelectServer.ServerItems;
             accountInfoComponent.NoticeVersion = r2CSelectServer.NoticeVersion;
             accountInfoComponent.NoticeText = r2CSelectServer.NoticeText;
+            accountInfoComponent.NoticeVersion_EN = r2CSelectServer.NoticeVersion_EN;
+            accountInfoComponent.NoticeText_EN = r2CSelectServer.NoticeText_EN;
             accountInfoComponent.SmsVerifyType = r2CSelectServer.SmsVerifyType;
         }
 

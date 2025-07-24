@@ -194,6 +194,52 @@ namespace ET
             NoticeLastGetTime = serverTime;
             return NoticeLastContent;
         }
+        
+        public static string NoticeLastContent_EN = string.Empty;
+        public static long NoticeLastGetTime_EN = 0;
+        public static string GetNoticeNew_EN()
+        {
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime - NoticeLastGetTime_EN < TimeHelper.Minute * 10
+                && !string.IsNullOrEmpty(NoticeLastContent_EN))
+            {
+                return NoticeLastContent_EN;
+            }
+
+
+            string filePath = "../Logs/WJ_Notice_EN.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(filePath, Encoding.Default);
+                string notice = string.Empty;
+                string content = string.Empty;
+                int index = 0;
+                while ((content = sr.ReadLine()) != null)
+                {
+                    if (index == 0)
+                    {
+                        notice = $"{content}";
+                    }
+                    if (index == 1)
+                    {
+                        notice += $"@{content}";
+                    }
+                    if (index >= 2)
+                    {
+                        notice += $"\r\n{content}";
+                    }
+                    index++;
+                }
+                NoticeLastContent_EN = notice;
+            }
+            else
+            {
+                NoticeLastContent_EN = "1.0.0@1月1日更新内容\r\n1.英文版更新内容。。。WJ_Notice_EN.txt";
+            }
+
+            NoticeLastGetTime_EN = serverTime;
+            return NoticeLastContent_EN;
+        }
 
         public static string GetNotice()
         {

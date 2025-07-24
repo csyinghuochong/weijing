@@ -35,7 +35,14 @@ namespace ET
         public static void OnInitUI(this UINoticeComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Content.GetComponent<Text>().text = accountInfoComponent.NoticeText;
+            if (GameSettingLanguge.Language == 0)
+            {
+                self.Content.GetComponent<Text>().text = accountInfoComponent.NoticeText;
+            }
+            else
+            {
+                self.Content.GetComponent<Text>().text = accountInfoComponent.NoticeText_EN;
+            }
         }
     }
 }

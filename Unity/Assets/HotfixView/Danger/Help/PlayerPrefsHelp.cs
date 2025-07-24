@@ -15,6 +15,7 @@ namespace ET
         public static string SoundVolume = "SoundVolume";
         public static string SkillPostion = "WJa_SkillPostion";
         public static string WJa_LastNotice = "WJa_LastNotice";
+        public static string WJa_LastNotice_EN = "WJa_LastNotice_EN";
         public static string MyOldServerID = "WJa_MyOldServerID";
         public static string LastLoginType = "WJa_LastLoginType";
         public static string LoginErrorTime = "WJa_LoginErrorTime";

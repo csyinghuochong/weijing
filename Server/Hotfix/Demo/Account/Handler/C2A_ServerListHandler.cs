@@ -43,6 +43,9 @@ namespace ET
                         string[] stringxxx = LogHelper.GetNoticeNew().Split('@');
                         response.NoticeVersion = stringxxx[0];
                         response.NoticeText = stringxxx[1];
+                        string[] stringxxx_EN = LogHelper.GetNoticeNew_EN().Split('@');
+                        response.NoticeVersion_EN = stringxxx_EN[0];
+                        response.NoticeText_EN = stringxxx_EN[1];
                         int accountcenter = StartSceneConfigCategory.Instance.AccountCenterConfig.OuterPort;
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;
                         response.AccountCenterIp = $"{outeIp}:{accountcenter}";

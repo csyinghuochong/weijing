@@ -802,9 +802,11 @@ message A2C_ServerList // IResponse
 	repeated ServerItem ServerItems = 2;		//服务器列表
 	string NoticeVersion = 3;
 	string NoticeText = 4;
-	string AccountCenterIp = 5;
-	string RealAndGate = 6;
-	int SmsVerifyType = 7;  //0 mob  1 aliyun
+	string NoticeVersion_EN = 5;
+	string NoticeText_EN = 6;
+	string AccountCenterIp = 7;
+	string RealAndGate = 8;
+	int SmsVerifyType = 9;  //0 mob  1 aliyun
 }
 
 //ResponseType A2C_SendSmsVerifyCode

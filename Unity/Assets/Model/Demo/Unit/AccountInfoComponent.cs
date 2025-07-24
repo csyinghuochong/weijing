@@ -42,6 +42,8 @@ namespace ET
 
 		public string NoticeVersion = string.Empty;
 		public string NoticeText = string.Empty;
+		public string NoticeVersion_EN = string.Empty;
+		public string NoticeText_EN = string.Empty;
 
 		public int SmsVerifyType = 0;  //0 mob  1 aliyun
 

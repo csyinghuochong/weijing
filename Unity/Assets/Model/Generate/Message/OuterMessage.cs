@@ -1653,12 +1653,18 @@ namespace ET
 		public string NoticeText { get; set; }
 
 		[ProtoMember(5)]
-		public string AccountCenterIp { get; set; }
+		public string NoticeVersion_EN { get; set; }
 
 		[ProtoMember(6)]
-		public string RealAndGate { get; set; }
+		public string NoticeText_EN { get; set; }
 
 		[ProtoMember(7)]
+		public string AccountCenterIp { get; set; }
+
+		[ProtoMember(8)]
+		public string RealAndGate { get; set; }
+
+		[ProtoMember(9)]
 		public int SmsVerifyType { get; set; }
 
 	}

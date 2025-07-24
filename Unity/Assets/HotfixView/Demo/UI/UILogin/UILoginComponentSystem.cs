@@ -724,6 +724,13 @@ namespace ET
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice, noticeVersion);
 				self.OnNotice();
 			}
+			
+			string noticeVersion_EN = accountInfoComponent.NoticeVersion_EN;
+			if (noticeVersion_EN != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice_EN))
+			{
+				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice_EN, noticeVersion_EN);
+				self.OnNotice();
+			}
 		}
 
 		public static async ETTask RequestAllServer(this UILoginComponent self)
