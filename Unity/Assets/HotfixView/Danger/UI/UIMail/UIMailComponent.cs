@@ -55,6 +55,8 @@ namespace ET
 
             self.MailComponent = self.ZoneScene().GetComponent<MailComponent>();
 
+            self.OnLanguageUpdate();
+            
             DataUpdateComponent.Instance.AddListener(DataType.OnMailUpdate, self);
             self.RequestMaiList();
         }
@@ -71,6 +73,14 @@ namespace ET
 
     public static class UIMailComponentSystem
     {
+        public static void OnLanguageUpdate(this UIMailComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Title_1").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 44 : 40;
+            rc.Get<GameObject>("Title_2").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 44 : 40;
+        }
+
         public static void OnCloseMail(this UIMailComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIMail);
