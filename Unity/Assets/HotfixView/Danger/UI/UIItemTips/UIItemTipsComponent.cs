@@ -861,7 +861,7 @@ namespace ET
             self.Lab_ItemName.GetComponent<Text>().text = itemconf.GetItemName();
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
 
-            self.ItemDes.GetComponent<Text>().text = UICommonHelper.CustomWrap(GameSettingLanguge.LoadLocalization(Text_ItemDes));
+            self.ItemDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes);
             //赞助宝箱设置描述为绿色
             //if (itemSubType == 9)
             //{
@@ -899,6 +899,8 @@ namespace ET
                 int sceneID = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
                 self.ItemDes.GetComponent<Text>().text =  string.Format(GameSettingLanguge.LoadLocalization("{0}\n前往地图:{1}开启藏宝图!"), itemconf.GetItemDes(), DungeonConfigCategory.Instance.Get(sceneID).GetChapterName());
             }
+
+            self.ItemDes.GetComponent<Text>().text = UICommonHelper.CustomWrap(self.ItemDes.GetComponent<Text>().text);
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");
             if (itemconf.UseLv > 0)
