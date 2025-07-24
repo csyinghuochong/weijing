@@ -174,7 +174,7 @@ W�0说话内容。。。。。。。。。。。。"The following area is n
 ;�10秒后退出副本"Exit the instance in 10 seconds
  �	挑战石"Challenge Stone
 R��#勇士请重整旗鼓,重新再来!"'Warriors, please regroup and try again!
-+��返回主城"Return to the main city
+��返回主城"Return
 &��进入条件"Entry Requirements
 %��选择难度"Select Difficulty
 ��进入副本"Enter
@@ -1044,10 +1044,11 @@ b��!领地达到(25/1)可激活兑换"9Redemption can be activated when terri
 ��一键领取"One-Tap
 #��活动奖励"Activity reward
 ��	数量："Quantity
-$��邮件信息"Mail information
-$��邮件附件"Mail attachments
+��邮件信息"	Mail Info
+��邮件附件"
+Mail Items
 ��邮件"Mail
-/��邮件内容"The contents of the message
+,��邮件内容"The contents of the mail
 ��领取邮件"Claim
 ���G提示:请尽快收取邮箱内的邮件,最多保留100封邮件喔！"[Prompt: Please collect the mail in the mailbox as soon as possible, keep 100 mails at most!
 !��点击穿戴"Click to wear
@@ -3300,7 +3301,7 @@ a��$是否花费350钻石去到第{0}层"5Do you want to spend 350 diamonds t
 ;��请清理一下背包！"Please clean your backpack!
 =��已通关该关卡！" The checkpoint has been cleared!
 @��请激活前置关卡！" Please activate the front level!
-��生命: {0}"	Life: {0}
+��生命: {0}"Hp: {0}
 O��!伤害总值:{0}
 伤害秒值:{1}"&Total Damage: {0} 
 Damage Seconds: {1}
