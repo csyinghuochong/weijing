@@ -125,6 +125,8 @@ namespace ET
             { 8, "13;10000000" },   //第九个格子
         };
 
+        //充值购买钻石比例
+        public static int RechargeToDiamondRatio = 100;
         //赠送钻石数量
         public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(9){
             { 1,        0},
@@ -137,7 +139,8 @@ namespace ET
             { 488,      8888},
             { 648,      12888},
         };
-        
+
+        public static int RechargeToDiamondRatio_EN = 600;
         public static Dictionary<int, int> RechargeGive_EN = new Dictionary<int, int>(){
             { 1,        0},
             { 5,        300},
