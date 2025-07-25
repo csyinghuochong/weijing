@@ -1211,6 +1211,8 @@ MonoBehaviour:
     gameObject: {fileID: 628431474171741583}
   - key: UISkillSetItem
     gameObject: {fileID: 147532003148780941}
+  - key: Text_Text3
+    gameObject: {fileID: 2263973138245686688}
 --- !u!1 &628431474171772155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +1953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36.39998, y: -573}
+  m_AnchoredPosition: {x: -36.39998, y: -554}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4790088486705335277
@@ -1989,7 +1991,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 46
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
