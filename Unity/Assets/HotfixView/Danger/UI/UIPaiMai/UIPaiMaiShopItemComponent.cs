@@ -56,6 +56,11 @@ namespace ET
             {
                 self.OnUpdateData( self.PaiMaiId, self.PaiMaiShopItemInfo );
             }
+
+            if (GameSettingLanguge.Language == 1)
+            {
+                self.UIItemComponent.Label_ItemName.GetComponent<RectTransform>().sizeDelta = new Vector2(280f, 90f);
+            }
         }
 
         public static void ImageButton(this UIPaiMaiShopItemComponent self)
