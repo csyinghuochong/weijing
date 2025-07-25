@@ -36,6 +36,14 @@ namespace ET
                     reply();
                     return;
                 }
+                resultAccounts = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), _account => _account.Account == request.Account);
+                if (resultAccounts.Count == 0)
+                {
+                    Log.Error($"A2Center_TiktokBinging resultAccounts.Count == 0");
+                    reply();
+                    return;
+                }
+
 
                 DBCenterAccountInfo dBCenterAccountInfo = resultAccounts[0];
                 dBCenterAccountInfo.PlayerInfo.TikTokGuanFuAccount = request.TikTokGuanFuAccount;
