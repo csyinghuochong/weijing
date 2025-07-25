@@ -61,11 +61,17 @@ namespace ET
                 uIItemComponent.Label_ItemNum.SetActive(true);
                 itemSpace.transform.localScale = Vector3.one * 1f;
             }
+            
+            self.OnLanguageUpdate();
         }
     }
 
     public static class UISerialComponentSystem
     {
+        public static void OnLanguageUpdate(this UISerialComponent self)
+        {
+            self.ItemList.GetComponent<GridLayoutGroup>().spacing = GameSettingLanguge.Language == 0? new Vector2(20f, 10f) : new Vector2(55f, 10f);
+        }
 
         public static async ETTask OnButtonGet(this UISerialComponent self)
         {

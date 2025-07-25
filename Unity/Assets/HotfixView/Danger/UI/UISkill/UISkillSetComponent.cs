@@ -42,6 +42,8 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             self.GetParent<UI>().OnUpdateUI = self.UpdateSkillListUI;
+            
+            self.OnLanguageUpdate();
 
             self.InitSkillSetIcons();
             self.OnSkillSetting();
@@ -66,6 +68,12 @@ namespace ET
 
     public static class UUISkillSetComponentSystem
     {
+        public static void OnLanguageUpdate(this UISkillSetComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Text_Text3").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 46 : 36;
+        }
 
         public static void InitSkillSetIcons(this UISkillSetComponent self)
         {
