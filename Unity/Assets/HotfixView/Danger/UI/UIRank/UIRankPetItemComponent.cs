@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,7 +111,23 @@ namespace ET
             self.RankPetInfo = rankPetInfo;
             if (!ComHelp.IfNull(rankPetInfo.TeamName))
             {
-                self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
+                if (GameSettingLanguge.Language == 0)
+                {
+                    self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
+                }
+                else
+                {
+                    string input = rankPetInfo.TeamName;
+                    Match match = Regex.Match(input, @":(\d+)的");
+                    string numberStr = "";
+                    if (match.Success)
+                    {
+                        // 提取第一个捕获组的内容
+                        numberStr = match.Groups[1].Value;
+                    }
+                    self.Lab_TeamName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("机器人:{0}的队伍"), numberStr);
+                }
+                
                 self.Lab_Owner.GetComponent<Text>().text = "";
             }
             else

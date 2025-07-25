@@ -40,6 +40,8 @@ namespace ET
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
             self.Text_Rank = rc.Get<GameObject>("Text_Rank");
 
+            self.OnLanguageUpdate();
+            
             self.OnUpdateUI().Coroutine();
             self.OnUpdateTimes();
         }
@@ -47,6 +49,14 @@ namespace ET
 
     public static class UIRankPetComponentSystem
     {
+        public static void OnLanguageUpdate(this UIRankPetComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            rc.Get<GameObject>("Text_1").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+            self.Text_Rank.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 36;
+        }
+
         public static async ETTask OnUpdateUI(this UIRankPetComponent self)
         {
             long instacnid = self.InstanceId;

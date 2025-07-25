@@ -3837,6 +3837,7 @@
 {"_t":"MulLanguageConfig","_id":203725,"Des":"","Chinese":"角斗场","English":"Colosseum"},
 {"_t":"MulLanguageConfig","_id":203726,"Des":"","Chinese":"喜从天降","English":"A blessing from the heavens"},
 {"_t":"MulLanguageConfig","_id":203727,"Des":"","Chinese":"竞技场","English":"Arena"},
+{"_t":"MulLanguageConfig","_id":203728,"Des":"","Chinese":"机器人:{0}的队伍","English":"Robot team: {0}"},
 {"_t":"MulLanguageConfig","_id":300001,"Des":"邮件内容","Chinese":"合区补偿","English":"Zone-wide compensation"},
 {"_t":"MulLanguageConfig","_id":300002,"Des":"","Chinese":"合区补偿改名卡","English":"Union Area Compensation Renaming Card"},
 {"_t":"MulLanguageConfig","_id":300003,"Des":"","Chinese":"角斗场排名奖励","English":"Gladiator Ranking Reward"},
