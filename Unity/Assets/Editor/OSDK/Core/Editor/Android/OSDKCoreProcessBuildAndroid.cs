@@ -24,6 +24,9 @@ namespace Douyin.Game
         public void OnPreprocessBuild(BuildReport report)
         {
             if (report.summary.platform != BuildTarget.Android) return;
+
+            Debug.Log($"OSDKCoreProcessBuildAndroid.OnPreprocessBuild");
+
             // 自动配置模块Gradle
             AutoConfigGradle();
             // 自动配置模块Manifest

@@ -742,14 +742,14 @@ namespace ET
 				int erroCode = ErrorCode.ERR_Success;
 				long instanceid = self.InstanceId;
 				string account = self.Account.GetComponent<InputField>().text;
-
+				int platform = GlobalHelp.GetPlatform();
                 if (GlobalHelp.IsOutNetMode)
 				{
-					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode, account);
+					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode, account, platform);
 				}
 				else
 				{
-					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.VersionMode, account	);
+					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.VersionMode, account	, platform);
 				}
 				if (instanceid != self.InstanceId)
 				{

@@ -65,6 +65,33 @@ namespace ET
     }
 
     [Event]
+    public class TikTok_TikTokCreateRole : AEventClass<EventType.TikTokCreateRole>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokCreateRole args = a as EventType.TikTokCreateRole;
+
+            Log.ILog.Debug("TikTok_TikTokCreateRole");
+
+            //后端请求
+            //$"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{accountInfoComponent.AccountId}";
+            OSDKGameRole init = GameObject.Find("Global").GetComponent<OSDKGameRole>();
+
+            string[] roleinfo = args.CreateRoleInfo.Split('_');
+
+            GameAccountRole role = new GameAccountRole();
+            role.RoleId = roleinfo[0];
+            role.RoleName = roleinfo[1];
+            role.RoleLevel = "1";
+            role.ServerId = roleinfo[2];
+            role.ServerName = roleinfo[3];
+            role.AvatarUrl = "https://img.71acg.net/kbdev/opensj/20230109/15243214265";
+
+            init.ReportGameRole(roleinfo[5], role);
+        }
+    }
+
+    [Event]
     public class TikTok_TikTokGetAuthorizeCode : AEventClass<EventType.TikTokGetAuthorizeCode>
     {
         protected override void Run(object a)

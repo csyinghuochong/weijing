@@ -237,7 +237,13 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(createRoleInfo.PlayerOcc);
 
-            if (GlobalHelp.GetPlatform() == 100)
+            if (GlobalHelp.GetPlatform() == 8)      //抖音全官服促销分账包
+            {
+                EventType.TikTokCreateRole.Instance.ZoneScene = self.ZoneScene();
+                EventType.TikTokCreateRole.Instance.CreateRoleInfo = $"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{accountInfoComponent.AccountId}";
+                EventSystem.Instance.PublishClass(EventType.TikTokCreateRole.Instance);
+            }
+            if (GlobalHelp.GetPlatform() == 100)    //渠道包
             {
                 EventType.QuDaoCreateRole.Instance.ZoneScene = self.ZoneScene();
                 EventType.QuDaoCreateRole.Instance.CreateRoleInfo = $"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{occupationConfig.OccupationName}";

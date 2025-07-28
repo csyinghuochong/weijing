@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEditor.Android;
+using UnityEngine;
 
 namespace Douyin.Game
 {
@@ -9,6 +10,8 @@ namespace Douyin.Game
 
         public void OnPostGenerateGradleAndroidProject(string path)
         {
+            Debug.Log($"OSDKPostProcessBuildAndroid.OnPostGenerateGradleAndroidProject");
+
             var assetsDir = path + OSDKProjectPathUtils.SdkWorkDirAssets;
             
             // 先写入配置文件，在拷贝config.json文件到assets目录

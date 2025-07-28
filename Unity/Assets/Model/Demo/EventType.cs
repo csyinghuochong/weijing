@@ -915,6 +915,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TikTokCreateRole : DisposeObject
+        {
+            public static readonly TikTokCreateRole Instance = new TikTokCreateRole();
+            public string CreateRoleInfo;
+            public Scene ZoneScene;
+        }
+
         public class TikTokPayRequest : DisposeObject
         {
             public static readonly TikTokPayRequest Instance = new TikTokPayRequest();

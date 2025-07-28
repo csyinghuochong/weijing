@@ -26,7 +26,6 @@ namespace ET
     {
         public int err_no = 0;// 业务错误码
         public string err_msg; // 业务错误描述
-        public int log_id = 0; // 日志标识
         public List<TikTokPhoneLoginResponseData> data;
 
     }

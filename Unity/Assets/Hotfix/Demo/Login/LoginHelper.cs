@@ -498,7 +498,7 @@ namespace ET
         }
 
         //请求服务器列表【外网】
-        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode, string account)
+        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode, string account, int platform)
         {
             try
             {
@@ -509,9 +509,9 @@ namespace ET
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { Account = account });
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
-
+      
                     //存储列表
-                    OnRecvServerInfo(zoneScene, r2CSelectServer);
+                    OnRecvServerInfo(zoneScene, r2CSelectServer, platform);
                 }
                 session.Dispose();
                 return r2CSelectServer.Error;
@@ -563,7 +563,7 @@ namespace ET
             }
         }
 
-        public static void OnRecvServerInfo(Scene zoneScene, A2C_ServerList r2CSelectServer)
+        public static void OnRecvServerInfo(Scene zoneScene, A2C_ServerList r2CSelectServer ,int platform)
         {
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             accountInfoComponent.TianQiValue = r2CSelectServer.Message;
@@ -573,9 +573,14 @@ namespace ET
             accountInfoComponent.NoticeVersion_EN = r2CSelectServer.NoticeVersion_EN;
             accountInfoComponent.NoticeText_EN = r2CSelectServer.NoticeText_EN;
             accountInfoComponent.SmsVerifyType = r2CSelectServer.SmsVerifyType;
+            //苹果的强制为阿里云
+            if (platform == 20001)
+            {
+                accountInfoComponent.SmsVerifyType =  1;
+            }
         }
 
-        public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode, string account)
+        public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode, string account,int platform)
         {
             try
             {
@@ -587,7 +592,7 @@ namespace ET
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
-                    OnRecvServerInfo(zoneScene, r2CSelectServer);
+                    OnRecvServerInfo(zoneScene, r2CSelectServer, platform);
                 }
                 session.Dispose();
                 return r2CSelectServer.Error;

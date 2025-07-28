@@ -18,6 +18,7 @@ namespace Douyin.Game
         /// <param name="role"></param>
         public void ReportGameRole(string gameUserId, GameAccountRole role)
         {
+            Debug.Log("ReportGameRole");
             OSDK.GetService<IGameRoleService>().ReportGameRole(gameUserId, role, RoleBindSuccess, RoleBindFailed);
         }
         
@@ -26,12 +27,13 @@ namespace Douyin.Game
         private void RoleBindSuccess()
         {
             // TODO 请处理账号绑定成功后的游戏逻辑
-            
+            Debug.Log("RoleBindSuccess");
         }
         
         private void RoleBindFailed(BaseErrorEntity<RoleReportErrorEnum> entity)
         {
             // TODO 请处理账号绑定失败后的游戏逻辑
+            Debug.Log($"RoleBindFailed:   {entity.ErrorEnum}  {entity.Message}");
             
         }
 
