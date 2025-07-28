@@ -6,6 +6,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
+#if SERVER
+using System.Text.Json;
+#endif
+
 namespace ET
 {
     class HexConverter
@@ -284,6 +288,49 @@ namespace ET
 
 #if SERVER
 
+        public static  async ETTask<string>  OnWebRequestPostBody(string url, Dictionary<string, string> headers,  Dictionary<string, string> dictionary)
+        {
+            var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+            httpClient.DefaultRequestHeaders.Clear();
+
+            if (headers != null)
+            {
+                foreach (var head in headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(head.Key, head.Value);
+                }
+            }
+
+            var body = JsonSerializer.Serialize(dictionary);
+
+            //var body = JsonHelper.ToJson(dictionary);
+
+            HttpContent postContent = new StringContent(body);
+           
+            postContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            try
+            {
+                var responseMessage = await httpClient.PostAsync(url, postContent);
+                if (responseMessage != null && responseMessage.StatusCode == HttpStatusCode.OK)
+                {
+                    var result = await responseMessage.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    // 网络请求失败，授权失败
+                    Console.WriteLine($"OnWebRequestPostBody 网络请求失败:{url}");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return string.Empty;
+        }
+
+
+
         public static string UrlEncodeInterface(string str)
         {
             return Uri.EscapeDataString(str);
@@ -377,6 +424,12 @@ namespace ET
             var body = JsonHelper.ToJson(dictionary);
             HttpContent postContent = new StringContent(body);
             var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Add("access-token", clientToken);
+
+            Console.WriteLine($"open_id: {open_id}");
+            Console.WriteLine($"access_token: {access_token}");
+            Console.WriteLine($"clientToken: {clientToken}");
 
             postContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             try
@@ -385,14 +438,17 @@ namespace ET
                 if (responseMessage != null && responseMessage.StatusCode == HttpStatusCode.OK)
                 {
                     var responeresult = await responseMessage.Content.ReadAsStringAsync();
-                  
+
+                    Console.WriteLine($"TikTokGetHistorydAccountInfo: {responeresult}");
+                    Log.Debug($"TikTokGetHistorydAccountInfo: {responeresult}");
+
                     //7492384281722297124
                     //_000EX1CG4-EAWlO9YUsp1y4HnwdP1XV1X9P
                     //这个接口有配额 要注意！！！
                     //OSDK.get_history_account_info return: {"err_no":28003017,"err_msg":"quota已用完","log_id":"20250724161757EE2515F1BFF953756E79"}
                     if (JsonHelper.FromJson(typeof(Dictionary<string,object>), responeresult) is Dictionary<string, object> obj)
                     {
-                        var message = obj["message"] as string;
+                        var message = obj["err_msg"] as string;
                         if (message?.Equals("success") == true)
                         {
                             // 授权成功

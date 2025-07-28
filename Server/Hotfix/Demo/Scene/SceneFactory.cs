@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 
 namespace ET
@@ -32,6 +30,11 @@ namespace ET
                     scene.AddComponent<LoginInfoRecordComponent>();
                     break;
                 case SceneType.AccountCenter:
+
+                    //HTTP 协议：默认端口是 80
+                    //例如 http://api.example.com 等价于 http://api.example.com:80
+                    //HTTPS 协议：默认端口是 443
+                    //例如 https://api.example.com 等价于 https://api.example.com:443
                     int tapport = ComHelp.IsInnerNet() ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
 
                     scene.AddComponent<FangChenMiComponent>();

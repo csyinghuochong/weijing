@@ -3,6 +3,45 @@ using System.Collections.Generic;
 
 namespace ET
 {
+    public class HttpTikTokBingdingResponse
+    {
+        public int err_no = 0;// 业务错误码
+        public string err_msg; // 业务错误描述
+        public int log_id = 0; // 日志标识
+        public List<HttpTikTokBingdingResponseData> data;
+
+    }
+    public class HttpTikTokBingdingResponseData
+    {
+        public string game_user_id;
+        public string role_id;
+        public string role_name;
+        public string level;
+        public string region_name;
+        public string avatar_url;
+    }
+
+
+    public class TikTokPhoneLoginResponse
+    {
+        public int err_no = 0;// 业务错误码
+        public string err_msg; // 业务错误描述
+        public int log_id = 0; // 日志标识
+        public List<TikTokPhoneLoginResponseData> data;
+
+    }
+    public class TikTokPhoneLoginResponseData
+    {
+        public string game_user_id;
+        public string game_user_name;
+        public string mask_account_number;
+    }
+
+    public class TikTokSmsVerifyCodeResponse
+    {
+        public int err_no = 0;// 业务错误码
+        public string err_msg; // 业务错误描述
+    }
 
     public class HttpGetRouterResponse : Entity
     {
@@ -20,7 +59,7 @@ namespace ET
 
     public sealed class TikTokOAuthData
     {
-        public int error_code;        
+        public int error_code;
         public string description;
         public string access_token;
         public string message;  //说明
@@ -61,7 +100,7 @@ namespace ET
     {
         //认证结果
         public int status;
-        
+
         public string error;
     }
 
@@ -70,7 +109,7 @@ namespace ET
         public int HideID;
         public long HideValue;
     }
-    
+
     public class BossDevelopment
     {
         public string Name;
@@ -235,7 +274,7 @@ namespace ET
         FirstUnionName = 19,         //优先显示家族称号
         SkillAttackPlayerFirst = 20, //技能优先攻击玩家
         PickSet = 21,               // 自动拾取过滤
-      
+
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
         GuaJiRang = 202,      //挂机范围
