@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandLine;
 using UnityEngine;
+using GooglePlayGames;
 
 namespace ET
 {
@@ -56,7 +57,34 @@ namespace ET
 		{
 			World.Instance.Dispose();
 		}
+
+		public void GooglePlayGamesSignin()
+		{
+			Debug.Log("GooglePlayGamesSignin");
+			// 配置登录选项，请求用户信息权限
+			//PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+
+			//PlayGamesPlatform.Activate();
+			//Social.localUser.Authenticate(ProcessAuthentication_2);
+			//this.GetComponent<GoogleLoginScript>().OnSignIn();
+
+			//PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+			//PlayGamesPlatform.InitializeInstance(config);
+			
+			PlayGamesPlatform.Activate();
+			Social.localUser.Authenticate((bool success) =>
+			{
+				if (success)
+				{
+					Debug.Log("Google Play Games 登录成功");
+					Debug.Log("PlayGamesPlatform.Instance.GetUserId xxxx: " + PlayGamesPlatform.Instance.GetUserId());
+				}
+				else
+				{
+					Debug.Log("Google Play Games 登录失败");
+					Debug.Log("PlayGamesPlatform.Instance.GetUserId yyyy: " + PlayGamesPlatform.Instance.GetUserId());
+				}
+			});
+		}
 	}
-	
-	
 }
