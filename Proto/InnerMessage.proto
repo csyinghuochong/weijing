@@ -2202,4 +2202,5 @@ message Center2A_TiktokBinging // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+	int64 AccountId = 1;
 }

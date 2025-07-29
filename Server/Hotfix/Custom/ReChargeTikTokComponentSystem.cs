@@ -76,7 +76,7 @@ namespace ET
             paramlist.Add("client_ip", request.ClientIp);
             paramlist.Add("sign", sign);
 
-            string result = HttpHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);
+            string result = HttpServerHelper.OnWebRequestPost_Pay( self.TikTokRreOrder, paramlist);
             //Log.Console($"sdk_open_id:  {request.Account}");
             //Log.Console($"risk_control_info:  {request.payMessage}");
             //Log.Console($"ReChargeTikTok:  {result}");

@@ -19,13 +19,13 @@ namespace ET
         private async ETTask TestHttp()
         {
             await TimerComponent.Instance.WaitAsync(10 * 1000);
-            string taphost = ComHelp.IsInnerNet() ? "127.0.0.1" : "39.96.194.143";
-            int tapport = ComHelp.IsInnerNet() ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
-            string url = $"http://{taphost}:{tapport}/wjtiktokPhoneNumberLogin";
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            data.Add("app_id", "554726");
-            data.Add("auth_code", "auth_code");
-            HttpHelper.OnWebRequestPostBody(url, null,  data).Coroutine();
+            //string taphost = ComHelp.IsInnerNet() ? "127.0.0.1" : "39.96.194.143";
+            //int tapport = ComHelp.IsInnerNet() ? ComHelp.TapHttpIneer : ComHelp.TapHttpOuter;
+            //string url = $"http://{taphost}:{tapport}/wjtiktokPhoneNumberLogin";
+            //Dictionary<string, string> data = new Dictionary<string, string>();
+            //data.Add("app_id", "554726");
+            //data.Add("auth_code", "auth_code");
+            //HttpHelper.OnWebRequestPostBody(url, null,  data).Coroutine();
         }
 
         private async ETTask RunAsync(EventType.AppStart args)

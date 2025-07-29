@@ -30,7 +30,7 @@ namespace ET
             {
                 centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
                    _account => _account.PlayerInfo != null && _account.PlayerInfo.TikTokGuanFuAccount.Equals(request.AccountName));
-                Console.WriteLine($"A2Center_CheckAccount.抖音渠道包迁移账号: {request.AccountName} {request.Password} {centerAccountInfoList != null && centerAccountInfoList.Count > 0}");
+                Console.WriteLine($"A2Center_CheckAccount.获取抖音渠道包账号: {request.AccountName} {request.Password} {centerAccountInfoList != null && centerAccountInfoList.Count > 0}");
             }
 
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;

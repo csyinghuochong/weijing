@@ -12,23 +12,6 @@ namespace ET
 
     public static class UILoginComponentSystem4
     {
-        public static void OnRecvOpenIdCodeCode(this UILoginComponent self, string open_id)
-        {
-            Log.ILog.Debug($"OnRecvOpenIdCodeCode: {open_id}");
-            if (string.IsNullOrEmpty(open_id))
-            {
-                self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = -1;
-                self.Account.GetComponent<InputField>().text = string.Empty;
-                self.Password.GetComponent<InputField>().text = string.Empty;
-                FloatTipManager.Instance.ShowFloatTip("抖音登录失败！");
-            }
-            else
-            {
-                self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = 100;
-                self.Account.GetComponent<InputField>().text = open_id;
-                self.Password.GetComponent<InputField>().text = LoginTypeEnum.TikTok.ToString();
-            }
-        }
 
         public static async ETTask OnTikTokAuthorizeHandler(this UILoginComponent self, string jsonresult)
         {

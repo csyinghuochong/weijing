@@ -111,9 +111,15 @@ namespace ET
             try
             {
                 IHttpHandler handler;
+
                 if (self.dispatcher.TryGetValue(context.Request.Url.AbsolutePath, out handler))
                 {
+                    Console.WriteLine($"HttpComponent_Handle Sucess: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} {context.Request.RawUrl}");
                     await handler.Handle(self.Domain, context);
+                }
+                else
+                {
+                    Console.WriteLine($"HttpComponent_Handle Failed: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} ");
                 }
             }
             catch (Exception e)
