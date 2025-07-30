@@ -22,6 +22,13 @@ dependencyResolutionManagement {
          maven {
                url "https://mvn.mob.com/android"
            }
+// Android Resolver Repos Start
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url (unityProjectPath + "/Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository") // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
+        }
+        mavenLocal()
+// Android Resolver Repos End
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }

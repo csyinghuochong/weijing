@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+﻿apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
 dependencies {
@@ -12,8 +12,23 @@ dependencies {
 
 
    //  implementation 'com.google.android.gms:play-services-games-v2:+' 
+// Android Resolver Dependencies Start
+    implementation 'com.google.games:gpgs-plugin-support:2.0.0' // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
+// Android Resolver Dependencies End
+ 
 **DEPS**}
 
+// Android Resolver Exclusions Start
+android {
+  packagingOptions {
+      exclude ('/lib/armeabi/*' + '*')
+      exclude ('/lib/mips/*' + '*')
+      exclude ('/lib/mips64/*' + '*')
+      exclude ('/lib/x86/*' + '*')
+      exclude ('/lib/x86_64/*' + '*')
+  }
+}
+// Android Resolver Exclusions End
 android {
     namespace "com.unity3d.player"
     ndkPath "**NDKPATH**"
