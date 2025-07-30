@@ -475,14 +475,20 @@ public class MyEditorScript
 		
 		if (name == "Google7" )
 		{
+#if Google7
 			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel35;
+#endif
 		}
 		else
 		{
 			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
-            if (name == "QuDao")
-            {
-                //PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;// AndroidSdkVersions.AndroidApiLevel26;
+			if (name == "QuDao")
+			{
+				PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+			}
+			else
+			{
+                PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
             }
         }
 		

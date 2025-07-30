@@ -22,10 +22,12 @@ namespace Douyin.Game
         {
             if (report.summary.platform != BuildTarget.Android) return;
 
+            #if TikTokGuanFu8
             Debug.Log($"OSDKPrepareProcessBuildAndroid.OnPreprocessBuild");
 
             RemoveInsertedLines();  // 将以前插入到gradle中的东西移除。避免某些模块被删除后，gradle中还保留着对应的依赖。最终导致包体增大。
             PrepareGralde();
+            #endif
         }
 
         // 准备项目需要的Gradle相关配置

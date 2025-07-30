@@ -10,6 +10,7 @@ namespace Douyin.Game
 
         public void OnPostGenerateGradleAndroidProject(string path)
         {
+            #if TikTokGuanFu8
             Debug.Log($"OSDKPostProcessBuildAndroid.OnPostGenerateGradleAndroidProject");
 
             var assetsDir = path + OSDKProjectPathUtils.SdkWorkDirAssets;
@@ -20,6 +21,7 @@ namespace Douyin.Game
                 configOriginFilePath,
                 assetsDir,
                 OSDKIntegrationPathUtils.ConfigJsonFileNameAndroid);
+            #endif
         }
 
         private static void CopyFileToAndoridStudioDir(string originFilePath, string targetDir, string targetFileName,
