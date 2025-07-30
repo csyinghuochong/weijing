@@ -527,6 +527,7 @@ public class MyEditorScript
             PlayerSettings.applicationIdentifier = "com.example.weijinggame";
         }
 		UnityEngine.Debug.Log(buildTarget);
+        AssetDatabase.Refresh();
         GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 	}
 
