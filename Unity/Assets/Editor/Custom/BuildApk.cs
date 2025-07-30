@@ -125,14 +125,8 @@ public class MyEditorScript
     {
         BulidTarget("TikTok5", "Android");
     }
-    
-   [MenuItem("Custom/Build Android TikTokGuanFu8")]
-    static void PerformAndroidTikTokGuanFu8Build()
-    {
-        BulidTarget("TikTokGuanFu8", "Android");
-    }
 
-    [MenuItem("Custom/Build Android TikTokMuBao6")]
+    //[MenuItem("Custom/Build Android TikTokMuBao6")]
     static void PerformAndroidTikTokMuBao6Build()
     {
         BulidTarget("TikTokMuBao6", "Android");
@@ -143,6 +137,12 @@ public class MyEditorScript
     static void PerformAndroidGoogleBuild()
     {
         BulidTarget("Google7", "Android");
+    }
+
+    [MenuItem("Custom/Build Android TikTokGuanFu8")]
+    static void PerformAndroidTikTokGuanFu8Build()
+    {
+        BulidTarget("TikTokGuanFu8", "Android");
     }
 
     [MenuItem("Custom/Build Android ALL")]
