@@ -146,8 +146,7 @@ namespace ET
 
                 self.registerBtn = rc.Get<GameObject>("CreateAccountBtn");
 				self.registerBtn.GetComponent<Button>().onClick.AddListener(self.OnRegister);
-                self.registerBtn.SetActive(GlobalHelp.GetPlatform() != 5 && GlobalHelp.GetPlatform() != 100);
-
+                self.registerBtn.SetActive(platform != 5 && platform!=8 && platform != 100);
 
                 self.UIAgeTip = rc.Get<GameObject>("UIAgeTip");
 				self.UIAgeTip.SetActive(false);

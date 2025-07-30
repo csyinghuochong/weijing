@@ -86,9 +86,9 @@ namespace ET
             //后端请求
             GameObject.Find("Global").GetComponent<OSDKDouyin>().OnTikTokAuthorizeHandler = args.TikTokAuthorizeHandler;
 
-
             OSDKDouyin init = GameObject.Find("Global").GetComponent<OSDKDouyin>();
-            init.Authorize();
+            //init.CheckTimeInteval = 3600 * 1000;
+            init.Authorize("user_info");
         }
     }
 }

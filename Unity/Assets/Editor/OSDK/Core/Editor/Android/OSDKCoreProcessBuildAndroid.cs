@@ -27,10 +27,13 @@ namespace Douyin.Game
 
             Debug.Log($"OSDKCoreProcessBuildAndroid.OnPreprocessBuild");
 
+
+#if TikTokGuanFu8
             // 自动配置模块Gradle
             AutoConfigGradle();
             // 自动配置模块Manifest
             AutoConfigManifest();
+#endif
         }
 
         private static void AutoConfigGradle()
