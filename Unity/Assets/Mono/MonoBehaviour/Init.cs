@@ -261,11 +261,6 @@ namespace ET
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
-
-			if (this.Platform == 8)
-			{ 
-				this.GetComponent<OSDKInit>().InitSDK();
-			}
         }
         
 
@@ -299,11 +294,10 @@ namespace ET
             }
             if (this.Platform == 8)
             {
-				//根据【环境配置】- 【组件导入】导入OSDKCore.unitypackage
-				//初始化SDK后会采集一些设备信息,请确保披露隐私协议后再调用GBCommonSDK.init(...)方法以保证合规。
-				//初始化需要尽可能早调用，请确保SDK初始化成功后再调其他业务接口，否则可能会有不可预期的错误。
-				
-
+                //根据【环境配置】- 【组件导入】导入OSDKCore.unitypackage
+                //初始化SDK后会采集一些设备信息,请确保披露隐私协议后再调用GBCommonSDK.init(...)方法以保证合规。
+                //初始化需要尽可能早调用，请确保SDK初始化成功后再调其他业务接口，否则可能会有不可预期的错误。
+                this.GetComponent<OSDKInit>().InitSDK();
 #if UNITY_ANDROID && !UNITY_EDITOR
 			//jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
 #else
@@ -1111,8 +1105,9 @@ namespace ET
 #if UNITY_ANDROID
 #if Google7
             Debug.Log("GooglePlayGamesSignin" );
+
             // 配置登录选项，请求用户信息权限
-            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+           PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
             //PlayGamesPlatform.Activate();
             //Social.localUser.Authenticate(ProcessAuthentication_2);
@@ -1120,20 +1115,20 @@ namespace ET
 
            // PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             //PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.Activate();
+    //        PlayGamesPlatform.Activate();
 
-            Social.localUser.Authenticate((bool success) => {
-				if (success)
-				{
-					Debug.Log("Google Play Games 登录成功");
-                    Debug.Log("PlayGamesPlatform.Instance.GetUserId xxxx: " + PlayGamesPlatform.Instance.GetUserId());
-                }
-				else
-				{
-                    Debug.Log("Google Play Games 登录失败");
-                    Debug.Log("PlayGamesPlatform.Instance.GetUserId yyyy: " + PlayGamesPlatform.Instance.GetUserId());
-                }
-            });
+    //        Social.localUser.Authenticate((bool success) => {
+				//if (success)
+				//{
+				//	Debug.Log("Google Play Games 登录成功");
+    //                Debug.Log("PlayGamesPlatform.Instance.GetUserId xxxx: " + PlayGamesPlatform.Instance.GetUserId());
+    //            }
+				//else
+				//{
+    //                Debug.Log("Google Play Games 登录失败");
+    //                Debug.Log("PlayGamesPlatform.Instance.GetUserId yyyy: " + PlayGamesPlatform.Instance.GetUserId());
+    //            }
+    //        });
 #endif
 #endif
         }
