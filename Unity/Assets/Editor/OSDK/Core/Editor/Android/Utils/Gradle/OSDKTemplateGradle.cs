@@ -60,6 +60,7 @@ namespace Douyin.Game
         /// <param name="defaultTemplatePath">gradle 模板路径</param>
         protected void SetDefault(string defaultTemplatePath)
         {
+#if TikTokGuanFu8
             CheckTargetTemplateGradle(defaultTemplatePath);
             PrepareAllProjectsScopeIfNotExist();
             PrepareBuildScriptTagScopeIfNotExist();
@@ -69,6 +70,8 @@ namespace Douyin.Game
             // SetupCompileSdkVersion();
             SetupMultiDexEnable();
             SetupToolsBuildVersion();
+#endif
+
         }
 
         /// <summary>
