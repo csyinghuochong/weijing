@@ -18,7 +18,9 @@ namespace Douyin.Game
         {
             if (report.summary.platform != BuildTarget.Android) return;
             // 自动配置Core模块Gradle
+#if TikTokGuanFu8
             AutoConfigGradle();
+#endif
         }
 
         private static void AutoConfigGradle()

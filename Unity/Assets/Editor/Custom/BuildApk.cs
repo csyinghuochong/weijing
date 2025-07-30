@@ -49,10 +49,10 @@ public class rememberKeyStore
 		PlayerSettings.Android.keyaliasPass = "weijing829475";
 		
 		PlayerSettings.applicationIdentifier = "com.goinggame.weijing";
-		
-		// 可选：设置 Gradle 路径为 Unity 内置路径
-		//string unityGradlePath = "F:\\soft\\android\\gradle-6.7.1";
-		//EditorPrefs.SetString("AndroidGradlePath", unityGradlePath);
+
+        // 可选：设置 Gradle 路径为 Unity 内置路径
+        //string unityGradlePath = "F:\\soft\\android\\gradle-6.7.1";
+        //EditorPrefs.SetString("AndroidGradlePath", unityGradlePath);
 #endif
 #else
 
@@ -69,7 +69,7 @@ public class rememberKeyStore
 		// 密钥别名密码
 		PlayerSettings.Android.keyaliasPass = "829475";
 
-# if TikTok5
+#if TikTok5
         PlayerSettings.applicationIdentifier = "com.example.weijinggame.bytedance.gamecenter";
 #else
 		PlayerSettings.applicationIdentifier = "com.example.weijinggame";
@@ -80,7 +80,7 @@ public class rememberKeyStore
 #endif
 #endif
 
-	}
+    }
 }
 
 public class MyEditorScript
@@ -527,7 +527,13 @@ public class MyEditorScript
             PlayerSettings.applicationIdentifier = "com.example.weijinggame";
         }
 		UnityEngine.Debug.Log(buildTarget);
+
+        // 刷新资源数据库，触发脚本重新编译
         AssetDatabase.Refresh();
+
+        // 可选：强制重新编译所有脚本（确保宏定义生效）
+        AssetDatabase.ImportAsset("Assets", ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+
         GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 	}
 

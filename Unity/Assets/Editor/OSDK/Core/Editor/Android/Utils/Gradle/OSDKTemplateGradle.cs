@@ -153,7 +153,7 @@ namespace Douyin.Game
                     newLines.Add(lineText);
                 }
             }
-
+            Debug.Log($"File.WriteAllLines:  {_path}");
             File.WriteAllLines(_path, newLines, Encoding.UTF8);
             AssetDatabase.Refresh();
         }
