@@ -70,7 +70,7 @@ namespace ET
                     AccountName = request.OpenId,
                     Password = LoginTypeEnum.TikTok.ToString(),
                     LoginType = LoginTypeEnum.TikTok,
-                    age_type = 100,
+                    age_type = 0,
                 });
             }
             if (centerAccount.PlayerInfo == null && !string.IsNullOrEmpty(sdk_open_id))

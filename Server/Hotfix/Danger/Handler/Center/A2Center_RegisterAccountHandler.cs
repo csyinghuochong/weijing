@@ -43,14 +43,14 @@ namespace ET
                     newAccount.PlayerInfo.RealName = 1;
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }
-                if (request.LoginType == LoginTypeEnum.TikTokGuanFu)
-                {
-                    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
-                    newAccount.PlayerInfo.RealName = 1;
-                    newAccount.PlayerInfo.IdCardNo = string.Empty;
-                    //理论上不会到这 加个打印
-                    Console.WriteLine($"request.LoginType == LoginTypeEnum.TikTokGaunFu");
-                }
+                //if (request.LoginType == LoginTypeEnum.TikTokGuanFu)
+                //{
+                //    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
+                //    newAccount.PlayerInfo.RealName = 1;
+                //    newAccount.PlayerInfo.IdCardNo = string.Empty;
+                //    //理论上不会到这 加个打印
+                //    Console.WriteLine($"request.LoginType == LoginTypeEnum.TikTokGaunFu");
+                //}
 
                 //Log.Warning($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);

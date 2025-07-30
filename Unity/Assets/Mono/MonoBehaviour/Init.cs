@@ -102,7 +102,8 @@ namespace ET
 		public string QQAppID = "1105893765";
         //apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore	//勇士/圣光
         //apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore			//危境 //3A0A616CDBF889B3565BA81FCA3BED49
-
+        //bfb4edec-bea8-4ede-bced-2545dca2ea68
+        //dbb22efb-a8de-4b48-8b8a-9f651f430c25
         public AndroidJavaClass jc;
 		public AndroidJavaObject jo;
 
@@ -168,7 +169,7 @@ namespace ET
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
 			Options.Instance.Develop =  OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
+			Options.Instance.LogLevel =  OueNetMode ? 6 : 1;
 
             Log.ILog.Debug("unity111  Awake");
             Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
