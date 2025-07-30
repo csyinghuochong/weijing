@@ -499,7 +499,7 @@ public class MyEditorScript
 		PlayerSettings.Android.useCustomKeystore = true;
 		if (name == "Google7")
 		{
-			PlayerSettings.Android.keystoreName = "F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\google.keystore";
+			PlayerSettings.Android.keystoreName = "google.keystore";
 			PlayerSettings.Android.keystorePass = "weijing829475";
 			PlayerSettings.Android.keyaliasName = "weijingchinaboy";
 			PlayerSettings.Android.keyaliasPass = "weijing829475";
@@ -507,7 +507,7 @@ public class MyEditorScript
 		}
 		else
 		{
-			PlayerSettings.Android.keystoreName = "F:\\gitcustom\\trunk_android\\AndroidProject_WeiJing\\user.keystore";
+			PlayerSettings.Android.keystoreName = "user.keystore";
 			PlayerSettings.Android.keystorePass = "829475";
 			PlayerSettings.Android.keyaliasName = "chinaboy";
 			PlayerSettings.Android.keyaliasPass = "829475";

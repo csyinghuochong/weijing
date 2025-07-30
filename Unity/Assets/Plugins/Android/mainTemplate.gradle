@@ -1,91 +1,20 @@
-﻿// OSDK_AllProjects Start,此行注释不能删除，用于自动化标记使用
-allprojects {
-    repositories {
-        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
-        maven {
-            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
-        }
-        maven {
-            url 'https://jitpack.io'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/android_public/'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/bytedance_android/'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/Volcengine_inner/'
-        }
-        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
-        google()
-        jcenter()      
-        flatDir {
-            dirs 'libs'
-        }
-    }
-}
-// OSDK_AllProjects End,此行注释不能删除，用于自动化标记使用
-// OSDK_BuildScript Start,此行注释不能删除，用于自动化标记使用
-buildscript {
-    repositories {
-        // OSDK_Maven仓库地址配置 Start，此行注释不能删除，用于自动化标记使用
-        maven {
-            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
-        }
-        maven {
-            url 'https://jitpack.io'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/android_public/'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/bytedance_android/'
-        }
-        maven {
-            url 'https://maven.byted.org/repository/Volcengine_inner/'
-        }
-        // OSDK_Maven仓库地址配置 End，此行注释不能删除，用于自动化标记使用
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.3'
-**BUILD_SCRIPT_DEPS**}
-}
-// OSDK_BuildScript End,此行注释不能删除，用于自动化标记使用
-// OSDK_Dependencies Start,此行注释不能删除，用于自动化标记使用
-def version = "2.4.4.0"
-// OSDK_Dependencies End,此行注释不能删除，用于自动化标记使用
 apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // OSDK_MultiDex Start，此行注释不能删除，用于自动化标记使用
-    // multiDex
-    implementation 'com.android.support:multidex:1.0.3'
-    // OSDK_MultiDex End，此行注释不能删除，用于自动化标记使用
-    // OSDK_Core_Start，此行注释不能删除，用于自动化标记使用
-    implementation "com.bytedance.ttgame:gbsdk_common_host:$version"
-    implementation "com.bytedance.ttgame:gbsdk_common_plugin:$version"
-    implementation "com.bytedance.ttgame:gbsdk_optional_applog:$version"
-    // OSDK_Core_End，此行注释不能删除，用于自动化标记使用
-    // OSDK_Douyin_Start，此行注释不能删除，用于自动化标记使用
-    implementation "com.bytedance.ttgame:gbsdk_optional_aweme:$version" 
-    // OSDK_Douyin_End，此行注释不能删除，用于自动化标记使用
+
+
+   // implementation 'androidx.appcompat:appcompat:1.3.1'
+  //  implementation 'androidx.credentials:credentials:1.3.0'
+   // implementation 'androidx.credentials:credentials-play-services-auth:1.3.0'
+ //   implementation"com.google.android.libraries.identity.googleid:googleid:1.1.0"
+
+
+   //  implementation 'com.google.android.gms:play-services-games-v2:+' 
 **DEPS**}
 
 android {
-    // OSDK_PackagingOptions Start，此行注释不能删除，用于自动化标记使用
-    // 解决so冲突
-    packagingOptions {
-        pickFirst 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
-        pickFirst '**/libc++_shared.so'
-        pickFirst '**/libweibosdkcore.so'
-    }
-    // OSDK_PackagingOptions End，此行注释不能删除，用于自动化标记使用
     namespace "com.unity3d.player"
     ndkPath "**NDKPATH**"
     compileSdkVersion **APIVERSION**
@@ -97,7 +26,8 @@ android {
     }
 
     defaultConfig {
-        multiDexEnabled true
+         multiDexEnabled true 
+
         minSdkVersion **MINSDKVERSION**
         targetSdkVersion **TARGETSDKVERSION**
         ndk {
