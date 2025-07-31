@@ -409,11 +409,12 @@ namespace ET
             serverItems_1.Add(new ServerItem() { ServerId = 162, ServerIp = $"{ip}:20505", ServerName = "棉花糖", ServerOpenTime = 1751626800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 163, ServerIp = $"{ip}:20525", ServerName = "破晓战歌", ServerOpenTime = 1752231600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
             serverItems_1.Add(new ServerItem() { ServerId = 164, ServerIp = $"{ip}:20545", ServerName = "翡翠仙境", ServerOpenTime = 1752836400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
-
-
-            //2025/07/25 19:00:00 1753441200000 合区 xx-xx xx/xx
-            //2025/07/25 19:00:00 1753441200000 新区 繁花谷 165
             serverItems_1.Add(new ServerItem() { ServerId = 165, ServerIp = $"{ip}:20375", ServerName = "繁花谷", ServerOpenTime = 1753441200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
+
+
+            //2025/08/01 19:00:00 1754046000000 合区 xx-xx xx/xx
+            //2025/08/01 19:00:00 1754046000000 新区 萤火森林 166
+            serverItems_1.Add(new ServerItem() { ServerId = 166, ServerIp = $"{ip}:20455", ServerName = "萤火森林", ServerOpenTime = 1754046000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
 
 
             ///PlatformHelper.GetPlatformName(); 所有渠道ID定义
