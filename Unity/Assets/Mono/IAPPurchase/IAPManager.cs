@@ -1,9 +1,13 @@
 using System;
+using Unity.Services.Core;
+using Unity.Services.Core.Environments;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
+    private string k_Environment = "production";
+    
     private static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
 
@@ -14,6 +18,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public Action<string> SuccessedCallback;
     public Action FailedCallback;
+
+    void Awake()
+    {
+        if (UnityServices.State == ServicesInitializationState.Uninitialized)
+        {
+            InitializeGamingServices();
+        }
+    }
 
     void Start()
     {
@@ -26,6 +38,23 @@ public class IAPManager : MonoBehaviour, IStoreListener
         }
     }
 
+    void InitializeGamingServices()
+    {
+        try
+        {
+            var options = new InitializationOptions().SetEnvironmentName(k_Environment);
+
+            UnityServices.InitializeAsync(options).ContinueWith(task =>
+            {
+                Debug.Log("Congratulations!\nUnity Gaming Services has been successfully initialized.");
+            });
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError($"Unity Gaming Services failed to initialize with error: {exception.Message}.");
+        }
+    }
+    
     public void InitializePurchasing()
     {
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
