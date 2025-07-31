@@ -65,8 +65,11 @@ namespace ET
             {
                 if (dBCenterAccountInfo != null && !string.IsNullOrEmpty(dBCenterAccountInfo.DeviceID) && dBCenterAccountInfo.DeviceID != request.DeviceID)
                 {
-                    //if (request.ThirdLogin == "3" || request.ThirdLogin == "4")
-                    response.Error = ErrorCode.ERR_LoginInfoExpire;
+                    if (request.ThirdLogin == "3" || request.ThirdLogin == "4")
+                    {
+                        response.Error = ErrorCode.ERR_LoginInfoExpire;
+                    }
+                    //其他登陆方式每次都要授权
                     //Console.WriteLine($"无效设备id:  {dBCenterAccountInfo.Account}  {request.DeviceID}");
                 }
                 if (dBCenterAccountInfo != null && !string.IsNullOrEmpty(request.DeviceID) && dBCenterAccountInfo.DeviceID != request.DeviceID)
