@@ -191,6 +191,7 @@
     <type fullname="ET.GlobalConfig" preserve="all" />
     <type fullname="ET.Init" preserve="all" />
     <type fullname="ET.UILayer" preserve="all" />
+    <type fullname="IAPManager" preserve="all" />
     <type fullname="ReferenceCollector" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Mathematics">

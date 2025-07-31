@@ -1,6 +1,8 @@
 <dependencies>
   <packages>
+    <package>com.google.android.gms:play-services-ads-identifier:18.1.0</package>
     <package>com.google.games:gpgs-plugin-support:2.0.0</package>
+    <package>com.unity3d.ads-mediation:mediation-sdk:8.8.0</package>
   </packages>
   <files>
     <file>Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository/com/google/games/gpgs-plugin-support/2.0.0/gpgs-plugin-support-2.0.0.aar</file>
