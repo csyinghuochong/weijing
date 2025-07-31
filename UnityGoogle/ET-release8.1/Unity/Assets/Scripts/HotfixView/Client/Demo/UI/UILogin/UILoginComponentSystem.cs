@@ -18,18 +18,18 @@ namespace ET.Client
             self.account = rc.Get<GameObject>("Account");
             self.password = rc.Get<GameObject>("Password");
             rc.Get<GameObject>("PurchaseBtn").GetComponent<Button>().onClick.AddListener(() => { self.OnGoogleReCharge(); });
-
-            GameObject.Find("/Global").GetComponent<Init>().GooglePlayGamesSignin();
         }
 
         public static void OnLogin(this UILoginComponent self)
         {
-            if (PlayGamesPlatform.Instance.GetUserId() == "0")
-            {
-                return;
-            }
-
-            LoginHelper.Login(self.Root(), PlayGamesPlatform.Instance.GetUserId(), "123").Coroutine();
+            GameObject.Find("/Global").GetComponent<Init>().GooglePlayGamesSignin();
+            //
+            // if (PlayGamesPlatform.Instance.GetUserId() == "0")
+            // {
+            //     return;
+            // }
+            //
+            // LoginHelper.Login(self.Root(), PlayGamesPlatform.Instance.GetUserId(), "123").Coroutine();
         }
         
         public static void OnGoogleReCharge(this UILoginComponent self)
