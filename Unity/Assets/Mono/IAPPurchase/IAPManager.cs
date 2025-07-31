@@ -1,8 +1,11 @@
 using System;
-using Unity.Services.Core;
-using Unity.Services.Core.Environments;
 using UnityEngine;
 using UnityEngine.Purchasing;
+
+#if UNITY_2022_0_OR_NEWER
+using Unity.Services.Core;
+using Unity.Services.Core.Environments;
+#endif
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
@@ -21,10 +24,12 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     void Awake()
     {
+#if UNITY_2022_0_OR_NEWER
         if (UnityServices.State == ServicesInitializationState.Uninitialized)
         {
             InitializeGamingServices();
         }
+#endif
     }
 
     void Start()
@@ -42,12 +47,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         try
         {
+#if UNITY_2022_0_OR_NEWER
             var options = new InitializationOptions().SetEnvironmentName(k_Environment);
 
             UnityServices.InitializeAsync(options).ContinueWith(task =>
             {
                 Debug.Log("Congratulations!\nUnity Gaming Services has been successfully initialized.");
             });
+#endif
         }
         catch (Exception exception)
         {
