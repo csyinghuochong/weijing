@@ -9,6 +9,7 @@
       "Server.Hotfix/1.0.0": {
         "dependencies": {
           "AlibabaCloud.SDK.Dypnsapi20170525": "1.2.3",
+          "AlibabaCloud.SDK.Dysmsapi20170525": "4.0.0",
           "Alipay.AopSdk.Core": "2.5.0.1",
           "Server.Model": "1.0.0"
         },
@@ -30,7 +31,7 @@
       },
       "AlibabaCloud.GatewaySpi/0.0.3": {
         "dependencies": {
-          "Aliyun.Credentials": "1.4.2",
+          "Aliyun.Credentials": "1.5.0",
           "Tea": "1.1.3"
         },
         "runtime": {
@@ -40,39 +41,39 @@
           }
         }
       },
-      "AlibabaCloud.OpenApiClient/0.1.12": {
+      "AlibabaCloud.OpenApiClient/0.1.14": {
         "dependencies": {
           "AlibabaCloud.GatewaySpi": "0.0.3",
-          "AlibabaCloud.OpenApiUtil": "1.1.1",
+          "AlibabaCloud.OpenApiUtil": "1.1.2",
           "AlibabaCloud.TeaUtil": "0.1.19",
           "AlibabaCloud.TeaXML": "0.0.5",
-          "Aliyun.Credentials": "1.4.2",
+          "Aliyun.Credentials": "1.5.0",
           "Tea": "1.1.3"
         },
         "runtime": {
           "lib/netstandard2.0/AlibabaCloud.OpenApiClient.dll": {
-            "assemblyVersion": "0.1.11.0",
-            "fileVersion": "0.1.11.0"
+            "assemblyVersion": "0.1.14.0",
+            "fileVersion": "0.1.14.0"
           }
         }
       },
-      "AlibabaCloud.OpenApiUtil/1.1.1": {
+      "AlibabaCloud.OpenApiUtil/1.1.2": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "Tea": "1.1.3"
         },
         "runtime": {
           "lib/netstandard2.0/AlibabaCloud.OpenApiUtil.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.0.0"
+            "assemblyVersion": "1.1.2.0",
+            "fileVersion": "1.1.2.0"
           }
         }
       },
       "AlibabaCloud.SDK.Dypnsapi20170525/1.2.3": {
         "dependencies": {
           "AlibabaCloud.EndpointUtil": "0.1.1",
-          "AlibabaCloud.OpenApiClient": "0.1.12",
-          "AlibabaCloud.OpenApiUtil": "1.1.1",
+          "AlibabaCloud.OpenApiClient": "0.1.14",
+          "AlibabaCloud.OpenApiUtil": "1.1.2",
           "AlibabaCloud.TeaUtil": "0.1.19",
           "Tea": "1.1.3"
         },
@@ -80,6 +81,21 @@
           "lib/netstandard2.0/AlibabaCloud.SDK.Dypnsapi20170525.dll": {
             "assemblyVersion": "1.2.1.0",
             "fileVersion": "1.2.1.0"
+          }
+        }
+      },
+      "AlibabaCloud.SDK.Dysmsapi20170525/4.0.0": {
+        "dependencies": {
+          "AlibabaCloud.EndpointUtil": "0.1.1",
+          "AlibabaCloud.OpenApiClient": "0.1.14",
+          "AlibabaCloud.OpenApiUtil": "1.1.2",
+          "AlibabaCloud.TeaUtil": "0.1.19",
+          "Tea": "1.1.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AlibabaCloud.SDK.Dysmsapi20170525.dll": {
+            "assemblyVersion": "3.1.3.0",
+            "fileVersion": "3.1.3.0"
           }
         }
       },
@@ -119,7 +135,7 @@
           }
         }
       },
-      "Aliyun.Credentials/1.4.2": {
+      "Aliyun.Credentials/1.5.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
           "Newtonsoft.Json": "13.0.3",
@@ -127,8 +143,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/Aliyun.Credentials.dll": {
-            "assemblyVersion": "1.4.2.0",
-            "fileVersion": "1.4.2.0"
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.5.0.0"
           }
         }
       },
@@ -1184,6 +1200,7 @@
       "Server.Model/1.0.0": {
         "dependencies": {
           "AlibabaCloud.SDK.Dypnsapi20170525": "1.2.3",
+          "AlibabaCloud.SDK.Dysmsapi20170525": "4.0.0",
           "Alipay.AopSdk.Core": "2.5.0.1",
           "ETTask": "1.0.0",
           "ShareLib": "1.0.0",
@@ -1253,19 +1270,19 @@
       "path": "alibabacloud.gatewayspi/0.0.3",
       "hashPath": "alibabacloud.gatewayspi.0.0.3.nupkg.sha512"
     },
-    "AlibabaCloud.OpenApiClient/0.1.12": {
+    "AlibabaCloud.OpenApiClient/0.1.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3UepgR9UQUZXg8mnDqA1kUZfIKY/tLA7G+Z/Ij/hPx9krV2JR9AlxXOqMeky31N6J1Mx7Jr/nyHgGWpWJdYD7g==",
-      "path": "alibabacloud.openapiclient/0.1.12",
-      "hashPath": "alibabacloud.openapiclient.0.1.12.nupkg.sha512"
+      "sha512": "sha512-mmfl2eiPbfMVJBxLM075nMnDnEvMRP74kTdFJ1ud0RfSgZ6gb2wQJjkiT3Q4YVwVeFoiNZzEolM694zdRXe63Q==",
+      "path": "alibabacloud.openapiclient/0.1.14",
+      "hashPath": "alibabacloud.openapiclient.0.1.14.nupkg.sha512"
     },
-    "AlibabaCloud.OpenApiUtil/1.1.1": {
+    "AlibabaCloud.OpenApiUtil/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-E5s0uhVrAK3Vy6kmLqQRZy5pWJXvsAacXzCoayHyY/1j5Ew7rEb2UOgFkY6LrytZcsrsxN+rCBu1yjPiC0DDCQ==",
-      "path": "alibabacloud.openapiutil/1.1.1",
-      "hashPath": "alibabacloud.openapiutil.1.1.1.nupkg.sha512"
+      "sha512": "sha512-0Zd2UHm5gUND+7xNma2SAZEqm2Uy8dvAknLvCx72uDUCbOnfHWh+TsnUnNGMKUvmG3s/ZqxUA1UYIdp5BFCn5Q==",
+      "path": "alibabacloud.openapiutil/1.1.2",
+      "hashPath": "alibabacloud.openapiutil.1.1.2.nupkg.sha512"
     },
     "AlibabaCloud.SDK.Dypnsapi20170525/1.2.3": {
       "type": "package",
@@ -1273,6 +1290,13 @@
       "sha512": "sha512-TWLQ6kLchlpxwAlUfd14yPtT21PwlYVYHluzxlh+EJdN6v2yWerpB3CZHv28ggcnqbrSZbja7SEoAvLDBXqJ+g==",
       "path": "alibabacloud.sdk.dypnsapi20170525/1.2.3",
       "hashPath": "alibabacloud.sdk.dypnsapi20170525.1.2.3.nupkg.sha512"
+    },
+    "AlibabaCloud.SDK.Dysmsapi20170525/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1zrpRz6X/9ZohWva2X2o5ddNel2x6ZBPGaBxAGodS2UXrELgqlBHhyv1kPLUkiloRwP51vR+WI4m8/AHSIeb0Q==",
+      "path": "alibabacloud.sdk.dysmsapi20170525/4.0.0",
+      "hashPath": "alibabacloud.sdk.dysmsapi20170525.4.0.0.nupkg.sha512"
     },
     "AlibabaCloud.TeaUtil/0.1.19": {
       "type": "package",
@@ -1295,12 +1319,12 @@
       "path": "alipay.aopsdk.core/2.5.0.1",
       "hashPath": "alipay.aopsdk.core.2.5.0.1.nupkg.sha512"
     },
-    "Aliyun.Credentials/1.4.2": {
+    "Aliyun.Credentials/1.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-GYyMZVqLCX0StNV/0Yv+C1M1rmWf1Lvkybt/Fwol+kLZtt9WC7RWN5cV5zB7IejTbRUfaXCSV9Mf8pZeYbpnKg==",
-      "path": "aliyun.credentials/1.4.2",
-      "hashPath": "aliyun.credentials.1.4.2.nupkg.sha512"
+      "sha512": "sha512-fdWhSvNiXXIWz73eDZGZHesBhd5+St85W8CDaD9aP1ifBK+MZKx9YTL/6e6uLq0TN7j8J0IR5beXUXxohqjjjQ==",
+      "path": "aliyun.credentials/1.5.0",
+      "hashPath": "aliyun.credentials.1.5.0.nupkg.sha512"
     },
     "CommandLineParser/2.8.0": {
       "type": "package",
