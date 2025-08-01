@@ -1107,7 +1107,8 @@ namespace ET
             Debug.Log("GooglePlayGamesSignin" );
 
             // 配置登录选项，请求用户信息权限
-           PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            PlayGamesPlatform.Activate();
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
             //PlayGamesPlatform.Activate();
             //Social.localUser.Authenticate(ProcessAuthentication_2);
@@ -1159,7 +1160,7 @@ namespace ET
 				Debug.Log($"登录失败！:  {status}");
 			}
 
-			Social.localUser.Authenticate(ProcessAuthentication_2);
+			// Social.localUser.Authenticate(ProcessAuthentication_2);
 		}
 #endif
 #endif
