@@ -23,6 +23,9 @@ namespace ET
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             //await zoneScene.GetComponent<BagComponent>().CheckEquipList();
             //Log.Debug("Behaviour_Stroll: Enter");
+
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(101);
+
             while (number > 0)
             {
                 if (myUnit == null || myUnit.IsDisposed)
@@ -39,6 +42,17 @@ namespace ET
                     y = npcConfig.Position[1] * 0.01f,
                     z = npcConfig.Position[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
                 });
+
+                //1/10的几率在出生点
+                if (RandomHelper.RandFloat01() < 0.1f)
+                {
+                    vector3 = (new Vector3()
+                    {
+                        x = sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        y = sceneConfig.InitPos[1] * 0.01f,
+                        z = sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
+                    });
+                }
                 
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
