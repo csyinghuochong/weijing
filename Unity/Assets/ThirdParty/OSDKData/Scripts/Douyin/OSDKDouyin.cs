@@ -43,7 +43,7 @@ namespace Douyin.Game
                 { "auto_code", "auto_code" },
                 { "client_token", "client_token" },
                 { "access_token", "access_token"},
-                { "open_id", "open_id_202507301158" },
+                { "open_id", "_000bGbtVOqK4dtQMLPjSh1ZDyfmbmhQIAbQ" },
             };
 
             this.OnTikTokAuthorizeHandler?.Invoke(Json.Serialize(dictionary));

@@ -61,6 +61,11 @@ namespace ET
                 sdk_open_id = await HttpServerHelper.OnWebRequestPost_TikTokGetHistorydAccountInfo("https://open.douyin.com/api/webcast/v1/osdk/get_history_account_info/", request.ClientToken, request.OpenId, request.AccessToken);
             }
 
+            if (ComHelp.IsInnerNet())
+            {
+                sdk_open_id = "7303474616922905355";
+            }
+
              //没有则注册
             if (centerAccount.PlayerInfo == null && string.IsNullOrEmpty(sdk_open_id))
             {
