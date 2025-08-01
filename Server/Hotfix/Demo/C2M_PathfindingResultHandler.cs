@@ -44,6 +44,9 @@ namespace ET
             m2C_PathfindingResult.Xs = message.Xs;
             m2C_PathfindingResult.Ys = message.Ys;
             m2C_PathfindingResult.Zs = message.Zs;
+            m2C_PathfindingResult.X = unit.Position.x;
+            m2C_PathfindingResult.Y = unit.Position.y;
+            m2C_PathfindingResult.Z = unit.Position.z;
             MessageHelper.Broadcast(unit, m2C_PathfindingResult);
 
             using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
