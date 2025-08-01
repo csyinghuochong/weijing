@@ -234,6 +234,10 @@ namespace ET
                 self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
+				if (GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text))
+				{
+					SettingHelper.ClintFindPath = true;
+                }
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
