@@ -121,7 +121,7 @@ namespace ET
         {
             EventType.GoogleSignIn args = numerice as EventType.GoogleSignIn;
             Init init = GameObject.Find("Global").GetComponent<Init>();
-            args.AccesstokenHandler = init.OnGoogleSignInHandler;
+            init.OnGoogleSignInHandler = args.AccesstokenHandler;
             init.GooglePlayGamesSignin();
         }
     }
