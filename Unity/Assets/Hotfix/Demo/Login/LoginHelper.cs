@@ -574,10 +574,10 @@ namespace ET
             accountInfoComponent.NoticeText_EN = r2CSelectServer.NoticeText_EN;
             accountInfoComponent.SmsVerifyType = r2CSelectServer.SmsVerifyType;
             //苹果的强制为阿里云
-            if (platform == 20001)
-            {
-                accountInfoComponent.SmsVerifyType =  1;
-            }
+            //if (platform == 20001)
+            //{
+            //    accountInfoComponent.SmsVerifyType =  1;
+            //}
         }
 
         public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode, string account,int platform)
