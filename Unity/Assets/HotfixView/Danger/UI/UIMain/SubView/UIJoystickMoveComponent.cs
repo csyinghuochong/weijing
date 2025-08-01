@@ -50,7 +50,7 @@ namespace ET
         public Unit MainUnit;
         public NumericComponent NumericComponent;
         public AttackComponent AttackComponent;
-
+        public MoveComponent MoveComponent;
         public GameObject GameObject;
 
         public int ObstructLayer;
@@ -219,12 +219,12 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
 
-            if (SettingHelper.ClintFindPath)
-            {
-                EventType.MoveStart.Instance.Unit = unit;
-                Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
-                unit.Rotation = Quaternion.Euler(0, self.direction, 0);
-            }
+            //if (SettingHelper.ClintFindPath)
+            //{
+            //    EventType.MoveStart.Instance.Unit = unit;
+            //    Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
+            //    unit.Rotation = Quaternion.Euler(0, self.direction, 0);
+            //}
         }
 
         public static GameObject GetYaoGanDi(this UIJoystickMoveComponent self)
@@ -366,58 +366,15 @@ namespace ET
                     return;
                 }
 
-                bool oldfunction = false;
-                List<Vector3> pathfind_2 = new List<Vector3>();
-                if (oldfunction)
-                {
-                    Vector3 initpos = pathfind[0];
-                    pathfind_2.Add(initpos);
-
-                    for (int i = 1; i < pathfind.Count; i++)
-                    {
-                        //if (!pathfind[i].y.Equals(pathfind[i-1].y))
-                        if (Math.Abs(pathfind[i].y - pathfind[i - 1].y) > 0.05f)
-                        {
-                            pathfind_2.Add(pathfind[i]);
-                        }
-                    }
-
-                    if (pathfind_2.Count > 2)
-                    {
-                        int distance_init = 0;
-                        for (int i = 1; i < pathfind_2.Count;)
-                        {
-                            float distance_cur = Vector3.Distance(pathfind_2[i], pathfind_2[distance_init]);
-                            if (distance_cur < 0.5f)
-                            {
-                                pathfind_2.RemoveAt(i);
-                            }
-                            else
-                            {
-                                distance_init = i;
-                                i++;
-                            }
-                        }
-                    }
-                    /////////--------------------------------
-
-                    if (pathfind_2.Count < 2)
-                    {
-                        pathfind_2.Add(pathfind[pathfind.Count - 1]);
-                    }
-                }
-                else
-                {
-                    pathfind_2 = pathfind;
-                }
-
-                newv3 = pathfind_2[pathfind_2.Count - 1];
+                newv3 = pathfind[pathfind.Count - 1];
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
                 self.checkTime = (long)(1000 * needTime) - 200;
 
-                unit.MoveResultToAsync(pathfind_2, null).Coroutine();
-                unit.GetComponent<MoveComponent>().MoveToAsync(pathfind_2, speed).Coroutine();
+                unit.MoveResultToAsync(pathfind, null).Coroutine();
+				//float c2sdisc = self.MoveComponent.C2SDistance;
+                //Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}");
+                self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
             else
             {
@@ -602,6 +559,7 @@ namespace ET
         {
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.NumericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            self.MoveComponent = self.MainUnit.GetComponent<MoveComponent>();
             self.SceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
         }
 

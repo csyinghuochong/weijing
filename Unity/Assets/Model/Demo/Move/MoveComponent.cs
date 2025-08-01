@@ -83,5 +83,7 @@ namespace ET
         public bool WaitMove;
         public bool WaitMode;
         public Vector3 TargetPosition;
+
+        public float C2SDistance;
     }
 }

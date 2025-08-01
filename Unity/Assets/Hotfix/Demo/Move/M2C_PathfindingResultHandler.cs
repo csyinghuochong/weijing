@@ -14,7 +14,15 @@ namespace ET
             }
 
             //MapHelper.LogMoveInfo($"移动寻路返回 {TimeHelper.ServerNow()}");
-            if (!unit.MainHero || !message.YaoGan)
+            if ( !message.YaoGan)
+			{
+                return;
+            }
+            if (unit.MainHero)
+            {
+                unit.GetComponent<MoveComponent>().C2SDistance = Vector3.Distance(new Vector3(message.X, message.Y, message.Z), unit.Position);
+            }
+            else
             {
                 float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
                 using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())

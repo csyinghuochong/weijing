@@ -71,13 +71,13 @@ namespace ET
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(message.Error);
                 //if (skillConfig.IfStopMove == 0)
                 {
-                    MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-                    moveComponent.SkillStop(unit, skillConfig);
-                    moveComponent.Stop();
-                    if (!unit.MainHero && Vector3.Distance(unit.Position, pos) > 0.5f)
-                    {
-                        unit.Position = pos;
-                    }
+                }
+                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                moveComponent.SkillStop(unit, skillConfig);
+                moveComponent.Stop();
+                if (!unit.MainHero && Vector3.Distance(unit.Position, pos) > 0.5f)
+                {
+                    unit.Position = pos;
                 }
             }
 			unit.GetComponent<ObjectWait>()?.Notify(new WaitType.Wait_UnitStop() { Error = message.Error });
