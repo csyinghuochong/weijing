@@ -56,7 +56,7 @@ namespace ET
                 Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
-				SettingHelper.ClintFindPath = false; ///bigversion >= 22;
+				SettingHelper.ClintFindPath = bigversion >= 23;
                 // Screen.sleepTimeout = SleepTimeout.NeverSleep;
                 self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
