@@ -372,7 +372,11 @@ namespace ET
                 self.checkTime = (long)(1000 * needTime) - 200;
 
                 unit.MoveResultToAsync(pathfind, null).Coroutine();
-				//float c2sdisc = self.MoveComponent.C2SDistance;
+				float c2sdisc = self.MoveComponent.C2SDistance;
+                if (c2sdisc > 3)
+                {
+                    speed *= 0.2f;
+                }
                 //Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}");
                 self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
