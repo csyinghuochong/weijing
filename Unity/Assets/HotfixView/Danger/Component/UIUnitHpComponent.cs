@@ -498,13 +498,13 @@ namespace ET
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
+                this.Lal_Name.GetComponent<Text>().text = MulLanguageHelper.ShowPetName(unitInfoComponent.UnitName);
                 this.Lal_JiaZuName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的宠物"), unitInfoComponent.MasterName);
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
+                this.Lal_Name.GetComponent<Text>().text = MulLanguageHelper.ShowJingLingName(unitInfoComponent.UnitName);
                 this.Lal_JiaZuName.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}的精灵"), unitInfoComponent.MasterName);
             }
             if (this.GetParent<Unit>().Type == UnitType.Stall)

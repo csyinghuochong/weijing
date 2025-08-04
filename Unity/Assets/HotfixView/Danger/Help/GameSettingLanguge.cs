@@ -1038,6 +1038,26 @@ namespace ET
             }
         }
      
+        public static string ShowJingLingName(string name)
+        {
+            foreach (JingLingConfig config in JingLingConfigCategory.Instance.GetAll().Values)
+            {
+                if (config.Name == name || config.Name_EN == name)
+                {
+                    if (GameSettingLanguge.Language == 0)
+                    {
+                        return config.Name;
+                    }
+                    else
+                    {
+                        return config.Name_EN;
+                    }
+                }
+            }
+
+            return name;
+        }
+        
         public static string GetName(this JingLingConfig self)
         {
             if (GameSettingLanguge.Language == 0)
