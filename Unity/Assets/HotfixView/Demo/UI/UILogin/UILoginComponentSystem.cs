@@ -1017,6 +1017,10 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("此号码不支持注册,请使用其他方式登录游戏！");
                 return;
             }
+			if (GMHelp.LianTongPhone.Contains(head))
+			{
+				self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType = 1;
+            }
 
             if (self.ZoneScene().GetComponent<AccountInfoComponent>().SmsVerifyType == 0)
             {
