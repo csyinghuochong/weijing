@@ -89,6 +89,21 @@ namespace ET
 
         public static void OnInitUI(this UIChengJiuJingLingItemComponent self, int jid, bool active)
         {
+            if (GameSettingLanguge.Language == 1)
+            {
+                ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
+
+                rc.Get<GameObject>("Image_Model").GetComponent<RectTransform>().localPosition = new Vector2(19.6f, 71f);
+                rc.Get<GameObject>("ButtonActivite").GetComponent<RectTransform>().localPosition = new Vector2(1f, -409f);
+                rc.Get<GameObject>("ButtonShouHui").GetComponent<RectTransform>().localPosition = new Vector2(1f, -409f);
+                rc.Get<GameObject>("UseSet").GetComponent<RectTransform>().localPosition = new Vector2(0f, 228f);
+                rc.Get<GameObject>("Text_value_Head").GetComponent<RectTransform>().localPosition = new Vector2(23f, -55f);
+                rc.Get<GameObject>("Text_value").GetComponent<RectTransform>().localPosition = new Vector2(23f, -195f);
+                rc.Get<GameObject>("Text_TabJingLing").GetComponent<RectTransform>().localPosition = new Vector2(23f, 34f);
+                rc.Get<GameObject>("JingLingDes").GetComponent<RectTransform>().localPosition = new Vector2(23f, -12f);
+                rc.Get<GameObject>("ObjGetText").GetComponent<RectTransform>().localPosition = new Vector2(2.9f, -324f);
+            }
+            
             JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jid);
             self.JingLingId = jid;
             self.RenderTexture = null;
