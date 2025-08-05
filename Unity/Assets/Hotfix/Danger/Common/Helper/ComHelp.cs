@@ -583,6 +583,9 @@ namespace ET
                 case 403:
                     itemID = 14000004;
                     break;
+                default:
+                    Log.Error($"{occTwo}  itemID ==0");
+                    break;
             }
 
             if (itemID == 0) {
@@ -598,6 +601,9 @@ namespace ET
 
                     case 3:
                         itemID = 14000005;
+                        break;
+                    default:
+                        Log.Error($"{occ}  itemID ==0");
                         break;
                 }
             }
