@@ -406,20 +406,30 @@ namespace ET
                 }
 
                 //法师武器
-                if (occ == 2)
+                else if (occ == 2)
                 {
                     weaponPath = "14100101";
                 }
 
                 //猎人武器
-                if (occ == 3)
+                else if (occ == 3)
                 {
                     weaponPath = equipIndex == 0 ? "90000006" : "14100002";
                 }
 
-                if (occ == 4)
+                else if (occ == 4)
                 {
                     weaponPath = "14100105";
+                }
+
+                else if (occ == 5)
+                {
+                    weaponPath = "14100105";
+                }
+
+                else
+                {
+                    Log.Error($"{occ} weaponPath == null ");
                 }
             }
             if (occ == 3)
