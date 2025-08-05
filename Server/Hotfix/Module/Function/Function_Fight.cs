@@ -1854,8 +1854,13 @@ namespace ET
 
 
             ///职业套装
-            equipSuitIDList.AddRange(EquipSuitConfigCategory.Instance.OccSuiList[userInfo.Occ]);
-
+            List<int> occsuit = null;
+            EquipSuitConfigCategory.Instance.OccSuiList.TryGetValue(userInfo.Occ, out occsuit);
+            if(occsuit!=null)
+            {
+                equipSuitIDList.AddRange(occsuit);
+            }
+            
             //装备套装属性
             for (int i = 0; i < equipSuitIDList.Count; i++)
             {
