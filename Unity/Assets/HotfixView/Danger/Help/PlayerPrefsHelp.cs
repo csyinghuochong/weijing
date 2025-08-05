@@ -49,9 +49,9 @@ namespace ET
             PlayerPrefs.SetFloat(key, value);
         }
 
-        public static int GetInt(string key, int defaultValue = 0)
+        public static int GetInt(string key)
         {
-            return PlayerPrefs.GetInt(key, defaultValue);
+            return PlayerPrefs.GetInt(key);
         }
 
         public static float GetFloat(string key)

@@ -337,14 +337,7 @@ namespace ET
 
         public static void InitMulLanguageData()
         {
-            if (GlobalHelp.GetPlatform() == 7)
-            {
-                Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language, 1);
-            }
-            else
-            {
-                Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language, 0);
-            }
+            Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language);
             
             foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
             {
