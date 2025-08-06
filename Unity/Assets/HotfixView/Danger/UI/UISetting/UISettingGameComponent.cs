@@ -113,10 +113,7 @@ namespace ET
             self.LanguageSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(1); });
             self.LanguageSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
 
-            if (GlobalHelp.GetPlatform() == 7)
-            {
-                self.LanguageSet.gameObject.SetActive(false);
-            }
+            self.LanguageSet.gameObject.SetActive(GlobalHelp.GetPlatform() == 7);
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
 
