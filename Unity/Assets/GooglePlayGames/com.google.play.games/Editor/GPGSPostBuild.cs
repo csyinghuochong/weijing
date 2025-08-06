@@ -30,11 +30,9 @@ namespace GooglePlayGames.Editor
         {
             if (!GPGSProjectSettings.Instance.GetBool(GPGSUtil.ANDROIDSETUPDONEKEY, false))
             {
- #if Google7
                 EditorUtility.DisplayDialog("Google Play Games not configured!",
                     "Warning!!  Google Play Games was not configured, Game Services will not work correctly.",
                     "OK");
-#endif
             }
 
             return;

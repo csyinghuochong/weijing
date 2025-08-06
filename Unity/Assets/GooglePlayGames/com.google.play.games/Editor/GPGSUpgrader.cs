@@ -37,8 +37,6 @@ namespace GooglePlayGames.Editor
                 return;
             Debug.Log("GPGSUpgrader start");
 
-            //谷歌插件修改mainfest
-
             GPGSProjectSettings.Instance.Set(GPGSUtil.LASTUPGRADEKEY, PluginVersion.VersionKey);
             GPGSProjectSettings.Instance.Set(GPGSUtil.PLUGINVERSIONKEY,
                 PluginVersion.VersionString);
