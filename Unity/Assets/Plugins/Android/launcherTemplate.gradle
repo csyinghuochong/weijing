@@ -75,6 +75,7 @@ MobSDK {
 
    
 
+
     ShareSDK {
         //第三方平台配置
         devInfo {
@@ -163,5 +164,9 @@ MobSDK {
             }
 
         }
+    }
+
+    permissions {
+        exclude "android.permission.QUERY_ALL_PACKAGES", "android.permission.READ_PHONE_STATE"
     }
 }

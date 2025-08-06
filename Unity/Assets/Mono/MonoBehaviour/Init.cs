@@ -277,6 +277,11 @@ namespace ET
 
 		public void ShareSdkInit()
 		{
+			if (this.Platform == 7)
+			{
+				return;
+			}
+
 #if !UNITY_EDITOR
 			mobsdk.submitPolicyGrantResult(true);
 #endif
@@ -499,9 +504,13 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
 			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
-			mobsdk.submitPolicyGrantResult(true);
-			jo.Call("SetIsPermissionGranted", QQAppID);
 
+			if (this.Platform != 7)
+			{
+				mobsdk.submitPolicyGrantResult(true);
+			}
+
+			jo.Call("SetIsPermissionGranted", QQAppID);
 			jo.Call("QuDaoRequestPermissions");
 #else
             this.OnGetPermissionsHandler?.Invoke("1_1");
@@ -635,6 +644,11 @@ namespace ET
 		public void PemoveAccount(string fenxiangtype)
 		{
 			//plat.removeAccount(true)
+			if (this.Platform == 7)
+			{
+				return;
+			}
+
 			switch (fenxiangtype)
 			{
 				case "1":
@@ -652,7 +666,12 @@ namespace ET
 		/// <param name="fenxiangtype"></param>
 		public void Authorize(string fenxiangtype)
 		{
-			switch (fenxiangtype)
+            if (this.Platform == 7)
+            {
+                return;
+            }
+
+            switch (fenxiangtype)
 			{
 				case "1":
 					ssdk.Authorize(PlatformType.WeChat);
@@ -701,6 +720,11 @@ namespace ET
 		public void GetUserInfo(string fenxiangtype)
 		{
 			Log.ILog.Debug($"sharesdk GetUserInfo1");
+            if (this.Platform == 7)
+            {
+                return;
+            }
+
 #if !UNITY_EDITOR
 			Log.ILog.Debug($"sharesdk GetUserInfo2");
 
@@ -714,7 +738,7 @@ namespace ET
 					break;
 			}
 #else
-			string add = fenxiangtype == "1" ? "wx" : "qq";
+            string add = fenxiangtype == "1" ? "wx" : "qq";
 			//this.OnGetUserInfoHandler($"{add}{PhoneNumberHelper.getRandomTel()};{add}{PhoneNumberHelper.getRandomTel()}");
 #endif
 		}
