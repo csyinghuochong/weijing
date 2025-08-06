@@ -277,11 +277,6 @@ namespace ET
 
 		public void ShareSdkInit()
 		{
-			if (this.Platform == 7)
-			{
-				return;
-			}
-
 #if !UNITY_EDITOR
 			mobsdk.submitPolicyGrantResult(true);
 #endif
@@ -505,11 +500,7 @@ namespace ET
 			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
 			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
 
-			if (this.Platform != 7)
-			{
-				mobsdk.submitPolicyGrantResult(true);
-			}
-
+			mobsdk.submitPolicyGrantResult(true);
 			jo.Call("SetIsPermissionGranted", QQAppID);
 			jo.Call("QuDaoRequestPermissions");
 #else
@@ -644,11 +635,6 @@ namespace ET
 		public void PemoveAccount(string fenxiangtype)
 		{
 			//plat.removeAccount(true)
-			if (this.Platform == 7)
-			{
-				return;
-			}
-
 			switch (fenxiangtype)
 			{
 				case "1":
@@ -666,11 +652,6 @@ namespace ET
 		/// <param name="fenxiangtype"></param>
 		public void Authorize(string fenxiangtype)
 		{
-            if (this.Platform == 7)
-            {
-                return;
-            }
-
             switch (fenxiangtype)
 			{
 				case "1":
@@ -720,10 +701,6 @@ namespace ET
 		public void GetUserInfo(string fenxiangtype)
 		{
 			Log.ILog.Debug($"sharesdk GetUserInfo1");
-            if (this.Platform == 7)
-            {
-                return;
-            }
 
 #if !UNITY_EDITOR
 			Log.ILog.Debug($"sharesdk GetUserInfo2");
@@ -1122,15 +1099,16 @@ namespace ET
                 });
         }
 
-
-        private string webClientId = "180577064002-sqr7qoqi6keicnsoafhh2ajc23crju3i.apps.googleusercontent.com";
-
-
         public void GooglePlayGamesSignin()
         {
+            Debug.Log("GooglePlayGamesSignin");
+#if UNITY_EDITOR
+            this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
+            return;
+#endif
+
 #if UNITY_ANDROID
 #if Google7
-            Debug.Log("GooglePlayGamesSignin" );
 
             // 配置登录选项，请求用户信息权限
             PlayGamesPlatform.Activate();
@@ -1169,7 +1147,7 @@ namespace ET
 			if (status == SignInStatus.Success)
 			{
 				// Continue with Play Games Services
-				Debug.Log("登录成功！Social.localUser.id: " + Social.localUser.id);
+				Debug.Log("Google登录成功！Social.localUser.id: " + Social.localUser.id);
 				Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
 				Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
 				Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
@@ -1184,7 +1162,7 @@ namespace ET
 				// to ask users to sign-in. Clicking it should call
 				// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
 				this.OnGoogleSignInHandler?.Invoke(string.Empty);
-				Debug.Log($"登录失败！:  {status}");
+				Debug.Log($"Google登录失败！:  {status}");
 			}
 
 		}

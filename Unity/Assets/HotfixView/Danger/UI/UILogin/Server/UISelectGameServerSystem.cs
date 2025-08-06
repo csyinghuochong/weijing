@@ -66,6 +66,10 @@ namespace ET
                 platform = 1;
             }
 
+            if (platform == 7 && GlobalHelp.IsEditorMode)
+            {
+                platform = 1;
+            }
 
             string lastAccount = string.Empty;
             string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);

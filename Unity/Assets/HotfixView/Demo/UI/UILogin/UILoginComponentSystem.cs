@@ -613,16 +613,9 @@ namespace ET
                     break;;
                 case LoginTypeEnum.Google:
                     self.ThirdLoginBg.SetActive(false);
-					if (GlobalHelp.IsEditorMode)
-					{
-						self.OnRecvGoogleSignIn("google_18319670288");
-					}
-					else
-					{
-                        EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
-                        EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
-                        EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
-                    }
+                    EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
+                    EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
+                    EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
                     break;
                 case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))

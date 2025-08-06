@@ -113,7 +113,11 @@ namespace ET
         public static string GetFashionDefault(int occ, string asset) 
         {
             string stringpath = UnitFashionPath_1;
-            if (occ == 2)
+            if(occ == 1)
+            {
+                stringpath = UnitFashionPath_1;
+            }
+            else if (occ == 2)
             {
                 stringpath = UnitFashionPath_2;
             }
