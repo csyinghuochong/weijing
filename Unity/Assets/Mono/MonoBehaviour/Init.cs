@@ -1099,42 +1099,26 @@ namespace ET
                 });
         }
 
+
+
         public void GooglePlayGamesSignin()
         {
             Debug.Log("GooglePlayGamesSignin");
 #if UNITY_EDITOR
-            this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
-            return;
+            //this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
+            //return;
 #endif
 
 #if UNITY_ANDROID
 #if Google7
 
+
+
             // 配置登录选项，请求用户信息权限
             PlayGamesPlatform.Activate();
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-
-            //PlayGamesPlatform.Activate();
-            //Social.localUser.Authenticate(ProcessAuthentication_2);
-            //this.GetComponent<GoogleLoginScript>().OnSignIn();
-
-            // PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            //PlayGamesPlatform.InitializeInstance(config);
-            //        PlayGamesPlatform.Activate();
-
-            //        Social.localUser.Authenticate((bool success) => {
-            //if (success)
-            //{
-            //	Debug.Log("Google Play Games 登录成功");
-            //                Debug.Log("PlayGamesPlatform.Instance.GetUserId xxxx: " + PlayGamesPlatform.Instance.GetUserId());
-            //            }
-            //else
-            //{
-            //                Debug.Log("Google Play Games 登录失败");
-            //                Debug.Log("PlayGamesPlatform.Instance.GetUserId yyyy: " + PlayGamesPlatform.Instance.GetUserId());
-            //            }
-            //        });
+          
 #endif
 #endif
         }
