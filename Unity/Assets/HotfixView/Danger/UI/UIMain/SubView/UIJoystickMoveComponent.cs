@@ -51,6 +51,7 @@ namespace ET
         public NumericComponent NumericComponent;
         public AttackComponent AttackComponent;
         public MoveComponent MoveComponent;
+        public BattleMessageComponent BattleMessageComponent;
         public GameObject GameObject;
 
         public int ObstructLayer;
@@ -109,7 +110,7 @@ namespace ET
             self.UICamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
             self.AttackComponent = self.ZoneScene().GetComponent<AttackComponent>();
-
+            self.BattleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
             self.ObstructLayer = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
             self.BuildingLayer = (1 << LayerMask.NameToLayer(LayerEnum.Building.ToString()));
             self.MapLayer = (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
@@ -298,6 +299,10 @@ namespace ET
         {
             long clientNow = TimeHelper.ClientNow();
 
+            if (SettingHelper.ClintFindPath && self.BattleMessageComponent.TransferMap)
+            {
+                return;
+            }
             if (clientNow - self.lastSendTime < 30)
             {
                 return;
@@ -574,6 +579,7 @@ namespace ET
             self.NumericComponent = self.MainUnit.GetComponent<NumericComponent>();
             self.MoveComponent = self.MainUnit.GetComponent<MoveComponent>();
             self.SceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            self.BattleMessageComponent.TransferMap = false;
         }
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -604,9 +610,13 @@ namespace ET
             }
 
             //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
-
             if (SettingHelper.ClintFindPath)
             {
+                if (self.BattleMessageComponent.TransferMap)
+                {
+                    return;
+                }
+
                 unit.StopResult();
             }
             else

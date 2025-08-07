@@ -33,6 +33,8 @@ namespace ET
 
         public int LastDungeonId;
 
+        public bool TransferMap;
+
         public Dictionary<long, long> PetFightCD = new Dictionary<long, long>();
 
         // 组队喊话频率
