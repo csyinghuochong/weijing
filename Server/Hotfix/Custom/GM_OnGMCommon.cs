@@ -141,6 +141,10 @@ namespace ET
             if (infoList[0] == "savedb")
             {
                 //ArchiveHelper.ExecuteBatchFileOld().Coroutine();
+                if (ComHelp.IsInnerNet())
+                {
+                    return;
+                }
                 ArchiveHelper.ExecuteBatchFileNew().Coroutine();    
             }
         }

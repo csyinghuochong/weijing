@@ -60,6 +60,10 @@ namespace ET
 
         public int OperateMode;
         public int SceneTypeEnum;
+
+        public bool IsDrag;// 当一直拖拽摇杆时，场景进行切换后松开鼠标不会触发取消拖拽的回调，会一直处于拖拽中状态，且一直触发拖拽中回调，只有重新点击再松开才行。
+                           // 试着清空EventTrigger.triggers后再从新添加回调，仍然会一直触发拖拽中回调。可能是UGUI的Bug??，所以此变量用来处理这种情况。
+
     }
 
     public class UIJoystickMoveComponentDestroy: DestroySystem<UIJoystickMoveComponent>
@@ -206,6 +210,7 @@ namespace ET
 
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            self.IsDrag = true;
             Unit unit = self.MainUnit;
             if (unit == null || unit.IsDisposed)
             {
@@ -259,6 +264,10 @@ namespace ET
 
         public static void Draging(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            if (!self.IsDrag)
+            {
+                return;
+            }
             self.direction = self.GetDirection(pdata);
         }
 
@@ -551,7 +560,7 @@ namespace ET
                 self.Thumb.SetActive(false);
                 self.YaoGanDiFix.SetActive(false);
             }
-
+            self.IsDrag = false;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
@@ -569,6 +578,7 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            self.IsDrag = false;
             Unit unit = self.MainUnit;
             if (unit == null || unit.IsDisposed)
             {
