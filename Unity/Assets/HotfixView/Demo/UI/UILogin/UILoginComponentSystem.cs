@@ -56,7 +56,7 @@ namespace ET
                 Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
-				SettingHelper.ClintFindPath = bigversion >= 23;
+				SettingHelper.ClintFindPath =  bigversion >= 23;
                 // Screen.sleepTimeout = SleepTimeout.NeverSleep;
                 self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
@@ -234,10 +234,6 @@ namespace ET
                 self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
-				if (GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text))
-				{
-					SettingHelper.ClintFindPath = true;
-                }
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
