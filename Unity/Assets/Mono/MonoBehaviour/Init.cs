@@ -1191,7 +1191,8 @@ namespace ET
 
         public void GooglePlayGamesSignin()
         {
-			OnGoogleSignIn();
+			//OnGoogleSignIn();
+			OnGoolgePlaySignIn();
         }
 
 #if UNITY_ANDROID
