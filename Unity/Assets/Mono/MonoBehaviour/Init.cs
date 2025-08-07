@@ -22,7 +22,7 @@ using System.Net;
 
 using Douyin;
 using Douyin.Game;
-using Google;
+
 using System.Threading.Tasks;
 
 
@@ -34,6 +34,7 @@ using System.Runtime.InteropServices;
 #if UNITY_ANDROID
 
 #if Google7
+using Google;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
@@ -127,7 +128,10 @@ namespace ET
 
         //google
         public string webClientId = "180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com";
-        private GoogleSignInConfiguration configuration;
+
+		#if Google7
+		private GoogleSignInConfiguration configuration;
+		#endif
 
         [HideInInspector]
         public int Platform = 0;
@@ -1133,6 +1137,8 @@ namespace ET
 #endif
 		}
 
+#if UNITY_ANDROID
+#if Google7
         internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
         {
             if (task.IsFaulted)
@@ -1165,9 +1171,10 @@ namespace ET
                 Debug.Log("OnGoogleSignIn  Welcome: " + task.Result.DisplayName + "!");
             }
         }
+#endif
+#endif
 
-
-		private void OnGoolgePlaySignIn() 
+        private void OnGoolgePlaySignIn() 
 		{
             Debug.Log("GooglePlayGamesSignin");
 #if UNITY_EDITOR
