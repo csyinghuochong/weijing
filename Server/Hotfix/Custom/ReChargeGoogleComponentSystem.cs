@@ -1,6 +1,5 @@
 ﻿using System;
 using Google.Apis.AndroidPublisher.v3;
-using Google.Apis.AndroidPublisher.v3.Data;
 using Google.Apis.Auth.OAuth2;
 
 namespace ET
@@ -99,25 +98,16 @@ namespace ET
                     Log.Warning($"Google充值回调ERROR6 : !{prefix}");
                     return ErrorCode.ERR_GoogleVerify;
                 }
-
-                int rechargeNumber = 0;
-                try
-                {
-                    rechargeNumber = int.Parse(googleVerifyPayResult.ProductId.Substring(prefix.Length));
-                }
-                catch (Exception ex)
-                {
-                    Log.Warning(ex.ToString());
-                    return ErrorCode.ERR_GoogleVerify;
-                }
+                
+                int rechargeNumber = int.Parse(googleVerifyPayResult.ProductId.Substring(prefix.Length));
+                
+                string postReturnStr = JsonHelper.ToJson(googleVerifyPayResult);
 
                 self.PayLoadList.Add(payloadGoogleJson.purchaseToken);
                 if (self.PayLoadList.Count >= 100)
                 {
                     self.PayLoadList.RemoveAt(0);
                 }
-
-                string postReturnStr = JsonHelper.ToJson(googleVerifyPayResult);
 
                 string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
                 Log.Warning($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
@@ -126,7 +116,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Warning($"Google充值回调11_1 {ex.ToString()}");
+                Log.Warning($"Google支付验证未知错误: {ex}");
                 return ErrorCode.ERR_GoogleVerify;
             }
 
