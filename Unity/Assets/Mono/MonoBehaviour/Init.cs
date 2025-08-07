@@ -22,6 +22,10 @@ using System.Net;
 
 using Douyin;
 using Douyin.Game;
+using Google;
+using System.Threading.Tasks;
+
+
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -121,6 +125,9 @@ namespace ET
         public AndroidJavaClass javaClass;
         public AndroidJavaObject javaActive;
 
+        //google
+        public string webClientId = "180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com";
+        private GoogleSignInConfiguration configuration;
 
         [HideInInspector]
         public int Platform = 0;
@@ -206,6 +213,11 @@ namespace ET
             Log.ILog.Debug("unity111  Google7=true");
             this.Platform = 7;
             this.Apk_Extension = "google";
+            configuration = new GoogleSignInConfiguration
+            {
+                WebClientId = webClientId,
+                RequestIdToken = true
+            };
 #elif TikTokGuanFu8
             Log.ILog.Debug("unity111  TikTokGuanFu8=true");
             this.Platform = 8;
@@ -1100,9 +1112,63 @@ namespace ET
         }
 
 
-
-        public void GooglePlayGamesSignin()
+        private void OnGoogleSignIn()
         {
+            //每日首次登录时调用FirebaseAuthWithGoogle刷新Token：
+            //GoogleSignInAccount account = GoogleSignIn.GetLastSignedInAccount();
+            //if (account != null)
+            //{
+            //    FirebaseAuthWithGoogle(account.IdToken); // 用新Token验证:cite[5]
+            //}
+
+#if UNITY_ANDROID
+#if Google7
+            GoogleSignIn.Configuration = configuration;
+            GoogleSignIn.Configuration.UseGameSignIn = false;
+            GoogleSignIn.Configuration.RequestIdToken = true;
+
+            GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
+              OnAuthenticationFinished);
+#endif
+#endif
+		}
+
+        internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+        {
+            if (task.IsFaulted)
+            {
+                using (IEnumerator<System.Exception> enumerator =
+                        task.Exception.InnerExceptions.GetEnumerator())
+                {
+                    if (enumerator.MoveNext())
+                    {
+                        GoogleSignIn.SignInException error =
+                                (GoogleSignIn.SignInException)enumerator.Current;
+                        Debug.Log("OnGoogleSignIn  Got Error: " + error.Status + " " + error.Message);
+                    }
+                    else
+                    {
+                        Debug.Log("OnGoogleSignIn  Got Unexpected Exception?!?" + task.Exception);
+                    }
+                }
+            }
+            else if (task.IsCanceled)
+            {
+                Debug.Log("OnGoogleSignIn  Canceled");
+            }
+            else
+            {
+                GoogleSignInUser user = task.Result;
+                Debug.Log("OnGoogleSignIn 登录成功！用户ID: " + user.UserId);
+                Debug.Log("OnGoogleSignIn 邮箱: " + user.Email);
+                Debug.Log("OnGoogleSignIn ID Token: " + user.IdToken); // 可用于服务器验证
+                Debug.Log("OnGoogleSignIn  Welcome: " + task.Result.DisplayName + "!");
+            }
+        }
+
+
+		private void OnGoolgePlaySignIn() 
+		{
             Debug.Log("GooglePlayGamesSignin");
 #if UNITY_EDITOR
             //this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
@@ -1118,11 +1184,15 @@ namespace ET
             PlayGamesPlatform.Activate();
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-          
+
 #endif
 #endif
         }
 
+        public void GooglePlayGamesSignin()
+        {
+			OnGoogleSignIn();
+        }
 
 #if UNITY_ANDROID
 #if Google7

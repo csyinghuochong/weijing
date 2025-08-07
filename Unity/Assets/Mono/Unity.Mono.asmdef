@@ -11,7 +11,8 @@
         "AppleAuth",
         "Google.Play.Games",
         "Unity.Services.Core",
-        "Unity.Services.Core.Environments"
+        "Unity.Services.Core.Environments",
+        "Google.SignIn"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
