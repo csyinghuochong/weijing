@@ -129,10 +129,6 @@ namespace ET
         //google
         public string webClientId = "180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com";
 
-		#if Google7
-		private GoogleSignInConfiguration configuration;
-		#endif
-
         [HideInInspector]
         public int Platform = 0;
 
@@ -217,11 +213,6 @@ namespace ET
             Log.ILog.Debug("unity111  Google7=true");
             this.Platform = 7;
             this.Apk_Extension = "google";
-            configuration = new GoogleSignInConfiguration
-            {
-                WebClientId = webClientId,
-                RequestIdToken = true
-            };
 #elif TikTokGuanFu8
             Log.ILog.Debug("unity111  TikTokGuanFu8=true");
             this.Platform = 8;
@@ -1114,65 +1105,6 @@ namespace ET
                     Debug.LogWarning("Quick Login Failed " + authorizationErrorCode.ToString() + " " + error.ToString());
                 });
         }
-
-
-        private void OnGoogleSignIn()
-        {
-            //每日首次登录时调用FirebaseAuthWithGoogle刷新Token：
-            //GoogleSignInAccount account = GoogleSignIn.GetLastSignedInAccount();
-            //if (account != null)
-            //{
-            //    FirebaseAuthWithGoogle(account.IdToken); // 用新Token验证:cite[5]
-            //}
-
-#if UNITY_ANDROID
-#if Google7
-            GoogleSignIn.Configuration = configuration;
-            GoogleSignIn.Configuration.UseGameSignIn = false;
-            GoogleSignIn.Configuration.RequestIdToken = true;
-
-            GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
-              OnAuthenticationFinished);
-#endif
-#endif
-		}
-
-#if UNITY_ANDROID
-#if Google7
-        internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
-        {
-            if (task.IsFaulted)
-            {
-                using (IEnumerator<System.Exception> enumerator =
-                        task.Exception.InnerExceptions.GetEnumerator())
-                {
-                    if (enumerator.MoveNext())
-                    {
-                        GoogleSignIn.SignInException error =
-                                (GoogleSignIn.SignInException)enumerator.Current;
-                        Debug.Log("OnGoogleSignIn  Got Error: " + error.Status + " " + error.Message);
-                    }
-                    else
-                    {
-                        Debug.Log("OnGoogleSignIn  Got Unexpected Exception?!?" + task.Exception);
-                    }
-                }
-            }
-            else if (task.IsCanceled)
-            {
-                Debug.Log("OnGoogleSignIn  Canceled");
-            }
-            else
-            {
-                GoogleSignInUser user = task.Result;
-                Debug.Log("OnGoogleSignIn 登录成功！用户ID: " + user.UserId);
-                Debug.Log("OnGoogleSignIn 邮箱: " + user.Email);
-                Debug.Log("OnGoogleSignIn ID Token: " + user.IdToken); // 可用于服务器验证
-                Debug.Log("OnGoogleSignIn  Welcome: " + task.Result.DisplayName + "!");
-            }
-        }
-#endif
-#endif
 
         private void OnGoolgePlaySignIn() 
 		{
