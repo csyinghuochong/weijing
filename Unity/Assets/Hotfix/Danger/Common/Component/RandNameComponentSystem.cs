@@ -53,7 +53,7 @@ namespace ET
 
         public static string GetRandomName(this RandNameComponent self, int zone)
         {
-            if (ServerHelper.GetGetServerItem(false, zone).PlatformList.Contains(7))
+            if (ServerHelper.IsGoogleServer(zone))
             {
                 return self.RandNameNameList_EN[RandomHelper.RandomNumber(0, self.RandNameNameList_EN.Count)];
             }

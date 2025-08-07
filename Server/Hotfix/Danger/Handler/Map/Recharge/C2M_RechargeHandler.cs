@@ -53,6 +53,14 @@ namespace ET
                     reply();
                     return;
                 }
+                
+                if (request.PayType == PayTypeEnum.Google)
+                {
+                    Log.Warning($"支付订单[Google]拉起: 服务器:{serverName} 玩家:{userName}  充值金额:{request.RechargeNumber}");
+                    Log.Console($"支付订单[Google]拉起: 服务器:{serverName} 玩家:{userName}  充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                    reply();
+                    return;
+                }
 
                 if (request.PayType == PayTypeEnum.WeiXinPay)
                 {

@@ -10529,6 +10529,43 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(R2C_GooglePayVerifyResponse))]
+	[Message(OuterOpcode.C2R_GooglePayVerifyRequest)]
+	[ProtoContract]
+	public partial class C2R_GooglePayVerifyRequest: Object, IRechargeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public string payMessage { get; set; }
+
+		[ProtoMember(3)]
+		public string UnitName { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_GooglePayVerifyResponse)]
+	[ProtoContract]
+	public partial class R2C_GooglePayVerifyResponse: Object, IRechargeActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //技能打断
 	[Message(OuterOpcode.C2M_SkillInterruptRequest)]
 	[ProtoContract]

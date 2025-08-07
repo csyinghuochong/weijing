@@ -262,6 +262,7 @@ namespace ET
 
         //充值
         public const int ERR_IOSVerify = 301401;
+        public const int ERR_GoogleVerify = 301402;
 
         //坐骑
         public const int ERR_HoreseNotActive = 301501;                                //坐骑未激活

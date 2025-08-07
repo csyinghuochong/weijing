@@ -70,19 +70,19 @@ namespace ET
             //string payLoad = receipt.Payload;
             //string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
 
-            //C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest()
-            //{
-            //    UnitId = UnitHelper.GetMyUnitId(ZoneScene),
-            //    payMessage = receipt.Payload,
-            //    UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
-            //};
-            //ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+            C2R_GooglePayVerifyRequest request = new C2R_GooglePayVerifyRequest()
+            {
+                UnitId = UnitHelper.GetMyUnitId(ZoneScene),
+                payMessage = receipt.Payload,
+                UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+            };
+            ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
 
-            //UI uirecharget = UIHelper.GetUI(ZoneScene, UIType.UIRecharge);
-            //if (uirecharget != null)
-            //{
-            //    uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
-            //}
+            UI uirecharget = UIHelper.GetUI(ZoneScene, UIType.UIRecharge);
+            if (uirecharget != null)
+            {
+                uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
+            }
             await ETTask.CompletedTask;
         }
 

@@ -32,6 +32,16 @@ namespace ET
             return serverItem;
         }
 
+        public static bool IsGoogleServer(int zone)
+        {
+            if (ServerHelper.GetGetServerItem(false, zone).PlatformList.Contains(7))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static long GetOpenServerTime(bool innerNet, int zone)
         {
             ServerItem serverItem = GetGetServerItem(innerNet, zone);
