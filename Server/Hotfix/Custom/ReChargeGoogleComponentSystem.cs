@@ -21,10 +21,10 @@ namespace ET
             // client_email字段对应serviceAccountEmail
             // private_key字段对应privateKey
             // ------------
-            // API和服务 → 启动 Google Play Android Developer API
-            // Google Play Console → 用户与权限 
+            // Google Cloud → API和服务 ，启动 Google Play Android Developer API
+            // Google Play Console → 用户与权限 ，添加服务账号并设置权限
             // ------------
-            // 如果报错显示没有权限，可能情况：如果在添加账号之前就创建过商品，要修改一下商品的描述。。。。
+            // 如果报错显示没有权限，可能情况：如果在添加账号之前就创建过商品，要修改一下商品的描述。。。。这么做应该是主动刷新一下服务器的配置
             // 本地测试连接得挂VPN才能连接，云服务器未知
             // 测试支付，Google Play Console → 设置 → 许可测试 ，添加测试账号
             string serviceAccountEmail = "weijing@awesome-tube-464511-j5.iam.gserviceaccount.com";
@@ -144,28 +144,5 @@ namespace ET
                 Console.WriteLine($"Google充值失败 ProductId:{productId} purchaseToken:{purchaseToken}");
             }
         }
-
-        // // 测试连接   获取“被撤销/退款”的订单。
-        // public static async ETTask FetchVoidedPurchases(this ReChargeGoogleComponent self)
-        // {
-        //     var request = self.AndroidPublisherService.Purchases.Voidedpurchases.List("com.goinggame.weijing");
-        //     request.StartTime = DateTimeOffset.UtcNow.AddDays(-7).ToUnixTimeMilliseconds(); // 最近7天
-        //     request.MaxResults = 100;
-        //
-        //     VoidedPurchasesListResponse response = await request.ExecuteAsync();
-        //     Console.WriteLine("------------------Google失败订单-------------------");
-        //     if (response.VoidedPurchases != null)
-        //     {
-        //         Console.WriteLine($"------------------订单数量：{response.VoidedPurchases.Count}-------------------");
-        //         foreach (var item in response.VoidedPurchases)
-        //         {
-        //             long millis = item.VoidedTimeMillis.Value; // 取 long 类型
-        //             DateTime utcTime = DateTimeOffset.FromUnixTimeMilliseconds(millis).UtcDateTime;
-        //             DateTime beijingTime = utcTime.AddHours(8);
-        //             Console.WriteLine($"Google失败订单 Token: {item.PurchaseToken}, 时间: {beijingTime.ToString("yyyy-MM-dd HH:mm:ss")}");
-        //         }
-        //     }
-        //     Console.WriteLine("------------------End-------------------");
-        // }
     }
 }
