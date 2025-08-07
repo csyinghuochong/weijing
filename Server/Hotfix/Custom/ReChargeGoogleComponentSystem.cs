@@ -76,7 +76,7 @@ namespace ET
                 }
 
                 // 验证订单
-                var response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", payloadGoogleJson.productId, payloadGoogleJson.purchaseToken).ExecuteAsync();
+                Google.Apis.AndroidPublisher.v3.Data.ProductPurchase response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", payloadGoogleJson.productId, payloadGoogleJson.purchaseToken).ExecuteAsync();
 
                 if (response == null)
                 {
@@ -85,23 +85,22 @@ namespace ET
                 }
 
                 // 检查订单是否有效
-                GoogleVerifyPayResult googleVerifyPayResult = new GoogleVerifyPayResult(response);
-                if (googleVerifyPayResult.PurchaseState != 0)
+                if (response.PurchaseState != 0)
                 {
-                    Log.Warning($"Google充值回调ERROR1 {googleVerifyPayResult.PurchaseState}");
+                    Log.Warning($"Google充值回调ERROR1 {response.PurchaseState}");
                     return ErrorCode.ERR_GoogleVerify;
                 }
 
                 string prefix = "pay_";
-                if (!googleVerifyPayResult.ProductId.Contains(prefix))
+                if (!payloadGoogleJson.productId.Contains(prefix))
                 {
                     Log.Warning($"Google充值回调ERROR6 : !{prefix}");
                     return ErrorCode.ERR_GoogleVerify;
                 }
                 
-                int rechargeNumber = int.Parse(googleVerifyPayResult.ProductId.Substring(prefix.Length));
+                int rechargeNumber = int.Parse(payloadGoogleJson.productId.Substring(prefix.Length));
                 
-                string postReturnStr = JsonHelper.ToJson(googleVerifyPayResult);
+                string postReturnStr = JsonHelper.ToJson(response);
 
                 self.PayLoadList.Add(payloadGoogleJson.purchaseToken);
                 if (self.PayLoadList.Count >= 100)
@@ -126,10 +125,11 @@ namespace ET
         public static async ETTask OnTest(this ReChargeGoogleComponent self)
         {
             string productId = "pay_1";
-            // string purchaseToken = "pnggilmjjliinlommjgndhhh.AO-J1Oy4zRl-WWHqUp3O4QaxR8HZwRS1Oq1xOUiC6TEsWQpL95raRrmt9r2fmIutFKPxJ4ImlxXd-QrEsrqaRqgXnc2JRr8ZplKt_YRmTVlyj9wMHw2PXKs";
-            string purchaseToken = "pimgdcjdkjniiaoeijfnplei.AO-J1OwUKm0Lqbq9VBpQ1jyYPJFZD-l8wB2CvoPjXDm5lJ-15vnlp4vU4zvIqayPMHhFdXBXtTPpRQ05DGCK1GA1GSR3RGGkjT8GgPzpNPX6XhPHTUNKsqE";
+            // string purchaseToken = "pnggilmjjliinlommjgndhhh.AO-J1Oy4zRl-WWHqUp3O4QaxR8HZwRS1Oq1xOUiC6TEsWQpL95raRrmt9r2fmIutFKPxJ4ImlxXd-QrEsrqaRqgXnc2JRr8ZplKt_YRmTVlyj9wMHw2PXKs"; //假的
+            // string purchaseToken = "pnggilmjjliinlommjgndhhh.AO-J1Oy4zRl-WWHqUp3O4QaxR8HZwRS1Oq1xOUiC6TEsWQpL95raRrmt9r2fmIutFKPxJ4ImlxXd-QrEsrqaRqgXnc2JRr8ZplKt_YRmTVlyj9wMHw2PXKs"; //退款
+            string purchaseToken = "pimgdcjdkjniiaoeijfnplei.AO-J1OwUKm0Lqbq9VBpQ1jyYPJFZD-l8wB2CvoPjXDm5lJ-15vnlp4vU4zvIqayPMHhFdXBXtTPpRQ05DGCK1GA1GSR3RGGkjT8GgPzpNPX6XhPHTUNKsqE"; //支付成功
             // 验证订单
-            var response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", productId, purchaseToken).ExecuteAsync();
+            Google.Apis.AndroidPublisher.v3.Data.ProductPurchase response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", productId, purchaseToken).ExecuteAsync();
 
             if (response == null)
             {
@@ -138,14 +138,16 @@ namespace ET
             }
 
             // 检查订单是否有效
-            GoogleVerifyPayResult googleVerifyPayResult = new GoogleVerifyPayResult(response);
-            if (googleVerifyPayResult.PurchaseState == 0)
+            if (response.PurchaseState == 0)
             {
-                Console.WriteLine($"Google充值成功 ProductId:{productId} purchaseToken:{purchaseToken}");
+                string prefix = "pay_";
+                int rechargeNumber = int.Parse(productId.Substring(prefix.Length));
+                string postReturnStr = JsonHelper.ToJson(response);
+                Console.WriteLine($"Google充值成功 ProductId:{productId} PurchaseToken:{purchaseToken} RechargeNumber:{rechargeNumber} PostReturnStr:{postReturnStr}");
             }
             else
             {
-                Console.WriteLine($"Google充值失败 ProductId:{productId} purchaseToken:{purchaseToken}");
+                Console.WriteLine($"Google充值失败 ProductId:{productId} PurchaseToken:{purchaseToken}");
             }
         }
     }
