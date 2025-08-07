@@ -18,6 +18,20 @@ namespace ET
             // 创建新的服务账号或选择现有账号，并添加权限角色
             // 为服务账号创建并下载 JSON 格式的密钥文件
             // 从下载的 JSON 文件中：
+            // awesome-tube-464511-j5-c991b6d4e499.json
+            // {
+            //  "type": "service_account",
+            //  "project_id": "awesome-tube-464511-j5",
+            //  "private_key_id": "c991b6d4e4994529822511c4f96c8265032aafa2",
+            //  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCuo7XlrSTqhrDY\nYrQzJWNfqi8Y+keIdjC3evQcBeOBz9vOgBqVSztBZSudef7pIE04qEoqO/e500zJ\ntSHmgZVleMFrPjkDhJubRyjJ7c0ayVQe6Tg0687WbqGXb6GuWR9p1JqsJwCqY+g1\nhFt2t6AIAUKGaQsAg76gEm2Qhe7SQah/yBFi0+xrPNOcJTiq4LWtKsGpBUTsZZm3\nh332eQvgGr0JeRFk4G6j03r4nPV3rY0r2CAR1i11mXmj/Ii1t8Bqato1GT7UNsA6\nAV/UKjaKVIYWbXsVSWhAsnLLqq1HzLR8QvCL1WKqVVLu8Ra995txaOkdeB7COmG3\nyshgJDk9AgMBAAECggEAE54sVsqmdPoAb65W09AFY7+4XrPuyTONsW7McUFwFysE\nZCQb2F2FIIl+5sfHjOSmCBFPk4L9BxDndVk1n7E62RVBlQx+VxjUahMKT/S4r6Oi\nIX7NY5SBvbDb0ikmHnHAh6DsZx5SgtGKSki+BY4HGh8aHAM8yygBh/XJ/QwukcvC\nkorEU+CTY5ZCDYw2qRqCBOAjYYOaVdTbkjSoMSH+CLsHaZbEqW8Hh3khdeNmtN72\nnYD9YYFXxBEvyQ2YmsT5Uacj9WGyo0ZnKGJxxwd43e3EqT/YRBUBt7iTqI2Ly6sk\nh0qfmzjZjWkH6X2EBMQMIcRSzd64AzwpV4NbReVJOQKBgQDtJovBkK3FADWTIsr9\nNwAMv/3uaf0N9cLEBCkqfuz89B+YaO0yH2VpfOjTEw33Yxqg/w1+S5kozMg7CCRz\nlycwDLZM0V/fUPD7wbRJmxNP15zo+pOZpkeQHDl6+NEN1Y4v/HJDVyf9JF+907vD\n+fHwcJ9oZldgt8kY+9zAHKdRuwKBgQC8hTY7JKtKiIc6xypgi2nEI/jde0tm1Lm8\nfOff9TX9KY/lzimYMCP79FVggbrJNzgutuyb/ByQvwn/3qFKuhW993TKthQzLY4m\nbu0bdRCBqwuJHRXYrF9ST19TuX5L4P+13LBgOS6WMlgnNHk3s9DIFHPw4wc5EeC/\nLsvJxHoVZwKBgCJJN11l0Gmx7Qz3s8dGI2C0hT7p3ecdx+nU/CqjrRmpJcRAL0LW\n3S+SGoshrxw8HMZ3+Xhv75XBfZVjSPnZOZYt0FFs1+KObjjHuYwGupUJhCr+x0Yo\njyIboofP31GTtXnkkpR/zk0/7AOiz/u2cC8l6TYLzcgy6gUNrM2tltcvAoGAUpat\nbnWfERUE4Uw1lXweBs6XjTghjVguUpQJ5USAtXsKzmtmL4UPjqa47IGI+fPWCikb\nOS7WuNboo4697IXfVozdPp1L9ivD9bRs7bV4WMY9VIFIe9bwH5gkNAK0gLt+awbW\nwiDq9uPxWKOVY0DEe5LyRBrBpE/fvQHcR3Vq4osCgYEApfTyh7VTPP9av+f1w1ma\nrM5uT25FlAFVBwxKE/BXdKTZr1GTP2vah8KlSAUHzewXlrOVAZv2DPW72d8kpzaL\nRMKr/VlOOEaE4Xka4khV1gvf8wdMa1jcdlRJUWH6bUBYpYk1vHmvjx6H3XeZZTcT\nNiq4lfwiaB1vIzjjMSVOncc=\n-----END PRIVATE KEY-----\n",
+            //  "client_email": "weijing@awesome-tube-464511-j5.iam.gserviceaccount.com",
+            //  "client_id": "107573788031122372747",
+            //  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            //  "token_uri": "https://oauth2.googleapis.com/token",
+            //  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            //  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/weijing%40awesome-tube-464511-j5.iam.gserviceaccount.com",
+            //  "universe_domain": "googleapis.com"
+            // }
             // client_email字段对应serviceAccountEmail
             // private_key字段对应privateKey
             // ------------
