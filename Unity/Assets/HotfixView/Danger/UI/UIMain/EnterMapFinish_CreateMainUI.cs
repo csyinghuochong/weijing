@@ -35,7 +35,18 @@ namespace ET
 			ShareSdkHelper.MobPushOperate(1);
 #endif
 
-            if (GlobalHelp.GetPlatform() == 100)
+			if (GlobalHelp.GetPlatform() == 7)
+			{
+				string googleInfo = PlayerPrefsHelp.GetString("Google_" + roleId.ToString());
+				if (!string.IsNullOrEmpty(googleInfo))
+				{
+					NetHelper.SendGooglePayVerifyRequest(zoneScene, googleInfo).Coroutine();
+					PlayerPrefsHelp.SetString("Google_" + roleId.ToString(), string.Empty);
+					FloatTipManager.Instance.ShowFloatTip("重连成功_Google！");
+				}
+			}
+
+			if (GlobalHelp.GetPlatform() == 100)
             {
                 CreateRoleInfo createRoleInfo = accountInfoComponent.CreateRoleList.FirstOrDefault(p => p.UserID == accountInfoComponent.CurrentRoleId);
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(createRoleInfo.PlayerOcc);

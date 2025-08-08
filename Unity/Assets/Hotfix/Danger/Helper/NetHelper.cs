@@ -278,6 +278,23 @@ namespace ET
             await ETTask.CompletedTask;
             return string.Empty;
         }
+        
+        public static async ETTask<string> SendGooglePayVerifyRequest(Scene zoneScene, string info)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+
+            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+
+            C2R_GooglePayVerifyRequest request = new C2R_GooglePayVerifyRequest()
+            {   
+                UnitId = unit.Id, 
+                payMessage = receipt.Payload,
+                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+            };
+            zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+            await ETTask.CompletedTask;
+            return string.Empty;
+        }
 
         public static async ETTask<int> RequestSkillXuanZhuan(Scene zoneScene, int angle)
         {

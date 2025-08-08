@@ -183,6 +183,21 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("重连成功！");
             }
 
+            if (GlobalHelp.GetPlatform() == 7)
+            {
+                info = PlayerPrefsHelp.GetString("Google_" + accountInfoComponent.CurrentRoleId.ToString());
+                if (!string.IsNullOrEmpty(info))
+                {
+                    NetHelper.SendGooglePayVerifyRequest(zoneScene, info).Coroutine();
+                    PlayerPrefsHelp.SetString("Google_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
+                    FloatTipManager.Instance.ShowFloatTip("重连成功_Google！");
+                }
+                else
+                {
+                    FloatTipManager.Instance.ShowFloatTip("重连成功！");
+                }
+            }
+
             UI uIMain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             if (uIMain != null)
             {
