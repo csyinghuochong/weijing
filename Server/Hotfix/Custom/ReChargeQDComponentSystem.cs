@@ -235,10 +235,9 @@ namespace ET
                                                                                          //将传入的数据进行解码
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息                                                                       
 
-
                 if ( string.IsNullOrEmpty(pay_notice))
                 {
-                    Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   CheckQudaoPayResultxxx ==  null  " + pay_notice);
+                    //Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   CheckQudaoPayResultxxx ==  null  " + pay_notice);
                     return;
                 }
 

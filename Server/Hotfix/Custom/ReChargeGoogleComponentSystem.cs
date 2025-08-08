@@ -62,7 +62,8 @@ namespace ET
     {
         public static async ETTask<int> OnGooglePayVerify(this ReChargeGoogleComponent self, M2R_RechargeRequest request)
         {
-            Log.Warning($"支付订单[Google]回调执行 " + "id:" + request.UnitId);
+            Log.Warning($"支付订单[Google]回调执行 id:" + request.UnitId);
+            Log.Warning($"支付订单[Google]回调执行 request.payMessage: " +  request.payMessage);
 
             try
             {
