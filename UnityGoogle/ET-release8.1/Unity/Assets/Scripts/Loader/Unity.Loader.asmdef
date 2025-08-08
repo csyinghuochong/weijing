@@ -12,7 +12,8 @@
         "UnityEngine.Purchasing",
         "UnityEngine.Purchasing.Stores",
         "Unity.Services.Core",
-        "Unity.Services.Core.Environments"
+        "Unity.Services.Core.Environments",
+        "GoogleSignIn"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

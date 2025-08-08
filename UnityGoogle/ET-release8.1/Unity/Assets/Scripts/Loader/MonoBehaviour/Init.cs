@@ -2,6 +2,9 @@
 using CommandLine;
 using UnityEngine;
 using GooglePlayGames;
+using Google;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ET
 {
@@ -85,6 +88,109 @@ namespace ET
 					Debug.Log("PlayGamesPlatform.Instance.GetUserId yyyy: " + PlayGamesPlatform.Instance.GetUserId());
 				}
 			});
+		}
+		
+		private GoogleSignInConfiguration configuration;
+
+		public void InitGoogleSignInConfiguration()
+		{
+			if (configuration == null)
+			{
+				Debug.Log("InitGoogleSignInConfiguration");
+				
+				configuration = new GoogleSignInConfiguration
+				{
+					WebClientId = "180577064002-g3nucon81omrr7j7m9ic7e5kpepj2nmf.apps.googleusercontent.com",
+					RequestIdToken = true
+				};
+			}
+		}
+		
+		public void OnSignIn()
+		{
+			this.InitGoogleSignInConfiguration();
+			
+			GoogleSignIn.Configuration = configuration;
+			GoogleSignIn.Configuration.UseGameSignIn = false;
+			GoogleSignIn.Configuration.RequestIdToken = true;
+
+			Debug.Log("Calling SignIn");
+			
+			GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+		}
+		
+		public void OnSignOut()
+		{
+			this.InitGoogleSignInConfiguration();
+			
+			Debug.Log("Calling SignOut");
+			
+			GoogleSignIn.DefaultInstance.SignOut();
+		}
+		
+		public void OnDisconnect()
+		{
+			this.InitGoogleSignInConfiguration();
+			
+			Debug.Log("Calling Disconnect");
+			
+			GoogleSignIn.DefaultInstance.Disconnect();
+		}
+		
+		void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+		{
+			if (task.IsFaulted)
+			{
+				using (IEnumerator<System.Exception> enumerator = task.Exception.InnerExceptions.GetEnumerator())
+				{
+					if (enumerator.MoveNext())
+					{
+						GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
+						Debug.Log("Got Error: " + error.Status + " " + error.Message);
+					}
+					else
+					{
+						Debug.Log("Got Unexpected Exception?!?" + task.Exception);
+					}
+				}
+			}
+			else if (task.IsCanceled)
+			{
+				Debug.Log("Canceled");
+			}
+			else
+			{
+				Debug.Log("Google 登录成功");
+				Debug.Log($"Id: {task.Result.UserId}");
+				Debug.Log($"Name: {task.Result.DisplayName}");
+			}
+		}
+		
+		public void OnSignInSilently()
+		{
+			this.InitGoogleSignInConfiguration();
+			
+			GoogleSignIn.Configuration = configuration;
+			GoogleSignIn.Configuration.UseGameSignIn = false;
+			GoogleSignIn.Configuration.RequestIdToken = true;
+		
+			Debug.Log("Calling SignInSilently");
+			
+			GoogleSignIn.DefaultInstance.SignInSilently().ContinueWith(OnAuthenticationFinished);
+		}
+		
+		
+		public void OnGamesSignIn()
+		{
+			this.InitGoogleSignInConfiguration();
+			
+			GoogleSignIn.Configuration = configuration;
+			GoogleSignIn.Configuration.UseGameSignIn = true;
+			GoogleSignIn.Configuration.RequestIdToken = false;
+		
+			Debug.Log("Calling GamesSignIn");
+			
+			GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
 		}
 	}
 }
