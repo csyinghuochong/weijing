@@ -1189,6 +1189,7 @@ GameObject:
   - component: {fileID: 575235029}
   - component: {fileID: 575235031}
   - component: {fileID: 575235032}
+  - component: {fileID: 575235033}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -1208,8 +1209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
-  EditorMode: 0
+  Development: 1
+  EditorMode: 1
   OueNetMode: 1
   BigVersion: 23
   BigVersionIOS: 23
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   QQAppID: 1105893765
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
+  webClientId: 180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com
   Platform: 0
   HotUpdateComplete: 0
   Apk_Extension: 
@@ -1435,6 +1437,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckTimeInteval: 3600000
+--- !u!114 &575235033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575235018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbf08fc586adb8439aad0662b444302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615489394
 GameObject:
   m_ObjectHideFlags: 0
