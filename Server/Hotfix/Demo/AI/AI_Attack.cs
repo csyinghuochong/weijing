@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ET
@@ -62,8 +63,10 @@ namespace ET
                         cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
                     }
 
+                    long serverNow = TimeHelper.ServerNow();
+                    aiComponent.LastAttackTime = serverNow;
                     skillManagerComponent.OnUseSkill(cmd, true);
-                    rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ClientNow();
+                    rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + serverNow;
                 }
                 if (rigidityEndTime > stateComponent.RigidityEndTime)
                 {

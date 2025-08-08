@@ -111,6 +111,34 @@ namespace ET
         }
 
         /// <summary>
+        /// 在2D平面上生成一个距离中心点2米到10米之间的随机点
+        /// </summary>
+        /// <param name="center">中心点坐标</param>
+        /// <returns>圆环范围内的随机点</returns>
+        public static Vector3 GetRandomPointInRing(Vector3 center, float innerRadius, float outerRadius)
+        {
+            // 圆环内半径（2米）
+            //float innerRadius = 2f;
+            // 圆环外半径（10米）
+            //float outerRadius = 10f;
+
+            // 生成随机角度（0到2π）
+            float angle = RandomHelper.RandomNumberFloat(0f, 3.14f * 2f);
+
+            // 生成随机半径（在2到10米之间）
+            // 注意：直接取线性随机会导致内圈点更密集，使用平方根可以平均分布
+            float radius = Mathf.Sqrt(RandomHelper.RandomNumberFloat(innerRadius * innerRadius, outerRadius * outerRadius));
+
+            // 计算相对于中心点的偏移量
+            float offsetX = radius * Mathf.Cos(angle);
+            float offsetY = radius * Mathf.Sin(angle);
+
+            // 计算最终位置
+            return new Vector3(center.x + offsetX, center.y, center.z + offsetY);
+        }
+
+
+        /// <summary>
         /// 宠物副本，对位攻击。寻找对面的格子
         /// </summary>
         /// <param name="main"></param>
