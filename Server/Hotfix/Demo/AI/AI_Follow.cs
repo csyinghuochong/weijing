@@ -83,31 +83,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
-            /*
-            while (true)
-            {
-                float distacne = Vector3.Distance(unit.Position, master.Position);
-                if (distacne > 6f)
-                {
-                    Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 60000);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
-                }
-                
-                else if (distacne > 1.1f)
-                {
-                    Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 30000);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
-                }
-                
-                bool timeRet = await TimerComponent.Instance.WaitAsync(100, cancellationToken);
-                if (!timeRet)
-                {
-                    return;
-                }
-            }
-            */
+          
             while (true) 
             {
                 long nowspeed = 60000;
