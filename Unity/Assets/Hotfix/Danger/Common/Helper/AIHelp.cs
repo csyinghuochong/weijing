@@ -223,6 +223,43 @@ namespace ET
             return nearest;
         }
 
+
+        /// <summary>
+        /// 寻找范围内距离自己最近的点
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="position"></param>
+        /// <param name="maxdis"></param>
+        /// <returns></returns>
+        public static Unit GetNearestEnemyInRange(Unit main, Vector3 mainposition, float maxdis, Vector3 selfpositon)
+        {
+            Unit nearest = null;
+            float minDistance = maxdis;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+                float dd = Vector3.Distance(mainposition, unit.Position);
+                if (dd > maxdis || !main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                dd = Vector3.Distance(selfpositon, unit.Position);
+                if (dd < minDistance)
+                {
+                    minDistance = dd;
+                    nearest = unit;
+                }
+            }
+
+            return nearest;
+        }
+
         /// <summary>
         /// 
         /// </summary>

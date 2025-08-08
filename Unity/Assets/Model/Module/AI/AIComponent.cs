@@ -60,5 +60,9 @@ namespace ET
         public int CheckJianGeTimeNum;          //检测间隔时间次数
 
         public long AIDelay;
+
+        public long LastAttackTime;
+
+        public bool IsGhostMove;
     }
 }
