@@ -17,7 +17,7 @@ namespace ET
             "7303474616922905355",  //唐 tiktok
             "qq1DCADAC180C577AEDE05D15B788AE770",   //唐 qq
             "0_tangchunguang",    //渠道测试
-            "google_18319670288", //谷歌测试
+            "_000bGbtVOqK4dtQMLPjSh1ZDyfmbmhQIAbQ",
         };
 
         public static List<long> BanChatPlayer = new List<long>()
