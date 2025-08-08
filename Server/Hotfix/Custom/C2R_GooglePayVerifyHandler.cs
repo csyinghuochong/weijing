@@ -14,7 +14,7 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, request.UnitId))
             {
-                await scene.GetComponent<ReChargeGoogleComponent>().OnGooglePayVerify(new M2R_RechargeRequest()
+                await scene.GetComponent<ReChargeGoogleComponent>().OnGooglePayVerify2(new M2R_RechargeRequest()
                 {
                     Zone = zone, UnitId = request.UnitId, payMessage = request.payMessage, UnitName = request.UnitId.ToString(),
                 });

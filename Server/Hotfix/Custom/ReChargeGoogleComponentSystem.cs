@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using Google.Apis.AndroidPublisher.v3;
 using Google.Apis.Auth.OAuth2;
 
@@ -76,7 +78,7 @@ namespace ET
                     return ErrorCode.ERR_GoogleVerify;
                 }
 
-                // 验证订单
+                // 验证订单 国内云服务器可能访问不了外网
                 Google.Apis.AndroidPublisher.v3.Data.ProductPurchase response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", payloadGoogleJson.productId, payloadGoogleJson.purchaseToken).ExecuteAsync();
 
                 if (response == null)
@@ -123,6 +125,110 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        public static async ETTask<int> OnGooglePayVerify2(this ReChargeGoogleComponent self, M2R_RechargeRequest request)
+        {
+            Log.Warning($"支付订单[Google]回调执行 id:" + request.UnitId);
+            Log.Warning($"支付订单[Google]回调执行 request.payMessage: " +  request.payMessage);
+
+            try
+            {
+                string payLoad = request.payMessage;
+                Payload_Google payloadGoogle = JsonHelper.FromJson<Payload_Google>(payLoad);
+                Payload_Google_json payloadGoogleJson = JsonHelper.FromJson<Payload_Google_json>(payloadGoogle.json);
+
+                if (self.PayLoadList.Contains(payloadGoogleJson.purchaseToken))
+                {
+                    return ErrorCode.ERR_GoogleVerify;
+                }
+
+                if (!self.Verify(payloadGoogle.json, payloadGoogle.signature))
+                {
+                    Log.Warning($"Google充值回调ERROR Google支付验证签名错误");
+                    return ErrorCode.ERR_GoogleVerify;
+                }
+
+                // 检查订单是否有效
+                if (payloadGoogleJson.purchaseState != 0)
+                {
+                    Log.Warning($"Google充值回调ERROR1 {payloadGoogleJson.purchaseState}");
+                    return ErrorCode.ERR_GoogleVerify;
+                }
+
+                string prefix = "pay_";
+                if (!payloadGoogleJson.productId.Contains(prefix))
+                {
+                    Log.Warning($"Google充值回调ERROR6 : !{prefix}");
+                    return ErrorCode.ERR_GoogleVerify;
+                }
+                
+                int rechargeNumber = int.Parse(payloadGoogleJson.productId.Substring(prefix.Length));
+
+                self.PayLoadList.Add(payloadGoogleJson.purchaseToken);
+                if (self.PayLoadList.Count >= 100)
+                {
+                    self.PayLoadList.RemoveAt(0);
+                }
+
+                string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
+                Log.Warning($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
+                Log.Console($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, payLoad, PayTypeEnum.Google);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"Google支付验证未知错误: {ex}");
+                return ErrorCode.ERR_GoogleVerify;
+            }
+
+            return ErrorCode.ERR_Success;
+        }
+
+        /// <summary>
+        /// 使用Google Play控制台中的RSA公钥验证签名
+        /// </summary>
+        public static bool Verify(this ReChargeGoogleComponent self, string json, string signature)
+        {
+            try
+            {
+                // 借助Play变现 -> 创收设置 -> 许可
+                string base64PublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmIVIrFQ5gO11Bcdz6lyqNPn0UKa4HmBe8v8GheQNLL2nt8muFuHgwn39XjiN3FQjNCHzTkQ+HR5ZSApTiYbl9fPTnYu1qwCPLdM2QLLjCHv+gpV5zosnHLxg6bGkAQFJS6y+ap3YXIhh9EzqH6Uz4RsMPTWuk4aSJggy6vd7pgd2yaSGb7pEix5wEuK7ek1LLKumVCwSjOBVe3/xlblqhJiEyjbsGPppO9SAYXVNNMRx1piMAUC2doi0QwA3+5x0Zki0wZdag0xpKBPHIabrU6kobYGYLD947Y2fy5uTmU/17qnw+DTdCMmjfEMDsnQMVvYGzUsGr8gp6CEqMayw6wIDAQAB";
+                byte[] keyBytes = Convert.FromBase64String(base64PublicKey);
+                byte[] signatureBytes = Convert.FromBase64String(signature);
+                byte[] dataBytes = Encoding.UTF8.GetBytes(json);
+
+                using (var rsa = RSA.Create())
+                {
+                    rsa.ImportSubjectPublicKeyInfo(keyBytes, out _);
+
+                    return rsa.VerifyData(
+                        dataBytes,
+                        signatureBytes,
+                        HashAlgorithmName.SHA1,  // Google Play 默认使用 SHA1
+                        RSASignaturePadding.Pkcs1
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"Google支付验证签名错误: {ex}");
+                return false;
+            }
+        }
+
+        public static void OnTest2(this ReChargeGoogleComponent self)
+        {
+            string payLoad = "{\"json\":\"{\\\"orderId\\\":\\\"GPA.3323-8102-8907-22463\\\",\\\"packageName\\\":\\\"com.goinggame.weijing\\\",\\\"productId\\\":\\\"pay_1\\\",\\\"purchaseTime\\\":1754620478148,\\\"purchaseState\\\":0,\\\"purchaseToken\\\":\\\"pefpdbngkpancdmlnojjlkah.AO-J1OzeiNoNuwuhqLDhAGDYjaZogeUMAgLtZ8pLDfDrM0wVVcoonfaFv_BSlnYsC31g5Lkrwh_uvc8sSXNW1NytSl-E7GaMSPckDncobLFFHhUMQmhzRpQ\\\",\\\"quantity\\\":1,\\\"acknowledged\\\":false}\",\"signature\":\"UV3Jo20TumY6pe0BVi5OY4l9niFdiVsB3sPcSaRPG5UrAjoqZDoHXTbtWmOM2JJhNEvn2hUqUk9qBqYm6ObFMlcS8tJOe4I9LVatM9WZdeO/8iqr9EpVFLNTtl5DZuju9jMWeXQeAnfFwZeSlPMqklhc48DCxvn/WY0Zu3SN4zq0Zb99Gclq65l4QNNY8IT/SgPZnwDp1EPhgahgyKdEnZL1w6BnbpOIa/b9fMI/4eYcVac3L+LyT4x7GLocfNbat+kYmtOFmWyGZLUqPbZR9xvE5l5vCpStX8rDnCw17IrCp8A8Mq+Aoj62c7vnXMg46846v9YBHqHNi3eE1I7hLw==\",\"skuDetails\":[\"{\\\"productId\\\":\\\"pay_1\\\",\\\"type\\\":\\\"inapp\\\",\\\"title\\\":\\\"600\\\\u94bb\\\\u77f3 (\\\\u5371\\\\u5883)\\\",\\\"name\\\":\\\"600\\\\u94bb\\\\u77f3\\\",\\\"description\\\":\\\"\\\\u53ef\\\\u4ee5\\\\u83b7\\\\u5f97600\\\\u94bb\\\\u77f3\\\",\\\"price\\\":\\\"JP\\\\u00a5147\\\",\\\"price_amount_micros\\\":147000000,\\\"price_currency_code\\\":\\\"JPY\\\"}\"]}";
+            Payload_Google payloadGoogle = JsonHelper.FromJson<Payload_Google>(payLoad);
+            if (self.Verify(payloadGoogle.json, payloadGoogle.signature))
+            {
+                Console.WriteLine($"Google支付验证签名成功");
+            }
+            else
+            {
+                Console.WriteLine($"Google支付验证签名错误");
+            }
+        }
+        
         public static async ETTask OnTest(this ReChargeGoogleComponent self)
         {
             string productId = "pay_1";
