@@ -1782,12 +1782,14 @@ namespace ET
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]) - 10;
 
-                if (functonIds[i] == 1025) //战场按钮延长30分钟消失
+                if (functonIds[i] == 1025) 
                 {
+                    //战场按钮延迟30分钟消失
                     endTime += (30 * 60);
                 }
-                if (functonIds[i] == 1040)  //拍卖特惠显示到12点
+                if (functonIds[i] == 1040)  
                 {
+                    //拍卖特惠显示到12点
                     int maxTime = 23 * 60 + 58;
                     int curMinute = dateTime.Hour * 60 + dateTime.Minute;
                     Log.ILog.Debug($"拍卖特惠剩余显示时间:{maxTime - curMinute}");
@@ -1795,7 +1797,8 @@ namespace ET
                 }
                 if (functonIds[i] == 1052)
                 {
-                    endTime += (10 * 60);
+                    //狩猎按钮延迟10分钟消失
+                    endTime += (10 * 60); 
                 }
                 if (curTime >= endTime)
                 {
@@ -2614,14 +2617,15 @@ namespace ET
 
         public static void OnBtn_Friend(this UIMainComponent self)
         {
-            if (self.ZoneScene().GetComponent<AccountInfoComponent>().Account.Equals("18319670288"))
-            {
-                self.ZoneScene().GetComponent<SessionComponent>().Session.Dispose();
-            }
-            else
-            {
-                UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
-            }
+            //if (self.ZoneScene().GetComponent<AccountInfoComponent>().Account.Equals("18319670288"))
+            //{
+            //    self.ZoneScene().GetComponent<SessionComponent>().Session.Dispose();
+            //}
+            //else
+            //{
+
+            //}
+            UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
         }
 
         public static void OnButton_HongBao(this UIMainComponent self)
