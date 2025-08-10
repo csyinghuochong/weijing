@@ -57,7 +57,8 @@ namespace ET
 
         public static int CanUseSkill(this StateComponent self, SkillConfig skillConfig, bool checkDead)
         {
-            if (self.StateTypeGet(StateTypeEnum.BePulled))
+            if (self.StateTypeGet(StateTypeEnum.BePulled)
+                || self.StateTypeGet(StateTypeEnum.NoMove))
             {
                 return ErrorCode.ERR_CanNotMove_1;
             }
