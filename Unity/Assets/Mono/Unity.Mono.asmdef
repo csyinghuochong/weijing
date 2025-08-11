@@ -9,9 +9,9 @@
         "UnityEngine.Purchasing.Stores",
         "TapTap.AntiAddiction",
         "AppleAuth",
-        "Google.Play.Games",
         "Unity.Services.Core",
-        "Unity.Services.Core.Environments"
+        "Unity.Services.Core.Environments",
+        "GoogleSignIn"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
