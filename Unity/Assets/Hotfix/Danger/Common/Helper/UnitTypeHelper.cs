@@ -5,14 +5,23 @@ namespace ET
 {
     public static class UnitTypeHelper
     {
-        public static bool IsCanAttackUnit(this Unit self, Unit defend, bool checkdead = true)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="defend"></param>
+        /// <param name="checkdead"></param>
+        /// <param name="aisearch">隐私状态可以被攻击 但是不能被索敌</param>
+        /// <returns></returns>
+        public static bool IsCanAttackUnit(this Unit self, Unit defend, bool checkdead = true, bool aisearch = true)
         {
             if (self.Id == defend.Id)
             {
                 return false;
             }
 
-            if (!defend.IsCanBeAttack(checkdead))
+            if (!defend.IsCanBeAttack(checkdead, aisearch))
             {
                 return false;
             }
@@ -219,7 +228,7 @@ namespace ET
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.AttackMode);
         }
 
-        public static bool IsCanBeAttack(this Unit self, bool checkdead = true)
+        public static bool IsCanBeAttack(this Unit self, bool checkdead = true,  bool aisearch = true)
         {
             if (self.Type == UnitType.Npc || self.Type == UnitType.DropItem
                 || self.Type == UnitType.Chuansong || self.Type == UnitType.JingLing
@@ -236,6 +245,11 @@ namespace ET
                 
             StateComponent stateComponent = self.GetComponent<StateComponent>();
             if (stateComponent.StateTypeGet(StateTypeEnum.JiTui))
+            {
+                return false;
+            }
+
+            if (stateComponent.StateTypeGet(StateTypeEnum.Hide) && aisearch)
             {
                 return false;
             }

@@ -378,7 +378,7 @@ namespace ET
             {
                 return true;
             }
-            if (!self.TheUnitFrom.IsCanAttackUnit(uu))
+            if (!self.TheUnitFrom.IsCanAttackUnit(uu, false))
             {
                 return true;
             }
