@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TX_xunhuanguang_00005
+  m_Name: TX_xunhuanguang_00005_2
   m_Shader: {fileID: 4800000, guid: d2fcf3fdde90a8747920abf9a156372d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -31,5 +31,5 @@ Material:
     m_Floats:
     - _InvFade: 1
     m_Colors:
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _TintColor: {r: 0.22054112, g: 0.7924528, b: 0.7486364, a: 0.5}
   m_BuildTextureStacks: []

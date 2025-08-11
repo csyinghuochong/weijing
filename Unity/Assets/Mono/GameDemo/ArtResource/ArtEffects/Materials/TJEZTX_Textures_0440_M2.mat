@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TX_xunhuanguang_00005
-  m_Shader: {fileID: 4800000, guid: d2fcf3fdde90a8747920abf9a156372d, type: 3}
+  m_Name: TJEZTX_Textures_0440_M2
+  m_Shader: {fileID: 4800000, guid: 5cbf9b39f53165b4597e780d76bf2cf7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,8 +23,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTexLM:
+        m_Texture: {fileID: 2800000, guid: f591031345c33bc4d90fb8f29d506019, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 236252ea3d4b86343b87865cb0f665f7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 57e975d92c64d474e891d58a8c2f94ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

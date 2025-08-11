@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TX_xunhuanguang_00005
-  m_Shader: {fileID: 4800000, guid: d2fcf3fdde90a8747920abf9a156372d, type: 3}
+  m_Name: E3D-Loop4-39-2
+  m_Shader: {fileID: 4800000, guid: 384b4cb3a762edf4496ef77190d69485, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,12 +24,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 236252ea3d4b86343b87865cb0f665f7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 003a2b264a77e8f46b52a6b71ca30730, type: 3}
+        m_Scale: {x: 2.98, y: 0.68}
+        m_Offset: {x: 0, y: -0.5785479}
     m_Ints: []
     m_Floats:
-    - _InvFade: 1
+    - _Alpha: 1
     m_Colors:
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _TintColor: {r: 0.062745094, g: 0.4392157, b: 0.37891942, a: 0.535}
   m_BuildTextureStacks: []
