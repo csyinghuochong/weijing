@@ -36,6 +36,11 @@ namespace ET
             while (this.BuffState == BuffState.Running)
             {
                 this.BaseOnUpdate();
+                if (this.TheUnitBelongto == null || this.TheUnitBelongto.IsDisposed)
+                {
+                    break;
+                }
+
                 long leftTime =  this.BuffEndTime - TimeHelper.ServerNow() ;
                 if (leftTime <= 0)
                 {

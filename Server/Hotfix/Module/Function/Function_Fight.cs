@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace ET
 {
@@ -150,8 +152,34 @@ namespace ET
             }
 
             int DamgeType = 0;      //伤害类型
-            defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
+            SkillPassiveComponent defendSkillPassiveComponent = defendUnit.GetComponent<SkillPassiveComponent>();
+            defendSkillPassiveComponent.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
             defendUnit.GetComponent<BuffManagerComponent>()?.BuffRemoveType(2);
+
+            if (skillHandler.OnlyOncePassiveUnitID.Count > 0)
+            {
+                if (!skillHandler.OnlyOncePassiveUnitID.Contains(defendUnit.Id))
+                {
+                    skillHandler.OnlyOncePassiveUnitID.Add(defendUnit.Id);
+                    C2M_SkillCmd cmd = new C2M_SkillCmd();
+
+                    cmd.SkillID = (int)skillHandler.OnlyOncePassiveUnitID[0];
+                    cmd.TargetID = defendUnit.Id;
+
+                    Vector3 direction = defendUnit.Position - attackUnit.Position;
+                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                    if (direction == Vector3.zero)
+                    {
+                        cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(attackUnit.Rotation).y;
+                    }
+                    else
+                    {
+                        cmd.TargetAngle = Mathf.FloorToInt(ange);
+                    }
+                    cmd.TargetDistance = Vector3.Distance(defendUnit.Position, attackUnit.Position);
+                    attackUnit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, false);
+                }
+            }
 
             //获取攻击方属性
             NumericComponent numericComponentAttack = attackUnit.GetComponent<NumericComponent>();

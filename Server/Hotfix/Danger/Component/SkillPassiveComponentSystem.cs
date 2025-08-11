@@ -504,6 +504,28 @@ namespace ET
             }
         }
 
+        public static int IsTrigegerPassiveTypeEnum_21(this SkillPassiveComponent self)
+        {
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                SkillPassiveInfo skillIfo = self.SkillPassiveInfos[i];
+
+                if (!skillIfo.SkillPassiveTypeEnum.Contains(SkillPassiveTypeEnum.PassiveTypeEnum_21))
+                {
+                    continue;
+                }
+
+                float skillproValue = skillIfo.SkillPro[skillIfo.SkillPassiveTypeEnum.IndexOf(SkillPassiveTypeEnum.PassiveTypeEnum_21)];
+                bool trigger = skillproValue >= RandomHelper.RandFloat01();
+                if (trigger)
+                {
+                    return skillIfo.SkillId;
+                }
+            }
+
+            return 0;
+        }
+
         public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
             Unit unit = self.GetParent<Unit>();

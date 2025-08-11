@@ -31,6 +31,7 @@ namespace ET
             self.SkillParValueHpUpAct.Clear();
             self.ActTargetAddPro = 0f;
             self.HurtAddPro = 0f;
+            self.OnlyOncePassiveUnitID.Clear(); 
 
             //获取通用脚本参数
             if (ComHelp.IfNull(self.SkillConf.ComObjParameter) == false)
@@ -65,6 +66,14 @@ namespace ET
                             break;
                     }
                 }
+            }
+
+
+            SkillPassiveComponent skillPassiveComponent = theUnitFrom.GetComponent<SkillPassiveComponent>();
+            int passiveTypeEnum_21 = skillPassiveComponent.IsTrigegerPassiveTypeEnum_21();
+            if (passiveTypeEnum_21 > 0)
+            {
+                self.OnlyOncePassiveUnitID.Add(passiveTypeEnum_21);
             }
         }
 
