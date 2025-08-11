@@ -48,9 +48,9 @@ namespace ET
                 {
                     vector3 = (new Vector3()
                     {
-                        x = sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        x = sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-2f, 2f),
                         y = sceneConfig.InitPos[1] * 0.01f,
-                        z = sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        z = sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-2f, 2f),
                     });
                 }
                 

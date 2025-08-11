@@ -72,7 +72,10 @@ namespace ET
         public List<long> OnlyOnceBuffUnitID = new List<long>();
 
         //被动技能
-        public List<long> OnlyOncePassiveUnitID = new List<long>();
+        public List<long> OnlyOncePassiveActionUnitID = new List<long>();
+
+        //隐身buff额外属性
+        public List<long> OnlyHideBuffActionUnitID = new List<long>();
 
         public abstract void OnInit(SkillInfo skillId, Unit theUnitFrom);
 

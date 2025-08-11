@@ -96,7 +96,7 @@ namespace ET
             ObjectPool.Instance.Recycle(buffHandler);
             buffHandler.OnFinished();
 
-            self.AddBuffRecord( 0, buffHandler.BuffData.BuffId);
+            self.AddBuffRecord(0, buffHandler.BuffData.BuffId);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
-            if (unit.Type!= UnitType.Player)
+            if (unit.Type != UnitType.Player)
             {
                 return;
             }
@@ -123,17 +123,17 @@ namespace ET
             }
 
             long speed = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
-            self.m_BuffRecord.Add( new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed } );
+            self.m_BuffRecord.Add(new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed });
 
             if (operate == 0 && speed >= 100000)
-            { 
+            {
                 bool haveSpeedBuff = false;
                 for (int i = 0; i < self.m_Buffs.Count; i++)
                 {
                     SkillBuffConfig skillBuffConfig = self.m_Buffs[i].mBuffConfig;
-                    if (skillBuffConfig.BuffType == 1 &&( skillBuffConfig.buffParameterType == 100911 || skillBuffConfig.buffParameterType == 100912) )
+                    if (skillBuffConfig.BuffType == 1 && (skillBuffConfig.buffParameterType == 100911 || skillBuffConfig.buffParameterType == 100912))
                     {
-                        haveSpeedBuff = true; 
+                        haveSpeedBuff = true;
                         break;
                     }
                     if (skillBuffConfig.BuffScript.Equals("RoleBuff_JiTui"))
@@ -169,7 +169,7 @@ namespace ET
                     {
                         strLog += $"{self.m_Buffs[i].mBuffConfig.Id}  ";
                     }
-                    
+
                     self.m_BuffRecord.Clear();
                     Log.Warning(strLog);
                 }
@@ -184,7 +184,7 @@ namespace ET
             for (int i = buffcnt - 1; i >= 0; i--)
             {
                 //判断当前状态是否为暴击状态的buff
-                if (self.m_Buffs[i].mBuffConfig.BuffType != 2 )
+                if (self.m_Buffs[i].mBuffConfig.BuffType != 2)
                 {
                     continue;
                 }
@@ -196,6 +196,30 @@ namespace ET
                 }
             }
         }
+
+        /// <summary>
+        /// 隐身buff伤害加成, 技能效果内只加成一次
+        /// </summary>
+        /// <returns></returns>
+        public static SkillBuffConfig GetHideBuffDamgePro(this BuffManagerComponent self)
+        {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                //判断当前状态是否为暴击状态的buff
+                if (self.m_Buffs[i].mBuffConfig.BuffType != 2)
+                {
+                    continue;
+                }
+
+                if (self.m_Buffs[i].mBuffConfig.buffParameterType == 22)
+                {
+                    return self.m_Buffs[i].mBuffConfig;
+                }
+            }
+            return null;
+        }
+
 
         public static void OnRevive(this BuffManagerComponent self)
         {

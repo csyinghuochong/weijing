@@ -31,7 +31,8 @@ namespace ET
             self.SkillParValueHpUpAct.Clear();
             self.ActTargetAddPro = 0f;
             self.HurtAddPro = 0f;
-            self.OnlyOncePassiveUnitID.Clear(); 
+            self.OnlyOncePassiveActionUnitID.Clear();
+            self.OnlyHideBuffActionUnitID.Clear();
 
             //获取通用脚本参数
             if (ComHelp.IfNull(self.SkillConf.ComObjParameter) == false)
@@ -68,13 +69,23 @@ namespace ET
                 }
             }
 
-
+            //被动技能额外一次性效果
             SkillPassiveComponent skillPassiveComponent = theUnitFrom.GetComponent<SkillPassiveComponent>();
             int passiveTypeEnum_21 = skillPassiveComponent.IsTrigegerPassiveTypeEnum_21();
             if (passiveTypeEnum_21 > 0)
             {
-                self.OnlyOncePassiveUnitID.Add(passiveTypeEnum_21);
+                self.OnlyOncePassiveActionUnitID.Add(passiveTypeEnum_21);
             }
+
+            //隐身buff加成
+            BuffManagerComponent buffManagerComponent = theUnitFrom.GetComponent<BuffManagerComponent>();
+            SkillBuffConfig skillBuffConfig = buffManagerComponent.GetHideBuffDamgePro();
+            if (skillBuffConfig != null)
+            {
+                self.OnlyHideBuffActionUnitID.Add(skillBuffConfig.Id);
+            }
+            //退出隐身状态
+            buffManagerComponent.BuffRemoveType(3);
         }
 
         public static float GetTianfuProAdd(this SkillHandler self, int key)

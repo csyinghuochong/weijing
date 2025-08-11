@@ -156,14 +156,14 @@ namespace ET
             defendSkillPassiveComponent.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
             defendUnit.GetComponent<BuffManagerComponent>()?.BuffRemoveType(2);
 
-            if (skillHandler.OnlyOncePassiveUnitID.Count > 0)
+            if (skillHandler.OnlyOncePassiveActionUnitID.Count > 0)
             {
-                if (!skillHandler.OnlyOncePassiveUnitID.Contains(defendUnit.Id))
+                if (!skillHandler.OnlyOncePassiveActionUnitID.Contains(defendUnit.Id))
                 {
-                    skillHandler.OnlyOncePassiveUnitID.Add(defendUnit.Id);
+                    skillHandler.OnlyOncePassiveActionUnitID.Add(defendUnit.Id);
                     C2M_SkillCmd cmd = new C2M_SkillCmd();
 
-                    cmd.SkillID = (int)skillHandler.OnlyOncePassiveUnitID[0];
+                    cmd.SkillID = (int)skillHandler.OnlyOncePassiveActionUnitID[0];
                     cmd.TargetID = defendUnit.Id;
 
                     Vector3 direction = defendUnit.Position - attackUnit.Position;
@@ -178,6 +178,27 @@ namespace ET
                     }
                     cmd.TargetDistance = Vector3.Distance(defendUnit.Position, attackUnit.Position);
                     attackUnit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, false);
+                }
+            }
+
+
+            if (skillHandler.OnlyHideBuffActionUnitID.Count > 0)
+            {
+                SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get((int)skillHandler.OnlyHideBuffActionUnitID[0]);
+
+                if (skillBuffConfig.DamgePro > 0)
+                {
+                    buffHurtValueAdd += (float)skillBuffConfig.DamgePro;
+                }
+
+                if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))
+                {
+                    skillHandler.OnlyHideBuffActionUnitID.Add(defendUnit.Id);
+
+                    BuffData buffData_2 = new BuffData();
+                    buffData_2.SkillId = 67000278;
+                    buffData_2.BuffId =  int.Parse(skillBuffConfig.buffParameterValue2); //69000046
+                    defendUnit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, attackUnit, null, true);
                 }
             }
 
