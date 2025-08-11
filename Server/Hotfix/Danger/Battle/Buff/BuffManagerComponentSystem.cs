@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -252,7 +253,7 @@ namespace ET
         }
 
         /// <summary>
-        /// removetype 1移动  2被攻击[目前用来移除沉睡buff]
+        /// removetype 1移动  2被攻击[目前用来移除沉睡buff]   3释放技能
         /// </summary>
         /// <param name="self"></param>
         /// <param name="removetype"></param>
@@ -261,7 +262,7 @@ namespace ET
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
-                if (self.m_Buffs[i].mBuffConfig.Remove == removetype)
+                if (self.m_Buffs[i].mBuffConfig.Remove.Contains(removetype) )
                 {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
                     self.m_Buffs.RemoveAt(i);

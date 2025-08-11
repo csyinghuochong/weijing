@@ -167,7 +167,7 @@ namespace ET
 		public int[] BuffTargetType { get; set; }
 		/// <summary>移除机制</summary>
 		[ProtoMember(34)]
-		public int Remove { get; set; }
+		public int[] Remove { get; set; }
 		/// <summary>移动触发</summary>
 		[ProtoMember(35)]
 		public int MoveAction { get; set; }

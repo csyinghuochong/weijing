@@ -114,7 +114,7 @@ namespace ET
         public const long WuDiMonster = 1 << 21;
 
         /// <summary>
-        /// 隐藏状态
+        /// 隐藏状态   不能被选中 但是可以被攻击 被攻击现身
         /// </summary>
 
         public const long Hide = 1 << 22;

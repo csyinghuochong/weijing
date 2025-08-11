@@ -81,6 +81,10 @@ namespace ET
                 }
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, true, true);
+
+                //退出隐身状态
+                unit.GetComponent<BuffManagerComponent>().BuffRemoveType(3);
+
                 M2C_SkillCmd m2C_SkillCmd = skillManagerComponent.OnUseSkill(request, true); ;
 
                 //可以放二段斩的时候客户端会发送二段技能过来
