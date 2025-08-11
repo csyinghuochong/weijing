@@ -10,7 +10,7 @@ namespace ET
             int zone = UnitIdStruct.GetUnitZone(request.UnitId);
             zone = StartZoneConfigCategory.Instance.Get(zone).PhysicZone;
 
-            Console.WriteLine($"C2R_GooglePayVerifyRequest C2R_GooglePayVerifyRequest xxxx");
+            Console.WriteLine($"C2R_GooglePayVerifyRequest C2R_GooglePayVerifyRequest xxx {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, request.UnitId))
             {

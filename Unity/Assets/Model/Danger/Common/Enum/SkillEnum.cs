@@ -43,6 +43,7 @@ namespace ET
     //18: 重复副本开始战斗触发
     //19: 普攻攻击暴击触发
     //20: 前冲进入CD触发
+    //21: 受到伤害触发buff， 技能效果内只触发一次。
 
     public static class SkillPassiveTypeEnum
     {
@@ -67,6 +68,7 @@ namespace ET
         public const int PetBattleBegin_18 = 18;
         public const int AckCritical_19 = 19;
         public const int FanGunCD_20 = 20;
+        public const int PassiveTypeEnum_21 = 21;
     }
 
     //1：主动技能

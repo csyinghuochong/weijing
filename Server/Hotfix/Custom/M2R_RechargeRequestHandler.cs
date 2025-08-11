@@ -30,7 +30,8 @@ namespace ET
                     response.Error = await scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify(request);
                     break;
                 case PayTypeEnum.Google:
-                    Console.WriteLine($"C2R_GooglePayVerifyRequest C2R_GooglePayVerifyRequest yyyy");
+                    Console.WriteLine($"C2R_GooglePayVerifyRequest C2R_GooglePayVerifyRequest yyy {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
+
                     response.Error = await scene.GetComponent<ReChargeGoogleComponent>().OnGooglePayVerify2(request);
                     break;
                 case PayTypeEnum.TikTok:

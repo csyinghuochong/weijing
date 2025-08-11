@@ -69,7 +69,10 @@ namespace ET
 
         public SkillInfo SkillInfo;
 
-        public List<long> OnlyOnceBuffUnitID = new List<long>();        
+        public List<long> OnlyOnceBuffUnitID = new List<long>();
+
+        //被动技能
+        public List<long> OnlyOncePassiveUnitID = new List<long>();
 
         public abstract void OnInit(SkillInfo skillId, Unit theUnitFrom);
 
