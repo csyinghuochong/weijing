@@ -11,7 +11,7 @@
         "AppleAuth",
         "Unity.Services.Core",
         "Unity.Services.Core.Environments",
-        "GoogleSignIn"
+        "Google.SignIn"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -269,7 +269,16 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            int needRecharge = GlobalValueConfigCategory.Instance.Get(113).Value2;
+            int needRecharge = 0;
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                needRecharge = GlobalValueConfigCategory.Instance.Get(120).Value2;
+            }
+            else
+            {
+                needRecharge = GlobalValueConfigCategory.Instance.Get(113).Value2;
+            }
+                    
             int skillmakePlan_2 = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillMakePlan2);
             string tip = string.Empty;
             if (plan == 2 && skillmakePlan_2 == 0)
