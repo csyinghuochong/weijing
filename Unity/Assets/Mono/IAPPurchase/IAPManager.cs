@@ -34,13 +34,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     void Start()
     {
-        Debug.Log("IAPManager.Start");
-
-        // 如果IAP控制器尚未初始化，则初始化
-        if (m_StoreController == null)
-        {
-            InitializePurchasing();
-        }
     }
 
     void InitializeGamingServices()
@@ -63,16 +56,26 @@ public class IAPManager : MonoBehaviour, IStoreListener
         }
     }
     
-    public void InitializePurchasing()
+    public void InitializePurchasing(string productlst)
     {
+        if (m_StoreController != null)
+        {
+            return;
+        }
+
+        Debug.Log("InitProductInitProduct wj");
+        
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         // 添加产品到配置中
         //builder.AddProduct(kProductIDConsumable, ProductType.Consumable);
         //builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
         //builder.AddProduct(kProductIDSubscription, ProductType.Subscription);
-        builder.AddProduct("pay_1", ProductType.Consumable);
-
+        string[] productList = productlst.Split('@');
+        for (int i = 0; i < productList.Length; i++)
+        {
+            builder.AddProduct(productList[i], ProductType.Consumable);
+        }
         UnityPurchasing.Initialize(this, builder);
     }
 

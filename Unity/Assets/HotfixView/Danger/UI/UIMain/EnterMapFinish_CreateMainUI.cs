@@ -37,6 +37,8 @@ namespace ET
 
 			if (GlobalHelp.GetPlatform() == 7)
 			{
+				GlobalHelp.InitGooglePurchase();
+
 				string googleInfo = PlayerPrefsHelp.GetString("Google_" + roleId.ToString());
 				if (!string.IsNullOrEmpty(googleInfo))
 				{

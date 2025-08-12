@@ -164,6 +164,12 @@ namespace ET
             GameObject.Find("Global").GetComponent<IAPManager>().BuyProduct_WJ(product);
         }
 
+        public static void InitGooglePurchase()
+        {
+            string products = "pay_1@pay_5@pay_10@pay_20@pay_30@pay_50@pay_80@pay_100";
+            GameObject.Find("Global").GetComponent<IAPManager>().InitializePurchasing(products);
+        }
+        
         public static void OnIOSPurchase(int rmb)
         {
             string product =  $"{rmb}WJ";
