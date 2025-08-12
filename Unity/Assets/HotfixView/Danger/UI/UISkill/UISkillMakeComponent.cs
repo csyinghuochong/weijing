@@ -272,7 +272,7 @@ namespace ET
             int needRecharge = 0;
             if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                needRecharge = GlobalValueConfigCategory.Instance.Get(120).Value2;
+                needRecharge = 30;
             }
             else
             {
