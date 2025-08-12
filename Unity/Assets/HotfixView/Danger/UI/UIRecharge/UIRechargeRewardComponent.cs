@@ -84,7 +84,15 @@ namespace ET
         public static async ETTask OnButtonReward(this UIRechargeRewardComponent self)
         {
             int page = self.UIPageButton.CurrentIndex;
-            int rechargeNumber = page == 0 ? 50 : 98;
+            int rechargeNumber = 0;
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                rechargeNumber = page == 0 ? 10 : 20;
+            }
+            else
+            {
+                rechargeNumber = page == 0 ? 50 : 98;
+            }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.RechargeReward.Contains(rechargeNumber))
@@ -121,7 +129,16 @@ namespace ET
 
         public static void UpdateUI(this UIRechargeRewardComponent self, int page)
         {
-            int rechargeNumber = page == 0 ? 50 : 98;
+            int rechargeNumber = 0;
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                rechargeNumber = page == 0 ? 10 : 20;
+            }
+            else
+            {
+                rechargeNumber = page == 0 ? 50 : 98;
+            }
+            
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -142,7 +159,15 @@ namespace ET
             
             self.TextTip.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("累冲{0}元， 获得以下奖励"), rechargeNumber);
 
-            string reward = ConfigHelper.RechargeReward[rechargeNumber];
+            string reward = "";
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                reward = ConfigHelper.RechargeReward_EN[rechargeNumber];
+            }
+            else
+            {
+                reward = ConfigHelper.RechargeReward[rechargeNumber];
+            }
             List<RewardItem> rewardItems = ItemHelper.GetRewardItems(reward);
             for (int i = 0; i < rewardItems.Count; i++)
             {

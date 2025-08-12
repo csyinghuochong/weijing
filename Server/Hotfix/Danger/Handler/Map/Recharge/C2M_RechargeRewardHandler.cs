@@ -9,12 +9,25 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_RechargeRewardRequest request, M2C_RechargeRewardResponse response, Action reply)
         {
-            if (!ConfigHelper.RechargeReward.ContainsKey(request.RechargeNumber))
+            if (ServerHelper.IsGoogleServer(unit.DomainZone()))
             {
-                Log.Error($"C2M_RechargeRewardRequest 1");
-                response.Error = ErrorCode.ERR_ModifyData;
-                reply();
-                return;
+                if (!ConfigHelper.RechargeReward_EN.ContainsKey(request.RechargeNumber))
+                {
+                    Log.Error($"C2M_RechargeRewardRequest 1");
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
+            }
+            else
+            {
+                if (!ConfigHelper.RechargeReward.ContainsKey(request.RechargeNumber))
+                {
+                    Log.Error($"C2M_RechargeRewardRequest 1");
+                    response.Error = ErrorCode.ERR_ModifyData;
+                    reply();
+                    return;
+                }
             }
 
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -33,7 +46,16 @@ namespace ET
                 return;
             }
 
-            string rewarditem = ConfigHelper.RechargeReward[request.RechargeNumber];
+            string rewarditem = "";
+            if (ServerHelper.IsGoogleServer(unit.DomainZone()))
+            {
+                rewarditem = ConfigHelper.RechargeReward_EN[request.RechargeNumber];
+            }
+            else
+            {
+                rewarditem = ConfigHelper.RechargeReward[request.RechargeNumber];
+            }
+            
             string[] rewardList = rewarditem.Split('@');
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < rewardList.Length)
             {
