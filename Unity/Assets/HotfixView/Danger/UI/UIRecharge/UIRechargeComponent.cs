@@ -279,7 +279,7 @@ namespace ET
                 //google
                 self.Loading.SetActive(true);
                 //test
-                chargetNumber = 1;
+                //chargetNumber = 1;
                 GlobalHelp.OnGooglePurchase(chargetNumber);
                 C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.Google };
                 self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
