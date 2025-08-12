@@ -206,7 +206,7 @@ namespace ET
 				self.UIRotateComponent = uirotate;
 				self.Loading.SetActive(false);
 
-				if (GameSettingLanguge.Language == 1)
+				if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
 				{
 					rc.Get<GameObject>("Img_GameName_ZH").SetActive(false);
 					rc.Get<GameObject>("Img_GameName_EN").SetActive(true);
