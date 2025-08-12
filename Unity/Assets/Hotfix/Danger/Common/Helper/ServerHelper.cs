@@ -34,7 +34,13 @@ namespace ET
 
         public static bool IsGoogleServer(int zone)
         {
-            if (ServerHelper.GetGetServerItem(false, zone).PlatformList.Contains(7))
+            ServerItem serverItem = ServerHelper.GetGetServerItem(false, zone);
+            if (serverItem == null)
+            {
+                return false;
+            }
+            
+            if (serverItem.PlatformList.Contains(7))
             {
                 return true;
             }

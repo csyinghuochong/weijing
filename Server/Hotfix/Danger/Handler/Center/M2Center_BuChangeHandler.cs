@@ -24,7 +24,7 @@ namespace ET
                     if (rechargeInfo.UserId == request.BuChangId)
                     {
                         response.BuChangRecharge += rechargeInfo.Amount;
-                        response.BuChangDiamond += ConfigHelper.GetDiamondNumber(rechargeInfo.Amount);
+                        response.BuChangDiamond += ConfigHelper.GetDiamondNumber(rechargeInfo.Amount, scene.Zone);
                     }
                 }
                 playerInfo.DeleteUserList.Clear();
