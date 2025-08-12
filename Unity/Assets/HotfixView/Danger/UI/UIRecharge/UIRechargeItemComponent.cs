@@ -63,17 +63,17 @@ namespace ET
             self.Text_give.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("赠送") + " " +giveNumber.ToString();
             self.ZengSong.SetActive(giveNumber > 0);
             string path = null;
-            if (GameSettingLanguge.Language == 0)
-            {
-                self.Text_ZuanShi.GetComponent<Text>().text = (recharge * ConfigHelper.RechargeToDiamondRatio).ToString();
-                self.Text_RMB.GetComponent<Text>().text = "￥" + recharge.ToString();
-                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_" + recharge.ToString());                
-            }
-            else
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
                 self.Text_ZuanShi.GetComponent<Text>().text = (recharge * ConfigHelper.RechargeToDiamondRatio_EN).ToString();
                 self.Text_RMB.GetComponent<Text>().text = "$" + recharge.ToString();
                 path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_EN_" + recharge.ToString());
+            }
+            else
+            {
+                self.Text_ZuanShi.GetComponent<Text>().text = (recharge * ConfigHelper.RechargeToDiamondRatio).ToString();
+                self.Text_RMB.GetComponent<Text>().text = "￥" + recharge.ToString();
+                path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_" + recharge.ToString());   
             }
 
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);

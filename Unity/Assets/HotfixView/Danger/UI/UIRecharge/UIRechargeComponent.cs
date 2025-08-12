@@ -131,15 +131,10 @@ namespace ET
                 return;
             }
             self.AssetPath = path;
-            if (GameSettingLanguge.Language == 0)
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                foreach (var item in ConfigHelper.RechargeGive)
+                foreach (var item in ConfigHelper.RechargeGive_EN)
                 {
-                    if (item.Key == 1)
-                    {
-                        continue;
-                    }
-
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.RechargeList);
                     UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
@@ -150,8 +145,13 @@ namespace ET
             }
             else
             {
-                foreach (var item in ConfigHelper.RechargeGive_EN)
+                foreach (var item in ConfigHelper.RechargeGive)
                 {
+                    if (item.Key == 1)
+                    {
+                        continue;
+                    }
+
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.RechargeList);
                     UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + item.Key.ToString(), skillItem);
