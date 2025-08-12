@@ -237,7 +237,7 @@ namespace ET
 
                 if ( string.IsNullOrEmpty(pay_notice))
                 {
-                    //Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   CheckQudaoPayResultxxx ==  null  " + pay_notice);
+                    Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   CheckQudaoPayResultxxx ==  null  " + pay_notice);
                     return;
                 }
 
