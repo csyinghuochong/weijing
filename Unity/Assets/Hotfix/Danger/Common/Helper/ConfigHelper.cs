@@ -141,16 +141,26 @@ namespace ET
         };
 
         // 美元充值
-        public static int RechargeToDiamondRatio_EN = 600;
+        public static Dictionary<int, int> RechargeToDiamond_EN = new Dictionary<int, int>()
+        {
+            { 1,        700},
+            { 5,        3500},
+            { 10,       7000},
+            { 20,       14000},
+            { 30,       21000},
+            { 50,       35000},
+            { 80,       56000},
+            { 100,      70000},
+        };
         public static Dictionary<int, int> RechargeGive_EN = new Dictionary<int, int>(){
             { 1,        0},
             { 5,        300},
-            { 7,        600},
-            { 15,       1200},
+            { 10,       600},
+            { 20,       1200},
             { 30,       2888},
-            { 40,       4888},
-            { 70,       8888},
-            { 90,       12888},
+            { 50,       4888},
+            { 80,       8888},
+            { 100,      12888},
         };
 
         public static int GetDiamondNumber(int key, int zone)
@@ -158,12 +168,15 @@ namespace ET
             int number = 0;
             if (ServerHelper.IsGoogleServer(zone))
             {
-                if (!RechargeGive_EN.ContainsKey(key))
+                if (RechargeToDiamond_EN.ContainsKey(key))
                 {
-                    return 0;
+                    number += RechargeToDiamond_EN[key];
                 }
-
-                number = key * RechargeToDiamondRatio_EN + RechargeGive_EN[key];
+                
+                if (RechargeGive_EN.ContainsKey(key))
+                {
+                    number += RechargeGive_EN[key];
+                }
             }
             else
             {

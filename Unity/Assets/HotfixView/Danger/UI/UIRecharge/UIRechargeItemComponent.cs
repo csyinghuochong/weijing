@@ -65,7 +65,7 @@ namespace ET
             string path = null;
             if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                self.Text_ZuanShi.GetComponent<Text>().text = (recharge * ConfigHelper.RechargeToDiamondRatio_EN).ToString();
+                self.Text_ZuanShi.GetComponent<Text>().text = ConfigHelper.RechargeToDiamond_EN[recharge].ToString();
                 self.Text_RMB.GetComponent<Text>().text = "$" + recharge.ToString();
                 path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.RechageIcon, "UI_Image_Recharge_EN_" + recharge.ToString());
             }
