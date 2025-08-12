@@ -225,7 +225,7 @@ namespace ET
         {
             EventType.QuDaoSwichAccount args = a as EventType.QuDaoSwichAccount;
 
-            Log.ILog.Debug("QuDaoLoginSwichAccount: ");
+            Log.ILog.Debug("Register: QuDaoLoginSwichAccountHandler");
 
             EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
             eventHandle.onSwitchAccountSuccessAction = args.QuDaoSwichAccountHandler;

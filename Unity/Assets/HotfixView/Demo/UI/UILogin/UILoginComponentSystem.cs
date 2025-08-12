@@ -1261,12 +1261,16 @@ namespace ET
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
 
 				Log.ILog.Debug($"GetPlatform:  {GlobalHelp.GetPlatform()}");
-                Log.ILog.Debug($"TaprepRequest:  {accountInfoComponent.TaprepRequest}");
-                Log.ILog.Debug($"TapRepRegister:  {PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)}");
+
+                if (GlobalHelp.GetPlatform() == 1)
+                {
+                    Log.ILog.Debug($"TaprepRequest:  {accountInfoComponent.TaprepRequest}");
+                    Log.ILog.Debug($"TapRepRegister:  {PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)}");
+                }
 
                 if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister)))
 				{
-					PlayerPrefsHelp.SetString(PlayerPrefsHelp.TapRepRegister, TimeHelper.ClientNow() + "");
+                    PlayerPrefsHelp.SetString(PlayerPrefsHelp.TapRepRegister, TimeHelper.ClientNow() + "");
 					//tapreq 激活
 					await TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 1, string.Empty);
 
