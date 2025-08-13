@@ -65,7 +65,14 @@ namespace ET
             self.ReceivedImg.SetActive(userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             self.ReceiveBtn.SetActive(!userInfoComponent.UserInfo.SingleRewardIds.Contains(key));
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 1f);
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward_EN[key], self.RewardListNode, self, 1f);
+            }
+            else
+            {
+                UICommonHelper.ShowItemList(ConfigHelper.SingleRechargeReward[key], self.RewardListNode, self, 1f);
+            }
 
             // UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             // if (userInfo.SingleRechargeRewardIds.Contains(self.Key))
@@ -76,12 +83,26 @@ namespace ET
 
         public static async ETTask OnReceiveBtn(this UIActivitySingleRechargeItemComponent self)
         {
-            if (!ConfigHelper.SingleRechargeReward.ContainsKey(self.Key))
+            string[] rewarditemlist = null;
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                return;
+                if (!ConfigHelper.SingleRechargeReward_EN.ContainsKey(self.Key))
+                {
+                    return;
+                }
+
+                rewarditemlist = ConfigHelper.SingleRechargeReward_EN[self.Key].Split('@');
+            }
+            else
+            {
+                if (!ConfigHelper.SingleRechargeReward.ContainsKey(self.Key))
+                {
+                    return;
+                }
+
+                rewarditemlist = ConfigHelper.SingleRechargeReward[self.Key].Split('@');
             }
 
-            string[] rewarditemlist = ConfigHelper.SingleRechargeReward[self.Key].Split('@');
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < rewarditemlist.Length)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));

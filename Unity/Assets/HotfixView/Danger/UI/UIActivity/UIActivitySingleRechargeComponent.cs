@@ -52,13 +52,27 @@ namespace ET
 
         public static void InitInfo(this UIActivitySingleRechargeComponent self)
         {
-            foreach (int key in ConfigHelper.SingleRechargeReward.Keys)
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                GameObject go = UnityEngine.Object.Instantiate(self.UIActivitySingleRechargeItem);
-                UIActivitySingleRechargeItemComponent component = self.AddChild<UIActivitySingleRechargeItemComponent, GameObject>(go);
-                component.OnUpdateData(key);
-                UICommonHelper.SetParent(go, self.UIActivitySingleRechargeItemListNode);
-                go.SetActive(true);
+                foreach (int key in ConfigHelper.SingleRechargeReward_EN.Keys)
+                {
+                    GameObject go = UnityEngine.Object.Instantiate(self.UIActivitySingleRechargeItem);
+                    UIActivitySingleRechargeItemComponent component = self.AddChild<UIActivitySingleRechargeItemComponent, GameObject>(go);
+                    component.OnUpdateData(key);
+                    UICommonHelper.SetParent(go, self.UIActivitySingleRechargeItemListNode);
+                    go.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (int key in ConfigHelper.SingleRechargeReward.Keys)
+                {
+                    GameObject go = UnityEngine.Object.Instantiate(self.UIActivitySingleRechargeItem);
+                    UIActivitySingleRechargeItemComponent component = self.AddChild<UIActivitySingleRechargeItemComponent, GameObject>(go);
+                    component.OnUpdateData(key);
+                    UICommonHelper.SetParent(go, self.UIActivitySingleRechargeItemListNode);
+                    go.SetActive(true);
+                }
             }
         }
     }
