@@ -88,15 +88,31 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            if (index == 3 && selfRechage < 298)
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
-                return;
+                if (index == 3 && selfRechage < 50)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                    return;
+                }
+                if (index == 2 && selfRechage < 20)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                    return;
+                }
             }
-            if (index == 2 && selfRechage < 98)
+            else
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
-                return;
+                if (index == 3 && selfRechage < 298)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                    return;
+                }
+                if (index == 2 && selfRechage < 98)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                    return;
+                }
             }
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();

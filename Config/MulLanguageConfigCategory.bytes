@@ -487,8 +487,8 @@ Checked in
 .��单笔充值0元"Single recharge 0 yuan
 )��传说大礼包"Legendary gift bag
 "��礼包物品"Gift bag items
-)��累计充值98元"Recharge 98 yuan
-+��累计充值298元"Recharge 298 yuan
+)��累计充值98元"Recharge 20 yuan
+*��累计充值298元"Recharge 50 yuan
 #��免费领取"Get it for free
 2��当前额度:999/298"Current limit: 999/298
 7��制作书：哈哈哈哈"Make the book: hahahaha
@@ -3327,7 +3327,7 @@ C��背包空间不足")There is not enough space in the backpack
 2��未达条件"Failure to meet the conditions
 )��已经领取"It has been collected
 M��已经购买过该礼包！"*This gift pack has already been purchased!
-4��当前额度：{0}/298"Current limit: {0}/298
+4��当前额度：{0}/{1}"Current limit: {0}/{1}
 ,��背包已满！"The backpack is full!
 @��请先开启月卡！"#Please open the monthly card first!
 I��当天奖励已领取！")The reward of the day has been collected!

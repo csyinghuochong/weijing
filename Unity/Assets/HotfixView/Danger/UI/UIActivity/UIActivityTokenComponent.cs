@@ -81,8 +81,17 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             //self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
-            self.TextRecharge.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前额度：{0}/298"), selfRechage);
-            self.TextRecharge.SetActive(selfRechage < 298);
+            
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                self.TextRecharge.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前额度：{0}/{1}"), selfRechage, 50);
+                self.TextRecharge.SetActive(selfRechage < 50);
+            }
+            else
+            {
+                self.TextRecharge.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前额度：{0}/{1}"), selfRechage, 298);
+                self.TextRecharge.SetActive(selfRechage < 298);
+            }
         }
     }
 }

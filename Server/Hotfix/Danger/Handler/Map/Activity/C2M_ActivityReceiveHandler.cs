@@ -109,15 +109,31 @@ namespace ET
                             return;
                         }
                         int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-                        if (request.ReceiveIndex == 3 && selfRechage < 298)
+                        if (ServerHelper.IsGoogleServer(unit.DomainZone()))
                         {
-                            reply();
-                            return;
+                            if (request.ReceiveIndex == 3 && selfRechage < 50)
+                            {
+                                reply();
+                                return;
+                            }
+                            if (request.ReceiveIndex == 2 && selfRechage < 20)
+                            {
+                                reply();
+                                return;
+                            }
                         }
-                        if (request.ReceiveIndex == 2 && selfRechage < 98)
+                        else
                         {
-                            reply();
-                            return;
+                            if (request.ReceiveIndex == 3 && selfRechage < 298)
+                            {
+                                reply();
+                                return;
+                            }
+                            if (request.ReceiveIndex == 2 && selfRechage < 98)
+                            {
+                                reply();
+                                return;
+                            }
                         }
 
                         activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
