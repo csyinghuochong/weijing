@@ -221,6 +221,7 @@ namespace ET
             //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
+            self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();
             self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
@@ -383,15 +384,19 @@ namespace ET
                 newv3 = pathfind[pathfind.Count - 1];
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
-                self.checkTime = (long)(1000 * needTime) - 200;
+                self.checkTime = (long)(1000 * needTime);
+                self.checkTime =  Math.Min(200, self.checkTime);
+               
+                long passTime = clientNow - self.MoveComponent.LastRecvTime;
 
-                unit.MoveResultToAsync(pathfind, null).Coroutine();
-				float c2sdisc = self.MoveComponent.C2SDistance;
-                if (c2sdisc > 3)
+                float c2sdisc = self.MoveComponent.C2SDistance;
+                if (c2sdisc > 3f || passTime > 300)
                 {
                     speed *= 0.2f;
+                    //Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 }
-                //Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}");
+
+                unit.MoveResultToAsync(pathfind, null).Coroutine();
                 self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
             else
