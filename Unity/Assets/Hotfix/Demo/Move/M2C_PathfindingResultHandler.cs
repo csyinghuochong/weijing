@@ -33,7 +33,8 @@ namespace ET
                     {
                         list.Add(new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]));
                     }
-
+                    //PathPosition pathPosition =   unit.GetPositionRelativeToPath( list);
+                    //Log.ILog.Debug($"pathPosition:  {pathPosition}   unit.Position:  {unit.Position}");
                     unit.GetComponent<MoveComponent>().MoveToAsync(list, speed).Coroutine();
                 }
             }

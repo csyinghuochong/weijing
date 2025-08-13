@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace ET
 {
+    // 路径位置状态枚举
+    public enum PathPosition
+    {
+        Behind,     // 在路径后方
+        Middle,      // 在路径中间
+        Ahead        // 在路径前方
+    }
+
+
     public class MoveComponent: Entity, IAwake, IDestroy
     {
         public Vector3 PreTarget

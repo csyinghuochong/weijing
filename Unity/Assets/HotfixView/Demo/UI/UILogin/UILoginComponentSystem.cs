@@ -56,7 +56,7 @@ namespace ET
                 Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
-				SettingHelper.ClintFindPath =  bigversion >= 23;
+				SettingHelper.ClintFindPath = false;// bigversion >= 23;
                 // Screen.sleepTimeout = SleepTimeout.NeverSleep;
                 self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
@@ -243,8 +243,13 @@ namespace ET
                 //if (self.Password.GetComponent<InputField>().text == "6")
                 self.AccountInfoComponent.Age_Type = 100;
 
-                //self.TestTapHttp_2().Coroutine();
+				//self.TestTapHttp_2().Coroutine();
 #endif
+
+				if (GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text))
+				{
+					SettingHelper.ClintFindPath = true;
+				}
 
                 Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} IsEditorMode:{GlobalHelp.IsEditorMode}");
 
