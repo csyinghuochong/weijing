@@ -20,7 +20,9 @@ namespace ET
             }
             if (unit.MainHero)
             {
-                unit.GetComponent<MoveComponent>().C2SDistance = Vector3.Distance(new Vector3(message.X, message.Y, message.Z), unit.Position);
+                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                moveComponent.C2SDistance = Vector3.Distance(new Vector3(message.X, message.Y, message.Z), unit.Position);
+                moveComponent.LastRecvTime = TimeHelper.ClientNow();
             }
             else
             {

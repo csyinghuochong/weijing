@@ -85,5 +85,6 @@ namespace ET
         public Vector3 TargetPosition;
 
         public float C2SDistance;
+        public long LastRecvTime;
     }
 }
