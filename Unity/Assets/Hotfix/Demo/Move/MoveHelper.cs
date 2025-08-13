@@ -64,6 +64,7 @@ namespace ET
                 msg.Ys.Add(pathlist[i].y);
                 msg.Zs.Add(pathlist[i].z);
             }
+            msg.ServerTime = TimeHelper.ServerNow();
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();

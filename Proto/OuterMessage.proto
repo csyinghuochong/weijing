@@ -509,6 +509,7 @@ message M2C_PathfindingResult // IActorMessage
 	float X = 8;
 	float Y = 9;
 	float Z = 10;
+	int64 ServerTime = 11;   //服务器时间戳
 }
 
 message C2M_StopResult // IActorLocationMessage

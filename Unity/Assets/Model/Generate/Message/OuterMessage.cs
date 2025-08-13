@@ -1024,6 +1024,9 @@ namespace ET
 		[ProtoMember(10)]
 		public float Z { get; set; }
 
+		[ProtoMember(11)]
+		public long ServerTime { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2M_StopResult)]
