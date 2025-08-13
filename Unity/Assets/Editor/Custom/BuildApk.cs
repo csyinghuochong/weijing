@@ -558,7 +558,7 @@ public class MyEditorScript
 		}
 	}
 
-	[MenuItem("Custom/生成怪物配置")]
+	//[MenuItem("Custom/生成怪物配置")]
 	static void ExportMonsters()
 	{
 		string postionList = "";

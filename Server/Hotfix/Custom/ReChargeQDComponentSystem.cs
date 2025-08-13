@@ -266,7 +266,7 @@ namespace ET
 
                     if (Math.Abs(amout - orderinfo.amount) > 1)
                     {
-                        Console.WriteLine(dingdanid + "XXXXXXXXXXXXXXX:Math.Abs(amout - orderinfo.amount) > 1！");
+                        Console.WriteLine(dingdanid + $"XXXXXXXXXXXXXXX:Math.Abs(amout - orderinfo.amount) > 1！:{amout} {orderinfo.amount}");
                     }
 
                     if (orderinfo != null && self.CheckMd5Sign(pay_notice) && payResults["status"] == "0")
