@@ -125,7 +125,15 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             int gemOpen = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.GemWarehouseOpen);
-            int needRecharge = 298;
+            int needRecharge = 0;
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language == 1)
+            {
+                needRecharge = 50;
+            }
+            else
+            {
+                needRecharge = 298;
+            }
             if (gemOpen == 1)
             {
                 return true;
