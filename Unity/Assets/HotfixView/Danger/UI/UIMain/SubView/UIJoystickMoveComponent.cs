@@ -371,7 +371,7 @@ namespace ET
             if (SettingHelper.ClintFindPath)
             {
                 List<Vector3> pathfind = new List<Vector3>();
-                newv3 = self.CanMovePosition(unit, rotation, pathfind);
+                self.CanMovePosition(unit, speed, rotation, pathfind);
                 if (pathfind.Count < 2)
                 {
                     EventType.MoveStart.Instance.Unit = unit;
@@ -433,10 +433,9 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
         }
 
-        public static Vector3 CanMovePosition(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation, List<Vector3> pathfind)
+        public static void CanMovePosition(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
         {
-            unit.GetComponent<PathfindingComponent>().Find(unit.Position, unit.Position + rotation * Vector3.forward * 6f, pathfind);
-            return unit.Position;
+            unit.GetComponent<PathfindingComponent>().Find(unit.Position, unit.Position + rotation * Vector3.forward * speed * 0.5f, pathfind);
             //Vector3 targetPosi = unit.Position;
             //for (int i = 0; i < 30; i++)
             //{
