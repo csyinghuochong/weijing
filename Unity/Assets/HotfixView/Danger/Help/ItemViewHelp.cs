@@ -1412,7 +1412,7 @@ namespace ET
                         {
                             //Debug.Log("equipItemList.Count = " + equipItemList.Count);
                             List<int>inheritSkills = equipItemList[i].InheritSkills;
-                            Debug.Log("inheritSkills.Count = " + inheritSkills.Count);
+                            //Debug.Log("inheritSkills.Count = " + inheritSkills.Count);
                             
                             for (int z = 0; z < inheritSkills.Count; z++)
                             {

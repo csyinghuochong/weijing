@@ -853,7 +853,7 @@ namespace ET
             }
             self.Obj_EquipIcon.GetComponent<Image>().sprite = sp;
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(ItemQuality);
-            Log.Info("qualityiconStr = " + qualityiconStr);
+            //Log.Info("qualityiconStr = " + qualityiconStr);
             
             path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
             sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
