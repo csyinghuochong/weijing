@@ -246,11 +246,10 @@ namespace ET
 				//self.TestTapHttp_2().Coroutine();
 #endif
 
-				if (GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text))
+				if (self.Account.GetComponent<InputField>().text == "qq1DCADAC180C577AEDE05D15B788AE770")
 				{
-					//SettingHelper.ClintFindPath = true;
+					SettingHelper.ClintFindPath = true;
 				}
-
                 Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} IsEditorMode:{GlobalHelp.IsEditorMode}");
 
                 if (GlobalHelp.GetBigVersion() >= 21
