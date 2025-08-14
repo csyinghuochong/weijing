@@ -197,7 +197,7 @@ namespace ET
 
                     BuffData buffData_2 = new BuffData();
                     buffData_2.SkillId = 67000278;
-                    buffData_2.BuffId =  int.Parse(skillBuffConfig.buffParameterValue2); //69000046
+                    buffData_2.BuffId = 69000046;// int.Parse(skillBuffConfig.buffParameterValue2); //69000046
                     defendUnit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, attackUnit, null, true);
                 }
             }

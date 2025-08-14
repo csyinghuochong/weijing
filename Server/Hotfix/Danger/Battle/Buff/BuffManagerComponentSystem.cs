@@ -207,15 +207,24 @@ namespace ET
             for (int i = buffcnt - 1; i >= 0; i--)
             {
                 //判断当前状态是否为暴击状态的buff
-                if (self.m_Buffs[i].mBuffConfig.BuffType != 2)
+                SkillBuffConfig skillBuffConfig = self.m_Buffs[i].mBuffConfig;
+
+                if (skillBuffConfig.BuffType != 2)
                 {
                     continue;
                 }
 
-                if (self.m_Buffs[i].mBuffConfig.buffParameterType == 22)
+                if (skillBuffConfig.buffParameterType != 22)
                 {
-                    return self.m_Buffs[i].mBuffConfig;
+                    continue;
                 }
+
+                if(skillBuffConfig.DamgePro <= 0)
+                {
+                    continue;
+                }
+
+                return self.m_Buffs[i].mBuffConfig;
             }
             return null;
         }
