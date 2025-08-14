@@ -209,7 +209,7 @@ namespace ET
         {
             EventType.QuDaoLoginRequest args = a as EventType.QuDaoLoginRequest;
 
-            Log.ILog.Debug("QuDaoLoginRequest: ");
+            Log.ILog.Debug("QuDaoLoginRequest: EventHandle.onLogin");
 
 
             EventHandle eventHandle = GameObject.Find("Global").GetComponent<EventHandle>();
