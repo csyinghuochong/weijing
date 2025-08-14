@@ -91,11 +91,11 @@ namespace libx
                 UnityEngine.Debug.LogError("version == -1");
                 return version;
             }
-            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
+            bool unity2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         BuildScript.outputPath = "../Release/DLCAlpha/WJ/" + BuildScript.GetPlatformName();
                     }
@@ -107,7 +107,7 @@ namespace libx
                     break;
                 case VersionMode.BanHao:
                 case VersionMode.Beta:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         BuildScript.outputPath = "../Release/DLCBeta/WJ" + BuildScript.GetPlatformName();
                     }

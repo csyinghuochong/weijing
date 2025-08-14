@@ -77,11 +77,11 @@ namespace libx
         internal static void ApplyBuildRules(bool hash = true)
         {
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
-            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
+            bool unity2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         outputPath = "../Release/DLCAlpha/WJ/" + GetPlatformName();
                     }
@@ -92,7 +92,7 @@ namespace libx
                     break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         outputPath = "../Release/DLCBeta/WJ/" + GetPlatformName();
                     }
@@ -393,12 +393,12 @@ namespace libx
         {
             List<string> fileList = new List<string>();
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
-            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
+            bool unity2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
             string outputPath = string.Empty;
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         outputPath = "DLCAlpha/WJ";
                     }
@@ -409,7 +409,7 @@ namespace libx
                     break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
-                    if (unit2022)
+                    if (unity2022)
                     {
                         outputPath = "DLCBeta/WJ";
                     }

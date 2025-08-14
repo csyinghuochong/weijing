@@ -6,7 +6,7 @@ namespace ET
 
         public static string GetPlatformName(int platformid)
         {
-            ///0 默认 TapTap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包)  渠道(硬核渠道)100+  ios20001
+            ///0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  TikTokGuanFu8  渠道包100+  ios20001
             string platformname  = string.Empty;    
             switch (platformid)
             {
@@ -24,7 +24,14 @@ namespace ET
                     break;
                 case 5:
                 case 6:
+                case 8:
                     platformname = "TikTok";
+                    break;
+                case 7:
+                    platformname = "Google";
+                    break;
+                case 100:
+                    platformname = "QuDao";
                     break;
                 default:
                     platformname = "ANDROID";

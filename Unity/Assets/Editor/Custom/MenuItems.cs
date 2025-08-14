@@ -249,7 +249,7 @@ namespace libx
 
             string path = "DLC";
             int version = EditorRuntimeInitializeOnLoad.GetVersion();
-            bool unit2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
+            bool unity2022 = EditorRuntimeInitializeOnLoad.IsUnityVersionGreaterThan2022();
 
             switch ((VersionMode)version)
             {
@@ -262,7 +262,7 @@ namespace libx
                     break;
             }
 
-            if (unit2022)
+            if (unity2022)
             {
                 ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}/WJ");
             }
