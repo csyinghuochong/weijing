@@ -95,16 +95,6 @@ namespace libx
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unity2022)
-                    {
-                        BuildScript.outputPath = "../Release/DLCAlpha/WJ/" + BuildScript.GetPlatformName();
-                    }
-                    else
-                    {
-                        BuildScript.outputPath = "../Release/DLCAlpha/" + BuildScript.GetPlatformName();
-                    }
-                   
-                    break;
                 case VersionMode.BanHao:
                 case VersionMode.Beta:
                     if (unity2022)

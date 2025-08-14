@@ -137,20 +137,11 @@ namespace libx
             VersionMode versionMode = GameObject.Find("Global").GetComponent<Init>().VersionMode;
             bool unity2022 = IsUnityVersionGreaterThan2022();
 
-            Debug.Log($"unit2022:  {unity2022}");
+            Debug.Log($"unity2022:  {unity2022}");
             string dlcPath = "";
             switch (versionMode)
             {
                 case VersionMode.Alpha:
-                    if (unity2022)
-                    {
-                        dlcPath = "DLCAlpha/WJ";
-                    }
-                    else 
-                    {
-                        dlcPath = "DLCAlpha";
-                    }
-                    break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
                     if (unity2022)

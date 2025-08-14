@@ -254,8 +254,6 @@ namespace libx
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    path = "DLCAlpha";
-                    break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
                     path = "DLCBeta";

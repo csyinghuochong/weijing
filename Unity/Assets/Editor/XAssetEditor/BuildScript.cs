@@ -81,15 +81,6 @@ namespace libx
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unity2022)
-                    {
-                        outputPath = "../Release/DLCAlpha/WJ/" + GetPlatformName();
-                    }
-                    else
-                    {
-                        outputPath = "../Release/DLCAlpha/" + GetPlatformName();
-                    }
-                    break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
                     if (unity2022)
@@ -398,15 +389,6 @@ namespace libx
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                    if (unity2022)
-                    {
-                        outputPath = "DLCAlpha/WJ";
-                    }
-                    else
-                    {
-                        outputPath = "DLCAlpha";
-                    }
-                    break;
                 case VersionMode.Beta:
                 case VersionMode.BanHao:
                     if (unity2022)
