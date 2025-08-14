@@ -248,7 +248,7 @@ namespace ET
 
 				if (GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text))
 				{
-					SettingHelper.ClintFindPath = true;
+					//SettingHelper.ClintFindPath = true;
 				}
 
                 Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} IsEditorMode:{GlobalHelp.IsEditorMode}");
