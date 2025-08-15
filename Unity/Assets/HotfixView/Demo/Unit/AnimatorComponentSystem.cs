@@ -36,7 +36,7 @@ namespace ET
 		{
             Unit unit = self.GetParent<Unit>();
 			self.UnitType = unit.Type;
-            if (unit.Type != UnitType.Player || unit.ConfigId != 3)
+            if (unit.Type != UnitType.Player || (unit.ConfigId != 3  && unit.ConfigId != 5))
             {
                 return;
             }
@@ -64,8 +64,8 @@ namespace ET
         public static void UpdateController(this AnimatorComponent self)
 		{
 			Unit unit = self.GetParent<Unit>();
-			if (unit.Type != UnitType.Player || unit.ConfigId != 3)
-			{
+			if (unit.Type != UnitType.Player || (unit.ConfigId != 3 && unit.ConfigId != 5))
+            {
 				return;
 			}
 			int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
