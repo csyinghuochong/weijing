@@ -208,7 +208,9 @@ namespace ET
             }
             else
             {
-                if (itemEquipType == ItemEquipType.Sword || itemEquipType == ItemEquipType.Wand)
+                if (itemEquipType == ItemEquipType.Sword
+                    || itemEquipType == ItemEquipType.Knife
+                    || itemEquipType == ItemEquipType.Wand)
                 {
                     self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
                 }
