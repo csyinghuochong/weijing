@@ -95,7 +95,6 @@ namespace libx
             switch ((VersionMode)version)
             {
                 case VersionMode.Alpha:
-                case VersionMode.BanHao:
                 case VersionMode.Beta:
                     if (unity2022)
                     {
@@ -105,6 +104,9 @@ namespace libx
                     {
                         BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
                     }
+                    break;
+                case VersionMode.BanHao:
+                    BuildScript.outputPath = "../Release/DLCBanHao/WJ" + BuildScript.GetPlatformName();
                     break;
             }
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;

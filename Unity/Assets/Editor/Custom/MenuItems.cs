@@ -255,8 +255,10 @@ namespace libx
             {
                 case VersionMode.Alpha:
                 case VersionMode.Beta:
-                case VersionMode.BanHao:
                     path = "DLCBeta";
+                    break;
+                case VersionMode.BanHao:
+                    path = "DLCBanHao";
                     break;
             }
 

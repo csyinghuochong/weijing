@@ -82,7 +82,6 @@ namespace libx
             {
                 case VersionMode.Alpha:
                 case VersionMode.Beta:
-                case VersionMode.BanHao:
                     if (unity2022)
                     {
                         outputPath = "../Release/DLCBeta/WJ/" + GetPlatformName();
@@ -91,6 +90,9 @@ namespace libx
                     {
                         outputPath = "../Release/DLCBeta/" + GetPlatformName();
                     } 
+                    break;
+                case VersionMode.BanHao:
+                    outputPath = "../Release/DLCBanHao/WJ/" + GetPlatformName();
                     break;
             }
 
@@ -390,7 +392,6 @@ namespace libx
             {
                 case VersionMode.Alpha:
                 case VersionMode.Beta:
-                case VersionMode.BanHao:
                     if (unity2022)
                     {
                         outputPath = "DLCBeta/WJ";
@@ -399,6 +400,9 @@ namespace libx
                     {
                         outputPath = "DLCBeta";
                     }
+                    break;
+                case VersionMode.BanHao:
+                    outputPath = "DLCBanHao/WJ";
                     break;
             }
             string dataPath = Application.dataPath;

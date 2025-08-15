@@ -143,7 +143,6 @@ namespace libx
             {
                 case VersionMode.Alpha:
                 case VersionMode.Beta:
-                case VersionMode.BanHao:
                     if (unity2022)
                     {
                         dlcPath = "DLCBeta/WJ";
@@ -152,6 +151,9 @@ namespace libx
                     {
                         dlcPath = "DLCBeta";
                     } 
+                    break;
+                case VersionMode.BanHao:
+                    dlcPath = "DLCBanHao/WJ";
                     break;
             }
             baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
