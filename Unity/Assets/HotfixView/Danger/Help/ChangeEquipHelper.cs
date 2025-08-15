@@ -424,7 +424,7 @@ namespace ET
 
                 else if (occ == 5)
                 {
-                    weaponPath = "14100006";
+                    weaponPath = equipIndex == 0 ? "14100006" : "90000006";
                 }
 
                 else
@@ -435,6 +435,10 @@ namespace ET
             if (occ == 3)
             {
                 weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
+            }
+            if (occ == 5)
+            {
+                weaponParent = equipIndex == 0 ? weaponParent_2.transform : weaponParent_1.transform;
             }
             var path = ABPathHelper.GetItemPath(weaponPath);
             self.WeaponAsset = path;
