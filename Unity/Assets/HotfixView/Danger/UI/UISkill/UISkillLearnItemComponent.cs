@@ -196,6 +196,7 @@ namespace ET
         {
             //表现
             int itemEquipType = UnitHelper.GetEquipType(self.ZoneScene());
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
            
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(baseskill);
@@ -208,15 +209,28 @@ namespace ET
             }
             else
             {
-                if (itemEquipType == ItemEquipType.Sword
-                    || itemEquipType == ItemEquipType.Knife
-                    || itemEquipType == ItemEquipType.Wand)
+                if (occ == 5)
                 {
-                    self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
+                    if (itemEquipType == ItemEquipType.Knife)
+                    {
+                        self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
+                    }
+                    else
+                    {
+                        self.Text_Desc.GetComponent<Text>().text = skillDesc[1];
+                    }
                 }
                 else
                 {
-                    self.Text_Desc.GetComponent<Text>().text = skillDesc[1];
+                    if (itemEquipType == ItemEquipType.Sword
+                    || itemEquipType == ItemEquipType.Wand)
+                    {
+                        self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
+                    }
+                    else
+                    {
+                        self.Text_Desc.GetComponent<Text>().text = skillDesc[1];
+                    }
                 }
             }
             
