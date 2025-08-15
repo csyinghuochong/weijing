@@ -48,7 +48,7 @@ namespace ET
                 GameObject go = gameObject.transform.Find("Equip_2_" + i).gameObject;
                 UIEquipSetItemComponent uiitem = self.AddChild<UIEquipSetItemComponent, GameObject>(go);
                 self.EquipList_2.Add(uiitem);
-                go.SetActive(occ == 3);
+                go.SetActive(occ == 3 || occ == 5);
             }
 
             if (!GlobalHelp.IsBanHaoMode)

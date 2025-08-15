@@ -193,9 +193,9 @@ namespace ET
                 return;
             }
 
-            //猎人单独处理
+            //猎人、巨剑士单独处理
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            if (occ == 3 && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            if ((occ == 3 || occ == 5) && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
                 C2M_ItemOperateWearRequest c2M_ItemOperate = new C2M_ItemOperateWearRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
                 M2C_ItemOperateWearResponse m2C_ItemOperate= (M2C_ItemOperateWearResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemOperate);
@@ -226,10 +226,10 @@ namespace ET
         //卸下装备
         public static async ETTask SendTakeEquip(this BagComponent self, BagInfo bagInfo)
         {
-            //猎人单独处理
+            //猎人、巨剑士单独处理
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            if (occ == 3 && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            if ((occ == 3 || occ == 5) && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
                 C2M_ItemOperateWearRequest c2M_ItemOperate = new C2M_ItemOperateWearRequest() { OperateType = 4, OperateBagID = bagInfo.BagInfoID };
                 M2C_ItemOperateWearResponse m2C_ItemOperate = (M2C_ItemOperateWearResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemOperate);

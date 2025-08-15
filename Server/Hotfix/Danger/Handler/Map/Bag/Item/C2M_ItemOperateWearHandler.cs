@@ -15,6 +15,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             UserInfo useInfo = userInfoComponent.UserInfo;
             long bagInfoID = request.OperateBagID;
+            int occ = useInfo.Occ;
 
             if (request.OperateType == 3)
             {
@@ -85,18 +86,36 @@ namespace ET
                     return;
                 }
 
-                ///默认 0弓箭   1剑
+                ///猎人   默认 0弓箭   1剑
+                ///巨剑士 默认 0刀     1弓箭
                 int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
                 int equipType = itemConfig.EquipType;
                 int findIndex = -1;
-                if (equipType == (int)ItemEquipType.Bow)
+
+                if (occ == 3)
                 {
-                    findIndex = equipIndex == 0 ? 0 : 1;
+                    if (equipType == (int)ItemEquipType.Bow)
+                    {
+                        findIndex = equipIndex == 0 ? 0 : 1;
+                    }
+                    if (equipType == (int)ItemEquipType.Sword)
+                    {
+                        findIndex = equipIndex == 0 ? 1 : 0;
+                    }
                 }
-                if (equipType == (int)ItemEquipType.Sword)
+                if (occ == 5)
                 {
-                    findIndex = equipIndex == 0 ? 1 : 0;
+                    if (equipType == (int)ItemEquipType.Knife)
+                    {
+                        findIndex = equipIndex == 0 ? 0 : 1;
+                    }
+                    if (equipType == (int)ItemEquipType.Bow)
+                    {
+                        findIndex = equipIndex == 0 ? 1 : 0;
+                    }
                 }
+
+
                 if (findIndex == -1)
                 {
                     response.Error = ErrorCode.ERR_EquipType;     //错误码:穿戴类型不符

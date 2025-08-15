@@ -353,6 +353,10 @@ namespace ET
                             case 4:
                                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择武器类型为：法杖 魔法书！！"));
                                 break;
+                            //巨剑士
+                            case 5:
+                                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请选择武器类型为：刀 弓！！"));
+                                break;
                         }
                         return;
                     }

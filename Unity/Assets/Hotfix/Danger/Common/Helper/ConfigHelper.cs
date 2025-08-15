@@ -1164,7 +1164,7 @@ namespace ET
             { 2, new List<int>() { 0, 3, 4 } },
             { 3, new List<int>() { 0, 1, 5 } },
             { 4, new List<int>() { 0, 3, 4 } },
-            { 5, new List<int>() { 0, 1, 2 } },
+            { 5, new List<int>() { 0, 2, 5 } },
         };
 
 
