@@ -65,6 +65,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_1, "当前状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Dead, "死亡状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Rigidity, "僵直状态无法移动!");
+            ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Speed, "当前状态不能移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_NetWait, "消息未返回无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Dizziness, "眩晕状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_JiTui, "当前状态无法移动!");

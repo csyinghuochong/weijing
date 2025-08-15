@@ -424,7 +424,7 @@ namespace ET
 
                 else if (occ == 5)
                 {
-                    weaponPath = "14100105";
+                    weaponPath = "14100006";
                 }
 
                 else
