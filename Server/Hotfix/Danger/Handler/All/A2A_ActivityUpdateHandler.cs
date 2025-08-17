@@ -125,8 +125,9 @@ namespace ET
                         string filePath = "../Logs/WJ_PaiMai.txt";
                         LogHelper.WriteLogList(new List<string>() { "" }, filePath, false);
 
-                        string filePath_2 = "../Logs/WJ_Chat.txt";
-                        LogHelper.WriteLogList(new List<string>() { "" }, filePath_2, false);
+                        //清理聊天记录
+                        //string filePath_2 = "../Logs/WJ_Chat.txt";
+                        //LogHelper.WriteLogList(new List<string>() { "" }, filePath_2, false);
                     }
                     if (request.Hour == 10 && scene.DomainZone() == 3)
                     {
