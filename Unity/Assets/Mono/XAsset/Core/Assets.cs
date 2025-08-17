@@ -322,9 +322,9 @@ namespace libx
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.LogError("invalid path");
+                Debug.LogError("invalid path  " + path);
                 return null;
-            }
+            } 
             path = GetExistPath(path);
 
             AssetRequest request;

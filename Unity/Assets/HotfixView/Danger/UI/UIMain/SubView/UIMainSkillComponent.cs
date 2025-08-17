@@ -204,24 +204,24 @@ namespace ET
             string path = "";
             if (GameSettingLanguge.Language == 0)
             {
-                if (occ == 3)
-                {
-                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c12" : "c11");
-                }
                 if (occ == 5)
                 {
                     path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c11" : "c12");
                 }
+                else
+                {
+                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c12" : "c11");
+                }
             }
             else
             {
-                if (occ == 3)
-                {
-                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c12_EN" : "c11_EN");
-                }
-                if (occ == 5)
+                 if (occ == 5)
                 {
                     path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c11_EN" : "c12_EN");
+                }
+                 else
+                {
+                    path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, equipIndex == 0 ? "c12_EN" : "c11_EN");
                 }
             }
             
