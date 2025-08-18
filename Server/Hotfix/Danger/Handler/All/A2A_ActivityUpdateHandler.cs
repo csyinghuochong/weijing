@@ -95,7 +95,7 @@ namespace ET
                     if (ComHelp.IsInnerNet())
                     {
                         //TestSmss(scene).Coroutine();
-                        TestSmssNew(scene).Coroutine();
+                        //TestSmssNew(scene).Coroutine();
                     }
 
                     Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
