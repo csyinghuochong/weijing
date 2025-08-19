@@ -11,11 +11,7 @@ namespace ET
 
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.IsGhostMove)
-            {
-                return false;
-            }
-
+            
             Unit unit = aiComponent.GetParent<Unit>();
             long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
@@ -79,15 +75,17 @@ namespace ET
                 }
 
                 //宠物移动速度限制
-                if (nowspeed >= 100000)
+                if (nowspeed >= 120000)
                 {
-                    nowspeed = 100000;
+                    nowspeed = 120000;
                 }
 
                 if (nowspeed > 0)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
-                    //unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, nowspeed);
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    float addspeed = nowspeed * 0.0001f - numericComponent.GetAsFloat(NumericType.Base_Speed_Base);
+                    numericComponent.Set(NumericType.Extra_Buff_Speed_Add, addspeed);
                     unit.FindPathMoveToAsync(nextTarget, cancellationToken, true).Coroutine();
                 }
                 bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);

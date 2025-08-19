@@ -29,7 +29,7 @@ namespace ET
 
             Unit unit = aiComponent.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0);
             long masterid = numericComponent.GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
 
@@ -40,16 +40,15 @@ namespace ET
                 {
                     //随机坐标
                     float randomrange = aiComponent.ActRange;
-                    //float ran_x = RandomHelper.RandomNumberFloat(-1 * randomrange, randomrange);
-                    //float ran_z = RandomHelper.RandomNumberFloat(-1 * randomrange, randomrange);
-                    //Vector3 targetpos = new Vector3(master.Position.x + ran_x, master.Position.y, master.Position.z + ran_z);
                     Vector3 targetpos = AIHelp.GetRandomPointInRing(master.Position, 2, randomrange);
 
                     aiComponent.LastAttackTime = 0;
-                    aiComponent.IsGhostMove = true;
                     await unit.FindPathMoveToAsync(targetpos, cancellationToken, false);
-                    aiComponent.IsGhostMove = false;
-                    
+
+                    if (cancellationToken.IsCancel())
+                    {
+                        break;
+                    }
                     bool result = await TimerComponent.Instance.WaitAsync(500, cancellationToken);
                     if (!result)
                     {
