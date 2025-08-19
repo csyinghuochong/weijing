@@ -1439,6 +1439,32 @@ namespace ET
             self.UpdateNpcTaskUI();
 
             self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareTask);
+            
+#if UNITY_ANDROID
+
+            if (GlobalHelp.GetPlatform() == 1)
+            {
+                List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().RoleTaskList;
+                foreach (TaskPro taskPro in taskPros)
+                {
+                    if (taskPro.TrackStatus == 0)
+                    {
+                        continue;
+                    }
+
+                    TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
+
+                    if (taskConfig.TaskType == TaskTypeEnum.Main)
+                    {
+                        Log.Debug($"当前主线任务 {taskConfig.Id} {taskConfig.TaskName}");
+                        TapSDKHelper.UserUpdate_currentTaskId(taskConfig.Id);
+                        TapSDKHelper.UserUpdate_currentTaskName(taskConfig.TaskName);
+                        return;
+                    }
+                }
+            }
+
+#endif
         }
 
         public static void UpdateNpcTaskUI(this UIMainComponent self)
