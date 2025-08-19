@@ -481,16 +481,15 @@ public class MyEditorScript
 		}
 		else
 		{
-			PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
-			//if (name == "QuDao")
-			//{
-			//	PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
-			//}
-			//else
-			//{
-   //             PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
-   //         }
-        }
+			if (name == "QuDao")
+			{
+				PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+			}
+			else
+			{
+				PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
+			}
+		}
 		
         PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, ";" + name);
 		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;" + name);
