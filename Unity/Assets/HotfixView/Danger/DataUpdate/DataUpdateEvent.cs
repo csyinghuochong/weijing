@@ -1327,6 +1327,7 @@ namespace ET
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnUpdateUserData(DataParams);
+                    uimainComponent.OnUpdateTapTapUserData(DataParams);
                     continue;
                 }
                 if (component is UIChouKaComponent uichoukaComponent)

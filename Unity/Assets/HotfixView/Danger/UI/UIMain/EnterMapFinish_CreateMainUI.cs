@@ -61,6 +61,15 @@ namespace ET
             TapSDKHelper.SetUser(roleId.ToString());
             TapSDKHelper.TestTrackEvent("", "");
 			//Log.Error("test bugly");
+			
+			if (GlobalHelp.GetPlatform() == 1)
+			{
+				string serverName = accountInfoComponent.ServerName;
+				UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+				TapSDKHelper.UserUpdate_rolename(userInfo.Name);
+				TapSDKHelper.UserUpdate_servername(serverName);
+				TapSDKHelper.UserUpdate_isFirstCreateRole(accountInfoComponent.CreateRoleList.Count);
+			}
 #endif
 
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);

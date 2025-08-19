@@ -411,6 +411,150 @@ namespace ET
         }
 
 
+        // 角色名称
+        public static void UserUpdate_rolename(string rolename)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            
+            string properties = "{\"#rolename\":\"" + rolename + "\"}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 服务器名称
+        public static void UserUpdate_servername(string servername)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#servername\":\"" + servername + "\"}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 在线时间（单位：分钟）
+        public static void UserUpdate_todayOnLine(int todayOnLine)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#todayOnLine\":" + todayOnLine + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 最后离线时间(时间戳)
+        public static void UserUpdate_finalOffline(string finalOffline)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#finalOffline\":\"" + finalOffline + "\"}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 是否第一次建立角色
+        public static void UserUpdate_isFirstCreateRole(int isFirstCreateRole)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#isFirstCreateRole\":" + isFirstCreateRole + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 战力
+        public static void UserUpdate_combat(int combat)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#combat\":" + combat + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 等级
+        public static void UserUpdate_level(int level)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#level\":" + level + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 金币
+        public static void UserUpdate_gold(int gold)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#gold\":" + gold + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 钻石
+        public static void UserUpdate_diamond(int diamond)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#diamond\":" + diamond + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 充值
+        public static void UserUpdate_rechargeNumber(int rechargeNumber)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#rechargeNumber\":" + rechargeNumber + "}";
+            TapDB.UserUpdate(properties);
+        }
+
+        // 当前任务ID
+        public static void UserUpdate_currentTaskId(int currentTaskId)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#currentTaskId\":" + currentTaskId + "}";
+            TapDB.UserUpdate(properties);
+        }
+        
+        // 当前任务名称
+        public static void UserUpdate_currentTaskName(string currentTaskName)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+
+            string properties = "{\"#currentTaskName\":\"" + currentTaskName + "\"}";
+            TapDB.UserUpdate(properties);
+        }
+        
         /// <summary>
         /// 
         /// </summary>

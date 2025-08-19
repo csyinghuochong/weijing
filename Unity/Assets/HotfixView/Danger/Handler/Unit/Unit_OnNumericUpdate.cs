@@ -26,7 +26,7 @@ namespace ET
                     uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
                     
                     uI = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
-                    uI?.GetComponent<UIRechargeComponent>()?.OnRechageSucess(addNumer);
+                    uI?.GetComponent<UIRechargeComponent>()?.OnRechageSucess(addNumer, rechargeNumber);
                     break;
                 case NumericType.PetExploreLuckly:
                     uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);

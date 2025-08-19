@@ -321,7 +321,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UIRecharge);
         }
 
-        public static void OnRechageSucess(this UIRechargeComponent self, int amount)
+        public static void OnRechageSucess(this UIRechargeComponent self, int amount, int now)
         {
 #if UNITY_ANDROID
             if (amount <= 0)
@@ -329,8 +329,7 @@ namespace ET
                 return;
             }
 
-            string lastLoginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
-            if (lastLoginType != LoginTypeEnum.TapTap.ToString())
+            if (GlobalHelp.GetPlatform() != 1)
             {
                 return;
             }
@@ -352,6 +351,7 @@ namespace ET
             }
 
             TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
+            TapSDKHelper.UserUpdate_rechargeNumber(now);
 #endif
         }
     }

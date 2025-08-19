@@ -961,6 +961,38 @@ namespace ET
             self.OnRecvTaskUpdate();
         }
 
+        public static void OnUpdateTapTapUserData(this UIMainComponent self, string updateType)
+        {
+#if UNITY_ANDROID
+
+            if (GlobalHelp.GetPlatform() != 1)
+            {
+                return;
+            }
+            
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            int userDataType = int.Parse(updateType.Split('_')[0]);
+
+            string updateValue = updateType.Split('_')[1];
+            switch (userDataType)
+            {
+                case UserDataType.Gold:
+                    TapSDKHelper.UserUpdate_gold((int)userInfo.Gold);
+                    break;
+                case UserDataType.Diamond:
+                    TapSDKHelper.UserUpdate_diamond((int)userInfo.Diamond);
+                    break;
+                case UserDataType.Combat:
+                    TapSDKHelper.UserUpdate_combat(userInfo.Combat);
+                    break;
+                case UserDataType.Lv:
+                    TapSDKHelper.UserUpdate_level(userInfo.Lv);
+                    break;
+            }
+
+#endif
+        }
+
         public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
