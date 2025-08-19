@@ -320,7 +320,40 @@ namespace ET
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIRecharge);
         }
-    }
 
+        public static void OnRechageSucess(this UIRechargeComponent self, int amount)
+        {
+#if UNITY_ANDROID
+            if (amount <= 0)
+            {
+                return;
+            }
+
+            string lastLoginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
+            if (lastLoginType != LoginTypeEnum.TapTap.ToString())
+            {
+                return;
+            }
+
+            int r_num = RandomHelper.RandomNumber(1000, 9999);
+            string nowTime = TimeHelper.ServerNow().ToString();
+            string orderId = $"Pay_{r_num}_{nowTime}_{amount}";
+            string product = $"{amount}WJ";
+            string payment = "pay";
+            if (self.PayType == PayTypeEnum.AliPay)
+            {
+                orderId = $"AliPay_{r_num}_{nowTime}_{amount}";
+                payment = "alipay";
+            }
+            if (self.PayType == PayTypeEnum.WeiXinPay)
+            {
+                orderId = $"WXPay_{r_num}_{nowTime}_{amount}";
+                payment = "wechat";
+            }
+
+            TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
+#endif
+        }
+    }
 }
 

@@ -153,14 +153,15 @@ namespace ET
         /// <param name="currencyType">货币类型，遵循 ISO 4217 标准。参考：人民币 CNY，美元 USD；欧元 EUR</param>
         /// <param name="payment">支付方式，如：支付宝</param>
         /// <param name="properties">充值（ charge ）的事件属性</param>
-        public static void OnCharge(string orderId, string product, long amount, string currencyType, string payment,
-            string properties)
+        public static void OnCharge(string orderId, string product, long amount, string currencyType, string payment, string properties)
         {
             if (!hasInit)
             {
                 return;
             }
-            TapDB.OnCharge("0xueiEns", "轩辕剑", 100, "CNY", "wechat", "{\"on_sell\":true}");
+
+            // TapDB.OnCharge("0xueiEns", "轩辕剑", 100, "CNY", "wechat", "{\"on_sell\":true}");
+            TapDB.OnCharge(orderId, product, amount, currencyType, payment, properties);
         }
 
         //自定义事件
