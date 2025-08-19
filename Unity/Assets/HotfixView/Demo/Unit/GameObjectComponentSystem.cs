@@ -809,6 +809,7 @@ namespace ET
                         self.Material = materials[i];
                         self.OldShader = StringBuilderHelper.ToonBasicOutline;
                         break;
+
                     }
                     // if (materials[i].shader.name.Equals("Toon/BasicOutlineNew"))
                     // {
@@ -887,6 +888,10 @@ namespace ET
             self.GetParent<Unit>().GetComponent<UIUnitHpComponent>()?.EnterHide();
         }
 
+        public static void SetVisibled(this GameObjectComponent self, bool val)
+        {
+        }
+
         public static void EnterBaTi(this GameObjectComponent self)
         {
             if (self.GameObject == null || self.Material == null)
@@ -947,6 +952,8 @@ namespace ET
         /// <param name="self"></param>
         public static void EnterStealth(this GameObjectComponent self)
         {
+            //Shader shader = GlobalHelp.FindShaderFormMat("SimpleAlpha");
+
             Shader shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             if (shader == null)
             {
