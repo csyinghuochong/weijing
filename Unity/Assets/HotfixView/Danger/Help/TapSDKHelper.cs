@@ -436,15 +436,15 @@ namespace ET
         }
         
         // 在线时间（单位：分钟）
-        public static void UserUpdate_todayOnLine(int todayOnLine)
+        public static void UserUpdate_allOnLine(int add)
         {
             if (!hasInit)
             {
                 return;
             }
 
-            string properties = "{\"#todayOnLine\":" + todayOnLine + "}";
-            TapDB.UserUpdate(properties);
+            string properties = "{\"#allOnLine\":" + add + "}";
+            TapDB.UserAdd(properties);
         }
         
         // 最后离线时间(时间戳)

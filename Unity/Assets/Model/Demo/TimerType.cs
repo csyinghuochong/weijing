@@ -101,6 +101,7 @@
         public const int AuctionOverTimer = 1114;
         public const int PetEquipSetItemTimer = 1115;
         public const int PetEquipMakeTimer = 1116;
+        public const int OnlineCheckTimer = 1117;
         // 不能超过10000
     }
 }

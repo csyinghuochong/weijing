@@ -21,6 +21,26 @@ namespace ET
             }
         }
     }
+    
+    [Timer(TimerType.OnlineCheckTimer)]
+    public class RankeTimer : ATimer<UIMainComponent>
+    {
+        public override void Run(UIMainComponent self)
+        {
+            try
+            {
+#if UNITY_ANDROID
+                Log.Debug("时间" + TimeHelper.DateTimeNow().ToString());
+                TapSDKHelper.UserUpdate_allOnLine(1);
+                TapSDKHelper.UserUpdate_finalOffline(TimeHelper.DateTimeNow().ToString());
+#endif
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     [Timer(TimerType.UIMainFPSTimer)]
     public class UIMainFPSTimer : ATimer<UIMainComponent>
@@ -157,6 +177,8 @@ namespace ET
         public long mLastFrameTime = 0;
         public long mLastFps = 0;
         public List<long> TickCount = new List<long>();  //三百帧取一个平均数
+
+        public long OnlineCheckTimer;
     }
 
 
@@ -400,6 +422,11 @@ namespace ET
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
 
+            if (GlobalHelp.GetPlatform() == 1)
+            {
+                self.OnlineCheckTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.OnlineCheckTimer, self);
+            }
+            
             //初始化子UI
             self.initSubUI();
 
@@ -585,6 +612,7 @@ namespace ET
                 }
             }
 
+            TimerComponent.Instance?.Remove(ref self.OnlineCheckTimer);
             TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
             TimerComponent.Instance?.Remove(ref self.TimerPing);
             self.UnRegisterRedot();
