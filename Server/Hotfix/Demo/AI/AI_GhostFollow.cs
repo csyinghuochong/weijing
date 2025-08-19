@@ -65,9 +65,16 @@ namespace ET
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 
-                if (errorCode == ErrorCode.ERR_Success && distacne > 1.5f)
+                if (errorCode == ErrorCode.ERR_Success)
                 {
-                    nowspeed = (long)(nowspeed * distacne / 2f);
+                    if (distacne > 5f)
+                    {
+                        nowspeed = (long)(nowspeed * 2);
+                    }
+                    //if (distacne > 9f)
+                    //{
+                    //    nowspeed = (long)(nowspeed * 2);
+                    //}
                 }
                 else
                 {
@@ -75,9 +82,9 @@ namespace ET
                 }
 
                 //宠物移动速度限制
-                if (nowspeed >= 120000)
+                if (nowspeed >= 150000)
                 {
-                    nowspeed = 120000;
+                    nowspeed = 150000;
                 }
 
                 if (nowspeed > 0)
