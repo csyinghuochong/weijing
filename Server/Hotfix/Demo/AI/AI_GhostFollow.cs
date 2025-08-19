@@ -87,8 +87,8 @@ namespace ET
                 if (nowspeed > 0)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, nowspeed);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                    //unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, nowspeed);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, true).Coroutine();
                 }
                 bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!result)
