@@ -29,6 +29,26 @@ namespace ET
             return shader;
         }
 
+        //"Unit_BumpDistort"
+        public static Shader FindShaderFormMat(string path)
+        {
+            Shader shader = null;
+            ShaderList.TryGetValue(path, out shader);
+            if (shader == null)
+            {
+                shader = UICommonHelper.FindShaderFormMat(path);
+                if (ShaderList.ContainsKey(path))
+                {
+                    ShaderList[path] = shader;
+                }
+                else
+                {
+                    ShaderList.Add(path, shader);
+                }
+            }
+            return shader;
+        }
+
         public static bool IsEditorMode
         {
             get { return GameObject.Find("Global").GetComponent<Init>().EditorMode; }

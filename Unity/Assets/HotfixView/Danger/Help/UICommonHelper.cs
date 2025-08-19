@@ -363,6 +363,12 @@ namespace ET
             }
         }
 
+        public static Shader FindShaderFormMat(string path)
+        {
+            Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath(path));
+            return mat.shader;
+        }
+
         public static void SetRawImageGray(GameObject obj, bool val)
         {
             if (val)
