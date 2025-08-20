@@ -419,7 +419,7 @@ namespace ET
                 return;
             }
             
-            string properties = "{\"#rolename\":\"" + rolename + "\"}";
+            string properties = "{\"rolename\":\"" + rolename + "\"}";
             TapDB.UserUpdate(properties);
         }
         
@@ -431,7 +431,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#servername\":\"" + servername + "\"}";
+            string properties = "{\"servername\":\"" + servername + "\"}";
             TapDB.UserUpdate(properties);
         }
         
@@ -443,7 +443,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#allOnLine\":" + add + "}";
+            string properties = "{\"allOnLine\":" + add + "}";
             TapDB.UserAdd(properties);
         }
         
@@ -455,7 +455,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#finalOffline\":\"" + finalOffline + "\"}";
+            string properties = "{\"finalOffline\":\"" + finalOffline + "\"}";
             TapDB.UserUpdate(properties);
         }
         
@@ -467,7 +467,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#isFirstCreateRole\":" + isFirstCreateRole + "}";
+            string properties = "{\"isFirstCreateRole\":" + isFirstCreateRole + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -479,7 +479,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#combat\":" + combat + "}";
+            string properties = "{\"combat\":" + combat + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -491,7 +491,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#level\":" + level + "}";
+            string properties = "{\"level\":" + level + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -503,7 +503,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#gold\":" + gold + "}";
+            string properties = "{\"gold\":" + gold + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -515,7 +515,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#diamond\":" + diamond + "}";
+            string properties = "{\"diamond\":" + diamond + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -527,7 +527,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#rechargeNumber\":" + rechargeNumber + "}";
+            string properties = "{\"rechargeNumber\":" + rechargeNumber + "}";
             TapDB.UserUpdate(properties);
         }
 
@@ -539,7 +539,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#currentTaskId\":" + currentTaskId + "}";
+            string properties = "{\"currentTaskId\":" + currentTaskId + "}";
             TapDB.UserUpdate(properties);
         }
         
@@ -551,7 +551,7 @@ namespace ET
                 return;
             }
 
-            string properties = "{\"#currentTaskName\":\"" + currentTaskName + "\"}";
+            string properties = "{\"currentTaskName\":\"" + currentTaskName + "\"}";
             TapDB.UserUpdate(properties);
         }
         
