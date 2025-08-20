@@ -854,7 +854,7 @@ namespace ET
 
             if (self.Material != null)
             {
-                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
+                self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.Ill_HighLight.Replace("/", "_"));
                 // self.Material.SetInt("_Type", 1);
                 //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
                 TimerComponent.Instance.Remove(ref self.HighLightTimer);
@@ -870,7 +870,7 @@ namespace ET
             }
             if (self.Material != null)
             {
-                self.Material.shader = GlobalHelp.Find(self.OldShader);
+                self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
                 // self.Material.SetInt("_Type", 0);
             }
         }
@@ -905,7 +905,7 @@ namespace ET
             }
             else
             {
-                Shader shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+                Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.Outline.Replace("/", "_"));
                 if (shader == null)
                 {
                     return;
@@ -923,7 +923,7 @@ namespace ET
             {
                 return;
             }
-            self.Material.shader = GlobalHelp.Find(self.OldShader);
+            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
             if (self.Material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
             {
                 self.Material.SetFloat("_Factor", 0);
@@ -954,7 +954,7 @@ namespace ET
         {
             //Shader shader = GlobalHelp.FindShaderFormMat("SimpleAlpha");
 
-            Shader shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.SimpleAlpha.Replace("/", ","));
             if (shader == null)
             {
                 return;
@@ -1017,7 +1017,7 @@ namespace ET
             Log.ILog.Debug($"ExitStealth: {unit.Id}");
 
             //退出隐身
-            self.Material.shader = GlobalHelp.Find(self.OldShader);
+            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", ","));
 
             // 脚底阴影恢复
             GameObject di = null;

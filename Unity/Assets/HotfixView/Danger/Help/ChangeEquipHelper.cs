@@ -337,7 +337,7 @@ namespace ET
             {
                 foreach (MeshRenderer meshRenderer in go.transform.GetComponentsInChildren<MeshRenderer>())
                 {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    meshRenderer.material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.RimLight.Replace("/", "_"));
                     Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
                     meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
                     meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
@@ -347,7 +347,7 @@ namespace ET
 
                 foreach (SkinnedMeshRenderer meshRenderer in go.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
                 {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.RimLight);
+                    meshRenderer.material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.RimLight.Replace("/", "_"));
                     Texture2D texture2D = ResourcesComponent.Instance.LoadAsset<Texture2D>("Assets/Bundles/Unit/RimLight.png");
                     meshRenderer.material.SetColor("_Diffuse", Color.white); // 表面颜色
                     meshRenderer.material.SetColor("_RimColor", Color.white); // 边缘颜色
