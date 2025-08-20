@@ -113,8 +113,12 @@ namespace ET
         /// </summary>
         public const long WuDiMonster = 1 << 21;
 
+
+        //12：隐身 不能被选中 但是可以被攻击，放技能或者被攻击现身。   怪物目标丢失,     触发5秒规则
+        //22: 消失 不能被选中 但是可以被攻击，放技能被攻击都不现身。 怪物目标不会丢失
+
         /// <summary>
-        /// 隐藏状态   不能被选中 但是可以被攻击 被攻击现身
+        /// 隐藏状态  
         /// </summary>
 
         public const long Hide = 1 << 22;

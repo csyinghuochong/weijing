@@ -249,7 +249,7 @@ namespace ET
                 return false;
             }
 
-            if (stateComponent.StateTypeGet(StateTypeEnum.Hide) && aisearch)
+            if (stateComponent.StateTypeGet(StateTypeEnum.Stealth) && aisearch)
             {
                 return false;
             }

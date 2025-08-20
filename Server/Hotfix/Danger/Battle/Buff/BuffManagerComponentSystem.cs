@@ -214,7 +214,7 @@ namespace ET
                     continue;
                 }
 
-                if (skillBuffConfig.buffParameterType != 22)
+                if (skillBuffConfig.buffParameterType != 12)
                 {
                     continue;
                 }
