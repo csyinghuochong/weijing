@@ -330,9 +330,11 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool run = moveComponent != null && !moveComponent.IsArrived();
-            if (run)
+            FsmComponent fsmComponent = unit.GetComponent<FsmComponent>();
+            
+            if (run || fsmComponent.CurrentFsm == 2)
             {
-                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
+                fsmComponent.OnEnterFsmRunState_2();
             }
         }
 
@@ -1047,7 +1049,7 @@ namespace ET
                 }
             }
 
-
+            self.CheckRunState();
             // 血条恢复
             unit.GetComponent<UIUnitHpComponent>().ExitStealth();
         }

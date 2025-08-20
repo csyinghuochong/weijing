@@ -199,6 +199,7 @@ namespace ET
             {
                 self.Animator.SetBoolValue("Idle", false);
                 self.Animator.SetBoolValue("Run", false);
+                TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
             }
             else
@@ -218,6 +219,12 @@ namespace ET
             {
                 self.SetRunState();
             }
+        }
+
+        public static void OnEnterFsmRunState_2(this FsmComponent self)
+        {
+            self.LastAnimator = string.Empty;
+            self.SetRunState();
         }
 
         public static void OnEnterIdleState(this FsmComponent self)
@@ -246,6 +253,7 @@ namespace ET
 
         public static void SetRunState(this FsmComponent self)
         {
+            
             self.Animator.SetBoolValue("Idle", false);
             self.Animator.SetBoolValue("Run", true);
             self.Animator.Play("Run");
