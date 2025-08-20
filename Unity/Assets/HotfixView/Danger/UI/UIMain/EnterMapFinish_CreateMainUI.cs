@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -66,9 +67,33 @@ namespace ET
 			{
 				string serverName = accountInfoComponent.ServerName;
 				UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+				NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(zoneScene).GetComponent<NumericComponent>();
 				TapSDKHelper.UserUpdate_rolename(userInfo.Name);
 				TapSDKHelper.UserUpdate_servername(serverName);
 				TapSDKHelper.UserUpdate_isFirstCreateRole(accountInfoComponent.CreateRoleList.Count);
+				TapSDKHelper.UserUpdate_rechargeNumber(numericComponent.GetAsInt(NumericType.RechargeNumber));
+				TapSDKHelper.UserUpdate_combat(userInfo.Combat);
+				TapSDKHelper.UserUpdate_level(userInfo.Lv);
+				TapSDKHelper.UserUpdate_gold((int)userInfo.Gold);
+				TapSDKHelper.UserUpdate_diamond((int)userInfo.Diamond);
+				List<TaskPro> taskPros = zoneScene.GetComponent<TaskComponent>().RoleTaskList;
+				foreach (TaskPro taskPro in taskPros)
+				{
+					if (taskPro.TrackStatus == 0)
+					{
+						continue;
+					}
+
+					TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
+
+					if (taskConfig.TaskType == TaskTypeEnum.Main)
+					{
+						Log.Debug($"当前主线任务 {taskConfig.Id} {taskConfig.TaskName}");
+						TapSDKHelper.UserUpdate_currentTaskId(taskConfig.Id);
+						TapSDKHelper.UserUpdate_currentTaskName(taskConfig.TaskName);
+						return;
+					}
+				}
 			}
 #endif
 
