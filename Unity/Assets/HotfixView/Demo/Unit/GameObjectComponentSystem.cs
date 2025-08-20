@@ -954,7 +954,7 @@ namespace ET
         {
             //Shader shader = GlobalHelp.FindShaderFormMat("SimpleAlpha");
 
-            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.SimpleAlpha.Replace("/", ","));
+            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.SimpleAlpha.Replace("/", "_"));
             if (shader == null)
             {
                 return;
@@ -1017,7 +1017,7 @@ namespace ET
             Log.ILog.Debug($"ExitStealth: {unit.Id}");
 
             //退出隐身
-            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", ","));
+            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
 
             // 脚底阴影恢复
             GameObject di = null;
