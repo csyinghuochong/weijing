@@ -405,6 +405,17 @@ namespace ET
                 return;
             }
 
+            GameObject weaponParent_1 = self.trparent.gameObject.Get<GameObject>("Wuqi001");
+            GameObject weaponParent_2 = self.trparent.gameObject.Get<GameObject>("Wuqi002");
+            if (weaponParent_1 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_1);
+            }
+            if (weaponParent_2 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_2);
+            }
+            
             //GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             //GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             go.SetActive(true);
