@@ -84,6 +84,27 @@ namespace ET
             }
         }
 
+        public static bool HaveBuffByState(this BuffManagerComponent self, long state)
+        {
+            //移除buff要保持倒序移除
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                //判断当前状态是否为暴击状态的buff
+                if (self.m_Buffs[i].mBuffConfig.BuffType != 2)
+                {
+                    continue;
+                }
+                long curState = 1 << self.m_Buffs[i].mBuffConfig.buffParameterType;
+                if (state == curState)
+                {
+                    return true;    
+                }
+            }
+            return false;
+        }
+
+
         public static void OnRemoveBuffItem(this BuffManagerComponent self, BuffHandler buffHandler)
         {
             M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;

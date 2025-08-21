@@ -14,7 +14,7 @@ namespace ET
                 return false;
             }
             float distance = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
-            return !aiComponent.IsRetreat && distance >= aiComponent.ChaseRange;
+            return aiComponent.IsRetreat == 0 && distance >= aiComponent.ChaseRange;
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
@@ -27,7 +27,7 @@ namespace ET
                 unit.GetComponent<AttackRecordComponent>().ClearBeAttack();
             }
             aiComponent.TargetID = 0;
-            aiComponent.IsRetreat = true;
+            aiComponent.IsRetreat = TimeHelper.ServerNow();
             unit.Stop(0);
             await ETTask.CompletedTask;
         }

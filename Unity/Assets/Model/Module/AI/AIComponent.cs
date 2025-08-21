@@ -7,7 +7,7 @@ namespace ET
     public class AIComponent: Entity, IAwake<int>, IDestroy
     {
 
-        public bool IsRetreat;
+        public long IsRetreat;
 
         public int AIConfigId;
         

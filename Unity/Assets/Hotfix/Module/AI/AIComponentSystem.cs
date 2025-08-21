@@ -25,7 +25,7 @@ namespace ET
         public override void Awake(AIComponent self, int aiConfigId)
         {
             self.TargetID = 0;
-            self.IsRetreat = false;
+            self.IsRetreat = 0;
             self.PatrolRange = 0f;
             self.AISkillIDList.Clear();
             self.TargetPoint.Clear();
@@ -357,7 +357,7 @@ namespace ET
 
         public static void ChangeTarget(this AIComponent self, long targetId)
         {
-            if (!self.IsRetreat)
+            if (self.IsRetreat == 0)
             {
                 self.TargetID = targetId;
             }

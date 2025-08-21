@@ -18,7 +18,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             unit.Stop(0);
             unit.SetBornPosition(unit.Position, true);
-            aiComponent.IsRetreat = false;
+            aiComponent.IsRetreat = 0;
             aiComponent.AIConfigId = int.Parse(aiConfig.NodeParams);
         }
     }

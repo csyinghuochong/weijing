@@ -67,14 +67,20 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            bool haveStealth = false;
             if (unit.IsBoss())
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 0);
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
                 unit.GetComponent<AttackRecordComponent>().ClearBeAttack();
+                haveStealth = AIHelp.GetNearestStealth(unit);
             }
+           
+            //boss 检测， 回撤的一瞬间周围有隐身单位， 至少五秒后才回血
+            //5秒后才回血，如果节点被打断不回血。
+
             aiComponent.TargetID = 0;
-            aiComponent.IsRetreat = true;
+            aiComponent.IsRetreat = TimeHelper.ServerNow()+ (haveStealth ? TimeHelper.Second * 5 : 0);
             List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
             for (int i = 0; i < units.Count; i++)
             {
@@ -89,7 +95,8 @@ namespace ET
                     unit.FindPathMoveToAsync(bornVector3, cancellationToken, false).Coroutine();
                 }
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
-                if (timeRet && Vector3.Distance(bornVector3, unit.Position) < 0.5f && !unit.IsDisposed)
+                long serverNow = TimeHelper.ServerNow();
+                if (timeRet && Vector3.Distance(bornVector3, unit.Position) < 0.5f && !unit.IsDisposed && serverNow > aiComponent.IsRetreat)
                 {
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     if (aiComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon && numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
@@ -97,21 +104,21 @@ namespace ET
                         long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
                         numericComponent.ApplyValue(NumericType.Now_Hp, max_hp);
                     }
-                    aiComponent.IsRetreat = false;
+                    aiComponent.IsRetreat = 0;
                 }
 
                 if (!timeRet)
                 {
-                    aiComponent.IsRetreat = false;
+                    aiComponent.IsRetreat = 0;
                 }
 
                 //返回出生点
-                if (!aiComponent.IsRetreat && unit.IsBoss())
+                if (aiComponent.IsRetreat == 0 && unit.IsBoss())
                 {
                     SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
                     skillManagerComponent?.OnFinish(true);
                 }
-                if (!aiComponent.IsRetreat)
+                if (aiComponent.IsRetreat == 0)
                 {
                     return;
                 }

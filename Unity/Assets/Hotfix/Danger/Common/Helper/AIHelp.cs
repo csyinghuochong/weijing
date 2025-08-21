@@ -110,6 +110,37 @@ namespace ET
             return nearest;
         }
 
+
+#if SERVER
+        public static bool GetNearestStealth(Unit main)
+        {
+            float maxdis = 10f;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+                float dd = Vector3.Distance(main.Position, unit.Position);
+                if (dd > maxdis || !main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                BuffManagerComponent buffManagerComponent = unit.GetComponent<BuffManagerComponent>();
+                if (buffManagerComponent.HaveBuffByState(StateTypeEnum.Stealth))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+#endif 
+
+
         /// <summary>
         /// 在2D平面上生成一个距离中心点2米到10米之间的随机点
         /// </summary>

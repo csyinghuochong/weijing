@@ -12,7 +12,7 @@ namespace ET
     {
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.TargetID != 0 || aiComponent.IsRetreat)
+            if (aiComponent.TargetID != 0 || aiComponent.IsRetreat!=0)
             {
                 return false;
             }
