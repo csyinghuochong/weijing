@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3718284221697108139}
   m_Layer: 0
-  m_Name: Eff_Skill_XuanFeng
+  m_Name: Eff_Skill_XuanFeng_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38711,7 +38711,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3714845424118043545}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 54267978137c9a5429945abf8dcc85aa, type: 2}
   m_Animations:
