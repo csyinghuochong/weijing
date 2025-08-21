@@ -31,6 +31,7 @@ using UnityEngine.Networking;
 
 namespace libx
 {
+    
     public class Download : DownloadHandlerScript, IDisposable, ICloneable
     {
         #region ICloneable implementation
@@ -128,16 +129,18 @@ namespace libx
             {
                 return;
             }
+
             error = null;
             finished = false;
             _running = true;
             _stream = new FileStream(tempPath, FileMode.OpenOrCreate, FileAccess.Write);
             position = _stream.Length;
-            if (position < len)
+            if (position != len)
             {
-                if (position > 0)
+                if (position != 0)
                 {
-                    UnityEngine.Debug.Log($"position < len: {url} {position} : {len}");
+                    _stream.SetLength(0);
+                    UnityEngine.Debug.LogWarning($"position != len: {url}   {position} : {len}");
                 }
                 _stream.Seek(0, SeekOrigin.Begin);
                 _request = UnityWebRequest.Get(url);

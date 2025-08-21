@@ -54,6 +54,7 @@ namespace libx
                 version.text = $"资源版本号: {Application.version}";
 
                 buttonAgeTip.GetComponent<Button>().onClick.AddListener(OnButton_ShowAgeTip);
+                buttonXiuFu.GetComponent<Button>().onClick.AddListener(OnButton_XiuFu);
 
                 UIAgeTip.transform.Find("UIAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
                 UIAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
@@ -82,6 +83,13 @@ namespace libx
         public void OnButton_ShowAgeTip()
         {
             UIAgeTip.SetActive(true);
+        }
+         
+
+        public void OnButton_XiuFu()
+        {
+            var updater = FindObjectOfType<Updater>();
+            updater.Clear();
         }
 
         public void OnButton_CloseAgeTip()

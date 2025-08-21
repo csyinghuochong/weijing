@@ -282,6 +282,7 @@ namespace libx
 
         public void Clear()
         {
+            Debug.Log("Clear_Clear");
             MessageBox.Show("提示", "清除数据后所有数据需要重新下载，请确认！", "清除").onComplete += id =>
             {
                 if (id != MessageBox.EventId.Ok)
@@ -298,6 +299,10 @@ namespace libx
             _downloader.Clear();
             _step = Step.Wait;
             _reachabilityChanged = false;
+            _startUpdate = false;
+            passTime = 0;
+            _localAssetList = String.Empty;
+            _localAssets.Clear();
 
             Assets.Clear();
 
@@ -310,6 +315,8 @@ namespace libx
             {
                 Directory.Delete(_savePath, true);
             }
+
+            StartUpdate();
         }
 
         public void OnStart()
