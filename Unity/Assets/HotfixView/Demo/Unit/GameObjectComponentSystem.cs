@@ -955,57 +955,71 @@ namespace ET
         public static void EnterStealth(this GameObjectComponent self)
         {
             //Shader shader = GlobalHelp.FindShaderFormMat("SimpleAlpha");
-
-            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.SimpleAlpha.Replace("/", "_"));
+            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.StainedBumpDistort.Replace("/", "_"));
             if (shader == null)
             {
                 return;
             }
             Unit unit = self.GetParent<Unit>();
             float alpha = 1f;
-            // 对自己半透明
             if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
             {
+                // 对自己半透明
                 alpha = 0.3f;
+                
+                // 身体隐形
+                if (self.Material != null)
+                {
+                    self.Material.shader = shader;
+                }
+                unit.GetComponent<ChangeEquipComponent>()?.GetComponent<ChangeEquipHelper>()?.EnterStealth();
+
+                // 脚底阴影隐形
+                // if (self.GameObject.transform.Find("fake shadow (5)") != null)
+                // {
+                //     GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+                //     Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                //     di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
+                // }
+           
+                // 脚底Buff隐形
+                // foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
+                // {
+                //     if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                //     {
+                //         ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                //         if (particleSystem != null)
+                //         {
+                //             Material material = particleSystem.GetComponent<Renderer>().material;
+                //             if (material.HasProperty("_TintColor"))
+                //             {
+                //                 Color oldColor = material.GetColor("_TintColor");
+                //                 oldColor.a = alpha;
+                //                 material.SetColor("_TintColor", oldColor);
+                //             }
+                //        
+                //         }
+                //     }
+                // }
             }
-            // 对别人透明
             else
             {
+                // 对别人透明
                 alpha = 0f;
-            }
-            // 身体隐形
-            self.Material.shader = shader;
-            self.Material.SetFloat("_Alpha", alpha);
-
-            // 脚底阴影隐形
-            if (self.GameObject.transform.Find("fake shadow (5)") != null)
-            {
-                GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
-                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
-                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
-            }
-           
-            // 脚底Buff隐形
-            foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
-            {
-                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                
+                if (self.GameObject != null)
                 {
-                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
-                    if (particleSystem != null)
-                    {
-                        Material material = particleSystem.GetComponent<Renderer>().material;
-                        if (material.HasProperty("_TintColor"))
-                        {
-                            Color oldColor = material.GetColor("_TintColor");
-                            oldColor.a = alpha;
-                            material.SetColor("_TintColor", oldColor);
-                        }
-                       
-                    }
+                    self.GameObject.SetActive(false);
                 }
+                if (self.ObjectHorse != null)
+                {
+                    self.ObjectHorse.SetActive(false);
+                }
+                
+                unit.GetComponent<UIUnitHpComponent>().EnterHide();
             }
 
-            unit.GetComponent<UIUnitHpComponent>().EnterStealth(alpha);
+            // unit.GetComponent<UIUnitHpComponent>().EnterStealth(alpha);
         }
 
         /// <summary>
@@ -1018,40 +1032,60 @@ namespace ET
 
             Log.ILog.Debug($"ExitStealth: {unit.Id}");
 
-            //退出隐身
-            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
-
-            // 脚底阴影恢复
-            GameObject di = null;
-            if (self.GameObject.transform.Find("fake shadow (5)") != null)
+            if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
             {
-                di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
-                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
-                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
-            }
-
-            // 脚底Buff恢复
-            foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
-            {
-                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                //退出隐身
+                if (self.Material != null)
                 {
-                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
-                    if (particleSystem != null)
-                    {
-                        Material material = particleSystem.GetComponent<Renderer>().material;
-                        if (material.HasProperty("_TintColor"))
-                        {
-                            Color oldColor = material.GetColor("_TintColor");
-                            oldColor.a = 0.5f;
-                            material.SetColor("_TintColor", oldColor);
-                        }
-                    }
+                    self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
                 }
+                unit.GetComponent<ChangeEquipComponent>()?.GetComponent<ChangeEquipHelper>()?.ExitStealth();
+
+                // 脚底阴影恢复
+                // GameObject di = null;
+                // if (self.GameObject.transform.Find("fake shadow (5)") != null)
+                // {
+                //     di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+                //     Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                //     di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
+                // }
+
+                // 脚底Buff恢复
+                // foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
+                // {
+                //     if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                //     {
+                //         ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                //         if (particleSystem != null)
+                //         {
+                //             Material material = particleSystem.GetComponent<Renderer>().material;
+                //             if (material.HasProperty("_TintColor"))
+                //             {
+                //                 Color oldColor = material.GetColor("_TintColor");
+                //                 oldColor.a = 0.5f;
+                //                 material.SetColor("_TintColor", oldColor);
+                //             }
+                //         }
+                //     }
+                // }
+            }
+            else
+            {
+                if (self.GameObject != null)
+                {
+                    self.GameObject.SetActive(true);
+                }
+                if (self.ObjectHorse != null)
+                {
+                    self.ObjectHorse.SetActive(true);
+                }
+                
+                self.GetParent<Unit>().GetComponent<UIUnitHpComponent>().ExitHide();
             }
 
             self.CheckRunState();
             // 血条恢复
-            unit.GetComponent<UIUnitHpComponent>().ExitStealth();
+            // unit.GetComponent<UIUnitHpComponent>().ExitStealth();
         }
 
 

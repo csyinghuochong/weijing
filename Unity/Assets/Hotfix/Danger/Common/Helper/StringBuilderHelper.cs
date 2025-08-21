@@ -10,7 +10,7 @@ namespace ET
         public static string ToonBasic = "Toon/Basic";
         public static string ToonBasicOutline = "Toon/BasicOutline";
         public static string Ill_HighLight = "Custom/Ill_HighLight";
-        public static string SimpleAlpha = "Custom/SimpleAlpha";
+        public static string StainedBumpDistort = "FX/Glass/Stained BumpDistort";
         public static string Outline = "Custom/Outline";
         public static string RimLight = "Custom/RimLight";
 

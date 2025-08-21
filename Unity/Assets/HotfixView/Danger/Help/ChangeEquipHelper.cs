@@ -92,6 +92,88 @@ namespace ET
             }
         }
 
+        public static void InitOldMaterial(this ChangeEquipHelper self)
+        {
+            self.OldMaterials.Clear();
+
+            foreach (GameObject gameObject in self.oldFashions)
+            {
+                SkinnedMeshRenderer[] skinnedMeshRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+                foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+                {
+                    foreach (Material material in renderer.materials)
+                    {
+                        if (self.OldMaterials.ContainsKey(material))
+                        {
+                            continue;
+                        }
+
+                        if (material.shader.name.Equals(StringBuilderHelper.ToonBasic) || material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
+                        {
+                            self.OldMaterials.Add(material, material.shader.name);
+                        }
+                    }
+                }
+            }
+
+
+            foreach (MeshRenderer meshRenderer in self.WeaponObject.transform.GetComponentsInChildren<MeshRenderer>())
+            {
+                foreach (Material material in meshRenderer.materials)
+                {
+                    if (self.OldMaterials.ContainsKey(material))
+                    {
+                        continue;
+                    }
+
+                    if (material.shader.name.Equals(StringBuilderHelper.ToonBasic) || material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
+                    {
+                        self.OldMaterials.Add(material, material.shader.name);
+                    }
+                }
+            }
+
+            foreach (SkinnedMeshRenderer meshRenderer in self.WeaponObject.transform.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                foreach (Material material in meshRenderer.materials)
+                {
+                    if (self.OldMaterials.ContainsKey(material))
+                    {
+                        continue;
+                    }
+
+                    if (material.shader.name.Equals(StringBuilderHelper.ToonBasic) || material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
+                    {
+                        self.OldMaterials.Add(material, material.shader.name);
+                    }
+                }
+            }
+        }
+
+        public static void EnterStealth(this ChangeEquipHelper self)
+        {
+            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.StainedBumpDistort.Replace("/", "_"));
+            if (shader == null)
+            {
+                return;
+            }
+            
+            self.InitOldMaterial();
+
+            foreach (Material material in self.OldMaterials.Keys)
+            {
+                material.shader = shader;
+            }
+        }
+
+        public static void ExitStealth(this ChangeEquipHelper self)
+        {
+            foreach (KeyValuePair<Material, string> keyValuePair in self.OldMaterials)
+            {
+                keyValuePair.Key.shader = GlobalHelp.FindShaderFormMat(keyValuePair.Value.Replace("/", "_"));
+            }
+        }
+        
         public static void OnAllLoadComplete_2(this ChangeEquipHelper self)
         {
             self.LoadCompleted = true;
@@ -560,6 +642,8 @@ namespace ET
 
         public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
 
-        public Dictionary<string, Transform> childDictonary = new Dictionary<string, Transform>();  
+        public Dictionary<string, Transform> childDictonary = new Dictionary<string, Transform>();
+
+        public Dictionary<Material, string> OldMaterials = new();
     }
 }
