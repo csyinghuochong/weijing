@@ -14,6 +14,38 @@ namespace ET
         public static string Outline = "Custom/Outline";
         public static string RimLight = "Custom/RimLight";
 
+        public static string GetMaterialName(string shaderName)
+        {
+            if (shaderName == ToonBasic)
+            {
+                return "Toon_Basic";
+            }
+            else if (shaderName == ToonBasicOutline)
+            {
+                return "Toon_BasicOutline";
+            }
+            else if (shaderName == Ill_HighLight)
+            {
+                return "Custom_Ill_HighLight";
+            }
+            else if (shaderName == StainedBumpDistort)
+            {
+                return "FX_Glass_Stained BumpDistort";
+            }
+            else if (shaderName == Outline)
+            {
+                return "Custom_Outline";
+            }
+            else if (shaderName == RimLight)
+            {
+                return "Custom_RimLight";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static string RoleBoneSet = "RoleBoneSet";
         public static string Skill_Halo_2 = "Skill_Halo_2";
         public static string Skill_ComTargetMove_RangDamge_2 = "Skill_ComTargetMove_RangDamge_2";

@@ -856,7 +856,7 @@ namespace ET
 
             if (self.Material != null)
             {
-                self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.Ill_HighLight.Replace("/", "_"));
+                self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(StringBuilderHelper.Ill_HighLight));
                 // self.Material.SetInt("_Type", 1);
                 //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
                 TimerComponent.Instance.Remove(ref self.HighLightTimer);
@@ -872,7 +872,7 @@ namespace ET
             }
             if (self.Material != null)
             {
-                self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
+                self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(self.OldShader));
                 // self.Material.SetInt("_Type", 0);
             }
         }
@@ -907,7 +907,7 @@ namespace ET
             }
             else
             {
-                Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.Outline.Replace("/", "_"));
+                Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(StringBuilderHelper.Outline));
                 if (shader == null)
                 {
                     return;
@@ -925,7 +925,7 @@ namespace ET
             {
                 return;
             }
-            self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
+            self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(self.OldShader));
             if (self.Material.shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
             {
                 self.Material.SetFloat("_Factor", 0);
@@ -955,7 +955,7 @@ namespace ET
         public static void EnterStealth(this GameObjectComponent self)
         {
             //Shader shader = GlobalHelp.FindShaderFormMat("SimpleAlpha");
-            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.StainedBumpDistort.Replace("/", "_"));
+            Shader shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(StringBuilderHelper.StainedBumpDistort));
             if (shader == null)
             {
                 return;
@@ -1037,7 +1037,7 @@ namespace ET
                 //退出隐身
                 if (self.Material != null)
                 {
-                    self.Material.shader = GlobalHelp.FindShaderFormMat(self.OldShader.Replace("/", "_"));
+                    self.Material.shader = GlobalHelp.FindShaderFormMat(StringBuilderHelper.GetMaterialName(self.OldShader));
                 }
                 unit.GetComponent<ChangeEquipComponent>()?.GetComponent<ChangeEquipHelper>()?.ExitStealth();
 
