@@ -4345,7 +4345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb100a279eeda541b8c912e03233769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonXiuFu: {fileID: 0}
+  buttonXiuFu: {fileID: 120733384}
   buttonAgeTip: {fileID: 4331397755777303471}
   UIAgeTip: {fileID: 968811465}
   buttonStart: {fileID: 392207963}
