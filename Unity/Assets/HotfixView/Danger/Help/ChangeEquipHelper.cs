@@ -655,6 +655,6 @@ namespace ET
 
         public Dictionary<string, Transform> childDictonary = new Dictionary<string, Transform>();
 
-        public Dictionary<Material, string> OldMaterials = new();
+        public Dictionary<Material, string> OldMaterials = new Dictionary<Material, string>();
     }
 }
