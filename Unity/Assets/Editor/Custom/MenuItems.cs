@@ -170,7 +170,7 @@ namespace libx
 
                 if (!bundle2Ids.ContainsKey(item.bundle))
                 {
-                    UnityEngine.Debug.Log("!bundle2Ids.ContainsKey");
+                    UnityEngine.Debug.Log($"!bundle2Ids.ContainsKey:{item.bundle}  {path}");
                     Log.Debug(item.bundle);
                     Log.Debug(path);
                 }
