@@ -10,25 +10,6 @@ namespace ET
 
         public static Dictionary<string, Shader> ShaderList = new Dictionary<string, Shader>();
 
-        public static Shader Find(string path)
-        { 
-            Shader shader = null;
-            ShaderList.TryGetValue(path, out shader);
-            if (shader == null)
-            {
-                shader = Shader.Find(path);
-                if (ShaderList.ContainsKey(path))
-                {
-                    ShaderList[path] = shader;  
-                }
-                else
-                {
-                    ShaderList.Add(path, shader);
-                }
-            }
-            return shader;
-        }
-
         //"Unit_BumpDistort"
         public static Shader FindShaderFormMat(string path)
         {

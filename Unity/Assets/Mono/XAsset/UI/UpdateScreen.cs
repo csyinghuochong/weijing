@@ -32,6 +32,7 @@ namespace libx
 {
     public class UpdateScreen : MonoBehaviour, IUpdater
     {
+        public Button buttonXiuFu;
         public Button buttonAgeTip;
         public GameObject UIAgeTip;
 
