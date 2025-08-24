@@ -1401,7 +1401,7 @@ namespace ET
             return pro;
         }
 
-        public static void RemovePet(this PetComponent self, long petId)
+        public static void RemovePet(this PetComponent self, long petId, int removetype)
         {
             Unit unit = self.GetParent<Unit>();
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
@@ -1409,6 +1409,15 @@ namespace ET
             {
                 if (self.RolePetInfos[i].Id == petId)
                 {
+                    int petconfigid = self.RolePetInfos[i].ConfigId;
+                    Log.Debug($"RemovePet: unitid:{unit.Id}  petconfigid:{petconfigid}");
+
+                    if (petconfigid >= 2000001)
+                    {
+                        Log.Error($"RemovePet: unitid:{unit.Id}  petconfigid:{petconfigid}");
+                        Console.WriteLine($"RemovePet: unitid:{unit.Id}  petconfigid:{petconfigid}");
+                    }
+
                     //移除宠物之核
                     bagComponent.OnCostItemData(self.RolePetInfos[i].PetHeXinList, ItemLocType.ItemPetHeXinEquip);
                     bagComponent.OnCostItemData(self.RolePetInfos[i].PetEquipList, ItemLocType.PetLocEquip);
@@ -1518,7 +1527,7 @@ namespace ET
 
         public static void OnRolePetFenjie(this PetComponent self, long petId)
         {
-            self.RemovePet(petId);
+            self.RemovePet(petId, 4);
 
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {

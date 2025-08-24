@@ -40,15 +40,16 @@ namespace ET
                     D2G_GetComponent d2GGetUnit_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.PetComponent });
                     PetComponent petComponent = d2GGetUnit_3.Component as PetComponent;
                     List<RolePetInfo> rolePetInfos = petComponent.RolePetInfos;
+                    List<RolePetInfo> rolePetInfosResponse = new List<RolePetInfo>();
                     for (int pet = rolePetInfos.Count - 1; pet >= 0; pet-- )
                     {
-                        if (rolePetInfos[pet].PetStatus >= 2)
+                        if (rolePetInfos[pet].PetStatus < 2)
                         {
-                            rolePetInfos.RemoveAt(pet);
+                            rolePetInfosResponse.Add(rolePetInfos[pet]);
                         }
                     }
 
-                    response.RolePetInfos = rolePetInfos;
+                    response.RolePetInfos = rolePetInfosResponse;
                     response.PetSkinList = petComponent.PetSkinList;
 
                     D2G_GetComponent d2GGetUnit_4 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.NumericComponent });

@@ -45,7 +45,7 @@ namespace ET
                 if (rolePetInfoXianJi != null)
                 {
                     //移除宠物
-                    petComponent.RemovePet(request.PetInfoXianJiId);
+                    petComponent.RemovePet(request.PetInfoXianJiId,2);
                     response.OldPetInfo = ComHelp.DeepCopy<RolePetInfo>(rolePetInfo);
 
                     //获取评分

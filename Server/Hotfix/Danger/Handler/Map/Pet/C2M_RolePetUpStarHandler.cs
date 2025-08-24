@@ -76,7 +76,7 @@ namespace ET
             rolePetInfo.Star++;
             for (int i = 0; i < request.CostPetInfoIds.Count; i++)
             {
-                petComponent.RemovePet(request.CostPetInfoIds[i]);
+                petComponent.RemovePet(request.CostPetInfoIds[i], 3);
             }
             response.rolePetInfo = rolePetInfo;
 

@@ -363,7 +363,7 @@ namespace ET
 			petinfo_update.PetName = petconf.PetName;
             petinfo_update.LockSkill.Clear();
             petComponent.OnResetPoint(petinfo_update);
-			petComponent.RemovePet(petinfo_delete.Id);
+			petComponent.RemovePet(petinfo_delete.Id, 1);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
 			unit.GetComponent<TaskComponent>().OnPetHeCheng(petinfo_update);
 			unit.GetComponent<DataCollationComponent>().PetHeCheng++;
