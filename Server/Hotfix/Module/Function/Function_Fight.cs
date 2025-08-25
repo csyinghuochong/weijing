@@ -687,6 +687,9 @@ namespace ET
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
+                //格挡值抵消
+                damge = damge - numericComponentDefend.GetAsLong(NumericType.Now_GeDang);
+
                 //查看对应武器
                 float weaponAddAct = 0;
                 switch (UnitHelper.GetEquipType(attackUnit))
@@ -1171,7 +1174,7 @@ namespace ET
                 damge = (int)(damge * damgePro);
 
                 //格挡值抵消
-                damge = damge - numericComponentDefend.GetAsLong(NumericType.Now_GeDang);
+                //damge = damge - numericComponentDefend.GetAsLong(NumericType.Now_GeDang);
 
                 if (damge < 1)
                 {
