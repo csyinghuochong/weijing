@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 #if UNITY_ANDROID
-using TapSDK.Core;
-using TapSDK.Compliance;
-using TapSDK.Login;
+using TapTap.Bootstrap;
+using TapTap.Common;
+using TapTap.TapDB;
 #endif
 
 namespace ET
@@ -37,7 +37,7 @@ namespace ET
 
         // 是否已初始化
         private static bool hasInit = false;
-
+       
 
         public static void Init()
         {
@@ -46,63 +46,30 @@ namespace ET
                 hasInit = true;
 
                 ET.Log.ILog.Debug("Tap Bootstrap.Init");
+                var config = new TapConfig.Builder()
+                .ClientID(ConfigHelper.clientId)  // 必须，开发者中心对应 Client ID
+                .ClientToken(ConfigHelper.clientToken)  // 必须，开发者中心对应 Client Token
+                .ServerURL(ConfigHelper.serverUrl)  // 必须，开发者中心 > 你的游戏 > 游戏服务 > 基本信息 > 域名配置 > API
+                .RegionType(RegionType.CN)  // 非必须，CN 表示中国大陆，IO 表示其他国家或地区
+                .TapDBConfig(true, "gameChannel", "gameVersion", true)  // TapDB 会根据 TapConfig 的配置进行自动初始化
+                .ConfigBuilder();
 
-                // 核心配置
-                TapTapSdkOptions coreOptions = new TapTapSdkOptions
-                {
-                    // 客户端 ID，开发者后台获取
-                    clientId = ConfigHelper.clientId,
-                    // 客户端令牌，开发者后台获取
-                    clientToken = ConfigHelper.clientToken,
-                    // 地区，CN 为国内，Overseas 为海外
-                    region = TapTapRegionType.CN,
-                    // 语言，默认为 Auto，默认情况下，国内为 zh_Hans，海外为 en
-                    preferredLanguage = TapTapLanguageType.zh_Hans,
-                    // 游戏版本号，如果不传则默认读取应用的版本号
-                    gameVersion = "gameVersion",
-                    // CAID，仅国内 iOS
-                    caid = "000-000-0000-00000",
-                    // 是否开启广告商 ID 收集，默认为 false
-                    enableAdvertiserIDCollection = false,
-                    // OAID证书, 仅 Android，用于上报 OAID 仅 [TapTapRegion.CN] 生效
-                    oaidCert = null,
-                    // 是否开启日志，Release 版本请设置为 false
-                    enableLog = true,
-                    // 是否禁用 OAID 反射，默认为 true
-                    disableReflectionOAID = true
-                };
-
-                // 合规认证配置 防沉迷
-                TapTapComplianceOption complianceOption = new TapTapComplianceOption
-                {
-                    showSwitchAccount = true,  // 是否显示切换账号按钮
-                    useAgeRange = false  // 游戏是否需要获取真实年龄段信息
-                };
-                
-                //数据分析相关配置
-                TapTapEventOptions eventOptions = new TapTapEventOptions
-                {
-                    // 渠道，如 AppStore、GooglePlay
-                    channel = "gameChannel",
-                    // 初始化时传入的自定义参数，会在初始化时上报到 device_login 事件
-                    propertiesJson = "",
-                    // 是否能够覆盖内置参数，默认为 false
-                    overrideBuiltInParameters = false,
-                    // 是否开启自动上报 IAP 事件
-                    enableAutoIAPEvent = true,
-                    // 是否禁用自动上报设备登录事件，默认为 false
-                    disableAutoLogDeviceLogin = false
-                };
-
-
-                TapTapSdkBaseOptions[] otherOptions = new TapTapSdkBaseOptions[]
-                {
-                    complianceOption,
-                    eventOptions,
-                    // ... 其他模块配置项
-                };
-                TapTapSDK.Init(coreOptions, otherOptions);
+                TapBootstrap.Init(config);
             }
+        }
+
+
+        /// <summary>
+        /// 在单独使用 TapDB 功能时（即不接登录功能时，不导入 TapBootstrap 包时），可以通过以下方式初始化 TapDB。
+        /// </summary>
+        /// <param name="clientId">Client Id 可以在控制台获取</param>
+        /// <param name="channel">分包渠道</param>
+        /// <param name="gameVersion">游戏版本，为空时，自动获取游戏安装包的版本</param>
+        /// <param name="isCN">区域，true 表示中国大陆，false 表示中国大陆以外的国家或地区。</param>
+        public static void TabDBInit(string clientId, string channel, string gameVersion, bool isCN)
+        {
+            ET.Log.ILog.Debug("Tab DBInit.Init");
+            TapDB.Init(clientId, channel, gameVersion, true);
         }
 
         /// <summary>
@@ -115,9 +82,8 @@ namespace ET
             {
                 return;
             }
-
             ET.Log.ILog.Debug("Tab SetUser.Init");
-            TapTapEvent.SetUserID(userId);
+            TapDB.SetUser(userId);
         }
 
         //衍生事件
@@ -135,8 +101,47 @@ namespace ET
             {
                 return;
             }
+            TapDB.ClearUser();
+        }
 
-            TapTapEvent.ClearUser();
+        /// <summary>
+        /// 在用户进行账号登录后，可调用该接口设置该账号的名称，调用后将更新账号的账号名称（ user_name ）属性。
+        /// </summary>
+        /// <param name="name"></param>
+        public static void SetName(string name)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.SetName("Tarara");
+        }
+
+
+        /// <summary>
+        /// 在用户进行账号登录后，可调用该接口设置该账号的等级，调用将更新账号的账号等级（ level ）属性。
+        /// </summary>
+        /// <param name="level"></param>
+        public static void SetLevel(int level)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.SetLevel(5);
+        }
+
+        /// <summary>
+        /// 设置账号区服,在用户进行账号登录后，可调用该接口设置该账号的区服信息，调用将初始化账号的首次区服（ first_server ）属性、更新账号的当前区服（ current_server ）属性。
+        /// </summary>
+        /// <param name="server"></param>
+        public static void SetServer(string server)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.SetServer("1 区");
         }
 
         /// <summary>
@@ -155,12 +160,8 @@ namespace ET
                 return;
             }
 
-            TapTapEvent.LogPurchasedEvent(orderID: orderId,
-                productName: product,
-                amount: amount,
-                currencyType: currencyType,
-                paymentMethod: payment,
-                properties: properties);
+            // TapDB.OnCharge("0xueiEns", "轩辕剑", 100, "CNY", "wechat", "{\"on_sell\":true}");
+            TapDB.OnCharge(orderId, product, amount, currencyType, payment, properties);
         }
 
         //自定义事件
@@ -207,9 +208,8 @@ namespace ET
             {
                 return;
             }
-
             ET.Log.ILog.Debug("Tap TrackEvent");
-            TapTapEvent.LogEvent("#eventName_2", "{\"#serverid\":\"3\"}");
+            TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"3\"}");
         }
 
         public static void TrackEvent(string eventName, string properties)
@@ -218,8 +218,7 @@ namespace ET
             {
                 return;
             }
-
-            TapTapEvent.LogEvent(eventName, properties);
+            TapDB.TrackEvent(eventName, properties);
         }
 
         /// <summary>
@@ -233,8 +232,8 @@ namespace ET
             {
                 return;
             }
-
-            TapTapEvent.AddCommon(staticProperties);
+            //当设置了静态通用事件属性 #current_channel，值固定为 TapDB 后使用事件上报时，等效于在事件属性中添加了 #current_channel
+            TapDB.RegisterStaticProperties(staticProperties);
         }
 
         /// <summary>
@@ -247,8 +246,7 @@ namespace ET
             {
                 return;
             }
-
-            TapTapEvent.ClearCommonProperty("#current_channel");
+            TapDB.UnregisterStaticProperty("#current_channel");
         }
 
         /// <summary>
@@ -260,10 +258,134 @@ namespace ET
             {
                 return;
             }
-
-            TapTapEvent.ClearAllCommonProperties();
+            TapDB.ClearStaticProperties();
         }
 
+        /// <summary>
+        /// 注册动态通用事件属性
+        /// 对于可能随时发生变化的通用事件属性，可以注册动态通用事件属性回调，该回调会在每次调用时被触发，将计算好的属性添加到本次上报事件属性中。
+        /// </summary>
+        /// <param name="properties">动态通用事件属性计算回调</param>
+        public static void RegisterDynamicProperties(IDynamicProperties properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// TapDB 支持两种用户主体：设备和账号，你可以通过如下接口对这两种用户的属性进行操作。
+        /// 修改设备属性
+        /// 设备属性初始化
+        /// 对于需要保证只有首次设置时有效的属性，可以使用该接口进行赋值操作，仅当前值为空时赋值操作才会生效，如当前值不为空，则赋值操作会被忽略。
+        /// </summary>
+        /// <param name="properties">属性字典</param>
+        public static void DeviceInitialize(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            properties = "{\"firstActiveServer\":\"server1\"}";
+            TapDB.DeviceInitialize(properties);
+            // 此时设备表的 "#firstActiveServer" 字段值为 "server1"
+
+            //string properties = "{\"firstActiveServer\":\"server2\"}";
+            //TapDB.DeviceInitialize(properties);
+            // 此时设备表的 "#firstActiveServer" 字段值还是为 "server1"
+        }
+
+        /// <summary>
+        /// 对于常规的设备属性，可使用该接口进行赋值操作，新的属性值将会直接覆盖旧的属性值。
+        /// </summary>
+        /// <param name="properties">属性字典</param>
+        public static void DeviceUpdate(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            properties = "{\"currentPoints\":10}";
+            TapDB.DeviceUpdate(properties);
+            // 此时设备表的 "currentPoints" 字段值为 10
+
+            properties = "{\"currentPoints\":42}";
+            TapDB.DeviceUpdate(properties);
+            // 此时设备表的 "currentPoints" 字段值为 42
+        }
+
+        /// <summary>
+        /// 对于数值类型的属性，可以使用该接口进行累加操作，调用后 TapDB 将对原属性值进行累加后保存结果值
+        /// </summary>
+        /// <param name="properties">属性字典，value 仅支持数值类型</param>
+        public static void DeviceAdd(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            properties = "{\"totalPoints\":10}";
+            TapDB.DeviceAdd(properties);
+            // 此时设备表的 "totalPoints" 字段值为 10
+
+            properties = "{\"totalPoints\":-2}";
+            TapDB.DeviceAdd(properties);
+            // 此时设备表的 "totalPoints" 字段值为 8
+        }
+
+        //上传玩家数据
+        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername, int serverid,int occ,int occtwo)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            ET.Log.ILog.Debug("Tap TrackEvent");
+            TapDB.TrackEvent("#userdata", "{\"#userid\":\""+ userid + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#rolename\":\"" + rolename + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#level\":\"" + level + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#combat\":\"" + combat + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#servername\":\"" + servername + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#serverid\":\"" + serverid + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#OccName\":\"" + occ + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#OccTwoNmae\":\"" + occtwo + "\"}");
+        }
+
+        public static void InitUserData_2(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            string properties = "{\"#rolename\":\"" + rolename + "\"}";
+            Log.ILog.Debug(properties);
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#level\":\"" + level + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#combat\":\"" + combat + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#servername\":\"" + servername + "\"}";
+            TapDB.UserInitialize(properties);
+
+            TapDB.SetName(rolename); 
+            TapDB.SetLevel(level);
+            TapDB.SetServer(servername);
+            
+
+            Dictionary<string, object> keyValuePairs = new Dictionary<string, object>();
+            keyValuePairs.Add("#combat", combat);
+            keyValuePairs.Add("level", level);
+            keyValuePairs.Add("payment", rechargeNumber);
+            TapDB.SetUserWithProperties(userid.ToString(), keyValuePairs);
+        }
 
         public static void UploadUserData(string rolename, int level, int combat, int rechargeNumber, string servername)
         {
@@ -271,22 +393,21 @@ namespace ET
             {
                 return;
             }
-
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
 
             properties = "{\"#level\":\"" + level + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
 
             properties = "{\"#combat\":\"" + combat + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
 
             properties = "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
 
             properties = "{\"#servername\":\"" + servername + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
 
 
@@ -297,11 +418,11 @@ namespace ET
             {
                 return;
             }
-
+            
             string properties = "{\"rolename\":\"" + rolename + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 服务器名称
         public static void UserUpdate_servername(string servername)
         {
@@ -311,9 +432,9 @@ namespace ET
             }
 
             string properties = "{\"servername\":\"" + servername + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 在线时间（单位：分钟）
         public static void UserUpdate_allOnLine(int add)
         {
@@ -323,9 +444,9 @@ namespace ET
             }
 
             string properties = "{\"allOnLine\":" + add + "}";
-            TapTapEvent.UserAdd(properties);
+            TapDB.UserAdd(properties);
         }
-
+        
         // 最后离线时间(时间戳)
         public static void UserUpdate_finalOffline(string finalOffline)
         {
@@ -335,9 +456,9 @@ namespace ET
             }
 
             string properties = "{\"finalOffline\":\"" + finalOffline + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 是否第一次建立角色
         public static void UserUpdate_isFirstCreateRole(int isFirstCreateRole)
         {
@@ -347,9 +468,9 @@ namespace ET
             }
 
             string properties = "{\"isFirstCreateRole\":" + isFirstCreateRole + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 战力
         public static void UserUpdate_combat(int combat)
         {
@@ -359,9 +480,9 @@ namespace ET
             }
 
             string properties = "{\"combat\":" + combat + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 等级
         public static void UserUpdate_level(int level)
         {
@@ -371,9 +492,9 @@ namespace ET
             }
 
             string properties = "{\"level\":" + level + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 金币
         public static void UserUpdate_gold(int gold)
         {
@@ -383,9 +504,9 @@ namespace ET
             }
 
             string properties = "{\"gold\":" + gold + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 钻石
         public static void UserUpdate_diamond(int diamond)
         {
@@ -395,9 +516,9 @@ namespace ET
             }
 
             string properties = "{\"diamond\":" + diamond + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 充值
         public static void UserUpdate_rechargeNumber(int rechargeNumber)
         {
@@ -407,7 +528,7 @@ namespace ET
             }
 
             string properties = "{\"rechargeNumber\":" + rechargeNumber + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
 
         // 当前任务ID
@@ -419,9 +540,9 @@ namespace ET
             }
 
             string properties = "{\"currentTaskId\":" + currentTaskId + "}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         // 当前任务名称
         public static void UserUpdate_currentTaskName(string currentTaskName)
         {
@@ -431,9 +552,9 @@ namespace ET
             }
 
             string properties = "{\"currentTaskName\":\"" + currentTaskName + "\"}";
-            TapTapEvent.UserUpdate(properties);
+            TapDB.UserUpdate(properties);
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -447,14 +568,69 @@ namespace ET
             {
                 return;
             }
-
-            TapTapEvent.LogEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
-            TapTapEvent.LogEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
-            TapTapEvent.LogEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
-            TapTapEvent.LogEvent("#WeiJingEvent", "{\"#EventType\":\"" + eventType + "\"}");
-            TapTapEvent.LogEvent("#WeiJingEvent", "{\"#EventValue\":\"" + eventVlue + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#EventType\":\"" + eventType + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#EventValue\":\"" + eventVlue + "\"}");
         }
-        
+
+        /// <summary>
+        /// 修改账号属性
+        //账号属性初始化
+        //使用方法同设备属性初始化操作
+        /// </summary>
+        /// <param name="properties"></param>
+        public static void UserInitialize(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.UserInitialize(properties);
+        }
+
+        /// <summary>
+        /// 修改账号属性
+        //账号属性初始化
+        //使用方法同设备属性初始化操作
+        /// </summary>
+        /// <param name="properties"></param>
+        public static void UserInitialize(Dictionary<string, object> properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.UserInitialize(properties);
+        }
+
+        /// <summary>
+        /// 使用方法同设备属性更新操作
+        /// </summary>
+        /// <param name="properties"></param>
+        public static void UserUpdate(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.UserUpdate(properties);
+        }
+
+        /// <summary>
+        /// 使用方法同设备属性累加操作
+        /// </summary>
+        /// <param name="properties"></param>
+        public static void UserAdd(string properties)
+        {
+            if (!hasInit)
+            {
+                return;
+            }
+            TapDB.UserAdd(properties);
+        }
+
         //1.激活
         //2.注册
         //3.付费
@@ -485,4 +661,4 @@ namespace ET
         }
     }
 #endif
-}
+        }

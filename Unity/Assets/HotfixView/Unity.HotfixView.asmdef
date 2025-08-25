@@ -8,10 +8,8 @@
         "Unity.Mono",
         "Unity.ThirdParty",
         "Unity.TextMeshPro",
-        "AppleAuth",
-        "TapSDK.Login.Runtime",
-        "TapSDK.Compliance",
-        "TapSDK.Core.Runtime"
+        "TapTap.AntiAddiction",
+        "AppleAuth"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

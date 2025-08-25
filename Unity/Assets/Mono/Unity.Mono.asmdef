@@ -11,8 +11,7 @@
         "AppleAuth",
         "Unity.Services.Core",
         "Unity.Services.Core.Environments",
-        "Google.SignIn",
-        "TapSDK.Login.Runtime"
+        "Google.SignIn"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
