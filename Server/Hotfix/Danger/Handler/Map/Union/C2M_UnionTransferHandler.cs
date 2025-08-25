@@ -15,12 +15,13 @@ namespace ET
                 reply();
                 return;
             }
-            if (numericComponent.GetAsInt(NumericType.UnionLeader)== 0)
-            {
-                response.Error = ErrorCode.ERR_Union_NotLeader;
-                reply();
-                return;
-            }
+            //M2U_UnionTransferHandler 有判断
+            //if (numericComponent.GetAsInt(NumericType.UnionLeader)== 0)
+            //{
+            //    response.Error = ErrorCode.ERR_Union_NotLeader;
+            //    reply();
+            //    return;
+            //}
 
             long unionserverid = DBHelper.GetUnionServerId( unit.DomainZone() );
             M2U_UnionTransferRequest transferRequest = new M2U_UnionTransferRequest() { NewLeader = request.NewLeader, UnionId = unionid, UnitID = unit.Id };
