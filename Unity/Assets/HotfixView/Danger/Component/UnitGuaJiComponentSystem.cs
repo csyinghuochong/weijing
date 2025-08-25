@@ -268,7 +268,7 @@ namespace ET
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = m2C_FindNearMonsterResponse.MonsterID;
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
+                int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z), true, null, 0,0, true);
                 if (self.IsDisposed)
                 {
                     return;

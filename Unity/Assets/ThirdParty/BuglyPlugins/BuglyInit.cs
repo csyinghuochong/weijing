@@ -26,6 +26,7 @@ public class BuglyInit : MonoBehaviour
 
 	void Awake ()
 	{
+        Debug.Log("BuglyInit.Awake");
 		// Enable the debug log print
 		BuglyAgent.ConfigDebugMode (false);
 		// Config default channel, version, user 
