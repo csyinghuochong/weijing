@@ -582,11 +582,7 @@ namespace ET
 					self.GetUserInfo(self.LoginType);
 					break;
 				case LoginTypeEnum.TapTap:
-
-#if !UNITY_EDITOR
                     self.GetTapUserInfo(self.LoginType).Coroutine();
-#endif
-
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);
