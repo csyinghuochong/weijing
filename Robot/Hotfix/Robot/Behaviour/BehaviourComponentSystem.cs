@@ -38,6 +38,7 @@ namespace ET
             //8   塔防机器人
             //9   奔跑大赛机器人
             //10  恶魔活动机器人
+            //11  宝藏之地机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
