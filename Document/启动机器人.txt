@@ -12,6 +12,15 @@
 CreateRobot --Zone=3 --Num=1000 --RobotId=1001
 
 
+CreateRobot --Zone=64 --Num=1 --RobotId=11001    宝藏之地
+
+110101  收集  40  收集  30  收集  20 收集  30    收集  20   收集  40    收集  50 收集  50 收集 60  收集 60    耐力换算4338
+
+110102   装备附魔 289
+
+110103  家园  620 +  
+
+
 2#7#0#15#72000003#1
 CreateRobot --Zone=5 --Num=200 --RobotId=1001     	 //战士
 CreateRobot --Zone=5 --Num=500 --RobotId=1001  	 //法师
