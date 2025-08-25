@@ -30,9 +30,9 @@ namespace ET
             }
 
             //获取年龄
-            int age =  TapSDKV20Helper.Instance.GetAgeRange();
+            int age =  await TapSDKV20Helper.Instance.GetAgeRange();
             //获取剩余游戏时长
-            int remaintime =  TapSDKV20Helper.Instance.GetRemainingTime();
+            int remaintime = await TapSDKV20Helper.Instance.GetRemainingTime();
 
             Log.ILog.Debug($"tap认证返回： age:{age}  remingtime:{remaintime}");
 

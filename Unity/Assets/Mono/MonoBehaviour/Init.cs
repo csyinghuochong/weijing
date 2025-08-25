@@ -5,13 +5,8 @@ using System.Collections.Generic;
 
 using System.Threading;
 using UnityEngine;
-using TapTap.Bootstrap;
-using TapTap.Common;
-using TapTap.TapDB;
-using TapTap.AntiAddiction;
-using TapTap.AntiAddiction.Model;
 using cn.SMSSDK.Unity;
-using TapTap.Login;
+using TapSDK.Login;
 using AppleAuth;
 using AppleAuth.Native;
 using AppleAuth.Enums;
@@ -445,42 +440,33 @@ namespace ET
             await ETTask.CompletedTask;
             Log.ILog.Debug("TapTapLogin111");
 #if UNITY_ANDROID
-            var currentUser = TDSUser.GetCurrent();
-            if (null == currentUser)
-            {
-                Log.ILog.Debug("TapTap 当前未登录");
-                // 开始登录
-            }
-            else
-            {
-                Log.ILog.Debug("TapTap 已登录");
-                // 进入游戏
-            }
+	        TapTapAccount account = await TapSDK.Login.TapTapLogin.Instance.GetCurrentTapAccount();
+	        if (account == null) {
+		        Log.ILog.Debug("TapTap 当前未登录");
+	        } else {
+		        Log.ILog.Debug("TapTap 已登录");
+	        }
             try
             {
-                Log.ILog.Debug("TapTapLogin222");
-                // 在 iOS、Android 系统下会唤起 TapTap 客户端或以 WebView 方式进行登录
-                // 在 Windows、macOS 系统下显示二维码（默认）和跳转链接（需配置）
-                var tdsUser = await TDSUser.LoginWithTapTap();
-                Log.ILog.Debug($"TapTapLogin333 success1:{tdsUser}");
-                // 获取 TDSUser 属性
-                var objectId = tdsUser.ObjectId;     // 用户唯一标识
-                var nickname = tdsUser["nickname"];  // 昵称
-                var avatar = tdsUser["avatar"];      // 头像
-                Log.ILog.Debug($"TapTapLogin444 success2:{objectId}");
+	            // 定义授权范围
+	            List<string> scopes = new List<string>
+	            {
+		            TapSDK.Login.TapTapLogin.TAP_LOGIN_SCOPE_PUBLIC_PROFILE
+	            };
+	            // 发起 Tap 登录
+	            var userInfo = await TapSDK.Login.TapTapLogin.Instance.LoginWithScopes(scopes.ToArray());
+	            Debug.Log($"登录成功，当前用户 ID：{userInfo.unionId}");
+	            var objectId = userInfo.unionId;
+	            // var objectId = userInfo.openId;
                 return objectId;
             }
-            catch (Exception e)
+            catch (TaskCanceledException)
             {
-                Log.ILog.Debug("登录异常");
-                if (e is TapException tapError)  // using TapTap.Common
-                {
-                    Log.ILog.Debug($"encounter exception:{tapError.code} message:{tapError.message}");
-                    if (tapError.code == (int)TapErrorCode.ERROR_CODE_BIND_CANCEL) // 取消登录
-                    {
-                        Log.ILog.Debug("登录取消");
-                    }
-                }
+	            Debug.Log("用户取消登录");
+            }
+            catch (Exception exception)
+            {
+	            Debug.Log($"登录失败，出现异常：{exception}");
             }
             return string.Empty;
 #else
@@ -492,7 +478,7 @@ namespace ET
         {
 			await ETTask.CompletedTask;
 #if UNITY_ANDROID
-            await TDSUser.Logout();
+            TapSDK.Login.TapTapLogin.Instance.Logout();;
 #endif
 		}
 
