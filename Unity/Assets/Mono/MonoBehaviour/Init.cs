@@ -443,7 +443,7 @@ namespace ET
         public async ETTask<string> TapTapLogin()
         {
             await ETTask.CompletedTask;
-            Log.ILog.Debug("TapTapLogin111");
+            Log.ILog.Debug("TapTapLogin TDSUser.GetCurrent");
 #if UNITY_ANDROID
             var currentUser = TDSUser.GetCurrent();
             if (null == currentUser)

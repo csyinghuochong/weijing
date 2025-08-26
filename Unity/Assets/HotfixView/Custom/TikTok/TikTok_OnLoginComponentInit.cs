@@ -14,7 +14,7 @@ namespace ET
         {
             await ETTask.CompletedTask;
             Init init = GameObject.Find("Global").GetComponent<Init>();
-            Log.ILog.Debug("GetTapUserInfo1111: ");
+            Log.ILog.Debug("GetTapUserInfo: init.TapTapLogin");
             string tatapid = await init.TapTapLogin();
             if (string.IsNullOrEmpty(tatapid))
             {
