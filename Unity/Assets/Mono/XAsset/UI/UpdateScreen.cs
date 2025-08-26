@@ -55,6 +55,8 @@ namespace libx
 
                 buttonAgeTip.GetComponent<Button>().onClick.AddListener(OnButton_ShowAgeTip);
                 buttonXiuFu.GetComponent<Button>().onClick.AddListener(OnButton_XiuFu);
+                int language = PlayerPrefs.GetInt("WJa_Language");
+                buttonXiuFu.GetComponentInChildren<Text>().text = language== 0? "重新加载" :"Reload";
 
                 UIAgeTip.transform.Find("UIAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
                 UIAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
