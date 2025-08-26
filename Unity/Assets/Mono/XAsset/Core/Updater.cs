@@ -233,7 +233,12 @@ namespace libx
 
             if (reachability == NetworkReachability.NotReachable)
             {
-                MessageBox.Show("提示！", "找不到网络，请确保手机已经联网", "确定", "退出").onComplete += delegate(MessageBox.EventId id)
+                int language = PlayerPrefs.GetInt("WJa_Language");
+                string tip = language == 0? "提示！" : "Tip!";
+                string content = language == 0? "找不到网络，请确保手机已经联网" : "No network connection found. Please make sure your phone is connected to the internet.";
+                string ok = language == 0? "确定" : "OK";
+                string no = language == 0? "退出" : "Exit";
+                MessageBox.Show(tip, content, ok, no).onComplete += delegate(MessageBox.EventId id)
                 {
                     if (id == MessageBox.EventId.Ok)
                     {
@@ -272,7 +277,9 @@ namespace libx
 
         private void OnUpdate(long progress, long size, float speed)
         {
-            OnMessage(string.Format("下载中...{0}/{1}, 速度：{2}",
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            string msg = language == 0? "下载中...{0}/{1}, 速度：{2}" : "Downloading... {0}/{1}, Speed: {2}";
+            OnMessage(string.Format(msg,
                 Downloader.GetDisplaySize(progress),
                 Downloader.GetDisplaySize(size),
                 Downloader.GetDisplaySpeed(speed)));
@@ -283,7 +290,12 @@ namespace libx
         public void Clear()
         {
             Debug.Log("Clear_Clear");
-            MessageBox.Show("提示", "清除数据后所有数据需要重新下载，请确认！", "清除").onComplete += id =>
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            string tip = language == 0? "提示" : "Tip";
+            string content = language == 0? "清除数据后所有数据需要重新下载，请确认！" : "After clearing data, all data will need to be re-downloaded. Please confirm!";
+            string ok = language == 0? "清除" : "Clear";
+            string no = language == 0? "取消" : "Cancel";
+            MessageBox.Show(tip, content, ok, no).onComplete += id =>
             {
                 if (id != MessageBox.EventId.Ok)
                     return;
@@ -293,7 +305,9 @@ namespace libx
 
         public void OnClear()
         {
-            OnMessage("数据清除完毕");
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            string msg = language == 0? "数据清除完毕" : "Data Cleared Successfully";
+            OnMessage(msg);
             OnProgress(0);
             _versions.Clear();
             _downloader.Clear();
@@ -604,12 +618,13 @@ namespace libx
 
             if (_step == Step.Prepared)
             {
-                OnMessage("正在检查版本信息...");
+                int language = PlayerPrefs.GetInt("WJa_Language");
+                OnMessage(language == 0? "正在检查版本信息..." : "Checking version information...");
                 var totalSize = _downloader.size;
                 if (totalSize > 0)
                 {
-                    var tips = string.Format("发现内容更新，总计需要下载 {0} 内容", Downloader.GetDisplaySize(totalSize));
-                    var mb = MessageBox.Show("提示", tips, "下载", "退出");
+                    var tips = string.Format(language == 0? "发现内容更新，总计需要下载 {0} 内容" : "Content updates found. A total of {0} content needs to be downloaded.", Downloader.GetDisplaySize(totalSize));
+                    var mb = MessageBox.Show(language == 0? "提示" : "Tip", tips, language == 0? "下载" : "Download", language == 0? "退出" : "Exit");
                     yield return mb;
                     if (mb.isOk)
                     {
@@ -630,10 +645,15 @@ namespace libx
 
         private IEnumerator RequestVersions()
         {
-            OnMessage("正在获取版本信息...");
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            OnMessage(language == 0? "正在获取版本信息..." : "Fetching version information...");
             if (Application.internetReachability == NetworkReachability.NotReachable)
             {
-                var mb = MessageBox.Show("提示", "请检查网络连接状态", "重试", "退出");
+                string title = language == 0? "提示" : "Tip";
+                string content = language == 0? "请检查网络连接状态" : "Please check your network connection status";
+                string ok = language == 0? "重试" : "Retry";
+                string no = language == 0? "退出" : "Exit";
+                var mb = MessageBox.Show(title, content, ok, no);
                 yield return mb;
                 if (mb.isOk)
                 {
@@ -698,7 +718,11 @@ namespace libx
 
             if (!string.IsNullOrEmpty(error))
             {
-                var mb = MessageBox.Show("提示", string.Format("获取服务器版本失败：{0}", error), "重试", "退出");
+                string title = language == 0? "提示" : "Tip";
+                string content = language == 0? "获取服务器版本失败：{0}" : "Failed to fetch server version: {0}";
+                string ok = language == 0? "重试" : "Retry";
+                string no = language == 0? "退出" : "Exit";
+                var mb = MessageBox.Show(title, string.Format(content, error), ok, no);
                 yield return mb;
                 if (mb.isOk)
                 {
@@ -741,7 +765,11 @@ namespace libx
             catch (Exception e)
             {
                 Debug.LogException(e);
-                MessageBox.Show("提示", "版本文件加载失败", "重试", "退出").onComplete +=
+                string title = language == 0? "提示" : "Tip";
+                string content = language == 0? "版本文件加载失败" : "Version file loading failed";
+                string ok = language == 0? "重试" : "Retry";
+                string no = language == 0? "退出" : "Exit";
+                MessageBox.Show(title, content, ok, no).onComplete +=
                     delegate(MessageBox.EventId id)
                     {
                         if (id == MessageBox.EventId.Ok)
@@ -800,6 +828,7 @@ namespace libx
 
         private IEnumerator UpdateCopy(IList<VFile> versions, string basePath)
         {
+            int language = PlayerPrefs.GetInt("WJa_Language");
             var version = versions[0];
             if (version.name.Equals(Versions.Dataname))
             {
@@ -808,7 +837,7 @@ namespace libx
                 var req = request.SendWebRequest();
                 while (!req.isDone)
                 {
-                    OnMessage("正在复制文件");
+                    OnMessage(language == 0? "正在复制文件" : "Copying file");
                     OnProgress(req.progress);
                     yield return null;
                 }
@@ -824,7 +853,7 @@ namespace libx
                     request.downloadHandler = new DownloadHandlerFile(_savePath + item.name);
                     yield return request.SendWebRequest();
                     request.Dispose();
-                    OnMessage(string.Format("正在复制文件：{0}/{1}", index, versions.Count));
+                    OnMessage(string.Format(language == 0? "正在复制文件：{0}/{1}" : "Copying files: {0}/{1}", index, versions.Count));
                     OnProgress(index * 1f / versions.Count);
                 }
             }
@@ -832,13 +861,14 @@ namespace libx
 
         private void OnComplete()
         {
+            int language = PlayerPrefs.GetInt("WJa_Language");
             if (enableVFS)
             {
                 var dataPath = _savePath + Versions.Dataname;
                 var downloads = _downloader.downloads;
                 if (downloads.Count > 0 && File.Exists(dataPath))
                 {
-                    OnMessage("更新本地版本信息");
+                    OnMessage(language == 0? "更新本地版本信息" : "Update local version information");
                     var files = new List<VFile>(downloads.Count);
                     foreach (var download in downloads)
                     {
@@ -861,11 +891,12 @@ namespace libx
             }
 
             OnProgress(1);
-            OnMessage("更新完成");
+            OnMessage(language == 0? "更新完成" : "Update Completed");
             var version = Versions.LoadVersion(_savePath + Versions.Filename);
             if (version > 0)
             {
-                OnVersion("资源版本号: " + version.ToString());
+                string tip = language == 0? "资源版本号: " : "Resource Version: ";
+                OnVersion(tip + version.ToString());
             }
 
             passTime = -10000000f;
@@ -875,7 +906,8 @@ namespace libx
 
         private IEnumerator LoadGameScene()
         {
-            OnMessage("正在初始化游戏");
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            OnMessage(language == 0? "正在初始化游戏" : "Initializing Game");
 #if UNITY_EDITOR
             Assets.runtimeMode = !development;
 #endif
@@ -916,7 +948,11 @@ namespace libx
 #endif
                 if (apkversion < hotVersion)
                 {
-                    var mb = MessageBox.Show("提示", string.Format("应用版本过低，请重新下载：{0}, {1}", apkversion, hotVersion), "确定", "退出");
+                    string title = language == 0? "提示" : "Tip";
+                    string content = language == 0? "应用版本过低，请重新下载：{0}, {1}" : "App version is too old. Please re-download: {0}, {1}";
+                    string ok = language == 0? "确定" : "Ok";
+                    string no = language == 0? "退出" : "Exit";
+                    var mb = MessageBox.Show(title, string.Format(content, apkversion, hotVersion), ok, no);
                     yield return mb;
                     if (mb.isOk)
                     {
@@ -954,7 +990,11 @@ namespace libx
             else
             {
                 init.Release();
-                var mb = MessageBox.Show("提示", "初始化异常错误：" + init.error + "请联系技术支持");
+                string title = language == 0? "提示" : "Tip";
+                string content = language == 0? $"初始化异常错误：{init.error}请联系技术支持" : $"Initialization Error: {init.error} Please contact technical support.";
+                string ok = language == 0? "确定" : "Ok";
+                string no = language == 0? "取消" : "Cancel";
+                var mb = MessageBox.Show(title, content, ok, no);
                 yield return mb;
                 Quit();
             }

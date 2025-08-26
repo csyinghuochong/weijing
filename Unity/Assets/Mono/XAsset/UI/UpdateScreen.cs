@@ -46,24 +46,24 @@ namespace libx
 
         private void Start()
         {
+            int language = PlayerPrefs.GetInt("WJa_Language");
             try
             {
                 //version.text =  "资源版本号: v"+Application.version+"res"+;
                 //int versioncode = Versions.LoadVersion(Application.persistentDataPath + '/' + Versions.Filename);
                 //versioncode = versioncode == -1 ? 1 : versioncode;
-                version.text = $"资源版本号: {Application.version}";
+                version.text = language == 0? $"资源版本号: {Application.version}" : $"Resource Version: {Application.version}";
 
                 buttonAgeTip.GetComponent<Button>().onClick.AddListener(OnButton_ShowAgeTip);
                 buttonXiuFu.GetComponent<Button>().onClick.AddListener(OnButton_XiuFu);
-                int language = PlayerPrefs.GetInt("WJa_Language");
-                buttonXiuFu.GetComponentInChildren<Text>().text = language== 0? "重新加载" :"Reload";
+                buttonXiuFu.GetComponentInChildren<Text>().text = language == 0? "重新加载" : "Reload";
 
                 UIAgeTip.transform.Find("UIAgeTipClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
                 UIAgeTip.transform.Find("ButtonClose").GetComponent<Button>().onClick.AddListener(OnButton_CloseAgeTip);
             }
             catch(Exception e)
             {
-                version.text =  "初始版本";
+                version.text = language == 0? "初始版本" : "Initial Version";
             }
             var updater = FindObjectOfType<Updater>();
             updater.listener = this;
