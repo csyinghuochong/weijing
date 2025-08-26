@@ -30,9 +30,9 @@ namespace ET
             }
 
             //获取年龄
-            int age =  TapSDKV20Helper.Instance.GetAgeRange();
+            int age =  TapSDKHelper.GetAgeRange();
             //获取剩余游戏时长
-            int remaintime =  TapSDKV20Helper.Instance.GetRemainingTime();
+            int remaintime = TapSDKHelper.GetRemainingTime();
 
             Log.ILog.Debug($"tap认证返回： age:{age}  remingtime:{remaintime}");
 
@@ -105,12 +105,12 @@ namespace ET
             EventType.TapTapAuther args = numerice as EventType.TapTapAuther;
 
             UI ui = UIHelper.GetUI( args.ZoneScene, UIType.UILogin );
-            TapSDKV20Helper.Instance.AntiAddictionHandler =  (int errror, string msg)=>
+            TapSDKHelper.AntiAddictionHandler =  (int errror, string msg)=>
             {
                 ui.GetComponent<UILoginComponent>().OnAntiAddictionHandler(errror, msg).Coroutine();
             };
 
-            TapSDKV20Helper.Instance.RealNameAuther( args.Account );
+            TapSDKHelper.RealNameAuther( args.Account );
         }
     }
 
