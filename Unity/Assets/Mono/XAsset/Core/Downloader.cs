@@ -207,36 +207,38 @@ namespace libx
 
         public static string GetDisplaySpeed(float downloadSpeed)
         {
+            int language = PlayerPrefs.GetInt("WJa_Language");
             if (downloadSpeed >= 1024 * 1024)
             {
                 //return string.Format("{0:f2}MB/s", downloadSpeed * BYTES_2_MB);
-                return string.Format("{0:f2}兆/秒", downloadSpeed * BYTES_2_MB);
+                return string.Format(language == 0? "{0:f2}兆/秒" : "{0:f2}MB/s", downloadSpeed * BYTES_2_MB);
             }
             if (downloadSpeed >= 1024)
             {
                 //return string.Format("{0:f2}KB/s", downloadSpeed / 1024);
-                return string.Format("{0:f2}千字节/秒", downloadSpeed / 1024);
+                return string.Format(language == 0? "{0:f2}千字节/秒" : "{0:f2}KB/s", downloadSpeed / 1024);
             }
             //return string.Format("{0:f2}B/s", downloadSpeed);
-            return string.Format("{0:f2}字节/秒", downloadSpeed);
+            return string.Format(language == 0? "{0:f2}字节/秒" : "{0:f2}B/s", downloadSpeed);
         }
 
         public static string GetDisplaySize(long downloadSize)
         {
+            int language = PlayerPrefs.GetInt("WJa_Language");
             if (downloadSize >= 1024 * 1024)
             {
                 //return string.Format("{0:f2}MB", downloadSize * BYTES_2_MB);
-                return string.Format("{0:f2}兆", downloadSize * BYTES_2_MB);
-                
+                return string.Format(language == 0? "{0:f2}兆" : "{0:f2}MB", downloadSize * BYTES_2_MB);
+
             }
             if (downloadSize >= 1024)
             {
                 //return string.Format("{0:f2}KB", downloadSize / 1024);
-                return string.Format("{0:f2}千字节", downloadSize / 1024);
-                
+                return string.Format(language == 0? "{0:f2}千字节" : "{0:f2}KB", downloadSize / 1024);
+
             }
             //return string.Format("{0:f2}B", downloadSize);
-            return string.Format("{0:f2}字节", downloadSize);
+            return string.Format(language == 0? "{0:f2}字节" : "{0:f2}B", downloadSize);
         }
 
 

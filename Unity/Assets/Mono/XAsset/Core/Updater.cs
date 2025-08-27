@@ -161,6 +161,8 @@ namespace libx
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
+            int language = PlayerPrefs.GetInt("WJa_Language");
+            transform.Find("Text_BigVersionBack").GetComponent<Text>().text = language == 0? "当前版本号:" : "Current Version: ";
 #if UNITY_IPHONE
             transform.Find("Text_BigVersion").GetComponent<Text>().text = init.BigVersionIOS.ToString();
 #else
