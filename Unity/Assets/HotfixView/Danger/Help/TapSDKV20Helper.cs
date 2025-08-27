@@ -1,14 +1,20 @@
 using System;
+using UnityEngine;
+
+
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
 using TapSDK.Core;
 using TapSDK.Compliance;
 using TapSDK.Login;
-using UnityEngine;
-
+#endif
+#endif
 
 namespace ET
 {
 
 #if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
     public static class TapSDKV20Helper
     {
 
@@ -604,6 +610,7 @@ namespace ET
 
     }
 
+#endif
 #endif
 }
 
