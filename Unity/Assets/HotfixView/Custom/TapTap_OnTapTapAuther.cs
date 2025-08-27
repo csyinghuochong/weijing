@@ -152,7 +152,9 @@ namespace ET
     {
         protected override void Run(object numerice)
         {
+#if UNITY_ANDROID
             TapSDKHelper.Init();
+#endif
         }
     }
 
@@ -160,7 +162,11 @@ namespace ET
     {
         protected override void Run(object numerice)
         {
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
             TapSDKV20Helper.Init();
+#endif
+#endif
         }
     }
 
@@ -174,19 +180,20 @@ namespace ET
 
             //if (GlobalHelp.GetBigVersion() <= 23)
             //{
-              
+
             //}
             //else
             //{ 
-                
-            //}
 
+            //}
+#if UNITY_ANDROID
             TapSDKHelper.AntiAddictionHandler = (int errror, string msg) =>
             {
                 ui.GetComponent<UILoginComponent>().OnAntiAddictionHandler(errror, msg).Coroutine();
             };
 
             TapSDKHelper.RealNameAuther(args.Account);
+#endif
         }
 
     }
