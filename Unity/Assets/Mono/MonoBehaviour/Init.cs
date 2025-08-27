@@ -43,6 +43,12 @@ using UnityEngine.SocialPlatforms;
 using UnityEngine.Android;
 #endif
 
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
+	using TapSDK.Login;
+#endif
+#endif
+
 namespace ET
 {
     public struct FenXiangContent
@@ -73,7 +79,7 @@ namespace ET
         public bool OueNetMode;
         [SerializeField]
         public int BigVersion = 21;
-        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google   24 tapv4登陆
         [SerializeField]
         public int BigVersionIOS = 21;
         //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包/Google
@@ -440,10 +446,58 @@ namespace ET
 #endif
         }
 
+            public async ETTask<string> TapTapLogin_2()
+        {
+            await ETTask.CompletedTask;
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
+            if (this.BigVersion >= 24)
+            {
+                Log.ILog.Debug("TapTapLogin v4 TDSUser.GetCurrent");
+
+                TapTapAccount account = await TapSDK.Login.TapTapLogin.Instance.GetCurrentTapAccount();
+                if (account == null)
+                {
+                    Log.ILog.Debug("TapTap 当前未登录");
+                }
+                else
+                {
+                    Log.ILog.Debug("TapTap 已登录");
+                }
+                try
+                {
+                    // 定义授权范围
+                    List<string> scopes = new List<string>
+                {
+                    TapSDK.Login.TapTapLogin.TAP_LOGIN_SCOPE_PUBLIC_PROFILE
+                };
+                    // 发起 Tap 登录
+                    var userInfo = await TapSDK.Login.TapTapLogin.Instance.LoginWithScopes(scopes.ToArray());
+                    Debug.Log($"登录成功，当前用户 ID：{userInfo.unionId}");
+                    var objectId = userInfo.unionId;
+                    // var objectId = userInfo.openId;
+                    return objectId;
+                }
+                catch (TaskCanceledException)
+                {
+                    Debug.Log("用户取消登录");
+                }
+                catch (Exception exception)
+                {
+                    Debug.Log($"登录失败，出现异常：{exception}");
+                }
+                return string.Empty;
+
+            }
+#endif
+#endif
+            return string.Empty;
+        }
+
         public async ETTask<string> TapTapLogin()
         {
             await ETTask.CompletedTask;
-            Log.ILog.Debug("TapTapLogin TDSUser.GetCurrent");
+            Log.ILog.Debug("TapTapLogin v1 TDSUser.GetCurrent");
 #if UNITY_ANDROID
             var currentUser = TDSUser.GetCurrent();
             if (null == currentUser)
@@ -458,16 +512,16 @@ namespace ET
             }
             try
             {
-                Log.ILog.Debug("TapTapLogin222");
+                Log.ILog.Debug("TapTapLogin return");
                 // 在 iOS、Android 系统下会唤起 TapTap 客户端或以 WebView 方式进行登录
                 // 在 Windows、macOS 系统下显示二维码（默认）和跳转链接（需配置）
                 var tdsUser = await TDSUser.LoginWithTapTap();
-                Log.ILog.Debug($"TapTapLogin333 success1:{tdsUser}");
+                Log.ILog.Debug($"TapTapLogin return success1:{tdsUser}");
                 // 获取 TDSUser 属性
                 var objectId = tdsUser.ObjectId;     // 用户唯一标识
                 var nickname = tdsUser["nickname"];  // 昵称
                 var avatar = tdsUser["avatar"];      // 头像
-                Log.ILog.Debug($"TapTapLogin444 success2:{objectId}");
+                Log.ILog.Debug($"TapTapLogin return success2:{objectId}");
                 return objectId;
             }
             catch (Exception e)
@@ -491,6 +545,18 @@ namespace ET
         public async ETTask TapTapLogoutAsync()
         {
 			await ETTask.CompletedTask;
+
+
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
+            if (this.BigVersion >= 24)
+            {
+                TapSDK.Login.TapTapLogin.Instance.Logout(); 
+                return;
+            }
+#endif
+#endif
+
 #if UNITY_ANDROID
             await TDSUser.Logout();
 #endif

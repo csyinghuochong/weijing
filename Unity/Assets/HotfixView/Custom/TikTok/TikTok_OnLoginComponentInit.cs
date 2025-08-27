@@ -16,6 +16,26 @@ namespace ET
             Init init = GameObject.Find("Global").GetComponent<Init>();
             Log.ILog.Debug("GetTapUserInfo: init.TapTapLogin");
             string tatapid = await init.TapTapLogin();
+
+            if (string.IsNullOrEmpty(tatapid))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请确认是否登录TapTap！");
+                return;
+            }
+            self.LoginType = logintype;
+            Log.ILog.Debug($"GetTapUserInfo1111: {tatapid}");
+            self.OnGetTapUserInfo(tatapid);
+        }
+
+
+        public static async ETTask GetTapUserInfo_2(this UILoginComponent self, string logintype)
+        {
+            await ETTask.CompletedTask;
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+            Log.ILog.Debug("GetTapUserInfo: init.TapTapLogin_2");
+
+            string tatapid = await init.TapTapLogin_2();
+
             if (string.IsNullOrEmpty(tatapid))
             {
                 FloatTipManager.Instance.ShowFloatTip("请确认是否登录TapTap！");

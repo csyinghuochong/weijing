@@ -29,13 +29,11 @@ namespace ET
                 return;
             }
 
-            //获取年龄
-            int age =  TapSDKHelper.GetAgeRange();
-            //获取剩余游戏时长
-            int remaintime = TapSDKHelper.GetRemainingTime();
-
-            Log.ILog.Debug($"tap认证返回： age:{age}  remingtime:{remaintime}");
-
+             //获取年龄
+             int   age = TapSDKHelper.GetAgeRange(); ;
+             //获取剩余游戏时长
+             int   remaintime = TapSDKHelper.GetRemainingTime();
+           
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             accountInfoComponent.Age_Type = age;
 
@@ -54,6 +52,58 @@ namespace ET
             C2A_TapTapAuther c2A_TapTapAuther = new C2A_TapTapAuther() { 
                 Account = account,
                 Password = password,   
+                LoginType = int.Parse(loginType),
+                age_type = age
+            };
+            Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+            A2C_TapTapAuther a2C_TikTokVerifyUser = (A2C_TapTapAuther)await accountSession.Call(c2A_TapTapAuther);
+            accountSession.Dispose();
+
+            if (instanceid != self.InstanceId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("实名认证失败");
+                return;
+            }
+
+            self.RequestLoginV20(account, password, loginType).Coroutine();
+        }
+
+
+        public static async ETTask OnAntiAddictionHandler_V20(this UILoginComponent self, int code, string errormsg)
+        {
+            if (code == 1050)
+            {
+                FloatTipManager.Instance.ShowFloatTip("用户无可玩时长，此时用户只能退出游戏或切换账号");
+                return;
+            }
+
+            if (code != 500)
+            {
+                FloatTipManager.Instance.ShowFloatTip("实名认证失败");
+                return;
+            }
+
+            int age = await TapSDKV20Helper.GetAgeRange();
+            int remaintime = await TapSDKV20Helper.GetRemainingTime();
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            accountInfoComponent.Age_Type = age;
+
+            string account = accountInfoComponent.Account;
+            string password = accountInfoComponent.Password;
+            string loginType = accountInfoComponent.LoginType;
+
+            if (loginType == "3" || loginType == "4")
+            {
+                password = "3";
+                loginType = "3";
+            }
+
+            long instanceid = self.InstanceId;
+
+            C2A_TapTapAuther c2A_TapTapAuther = new C2A_TapTapAuther()
+            {
+                Account = account,
+                Password = password,
                 LoginType = int.Parse(loginType),
                 age_type = age
             };
@@ -98,6 +148,22 @@ namespace ET
     };
 
 
+    public class TapTap_OnTapTapSdkInit : AEventClass<EventType.TapTapSdkInit>
+    {
+        protected override void Run(object numerice)
+        {
+            TapSDKHelper.Init();
+        }
+    }
+
+    public class TapTap_OnTapTapSdkInit_V20 : AEventClass<EventType.TapTapSdkInit_V20>
+    {
+        protected override void Run(object numerice)
+        {
+            TapSDKV20Helper.Init();
+        }
+    }
+
     public class TapTap_OnTapTapAuther : AEventClass<EventType.TapTapAuther>
     {
         protected override void Run(object numerice)
@@ -105,13 +171,24 @@ namespace ET
             EventType.TapTapAuther args = numerice as EventType.TapTapAuther;
 
             UI ui = UIHelper.GetUI( args.ZoneScene, UIType.UILogin );
-            TapSDKHelper.AntiAddictionHandler =  (int errror, string msg)=>
+
+            //if (GlobalHelp.GetBigVersion() <= 23)
+            //{
+              
+            //}
+            //else
+            //{ 
+                
+            //}
+
+            TapSDKHelper.AntiAddictionHandler = (int errror, string msg) =>
             {
                 ui.GetComponent<UILoginComponent>().OnAntiAddictionHandler(errror, msg).Coroutine();
             };
 
-            TapSDKHelper.RealNameAuther( args.Account );
+            TapSDKHelper.RealNameAuther(args.Account);
         }
+
     }
 
 

@@ -330,7 +330,16 @@ namespace ET
 				return;
 			}
 
-            TapSDKHelper.Init();
+            if (GlobalHelp.GetBigVersion() <= 23)
+			{
+                EventType.TapTapSdkInit.Instance.ZoneScene = self.ZoneScene();
+                EventSystem.Instance.PublishClass(EventType.TapTapSdkInit.Instance);
+            }
+            else
+			{
+                EventType.TapTapSdkInit_V20.Instance.ZoneScene = self.ZoneScene();
+                EventSystem.Instance.PublishClass(EventType.TapTapSdkInit_V20.Instance);
+            }
 #endif
         }
 
@@ -582,7 +591,14 @@ namespace ET
 					self.GetUserInfo(self.LoginType);
 					break;
 				case LoginTypeEnum.TapTap:
-                    self.GetTapUserInfo(self.LoginType).Coroutine();
+					if (GlobalHelp.GetBigVersion() <= 23)
+					{
+						self.GetTapUserInfo(self.LoginType).Coroutine();
+					}
+					else
+					{
+                        self.GetTapUserInfo_2(self.LoginType).Coroutine();
+                    }
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);

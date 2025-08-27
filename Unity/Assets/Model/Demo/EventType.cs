@@ -947,7 +947,28 @@ namespace ET
             public string Account;
         }
 
+        public class TapTapSdkInit : DisposeObject
+        {
+            public static readonly TapTapSdkInit Instance = new TapTapSdkInit();
+            public Scene ZoneScene;
+            public string Account;
+        }
+
+        public class TapTapSdkInit_V20 : DisposeObject
+        {
+            public static readonly TapTapSdkInit_V20 Instance = new TapTapSdkInit_V20();
+            public Scene ZoneScene;
+            public string Account;
+        }
+
         public class TapTapAuther : DisposeObject
+        {
+            public static readonly TapTapAuther Instance = new TapTapAuther();
+            public Scene ZoneScene;
+            public string Account;
+        }
+
+        public class TapTapAuther_V20 : DisposeObject
         {
             public static readonly TapTapAuther Instance = new TapTapAuther();
             public Scene ZoneScene;
