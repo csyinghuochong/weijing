@@ -29,11 +29,15 @@ namespace ET
                 return;
             }
 
-             //获取年龄
-             int   age = TapSDKHelper.GetAgeRange(); ;
+            int age = 0;
+            int  remaintime = 0;
+#if UNITY_ANDROID
+            //获取年龄
+             age = TapSDKHelper.GetAgeRange();
              //获取剩余游戏时长
-             int   remaintime = TapSDKHelper.GetRemainingTime();
-           
+             remaintime = TapSDKHelper.GetRemainingTime();
+#endif
+
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             accountInfoComponent.Age_Type = age;
 
@@ -83,8 +87,14 @@ namespace ET
                 return;
             }
 
-            int age = await TapSDKV20Helper.GetAgeRange();
-            int remaintime = await TapSDKV20Helper.GetRemainingTime();
+            int age = 0;
+            int remaintime = 0;
+#if UNITY_ANDROID
+#if UNITY_2022_1_OR_NEWER
+            age = await TapSDKV20Helper.GetAgeRange();
+            remaintime = await TapSDKV20Helper.GetRemainingTime();
+#endif
+#endif
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             accountInfoComponent.Age_Type = age;
 
