@@ -430,7 +430,7 @@ namespace ET
 
             //2025/08/22 19:00:00 1755860400000 合区 xx-xx xx/xx
             //2025/08/22 19:00:00 1755860400000 新区 决战之巅 169
-            serverItems_1.Add(new ServerItem() { ServerId = 169, ServerIp = $"{ip}:20515", ServerName = "决战之巅", ServerOpenTime = 1755860400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 169, ServerIp = $"{ip}:20515", ServerName = "决战之巅", ServerOpenTime = 1755860400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 100, 20001 } });
 
 
             //PlatformHelper.GetPlatformName(); 所有渠道ID定义
