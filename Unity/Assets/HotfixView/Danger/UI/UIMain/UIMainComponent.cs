@@ -30,7 +30,7 @@ namespace ET
             try
             {
 #if UNITY_ANDROID
-                Log.Debug("时间" + TimeHelper.DateTimeNow().ToString());
+                //Log.Debug("时间" + TimeHelper.DateTimeNow().ToString());
                 TapSDKHelper.UserUpdate_allOnLine(1);
                 TapSDKHelper.UserUpdate_finalOffline(TimeHelper.DateTimeNow().ToString());
 #endif
@@ -870,6 +870,17 @@ namespace ET
             }
 
             long ping = pingComponent.Ping;
+
+            //if (GlobalHelp.IsEditorMode)
+            //{
+            //    if (ping >= 500)
+            //    {
+            //        Log.ILog.Error($"ping>500:  {ping}   time: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
+            //    }
+            //    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            //    MoveHelper.MoveToAsync2(unit, unit.Position).Coroutine();
+            //}
+           
             using (zstring.Block())
             {
                 self.TextPing.text = zstring.Format(pingText, ping);
