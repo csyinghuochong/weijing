@@ -17,9 +17,9 @@ namespace MsgCryptTest
         static void Main(string[] args)
         {
             //公众平台上开发者设置的token, appID, EncodingAESKey
-            string sToken = "QDG6eK";
-            string sAppID = "wx5823bf96d3bd56c7";
-            string sEncodingAESKey = "jWmYm7qr5nMoAUwZRjGtBxmz3KA1tkAj3ykkR6q2B2C";
+            string sToken = "yinhuochongweijing666";
+            string sAppID = "wx8fe94511cb4701c1";
+            string sEncodingAESKey = "f54fcbc601209c2ba3500cd5f56e448c";
 
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
 
