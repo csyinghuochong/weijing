@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ET;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,12 +17,9 @@ namespace MsgCryptTest
 
         static void Main(string[] args)
         {
-            //公众平台上开发者设置的token, appID, EncodingAESKey
-            string sToken = "yinhuochongweijing666";
-            string sAppID = "wx8fe94511cb4701c1";
-            string sEncodingAESKey = "f54fcbc601209c2ba3500cd5f56e448c";
+           
 
-            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
+            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(ConfigData.sToken, ConfigData.sEncodingAESKey, ConfigData.sAppID);
 
             /* 1. 对用户回复的数据进行解密。
             * 用户回复消息或者点击事件响应时，企业会收到回调消息，假设企业收到的推送消息：
