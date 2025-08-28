@@ -203,7 +203,7 @@ namespace ET
 
                     if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                     {
-                        self.PetXiLian(rolePetInfo, 2, 0, 0);
+                        self.PetXiLian(rolePetInfo,0, 2, 0, 0);
                     }
                     self.UpdatePetAttribute(rolePetInfo, false);
                 }
@@ -396,7 +396,7 @@ namespace ET
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <param name="XiLianType"> itemId 可能为0 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo, int XiLianType, int itemId, int fuling)
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo, int getWay, int XiLianType, int itemId, int fuling)
         {
             Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -437,7 +437,7 @@ namespace ET
             int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
 
             //运气值100 百分变异
-            if (XiLianType == 1 && petluckly >= 100 && petConfig.Skin.Length >= 2)
+            if (getWay == ItemGetWay.PetExplore && petluckly >= 100 && petConfig.Skin.Length >= 2)
             {
                 //Log.Console("幸运值100！！！！！");
                 int skinId = petConfig.Skin[RandomHelper.RandomNumber(1, petConfig.Skin.Length)];
@@ -524,7 +524,7 @@ namespace ET
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1, 0, fuling);
+            newpet = self.PetXiLian(newpet,getWay, 1, 0, fuling);
             self.UpdatePetAttribute(newpet, false);
             self.CheckPetPingFen();
             self.CheckPetZiZhi();
@@ -1734,7 +1734,7 @@ namespace ET
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
 
-            newpet = self.PetXiLian(newpet, 1, 0, 0);
+            newpet = self.PetXiLian(newpet, ItemGetWay.GM, 1, 0, 0);
             newpet.PetLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
             newpet.AddPropretyValue = $"{newpet.PetLv}_{newpet.PetLv}_{newpet.PetLv}_{newpet.PetLv}";
             newpet.UpStageStatus = 2;

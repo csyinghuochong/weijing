@@ -64,9 +64,9 @@ namespace ET
 							petInfo.SkinId = petCof.Skin[RandomHelper.RandomNumber(1, petCof.Skin.Length)];
 						}
 					}
-
+					
 					//重置资质系数
-					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2, bagInfo.ItemID, 0);
+					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 0, 2, bagInfo.ItemID, 0);
                     unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
                     petInfo.LockSkill.Clear();
                     response.rolePetInfo = petInfo;
@@ -132,7 +132,7 @@ namespace ET
 					//}
 
 					//重置资质系数
-					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo, 2, bagInfo.ItemID, 0);
+					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,0, 2, bagInfo.ItemID, 0);
                     unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
