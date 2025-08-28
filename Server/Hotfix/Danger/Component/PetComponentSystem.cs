@@ -437,7 +437,7 @@ namespace ET
             int petluckly = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreLuckly);
 
             //运气值100 百分变异
-            if (getWay == ItemGetWay.PetExplore && petluckly >= 100 && petConfig.Skin.Length >= 2)
+            if (XiLianType == 1 && getWay == ItemGetWay.PetExplore && petluckly >= 100 && petConfig.Skin.Length >= 2)
             {
                 //Log.Console("幸运值100！！！！！");
                 int skinId = petConfig.Skin[RandomHelper.RandomNumber(1, petConfig.Skin.Length)];
