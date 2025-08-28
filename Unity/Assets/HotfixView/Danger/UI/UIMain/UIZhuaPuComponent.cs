@@ -195,7 +195,7 @@ namespace ET
                 int maxNum = PetHelper.GetPetMaxNumber(unit, userInfo.Lv);
                 if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
                 {
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物格子不足！"));
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物可携带数量已达上限！"));
                     return;
                 }
             }
