@@ -3882,4 +3882,5 @@
 {"_t":"MulLanguageConfig","_id":300042,"Des":"","Chinese":"奖励","English":"Reward"},
 {"_t":"MulLanguageConfig","_id":300043,"Des":"","Chinese":"全服补偿邮件","English":"Global Server Compensation Email"},
 {"_t":"MulLanguageConfig","_id":300044,"Des":"","Chinese":"赛季结束奖励","English":"Season-end rewards"},
+{"_t":"MulLanguageConfig","_id":300045,"Des":"","Chinese":"宠物可携带数量已达上限！","English":"Pet carrying limit reached!"},
 ]}

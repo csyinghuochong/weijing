@@ -770,6 +770,8 @@ namespace ET
 
                 // ����� PC ƽ̨����Ҫ��������һ�� gameId
                 TapTap.AntiAddiction.TapTapAntiAddictionManager.AntiAddictionConfig.gameId = clientId;
+
+               
             }
 
 
