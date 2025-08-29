@@ -6,7 +6,7 @@ namespace ET
 
     public static class ServerHelper
     {
-        public static int UpdateServerList = 2;  //改成int
+        public static int UpdateServerList = 1;  //改成int
         public static List<ServerItem> ServerItems = new List<ServerItem>();
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
@@ -431,7 +431,7 @@ namespace ET
 
             //2025/08/29 19:00:00 1756465200000 合区 xx-xx xx/xx
             //2025/08/29 19:00:00 1756465200000 新区 迷雾森境 170
-            serverItems_1.Add(new ServerItem() { ServerId = 170, ServerIp = $"{ip}:20565", ServerName = "迷雾森境", ServerOpenTime = 1756465200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 100, 20001 } });
+            serverItems_1.Add(new ServerItem() { ServerId = 170, ServerIp = $"{ip}:20565", ServerName = "迷雾森境", ServerOpenTime = 1756465200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
 
 
             //PlatformHelper.GetPlatformName(); 所有渠道ID定义
