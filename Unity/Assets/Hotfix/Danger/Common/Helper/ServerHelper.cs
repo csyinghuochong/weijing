@@ -42,6 +42,12 @@ namespace ET
             
             if (serverItem.PlatformList.Contains(7))
             {
+                if (serverItem.PlatformList.Count > 1)
+                {
+                    Log.Error("IsGoogleServer ERROR!!!!");
+                    Console.WriteLine("IsGoogleServer ERROR!!!!");
+                }
+
                 return true;
             }
 
