@@ -591,14 +591,15 @@ namespace ET
 					self.GetUserInfo(self.LoginType);
 					break;
 				case LoginTypeEnum.TapTap:
-					if (GlobalHelp.GetBigVersion() <= 23)
-					{
-						self.GetTapUserInfo(self.LoginType).Coroutine();
-					}
-					else
-					{
-                        self.GetTapUserInfo_2(self.LoginType).Coroutine();
-                    }
+                    self.GetTapUserInfo(self.LoginType).Coroutine();
+     //               if (GlobalHelp.GetBigVersion() <= 23)
+					//{
+						
+					//}
+					//else
+					//{
+     //                   self.GetTapUserInfo_2(self.LoginType).Coroutine();
+     //               }
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);
