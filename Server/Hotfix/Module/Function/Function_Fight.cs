@@ -902,6 +902,7 @@ namespace ET
                 }
 
 
+                //破风之击如果目标血量低于50%，则提升50%伤害。 天赋增加这个效果 ID 50041
                 //技能附加伤害
                 if (!ComHelp.IfNull(skillconfig.SkillDamgeAddValue))
                 {
@@ -910,7 +911,6 @@ namespace ET
                     {
                         switch (skillAddValue[0])
                         {
-
                             //当目标血量低于多少,技能伤害额外提升
                             case "1":
                                 if (defHpPro <= float.Parse(skillAddValue[1])) {
@@ -928,17 +928,15 @@ namespace ET
                                 }
                                 break;
 
-                            //当血量高于多少,技能伤害额外提升
+                            //当目标血量高于多少,技能伤害额外提升
                             case "3":
                                 if (defHpPro >= float.Parse(skillAddValue[1]))
                                 {
                                     damgePro += float.Parse(skillAddValue[2]);
                                 }
                                 break;
-
                             //当自身血量高于多少,技能伤害额外提升
                             case "4":
-
                                 acthpPro = (float)numericComponentAttack.GetAsInt(NumericType.Now_Hp) / (float)numericComponentAttack.GetAsInt(NumericType.Now_MaxHp);
                                 if (acthpPro >= float.Parse(skillAddValue[1]))
                                 {
