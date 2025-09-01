@@ -158,7 +158,6 @@ namespace ET
     //6.技能附加额外buff
     //7.技能有概率不进入CD   //7,0.5    //50051   //65022401
     //8.额外召唤精灵数量     //8,2
-    //9.幻影冲击如果目标血量低于50%，则提升50%伤害。   //0.5  0.5
     public enum SkillAttributeEnum
     {
         AddDamageRange = 1,
@@ -169,7 +168,6 @@ namespace ET
         AddSkillBuffID = 6,
         NoSkillCD = 7,
         ExtraSummonNum = 8,
-        AddDamageByTargetHpBelow = 9,
     }
 
     //BuffPropertyAdd
