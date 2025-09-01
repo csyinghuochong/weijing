@@ -256,7 +256,7 @@ namespace ET
                     string dingdanid = payResults["game_order"];
                     float amout = 0f;
 
-                    if (payResults.ContainsKey("amout"))
+                    if (payResults.ContainsKey("amount"))
                     {
                         amout = float.Parse(payResults["amount"]);
                     }
