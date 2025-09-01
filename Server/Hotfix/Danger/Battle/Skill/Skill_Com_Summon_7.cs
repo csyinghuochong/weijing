@@ -77,6 +77,10 @@ namespace ET
                 Log.Error($"Skill_Com_Summon_2: {this.SkillConf.Id}");
                 return;
             }
+
+            //额外召唤数量
+            number += (int)this.GetTianfuProAdd((int)SkillAttributeEnum.ExtraSummonNum);
+
             AsyncCreateMonster(number, range, monsterId, summonParList).Coroutine();
 
             this.OnUpdate();

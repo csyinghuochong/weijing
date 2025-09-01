@@ -918,6 +918,17 @@ namespace ET
                 cdRate = ComHelp.GetSkillCdRate(sceneType); 
             }
 
+            float nocdgailv = 0;
+            if (keyValuePairs != null)
+            {
+                keyValuePairs.TryGetValue((int)SkillAttributeEnum.NoSkillCD, out nocdgailv);
+            }
+            if (nocdgailv > 0f && nocdgailv >= RandomHelper.RandFloat01())
+            {
+                //无cD
+                skillcdTime = -1;
+            }
+
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
@@ -935,7 +946,7 @@ namespace ET
                 skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * skillcdTime);
             }
 
-            if (zhudong && skillConfig.IfPublicSkillCD == 0)
+            if (zhudong && skillConfig.IfPublicSkillCD == 0 && skillcdTime >= 0)
             {
                 //添加技能公共CD
                 self.SkillPublicCDTime = TimeHelper.ServerNow() + 500;  //公共1秒CD  
