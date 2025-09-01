@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 
+
 namespace ET
 {
     [ActorMessageHandler]
@@ -11,6 +12,16 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
+            EquipXiLianConfig equipXiLianConfig = EquipXiLianConfigCategory.Instance.Get(request.XiLianId);
+            int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
+            bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
+            if (!actived)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             if (userInfoComponent.UserInfo.XiuLianRewardIds.Contains(request.XiLianId))
             {
                 response.Error = ErrorCode.ERR_AlreadyReceived;
@@ -18,7 +29,7 @@ namespace ET
                 return;
             }
 
-            EquipXiLianConfig equipXiLianConfig = EquipXiLianConfigCategory.Instance.Get(request.XiLianId);
+
             string[] rewarditems = equipXiLianConfig.RewardList.Split('@');
             if (unit.GetComponent<BagComponent>().GetBagLeftCell() < rewarditems.Length)
             {

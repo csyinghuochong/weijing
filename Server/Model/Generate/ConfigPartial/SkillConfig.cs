@@ -63,6 +63,7 @@ namespace ET
                     }
                     if (buffInfoParam[1] == "1")
                     {
+                        //释放skillconfig.Id的判断
                         BuffTriggerSkill.Add(skillconfig.Id, new KeyValuePairLong4()
                         {
                             KeyId = int.Parse(buffInfoParam[0]),                        //受击者 拥有buffid
