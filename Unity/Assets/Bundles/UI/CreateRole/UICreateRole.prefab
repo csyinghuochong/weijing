@@ -929,7 +929,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6DF7\u6C8C\u9A91\u58EB"
+  m_Text: "\u5DE8\u5251\u58EB"
 --- !u!114 &7157373584452105603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4397,7 +4397,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6DF7\u6C8C\u9A91\u58EB"
+  m_Text: "\u5DE8\u5251\u58EB"
 --- !u!114 &7894488195903288867
 MonoBehaviour:
   m_ObjectHideFlags: 0
