@@ -43,7 +43,7 @@ namespace ET
     //18: 重复副本开始战斗触发
     //19: 普攻攻击暴击触发
     //20: 前冲进入CD触发
-    //21: 受到伤害触发buff， 技能效果内只触发一次。
+    //21: 受到伤害触发buff， 技能效果内只触发一次。//每次释放技能的时候 有概率触发玩家21类型的被动技能。 不管单攻群攻打击到目标会触发这个被动技能。技能效果内只会触发一次。。
 
     public static class SkillPassiveTypeEnum
     {
@@ -158,16 +158,18 @@ namespace ET
     //6.技能附加额外buff
     //7.技能有概率不进入CD   //7,0.5    //50051   //65022401
     //8.额外召唤精灵数量     //8,2
-    public enum SkillAttributeEnum
+    //9.血量低于xx值提升伤害xx值
+    public static class  SkillAttributeEnum
     {
-        AddDamageRange = 1,
-        AddDamageCoefficient = 2,
-        AddDamageValue = 3,
-        ReduceSkillCD = 4,
-        AddSkillLiveTime = 5,
-        AddSkillBuffID = 6,
-        NoSkillCD = 7,
-        ExtraSummonNum = 8,
+        public const int AddDamageRange = 1;
+        public const int AddDamageCoefficient = 2;
+        public const int AddDamageValue = 3;
+        public const int ReduceSkillCD = 4;
+        public const int AddSkillLiveTime = 5;
+        public const int AddSkillBuffID = 6;
+        public const int NoSkillCD = 7;
+        public const int ExtraSummonNum = 8;
+        public const int AddDamageByHpBelow = 9;
     }
 
     //BuffPropertyAdd

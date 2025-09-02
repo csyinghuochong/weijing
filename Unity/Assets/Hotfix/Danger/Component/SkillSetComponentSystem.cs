@@ -202,42 +202,6 @@ namespace ET
 			return false;
 		}
 
-		public static Dictionary<int, float> GetSkillPropertyAdd(this SkillSetComponent self, int skillId)
-		{
-			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillPropertyAdd);
-			if (tianfuids.Count == 0)
-				return null;
-
-			Dictionary<int, float> HideProList = new Dictionary<int, float>();
-			for (int i = 0; i < tianfuids.Count; i++)
-			{
-				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split('@');
-				for (int k = 0; k < addPropreListStr.Length; k++)
-				{
-					string[] properInfo = addPropreListStr[k].Split(';');
-					if (!properInfo[0].Equals( TianFuProEnum.SkillPropertyAdd))
-					{
-						continue;
-					}
-					if (properInfo[1].Contains(skillId.ToString()))
-					{
-						continue;
-					}
-					int key = int.Parse(properInfo[2]);
-					float value = float.Parse(properInfo[3]);
-					if (HideProList.ContainsKey(key))
-					{
-						HideProList[key] += value;
-					}
-					else
-					{
-						HideProList.Add(key, value);
-					}
-				}
-			}
-			return HideProList;
-		}
-
 		/// <summary>
 		/// 可升級的技能列表
 		/// </summary>

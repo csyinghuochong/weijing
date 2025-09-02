@@ -90,11 +90,32 @@ namespace ET
 
         public static float GetTianfuProAdd(this SkillHandler self, int key)
         {
-            float value = 0f;
             if (self.TianfuProAdd == null)
-                return value;
-            self.TianfuProAdd.TryGetValue(key, out value);
-            return value;
+                return 0f;
+
+            List<float> valuelist = null;
+            self.TianfuProAdd.TryGetValue(key, out valuelist);
+            if (valuelist != null && valuelist.Count > 0)
+            {
+                return valuelist[0];
+            }
+
+            return 0;
+        }
+
+        public static List<float> GetTianfuProAdd_2(this SkillHandler self, int key)
+        {
+            if (self.TianfuProAdd == null)
+                return null;
+
+            List<float> valuelist = null;
+            self.TianfuProAdd.TryGetValue(key, out valuelist);
+            if (valuelist != null && valuelist.Count > 0)
+            {
+                return valuelist;
+            }
+
+            return null;
         }
 
         //初始化

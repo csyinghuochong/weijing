@@ -413,13 +413,13 @@ namespace ET
 			return typeTianfus;
 		}
 
-		public static Dictionary<int, float> GetSkillPropertyAdd(this SkillSetComponent self, int skillId)
+		public static Dictionary<int, List<float>> GetSkillPropertyAdd(this SkillSetComponent self, int skillId)
 		{
 			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillPropertyAdd);
 			if (tianfuids.Count == 0)
 				return null;
 
-			Dictionary<int, float> HideProList = new Dictionary<int, float>();
+			Dictionary<int, List<float>> HideProList = new Dictionary<int, List<float>>();
 			for (int i = 0; i < tianfuids.Count; i++)
 			{
 				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split("@");
@@ -435,15 +435,41 @@ namespace ET
 						continue;
 					}
 					int key = int.Parse(properInfo[2]);
-					float value = float.Parse(properInfo[3]);
-					if (HideProList.ContainsKey(key))
+                    float value = float.Parse(properInfo[3]);
+
+					List <float> valuelist = new List<float>();	
+
+
+					if (key == SkillAttributeEnum.AddDamageByHpBelow)
 					{
-						HideProList[key] += value;
-					}
+						float value_2 = float.Parse(properInfo[4]);
+
+                        if (HideProList.ContainsKey(key))
+                        {
+                             //不处理
+                        }
+                        else
+                        {
+                            valuelist.Add(value);
+                            valuelist.Add(value_2);
+                            HideProList.Add(key, valuelist);
+                        }
+                    }
+
 					else
 					{
-						HideProList.Add(key, value);
-					}
+                        if (HideProList.ContainsKey(key))
+                        {
+                            HideProList[key][0] += value;
+                        }
+                        else
+                        {
+                            valuelist.Add(value);	
+                            HideProList.Add(key, valuelist);
+                        }
+                    }
+
+					
 				}
 			}
 			return HideProList;

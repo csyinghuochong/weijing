@@ -852,14 +852,18 @@ namespace ET
 
             //减少的技能CD
             float reduceCD = 0f;
+            List<float> reduceCDlist = null;
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 
-            Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
+            Dictionary<int, List<float>> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
             if (keyValuePairs != null)
             {
-                keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
+                keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCDlist);
             }
-
+            if (reduceCDlist != null && reduceCDlist.Count > 0)
+            {
+                reduceCD = reduceCDlist[0];
+            }
 
             float nocdPro = numericComponent.GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
@@ -919,10 +923,16 @@ namespace ET
             }
 
             float nocdgailv = 0;
+            List<float> noCdList = null;
             if (keyValuePairs != null)
             {
-                keyValuePairs.TryGetValue((int)SkillAttributeEnum.NoSkillCD, out nocdgailv);
+                keyValuePairs.TryGetValue((int)SkillAttributeEnum.NoSkillCD, out noCdList);
             }
+            if (noCdList != null && noCdList.Count > 0)
+            {
+                nocdgailv = noCdList[0];
+            }
+
             if (nocdgailv > 0f && nocdgailv >= RandomHelper.RandFloat01())
             {
                 //无cD

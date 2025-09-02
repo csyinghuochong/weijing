@@ -832,7 +832,23 @@ namespace ET
                 if (defendUnit.Type == UnitType.Monster && skillconfig.MonsterActDamge != 0 ) {
                     actDamge += skillconfig.MonsterActDamge;
                 }
-                
+
+  
+                float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
+
+                float hp_below_value = 0;
+                float adddamage_value = 0f;
+                List<float> adddamagebyhp = skillHandler.GetTianfuProAdd_2(SkillAttributeEnum.AddDamageByHpBelow);
+                if (adddamagebyhp !=null && adddamagebyhp.Count >= 2)
+                {
+                    hp_below_value = adddamagebyhp[0];   //血量低于xx值  0.5
+                    adddamage_value = adddamagebyhp[1];  //伤害提升xx值  0.5
+                }
+
+                if (hp_below_value < defHpPro)
+                { 
+                    ///
+                }
 
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
 
@@ -895,7 +911,7 @@ namespace ET
 
 
                 //是否触发斩杀
-                float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
+               
                 if (defHpPro <= 0.3f)
                 {
                     damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro);
