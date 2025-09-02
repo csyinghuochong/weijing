@@ -26,14 +26,45 @@ namespace ET
             var response = context.Response;
             Console.WriteLine($"HttpWeChatOAHandler 1: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {request.HttpMethod} {context.Request.RawUrl}");
 
+            string requestBody;
+            using (StreamReader reader = new StreamReader(request.InputStream, request.ContentEncoding))
+            {
+                requestBody = await reader.ReadToEndAsync();
+            }
+
+            // 使用System.Text.Json进行反序列化
+            // object obj = JsonHelper.FromJson<object>(requestBody);
+
+            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(ConfigData.sToken, ConfigData.sEncodingAESKey, ConfigData.sAppID);
+
+
+            Dictionary<string, object> obj = JsonSerializer.Deserialize<Dictionary<string, object>>(requestBody);
+
             if (request.HttpMethod == "POST")
             {
                 // 1. 从 InputStream 中读取 POST 过来的原始 XML 数据
                 using (StreamReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
                 {
-                    string sReqData = reader.ReadToEnd(); // 这就是你要的 sReqData
-                                                          // 现在你可以使用这个 sReqData 进行解密了
-                                                          // ... (你的解密代码，如 wxcpt.DecryptMsg(...))
+                    // 这就是你要的 sReqData
+                    // 现在你可以使用这个 sReqData 进行解密了
+                    // ... (你的解密代码，如 wxcpt.DecryptMsg(...))
+
+                    string sReqMsgSig = obj["signature"].ToString();
+                    string sReqTimeStamp = obj["timestamp"].ToString();
+                    string sReqNonce = obj["nonce"].ToString();
+                    string sReqData = reader.ReadToEnd();
+
+                    string sMsg = "";  //解析之后的明文
+                    int ret = 0;
+                    ret = wxcpt.DecryptMsg(sReqMsgSig, sReqTimeStamp, sReqNonce, sReqData, ref sMsg);
+                    if (ret != 0)
+                    {
+                        System.Console.WriteLine("ERR: Decrypt fail, ret: " + ret);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine(sMsg);
+                    }
                 }
             }
             if (request.HttpMethod == "GET")
