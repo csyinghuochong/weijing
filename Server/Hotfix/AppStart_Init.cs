@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ET
 {
@@ -28,12 +30,27 @@ namespace ET
             //data.Add("auth_code", "auth_code");
             //HttpHelper.OnWebRequestPostBody(url, null,  data).Coroutine();
 
+            //游戏服务器生成对应角色的验证码
+            //发送验证码到公众号，推送到游戏服务器，游戏服务器验证验证码 并返回消息。
 
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             keyValuePairs.Add("grant_type", "client_credential");
             keyValuePairs.Add("appid", ConfigData.sAppID);
             keyValuePairs.Add("secret", ConfigData.sAppSecret);
-            WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/token", keyValuePairs).Coroutine();
+            string requestBody =  await  WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/token", keyValuePairs);
+
+            Dictionary<string, object> obj = JsonSerializer.Deserialize<Dictionary<string, object>>(requestBody);
+
+            keyValuePairs = new Dictionary<string, string>();
+            keyValuePairs.Add("access_token", obj["access_token"].ToString());
+            await WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/get_api_domain_ip", keyValuePairs);
+
+            keyValuePairs = new Dictionary<string, string>();
+            keyValuePairs.Add("access_token", obj["access_token"].ToString());
+            await WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/getcallbackip", keyValuePairs);
+
+
+            WXSample.Main();
         }
 
         private async ETTask RunAsync(EventType.AppStart args)

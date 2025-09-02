@@ -22,10 +22,27 @@ namespace ET
 
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
-            Console.WriteLine($"HttpPhoneNumberLoginHandler: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} {context.Request.RawUrl}");
+            var request = context.Request;
+            var response = context.Response;
+            Console.WriteLine($"HttpWeChatOAHandler 1: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {request.HttpMethod} {context.Request.RawUrl}");
 
-            
+            if (request.HttpMethod == "POST")
+            {
+                // 1. 从 InputStream 中读取 POST 过来的原始 XML 数据
+                using (StreamReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
+                {
+                    string sReqData = reader.ReadToEnd(); // 这就是你要的 sReqData
+                                                          // 现在你可以使用这个 sReqData 进行解密了
+                                                          // ... (你的解密代码，如 wxcpt.DecryptMsg(...))
+                }
+            }
+            if (request.HttpMethod == "GET")
+            {
+               
+            }
 
+
+            HttpServerHelper.ResponseEmpty(context);
 
             await ETTask.CompletedTask;
         }

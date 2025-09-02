@@ -14,6 +14,7 @@ namespace MsgCryptTest
     public static class WXSample
     {
 
+ 
         public static async ETTask<string> OnGetAccessToken(string uri, Dictionary<string, string> dic)
         {
             string paramss = string.Empty;
@@ -52,7 +53,7 @@ namespace MsgCryptTest
 
 
 
-        public  static void Main(string[] args)
+        public  static void Main()
         {
 
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(ConfigData.sToken, ConfigData.sEncodingAESKey, ConfigData.sAppID);

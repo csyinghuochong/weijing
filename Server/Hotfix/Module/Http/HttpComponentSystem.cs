@@ -114,12 +114,19 @@ namespace ET
 
                 if (self.dispatcher.TryGetValue(context.Request.Url.AbsolutePath, out handler))
                 {
-                    Console.WriteLine($"HttpComponent_Handle Sucess: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} {context.Request.RawUrl}");
+                    Console.WriteLine($"HttpComponent_Handle Sucess: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} {context.Request.Url.AbsolutePath}");
                     await handler.Handle(self.Domain, context);
                 }
                 else
                 {
-                    Console.WriteLine($"HttpComponent_Handle Failed: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} ");
+                    string abspath = string.Empty;
+                    string rawurl = string.Empty;   
+                    if(context!=null && context.Request!=null)
+                    {
+                        abspath = context.Request.Url.AbsolutePath;
+                        rawurl = context.Request.RawUrl;
+                    }
+                    Console.WriteLine($"HttpComponent_Handle Failed: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {abspath} {rawurl}");
                 }
             }
             catch (Exception e)
