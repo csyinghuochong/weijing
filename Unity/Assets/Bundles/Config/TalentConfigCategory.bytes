@@ -106,7 +106,7 @@ r�攻击增幅Attack Boost �( 2攻击永久提升5%:Attack permanentl
 ���普攻加持Attack Boost ��(&2$普通攻击造成的伤害提升20%:Attack permanently +5%.BRolePropertyAdd;202702;0.2
 ���技能专精Skill Mastery ��(*2v守护天使伤害提升75%；释放唤灵之契有概率不进入冷却时间；逆转之力冷却时间降低3秒。:VIce Trap: cooldown -2s; Scorching Arrow: damage +75%; Beast Power: burst duration +3s.B�SkillPropertyAdd;65021402,65021403,65021404,65021405,65021406;2;0.75@SkillPropertyAdd;65022401,65022402,65022403,65022404,65022405,65022406;7;0.2@SkillPropertyAdd;65023402,65023403,65023404,65023405,65023406;4;3
 ���逆境反击Hand of Tenacity ��(*2<生命值低于50%时，自身伤害提升30%,持续10秒。:CWhen HP drops to 30%, take 75% less damage for 6s (once every 45s).BSkillIdAdd;62000114
-���闪避印记Courage of Will ��(*2�普通攻击和释放技能有一定的概率对目标身上附加闪避标记，每个闪避标记可以降低目标5%的闪避,最多叠加5层。:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000115
+���闪避印记Courage of Will ��(*2�普通攻击和释放技能有一定的概率对目标身上附加闪避标记，每个闪避标记可以降低目标10%的闪避,最多叠加5层。:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000115
 ���黑暗印记Courage of Will ��(42�普通攻击和释放技能有概率为目标附加1层黑暗印记，当黑暗印记达到5层时，造成范围350%伤害和1秒置空。:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000116
 ���坚韧之力Hand of Tenacity ��(42Y当生命值降低至30%后,受到闪避提升50%,持续3秒，30秒内只能触发一次:CWhen HP drops to 30%, take 75% less damage for 6s (once every 45s).BSkillIdAdd;62000117
 ���腐蚀破甲Power of Attack ��(42K每次攻击目标会有一定概率使其所有防御降低为0,持续5秒:@Each attack has a chance to reduce target's defense to 0 for 5s.BSkillIdAdd;62000118
