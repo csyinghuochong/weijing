@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, A2M_KickOutPlayerRequest request, M2A_KickOutPlayerResponse response, Action reply)
         {
             Console.WriteLine($"A2M_KickOutPlayerRequest:  {unit.DomainZone()} {unit.Id}");
-
+            Log.Debug($"A2M_KickOutPlayerRequest:  {unit.DomainZone()} {unit.Id}");
             unit.OnKickPlayer(false).Coroutine();
 
             reply();

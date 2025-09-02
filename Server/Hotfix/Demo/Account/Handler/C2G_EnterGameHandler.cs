@@ -193,7 +193,7 @@ namespace ET
                                 return;
                             }
 
-                            Log.Error($"LoginTest C2G_EnterGame 二次登录失败1 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            Log.Error($"LoginTest C2G_EnterGame 二次登录失败1 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId} reqEnter.Error:{reqEnter.Error}");
 							response.Error = ErrorCode.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);

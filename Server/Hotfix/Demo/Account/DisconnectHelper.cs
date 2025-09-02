@@ -98,7 +98,7 @@ namespace ET
         
         public static async ETTask KickPlayer(int zone, long unitid)
         {
-            Log.Info("KickPlayer_2");
+            Log.Debug("KickPlayer_2");
             long fubencenterId = DBHelper.GetFubenCenterId(zone);
             M2F_FubenCenterListRequest request = new M2F_FubenCenterListRequest() { };
             F2M_FubenCenterListResponse response = (F2M_FubenCenterListResponse)await ActorMessageSenderComponent.Instance.Call(fubencenterId, request);

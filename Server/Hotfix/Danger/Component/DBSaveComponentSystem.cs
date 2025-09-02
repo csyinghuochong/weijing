@@ -286,6 +286,7 @@ namespace ET
                 M2C_KickPlayerMessage m2C_KickPlayer = new M2C_KickPlayerMessage();
                 MessageHelper.SendToClient(unit, m2C_KickPlayer);
 
+                Log.Debug($"MinuteCheck:  {unit.DomainZone()} {unit.Id}");
                 unit.OnKickPlayer(false).Coroutine();
             }
             self.NoFindPath++;
