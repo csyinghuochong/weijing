@@ -2434,7 +2434,7 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Base, (int)(BaseDamgeSub * 10000), UpdateProDicList);
 
             //怒气
-            if (userInfo.Occ == 3)
+            if (userInfo.Occ == 3 || userInfo.Occ == 5)
             {
                 AddUpdateProDicList((int)NumericType.Max_SkillUseMP_Base, 100, UpdateProDicList);
             }
