@@ -2,12 +2,48 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Text;
 using System.Xml;
+using System.IO;
+using System.Net;
+
 namespace MsgCryptTest
 {
-    class WXSample
+    public static class WXSample
     {
+
+        public static async ETTask<string> OnGetAccessToken(string uri, Dictionary<string, string> dic)
+        {
+            string paramss = string.Empty;
+            foreach (var item in dic)
+            {
+                paramss += $"{item.Key}={item.Value}&";
+            }
+            paramss = paramss.Substring(0, paramss.Length - 1);
+            var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
+
+            using (var httpclient = new HttpClient(handler))
+            {
+                httpclient.BaseAddress = new Uri(uri);
+                httpclient.DefaultRequestHeaders.Accept.Clear();
+                httpclient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await httpclient.GetAsync($"?{paramss}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Stream myResponseStream = await response.Content.ReadAsStreamAsync();
+                    StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                    string retString = myStreamReader.ReadToEnd();
+                    myStreamReader.Close();
+                    myResponseStream.Close();
+                    return retString;
+                }
+                return string.Empty;
+            }
+        }
 
         //Cryptography.cs 文件封装了 AES 加解密过程，用户无须关心具体实现。WRBizMsgCrypt.cs 文件提供了用户接入企业微信的两个接口，Sample.cs 文件提供了如何使用这两个接口的示例。
         //WRBizMsgCrypt.cs 封装了 DecryptMsg、EncryptMsg 两个接口，分别用于收到用户回复消息的解密以及开发者回复消息的加密过程。
@@ -15,11 +51,16 @@ namespace MsgCryptTest
         //加解密协议请参考微信公众平台官方文档。
 
 
-        static void Main(string[] args)
+
+        public  static void Main(string[] args)
         {
-           
 
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(ConfigData.sToken, ConfigData.sEncodingAESKey, ConfigData.sAppID);
+
+            //createTime 是微信公众平台记录粉丝发送该消息的具体时间
+            //text: 用于标记该xml 是文本消息，一般用于区别判断
+            //欢迎开启服务号开发者模式: 说明该粉丝发给服务号的具体内容是欢迎开启服务号开发者模式
+            //MsgId: 是公众平台为记录识别该消息的一个标记数值, 微信后台系统自动产生
 
             /* 1. 对用户回复的数据进行解密。
             * 用户回复消息或者点击事件响应时，企业会收到回调消息，假设企业收到的推送消息：

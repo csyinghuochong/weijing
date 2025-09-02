@@ -25,6 +25,8 @@ namespace ET
         //公众平台上开发者设置的token, appID, EncodingAESKey
         public const string sToken = "yinhuochongweijing666";
         public const string sAppID = "wx8fe94511cb4701c1";
-        public const string sEncodingAESKey = "f54fcbc601209c2ba3500cd5f56e448c";
+        public const string sAppSecret = "f54fcbc601209c2ba3500cd5f56e448c";
+        public const string sEncodingAESKey = "yinhuochongweijing666";
+
     }
 }

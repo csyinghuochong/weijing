@@ -1,6 +1,7 @@
 using AlibabaCloud.SDK.Sample;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MsgCryptTest;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,13 @@ namespace ET
             //data.Add("app_id", "554726");
             //data.Add("auth_code", "auth_code");
             //HttpHelper.OnWebRequestPostBody(url, null,  data).Coroutine();
+
+
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            keyValuePairs.Add("grant_type", "client_credential");
+            keyValuePairs.Add("appid", ConfigData.sAppID);
+            keyValuePairs.Add("secret", ConfigData.sAppSecret);
+            WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/token", keyValuePairs).Coroutine();
         }
 
         private async ETTask RunAsync(EventType.AppStart args)
