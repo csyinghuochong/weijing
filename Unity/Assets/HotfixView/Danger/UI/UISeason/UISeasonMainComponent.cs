@@ -36,6 +36,8 @@ namespace ET
             self.CDdownTimeText = rc.Get<GameObject>("CDdownTimeText").GetComponent<Text>();
             self.CDTimer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.SeasonTowerTimer, self);
             self.CDdownTimeNumber = 100;
+
+            self.RequestBegin();
         }
     }
 
@@ -49,6 +51,12 @@ namespace ET
 
     public static class UISeasonMainComponentSystem
     {
+
+        public static void RequestBegin(this UISeasonMainComponent self)
+        {
+            C2M_TowerFightBeginRequest request = new C2M_TowerFightBeginRequest() { SceneType = SceneTypeEnum.SeasonTower };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+        }
 
         public static async ETTask WaitReturn(this UISeasonMainComponent self)
         {

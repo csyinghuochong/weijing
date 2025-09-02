@@ -4825,6 +4825,7 @@ message C2M_TowerFightBeginRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int32 SceneType = 94;
 }
 
 message M2C_TowerFightBeginResponse // IActorLocationResponse

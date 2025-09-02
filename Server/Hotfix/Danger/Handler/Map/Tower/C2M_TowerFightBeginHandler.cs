@@ -8,7 +8,17 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TowerFightBeginRequest request, M2C_TowerFightBeginResponse response, Action reply)
         {
-            unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
+
+            if (request.SceneType == SceneTypeEnum.SeasonTower)
+            {
+                unit.DomainScene().GetComponent<SeasonTowerComponent>()?.BeginTower();
+            }
+            if (request.SceneType == SceneTypeEnum.Tower)
+            {
+                unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
+            }
+
+
             reply();
             await ETTask.CompletedTask;
         }

@@ -10139,6 +10139,9 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(94)]
+		public int SceneType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_TowerFightBeginResponse)]

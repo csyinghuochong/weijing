@@ -50,10 +50,17 @@ namespace ET
                    (mapInstanceId, reuqest);
         }
 
-        public static void GenerateFuben(this SeasonTowerComponent self, int towerId)
+        public static void BeginTower(this SeasonTowerComponent self)
         {
+            self.GenerateFuben();
+        }
+
+        public static void GenerateFuben(this SeasonTowerComponent self)
+        {
+            int towerId = self.TowerId;
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             FubenHelp.CreateMonsterList(self.DomainScene(), towerConfig.MonsterSet);
+
             self.BeginTime = TimeHelper.ServerNow();
         }
     }

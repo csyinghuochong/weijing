@@ -63,7 +63,7 @@ namespace ET
     {
         public static void RequestBegin(this UITowerOpenComponent self)
         {
-            C2M_TowerFightBeginRequest request = new C2M_TowerFightBeginRequest();
+            C2M_TowerFightBeginRequest request = new C2M_TowerFightBeginRequest() { SceneType = SceneTypeEnum.Tower };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
