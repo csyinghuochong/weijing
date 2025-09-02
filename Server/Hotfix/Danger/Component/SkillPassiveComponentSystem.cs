@@ -189,7 +189,7 @@ namespace ET
             self.CheckHuiXue();
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.XueLiang_2, unit.Id);
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
-            if (unit.Type == UnitType.Player && unit.ConfigId == 3)
+            if (unit.Type == UnitType.Player && (unit.ConfigId == 3 || unit.ConfigId == 5))
             {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
