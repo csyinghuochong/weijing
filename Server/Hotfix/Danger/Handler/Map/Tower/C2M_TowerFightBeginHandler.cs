@@ -8,17 +8,19 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TowerFightBeginRequest request, M2C_TowerFightBeginResponse response, Action reply)
         {
-
-            if (request.SceneType == SceneTypeEnum.SeasonTower)
+            switch (request.SceneType)
             {
-                unit.DomainScene().GetComponent<SeasonTowerComponent>()?.BeginTower();
+                case SceneTypeEnum.SeasonTower:
+                    unit.DomainScene().GetComponent<SeasonTowerComponent>()?.BeginTower();
+                    break;
+                case SceneTypeEnum.Tower:
+                    unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
+                    break;
+                default:
+                    Log.Error("C2M_TowerFightBeginRequest request.SceneType=null");
+                    break;
             }
-            if (request.SceneType == SceneTypeEnum.Tower)
-            {
-                unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
-            }
-
-
+          
             reply();
             await ETTask.CompletedTask;
         }
