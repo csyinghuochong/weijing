@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 104000_zhs_equ_d_512
-  m_Shader: {fileID: 4800000, guid: c77106edf52b9e846a7416d8f8c8298a, type: 3}
+  m_Name: 104000_zhs_equ_d_512A
+  m_Shader: {fileID: 4800000, guid: 2dc950ae6709e1249b25548b357e3e9e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -67,12 +67,14 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DepthOffset: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Factor: 0.0001
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _InvFade: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -91,4 +93,5 @@ Material:
     - _OutLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
