@@ -63,7 +63,7 @@ namespace ET
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
                 bool innernet = ComHelp.IsInnerNet();
-                int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, passward);
+                int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, passward, 0, zone);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);
                 string[] serverdomain = adress.Split(':');
