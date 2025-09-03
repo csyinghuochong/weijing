@@ -96,7 +96,8 @@ namespace ET
 
         public static string GetLogicServer(bool innerNet, VersionMode versionMode, int platform = 0, int server = 0)
         {
-            if (platform == 7 || ServerHelper.IsGoogleServer(server))
+            //
+            if (platform == 7 || server == 171)
             {
                 return innerNet ? ComHelp.LocalIp : LogicServerGoogle;
             }
