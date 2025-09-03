@@ -65,7 +65,7 @@ namespace ET
                 return;
             }
 
-            await LoginHelper.DeleteAccount(self.ZoneScene(), GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password); 
+            await LoginHelper.DeleteAccount(self.ZoneScene(), GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password, GlobalHelp.GetPlatform(),0); 
             UIHelper.Remove(self.ZoneScene(), UIType.UIDeleteAccount);
         }
 

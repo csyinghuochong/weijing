@@ -1634,6 +1634,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Account { get; set; }
 
+		[ProtoMember(1)]
+		public int Platform { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_ServerList)]

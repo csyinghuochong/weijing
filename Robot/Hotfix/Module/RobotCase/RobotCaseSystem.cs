@@ -66,7 +66,7 @@ namespace ET
             {
                 bool innernet = ComHelp.IsInnerNet();
                 zoneScene = SceneFactory.CreateZoneScene(zone, name, self);
-                await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, zone.ToString(), zone.ToString());
+                await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, zone.ToString(), zone.ToString(), 0, zone);
                 await LoginHelper.Login(zoneScene, ServerHelper.GetServerIpList(innernet, 1), zone.ToString(), zone.ToString(), false, string.Empty, "0");
                 A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, zone.ToString());
                 zoneScene.GetComponent<AccountInfoComponent>().ServerId = 1;

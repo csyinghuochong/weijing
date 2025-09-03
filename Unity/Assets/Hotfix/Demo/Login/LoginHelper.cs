@@ -323,13 +323,13 @@ namespace ET
         }
 
         //移除账号
-        public static async ETTask<int> DeleteAccount(Scene zoneScene, bool outNet, VersionMode versionCode, string account, string password)
+        public static async ETTask<int> DeleteAccount(Scene zoneScene, bool outNet, VersionMode versionCode, string account, string password, int platform, int serverid)
         {
             try
             {
                 // 创建一个ETModel层的Session
                 Center2C_DeleteAccountResponse r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode, platform, serverid)).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -348,7 +348,7 @@ namespace ET
 
 
         //注册账号
-        public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password)
+        public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password, int platform, int serverid)
         {
             try
             {
@@ -360,7 +360,7 @@ namespace ET
                 //{
                 //    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 //}
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode,platform, serverid)).AddressList;
                 address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
 
                 //走的中心服
@@ -432,7 +432,7 @@ namespace ET
             return 20325;
         }
 
-        public static async ETTask<int> SendSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode,  string phoneNum)
+        public static async ETTask<int> SendSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode,  string phoneNum, int platform, int serverid)
         {
             try
             {
@@ -443,7 +443,7 @@ namespace ET
                 }
                 else
                 {
-                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode, platform, serverid)).AddressList;
                     address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 }
                 
@@ -465,7 +465,7 @@ namespace ET
             }
         }
 
-        public static async ETTask<int> CheckSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode, string phoneNum, string code)
+        public static async ETTask<int> CheckSmsVerifyCode(Scene zoneScene, bool innerNet, VersionMode versionMode, string phoneNum, string code, int platform, int serverid)
         {
             try
             {
@@ -476,7 +476,7 @@ namespace ET
                 }
                 else
                 {
-                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode, platform, serverid)).AddressList;
                     address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 }
                 //IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
@@ -498,18 +498,31 @@ namespace ET
         }
 
         //请求服务器列表【外网】
-        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode, string account, int platform)
+        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode, string account, int platform, int serverid)
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(false, versionMode)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(false, versionMode, platform, serverid)).AddressList;
+
                 string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
+
+                Log.ILog.Debug($"address:  {address}");
+
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
+                    Log.ILog.Debug($"address session:  {NetworkHelper.ToIPEndPoint(address)} {session.RemoteAddress}");
+
+                    long time_1 = TimeHelper.ClientNow();
+                    Log.ILog.Debug($"time_1:  {time_1}");
+
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { Account = account });
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
-      
+
+                    long time_2 = TimeHelper.ClientNow();
+                    Log.ILog.Debug($"time_2:  {time_2}");
+                    Log.ILog.Debug($"time_ping:  {time_2 -time_1}");
+
                     //存储列表
                     OnRecvServerInfo(zoneScene, r2CSelectServer, platform);
                 }
@@ -557,9 +570,18 @@ namespace ET
                  && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39"))
                 {
-                    IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
-                    serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                    if (ServerHelper.IsGoogleServer(serverItems[i].ServerId))
+                    {
+                        IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerGoogle).AddressList;
+                        serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                    }
+                    else
+                    {
+                        IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
+                        serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                    }
                 }
+
             }
         }
 

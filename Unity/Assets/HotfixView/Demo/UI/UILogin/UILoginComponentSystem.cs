@@ -763,7 +763,7 @@ namespace ET
 				int platform = GlobalHelp.GetPlatform();
                 if (GlobalHelp.IsOutNetMode)
 				{
-					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode, account, platform);
+					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode, account, platform, 0);
 				}
 				else
 				{
@@ -1043,7 +1043,7 @@ namespace ET
             }
             else
             {
-                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode,  GlobalHelp.VersionMode, phoneNum).Coroutine();
+                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode,  GlobalHelp.VersionMode, phoneNum, GlobalHelp.GetPlatform(), 0).Coroutine();
             }
 
             self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
@@ -1078,7 +1078,7 @@ namespace ET
 
 		private static async ETTask CheckSmsVerifyCode(this UILoginComponent self, string phone, string code)
         {
-			int errorcode = await LoginHelper.CheckSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phone, code);
+			int errorcode = await LoginHelper.CheckSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phone, code, GlobalHelp.GetPlatform(), 0);
 			if (errorcode == ErrorCode.ERR_Success)
 			{
                 self.LoginType = LoginTypeEnum.PhoneCodeLogin.ToString();
