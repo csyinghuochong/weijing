@@ -214,6 +214,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             try
             {
+                Log.ILog.Debug($"gateSession:  {gateSession.RemoteAddress}");
                 g2CEnterGame = (G2C_EnterGame)await gateSession.Call(new C2G_EnterGame() { 
                     MapId= 1,
                     Relink = relink,

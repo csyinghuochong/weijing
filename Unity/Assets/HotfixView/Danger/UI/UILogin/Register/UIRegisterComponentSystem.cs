@@ -55,7 +55,7 @@ namespace ET
                 return;
             }
 
-            int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password);
+            int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password, GlobalHelp.GetPlatform(), 0);
             if (errorCode == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("注册成功！"));

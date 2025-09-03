@@ -108,7 +108,7 @@ namespace ET
             }
             else
             {
-                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phoneNum).Coroutine();
+                LoginHelper.SendSmsVerifyCode(self.ZoneScene(), GlobalHelp.IsInnerNetMode, GlobalHelp.VersionMode, phoneNum, GlobalHelp.GetPlatform(), 0).Coroutine();
             }
             self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
             self.SendYanzheng.SetActive(false);
