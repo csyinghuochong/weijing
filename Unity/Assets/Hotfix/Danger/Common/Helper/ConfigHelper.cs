@@ -12,6 +12,9 @@ namespace ET
 
         public static string ChangeOccItem = "10000178;1";
 
+
+        public static List<int> GoogleServerList = new List<int> { 171 };
+
         /// <summary>
         /// 竞技场buff
         /// </summary>

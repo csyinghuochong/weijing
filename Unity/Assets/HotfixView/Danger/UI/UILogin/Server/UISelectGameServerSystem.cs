@@ -61,16 +61,7 @@ namespace ET
 
             List<ServerItem> allserverList = PlayerComponent.AllServerList;
             int platform = GlobalHelp.GetPlatform();
-            if (platform == 8)
-            {
-                platform = 1;
-            }
-
-            if (platform == 7 && GlobalHelp.IsEditorMode)
-            {
-                platform = 1;
-            }
-
+           
             string lastAccount = string.Empty;
             string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
             if (!string.IsNullOrEmpty(lastloginType))

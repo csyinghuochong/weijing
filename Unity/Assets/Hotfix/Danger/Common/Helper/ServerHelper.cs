@@ -32,26 +32,10 @@ namespace ET
             return serverItem;
         }
 
+ 
         public static bool IsGoogleServer(int zone)
         {
-            ServerItem serverItem = ServerHelper.GetGetServerItem(false, zone);
-            if (serverItem == null)
-            {
-                return false;
-            }
-            
-            if (serverItem.PlatformList.Contains(7))
-            {
-                if (serverItem.PlatformList.Count > 1)
-                {
-                    Log.Error("IsGoogleServer ERROR!!!!");
-                    Console.WriteLine("IsGoogleServer ERROR!!!!");
-                }
-
-                return true;
-            }
-
-            return false;
+            return ConfigHelper.GoogleServerList.Contains(zone);
         }
 
         public static long GetOpenServerTime(bool innerNet, int zone)
@@ -94,10 +78,10 @@ namespace ET
         public const string LogicServerGoogle = "othercountry.weijinggame.com";
         public const string LogicServerBanHao = "47.94.107.92";
 
-        public static string GetLogicServer(bool innerNet, VersionMode versionMode, int platform = 0, int server = 0)
+        public static string GetLogicServer(bool innerNet, VersionMode versionMode, int platform = 0, int serverid = 0)
         {
-            //
-            if (platform == 7 || server == 171)
+            
+            if (platform == 7 || IsGoogleServer(serverid))
             {
                 return innerNet ? ComHelp.LocalIp : LogicServerGoogle;
             }
@@ -450,7 +434,8 @@ namespace ET
 
             //谷歌服务器
             //2025/09/03 19:00:00 1756897200000 新区 ValorArena 171
-            serverItems_1.Add(new ServerItem() { ServerId = 171, ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
+            List<int> googleservers = ConfigHelper.GoogleServerList;
+            serverItems_1.Add(new ServerItem() { ServerId = googleservers[0], ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
 
 
             //PlatformHelper.GetPlatformName(); 所有渠道ID定义
