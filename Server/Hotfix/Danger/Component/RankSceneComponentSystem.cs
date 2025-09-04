@@ -746,14 +746,16 @@ namespace ET
 
         public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
         {
-            ServerHelper.GetServerList(ComHelp.IsInnerNet());
+
+            List<ServerItem> serverItems = ServerHelper.GetServerList();
+            Console.WriteLine($"BroadcastShowLie: ServerItems {serverItems.Count}");
 
             int firstserver = 0;
-            for (int i = 0; i < ServerHelper.ServerItems.Count; i++)
+            for (int i = 0; i < serverItems.Count; i++)
             {
-                if (ServerHelper.ServerItems[i].Show == 1)
+                if (serverItems[i].Show == 1)
                 {
-                    firstserver = ServerHelper.ServerItems[i].ServerId;
+                    firstserver = serverItems[i].ServerId;
                     break;
                 }
             }
@@ -761,7 +763,7 @@ namespace ET
             if (firstserver == self.DomainZone())
             {
                 Log.Debug($"BroadcastShowLie:  {self.DomainZone()}");
-                Log.Console($"BroadcastShowLie:  {self.DomainZone()} {loadvalue}");
+                Log.Console($"BroadcastShowLie value:  {self.DomainZone()} {loadvalue}");
                 List<StartProcessConfig> listprogress = StartProcessConfigCategory.Instance.GetAll().Values.ToList();
                 for (int i = 0; i < listprogress.Count; i++)
                 {

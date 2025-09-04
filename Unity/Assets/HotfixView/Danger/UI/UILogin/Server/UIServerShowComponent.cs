@@ -47,7 +47,7 @@ namespace ET
                 UIHelper.Remove( self.ZoneScene(), UIType.UIServerShow );
             });
 
-            List <ServerItem> serverItems = ServerHelper.GetServerList(false);
+            List <ServerItem> serverItems = ServerHelper.GetServerList();
 
             self.Iptoservers.Clear();
             self.Iptoservers = new Dictionary<string, List<int>>();

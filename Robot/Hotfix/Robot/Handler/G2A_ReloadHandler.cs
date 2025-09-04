@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace ET
 {
@@ -74,6 +75,10 @@ namespace ET
             Log.Warning("ObjectPool:    " + ObjectPool.Instance.ToString());
             Log.Warning("MonoPool:      " + MonoPool.Instance.ToString());
             Log.Warning("EventSystem.Instance.ToString: 2");
+
+            Console.WriteLine($"Game.Options.StartConfig:  {Game.Options.StartConfig}");
+            ServerHelper.InitServerList(Game.Options.StartConfig);
+            Console.WriteLine($"ServerItems.Count:  {ServerHelper.GetServerList().Count}");
 
             reply();
             await ETTask.CompletedTask;

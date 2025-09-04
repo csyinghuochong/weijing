@@ -336,7 +336,7 @@ namespace ET
 
             ///只导出七天以内登陆的玩家数据
             long serverTime = TimeHelper.ServerNow();
-            List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet());
+            List<ServerItem> serverItems = ServerHelper.GetServerList();
             for (int i = 0; i < serverItems.Count; i++)
             {
                 if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)

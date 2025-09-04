@@ -128,10 +128,11 @@ namespace ET
 
         public static async ETTask OnRquestBingPhone(this UIPhoneCodeComponent self, string phone)
         {
-            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode)).AddressList;
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, GlobalHelp.GetPlatform(), accountInfoComponent.ServerId)).AddressList;
             //走的中心服
             string address = GlobalHelp.IsOutNetMode ? $"{xxc[0]}:{LoginHelper.GetAccountCenterPort(GlobalHelp.VersionMode)}" : $"127.0.0.1:{LoginHelper.GetAccountCenterPort(GlobalHelp.VersionMode)}";
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+           
             Scene zoneScene = self.ZoneScene();
             NetKcpComponent netKcpComponent = zoneScene.GetComponent<NetKcpComponent>();
             Session session = netKcpComponent.Create(NetworkHelper.ToIPEndPoint(address));

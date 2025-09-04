@@ -96,6 +96,9 @@ namespace ET
             // int n = (int)((unitid / 99) % 4);
             Log.Console($"unit.zone1230: {UnitIdStruct.GetUnitZone(unitid)}");
             Console.WriteLine($"unit.zone1230: {UnitIdStruct.GetUnitZone(unitid)}");
+            Console.WriteLine($"Game.Options.StartConfig:  {Game.Options.StartConfig}");
+            ServerHelper.InitServerList(Game.Options.StartConfig);
+            Console.WriteLine($"ServerItems.Count:  {ServerHelper.GetServerList().Count}");
 
             switch (Game.Options.AppType)
             {

@@ -24,7 +24,10 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.GetServerList, 0))
                     {
                         long serverTime = TimeHelper.ServerNow();
-                        List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet());
+                        List<ServerItem> serverItems = ServerHelper.GetServerList();
+
+                        Console.WriteLine($"C2A_ServerList: ServerItems {ServerHelper.GetServerList().Count}");
+
                         response.ServerItems.Clear();
                         for (int i = 0; i < serverItems.Count; i++)
                         {
@@ -50,11 +53,16 @@ namespace ET
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;
                         response.AccountCenterIp = $"{outeIp}:{accountcenter}";
 
-                        StartSceneConfig realmStartSceneConfig = RealmGateAddressHelper.GetRealm(5);
-                        string real = realmStartSceneConfig.OuterIPPort.ToString();
-                        StartSceneConfig gateconfig = RealmGateAddressHelper.GetGate(5, 1);
-                        string gate = gateconfig.OuterIPPort.ToString();
-                        response.RealAndGate = real + "_" + gate;
+                        if (StartSceneConfigCategory.Instance.Gates.ContainsKey(5))
+                        {
+                            StartSceneConfig realmStartSceneConfig = RealmGateAddressHelper.GetRealm(5);
+                            string real = realmStartSceneConfig.OuterIPPort.ToString();
+
+                            StartSceneConfig gateconfig = RealmGateAddressHelper.GetGate(5, 1);
+                            string gate = gateconfig.OuterIPPort.ToString();
+                            response.RealAndGate = real + "_" + gate;
+                        }
+
                         response.SmsVerifyType = 0; //0 mob  1 aliyun
                         reply();
                         await ETTask.CompletedTask;

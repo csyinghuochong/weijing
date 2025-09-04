@@ -63,7 +63,20 @@ namespace ET
             if (GlobalHelp.GetPlatform() == 7)
             {
                 Game.Scene.AddComponent<GooglePurchasingComponent>();
+                ServerHelper.InitServerList("StartConfig/Google");
             }
+            else
+            {
+                if (GlobalHelp.IsOutNetMode)
+                {
+                    ServerHelper.InitServerList("StartConfig/Beta");
+                }
+                else
+                {
+                    ServerHelper.InitServerList("StartConfig/Localhost");
+                }
+            }
+            Log.ILog.Debug($"ServerItems.:{ServerHelper.GetServerList().Count}");
 
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(Read);
             

@@ -94,17 +94,6 @@ namespace ET
         public static void DeleteRole(this DBCacheComponent self, long unitId)
         {
             self.Delete(unitId);
-
-            //长期离线玩家移除
-            if (ConfigLoader.RemovePlayer)
-            {
-                Log.Console($"长期离线，移除玩家22: {self.DomainZone()}  {unitId}");
-                List<string> allComponets = DBHelper.GetAllUnitComponent();
-                for (int i = 0; i < allComponets.Count; i++)
-                {
-                    Game.Scene.GetComponent<DBComponent>().Remove<Entity>(self.DomainZone(), unitId, allComponets[i]).Coroutine();
-                }
-            }
         }
 
         public static async ETTask<T> Get<T>(this DBCacheComponent self, long unitId) where T : Entity

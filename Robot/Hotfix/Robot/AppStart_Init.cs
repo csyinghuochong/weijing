@@ -38,6 +38,10 @@ namespace ET
             StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
             Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
 
+            Console.WriteLine($"Game.Options.StartConfig:  {Game.Options.StartConfig}");
+            ServerHelper.InitServerList(Game.Options.StartConfig);
+            Console.WriteLine($"ServerItems.Count:  {ServerHelper.GetServerList().Count}");
+
             var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
             foreach (StartSceneConfig startConfig in processScenes)
             {

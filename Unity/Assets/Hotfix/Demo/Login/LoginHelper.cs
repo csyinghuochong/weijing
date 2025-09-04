@@ -185,6 +185,19 @@ namespace ET
                 return r2CLogin.Error;
             }
 
+            if (plaform == 7)
+            {
+                //r2CLogin.GateAddress:  39.96.194.143:20567
+                Log.ILog.Debug($"r2CLogin.GateAddress: plaform == 7 {r2CLogin.GateAddress}");
+
+                string[] ipinfos = r2CLogin.GateAddress.Split(":");
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerGoogle).AddressList;
+                r2CLogin.GateAddress = $"{xxc[0]}:{ipinfos[1]}";
+
+                //HintHelp.GetInstance().ShowHint($"switchip:  {xxc[0]}");
+            }
+            Log.ILog.Debug($"r2CLogin.GateAddress:  {r2CLogin.GateAddress}");
+
             Session gateSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(r2CLogin.GateAddress));
             gateSession.AddComponent<PingComponent>();
             zoneScene.GetComponent<SessionComponent>().Session = gateSession;
