@@ -66,7 +66,7 @@ namespace ET
 
                 MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();        
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(request.SkillID);
-                if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace)
+                if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace && !ComHelp.IsInnerNet())
                 {
 
                     if (unit.GetComponent<SkillSetComponent>().GetBySkillID(request.SkillID) == null
