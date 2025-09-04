@@ -190,7 +190,7 @@ namespace ET
                 //r2CLogin.GateAddress:  39.96.194.143:20567
                 Log.ILog.Debug($"r2CLogin.GateAddress: plaform == 7 {r2CLogin.GateAddress}");
 
-                string[] ipinfos = r2CLogin.GateAddress.Split(":");
+                string[] ipinfos = r2CLogin.GateAddress.Split(':');
                 IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerGoogle).AddressList;
                 r2CLogin.GateAddress = $"{xxc[0]}:{ipinfos[1]}";
 
