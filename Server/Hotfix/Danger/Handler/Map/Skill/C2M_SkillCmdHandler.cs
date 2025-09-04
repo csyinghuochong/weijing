@@ -19,7 +19,7 @@ namespace ET
                 }
                 if (juexingid == request.SkillID)
                 {
-                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.JueXingAnger) < 500)
+                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.JueXingAnger) < 500 && !ComHelp.IsInnerNet())
                     {
                         response.Error = ErrorCode.Error_AngleNotEnough;
                         reply();
