@@ -18,6 +18,7 @@ namespace ET
             "qq1DCADAC180C577AEDE05D15B788AE770",   //唐 qq
             "0_tangchunguang",    //渠道测试
             "_000bGbtVOqK4dtQMLPjSh1ZDyfmbmhQIAbQ",
+            "115042653365711142718",   //google
         };
 
         public static List<long> BanChatPlayer = new List<long>()
