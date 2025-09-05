@@ -42,7 +42,6 @@ using UnityEngine.SocialPlatforms;
 
 using UnityEngine.Android;
 #endif
-
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
 	using TapSDK.Login;
@@ -1246,19 +1245,25 @@ namespace ET
 
 		public void OnSignIn()
 		{
+            Debug.Log("Calling SignIn");
+
+
+#if UNITY_EDITOR
+            this.OnGoogleSignInHandler?.Invoke("115042653365711142718");
+#else
 			this.InitGoogleSignInConfiguration();
 
 			GoogleSignIn.Configuration = configuration;
 			GoogleSignIn.Configuration.UseGameSignIn = false;
 			GoogleSignIn.Configuration.RequestIdToken = true;
 
-			Debug.Log("Calling SignIn");
-
 			// 加TaskScheduler.FromCurrentSynchronizationContext()，不然可能会程序破溃，https://github.com/googlesamples/google-signin-unity/issues/193
 			GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished, TaskScheduler.FromCurrentSynchronizationContext());
-		}
+#endif
 
-		public void OnSignOut()
+        }
+
+        public void OnSignOut()
 		{
 			this.InitGoogleSignInConfiguration();
 			
@@ -1341,7 +1346,7 @@ namespace ET
 #endif
 #endif
 
-        public void SignInWithApple(string oldaccount)
+			public void SignInWithApple(string oldaccount)
         {
 			Log.ILog.Debug($"SignInWithApple Begin");
             var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);

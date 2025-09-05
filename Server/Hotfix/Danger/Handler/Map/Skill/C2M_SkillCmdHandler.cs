@@ -19,9 +19,6 @@ namespace ET
                 }
                 if (juexingid == request.SkillID)
                 {
-
-                    Console.WriteLine($"ComHelp.IsInnerNet:  {ComHelp.IsInnerNet()}");
-
                     if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.JueXingAnger) < 500 && !ComHelp.IsInnerNet())
                     {
                         response.Error = ErrorCode.Error_AngleNotEnough;

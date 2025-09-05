@@ -26,7 +26,7 @@ namespace ET
                         long serverTime = TimeHelper.ServerNow();
                         List<ServerItem> serverItems = ServerHelper.GetServerList();
 
-                        Console.WriteLine($"C2A_ServerList: ServerItems {ServerHelper.GetServerList().Count}");
+                        //Console.WriteLine($"C2A_ServerList: ServerItems {ServerHelper.GetServerList().Count}");
 
                         response.ServerItems.Clear();
                         for (int i = 0; i < serverItems.Count; i++)
