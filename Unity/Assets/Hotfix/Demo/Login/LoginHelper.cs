@@ -374,8 +374,16 @@ namespace ET
                 //{
                 //    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 //}
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode,platform, serverid)).AddressList;
-                address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+
+                if (platform == 7 || ServerHelper.IsGoogleServer(serverid))
+                {
+                    address = $"{ServerHelper.LogicServerGoogle}:{GetAccountCenterPort(versionCode)}";
+                }
+                else
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode, platform, serverid)).AddressList;
+                    address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                }
 
                 //走的中心服
 
