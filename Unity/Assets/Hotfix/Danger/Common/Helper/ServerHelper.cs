@@ -428,11 +428,10 @@ namespace ET
             //google服务器
             if (startConfig.Contains("Google"))
             {
-
-
                 //谷歌服务器
                 //2025/09/03 19:00:00 1756897200000 新区 ValorArena 171
                 List<int> googleservers = ConfigHelper.GoogleServerList;
+                ip = GetLogicServer(false, VersionMode.Beta, 7, googleservers[0]);
                 serverItems_1.Add(new ServerItem() { ServerId = googleservers[0], ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
             }
 
