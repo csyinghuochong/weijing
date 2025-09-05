@@ -88,7 +88,7 @@ namespace ET
             unit.BulletMoveToAsync(target).Coroutine();
             this.SkillExcuteNum--;
 
-            this.UnitTargetPos = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, target);
+            this.UnitTargetPos = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom,this.TheUnitFrom.Position, target);
             if (this.isChonFeng == 1)
             {
                 this.PushUnit(this.TheUnitFrom);

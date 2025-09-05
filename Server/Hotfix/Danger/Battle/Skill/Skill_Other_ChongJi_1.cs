@@ -55,7 +55,7 @@ namespace ET
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
-            this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
+            this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom,this.TheUnitFrom.Position, TargetPosition);
             this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
             this.NowPosition = this.TheUnitFrom.Position;
             this.TheUnitFrom.GetComponent<BuffManagerComponent>().AddBuffRecord(1, 1);

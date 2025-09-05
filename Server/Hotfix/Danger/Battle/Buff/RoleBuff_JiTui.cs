@@ -32,7 +32,7 @@ namespace ET
             Vector3 vector3 = theUnitBelongto.Position + dir * distance;
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;
-            this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto.Position, vector3);
+            this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto,theUnitBelongto.Position, vector3);
 
             theUnitBelongto.Stop(-1);
             theUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);

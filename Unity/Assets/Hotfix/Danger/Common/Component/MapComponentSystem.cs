@@ -54,44 +54,19 @@ namespace ET
 			}
 		}
 
-		public static Vector3 GetCanChongJiPath(this MapComponent self, Vector3 start, Vector3 target)
+		public static Vector3 GetCanChongJiPath(this MapComponent self, Unit unit, Vector3 start, Vector3 target)
 		{
-            ///////////1111111111
-            //return target;
-
-            ///////////222222222
-            //using var list = ListComponent<Vector3>.Create();
-            //Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list, 2);
-            //Vector3 dir = (target - start);
-            //float ange_1 = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
-
-            //if (list.Count > 2)
-            //{
-            //    for (int i = 1; i < list.Count; i++)
-            //    {
-            //        Vector3 dirteamp = (list[i] - start);
-            //        float ange_2 = Mathf.Rad2Deg(Mathf.Atan2(dirteamp.x, dirteamp.z));
-            //        if (Mathf.Abs(ange_1 - ange_2) >= 10)
-            //        {
-            //            return list[i];
-            //        }
-            //    }
-
-            //    return list[list.Count - 1];
-            //}
-            //else
-            //{
-            //    return start;
-            //}
-
-            ///////////33333333333
+           
             using var list = ListComponent<Vector3>.Create();
             Vector3 dir = (target - start).normalized;
             Vector3 tmm = start;
             while (true)
             {
                 Vector3 next = tmm + (1f * dir);
-                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, next, list, 2);
+
+                //Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, next, list, 2);
+                self.SearchPath(unit, next, list);
+
                 if (list.Count == 0 || list.Count == 1)
                 {
                     break;
@@ -114,13 +89,15 @@ namespace ET
             return tmm;
         }
 
-		public static Vector3 GetCanReachPath(this MapComponent self, Vector3 start, Vector3 target)
+		public static Vector3 GetCanReachPath(this MapComponent self, Unit unit, Vector3 start, Vector3 target)
 		{
             using var list = ListComponent<Vector3>.Create();
             Vector3 dir = (start - target).normalized;
             while (true)
             {
-                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, target, list, 2);
+                //Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, target, list, 2);
+                self.SearchPath( unit, target, list);
+
                 if (list.Count >= 2)
                 {
                     target = list[list.Count - 1];

@@ -352,7 +352,7 @@ namespace ET
             {
                 MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
                 Vector3 vector3 = new Vector3(skillInfos[0].PosX, skillInfos[0].PosY, skillInfos[0].PosZ);
-                Vector3 target3 = mapComponent.GetCanReachPath(unit.Position, vector3);
+                Vector3 target3 = mapComponent.GetCanReachPath(unit, unit.Position, vector3);
 
                 skillInfos[0].PosX = target3.x;
                 skillInfos[0].PosY = target3.y;

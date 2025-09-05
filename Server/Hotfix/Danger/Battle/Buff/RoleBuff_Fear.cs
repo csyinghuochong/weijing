@@ -18,7 +18,7 @@ namespace ET
             this.TargetPosition.y = this.TheUnitBelongto.Position.y;
             this.TargetPosition.z = this.TheUnitBelongto.Position.z + RandomHelper.RandomNumberFloat(-10, 10);
             this.TargetPosition = this.TheUnitBelongto.DomainScene().GetComponent<MapComponent>()
-                    .GetCanChongJiPath(this.TheUnitBelongto.Position, TargetPosition);
+                    .GetCanChongJiPath(theUnitBelongto, this.TheUnitBelongto.Position, TargetPosition);
             this.TheUnitBelongto.FindPathMoveToAsync(this.TargetPosition).Coroutine();
         }
 
@@ -35,7 +35,7 @@ namespace ET
                 this.TargetPosition.y = this.TheUnitBelongto.Position.y;
                 this.TargetPosition.z = this.TheUnitBelongto.Position.z + RandomHelper.RandomNumberFloat(-8, 8);
                 this.TargetPosition = this.TheUnitBelongto.DomainScene().GetComponent<MapComponent>()
-                        .GetCanReachPath(this.TheUnitBelongto.Position, TargetPosition);
+                        .GetCanReachPath(this.TheUnitBelongto, this.TheUnitBelongto.Position, TargetPosition);
                 this.TheUnitBelongto.FindPathMoveToAsync(this.TargetPosition).Coroutine();
             }
 
