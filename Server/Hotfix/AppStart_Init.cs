@@ -82,7 +82,10 @@ namespace ET
             
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
 
-            Game.Scene.AddComponent<RecastPathComponent>();
+            if (!Game.Options.StartConfig.Contains("Google"))
+            {
+                Game.Scene.AddComponent<RecastPathComponent>();
+            }
            
             //添加db数据库的链接
             //"mongodb://127.0.0.1:27017/", "ET"
