@@ -70,6 +70,7 @@ namespace ET
                 if (!serverdomain[0].Contains("127.0.0.1")
                  && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39")
+                 && !serverdomain[0].Contains("8.221.119.18")
                  && !serverdomain[0].Contains("47.94.107.92"))
                 {
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
