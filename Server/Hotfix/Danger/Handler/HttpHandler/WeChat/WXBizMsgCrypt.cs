@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
+﻿using ET;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 //using System.Web;
 using System.Security.Cryptography;
+using System.Text;
+using System.Xml;
 //-40001 ： 签名验证错误
 //-40002 :  xml解析失败
 //-40003 :  sha加密生成签名失败
@@ -217,6 +217,70 @@ namespace Tencent
             }
             sMsgSignature = hash;
             return 0;
+        }
+
+        public static bool GenarateSinature_2(string signature, string timestamp, string nonce)
+        {
+            ArrayList AL = new ArrayList();
+            AL.Add(ConfigData.sToken);
+            AL.Add(timestamp);
+            AL.Add(nonce);
+
+            AL.Sort(new DictionarySort());
+            string raw = "";
+            for (int i = 0; i < AL.Count; ++i)
+            {
+                raw += AL[i];
+            }
+
+            string hash = "";
+            try
+            {
+                // 使用 using 语句确保 SHA1 对象使用完后释放资源
+                using (SHA1 sha = SHA1.Create())
+                {
+                    ASCIIEncoding enc = new ASCIIEncoding();
+                    byte[] dataToHash = enc.GetBytes(raw);
+                    byte[] dataHashed = sha.ComputeHash(dataToHash);
+                    hash = BitConverter.ToString(dataHashed).Replace("-", "").ToLower();
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            Console.WriteLine($"hash:  {hash}");
+            return hash.Equals(signature);
+        }
+
+        /// <summary>
+        /// 验证微信服务器签名
+        /// </summary>
+        public static  bool VerifySignature(string signature, string timestamp, string nonce)
+        {
+            // 1. 将token、timestamp、nonce三个参数进行字典序排序
+            var parameters = new List<string> { ConfigData.sToken, timestamp, nonce };
+            parameters.Sort(StringComparer.Ordinal);
+
+            // 2. 将三个参数字符串拼接成一个字符串
+            string combined = string.Join("", parameters);
+
+            // 3. 进行SHA1加密
+            string computedSignature;
+            using (var sha1 = SHA1.Create())
+            {
+                byte[] hashBytes = sha1.ComputeHash(Encoding.UTF8.GetBytes(combined));
+                // 将字节数组转换为十六进制字符串
+                var sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.AppendFormat("{0:x2}", b);
+                }
+                computedSignature = sb.ToString();
+            }
+
+            // 4. 比较加密后的值与signature是否相等
+            return computedSignature.Equals(signature, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
