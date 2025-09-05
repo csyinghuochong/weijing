@@ -27,12 +27,13 @@ namespace ET
 
     public static class MapComponentSystem
 	{
-
 #if SERVER
-     
         public static void InitMapInfo(this MapComponent self, StartSceneConfig startSceneConfig=null)
 		{
-			Scene scene = self.DomainScene();
+            //self.OldNavMesh = !Game.Options.StartConfig.Contains("Google");
+            self.OldNavMesh = false;
+
+            Scene scene = self.DomainScene();
 			if (!scene.Name.Contains("Map"))
 			{
 				return;

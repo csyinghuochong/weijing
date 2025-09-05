@@ -33,5 +33,7 @@ namespace ET
         //public const string sAppID = "wx7854ea0905d50363";
         //public const string sAppSecret = "f54fcbc601209c2ba3500cd5f56e448c";
         //public const string sEncodingAESKey = "yinhuochongweijing666yinhuochongweijing666a";
+
+        public static bool OldNavMesh = true;
     }
 }

@@ -24,7 +24,9 @@ namespace ET
                     unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
                     break;
                 default:
-                    Log.Error("C2M_TowerFightBeginRequest22 request.SceneType=null");
+                    unit.DomainScene().GetComponent<SeasonTowerComponent>()?.BeginTower();
+                    unit.DomainScene().GetComponent<TowerComponent>()?.BeginTower();
+                    Log.Error($"C2M_TowerFightBeginRequest22 request.SceneType={request.SceneType}");
                     break;
             }
           
