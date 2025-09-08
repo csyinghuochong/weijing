@@ -14,10 +14,10 @@ using Tencent;
 
 namespace ET
 {
-
-
-    //http://39.96.194.143:20008/wechatOARecvMessage
-    [HttpHandler(SceneType.AccountCenter, "/wechatOARecvMessage")]
+    //只能支持80端口  
+    //LoginCenter       http://39.96.194.143:80/wechatOARecvMessage
+    //AccountCenter     http://39.96.194.143:20008/wechatOARecvMessage
+    [HttpHandler(SceneType.LoginCenter, "/wechatOARecvMessage")]
     public class HttpWeChatOAHandler : IHttpHandler
     {
 

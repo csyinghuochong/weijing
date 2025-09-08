@@ -20,6 +20,8 @@ namespace ET
                     {
                         continue;
                     }
+
+                    Console.WriteLine(s);   
                     self.Listener.Prefixes.Add(s);
                 }
 

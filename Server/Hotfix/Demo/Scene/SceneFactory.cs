@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 
 namespace ET
@@ -28,6 +29,10 @@ namespace ET
                     break;
                 case SceneType.LoginCenter:
                     scene.AddComponent<LoginInfoRecordComponent>();
+
+                    Console.WriteLine("scene.AddComponent<HttpComponent");
+                    scene.AddComponent<HttpComponent, string>($"http://*:80/");
+
                     break;
                 case SceneType.AccountCenter:
 

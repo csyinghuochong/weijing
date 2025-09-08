@@ -19,6 +19,11 @@ namespace ET
         /// </summary>
         public void Awake( )
         {
+            if (!ConfigData.OldNavMesh)
+            {
+                return;
+            }
+
             RecastInterface.Init();
 
             Dictionary<int, SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll();
@@ -114,6 +119,11 @@ namespace ET
 
         public void Update(int mapId)
         {
+            if (!ConfigData.OldNavMesh)
+            {
+                return;
+            }
+
             string path = $"../Config/RecastNavData/{mapId}.bin";
             LoadMapNavData(mapId, path.ToCharArray());
         }
