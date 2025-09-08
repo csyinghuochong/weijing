@@ -30,8 +30,6 @@ namespace ET
 #if SERVER
         public static void InitMapInfo(this MapComponent self, StartSceneConfig startSceneConfig=null)
 		{
-            self.OldNavMesh = !Game.Options.StartConfig.Contains("Google");
-
             Scene scene = self.DomainScene();
 			if (!scene.Name.Contains("Map"))
 			{
@@ -124,7 +122,7 @@ namespace ET
             {
                 return;
             }
-			if (self.OldNavMesh)
+			if (ConfigData.OldNavMesh)
 			{
 				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, unit.Position, target, result, unit.Type);
 			}

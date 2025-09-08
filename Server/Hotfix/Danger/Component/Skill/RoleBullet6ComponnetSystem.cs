@@ -88,11 +88,6 @@ namespace ET
                     continue;
                 }
 
-                if (MongoHelper.WuDiBullet && !ComHelp.IsInnerNet())
-                {
-                    continue;
-                }
-
                 if (!uu.IsCanBeAttack())
                 {
                     continue;
