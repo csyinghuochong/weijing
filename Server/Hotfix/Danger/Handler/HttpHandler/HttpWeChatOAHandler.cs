@@ -57,6 +57,33 @@ namespace ET
                 // 这里可以添加处理消息的逻辑
             }
 
+            string requestBody = "";
+
+            if (request.HasEntityBody)
+            {
+                using (StreamReader reader = new StreamReader(request.InputStream, request.ContentEncoding))
+                {
+                    requestBody = reader.ReadToEnd();
+                }
+
+                try
+                {
+                    Console.WriteLine($"HttpWeChatOAHandler.requestBody:  {requestBody}");
+                    // 假设包体是JSON格式，这里进行反序列化示例
+                    Dictionary<string, object> data = JsonSerializer.Deserialize<Dictionary<string, object>>(requestBody);
+                    //Console.WriteLine($"ToUserName: {data["ToUserName"]}");
+                    //Console.WriteLine($"FromUserName: {data["FromUserName"]}");
+                    //Console.WriteLine($"CreateTime: {data["CreateTime"]}");
+                    //Console.WriteLine($"MsgType: {data["MsgType"]}");
+                    //Console.WriteLine($"Event: {data["Event"]}");
+                    //Console.WriteLine($"debug_str: {data["debug_str"]}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error parsing JSON: {ex.Message}");
+                }
+            }
+
             // 3. 发送响应
             byte[] buffer = Encoding.UTF8.GetBytes(responseString);
             response.ContentLength64 = buffer.Length;
@@ -66,7 +93,9 @@ namespace ET
             {
                 await output.WriteAsync(buffer, 0, buffer.Length);
             }
-            response.Close();
+            //response.Close();
+
+
 
             await ETTask.CompletedTask;
         }
