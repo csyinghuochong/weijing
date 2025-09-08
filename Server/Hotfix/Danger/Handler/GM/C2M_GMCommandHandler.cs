@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MsgCryptTest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -175,6 +176,19 @@ namespace ET
 					unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_MaxAct_Add, addAck);
 					return;
 				}
+				if (message.GMMsg.Contains("#wechattoken"))
+				{
+                    Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+                    keyValuePairs.Add("grant_type", "client_credential");
+                    keyValuePairs.Add("appid", ConfigData.sAppID);
+                    keyValuePairs.Add("secret", ConfigData.sAppSecret);
+                    string requestBody = await WXSample.OnGetAccessToken("https://api.weixin.qq.com/cgi-bin/token", keyValuePairs);
+					Log.Debug($"wechattoken_requestBody:  {requestBody}");
+                    Console.WriteLine($"wechattoken_requestBody:  {requestBody}");
+                    //wechattoken_requestBody:  {"access_token":"95_-mqddzTt-bGzxjgFpgRzNhG2DNQA1N_KdfUmAwRy2VduhCjwejaGpl-Plvs05NIoPu-kuc-yx0kyziOOSoP88WEdX3bVEaS_OZTPuw20u8-rzFdzy_esO_R0SXQTBOiAHAYGT","expires_in":7200}
+                    
+                    return;
+                }
 				switch (int.Parse(commands[0]))
 				{
 					case 1:             //新增道具1#12000003#200 【添加道具/道具id/道具数量】
