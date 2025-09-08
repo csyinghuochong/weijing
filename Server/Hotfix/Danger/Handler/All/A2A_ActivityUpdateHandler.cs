@@ -55,25 +55,11 @@ namespace ET
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    //电信
-                    Console.WriteLine("SendSmsVerifyCode.Send 19974071056");
-                    Sample.Send("19974071056", 1, 1);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-                    Sample.Send("19974071056", 1, 2);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-
                     //移动
                     Console.WriteLine("SendSmsVerifyCode.Send 18319670288");
                     Sample.Send("18319670288", 1, 1);
                     await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
                     Sample.Send("18319670288", 1, 2);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-
-                    //联通
-                    Console.WriteLine("SendSmsVerifyCode.Send 18652422521");
-                    Sample.Send("18652422521", 1, 1);
-                    await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
-                    Sample.Send("18652422521", 1, 2);
                     await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 2);
                 }
             }
