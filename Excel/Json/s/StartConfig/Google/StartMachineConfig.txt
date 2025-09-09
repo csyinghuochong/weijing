@@ -1,2 +1,2 @@
-{"list":[{"_t":"StartMachineConfig","_id":1,"InnerIP":"172.31.183.49","OuterIP":"8.221.119.18","WatcherPort":"20302"},
+{"list":[{"_t":"StartMachineConfig","_id":1,"InnerIP":"172.31.44.172","OuterIP":"34.220.221.8","WatcherPort":"20302"},
 ]}
