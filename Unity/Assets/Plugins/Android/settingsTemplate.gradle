@@ -25,6 +25,12 @@ dependencyResolutionManagement {
 // Android Resolver Repos Start
         def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
         maven {
+            url "https://repo.maven.apache.org/maven2" // Assets/TapSDK/Compliance/Mobile/Editor/NativeDependencies.xml:6, Assets/TapSDK/Core/Mobile/Editor/NativeDependencies.xml:6, Assets/TapSDK/Login/Mobile/Editor/NativeDependencies.xml:6
+        }
+        maven {
+            url (unityProjectPath + "/Assets/GeneratedLocalRepo/GooglePlayGames/com.google.play.games/Editor/m2repository") // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
+        }
+        maven {
             url (unityProjectPath + "/Assets/GeneratedLocalRepo/GoogleSignIn/Editor/m2repository") // Assets/GoogleSignIn/Editor/GoogleSignInSupportDependencies.xml:9
         }
         mavenLocal()
