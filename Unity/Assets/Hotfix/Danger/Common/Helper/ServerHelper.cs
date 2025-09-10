@@ -75,8 +75,10 @@ namespace ET
        
         public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
 
-        //ec2-52-24-66-200.us-west-2.compute.amazonaws.com
-        public const string LogicServerGoogle = "ec2-34-220-221-8.us-west-2.compute.amazonaws.com";    //"othercountry.weijinggame.com";
+        //ec2-52-35-43-8.us-west-2.compute.amazonaws.com    52.35.43.8      172.31.44.172  亚马逊 美国 -俄勒冈州
+        //ec2-98-84-156-7.compute-1.amazonaws.com           98.84.156.7     172.31.21.19   亚马逊 美国 -弗吉尼亚州
+        //othercountry2.weijinggame.com                     8.221.119.18    172.31.183.49  阿里云 美国 -弗吉尼亚州
+        public const string LogicServerGoogle = "ec2-98-84-156-7.compute-1.amazonaws.com";    //"othercountry.weijinggame.com";
         public const string LogicServerBanHao = "47.94.107.92";
 
         public static string GetLogicServer(bool innerNet, VersionMode versionMode, int platform = 0, int serverid = 0)
