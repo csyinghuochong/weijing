@@ -35,8 +35,8 @@ using System.Runtime.InteropServices;
 
 #if Google7
 using Google;
-// using GooglePlayGames;
-// using GooglePlayGames.BasicApi;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
 #endif
 
@@ -183,7 +183,7 @@ namespace ET
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
 			Options.Instance.Develop =  OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel =  OueNetMode ? 6 : 1;
+			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
 
             Log.ILog.Debug("unity111  Awake");
             Log.ILog.Debug($"Application.persistentDataPath: {Application.persistentDataPath}");
@@ -1182,51 +1182,50 @@ namespace ET
 #if UNITY_ANDROID
 #if Google7
 
+            // 新的登陆方式
             // 配置登录选项，请求用户信息权限
-            // PlayGamesPlatform.Activate();
-            // PlayGamesPlatform.DebugLogEnabled = true;
-            // PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            PlayGamesPlatform.Activate();
+            PlayGamesPlatform.DebugLogEnabled = true;
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
-            OnSignIn();
-
+            //旧的登陆方式
+            //OnSignIn();
 #endif
 #endif
-		}
+        }
 
         public void GooglePlayGamesSignin()
         {
-			//OnGoogleSignIn();
 			OnGoolgePlaySignIn();
         }
 
 #if UNITY_ANDROID
 #if Google7
 
-		// public void ProcessAuthentication(SignInStatus status)
-		// {
-		// 	if (status == SignInStatus.Success)
-		// 	{
-		// 		// Continue with Play Games Services
-		// 		Debug.Log("Google登录成功！Social.localUser.id: " + Social.localUser.id);
-		// 		Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
-		// 		Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
-		// 		Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
-		// 		Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
-		//
-		// 		// 获取ID令牌（用于服务器验证）
-		// 		this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
-		// 	}
-		// 	else
-		// 	{
-		// 		// Disable your integration with Play Games Services or show a login button
-		// 		// to ask users to sign-in. Clicking it should call
-		// 		// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
-		// 		this.OnGoogleSignInHandler?.Invoke(string.Empty);
-		// 		Debug.Log($"Google登录失败！:  {status}");
-		// 	}
-		//
-		// }
-		
+		public void ProcessAuthentication(SignInStatus status)
+		{
+			if (status == SignInStatus.Success)
+			{
+				// Continue with Play Games Services
+				Debug.Log("Google登录成功！Social.localUser.id: " + Social.localUser.id);
+				Debug.Log("Social.localUser.userName: " + Social.localUser.userName);
+				Debug.Log("PlayGamesPlatform.Instance.GetUserDisplayName: " + PlayGamesPlatform.Instance.GetUserDisplayName());
+				Debug.Log("PlayGamesPlatform.Instance.GetUserId: " + PlayGamesPlatform.Instance.GetUserId());
+				Debug.Log("PlayGamesPlatform.Instance.GetUserImageUrl: " + PlayGamesPlatform.Instance.GetUserImageUrl());
+
+				// 获取ID令牌（用于服务器验证）
+				this.OnGoogleSignInHandler?.Invoke(Social.localUser.id);
+			}
+			else
+			{
+				// Disable your integration with Play Games Services or show a login button
+				// to ask users to sign-in. Clicking it should call
+				// PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+				this.OnGoogleSignInHandler?.Invoke(string.Empty);
+				Debug.Log($"Google登录失败！:  {status}");
+			}
+		}
+
 		private GoogleSignInConfiguration configuration;
 
 		public void InitGoogleSignInConfiguration()

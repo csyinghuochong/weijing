@@ -12,7 +12,8 @@
         "Unity.Services.Core",
         "Unity.Services.Core.Environments",
         "Google.SignIn",
-        "TapSDK.Login.Runtime"
+        "TapSDK.Login.Runtime",
+        "Google.Play.Games"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
