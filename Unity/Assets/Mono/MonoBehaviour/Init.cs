@@ -1174,17 +1174,17 @@ namespace ET
         private void OnGoolgePlaySignIn() 
 		{
             Debug.Log("GooglePlayGamesSignin");
-#if UNITY_EDITOR
-            //this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
-            //return;
-#endif
+//#if UNITY_EDITOR
+//			this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
+//			return;
+//#endif
 
 #if UNITY_ANDROID
 #if Google7
 
-            // 新的登陆方式
-            // 配置登录选项，请求用户信息权限
-            PlayGamesPlatform.Activate();
+			// 新的登陆方式
+			// 配置登录选项，请求用户信息权限
+			PlayGamesPlatform.Activate();
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
