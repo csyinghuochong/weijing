@@ -584,7 +584,7 @@ namespace ET
                     itemID = 14000004;
                     break;
                 default:
-                    Log.Error($"{occTwo}  itemID ==0");
+                    Log.Debug($"{occTwo}  itemID ==0");
                     break;
             }
 
