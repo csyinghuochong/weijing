@@ -129,7 +129,7 @@ namespace ET
         public static async ETTask OnRquestBingPhone(this UIPhoneCodeComponent self, string phone)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, GlobalHelp.GetPlatform(), accountInfoComponent.ServerId)).AddressList;
+            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode)).AddressList;
             //走的中心服
             string address = GlobalHelp.IsOutNetMode ? $"{xxc[0]}:{LoginHelper.GetAccountCenterPort(GlobalHelp.VersionMode)}" : $"127.0.0.1:{LoginHelper.GetAccountCenterPort(GlobalHelp.VersionMode)}";
            

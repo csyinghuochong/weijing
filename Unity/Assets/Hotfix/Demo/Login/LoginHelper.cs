@@ -343,9 +343,9 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_DeleteAccountResponse r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode, platform, serverid)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet)).AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_DeleteAccountResponse)await session.Call(new C2Center_DeleteAccountRequest { Account = account, Password = password });
@@ -375,8 +375,8 @@ namespace ET
                 //    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 //}
 
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode, platform, serverid)).AddressList;
-                address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet)).AddressList;
+                address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionCode)}";
 
                 //走的中心服
 
@@ -454,11 +454,11 @@ namespace ET
                 string address = string.Empty;
                 if (innerNet)
                 {
-                    address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
+                    address = $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionMode)}";
                 }
                 else
                 {
-                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode, platform, serverid)).AddressList;
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet)).AddressList;
                     address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 }
                 
@@ -487,11 +487,11 @@ namespace ET
                 string address = string.Empty;
                 if (innerNet)
                 {
-                    address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
+                    address = $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionMode)}";
                 }
                 else
                 {
-                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode, platform, serverid)).AddressList;
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet)).AddressList;
                     address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 }
                 //IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(innerNet, versionMode)).AddressList;
@@ -517,7 +517,7 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(false, versionMode, platform, serverid)).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(false)).AddressList;
 
                 string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
@@ -622,7 +622,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
+                string address = $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { Account = account });

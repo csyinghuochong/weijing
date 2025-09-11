@@ -1391,7 +1391,7 @@ namespace ET
 
         public static int GetCrateDay(this UserInfoComponent self)
         {
-            return  ServerHelper.DateDiff_Time(TimeHelper.ServerNow(), self.UserInfo.CreateTime);
+            return ServerHelper.DateDiff_Time(TimeHelper.ServerNow(), self.UserInfo.CreateTime);
         }
 
         /// <summary>

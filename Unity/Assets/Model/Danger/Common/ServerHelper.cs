@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -6,7 +6,13 @@ namespace ET
     public static class ServerHelper
     {
 
+        private static int Platform = -1;   //平台
+
         private static List<ServerItem> ServerItems = new List<ServerItem>();
+
+        //public static string LocalIp = "192.168.1.16"; 
+        public static string LocalIp = "127.0.0.1";
+
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
         //Beta = 1,               //公开测试版
@@ -31,18 +37,13 @@ namespace ET
             return serverItem;
         }
 
- 
-        public static bool IsGoogleServer(int zone)
-        {
-            return ConfigHelper.GoogleServerList.Contains(zone);
-        }
 
         public static long GetOpenServerTime(bool innerNet, int zone)
         {
             ServerItem serverItem = GetGetServerItem(innerNet, zone);
             if (serverItem == null)
             {
-                Log.Debug($"serverItem == null {zone}");
+                Log.Error($"serverItem == null {zone}");
                 return 0;
             }
             return serverItem.ServerOpenTime;
@@ -72,7 +73,7 @@ namespace ET
             return days;
         }
 
-       
+
         public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
 
         //ec2-52-35-43-8.us-west-2.compute.amazonaws.com    52.35.43.8      172.31.44.172  亚马逊 美国 -俄勒冈州
@@ -82,13 +83,18 @@ namespace ET
         public const string LogicServerGoogle = "47.251.252.96";    //"othercountry.weijinggame.com";
         public const string LogicServerBanHao = "47.94.107.92";
 
-        public static string GetLogicServer(bool innerNet, VersionMode versionMode, int platform = 0, int serverid = 0)
+        public static string GetLogicServer(bool innerNet)
         {
-            if (platform == 7 || IsGoogleServer(serverid))
+            if (Platform == -1)
             {
-                return innerNet ? ComHelp.LocalIp : LogicServerGoogle;
+                Log.Error("Platform == -1");
             }
-            return innerNet ? ComHelp.LocalIp : LogicServer;
+
+            if (Platform == 7)
+            {
+                return innerNet ? LocalIp : LogicServerGoogle;
+            }
+            return innerNet ? LocalIp : LogicServer;
             //switch (versionMode)
             //{
             //    case VersionMode.BanHao:
@@ -192,13 +198,15 @@ namespace ET
             ///国内服务器
             if (startConfig.Contains("Localhost") || startConfig.Contains("Beta"))
             {
+                Platform = 0;
+
                 if (startConfig.Contains("Localhost"))
                 {
-                    ip = GetLogicServer(true, VersionMode.Beta, 0, 0);
+                    ip = GetLogicServer(true);
                 }
                 if (startConfig.Contains("Beta"))
                 {
-                    ip = GetLogicServer(false, VersionMode.Beta, 0, 0);
+                    ip = GetLogicServer(false);
                 }
 
 
@@ -414,30 +422,30 @@ namespace ET
                 //2025/09/05 19:00:00 1757070000000 合区 繁花谷-萤火森林   165/166
                 serverItems_1.Add(new ServerItem() { ServerId = 165, ServerIp = $"{ip}:20375", ServerName = "繁花谷", ServerOpenTime = 1753441200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 166, ServerIp = $"{ip}:20375", ServerName = "萤火森林", ServerOpenTime = 1754046000000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
-                
-                
+
+
                 serverItems_1.Add(new ServerItem() { ServerId = 167, ServerIp = $"{ip}:20555", ServerName = "青云之巅", ServerOpenTime = 1754650800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 168, ServerIp = $"{ip}:20505", ServerName = "时光之歌", ServerOpenTime = 1755255600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 169, ServerIp = $"{ip}:20515", ServerName = "决战之巅", ServerOpenTime = 1755860400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 170, ServerIp = $"{ip}:20565", ServerName = "迷雾森境", ServerOpenTime = 1756465200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2025/09/05 19:00:00 1757070000000 合区 紫禁之巅-龙裔国度 147/151
-                //2025/09/05 19:00:00 1757070000000 合区 星辰之巅 - 时光镇 159/161
-                //2025/09/05 19:00:00 1757070000000 合区 破晓战歌-翡翠仙境 163/164
-                //2025/09/05 19:00:00 1757070000000 合区 繁花谷-萤火森林   165/166
-                //2025/09/05 19:00:00 1757070000000 新区 星辰殿堂 172
                 serverItems_1.Add(new ServerItem() { ServerId = 172, ServerIp = $"{ip}:20585", ServerName = "星辰殿堂", ServerOpenTime = 1757070000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2025/09/12 19:00:00 1757674800000 合区 xx-xx   xx/xx
+                //2025/09/12 19:00:00 1757674800000 新区 新区新区 173
+                serverItems_1.Add(new ServerItem() { ServerId = 173, ServerIp = $"{ip}:20415", ServerName = "新区新区", ServerOpenTime = 1757674800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
             if (startConfig.Contains("Google"))
             {
+                Platform = 7;
+
                 //谷歌服务器
                 //2025/09/03 19:00:00 1756897200000 新区 ValorArena 171
-                List<int> googleservers = ConfigHelper.GoogleServerList;
-                ip = GetLogicServer(false, VersionMode.Beta, 7, googleservers[0]);
-                serverItems_1.Add(new ServerItem() { ServerId = googleservers[0], ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
+
+                ip = GetLogicServer(false);
+                serverItems_1.Add(new ServerItem() { ServerId = 171, ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
             }
 
 
@@ -461,8 +469,12 @@ namespace ET
 
         }
 
+        public static bool IsGoogleServer(int zone)
+        {
+            return Platform == 7;
+        }
 
-        public static List<ServerItem> GetServerList( )
+        public static List<ServerItem> GetServerList()
         {
 #if NOT_UNITY
             if (ServerItems.Count == 0)
@@ -473,5 +485,10 @@ namespace ET
             return ServerItems;
         }
 
+
+        public static void SetServerList(List<ServerItem> serverItems)
+        {
+            ServerItems = serverItems;
+        }
     }
 }
