@@ -88,6 +88,7 @@ namespace ET
             if (Platform == -1)
             {
                 Log.Error("Platform == -1");
+                Console.WriteLine("Platform == -1");
             }
 
             if (Platform == 7)
@@ -432,8 +433,8 @@ namespace ET
 
 
                 //2025/09/12 19:00:00 1757674800000 合区 xx-xx   xx/xx
-                //2025/09/12 19:00:00 1757674800000 新区 新区新区 173
-                serverItems_1.Add(new ServerItem() { ServerId = 173, ServerIp = $"{ip}:20415", ServerName = "新区新区", ServerOpenTime = 1757674800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                //2025/09/12 19:00:00 1757674800000 新区 童话森林 173
+                serverItems_1.Add(new ServerItem() { ServerId = 173, ServerIp = $"{ip}:20415", ServerName = "童话森林", ServerOpenTime = 1757674800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
@@ -446,6 +447,11 @@ namespace ET
 
                 ip = GetLogicServer(false);
                 serverItems_1.Add(new ServerItem() { ServerId = 171, ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
+            }
+
+            if (Platform == -1)
+            {
+                Log.Error("Platform == -1");
             }
 
 
