@@ -24,7 +24,8 @@ using Douyin;
 using Douyin.Game;
 
 using System.Threading.Tasks;
-
+using UnityEngine.Android;
+using UnityEngine.Networking;
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -40,13 +41,10 @@ using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
 #endif
 
-using UnityEngine.Android;
-using UnityEngine.Networking;
-
 #endif
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
-	using TapSDK.Login;
+using TapSDK.Login;
 #endif
 #endif
 
