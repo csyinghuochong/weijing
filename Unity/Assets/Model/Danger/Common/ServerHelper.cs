@@ -87,7 +87,6 @@ namespace ET
         {
             if (Platform == -1)
             {
-                Log.Error("Platform == -1");
                 Console.WriteLine("Platform == -1");
             }
 
