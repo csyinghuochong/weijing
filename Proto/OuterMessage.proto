@@ -214,6 +214,12 @@ message C2G_EnterGame // IRequest
 	int32 Root = 9;
 	int32 IsRecharge = 10;
 	string DeviceID = 11;
+	//当前系统设置语言
+    int32 CurSystemLanguage = 12;     
+		//系统设置的区域
+    string CurSystemRegionCode = 13;
+		//ip地址对应的区域
+    string ByIPRegionCode = 14;
 }
 
 message G2C_EnterGame // IResponse

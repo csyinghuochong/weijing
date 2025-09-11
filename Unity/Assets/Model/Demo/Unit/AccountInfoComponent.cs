@@ -57,6 +57,13 @@ namespace ET
 		public string DeviceID = string.Empty;
         public string OAID = string.Empty;
 
+        //当前系统设置语言
+        public int CurSystemLanguage;
+        //系统设置的区域
+        public string CurSystemRegionCode;
+        //ip地址对应的区域
+        public string ByIPRegionCode;
+
 
         public int GetRecharge()
 		{

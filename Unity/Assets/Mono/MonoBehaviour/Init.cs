@@ -158,6 +158,15 @@ namespace ET
 		public int IsRoot;
         public int IsEmulator;
 
+
+		//当前系统设置语言
+        public int CurSystemLanguage;
+		//系统设置的区域
+        public string CurSystemRegionCode;
+		//ip地址对应的区域
+        public string ByIPRegionCode;
+
+
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
@@ -264,26 +273,42 @@ namespace ET
                 Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported false");
             }
 
+			int language = 0;
             SystemLanguage currentLanguage = Application.systemLanguage;
             switch (currentLanguage)
             {
                 case SystemLanguage.Chinese:
                 case SystemLanguage.ChineseSimplified:
                 case SystemLanguage.ChineseTraditional:
-                    Log.ILog.Debug("当前语言是中文");
+                    Log.ILog.Debug("系统设置 当前语言是中文");
+					language = 0;
                     break;
                 case SystemLanguage.English:
-                    Log.ILog.Debug("当前语言是英文");
+                    Log.ILog.Debug("系统设置 当前语言是英文");
+                    language = 1;
                     break;
                 // 可以继续添加其他语言的判断
                 default:
-                    Log.ILog.Debug($"当前语言是 {currentLanguage}");
+                    Log.ILog.Debug($"系统设置 当前语言是 {currentLanguage}");
+                    language = 1;
                     break;
             }
+			CurSystemLanguage = (int)currentLanguage;
 
             // 获取系统区域代码（如"CN"代表中国，"US"代表美国）
             string regionCode = System.Globalization.RegionInfo.CurrentRegion.TwoLetterISORegionName;
-            Log.ILog.Debug($"系统区域代码：{regionCode}");
+            Log.ILog.Debug($"系统设置 系统区域代码：{regionCode}");  //国际标准化组织 (ISO) 代码
+			CurSystemRegionCode = regionCode;
+
+            //未设置
+            if (0 == PlayerPrefs.GetInt("WJa_LanguageSet"))
+            {
+                if (language == 1)
+                {
+                    PlayerPrefs.SetInt("WJa_Language", 1);
+                    Log.ILog.Debug($"默认设置为英文！");
+                }
+            }
 
             StartCoroutine(GetCountryByIP());
 
@@ -325,8 +350,16 @@ namespace ET
                     // 解析JSON结果
                     string json = webRequest.downloadHandler.text;
                     IpApiResponse response = JsonUtility.FromJson<IpApiResponse>(json);
-					Log.ILog.Debug($"GetCountryByIP:  {json}");
-                    Log.ILog.Debug($"玩家所在国家：{response.country}（代码：{response.countryCode}）");
+
+                    //response.country  国际标准化组织 (ISO) 代码  United States（代码：US）
+                    //US - 美国
+                    //CN - 中国
+                    //GB - 英国（大不列颠及北爱尔兰联合王国）
+                    //FR - 法国
+                    //JP - 日本
+                    Log.ILog.Debug($"GetCountryByIP:  {json}");
+                    Log.ILog.Debug($"IP查询 玩家所在国家：{response.country}（代码：{response.countryCode}）");
+                    ByIPRegionCode = response.countryCode;
                 }
                 else
                 {

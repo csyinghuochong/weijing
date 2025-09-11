@@ -111,6 +111,13 @@ namespace ET
         public int LastSealTowerId;
 
 
+        //当前系统设置语言
+        public int CurSystemLanguage;
+        //系统设置的区域
+        public string CurSystemRegionCode;
+        //ip地址对应的区域
+        public string ByIPRegionCode;
+
         //（单独处理一下两个, 花费类型高的排在前面）
         //金币消耗
         public string GoldCost;

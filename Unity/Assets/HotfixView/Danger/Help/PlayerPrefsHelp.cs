@@ -28,6 +28,7 @@ namespace ET
         public static string CameraParams = "WJa_CameraParams";
         public static string RelinkRecord = "RelinkRecord";
         public static string Language = "WJa_Language";
+        public static string LanguageSet = "WJa_LanguageSet";   //0没设置  1已设置
 
         public static string LastAccount(string loginType)
         {

@@ -33,6 +33,7 @@ namespace ET
                 language = value;
                 IsChange = true;
                 PlayerPrefsHelp.SetInt(PlayerPrefsHelp.Language, value);
+                PlayerPrefsHelp.SetInt(PlayerPrefsHelp.LanguageSet, 1);
                 HintHelp.GetInstance().DataUpdate(DataType.LanguageUpdate);
             }
         }

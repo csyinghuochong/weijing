@@ -284,6 +284,13 @@ namespace ET
             self.DeviceID = deviceId;       
         }
 
+        public static void UpdateRegionCode(this DataCollationComponent self, int systemLanguage, string systemRegionCode, string byIPRegionCode)
+        {
+            self.CurSystemLanguage = systemLanguage;
+            self.CurSystemRegionCode = systemRegionCode;
+            self.ByIPRegionCode = byIPRegionCode;
+        }
+
 
         public static string GetDeviceID(this DataCollationComponent self)
         { 

@@ -269,6 +269,12 @@ namespace ET
 					EventType.TapTapGetOAID.Instance.ZoneScene = self.ZoneScene();
 					Game.EventSystem.PublishClass(EventType.TapTapGetOAID.Instance);
 				}
+                if (GlobalHelp.GetBigVersion() >= 24)
+                {
+                    Log.ILog.Debug("eventType.GetSysRegionInfo.Instance");
+                    EventType.GetSysRegionInfo.Instance.ZoneScene = self.ZoneScene();
+                    Game.EventSystem.PublishClass(EventType.GetSysRegionInfo.Instance);
+                }
             }
 
 

@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  OueNetMode: 1
+  OueNetMode: 0
   BigVersion: 24
   BigVersionIOS: 24
   CodeMode: 4
@@ -1351,6 +1351,9 @@ MonoBehaviour:
   Apk_Extension: 
   IsRoot: 0
   IsEmulator: 0
+  CurSystemLanguage: 0
+  CurSystemRegionCode: 
+  ByIPRegionCode: 
 --- !u!4 &575235020
 Transform:
   m_ObjectHideFlags: 0

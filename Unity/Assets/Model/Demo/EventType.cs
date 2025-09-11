@@ -947,6 +947,14 @@ namespace ET
             public string Account;
         }
 
+
+        //bigversion >= 24才可以获取
+        public class GetSysRegionInfo : DisposeObject
+        {
+            public static readonly GetSysRegionInfo Instance = new GetSysRegionInfo();
+            public Scene ZoneScene;
+        }
+
         public class TapTapSdkInit : DisposeObject
         {
             public static readonly TapTapSdkInit Instance = new TapTapSdkInit();

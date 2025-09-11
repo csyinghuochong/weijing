@@ -458,6 +458,18 @@ namespace ET
 		[ProtoMember(11)]
 		public string DeviceID { get; set; }
 
+//当前系统设置语言
+		[ProtoMember(12)]
+		public int CurSystemLanguage { get; set; }
+
+//系统设置的区域
+		[ProtoMember(13)]
+		public string CurSystemRegionCode { get; set; }
+
+//ip地址对应的区域
+		[ProtoMember(14)]
+		public string ByIPRegionCode { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

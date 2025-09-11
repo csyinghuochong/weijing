@@ -215,8 +215,24 @@ namespace ET
         {
             EventType.GoogleSignIn args = numerice as EventType.GoogleSignIn;
             Init init = GameObject.Find("Global").GetComponent<Init>();
+
             init.OnGoogleSignInHandler = args.AccesstokenHandler;
             init.GooglePlayGamesSignin();
+        }
+    }
+
+
+    public class Login_GetSysRegionInfo : AEventClass<EventType.GetSysRegionInfo>
+    {
+        protected override void Run(object numerice)
+        {
+            EventType.GetSysRegionInfo args = numerice as EventType.GetSysRegionInfo;
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+
+            AccountInfoComponent accountInfoComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();
+            accountInfoComponent.CurSystemLanguage = init.CurSystemLanguage;
+            accountInfoComponent.CurSystemRegionCode = init.CurSystemRegionCode;
+            accountInfoComponent.ByIPRegionCode = init.ByIPRegionCode;
         }
     }
 }

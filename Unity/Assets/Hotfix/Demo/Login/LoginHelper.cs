@@ -240,6 +240,9 @@ namespace ET
                     Root = accountInfoComponent.Root,
                     DeviceID = accountInfoComponent.DeviceID,
                     IsRecharge = accountInfoComponent.GetRecharge(),
+                    CurSystemLanguage = accountInfoComponent.CurSystemLanguage,
+                    CurSystemRegionCode = accountInfoComponent.CurSystemRegionCode,
+                    ByIPRegionCode = accountInfoComponent.ByIPRegionCode,
                 });
             }
             catch (Exception e)
