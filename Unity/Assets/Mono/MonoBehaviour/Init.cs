@@ -1174,10 +1174,10 @@ namespace ET
         private void OnGoolgePlaySignIn() 
 		{
             Debug.Log("GooglePlayGamesSignin");
-//#if UNITY_EDITOR
-//			this.OnGoogleSignInHandler?.Invoke("a_4181874258038047462");
-//			return;
-//#endif
+#if UNITY_EDITOR
+			this.OnGoogleSignInHandler?.Invoke("115042653365711142718");
+			return;
+#endif
 
 #if UNITY_ANDROID
 #if Google7
