@@ -41,6 +41,8 @@ using UnityEngine.SocialPlatforms;
 #endif
 
 using UnityEngine.Android;
+using UnityEngine.Networking;
+
 #endif
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
@@ -59,8 +61,16 @@ namespace ET
 		public int Fenxiangtype; 
 	}
 
-	// 1 mono模式 2 ILRuntime模式 3 mono热重载模式
-	public enum CodeMode
+    // 定义JSON解析模型
+    [System.Serializable]
+    public class IpApiResponse
+    {
+        public string country;      // 国家名称（如"China"）
+        public string countryCode;  // 国家代码（如"CN"）
+    }
+
+    // 1 mono模式 2 ILRuntime模式 3 mono热重载模式
+    public enum CodeMode
 	{
 		Mono = 1,
 		ILRuntime = 2,
@@ -133,6 +143,9 @@ namespace ET
 
         //google
         public string webClientId = "180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com";
+
+        // IP查询API地址（以ip-api为例）
+        private string ipApiUrl = "http://ip-api.com/json/?fields=country,countryCode";
 
         [HideInInspector]
         public int Platform = 0;
@@ -251,6 +264,28 @@ namespace ET
                 Log.ILog.Debug("AppleAuthManager.IsCurrentPlatformSupported false");
             }
 
+            SystemLanguage currentLanguage = Application.systemLanguage;
+            switch (currentLanguage)
+            {
+                case SystemLanguage.Chinese:
+                case SystemLanguage.ChineseSimplified:
+                case SystemLanguage.ChineseTraditional:
+                    Log.ILog.Debug("当前语言是中文");
+                    break;
+                case SystemLanguage.English:
+                    Log.ILog.Debug("当前语言是英文");
+                    break;
+                // 可以继续添加其他语言的判断
+                default:
+                    Log.ILog.Debug($"当前语言是 {currentLanguage}");
+                    break;
+            }
+
+            // 获取系统区域代码（如"CN"代表中国，"US"代表美国）
+            string regionCode = System.Globalization.RegionInfo.CurrentRegion.TwoLetterISORegionName;
+            Log.ILog.Debug($"系统区域代码：{regionCode}");
+
+            StartCoroutine(GetCountryByIP());
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -276,9 +311,31 @@ namespace ET
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
         }
-        
 
-		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
+
+        IEnumerator GetCountryByIP()
+        {
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(ipApiUrl))
+            {
+                // 发送请求
+                yield return webRequest.SendWebRequest();
+
+                if (webRequest.result == UnityWebRequest.Result.Success)
+                {
+                    // 解析JSON结果
+                    string json = webRequest.downloadHandler.text;
+                    IpApiResponse response = JsonUtility.FromJson<IpApiResponse>(json);
+					Log.ILog.Debug($"GetCountryByIP:  {json}");
+                    Log.ILog.Debug($"玩家所在国家：{response.country}（代码：{response.countryCode}）");
+                }
+                else
+                {
+                    Log.ILog.Debug($"IP查询失败：{webRequest.error}");
+                }
+            }
+        }
+
+        public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
 		{
 			if (type == LogType.Error || type == LogType.Assert
 					|| type == LogType.Exception)
