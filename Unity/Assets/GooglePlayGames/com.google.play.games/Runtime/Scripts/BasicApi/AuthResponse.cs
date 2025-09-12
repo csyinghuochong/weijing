@@ -91,7 +91,11 @@ namespace GooglePlayGames.BasicApi
 
         public override int GetHashCode()
         {
+#if UNITY_2022_1_OR_NEWER
             return HashCode.Combine(_grantedScopes, _authCode);
+#else
+            return 0;
+#endif
         }
 
         public override string ToString()
