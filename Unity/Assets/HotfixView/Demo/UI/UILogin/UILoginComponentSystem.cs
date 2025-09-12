@@ -27,6 +27,14 @@ namespace ET
                 int bigversion = GlobalHelp.GetBigVersion();
 				int platform = GlobalHelp.GetPlatform();
 
+                if (GlobalHelp.GetBigVersion() >= 23)
+                {
+                    Screen.autorotateToLandscapeLeft = true;
+                    Screen.autorotateToLandscapeRight = true;
+                    Screen.autorotateToPortrait = false;
+                    Screen.autorotateToPortraitUpsideDown = false;
+                    Screen.orientation = ScreenOrientation.AutoRotation;
+                }
 
 #if UNITY_IPHONE || UNITY_IOS
 				if (bigversion == 24 && Application.version == "2.4.0")
@@ -37,15 +45,6 @@ namespace ET
 				{
 					self.IOSReview = false;
 				}
-				
-				if (GlobalHelp.GetBigVersion() >= 23)
-				{
-                    Screen.autorotateToLandscapeLeft = true;
-                    Screen.autorotateToLandscapeRight = true;
-					Screen.autorotateToPortrait = false;
-					Screen.autorotateToPortraitUpsideDown = false;
-					Screen.orientation = ScreenOrientation.AutoRotation;
-                }
 #endif
 
 #if UNITY_ANDROID
