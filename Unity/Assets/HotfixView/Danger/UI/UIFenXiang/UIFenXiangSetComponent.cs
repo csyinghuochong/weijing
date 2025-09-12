@@ -96,6 +96,7 @@ namespace ET
 
         public static void  OpenAddQQ(this UIFenXiangSetComponent self) 
         {
+            ///sync  UIQQAddSetComponent
             Application.OpenURL("https://qm.qq.com/q/NYo62GmJSc");
         }
 
