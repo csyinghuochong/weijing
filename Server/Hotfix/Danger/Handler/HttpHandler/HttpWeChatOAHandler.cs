@@ -1,15 +1,8 @@
-﻿using AlibabaCloud.SDK.Sample;
-using Alipay.AopSdk.Core;
-using Alipay.AopSdk.Core.Domain;
-using MongoDB.Bson.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Xml;
 using Tencent;
 
 namespace ET
@@ -20,6 +13,34 @@ namespace ET
     [HttpHandler(SceneType.LoginCenter, "/wechatOARecvMessage")]
     public class HttpWeChatOAHandler : IHttpHandler
     {
+
+        // 构建回复消息的XML
+        private string BuildReplyXml(string toUser, string fromUser, string content)
+        {
+            string replyTemplate = @"<xml>
+            <ToUserName><![CDATA[{0}]]></ToUserName>
+            <FromUserName><![CDATA[{1}]]></FromUserName>
+            <CreateTime>{2}</CreateTime>
+            <MsgType><![CDATA[text]]></MsgType>
+            <Content><![CDATA[{3}]]></Content>
+            </xml>";
+
+            return string.Format(replyTemplate,
+                toUser,
+                fromUser,
+                DateTimeOffset.Now.ToUnixTimeSeconds(),
+                content);
+
+            //// 注意：这里的ToUserName和FromUserName要对调
+            //string xml = $@"<xml>
+            //            <ToUserName><![CDATA[{fromUser}]]></ToUserName>
+            //            <FromUserName><![CDATA[{toUser}]]></FromUserName>
+            //            <CreateTime>{DateTime.Now.Ticks}</CreateTime>
+            //            <MsgType><![CDATA[text]]></MsgType>
+            //            <Content><![CDATA[{content}]]></Content>
+            //            </xml>";
+            //return xml;
+        }
 
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
@@ -32,24 +53,22 @@ namespace ET
             string signature = query["signature"];
             string timestamp = query["timestamp"];
             string nonce = query["nonce"];
-            string echostr = query["echostr"]; // 获取echostr参数
+
 
             // 验证必要参数是否存在
             if (string.IsNullOrEmpty(signature) ||
                 string.IsNullOrEmpty(timestamp) ||
                 string.IsNullOrEmpty(nonce))
             {
-                throw new ArgumentException("缺少必要的参数");
+                Console.WriteLine("HttpWeChatOAHandler 缺少必要的参数");
             }
 
-            string responseString = echostr;
             // 2. 验证签名
             bool isValid = WXBizMsgCrypt.GenarateSinature_2(signature, timestamp, nonce);
 
             if (!isValid)
             {
                 Console.WriteLine("签名验证失败，可能不是来自微信服务器的请求");
-                responseString = "invalid signature";
             }
             else
             {
@@ -57,26 +76,51 @@ namespace ET
                 // 这里可以添加处理消息的逻辑
             }
 
-            string requestBody = "";
+            string sPostData = "";
 
             if (request.HasEntityBody)
             {
                 using (StreamReader reader = new StreamReader(request.InputStream, request.ContentEncoding))
                 {
-                    requestBody = reader.ReadToEnd();
+                    sPostData = reader.ReadToEnd();
                 }
+
+                Console.WriteLine($"HttpWeChatOAHandler.requestBody:  {sPostData}");
+                XmlDocument doc = new XmlDocument();
+                doc.XmlResolver = null;
+                XmlNode root;
+                string ToUserName;
+                string FromUserName;
+                string MsgType;
+                string Content;
 
                 try
                 {
-                    Console.WriteLine($"HttpWeChatOAHandler.requestBody:  {requestBody}");
-                    // 假设包体是JSON格式，这里进行反序列化示例
-                    Dictionary<string, object> data = JsonSerializer.Deserialize<Dictionary<string, object>>(requestBody);
-                    //Console.WriteLine($"ToUserName: {data["ToUserName"]}");
-                    //Console.WriteLine($"FromUserName: {data["FromUserName"]}");
-                    //Console.WriteLine($"CreateTime: {data["CreateTime"]}");
-                    //Console.WriteLine($"MsgType: {data["MsgType"]}");
-                    //Console.WriteLine($"Event: {data["Event"]}");
-                    //Console.WriteLine($"debug_str: {data["debug_str"]}");
+                    doc.LoadXml(sPostData);
+                    root = doc.FirstChild;
+                    ToUserName = root["ToUserName"].InnerText;
+                    FromUserName = root["FromUserName"].InnerText;
+                    MsgType = root["MsgType"].InnerText;
+                    
+                    if (MsgType.Equals("text"))
+                    {
+                        Content = root["Content"].InnerText;
+                        Console.WriteLine($"HttpWeChatOAHandler.MsgType:  {MsgType}  Content: {Content}");
+
+                        // 3. 发送响应
+                        // 根据消息类型处理
+                        string responseXml = BuildReplyXml(FromUserName, ToUserName, "666");
+
+                        // 设置响应头
+                        response.ContentType = "text/xml; charset=utf-8";
+                        response.ContentEncoding = Encoding.UTF8;
+
+                        // 写入响应
+                        byte[] buffer = Encoding.UTF8.GetBytes(responseXml);
+                        response.ContentLength64 = buffer.Length;
+                        response.OutputStream.Write(buffer, 0, buffer.Length);
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -84,18 +128,7 @@ namespace ET
                 }
             }
 
-            // 3. 发送响应
-            byte[] buffer = Encoding.UTF8.GetBytes(responseString);
-            response.ContentLength64 = buffer.Length;
-            response.ContentType = "text/plain; charset=utf-8";
-
-            using (var output = response.OutputStream)
-            {
-                await output.WriteAsync(buffer, 0, buffer.Length);
-            }
-            //response.Close();
-
-
+            HttpServerHelper.ResponseEmpty(context);
 
             await ETTask.CompletedTask;
         }
