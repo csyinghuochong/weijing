@@ -109,7 +109,15 @@ namespace ET
 
                         // 3. 发送响应
                         // 根据消息类型处理
-                        string responseXml = BuildReplyXml(FromUserName, ToUserName, "666");
+
+                        string content =  "欢迎使用游戏助手！\n\n" +
+                        "可用命令：\n" +
+                        "• 查询等级 - 查看您的游戏等级\n" +
+                        "• 领取奖励 - 获取每日奖励\n" +
+                        "• 我的装备 - 查看您的装备列表\n\n" +
+                        "更多功能开发中，敬请期待！";
+
+                        string responseXml = BuildReplyXml(FromUserName, ToUserName, content);
 
                         // 设置响应头
                         response.ContentType = "text/xml; charset=utf-8";
