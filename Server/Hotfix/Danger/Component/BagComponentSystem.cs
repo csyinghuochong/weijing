@@ -295,6 +295,24 @@ namespace ET
                 {
                     bagInfos[i].InheritSkills.Clear();
                 }
+
+
+                BagInfo bagInfoitem = bagInfos[i];
+                //如果有宝石但是没空 加打印。 目前主处理某一个人的
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment
+                    && string.IsNullOrEmpty(bagInfoitem.GemHole)
+                    && !string.IsNullOrEmpty(bagInfoitem.GemIDNew)
+                    && !bagInfoitem.GemIDNew.Equals(ItemHelper.DefaultGem))
+                {
+                    Console.WriteLine($"itemConfig:{self.DomainZone()}  {unit.Id} {itemConfig.ItemName}    GemHole:{bagInfoitem.GemHole}  GemIDNew:{bagInfoitem.GemIDNew}");
+
+                    if(unit.Id == 3089814989066797056
+                        && bagInfoitem.BagInfoID == 3090684012667600921
+                        && bagInfoitem.GemIDNew == "10049101_0_0_0")
+                    {
+                        bagInfoitem.GemHole = "101_0_0_0";
+                    }
+                }
             }
         }
 
