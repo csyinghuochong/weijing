@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 6663216873669691127}
   - component: {fileID: 8048136053589175923}
   m_Layer: 5
-  m_Name: UIFenXiangQQAddSet
+  m_Name: UIQQAddSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

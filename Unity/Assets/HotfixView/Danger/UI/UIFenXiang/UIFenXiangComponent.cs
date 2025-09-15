@@ -49,7 +49,7 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Popularize] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularize");
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Serial] = ABPathHelper.GetUGUIPath("Main/FenXiang/UISerial");
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.LunTan] = ABPathHelper.GetUGUIPath("Main/FenXiang/UILunTan");
-            pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.QQGroup] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIFenXiangQQAddSet");
+            pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.QQGroup] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIQQAddSet");
 
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Set] = typeof(UIFenXiangSetComponent);
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Popularize] = typeof(UIPopularizeComponent);
