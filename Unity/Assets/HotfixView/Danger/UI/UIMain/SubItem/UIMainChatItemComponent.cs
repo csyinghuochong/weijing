@@ -86,13 +86,17 @@ namespace ET
                 {
                     int startindex = chatInfo.ChatMsg.IndexOf("<link=");
                     int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+
+                    chatInfo.ChatMsg_EN = !string.IsNullOrEmpty(chatInfo.ChatMsg_EN) ? chatInfo.ChatMsg_EN : chatInfo.ChatMsg;
+                    string chatmsginfo = GameSettingLanguge.Language == 0 ? chatInfo.ChatMsg : chatInfo.ChatMsg_EN;
+
                     if (startindex != -1)
                     {
-                        showValue = chatInfo.ChatMsg.Substring(0, startindex);
+                        showValue = chatmsginfo.Substring(0, startindex);
                     }
                     else
                     {
-                        showValue = chatInfo.ChatMsg;
+                        showValue = chatmsginfo;
                     }
 
                     if (chatInfo.ChannelId == (int)ChannelEnum.System)

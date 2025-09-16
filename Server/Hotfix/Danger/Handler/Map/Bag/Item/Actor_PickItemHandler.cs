@@ -178,6 +178,10 @@ namespace ET
                         string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg = m2C_SyncChatInfo.ChatInfo.ChatMsg + $"{pick_name}拾取{itemConfig.ItemName}";
+
+                        string pick_nam_en = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
+                        pick_nam_en += (owner == null ? "(not in the dungeon)" : string.Empty);
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = m2C_SyncChatInfo.ChatInfo.ChatMsg_EN + $"{pick_nam_en}pick up{itemConfig.ItemName}";
                     }
                     else
                     {
@@ -203,6 +207,10 @@ namespace ET
                             }
                             m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{TeamPlayerInfo.PlayerName}:{rollpoint}点";
                             m2C_SyncChatInfo.ChatInfo.ChatMsg += "  ";
+
+
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += $"{TeamPlayerInfo.PlayerName}:{rollpoint}point";
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += "  ";
                         }
                         
                         teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
@@ -210,6 +218,10 @@ namespace ET
                         string pick_name = teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{pick_name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
+
+                        string pick_nam_en = teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName;
+                        pick_nam_en += (owner == null ? "(not in the dungeon)" : string.Empty);
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{pick_nam_en}</color>pick up<color=#{colorValue}>{numShow}{itemConfig.ItemName_EN}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg_EN})";
                     }
                 }
 

@@ -533,7 +533,8 @@ namespace ET
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
 
-			for (int p = 0; p < points.Count; p++)
+            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>pick up<color=#{colorValue}>{numShow}{itemConfig.ItemName_EN}</color>";
+            for (int p = 0; p < points.Count; p++)
 			{
 				Unit player = unit.GetParent<UnitComponent>().Get(ids[p]);
 				if (player == null)
@@ -543,7 +544,10 @@ namespace ET
 				
 				m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{player.GetComponent<UserInfoComponent>().UserInfo.Name}:{points[p]}点";
 				m2C_SyncChatInfo.ChatInfo.ChatMsg += (p == points.Count - 1 ? "" : "  ");
-			}
+
+                m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += $"{player.GetComponent<UserInfoComponent>().UserInfo.Name}:{points[p]} point";
+                m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += (p == points.Count - 1 ? "" : "  ");
+            }
 
 			MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
@@ -564,9 +568,12 @@ namespace ET
 			}
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
-			//MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
-			//Log.Warning($"SendFubenPickMessage: {unit.Id} {dropInfo.ItemID}");
-			MessageHelper.SendToClient(unit, m2C_SyncChatInfo);
+
+            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>pick up<color=#{colorValue}>{numShow}{itemConfig.ItemName_EN}</color>";
+
+            //MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
+            //Log.Warning($"SendFubenPickMessage: {unit.Id} {dropInfo.ItemID}");
+            MessageHelper.SendToClient(unit, m2C_SyncChatInfo);
 		}
 	}
 }
