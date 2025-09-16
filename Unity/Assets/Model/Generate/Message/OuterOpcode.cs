@@ -904,9 +904,11 @@ namespace ET
 		 public const ushort M2C_ChangeOccResponse = 10901;
 		 public const ushort C2M_RelinkRecordRequest = 10902;
 		 public const ushort M2C_RelinkRecordResponse = 10903;
-		 public const ushort C2Center_QueryAccountRequest = 10904;
-		 public const ushort Center2C_QueryAccountResponse = 10905;
-		 public const ushort C2A_TikTokGetOpenId = 10906;
-		 public const ushort A2C_TikTokGetOpenId = 10907;
+		 public const ushort C2A_TikTokGetOpenId = 10904;
+		 public const ushort A2C_TikTokGetOpenId = 10905;
+		 public const ushort C2M_GetWeChatOACode = 10906;
+		 public const ushort M2C_GetWeChatOACode = 10907;
+		 public const ushort C2Center_QueryAccountRequest = 10908;
+		 public const ushort Center2C_QueryAccountResponse = 10909;
 	}
 }

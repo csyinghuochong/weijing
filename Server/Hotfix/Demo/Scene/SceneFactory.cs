@@ -29,10 +29,8 @@ namespace ET
                     break;
                 case SceneType.LoginCenter:
                     scene.AddComponent<LoginInfoRecordComponent>();
-
-                    Console.WriteLine("scene.AddComponent<HttpComponent");
+                    scene.AddComponent<WeChatOACodeComponent>();
                     scene.AddComponent<HttpComponent, string>($"http://*:80/");
-
                     break;
                 case SceneType.AccountCenter:
 

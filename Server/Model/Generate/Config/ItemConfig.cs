@@ -81,6 +81,9 @@ namespace ET
 		/// <summary>道具名称</summary>
 		[ProtoMember(2)]
 		public string ItemName { get; set; }
+		/// <summary>道具名称</summary>
+		[ProtoMember(3)]
+		public string ItemName_EN { get; set; }
 		/// <summary>道具Icon</summary>
 		[ProtoMember(4)]
 		public string Icon { get; set; }

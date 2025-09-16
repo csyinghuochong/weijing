@@ -1337,6 +1337,8 @@ message ChatInfo
 	int64 Time = 6;
 	int32 Occ = 7;
 	int32 PlayerLevel = 8;
+	string ChatMsg_EN = 9;
+
 }
 
 message M2C_SyncChatInfo // IActorMessage
@@ -7893,25 +7895,6 @@ message M2C_RelinkRecordResponse	// IActorLocationResponse
 	int32 Error = 92;
 }
 
-/////////////////////
-
-//#################一定要放在最后
-//ResponseType Center2C_BlackAccountResponse
-message C2Center_QueryAccountRequest // IRequest
-{
-	int32 RpcId = 90;
-	string UserName = 1;
-}
-
-message Center2C_QueryAccountResponse // IResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string Account = 1;
-	string Password = 2;
-}
-
 //ResponseType A2C_TikTokGetOpenId
 message C2A_TikTokGetOpenId // IRequest
 {
@@ -7931,4 +7914,42 @@ message A2C_TikTokGetOpenId // IResponse
 	int32 age_type = 1;	//实名年龄段
 	string sdk_open_id = 2;	//用户唯一标识
 	string access_token = 3;
+}
+
+//ResponseType M2C_GetWeChatOACode
+message C2M_GetWeChatOACode		// IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_GetWeChatOACode	// IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int32 Code = 1;
+}
+
+
+
+
+
+
+
+////////////////////////////////////////////////
+//#################一定要放在最后
+//ResponseType Center2C_BlackAccountResponse
+message C2Center_QueryAccountRequest // IRequest
+{
+	int32 RpcId = 90;
+	string UserName = 1;
+}
+
+message Center2C_QueryAccountResponse // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string Account = 1;
+	string Password = 2;
 }

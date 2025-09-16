@@ -269,6 +269,7 @@
     [NumericWatcher((int)NumericType.DailyTaskID)]
     [NumericWatcher((int)NumericType.WeeklyTaskId)]
     [NumericWatcher((int)NumericType.FirstUnionName)]
+    [NumericWatcher((int)NumericType.WeChatOABind)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

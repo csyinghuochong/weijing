@@ -7,7 +7,7 @@ using Tencent;
 
 namespace ET
 {
-    //只能支持80端口  
+    //只能支持80端口  http://127.0.0.1:80/wechatOARecvMessage
     //LoginCenter       http://39.96.194.143:80/wechatOARecvMessage
     //AccountCenter     http://39.96.194.143:20008/wechatOARecvMessage
     [HttpHandler(SceneType.LoginCenter, "/wechatOARecvMessage")]
@@ -44,6 +44,12 @@ namespace ET
 
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
+            if (ComHelp.IsInnerNet())
+            {
+                entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult("tt", 0).Coroutine();
+                return;
+            }
+
             var request = context.Request;
             var response = context.Response;
             Console.WriteLine($"HttpWeChatOAHandler 1: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {request.HttpMethod} {context.Request.RawUrl}");
@@ -107,15 +113,16 @@ namespace ET
                         Content = root["Content"].InnerText;
                         Console.WriteLine($"HttpWeChatOAHandler.MsgType:  {MsgType}  Content: {Content}");
 
+                         string bindresult = await entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult("tt", 12345678);
+
                         // 3. 发送响应
                         // 根据消息类型处理
 
-                        string content =  "欢迎使用游戏助手！\n\n" +
-                        "可用命令：\n" +
-                        "• 查询等级 - 查看您的游戏等级\n" +
-                        "• 领取奖励 - 获取每日奖励\n" +
-                        "• 我的装备 - 查看您的装备列表\n\n" +
-                        "更多功能开发中，敬请期待！";
+                        string content =  $"欢迎关注危境游戏公众号！\n\n" +
+                        "服务器！\n" +
+                        "游戏角色！\n" +
+                        "绑定状态！\n" +
+                        $"{bindresult}！";
 
                         string responseXml = BuildReplyXml(FromUserName, ToUserName, content);
 

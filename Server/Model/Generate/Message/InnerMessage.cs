@@ -4631,4 +4631,66 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(L2M_GetWeChatOACode))]
+	[Message(InnerOpcode.M2L_GetWeChatOACode)]
+	[ProtoContract]
+	public partial class M2L_GetWeChatOACode: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitID { get; set; }
+
+	}
+
+	[Message(InnerOpcode.L2M_GetWeChatOACode)]
+	[ProtoContract]
+	public partial class L2M_GetWeChatOACode: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int Code { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2L_WeChatOABindResult))]
+	[Message(InnerOpcode.L2M_WeChatOABindResult)]
+	[ProtoContract]
+	public partial class L2M_WeChatOABindResult: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(2)]
+		public int BindResult { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2L_WeChatOABindResult)]
+	[ProtoContract]
+	public partial class M2L_WeChatOABindResult: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

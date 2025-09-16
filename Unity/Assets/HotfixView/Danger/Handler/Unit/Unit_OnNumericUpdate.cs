@@ -254,6 +254,13 @@ namespace ET
                         NetHelper.SendGetTask(args.Unit.ZoneScene(), newvalue4).Coroutine();
                     }
                     break;
+                case NumericType.WeChatOABind:
+                    uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIFenXiang);
+                    if (uI != null)
+                    {
+                        uI.GetComponent<UIFenXiangComponent>().OnWeChatOABind();
+                    }
+                    break;
                 default:
                     break;
 

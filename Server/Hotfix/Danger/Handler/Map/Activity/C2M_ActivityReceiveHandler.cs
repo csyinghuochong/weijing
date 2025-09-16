@@ -249,6 +249,17 @@ namespace ET
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
                         break;
+                    case 35:   //微信公众号绑定角色成功
+                        if (ItemHelper.GetNeedCell(activityConfig.Par_3) > unit.GetComponent<BagComponent>().GetBagLeftCell())
+                        {
+                            response.Error = ErrorCode.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
+                        unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
+                        break;
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度
                         long needrecharge = int.Parse(activityConfig.Par_2);

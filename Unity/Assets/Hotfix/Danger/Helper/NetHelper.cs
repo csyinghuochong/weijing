@@ -304,6 +304,13 @@ namespace ET
             return m2C_SkillXuanZhuan.Error;
         }
 
+        public static async ETTask<M2C_GetWeChatOACode> RequestWeChatOACode(Scene zoneScene)
+        {
+            C2M_GetWeChatOACode c2M_GetWeChatOACode = new C2M_GetWeChatOACode();
+            M2C_GetWeChatOACode m2C_GetWeChatOACode = (M2C_GetWeChatOACode)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_GetWeChatOACode);
+            return m2C_GetWeChatOACode;
+        }
+
         public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId, int plan)
         {
             C2M_MakeEquipRequest request = new C2M_MakeEquipRequest() { BagInfoID = baginfoId, MakeId = makeId , Plan = plan};

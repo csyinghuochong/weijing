@@ -255,5 +255,9 @@ namespace ET
 		 public const ushort M2M_PaiMaiBuyInfoResponse = 20252;
 		 public const ushort A2Center_TiktokBinging = 20253;
 		 public const ushort Center2A_TiktokBinging = 20254;
+		 public const ushort M2L_GetWeChatOACode = 20255;
+		 public const ushort L2M_GetWeChatOACode = 20256;
+		 public const ushort L2M_WeChatOABindResult = 20257;
+		 public const ushort M2L_WeChatOABindResult = 20258;
 	}
 }

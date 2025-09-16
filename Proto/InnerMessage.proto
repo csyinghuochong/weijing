@@ -2204,3 +2204,34 @@ message Center2A_TiktokBinging // IActorResponse
     string Message = 92;
 	int64 AccountId = 1;
 }
+
+//ResponseType L2M_GetWeChatOACode
+message M2L_GetWeChatOACode // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 UnitID = 1;
+}
+
+message L2M_GetWeChatOACode // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int32 Code = 1;
+}
+
+//ResponseType M2L_WeChatOABindResult
+message L2M_WeChatOABindResult // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 UnitID = 1;
+	int32 BindResult = 2;
+}
+
+message M2L_WeChatOABindResult // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

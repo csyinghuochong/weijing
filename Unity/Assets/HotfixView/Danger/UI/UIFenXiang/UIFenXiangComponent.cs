@@ -226,6 +226,16 @@ namespace ET
             ui.GetComponent<UIFenXiangSetComponent>().OnShareSucess();
         }
 
+        public static void OnWeChatOABind(this UIFenXiangComponent self)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)FenXiangPageEnum.QQGroup];
+            if (ui == null)
+            {
+                return;
+            }
+            ui.GetComponent<UIQQAddSetComponent>().OnWeChatOABind();
+        }
+
         public static void OnClickPageButton(this UIFenXiangComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

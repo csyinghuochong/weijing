@@ -42,14 +42,13 @@ namespace ET
             UICommonHelper.ShowItemList(ActivityConfigCategory.Instance.Get(35001).Par_3, self.BindRewardItem, self);
 
             self.Button_WeChatBind = rc.Get<GameObject>("Button_WeChatBind");
-            ButtonHelp.AddListenerEx(self.Button_WeChatBind, () => { self.OnButton_WeChatBind(); });
-
-            self.Text_WechatOACode = rc.Get<GameObject>("Text_WechatOACode");
-            self.UpdateText_WechatOACode();
+            ButtonHelp.AddListenerEx(self.Button_WeChatBind, () => { self.OnButton_WeChatBind().Coroutine(); });
 
             self.WeChatBind = rc.Get<GameObject>("WeChatBind");
             self.WeChatBind.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
+            self.Text_WechatOACode = rc.Get<GameObject>("Text_WechatOACode");
+            self.UpdateText_WechatOACode().Coroutine();
 
         }
     }
@@ -62,14 +61,64 @@ namespace ET
             Application.OpenURL("https://qm.qq.com/q/NYo62GmJSc");
         }
 
-        public static void OnButton_WeChatBind(this UIQQAddSetComponent self)
+        public static async ETTask OnButton_WeChatBind(this UIQQAddSetComponent self)
         {
-            FloatTipManager.Instance.ShowFloatTip("请先绑定！");
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            if (activityComponent.ActivityReceiveIds.Contains(35001))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                return;
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.WeChatOABind) == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先绑定！");
+                return;
+            }
+
+            C2M_ActivityReceiveRequest c2M_ItemHuiShouRequest = new C2M_ActivityReceiveRequest() { ActivityType = 35, ActivityId = 35001 };
+            M2C_ActivityReceiveResponse r2c_roleEquip = (M2C_ActivityReceiveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            activityComponent.ActivityReceiveIds.Add(35001);
+
         }
 
-        public static void UpdateText_WechatOACode(this UIQQAddSetComponent self)
+        public static void OnWeChatOABind(this UIQQAddSetComponent self)
         {
-            self.Text_WechatOACode.GetComponent<Text>().text = $"关注微信公众号有奖励哦\r\n搜索危境游戏，发送{857496}";
+            Log.Warning($"OnWeChatOABindOnWeChatOABind");
+            self.Text_WechatOACode.GetComponent<Text>().text = "绑定成功！";
+        }
+
+        public static async ETTask UpdateText_WechatOACode(this UIQQAddSetComponent self)
+        {
+            await ETTask.CompletedTask;
+            if (!self.WeChatBind.gameObject.activeSelf)
+            {
+                return;
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.WeChatOABind) == 1)
+            {
+                self.OnWeChatOABind();
+                return;
+            }
+
+
+            M2C_GetWeChatOACode m2C_GetWe = await NetHelper.RequestWeChatOACode( self.ZoneScene() );
+            if (m2C_GetWe != null && m2C_GetWe.Error == ErrorCode.ERR_Success)
+            {
+                self.Text_WechatOACode.GetComponent<Text>().text = $"关注微信公众号有奖励哦\r\n搜索危境游戏，发送{m2C_GetWe.Code}";
+            }
+            else
+            {
+                self.Text_WechatOACode.GetComponent<Text>().text = string.Empty;
+            }
         }
     }
 }

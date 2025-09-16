@@ -2852,6 +2852,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int PlayerLevel { get; set; }
 
+		[ProtoMember(9)]
+		public string ChatMsg_EN { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_SyncChatInfo)]
@@ -16486,42 +16489,6 @@ namespace ET
 
 	}
 
-/////////////////////
-//#################一定要放在最后
-	[ResponseType(nameof(Center2C_BlackAccountResponse))]
-	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
-	[ProtoContract]
-	public partial class C2Center_QueryAccountRequest: Object, IRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(1)]
-		public string UserName { get; set; }
-
-	}
-
-	[Message(OuterOpcode.Center2C_QueryAccountResponse)]
-	[ProtoContract]
-	public partial class Center2C_QueryAccountResponse: Object, IResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-		[ProtoMember(1)]
-		public string Account { get; set; }
-
-		[ProtoMember(2)]
-		public string Password { get; set; }
-
-	}
-
 	[ResponseType(nameof(A2C_TikTokGetOpenId))]
 	[Message(OuterOpcode.C2A_TikTokGetOpenId)]
 	[ProtoContract]
@@ -16565,6 +16532,70 @@ namespace ET
 
 		[ProtoMember(3)]
 		public string access_token { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_GetWeChatOACode))]
+	[Message(OuterOpcode.C2M_GetWeChatOACode)]
+	[ProtoContract]
+	public partial class C2M_GetWeChatOACode: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_GetWeChatOACode)]
+	[ProtoContract]
+	public partial class M2C_GetWeChatOACode: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public int Code { get; set; }
+
+	}
+
+////////////////////////////////////////////////
+//#################一定要放在最后
+	[ResponseType(nameof(Center2C_BlackAccountResponse))]
+	[Message(OuterOpcode.C2Center_QueryAccountRequest)]
+	[ProtoContract]
+	public partial class C2Center_QueryAccountRequest: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string UserName { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Center2C_QueryAccountResponse)]
+	[ProtoContract]
+	public partial class Center2C_QueryAccountResponse: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Password { get; set; }
 
 	}
 
