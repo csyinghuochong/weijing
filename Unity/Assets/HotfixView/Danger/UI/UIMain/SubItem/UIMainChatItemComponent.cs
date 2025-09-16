@@ -99,6 +99,9 @@ namespace ET
                         showValue = chatmsginfo;
                     }
 
+                    // 使用不换行空格的文本
+                    showValue = showValue.Replace(" ", "\u00A0");
+
                     if (chatInfo.ChannelId == (int)ChannelEnum.System)
                     {
                         textMeshProUGUI.text = showValue;
@@ -108,6 +111,8 @@ namespace ET
                         //textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
                         textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
                     }
+                    textMeshProUGUI.horizontalOverflow = HorizontalWrapMode.Wrap;
+
                     float preferredHeight = self.Lab_ChatText.preferredHeight;
                     if (preferredHeight > 40f)
                     {
