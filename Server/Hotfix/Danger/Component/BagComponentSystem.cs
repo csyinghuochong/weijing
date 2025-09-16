@@ -426,7 +426,7 @@ namespace ET
 
                     if (temp != 1)
                     {
-                        Console.WriteLine($"needcell:{needcell}  ItemNum:{itemids[i].ItemNum}   ItemPileSum:{itemConfig.ItemPileSum}");
+                        //Console.WriteLine($"needcell:{needcell}  ItemNum:{itemids[i].ItemNum}   ItemPileSum:{itemConfig.ItemPileSum}");
                     }
                 }
             }

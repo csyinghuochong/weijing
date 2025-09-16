@@ -63,6 +63,13 @@ namespace ET
                 //判断孔位是否相符
                 string[] equipGeminfos = equipInfo.GemHole.Split('_');
 
+                if (string.IsNullOrEmpty(equipInfo.GemHole) || equipInfo.GemHole.Equals(ItemHelper.DefaultGem))
+                {
+                    response.Error = ErrorCode.ERR_ItemUseError;
+                    reply();
+                    return;
+                }
+
                 if (equipGeminfos[gemIndex] != itemConfig.ItemSubType.ToString() && itemConfig.ItemSubType != 110 && itemConfig.ItemSubType != 111)
                 {
                     response.Error = ErrorCode.ERR_ItemUseError;

@@ -63,7 +63,6 @@ namespace AlibabaCloud.SDK.Sample
                 Console.WriteLine($"Send :  {phoneNum}    {signtype}");
                 var response = client.SendSmsWithOptions(sendSmsRequest, runtime);
                 Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(response));
-                Log.Debug("11");
             }
             catch (TeaException error)
             {
