@@ -455,6 +455,8 @@ namespace ET
             }
 
 
+            //危境英文名perilous realm 
+
             //PlatformHelper.GetPlatformName(); 所有渠道ID定义
             List<int> allserverId = new List<int>();
             for (int i = 0; i < serverItems_1.Count; i++)

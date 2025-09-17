@@ -502,7 +502,7 @@ namespace ET
                     return ocRank;
                 }
             }
-            return ocRank;
+            return 0;
         }
 
         public static void UpdateCampRankList(this RankSceneComponent self, int campId, RankingInfo rankingInfo)
