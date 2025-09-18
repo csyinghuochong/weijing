@@ -81,7 +81,7 @@ namespace ET
         //othercountry2.weijinggame.com                     8.221.119.18    172.31.183.49  阿里云 美国 -弗吉尼亚州
         //                                                  47.251.252.96   172.20.250.253 阿里云  美国 -加利福尼亚州
         //                                                  47.86.59.101    172.20.227.82 阿里云  香港
-        public const string LogicServerGoogle = "47.86.59.101";    //"othercountry.weijinggame.com";
+        public const string LogicServerGoogle = "47.251.252.96";    //"othercountry.weijinggame.com";
         public const string LogicServerBanHao = "47.94.107.92";
 
         public static string GetLogicServer(bool innerNet)
