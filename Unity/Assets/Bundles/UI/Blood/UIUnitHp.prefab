@@ -232,7 +232,7 @@ MonoBehaviour:
   - key: Img_AngleValue
     gameObject: {fileID: 1910436030853252746}
   - key: Img_AngleValueDi
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 4292663621189464199}
   - key: Img_MpValueDi
     gameObject: {fileID: 6702438513339598720}
   - key: Img_MpValue
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 8706285378361429689}
   - component: {fileID: 875178556351902962}
   m_Layer: 5
-  m_Name: Img_MpValueDi
+  m_Name: Img_AngleValueDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
