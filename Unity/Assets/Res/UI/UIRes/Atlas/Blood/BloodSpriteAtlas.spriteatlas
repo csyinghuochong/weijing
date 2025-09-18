@@ -51,6 +51,7 @@ SpriteAtlas:
     - 2d94839c5b430154aad1ea19c1a64660: 21300000
     - 2185c2fc504b3fc4ea7de4ae167d9513: 21300000
     - f165835dd09fae143b0e4d485ca739d2: 21300000
+    - 31e0443f3afe433459b0cdf79d37061b: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: c2ee9e30ca2765b4cafbcce3226fb786, type: 3}
@@ -67,6 +68,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2d94839c5b430154aad1ea19c1a64660, type: 3}
   - {fileID: 21300000, guid: 2185c2fc504b3fc4ea7de4ae167d9513, type: 3}
   - {fileID: 21300000, guid: f165835dd09fae143b0e4d485ca739d2, type: 3}
+  - {fileID: 21300000, guid: 31e0443f3afe433459b0cdf79d37061b, type: 3}
   m_PackedSpriteNamesToIndex:
   - UI_pro_4_2
   - main_hp_1
@@ -82,6 +84,7 @@ SpriteAtlas:
   - UI_pro_3_5
   - main_hp_5
   - main_hp_2
+  - main_hp_3_2
   m_RenderDataMap: {}
   m_Tag: BloodSpriteAtlas
   m_IsVariant: 0
