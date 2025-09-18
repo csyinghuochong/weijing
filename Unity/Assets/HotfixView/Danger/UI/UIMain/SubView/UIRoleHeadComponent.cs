@@ -110,7 +110,7 @@ namespace ET
         public static void OnUpdateCombat(this UIRoleHeadComponent self)
         {
             long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
-            self.Lab_Combat.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("战力: {0}"), combat);
+            self.Lab_Combat.GetComponent<Text>().text = combat.ToString();
         }
 
         public static void OnImagePetHeadIcon(this UIRoleHeadComponent self)
@@ -167,7 +167,7 @@ namespace ET
         //角色经验更新
         public static void UpdateShowRoleExp(this UIRoleHeadComponent self)
         {
-            self.Obj_Lab_RoleLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级") + ":" + self.UserInfoComponent.UserInfo.Lv;
+            self.Obj_Lab_RoleLv.GetComponent<Text>().text = self.UserInfoComponent.UserInfo.Lv.ToString();
         }
 
         //角色疲劳更新
