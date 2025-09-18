@@ -121,6 +121,7 @@ namespace ET
         public GameObject miniMapButton;
         public GameObject LevelGuideMini;
         public GameObject Obj_Img_ExpPro;
+        public GameObject Obj_Img_ExpTuoWei;
         public GameObject Obj_Lab_ExpValue;
         public GameObject Obj_Btn_ShouSuo;
         public GameObject Btn_Battle;
@@ -316,6 +317,7 @@ namespace ET
 
             //获取相关组件
             self.Obj_Img_ExpPro = rc.Get<GameObject>("Img_ExpPro");
+            self.Obj_Img_ExpTuoWei = self.Obj_Img_ExpPro.transform.parent.Find("Img_ExpTuoWei").gameObject;
             self.Obj_Lab_ExpValue = rc.Get<GameObject>("Lab_ExpValue");
             self.bagButton = rc.Get<GameObject>("Btn_RoseEquip");
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
@@ -2980,7 +2982,11 @@ namespace ET
                 return;
             }
             self.Obj_Lab_ExpValue.GetComponent<Text>().text = userInfo.Exp.ToString() + "/" + ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
-            self.Obj_Img_ExpPro.GetComponent<Image>().fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
+
+            float fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
+            self.Obj_Img_ExpPro.GetComponent<Image>().fillAmount = fillAmount;
+
+            self.Obj_Img_ExpTuoWei.transform.localPosition = new Vector2(fillAmount * 1950f - 50f, 4.7f);
         }
 
 

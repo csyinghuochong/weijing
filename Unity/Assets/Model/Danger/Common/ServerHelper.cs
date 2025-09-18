@@ -434,8 +434,8 @@ namespace ET
 
 
                 //2025/09/19 19:00:00 1758279600000 合区 xx-xx   xx/xx
-                //2025/09/19 19:00:00 1758279600000 新区 新区新区 174
-                serverItems_1.Add(new ServerItem() { ServerId = 174, ServerIp = $"{ip}:20445", ServerName = "新区新区", ServerOpenTime = 1758279600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                //2025/09/19 19:00:00 1758279600000 新区 龙息之谷 174
+                serverItems_1.Add(new ServerItem() { ServerId = 174, ServerIp = $"{ip}:20445", ServerName = "龙息之谷", ServerOpenTime = 1758279600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
