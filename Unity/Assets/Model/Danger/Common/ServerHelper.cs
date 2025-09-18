@@ -79,9 +79,9 @@ namespace ET
         //ec2-52-35-43-8.us-west-2.compute.amazonaws.com    52.35.43.8      172.31.44.172  亚马逊 美国 -俄勒冈州
         //ec2-23-20-18-54.compute-1.amazonaws.com           23.20.18.54     172.31.21.19   亚马逊 美国 -弗吉尼亚州
         //othercountry2.weijinggame.com                     8.221.119.18    172.31.183.49  阿里云 美国 -弗吉尼亚州
-        //                                                  47.251.252.96   172.20.250.253 阿里云  美国 -加利福尼亚州
+        //                                                  47.251.252.96   172.20.250.253 阿里云  美国 -加利福尼亚州  距离俄勒冈州 近一点  玩家ip也在俄勒冈州
         //                                                  47.86.59.101    172.20.227.82 阿里云  香港
-        public const string LogicServerGoogle = "47.251.252.96";    //"othercountry.weijinggame.com";
+        public const string LogicServerGoogle = "23.20.18.54";    //"othercountry.weijinggame.com";
         public const string LogicServerBanHao = "47.94.107.92";
 
         public static string GetLogicServer(bool innerNet)
