@@ -72,10 +72,16 @@ namespace ET
         public GameObject UIPlayerHpText;
         public GameObject BuffShieldValue;
         public GameObject Img_ChengHao;
-        public Image Img_AngleValue;
+       
         public GameObject Img_AngleValueDi;
+        public Image Img_AngleValue;
+        public bool showImg_AngleValueDi;
+
         public GameObject Img_MpValueDi;
         public Image Img_MpValue;
+        public bool showImg_MpValueDi;
+      
+
 
         public Transform UIPosition;
         public string HeadBarPath;
@@ -98,6 +104,9 @@ namespace ET
             this.Img_MpValue = null;
             this.HeadBarPath = "";
             this.LastTime = 0f;
+            this.showImg_MpValueDi = false;
+            this.showImg_AngleValueDi = false;
+
             switch (this.GetParent<Unit>().Type)
             {
                 case UnitType.Player:
@@ -260,14 +269,17 @@ namespace ET
                     this.Img_AngleValue.gameObject.SetActive(false);
                     this.Img_AngleValueDi = rc.Get<GameObject>("Img_AngleValueDi");
                     this.Img_AngleValueDi.SetActive(false);
+                    this.showImg_AngleValueDi = false;
                     this.Img_MpValueDi = rc.Get<GameObject>("Img_MpValueDi");
                     this.Img_MpValueDi.SetActive(false);
+                    this.showImg_MpValueDi = false;
+
                     this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
-                    bool lierenxuetiao = unit.MainHero && (unit.ConfigId == 3 || unit.ConfigId == 5);
-                    this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = lierenxuetiao ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
-                    this.Img_HpValue.transform.localPosition = lierenxuetiao ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
+                    //bool lierenxuetiao = unit.MainHero && (unit.ConfigId == 3 || unit.ConfigId == 5);
+                    //this.Img_HpValue.GetComponent<RectTransform>().sizeDelta = lierenxuetiao ? new Vector2(160f, 14f) : new Vector2(160f, 18f);
+                    //this.Img_HpValue.transform.localPosition = lierenxuetiao ? new Vector3(-82.5f, 1.9f, 0f) : new Vector3(-82.5f, 0.1f, 0f);
 
                     break;
                 case UnitType.Pet:
@@ -283,9 +295,11 @@ namespace ET
                     this.Img_AngleValue.gameObject.SetActive(false);
                     this.Img_AngleValueDi = rc.Get<GameObject>("Img_AngleValueDi");
                     this.Img_AngleValueDi.SetActive(false);
+                    this.showImg_AngleValueDi = false;
 
                     this.Img_MpValueDi = rc.Get<GameObject>("Img_MpValueDi");
                     this.Img_MpValueDi.SetActive(false);
+                    this.showImg_MpValueDi = false;
                     this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);
                     this.Img_HpValue.GetComponent<RectTransform>().sizeDelta =new Vector2(160f, 18f);
@@ -646,8 +660,13 @@ namespace ET
             }
             SkillSetComponent skillSetComponent = this.ZoneScene().GetComponent<SkillSetComponent>();
             OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
-            this.Img_AngleValue.gameObject.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
-            this.Img_AngleValueDi.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
+
+            bool showangle = skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null;
+            this.Img_AngleValue.gameObject.SetActive(showangle);
+            this.Img_AngleValueDi.SetActive(showangle);
+            this.showImg_AngleValueDi = showangle;
+
+            this.UpdateAngleSetPos();
         }
 
 
@@ -731,6 +750,7 @@ namespace ET
             {
                 self.Img_MpValueDi.gameObject.SetActive(false);
                 self.Img_MpValue.gameObject.SetActive(false);
+                self.showImg_MpValueDi = false;
             }
             else
             {
@@ -738,6 +758,18 @@ namespace ET
                 self.Img_MpValue.gameObject.SetActive(true);
                 float value = skillmp * 1f / maxMp;
                 self.Img_MpValue.fillAmount = Math.Min(value, 1f);
+                self.showImg_MpValueDi = true;
+            }
+
+            self.UpdateAngleSetPos();
+        }
+
+        public static void UpdateAngleSetPos(this UIUnitHpComponent self)
+        {
+            if (self.showImg_AngleValueDi)
+            {
+                Transform AngleSet = self.Img_AngleValueDi.transform.parent;
+                AngleSet.localPosition = self.showImg_MpValueDi ? new Vector3(-2.5f, -21.3f, 0f) : new Vector3(-2.5f, -13f, 0f);
             }
         }
 
