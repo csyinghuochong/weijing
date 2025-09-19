@@ -591,16 +591,17 @@ namespace ET
                     case 1:
                         itemID = 14000001;
                         break;
-
                     case 2:
                         itemID = 14000003;
                         break;
-
                     case 3:
                         itemID = 14000005;
                         break;
+                    case 4:
+                        itemID = 14000003;
+                        break;
                     default:
-                        Log.Error($"{occ}  itemID ==0");
+                        Log.Debug($"{occ}  itemID ==0");
                         break;
                 }
             }
