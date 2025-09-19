@@ -15,7 +15,7 @@ namespace ET
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
-					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null: {scene.DomainZone()} {request.Unit.Id} {request.SceneType}");
+					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null: {scene.DomainZone()} {request.Unit.Id}  request.SceneType： {request.SceneType}");
 
 					if (request.SceneType == SceneTypeEnum.JiaYuan)
 					{
@@ -27,7 +27,7 @@ namespace ET
 				}
 				else
 				{
-					Log.Debug($"LoginTest M2M_UnitTransfer:  {scene.DomainZone()}  {request.Unit.Id}  {request.SceneType}  {request.Difficulty}  {request.ParamInfo}");
+					Log.Debug($"LoginTest M2M_UnitTransfer:  {scene.DomainZone()}  {request.Unit.Id} request.SceneType： {request.SceneType} request.Difficulty： {request.Difficulty}  request.ParamInfo：{request.ParamInfo}");
 				}
                 
                 Unit unit = request.Unit;
