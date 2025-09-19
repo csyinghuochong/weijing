@@ -204,7 +204,9 @@ namespace ET
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp); 
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
             blood = Mathf.Max(blood, 0f);
-            self.Obj_Img_PetHp.GetComponent<Image>().fillAmount = blood;
+
+            //self.Obj_Img_PetHp.GetComponent<Image>().fillAmount = blood;
+            self.Obj_Img_PetHp.GetComponent<RectTransform>().sizeDelta = new Vector2(180f* blood, 28f);
         }
     }
 }
