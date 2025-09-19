@@ -121,7 +121,6 @@ namespace ET
                         string content =  $"欢迎关注危境游戏公众号！\n\n" +
                         "服务器！\n" +
                         "游戏角色！\n" +
-                        "绑定状态！\n" +
                         $"{bindresult}！";
 
                         string responseXml = BuildReplyXml(FromUserName, ToUserName, content);
