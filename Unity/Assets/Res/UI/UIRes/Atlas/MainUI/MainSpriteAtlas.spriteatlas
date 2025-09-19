@@ -85,6 +85,7 @@ SpriteAtlas:
     - 0eb0d3b5bdc3c97449574e9b517c49b5: 21300000
     - ad22c6c5be8ebb04c8c3c6de3fc78af0: 21300000
     - 0ff935f59d16bef47be6f9c8cb1378c1: 21300000
+    - 6a57f24663f85404cb8ed36701989d6d: 21300000
     - 52120846d399a4244b3220922614acae: 21300000
     - a33f5556bd7a86240a82e531db574846: 21300000
     - 887cf756ecf340c45a49b1eef762b77f: 21300000
@@ -162,6 +163,7 @@ SpriteAtlas:
     - e957f8cd93e123d499ea1c57212c5f6a: 21300000
     - bb259acdcc6d44c4782d99d0a99a6850: 21300000
     - b909abcda0c56d340ad5c4e7c60cddd4: 21300000
+    - e3e57add583bb8244b11187523cf36ad: 21300000
     - 8cbd9ded9c9799841bce1a27b078c469: 21300000
     - 2117ed3e195a44f468b978f41a022270: 21300000
     - f452f35e0e82b3842be5cce4ab6bdced: 21300000
@@ -236,6 +238,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0eb0d3b5bdc3c97449574e9b517c49b5, type: 3}
   - {fileID: 21300000, guid: ad22c6c5be8ebb04c8c3c6de3fc78af0, type: 3}
   - {fileID: 21300000, guid: 0ff935f59d16bef47be6f9c8cb1378c1, type: 3}
+  - {fileID: 21300000, guid: 6a57f24663f85404cb8ed36701989d6d, type: 3}
   - {fileID: 21300000, guid: 52120846d399a4244b3220922614acae, type: 3}
   - {fileID: 21300000, guid: a33f5556bd7a86240a82e531db574846, type: 3}
   - {fileID: 21300000, guid: 887cf756ecf340c45a49b1eef762b77f, type: 3}
@@ -313,6 +316,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e957f8cd93e123d499ea1c57212c5f6a, type: 3}
   - {fileID: 21300000, guid: bb259acdcc6d44c4782d99d0a99a6850, type: 3}
   - {fileID: 21300000, guid: b909abcda0c56d340ad5c4e7c60cddd4, type: 3}
+  - {fileID: 21300000, guid: e3e57add583bb8244b11187523cf36ad, type: 3}
   - {fileID: 21300000, guid: 8cbd9ded9c9799841bce1a27b078c469, type: 3}
   - {fileID: 21300000, guid: 2117ed3e195a44f468b978f41a022270, type: 3}
   - {fileID: 21300000, guid: f452f35e0e82b3842be5cce4ab6bdced, type: 3}
@@ -386,6 +390,7 @@ SpriteAtlas:
   - Btn_105
   - Btn_108
   - Img_Head_3
+  - main_38
   - main_touxiang_jy03
   - Img_41
   - zhandou_pro01
@@ -463,6 +468,7 @@ SpriteAtlas:
   - Img_44
   - Main_24
   - Main_6
+  - main_37
   - YaoGan_4
   - c5
   - t5
