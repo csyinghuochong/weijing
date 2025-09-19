@@ -14,6 +14,7 @@ namespace ET
         public GameObject Button_WeChatBind;
         public GameObject Text_WechatOACode;
         public GameObject WeChatBind;
+        public GameObject Img_Received;
     }
 
     public class UIQQAddSetComponentAwake : AwakeSystem<UIQQAddSetComponent>
@@ -45,11 +46,13 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_WeChatBind, () => { self.OnButton_WeChatBind().Coroutine(); });
 
             self.WeChatBind = rc.Get<GameObject>("WeChatBind");
-            self.WeChatBind.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.WeChatBind.SetActive( true );
 
             self.Text_WechatOACode = rc.Get<GameObject>("Text_WechatOACode");
             self.UpdateText_WechatOACode().Coroutine();
 
+            self.Img_Received = rc.Get<GameObject>("Img_Received");
+            self.Img_Received.SetActive(false);
         }
     }
 
@@ -85,7 +88,7 @@ namespace ET
             }
 
             activityComponent.ActivityReceiveIds.Add(35001);
-
+            self.Img_Received.SetActive(true);
         }
 
         public static void OnWeChatOABind(this UIQQAddSetComponent self)
@@ -101,6 +104,11 @@ namespace ET
             {
                 return;
             }
+
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            self.Img_Received.SetActive(activityComponent.ActivityReceiveIds.Contains(35001));
+            Log.ILog.Debug($"35001:  {activityComponent.ActivityReceiveIds.Contains(35001)}");
+
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.WeChatOABind) == 1)
@@ -113,7 +121,7 @@ namespace ET
             M2C_GetWeChatOACode m2C_GetWe = await NetHelper.RequestWeChatOACode( self.ZoneScene() );
             if (m2C_GetWe != null && m2C_GetWe.Error == ErrorCode.ERR_Success)
             {
-                self.Text_WechatOACode.GetComponent<Text>().text = $"关注微信公众号有奖励哦\r\n搜索危境游戏，发送{m2C_GetWe.Code}";
+                self.Text_WechatOACode.GetComponent<Text>().text = $"{m2C_GetWe.Code}";
             }
             else
             {
