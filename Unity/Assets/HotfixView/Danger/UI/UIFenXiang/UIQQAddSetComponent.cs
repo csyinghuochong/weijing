@@ -48,11 +48,11 @@ namespace ET
             self.WeChatBind = rc.Get<GameObject>("WeChatBind");
             self.WeChatBind.SetActive( true );
 
-            self.Text_WechatOACode = rc.Get<GameObject>("Text_WechatOACode");
-            self.UpdateText_WechatOACode().Coroutine();
-
             self.Img_Received = rc.Get<GameObject>("Img_Received");
             self.Img_Received.SetActive(false);
+
+            self.Text_WechatOACode = rc.Get<GameObject>("Text_WechatOACode");
+            self.UpdateText_WechatOACode().Coroutine();
         }
     }
 
@@ -99,12 +99,6 @@ namespace ET
 
         public static async ETTask UpdateText_WechatOACode(this UIQQAddSetComponent self)
         {
-            await ETTask.CompletedTask;
-            if (!self.WeChatBind.gameObject.activeSelf)
-            {
-                return;
-            }
-
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             self.Img_Received.SetActive(activityComponent.ActivityReceiveIds.Contains(35001));
             Log.ILog.Debug($"35001:  {activityComponent.ActivityReceiveIds.Contains(35001)}");
