@@ -430,11 +430,12 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 169, ServerIp = $"{ip}:20515", ServerName = "决战之巅", ServerOpenTime = 1755860400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 170, ServerIp = $"{ip}:20565", ServerName = "迷雾森境", ServerOpenTime = 1756465200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 172, ServerIp = $"{ip}:20585", ServerName = "星辰殿堂", ServerOpenTime = 1757070000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2025/09/12 19:00:00 1757674800000 合区 xx-xx   xx/xx
-                //2025/09/12 19:00:00 1757674800000 新区 童话森林 173
                 serverItems_1.Add(new ServerItem() { ServerId = 173, ServerIp = $"{ip}:20415", ServerName = "童话森林", ServerOpenTime = 1757674800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2025/09/19 19:00:00 1758279600000 合区 xx-xx   xx/xx
+                //2025/09/19 19:00:00 1758279600000 新区 新区新区 174
+                serverItems_1.Add(new ServerItem() { ServerId = 174, ServerIp = $"{ip}:20445", ServerName = "新区新区", ServerOpenTime = 1758279600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
