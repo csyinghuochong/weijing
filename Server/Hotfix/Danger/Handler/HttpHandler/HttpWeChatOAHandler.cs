@@ -46,7 +46,7 @@ namespace ET
         {
             if (ComHelp.IsInnerNet())
             {
-                entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult("tt", 0).Coroutine();
+                entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult("tt", string.Empty).Coroutine();
                 return;
             }
 
@@ -113,7 +113,7 @@ namespace ET
                         Content = root["Content"].InnerText;
                         Console.WriteLine($"HttpWeChatOAHandler.MsgType:  {MsgType}  Content: {Content}");
 
-                         string bindresult = await entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult("tt", 12345678);
+                         string bindresult = await entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult(FromUserName, Content);
 
                         // 3. 发送响应
                         // 根据消息类型处理

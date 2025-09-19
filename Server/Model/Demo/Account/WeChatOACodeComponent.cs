@@ -6,7 +6,7 @@ namespace ET
     public class WeChatOACodeComponent : Entity, IAwake, IDestroy
     {
         //unitid-code
-        public Dictionary<long, int> WeChatOACodeDict = new Dictionary<long, int>();
+        public Dictionary<long, string> WeChatOACodeDict = new Dictionary<long, string>();
 
         public Dictionary<string, int> FromUserNameErrorNum = new Dictionary<string, int>();    
     }

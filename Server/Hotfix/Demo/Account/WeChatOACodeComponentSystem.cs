@@ -20,7 +20,7 @@ namespace ET
     {
 
         //HttpWeChatOAHandler回调
-        public static async ETTask<string> BingWeChatOACodeResult(this WeChatOACodeComponent self, string  fromusername, int code)
+        public static async ETTask<string> BingWeChatOACodeResult(this WeChatOACodeComponent self, string  fromusername, string code)
         {
             await ETTask.CompletedTask;
 
@@ -66,6 +66,7 @@ namespace ET
                 List<NumericComponent> numericComponents = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(newzone, d => d.Id == unitId);
                 Log.Debug($"绑定失败   {unitId}  {numericComponents.Count}");
                 Console.WriteLine($"绑定失败   {unitId}  {numericComponents.Count}");
+                return "绑定成功 玩家不在线 重新绑定";
             }
             
 
@@ -88,15 +89,18 @@ namespace ET
 
             while (!self.WeChatOACodeDict.ContainsKey(unitId))
             {
-                int newcode = GenerateSecureFourDigitNumber();
+                string newcode = GenerateSecureFourDigitNumber().ToString();
                 if (!self.WeChatOACodeDict.Values.ToList().Contains(newcode))
                 {
                     self.WeChatOACodeDict.Add(unitId, newcode);
                 }
             }
 
-            return self.WeChatOACodeDict[unitId];
+            // 解析字符串并获取结果
+            int.TryParse(self.WeChatOACodeDict[unitId], out int result);
 
+            // 直接返回解析结果（如果解析失败，result 将为 0）
+            return result;
         }
 
         public static int GenerateSecureFourDigitNumber()
