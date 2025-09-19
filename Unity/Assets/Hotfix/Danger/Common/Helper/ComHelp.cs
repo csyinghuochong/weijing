@@ -601,7 +601,7 @@ namespace ET
                         itemID = 14000003;
                         break;
                     default:
-                        Log.Debug($"{occ}  itemID ==0");
+                        Log.Error($"{occ}  itemID ==0");
                         break;
                 }
             }
