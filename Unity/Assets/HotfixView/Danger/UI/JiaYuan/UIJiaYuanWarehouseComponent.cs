@@ -254,7 +254,12 @@ namespace ET
         {
             int itemType = self.UIPageComponent.GetCurrentIndex();
             int currentHouse = itemType + (int)ItemLocType.JianYuanWareHouse1;
+            long instanceids = self.InstanceId;
             await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse);
+            if (instanceids != self.InstanceId)
+            {
+                return;
+            }
             self.UpdateWareHouse();
         }
 
