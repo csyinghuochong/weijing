@@ -214,7 +214,8 @@ namespace ET
 
 
             int TodayCreateRole = self.ZoneScene().GetComponent<AccountInfoComponent>().TodayCreateRole;
-            if (TodayCreateRole < 5)
+
+            if (TodayCreateRole < 5 || GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
             {
                 self.RequestCreateRole(createName).Coroutine();
             }
