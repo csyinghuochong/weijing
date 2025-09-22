@@ -63,7 +63,9 @@ namespace ET
                             return;
                         }
 
-						if (!ComHelp.IsBanHaoZone(session.DomainZone()) &&  ComHelp.GetTodayCreateRoleNumber(centerAccountList[0].CreateRoleList) >= 8)
+						if (!ComHelp.IsBanHaoZone(session.DomainZone())
+                            && !GMHelp.GmAccount.Contains(centerAccountList[0].Account)
+                            && ComHelp.GetTodayCreateRoleNumber(centerAccountList[0].CreateRoleList) >= 8)
 						{
                             response.Error = ErrorCode.ERR_CreateRole_Limit;
                             reply();
@@ -80,7 +82,9 @@ namespace ET
                         long accountCrateTime = centerAccountList[0].CreateTime;
 						long serverNowTime = TimeHelper.ServerNow();
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
-						if (!ComHelp.IsBanHaoZone(session.DomainZone()) && !ComHelp.IsZhuBoZone(session.DomainZone()))
+						if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
+							&& !ComHelp.IsZhuBoZone(session.DomainZone())
+                            && !GMHelp.GmAccount.Contains(centerAccountList[0].Account))
 						{
                             if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
                             {
