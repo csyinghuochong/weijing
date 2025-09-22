@@ -128,7 +128,7 @@ namespace ET
                         abspath = context.Request.Url.AbsolutePath;
                         rawurl = context.Request.RawUrl;
                     }
-                    Console.WriteLine($"HttpComponent_Handle Failed: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {abspath} {rawurl}");
+                    //Console.WriteLine($"HttpComponent_Handle Failed: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {abspath} {rawurl}");
                 }
             }
             catch (Exception e)

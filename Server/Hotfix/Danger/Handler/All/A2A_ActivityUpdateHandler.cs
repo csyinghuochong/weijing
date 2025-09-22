@@ -96,8 +96,8 @@ namespace ET
 
                     if (request.Hour == 20 && scene.DomainZone() == 3)
                     {
-                        Console.WriteLine("gongzuoshi3 0");
-                        Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = "gongzuoshi3 0" });
+                        //Console.WriteLine("gongzuoshi3 0");
+                        //Game.EventSystem.Publish(new EventType.GMCommonRequest() { Context = "gongzuoshi3 0" });
                     }
 
                     if (request.Hour == 23 && scene.DomainZone() == 3)
