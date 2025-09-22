@@ -19,7 +19,7 @@ namespace ET
             "0_tangchunguang",    //渠道测试
             "_000bGbtVOqK4dtQMLPjSh1ZDyfmbmhQIAbQ",
             "115042653365711142718",   //google
-            "23_g1223578993715723059",  //渠道 王
+            "19974071056",  //王
         };
 
         public static List<long> BanChatPlayer = new List<long>()
