@@ -196,7 +196,14 @@ namespace ET
         {
             int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
             int npcid = taskConfig.CompleteNpcID;
-            string fubenname = GameSettingLanguge.LoadLocalization("副本");
+            string fubenname = string.Empty;
+            string npcname = string.Empty;
+            if (npcid != 0)
+            {
+                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
+                npcname = npcConfig.GetName();
+            }
+
             if (!TaskHelper.HaveNpc(zoneScene, npcid))
             {
                 int fubenId = TaskViewHelp.Instance.GetFubenByNpc(npcid);
@@ -221,6 +228,24 @@ namespace ET
                 else
                 {
                     fubenname = DungeonConfigCategory.Instance.Get(fubenId).GetChapterName();
+                }
+
+                if (string.IsNullOrEmpty(fubenname))
+                {
+                    switch (taskConfig.TargetType)
+                    {
+                        case TaskTargetType.GiveItem_10:
+                            fubenname = npcname + GameSettingLanguge.LoadLocalization("提交任务要求道具");
+                            break;
+                        case TaskTargetType.GivePet_25:
+                            fubenname = npcname + GameSettingLanguge.LoadLocalization("提交任务要求宠物");
+                            break;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(fubenname))
+                {
+                    fubenname = GameSettingLanguge.LoadLocalization("完成任务");
                 }
 
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
@@ -355,7 +380,15 @@ namespace ET
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
             int target = taskConfig.TargetType;
             int npcid = taskConfig.CompleteNpcID;
-            string fubenname = GameSettingLanguge.LoadLocalization("副本");
+            string fubenname = string.Empty;
+
+            string npcname = string.Empty;
+            if(npcid!= 0)
+            {
+                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
+                npcname = npcConfig.GetName();   
+            }
+           
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
                 if ((taskConfig.TaskType == TaskTypeEnum.Ring || taskConfig.TaskType == TaskTypeEnum.Union ||
@@ -392,6 +425,24 @@ namespace ET
                     else
                     {
                         fubenname = DungeonConfigCategory.Instance.Get(fubenId).GetChapterName();
+                    }
+
+                    if (string.IsNullOrEmpty(fubenname))
+                    {
+                        switch (taskConfig.TargetType)
+                        {
+                            case TaskTargetType.GiveItem_10:
+                                fubenname = npcname + GameSettingLanguge.LoadLocalization("提交任务要求道具");
+                                break;
+                            case TaskTargetType.GivePet_25:
+                                fubenname = npcname + GameSettingLanguge.LoadLocalization("提交任务要求宠物");
+                                break;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(fubenname))
+                    {
+                        fubenname = GameSettingLanguge.LoadLocalization("完成任务");
                     }
 
                     FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往") + " " + fubenname);
