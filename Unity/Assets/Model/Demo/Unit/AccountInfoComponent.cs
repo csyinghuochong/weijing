@@ -24,7 +24,9 @@ namespace ET
 
 		public string TaprepRequest;
 
-		public int TodayCreateRole;
+		public int TestNewOcc;
+
+        public int TodayCreateRole;
 
 		public int RelinkRecord;
 

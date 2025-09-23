@@ -109,6 +109,7 @@ namespace ET
             playerComponent.TaprepRequest = a2CLoginAccount.TaprepRequest;
             playerComponent.TodayCreateRole = a2CLoginAccount.TodayCreateRole;
             playerComponent.RelinkRecord = a2CLoginAccount.RelinkRecord;
+            playerComponent.TestNewOcc = a2CLoginAccount.Message.Contains("testnewocc") ? 1 : 0;
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 

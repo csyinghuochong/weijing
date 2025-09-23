@@ -80,7 +80,12 @@ namespace ET
 
 
             self.Btn_Occ5 = rc.Get<GameObject>("Btn_Occ5");
-            self.Btn_Occ5.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.Btn_Occ5.SetActive( GMHelp.GmAccount.Contains(accountInfoComponent.Account ) || accountInfoComponent.TestNewOcc == 1);
+            if (accountInfoComponent.ServerId  != 5)
+            {
+                self.Btn_Occ5.SetActive(false);
+            }
 
             self.Icon_5_2 = rc.Get<GameObject>("Icon_5_2");
             self.Icon_5_1 = rc.Get<GameObject>("Icon_5_1");

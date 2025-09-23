@@ -176,7 +176,14 @@ namespace ET
 				self.ObjNoticeBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnNotice(); });
 				self.ObjSelectBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectServerList(); });
 
-				self.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
+                if (platform == 7 || GameSettingLanguge.Language != 0)
+                {
+                    self.registerBtn.SetActive(false);
+                    self.ObjNoticeBtn.SetActive(false);
+                }
+
+
+                self.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
 				self.YongHuXieYi = rc.Get<GameObject>("YongHuXieYi");
 				self.YinSiXieYi = rc.Get<GameObject>("YinSiXieYi");
 				self.YinSiXieYiClose = rc.Get<GameObject>("YinSiXieYiClose");

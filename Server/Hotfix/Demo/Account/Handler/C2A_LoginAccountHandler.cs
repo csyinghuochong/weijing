@@ -434,7 +434,19 @@ namespace ET
                         response.PlayerInfo = centerPlayerInfo;
                         response.AccountId = account.Id;
                         response.Token = Token;
-                        for (int r = 0; r < response.PlayerInfo.RechargeInfos.Count; r++)
+
+
+                        //C2A_LoginAccountHandler
+                        //C2A_CreateRoleHandler
+                        List<string> testnewocc = new List<string>()
+                        {
+                            "wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ",
+                            "18319670230",
+                        };
+
+                        response.Message = testnewocc.Contains(request.AccountName) ? "testnewocc" : string.Empty;
+
+                        for (int r = 0; r < response.PlayerInfo.RechargeInfos.Count; r++) 
                         {
                             response.PlayerInfo.RechargeInfos[r].OrderInfo = String.Empty;
                         }

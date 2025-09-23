@@ -72,19 +72,38 @@ namespace ET
                             return;
                         }
 
-                        //if (request.CreateOcc == 4 && !GMHelp.GmAccount.Contains(centerAccountList[0].Account) && !centerAccountList[0].Account.Equals("wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ"))
-                        //{
-                        //    response.Error = ErrorCode.ERR_Error;
-                        //    reply();
-                        //    return;
-                        //}
+                        //C2A_LoginAccountHandler
+                        //C2A_CreateRoleHandler
+                        List<string> testnewocc = new List<string>()
+                        {
+                            "wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ",
+                            "18319670230",
+                        };
 
-                        long accountCrateTime = centerAccountList[0].CreateTime;
+						if (request.CreateOcc == 5 && session.DomainZone()!= 5)
+						{
+							response.Error = ErrorCode.ERR_CreateRole_Limit_2;
+							reply();
+							return;
+						}
+
+						//if (request.CreateOcc == 5 &&
+						//	!GMHelp.GmAccount.Contains(centerAccountList[0].Account)
+						//	&& !testnewocc.Contains("wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ"))
+						//{
+						//	response.Error = ErrorCode.ERR_CreateRole_Limit_2;
+						//	reply();
+						//	return;
+						//}
+
+
+						long accountCrateTime = centerAccountList[0].CreateTime;
 						long serverNowTime = TimeHelper.ServerNow();
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
 						if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
 							&& !ComHelp.IsZhuBoZone(session.DomainZone())
-                            && !GMHelp.GmAccount.Contains(centerAccountList[0].Account))
+                            && !GMHelp.GmAccount.Contains(centerAccountList[0].Account)
+							&& !testnewocc.Contains(centerAccountList[0].Account))
 						{
                             if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
                             {

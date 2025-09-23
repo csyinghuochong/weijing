@@ -22,6 +22,11 @@ namespace ET
             "19974071056",  //王
         };
 
+        public static List<string> TestNewOccAccount = new List<string>()
+        {
+            "test01",
+        };
+
         public static List<long> BanChatPlayer = new List<long>()
         {
 
