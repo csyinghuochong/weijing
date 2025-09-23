@@ -223,6 +223,7 @@ message A2A_ServerMessageRequest // IActorRequest
     int64 ActorId = 93;
     int32 MessageType = 2;
     string MessageValue = 5;
+	string MessageValueEn = 6;
 }
 
 message A2A_ServerMessageRResponse // IActorResponse

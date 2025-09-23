@@ -489,6 +489,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string MessageValue { get; set; }
 
+		[ProtoMember(6)]
+		public string MessageValueEn { get; set; }
+
 	}
 
 	[Message(InnerOpcode.A2A_ServerMessageRResponse)]
