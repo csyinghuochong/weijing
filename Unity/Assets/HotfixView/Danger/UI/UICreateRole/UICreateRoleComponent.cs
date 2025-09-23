@@ -86,6 +86,10 @@ namespace ET
             {
                 self.Btn_Occ5.SetActive(false);
             }
+            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language != 0)
+            {
+                self.Btn_Occ5.SetActive(false);
+            }
 
             self.Icon_5_2 = rc.Get<GameObject>("Icon_5_2");
             self.Icon_5_1 = rc.Get<GameObject>("Icon_5_1");
