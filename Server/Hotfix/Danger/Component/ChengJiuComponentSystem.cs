@@ -343,9 +343,15 @@ namespace ET
                         break;
                 }
 
-                if (acitiveId > 0 && !self.GetParent<Unit>().IsRobot())
+                Unit unit = self.GetParent<Unit>();
+                if (unit.GetComponent<UnitGateComponent>() == null)
                 {
-                    MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_ChengJiuActiveMessage() { ChengJiuId = acitiveId });
+                    return;
+                }
+
+                if (acitiveId > 0 && !unit.IsRobot())
+                {
+                    MessageHelper.SendToClient(unit, new M2C_ChengJiuActiveMessage() { ChengJiuId = acitiveId });
                 }
             }
         }

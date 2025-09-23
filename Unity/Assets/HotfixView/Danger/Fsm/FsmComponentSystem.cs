@@ -272,7 +272,7 @@ namespace ET
             //}
 
             //1:剑 2:刀 11 默认11  //(EquipType == 2)
-            if (unit.ConfigId == 1) 
+            if (unit.ConfigId == 1 || unit.ConfigId == 5)
             {
                 string boolAnimation = skillConfig.SkillAnimation;
                 if (boolAnimation == "Act_11")
