@@ -6,13 +6,13 @@ namespace ET
     public static class ServerMessageHelper
     {
 
-        public static void SendBroadMessage(int zone, int messageType, string message, string messageEn)
+        public static void SendBroadMessage(int zone, int messageType, string message, string messageEn = "")
         {
             long chatServerId = DBHelper.GetChatServerId(zone);
             SendServerMessage(chatServerId, messageType, message, messageEn).Coroutine();
         }
 
-        public static async ETTask SendServerMessage(long serverid, int messageType, string message, string messageEn)
+        public static async ETTask SendServerMessage(long serverid, int messageType, string message, string messageEn = "")
         {
             A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                (serverid, new A2A_ServerMessageRequest()
