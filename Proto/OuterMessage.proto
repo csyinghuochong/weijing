@@ -1373,6 +1373,7 @@ message M2C_HorseNoticeInfo // IActorMessage
 	int64 ActorId = 93;
 	string NoticeText = 1;
 	int32 NoticeType = 2;
+	string NoticeTextEn = 3;
 }
 
 //物品排序[通知服务器排序，暂时不需要返回]

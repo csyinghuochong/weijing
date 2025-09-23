@@ -2928,6 +2928,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int NoticeType { get; set; }
 
+		[ProtoMember(3)]
+		public string NoticeTextEn { get; set; }
+
 	}
 
 //物品排序[通知服务器排序，暂时不需要返回]
