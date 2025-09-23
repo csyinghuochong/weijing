@@ -66,7 +66,9 @@ namespace ET
                 return;
             }
             int index = ConfigHelper.TurtleList.IndexOf(unit.ConfigId);
-            ServerMessageHelper.SendBroadMessage(aiComponent.DomainZone(), NoticeType.Notice, $"{index + 1}{ConfigHelper.TurtleWinNotice}");
+            string messagecontent = $"{index + 1}{ConfigHelper.TurtleWinNotice}";
+            string messagecontentEn = $"{index + 1} Player No. Won the final victory of the Little Turtle Competition.";
+            ServerMessageHelper.SendBroadMessage(aiComponent.DomainZone(), NoticeType.Notice, messagecontentEn);
 
             //移除所有小龟
             List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Npc);

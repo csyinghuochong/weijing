@@ -43,7 +43,8 @@ namespace ET
             {
                 string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                 string noticeContent = $"{userName} 在主城转职大师处成功转职:<color=#C4FF00>{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName}</color>";
-                ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                string noticeContentEn = $"{userName} at main city Job Change Master transfer successful:<color=#C4FF00>{OccupationTwoConfigCategory.Instance.Get(request.OccTwoID).OccupationName_EN}</color>";
+                ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent, noticeContentEn);
             }
 
             reply();

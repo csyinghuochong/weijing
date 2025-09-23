@@ -842,19 +842,22 @@ namespace ET
 
                     string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                     string noticeContent = "";
+                    string noticeContentEn = "";
                     if (xilianType == 1)
                     {
                         noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>洗练出隐藏技能:<color=#FFA313>{skillName}</color>";
+                        noticeContentEn = $"Congratulations to the player<color=#B6FF00>{name}</color> for practicing hidden skills:<color=#FFA313>{skillName}</color>";
                     }
                     if (xilianType == 0 && itemConfig.ItemQuality<=3)
                     {
                         noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
+                        noticeContentEn = $"Congratulations to the player<color=#B6FF00>{name}</color>who accidentally found a hidden skill on the Equip when picking it up:<color=#FFA313>{skillName}</color>";
                     }
 
                     //打造类型不弹出任何广播
                     if (xilianType != 2 && noticeContent!="")
                     {
-                        ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                        ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent, noticeContentEn);
                     }
                 }
             }

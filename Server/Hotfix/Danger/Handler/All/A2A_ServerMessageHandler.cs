@@ -110,7 +110,8 @@ namespace ET
                             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo()
                             {
                                 NoticeType = request.MessageType,
-                                NoticeText = request.MessageValue
+                                NoticeText = request.MessageValue,
+                                NoticeTextEn = request.MessageValueEn
                             };
                             foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                             {

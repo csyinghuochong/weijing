@@ -839,14 +839,17 @@ namespace ET
                         if (useBagInfo.HideSkillLists.Count > 0)
                         {
                             string skillName = "";
+                            string skillNameEn = "";
                             for (int i = 0; i < useBagInfo.HideSkillLists.Count; i++)
                             {
                                 skillName = skillName + $" {SkillConfigCategory.Instance.Get(useBagInfo.HideSkillLists[0]).SkillName}";
+                                skillNameEn = skillNameEn + $" {SkillConfigCategory.Instance.Get(useBagInfo.HideSkillLists[0]).SkillName_EN}";
                                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, useBagInfo.HideSkillLists[i], 1);
                             }
 
                             string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
-                            ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                            string noticeContentEn = $"Congratulations to the player <color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>When looting the gear, I stumbled upon a hidden skill:<color=#FFA313>{skillName}</color>";
+                            ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent, noticeContentEn);
                         }
 
                         long totalValue = 0;

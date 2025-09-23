@@ -274,7 +274,9 @@ namespace ET
             DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(winunionid);
             if (dBUnionInfo != null)
             {
-                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, $"恭喜 <color=#{ComHelp.QualityReturnColor(2)}>{dBUnionInfo.UnionInfo.UnionName}</color>家族占领了家族争霸赛地图!");
+                string messageContent = $"恭喜 <color=#{ComHelp.QualityReturnColor(2)}>{dBUnionInfo.UnionInfo.UnionName}</color>家族占领了家族争霸赛地图!";
+                string messageContentEn = $"Congratulations <color=#{ComHelp.QualityReturnColor(2)}>{dBUnionInfo.UnionInfo.UnionName}</color>Family Take over Family Fight Map!";
+                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, messageContent, messageContentEn);
             }
         }
 

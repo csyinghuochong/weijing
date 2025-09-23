@@ -18,7 +18,8 @@ namespace ET
                (serverid, new A2A_ServerMessageRequest()
                {
                    MessageType = messageType,
-                   MessageValue = message
+                   MessageValue = message,
+                   MessageValueEn = messageEn   
                });
         }
 

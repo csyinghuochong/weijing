@@ -241,7 +241,9 @@ namespace ET
                 if (randomNum >= 2)
                 {
                     string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>使用鉴定符鉴定装备时,一道金光装备出现<color=#FFA313>{randomNum}条极品属性</color>";
-                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                    string noticeContentEn = $"Congratulations to the player<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>Use Identifier to equipment,A flash of golden light   The equipment appeared <color=#FFA313>{randomNum} best attribute</color>";
+
+                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent, noticeContentEn);
                 }
             }
 

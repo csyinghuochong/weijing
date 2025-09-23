@@ -197,7 +197,8 @@ namespace ET
                 if (Response.RankId <= 3)
                 {
                     string messagecontent = $"恭喜{userInfoComponent.UserInfo.Name} 获得奔跑大赛第{Response.RankId}名";
-                    ServerMessageHelper.SendBroadMessage( self.DomainZone(), NoticeType.Notice, messagecontent);
+                    string messagecontentEn = $"Congratulations{userInfoComponent.UserInfo.Name} Achieved Rank {Response.RankId} in the running race";
+                    ServerMessageHelper.SendBroadMessage( self.DomainZone(), NoticeType.Notice, messagecontent, messagecontentEn);
                 }
 
                 List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);

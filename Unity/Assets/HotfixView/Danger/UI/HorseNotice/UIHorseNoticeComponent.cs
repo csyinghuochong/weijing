@@ -76,7 +76,15 @@ namespace ET
             self.MovePassTime = 0f;
             self.NoticePosition.SetActive(true);
             Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
-            textMeshProUGUI.text = m2C_HorseNoticeInfo.NoticeText;
+
+            if (GameSettingLanguge.Language != 0 && !string.IsNullOrEmpty(m2C_HorseNoticeInfo.NoticeTextEn))
+            {
+                textMeshProUGUI.text = m2C_HorseNoticeInfo.NoticeTextEn;
+            }
+            else
+            {
+                textMeshProUGUI.text = m2C_HorseNoticeInfo.NoticeText;
+            }
 
             self.MoveStartX = 1924 * 0.5f + textMeshProUGUI.preferredWidth * 0.5f;
             self.MoveNeedTime = (self.MoveStartX * 2) / self.MoveSpeed;

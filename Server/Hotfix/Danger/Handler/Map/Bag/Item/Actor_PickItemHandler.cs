@@ -70,7 +70,8 @@ namespace ET
                 {
                     string uername = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                     string getmessage = $"{uername}在喜从天降活动这种获得: <color=#{ComHelp.QualityReturnColor(5)}>{itemConfig.ItemName}</color>";
-                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, getmessage);
+                    string getmessageEn = $"{uername}Get: <color=#{ComHelp.QualityReturnColor(5)}>{itemConfig.ItemName}</color> from  A blessing from the heavens";
+                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, getmessage, getmessageEn);
                 }
             }
             

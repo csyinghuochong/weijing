@@ -1421,7 +1421,8 @@ namespace ET
                     {
                         string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                         string noticeContent = $"恭喜玩家 {name} 获得装备: <color=#{ComHelp.QualityReturnColor(5)}>{itemCof.ItemName}</color>";
-                        ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
+                        string noticeContentEn = $"Congratulations to player {name} Get Equip: <color=#{ComHelp.QualityReturnColor(5)}>{itemCof.ItemName}</color>";
+                        ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent, noticeContentEn);
                     }
 
                     //刷新传承属性

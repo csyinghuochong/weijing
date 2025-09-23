@@ -81,6 +81,9 @@ namespace ET
 		/// <summary>技能名称</summary>
 		[ProtoMember(2)]
 		public string SkillName { get; set; }
+		/// <summary>技能名称</summary>
+		[ProtoMember(3)]
+		public string SkillName_EN { get; set; }
 		/// <summary>技能等级</summary>
 		[ProtoMember(4)]
 		public int SkillLv { get; set; }
