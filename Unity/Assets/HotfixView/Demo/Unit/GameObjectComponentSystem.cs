@@ -142,7 +142,7 @@ namespace ET
                     long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                     Unit master = unit.GetParent<UnitComponent>().Get(masterId);
 
-                    if (userMaterModel == 1 && master != null
+                    if (userMaterModel > 0 && master != null
                         && master.GetComponent<GameObjectComponent>() != null
                         && master.GetComponent<GameObjectComponent>().GameObject != null)
                     {

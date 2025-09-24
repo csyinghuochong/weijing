@@ -9,10 +9,7 @@ namespace ET
     {
         public override void Awake(UnitInfoComponent self)
         {
-            self.EnergySkillId = 0;
-            self.ZhaohuanIds.Clear();
-            self.Buffs.Clear();
-            self.Drops.Clear();
+            self.ResetData();
         }
     }
 
@@ -21,12 +18,21 @@ namespace ET
     {
         public override void Destroy(UnitInfoComponent self)
         {
-            self.ZhaohuanIds.Clear();
+            self.ResetData();
         }
     }
 
     public static class UnitInfoComponentSystem
     {
+
+        public static void ResetData(this UnitInfoComponent self)
+        {
+            self.EnergySkillId = 0;
+            self.ZhaohuanIds.Clear();
+            self.FashionEquipList.Clear();
+            self.Buffs.Clear();
+            self.Drops.Clear();
+        }
 
         public static int GetZhaoHuanNumber(this UnitInfoComponent self)
         {

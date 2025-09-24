@@ -29,6 +29,10 @@ namespace ET
         //掉落
         public List<DropInfo> Drops = new List<DropInfo>();
 
+
+        /// <summary>
+        /// 穿戴的时装[怪物复刻玩家形象 也有可能用到]
+        /// </summary>
         public List<int> FashionEquipList = new List<int>();
 
 

@@ -664,13 +664,22 @@ namespace ET
             //血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
             string[] summonInfo = createMonsterInfo.AttributeParams.Split(';');
 
+            //1复刻玩家形象
             int useMasterModel = int.Parse(summonInfo[0]);
-            numericComponent.Set((int)NumericType.UseMasterModel, useMasterModel, false);
+            
+            if (useMasterModel == 1)
+            {
+                UnitInfoComponent unitInfoComponent = nowUnit.GetComponent<UnitInfoComponent>();
+                unitInfoComponent.FashionEquipList = masterUnit.GetComponent<BagComponent>().FashionEquipList;
+                numericComponent.Set((int)NumericType.UseMasterModel, masterUnit.GetComponent<UserInfoComponent>().UserInfo.Occ, false);
+            }
 
             string[] attributeList_1 = summonInfo[1].Split(',');    //比列
             string[] attributeList_2 = summonInfo[2].Split(',');    //固定值
 
             NumericComponent masterNumberComponent = masterUnit.GetComponent<NumericComponent>();
+            numericComponent.Set((int)NumericType.Now_Weapon, masterNumberComponent.GetAsInt(NumericType.Now_Weapon), false);
+
             numericComponent.Set((int)NumericType.Now_Lv, monsterlevel, false);
             numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0]) * (1+ masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[0]), false);
             numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterNumberComponent.GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1]) * (1 + masterNumberComponent.GetAsFloat(NumericType.Now_SummonAddPro))) + int.Parse(attributeList_2[1]), false);  //召唤怪物继承当前角色最大攻击

@@ -2282,6 +2282,9 @@ namespace ET
 		[ProtoMember(20)]
 		public List<SkillInfo> Skills = new List<SkillInfo>();
 
+		[ProtoMember(21)]
+		public List<int> FashionEquipList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.M2C_UnitNumericUpdate)]

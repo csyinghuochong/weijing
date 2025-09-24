@@ -195,7 +195,7 @@ namespace ET
         public static SpilingInfo CreateSpilingInfo(Unit unit)
         {
             SpilingInfo spilingInfo = new SpilingInfo();
-            unit.GetComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent =  unit.GetComponent<UnitInfoComponent>();
             spilingInfo.X = unit.Position.x;
             spilingInfo.Y = unit.Position.y;
             spilingInfo.Z = unit.Position.z;
@@ -204,6 +204,7 @@ namespace ET
             spilingInfo.ForwardY = forward.y;
             spilingInfo.ForwardZ = forward.z;
             spilingInfo.UnitId = unit.Id;
+            spilingInfo.FashionEquipList = unitInfoComponent.FashionEquipList;
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();
             if (nc != null)
@@ -225,7 +226,7 @@ namespace ET
                 spilingInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
             }
             //广播创建的是那个怪物ID
-            spilingInfo.SkillId = unit.GetComponent<UnitInfoComponent>().EnergySkillId;
+            spilingInfo.SkillId = unitInfoComponent.EnergySkillId;
             spilingInfo.MonsterID = unit.ConfigId;
             return spilingInfo;
         }

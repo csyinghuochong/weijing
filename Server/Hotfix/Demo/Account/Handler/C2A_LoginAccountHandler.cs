@@ -434,17 +434,7 @@ namespace ET
                         response.PlayerInfo = centerPlayerInfo;
                         response.AccountId = account.Id;
                         response.Token = Token;
-
-
-                        //C2A_LoginAccountHandler
-                        //C2A_CreateRoleHandler
-                        List<string> testnewocc = new List<string>()
-                        {
-                            "wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ",
-                            "18319670230",
-                        };
-
-                        response.Message = testnewocc.Contains(request.AccountName) ? "testnewocc" : string.Empty;
+                        response.TestNewOcc = GMHelp.TestNewOccAccount.Contains(request.AccountName) ? 1 : 0;
 
                         for (int r = 0; r < response.PlayerInfo.RechargeInfos.Count; r++) 
                         {

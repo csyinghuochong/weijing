@@ -111,8 +111,9 @@ namespace ET
 			unit.AddComponent<StateComponent>(true);
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
 			unitInfoComponent.EnergySkillId = unitInfo.SkillId;
-			
-			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
+            unitInfoComponent.FashionEquipList  = unitInfo.FashionEquipList;
+
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
 			if (monsterCof.AI != 0)
 			{
 				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建

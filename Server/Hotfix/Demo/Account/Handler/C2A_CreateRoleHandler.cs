@@ -72,13 +72,6 @@ namespace ET
                             return;
                         }
 
-                        //C2A_LoginAccountHandler
-                        //C2A_CreateRoleHandler
-                        List<string> testnewocc = new List<string>()
-                        {
-                            "wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ",
-                            "18319670230",
-                        };
 
 						if (request.CreateOcc == 5 && session.DomainZone()!= 5)
 						{
@@ -103,7 +96,7 @@ namespace ET
 						if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
 							&& !ComHelp.IsZhuBoZone(session.DomainZone())
                             && !GMHelp.GmAccount.Contains(centerAccountList[0].Account)
-							&& !testnewocc.Contains(centerAccountList[0].Account))
+							&& !GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account))
 						{
                             if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
                             {

@@ -1071,6 +1071,7 @@ message SpilingInfo
 	float ForwardZ = 14;
 	repeated KeyValuePair Buffs = 19;
 	repeated SkillInfo Skills = 20;
+	repeated int32 FashionEquipList = 21;   //复刻玩家形象会用到
 }
 
 message M2C_UnitNumericUpdate // IActorMessage
