@@ -26,6 +26,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             self.Animator = unit.GetComponent<AnimatorComponent>();
+            self.UseMasterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool idle = moveComponent == null || moveComponent.IsArrived();
             self.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState);
@@ -271,7 +272,7 @@ namespace ET
             //}
 
             //1:剑 2:刀 11 默认11  //(EquipType == 2)
-            if (unit.ConfigId == 1 || unit.ConfigId == 5)
+            if (unit.ConfigId == 1 || unit.ConfigId == 5 || self.UseMasterModel == 5)
             {
                 string boolAnimation = skillConfig.SkillAnimation;
                 if (boolAnimation == "Act_11")
