@@ -8,8 +8,7 @@ namespace ET
     /// </summary>
     public class Skill_ComTargetMove_RangDamge_6: SkillHandler
     {
-        private long MoveTime;
-        private int IsStop;
+       
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
