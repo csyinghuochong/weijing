@@ -67,7 +67,9 @@ namespace ET
 
 
         //连击用到的数据
-
+#if SERVER
+        public ComboComponent ComboComponent;
+#endif
         //连击用到的数据
     }
 }

@@ -345,12 +345,17 @@ namespace ET
 
         public static int GetEquipType(this Unit self)
         {
-            if (self.Type != UnitType.Player)
-            { 
-                return ItemEquipType.Common;    
+            if (self.Type == UnitType.Player)
+            {
+                int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+                return ItemHelper.GetEquipType(self.ConfigId, itemId);
             }
-            int itemId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
-            return ItemHelper.GetEquipType(self.ConfigId, itemId);
+            if (self.Type  == UnitType.Monster && self.AI == 15)
+            {
+                return self.GetComponent<ComboComponent>().EquipType;
+            }
+
+            return ItemEquipType.Common;
         }
 
         public static int GetWuqiItemID(this Unit self)

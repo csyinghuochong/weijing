@@ -23,6 +23,9 @@ namespace ET
             {
                 aiComponent.TargetID = 0;
                 attackRecordComponent.PetLockId = 0;
+                attackRecordComponent.AttackingId = 0;
+                attackRecordComponent.BeAttackId = 0;
+                aiComponent.IsRetreat = TimeHelper.ServerNow();
                 return true;
             }
 
@@ -93,6 +96,11 @@ namespace ET
                 }
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
+
+                if (aiComponent.IsRetreat > 0 && distacne < 1.5f)
+                {
+                    aiComponent.IsRetreat = 0;
+                }
 
                 if (errorCode == ErrorCode.ERR_Success && distacne > 1.5f)
                 {

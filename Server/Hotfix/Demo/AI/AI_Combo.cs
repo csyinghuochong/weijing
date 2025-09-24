@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -34,7 +30,9 @@ namespace ET
             for (int i = 0; i < 100000; ++i)
             {
                 long rigidityEndTime = 0;
-                int skillId = aiComponent.GetActSkillId();
+
+                //怪物一般只有一个普攻 其他都是被动技能
+                int skillId =  aiComponent.ComboComponent.AutoAttack_1();
                 if (skillId == 0)
                 {
                     break;
@@ -45,7 +43,8 @@ namespace ET
                 {
                     aiComponent.TargetID = 0;
                 }
-                else if (skillManagerComponent.IsCanUseSkill(skillId) == ErrorCode.ERR_Success)
+
+                if (aiComponent.TargetID != 0 && skillManagerComponent.IsCanUseSkill(skillId) == ErrorCode.ERR_Success)
                 {
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
                     Vector3 direction = target.Position - unit.Position;
@@ -72,13 +71,14 @@ namespace ET
                     skillManagerComponent.OnUseSkill(cmd, true);
                     rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + serverNow;
                 }
+
                 if (rigidityEndTime > stateComponent.RigidityEndTime)
                 {
                     stateComponent.SetRigidityEndTime(rigidityEndTime);
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(100, cancellationToken);
                 if (!timeRet)
                 {
                     return;

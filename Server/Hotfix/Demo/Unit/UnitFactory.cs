@@ -165,7 +165,28 @@ namespace ET
                         aIComponent.Begin();
                         break;
                 }
+
+                if (monsterConfig.AI == 15)
+                {
+                    ComboComponent comboComponent = unit.AddComponent<ComboComponent>();
+                    if (master != null)
+                    {
+                        int occ = master.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                        int equiptype = master.GetEquipType();
+                        comboComponent.OnInitOcc(occ, equiptype);
+                        numericComponent.Set(NumericType.Now_Weapon, equiptype, false);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"monsterConfig.AI == 15     master== null");
+                        comboComponent.OnInitOcc(1, 0);
+                    }
+
+                    aIComponent.ActDistance = comboComponent.UpdateAttackDis();
+                    aIComponent.ComboComponent = comboComponent;
+                }
             }
+
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
             return unit;
