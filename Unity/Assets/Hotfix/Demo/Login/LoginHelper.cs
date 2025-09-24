@@ -101,6 +101,7 @@ namespace ET
                 return a2CLoginAccount.Error;
             }
 
+            playerComponent.TestNewOcc = a2CLoginAccount.TestNewOcc;
             playerComponent.AccountId = a2CLoginAccount.AccountId;
             playerComponent.Password = password;
             playerComponent.PlayerInfo = a2CLoginAccount.PlayerInfo;
@@ -109,7 +110,6 @@ namespace ET
             playerComponent.TaprepRequest = a2CLoginAccount.TaprepRequest;
             playerComponent.TodayCreateRole = a2CLoginAccount.TodayCreateRole;
             playerComponent.RelinkRecord = a2CLoginAccount.RelinkRecord;
-            playerComponent.TestNewOcc = a2CLoginAccount.TestNewOcc;
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 

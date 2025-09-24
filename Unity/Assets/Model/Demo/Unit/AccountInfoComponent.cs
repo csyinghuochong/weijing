@@ -13,9 +13,11 @@ namespace ET
 
 		public PlayerInfo PlayerInfo;
 
-		public int Age_Type = -1;	
+		public int Age_Type = -1;
 
-		public long AccountId = 0;
+        public int TestNewOcc;
+
+        public long AccountId = 0;
 
 		public string Token;
 
@@ -23,9 +25,6 @@ namespace ET
 		public string RealmAddress;
 
 		public string TaprepRequest;
-
-		public int TestNewOcc;
-
         public int TodayCreateRole;
 
 		public int RelinkRecord;

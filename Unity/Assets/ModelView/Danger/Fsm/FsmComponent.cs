@@ -1,7 +1,4 @@
-﻿
-using UnityEngine;
-
-namespace ET
+﻿namespace ET
 {
     //动画状态机组件
 
@@ -16,6 +13,8 @@ namespace ET
 
         public AnimatorComponent Animator;
 
-        public string LastAnimator; 
+        public string LastAnimator;
+
+        public int UseMasterModel;
     }
 }

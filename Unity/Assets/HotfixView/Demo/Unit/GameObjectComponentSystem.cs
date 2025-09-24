@@ -961,12 +961,8 @@ namespace ET
                 return;
             }
             Unit unit = self.GetParent<Unit>();
-            float alpha = 1f;
             if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
             {
-                // 对自己半透明
-                alpha = 0.3f;
-                
                 // 身体隐形
                 if (self.Material != null)
                 {
@@ -1004,9 +1000,6 @@ namespace ET
             }
             else
             {
-                // 对别人透明
-                alpha = 0f;
-                
                 if (self.GameObject != null)
                 {
                     self.GameObject.SetActive(false);
