@@ -271,7 +271,7 @@ namespace ET
 
             Vector2 indicator = self.NewPoint - self.OldPoint;
             int angle = 90 - (int)(Mathf.Atan2(indicator.y, indicator.x) * Mathf.Rad2Deg) + (int)self.MainCamera.transform.eulerAngles.y;
-            angle = (angle - angle % 2);
+            //angle = (angle - angle % 2);
             return angle;
         }
 
