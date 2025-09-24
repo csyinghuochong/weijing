@@ -180,7 +180,15 @@ namespace ET
                             userInfo.SeasonLevel = 1;
                             userInfo.Occ = request.CreateOcc;
 						}
-						D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
+                        if (GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account))
+                        {
+                            userInfo.Lv = 50;
+                            userInfo.Sp = 50;
+                            userInfo.Gold = 20000000;
+                            userInfo.Diamond = 100000;
+                        }
+
+                        D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
 						userInfoComponent.Dispose();
 
 						//创建角色组件
