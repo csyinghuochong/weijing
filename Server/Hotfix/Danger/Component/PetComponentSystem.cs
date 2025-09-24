@@ -344,7 +344,7 @@ namespace ET
                 {
                     intFen = PetHelper.PetPingJia(rolePetInfo);
                 }
-                string strFen = $"{rolePetInfo.ConfigId},{intFen};";
+                string strFen = $"{rolePetInfo.ConfigId}{ConfigData.DataCollationSpit}{intFen};";
                 pingFen += strFen;
             }
 

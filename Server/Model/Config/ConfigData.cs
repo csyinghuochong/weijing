@@ -34,5 +34,8 @@ namespace ET
         public const string sEncodingAESKey = "yinhuochongweijing666yinhuochongweijing666a";
 
         public static bool OldNavMesh = true;
+
+
+        public static char DataCollationSpit = '&';
     }
 }

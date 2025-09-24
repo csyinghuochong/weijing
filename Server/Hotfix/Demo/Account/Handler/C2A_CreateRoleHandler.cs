@@ -149,7 +149,8 @@ namespace ET
 
                         UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
 						userInfoComponent.Account = newAccount.Account;
-						UserInfo userInfo = userInfoComponent.UserInfo;
+                        userInfoComponent.Password = newAccount.Password;
+                        UserInfo userInfo = userInfoComponent.UserInfo;
 						userInfo.Sp = 1;
 						userInfo.UserId = userId;
 						userInfo.BaoShiDu = 100;

@@ -246,8 +246,11 @@ namespace ET
                         unit.AddComponent<DBSaveComponent>();
                         unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
-						unit.GetComponent<DataCollationComponent>().UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID);
-                        unit.GetComponent<DataCollationComponent>().UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
+
+						DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
+						dataCollationComponent.CorrectData();
+                        dataCollationComponent.UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID);
+                        dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						//unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();

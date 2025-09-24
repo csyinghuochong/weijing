@@ -163,6 +163,8 @@ namespace ET
 
         public string Account;
 
+        public string Password;
+
         public int PetHeCheng;
 
         //模拟器

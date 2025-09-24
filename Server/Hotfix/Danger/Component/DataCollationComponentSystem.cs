@@ -20,7 +20,7 @@ namespace ET
         public static void Check(this DataCollationComponent self)
         {
             self.TotalOnLine++;
-
+            
             self.TodayOnLine = self.GetParent<Unit>().GetComponent<UserInfoComponent>().TodayOnLine;
         }
 
@@ -133,7 +133,7 @@ namespace ET
             string[] costlist = self.GoldCost.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
-                string[] costinfo = costlist[i].Split(',');
+                string[] costinfo = costlist[i].Split(ConfigData.DataCollationSpit);
                 if (costinfo.Length < 3)
                 {
                     continue;
@@ -159,7 +159,7 @@ namespace ET
             string[] costlist = self.GoldGet.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
-                string[] costinfo = costlist[i].Split(',');
+                string[] costinfo = costlist[i].Split(ConfigData.DataCollationSpit);
                 if (costinfo.Length < 3)
                 {
                     continue;
@@ -200,7 +200,7 @@ namespace ET
             string[] costlist = costValue.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
-                string[] costinfo = costlist[i].Split(',');
+                string[] costinfo = costlist[i].Split(ConfigData.DataCollationSpit);
                 if (costinfo.Length < 3)
                 {
                     continue;
@@ -210,6 +210,8 @@ namespace ET
                 long value = long.Parse(costinfo[2]);
                 self.OnAddCostList(pairInts, getWay, value);
             }
+
+            pairInts.Sort((x, y) => x.KeyId.CompareTo(y.KeyId));
         }
 
         public static long GetGoldGetTotal(this DataCollationComponent self)
@@ -222,7 +224,7 @@ namespace ET
             string[] costlist = self.GoldGet.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
-                string[] costinfo = costlist[i].Split(',');
+                string[] costinfo = costlist[i].Split(ConfigData.DataCollationSpit);
                 if (costinfo.Length < 3)
                 {
                     continue;
@@ -244,7 +246,7 @@ namespace ET
             string[] costlist = self.GoldCost.Split('_');
             for (int i = 0; i < costlist.Length; i++)
             {
-                string[] costinfo = costlist[i].Split(',');
+                string[] costinfo = costlist[i].Split(ConfigData.DataCollationSpit);
                 if (costinfo.Length < 3)
                 {
                     continue;
@@ -262,13 +264,34 @@ namespace ET
             string str = string.Empty;
             for (int i = 0; i < pairInts.Count; i++)
             {
-                str += $"{pairInts[i].KeyId},{ItemHelper.ItemGetWayName(pairInts[i].KeyId)},{pairInts[i].Value}_";
+                str += $"{pairInts[i].KeyId}{ConfigData.DataCollationSpit}{ItemHelper.ItemGetWayName(pairInts[i].KeyId)}{ConfigData.DataCollationSpit}{pairInts[i].Value}_";
             }
             return str;
         }
 
+        public static void CorrectData(this DataCollationComponent self)
+        { 
+            if (!string.IsNullOrEmpty(self.GoldCost))
+            {
+                self.GoldCost = self.GoldCost.Replace(',', ConfigData.DataCollationSpit);
+            }
+            if (!string.IsNullOrEmpty(self.GoldGet))
+            {
+                self.GoldGet = self.GoldGet.Replace(',', ConfigData.DataCollationSpit);
+            }
+            if (!string.IsNullOrEmpty(self.DiamondCost))
+            {
+                self.DiamondCost = self.DiamondCost.Replace(',', ConfigData.DataCollationSpit);
+            }
+            if (!string.IsNullOrEmpty(self.DiamondGet))
+            {
+                self.DiamondGet = self.DiamondGet.Replace(',', ConfigData.DataCollationSpit);
+            }
+        }
+
         public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId)
         {
+
             string platformName = PlatformHelper.GetPlatformName(platform);
             if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
             {
@@ -345,6 +368,7 @@ namespace ET
             self.Name = userInfoComponent.UserInfo.Name;
             self.Level = userInfoComponent.UserInfo.Lv;
             self.Account = userInfoComponent.Account;
+            self.Password = userInfoComponent.Password; 
 
             self.Occ = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).OccupationName;
 
