@@ -9,10 +9,6 @@ namespace ET
     public class Skill_Boomerang : SkillHandler
     {
 
-        private bool Return;
-        private Unit BulletUnit;
-
-
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);

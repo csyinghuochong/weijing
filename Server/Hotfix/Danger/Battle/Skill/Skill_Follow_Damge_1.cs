@@ -3,7 +3,6 @@
     //量子导弹
     public class Skill_Follow_Damge_1 : SkillHandler
     {
-        private Unit BulletUnit;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {

@@ -6,7 +6,6 @@ namespace ET
     public class Skill_Other_ChongJi_1 : SkillHandler
     {
 
-        private float SpeedAddValue = 0f;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {

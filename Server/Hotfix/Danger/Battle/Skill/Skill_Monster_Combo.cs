@@ -9,7 +9,6 @@ namespace ET
     public class Skill_Monster_Combo : SkillHandler
     {
 
-        private List<long> ComboTimeList = new List<long>();    
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {

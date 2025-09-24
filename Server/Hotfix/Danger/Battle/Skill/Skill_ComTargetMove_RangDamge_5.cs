@@ -9,9 +9,6 @@ namespace ET
     /// </summary>
     public class Skill_ComTargetMove_RangDamge_5: SkillHandler
     {
-        private int isChonFeng;
-        private float SpeedAddValue = 0f;
-        private Vector3 UnitTargetPos;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {

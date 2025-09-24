@@ -9,8 +9,6 @@ namespace ET
     public class Skill_Range_Bomb_1 : SkillHandler
     {
 
-        private Unit BulletUnit;
-        private int TriggeSkillId;
 
         //初始化
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)

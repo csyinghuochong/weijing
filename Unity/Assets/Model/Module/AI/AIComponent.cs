@@ -64,5 +64,10 @@ namespace ET
         public long LastAttackTime;
 
         public bool IsGhostMove;
+
+
+        //连击用到的数据
+
+        //连击用到的数据
     }
 }

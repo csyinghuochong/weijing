@@ -77,6 +77,22 @@ namespace ET
         //隐身buff额外属性
         public List<long> OnlyHideBuffActionUnitID = new List<long>();
 
+        public bool Return;
+        public Unit BulletUnit;
+
+
+        public int isChonFeng;
+        public float SpeedAddValue = 0f;
+        public Vector3 UnitTargetPos;
+
+        public long MoveTime;
+        public int IsStop;
+
+        public int TriggeSkillId;
+
+        public List<long> ComboTimeList = new List<long>();
+
+
         public abstract void OnInit(SkillInfo skillId, Unit theUnitFrom);
 
         public abstract void OnExecute();
