@@ -3156,6 +3156,8 @@ message M2C_ActivityInfoResponse // IActorLocationResponse
 	int64 LastLoginTime = 6;
 	repeated int32 DayTeHui = 7;
 	ActivityV1Info ActivityV1Info = 8;
+	repeated int32 TimerChouKaReceiveIds = 9;
+	int64 TimerChouKaLastTime = 10;
 }
 
 //战区活动
@@ -7933,10 +7935,22 @@ message M2C_GetWeChatOACode	// IActorLocationResponse
 	int32 Code = 1;
 }
 
+//ResponseType M2C_TimerChouKaResponse
+message C2M_TimerChouKaRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
 
+message M2C_TimerChouKaResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 
-
-
+	repeated int32 TimerChouKaReceiveIds = 9;
+	int64 TimerChouKaLastTime = 10;
+}
 
 
 ////////////////////////////////////////////////

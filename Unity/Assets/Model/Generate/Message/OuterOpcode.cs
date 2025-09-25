@@ -908,7 +908,9 @@ namespace ET
 		 public const ushort A2C_TikTokGetOpenId = 10905;
 		 public const ushort C2M_GetWeChatOACode = 10906;
 		 public const ushort M2C_GetWeChatOACode = 10907;
-		 public const ushort C2Center_QueryAccountRequest = 10908;
-		 public const ushort Center2C_QueryAccountResponse = 10909;
+		 public const ushort C2M_TimerChouKaRequest = 10908;
+		 public const ushort M2C_TimerChouKaResponse = 10909;
+		 public const ushort C2Center_QueryAccountRequest = 10910;
+		 public const ushort Center2C_QueryAccountResponse = 10911;
 	}
 }

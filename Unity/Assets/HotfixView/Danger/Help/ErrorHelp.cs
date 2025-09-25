@@ -176,7 +176,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_SoloExist, "已存在竞技场匹配列表中!");
             ErrorHintList.Add(ErrorCode.ERR_MapLimit, "当前地图人数已达上限!");
             ErrorHintList.Add(ErrorCode.ERR_TurtleSupport_1, "同账号只能支持一次!");
-            
+            ErrorHintList.Add(ErrorCode.ERR_NotTimeToGet, "还未到领取时间！");
+
 
             ErrorHintList.Add(ErrorCode.ERR_ShangJinNumFull, "今日领取赏金次数已满");
             ErrorHintList.Add(ErrorCode.ERR_TaskLimited, "今日任务次数已满");

@@ -1,0 +1,71 @@
+﻿
+using System;
+using System.Collections.Generic;
+
+namespace ET
+{
+
+    [ActorMessageHandler]
+    public class C2M_TimerChouKaHandler : AMActorLocationRpcHandler<Unit, C2M_TimerChouKaRequest, M2C_TimerChouKaResponse>
+    {
+        protected override async ETTask Run(Unit unit, C2M_TimerChouKaRequest request, M2C_TimerChouKaResponse response, Action reply)
+        {
+            if (!FunctionHelp.IsInTime(1074))
+            {
+                response.Error = ErrorCode.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
+
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            if (bagComponent.GetBagLeftCell() < 1)
+            {
+                response.Error = ErrorCode.ERR_BagIsFull;
+                reply();
+                return;
+            }
+            
+            ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();   
+            int receNum = activityComponent.TimerChouKaReceiveIds.Count;
+            if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
+            {
+                response.Error = ErrorCode.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
+
+            long serverTime = TimeHelper.ServerNow();
+            long lastTime = activityComponent.TimerChouKaLastTime;
+            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].KeyId * 1000;
+
+            if (serverTime < validTime)
+            {
+                response.Error = ErrorCode.ERR_NotTimeToGet;
+                reply();
+                return;
+            }
+
+            List<int> validids = new List<int>();
+            for (int i = 0; i < ConfigHelper.TimerChouKaRewardList.Count; i++)
+            {
+                if (!activityComponent.TimerChouKaReceiveIds.Contains(i))
+                {
+                    validids.Add(i);    
+                }
+            }
+            int index = RandomHelper.RandomNumber(0, validids.Count);
+            int recvid = validids[index];
+
+            string getitem = ConfigHelper.TimerChouKaRewardList[recvid].Value;
+            bagComponent.OnAddItemData(getitem, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            activityComponent.TimerChouKaReceiveIds.Add(recvid);
+            activityComponent.TimerChouKaLastTime = serverTime;
+
+
+            response.TimerChouKaLastTime = activityComponent.TimerChouKaLastTime;
+            response.TimerChouKaReceiveIds = activityComponent.TimerChouKaReceiveIds;
+            reply();
+            await ETTask.CompletedTask;
+        }
+    }
+}

@@ -1328,5 +1328,19 @@ namespace ET
         };
 
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
+    
+        //定时抽卡间隔 (1从上一次抽卡之后开始算  2从活动开始算)
+        //定时抽卡奖励
+        public static List<KeyValuePair> TimerChouKaRewardList = new List<KeyValuePair>()
+        {
+            new KeyValuePair(){  KeyId = 0,  Value =  "10000150;1" },     //深渊凭证
+            new KeyValuePair(){  KeyId = 1, Value =  "10000141;1" },      //洗炼袋子
+            new KeyValuePair(){  KeyId = 2, Value =  "10000152;1" },      //璀璨传承
+            new KeyValuePair(){  KeyId = 3, Value =  "10000165;1" },      //神话之灵
+            new KeyValuePair(){  KeyId = 4, Value =  "10010045;1" },      //金条
+            new KeyValuePair(){  KeyId = 5, Value =  "10010094;1" },      //超级宠物蛋
+            new KeyValuePair(){  KeyId = 6, Value =  "10010093;1" },      //珍贵宠物蛋
+            new KeyValuePair(){  KeyId = 7,  Value =  "10010096;1" },     //超级宠之晶
+        };
     }
 }

@@ -233,6 +233,8 @@ namespace ET
             activityComponent.LastLoginTime = r2c_roleEquip.LastLoginTime;
             activityComponent.DayTeHui = r2c_roleEquip.DayTeHui;
             activityComponent.ActivityV1Info = r2c_roleEquip.ActivityV1Info;
+            activityComponent.TimerChouKaReceiveIds = r2c_roleEquip.TimerChouKaReceiveIds;
+            activityComponent.TimerChouKaLastTime = r2c_roleEquip.TimerChouKaLastTime;
         }
 
         public static async ETTask RequestZhanQuInfo(Scene zoneScene)

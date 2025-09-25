@@ -173,6 +173,7 @@ namespace ET
         public const int ERR_MapLimit = 300707;
         public const int ERR_TurtleSupport_1 = 300708;
         public const int ERR_HappyMove_CD = 300709;
+        public const int ERR_NotTimeToGet = 300710;
 
         /// <summary>
         /// 技能CD中

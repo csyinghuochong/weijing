@@ -116,8 +116,11 @@ namespace ET
             self.ActivityV1Info.LiBaoBuyIds.Clear();
             self.ActivityV1Info.LastGuessReward.Clear();
             self.ActivityV1Info.ChouKaNumberReward.Clear(); 
-            self.ActivityV1Info.ConsumeDiamondReward.Clear();   
-        }
+            self.ActivityV1Info.ConsumeDiamondReward.Clear();
+
+            self.TimerChouKaLastTime = 0;
+            self.TimerChouKaReceiveIds.Clear();
+    }
 #endif
 
 #if !SERVER
@@ -161,6 +164,27 @@ namespace ET
                     self.ActivityReceiveIds.RemoveAt(i);
                 }
             }
+
+            self.TimerChouKaLastTime = 0;
+            self.TimerChouKaReceiveIds.Clear();
+        }
+
+        public static async ETTask<int> SendTimerChouKaRequest(this ActivityComponent self)
+        { 
+            C2M_TimerChouKaRequest c2M_TimerChouKaRequest = new C2M_TimerChouKaRequest();
+            M2C_TimerChouKaResponse m2C_TimerChouKaResponse = (M2C_TimerChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_TimerChouKaRequest);
+            if (m2C_TimerChouKaResponse == null)
+            {
+                return ErrorCode.ERR_NetWorkError;
+            }
+            if (m2C_TimerChouKaResponse.Error!= ErrorCode.ERR_Success)
+            {
+                return m2C_TimerChouKaResponse.Error;
+            }
+
+            self.TimerChouKaLastTime = m2C_TimerChouKaResponse.TimerChouKaLastTime;
+            self.TimerChouKaReceiveIds = m2C_TimerChouKaResponse.TimerChouKaReceiveIds;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<int> GetActivityReward(this ActivityComponent self, int activityType, int activityId)

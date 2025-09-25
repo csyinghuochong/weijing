@@ -18,6 +18,11 @@ namespace ET
         //每日特惠
         public List<int> DayTeHui = new List<int>();
 
+        //定时抽奖
+        public long TimerChouKaLastTime = 0;
+        
+        public List<int> TimerChouKaReceiveIds = new List<int>();
+
         public List<int> ActivityReceiveIds = new List<int>();
         /// <summary>
         /// 令牌领取

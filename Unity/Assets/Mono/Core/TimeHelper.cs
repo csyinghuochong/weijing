@@ -75,22 +75,22 @@ namespace ET
             return ShowTimeDifferenceStr(dt1, dt2);
         }
 
-        public static string ShowLeftTime(long time)
-        {
-            string str = "";
-            time = time / 1000;
+        //public static string ShowLeftTime(long time)
+        //{
+        //    string str = "";
+        //    time = time / 1000;
 
-            if (time > 24 *60 * 60)
-            {
-                str += $"{time / (24 * 60 * 60)}天";
-                time %= 24 * 60 * 60;
-            }
-            str += $"{time / (60 * 60)}时";
-            time %= 60 * 60;
-            str += $"{time / 60}分";
-            str += $"{time % 60}秒";
-            return str;
-        }
+        //    if (time > 24 *60 * 60)
+        //    {
+        //        str += $"{time / (24 * 60 * 60)}天";
+        //        time %= 24 * 60 * 60;
+        //    }
+        //    str += $"{time / (60 * 60)}时";
+        //    time %= 60 * 60;
+        //    str += $"{time / 60}分";
+        //    str += $"{time % 60}秒";
+        //    return str;
+        //}
 
         public static bool IsInTime(List<int> openTime)
         {
