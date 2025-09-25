@@ -181,7 +181,7 @@ namespace ET
                             userInfo.SeasonLevel = 1;
                             userInfo.Occ = request.CreateOcc;
 						}
-                        if (GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account))
+                        if (GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account) && request.CreateOcc == 5)
                         {
                             userInfo.Lv = 50;
                             userInfo.Sp = 50;
