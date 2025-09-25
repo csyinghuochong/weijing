@@ -845,9 +845,9 @@ namespace ET
                     adddamage_value = adddamagebyhp[1];  //伤害提升xx值  0.5
                 }
 
-                if (hp_below_value < defHpPro)
+                if (hp_below_value > 0f  && hp_below_value < defHpPro)
                 { 
-                    ///
+                    /// to do
                 }
 
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
