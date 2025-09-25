@@ -12,7 +12,7 @@ namespace ET
         {
             if (!FunctionHelp.IsInTime(1074))
             {
-                response.Error = ErrorCode.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_ActivityNotOpen;
                 reply();
                 return;
             }

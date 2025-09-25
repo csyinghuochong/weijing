@@ -174,6 +174,7 @@ namespace ET
         public const int ERR_TurtleSupport_1 = 300708;
         public const int ERR_HappyMove_CD = 300709;
         public const int ERR_NotTimeToGet = 300710;
+        public const int ERR_ActivityNotOpen = 300711;
 
         /// <summary>
         /// 技能CD中

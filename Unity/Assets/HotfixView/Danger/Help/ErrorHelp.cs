@@ -105,6 +105,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_EquipType, "装备穿戴类型不符!");
             ErrorHintList.Add(ErrorCode.ERR_GemNoError, "宝石一旦镶嵌无法卸载!");
             ErrorHintList.Add(ErrorCode.ERR_GemShiShiNumFull, "史诗宝石最多可镶嵌4个!");
+            ErrorHintList.Add(ErrorCode.ERR_ActivityNotOpen, "活动还没开启!");
 
             ErrorHintList.Add(ErrorCode.ERR_TeamIsFull, "队伍已满");
             ErrorHintList.Add(ErrorCode.ERR_LevelIsNot, "等级不足");
