@@ -62,6 +62,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
     {
         public GameObject DragPanel;
+        public GameObject Btn_TimerChouKa;
         public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
@@ -420,7 +421,11 @@ namespace ET
             };
             self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-         
+
+            self.Btn_TimerChouKa = rc.Get<GameObject>("Btn_TimerChouKa");
+            self.Btn_TimerChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_TimerChouKa().Coroutine(); });
+            self.Btn_TimerChouKa.SetActive(false);
+
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
 
@@ -1872,10 +1877,10 @@ namespace ET
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             //1058变身大赛 1055喜从天降 1052狩猎活动 1045竞技场    1062争霸捐献 1063开区奖励 1064活跃     1065商城 1066活动      
-            //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行
+            //1040拍卖特惠 1023红包活动 1067新年活动 1068萌新福利  1069分享     1016排行榜   1025战场活动 1070世界等级 1014拍卖行 1074定时抽卡
 
             List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052, 1055, 1057, 1058, 1059,
-                                                     1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014, 1071 };
+                                                     1062, 1063, 1064, 1065, 1066, 1067, 1068 ,1069, 1016, 1070, 1014, 1071, 1074 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -2071,6 +2076,9 @@ namespace ET
                     break;
                 case 1071:
                     self.Button_Season.SetActive(showButton);
+                    break;
+                case 1074:
+                    self.Btn_TimerChouKa.SetActive(showButton && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                     break;
                 default:
                     break;
@@ -2788,6 +2796,11 @@ namespace ET
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
+        }
+
+        public static async ETTask OnBtn_TimerChouKa(this UIMainComponent self)
+        {
+            await ETTask.CompletedTask;
         }
 
 
