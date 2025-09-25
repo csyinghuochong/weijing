@@ -109,7 +109,7 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(
                 SkillHelp.GetWeaponSkill(self.SkillId, self.EquipType, null)
              );
-            return (float)skillConfig.SkillRangeSize;
+            return (float)skillConfig.SkillRangeSize - 1;
         }
 
         public static void OnInitOcc(this ComboComponent self, int occ, int equipType)
