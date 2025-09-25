@@ -2801,6 +2801,7 @@ namespace ET
         public static async ETTask OnBtn_TimerChouKa(this UIMainComponent self)
         {
             await ETTask.CompletedTask;
+            UIHelper.Create(self.ZoneScene(), UIType.UITimerChouKa).Coroutine();
         }
 
 

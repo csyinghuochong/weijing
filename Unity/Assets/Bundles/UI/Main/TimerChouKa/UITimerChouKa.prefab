@@ -370,6 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220785170386054612}
   - component: {fileID: 7033667938878426241}
+  - component: {fileID: 7971641410467142730}
   m_Layer: 5
   m_Name: UITimerChouKa
   m_TagString: Untagged
@@ -422,6 +423,22 @@ MonoBehaviour:
     gameObject: {fileID: 6876156825720392224}
   - key: TextTip
     gameObject: {fileID: 1874750159100803647}
+--- !u!114 &7971641410467142730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220785170406196432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UILayer: 30
+  UIType: 0
+  HideMainUI: 0
+  ShowHuoBi: 0
 --- !u!1 &4221637178267119106
 GameObject:
   m_ObjectHideFlags: 0
