@@ -845,16 +845,16 @@ namespace ET
                     adddamage_value = adddamagebyhp[1];  //伤害提升xx值  0.5
                 }
 
-                if (hp_below_value > 0f  && hp_below_value < defHpPro)
-                { 
-                    /// to do
-                }
-
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
 
                 float damgePro = 1;
                 //伤害加成
                 damge = (long)((float)damge * (1 + numericComponentAttack.GetAsFloat(NumericType.Now_DamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_DamgeSubPro)));
+
+                if (hp_below_value > 0f && hp_below_value < defHpPro)
+                {
+                    damge = (long)(damge * (1f + adddamage_value));
+                }
 
                 //物理伤害
                 if (skillconfig.DamgeType == 1)
