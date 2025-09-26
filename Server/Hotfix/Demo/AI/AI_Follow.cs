@@ -86,11 +86,60 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
-          
-            while (true) 
+
+            long nowspeed = 60000;
+            long speedadd = 30000;
+            if (master != null && !master.IsDisposed)
+            {
+                nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
+                unit.GetComponent<NumericComponent>().Set(NumericType.Base_Speed_Base, nowspeed);
+            }
+
+            while (true)
+            {
+                int errorCode = unit.GetComponent<StateComponent>().CanMove();
+                float distacne = Vector3.Distance(unit.Position, master.Position);
+
+                if (distacne > 6f)
+                {
+                    speedadd = 30000;
+                }
+                if (distacne < 2f)
+                {
+                    speedadd = 0;
+                }
+
+                if (aiComponent.IsRetreat > 0 && distacne < 1.5f)
+                {
+                    aiComponent.IsRetreat = 0;
+                }
+
+                if (distacne > 1.5f && errorCode == ErrorCode.ERR_Success)
+                {
+                    Vector3 nextTarget = GetFollowPosition(unit, master);
+                    unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, speedadd);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                }
+                bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                if (!result)
+                {
+                    aiComponent.IsRetreat = 0;
+                    break;
+                }
+
+            }
+        }
+
+        public  async ETTask Execute_2(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
+        {
+            Unit unit = aiComponent.GetParent<Unit>();
+            long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            Unit master = aiComponent.UnitComponent.Get(masterid);
+
+            while (true)
             {
                 long nowspeed = 60000;
-                if (master!=null && !master.IsDisposed)
+                if (master != null && !master.IsDisposed)
                 {
                     nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
                 }
