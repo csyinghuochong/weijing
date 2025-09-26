@@ -46,14 +46,16 @@ namespace ET
             }
 
             List<int> validids = new List<int>();
+            List<int> weights = new List<int>();
             for (int i = 0; i < ConfigHelper.TimerChouKaRewardList.Count; i++)
             {
                 if (!activityComponent.TimerChouKaReceiveIds.Contains(i))
                 {
-                    validids.Add(i);    
+                    validids.Add(i);
+                    weights.Add(ConfigHelper.TimerChouKaRewardList[i].Weight);
                 }
             }
-            int index = RandomHelper.RandomNumber(0, validids.Count);
+            int index = RandomHelper.RandomByWeight(weights);
             int recvid = validids[index];
 
             string getitem = ConfigHelper.TimerChouKaRewardList[recvid].ItemInfo;
