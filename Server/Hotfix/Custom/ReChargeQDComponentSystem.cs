@@ -248,7 +248,7 @@ namespace ET
 
                 foreach (var payvalueee in payResults)
                 {
-                    Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   payResultsxxx:    " + payvalueee.Key + "   " + payvalueee.Value);
+                    //Console.WriteLine($"{TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}   payResultsxxx:    " + payvalueee.Key + "   " + payvalueee.Value);
                 }
 
                 if (payResults.ContainsKey("game_order"))
