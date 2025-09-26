@@ -29,6 +29,11 @@ namespace ET
             self.PositionSet.SetActive(false);
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
+
+            string path_2 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_41_uiguide");
+            Sprite sp_2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path_2);
+            self.ImageButton.GetComponent<Image>().sprite = sp_2;
+
             self.ShowLab = rc.Get<GameObject>("ShowLab");
             self.ShowLabSet = rc.Get<GameObject>("ShowLabSet");
         }
@@ -39,7 +44,7 @@ namespace ET
     {
         public override void Destroy(UIGuideComponent self)
         {
-            GameObject.Destroy(self.ImageButton);
+            //GameObject.Destroy(self.ImageButton);
         }
     }
 
