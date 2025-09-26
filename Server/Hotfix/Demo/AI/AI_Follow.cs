@@ -126,6 +126,7 @@ namespace ET
                 bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!result)
                 {
+                    aiComponent.IsRetreat = 0;
                     break;
                 }
 

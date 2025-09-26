@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -44,7 +45,13 @@ namespace ET
                     aiComponent.TargetID = 0;
                 }
 
-                if (aiComponent.TargetID != 0 && skillManagerComponent.IsCanUseSkill(skillId) == ErrorCode.ERR_Success)
+                float distance = 0f;
+                if (target!= null)
+                {
+                    distance = Vector3.Distance(target.Position, unit.Position);
+                }
+
+                if (aiComponent.TargetID != 0 && distance <= aiComponent.ActDistance && skillManagerComponent.IsCanUseSkill(skillId) == ErrorCode.ERR_Success)
                 {
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
                     Vector3 direction = target.Position - unit.Position;

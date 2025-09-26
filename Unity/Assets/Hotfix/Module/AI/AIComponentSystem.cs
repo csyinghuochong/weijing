@@ -291,18 +291,19 @@ namespace ET
         }
 
 #if SERVER
-        public static bool IsCanZhuiJi(this AIComponent self)
+        public static int IsCanZhuiJi(this AIComponent self)
         {
             StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
-            if (ErrorCode.ERR_Success!=stateComponent.CanMove())
+            int movecode = stateComponent.CanMove();
+            if (ErrorCode.ERR_Success!= movecode)
             {
-                return false;
+                return movecode;
             }
             if (stateComponent.StateTypeGet(StateTypeEnum.Singing))
             {
-                return false;
+                return 1;
             }
-            return true;
+            return 0;
         }
 
         public static void BeAttacking(this AIComponent self, Unit attack)
