@@ -28,7 +28,7 @@ namespace ET
             {
                 nearest = aiComponent.LocalDungeonUnit;
             }
-            if (nearest == null)
+            if (nearest == null || nearest.IsCanBeAttack(true, false))
             {
                 RolePetInfo rolePetInfo = aiComponent.LocalDungeonUnitPetComponent.GetFightPet();
                 if (rolePetInfo != null)

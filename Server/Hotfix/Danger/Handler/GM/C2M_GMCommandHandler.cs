@@ -131,7 +131,21 @@ namespace ET
 					}
 					return;
 				}
-				if (message.GMMsg == "#killmonster")
+                if (message.GMMsg == "#killpet")
+                {
+                    List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+                    for (int i = units.Count - 1; i >= 0; i--)
+                    {
+                        if (units[i].Type != UnitType.Pet)
+                        {
+                            continue;
+                        }
+                        units[i].GetComponent<NumericComponent>().ApplyChange(unit, NumericType.Now_Hp, -1000000000, 0);
+                    }
+                    return;
+                }
+
+                if (message.GMMsg == "#killmonster")
 				{
 					List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
 					for (int i = units.Count - 1; i >= 0; i--)
@@ -199,7 +213,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:       //72009041死亡技能      //2#-69#0.66#4.74#70001001#1 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
+					case 2:       //72009041死亡技能      //2#-69#0.66#4.74#72004002#1 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
                         float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]); 
 						float posZ = float.Parse(commands[3]);
