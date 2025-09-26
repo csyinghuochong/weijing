@@ -487,6 +487,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
             DataUpdateComponent.Instance.AddListener(DataType.BeforeMove, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
+            DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
         }
     }
 
@@ -604,6 +605,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             if (self.TianQiEffectObj != null)
             {
@@ -845,6 +847,11 @@ namespace ET
                     self.TextFps.text = zstring.Format(fpsText, self.mLastFps);
                 }
             }
+        }
+
+        public static void OnLanguageUpdate(this UIMainComponent self)
+        {
+            self.UIMainSkillComponent.OnLanguageUpdate().Coroutine();
         }
 
         public static long TickToMilliSec(long tick)

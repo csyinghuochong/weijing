@@ -519,6 +519,11 @@ namespace ET
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
+                if (component is UIMainComponent uIMainComponent)
+                {
+                    uIMainComponent.OnLanguageUpdate();
+                    continue;
+                }
                 if (component is UIRoleComponent uiRoleComponent)
                 {
                     uiRoleComponent.OnLanguageUpdate();

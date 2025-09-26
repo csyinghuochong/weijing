@@ -126,11 +126,20 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.SkillBeging, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillFinish, self);
             DataUpdateComponent.Instance.AddListener(DataType.JingLingButton, self);
+
+            self.OnLanguageUpdate().Coroutine();
         }
     }
 
     public static class UIMainSkillComponentSystem
     {
+
+        //LanguageUpdate  。。。。
+        public static async ETTask OnLanguageUpdate(this UIMainSkillComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(200);
+            self.Btn_PetTarget.transform.Find("Image").GetComponent<Image>().SetNativeSize();
+        }
 
         public static async ETTask OnBtn_PetTarget(this UIMainSkillComponent self)
         {
