@@ -89,7 +89,7 @@ namespace ET
                 {
                     return false;
                 }
-                if (attackmode == 3 && defend.Type == UnitType.Player)
+                if (attackmode == 3 && (defend.Type == UnitType.Player || defend.MasterIsPlayer()) )
                 {
                     return false;
                 }
@@ -181,6 +181,7 @@ namespace ET
             return master.Type == UnitType.Player;
         }
 
+        //是自己的主人或者是自己的召唤物
         public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
         {
             long masterId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);

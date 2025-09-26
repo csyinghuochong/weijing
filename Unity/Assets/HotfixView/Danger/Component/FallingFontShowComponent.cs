@@ -66,7 +66,7 @@ namespace ET
 
         public static void OnLoadGameObject(this FallingFontShowComponent self, GameObject FlyFontObj, long formId)
         {
-            if (self.IsDisposed || formId != self.InstanceId || self.Unit.IsDisposed)
+            if (self.IsDisposed || formId != self.InstanceId || self.Unit.IsDisposed || self.HeadBar == null)
             {
                 self.RecoveryGameObject(FlyFontObj);
                 return;

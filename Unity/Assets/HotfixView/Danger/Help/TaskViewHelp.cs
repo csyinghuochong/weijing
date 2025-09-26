@@ -144,9 +144,9 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
             Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-           // Vector3 dir = unit.Position - target;
+            // Vector3 dir = unit.Position - target;
             //target = target + dir.normalized * 10f;
-            unit.MoveToAsync2(target, false, null, 0, taskPro.taskID).Coroutine();
+            unit.MoveToAsync2(target, false, null, 0, taskPro.taskID, true).Coroutine();
             return true;
         }
 
