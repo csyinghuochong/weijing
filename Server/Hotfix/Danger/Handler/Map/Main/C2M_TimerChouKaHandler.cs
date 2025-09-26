@@ -36,7 +36,7 @@ namespace ET
 
             long serverTime = TimeHelper.ServerNow();
             long lastTime = activityComponent.TimerChouKaLastTime;
-            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].KeyId * 1000;
+            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval * 1000;
 
             if (serverTime < validTime)
             {
@@ -56,7 +56,7 @@ namespace ET
             int index = RandomHelper.RandomNumber(0, validids.Count);
             int recvid = validids[index];
 
-            string getitem = ConfigHelper.TimerChouKaRewardList[recvid].Value;
+            string getitem = ConfigHelper.TimerChouKaRewardList[recvid].ItemInfo;
             bagComponent.OnAddItemData(getitem, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             activityComponent.TimerChouKaReceiveIds.Add(recvid);
             activityComponent.TimerChouKaLastTime = serverTime;

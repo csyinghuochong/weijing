@@ -132,6 +132,13 @@ namespace ET
         public string Reward;
     }
 
+    public struct TimerChouKaItemn
+    {
+        public int Interval;    //秒
+        public int Weight;      //权重
+        public string ItemInfo; 
+    }
+
     public static class CombatResultEnum
     {
         public const int None = 0;

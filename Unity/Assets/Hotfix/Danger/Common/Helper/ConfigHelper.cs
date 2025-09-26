@@ -1331,16 +1331,16 @@ namespace ET
     
         //定时抽卡间隔 (1从上一次抽卡之后开始算  2从活动开始算)
         //定时抽卡奖励
-        public static List<KeyValuePair> TimerChouKaRewardList = new List<KeyValuePair>()
+        public static List<TimerChouKaItemn> TimerChouKaRewardList = new List<TimerChouKaItemn>()
         {
-            new KeyValuePair(){  KeyId = 0,  Value =  "10000150;1" },     //深渊凭证
-            new KeyValuePair(){  KeyId = 1, Value =  "10000141;1" },      //洗炼袋子
-            new KeyValuePair(){  KeyId = 2, Value =  "10000152;1" },      //璀璨传承
-            new KeyValuePair(){  KeyId = 3, Value =  "10000165;1" },      //神话之灵
-            new KeyValuePair(){  KeyId = 4, Value =  "10010045;1" },      //金条
-            new KeyValuePair(){  KeyId = 5, Value =  "10010094;1" },      //超级宠物蛋
-            new KeyValuePair(){  KeyId = 6, Value =  "10010093;1" },      //珍贵宠物蛋
-            new KeyValuePair(){  KeyId = 7,  Value =  "10010096;1" },     //超级宠之晶
+            new TimerChouKaItemn(){  Interval = 0,  Weight = 10,  ItemInfo =  "10000150;1" },     //深渊凭证
+            new TimerChouKaItemn(){  Interval = 1,  Weight = 100, ItemInfo =  "10000141;1" },      //洗炼袋子
+            new TimerChouKaItemn(){  Interval = 2,  Weight = 20, ItemInfo =  "10000152;1" },      //璀璨传承
+            new TimerChouKaItemn(){  Interval = 3,  Weight = 20, ItemInfo =  "10000165;1" },      //神话之灵
+            new TimerChouKaItemn(){  Interval = 4,  Weight = 10, ItemInfo =  "10010045;1" },      //金条
+            new TimerChouKaItemn(){  Interval = 5, Weight = 50,  ItemInfo =  "10010094;1" },      //超级宠物蛋
+            new TimerChouKaItemn(){  Interval = 6, Weight = 30,  ItemInfo =  "10010093;1" },      //珍贵宠物蛋
+            new TimerChouKaItemn(){  Interval = 7,  Weight = 10,  ItemInfo =  "10010096;1" },     //超级宠之晶
         };
     }
 }

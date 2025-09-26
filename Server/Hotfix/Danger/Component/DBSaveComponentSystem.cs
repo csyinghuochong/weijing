@@ -159,7 +159,7 @@ namespace ET
             if (!unit.IsRobot())
             {
                 LogHelper.LoginInfo(offLineInfo);
-                Log.Debug(offLineInfo);
+                Log.Warning(offLineInfo);
                 self.LogTest();
             }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

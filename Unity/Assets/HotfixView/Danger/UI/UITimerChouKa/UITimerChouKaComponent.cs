@@ -79,7 +79,7 @@ namespace ET
         {
             for (int i = 0; i < ConfigHelper.TimerChouKaRewardList.Count; i++)
             {
-                string itemvalue = ConfigHelper.TimerChouKaRewardList[i].Value;
+                string itemvalue = ConfigHelper.TimerChouKaRewardList[i].ItemInfo;
                 string[] iteminfo = itemvalue.Split(';');
                 int ItemID = int.Parse(iteminfo[0]);
                 int ItemNum = int.Parse(iteminfo[1]);
@@ -117,7 +117,7 @@ namespace ET
 
             long serverTime = TimeHelper.ServerNow();
             long lastTime = activityComponent.TimerChouKaLastTime;
-            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].KeyId * 1000;
+            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval * 1000;
             if (serverTime >= validTime)
             {
                 self.TextTip.text = GameSettingLanguge.LoadLocalization("可抽奖!");
