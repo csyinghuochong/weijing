@@ -490,7 +490,7 @@ namespace ET
                     (ishape as Fan).s_position = self.TargetPosition;
                     (ishape as Fan).s_rotation = Quaternion.Euler(0, targetAngle, 0);
                     (ishape as Fan).skill_distance = (float)(self.SkillConf.DamgeRange[0]) + addRange;
-                    (ishape as Fan).skill_angle = (float)(self.SkillConf.DamgeRange[1]);
+                    (ishape as Fan).skill_angle = (float)(self.SkillConf.DamgeRange[1]) * 0.5f;
                     break;
             }
             return ishape;
