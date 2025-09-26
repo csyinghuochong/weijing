@@ -88,7 +88,7 @@ namespace ET
             Unit master = aiComponent.UnitComponent.Get(masterid);
 
             long nowspeed = 60000;
-            long speedadd = 30000;
+            long speedadd = 40000;
             if (master != null && !master.IsDisposed)
             {
                 nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
@@ -100,9 +100,9 @@ namespace ET
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 
-                if (distacne > 6f)
+                if (distacne > 10f)
                 {
-                    speedadd = 30000;
+                    speedadd = 40000;
                 }
                 if (distacne < 2f)
                 {
