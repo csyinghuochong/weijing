@@ -2647,6 +2647,9 @@ namespace ET
 		[ProtoMember(11)]
 		public long UnitIdFrom { get; set; }
 
+		[ProtoMember(12)]
+		public int InstanceId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_UnitBuffRemove)]
@@ -2658,6 +2661,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public long UnitIdBelongTo { get; set; }
+
+		[ProtoMember(12)]
+		public int InstanceId { get; set; }
 
 	}
 
@@ -2676,6 +2682,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public long UnitID { get; set; }
+
+		[ProtoMember(12)]
+		public int InstanceId { get; set; }
 
 	}
 
