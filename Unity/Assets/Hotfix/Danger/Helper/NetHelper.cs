@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ET
 {
@@ -311,6 +312,12 @@ namespace ET
             C2M_GetWeChatOACode c2M_GetWeChatOACode = new C2M_GetWeChatOACode();
             M2C_GetWeChatOACode m2C_GetWeChatOACode = (M2C_GetWeChatOACode)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_GetWeChatOACode);
             return m2C_GetWeChatOACode;
+        }
+
+        public static async ETTask RequestUploadData(Scene zoneScene, string data)
+        {
+            C2Popularize_UploadRequest request = new C2Popularize_UploadRequest() { MemoryInfo = data };
+            Popularize2C_UploadResponse response = (Popularize2C_UploadResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId, int plan)

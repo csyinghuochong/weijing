@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace ET
@@ -324,7 +326,7 @@ namespace ET
 #if !SERVER
         /// 0:中断
         /// 1:不中断
-        public static async void SkillStop(this MoveComponent self, Unit unit, SkillConfig skillConfig)
+        public static async ETTask  SkillStop(this MoveComponent self, Unit unit, SkillConfig skillConfig)
         {
             self.WaitMove = false;
             int targetCount = self.Targets.Count;
@@ -332,11 +334,17 @@ namespace ET
             {
                 return;
             }
-            if (!unit.MainHero || !self.WaitMode)
+
+            float targetdis = Vector3.Distance(unit.Position, self.Targets[targetCount - 1]);
+
+            if (unit.MainHero  && targetdis > 5f && skillConfig.SkillType!=1 && !self.UploadSkill.Contains(skillConfig.Id) && !self.WaitMode)
             {
-                return;
+                Scene zonescene = unit.ZoneScene();
+                NetHelper.RequestUploadData(zonescene, $"玩家:{unit.Id} 移动被技能 {skillConfig.SkillName} 打断.  距离终点:{targetdis}  是否继续移动:{skillConfig.IfStopMove}").Coroutine();
+                self.UploadSkill.Add(skillConfig.Id);
             }
-            if (Vector3.Distance(unit.Position, self.Targets[targetCount - 1]) < 2f)
+
+            if (!unit.MainHero || !self.WaitMode || targetdis < 2f)
             {
                 return;
             }

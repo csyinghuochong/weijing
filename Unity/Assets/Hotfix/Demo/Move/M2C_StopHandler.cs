@@ -73,7 +73,7 @@ namespace ET
                 {
                 }
                 MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-                moveComponent.SkillStop(unit, skillConfig);
+                moveComponent.SkillStop(unit, skillConfig).Coroutine();
                 moveComponent.Stop();
                 if (!unit.MainHero && Vector3.Distance(unit.Position, pos) > 0.5f)
                 {

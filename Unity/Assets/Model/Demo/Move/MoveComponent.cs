@@ -95,5 +95,7 @@ namespace ET
 
         public float C2SDistance;
         public long LastRecvTime;
+
+        public List<int> UploadSkill = new List<int>(); 
     }
 }
