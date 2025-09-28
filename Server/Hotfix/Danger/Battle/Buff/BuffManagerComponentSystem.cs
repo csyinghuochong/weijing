@@ -105,6 +105,29 @@ namespace ET
         }
 
 
+        //批量删除buff
+        public static void BuffRemoveListBatch(this BuffManagerComponent self, int buffid)
+        {
+            //判断玩家身上是否有相同的buff,如果有就注销此Buff
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                if (buffid==self.m_Buffs[i].mBuffConfig.Id)
+                {
+                    BuffHandler buffHandler = self.m_Buffs[i];
+                    buffHandler.BuffState = BuffState.Finished;
+                    ObjectPool.Instance.Recycle(buffHandler);
+                    buffHandler.OnFinished();
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
+            SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffid);
+            M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
+            m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
+            m2C_UnitBuffUpdate.BuffID = buffid;
+            MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
+        }
+
         public static void OnRemoveBuffItem(this BuffManagerComponent self, BuffHandler buffHandler)
         {
             M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
@@ -305,6 +328,7 @@ namespace ET
                 }
             }
         }
+
 
         /// <summary>
         /// removetype 1移动  2被攻击[目前用来移除沉睡buff]   3释放技能

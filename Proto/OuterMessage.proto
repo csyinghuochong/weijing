@@ -1240,12 +1240,14 @@ message M2C_UnitBuffUpdate // IActorMessage
 	int32 UnitConfigId = 9;
 	int32 SkillId = 10;
 	int64 UnitIdFrom = 11;
+	int32 InstanceId = 12;
 }
 
 message M2C_UnitBuffRemove // IActorMessage
 {
 	int32 BuffID = 1;
 	int64 UnitIdBelongTo = 2;
+	int32 InstanceId = 12;
 }
 
 message M2C_UnitBuffStatus // IActorMessage
@@ -1254,6 +1256,7 @@ message M2C_UnitBuffStatus // IActorMessage
 	string FlyText = 2;
 	int FlyType = 3;
 	int64 UnitID = 4;
+	int32 InstanceId = 12;
 }
 
 //ResponseType G2C_OffLine

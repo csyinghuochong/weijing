@@ -43,5 +43,6 @@ namespace ET
         public SkillPassiveInfo SingSkillIfo;
         public long SingTargetId = 0;
 
+        public long LastAckGaiLv_1Time = 0;
     }
 }
