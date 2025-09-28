@@ -103,6 +103,7 @@
         public const int PetEquipMakeTimer = 1116;
         public const int OnlineCheckTimer = 1117;
         public const int UITimerChouKaTimer = 1118;
+        public const int PickItemTimer = 1119;
         // 不能超过10000
     }
 }
