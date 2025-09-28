@@ -746,9 +746,8 @@ namespace ET
 
         public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
         {
-
             List<ServerItem> serverItems = ServerHelper.GetServerList();
-            Console.WriteLine($"BroadcastShowLie: ServerItems {serverItems.Count}");
+            //Console.WriteLine($"BroadcastShowLie: ServerItems {serverItems.Count}");
 
             int firstserver = 0;
             for (int i = 0; i < serverItems.Count; i++)
