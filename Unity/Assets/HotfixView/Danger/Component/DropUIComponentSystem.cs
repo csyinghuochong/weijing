@@ -284,21 +284,8 @@ namespace ET
                     return;
                 }
 
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.DropInfo.ItemID);
-
-                if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
-                {
-                    return;
-                }
-
-                // 蓝色 金币除外
-                if (userInfoComponent.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
-                {
-                    return;
-                }
-
-                MapHelper.SendShiquItems(self.ZoneScene(), new List<Unit>() { self.MyUnit }).Coroutine();
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnBtn_ShiQuItems(new List<Unit>() { self.MyUnit }, true).Coroutine();
             }
         }
 

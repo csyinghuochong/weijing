@@ -2413,7 +2413,7 @@ namespace ET
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
             self.UIMapMini.OnEnterScene();
-            self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
+            self.UIMainSkillComponent.OnAfterEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
             self.UIRoleHead.OnEnterScene(sceneTypeEnum);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);

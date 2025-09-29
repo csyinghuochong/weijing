@@ -170,7 +170,7 @@ namespace ET
             if (ids.Count > 0)
             {
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnBtn_ShiQuItems(ids).Coroutine();
+                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnBtn_ShiQuItems(ids, false).Coroutine();
 
                 //播放音效
                 UIHelper.PlayUIMusic("10004");

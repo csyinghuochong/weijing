@@ -37,6 +37,7 @@ namespace ET
         public List<string> AssetPath = new List<string>();
 
         public int JueXingSkillId;
+        public int SceneTypeEnum;
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
@@ -462,36 +463,10 @@ namespace ET
             {
                 return;
             }
-            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();       
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);  
             if (ids.Count > 0)
             {
-                for (int i = ids.Count - 1; i >= 0; i--)
-                {
-                    //DropInfo dropInfo = ids[i].GetComponent<DropComponent>().DropInfo;
-                    //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ConfigId);
-
-                    if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
-                    {
-                        ids.RemoveAt(i);
-                        continue;
-                    }
-
-                    // 蓝色 金币除外
-                    if (userInfoComponent.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
-                    {
-                        ids.RemoveAt(i);
-                        continue;
-                    }
-                }
-
-                if (ids.Count <= 0)
-                {
-                    return;
-                }
-
-                self.OnBtn_ShiQuItems(ids).Coroutine();
+                self.OnBtn_ShiQuItems(ids, false).Coroutine();
 
                 //播放音效
                 UIHelper.PlayUIMusic("10004");
@@ -522,31 +497,60 @@ namespace ET
 
         }
 
-        public static async ETTask OnBtn_ShiQuItems(this UIMainSkillComponent self, List<Unit> ids)
+        public static async ETTask OnBtn_ShiQuItems(this UIMainSkillComponent self, List<Unit> ids, bool jingling)
         {
-            if (Time.time - self.LastPickTime < 1f)
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            for (int i = ids.Count - 1; i >= 0; i--)
+            {
+                //DropInfo dropInfo = ids[i].GetComponent<DropComponent>().DropInfo;
+                //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ConfigId);
+
+                if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
+                {
+                    ids.RemoveAt(i);
+                    continue;
+                }
+
+                // 蓝色 金币除外
+                if (userInfoComponent.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
+                {
+                    ids.RemoveAt(i);
+                    continue;
+                }
+            }
+
+            if (ids.Count <= 0)
+            {
+                return;
+            }
+
+            if (!jingling && Time.time - self.LastPickTime < 1f)
             {
                 return;
             }
 
             self.LastPickTime = Time.time;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!unit.GetComponent<MoveComponent>().IsArrived())
+            if (!jingling && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             }
 
-            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
-            MapHelper.SendShiquItems(self.ZoneScene(), ids).Coroutine(); ;
+            MapHelper.SendShiquItems(self.ZoneScene(), ids).Coroutine();
 
-            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow() + 200);
-            long instancId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(200);
-            if (instancId != self.InstanceId)
+            if (!jingling)
             {
-                return;
+                unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
+                unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow() + 200);
+                long instancId = self.InstanceId;
+                await TimerComponent.Instance.WaitAsync(200);
+                if (instancId != self.InstanceId)
+                {
+                    return;
+                }
+                unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
             }
-            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
         }
 
         public static async ETTask MoveToShiQu(this UIMainSkillComponent self, Vector3 position)
@@ -556,7 +560,7 @@ namespace ET
             List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
             if (value == 0 && ids.Count > 0)
             {
-                self.OnBtn_ShiQuItems(ids).Coroutine();
+                self.OnBtn_ShiQuItems(ids, false).Coroutine();
             }
         }
 
@@ -645,8 +649,9 @@ namespace ET
             self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }
 
-        public static void OnEnterScene(this UIMainSkillComponent self, Unit unit, int sceneType)
+        public static void OnAfterEnterScene(this UIMainSkillComponent self, Unit unit, int sceneType)
         {
+            self.SceneTypeEnum = sceneType;
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
