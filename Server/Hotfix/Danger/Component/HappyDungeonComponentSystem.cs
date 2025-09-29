@@ -136,7 +136,7 @@ namespace ET
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(rewardist[i].ItemID, rewardist[i].ItemNum);
                     dropComponent.CellIndex = p + 1;
-
+                    dropitem.ConfigId = rewardist[i].ItemID;
                     Vector3 vector3 = HappyHelper.PositionList[p];
                     dropitem.Position = vector3;
                     dropitem.AddComponent<AOIEntity, int, Vector3>(2 * 1000, dropitem.Position);

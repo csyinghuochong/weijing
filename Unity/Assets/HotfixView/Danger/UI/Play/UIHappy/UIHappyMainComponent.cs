@@ -180,7 +180,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int cellindex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
 
-            List<DropInfo> ids = MapHelper.GetCanShiQuByCell(self.ZoneScene(), cellindex);
+            List<Unit> ids = MapHelper.GetCanShiQuByCell(self.ZoneScene(), cellindex);
             if (ids.Count > 0)
             {
                 UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );

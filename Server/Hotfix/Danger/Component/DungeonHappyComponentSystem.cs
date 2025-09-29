@@ -86,6 +86,7 @@ namespace ET
 
                     Vector3 vector3 = HappyHelper.PositionList[p];
                     dropitem.Position = vector3;
+                    dropitem.ConfigId = rewardist[i].ItemID;
                     dropitem.AddComponent<AOIEntity, int, Vector3>(2 * 1000, dropitem.Position);
                     dropComponent.DropType = 0;
                 }

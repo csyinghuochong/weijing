@@ -298,7 +298,7 @@ namespace ET
                     return;
                 }
 
-                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                MapHelper.SendShiquItem(self.ZoneScene(), new List<Unit>() { self.MyUnit }).Coroutine();
             }
         }
 

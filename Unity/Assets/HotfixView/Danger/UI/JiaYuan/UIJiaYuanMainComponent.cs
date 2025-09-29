@@ -314,7 +314,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
@@ -415,7 +415,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), self.GatherRange);
             if (ids.Count > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);

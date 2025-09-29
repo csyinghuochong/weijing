@@ -114,9 +114,9 @@ namespace ET
             return unit!=null ? unit.Id : 0;
         }
 
-        public static List<DropInfo> GetCanShiQuByCell(Scene zoneScene, int cell)
+        public static List<Unit> GetCanShiQuByCell(Scene zoneScene, int cell)
         {
-            List<DropInfo> ids = new List<DropInfo>();
+            List<Unit> ids = new List<Unit>();
             List<Entity> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
             for (int i = 0; i < units.Count; i++)
             {
@@ -128,7 +128,7 @@ namespace ET
                 int dropcell = uu.GetComponent<DropComponent>().CellIndex;
                 if (dropcell == cell)
                 {
-                    ids.Add(uu.GetComponent<DropComponent>().DropInfo);
+                    ids.Add(uu);
                 }
                 if (ids.Count >= 20)
                 {
@@ -138,9 +138,9 @@ namespace ET
             return ids;
         }
 
-        public static List<DropInfo> GetCanShiQu(Scene zoneScene, float distance)
+        public static List<Unit> GetCanShiQu(Scene zoneScene, float distance)
         {
-            List<DropInfo> ids = new List<DropInfo>();
+            List<Unit> ids = new List<Unit>();
             List<Entity> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
             for (int i = 0; i < units.Count; i++)
             {
@@ -151,7 +151,7 @@ namespace ET
                 }
                 if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(zoneScene), uu) < distance)
                 {
-                    ids.Add(uu.GetComponent<DropComponent>().DropInfo);
+                    ids.Add(uu);
                 }
                 if (ids.Count >= 20)
                 {
@@ -161,10 +161,16 @@ namespace ET
             return ids;
         }
 
-        public static async ETTask SendShiquItem(Scene zoneScene, List<DropInfo> ids)
+        public static async ETTask SendShiquItem(Scene zoneScene, List<Unit> units)
         {
             try
             {
+                List<DropInfo> ids = new List<DropInfo>();
+                for (int i = 0; i < units.Count; i++)
+                {
+                    ids.Add(units[i].GetComponent<DropComponent>().DropInfo );
+                }
+
                 Actor_PickItemRequest actor_PickItemRequest = new Actor_PickItemRequest() { ItemIds = ids };
                 Actor_PickItemResponse actor_PickItemResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_PickItemRequest) as Actor_PickItemResponse;
 

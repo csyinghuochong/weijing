@@ -462,13 +462,15 @@ namespace ET
             {
                 return;
             }
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), distance);
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();       
             if (ids.Count > 0)
             {
                 for (int i = ids.Count - 1; i >= 0; i--)
                 {
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ItemID);
+                    //DropInfo dropInfo = ids[i].GetComponent<DropComponent>().DropInfo;
+                    //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ConfigId);
 
                     if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
                     {
@@ -520,7 +522,7 @@ namespace ET
 
         }
 
-        public static async ETTask RequestShiQu(this UIMainSkillComponent self, List<DropInfo> ids)
+        public static async ETTask RequestShiQu(this UIMainSkillComponent self, List<Unit> ids)
         {
             if (Time.time - self.LastPickTime < 1f)
             {
@@ -551,7 +553,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int value = await unit.MoveToAsync2(position, true);
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
             if (value == 0 && ids.Count > 0)
             {
                 self.RequestShiQu(ids).Coroutine();

@@ -139,7 +139,9 @@ namespace ET
 			}
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitId, 1);
 			unit.Type = UnitType.DropItem;
-			unitComponent.Add(unit);
+			unit.ConfigId = dropinfo.ItemID;
+
+            unitComponent.Add(unit);
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
