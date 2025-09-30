@@ -491,7 +491,7 @@ namespace ET
                     return;
                 }
 
-                self.RequestShiQuByIds(ids).Coroutine();
+                self.OnBtn_ShiQuItems(ids).Coroutine();
 
                 //播放音效
                 UIHelper.PlayUIMusic("10004");
@@ -522,7 +522,7 @@ namespace ET
 
         }
 
-        public static async ETTask RequestShiQuByIds(this UIMainSkillComponent self, List<Unit> ids)
+        public static async ETTask OnBtn_ShiQuItems(this UIMainSkillComponent self, List<Unit> ids)
         {
             if (Time.time - self.LastPickTime < 1f)
             {
@@ -556,7 +556,7 @@ namespace ET
             List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
             if (value == 0 && ids.Count > 0)
             {
-                self.RequestShiQuByIds(ids).Coroutine();
+                self.OnBtn_ShiQuItems(ids).Coroutine();
             }
         }
 
