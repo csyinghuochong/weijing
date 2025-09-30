@@ -195,16 +195,16 @@ namespace ET
 
         public static void CheckActGailvTime(this SkillPassiveComponent self, Unit unit)
         {
-            if (self.LastAckGaiLv_1Time == 0 || unit.Type != UnitType.Player || unit.ConfigId != 5)
-            {
-                return;
-            }
+            //if (self.LastAckGaiLv_1Time == 0 || unit.Type != UnitType.Player || unit.ConfigId != 5)
+            //{
+            //    return;
+            //}
 
-            if (TimeHelper.ServerNow() - self.LastAckGaiLv_1Time >= 3000)
-            {
-                self.LastAckGaiLv_1Time = 0;
-                unit.GetComponent<BuffManagerComponent>().BuffRemoveListBatch(97050404);
-            }
+            //if (TimeHelper.ServerNow() - self.LastAckGaiLv_1Time >= 3000)
+            //{
+            //    self.LastAckGaiLv_1Time = 0;
+            //    unit.GetComponent<BuffManagerComponent>().BuffRemoveListBatch(97050404);
+            //}
         }
 
         public static void CheckSkillUseMP(this SkillPassiveComponent self, Unit unit)
@@ -623,7 +623,7 @@ namespace ET
                 {
                     case SkillPassiveTypeEnum.AckGaiLv_1:
                         trigger = skillproValue >= RandomHelper.RandFloat01();
-                        self.LastAckGaiLv_1Time = serverTime;
+                        //self.LastAckGaiLv_1Time = serverTime;
                         break;
                     case SkillPassiveTypeEnum.XueLiang_2:
                         NumericComponent numCom = unit.GetComponent<NumericComponent>();
