@@ -161,7 +161,7 @@ namespace ET
             return ids;
         }
 
-        public static async ETTask SendShiquItem(Scene zoneScene, List<Unit> units)
+        public static async ETTask SendShiquItems(Scene zoneScene, List<Unit> units)
         {
             try
             {
