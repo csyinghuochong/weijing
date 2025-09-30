@@ -523,8 +523,9 @@ namespace ET
 			m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 			m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
 			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
-
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+            m2C_SyncChatInfo.ChatInfo.UserId = unit.Id;			//拾取道具的消息，此为玩家unitid
+            m2C_SyncChatInfo.ChatInfo.ParamId = dropInfo.UnitId;//拾取道具的消息，此为道具unitid
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
 			string numShow = "";
 			if (itemConfig.Id == 1)
 			{
@@ -559,8 +560,9 @@ namespace ET
 			m2C_SyncChatInfo.ChatInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
 			m2C_SyncChatInfo.ChatInfo.Occ = userInfoComponent.UserInfo.Occ;
 			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
-
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+			m2C_SyncChatInfo.ChatInfo.UserId = unit.Id;   //拾取道具的消息，此为玩家id
+			m2C_SyncChatInfo.ChatInfo.ParamId = dropInfo.UnitId;
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
 			string numShow = "";
 			if (itemConfig.Id == 1)
 			{

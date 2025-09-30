@@ -58,13 +58,15 @@ namespace ET
                     errorCode = ErrorCode.ERR_BagIsFull;
                     continue;
                 }
-                //移除非私有掉落
+
+                FubenHelp.SendFubenPickMessage(unit, drops[i]);
                 if (drops[i].DropType != 1)
                 {
-                    unit.GetParent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
+                    //移除非私有掉落  移除掉落ID
+                    unit.GetParent<UnitComponent>().Remove(unitDrop.Id);       
                     removeIds.Add(drops[i].UnitId);
                 }
-                FubenHelp.SendFubenPickMessage(unit, drops[i]);
+        
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 if (sceneTypeEnum == SceneTypeEnum.Happy && itemConfig.ItemQuality >= 5)
                 {
@@ -168,19 +170,26 @@ namespace ET
                 if (drops[i].DropType == 1)
                 {
                     owner = unit;
+                    m2C_SyncChatInfo.ChatInfo.UserId = unit.Id;   //拾取道具的消息，此为玩家id
+                    m2C_SyncChatInfo.ChatInfo.ParamId = drops[i].UnitId;//拾取道具的消息，此为道具unitid
                 }
                 else
                 {
                     //已经分配过的
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
-                        owner = unit.GetParent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
+                        long ownderid = teamDungeonComponent.ItemFlags[unitDrop.Id];
 
-                        string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
+                        m2C_SyncChatInfo.ChatInfo.UserId = ownderid;   //拾取道具的消息，此为玩家id
+                        m2C_SyncChatInfo.ChatInfo.ParamId = drops[i].UnitId;//拾取道具的消息，此为道具unitid
+
+                        owner = unit.GetParent<UnitComponent>().Get(ownderid);
+
+                        string pick_name = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg = m2C_SyncChatInfo.ChatInfo.ChatMsg + $"{pick_name}拾取{itemConfig.ItemName}";
 
-                        string pick_nam_en = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
+                        string pick_nam_en = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
                         pick_nam_en += (owner == null ? "(not in the dungeon)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = m2C_SyncChatInfo.ChatInfo.ChatMsg_EN + $"{pick_nam_en}pick up{itemConfig.ItemName}";
                     }
@@ -209,11 +218,13 @@ namespace ET
                             m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{TeamPlayerInfo.PlayerName}:{rollpoint}点";
                             m2C_SyncChatInfo.ChatInfo.ChatMsg += "  ";
 
-
                             m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += $"{TeamPlayerInfo.PlayerName}:{rollpoint}point";
                             m2C_SyncChatInfo.ChatInfo.ChatMsg_EN += "  ";
                         }
-                        
+
+                        m2C_SyncChatInfo.ChatInfo.UserId = maxPlayerId;   //拾取道具的消息，此为玩家id
+                        m2C_SyncChatInfo.ChatInfo.ParamId = drops[i].UnitId;//拾取道具的消息，此为道具unitid
+
                         teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
                         owner = unit.GetParent<UnitComponent>().Get(maxPlayerId);
                         string pick_name = teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName;
@@ -238,11 +249,11 @@ namespace ET
                         continue;
                     }
                 }
+                MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
                 if (drops[i].DropType != 1)
                 {
                     unit.GetParent<UnitComponent>().Remove(unitDrop.Id);
                 }
-                MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }
 
             return errorCode;

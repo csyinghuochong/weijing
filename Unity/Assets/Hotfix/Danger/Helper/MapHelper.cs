@@ -174,12 +174,13 @@ namespace ET
                 Actor_PickItemRequest actor_PickItemRequest = new Actor_PickItemRequest() { ItemIds = ids };
                 Actor_PickItemResponse actor_PickItemResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_PickItemRequest) as Actor_PickItemResponse;
 
+                UnitComponent unitComponent = zoneScene.CurrentScene().GetComponent<UnitComponent>();
                 for (int i = 0; i < ids.Count; i++)
                 {
                     if (ids[i].DropType == 1)
                     {
                         //私有掉落，本地移除
-                        zoneScene.CurrentScene().GetComponent<UnitComponent>().Remove(ids[i].UnitId);
+                        unitComponent.Remove(ids[i].UnitId);
                     }
                 }
             }
