@@ -563,7 +563,7 @@ namespace ET
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             if ( !unit.GetComponent<MoveComponent>().IsArrived()) //weaponSkillConfig.IfStopMove == 0 &&
             {
-                unit.Stop(skillcmd.SkillID);
+                unit.Stop(weaponSkill);
             }
 
             self.InterruptSing(skillcmd.SkillID, false);
