@@ -190,7 +190,7 @@ namespace ET
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.XueLiang_2, unit.Id);
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
             self.CheckSkillUseMP(unit);
-            self.CheckActGailvTime(unit);
+            //self.CheckActGailvTime(unit);
         }
 
         public static void CheckActGailvTime(this SkillPassiveComponent self, Unit unit)
