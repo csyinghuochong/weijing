@@ -7,9 +7,9 @@ namespace ET
     /// </summary>
     public class PickItemsComponent : Entity, IAwake, IDestroy
     {
-        public List<Unit> UnitDrops { get; set; } = new();
+        public List<Unit> UnitDrops = new List<Unit>();
 
-        public List<long> PickItemIds { get; set; } = new();
+        public List<long> PickItemIds = new List<long>();
 
         public long SyncTime = 0;
         public long SyncTimerId = 0;
