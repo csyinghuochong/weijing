@@ -296,7 +296,7 @@ namespace ET
             self.LastShiQu = TimeHelper.ServerNow();
 
             //点一下拾取按钮
-            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem(10f, true);
+            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnBtn_ShiQu(10f, true);
 
             //判断背包是否满了
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() <= 0)
