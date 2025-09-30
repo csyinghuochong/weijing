@@ -7,8 +7,13 @@ namespace ET
 	{
 		protected override void Run(Session session, M2C_RemoveUnits message)
 		{
-			UnitComponent unitComponent = session.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>();
-			foreach (long unitId in message.Units)
+            Scene zoneScene = session.ZoneScene();
+
+            UnitComponent unitComponent = zoneScene.CurrentScene()?.GetComponent<UnitComponent>();
+
+            PickItemsComponent  pickItemsComponent =  zoneScene.GetComponent<PickItemsComponent>();
+
+            foreach (long unitId in message.Units)
 			{
 				Unit unit = unitComponent.Get(unitId);
 				if (unit == null)
@@ -25,6 +30,13 @@ namespace ET
                 {
                     delayRemove = 3000;
                 }
+
+				if (pickItemsComponent.PickItemIds.Contains(unit.Id))
+				{
+                    delayRemove = 3000;
+                    pickItemsComponent.PickItemIds.Remove(unit.Id);	
+                }
+
                 if (delayRemove > 0)
 				{
 					RunAsyncRemove(unit, delayRemove).Coroutine();

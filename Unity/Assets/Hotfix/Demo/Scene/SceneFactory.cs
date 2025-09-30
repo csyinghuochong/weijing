@@ -33,6 +33,7 @@ namespace ET
             zoneScene.AddComponent<AttackComponent>();
             zoneScene.AddComponent<TitleComponent>();
             zoneScene.AddComponent<JiaYuanComponent>();
+            zoneScene.AddComponent<PickItemsComponent>();
             zoneScene.AddComponent<BattleMessageComponent>();
 
             EventType.AfterCreateZoneScene.Instance.ZoneScene = zoneScene;
