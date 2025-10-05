@@ -900,7 +900,7 @@ namespace ET
 
         public static bool IsCanChat_KillBoss(List<KeyValuePair> monsterlist, int lv)
         {
-            if (lv >= 30)
+            if (lv >= 20)
             {
                 return true;
             }
