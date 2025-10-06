@@ -30,7 +30,7 @@ namespace ET
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
 
-            string path_2 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Img_41_uiguide");
+            string path_2 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, "Img_41_uiguide");
             Sprite sp_2 = ResourcesComponent.Instance.LoadAsset<Sprite>(path_2);
             self.ImageButton.GetComponent<Image>().sprite = sp_2;
 
