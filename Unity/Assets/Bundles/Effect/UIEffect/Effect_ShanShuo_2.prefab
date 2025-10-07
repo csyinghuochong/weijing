@@ -228,8 +228,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.5707547, g: 0.92930084, b: 1, a: 0.2627451}
-      maxColor: {r: 0, g: 0.086274624, b: 1, a: 0.31764707}
+      minColor: {r: 1, g: 0.9731641, b: 0.57254905, a: 0.2627451}
+      maxColor: {r: 1, g: 0.5615011, b: 0, a: 0.31764707}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 6171028670224360860}
   - component: {fileID: 6171028670224360867}
   m_Layer: 5
-  m_Name: Effect_ShanShuo
+  m_Name: Effect_ShanShuo_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4943,7 +4943,7 @@ RectTransform:
   m_GameObject: {fileID: 6171028670224360865}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 120, y: 120, z: 120}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6171028669886186726}
@@ -5143,8 +5143,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.6933962, g: 0.9053059, b: 1, a: 1}
-      maxColor: {r: 0.3537736, g: 1, b: 1, a: 1}
+      minColor: {r: 1, g: 0.93795586, b: 0.69411767, a: 1}
+      maxColor: {r: 1, g: 0.9857891, b: 0.35294116, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5672,7 +5672,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2
+      value: 1
       mode: 0
       spread: 0
       speed:
