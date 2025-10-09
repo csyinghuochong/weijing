@@ -188,6 +188,7 @@ namespace ET
                 long moveTime = self.NextMoveTime - TimeHelper.ServerNow();
                 if (moveTime > 0)
                 {
+                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_HappyMove_CD));
                     return;
                 }
             }
