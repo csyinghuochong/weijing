@@ -80,7 +80,16 @@ namespace ET
                     self.PreLoadAssets.AddRange(self.GetSceneDungeonMonsters());
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
-                    loadResName = backpngs[index];
+                    DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(chapterId);
+                    if (!ComHelp.IfNull(dungeonConfig.LoadingImg))
+                    {
+                        loadResName = dungeonConfig.LoadingImg;
+                    }
+                    else
+                    {
+                        loadResName = backpngs[index];
+                    }
+
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
                     self.ReleaseAssets.AddRange(self.GetLocalDungeonMonsters());
