@@ -51,20 +51,34 @@ namespace ET
             self.TaskName.GetComponent<Text>().text = taskConfig.GetTaskName();
 
             Text textDesc = self.TaskTargetDes.GetComponent<Text>();
-            textDesc.text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+            string text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
                 textDesc.color = Color.green;
-                textDesc.text = textDesc.text + " (" + GameSettingLanguge.LoadLocalization("已完成") + ")";
+                text = text + " (" + GameSettingLanguge.LoadLocalization("已完成") + ")";
+                //text = text.Replace(" ", "\u00A0");
+
+                textDesc.text = text;
             }
             else
             {
                 textDesc.color = Color.white;
+                //text = text.Replace(" ", "\u00A0");
+                textDesc.text = text;
             }
 
             textDesc.horizontalOverflow = GameSettingLanguge.Language == 0 ? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
-
             //self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
+
+            if (textDesc.preferredHeight > 50f)
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 120f);
+            }
+            else
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f,80f);
+            }
+
 
             if (taskConfig.TaskType == 1)
             {

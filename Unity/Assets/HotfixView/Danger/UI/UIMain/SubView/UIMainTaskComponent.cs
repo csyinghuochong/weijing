@@ -52,7 +52,7 @@ namespace ET
         
         public static void OnUpdateUI(this UIMainTaskComponent self)
         {
-            self.TaskShowList.GetComponent<GridLayoutGroup>().cellSize = GameSettingLanguge.Language == 0? new Vector2(300f, 90f) : new Vector2(300f, 120f);
+            //self.TaskShowList.GetComponent<GridLayoutGroup>().cellSize = GameSettingLanguge.Language == 0? new Vector2(300f, 90f) : new Vector2(300f, 120f);
             
             for (int i = 0; i < self.TrackTaskList.Count; i++)
             {
@@ -60,14 +60,38 @@ namespace ET
             }
 
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().RoleTaskList;
-           
-            int number = 0;
+
+            List<TaskPro> showtaskPros = new List<TaskPro>();
             for (int i = 0; i < taskPros.Count; i++)
             {
                 if (taskPros[i].TrackStatus == 0)
                 {
                     continue;
                 }
+                showtaskPros.Add(taskPros[i]);
+            }
+            showtaskPros.Sort(delegate (TaskPro a, TaskPro b)
+            {
+                TaskConfig taskConfiga = TaskConfigCategory.Instance.Get(a.taskID);
+                TaskConfig taskConfigb = TaskConfigCategory.Instance.Get(b.taskID);
+
+                int tasktypea = taskConfiga.TaskType;
+                int tasktypeb = taskConfigb.TaskType;
+
+                if (tasktypea == tasktypeb)
+                {
+                    return taskConfiga.Id - taskConfigb.Id;
+                }
+                else
+                {
+                    return tasktypea - tasktypeb;
+                }
+            });
+
+
+            int number = 0;
+            for (int i = 0; i < showtaskPros.Count; i++)
+            {
                 
                 UIMainTaskItemComponent ui_1 = null;
                 if (number < self.TrackTaskList.Count)
@@ -84,7 +108,7 @@ namespace ET
                     ui_1 = self.AddChild<UIMainTaskItemComponent, GameObject>( item);
                     self.TrackTaskList.Add(ui_1);
                 }
-                ui_1.OnUpdateItem(taskPros[i]);
+                ui_1.OnUpdateItem(showtaskPros[i]);
                 number++;
             }
 
