@@ -31,6 +31,11 @@ namespace ET
                 heroTransformComponent.RunEffect.SetActive(false);
                 heroTransformComponent.RunEffect.GetComponent<ParticleSystem>().Stop();
             }
+
+            if (args.Unit.MainHero)
+            {
+                Game.Scene.GetComponent<SoundComponent>().StopRunSound();
+            }
         }
 
     }

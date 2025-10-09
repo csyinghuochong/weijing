@@ -85,6 +85,25 @@ namespace ET
             return $"Assets/Bundles/Audio/{fileName}.mp3";
         }
 
+        public void PlayRunSound()
+        {
+#if UNITY_EDITOR
+            PlayClip("Game/Run", "map3").Coroutine();
+#endif
+        }
+
+        public void StopRunSound()
+        {
+            for (int i = 0; i < m_soundclips.Count; i++)
+            {
+                if (m_soundclips[i].name != "Game/Run")
+                {
+                    continue;
+                }
+                m_soundclips[i].GetComponent<AudioSource>().Stop();
+            }
+        }
+
         /// <summary>
         /// 短暂的声音和特效
         /// 无法暂停
