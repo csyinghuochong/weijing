@@ -623,7 +623,7 @@ namespace ET
             int min = (int)((leftTime - (hour * 3600))/60);
             int sec = (int)(leftTime - (hour * 3600) - (min * 60));
             string showStr = hour + GameSettingLanguge.LoadLocalization("时") + min + GameSettingLanguge.LoadLocalization("分") + sec + GameSettingLanguge.LoadLocalization("秒");
-            reviveTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0} 刷新剩余时间:{1}"), monsterConfig.GetMonsterName(), showStr);
+            reviveTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("刷新剩余时间:{0}"),showStr);
         }
 
         public void OnGetUseInfoUpdate()
