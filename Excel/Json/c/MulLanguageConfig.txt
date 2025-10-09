@@ -3947,4 +3947,5 @@
 {"_t":"MulLanguageConfig","_id":300107,"Des":"","Chinese":"组队副本伤害值 <color=#EAFF39>{0}/{1}</color>","English":"Team Instance Damage <color=#EAFF39>{0}/{1}</color>"},
 {"_t":"MulLanguageConfig","_id":300108,"Des":"","Chinese":"矿场占领次数 <color=#EAFF39>{0}/{1}</color>","English":"Mine occupation times <color=#EAFF39>{0}/{1}</color>"},
 {"_t":"MulLanguageConfig","_id":300109,"Des":"","Chinese":"击败地狱级任意领主怪物<color=#EAFF39>{0}/{1}</color>","English":"Defeat Infernal Any Lord Monsters <color=#EAFF39>{0}/{1}</color>"},
+{"_t":"MulLanguageConfig","_id":300110,"Des":"","Chinese":"恭喜您!激活新的地图传送:{0}","English":"Congratulations! You've unlocked map travel:{0}"},
 ]}
