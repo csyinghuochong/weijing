@@ -1330,17 +1330,17 @@ namespace ET
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
     
         //定时抽卡间隔 (1从上一次抽卡之后开始算  2从活动开始算)
-        //定时抽卡奖励
+        //定时抽卡奖励（分钟）
         public static List<TimerChouKaItemn> TimerChouKaRewardList = new List<TimerChouKaItemn>()
         {
-            new TimerChouKaItemn(){  Interval = 0,  Weight = 10,  ItemInfo =  "10000150;1" },     //深渊凭证
-            new TimerChouKaItemn(){  Interval = 1,  Weight = 100, ItemInfo =  "10000141;1" },      //洗炼袋子
-            new TimerChouKaItemn(){  Interval = 2,  Weight = 20, ItemInfo =  "10000152;1" },      //璀璨传承
-            new TimerChouKaItemn(){  Interval = 3,  Weight = 20, ItemInfo =  "10000165;1" },      //神话之灵
-            new TimerChouKaItemn(){  Interval = 4,  Weight = 10, ItemInfo =  "10010045;1" },      //金条
-            new TimerChouKaItemn(){  Interval = 5, Weight = 50,  ItemInfo =  "10010094;1" },      //超级宠物蛋
-            new TimerChouKaItemn(){  Interval = 6, Weight = 30,  ItemInfo =  "10010093;1" },      //珍贵宠物蛋
-            new TimerChouKaItemn(){  Interval = 7,  Weight = 10,  ItemInfo =  "10010096;1" },     //超级宠之晶
+            new TimerChouKaItemn(){  Interval = 0,  Weight = 10,  ItemInfo =  "10010001;1" },     //小型生命药水
+            new TimerChouKaItemn(){  Interval = 5,  Weight = 10, ItemInfo =  "10010091;1" },      //幼小的宠物蛋
+            new TimerChouKaItemn(){  Interval = 10,  Weight = 10, ItemInfo =  "10010080;1" },      //武器
+            new TimerChouKaItemn(){  Interval = 15,  Weight = 10, ItemInfo =  "10010041;2" },      //经验盒子
+            new TimerChouKaItemn(){  Interval = 20,  Weight = 10, ItemInfo =  "10010039;1" },      //藏宝图
+            new TimerChouKaItemn(){  Interval = 25, Weight = 10,  ItemInfo =  "10000121;1" },      //一章装备盒子
+            new TimerChouKaItemn(){  Interval = 30, Weight = 10,  ItemInfo =  "10010088;1" },      //体力补充
+            new TimerChouKaItemn(){  Interval = 30,  Weight = 10,  ItemInfo =  "10000158;1" },     //封印之塔挑战凭证
         };
     }
 }
