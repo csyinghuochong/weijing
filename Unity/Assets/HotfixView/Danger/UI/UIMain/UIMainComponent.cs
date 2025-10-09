@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -1046,6 +1047,29 @@ namespace ET
 #endif
         }
 
+
+        public static void CheckOpenDungeon(this UIMainComponent self, int userLv)
+        {
+            List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < dungeonConfigs.Count; i++)
+            {
+                int[] RandomArea = dungeonConfigs[i].RandomArea;
+                for (int dungeon = 0; dungeon < RandomArea.Length; dungeon++)
+                {
+                    //只显示满足进入等级的关卡
+                    DungeonConfig chapterCof = DungeonConfigCategory.Instance.Get(RandomArea[dungeon]);
+                    if (userLv == chapterCof.EnterLv)
+                    {
+                        string tip_1 = GameSettingLanguge.LoadLocalization("恭喜您!激活新的地图传送:{0}"); ;
+                        tip_1 = string.Format(tip_1, chapterCof.GetChapterName());
+                        FloatTipManager.Instance.ShowFloatTipDi(tip_1);
+                        break;
+                    }
+                }
+
+            }
+        }
+
         public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -1063,14 +1087,15 @@ namespace ET
                     break;
                 case UserDataType.Lv:
                     self.UpdateShowRoleExp();
+                    self.CheckOpenDungeon(userInfo.Lv);
                     self.UIRoleHead.UpdateShowRoleExp();
-                    self.CheckFuntionButtonByLv(int.Parse(updateValue));
+                    self.CheckFuntionButtonByLv(userInfo.Lv);
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
                     self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.LevelUp, userInfo.Lv.ToString());
                     FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
                     self.UpdateLvReward();
                     self.CheckCanEquip().Coroutine();
-                    if (int.Parse(updateValue) > 30)
+                    if (userInfo.Lv > 30)
                     {
                         self.UpdateTaskList().Coroutine();
                     }
