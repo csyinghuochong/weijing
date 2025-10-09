@@ -32,8 +32,9 @@ namespace ET
                     //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Exp).ToString();
                     long curExp = message.UpdateValueLong;
                     longValue = curExp - userInfo.Exp;
+                    
                     userInfo.Exp = curExp;
-                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataExp, "", longValue);
+                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataExp, "", long.Parse(message.UpdateTypeValue));
                     updateValue = string.Empty;
                     break;
                 //更新疲劳

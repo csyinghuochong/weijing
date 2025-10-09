@@ -857,6 +857,7 @@ namespace ET
                     self.Role_AddExp(long.Parse(value), notice);
                     //saveValue = self.UserInfo.Exp.ToString();
                     longValue = self.UserInfo.Exp;
+                    saveValue = value;
                     break;
                 case UserDataType.Lv:
                     if (self.IsZhuBoLevel16())
