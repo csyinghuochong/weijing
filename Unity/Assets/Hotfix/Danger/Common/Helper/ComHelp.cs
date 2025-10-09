@@ -580,6 +580,11 @@ namespace ET
                 case 403:
                     itemID = 14000004;
                     break;
+                case 501:
+                case 502:
+                case 503:
+                    itemID = 14000002;
+                    break;
                 default:
                     Log.Debug($"{occTwo}  itemID ==0");
                     break;
@@ -599,6 +604,9 @@ namespace ET
                         break;
                     case 4:
                         itemID = 14000003;
+                        break;
+                    case 5:
+                        itemID = 14000002;
                         break;
                     default:
                         Log.Error($"{occ}  itemID ==0");
