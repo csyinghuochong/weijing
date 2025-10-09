@@ -52,8 +52,6 @@ namespace ET
 
             Text textDesc = self.TaskTargetDes.GetComponent<Text>();
             textDesc.text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
-            textDesc.horizontalOverflow = GameSettingLanguge.Language == 0? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
-
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
                 textDesc.color = Color.green;
@@ -63,6 +61,9 @@ namespace ET
             {
                 textDesc.color = Color.white;
             }
+
+            textDesc.horizontalOverflow = GameSettingLanguge.Language == 0 ? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
+
             //self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
 
             if (taskConfig.TaskType == 1)

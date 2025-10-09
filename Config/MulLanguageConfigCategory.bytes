@@ -4290,3 +4290,67 @@ A��小龟竞猜奖励"'Little Turtle's Guessing Contest Reward
 :��全服补偿邮件" Global Server Compensation Email
 ,��赛季结束奖励"Season-end rewards
 G��$宠物可携带数量已达上限！"Pet carrying limit reached!
+0��移动在冷却中!"Movement on Cooldown!
+a��,击败<color=#EAFF39>{0} {1}/{2}</color> {3}"-Defeat <color=#EAFF39>{0} {1}/{2} </color>{3}
+b��.寻找道具<color=#EAFF39>{0} {1}/{2}</color>",Find Prop <color=#EAFF39>{0} {1}/{2}</color>
+q��4等级提升至<color=#EAFF39>{0}级 {1}/{2}</color>"5Level increased to <color=#EAFF39>{0} {1}/{2}</color>
+j��1击败任意怪物 <color=#EAFF39>{0}/{1}</color>"1Defeat any monster <color=#EAFF39>{0}/{1}</color>
+x��:击败任意领主级怪物 <color=#EAFF39>{0}/{1}</color>"6Defeat any Lord Monster <color=#EAFF39>{0}/{1}</color>
+g��.通关副本<color=#EAFF39>{0} {1}/{2}</color>"1Clearance copy <color=#EAFF39>{0} {1}/{2}</color>
+a��.进行转职<color=#EAFF39>{0} {1}/{2}</color>"+Transfer <color=#EAFF39>{0} {1}/{2}</color>
+u��:给予符合要求的道具 <color=#EAFF39>{0}/{1}</color>"3Give qualified props <color=#EAFF39>{0}/{1}</color>
+e��1获得宠物数量 <color=#EAFF39>{0}/{1}</color>",Get pet count <color=#EAFF39>{0}/{1}</color>
+e��1制造道具数量 <color=#EAFF39>{0}/{1}</color>",Make Prop Qty <color=#EAFF39>{0}/{1}</color>
+l��1装备洗练次数 <color=#EAFF39>{0}/{1}</color>"3Equip training times <color=#EAFF39>{0}/{1}</color>
+h��1宠物天梯次数 <color=#EAFF39>{0}/{1}</color>"/Pet ladder times <color=#EAFF39>{0}/{1}</color>
+q��1兑换金币次数 <color=#EAFF39>{0}/{1}</color>"8Number of Gold Redemption <color=#EAFF39>{0}/{1}</color>
+l��1装备回收次数 <color=#EAFF39>{0}/{1}</color>"3Equip recovery times <color=#EAFF39>{0}/{1}</color>
+s��1最大强化等级 <color=#EAFF39>{0}/{1}</color>":Maximum Reinforcement Level <color=#EAFF39>{0}/{1}</color>
+\��+技能宠物 <color=#EAFF39>{0}/{1}</color>")Skill Pets <color=#EAFF39>{0}/{1}</color>
+v��4宠物探险通关<color=#EAFF39>{0} {1}/{2}</color>":Pet Adventure Clearance <color=#EAFF39>{0} {1}/{2}</color>
+[��+消耗金币 <color=#EAFF39>{0}/{1}</color>"(Cost Gold <color=#EAFF39>{0}/{1}</color>
+p��1击杀玩家数量 <color=#EAFF39>{0}/{1}</color>"7Number of players killed <color=#EAFF39>{0}/{1}</color>
+\��+家园等级 <color=#EAFF39>{0}/{1}</color>")Home Level <color=#EAFF39>{0}/{1}</color>
+m��1宠物合成次数 <color=#EAFF39>{0}/{1}</color>"4Pet composition times <color=#EAFF39>{0}/{1}</color>
+l��1拥有宠物数量 <color=#EAFF39>{0}/{1}</color>"3Number of pets owned <color=#EAFF39>{0}/{1}</color>
+b��1给予一个宠物 <color=#EAFF39>{0}/{1}</color>")Give a pet <color=#EAFF39>{0}/{1}</color>
+r��4使用普通藏宝图 <color=#EAFF39>{0}/{1}</color>"6Use Normal Treasure Map <color=#EAFF39>{0}/{1}</color>
+t��4使用高级藏宝图 <color=#EAFF39>{0}/{1}</color>"8Use Advanced Treasure Map <color=#EAFF39>{0}/{1}</color>
+s��1封印之塔挑战 <color=#EAFF39>{0}/{1}</color>":Tower of the Seal Challenge <color=#EAFF39>{0}/{1}</color>
+���=使用药剂或者合剂次数 <color=#EAFF39>{0}/{1}</color>"ATimes of using medicine or mixture <color=#EAFF39>{0}/{1}</color>
+j��5获得X只新的宠物 <color=#EAFF39>{0}/{1}</color>"-Get X new pets <color=#EAFF39>{0}/{1}</color>
+���B合成1只战力达到X点的宠物 <color=#EAFF39>{0}/{1}</color>"ISynthesize 1 pet <color=#EAFF39>{0}/{1}</color> with combat power up to X
+���F宠物使用宠之晶洗炼宠物次数 <color=#EAFF39>{0}/{1}</color>"PPet uses pet crystal to wash and refine pet times <color=#EAFF39>{0}/{1}</color>
+���C在孵化系统中孵化成功宠物 <color=#EAFF39>{0}/{1}</color>"JSuccessfully hatched pet <color=#EAFF39>{0}/{1}</color> in hatching system
+���O在孵化系统中孵化指定的宠物蛋成功 <color=#EAFF39>{0}/{1}</color>"aSuccessfully hatched the specified pet eggs in the hatching system <color=#EAFF39>{0}/{1}</color>
+{��:宠物使用技能书次数 <color=#EAFF39>{0}/{1}</color>"9Pet uses skill book times  <color=#EAFF39>{0}/{1}</color>
+z��=宠物天梯战斗胜利次数 <color=#EAFF39>{0}/{1}</color>"5Pet ladder battle wins <color=#EAFF39>{0}/{1}</color>
+���S使用N点品质的鉴定附魔道具给装备附魔 <color=#EAFF39>{0}/{1}</color>"ZEnchant Equip <color=#EAFF39>{0}/{1}</color> with an enchant item with an N-point quality.
+���M使用N点品质的鉴定道具给装备鉴定 <color=#EAFF39>{0}/{1}</color>"TUse N-point quality appraisal item to equip appraisal <color=#EAFF39>{0}/{1}</color>
+���P鉴定装备时出一个大于N条属性的装备 <color=#EAFF39>{0}/{1}</color>"sA piece of Equip <color=#EAFF39>{0}/{1}</color> with more than N attributes was found when the Equip was identified
+���I洗炼出带有任何隐藏技能的装备 <color=#EAFF39>{0}/{1}</color>"ARefine Equip with any hidden skill <color=#EAFF39>{0}/{1}</color>
+���B洗炼出带有指定属性的装备 <color=#EAFF39>{0}/{1}</color"KRefine the Equip <color=#EAFF39>{0}/{1}</color with the specified attribute
+l��1增幅装备次数 <color=#EAFF39>{0}/{1}</color>"3Increase Equip Times <color=#EAFF39>{0}/{1}</color>
+���F试炼之地的输出排行榜进入前 <color=#EAFF39>{0}/{1}</color>"BTrial Land's Output Leaderboard Top <color=#EAFF39>{0}/{1}</color>
+~��=宠物天梯进入排行榜前 <color=#EAFF39>{0}/{1}</color>"9Pet Ladder Top Leaderboard <color=#EAFF39>{0}/{1}</color>
+w��7战力排行榜进入前 <color=#EAFF39>{0}/{1}</color>"8Battle Power Ranking Top <color=#EAFF39>{{0}/{1}</color>
+j��1家园烹饪次数 <color=#EAFF39>{0}/{1}</color>"1Home Cooking Times <color=#EAFF39>{0}/{1}</color>
+v��7家园种地种植次数 <color=#EAFF39>{0}/{1}</color>"7Home land planting times <color=#EAFF39>{0}/{1}</color>
+���7家园种地收获次数 <color=#EAFF39>{0}/{1}</color>"AHarvest times of homestead farming <color=#EAFF39>{0}/{1}</color>
+v��7家园牧场饲养次数 <color=#EAFF39>{0}/{1}</color>"7Home Ranch Feeding Times <color=#EAFF39>{0}/{1}</color>
+v��7家园牧场收货次数 <color=#EAFF39>{0}/{1}</color>"7Homestead Ranch Receipts <color=#EAFF39>{0}/{1}</color>
+z��7家园美味品尝次数 <color=#EAFF39>{0}/{1}</color>";Home Delicious Tasting Times <color=#EAFF39>{0}/{1}</color>
+]��+加入家族 <color=#EAFF39>{0}/{1}</color>"*Join Family <color=#EAFF39>{0}/{1}</color>
+q��5击败挑战级的 <color=#EAFF39>{0} {1}/{2}</color>"4Defeat Challenged <color=#EAFF39>{0} {1}/{2}</color>
+o¨4击败地狱级的 <color=#EAFF39>{0} {1}/{2}</color"3Defeat Inferno's <color=#EAFF39>{0} {1}/{2}</color>
+vè8通关挑战级-<color=#EAFF39>{0}副本 {1}/{2}</color>"6Pass Challenge-<color=#EAFF39>{0} Copy {1}/{2}</color>
+zĨ8通关地狱级-<color=#EAFF39>{0}副本 {1}/{2}</color>":Pass Hell Level-<color=#EAFF39>{0} Replica {1}/{2}</color>
+�Ũ9击败挑战级任意怪物<color=#EAFF39>{0}/{1}</color>"DDefeat any Monster at Challenge Level <color=#EAFF39>{0}/{1}</color>
+{ƨ9击败地狱级任意怪物<color=#EAFF39>{0}/{1}</color>":Defeat any inferno monsters <color=#EAFF39>{0}/{1}</color>
+�Ǩ?击败挑战级任意领主怪物<color=#EAFF39>{0}/{1}</color>"BDefeat Challenging Any Lord Monster <color=#EAFF39>{0}/{1}</color>
+mȨ-战力提升至<color=#EAFF39>{0}/{1}</color>"8Combat power increased to <color=#EAFF39>{0}/{1}</color>
+dɨ-通关试练塔<color=#EAFF39>{0}/{1}</color>"/Pass Trial Tower <color=#EAFF39>{0}/{1}</color>
+}ʨ:挑战深渊模式的副本 <color=#EAFF39>{0}/{1}</color>";Copy of Challenge Abyss Mode <color=#EAFF39>{0}/{1}</color>
+o˨4组队副本伤害值 <color=#EAFF39>{0}/{1}</color>"3Team Instance Damage <color=#EAFF39>{0}/{1}</color>
+m̨1矿场占领次数 <color=#EAFF39>{0}/{1}</color>"4Mine occupation times <color=#EAFF39>{0}/{1}</color>
+�ͨ?击败地狱级任意领主怪物<color=#EAFF39>{0}/{1}</color>"@Defeat Infernal Any Lord Monsters <color=#EAFF39>{0}/{1}</color>

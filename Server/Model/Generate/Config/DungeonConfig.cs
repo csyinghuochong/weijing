@@ -129,6 +129,9 @@ namespace ET
 		/// <summary>对应章节</summary>
 		[ProtoMember(19)]
 		public int ChapterId { get; set; }
+		/// <summary>Loading图片</summary>
+		[ProtoMember(20)]
+		public string LoadingImg { get; set; }
 
 	}
 }
