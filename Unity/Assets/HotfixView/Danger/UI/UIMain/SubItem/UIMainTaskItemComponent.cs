@@ -42,6 +42,23 @@ namespace ET
             TaskViewHelp.Instance.ExcuteTask( self.ZoneScene(), self.TaskPro );
         }
 
+        public static void UpdateItemHeight(this UIMainTaskItemComponent self)
+        {
+            self.GameObject.gameObject.SetActive(false);
+            self.GameObject.gameObject.SetActive(true);
+            Text textDesc = self.TaskTargetDes.GetComponent<Text>();
+            textDesc.GetComponent<ContentSizeFitter>().SetLayoutVertical();
+
+            if (textDesc.preferredHeight > 50f)
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 100f);
+            }
+            else
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 80f);
+            }
+        }
+
         public static void OnUpdateItem(this UIMainTaskItemComponent self, TaskPro taskPro)
         {
             self.TaskPro = taskPro;
@@ -70,17 +87,7 @@ namespace ET
             textDesc.horizontalOverflow = GameSettingLanguge.Language == 0 ? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
             //self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
 
-            if (textDesc.GetComponent<RectTransform>().sizeDelta.y > 50f)
-            {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 100f);
-            }
-            else
-            {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f,80f);
-            }
-            self.GameObject.gameObject.SetActive(false);
-            self.GameObject.gameObject.SetActive(true);
-
+           
             if (taskConfig.TaskType == 1)
             {
                 //self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("主线");

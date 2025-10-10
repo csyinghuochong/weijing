@@ -113,6 +113,25 @@ namespace ET
             }
 
             self.Btn_RoseTask.SetActive(number == 0);
+            self.UpdateItemHeight().Coroutine();
+        }
+
+        private static async ETTask UpdateItemHeight(this UIMainTaskComponent self)
+        {
+            await TimerComponent.Instance.WaitFrameAsync();
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            for (int i = 0; i < self.TrackTaskList.Count; i++)
+            {
+                if (!self.TrackTaskList[i].GameObject.activeSelf)
+                {
+                    return;
+                }
+
+                self.TrackTaskList[i].UpdateItemHeight();
+            }
         }
 
         public static void OnOpenTask(this UIMainTaskComponent self)
