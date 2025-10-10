@@ -69,16 +69,21 @@ namespace ET
                 return;
             }
 
-            bagInfo_2.XiLianHideTeShuProLists.Clear();
-            bagInfo_2.XiLianHideProLists.Clear();
-            bagInfo_2.HideSkillLists.Clear();
-            bagInfo_2.XiLianHideTeShuProLists.AddRange( bagInfo_1.XiLianHideTeShuProLists);
-            bagInfo_2.XiLianHideProLists.AddRange(bagInfo_1.XiLianHideProLists);
-            bagInfo_2.HideSkillLists.AddRange(bagInfo_1.HideSkillLists);
+            try
+            {
+                bagInfo_2.XiLianHideTeShuProLists = new List<HideProList>(bagInfo_1.XiLianHideTeShuProLists);
+                bagInfo_2.XiLianHideProLists = new List<HideProList>(bagInfo_1.XiLianHideProLists);
+                bagInfo_2.HideSkillLists = new List<int>(bagInfo_1.HideSkillLists);
 
-            bagInfo_1.XiLianHideTeShuProLists.Clear();
-            bagInfo_1.XiLianHideProLists.Clear();
-            bagInfo_1.HideSkillLists.Clear();
+                bagInfo_1.XiLianHideTeShuProLists.Clear();
+                bagInfo_1.XiLianHideProLists.Clear();
+                bagInfo_1.HideSkillLists.Clear();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("C2M_ItemXiLianTransferRequest: " + ex.ToString());
+                Console.WriteLine("C2M_ItemXiLianTransferRequest: " + unit.Id);
+            }
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变
