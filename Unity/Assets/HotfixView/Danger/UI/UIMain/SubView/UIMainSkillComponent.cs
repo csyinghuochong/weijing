@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,9 +8,10 @@ namespace ET
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
 
-        public Image Button_Switch_CD;
+        public Image Image_Switch_CD;
+        public Image Image_Switch_0;
         public GameObject Btn_PetTarget;
-        public GameObject Button_Switch_0;
+        public GameObject Button_Switch;
         public GameObject Transforms;
         public GameObject Normal;
         public GameObject Btn_NpcDuiHua;
@@ -97,10 +97,11 @@ namespace ET
             self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
             ButtonHelp.AddListenerEx(self.Btn_JingLing, () => { self.OnBtn_JingLing().Coroutine(); });
 
-            self.Button_Switch_0 = rc.Get<GameObject>("Button_Switch_0");
-            ButtonHelp.AddListenerEx(self.Button_Switch_0, () => { self.OnButton_Switch().Coroutine(); });
+            self.Button_Switch = rc.Get<GameObject>("Button_Switch");
+            ButtonHelp.AddListenerEx(self.Button_Switch, () => { self.OnButton_Switch().Coroutine(); });
 
-            self.Button_Switch_CD = rc.Get<GameObject>("Button_Switch_CD").GetComponent<Image>();
+            self.Image_Switch_CD = rc.Get<GameObject>("Image_Switch_CD").GetComponent<Image>();
+            self.Image_Switch_0 = rc.Get<GameObject>("Image_Switch_0").GetComponent<Image>();
 
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
@@ -195,7 +196,7 @@ namespace ET
                     break;
                 }
                 float rate = passTime * 1f / ConfigHelper.HunterSwichCD;
-                self.Button_Switch_CD.fillAmount = rate;
+                self.Image_Switch_CD.fillAmount = rate;
                 await TimerComponent.Instance.WaitFrameAsync();
                 if (self.IsDisposed)
                 {
@@ -210,7 +211,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            self.Button_Switch_0.SetActive( occ == 3 || occ == 5);
+            self.Button_Switch.SetActive( occ == 3 || occ == 5);
             string path = "";
             if (GameSettingLanguge.Language == 0)
             {
@@ -240,7 +241,8 @@ namespace ET
             {
                 self.AssetPath.Add(path);
             }
-            self.Button_Switch_0.GetComponent<Image>().sprite = sp;
+            self.Image_Switch_0.GetComponent<Image>().sprite = sp;
+            self.Image_Switch_0.GetComponent<Image>().SetNativeSize();
         }
 
         public static void OnCardTranfer(this UIMainSkillComponent self, int runraceid)
