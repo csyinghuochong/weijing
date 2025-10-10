@@ -588,12 +588,12 @@ namespace ET
                     go.transform.localPosition = unit.Position;
                     go.transform.rotation = unit.Rotation;
                     go.transform.name = unit.Id.ToString();
+                    unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
                     {
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                         self.OnAddCollider(go);
-                        unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
                         unit.AddComponent<AnimatorComponent>(true);
                         unit.AddComponent<FsmComponent>(true);                 //当前状态组建
                         unit.AddComponent<SkillYujingComponent>(true);

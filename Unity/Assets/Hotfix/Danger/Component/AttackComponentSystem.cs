@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace ET
 {
@@ -83,7 +84,12 @@ namespace ET
             else
             {
                 self.MoveAttackTime = TimeHelper.ClientNow();
-                unit.MoveToAsync2(taretUnit.Position).Coroutine();
+                Vector3 targetpos = taretUnit.Position;
+                Vector3 direction = (unit.Position - taretUnit.Position).normalized;
+                float dis = self.AttackDistance - 1f;
+                targetpos += direction * Mathf.Max(0f, dis);
+
+                unit.MoveToAsync2(targetpos).Coroutine();
             }
         }
 
@@ -221,6 +227,12 @@ namespace ET
             {
                 return;
             }
+
+            if (taretUnit!=null && taretUnit.IsSceneItem())
+            {
+                return;
+            }
+
             self.SetAttackSpeed();
             self.SetComboSkill(timeNow);
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
