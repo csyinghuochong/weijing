@@ -70,7 +70,7 @@ namespace ET
             textDesc.horizontalOverflow = GameSettingLanguge.Language == 0 ? HorizontalWrapMode.Overflow : HorizontalWrapMode.Wrap;
             //self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
 
-            if (textDesc.preferredHeight > 50f)
+            if (textDesc.GetComponent<RectTransform>().sizeDelta.y > 50f)
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 120f);
             }
