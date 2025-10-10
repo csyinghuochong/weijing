@@ -1107,6 +1107,41 @@ namespace ET
             return skillids;
         }
 
+
+        //获取封印武器
+        //1;14100021,14100022@2;14100021,14100022@3;14100021,14100022@4;14100021,14100022@5;14100021,14100022
+        public static List<int> GetSealWeaponList(int occ, int itemid)
+        { 
+            List<int> weaponids = new List<int> {  };
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] iteminfo = itemConfig.ItemUsePar.Split("@");
+
+            for (int i = 0; i < iteminfo.Length; i++)
+            {
+                if (ComHelp.IfNull(iteminfo[i]))
+                {
+                    continue;
+                }
+                string[] weaponinfo = iteminfo[i].Split(";");
+
+                if (weaponinfo.Length != 2)
+                {
+                    continue;
+                }
+
+                if (int.Parse(weaponinfo[0])== occ)
+                {
+                    string[] ids = weaponinfo[1].Split(",");
+                    weaponids.Add(int.Parse(ids[0]));
+                    weaponids.Add(int.Parse(ids[1]));
+                    break;
+                }
+            }
+
+            return weaponids;
+        }
+
         //获取装备的鉴定属性
         public static JianDingDate GetEquipZhuanJingPro(int equipID, int itemID, int jianDingPinZhi, bool ifItem)
         {

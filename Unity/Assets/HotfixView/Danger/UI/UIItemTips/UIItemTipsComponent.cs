@@ -595,6 +595,13 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
+            if (itemConfig.ItemSubType == 142)
+            {
+                UI selectWeapon = await UIHelper.Create(self.ZoneScene(), UIType.UISelectWeapon);
+                selectWeapon.GetComponent<UISelectWeaponComponent>().OnInitUI(userInfoComponent.UserInfo.Occ, self.BagInfo.ItemID, self.BagInfo.BagInfoID);
+                self.OnCloseTips();
+                return;
+            }
 
             long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);

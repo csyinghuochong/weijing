@@ -226,7 +226,8 @@ namespace ET
 		public const string UIHunt = "Hunt/UIHunt";
 		public const string UIProtect = "Main/Protect/UIProtect";
 		public const string UIWearWeapon = "Main/Role/UIWearWeapon";
-		public const string UIFashion = "Main/Fashion/UIFashion";
+        public const string UISelectWeapon = "Main/Role/UISelectWeapon";
+        public const string UIFashion = "Main/Fashion/UIFashion";
 		public const string UIFashionExplain = "Main/Fashion/UIFashionExplain";
         public const string UITurtle = "Main/Turtle/UITurtle";
 		public const string UIJueXing = "Main/JueXing/UIJueXing";

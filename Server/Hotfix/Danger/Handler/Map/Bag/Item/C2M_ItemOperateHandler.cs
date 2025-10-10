@@ -204,7 +204,18 @@ namespace ET
                             return;
                         }
                     }
-                    
+
+                    if (itemConfig.ItemSubType == 142)
+                    {
+                        if (unit.GetComponent<BagComponent>().GetBagLeftCell() < 1)
+                        {
+                            bagIsFull = true;
+                        }
+                        if (request.OperatePar!="0" && request.OperatePar != "1")
+                        {
+                            request.OperatePar = "0";
+                        }
+                    }
 
                     if (bagIsFull)
                     {
@@ -528,6 +539,13 @@ namespace ET
                                 //增加仓库格子
                                 break;
                             case 141:  //转职道具
+                                break;
+                            case 142:
+                                //封印的武器
+                                int useindex = int.Parse(request.OperatePar);
+                                int occ = userInfoComponent.UserInfo.Occ;
+                                List<int> weaponids = ItemHelper.GetSealWeaponList(occ, itemConfig.Id);
+                                unit.GetComponent<BagComponent>().OnAddItemData($"{weaponids[useindex]};1", $"{ItemGetWay.ItemBox_8}_{TimeHelper.ServerNow()}");
                                 break;
                             default:
                                 break;
