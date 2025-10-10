@@ -72,13 +72,14 @@ namespace ET
 
             if (textDesc.GetComponent<RectTransform>().sizeDelta.y > 50f)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 120f);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 100f);
             }
             else
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f,80f);
             }
-
+            self.GameObject.gameObject.SetActive(false);
+            self.GameObject.gameObject.SetActive(true);
 
             if (taskConfig.TaskType == 1)
             {
