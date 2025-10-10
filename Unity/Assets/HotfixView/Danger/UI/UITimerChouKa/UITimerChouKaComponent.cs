@@ -117,7 +117,7 @@ namespace ET
 
             long serverTime = TimeHelper.ServerNow();
             long lastTime = activityComponent.TimerChouKaLastTime;
-            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval * 1000;
+            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval *TimeHelper.Minute; ;
             if (serverTime >= validTime)
             {
                 self.TextTip.text = GameSettingLanguge.LoadLocalization("可抽奖!");
