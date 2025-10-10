@@ -1328,14 +1328,16 @@ namespace ET
         };
 
         public static List<int> TaskCompleteDirectly = new List<int>() { 31001001, 31001002, 31001003, 31001004, 31001005, 31001006, 31001007, 31001008 };
-    
+
+
+        //1;14100021,14100022@2;14100021,14100022@3;14100021,14100022@4;14100021,14100022@5;14100021,14100022
         //定时抽卡间隔 (1从上一次抽卡之后开始算  2从活动开始算)
         //定时抽卡奖励（分钟）
         public static List<TimerChouKaItemn> TimerChouKaRewardList = new List<TimerChouKaItemn>()
         {
             new TimerChouKaItemn(){  Interval = 0,  Weight = 10,  ItemInfo =  "10010001;1" },     //小型生命药水
             new TimerChouKaItemn(){  Interval = 5,  Weight = 10, ItemInfo =  "10010091;1" },      //幼小的宠物蛋
-            new TimerChouKaItemn(){  Interval = 10,  Weight = 10, ItemInfo =  "10010080;1" },      //武器
+            new TimerChouKaItemn(){  Interval = 10,  Weight = 10, ItemInfo =  "10010080;1" },      //武器  
             new TimerChouKaItemn(){  Interval = 15,  Weight = 10, ItemInfo =  "10010041;2" },      //经验盒子
             new TimerChouKaItemn(){  Interval = 20,  Weight = 10, ItemInfo =  "10010039;1" },      //藏宝图
             new TimerChouKaItemn(){  Interval = 25, Weight = 10,  ItemInfo =  "10000121;1" },      //一章装备盒子
