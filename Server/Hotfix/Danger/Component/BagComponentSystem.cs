@@ -313,6 +313,16 @@ namespace ET
                         bagInfoitem.GemHole = "101_0_0_0";
                     }
                 }
+
+                //通话森林 白血伤 65弓添加英勇属性
+                //if (itemConfig.Id == 15710201 && bagInfoitem.Loc == (int)ItemLocType.ItemLocEquip)
+                //{
+                //    if (unit.Id == 3089593540553015296 && bagInfoitem.HideSkillLists.Contains(68000001))
+                //    {
+                //        bagInfoitem.HideSkillLists.Remove(68000001);
+                //        Console.WriteLine($"3089593540553015296 + 68000001");
+                //    }
+                //}
             }
         }
 
