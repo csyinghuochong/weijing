@@ -144,6 +144,7 @@ SpriteAtlas:
     - 1c27bc3cdd2147742b9434201b30f125: 21300000
     - 7c0b6a4cadbb9364592c47c7e83a30a0: 21300000
     - 56bb476c7c2f1ec4fae6ad8875596274: 21300000
+    - 2979d97c00e242f43bc7618f2c0453dc: 21300000
     - 9284dd9c3a7d99d4a83201aeb69bc190: 21300000
     - dcbf05ac501637c43bde2a47ed1137cb: 21300000
     - 8df41adc8971eed448acb0ca8ce39caa: 21300000
@@ -297,6 +298,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1c27bc3cdd2147742b9434201b30f125, type: 3}
   - {fileID: 21300000, guid: 7c0b6a4cadbb9364592c47c7e83a30a0, type: 3}
   - {fileID: 21300000, guid: 56bb476c7c2f1ec4fae6ad8875596274, type: 3}
+  - {fileID: 21300000, guid: 2979d97c00e242f43bc7618f2c0453dc, type: 3}
   - {fileID: 21300000, guid: 9284dd9c3a7d99d4a83201aeb69bc190, type: 3}
   - {fileID: 21300000, guid: dcbf05ac501637c43bde2a47ed1137cb, type: 3}
   - {fileID: 21300000, guid: 8df41adc8971eed448acb0ca8ce39caa, type: 3}
@@ -449,6 +451,7 @@ SpriteAtlas:
   - Btn_115
   - Img_371
   - Pro_16
+  - Btn_134
   - zhandou_pro04
   - Main_7
   - UI_Image_137

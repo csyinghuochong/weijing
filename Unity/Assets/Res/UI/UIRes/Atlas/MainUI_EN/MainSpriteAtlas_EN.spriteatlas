@@ -74,6 +74,7 @@ SpriteAtlas:
     - 4465026ac1e18a643a22194f51663b93: 21300000
     - d20bc9fa5a94dc6429f8502c974dbe26: 21300000
     - 485f1b1b9f94efa40a98356e1abce508: 21300000
+    - 564114ab08c3d9e4b9d68a363f564dcd: 21300000
     - e2ede5dbf0c8b474f945c2c3d00a975d: 21300000
     - e3e6a7ace9347c34b9279d2be2608719: 21300000
     - 387126bcbd38dc24abd91c2fce97c8e1: 21300000
@@ -127,6 +128,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4465026ac1e18a643a22194f51663b93, type: 3}
   - {fileID: 21300000, guid: d20bc9fa5a94dc6429f8502c974dbe26, type: 3}
   - {fileID: 21300000, guid: 485f1b1b9f94efa40a98356e1abce508, type: 3}
+  - {fileID: 21300000, guid: 564114ab08c3d9e4b9d68a363f564dcd, type: 3}
   - {fileID: 21300000, guid: e2ede5dbf0c8b474f945c2c3d00a975d, type: 3}
   - {fileID: 21300000, guid: e3e6a7ace9347c34b9279d2be2608719, type: 3}
   - {fileID: 21300000, guid: 387126bcbd38dc24abd91c2fce97c8e1, type: 3}
@@ -179,6 +181,7 @@ SpriteAtlas:
   - Btn_140_EN
   - c10_EN
   - Btn_6_EN
+  - Btn_134
   - Btn_103_EN
   - Btn_128_EN
   - t5_EN
